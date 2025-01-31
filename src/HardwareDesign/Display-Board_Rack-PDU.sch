@@ -3396,28 +3396,28 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <part name="GND36" library="ds_passive" deviceset="GND" device=""/>
 <part name="+3V17" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="P+4" library="ds_passive" deviceset="+5V" device=""/>
-<part name="BUT+1" library="Wurth_Switch_WS-TASV" library_urn="urn:adsk.eagle:library:18304196" deviceset="430182043816" device="" package3d_urn="urn:adsk.eagle:package:18304300/2" value="ADTSMW64"/>
+<part name="BUT+1" library="Wurth_Switch_WS-TASV" library_urn="urn:adsk.eagle:library:18304196" deviceset="430182043816" device="" package3d_urn="urn:adsk.eagle:package:18304300/2" value="TC-6601-5.0-160"/>
 <part name="R21" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K"/>
 <part name="C17" library="ds_passive" deviceset="C" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="100nF"/>
 <part name="GND37" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND38" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND39" library="ds_passive" deviceset="GND" device=""/>
 <part name="+3V19" library="ds_passive" deviceset="+3V3" device=""/>
-<part name="BUT-1" library="Wurth_Switch_WS-TASV" library_urn="urn:adsk.eagle:library:18304196" deviceset="430182043816" device="" package3d_urn="urn:adsk.eagle:package:18304300/2" value="ADTSMW64"/>
+<part name="BUT-1" library="Wurth_Switch_WS-TASV" library_urn="urn:adsk.eagle:library:18304196" deviceset="430182043816" device="" package3d_urn="urn:adsk.eagle:package:18304300/2" value="TC-6601-5.0-160"/>
 <part name="R22" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K"/>
 <part name="C18" library="ds_passive" deviceset="C" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="100nF"/>
 <part name="GND40" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND41" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND42" library="ds_passive" deviceset="GND" device=""/>
 <part name="+3V20" library="ds_passive" deviceset="+3V3" device=""/>
-<part name="BUT_SET1" library="Wurth_Switch_WS-TASV" library_urn="urn:adsk.eagle:library:18304196" deviceset="430182043816" device="" package3d_urn="urn:adsk.eagle:package:18304300/2" value="ADTSMW64"/>
+<part name="BUT_SET1" library="Wurth_Switch_WS-TASV" library_urn="urn:adsk.eagle:library:18304196" deviceset="430182043816" device="" package3d_urn="urn:adsk.eagle:package:18304300/2" value="TC-6601-5.0-160"/>
 <part name="R23" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K"/>
 <part name="C19" library="ds_passive" deviceset="C" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="100nF"/>
 <part name="GND43" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND44" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND45" library="ds_passive" deviceset="GND" device=""/>
 <part name="+3V22" library="ds_passive" deviceset="+3V3" device=""/>
-<part name="BUT_PWR1" library="Wurth_Switch_WS-TASV" library_urn="urn:adsk.eagle:library:18304196" deviceset="430182043816" device="" package3d_urn="urn:adsk.eagle:package:18304300/2" value="ADTSMW64"/>
+<part name="BUT_PWR1" library="Wurth_Switch_WS-TASV" library_urn="urn:adsk.eagle:library:18304196" deviceset="430182043816" device="" package3d_urn="urn:adsk.eagle:package:18304300/2" value="TC-6601-5.0-160"/>
 <part name="R24" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K"/>
 <part name="C20" library="ds_passive" deviceset="C" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="100nF"/>
 <part name="GND46" library="ds_passive" deviceset="GND" device=""/>
@@ -3431,7 +3431,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <part name="C22" library="ds_passive" deviceset="C" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="100nF"/>
 <part name="GND49" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND50" library="ds_passive" deviceset="GND" device=""/>
-<part name="IC1" library="ds_ic_peripherals" deviceset="MCP23S18" device="" package3d_urn="urn:adsk.eagle:package:46683902/2"/>
+<part name="IC1" library="ds_ic_peripherals" deviceset="MCP23S18" device="" package3d_urn="urn:adsk.eagle:package:46683902/2" value="MCP23S18-E/MJ"/>
 <part name="R25" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K"/>
 <part name="+3V26" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="OUT-1" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="CHIP-LED0805" package3d_urn="urn:adsk.eagle:package:15818/2"/>
@@ -3444,13 +3444,13 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <part name="OUT-8" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="CHIP-LED0805" package3d_urn="urn:adsk.eagle:package:15818/2"/>
 <part name="GND51" library="ds_passive" deviceset="GND" device=""/>
 <part name="DISP2" library="ds_displays" deviceset="128X64OLED" device="" package3d_urn="urn:adsk.eagle:package:46762453/2"/>
-<part name="R26" library="Resistor Array" library_urn="urn:adsk.eagle:library:16491332" deviceset="742C083103JP" device="" package3d_urn="urn:adsk.eagle:package:16445849/4"/>
-<part name="R27" library="Resistor Array" library_urn="urn:adsk.eagle:library:16491332" deviceset="742C083103JP" device="" package3d_urn="urn:adsk.eagle:package:16445849/4"/>
-<part name="R28" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K"/>
-<part name="R29" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K"/>
-<part name="R30" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K"/>
-<part name="FAULT" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="CHIP-LED0805" package3d_urn="urn:adsk.eagle:package:15818/2"/>
-<part name="ETH" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="CHIP-LED0805" package3d_urn="urn:adsk.eagle:package:15818/2"/>
+<part name="R26" library="Resistor Array" library_urn="urn:adsk.eagle:library:16491332" deviceset="742C083103JP" device="" package3d_urn="urn:adsk.eagle:package:16445849/4" value="4D03WGJ0102T5E 1K"/>
+<part name="R27" library="Resistor Array" library_urn="urn:adsk.eagle:library:16491332" deviceset="742C083103JP" device="" package3d_urn="urn:adsk.eagle:package:16445849/4" value="4D03WGJ0102T5E 1K"/>
+<part name="R28" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="1K"/>
+<part name="R29" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="1K"/>
+<part name="R30" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="1K"/>
+<part name="FAULT" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="CHIP-LED0805" package3d_urn="urn:adsk.eagle:package:15818/2" value="XL-2012SURC"/>
+<part name="ETH" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="CHIP-LED0805" package3d_urn="urn:adsk.eagle:package:15818/2" value="XL-2012UBC"/>
 <part name="PWR" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="CHIP-LED0805" package3d_urn="urn:adsk.eagle:package:15818/2"/>
 <part name="GND52" library="ds_passive" deviceset="GND" device=""/>
 <part name="NC23" library="ds_passive" deviceset="NC" device=""/>

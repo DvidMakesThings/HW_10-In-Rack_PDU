@@ -4454,7 +4454,7 @@ Updated  by Ella Wu  2019-07-05&lt;br&gt;
 <parts>
 <part name="FRAME1" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A3L-LOC" device=""/>
 <part name="REL1" library="ds_passive" deviceset="G2RL-1A-E_DC12" device="" package3d_urn="urn:adsk.eagle:package:46756717/2"/>
-<part name="D1" library="diode" library_urn="urn:adsk.eagle:library:210" deviceset="MBRA340T3" device="" package3d_urn="urn:adsk.eagle:package:43460/3"/>
+<part name="D1" library="diode" library_urn="urn:adsk.eagle:library:210" deviceset="MBRA340T3" device="" package3d_urn="urn:adsk.eagle:package:43460/3" value="MBRA340T3G"/>
 <part name="P+1" library="ds_passive" deviceset="+12V" device=""/>
 <part name="REL2" library="ds_passive" deviceset="G2RL-1A-E_DC12" device="" package3d_urn="urn:adsk.eagle:package:46756717/2"/>
 <part name="D2" library="diode" library_urn="urn:adsk.eagle:library:210" deviceset="MBRA340T3" device="" package3d_urn="urn:adsk.eagle:package:43460/3"/>
@@ -4479,16 +4479,16 @@ Updated  by Ella Wu  2019-07-05&lt;br&gt;
 <part name="P+8" library="ds_passive" deviceset="+12V" device=""/>
 <part name="BR1" library="ds_active" deviceset="DBLS207G" device="" package3d_urn="urn:adsk.eagle:package:46780836/2" value="DBLS207G"/>
 <part name="RV1" library="Wurth_EMC Components_WE-VD" library_urn="urn:adsk.eagle:library:14283070" deviceset="WE-VD_10MM" device="_820412001" package3d_urn="urn:adsk.eagle:package:12144824/3" value="B72210S0321K101"/>
-<part name="C14" library="ds_passive" deviceset="C" device="" package3d_urn="urn:adsk.eagle:package:46766481/2" value="100nF 275V"/>
+<part name="C14" library="ds_passive" deviceset="C" device="" package3d_urn="urn:adsk.eagle:package:46766481/2" value="MP2104K27C3R6LC 100nF 275V"/>
 <part name="F2" library="Wurth_Connectors_WR-FSH" library_urn="urn:adsk.eagle:library:14787550" deviceset="696101000002" device="" package3d_urn="urn:adsk.eagle:package:14787579/2" value="696101000002"/>
 <part name="GND6" library="ds_passive" deviceset="AGND" device=""/>
 <part name="GND7" library="ds_passive" deviceset="AGND" device=""/>
-<part name="C15" library="Capacitor" library_urn="urn:adsk.eagle:library:16290819" deviceset="C-POL" device="RADIAL-25MM-DIA" package3d_urn="urn:adsk.eagle:package:16290890/3" technology="_" value="15uF 400V"/>
+<part name="C15" library="Capacitor" library_urn="urn:adsk.eagle:library:16290819" deviceset="C-POL" device="RADIAL-25MM-DIA" package3d_urn="urn:adsk.eagle:package:16290890/3" technology="_" value="KM150M400G160A 15uF 400V"/>
 <part name="FRAME3" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A3L-LOC" device=""/>
 <part name="R13" library="ds_passive" deviceset="R" device="1206" package3d_urn="urn:adsk.eagle:package:46683745/2" value="220K 5% 0.33W 200V"/>
 <part name="C16" library="ds_passive" deviceset="C" device="-1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="10nF 1kV"/>
 <part name="CM1" library="ds_trafo" deviceset="WE-CMB_XS_744821120" device="" package3d_urn="urn:adsk.eagle:package:46769279/2" value="20mH CM CHOKE"/>
-<part name="C17" library="Capacitor" library_urn="urn:adsk.eagle:library:16290819" deviceset="C-POL" device="RADIAL-25MM-DIA" package3d_urn="urn:adsk.eagle:package:16290890/3" technology="_" value="15uF 400V"/>
+<part name="C17" library="Capacitor" library_urn="urn:adsk.eagle:library:16290819" deviceset="C-POL" device="RADIAL-25MM-DIA" package3d_urn="urn:adsk.eagle:package:16290890/3" technology="_" value="KM150M400G160A 15uF 400V"/>
 <part name="GND9" library="ds_passive" deviceset="AGND" device=""/>
 <part name="D15" library="Diodes" library_urn="urn:adsk.eagle:library:11396254" deviceset="SS12" device="" package3d_urn="urn:adsk.eagle:package:10898394/2" value="MRA4007T3G"/>
 <part name="T1" library="ds_trafo" deviceset="750370228" device="" package3d_urn="urn:adsk.eagle:package:45019244/2" value=" 750370228 "/>
@@ -4550,7 +4550,7 @@ Updated  by Ella Wu  2019-07-05&lt;br&gt;
 <part name="R5" library="ds_passive" deviceset="R" device="1206" package3d_urn="urn:adsk.eagle:package:46683745/2" value="330R 1W"/>
 <part name="R6" library="ds_passive" deviceset="R" device="1206" package3d_urn="urn:adsk.eagle:package:46683745/2" value="330R 1W"/>
 <part name="R7" library="ds_passive" deviceset="R" device="1206" package3d_urn="urn:adsk.eagle:package:46683745/2" value="330R 1W"/>
-<part name="IC1" library="ds_ic_peripherals" deviceset="ULN2803" device="" package3d_urn="urn:adsk.eagle:package:46683893/2"/>
+<part name="IC1" library="ds_ic_peripherals" deviceset="ULN2803" device="" package3d_urn="urn:adsk.eagle:package:46683893/2" value="ULN2803A"/>
 <part name="R8" library="ds_passive" deviceset="R" device="1206" package3d_urn="urn:adsk.eagle:package:46683745/2" value="330R 1W"/>
 <part name="R9" library="ds_passive" deviceset="R" device="0805" package3d_urn="urn:adsk.eagle:package:46683742/2" value="0R"/>
 <part name="R10" library="ds_passive" deviceset="R" device="0805" package3d_urn="urn:adsk.eagle:package:46683742/2" value="0R"/>
@@ -5036,7 +5036,7 @@ Updated  by Ella Wu  2019-07-05&lt;br&gt;
 </instance>
 <instance part="C14" gate="G$1" x="76.2" y="182.88" smashed="yes" rot="MR180">
 <attribute name="NAME" x="77.724" y="181.229" size="1.778" layer="95" rot="MR180"/>
-<attribute name="VALUE" x="77.724" y="187.579" size="1.778" layer="96" rot="MR180"/>
+<attribute name="VALUE" x="70.104" y="192.659" size="1.778" layer="96" rot="MR180"/>
 </instance>
 <instance part="F2" gate="G$1" x="53.34" y="175.26" smashed="yes" rot="MR180">
 <attribute name="NAME" x="53.34" y="172.72" size="1.778" layer="95" rot="MR180" align="bottom-center"/>
@@ -5050,7 +5050,7 @@ Updated  by Ella Wu  2019-07-05&lt;br&gt;
 </instance>
 <instance part="C15" gate="G$1" x="142.24" y="177.8" smashed="yes">
 <attribute name="NAME" x="143.383" y="178.2826" size="1.778" layer="95"/>
-<attribute name="VALUE" x="143.383" y="173.2026" size="1.778" layer="96"/>
+<attribute name="VALUE" x="143.383" y="170.6626" size="1.778" layer="96"/>
 </instance>
 <instance part="FRAME3" gate="G$1" x="0" y="0" smashed="yes">
 <attribute name="DRAWING_NAME" x="344.17" y="15.24" size="2.54" layer="94"/>
@@ -5059,7 +5059,7 @@ Updated  by Ella Wu  2019-07-05&lt;br&gt;
 </instance>
 <instance part="R13" gate="G$1" x="215.9" y="172.72" smashed="yes" rot="MR0">
 <attribute name="NAME" x="212.09" y="171.6786" size="1.778" layer="95" rot="MR0"/>
-<attribute name="VALUE" x="212.09" y="174.498" size="1.778" layer="96" rot="MR0"/>
+<attribute name="VALUE" x="212.09" y="177.038" size="1.778" layer="96" rot="MR0"/>
 </instance>
 <instance part="C16" gate="G$1" x="220.98" y="172.72" smashed="yes" rot="MR180">
 <attribute name="NAME" x="222.504" y="171.069" size="1.778" layer="95" rot="MR180"/>

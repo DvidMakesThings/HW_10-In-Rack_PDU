@@ -8,34 +8,34 @@
 </settings>
 <grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
-<layer number="1" name="Top" color="4" fill="1" visible="yes" active="no"/>
-<layer number="2" name="Route2" color="16" fill="1" visible="yes" active="no"/>
-<layer number="3" name="Route3" color="17" fill="1" visible="yes" active="no"/>
-<layer number="4" name="Route4" color="18" fill="1" visible="yes" active="no"/>
-<layer number="5" name="Route5" color="19" fill="1" visible="yes" active="no"/>
-<layer number="6" name="Route6" color="25" fill="1" visible="yes" active="no"/>
-<layer number="7" name="Route7" color="26" fill="1" visible="yes" active="no"/>
-<layer number="8" name="Route8" color="27" fill="1" visible="yes" active="no"/>
-<layer number="9" name="Route9" color="28" fill="1" visible="yes" active="no"/>
-<layer number="10" name="Route10" color="29" fill="1" visible="yes" active="no"/>
-<layer number="11" name="Route11" color="30" fill="1" visible="yes" active="no"/>
-<layer number="12" name="Route12" color="20" fill="1" visible="yes" active="no"/>
-<layer number="13" name="Route13" color="21" fill="1" visible="yes" active="no"/>
-<layer number="14" name="Route14" color="22" fill="1" visible="yes" active="no"/>
-<layer number="15" name="Route15" color="23" fill="1" visible="yes" active="no"/>
-<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="no"/>
-<layer number="17" name="Pads" color="2" fill="1" visible="yes" active="no"/>
-<layer number="18" name="Vias" color="2" fill="1" visible="yes" active="no"/>
-<layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="no"/>
-<layer number="20" name="Dimension" color="24" fill="1" visible="yes" active="no"/>
-<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="no"/>
-<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="no"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="no"/>
-<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="no"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="no"/>
-<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="no"/>
-<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="no"/>
-<layer number="28" name="bValues" color="7" fill="1" visible="yes" active="no"/>
+<layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
+<layer number="2" name="Route2" color="16" fill="1" visible="no" active="no"/>
+<layer number="3" name="Route3" color="17" fill="1" visible="no" active="no"/>
+<layer number="4" name="Route4" color="18" fill="1" visible="no" active="no"/>
+<layer number="5" name="Route5" color="19" fill="1" visible="no" active="no"/>
+<layer number="6" name="Route6" color="25" fill="1" visible="no" active="no"/>
+<layer number="7" name="Route7" color="26" fill="1" visible="no" active="no"/>
+<layer number="8" name="Route8" color="27" fill="1" visible="no" active="no"/>
+<layer number="9" name="Route9" color="28" fill="1" visible="no" active="no"/>
+<layer number="10" name="Route10" color="29" fill="1" visible="no" active="no"/>
+<layer number="11" name="Route11" color="30" fill="1" visible="no" active="no"/>
+<layer number="12" name="Route12" color="20" fill="1" visible="no" active="no"/>
+<layer number="13" name="Route13" color="21" fill="1" visible="no" active="no"/>
+<layer number="14" name="Route14" color="22" fill="1" visible="no" active="no"/>
+<layer number="15" name="Route15" color="23" fill="1" visible="no" active="no"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="no" active="no"/>
+<layer number="17" name="Pads" color="2" fill="1" visible="no" active="no"/>
+<layer number="18" name="Vias" color="2" fill="1" visible="no" active="no"/>
+<layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="no"/>
+<layer number="20" name="Dimension" color="24" fill="1" visible="no" active="no"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="no" active="no"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="no" active="no"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="no"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="no"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="no" active="no"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="no" active="no"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="no" active="no"/>
+<layer number="28" name="bValues" color="7" fill="1" visible="no" active="no"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="no"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="no"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="no"/>
@@ -44,8 +44,8 @@
 <layer number="34" name="bFinish" color="6" fill="6" visible="no" active="no"/>
 <layer number="35" name="tGlue" color="7" fill="4" visible="no" active="no"/>
 <layer number="36" name="bGlue" color="7" fill="5" visible="no" active="no"/>
-<layer number="37" name="tTest" color="7" fill="1" visible="yes" active="no"/>
-<layer number="38" name="bTest" color="7" fill="1" visible="yes" active="no"/>
+<layer number="37" name="tTest" color="7" fill="1" visible="no" active="no"/>
+<layer number="38" name="bTest" color="7" fill="1" visible="no" active="no"/>
 <layer number="39" name="tKeepout" color="4" fill="11" visible="no" active="no"/>
 <layer number="40" name="bKeepout" color="1" fill="11" visible="no" active="no"/>
 <layer number="41" name="tRestrict" color="4" fill="10" visible="no" active="no"/>
@@ -53,20 +53,20 @@
 <layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="no"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="no"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="no" active="no"/>
-<layer number="46" name="Milling" color="3" fill="1" visible="yes" active="no"/>
-<layer number="47" name="Measures" color="7" fill="1" visible="yes" active="no"/>
-<layer number="48" name="Document" color="7" fill="1" visible="yes" active="no"/>
-<layer number="49" name="Reference" color="7" fill="1" visible="yes" active="no"/>
-<layer number="50" name="dxf" color="7" fill="1" visible="yes" active="no"/>
-<layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="no"/>
-<layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="no"/>
-<layer number="53" name="tGND_GNDA" color="7" fill="9" visible="yes" active="no"/>
-<layer number="54" name="bGND_GNDA" color="1" fill="9" visible="yes" active="no"/>
-<layer number="56" name="wert" color="7" fill="1" visible="yes" active="no"/>
-<layer number="57" name="tCAD" color="7" fill="1" visible="yes" active="no"/>
-<layer number="58" name="bCAD" color="7" fill="1" visible="yes" active="no"/>
-<layer number="59" name="tCarbon" color="7" fill="1" visible="yes" active="no"/>
-<layer number="60" name="bCarbon" color="7" fill="1" visible="yes" active="no"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="no" active="no"/>
+<layer number="47" name="Measures" color="7" fill="1" visible="no" active="no"/>
+<layer number="48" name="Document" color="7" fill="1" visible="no" active="no"/>
+<layer number="49" name="Reference" color="7" fill="1" visible="no" active="no"/>
+<layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
+<layer number="51" name="tDocu" color="7" fill="1" visible="no" active="no"/>
+<layer number="52" name="bDocu" color="7" fill="1" visible="no" active="no"/>
+<layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
+<layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
+<layer number="56" name="wert" color="7" fill="1" visible="no" active="no"/>
+<layer number="57" name="tCAD" color="7" fill="1" visible="no" active="no"/>
+<layer number="58" name="bCAD" color="7" fill="1" visible="no" active="no"/>
+<layer number="59" name="tCarbon" color="7" fill="1" visible="no" active="no"/>
+<layer number="60" name="bCarbon" color="7" fill="1" visible="no" active="no"/>
 <layer number="88" name="SimResults" color="9" fill="1" visible="no" active="yes"/>
 <layer number="89" name="SimProbes" color="9" fill="1" visible="no" active="yes"/>
 <layer number="90" name="Modules" color="5" fill="1" visible="no" active="yes"/>
@@ -3394,7 +3394,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 </classes>
 <parts>
 <part name="FRAME1" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A3L-LOC" device=""/>
-<part name="IC1" library="ds_ic_peripherals" deviceset="W5500" device="" package3d_urn="urn:adsk.eagle:package:46756750/2"/>
+<part name="IC1" library="ds_ic_peripherals" deviceset="W5500" device="" package3d_urn="urn:adsk.eagle:package:46756750/2" value="W5500"/>
 <part name="+3V2" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="R2" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="3.3R"/>
 <part name="R1" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="3.3R"/>
@@ -3434,7 +3434,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <part name="C7" library="ds_passive" deviceset="C" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="4.7uF"/>
 <part name="GND6" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND7" library="ds_passive" deviceset="GND" device=""/>
-<part name="X1" library="ds_passive" deviceset="CRYSTAL" device="" package3d_urn="urn:adsk.eagle:package:16378248/1" value="25MHz"/>
+<part name="X1" library="ds_passive" deviceset="CRYSTAL" device="" package3d_urn="urn:adsk.eagle:package:16378248/1" value="RL250001791"/>
 <part name="C8" library="ds_passive" deviceset="C" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="18pF"/>
 <part name="C9" library="ds_passive" deviceset="C" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="18pF"/>
 <part name="GND8" library="ds_passive" deviceset="GND" device=""/>
@@ -3458,7 +3458,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <part name="L1" library="ds_passive" deviceset="R" device="0603" package3d_urn="urn:adsk.eagle:package:46683743/2" value="BLM18EG221TN1D"/>
 <part name="FRAME2" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A3L-LOC" device=""/>
 <part name="IC2" library="ds_ic_mcu" deviceset="RP2040" device="" package3d_urn="urn:adsk.eagle:package:6365073/1"/>
-<part name="X2" library="ds_passive" deviceset="CRYSTAL" device="" package3d_urn="urn:adsk.eagle:package:16378248/1" value="12MHz"/>
+<part name="X2" library="ds_passive" deviceset="CRYSTAL" device="" package3d_urn="urn:adsk.eagle:package:16378248/1" value="SX3M12.000B10F20TNN"/>
 <part name="C19" library="ds_passive" deviceset="C" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="15pF"/>
 <part name="C20" library="ds_passive" deviceset="C" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="15pF"/>
 <part name="GND12" library="ds_passive" deviceset="GND" device=""/>
@@ -3472,7 +3472,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <part name="R17" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="4.7K"/>
 <part name="IOVDD" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
 <part name="VREF" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
-<part name="IC3" library="ds_ic_opa" deviceset="MCP6001RT" device="" package3d_urn="urn:adsk.eagle:package:25419215/3" value="MCP6001"/>
+<part name="IC3" library="ds_ic_opa" deviceset="MCP6001RT" device="" package3d_urn="urn:adsk.eagle:package:25419215/3" value="MCP6001AIDBVRG"/>
 <part name="GND16" library="ds_passive" deviceset="GND" device=""/>
 <part name="C21" library="ds_passive" deviceset="C" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="1uF"/>
 <part name="C22" library="ds_passive" deviceset="C" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="100nF"/>
@@ -3483,7 +3483,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <part name="C24" library="ds_passive" deviceset="C" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="100nF"/>
 <part name="GND20" library="ds_passive" deviceset="GND" device=""/>
 <part name="AVDD" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
-<part name="IC4" library="MCU" deviceset="W25Q128JV" device="P" package3d_urn="urn:adsk.eagle:package:45369668/1"/>
+<part name="IC4" library="MCU" deviceset="W25Q128JV" device="P" package3d_urn="urn:adsk.eagle:package:45369668/1" value="W25Q128JVPIQ"/>
 <part name="R18" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="DNI"/>
 <part name="GND21" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND22" library="ds_passive" deviceset="GND" device=""/>
@@ -3501,7 +3501,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <part name="C26" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="C" device="0805" package3d_urn="urn:adsk.eagle:package:46683742/2" value="10uF"/>
 <part name="C27" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="C" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="100nF"/>
 <part name="GND26" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
-<part name="USBC" library="Wurth_Connectors_WR-USB" library_urn="urn:adsk.eagle:library:16513831" deviceset="629722000214" device="" package3d_urn="urn:adsk.eagle:package:32827710/4" value="629722000214"/>
+<part name="USBC" library="Wurth_Connectors_WR-USB" library_urn="urn:adsk.eagle:library:16513831" deviceset="629722000214" device="" package3d_urn="urn:adsk.eagle:package:32827710/4" value="USB-TYPE-C-018"/>
 <part name="R21" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="27R"/>
 <part name="R22" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="27R"/>
 <part name="R23" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="5.1K"/>
@@ -3523,7 +3523,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <part name="C39" library="ds_passive" deviceset="C" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="100nF"/>
 <part name="GND30" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND31" library="ds_passive" deviceset="GND" device=""/>
-<part name="USB_BOOT" library="52101-101-REV-A_v16" library_urn="urn:adsk.eagle:library:21899384" deviceset="SWITCH-OMRON_B3U-1000P" device="" package3d_urn="urn:adsk.eagle:package:15662278/2" value="B3U-1000P"/>
+<part name="USB_BOOT" library="52101-101-REV-A_v16" library_urn="urn:adsk.eagle:library:21899384" deviceset="SWITCH-OMRON_B3U-1000P" device="" package3d_urn="urn:adsk.eagle:package:15662278/2" value="B3U-1000P-B"/>
 <part name="GND37" library="ds_passive" deviceset="GND" device=""/>
 <part name="DBG2" library="ds_con" deviceset="CON-1X4" device="" package3d_urn="urn:adsk.eagle:package:46684991/2"/>
 <part name="GND38" library="ds_passive" deviceset="GND" device=""/>
@@ -3539,7 +3539,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <part name="GND41" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND42" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND43" library="ds_passive" deviceset="GND" device=""/>
-<part name="IC6" library="ds_ic_memory" deviceset="CAT24C256" device="-HU4" package3d_urn="urn:adsk.eagle:package:45817778/1"/>
+<part name="IC6" library="ds_ic_memory" deviceset="CAT24C256" device="-HU4" package3d_urn="urn:adsk.eagle:package:45817778/1" value="CAT24C256HU4IGT3"/>
 <part name="R27" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="4.7K"/>
 <part name="R28" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="4.7K"/>
 <part name="GND44" library="ds_passive" deviceset="GND" device=""/>
@@ -3548,7 +3548,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <part name="P+4" library="ds_passive" deviceset="+5V" device=""/>
 <part name="P+5" library="ds_passive" deviceset="+5V" device=""/>
 <part name="FRAME3" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A3L-LOC" device=""/>
-<part name="IC7" library="ds_ic_vreg" deviceset="MP2315" device="TSOT23-8" package3d_urn="urn:adsk.eagle:package:29335450/1" value="MP2315S "/>
+<part name="IC7" library="ds_ic_vreg" deviceset="MP2315" device="TSOT23-8" package3d_urn="urn:adsk.eagle:package:29335450/1" value="MP2315GJ-Z"/>
 <part name="C48" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="C" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="100nF"/>
 <part name="R31" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="499K"/>
 <part name="C49" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="C" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="100nF"/>
@@ -3585,14 +3585,14 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <part name="+3V13" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="+3V19" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="+3V20" library="ds_passive" deviceset="+3V3" device=""/>
-<part name="R38" library="Resistor Array" library_urn="urn:adsk.eagle:library:16491332" deviceset="742C083103JP" device="" package3d_urn="urn:adsk.eagle:package:16445849/4"/>
+<part name="R38" library="Resistor Array" library_urn="urn:adsk.eagle:library:16491332" deviceset="742C083103JP" device="" package3d_urn="urn:adsk.eagle:package:16445849/4" value="4D03WGJ0332T5E"/>
 <part name="+3V22" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="DBG1" library="ds_con" deviceset="CON-1X4" device="" package3d_urn="urn:adsk.eagle:package:46684991/2"/>
 <part name="GND65" library="ds_passive" deviceset="GND" device=""/>
 <part name="R39" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="1M"/>
 <part name="C54" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="C" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="4.7nF"/>
 <part name="GND66" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
-<part name="ESD1" library="ds_ic_peripherals" deviceset="SP0503BAHT" device="" package3d_urn="urn:adsk.eagle:package:25572586/2"/>
+<part name="ESD1" library="ds_ic_peripherals" deviceset="SP0503BAHT" device="" package3d_urn="urn:adsk.eagle:package:25572586/2" value="SP0503BAHTG-ES"/>
 <part name="GND67" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="R40" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="470R"/>
 <part name="+3V3" library="ds_passive" deviceset="+3V3" device=""/>
@@ -3605,7 +3605,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <part name="C56" library="ds_passive" deviceset="C" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="100nF"/>
 <part name="GND68" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND69" library="ds_passive" deviceset="GND" device=""/>
-<part name="IC8" library="ds_ic_peripherals" deviceset="MCP23S18" device="" package3d_urn="urn:adsk.eagle:package:46683902/2"/>
+<part name="IC8" library="ds_ic_peripherals" deviceset="MCP23S18" device="" package3d_urn="urn:adsk.eagle:package:46683902/2" value="MCP23S18-E/MJ"/>
 <part name="GND" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
 <part name="GND-5" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
 <part name="R29" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="100K"/>
@@ -3636,12 +3636,12 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <part name="R45" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="100K"/>
 <part name="P+7" library="ds_passive" deviceset="+12V" device=""/>
 <part name="+3V14" library="ds_passive" deviceset="+3V3" device=""/>
-<part name="C44" library="ds_passive" deviceset="C" device="-1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="22uF"/>
-<part name="C45" library="ds_passive" deviceset="C" device="-1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="22uF"/>
-<part name="C46" library="ds_passive" deviceset="C" device="-1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="22uF"/>
-<part name="C47" library="ds_passive" deviceset="C" device="-1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="22uF"/>
-<part name="C53" library="ds_passive" deviceset="C" device="-1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="22uF"/>
-<part name="C57" library="ds_passive" deviceset="C" device="-1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="22uF"/>
+<part name="C44" library="ds_passive" deviceset="C" device="-1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="CL31A226KAHNNNE - 22uF 25V"/>
+<part name="C45" library="ds_passive" deviceset="C" device="-1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="CL31A226KAHNNNE - 22uF 25V"/>
+<part name="C46" library="ds_passive" deviceset="C" device="-1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="CL31A226KPHNNNE - 22uF - 10V"/>
+<part name="C47" library="ds_passive" deviceset="C" device="-1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="CL31A226KPHNNNE - 22uF - 10V"/>
+<part name="C53" library="ds_passive" deviceset="C" device="-1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="CL31A226KPHNNNE - 22uF - 10V"/>
+<part name="C57" library="ds_passive" deviceset="C" device="-1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="CL31A226KPHNNNE - 22uF - 10V"/>
 <part name="GND51" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="GND52" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="P+3" library="ds_passive" deviceset="+12V" device=""/>
@@ -3656,10 +3656,18 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <part name="GND47" library="ds_passive" deviceset="GND" device=""/>
 <part name="P+8" library="ds_passive" deviceset="+12V" device=""/>
 <part name="12VFB" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
-<part name="RESET" library="52101-101-REV-A_v16" library_urn="urn:adsk.eagle:library:21899384" deviceset="SWITCH-OMRON_B3U-1000P" device="" package3d_urn="urn:adsk.eagle:package:15662278/2" value="B3U-1000P"/>
+<part name="RESET" library="52101-101-REV-A_v16" library_urn="urn:adsk.eagle:library:21899384" deviceset="SWITCH-OMRON_B3U-1000P" device="" package3d_urn="urn:adsk.eagle:package:15662278/2" value="B3U-1000P-B"/>
 <part name="GND50" library="ds_passive" deviceset="GND" device=""/>
 <part name="R50" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K"/>
 <part name="+3V23" library="ds_passive" deviceset="+3V3" device=""/>
+<part name="NC19" library="ds_passive" deviceset="NC" device=""/>
+<part name="NC20" library="ds_passive" deviceset="NC" device=""/>
+<part name="NC21" library="ds_passive" deviceset="NC" device=""/>
+<part name="NC22" library="ds_passive" deviceset="NC" device=""/>
+<part name="NC23" library="ds_passive" deviceset="NC" device=""/>
+<part name="NC24" library="ds_passive" deviceset="NC" device=""/>
+<part name="NC25" library="ds_passive" deviceset="NC" device=""/>
+<part name="NC26" library="ds_passive" deviceset="NC" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -4021,7 +4029,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 </instance>
 <instance part="ESD1" gate="G$1" x="200.66" y="45.72" smashed="yes" rot="MR90">
 <attribute name="NAME" x="202.946" y="53.975" size="1.778" layer="95" rot="MR0"/>
-<attribute name="VALUE" x="195.961" y="53.594" size="1.778" layer="96" rot="MR90"/>
+<attribute name="VALUE" x="200.914" y="35.179" size="1.778" layer="96" rot="MR180"/>
 </instance>
 <instance part="GND67" gate="1" x="198.12" y="30.48" smashed="yes">
 <attribute name="VALUE" x="198.12" y="27.94" size="1.778" layer="96" align="top-center"/>
@@ -5431,6 +5439,14 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <instance part="NC14" gate="G$1" x="132.08" y="35.56" smashed="yes"/>
 <instance part="NC15" gate="G$1" x="132.08" y="33.02" smashed="yes"/>
 <instance part="NC18" gate="G$1" x="132.08" y="30.48" smashed="yes"/>
+<instance part="NC19" gate="G$1" x="307.34" y="182.88" smashed="yes"/>
+<instance part="NC20" gate="G$1" x="307.34" y="180.34" smashed="yes"/>
+<instance part="NC21" gate="G$1" x="307.34" y="177.8" smashed="yes"/>
+<instance part="NC22" gate="G$1" x="307.34" y="175.26" smashed="yes"/>
+<instance part="NC23" gate="G$1" x="307.34" y="172.72" smashed="yes"/>
+<instance part="NC24" gate="G$1" x="307.34" y="170.18" smashed="yes"/>
+<instance part="NC25" gate="G$1" x="307.34" y="167.64" smashed="yes"/>
+<instance part="NC26" gate="G$1" x="307.34" y="165.1" smashed="yes"/>
 </instances>
 <busses>
 </busses>
@@ -6271,59 +6287,11 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <wire x1="317.5" y1="78.74" x2="317.5" y2="83.82" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$78" class="0">
-<segment>
-<wire x1="322.58" y1="177.8" x2="302.26" y2="177.8" width="0.1524" layer="91"/>
-<pinref part="IC8" gate="G$1" pin="GPB2"/>
-</segment>
-</net>
-<net name="N$79" class="0">
-<segment>
-<wire x1="302.26" y1="175.26" x2="322.58" y2="175.26" width="0.1524" layer="91"/>
-<pinref part="IC8" gate="G$1" pin="GPB3"/>
-</segment>
-</net>
-<net name="N$80" class="0">
-<segment>
-<pinref part="IC8" gate="G$1" pin="GPB4"/>
-<wire x1="322.58" y1="172.72" x2="302.26" y2="172.72" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$81" class="0">
-<segment>
-<pinref part="IC8" gate="G$1" pin="GPB5"/>
-<wire x1="302.26" y1="170.18" x2="322.58" y2="170.18" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$82" class="0">
-<segment>
-<pinref part="IC8" gate="G$1" pin="GPB6"/>
-<wire x1="322.58" y1="167.64" x2="302.26" y2="167.64" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$83" class="0">
-<segment>
-<pinref part="IC8" gate="G$1" pin="GPB7"/>
-<wire x1="302.26" y1="165.1" x2="322.58" y2="165.1" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="DIO_RESET" class="0">
 <segment>
 <wire x1="271.78" y1="200.66" x2="266.7" y2="200.66" width="0.1524" layer="91"/>
 <label x="266.7" y="200.66" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="IC8" gate="G$1" pin="!RESET"/>
-</segment>
-</net>
-<net name="N$10" class="0">
-<segment>
-<wire x1="302.26" y1="180.34" x2="322.58" y2="180.34" width="0.1524" layer="91"/>
-<pinref part="IC8" gate="G$1" pin="GPB1"/>
-</segment>
-</net>
-<net name="N$77" class="0">
-<segment>
-<wire x1="322.58" y1="182.88" x2="302.26" y2="182.88" width="0.1524" layer="91"/>
-<pinref part="IC8" gate="G$1" pin="GPB0"/>
 </segment>
 </net>
 <net name="!SPI1_CS_S" class="0">
@@ -6543,19 +6511,19 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 </instance>
 <instance part="C44" gate="G$1" x="53.34" y="96.52" smashed="yes">
 <attribute name="NAME" x="54.864" y="98.171" size="1.778" layer="95"/>
-<attribute name="VALUE" x="54.864" y="91.821" size="1.778" layer="96"/>
+<attribute name="VALUE" x="51.816" y="93.599" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="C45" gate="G$1" x="53.34" y="185.42" smashed="yes">
 <attribute name="NAME" x="54.864" y="187.071" size="1.778" layer="95"/>
-<attribute name="VALUE" x="54.864" y="180.721" size="1.778" layer="96"/>
+<attribute name="VALUE" x="51.816" y="182.499" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="C46" gate="G$1" x="187.96" y="177.8" smashed="yes">
 <attribute name="NAME" x="189.484" y="179.451" size="1.778" layer="95"/>
-<attribute name="VALUE" x="189.484" y="173.101" size="1.778" layer="96"/>
+<attribute name="VALUE" x="189.484" y="170.561" size="1.778" layer="96"/>
 </instance>
 <instance part="C47" gate="G$1" x="187.96" y="88.9" smashed="yes">
 <attribute name="NAME" x="189.484" y="90.551" size="1.778" layer="95"/>
-<attribute name="VALUE" x="189.484" y="84.201" size="1.778" layer="96"/>
+<attribute name="VALUE" x="189.484" y="81.661" size="1.778" layer="96"/>
 </instance>
 <instance part="C53" gate="G$1" x="200.66" y="177.8" smashed="yes">
 <attribute name="NAME" x="202.184" y="179.451" size="1.778" layer="95"/>
