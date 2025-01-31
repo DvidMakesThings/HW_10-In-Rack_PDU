@@ -194,7 +194,7 @@
 <layer number="255" name="routoute" color="7" fill="1" visible="no" active="yes"/>
 </layers>
 <board>
-<fusionsync huburn="a.YnVzaW5lc3M6aG90bWFpbDE2OTAxNA" projecturn="a.YnVzaW5lc3M6aG90bWFpbDE2OTAxNCMyMDI1MDEwNTg1Mzg3MDcwMQ" f3durn="urn:adsk.wipprod:dm.lineage:DIiYrAdBSEyavYlXgEQ1eA" pcbguid="dc174ba3-0ec5-4f60-a437-87b8fffe0230" lastpulledtime="" lastsyncedchangeguid="075fea4d-b434-3a5e-ab02-ff13c6e4b379"/>
+<fusionsync huburn="a.YnVzaW5lc3M6aG90bWFpbDE2OTAxNA" projecturn="a.YnVzaW5lc3M6aG90bWFpbDE2OTAxNCMyMDI1MDEwNTg1Mzg3MDcwMQ" f3durn="urn:adsk.wipprod:dm.lineage:DIiYrAdBSEyavYlXgEQ1eA" pcbguid="dc174ba3-0ec5-4f60-a437-87b8fffe0230" lastpulledtime="" lastsyncedchangeguid="24e36b4e-26e9-7fa8-bc74-900f1b63f0f0"/>
 <plain>
 <wire x1="146" y1="3.41420625" x2="146" y2="67.58579375" width="0" layer="20"/>
 <wire x1="146" y1="67.58579375" x2="142.58579375" y2="71" width="0" layer="20" curve="90"/>
@@ -263,7 +263,7 @@
 <rectangle x1="64.8" y1="62.6" x2="72" y2="63.2" layer="30"/>
 <text x="83.49" y="66.42" size="1.4224" layer="25" font="vector" ratio="13">github.com/DvidMakesThings/HW_10-In-Rack_PDU
 David Sipos @2025</text>
-<text x="142.82" y="62.73" size="1.4224" layer="21" font="vector" ratio="13" rot="R270">Controller Board REV 1.0</text>
+<text x="142.82" y="62.73" size="1.4224" layer="21" font="vector" ratio="13" rot="R270">Relay Board REV 1.0</text>
 <wire x1="58.9" y1="95.5" x2="58.9" y2="54.3" width="1.016" layer="21"/>
 <wire x1="58.9" y1="54.3" x2="58.7" y2="54.1" width="1.016" layer="21"/>
 <wire x1="9.9" y1="32.2" x2="147.3" y2="32.2" width="1.016" layer="21"/>
