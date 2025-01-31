@@ -3,7 +3,7 @@
 <eagle version="9.2.1">
 <drawing>
 <settings>
-<setting alwaysvectorfont="yes"/>
+<setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.05" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
@@ -1825,7 +1825,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <attribute name="STANDARD" value="Manufacturer Recommendations" x="127.84" y="-6.62" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="47.83" y="-5.35" size="1.27" layer="27"/>
 </element>
-<element name="IC1" library="ds_ic_peripherals" package="LQFP48" package3d_urn="urn:adsk.eagle:package:46756750/2" value="" x="56.174" y="37.332" smashed="yes" rot="R90">
+<element name="IC1" library="ds_ic_peripherals" package="LQFP48" package3d_urn="urn:adsk.eagle:package:46756750/2" value="W5500" x="56.174" y="37.332" smashed="yes" rot="R90">
 <attribute name="NAME" x="59.84293125" y="41.28696875" size="1.272209375" layer="25"/>
 <attribute name="VALUE" x="63.919140625" y="32.13501875" size="1.27415" layer="27" rot="R90"/>
 </element>
@@ -1833,18 +1833,18 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <attribute name="NAME" x="65.688" y="56.9011" size="1.27" layer="25" align="bottom-center"/>
 <attribute name="VALUE" x="58.6291" y="52.29" size="1.27" layer="27" rot="R270" align="top-center"/>
 </element>
-<element name="IC3" library="ds_ic_opa" package="SOT23-5" package3d_urn="urn:adsk.eagle:package:25419215/3" value="MCP6001" x="71.7306" y="41.876" smashed="yes" rot="R90">
+<element name="IC3" library="ds_ic_opa" package="SOT23-5" package3d_urn="urn:adsk.eagle:package:25419215/3" value="MCP6001AIDBVRG" x="71.7306" y="41.876" smashed="yes" rot="R90">
 <attribute name="NAME" x="73.0994" y="39.314" size="1.27" layer="25"/>
 </element>
-<element name="IC4" library="MCU" package="SON127P600X500X75-8N" package3d_urn="urn:adsk.eagle:package:45369668/1" value="" x="75.82" y="53.56" smashed="yes" rot="R270">
+<element name="IC4" library="MCU" package="SON127P600X500X75-8N" package3d_urn="urn:adsk.eagle:package:45369668/1" value="W25Q128JVPIQ" x="75.82" y="53.56" smashed="yes" rot="R270">
 <attribute name="NAME" x="76.9122" y="57.3239" size="1.27" layer="25" align="bottom-center"/>
 <attribute name="VALUE" x="72.685" y="53.56" size="1.27" layer="27" rot="R270" align="top-center"/>
 </element>
-<element name="IC6" library="ds_ic_memory" package="SON50P300X200X50-9T130X140N" package3d_urn="urn:adsk.eagle:package:45817778/1" value="" x="70.232" y="63.046" smashed="yes" rot="R90">
+<element name="IC6" library="ds_ic_memory" package="SON50P300X200X50-9T130X140N" package3d_urn="urn:adsk.eagle:package:45817778/1" value="CAT24C256HU4IGT3" x="70.232" y="63.046" smashed="yes" rot="R90">
 <attribute name="NAME" x="72.9634" y="62.0444" size="1.27" layer="25" rot="R90" align="bottom-center"/>
 <attribute name="VALUE" x="72.066" y="63.046" size="1.27" layer="27" rot="R90" align="top-center"/>
 </element>
-<element name="IC7" library="ds_ic_vreg" package="SOT65P280X110-8N" package3d_urn="urn:adsk.eagle:package:29335450/1" value="MP2315S " x="27.92" y="34.91" smashed="yes" rot="R180">
+<element name="IC7" library="ds_ic_vreg" package="SOT65P280X110-8N" package3d_urn="urn:adsk.eagle:package:29335450/1" value="MP2315GJ-Z" x="27.92" y="34.91" smashed="yes" rot="R180">
 <attribute name="NAME" x="25.8101" y="36.08" size="1.27" layer="25" rot="R90" align="bottom-center"/>
 <attribute name="VALUE" x="27.92" y="37.1199" size="1.27" layer="27" rot="R180" align="top-center"/>
 </element>
@@ -1997,7 +1997,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <attribute name="NAME" x="68.581" y="44.1048" size="1.016" layer="25" rot="R90"/>
 <attribute name="VALUE" x="73.661" y="43.7048" size="1.27" layer="27" rot="R90"/>
 </element>
-<element name="USB_BOOT" library="52101-101-REV-A_v16" library_urn="urn:adsk.eagle:library:21899384" package="SWITCH-OMRON_B3U-1000P" package3d_urn="urn:adsk.eagle:package:15662278/2" value="B3U-1000P" x="77.09" y="61.688" smashed="yes" rot="R180">
+<element name="USB_BOOT" library="52101-101-REV-A_v16" library_urn="urn:adsk.eagle:library:21899384" package="SWITCH-OMRON_B3U-1000P" package3d_urn="urn:adsk.eagle:package:15662278/2" value="B3U-1000P-B" x="77.09" y="61.688" smashed="yes" rot="R180">
 <attribute name="LABEL" value="" x="78.6775" y="58.513" size="1.016" layer="25" ratio="18" rot="R180"/>
 <attribute name="NAME" x="81.3401" y="65.204" size="1.27" layer="25" ratio="18" rot="R180"/>
 <attribute name="VALUE" x="78.6775" y="64.228" size="0.8128" layer="27" ratio="10" rot="R180"/>
@@ -2005,7 +2005,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <element name="SW5" library="ds_passive" package="TP" package3d_urn="urn:adsk.eagle:package:46683740/2" value="TP" x="23.47" y="43.13" smashed="yes" rot="R90">
 <attribute name="NAME" x="21.92" y="42.05" size="1.016" layer="25" rot="R90" align="center-left"/>
 </element>
-<element name="USBC" library="Wurth_Connectors_WR-USB" library_urn="urn:adsk.eagle:library:16513831" package="629722000214" package3d_urn="urn:adsk.eagle:package:32827710/4" value="629722000214" x="74.5" y="3.54" smashed="yes">
+<element name="USBC" library="Wurth_Connectors_WR-USB" library_urn="urn:adsk.eagle:library:16513831" package="629722000214" package3d_urn="urn:adsk.eagle:package:32827710/4" value="USB-TYPE-C-018" x="74.5" y="3.54" smashed="yes">
 <attribute name="APPLICATION" value="USB 2.0" x="151.97" y="-65.04" size="1.778" layer="27" display="off"/>
 <attribute name="DATASHEET-URL" value="https://www.we-online.com/redexpert/spec/629722000214?ae" x="151.97" y="-65.04" size="1.778" layer="27" display="off"/>
 <attribute name="GERDER" value="Receptacle" x="151.97" y="-65.04" size="1.778" layer="27" display="off"/>
@@ -2029,15 +2029,15 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <element name="VREF" library="ds_passive" package="TP" package3d_urn="urn:adsk.eagle:package:46683740/2" value="TP" x="74.15" y="35.85" smashed="yes" rot="R270">
 <attribute name="NAME" x="74.18" y="34.06" size="1.016" layer="25" rot="R270" align="center-left"/>
 </element>
-<element name="X1" library="ds_passive" package="OSCCC500X320X130" package3d_urn="urn:adsk.eagle:package:16378248/1" value="25MHz" x="46.605" y="43.06" smashed="yes" rot="R90">
+<element name="X1" library="ds_passive" package="OSCCC500X320X130" package3d_urn="urn:adsk.eagle:package:16378248/1" value="RL250001791" x="46.605" y="43.06" smashed="yes" rot="R90">
 <attribute name="NAME" x="44.0791" y="43.06" size="1.27" layer="25" rot="R90" align="bottom-center"/>
 <attribute name="VALUE" x="49.1309" y="43.06" size="1.27" layer="27" rot="R90" align="top-center"/>
 </element>
-<element name="X2" library="ds_passive" package="OSCCC500X320X130" package3d_urn="urn:adsk.eagle:package:16378248/1" value="12MHz" x="54.476" y="59.11" smashed="yes" rot="R180">
+<element name="X2" library="ds_passive" package="OSCCC500X320X130" package3d_urn="urn:adsk.eagle:package:16378248/1" value="SX3M12.000B10F20TNN" x="54.476" y="59.11" smashed="yes" rot="R180">
 <attribute name="NAME" x="57.7585" y="58.8372" size="1.27" layer="25" rot="R270" align="bottom-center"/>
 <attribute name="VALUE" x="54.476" y="61.6359" size="1.27" layer="27" rot="R180" align="top-center"/>
 </element>
-<element name="R38" library="Resistor Array" library_urn="urn:adsk.eagle:library:16491332" package="742C083103JP" package3d_urn="urn:adsk.eagle:package:16445849/4" value="742C083103JP" x="65.152" y="63.808" smashed="yes">
+<element name="R38" library="Resistor Array" library_urn="urn:adsk.eagle:library:16491332" package="742C083103JP" package3d_urn="urn:adsk.eagle:package:16445849/4" value="4D03WGJ0332T5E" x="65.152" y="63.808" smashed="yes">
 <attribute name="CREATED_BY" value="PCBLayout.com" x="65.152" y="63.808" size="1.778" layer="27" display="off"/>
 <attribute name="DIGIKEY_PN" value="742C083103JPTR-ND" x="65.152" y="63.808" size="1.778" layer="27" display="off"/>
 <attribute name="MANUFACTURER" value="CTS Resistor Products" x="65.152" y="63.808" size="1.778" layer="27" display="off"/>
@@ -2058,7 +2058,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <attribute name="NAME" x="77.647" y="12.011" size="1.016" layer="25"/>
 <attribute name="VALUE" x="79.453" y="13.319" size="1.016" layer="27" rot="R180"/>
 </element>
-<element name="ESD1" library="ds_ic_peripherals" package="SOT143" package3d_urn="urn:adsk.eagle:package:25572586/2" value="" x="73.992" y="12.43" smashed="yes" rot="R90">
+<element name="ESD1" library="ds_ic_peripherals" package="SOT143" package3d_urn="urn:adsk.eagle:package:25572586/2" value="SP0503BAHTG-ES" x="73.992" y="12.43" smashed="yes" rot="R90">
 <attribute name="NAME" x="76.392" y="13.73" size="1.016" layer="25" rot="R90"/>
 <attribute name="VALUE" x="77.642" y="10.83" size="1.27" layer="27" rot="R90"/>
 </element>
@@ -2074,7 +2074,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <attribute name="NAME" x="53.482840625" y="66.05660625" size="1.016" layer="25" rot="R315"/>
 <attribute name="VALUE" x="52.986790625" y="66.160553125" size="1.016" layer="27" rot="R315"/>
 </element>
-<element name="IC8" library="ds_ic_peripherals" package="QFN50P400X400X100-25T265" package3d_urn="urn:adsk.eagle:package:46683902/2" value="" x="50.7" y="67.1" smashed="yes" rot="R135">
+<element name="IC8" library="ds_ic_peripherals" package="QFN50P400X400X100-25T265" package3d_urn="urn:adsk.eagle:package:46683902/2" value="MCP23S18-E/MJ" x="50.7" y="67.1" smashed="yes" rot="R135">
 <attribute name="NAME" x="48.5851125" y="64.9851125" size="1.27" layer="25" rot="R135" align="bottom-center"/>
 <attribute name="VALUE" x="52.814884375" y="69.214884375" size="1.27" layer="27" rot="R135" align="top-center"/>
 </element>
@@ -2152,27 +2152,27 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <attribute name="NAME" x="27.495" y="11.525" size="1.016" layer="25" rot="R270"/>
 <attribute name="VALUE" x="70.195" y="-30.575" size="1.016" layer="27" rot="R90"/>
 </element>
-<element name="C44" library="ds_passive" package="C1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="22uF" x="32.5" y="35.25" smashed="yes" rot="R90">
+<element name="C44" library="ds_passive" package="C1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="CL31A226KAHNNNE - 22uF 25V" x="32.5" y="35.25" smashed="yes" rot="R90">
 <attribute name="NAME" x="32.57" y="32.67" size="1.016" layer="25" rot="R270"/>
 <attribute name="VALUE" x="35.04" y="33.98" size="1.016" layer="27" rot="R90"/>
 </element>
-<element name="C45" library="ds_passive" package="C1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="22uF" x="31.65" y="17.3" smashed="yes" rot="R90">
+<element name="C45" library="ds_passive" package="C1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="CL31A226KAHNNNE - 22uF 25V" x="31.65" y="17.3" smashed="yes" rot="R90">
 <attribute name="NAME" x="31.67" y="14.67" size="1.016" layer="25" rot="R270"/>
 <attribute name="VALUE" x="34.19" y="16.03" size="1.016" layer="27" rot="R90"/>
 </element>
-<element name="C46" library="ds_passive" package="C1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="22uF" x="34.5" y="43.25" smashed="yes">
+<element name="C46" library="ds_passive" package="C1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="CL31A226KPHNNNE - 22uF - 10V" x="34.5" y="43.25" smashed="yes">
 <attribute name="NAME" x="37.28" y="42.92" size="1.016" layer="25"/>
 <attribute name="VALUE" x="33.23" y="40.71" size="1.016" layer="27"/>
 </element>
-<element name="C47" library="ds_passive" package="C1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="22uF" x="35.1" y="24.95" smashed="yes">
+<element name="C47" library="ds_passive" package="C1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="CL31A226KPHNNNE - 22uF - 10V" x="35.1" y="24.95" smashed="yes">
 <attribute name="NAME" x="37.88" y="24.47" size="1.016" layer="25"/>
 <attribute name="VALUE" x="33.83" y="22.41" size="1.016" layer="27"/>
 </element>
-<element name="C53" library="ds_passive" package="C1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="22uF" x="34.55" y="39.7" smashed="yes">
+<element name="C53" library="ds_passive" package="C1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="CL31A226KPHNNNE - 22uF - 10V" x="34.55" y="39.7" smashed="yes">
 <attribute name="NAME" x="37.38" y="39.27" size="1.016" layer="25"/>
 <attribute name="VALUE" x="33.28" y="37.16" size="1.016" layer="27"/>
 </element>
-<element name="C57" library="ds_passive" package="C1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="22uF" x="35.05" y="22.35" smashed="yes">
+<element name="C57" library="ds_passive" package="C1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="CL31A226KPHNNNE - 22uF - 10V" x="35.05" y="22.35" smashed="yes">
 <attribute name="NAME" x="37.93" y="22.12" size="1.016" layer="25"/>
 <attribute name="VALUE" x="33.78" y="19.81" size="1.016" layer="27"/>
 </element>
@@ -2195,7 +2195,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <element name="12VFB" library="ds_passive" package="TP" package3d_urn="urn:adsk.eagle:package:46683740/2" value="TP" x="37.5" y="49.3" smashed="yes">
 <attribute name="NAME" x="38.77" y="49.3" size="1.016" layer="25" align="center-left"/>
 </element>
-<element name="RESET" library="52101-101-REV-A_v16" library_urn="urn:adsk.eagle:library:21899384" package="SWITCH-OMRON_B3U-1000P" package3d_urn="urn:adsk.eagle:package:15662278/2" value="B3U-1000P" x="68.45" y="74.4" smashed="yes">
+<element name="RESET" library="52101-101-REV-A_v16" library_urn="urn:adsk.eagle:library:21899384" package="SWITCH-OMRON_B3U-1000P" package3d_urn="urn:adsk.eagle:package:15662278/2" value="B3U-1000P-B" x="68.45" y="74.4" smashed="yes">
 <attribute name="LABEL" value="" x="62.3" y="80.9" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="65.1375" y="75.495" size="1.27" layer="25" ratio="18" rot="R180"/>
 <attribute name="VALUE" x="60.7125" y="78.36" size="0.8128" layer="27" ratio="10"/>
@@ -4719,30 +4719,6 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <wire x1="60.5" y1="60.5909" x2="60.5" y2="65.4" width="0.2" layer="1"/>
 <wire x1="60.5" y1="65.4" x2="54.9" y2="71" width="0.2" layer="1"/>
 <wire x1="54.9" y1="71" x2="51.841434375" y2="71" width="0.2" layer="1"/>
-</signal>
-<signal name="N$78">
-<contactref element="IC8" pad="2"/>
-</signal>
-<signal name="N$79">
-<contactref element="IC8" pad="3"/>
-</signal>
-<signal name="N$80">
-<contactref element="IC8" pad="4"/>
-</signal>
-<signal name="N$81">
-<contactref element="IC8" pad="5"/>
-</signal>
-<signal name="N$82">
-<contactref element="IC8" pad="6"/>
-</signal>
-<signal name="N$83">
-<contactref element="IC8" pad="7"/>
-</signal>
-<signal name="N$10">
-<contactref element="IC8" pad="1"/>
-</signal>
-<signal name="N$77">
-<contactref element="IC8" pad="24"/>
 </signal>
 <signal name="!SPI1_CS_S">
 <contactref element="IC2" pad="8"/>

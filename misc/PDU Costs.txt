@@ -1,0 +1,12 @@
+JLCPCB		257.36 EUR
+
+MISSING PARTS
+RelayBoard:	102.86 EUR	Farnell
+		 40.70 EUR	DigiKey
+
+ControllerB:	 18.94 EUR	DigiKey
+DisplayB:	 70.85 EUR	Farnell
+____________________________________________
+
+SUM		490.71 EUR / 5 pcs
+		 98.15 EUR / pcs without shipping costs

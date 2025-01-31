@@ -1,0 +1,4 @@
+﻿"Index","Quantity","Part Number","Manufacturer Part Number","Description","Customer Reference","Available","Backorder","Unit Price","Extended Price EUR"
+"1","5","CAT24C256HU4IGT3OSCT-ND","CAT24C256HU4IGT3","IC EEPROM 256KBIT I2C 1MHZ 8UDFN","","5","0","0,76000","3,80"
+"2","5","MCP23S18-E/MJ-ND","MCP23S18-E/MJ","IC XPNDR 10MHZ SPI 24QFN","","5","0","2,06000","10,30"
+"3","10","308-1802-1-ND","CDRH5D28NP-4R2NC","FIXED IND 4.2UH 2.2A 31 MOHM SMD","","10","0","0,48400","4,84"

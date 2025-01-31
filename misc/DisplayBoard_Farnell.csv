@@ -1,0 +1,14 @@
+Line No.,Order Code,RoHS Compliant?,Customer Reference No,Notes,Qty,Mfr Part No,Manufacturer Name,Manufacturer / Description,Availability,Unit Price (&euro;),Line Price (&euro;),Discount Price (&euro;)
+1,3796325,RoHS: YES / PHTHALATES: YES,,,5.0,"MP008293",MULTICOMP PRO,"MULTICOMP PRO  LED, Red, SMD, 0805 [2012 Metric], 20 mA, 2.4 V, 626 nm",11607,0.1160,0.58,,
+2,3225580,RoHS: YES / PHTHALATES: YES,,,20.0,"MP000712",MULTICOMP PRO,"MULTICOMP PRO  Tactile Switch, Top Actuated, Surface Mount, Round Button, 350 gf, 50mA at 32VDC",1503,0.3770,7.54,,
+3,3587636,RoHS: YES / PHTHALATES: TBA,,,50.0,"MP005924",MULTICOMP PRO,"MULTICOMP PRO  LED, Green, SMD, 0805 [2012 Metric], 20 mA, 2.6 V, 576 nm",935,0.0926,4.63,,
+4,3407294,RoHS: YES / PHTHALATES: YES,,,5.0,"MCOT128064N2Z-WM",MIDAS DISPLAYS,"MIDAS DISPLAYS  Graphic OLED, 128 x 64 Pixels, White on Black, 3V, I2C, Parallel, SPI, 26.7mm x 19.26mm, -40 °C",113,9.4600,47.30,,
+5,3796324,RoHS: YES / PHTHALATES: YES,,,5.0,"MP008292",MULTICOMP PRO,"MULTICOMP PRO  LED, Blue, SMD, 0805 [2012 Metric], 20 mA, 3.4 V, 475 nm",4924,0.1500,0.75,,
+6,1854492,RoHS: YES / PHTHALATES: YES,,,5.0,"MCP23S18-E/MJ",MICROCHIP,"MICROCHIP  I/O Expander, 16 bit, I2C, Serial, SPI, 1.8 V, 5.5 V, QFN, 24 Pins",548,2.0100,10.05,,
+
+,,,,,,,Sub Total,&euro;70.85
+,,,,,,,Goods Total,&euro;70.85
+,,,,,,,Delivery,&euro;0.00
+,,,,,,,Handling Charge,&euro;14.99
+,,,,,,,VAT,&euro;17.17
+,,,,,,,Total,&euro;103.01
