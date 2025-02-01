@@ -1,4 +1,4 @@
-# 10-Inch Rack PDU Project
+# ENERGIS - the managed PDU Project for 10-Inch Rack
 
 ## Overview
 The **10-Inch Rack PDU (Power Distribution Unit)** is a modular power management system designed for efficient control and monitoring of power in a rack-mounted environment. The project includes a controller board, a display board, and a relay board to handle switching and power management.
