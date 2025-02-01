@@ -1,0 +1,18 @@
+Designator,Mid X,Mid Y,Layer,Rotation
+BUT+1,43.18,27.34,Bottom,180.0
+BUT-1,43.18,17.78,Bottom,0.0
+BUT_PWR1, 8.89, 7.62,Bottom,180.0
+BUT_SET1,30.48,22.86,Bottom,0.0
+CON3,50.80, 0.00,Bottom,270.0
+CON4,71.12, 0.00,Bottom,270.0
+ETH, 8.52,21.49,Bottom,90.0
+FAULT,18.04,33.54,Bottom,90.0
+OUT-1,75.22,33.51,Bottom,90.0
+OUT-2,68.83,33.53,Bottom,90.0
+OUT-3,62.48,33.53,Bottom,90.0
+OUT-4,56.13,33.53,Bottom,90.0
+OUT-5,49.78,33.53,Bottom,90.0
+OUT-6,43.43,33.53,Bottom,90.0
+OUT-7,37.08,33.53,Bottom,90.0
+OUT-8,30.73,33.53,Bottom,90.0
+PWR, 8.55,14.91,Bottom,90.0
