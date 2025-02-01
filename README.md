@@ -3,6 +3,10 @@
 ## Overview
 The **10-Inch Rack PDU (Power Distribution Unit)** is a modular power management system designed for efficient control and monitoring of power in a rack-mounted environment. The project includes a controller board, a display board, and a relay board to handle switching and power management.
 
+![PDU 3D View](images\Assembly\Assembled-in-case_3D_1.png)
+
+![PDU 3D View](images\Assembly\Assembled-in-case_3D_2.png)
+
 ## Features
 - **Controller Board:** Handles Ethernet communication, power conversion, and system logic.
 - **Display Board:** Provides user interaction with OLED display and status LEDs.
