@@ -1,4 +1,4 @@
-# 10-Inch_Rack-PDU Project Design files
+# ENERGIS - The Managed PDU Project for 10-Inch Rack - Design files
 
 This repository contains source files for software and hardware designs related to the 10-Inch_Rack-PDU project.
 

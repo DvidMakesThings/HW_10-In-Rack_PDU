@@ -1,7 +1,9 @@
-# # 10-Inch_Rack-PDU Project Eagle Projects Libraries
+# ENERGIS - The Managed PDU Project for 10-Inch Rack - Eagle Projects Libraries
 
 ## Contents
-This folder contains Eagle libraries for various electronic components and modules.
+This folder contains all **custom schematic symbols and PCB footprints** used in the hardware design.
+Ensures consistent component usage across the project.
+Can be imported into ECAD software to modify or expand the design.
 
 ## Usage
 1. Open Eagle.

@@ -1,4 +1,4 @@
-# ENERGIS - the managed PDU Project for 10-Inch Rack
+# ENERGIS - The Managed PDU Project for 10-Inch Rack
 
 ## Overview
 The **10-Inch Rack PDU (Power Distribution Unit)** is a modular power management system designed for efficient control and monitoring of power in a rack-mounted environment. The project includes a controller board, a display board, and a relay board to handle switching and power management.
@@ -13,6 +13,25 @@ The **10-Inch Rack PDU (Power Distribution Unit)** is a modular power management
 - **Relay Board:** Manages AC switching with 8x 230V relays, fuses, and safety isolation.
 - **Ethernet Connectivity:** Uses the W5500 SPI-based Ethernet chip for remote control and monitoring.
 - **Power Measurement:** AC voltage and current sensing for real-time monitoring.
+- **3D Printed Enclosure:** Designed for 10-inch rack mounting with front and rear access.
+
+## Specifications
+
+### Electrical Characteristics
+- **Input Voltage:** 230V AC, 10A max
+- **Internal Power Supply:** 12V, 1.5A SMPS
+- **Derived Voltages:** 5V and 3.3V regulated from 12V
+- **Relay Supply:** 12V dedicated for relay operation
+
+### Relay Output Ratings
+- **Common AC Trace Handling:** 16A max
+- **Per-Relay Trace Rating:** 4A max
+- **Relay Contact Rating:** 16A max
+
+### Control & Driving Circuit
+- **Relay Driver:** ULN2803 Darlington Array
+- **Driving Current:** 33mA per relay
+- **Current Limit Resistor:** Configured for 35mA max per relay coil
 
 ## Hardware Stackup
 ### **PCB Layer Configuration:**
@@ -43,6 +62,12 @@ The **10-Inch Rack PDU (Power Distribution Unit)** is a modular power management
 | Prepreg  | 3313 RC57% 4.2mil          | 0.0994 |
 | L4 (SIG) | Outer Copper Weight 1oz    | 0.0350 |
 
+## Schematics
+The full schematics for each board are available:
+- **[Controller Board Schematics](schematics/Controller-Board_Schematics.pdf)**
+- **[Display Board Schematics](schematics/Display-Board_Schematics.pdf)**
+- **[Relay Board Schematics](schematics/Relay-Board_Schematics.pdf)**
+
 ## Usage
 1. **Setup the hardware** by assembling the three boards.
 2. **Power on the system** and configure settings via the display or Ethernet interface.
@@ -55,4 +80,3 @@ This project is licensed under the **GPL-3.0 License**. See the [LICENSE](LICENS
 For questions or feedback:
 - **Email:** [s.dvid@hotmail.com](mailto:s.dvid@hotmail.com)
 - **GitHub:** [DvidMakesThings](https://github.com/DvidMakesThings)
-

@@ -1,4 +1,4 @@
-# 10-Inch_Rack-PDU Project Manuals
+# ENERGIS - The Managed PDU Project for 10-Inch Rack - Manuals
 
 ## Contents
 - Manuals

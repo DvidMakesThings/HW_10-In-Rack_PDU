@@ -1,13 +1,9 @@
-# 10-Inch_Rack-PDU Project Documentation
+# ENERGIS - The Managed PDU Project for 10-Inch Rack - Documentation
 
 ## Contents
-This folder contains the following:
-- Datasheets
-- Manuals
-- Reports
-
-## Usage
-Refer to the datasheets and manuals for detailed information on the components and usage instructions. Reports provide insights and findings related to the 10-Inch_Rack-PDU project.
+This folder includes reference designs and technical manuals for components used in the project.
+Reference designs provide tested circuit implementations and application-specific guidelines.
+Use these documents to understand best practices and improve design reliability.
 
 ## License
 This project is licensed under the GPL-3.0 License. See the [LICENSE](LICENSE) file for details.

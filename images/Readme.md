@@ -1,10 +1,20 @@
-# 10-Inch_Rack-PDU Project Images
+# ENERGIS - The Managed PDU Project for 10-Inch Rack - Images
 
 This folder contains images related to the 10-Inch_Rack-PDU projects.
 
 ## Contents
 
-- Various images used in 10-Inch_Rack-PDU projects.
+### Board Images
+
+This folder contains high-resolution **3D renders** and **blank PCB layouts** for the **ENERGIS PDU** project.
+These visuals help with component placement, assembly understanding, and documentation.
+Each subfolder is categorized by board type for better organization.
+
+### Assembly Images
+
+This folder contains **assembled 3D renders** showing the PDU in its enclosure.
+The renders include fully populated PCBs and show how different components fit together.
+Useful for visualization before real-world assembly.
 
 ## Usage
 

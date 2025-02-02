@@ -1,10 +1,9 @@
-# 10-Inch_Rack-PDU Project Datasheets
+# ENERGIS - The Managed PDU Project for 10-Inch Rack - Datasheets
 
 ## Contents
-This folder contains datasheets related to the 10-Inch_Rack-PDU project.
-
-## Usage
-Refer to the datasheets in this folder for detailed specifications and information about the components used in the Breadboard project.
+This folder contains datasheets for components used in the **ENERGIS PDU** project.
+Each subfolder is named after the corresponding board (Controller, Display, Relay) to maintain organization.
+Datasheets are useful for verifying component specifications and understanding performance parameters.
 
 ## License
 This project is licensed under the GPL-3.0 License. See the [LICENSE](LICENSE) file for details.
