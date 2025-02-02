@@ -1,11 +1,10 @@
-# # 10-Inch_Rack-PDU Project Hardware Design Files
+# ENERGIS - The Managed PDU Project for 10-Inch Rack - Hardware Design Files
 
 ## Contents
-This folder contains the hardware design files for the 10-Inch_Rack-PDU project. The main components include:
-- Schematic diagrams
-- PCB layouts
-- Bill of Materials (BOM)
-- Gerber files
+This folder contains schematic and Gerber files for the **ENERGIS PDU** project.
+- **Schematics** → Circuit design files for each board, editable in ECAD software.
+- **Gerbers** → Files required for PCB manufacturing, ready to be sent to fabrication houses.
+Refer to this folder when modifying the circuit or generating new PCB batches.
 
 ## Usage
 To use these hardware design files:
