@@ -10,7 +10,7 @@ The **10-Inch Rack PDU (Power Distribution Unit)** is a modular power management
 | Phase                        | Status |
 |------------------------------|--------|
 | **PCB Design & Prototyping**   | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Enclosure Desing**   | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **Enclosure Design**   | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
 | **Order PCB**   | ![In Progress](https://img.shields.io/badge/status-in%20progress-yellow) |
 | **Prototyping and Hardware Testing** | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
 | **Initial Firmware Development** | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
