@@ -7,17 +7,17 @@ The **10-Inch Rack PDU (Power Distribution Unit)** is a modular power management
 
 ## Development Phases
 
-| Phase                        | Status |
-|------------------------------|--------|
-| **PCB Design & Prototyping**   | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Enclosure Design**   | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Order PCB**   | ![In Progress](https://img.shields.io/badge/status-in%20progress-yellow) |
+| Phase                                | Status   |
+| ------------------------------------ | -------- |
+| **PCB Design & Prototyping**         | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **Enclosure Design**                 | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **Order PCB**                        | ![In Progress](https://img.shields.io/badge/status-in%20progress-yellow) |
 | **Prototyping and Hardware Testing** | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
-| **Initial Firmware Development** | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
-| **Enclosure Testing & Ventilation** | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
-| **Web-Based UI for Control**   | ![Planned](https://img.shields.io/badge/status-planned-blue) |
-| **Power Logging & Alerts**     | ![Planned](https://img.shields.io/badge/status-planned-blue) |
-| **Production Optimization**    | ![Planned](https://img.shields.io/badge/status-planned-blue) |
+| **Initial Firmware Development**     | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
+| **Enclosure Testing & Ventilation**  | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
+| **Web-Based UI for Control**         | ![Planned](https://img.shields.io/badge/status-planned-blue) |
+| **Power Logging & Alerts**           | ![Planned](https://img.shields.io/badge/status-planned-blue) |
+| **Production Optimization**          | ![Planned](https://img.shields.io/badge/status-planned-blue) |
 
 
 ![PDU 3D View](images/Assembly/Assembled-in-case_3D_1.png)
