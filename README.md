@@ -64,13 +64,13 @@ The **10-Inch Rack PDU (Power Distribution Unit)** is a modular power management
 
 ### **Impedance Control:**
 | Impedance (Ω)  | Type                             | Signal  | Bottom  | Trace Width (mm) | Trace Spacing (mm) |
-|-------------- | -------------------------------- | ------- | ------- | ---------------- | ------------------ |
-| 90             | Differential Pair (Non coplanar) | L1      | L2      | 0.1549           | 0.1905             |
-| 100            | Differential Pair (Non coplanar) | L1      | L2      | 0.1209           | 0.1905             |
+| -------------- | -------------------------------- | ------- | ------- | ---------------- | ------------------ |
+| 90             | Differential Pair (Non-coplanar) | L1      | L2      | 0.1549           | 0.1905             |
+| 100            | Differential Pair (Non-coplanar) | L1      | L2      | 0.1209           | 0.1905             |
 
 ### **Layer Stackup:**
 | Layer    | Material                   | Thickness (mm) |
-|-------- | -------------------------- | -------------- |
+| -------- | -------------------------- | -------------- |
 | L1 (SIG) | Outer Copper Weight 1oz    | 0.0350 |
 | Prepreg  | 3313 RC57% 4.2mil          | 0.0994 |
 | L2 (GND) | Inner Copper Weight        | 0.0152 |
