@@ -24,7 +24,7 @@ The **10-Inch Rack PDU (Power Distribution Unit)** is a modular power management
 
 ![Display Board 3D View](images/Display%20Board/DisplayBoard_3D-2.png)
 
-![Display Board 3D View](images/Relay%20Board/RelayBoard_3D-1.png)
+![Relay Board 3D View](images/Relay%20Board/RelayBoard_3D-1.png)
 
 ### **Impedance Control:**
 | Impedance (Ω)  | Type                             | Signal  | Bottom  | Trace Width (mm) | Trace Spacing (mm) |
