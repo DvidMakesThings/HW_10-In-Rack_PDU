@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
+<grid distance="0.5" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="16" fill="1" visible="no" active="no"/>
@@ -2634,6 +2634,18 @@ Copyright: Würth Elektronik</description>
 <wire x1="15.577" y1="9.3326" x2="19" y2="9.3326" width="2.1" layer="16"/>
 <wire x1="19" y1="9.3326" x2="23.07" y2="9.3326" width="2.1" layer="16"/>
 <wire x1="19" y1="4" x2="19" y2="9.3326" width="2.1" layer="16"/>
+<polygon width="0.2032" layer="1" thermals="no">
+<vertex x="13" y="11"/>
+<vertex x="25.6" y="11"/>
+<vertex x="25.6" y="1"/>
+<vertex x="13" y="1"/>
+</polygon>
+<polygon width="0.2032" layer="16" thermals="no">
+<vertex x="13" y="11"/>
+<vertex x="25.6" y="11"/>
+<vertex x="25.6" y="1"/>
+<vertex x="13" y="1"/>
+</polygon>
 </signal>
 <signal name="OUT_2">
 <contactref element="REL2" pad="5"/>
@@ -2646,6 +2658,18 @@ Copyright: Würth Elektronik</description>
 <wire x1="31.567" y1="9.3326" x2="35" y2="9.3326" width="2.1" layer="16"/>
 <wire x1="35" y1="9.3326" x2="39.06" y2="9.3326" width="2.1" layer="16"/>
 <wire x1="35" y1="4" x2="35" y2="9.3326" width="2.1" layer="16"/>
+<polygon width="0.2032" layer="1" thermals="no">
+<vertex x="29" y="11"/>
+<vertex x="41.6" y="11"/>
+<vertex x="41.6" y="1"/>
+<vertex x="29" y="1"/>
+</polygon>
+<polygon width="0.2032" layer="16" thermals="no">
+<vertex x="29" y="11"/>
+<vertex x="41.6" y="11"/>
+<vertex x="41.6" y="1"/>
+<vertex x="29" y="1"/>
+</polygon>
 </signal>
 <signal name="OUT_3">
 <contactref element="REL3" pad="5"/>
@@ -2657,6 +2681,18 @@ Copyright: Würth Elektronik</description>
 <wire x1="47.557" y1="9.3326" x2="51.5" y2="9.3326" width="2.1" layer="16"/>
 <wire x1="51.5" y1="9.3326" x2="55.05" y2="9.3326" width="2.1" layer="16"/>
 <wire x1="51.5" y1="4" x2="51.5" y2="9.3326" width="2.1" layer="16"/>
+<polygon width="0.2032" layer="1" thermals="no">
+<vertex x="45" y="11"/>
+<vertex x="57.6" y="11"/>
+<vertex x="57.6" y="1"/>
+<vertex x="45" y="1"/>
+</polygon>
+<polygon width="0.2032" layer="16" thermals="no">
+<vertex x="45" y="11"/>
+<vertex x="57.6" y="11"/>
+<vertex x="57.6" y="1"/>
+<vertex x="45" y="1"/>
+</polygon>
 </signal>
 <signal name="OUT_4">
 <contactref element="REL4" pad="5"/>
@@ -2669,6 +2705,18 @@ Copyright: Würth Elektronik</description>
 <wire x1="68" y1="9.3326" x2="71.04" y2="9.3326" width="2.1" layer="16"/>
 <wire x1="67.5" y1="4" x2="67.5" y2="8.8326" width="2.1" layer="16"/>
 <wire x1="67.5" y1="8.8326" x2="68" y2="9.3326" width="2.1" layer="16"/>
+<polygon width="0.2032" layer="1" thermals="no">
+<vertex x="61" y="11"/>
+<vertex x="73.6" y="11"/>
+<vertex x="73.6" y="1"/>
+<vertex x="61" y="1"/>
+</polygon>
+<polygon width="0.2032" layer="16" thermals="no">
+<vertex x="61" y="11"/>
+<vertex x="73.6" y="11"/>
+<vertex x="73.6" y="1"/>
+<vertex x="61" y="1"/>
+</polygon>
 </signal>
 <signal name="OUT_8">
 <contactref element="REL8" pad="5"/>
@@ -2680,6 +2728,18 @@ Copyright: Würth Elektronik</description>
 <wire x1="127.507" y1="9.3326" x2="131.5" y2="9.3326" width="2.1" layer="16"/>
 <wire x1="131.5" y1="9.3326" x2="135" y2="9.3326" width="2.1" layer="16"/>
 <wire x1="131.5" y1="4" x2="131.5" y2="9.3326" width="2.1" layer="16"/>
+<polygon width="0.2032" layer="1" thermals="no">
+<vertex x="125" y="11"/>
+<vertex x="137.6" y="11"/>
+<vertex x="137.6" y="1"/>
+<vertex x="125" y="1"/>
+</polygon>
+<polygon width="0.2032" layer="16" thermals="no">
+<vertex x="125" y="11"/>
+<vertex x="137.6" y="11"/>
+<vertex x="137.6" y="1"/>
+<vertex x="125" y="1"/>
+</polygon>
 </signal>
 <signal name="OUT_7">
 <contactref element="REL7" pad="5"/>
@@ -2691,6 +2751,18 @@ Copyright: Würth Elektronik</description>
 <wire x1="111.517" y1="9.3326" x2="115.5" y2="9.3326" width="2.1" layer="16"/>
 <wire x1="115.5" y1="9.3326" x2="119.01" y2="9.3326" width="2.1" layer="16"/>
 <wire x1="115.5" y1="4" x2="115.5" y2="9.3326" width="2.1" layer="16"/>
+<polygon width="0.2032" layer="1" thermals="no">
+<vertex x="109" y="11"/>
+<vertex x="121.6" y="11"/>
+<vertex x="121.6" y="1"/>
+<vertex x="109" y="1"/>
+</polygon>
+<polygon width="0.2032" layer="16" thermals="no">
+<vertex x="109" y="11"/>
+<vertex x="121.6" y="11"/>
+<vertex x="121.6" y="1"/>
+<vertex x="109" y="1"/>
+</polygon>
 </signal>
 <signal name="OUT_6">
 <contactref element="REL6" pad="5"/>
@@ -2702,6 +2774,18 @@ Copyright: Würth Elektronik</description>
 <wire x1="95.527" y1="9.3326" x2="99" y2="9.3326" width="2.1" layer="16"/>
 <wire x1="99" y1="9.3326" x2="103.02" y2="9.3326" width="2.1" layer="16"/>
 <wire x1="99" y1="4" x2="99" y2="9.3326" width="2.1" layer="16"/>
+<polygon width="0.2032" layer="1" thermals="no">
+<vertex x="93" y="11"/>
+<vertex x="105.6" y="11"/>
+<vertex x="105.6" y="1"/>
+<vertex x="93" y="1"/>
+</polygon>
+<polygon width="0.2032" layer="16" thermals="no">
+<vertex x="93" y="11"/>
+<vertex x="105.6" y="11"/>
+<vertex x="105.6" y="1"/>
+<vertex x="93" y="1"/>
+</polygon>
 </signal>
 <signal name="OUT_5">
 <contactref element="REL5" pad="5"/>
@@ -2714,6 +2798,18 @@ Copyright: Würth Elektronik</description>
 <wire x1="83.5" y1="9.3326" x2="87.03" y2="9.3326" width="2.1" layer="16"/>
 <wire x1="83" y1="4" x2="83" y2="8.8326" width="2.1" layer="16"/>
 <wire x1="83" y1="8.8326" x2="83.5" y2="9.3326" width="2.1" layer="16"/>
+<polygon width="0.2032" layer="1" thermals="no">
+<vertex x="77" y="11"/>
+<vertex x="89.6" y="11"/>
+<vertex x="89.6" y="1"/>
+<vertex x="77" y="1"/>
+</polygon>
+<polygon width="0.2032" layer="16" thermals="no">
+<vertex x="77" y="11"/>
+<vertex x="89.6" y="11"/>
+<vertex x="89.6" y="1"/>
+<vertex x="77" y="1"/>
+</polygon>
 </signal>
 <signal name="AC_LINE2">
 <contactref element="RV1" pad="2"/>

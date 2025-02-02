@@ -25,7 +25,7 @@ The **10-Inch Rack PDU (Power Distribution Unit)** is a modular power management
 
 ### Relay Output Ratings
 - **Common AC Trace Handling:** 16A max
-- **Per-Relay Trace Rating:** 4A max
+- **Per-Relay Trace Rating:** 15A max
 - **Relay Contact Rating:** 16A max
 
 ### Control & Driving Circuit
@@ -64,14 +64,22 @@ The **10-Inch Rack PDU (Power Distribution Unit)** is a modular power management
 
 ## Schematics
 The full schematics for each board are available:
-- **[Controller Board Schematics](schematics/Controller-Board_Schematics.pdf)**
-- **[Display Board Schematics](schematics/Display-Board_Schematics.pdf)**
-- **[Relay Board Schematics](schematics/Relay-Board_Schematics.pdf)**
+- **[Controller Board Schematics](src/PDF/Controller-Board_Schematics.pdf)**
+- **[Display Board Schematics](src/PDF/Display-Board_Schematics.pdf)**
+- **[Relay Board Schematics](src/PDF/Relay-Board_Schematics.pdf)**
 
 ## Usage
 1. **Setup the hardware** by assembling the three boards.
 2. **Power on the system** and configure settings via the display or Ethernet interface.
 3. **Monitor and control** relay switching and power parameters.
+
+## Future Plans
+
+### Planned Improvements
+- **Ventilation Testing & Optimization:** Evaluate enclosure thermals and, if needed, add passive or active cooling.
+- **Firmware Development:** Implement remote control and monitoring via Ethernet.
+- **Web-Based UI:** A browser-accessible interface for managing power outputs.
+- **Metal Enclosure:** If production scales up, explore CNC or sheet-metal enclosures.
 
 ## License
 This project is licensed under the **GPL-3.0 License**. See the [LICENSE](LICENSE) file for details.
