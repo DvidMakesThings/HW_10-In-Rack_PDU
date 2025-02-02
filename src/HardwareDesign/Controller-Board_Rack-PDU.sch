@@ -3434,7 +3434,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <part name="C7" library="ds_passive" deviceset="C" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="4.7uF"/>
 <part name="GND6" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND7" library="ds_passive" deviceset="GND" device=""/>
-<part name="X1" library="ds_passive" deviceset="CRYSTAL" device="" package3d_urn="urn:adsk.eagle:package:16378248/1" value="RL250001791"/>
+<part name="X1" library="ds_passive" deviceset="CRYSTAL" device="" package3d_urn="urn:adsk.eagle:package:16378248/1" value="XC53M4-25.000-F18NJDTL "/>
 <part name="C8" library="ds_passive" deviceset="C" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="18pF"/>
 <part name="C9" library="ds_passive" deviceset="C" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="18pF"/>
 <part name="GND8" library="ds_passive" deviceset="GND" device=""/>
@@ -3458,7 +3458,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <part name="L1" library="ds_passive" deviceset="R" device="0603" package3d_urn="urn:adsk.eagle:package:46683743/2" value="BLM18EG221TN1D"/>
 <part name="FRAME2" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A3L-LOC" device=""/>
 <part name="IC2" library="ds_ic_mcu" deviceset="RP2040" device="" package3d_urn="urn:adsk.eagle:package:6365073/1"/>
-<part name="X2" library="ds_passive" deviceset="CRYSTAL" device="" package3d_urn="urn:adsk.eagle:package:16378248/1" value="SX3M12.000B10F20TNN"/>
+<part name="X2" library="ds_passive" deviceset="CRYSTAL" device="" package3d_urn="urn:adsk.eagle:package:16378248/1" value="5TJ412000UYGBC "/>
 <part name="C19" library="ds_passive" deviceset="C" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="15pF"/>
 <part name="C20" library="ds_passive" deviceset="C" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="15pF"/>
 <part name="GND12" library="ds_passive" deviceset="GND" device=""/>
@@ -3696,7 +3696,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 </instance>
 <instance part="X2" gate="G$1" x="43.18" y="175.26" smashed="yes">
 <attribute name="NAME" x="38.1" y="178.435" size="1.778" layer="95"/>
-<attribute name="VALUE" x="38.1" y="165.1" size="1.778" layer="96"/>
+<attribute name="VALUE" x="33.02" y="165.1" size="1.778" layer="96"/>
 </instance>
 <instance part="C19" gate="G$1" x="27.94" y="165.1" smashed="yes" rot="MR0">
 <attribute name="NAME" x="26.416" y="166.751" size="1.778" layer="95" rot="MR0"/>
@@ -5277,8 +5277,8 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <attribute name="VALUE" x="149.86" y="139.7" size="1.778" layer="96" align="top-center"/>
 </instance>
 <instance part="X1" gate="G$1" x="38.1" y="193.04" smashed="yes">
-<attribute name="NAME" x="33.02" y="196.215" size="1.778" layer="95"/>
-<attribute name="VALUE" x="33.02" y="182.88" size="1.778" layer="96"/>
+<attribute name="NAME" x="35.56" y="182.245" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="53.34" y="198.12" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="C8" gate="G$1" x="22.86" y="182.88" smashed="yes" rot="MR0">
 <attribute name="NAME" x="21.336" y="184.531" size="1.778" layer="95" rot="MR0"/>

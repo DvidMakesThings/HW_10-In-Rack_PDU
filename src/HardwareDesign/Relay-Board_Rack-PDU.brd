@@ -3398,7 +3398,7 @@ Copyright: Würth Elektronik</description>
 <via x="48.2" y="44.6" extent="1-16" drill="0.3"/>
 <via x="51.2" y="44.6" extent="1-16" drill="0.3"/>
 <via x="54.2" y="44.6" extent="1-16" drill="0.3"/>
-<via x="57.2" y="44.6" extent="1-16" drill="0.3"/>
+<via x="57.2" y="44.6" extent="1-16" drill="0.3" diameter="0.4"/>
 <via x="60.2" y="44.6" extent="1-16" drill="0.3"/>
 <via x="63.2" y="44.6" extent="1-16" drill="0.3"/>
 <via x="67.2" y="44.6" extent="1-16" drill="0.3"/>
