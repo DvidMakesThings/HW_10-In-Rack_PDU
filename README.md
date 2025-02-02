@@ -5,6 +5,21 @@
 ## Overview
 The **10-Inch Rack PDU (Power Distribution Unit)** is a modular power management system designed for efficient control and monitoring of power in a rack-mounted environment. The project includes a controller board, a display board, and a relay board to handle switching and power management.
 
+## Development Phases
+
+| Phase                        | Status |
+|------------------------------|--------|
+| **PCB Design & Prototyping**   | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **Enclosure Desing**   | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **Order PCB**   | ![In Progress](https://img.shields.io/badge/status-in%20progress-yellow) |
+| **Prototyping and Hardware Testing** | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
+| **Initial Firmware Development** | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
+| **Enclosure Testing & Ventilation** | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
+| **Web-Based UI for Control**   | ![Planned](https://img.shields.io/badge/status-planned-blue) |
+| **Power Logging & Alerts**     | ![Planned](https://img.shields.io/badge/status-planned-blue) |
+| **Production Optimization**    | ![Planned](https://img.shields.io/badge/status-planned-blue) |
+
+
 ![PDU 3D View](images/Assembly/Assembled-in-case_3D_1.png)
 
 ![PDU 3D View](images/Assembly/Assembled-in-case_3D_2.png)
@@ -82,20 +97,6 @@ The full schematics for each board are available:
 - **Firmware Development:** Implement remote control and monitoring via Ethernet.
 - **Web-Based UI:** A browser-accessible interface for managing power outputs.
 - **Metal Enclosure:** If production scales up, explore CNC or sheet-metal enclosures.
-
-## Development Phases
-
-| Phase                        | Status |
-|------------------------------|--------|
-| **PCB Design & Prototyping**   | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Enclosure Desing**   | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Order PCB**   | ![In Progress](https://img.shields.io/badge/status-in%20progress-yellow) |
-| **Prototyping and Hardware Testing** | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
-| **Initial Firmware Development** | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
-| **Enclosure Testing & Ventilation** | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
-| **Web-Based UI for Control**   | ![Planned](https://img.shields.io/badge/status-planned-blue) |
-| **Power Logging & Alerts**     | ![Planned](https://img.shields.io/badge/status-planned-blue) |
-| **Production Optimization**    | ![Planned](https://img.shields.io/badge/status-planned-blue) |
 
 
 ## License
