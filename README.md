@@ -10,7 +10,7 @@ The **10-Inch Rack PDU (Power Distribution Unit)** is a modular power management
 ## Features
 - **Controller Board:** Handles Ethernet communication, power conversion, and system logic.
 - **Display Board:** Provides user interaction with OLED display and status LEDs.
-- **Relay Board:** Manages AC switching with 6x 230V relays, fuses, and safety isolation.
+- **Relay Board:** Manages AC switching with 8x 230V relays, fuses, and safety isolation.
 - **Ethernet Connectivity:** Uses the W5500 SPI-based Ethernet chip for remote control and monitoring.
 - **Power Measurement:** AC voltage and current sensing for real-time monitoring.
 
@@ -24,7 +24,7 @@ The **10-Inch Rack PDU (Power Distribution Unit)** is a modular power management
 
 ![Display Board 3D View](images/Display%20Board/DisplayBoard_3D-2.png)
 
-![Display Board 3D View](images/Relay%20Board/RelayBoard_3D-1.png)
+![Relay Board 3D View](images/Relay%20Board/RelayBoard_3D-1.png)
 
 ### **Impedance Control:**
 | Impedance (Ω)  | Type                             | Signal  | Bottom  | Trace Width (mm) | Trace Spacing (mm) |
