@@ -9,6 +9,13 @@ management system designed for efficient control and monitoring of power in a
 rack-mounted environment. The project includes a controller board, a display
 board, and a relay board to handle switching and power management.
 
+
+If you want to support my work, please buy me a MOSFET! ⚡
+
+<a href="https://buymeacoffee.com/dvidmakesthings" target="_blank"><img src="misc/white-button.png" alt="Buy Me A MOSFET" height="41" width="174"></a>
+
+
+
 ## Development Phases
 
 | Phase                                | Status   |
