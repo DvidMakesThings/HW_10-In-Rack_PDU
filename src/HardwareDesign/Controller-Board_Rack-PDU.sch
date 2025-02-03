@@ -3527,7 +3527,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <part name="GND37" library="ds_passive" deviceset="GND" device=""/>
 <part name="DBG2" library="ds_con" deviceset="CON-1X4" device="" package3d_urn="urn:adsk.eagle:package:46684991/2"/>
 <part name="GND38" library="ds_passive" deviceset="GND" device=""/>
-<part name="R25" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="5.6K"/>
+<part name="R25" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K"/>
 <part name="R26" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K"/>
 <part name="GND39" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="NC16" library="ds_passive" deviceset="NC" device=""/>
@@ -3651,8 +3651,8 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <part name="NC14" library="ds_passive" deviceset="NC" device=""/>
 <part name="NC15" library="ds_passive" deviceset="NC" device=""/>
 <part name="NC18" library="ds_passive" deviceset="NC" device=""/>
-<part name="R48" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="4.7K"/>
-<part name="R49" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="4.7K"/>
+<part name="R48" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="100K"/>
+<part name="R49" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K"/>
 <part name="GND47" library="ds_passive" deviceset="GND" device=""/>
 <part name="P+8" library="ds_passive" deviceset="+12V" device=""/>
 <part name="12VFB" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
