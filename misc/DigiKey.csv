@@ -1,0 +1,5 @@
+﻿"Index,""Quantity"",""Part Number"",""Manufacturer Part Number"",""Description"",""Customer Reference"",""Available"",""Backorder"",""Unit Price"",""Extended Price EUR"""
+"1,""5"",""1297-1290-ND"",""750370228"",""XFMR FLYBACK AC/DC CONV TH"","""",""5"",""0"",""7,51000"",""37,55"""
+"2,""5"",""240-TYS80403R3N-10CT-ND"",""TYS80403R3N-10"",""FIXED IND 3.3UH 4.4A 17 MOHM SMD"","""",""5"",""0"",""0,63000"",""3,15"""
+"3,""5"",""CAT24C256HU4IGT3OSCT-ND"",""CAT24C256HU4IGT3"",""IC EEPROM 256KBIT I2C 1MHZ 8UDFN"","""",""5"",""0"",""0,76000"",""3,80"""
+"4,""10"",""308-1802-1-ND"",""CDRH5D28NP-4R2NC"",""FIXED IND 4.2UH 2.2A 31 MOHM SMD"","""",""10"",""0"",""0,48400"",""4,84"""
