@@ -1,6 +1,6 @@
 # ENERGIS - The Managed PDU Project for 10-Inch Rack
 
-![Development Status](https://img.shields.io/badge/status-Waiting%20for%20PCB%20--%20Testing%20phase-yellow)
+![Development Status](https://img.shields.io/badge/status-PCB%20shipped,%20Parts%20arrived-yellow)
 
 ## Overview
 
