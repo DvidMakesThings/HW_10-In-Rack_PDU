@@ -4467,14 +4467,14 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <label x="190.5" y="154.94" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="RP_USBD_N" class="2">
+<net name="USB_DP_N" class="2">
 <segment>
 <pinref part="IC2" gate="G$1" pin="USB_DM"/>
 <wire x1="137.16" y1="142.24" x2="127" y2="142.24" width="0.1524" layer="91"/>
 <pinref part="R21" gate="G$1" pin="2"/>
 </segment>
 </net>
-<net name="RP_USBD_P" class="2">
+<net name="USB_DP_P" class="2">
 <segment>
 <pinref part="IC2" gate="G$1" pin="USB_DP"/>
 <wire x1="127" y1="139.7" x2="137.16" y2="139.7" width="0.1524" layer="91"/>
@@ -4811,7 +4811,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <label x="142.24" y="50.8" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="USBD_N" class="2">
+<net name="DP_N" class="2">
 <segment>
 <pinref part="R21" gate="G$1" pin="1"/>
 <wire x1="116.84" y1="142.24" x2="109.22" y2="142.24" width="0.1524" layer="91"/>
@@ -4833,7 +4833,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <label x="218.44" y="45.72" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="USBD_P" class="2">
+<net name="DP_P" class="2">
 <segment>
 <pinref part="R22" gate="G$1" pin="1"/>
 <wire x1="109.22" y1="139.7" x2="116.84" y2="139.7" width="0.1524" layer="91"/>
@@ -5540,36 +5540,36 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <pinref part="C56" gate="G$1" pin="1"/>
 </segment>
 </net>
-<net name="TX_N" class="1">
+<net name="TX_TD_N" class="1">
 <segment>
 <pinref part="IC1" gate="G$1" pin="TXN"/>
 <wire x1="137.16" y1="195.58" x2="124.46" y2="195.58" width="0.1524" layer="91"/>
 <pinref part="R1" gate="G$1" pin="1"/>
-<label x="129.54" y="195.58" size="1.778" layer="95"/>
+<label x="127" y="195.58" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="TX_P" class="1">
+<net name="TX_TD_P" class="1">
 <segment>
 <pinref part="IC1" gate="G$1" pin="TXP"/>
 <pinref part="R2" gate="G$1" pin="1"/>
 <wire x1="137.16" y1="193.04" x2="124.46" y2="193.04" width="0.1524" layer="91"/>
-<label x="129.54" y="193.04" size="1.778" layer="95"/>
+<label x="127" y="193.04" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="RX_N" class="1">
+<net name="RX_RD_N" class="1">
 <segment>
 <pinref part="IC1" gate="G$1" pin="RXN"/>
 <pinref part="R4" gate="G$1" pin="1"/>
 <wire x1="124.46" y1="187.96" x2="147.32" y2="187.96" width="0.1524" layer="91"/>
-<label x="129.54" y="187.96" size="1.778" layer="95"/>
+<label x="127" y="187.96" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="RX_P" class="1">
+<net name="RX_RD_P" class="1">
 <segment>
 <pinref part="IC1" gate="G$1" pin="RXP"/>
 <pinref part="R3" gate="G$1" pin="1"/>
 <wire x1="124.46" y1="185.42" x2="147.32" y2="185.42" width="0.1524" layer="91"/>
-<label x="129.54" y="185.42" size="1.778" layer="95"/>
+<label x="127" y="185.42" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="TD_N" class="1">
@@ -5604,7 +5604,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <label x="297.18" y="81.28" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="RDC_N" class="1">
+<net name="RDC_RD_N" class="1">
 <segment>
 <pinref part="R4" gate="G$1" pin="2"/>
 <wire x1="157.48" y1="187.96" x2="162.56" y2="187.96" width="0.1524" layer="91"/>
@@ -5613,9 +5613,10 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <wire x1="162.56" y1="182.88" x2="162.56" y2="187.96" width="0.1524" layer="91"/>
 <junction x="162.56" y="187.96"/>
 <pinref part="C3" gate="G$1" pin="1"/>
+<label x="162.56" y="187.96" size="1.27" layer="95"/>
 </segment>
 </net>
-<net name="RDC_P" class="1">
+<net name="RDC_RD_P" class="1">
 <segment>
 <pinref part="R3" gate="G$1" pin="2"/>
 <wire x1="172.72" y1="185.42" x2="167.64" y2="185.42" width="0.1524" layer="91"/>
@@ -5624,6 +5625,7 @@ Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@
 <wire x1="167.64" y1="182.88" x2="167.64" y2="185.42" width="0.1524" layer="91"/>
 <junction x="167.64" y="185.42"/>
 <pinref part="C4" gate="G$1" pin="1"/>
+<label x="162.56" y="185.42" size="1.27" layer="95"/>
 </segment>
 </net>
 <net name="GND" class="0">
