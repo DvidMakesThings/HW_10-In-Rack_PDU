@@ -3817,203 +3817,101 @@ MAX3223-MAX3243.pdf</description>
 </deviceset>
 </devicesets>
 </library>
-<library name="Wurth_Connectors_WR-FPC" urn="urn:adsk.eagle:library:15778639">
-<description>&lt;BR&gt;Wurth Elektronik - Electromechanical Components - Connectors - FPC Connector and FFC Cable - WR-FPC &lt;br&gt;
-
-&lt;Hr&gt;
-&lt;BR&gt;
-&lt;TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0&gt;
-&lt;TR&gt;   
-&lt;TD BGCOLOR="#cccccc" ALIGN=CENTER&gt;&lt;FONT FACE=ARIAL SIZE=3&gt;&lt;BR&gt;&lt;br&gt;
-      &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp;&lt;BR&gt;
-       &lt;BR&gt;
-       &lt;BR&gt;
-       &lt;BR&gt;&lt;BR&gt;&lt;/FONT&gt;
-    &lt;/TD&gt;
-&lt;TD BGCOLOR="#cccccc" ALIGN=CENTER&gt;&lt;FONT FACE=ARIAL SIZE=3&gt;&lt;br&gt;
-      -----&lt;BR&gt;
-      -----&lt;BR&gt;
-      -----&lt;BR&gt;
-      -----&lt;BR&gt;
-      -----&lt;BR&gt;&lt;BR&gt;&lt;/FONT&gt;
-    &lt;/TD&gt;
-    &lt;TD BGCOLOR="#cccccc" ALIGN=CENTER&gt; &lt;FONT FACE=ARIAL SIZE=3&gt;&lt;br&gt;
-      ---------------------------&lt;BR&gt;
-&lt;B&gt;&lt;I&gt;&lt;span style='font-size:26pt;
-  color:#FF6600;'&gt;WE &lt;/span&gt;&lt;/i&gt;&lt;/b&gt;
-&lt;BR&gt;
-      ---------------------------&lt;BR&gt;&lt;b&gt;Würth Elektronik&lt;/b&gt;&lt;/FONT&gt;
-    &lt;/TD&gt;
-    &lt;TD BGCOLOR="#cccccc" ALIGN=CENTER&gt;&lt;FONT FACE=ARIAL SIZE=3&gt;&lt;br&gt;
-      ---------O---&lt;BR&gt;
-      ----O--------&lt;BR&gt;
-      ---------O---&lt;BR&gt;
-      ----O--------&lt;BR&gt;
-      ---------O---&lt;BR&gt;&lt;BR&gt;&lt;/FONT&gt;
-    &lt;/TD&gt;
-   
-&lt;TD BGCOLOR="#cccccc" ALIGN=CENTER&gt;&lt;FONT FACE=ARIAL SIZE=3&gt;&lt;BR&gt;
-      &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp;&lt;BR&gt;
-       &lt;BR&gt;
-       &lt;BR&gt;
-       &lt;BR&gt;
-       &lt;BR&gt;&lt;BR&gt;&lt;/FONT&gt;
-    &lt;/TD&gt;
-  &lt;/TR&gt;
-
-  &lt;TR&gt;
-    &lt;TD COLSPAN=7&gt;&amp;nbsp;
-    &lt;/TD&gt;
-  &lt;/TR&gt;
-  
-&lt;/TABLE&gt;
-&lt;B&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;More than you expect&lt;BR&gt;&lt;BR&gt;&lt;BR&gt;&lt;/B&gt;
-
-&lt;HR&gt;&lt;BR&gt;
-&lt;b&gt;Würth Elektronik eiSos GmbH &amp; Co. KG&lt;/b&gt;&lt;br&gt;
-EMC &amp; Inductive Solutions&lt;br&gt;
-
-Max-Eyth-Str.1&lt;br&gt;
-D-74638 Waldenburg&lt;br&gt;
-&lt;br&gt;
-Tel: +49 (0)7942-945-0&lt;br&gt;
-Fax:+49 (0)7942-945-5000&lt;br&gt;
-&lt;br&gt;
-&lt;a href="http://www.we-online.com/web/en/electronic_components/produkte_pb/bauteilebibliotheken/eagle_4.php"&gt;www.we-online.com/eagle&lt;/a&gt;&lt;br&gt;
-&lt;a href="mailto:libraries@we-online.com"&gt;libraries@we-online.com&lt;/a&gt; &lt;BR&gt;&lt;BR&gt;
-&lt;br&gt;&lt;HR&gt;&lt;BR&gt;
-Disclaimer: While Würth Elektronik eiSos has made every reasonable effort to ensure the accuracy of the PCB layout models provided, &lt;br&gt;
-Würth Elektronik eiSos does not guarantee the exemption of error on the PCB layout models, nor does Würth Elektronik eiSos guarantee that the PCB layout model is current. &lt;br&gt;
-Würth Elektronik eiSos reserves the right to make any adjustments at any time without notice. &lt;br&gt;
-Würth Elektronik eiSos expressly disclaims all implied warranties regarding this PCB layout model. &lt;br&gt;
- &lt;br&gt;
-Please contact us for more information.&lt;br&gt;
-&lt;HR&gt;
-&lt;br&gt;Eagle Version 9, Library Revision 2024a, 2024-10-18&lt;br&gt;
-&lt;HR&gt;
-Copyright: Würth Elektronik</description>
+<library name="ds_con">
 <packages>
-<package name="687320124422" urn="urn:adsk.eagle:footprint:15743632/2" library_version="8">
-<description>&lt;B&gt;WR-FPC&lt;/B&gt;&lt;BR&gt;0.50 mm SMT ZIF Vertical,pins 20</description>
-<smd name="4" x="-3.25" y="1.4" dx="0.4" dy="1.5" layer="1" rot="R180"/>
-<smd name="Z2" x="-5.75" y="1.4" dx="0.8" dy="1.5" layer="1" rot="R180"/>
-<smd name="5" x="-2.75" y="-1.4" dx="0.4" dy="1.5" layer="1" rot="R180"/>
-<smd name="6" x="-2.25" y="1.4" dx="0.4" dy="1.5" layer="1" rot="R180"/>
-<smd name="3" x="-3.75" y="-1.4" dx="0.4" dy="1.5" layer="1" rot="R180"/>
-<smd name="1" x="-4.75" y="-1.4" dx="0.4" dy="1.5" layer="1" rot="R180"/>
-<smd name="2" x="-4.25" y="1.4" dx="0.4" dy="1.5" layer="1"/>
-<smd name="Z3" x="5.75" y="-1.4" dx="0.8" dy="1.5" layer="1" rot="R180"/>
-<smd name="Z1" x="-5.75" y="-1.4" dx="0.8" dy="1.5" layer="1" rot="R180"/>
-<smd name="Z4" x="5.75" y="1.4" dx="0.8" dy="1.5" layer="1" rot="R180"/>
-<smd name="7" x="-1.75" y="-1.4" dx="0.4" dy="1.5" layer="1" rot="R180"/>
-<smd name="8" x="-1.25" y="1.4" dx="0.4" dy="1.5" layer="1" rot="R180"/>
-<smd name="9" x="-0.75" y="-1.4" dx="0.4" dy="1.5" layer="1" rot="R180"/>
-<smd name="10" x="-0.25" y="1.4" dx="0.4" dy="1.5" layer="1" rot="R180"/>
-<smd name="11" x="0.25" y="-1.4" dx="0.4" dy="1.5" layer="1" rot="R180"/>
-<smd name="12" x="0.75" y="1.4" dx="0.4" dy="1.5" layer="1" rot="R180"/>
-<smd name="13" x="1.25" y="-1.4" dx="0.4" dy="1.5" layer="1" rot="R180"/>
-<smd name="14" x="1.75" y="1.4" dx="0.4" dy="1.5" layer="1" rot="R180"/>
-<smd name="15" x="2.25" y="-1.4" dx="0.4" dy="1.5" layer="1" rot="R180"/>
-<smd name="16" x="2.75" y="1.4" dx="0.4" dy="1.5" layer="1" rot="R180"/>
-<smd name="17" x="3.25" y="-1.4" dx="0.4" dy="1.5" layer="1" rot="R180"/>
-<smd name="18" x="3.75" y="1.4" dx="0.4" dy="1.5" layer="1" rot="R180"/>
-<smd name="19" x="4.25" y="-1.4" dx="0.4" dy="1.5" layer="1" rot="R180"/>
-<smd name="20" x="4.75" y="1.4" dx="0.4" dy="1.5" layer="1" rot="R180"/>
-<wire x1="-8.2" y1="1" x2="-8.2" y2="-1" width="0.1" layer="51"/>
-<wire x1="-8.2" y1="-1" x2="8.2" y2="-1" width="0.1" layer="51"/>
-<wire x1="8.2" y1="-1" x2="8.2" y2="1" width="0.1" layer="51"/>
-<wire x1="8.2" y1="1" x2="-8.2" y2="1" width="0.1" layer="51"/>
-<wire x1="-6.5" y1="1.1" x2="-8.3" y2="1.1" width="0.2" layer="21"/>
-<wire x1="-8.3" y1="1.1" x2="-8.3" y2="-1.1" width="0.2" layer="21"/>
-<wire x1="-8.3" y1="-1.1" x2="-6.5" y2="-1.1" width="0.2" layer="21"/>
-<wire x1="6.5" y1="1.1" x2="8.3" y2="1.1" width="0.2" layer="21"/>
-<wire x1="8.3" y1="1.1" x2="8.3" y2="-1.1" width="0.2" layer="21"/>
-<wire x1="8.3" y1="-1.1" x2="6.5" y2="-1.1" width="0.2" layer="21"/>
-<text x="-9.06" y="0.975" size="1.016" layer="25" align="bottom-right">&gt;NAME</text>
-<text x="-9.11" y="-1.35" size="1.016" layer="27" align="bottom-right">&gt;VALUE</text>
-<polygon width="0.1" layer="39">
-<vertex x="-8.5" y="2.35"/>
-<vertex x="8.5" y="2.35"/>
-<vertex x="8.5" y="-2.35"/>
-<vertex x="-8.5" y="-2.35"/>
-</polygon>
-<circle x="-4.8" y="-0.1" radius="0.1" width="0.2" layer="21"/>
+<package name="FPC20" urn="urn:adsk.eagle:footprint:47082458/1">
+<circle x="-4.602" y="-0.062" radius="0.1" width="0.2" layer="21"/>
+<wire x1="-8.002" y1="1.038" x2="-8.002" y2="-0.962" width="0.1" layer="51"/>
+<wire x1="-8.002" y1="-0.962" x2="8.398" y2="-0.962" width="0.1" layer="51"/>
+<wire x1="8.398" y1="-0.962" x2="8.398" y2="1.038" width="0.1" layer="51"/>
+<wire x1="8.398" y1="1.038" x2="-8.002" y2="1.038" width="0.1" layer="51"/>
+<wire x1="-6.302" y1="1.138" x2="-8.102" y2="1.138" width="0.2" layer="21"/>
+<wire x1="-8.102" y1="1.138" x2="-8.102" y2="-1.062" width="0.2" layer="21"/>
+<wire x1="-8.102" y1="-1.062" x2="-6.302" y2="-1.062" width="0.2" layer="21"/>
+<wire x1="6.698" y1="1.138" x2="8.498" y2="1.138" width="0.2" layer="21"/>
+<wire x1="8.498" y1="1.138" x2="8.498" y2="-1.062" width="0.2" layer="21"/>
+<wire x1="8.498" y1="-1.062" x2="6.698" y2="-1.062" width="0.2" layer="21"/>
+<smd name="1" x="-4.552" y="-1.362" dx="0.4" dy="1.5" layer="1" rot="R180"/>
+<smd name="2" x="-4.052" y="1.438" dx="0.4" dy="1.5" layer="1"/>
+<smd name="3" x="-3.552" y="-1.362" dx="0.4" dy="1.5" layer="1" rot="R180"/>
+<smd name="4" x="-3.052" y="1.438" dx="0.4" dy="1.5" layer="1" rot="R180"/>
+<smd name="5" x="-2.552" y="-1.362" dx="0.4" dy="1.5" layer="1" rot="R180"/>
+<smd name="6" x="-2.052" y="1.438" dx="0.4" dy="1.5" layer="1" rot="R180"/>
+<smd name="7" x="-1.552" y="-1.362" dx="0.4" dy="1.5" layer="1" rot="R180"/>
+<smd name="8" x="-1.052" y="1.438" dx="0.4" dy="1.5" layer="1" rot="R180"/>
+<smd name="9" x="-0.552" y="-1.362" dx="0.4" dy="1.5" layer="1" rot="R180"/>
+<smd name="10" x="-0.052" y="1.438" dx="0.4" dy="1.5" layer="1" rot="R180"/>
+<smd name="11" x="0.448" y="-1.362" dx="0.4" dy="1.5" layer="1" rot="R180"/>
+<smd name="12" x="0.948" y="1.438" dx="0.4" dy="1.5" layer="1" rot="R180"/>
+<smd name="13" x="1.448" y="-1.362" dx="0.4" dy="1.5" layer="1" rot="R180"/>
+<smd name="14" x="1.948" y="1.438" dx="0.4" dy="1.5" layer="1" rot="R180"/>
+<smd name="15" x="2.448" y="-1.362" dx="0.4" dy="1.5" layer="1" rot="R180"/>
+<smd name="16" x="2.948" y="1.438" dx="0.4" dy="1.5" layer="1" rot="R180"/>
+<smd name="17" x="3.448" y="-1.362" dx="0.4" dy="1.5" layer="1" rot="R180"/>
+<smd name="18" x="3.948" y="1.438" dx="0.4" dy="1.5" layer="1" rot="R180"/>
+<smd name="19" x="4.448" y="-1.362" dx="0.4" dy="1.5" layer="1" rot="R180"/>
+<smd name="20" x="4.948" y="1.438" dx="0.4" dy="1.5" layer="1" rot="R180"/>
+<smd name="Z1" x="-5.552" y="-1.362" dx="0.8" dy="1.5" layer="1" rot="R180"/>
+<smd name="Z2" x="-5.552" y="1.438" dx="0.8" dy="1.5" layer="1" rot="R180"/>
+<smd name="Z3" x="5.948" y="-1.362" dx="0.8" dy="1.5" layer="1" rot="R180"/>
+<smd name="Z4" x="5.948" y="1.438" dx="0.8" dy="1.5" layer="1" rot="R180"/>
+<text x="-8.862" y="1.013" size="1.016" layer="25" align="bottom-right">&gt;NAME</text>
+<text x="-8.912" y="-1.312" size="1.016" layer="27" align="bottom-right">&gt;VALUE</text>
 </package>
 </packages>
 <packages3d>
-<package3d name="687320124422" urn="urn:adsk.eagle:package:15743882/4" type="model" library_version="8">
-<description>&lt;B&gt;WR-FPC&lt;/B&gt;&lt;BR&gt;0.50 mm SMT ZIF Vertical,pins 20</description>
+<package3d name="FPC20" urn="urn:adsk.eagle:package:47082459/2" type="model">
 <packageinstances>
-<packageinstance name="687320124422"/>
+<packageinstance name="FPC20"/>
 </packageinstances>
 </package3d>
 </packages3d>
 <symbols>
-<symbol name="20_FOURSHIELD" urn="urn:adsk.eagle:symbol:22866988/1" library_version="8">
-<pin name="1" x="-25.4" y="-5.08" visible="pad" length="short" direction="pas" rot="R90"/>
-<pin name="2" x="-22.86" y="-5.08" visible="pad" length="short" direction="pas" rot="R90"/>
-<pin name="3" x="-20.32" y="-5.08" visible="pad" length="short" direction="pas" rot="R90"/>
-<pin name="4" x="-17.78" y="-5.08" visible="pad" length="short" direction="pas" rot="R90"/>
-<pin name="5" x="-15.24" y="-5.08" visible="pad" length="short" direction="pas" rot="R90"/>
-<pin name="6" x="-12.7" y="-5.08" visible="pad" length="short" direction="pas" rot="R90"/>
-<pin name="7" x="-10.16" y="-5.08" visible="pad" length="short" direction="pas" rot="R90"/>
-<pin name="8" x="-7.62" y="-5.08" visible="pad" length="short" direction="pas" rot="R90"/>
-<pin name="9" x="-5.08" y="-5.08" visible="pad" length="short" direction="pas" rot="R90"/>
-<pin name="10" x="-2.54" y="-5.08" visible="pad" length="short" direction="pas" rot="R90"/>
-<pin name="11" x="0" y="-5.08" visible="pad" length="short" direction="pas" rot="R90"/>
-<pin name="12" x="2.54" y="-5.08" visible="pad" length="short" direction="pas" rot="R90"/>
-<pin name="13" x="5.08" y="-5.08" visible="pad" length="short" direction="pas" rot="R90"/>
-<pin name="14" x="7.62" y="-5.08" visible="pad" length="short" direction="pas" rot="R90"/>
-<pin name="15" x="10.16" y="-5.08" visible="pad" length="short" direction="pas" rot="R90"/>
-<pin name="16" x="12.7" y="-5.08" visible="pad" length="short" direction="pas" rot="R90"/>
-<pin name="17" x="15.24" y="-5.08" visible="pad" length="short" direction="pas" rot="R90"/>
-<pin name="18" x="17.78" y="-5.08" visible="pad" length="short" direction="pas" rot="R90"/>
-<pin name="19" x="20.32" y="-5.08" visible="pad" length="short" direction="pas" rot="R90"/>
-<pin name="20" x="22.86" y="-5.08" visible="pad" length="short" direction="pas" rot="R90"/>
-<pin name="Z1" x="-30.48" y="0" visible="pad" length="short" direction="pas"/>
-<pin name="Z2" x="-30.48" y="2.54" visible="pad" length="short" direction="pas"/>
-<pin name="Z3" x="27.94" y="0" visible="pad" length="short" direction="pas" rot="R180"/>
-<pin name="Z4" x="27.94" y="2.54" visible="pad" length="short" direction="pas" rot="R180"/>
-<wire x1="-27.94" y1="2.54" x2="-25.4" y2="2.54" width="0.254" layer="94"/>
-<wire x1="-25.4" y1="2.54" x2="22.86" y2="2.54" width="0.254" layer="94"/>
-<wire x1="22.86" y1="2.54" x2="25.4" y2="2.54" width="0.254" layer="94"/>
-<wire x1="25.4" y1="2.54" x2="25.4" y2="-2.54" width="0.254" layer="94"/>
-<wire x1="25.4" y1="-2.54" x2="-27.94" y2="-2.54" width="0.254" layer="94"/>
-<wire x1="-27.94" y1="-2.54" x2="-27.94" y2="2.54" width="0.254" layer="94"/>
-<wire x1="-25.4" y1="2.54" x2="-25.4" y2="0" width="0.254" layer="94"/>
-<wire x1="-25.4" y1="0" x2="22.86" y2="0" width="0.254" layer="94"/>
-<wire x1="22.86" y1="0" x2="22.86" y2="2.54" width="0.254" layer="94"/>
-<text x="-1.27" y="3.048" size="1.27" layer="95" align="bottom-center">&gt;NAME</text>
-<text x="24.892" y="-4.572" size="1.27" layer="96">&gt;VALUE</text>
+<symbol name="FPC20" urn="urn:adsk.eagle:symbol:47082457/1">
+<wire x1="5.08" y1="27.94" x2="5.08" y2="-25.4" width="0.1524" layer="94"/>
+<wire x1="5.08" y1="-25.4" x2="0" y2="-25.4" width="0.1524" layer="94"/>
+<wire x1="0" y1="-25.4" x2="0" y2="-22.86" width="0.1524" layer="94"/>
+<wire x1="0" y1="-22.86" x2="0" y2="25.4" width="0.1524" layer="94"/>
+<wire x1="0" y1="25.4" x2="0" y2="27.94" width="0.1524" layer="94"/>
+<wire x1="0" y1="27.94" x2="5.08" y2="27.94" width="0.1524" layer="94"/>
+<wire x1="0" y1="25.4" x2="2.54" y2="25.4" width="0.1524" layer="94"/>
+<wire x1="2.54" y1="25.4" x2="2.54" y2="-22.86" width="0.1524" layer="94"/>
+<wire x1="2.54" y1="-22.86" x2="0" y2="-22.86" width="0.1524" layer="94"/>
+<text x="-2.54" y="25.4" size="1.778" layer="95" rot="R270">&gt;NAME</text>
+<text x="-2.54" y="-5.08" size="1.778" layer="95" rot="R270">&gt;VALUE</text>
+<pin name="Z4" x="0" y="-27.94" visible="pad" length="short" rot="R90"/>
+<pin name="Z3" x="2.54" y="-27.94" visible="pad" length="short" rot="R90"/>
+<pin name="Z2" x="0" y="30.48" visible="pad" length="short" rot="R270"/>
+<pin name="Z1" x="2.54" y="30.48" visible="pad" length="short" rot="R270"/>
+<pin name="1" x="7.62" y="25.4" visible="pad" length="short" rot="R180"/>
+<pin name="2" x="7.62" y="22.86" visible="pad" length="short" rot="R180"/>
+<pin name="3" x="7.62" y="20.32" visible="pad" length="short" rot="R180"/>
+<pin name="4" x="7.62" y="17.78" visible="pad" length="short" rot="R180"/>
+<pin name="5" x="7.62" y="15.24" visible="pad" length="short" rot="R180"/>
+<pin name="6" x="7.62" y="12.7" visible="pad" length="short" rot="R180"/>
+<pin name="7" x="7.62" y="10.16" visible="pad" length="short" rot="R180"/>
+<pin name="8" x="7.62" y="7.62" visible="pad" length="short" rot="R180"/>
+<pin name="9" x="7.62" y="5.08" visible="pad" length="short" rot="R180"/>
+<pin name="10" x="7.62" y="2.54" visible="pad" length="short" rot="R180"/>
+<pin name="11" x="7.62" y="0" visible="pad" length="short" rot="R180"/>
+<pin name="12" x="7.62" y="-2.54" visible="pad" length="short" rot="R180"/>
+<pin name="13" x="7.62" y="-5.08" visible="pad" length="short" rot="R180"/>
+<pin name="14" x="7.62" y="-7.62" visible="pad" length="short" rot="R180"/>
+<pin name="15" x="7.62" y="-10.16" visible="pad" length="short" rot="R180"/>
+<pin name="16" x="7.62" y="-12.7" visible="pad" length="short" rot="R180"/>
+<pin name="17" x="7.62" y="-15.24" visible="pad" length="short" rot="R180"/>
+<pin name="18" x="7.62" y="-17.78" visible="pad" length="short" rot="R180"/>
+<pin name="19" x="7.62" y="-20.32" visible="pad" length="short" rot="R180"/>
+<pin name="20" x="7.62" y="-22.86" visible="pad" length="short" rot="R180"/>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="6873XX124422_687320124422" urn="urn:adsk.eagle:component:15778926/5" prefix="J" library_version="8">
-<description>&lt;b&gt;WR-FPC 0.50 mm SMT ZIF Vertical &lt;br&gt; &lt;/b&gt;
-&lt;br&gt;
-&lt;b&gt;KIND PROPERTIES 
-&lt;br&gt;&lt;br&gt;
-&lt;/b&gt;Pitch 0.5 mm
-&lt;br&gt;&lt;br&gt;
-&lt;b&gt;MATERIAL PROPERTIES 
-&lt;br&gt;&lt;br&gt;
-&lt;/b&gt;Insulator Material  LCP
-&lt;br&gt;Contact Material Phosphor Bronze
-&lt;br&gt;Contact Plating 100 (µ") Tin over 50 (µ") Nickel
-&lt;br&gt;Contact Type  Stamped
-&lt;br&gt;Solder Tabs Brass
-&lt;br&gt;
-&lt;br&gt;&lt;a href="https://www.we-online.com/catalog/media/o32874v209%20Family_WE-FPC_6873xx124422.jpg" title="Enlarge picture"&gt;
-&lt;img src="https://www.we-online.com/catalog/media/o32874v209%20Family_WE-FPC_6873xx124422.jpg"  width="320"&gt;&lt;/a&gt;&lt;p&gt;
-Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VERTICAL_6873XX124422/"&gt;https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VERTICAL_6873XX124422/&lt;/a&gt;&lt;p&gt;
-
-&lt;/b&gt;Updated by Ella Wu  2020-08-26&lt;br&gt;
-&lt;/b&gt;2020(C) Wurth Elektronik</description>
+<deviceset name="FPC20-H" urn="urn:adsk.eagle:component:47082460/2" prefix="CON">
 <gates>
-<gate name="G$1" symbol="20_FOURSHIELD" x="0" y="0"/>
+<gate name="G$1" symbol="FPC20" x="0" y="0"/>
 </gates>
 <devices>
-<device name="" package="687320124422">
+<device name="" package="FPC20">
 <connects>
 <connect gate="G$1" pin="1" pad="1"/>
 <connect gate="G$1" pin="10" pad="10"/>
@@ -4041,22 +3939,10 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 <connect gate="G$1" pin="Z4" pad="Z4"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:15743882/4"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47082459/2"/>
 </package3dinstances>
 <technologies>
-<technology name="">
-<attribute name="CONTACT-RESISTANCE" value="20mOhm"/>
-<attribute name="DATASHEET-URL" value="https://www.we-online.com/redexpert/spec/687320124422?ae"/>
-<attribute name="IR" value="0.5A"/>
-<attribute name="L" value="16.4mm"/>
-<attribute name="PACKAGING" value="Tape and Reel with Cap"/>
-<attribute name="PART-NUMBER" value="687320124422"/>
-<attribute name="PINS" value=" 20 "/>
-<attribute name="PITCH" value="0.5mm"/>
-<attribute name="TYPE" value="Vertical"/>
-<attribute name="VALUE" value="687320124422"/>
-<attribute name="WORKING-VOLTAGE" value="50V(AC)"/>
-</technology>
+<technology name=""/>
 </technologies>
 </device>
 </devices>
@@ -4396,7 +4282,7 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 <part name="R92" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="0R"/>
 <part name="+3V5" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="R93" library="Resistor Array" library_urn="urn:adsk.eagle:library:16491332" deviceset="742C083103JP" device="" package3d_urn="urn:adsk.eagle:package:16445849/4" value="4x10K 1206"/>
-<part name="J1" library="Wurth_Connectors_WR-FPC" library_urn="urn:adsk.eagle:library:15778639" deviceset="6873XX124422_687320124422" device="" package3d_urn="urn:adsk.eagle:package:15743882/4" value="687320124422"/>
+<part name="J1" library="ds_con" deviceset="FPC20-H" device="" package3d_urn="urn:adsk.eagle:package:47082459/2" value="FPC20-H"/>
 <part name="GND29" library="ds_passive" deviceset="GND" device=""/>
 <part name="+3V6" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="P+14" library="ds_passive" deviceset="+5V" device=""/>
@@ -7660,9 +7546,8 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 <attribute name="NAME" x="106.68" y="72.3646" size="1.778" layer="95"/>
 <attribute name="VALUE" x="106.68" y="56.134" size="1.778" layer="96"/>
 </instance>
-<instance part="J1" gate="G$1" x="307.34" y="68.58" smashed="yes" rot="MR270">
-<attribute name="NAME" x="304.292" y="69.85" size="1.27" layer="95" rot="MR270" align="bottom-center"/>
-<attribute name="VALUE" x="304.292" y="56.388" size="1.27" layer="96" rot="MR270"/>
+<instance part="J1" gate="G$1" x="304.8" y="68.58" smashed="yes">
+<attribute name="NAME" x="303.53" y="71.628" size="1.27" layer="95" align="bottom-center"/>
 </instance>
 <instance part="GND29" gate="1" x="314.96" y="33.02" smashed="yes">
 <attribute name="VALUE" x="314.96" y="30.48" size="1.778" layer="96" align="top-center"/>
@@ -7975,40 +7860,40 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 <pinref part="GND28" gate="1" pin="GND"/>
 </segment>
 <segment>
+<pinref part="GND29" gate="1" pin="GND"/>
+<pinref part="J1" gate="G$1" pin="16"/>
+<wire x1="312.42" y1="55.88" x2="314.96" y2="55.88" width="0.1524" layer="91"/>
+<wire x1="314.96" y1="55.88" x2="314.96" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="314.96" y1="38.1" x2="314.96" y2="35.56" width="0.1524" layer="91"/>
+<junction x="314.96" y="38.1"/>
+<pinref part="J1" gate="G$1" pin="Z3"/>
+<wire x1="307.34" y1="40.64" x2="307.34" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="307.34" y1="38.1" x2="314.96" y2="38.1" width="0.1524" layer="91"/>
+<junction x="307.34" y="38.1"/>
+<pinref part="J1" gate="G$1" pin="Z4"/>
+<wire x1="304.8" y1="40.64" x2="304.8" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="304.8" y1="38.1" x2="307.34" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="304.8" y1="99.06" x2="304.8" y2="101.6" width="0.1524" layer="91"/>
 <wire x1="304.8" y1="101.6" x2="307.34" y2="101.6" width="0.1524" layer="91"/>
 <wire x1="307.34" y1="101.6" x2="314.96" y2="101.6" width="0.1524" layer="91"/>
 <wire x1="314.96" y1="101.6" x2="314.96" y2="73.66" width="0.1524" layer="91"/>
 <wire x1="314.96" y1="73.66" x2="314.96" y2="66.04" width="0.1524" layer="91"/>
-<wire x1="314.96" y1="66.04" x2="314.96" y2="60.96" width="0.1524" layer="91"/>
-<wire x1="314.96" y1="60.96" x2="314.96" y2="55.88" width="0.1524" layer="91"/>
-<wire x1="314.96" y1="55.88" x2="314.96" y2="38.1" width="0.1524" layer="91"/>
-<wire x1="314.96" y1="38.1" x2="314.96" y2="35.56" width="0.1524" layer="91"/>
-<wire x1="307.34" y1="40.64" x2="307.34" y2="38.1" width="0.1524" layer="91"/>
-<wire x1="307.34" y1="38.1" x2="314.96" y2="38.1" width="0.1524" layer="91"/>
-<junction x="314.96" y="38.1"/>
-<wire x1="304.8" y1="40.64" x2="304.8" y2="38.1" width="0.1524" layer="91"/>
-<wire x1="304.8" y1="38.1" x2="307.34" y2="38.1" width="0.1524" layer="91"/>
-<junction x="307.34" y="38.1"/>
 <wire x1="307.34" y1="99.06" x2="307.34" y2="101.6" width="0.1524" layer="91"/>
 <junction x="307.34" y="101.6"/>
 <pinref part="J1" gate="G$1" pin="Z1"/>
 <pinref part="J1" gate="G$1" pin="Z2"/>
-<pinref part="J1" gate="G$1" pin="Z3"/>
-<pinref part="J1" gate="G$1" pin="Z4"/>
-<pinref part="GND29" gate="1" pin="GND"/>
 <pinref part="J1" gate="G$1" pin="9"/>
 <wire x1="312.42" y1="73.66" x2="314.96" y2="73.66" width="0.1524" layer="91"/>
 <junction x="314.96" y="73.66"/>
 <pinref part="J1" gate="G$1" pin="12"/>
 <wire x1="312.42" y1="66.04" x2="314.96" y2="66.04" width="0.1524" layer="91"/>
+<wire x1="314.96" y1="66.04" x2="314.96" y2="60.96" width="0.1524" layer="91"/>
 <junction x="314.96" y="66.04"/>
+<junction x="314.96" y="55.88"/>
 <pinref part="J1" gate="G$1" pin="14"/>
+<wire x1="314.96" y1="60.96" x2="314.96" y2="55.88" width="0.1524" layer="91"/>
 <wire x1="312.42" y1="60.96" x2="314.96" y2="60.96" width="0.1524" layer="91"/>
 <junction x="314.96" y="60.96"/>
-<pinref part="J1" gate="G$1" pin="16"/>
-<wire x1="312.42" y1="55.88" x2="314.96" y2="55.88" width="0.1524" layer="91"/>
-<junction x="314.96" y="55.88"/>
 </segment>
 </net>
 <net name="RELAY_1" class="0">

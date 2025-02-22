@@ -2038,19 +2038,19 @@ Copyright: Würth Elektronik</description>
 <attribute name="VALUE" x="41.65" y="9.49" size="1.016" layer="27" rot="R90" align="bottom-right"/>
 <attribute name="WORKING-VOLTAGE" value="50V(AC)" x="40.3" y="18.6" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
-<element name="DISPBOARD" library="Wurth_Connectors_WR-FPC" library_urn="urn:adsk.eagle:library:15778639" package="687320124422" package3d_urn="urn:adsk.eagle:package:15743882/4" value="687320124422" x="28.7" y="10.8" smashed="yes">
-<attribute name="CONTACT-RESISTANCE" value="20mOhm" x="14.4" y="-4.2" size="1.778" layer="27" display="off"/>
-<attribute name="DATASHEET-URL" value="https://www.we-online.com/redexpert/spec/687320124422?ae" x="14.4" y="-4.2" size="1.778" layer="27" display="off"/>
-<attribute name="IR" value="0.5A" x="14.4" y="-4.2" size="1.778" layer="27" display="off"/>
-<attribute name="L" value="16.4mm" x="14.4" y="-4.2" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="31.34" y="14.775" size="1.016" layer="25" align="bottom-right"/>
-<attribute name="PACKAGING" value="Tape and Reel with Cap" x="14.4" y="-4.2" size="1.778" layer="27" display="off"/>
-<attribute name="PART-NUMBER" value="687320124422" x="14.4" y="-4.2" size="1.778" layer="27" display="off"/>
-<attribute name="PINS" value=" 20 " x="14.4" y="-4.2" size="1.778" layer="27" display="off"/>
-<attribute name="PITCH" value="0.5mm" x="14.4" y="-4.2" size="1.778" layer="27" display="off"/>
-<attribute name="TYPE" value="Vertical" x="14.4" y="-4.2" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="5.29" y="-5.55" size="1.016" layer="27" align="bottom-right"/>
-<attribute name="WORKING-VOLTAGE" value="50V(AC)" x="14.4" y="-4.2" size="1.778" layer="27" display="off"/>
+<element name="DISPBOARD" library="Wurth_Connectors_WR-FPC" library_urn="urn:adsk.eagle:library:15778639" package="687320124422" package3d_urn="urn:adsk.eagle:package:15743882/4" value="687320124422" x="30.7" y="9.8" smashed="yes">
+<attribute name="CONTACT-RESISTANCE" value="20mOhm" x="16.4" y="-5.2" size="1.778" layer="27" display="off"/>
+<attribute name="DATASHEET-URL" value="https://www.we-online.com/redexpert/spec/687320124422?ae" x="16.4" y="-5.2" size="1.778" layer="27" display="off"/>
+<attribute name="IR" value="0.5A" x="16.4" y="-5.2" size="1.778" layer="27" display="off"/>
+<attribute name="L" value="16.4mm" x="16.4" y="-5.2" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="33.34" y="13.775" size="1.016" layer="25" align="bottom-right"/>
+<attribute name="PACKAGING" value="Tape and Reel with Cap" x="16.4" y="-5.2" size="1.778" layer="27" display="off"/>
+<attribute name="PART-NUMBER" value="687320124422" x="16.4" y="-5.2" size="1.778" layer="27" display="off"/>
+<attribute name="PINS" value=" 20 " x="16.4" y="-5.2" size="1.778" layer="27" display="off"/>
+<attribute name="PITCH" value="0.5mm" x="16.4" y="-5.2" size="1.778" layer="27" display="off"/>
+<attribute name="TYPE" value="Vertical" x="16.4" y="-5.2" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="7.29" y="-6.55" size="1.016" layer="27" align="bottom-right"/>
+<attribute name="WORKING-VOLTAGE" value="50V(AC)" x="16.4" y="-5.2" size="1.778" layer="27" display="off"/>
 </element>
 </elements>
 <signals>
@@ -2145,9 +2145,9 @@ Copyright: Würth Elektronik</description>
 <wire x1="23.9" y1="26.55" x2="48.825" y2="3.29" width="0" layer="19" extent="1-1"/>
 <wire x1="23.9" y1="25.55" x2="23.9" y2="26.55" width="0" layer="19" extent="1-1"/>
 <wire x1="26.7" y1="26.05" x2="23.9" y2="26.55" width="0" layer="19" extent="1-1"/>
-<wire x1="24.45" y1="12.2" x2="26.7" y2="26.05" width="0" layer="19" extent="1-1"/>
-<wire x1="23.95" y1="9.4" x2="24.45" y2="12.2" width="0" layer="19" extent="1-1"/>
-<wire x1="-8.25" y1="-22.3" x2="23.95" y2="9.4" width="0" layer="19" extent="1-1"/>
+<wire x1="26.45" y1="11.2" x2="26.7" y2="26.05" width="0" layer="19" extent="1-1"/>
+<wire x1="25.95" y1="8.4" x2="26.45" y2="11.2" width="0" layer="19" extent="1-1"/>
+<wire x1="-8.25" y1="-22.3" x2="25.95" y2="8.4" width="0" layer="19" extent="1-1"/>
 <wire x1="-16.25" y1="-23.8" x2="-8.25" y2="-22.3" width="0" layer="19" extent="1-1"/>
 <wire x1="-16.35" y1="-8.8" x2="23.9" y2="25.55" width="0" layer="19" extent="1-1"/>
 </signal>
@@ -2256,8 +2256,6 @@ Copyright: Würth Elektronik</description>
 <contactref element="RESET" pad="2"/>
 <contactref element="DISPBOARD" pad="5"/>
 <contactref element="DISPBOARD" pad="8"/>
-<contactref element="DISPBOARD" pad="14"/>
-<contactref element="DISPBOARD" pad="19"/>
 <contactref element="DISPBOARD" pad="Z1"/>
 <contactref element="DISPBOARD" pad="Z3"/>
 <contactref element="DISPBOARD" pad="Z4"/>
@@ -2352,15 +2350,13 @@ Copyright: Würth Elektronik</description>
 <wire x1="77.45" y1="4.085" x2="77.768" y2="5.944" width="0" layer="19" extent="1-1"/>
 <wire x1="77.15" y1="4.085" x2="77.45" y2="4.085" width="0" layer="19" extent="1-1"/>
 <wire x1="76.686" y1="11.012" x2="77.768" y2="7.214" width="0" layer="19" extent="1-1"/>
-<wire x1="34.45" y1="12.2" x2="49.045" y2="20.645" width="0" layer="19" extent="1-1"/>
-<wire x1="34.45" y1="9.4" x2="34.45" y2="12.2" width="0" layer="19" extent="1-1"/>
-<wire x1="32.95" y1="9.4" x2="34.45" y2="9.4" width="0" layer="19" extent="1-1"/>
-<wire x1="30.45" y1="12.2" x2="32.95" y2="9.4" width="0" layer="19" extent="1-1"/>
-<wire x1="27.45" y1="12.2" x2="30.45" y2="12.2" width="0" layer="19" extent="1-1"/>
-<wire x1="25.95" y1="9.4" x2="27.45" y2="12.2" width="0" layer="19" extent="1-1"/>
-<wire x1="22.95" y1="9.4" x2="25.95" y2="9.4" width="0" layer="19" extent="1-1"/>
-<wire x1="22.95" y1="12.2" x2="22.95" y2="9.4" width="0" layer="19" extent="1-1"/>
-<wire x1="26.7" y1="23.05" x2="27.45" y2="12.2" width="0" layer="19" extent="1-1"/>
+<wire x1="36.45" y1="11.2" x2="49.045" y2="20.645" width="0" layer="19" extent="1-1"/>
+<wire x1="36.45" y1="8.4" x2="36.45" y2="11.2" width="0" layer="19" extent="1-1"/>
+<wire x1="29.45" y1="11.2" x2="36.45" y2="11.2" width="0" layer="19" extent="1-1"/>
+<wire x1="27.95" y1="8.4" x2="29.45" y2="11.2" width="0" layer="19" extent="1-1"/>
+<wire x1="24.95" y1="8.4" x2="27.95" y2="8.4" width="0" layer="19" extent="1-1"/>
+<wire x1="24.95" y1="11.2" x2="24.95" y2="8.4" width="0" layer="19" extent="1-1"/>
+<wire x1="26.7" y1="23.05" x2="29.45" y2="11.2" width="0" layer="19" extent="1-1"/>
 <wire x1="23.9" y1="23.05" x2="26.7" y2="23.05" width="0" layer="19" extent="1-1"/>
 <wire x1="26.7" y1="28.05" x2="26.7" y2="23.05" width="0" layer="19" extent="1-1"/>
 <wire x1="23.9" y1="29.55" x2="26.7" y2="28.05" width="0" layer="19" extent="1-1"/>
@@ -2368,7 +2364,7 @@ Copyright: Würth Elektronik</description>
 <wire x1="23.9" y1="31.55" x2="23.9" y2="30.55" width="0" layer="19" extent="1-1"/>
 <wire x1="23.9" y1="34.55" x2="23.9" y2="31.55" width="0" layer="19" extent="1-1"/>
 <wire x1="26.7" y1="34.55" x2="23.9" y2="34.55" width="0" layer="19" extent="1-1"/>
-<wire x1="-14.45" y1="-8.8" x2="22.95" y2="9.4" width="0" layer="19" extent="1-1"/>
+<wire x1="-14.45" y1="-8.8" x2="24.95" y2="8.4" width="0" layer="19" extent="1-1"/>
 <wire x1="-19.55" y1="-8.8" x2="-14.45" y2="-8.8" width="0" layer="19" extent="1-1"/>
 <wire x1="-20.35" y1="-23.8" x2="-19.55" y2="-8.8" width="0" layer="19" extent="1-1"/>
 <wire x1="-14.95" y1="-23.8" x2="-20.35" y2="-23.8" width="0" layer="19" extent="1-1"/>
@@ -2625,14 +2621,14 @@ Copyright: Würth Elektronik</description>
 <contactref element="R38" pad="2"/>
 <contactref element="DISPBOARD" pad="6"/>
 <wire x1="63.72" y1="55.7273" x2="64.752" y2="63.008" width="0" layer="19" extent="1-1"/>
-<wire x1="26.45" y1="12.2" x2="63.72" y2="55.7273" width="0" layer="19" extent="1-1"/>
+<wire x1="28.45" y1="11.2" x2="63.72" y2="55.7273" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="I2C0_SCL">
 <contactref element="IC2" pad="7"/>
 <contactref element="R38" pad="1"/>
 <contactref element="DISPBOARD" pad="7"/>
 <wire x1="63.32" y1="55.7273" x2="63.952" y2="63.008" width="0" layer="19" extent="1-1"/>
-<wire x1="26.95" y1="9.4" x2="63.32" y2="55.7273" width="0" layer="19" extent="1-1"/>
+<wire x1="28.95" y1="8.4" x2="63.32" y2="55.7273" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="I2C1_SDA">
 <contactref element="IC2" pad="4"/>
@@ -2652,24 +2648,6 @@ Copyright: Würth Elektronik</description>
 <wire x1="64.12" y1="55.7273" x2="65.552" y2="63.008" width="0" layer="19" extent="1-1"/>
 <wire x1="23.9" y1="27.55" x2="64.12" y2="55.7273" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="!SPI1_CS">
-<contactref element="IC2" pad="12"/>
-</signal>
-<signal name="SPI1_SCK">
-<contactref element="IC2" pad="13"/>
-<contactref element="DISPBOARD" pad="17"/>
-<wire x1="31.95" y1="9.4" x2="60.92" y2="55.7273" width="0" layer="19" extent="1-1"/>
-</signal>
-<signal name="SPI1_MISO">
-<contactref element="IC2" pad="11"/>
-<contactref element="DISPBOARD" pad="16"/>
-<wire x1="31.45" y1="12.2" x2="61.72" y2="55.7273" width="0" layer="19" extent="1-1"/>
-</signal>
-<signal name="SPI1_MOSI">
-<contactref element="IC2" pad="14"/>
-<contactref element="DISPBOARD" pad="15"/>
-<wire x1="30.95" y1="9.4" x2="60.52" y2="55.7273" width="0" layer="19" extent="1-1"/>
-</signal>
 <signal name="N$23">
 <contactref element="R28" pad="2"/>
 <contactref element="R27" pad="1"/>
@@ -2679,23 +2657,23 @@ Copyright: Würth Elektronik</description>
 </signal>
 <signal name="KEY_0">
 <contactref element="IC2" pad="15"/>
-<contactref element="DISPBOARD" pad="10"/>
-<wire x1="28.45" y1="12.2" x2="59.6827" y2="54.89" width="0" layer="19" extent="1-1"/>
+<contactref element="DISPBOARD" pad="12"/>
+<wire x1="31.45" y1="11.2" x2="59.6827" y2="54.89" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="KEY_1">
 <contactref element="IC2" pad="16"/>
 <contactref element="DISPBOARD" pad="11"/>
-<wire x1="28.95" y1="9.4" x2="59.6827" y2="54.49" width="0" layer="19" extent="1-1"/>
+<wire x1="30.95" y1="8.4" x2="59.6827" y2="54.49" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="KEY_2">
 <contactref element="IC2" pad="17"/>
-<contactref element="DISPBOARD" pad="12"/>
-<wire x1="29.45" y1="12.2" x2="59.6827" y2="54.09" width="0" layer="19" extent="1-1"/>
+<contactref element="DISPBOARD" pad="10"/>
+<wire x1="30.45" y1="11.2" x2="59.6827" y2="54.09" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="KEY_3">
 <contactref element="IC2" pad="18"/>
-<contactref element="DISPBOARD" pad="13"/>
-<wire x1="29.95" y1="9.4" x2="59.6827" y2="53.69" width="0" layer="19" extent="1-1"/>
+<contactref element="DISPBOARD" pad="9"/>
+<wire x1="29.95" y1="8.4" x2="59.6827" y2="53.69" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="TX_TD_N" class="1">
 <contactref element="IC1" pad="1"/>
@@ -2872,22 +2850,12 @@ Copyright: Würth Elektronik</description>
 <wire x1="51.3" y1="33.13" x2="54.924" y2="33.152" width="0" layer="19" extent="1-1"/>
 <wire x1="49.075" y1="19.35" x2="51.27" y2="27.77" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="DSP_RES">
-<contactref element="IC2" pad="34"/>
-<contactref element="DISPBOARD" pad="9"/>
-<wire x1="27.95" y1="9.4" x2="62.52" y2="48.8527" width="0" layer="19" extent="1-1"/>
-</signal>
 <signal name="TCT">
 <contactref element="ETH1" pad="2"/>
 <contactref element="C2" pad="1"/>
 <contactref element="R40" pad="1"/>
 <wire x1="50.375" y1="19.35" x2="50.345" y2="20.645" width="0" layer="19" extent="1-1"/>
 <wire x1="52.275" y1="16.24" x2="50.375" y2="19.35" width="0" layer="19" extent="1-1"/>
-</signal>
-<signal name="!SPI1_CS_S">
-<contactref element="IC2" pad="8"/>
-<contactref element="DISPBOARD" pad="18"/>
-<wire x1="32.45" y1="12.2" x2="62.92" y2="55.7273" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$17">
 <contactref element="RESET" pad="1"/>
@@ -2907,20 +2875,55 @@ Copyright: Würth Elektronik</description>
 <contactref element="RELAYBOARD" pad="1"/>
 <contactref element="RELAYBOARD" pad="2"/>
 <contactref element="RELAYBOARD" pad="3"/>
-<wire x1="25.45" y1="12.2" x2="24.95" y2="9.4" width="0" layer="19" extent="1-1"/>
-<wire x1="26.7" y1="25.05" x2="25.45" y2="12.2" width="0" layer="19" extent="1-1"/>
+<wire x1="27.45" y1="11.2" x2="26.95" y2="8.4" width="0" layer="19" extent="1-1"/>
+<wire x1="26.7" y1="25.05" x2="27.45" y2="11.2" width="0" layer="19" extent="1-1"/>
 <wire x1="26.7" y1="24.05" x2="26.7" y2="25.05" width="0" layer="19" extent="1-1"/>
 <wire x1="23.9" y1="24.55" x2="26.7" y2="25.05" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="MCP_DSP_RST">
 <contactref element="DISPBOARD" pad="20"/>
-<contactref element="IC2" pad="9"/>
-<wire x1="33.45" y1="12.2" x2="62.52" y2="55.7273" width="0" layer="19" extent="1-1"/>
+<contactref element="IC2" pad="36"/>
+<wire x1="35.45" y1="11.2" x2="63.32" y2="48.8527" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="MCP_REL_RST">
 <contactref element="RELAYBOARD" pad="15"/>
 <contactref element="IC2" pad="35"/>
 <wire x1="26.7" y1="31.05" x2="62.92" y2="48.8527" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="LCD_CS">
+<contactref element="DISPBOARD" pad="19"/>
+<contactref element="IC2" pad="12"/>
+<wire x1="34.95" y1="8.4" x2="61.32" y2="55.7273" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="LCD_MOSI">
+<contactref element="DISPBOARD" pad="16"/>
+<contactref element="IC2" pad="14"/>
+<wire x1="33.45" y1="11.2" x2="60.52" y2="55.7273" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="LCD_RES">
+<contactref element="DISPBOARD" pad="14"/>
+<contactref element="IC2" pad="34"/>
+<wire x1="32.45" y1="11.2" x2="62.52" y2="48.8527" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="LCD_MISO">
+<contactref element="DISPBOARD" pad="15"/>
+<contactref element="IC2" pad="11"/>
+<wire x1="32.95" y1="8.4" x2="61.72" y2="55.7273" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="LCD_SCLK">
+<contactref element="DISPBOARD" pad="17"/>
+<contactref element="IC2" pad="13"/>
+<wire x1="33.95" y1="8.4" x2="60.92" y2="55.7273" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="LCD_DC">
+<contactref element="DISPBOARD" pad="18"/>
+<contactref element="IC2" pad="8"/>
+<wire x1="34.45" y1="11.2" x2="62.92" y2="55.7273" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="LCD_BL">
+<contactref element="DISPBOARD" pad="13"/>
+<contactref element="IC2" pad="9"/>
+<wire x1="31.95" y1="8.4" x2="62.52" y2="55.7273" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 <mfgpreviewcolors>

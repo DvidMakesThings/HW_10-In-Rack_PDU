@@ -3296,7 +3296,6 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 <part name="R25" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K"/>
 <part name="R26" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K"/>
 <part name="GND39" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
-<part name="NC16" library="ds_passive" deviceset="NC" device=""/>
 <part name="NC17" library="ds_passive" deviceset="NC" device=""/>
 <part name="IC6" library="ds_ic_memory" deviceset="CAT24C256" device="-HU4" package3d_urn="urn:adsk.eagle:package:45817778/1" value="CAT24C256HU4IGT3"/>
 <part name="R27" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="4.7K"/>
@@ -3637,7 +3636,6 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 <instance part="GND39" gate="1" x="114.3" y="25.4" smashed="yes">
 <attribute name="VALUE" x="114.3" y="22.86" size="1.778" layer="96" align="top-center"/>
 </instance>
-<instance part="NC16" gate="G$1" x="187.96" y="144.78" smashed="yes"/>
 <instance part="NC17" gate="G$1" x="187.96" y="142.24" smashed="yes"/>
 <instance part="IC6" gate="G$1" x="304.8" y="68.58" smashed="yes">
 <attribute name="NAME" x="309.88" y="81.28" size="1.778" layer="95" rot="R180"/>
@@ -4636,28 +4634,28 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 <label x="327.66" y="73.66" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="!SPI1_CS" class="0">
+<net name="LCD_CS" class="0">
 <segment>
 <pinref part="IC2" gate="G$1" pin="GPIO9"/>
 <wire x1="182.88" y1="187.96" x2="208.28" y2="187.96" width="0.1524" layer="91"/>
 <label x="208.28" y="187.96" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="SPI1_SCK" class="0">
+<net name="LCD_SCLK" class="0">
 <segment>
 <pinref part="IC2" gate="G$1" pin="GPIO10"/>
 <wire x1="182.88" y1="185.42" x2="208.28" y2="185.42" width="0.1524" layer="91"/>
 <label x="208.28" y="185.42" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="SPI1_MISO" class="0">
+<net name="LCD_MISO" class="0">
 <segment>
 <pinref part="IC2" gate="G$1" pin="GPIO8"/>
 <wire x1="182.88" y1="190.5" x2="208.28" y2="190.5" width="0.1524" layer="91"/>
 <label x="208.28" y="190.5" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="SPI1_MOSI" class="0">
+<net name="LCD_MOSI" class="0">
 <segment>
 <pinref part="IC2" gate="G$1" pin="GPIO11"/>
 <wire x1="182.88" y1="182.88" x2="208.28" y2="182.88" width="0.1524" layer="91"/>
@@ -4703,16 +4701,14 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 <label x="190.5" y="172.72" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="!SPI1_CS_S" class="0">
+<net name="LCD_DC" class="0">
 <segment>
 <pinref part="IC2" gate="G$1" pin="GPIO6"/>
-<wire x1="182.88" y1="198.12" x2="203.2" y2="198.12" width="0.1524" layer="91"/>
-<wire x1="203.2" y1="198.12" x2="203.2" y2="193.04" width="0.1524" layer="91"/>
-<wire x1="203.2" y1="193.04" x2="208.28" y2="193.04" width="0.1524" layer="91"/>
-<label x="208.28" y="193.04" size="1.27" layer="95" xref="yes"/>
+<wire x1="182.88" y1="198.12" x2="208.28" y2="198.12" width="0.1524" layer="91"/>
+<label x="208.28" y="198.12" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="DSP_RES" class="0">
+<net name="LCD_RES" class="0">
 <segment>
 <pinref part="IC2" gate="G$1" pin="GPIO22"/>
 <wire x1="182.88" y1="152.4" x2="190.5" y2="152.4" width="0.1524" layer="91"/>
@@ -4744,11 +4740,18 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 <label x="190.5" y="149.86" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="MCP_DSP_RST" class="0">
+<net name="LCD_BL" class="0">
 <segment>
 <pinref part="IC2" gate="G$1" pin="GPIO7"/>
 <wire x1="182.88" y1="195.58" x2="208.28" y2="195.58" width="0.1524" layer="91"/>
 <label x="208.28" y="195.58" size="1.27" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="MCP_DSP_RST" class="0">
+<segment>
+<pinref part="IC2" gate="G$1" pin="GPIO24"/>
+<wire x1="182.88" y1="144.78" x2="190.5" y2="144.78" width="0.1524" layer="91"/>
+<label x="190.5" y="144.78" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 </nets>
@@ -5331,16 +5334,10 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 <segment>
 <wire x1="266.7" y1="93.98" x2="271.78" y2="93.98" width="0.1524" layer="91"/>
 <wire x1="271.78" y1="93.98" x2="271.78" y2="86.36" width="0.1524" layer="91"/>
-<wire x1="271.78" y1="86.36" x2="271.78" y2="71.12" width="0.1524" layer="91"/>
-<wire x1="271.78" y1="71.12" x2="271.78" y2="58.42" width="0.1524" layer="91"/>
-<wire x1="271.78" y1="58.42" x2="271.78" y2="48.26" width="0.1524" layer="91"/>
+<wire x1="271.78" y1="86.36" x2="271.78" y2="48.26" width="0.1524" layer="91"/>
 <wire x1="271.78" y1="48.26" x2="271.78" y2="45.72" width="0.1524" layer="91"/>
 <wire x1="266.7" y1="86.36" x2="271.78" y2="86.36" width="0.1524" layer="91"/>
 <junction x="271.78" y="86.36"/>
-<wire x1="266.7" y1="71.12" x2="271.78" y2="71.12" width="0.1524" layer="91"/>
-<junction x="271.78" y="71.12"/>
-<wire x1="266.7" y1="58.42" x2="271.78" y2="58.42" width="0.1524" layer="91"/>
-<junction x="271.78" y="58.42"/>
 <wire x1="261.62" y1="109.22" x2="261.62" y2="111.76" width="0.1524" layer="91"/>
 <wire x1="261.62" y1="111.76" x2="271.78" y2="111.76" width="0.1524" layer="91"/>
 <wire x1="271.78" y1="111.76" x2="271.78" y2="93.98" width="0.1524" layer="91"/>
@@ -5348,8 +5345,6 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 <pinref part="GND41" gate="1" pin="GND"/>
 <pinref part="DISPBOARD" gate="G$1" pin="5"/>
 <pinref part="DISPBOARD" gate="G$1" pin="8"/>
-<pinref part="DISPBOARD" gate="G$1" pin="14"/>
-<pinref part="DISPBOARD" gate="G$1" pin="19"/>
 <pinref part="DISPBOARD" gate="G$1" pin="Z1"/>
 <pinref part="DISPBOARD" gate="G$1" pin="Z3"/>
 <wire x1="261.62" y1="50.8" x2="261.62" y2="48.26" width="0.1524" layer="91"/>
@@ -5733,76 +5728,6 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 <pinref part="DISPBOARD" gate="G$1" pin="7"/>
 </segment>
 </net>
-<net name="DSP_RES" class="0">
-<segment>
-<wire x1="266.7" y1="83.82" x2="276.86" y2="83.82" width="0.1524" layer="91"/>
-<label x="276.86" y="83.82" size="1.27" layer="95" rot="MR180" xref="yes"/>
-<pinref part="DISPBOARD" gate="G$1" pin="9"/>
-</segment>
-</net>
-<net name="MCP_DSP_RST" class="0">
-<segment>
-<wire x1="276.86" y1="55.88" x2="266.7" y2="55.88" width="0.1524" layer="91"/>
-<label x="276.86" y="55.88" size="1.27" layer="95" xref="yes"/>
-<pinref part="DISPBOARD" gate="G$1" pin="20"/>
-</segment>
-</net>
-<net name="KEY_0" class="0">
-<segment>
-<wire x1="266.7" y1="81.28" x2="276.86" y2="81.28" width="0.1524" layer="91"/>
-<label x="276.86" y="81.28" size="1.27" layer="95" xref="yes"/>
-<pinref part="DISPBOARD" gate="G$1" pin="10"/>
-</segment>
-</net>
-<net name="KEY_1" class="0">
-<segment>
-<wire x1="276.86" y1="78.74" x2="266.7" y2="78.74" width="0.1524" layer="91"/>
-<label x="276.86" y="78.74" size="1.27" layer="95" xref="yes"/>
-<pinref part="DISPBOARD" gate="G$1" pin="11"/>
-</segment>
-</net>
-<net name="KEY_2" class="0">
-<segment>
-<wire x1="266.7" y1="76.2" x2="276.86" y2="76.2" width="0.1524" layer="91"/>
-<label x="276.86" y="76.2" size="1.27" layer="95" xref="yes"/>
-<pinref part="DISPBOARD" gate="G$1" pin="12"/>
-</segment>
-</net>
-<net name="KEY_3" class="0">
-<segment>
-<wire x1="276.86" y1="73.66" x2="266.7" y2="73.66" width="0.1524" layer="91"/>
-<label x="276.86" y="73.66" size="1.27" layer="95" xref="yes"/>
-<pinref part="DISPBOARD" gate="G$1" pin="13"/>
-</segment>
-</net>
-<net name="SPI1_MOSI" class="0">
-<segment>
-<wire x1="266.7" y1="68.58" x2="276.86" y2="68.58" width="0.1524" layer="91"/>
-<label x="276.86" y="68.58" size="1.27" layer="95" xref="yes"/>
-<pinref part="DISPBOARD" gate="G$1" pin="15"/>
-</segment>
-</net>
-<net name="SPI1_MISO" class="0">
-<segment>
-<wire x1="276.86" y1="66.04" x2="266.7" y2="66.04" width="0.1524" layer="91"/>
-<label x="276.86" y="66.04" size="1.27" layer="95" xref="yes"/>
-<pinref part="DISPBOARD" gate="G$1" pin="16"/>
-</segment>
-</net>
-<net name="SPI1_SCK" class="0">
-<segment>
-<wire x1="266.7" y1="63.5" x2="276.86" y2="63.5" width="0.1524" layer="91"/>
-<label x="276.86" y="63.5" size="1.27" layer="95" xref="yes"/>
-<pinref part="DISPBOARD" gate="G$1" pin="17"/>
-</segment>
-</net>
-<net name="!SPI1_CS_S" class="0">
-<segment>
-<wire x1="276.86" y1="60.96" x2="266.7" y2="60.96" width="0.1524" layer="91"/>
-<label x="276.86" y="60.96" size="1.27" layer="95" xref="yes"/>
-<pinref part="DISPBOARD" gate="G$1" pin="18"/>
-</segment>
-</net>
 <net name="UART0_RX" class="0">
 <segment>
 <pinref part="RELAYBOARD" gate="G$1" pin="10"/>
@@ -5862,6 +5787,90 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 <pinref part="RELAYBOARD" gate="G$1" pin="15"/>
 <wire x1="320.04" y1="68.58" x2="335.28" y2="68.58" width="0.1524" layer="91"/>
 <label x="335.28" y="68.58" size="1.27" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="LCD_CS" class="0">
+<segment>
+<wire x1="266.7" y1="58.42" x2="276.86" y2="58.42" width="0.1524" layer="91"/>
+<label x="276.86" y="58.42" size="1.27" layer="95" xref="yes"/>
+<pinref part="DISPBOARD" gate="G$1" pin="19"/>
+</segment>
+</net>
+<net name="LCD_MOSI" class="0">
+<segment>
+<wire x1="276.86" y1="66.04" x2="266.7" y2="66.04" width="0.1524" layer="91"/>
+<label x="276.86" y="66.04" size="1.27" layer="95" rot="MR180" xref="yes"/>
+<pinref part="DISPBOARD" gate="G$1" pin="16"/>
+</segment>
+</net>
+<net name="LCD_RES" class="0">
+<segment>
+<wire x1="266.7" y1="71.12" x2="276.86" y2="71.12" width="0.1524" layer="91"/>
+<label x="276.86" y="71.12" size="1.27" layer="95" xref="yes"/>
+<pinref part="DISPBOARD" gate="G$1" pin="14"/>
+</segment>
+</net>
+<net name="MCP_DSP_RST" class="0">
+<segment>
+<wire x1="276.86" y1="55.88" x2="266.7" y2="55.88" width="0.1524" layer="91"/>
+<label x="276.86" y="55.88" size="1.27" layer="95" xref="yes"/>
+<pinref part="DISPBOARD" gate="G$1" pin="20"/>
+</segment>
+</net>
+<net name="KEY_0" class="0">
+<segment>
+<wire x1="266.7" y1="76.2" x2="276.86" y2="76.2" width="0.1524" layer="91"/>
+<label x="276.86" y="76.2" size="1.27" layer="95" rot="MR180" xref="yes"/>
+<pinref part="DISPBOARD" gate="G$1" pin="12"/>
+</segment>
+</net>
+<net name="KEY_1" class="0">
+<segment>
+<wire x1="276.86" y1="78.74" x2="266.7" y2="78.74" width="0.1524" layer="91"/>
+<label x="276.86" y="78.74" size="1.27" layer="95" rot="MR180" xref="yes"/>
+<pinref part="DISPBOARD" gate="G$1" pin="11"/>
+</segment>
+</net>
+<net name="KEY_2" class="0">
+<segment>
+<wire x1="266.7" y1="81.28" x2="276.86" y2="81.28" width="0.1524" layer="91"/>
+<label x="276.86" y="81.28" size="1.27" layer="95" rot="MR180" xref="yes"/>
+<pinref part="DISPBOARD" gate="G$1" pin="10"/>
+</segment>
+</net>
+<net name="KEY_3" class="0">
+<segment>
+<wire x1="276.86" y1="83.82" x2="266.7" y2="83.82" width="0.1524" layer="91"/>
+<label x="276.86" y="83.82" size="1.27" layer="95" rot="MR180" xref="yes"/>
+<pinref part="DISPBOARD" gate="G$1" pin="9"/>
+</segment>
+</net>
+<net name="LCD_MISO" class="0">
+<segment>
+<wire x1="266.7" y1="68.58" x2="276.86" y2="68.58" width="0.1524" layer="91"/>
+<label x="276.86" y="68.58" size="1.27" layer="95" rot="MR180" xref="yes"/>
+<pinref part="DISPBOARD" gate="G$1" pin="15"/>
+</segment>
+</net>
+<net name="LCD_SCLK" class="0">
+<segment>
+<wire x1="266.7" y1="63.5" x2="276.86" y2="63.5" width="0.1524" layer="91"/>
+<label x="276.86" y="63.5" size="1.27" layer="95" rot="MR180" xref="yes"/>
+<pinref part="DISPBOARD" gate="G$1" pin="17"/>
+</segment>
+</net>
+<net name="LCD_DC" class="0">
+<segment>
+<wire x1="276.86" y1="60.96" x2="266.7" y2="60.96" width="0.1524" layer="91"/>
+<label x="276.86" y="60.96" size="1.27" layer="95" rot="MR180" xref="yes"/>
+<pinref part="DISPBOARD" gate="G$1" pin="18"/>
+</segment>
+</net>
+<net name="LCD_BL" class="0">
+<segment>
+<wire x1="266.7" y1="73.66" x2="276.86" y2="73.66" width="0.1524" layer="91"/>
+<label x="276.86" y="73.66" size="1.27" layer="95" xref="yes"/>
+<pinref part="DISPBOARD" gate="G$1" pin="13"/>
 </segment>
 </net>
 </nets>
