@@ -74,7 +74,7 @@ board, and a relay board to handle switching and power management.
 
 ![Controller Board 3D View](images/Controller%20Board/ControllerBoard_3D-1.png)
 
-![Display Board 3D View](images/Display%20Board/DisplayBoard_2.0_3D-2.png)
+![Display Board 3D View](images/Display%20Board/DisplayBoard_2.0_3D-1.png)
 
 ![Relay Board 3D View](images/Relay%20Board/RelayBoard_2.0_3D-1.png)
 
