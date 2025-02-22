@@ -1,6 +1,6 @@
 # ENERGIS - The Managed PDU Project for 10-Inch Rack
 
-![Development Status](https://img.shields.io/badge/status-PCB%20shipped,%20Parts%20arrived-yellow)
+![Development Status](https://img.shields.io/badge/status-Rev2.0%20Work%20in%20porgress-yellow)
 
 ## Overview
 
@@ -16,8 +16,9 @@ board, and a relay board to handle switching and power management.
 | ------------------------------------ | -------- |
 | **PCB Design & Prototyping**         | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
 | **Enclosure Design**                 | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Order PCB**                        | ![In Progress](https://img.shields.io/badge/status-in%20progress-yellow) |
-| **Prototyping and Hardware Testing** | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
+| **Order PCB**                        | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **Prototyping and Hardware Testing** | ![In Progress](https://img.shields.io/badge/status-in%20progress-yellow) |
+| **Implementing Rev2.0**              | ![In Progress](https://img.shields.io/badge/status-in%20progress-yellow) |
 | **Initial Firmware Development**     | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
 | **Enclosure Testing & Ventilation**  | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
 | **Web-Based UI for Control**         | ![Planned](https://img.shields.io/badge/status-planned-blue) |
