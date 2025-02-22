@@ -74,9 +74,9 @@ board, and a relay board to handle switching and power management.
 
 ![Controller Board 3D View](images/Controller%20Board/ControllerBoard_3D-1.png)
 
-![Display Board 3D View](images/Display%20Board/DisplayBoard_3D-2.png)
+![Display Board 3D View](images/Display%20Board/DisplayBoard_2.0_3D-2.png)
 
-![Relay Board 3D View](images/Relay%20Board/RelayBoard_3D-1.png)
+![Relay Board 3D View](images/Relay%20Board/RelayBoard_2.0_3D-1.png)
 
 ### **Impedance Control:**
 
@@ -101,9 +101,9 @@ board, and a relay board to handle switching and power management.
 
 The full schematics for each board are available:
 
-- **[Controller Board Schematics](src/PDF/Controller-Board_Schematics.pdf)**
-- **[Display Board Schematics](src/PDF/Display-Board_Schematics.pdf)**
-- **[Relay Board Schematics](src/PDF/Relay-Board_Schematics.pdf)**
+- **[Controller Board Schematics](src/PDF/Controller-Board_2.0_Schematics.pdf)**
+- **[Display Board Schematics](src/PDF/Display-Board_2.0_Schematics.pdf)**
+- **[Relay Board Schematics](src/PDF/Relay-Board_2.0_Schematics.pdf)**
 
 ## Usage
 
