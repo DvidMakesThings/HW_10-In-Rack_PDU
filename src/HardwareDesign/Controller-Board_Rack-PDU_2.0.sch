@@ -2605,76 +2605,6 @@ Updated by Ella Wu 2023-05-30&lt;br&gt;
 </deviceset>
 </devicesets>
 </library>
-<library name="52101-101-REV-A_v16" urn="urn:adsk.eagle:library:21899384">
-<description>Generated from &lt;b&gt;Testing&lt;/b&gt;&lt;p&gt;
-by exp-lbrs.ulp</description>
-<packages>
-<package name="SWITCH-OMRON_B3U-1000P" urn="urn:adsk.eagle:footprint:15662221/1" library_version="1">
-<description>Ultra-small-sized Tactile Switch&lt;p&gt;
-top actuated</description>
-<circle x="0" y="0" radius="0.75" width="0.0508" layer="51"/>
-<wire x1="-1.7" y1="1.4" x2="1.7" y2="1.4" width="0.2032" layer="21"/>
-<wire x1="1.7" y1="1.4" x2="1.7" y2="1.25" width="0.2032" layer="21"/>
-<wire x1="1.7" y1="1.25" x2="1.7" y2="-1.25" width="0.2032" layer="51"/>
-<wire x1="1.7" y1="-1.25" x2="1.7" y2="-1.4" width="0.2032" layer="21"/>
-<wire x1="1.7" y1="-1.4" x2="-1.7" y2="-1.4" width="0.2032" layer="21"/>
-<wire x1="-1.7" y1="-1.4" x2="-1.7" y2="-1.25" width="0.2032" layer="21"/>
-<wire x1="-1.7" y1="-1.25" x2="-1.7" y2="1.25" width="0.2032" layer="51"/>
-<wire x1="-1.7" y1="1.25" x2="-1.7" y2="1.4" width="0.2032" layer="21"/>
-<smd name="1" x="-1.7" y="0" dx="1.7" dy="1.2" layer="1" rot="R90"/>
-<smd name="2" x="1.7" y="0" dx="1.7" dy="1.2" layer="1" rot="R90"/>
-<text x="-1.5875" y="1.905" size="1.016" layer="25" ratio="18">&gt;NAME</text>
-<text x="-1.5875" y="-2.54" size="0.8128" layer="27" ratio="10">&gt;VALUE</text>
-<text x="-1.5875" y="3.175" size="1.016" layer="25" ratio="18">&gt;LABEL</text>
-</package>
-</packages>
-<packages3d>
-<package3d name="SWITCH-OMRON_B3U-1000P" urn="urn:adsk.eagle:package:15662278/2" type="model" library_version="1">
-<description>Ultra-small-sized Tactile Switch&lt;p&gt;
-top actuated</description>
-<packageinstances>
-<packageinstance name="SWITCH-OMRON_B3U-1000P"/>
-</packageinstances>
-</package3d>
-</packages3d>
-<symbols>
-<symbol name="SWITCH-OMRON_TS" urn="urn:adsk.eagle:symbol:21899399/1" library_version="1">
-<circle x="0" y="2.0637" radius="0.449" width="0.254" layer="94"/>
-<circle x="0" y="-2.0638" radius="0.449" width="0.254" layer="94"/>
-<wire x1="-1.27" y1="-2.54" x2="-1.27" y2="0" width="0.254" layer="94"/>
-<wire x1="-1.27" y1="0" x2="-1.27" y2="2.54" width="0.254" layer="94"/>
-<wire x1="-1.27" y1="0" x2="-3.175" y2="0" width="0.254" layer="94"/>
-<pin name="P" x="0" y="-5.08" visible="off" length="short" direction="pas" rot="R90"/>
-<pin name="S" x="0" y="5.08" visible="off" length="short" direction="pas" rot="R270"/>
-<text x="-6.35" y="-1.905" size="1.778" layer="95" rot="R90">&gt;NAME</text>
-<text x="-3.81" y="3.175" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="SWITCH-OMRON_B3U-1000P" urn="urn:adsk.eagle:component:21899470/1" prefix="S" library_version="1">
-<description>&lt;b&gt;SMD Tactile Switch&lt;/b&gt; - Ultra Small</description>
-<gates>
-<gate name="G$1" symbol="SWITCH-OMRON_TS" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="SWITCH-OMRON_B3U-1000P">
-<connects>
-<connect gate="G$1" pin="P" pad="1"/>
-<connect gate="G$1" pin="S" pad="2"/>
-</connects>
-<package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:15662278/2"/>
-</package3dinstances>
-<technologies>
-<technology name="">
-<attribute name="LABEL" value="" constant="no"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 <library name="ds_ic_memory">
 <packages>
 <package name="SON50P300X200X50-9T130X140N" urn="urn:adsk.eagle:footprint:45817785/1">
@@ -3143,6 +3073,208 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 </deviceset>
 </devicesets>
 </library>
+<library name="Wurth_Switch_WS-TASV" urn="urn:adsk.eagle:library:18304196">
+<description>&lt;BR&gt;Wurth Elektronik - Electromechanical Components - Switches - Tact Switches - SMT &amp; J-Bend Tact Switch - WS-TASV&lt;br&gt;
+&lt;Hr&gt;
+&lt;BR&gt;
+&lt;TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0&gt;
+&lt;TR&gt;   
+&lt;TD BGCOLOR="#cccccc" ALIGN=CENTER&gt;&lt;FONT FACE=ARIAL SIZE=3&gt;&lt;BR&gt;&lt;br&gt;
+      &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp;&lt;BR&gt;
+       &lt;BR&gt;
+       &lt;BR&gt;
+       &lt;BR&gt;&lt;BR&gt;&lt;/FONT&gt;
+    &lt;/TD&gt;
+&lt;TD BGCOLOR="#cccccc" ALIGN=CENTER&gt;&lt;FONT FACE=ARIAL SIZE=3&gt;&lt;br&gt;
+      -----&lt;BR&gt;
+      -----&lt;BR&gt;
+      -----&lt;BR&gt;
+      -----&lt;BR&gt;
+      -----&lt;BR&gt;&lt;BR&gt;&lt;/FONT&gt;
+    &lt;/TD&gt;
+    &lt;TD BGCOLOR="#cccccc" ALIGN=CENTER&gt; &lt;FONT FACE=ARIAL SIZE=3&gt;&lt;br&gt;
+      ---------------------------&lt;BR&gt;
+&lt;B&gt;&lt;I&gt;&lt;span style='font-size:26pt;
+  color:#FF6600;'&gt;WE &lt;/span&gt;&lt;/i&gt;&lt;/b&gt;
+&lt;BR&gt;
+      ---------------------------&lt;BR&gt;&lt;b&gt;Würth Elektronik&lt;/b&gt;&lt;/FONT&gt;
+    &lt;/TD&gt;
+    &lt;TD BGCOLOR="#cccccc" ALIGN=CENTER&gt;&lt;FONT FACE=ARIAL SIZE=3&gt;&lt;br&gt;
+      ---------O---&lt;BR&gt;
+      ----O--------&lt;BR&gt;
+      ---------O---&lt;BR&gt;
+      ----O--------&lt;BR&gt;
+      ---------O---&lt;BR&gt;&lt;BR&gt;&lt;/FONT&gt;
+    &lt;/TD&gt;
+   
+&lt;TD BGCOLOR="#cccccc" ALIGN=CENTER&gt;&lt;FONT FACE=ARIAL SIZE=3&gt;&lt;BR&gt;
+      &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp;&lt;BR&gt;
+       &lt;BR&gt;
+       &lt;BR&gt;
+       &lt;BR&gt;
+       &lt;BR&gt;&lt;BR&gt;&lt;/FONT&gt;
+    &lt;/TD&gt;
+  &lt;/TR&gt;
+
+  &lt;TR&gt;
+    &lt;TD COLSPAN=7&gt;&amp;nbsp;
+    &lt;/TD&gt;
+  &lt;/TR&gt;
+  
+&lt;/TABLE&gt;
+&lt;B&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;More than you expect&lt;BR&gt;&lt;BR&gt;&lt;BR&gt;&lt;/B&gt;
+
+&lt;HR&gt;&lt;BR&gt;
+&lt;b&gt;Würth Elektronik eiSos GmbH &amp; Co. KG&lt;/b&gt;&lt;br&gt;
+EMC &amp; Inductive Solutions&lt;br&gt;
+
+Max-Eyth-Str.1&lt;br&gt;
+D-74638 Waldenburg&lt;br&gt;
+&lt;br&gt;
+Tel: +49 (0)7942-945-0&lt;br&gt;
+Fax:+49 (0)7942-945-5000&lt;br&gt;
+&lt;br&gt;
+&lt;a href="http://www.we-online.com/web/en/electronic_components/produkte_pb/bauteilebibliotheken/eagle_4.php"&gt;www.we-online.com/eagle&lt;/a&gt;&lt;br&gt;
+&lt;a href="mailto:libraries@we-online.com"&gt;libraries@we-online.com&lt;/a&gt; &lt;BR&gt;&lt;BR&gt;
+&lt;br&gt;&lt;HR&gt;&lt;BR&gt;
+Disclaimer: While Würth Elektronik eiSos has made every reasonable effort to ensure the accuracy of the PCB layout models provided, &lt;br&gt;
+Würth Elektronik eiSos does not guarantee the exemption of error on the PCB layout models, nor does Würth Elektronik eiSos guarantee that the PCB layout model is current. &lt;br&gt;
+Würth Elektronik eiSos reserves the right to make any adjustments at any time without notice. &lt;br&gt;
+Würth Elektronik eiSos expressly disclaims all implied warranties regarding this PCB layout model. &lt;br&gt;
+ &lt;br&gt;
+Please contact us for more information.&lt;br&gt;
+&lt;HR&gt;
+&lt;br&gt;Eagle Version 9, Library Revision 2024c, 2024-10-29&lt;br&gt;
+&lt;HR&gt;
+Copyright: Würth Elektronik</description>
+<packages>
+<package name="430182043816" urn="urn:adsk.eagle:footprint:18304206/1" library_version="13">
+<description>&lt;B&gt;WS-TASV&lt;/B&gt;&lt;BR&gt;6x6 mm SMD Tact Switch,4 pins</description>
+<smd name="1" x="-3.975" y="2.25" dx="1.55" dy="1.3" layer="1"/>
+<smd name="3" x="3.975" y="2.25" dx="1.55" dy="1.3" layer="1"/>
+<smd name="2" x="-3.975" y="-2.25" dx="1.55" dy="1.3" layer="1"/>
+<smd name="4" x="3.975" y="-2.25" dx="1.55" dy="1.3" layer="1"/>
+<text x="0.153" y="4.0409" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="-3.082" y="-4.9834" size="1.27" layer="27">&gt;VALUE</text>
+<wire x1="-3.1" y1="3.1" x2="-3.1" y2="-3.1" width="0.1" layer="51"/>
+<wire x1="-3.1" y1="-3.1" x2="3.1" y2="-3.1" width="0.1" layer="51"/>
+<wire x1="3.1" y1="-3.1" x2="3.1" y2="3.1" width="0.1" layer="51"/>
+<wire x1="3.1" y1="3.1" x2="-3.1" y2="3.1" width="0.1" layer="51"/>
+<wire x1="-3.1" y1="3.2" x2="3.1" y2="3.2" width="0.2" layer="21"/>
+<wire x1="-3.2" y1="1.2" x2="-3.2" y2="-1.2" width="0.2" layer="21"/>
+<wire x1="3.2" y1="-1.2" x2="3.2" y2="1.2" width="0.2" layer="21"/>
+<wire x1="3.1" y1="-3.2" x2="-3.1" y2="-3.2" width="0.2" layer="21"/>
+<polygon width="0.1" layer="39">
+<vertex x="-4.95" y="3.4"/>
+<vertex x="4.95" y="3.4"/>
+<vertex x="4.95" y="-3.4"/>
+<vertex x="-4.95" y="-3.4"/>
+</polygon>
+<circle x="-2.7" y="2.6" radius="0.1" width="0.2" layer="21"/>
+</package>
+</packages>
+<packages3d>
+<package3d name="430182043816" urn="urn:adsk.eagle:package:18304300/2" type="model" library_version="13">
+<description>&lt;B&gt;WS-TASV&lt;/B&gt;&lt;BR&gt;6x6 mm SMD Tact Switch,4 pins</description>
+<packageinstances>
+<packageinstance name="430182043816"/>
+</packageinstances>
+</package3d>
+</packages3d>
+<symbols>
+<symbol name="WS-TASX_4P1" urn="urn:adsk.eagle:symbol:18304226/2" library_version="13">
+<description>WS-TASX,4Pins</description>
+<wire x1="2.54" y1="-2.54" x2="0" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="0" y1="-2.54" x2="-2.54" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="2.54" y1="5.08" x2="0" y2="5.08" width="0.254" layer="94"/>
+<wire x1="0" y1="5.08" x2="-2.54" y2="5.08" width="0.254" layer="94"/>
+<wire x1="0" y1="-2.54" x2="0" y2="-0.635" width="0.254" layer="94"/>
+<wire x1="0" y1="3.175" x2="0" y2="5.08" width="0.254" layer="94"/>
+<wire x1="0.47" y1="2.74" x2="1.04" y2="-0.07" width="0.254" layer="94"/>
+<pin name="4" x="5.08" y="-2.54" visible="pad" length="short" direction="pas" rot="R180"/>
+<pin name="3" x="5.08" y="5.08" visible="pad" length="short" direction="pas" rot="R180"/>
+<pin name="2" x="-5.08" y="-2.54" visible="pad" length="short" direction="pas"/>
+<pin name="1" x="-5.08" y="5.08" visible="pad" length="short" direction="pas"/>
+<text x="0" y="5.842" size="1.778" layer="95" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-5.08" size="1.778" layer="96" align="bottom-center">&gt;VALUE</text>
+<circle x="0" y="2.54" radius="0.508" width="0.254" layer="94"/>
+<circle x="0" y="0" radius="0.508" width="0.254" layer="94"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="430182043816" urn="urn:adsk.eagle:component:18304380/6" prefix="S" library_version="13">
+<description>&lt;b&gt;WS-TASV SMT Tact Switch 6x6 mm &lt;/B&gt;&lt;BR&gt;&lt;BR&gt;
+&lt;B&gt;Material Properties&lt;/B&gt;
+&lt;BR&gt;Cover Material : Stainless Steel
+&lt;BR&gt;&lt;BR&gt;
+&lt;B&gt;Properties&lt;/B&gt;&lt;BR&gt;
+&lt;BR&gt;Actuator Material:LCP
+&lt;BR&gt;Actuator Flammability :UL94 V-0
+&lt;BR&gt;Rating
+&lt;BR&gt;Actuator Color:Black; Salmon; White
+&lt;BR&gt;Frame Material:LCP
+&lt;BR&gt;Flammability Rating:UL94 V-0
+&lt;BR&gt;Frame Color:Black
+&lt;BR&gt;Contact Material:Stainless Steel
+&lt;BR&gt;Contact Plating:Silver
+&lt;BR&gt;Terminal Material:Copper Alloy
+&lt;BR&gt;Terminal Plating:Silver
+&lt;BR&gt;VR:12 V (DC)
+&lt;BR&gt;Contact Resistance Initial:100 mΩ
+&lt;BR&gt;Contact Resistance After Life Test:2Ω
+&lt;BR&gt;RISO:100 MΩ
+&lt;BR&gt;Withstanding Voltage:250 V (AC)
+&lt;BR&gt;Washable:No
+&lt;BR&gt;Qty.:4000;5000
+&lt;BR&gt;
+&lt;BR&gt;
+&lt;b&gt;Mechanical Properties&lt;/b&gt;&lt;BR&gt;
+&lt;BR&gt;Electrical Life:400; 550; 1000
+&lt;BR&gt;Stroke :0.25 mm&lt;BR&gt;
+&lt;BR&gt;&lt;b&gt;General Information&lt;/b&gt;&lt;br&gt;
+&lt;br&gt;Operating Temperature:-40 up to +85 °C
+&lt;BR&gt;Washable:No
+&lt;BR&gt;&lt;b&gt;Packaging Properties&lt;/b&gt;&lt;br&gt;
+&lt;BR&gt;Packaging:Tape and Reel
+
+&lt;/b&gt;&lt;br&gt;
+
+&lt;br&gt;&lt;a href="https://www.we-online.com/catalog/media/o37470v209%20Family_WS-TASV_6x6mm_SMD_Tact_Switch_4301820xx8xx.jpg" title="Enlarge picture"&gt;
+&lt;img src="https://www.we-online.com/catalog/media/o37470v209%20Family_WS-TASV_6x6mm_SMD_Tact_Switch_4301820xx8xx.jpg"  width="320"&gt;&lt;/a&gt;&lt;p&gt;
+
+&lt;/b&gt;&lt;br&gt;            
+Details see: &lt;a href="https://www.we-online.com/catalog/en/TASV_6X6_SMD/"&gt;https://www.we-online.com/catalog/en/TASV_6X6_SMD/&lt;/a&gt;&lt;p&gt;
+&lt;br&gt;Updated by yingchun,Shan;2020-02-18
+&lt;br&gt;2020(C) Würth Elektronik</description>
+<gates>
+<gate name="G$1" symbol="WS-TASX_4P1" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="430182043816">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+<connect gate="G$1" pin="3" pad="3"/>
+<connect gate="G$1" pin="4" pad="4"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:18304300/2"/>
+</package3dinstances>
+<technologies>
+<technology name="">
+<attribute name="DATASHEET-URL" value="https://www.we-online.com/redexpert/spec/430182043816?ae"/>
+<attribute name="HEIGHT" value="4.3mm"/>
+<attribute name="OPERATION-FORCE" value="160g"/>
+<attribute name="PART-NUMBER" value="430182043816"/>
+<attribute name="QTY" value="1000"/>
+<attribute name="VALUE" value="430182043816"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -3205,7 +3337,6 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 <part name="C9" library="ds_passive" deviceset="C" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="18pF"/>
 <part name="GND8" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND9" library="ds_passive" deviceset="GND" device=""/>
-<part name="R12" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="0R"/>
 <part name="R13" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="1M"/>
 <part name="R14" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="4.7K"/>
 <part name="+3V6" library="ds_passive" deviceset="+3V3" device=""/>
@@ -3289,7 +3420,6 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 <part name="C39" library="ds_passive" deviceset="C" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="100nF"/>
 <part name="GND30" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND31" library="ds_passive" deviceset="GND" device=""/>
-<part name="USB_BOOT" library="52101-101-REV-A_v16" library_urn="urn:adsk.eagle:library:21899384" deviceset="SWITCH-OMRON_B3U-1000P" device="" package3d_urn="urn:adsk.eagle:package:15662278/2" value="B3U-1000P-B"/>
 <part name="GND37" library="ds_passive" deviceset="GND" device=""/>
 <part name="DBG2" library="ds_con" deviceset="CON-1X4" device="" package3d_urn="urn:adsk.eagle:package:46684991/2"/>
 <part name="GND38" library="ds_passive" deviceset="GND" device=""/>
@@ -3325,7 +3455,6 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 <part name="ESD1" library="ds_ic_peripherals" deviceset="SP0503BAHT" device="" package3d_urn="urn:adsk.eagle:package:25572586/2" value="SP0503BAHTG-ES"/>
 <part name="GND67" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="R40" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="470R"/>
-<part name="RESET" library="52101-101-REV-A_v16" library_urn="urn:adsk.eagle:library:21899384" deviceset="SWITCH-OMRON_B3U-1000P" device="" package3d_urn="urn:adsk.eagle:package:15662278/2" value="B3U-1000P-B"/>
 <part name="GND50" library="ds_passive" deviceset="GND" device=""/>
 <part name="R50" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K"/>
 <part name="+3V23" library="ds_passive" deviceset="+3V3" device=""/>
@@ -3355,6 +3484,8 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 <part name="NC19" library="ds_passive" deviceset="NC" device=""/>
 <part name="NC20" library="ds_passive" deviceset="NC" device=""/>
 <part name="DISPBOARD" library="Wurth_Connectors_WR-FPC" library_urn="urn:adsk.eagle:library:15778639" deviceset="6873XX124422_687320124422" device="" package3d_urn="urn:adsk.eagle:package:15743882/4" value="687320124422"/>
+<part name="BOOT" library="Wurth_Switch_WS-TASV" library_urn="urn:adsk.eagle:library:18304196" deviceset="430182043816" device="" package3d_urn="urn:adsk.eagle:package:18304300/2" value="430182043816"/>
+<part name="RESET" library="Wurth_Switch_WS-TASV" library_urn="urn:adsk.eagle:library:18304196" deviceset="430182043816" device="" package3d_urn="urn:adsk.eagle:package:18304300/2" value="430182043816"/>
 </parts>
 <sheets>
 <sheet>
@@ -3611,10 +3742,6 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 <instance part="GND31" gate="1" x="330.2" y="203.2" smashed="yes">
 <attribute name="VALUE" x="330.2" y="200.66" size="1.778" layer="96" align="top-center"/>
 </instance>
-<instance part="USB_BOOT" gate="G$1" x="81.28" y="124.46" smashed="yes" rot="R270">
-<attribute name="NAME" x="79.375" y="130.81" size="1.778" layer="95"/>
-<attribute name="VALUE" x="84.455" y="128.27" size="1.778" layer="96"/>
-</instance>
 <instance part="GND37" gate="1" x="91.44" y="119.38" smashed="yes">
 <attribute name="VALUE" x="91.44" y="116.84" size="1.778" layer="96" align="top-center"/>
 </instance>
@@ -3725,10 +3852,6 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 <instance part="GND67" gate="1" x="198.12" y="30.48" smashed="yes">
 <attribute name="VALUE" x="198.12" y="27.94" size="1.778" layer="96" align="top-center"/>
 </instance>
-<instance part="RESET" gate="G$1" x="109.22" y="213.36" smashed="yes" rot="MR270">
-<attribute name="NAME" x="111.125" y="219.71" size="1.778" layer="95" rot="MR0"/>
-<attribute name="VALUE" x="106.045" y="217.17" size="1.778" layer="96" rot="MR0"/>
-</instance>
 <instance part="GND50" gate="1" x="99.06" y="208.28" smashed="yes" rot="MR0">
 <attribute name="VALUE" x="99.06" y="205.74" size="1.778" layer="96" rot="MR0" align="top-center"/>
 </instance>
@@ -3741,6 +3864,14 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 </instance>
 <instance part="NC21" gate="G$1" x="187.96" y="137.16" smashed="yes"/>
 <instance part="NC22" gate="G$1" x="187.96" y="134.62" smashed="yes"/>
+<instance part="BOOT" gate="G$1" x="83.82" y="127" smashed="yes">
+<attribute name="NAME" x="83.82" y="132.842" size="1.778" layer="95" align="bottom-center"/>
+<attribute name="VALUE" x="81.28" y="121.92" size="1.778" layer="96" align="bottom-center"/>
+</instance>
+<instance part="RESET" gate="G$1" x="109.22" y="215.9" smashed="yes">
+<attribute name="NAME" x="109.22" y="221.742" size="1.778" layer="95" align="bottom-center"/>
+<attribute name="VALUE" x="109.22" y="210.82" size="1.778" layer="96" align="bottom-center"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -4025,10 +4156,14 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 <pinref part="GND31" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="USB_BOOT" gate="G$1" pin="S"/>
-<wire x1="86.36" y1="124.46" x2="91.44" y2="124.46" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="124.46" x2="91.44" y2="124.46" width="0.1524" layer="91"/>
 <wire x1="91.44" y1="124.46" x2="91.44" y2="121.92" width="0.1524" layer="91"/>
 <pinref part="GND37" gate="1" pin="GND"/>
+<pinref part="BOOT" gate="G$1" pin="4"/>
+<pinref part="BOOT" gate="G$1" pin="3"/>
+<wire x1="88.9" y1="132.08" x2="91.44" y2="132.08" width="0.1524" layer="91"/>
+<wire x1="91.44" y1="132.08" x2="91.44" y2="124.46" width="0.1524" layer="91"/>
+<junction x="91.44" y="124.46"/>
 </segment>
 <segment>
 <pinref part="DBG2" gate="G$1" pin="P$2"/>
@@ -4097,10 +4232,14 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 <wire x1="198.12" y1="33.02" x2="198.12" y2="35.56" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="RESET" gate="G$1" pin="S"/>
 <wire x1="104.14" y1="213.36" x2="99.06" y2="213.36" width="0.1524" layer="91"/>
 <wire x1="99.06" y1="213.36" x2="99.06" y2="210.82" width="0.1524" layer="91"/>
 <pinref part="GND50" gate="1" pin="GND"/>
+<pinref part="RESET" gate="G$1" pin="2"/>
+<pinref part="RESET" gate="G$1" pin="1"/>
+<wire x1="104.14" y1="220.98" x2="99.06" y2="220.98" width="0.1524" layer="91"/>
+<wire x1="99.06" y1="220.98" x2="99.06" y2="213.36" width="0.1524" layer="91"/>
+<junction x="99.06" y="213.36"/>
 </segment>
 </net>
 <net name="SPI0_SCK" class="0">
@@ -4388,9 +4527,14 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 <label x="25.4" y="109.22" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="USB_BOOT" gate="G$1" pin="P"/>
-<wire x1="76.2" y1="124.46" x2="68.58" y2="124.46" width="0.1524" layer="91"/>
+<wire x1="78.74" y1="124.46" x2="73.66" y2="124.46" width="0.1524" layer="91"/>
 <label x="68.58" y="124.46" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="BOOT" gate="G$1" pin="2"/>
+<pinref part="BOOT" gate="G$1" pin="1"/>
+<wire x1="73.66" y1="124.46" x2="68.58" y2="124.46" width="0.1524" layer="91"/>
+<wire x1="78.74" y1="132.08" x2="73.66" y2="132.08" width="0.1524" layer="91"/>
+<wire x1="73.66" y1="132.08" x2="73.66" y2="124.46" width="0.1524" layer="91"/>
+<junction x="73.66" y="124.46"/>
 </segment>
 </net>
 <net name="RP_XO" class="0">
@@ -4717,13 +4861,18 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 </net>
 <net name="N$17" class="0">
 <segment>
-<pinref part="RESET" gate="G$1" pin="P"/>
 <pinref part="IC2" gate="G$1" pin="RUN"/>
-<wire x1="114.3" y1="213.36" x2="121.92" y2="213.36" width="0.1524" layer="91"/>
+<wire x1="114.3" y1="213.36" x2="116.84" y2="213.36" width="0.1524" layer="91"/>
+<wire x1="116.84" y1="213.36" x2="121.92" y2="213.36" width="0.1524" layer="91"/>
 <wire x1="121.92" y1="213.36" x2="137.16" y2="213.36" width="0.1524" layer="91"/>
 <wire x1="121.92" y1="213.36" x2="121.92" y2="215.9" width="0.1524" layer="91"/>
 <junction x="121.92" y="213.36"/>
 <pinref part="R50" gate="G$1" pin="2"/>
+<pinref part="RESET" gate="G$1" pin="4"/>
+<pinref part="RESET" gate="G$1" pin="3"/>
+<wire x1="114.3" y1="220.98" x2="116.84" y2="220.98" width="0.1524" layer="91"/>
+<wire x1="116.84" y1="220.98" x2="116.84" y2="213.36" width="0.1524" layer="91"/>
+<junction x="116.84" y="213.36"/>
 </segment>
 </net>
 <net name="+12V_MEA" class="0">
@@ -4909,10 +5058,6 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 </instance>
 <instance part="GND9" gate="1" x="81.28" y="165.1" smashed="yes">
 <attribute name="VALUE" x="81.28" y="162.56" size="1.778" layer="96" align="top-center"/>
-</instance>
-<instance part="R12" gate="G$1" x="66.04" y="200.66" smashed="yes" rot="R90">
-<attribute name="NAME" x="60.325" y="202.1586" size="1.778" layer="95"/>
-<attribute name="VALUE" x="66.675" y="202.1586" size="1.778" layer="96"/>
 </instance>
 <instance part="R13" gate="G$1" x="81.28" y="193.04" smashed="yes" rot="MR180">
 <attribute name="NAME" x="79.375" y="194.5386" size="1.778" layer="95" rot="MR0"/>
@@ -5536,18 +5681,6 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 <wire x1="185.42" y1="162.56" x2="185.42" y2="152.4" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$6" class="0">
-<segment>
-<pinref part="X1" gate="G$1" pin="CON"/>
-<pinref part="C8" gate="G$1" pin="1"/>
-<wire x1="55.88" y1="185.42" x2="50.8" y2="185.42" width="0.1524" layer="91"/>
-<wire x1="50.8" y1="185.42" x2="50.8" y2="182.88" width="0.1524" layer="91"/>
-<pinref part="R12" gate="G$1" pin="1"/>
-<wire x1="60.96" y1="200.66" x2="50.8" y2="200.66" width="0.1524" layer="91"/>
-<wire x1="50.8" y1="200.66" x2="50.8" y2="185.42" width="0.1524" layer="91"/>
-<junction x="50.8" y="185.42"/>
-</segment>
-</net>
 <net name="N$7" class="0">
 <segment>
 <pinref part="X1" gate="G$1" pin="OUT"/>
@@ -5566,13 +5699,18 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/FPC_0_5_SMT_ZIF_VE
 </net>
 <net name="XO" class="0">
 <segment>
-<pinref part="R12" gate="G$1" pin="2"/>
 <pinref part="IC1" gate="G$1" pin="XO"/>
-<wire x1="71.12" y1="200.66" x2="81.28" y2="200.66" width="0.1524" layer="91"/>
 <pinref part="R13" gate="G$1" pin="2"/>
 <wire x1="81.28" y1="200.66" x2="124.46" y2="200.66" width="0.1524" layer="91"/>
 <wire x1="81.28" y1="200.66" x2="81.28" y2="198.12" width="0.1524" layer="91"/>
 <junction x="81.28" y="200.66"/>
+<pinref part="X1" gate="G$1" pin="CON"/>
+<pinref part="C8" gate="G$1" pin="1"/>
+<wire x1="55.88" y1="185.42" x2="50.8" y2="185.42" width="0.1524" layer="91"/>
+<wire x1="50.8" y1="185.42" x2="50.8" y2="182.88" width="0.1524" layer="91"/>
+<wire x1="50.8" y1="200.66" x2="50.8" y2="185.42" width="0.1524" layer="91"/>
+<junction x="50.8" y="185.42"/>
+<wire x1="50.8" y1="200.66" x2="81.28" y2="200.66" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="!SPI0_CS" class="0">

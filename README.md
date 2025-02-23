@@ -73,7 +73,7 @@ board, and a relay board to handle switching and power management.
 - **Display Board:** 2-layer PCB.
 - **Controller Board:** 4-layer PCB (JLC04161H-3313, 1.56mm ±10% thickness)
 
-![Controller Board 3D View](images/Controller%20Board/ControllerBoard_3D-1.png)
+![Controller Board 3D View](images/Controller%20Board/ControllerBoard_2.0_3D-1.png)
 
 ![Display Board 3D View](images/Display%20Board/DisplayBoard_2.0_3D-1.png)
 
