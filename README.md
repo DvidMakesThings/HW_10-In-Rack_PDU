@@ -26,9 +26,9 @@ board, and a relay board to handle switching and power management.
 | **Production Optimization**          | ![Planned](https://img.shields.io/badge/status-planned-blue) |
 
 
-![PDU 3D View](images/Assembly/Assembled-in-case_3D_1.png)
+![PDU 3D View](images/Assembly/Assembled-in-case_2.0_3D_1.png)
 
-![PDU 3D View](images/Assembly/Assembled-in-case_3D_2.png)
+![PDU 3D View](images/Assembly/Assembled-in-case_2.0_3D_2.png)
 
 ## Features
 
@@ -48,15 +48,16 @@ board, and a relay board to handle switching and power management.
 
 ### Electrical Characteristics
 
-- **Input Voltage:** 230V AC, 10A max
+- **Input:** 230V AC, 15A max
+- **Output:**   230V AC, 15A/Active Channels - Amps per Channel
 - **Internal Power Supply:** 12V, 1.5A SMPS
 - **Derived Voltages:** 5V and 3.3V regulated from 12V
 - **Relay Supply:** 12V dedicated for relay operation
 
 ### Relay Output Ratings
 
-- **Common AC Trace Handling:** 16A max
-- **Per-Relay Trace Rating:** 15A max
+- **Common AC Trace Handling:** 15A max
+- **Per-Relay Trace Rating:** 16A max
 - **Relay Contact Rating:** 16A max
 
 ### Control & Driving Circuit

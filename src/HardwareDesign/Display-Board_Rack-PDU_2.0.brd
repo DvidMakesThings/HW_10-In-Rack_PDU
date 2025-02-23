@@ -194,7 +194,7 @@
 <layer number="255" name="routoute" color="7" fill="1" visible="no" active="yes"/>
 </layers>
 <board>
-<fusionsync huburn="a.YnVzaW5lc3M6aG90bWFpbDE2OTAxNA" projecturn="a.YnVzaW5lc3M6aG90bWFpbDE2OTAxNCMyMDI1MDEwNTg1Mzg3MDkwMQ" f3durn="urn:adsk.wipprod:dm.lineage:e1v5z00NRWKwQiAgUrqFnw" pcbguid="eeed589a-994f-4bd7-8d75-feca9be80f98" lastpulledtime="" lastsyncedchangeguid="8a467c4b-400d-d113-1fbc-4dc5eba02eb3"/>
+<fusionsync huburn="a.YnVzaW5lc3M6aG90bWFpbDE2OTAxNA" projecturn="a.YnVzaW5lc3M6aG90bWFpbDE2OTAxNCMyMDI1MDEwNTg1Mzg3MDcwMQ" f3durn="urn:adsk.wipprod:dm.lineage:GbDomELGSnWFUDar84XhKg" pcbguid="558671d2-386c-4ef5-b8c9-95f4a50e392c" lastpulledtime="" lastsyncedchangeguid="ce2625d4-578b-67bc-5794-c0587fbf7937"/>
 <plain>
 <text x="129.9" y="7.5" size="1.4224" layer="22" font="vector" ratio="12" rot="MR90">github.com/DvidMakesThings/HW_10-In-Rack_PDU</text>
 <text x="-0.6" y="57.4" size="1.778" layer="21" font="vector" ratio="10" rot="R270">Display Board REV2.0</text>
@@ -1664,10 +1664,6 @@ by R. Vogg  15.March.2002</description>
 <wire x1="114.255" y1="57.625" x2="114.255" y2="57.955" width="1.27" layer="16"/>
 <wire x1="114.255" y1="57.955" x2="115.09" y2="58.79" width="1.27" layer="16"/>
 <wire x1="115.255" y1="58.625" x2="115.09" y2="58.79" width="1.27" layer="16"/>
-<wire x1="80.748" y1="7.562" x2="80.948" y2="7.562" width="0" layer="19" extent="16-16"/>
-<wire x1="80.748" y1="10.362" x2="80.948" y2="10.362" width="0" layer="19" extent="16-16"/>
-<wire x1="69.448" y1="10.362" x2="69.248" y2="10.362" width="0" layer="19" extent="16-16"/>
-<wire x1="69.248" y1="7.562" x2="69.448" y2="7.562" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="LCD_CS">
 <contactref element="TFT" pad="9"/>
