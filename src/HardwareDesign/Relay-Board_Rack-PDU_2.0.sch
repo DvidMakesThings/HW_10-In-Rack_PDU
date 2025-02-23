@@ -3396,7 +3396,7 @@ by exp-lbrs.ulp</description>
 <text x="7.62" y="12.7" size="1.778" layer="95" rot="R180">&gt;NAME</text>
 <text x="-5.08" y="-12.7" size="1.778" layer="96">MP2315 </text>
 </symbol>
-<symbol name="L4941BDT" urn="urn:adsk.eagle:symbol:46684424/1">
+<symbol name="L4941BDT" urn="urn:adsk.eagle:symbol:46684424/1" locally_modified="yes">
 <pin name="VIN" x="-10.16" y="0" length="short" direction="pwr"/>
 <pin name="GND" x="0" y="-7.62" visible="off" length="short" direction="pwr" rot="R90"/>
 <pin name="VOUT" x="10.16" y="0" length="short" direction="pwr" rot="R180"/>
@@ -3405,7 +3405,7 @@ by exp-lbrs.ulp</description>
 <wire x1="7.62" y1="-5.08" x2="-7.62" y2="-5.08" width="0.254" layer="94"/>
 <wire x1="-7.62" y1="-5.08" x2="-7.62" y2="2.54" width="0.254" layer="94"/>
 <text x="2.54" y="-2.54" size="1.524" layer="95" rot="R180">GND</text>
-<text x="2.54" y="-7.62" size="1.778" layer="96">L4941</text>
+<text x="2.54" y="-7.62" size="1.778" layer="96">&gt;VALUE</text>
 <text x="5.08" y="5.08" size="1.778" layer="95" rot="R180">&gt;NAME</text>
 </symbol>
 </symbols>
@@ -4014,7 +4014,7 @@ MAX3223-MAX3243.pdf</description>
 <part name="NC6" library="ds_passive" deviceset="NC" device=""/>
 <part name="IC4" library="ds_ic_peripherals" deviceset="MCP23017" device="-E/ML" package3d_urn="urn:adsk.eagle:package:46683895/2"/>
 <part name="NC2" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="NC" device=""/>
-<part name="AC/DC1" library="ds_trafo" deviceset="IRM_10_12" device="" package3d_urn="urn:adsk.eagle:package:47075710/2"/>
+<part name="AC/DC1" library="ds_trafo" deviceset="IRM_10_12" device="" package3d_urn="urn:adsk.eagle:package:47075710/2" value="IRM_10_12"/>
 <part name="Z1" library="52101-101-REV-A_v16" library_urn="urn:adsk.eagle:library:21899384" deviceset="SUPRESSOR_TVS-UD-" device="SMAJ" package3d_urn="urn:adsk.eagle:package:15662277/2" value="SMAJ15A"/>
 <part name="C10" library="ds_passive" deviceset="CPOL" device="" package3d_urn="urn:adsk.eagle:package:46684204/2" value="100uF"/>
 <part name="C13" library="ds_passive" deviceset="CPOL" device="" package3d_urn="urn:adsk.eagle:package:46684204/2" value="100uF"/>
@@ -4305,6 +4305,7 @@ MAX3223-MAX3243.pdf</description>
 <text x="87.63" y="166.37" size="5.08" layer="91">5V DC-DC CONVERTER</text>
 <text x="87.63" y="82.55" size="5.08" layer="91">3.3V DC-DC CONVERTER</text>
 <text x="260.35" y="166.37" size="5.08" layer="91">5V AC-MEASUREMENT</text>
+<text x="322.58" y="130.81" size="1.778" layer="96">BA50BC0FP-E2</text>
 </plain>
 <instances>
 <instance part="FRAME2" gate="G$1" x="0" y="0" smashed="yes">
@@ -4616,7 +4617,7 @@ MAX3223-MAX3243.pdf</description>
 <attribute name="VALUE" x="271.145" y="133.858" size="1.778" layer="96"/>
 </instance>
 <instance part="IC5" gate="G$1" x="330.2" y="127" smashed="yes">
-<attribute name="NAME" x="335.28" y="132.08" size="1.778" layer="95" rot="R180"/>
+<attribute name="NAME" x="328.93" y="134.62" size="1.778" layer="95"/>
 </instance>
 <instance part="D9" gate="G$1" x="279.4" y="127" smashed="yes">
 <attribute name="NAME" x="276.86" y="130.0226" size="1.778" layer="95"/>

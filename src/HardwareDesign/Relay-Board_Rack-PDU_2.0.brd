@@ -3,7 +3,7 @@
 <eagle version="9.2.1">
 <drawing>
 <settings>
-<setting alwaysvectorfont="yes"/>
+<setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.1" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
@@ -1645,7 +1645,7 @@ MAX3223-MAX3243.pdf</description>
 <attribute name="NAME" x="133.075" y="46.575" size="1.27" layer="25" rot="R270"/>
 <attribute name="VALUE" x="153.345" y="-50.075" size="1.27" layer="27" rot="R90"/>
 </element>
-<element name="AC/DC1" library="ds_trafo" package="IRM_10_12" package3d_urn="urn:adsk.eagle:package:47075710/2" value="" x="54.5" y="59.3" smashed="yes">
+<element name="AC/DC1" library="ds_trafo" package="IRM_10_12" package3d_urn="urn:adsk.eagle:package:47075710/2" value="IRM_10_12" x="54.5" y="59.3" smashed="yes">
 <attribute name="NAME" x="32" y="46.02" size="1.27" layer="25"/>
 <attribute name="VALUE" x="31.4" y="46.62" size="1.27" layer="27" align="top-left"/>
 </element>
