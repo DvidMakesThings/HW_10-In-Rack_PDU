@@ -3,7 +3,7 @@
 <eagle version="9.2.1">
 <drawing>
 <settings>
-<setting alwaysvectorfont="yes"/>
+<setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.01" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
@@ -46,10 +46,10 @@
 <layer number="36" name="bGlue" color="7" fill="5" visible="no" active="yes"/>
 <layer number="37" name="tTest" color="7" fill="1" visible="no" active="yes"/>
 <layer number="38" name="bTest" color="7" fill="1" visible="no" active="yes"/>
-<layer number="39" name="tKeepout" color="4" fill="11" visible="yes" active="yes"/>
-<layer number="40" name="bKeepout" color="1" fill="11" visible="yes" active="yes"/>
-<layer number="41" name="tRestrict" color="4" fill="10" visible="yes" active="yes"/>
-<layer number="42" name="bRestrict" color="1" fill="10" visible="yes" active="yes"/>
+<layer number="39" name="tKeepout" color="4" fill="11" visible="no" active="yes"/>
+<layer number="40" name="bKeepout" color="1" fill="11" visible="no" active="yes"/>
+<layer number="41" name="tRestrict" color="4" fill="10" visible="no" active="yes"/>
+<layer number="42" name="bRestrict" color="1" fill="10" visible="no" active="yes"/>
 <layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="yes"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="no" active="yes"/>
@@ -1906,7 +1906,7 @@ Copyright: Würth Elektronik</description>
 <attribute name="NAME" x="37.6422" y="67.6839" size="1.27" layer="25" align="bottom-center"/>
 <attribute name="VALUE" x="33.415" y="63.92" size="1.27" layer="27" rot="R270" align="top-center"/>
 </element>
-<element name="IC6" library="ds_ic_memory" package="SON50P300X200X50-9T130X140N" package3d_urn="urn:adsk.eagle:package:45817778/1" value="CAT24C256HU4IGT3" x="28.486" y="71.328" smashed="yes">
+<element name="IC6" library="ds_ic_memory" package="SON50P300X200X50-9T130X140N" package3d_urn="urn:adsk.eagle:package:45817778/1" value="CAT24C512HU5IGT3" x="28.486" y="71.328" smashed="yes">
 <attribute name="NAME" x="28.0344" y="68.6266" size="1.27" layer="25" align="bottom-center"/>
 <attribute name="VALUE" x="28.486" y="69.494" size="1.27" layer="27" align="top-center"/>
 </element>

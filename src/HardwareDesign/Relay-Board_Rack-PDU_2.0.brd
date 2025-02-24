@@ -205,7 +205,6 @@
 <wire x1="-1" y1="116" x2="-1" y2="3.41420625" width="0" layer="20"/>
 <wire x1="-1" y1="3.41420625" x2="2.41420625" y2="0" width="0" layer="20" curve="90"/>
 <circle x="3" y="4" radius="3" width="1" layer="29"/>
-<circle x="141" y="4" radius="3" width="1" layer="29"/>
 <circle x="3" y="115.9" radius="2.828425" width="1" layer="29"/>
 <text x="153.98" y="8.39" size="1.4224" layer="25" font="vector" ratio="13" rot="R90">github.com/DvidMakesThings/HW_10-In-Rack_PDU
 David Sipos @2025</text>
@@ -1654,15 +1653,15 @@ MAX3223-MAX3243.pdf</description>
 <attribute name="VALUE" x="81.06" y="44.7425" size="0.8128" layer="27" ratio="10"/>
 </element>
 <element name="C10" library="ds_passive" package="100UF-16V" package3d_urn="urn:adsk.eagle:package:46684204/2" value="100uF" x="84" y="69" smashed="yes">
-<attribute name="NAME" x="84.9144" y="73.3688" size="1.27" layer="25" align="center"/>
+<attribute name="NAME" x="89.5144" y="66.8688" size="1.27" layer="25" align="center"/>
 <attribute name="VALUE" x="84.4572" y="64.6566" size="1.27" layer="27" align="center"/>
 </element>
 <element name="C13" library="ds_passive" package="100UF-16V" package3d_urn="urn:adsk.eagle:package:46684204/2" value="100uF" x="84" y="61.3" smashed="yes">
-<attribute name="NAME" x="84.9144" y="65.6688" size="1.27" layer="25" align="center"/>
+<attribute name="NAME" x="89.4144" y="59.0688" size="1.27" layer="25" align="center"/>
 <attribute name="VALUE" x="84.4572" y="56.9566" size="1.27" layer="27" align="center"/>
 </element>
 <element name="C16" library="ds_passive" package="100UF-16V" package3d_urn="urn:adsk.eagle:package:46684204/2" value="100uF" x="84" y="53.7" smashed="yes">
-<attribute name="NAME" x="84.9144" y="58.0688" size="1.27" layer="25" align="center"/>
+<attribute name="NAME" x="89.3856" y="55.9312" size="1.27" layer="25" rot="R180" align="center"/>
 <attribute name="VALUE" x="84.4572" y="49.3566" size="1.27" layer="27" align="center"/>
 </element>
 <element name="12VDC" library="ds_passive" package="TP" package3d_urn="urn:adsk.eagle:package:46683740/2" value="TP" x="81.1" y="44.3" smashed="yes">

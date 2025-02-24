@@ -3427,7 +3427,7 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/TASV_6X6_SMD/"&gt;
 <part name="R26" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K"/>
 <part name="GND39" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="NC17" library="ds_passive" deviceset="NC" device=""/>
-<part name="IC6" library="ds_ic_memory" deviceset="CAT24C256" device="-HU4" package3d_urn="urn:adsk.eagle:package:45817778/1" value="CAT24C256HU4IGT3"/>
+<part name="IC6" library="ds_ic_memory" deviceset="CAT24C256" device="-HU4" package3d_urn="urn:adsk.eagle:package:45817778/1" value="CAT24C512HU5IGT3"/>
 <part name="R27" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="4.7K"/>
 <part name="R28" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="4.7K"/>
 <part name="GND44" library="ds_passive" deviceset="GND" device=""/>

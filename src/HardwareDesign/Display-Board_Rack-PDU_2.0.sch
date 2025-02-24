@@ -4397,7 +4397,7 @@ by R. Vogg  15.March.2002</description>
 </instance>
 <instance part="NC5" gate="G$1" x="233.68" y="205.74" smashed="yes" rot="R180"/>
 <instance part="DISPBOARD" gate="G$1" x="124.46" y="198.12" smashed="yes">
-<attribute name="NAME" x="123.19" y="201.168" size="1.27" layer="95" align="bottom-center"/>
+<attribute name="NAME" x="123.952" y="201.93" size="1.27" layer="95" rot="R90" align="bottom-center"/>
 </instance>
 <instance part="NC6" gate="G$1" x="33.02" y="203.2" smashed="yes" rot="MR180"/>
 <instance part="R4" gate="G$1" x="73.66" y="114.3" smashed="yes">
