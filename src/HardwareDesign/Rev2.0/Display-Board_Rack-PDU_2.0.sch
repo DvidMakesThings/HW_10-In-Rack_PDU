@@ -4883,7 +4883,7 @@ by R. Vogg  15.March.2002</description>
 <pinref part="CS" gate="G$1" pin="P$1"/>
 </segment>
 </net>
-<net name="I2C_SDA" class="0">
+<net name="I2C0_SDA" class="0">
 <segment>
 <wire x1="132.08" y1="210.82" x2="142.24" y2="210.82" width="0.1524" layer="91"/>
 <label x="142.24" y="210.82" size="1.27" layer="95" rot="MR180" xref="yes"/>
@@ -4917,7 +4917,7 @@ by R. Vogg  15.March.2002</description>
 <pinref part="MOSI" gate="G$1" pin="P$1"/>
 </segment>
 </net>
-<net name="I2C_SCL" class="0">
+<net name="I2C0_SCL" class="0">
 <segment>
 <wire x1="142.24" y1="208.28" x2="132.08" y2="208.28" width="0.1524" layer="91"/>
 <label x="142.24" y="208.28" size="1.27" layer="95" rot="MR180" xref="yes"/>
@@ -4951,7 +4951,7 @@ by R. Vogg  15.March.2002</description>
 <pinref part="LCD_RES" gate="G$1" pin="P$1"/>
 </segment>
 </net>
-<net name="MCP_DSP_RST" class="0">
+<net name="MCP_LCD_RST" class="0">
 <segment>
 <wire x1="238.76" y1="215.9" x2="233.68" y2="215.9" width="0.1524" layer="91"/>
 <label x="233.68" y="215.9" size="1.27" layer="95" rot="R180" xref="yes"/>

@@ -3,7 +3,7 @@
 <eagle version="9.2.1">
 <drawing>
 <settings>
-<setting alwaysvectorfont="yes"/>
+<setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.1" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
@@ -1705,7 +1705,7 @@ by R. Vogg  15.March.2002</description>
 <wire x1="77.75" y1="12.2635625" x2="77.75" y2="7.564" width="0.2032" layer="16"/>
 <wire x1="77.75" y1="7.564" x2="77.748" y2="7.562" width="0.2032" layer="16"/>
 </signal>
-<signal name="MCP_DSP_RST">
+<signal name="MCP_LCD_RST">
 <contactref element="IC2" pad="14"/>
 <contactref element="DISPBOARD" pad="20"/>
 <via x="76.484171875" y="30.284171875" extent="1-16" drill="0.35" diameter="0.45"/>
@@ -2186,7 +2186,7 @@ by R. Vogg  15.March.2002</description>
 <wire x1="71.248" y1="10.362" x2="71.248" y2="13.448" width="0.508" layer="16"/>
 <wire x1="71.248" y1="13.448" x2="71.25" y2="13.45" width="0.508" layer="16"/>
 </signal>
-<signal name="I2C_SDA">
+<signal name="I2C0_SDA">
 <contactref element="IC2" pad="9"/>
 <contactref element="DISPBOARD" pad="6"/>
 <via x="73.7" y="26.6" extent="1-16" drill="0.35" diameter="0.45"/>
@@ -2214,7 +2214,7 @@ by R. Vogg  15.March.2002</description>
 <wire x1="72.748" y1="7.562" x2="72.748" y2="25.648" width="0.2032" layer="16"/>
 <wire x1="72.748" y1="25.648" x2="73.7" y2="26.6" width="0.2032" layer="16"/>
 </signal>
-<signal name="I2C_SCL">
+<signal name="I2C0_SCL">
 <contactref element="IC2" pad="8"/>
 <contactref element="DISPBOARD" pad="7"/>
 <wire x1="74.6" y1="26.7" x2="73.25" y2="25.35" width="0.2032" layer="16"/>

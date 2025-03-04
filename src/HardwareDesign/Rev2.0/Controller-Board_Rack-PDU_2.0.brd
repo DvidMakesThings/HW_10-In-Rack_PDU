@@ -2876,7 +2876,7 @@ Copyright: Würth Elektronik</description>
 <wire x1="26.11" y1="57.47" x2="26.11" y2="58.04" width="0.8128" layer="16"/>
 <wire x1="26.11" y1="58.04" x2="27.57" y2="58.04" width="0.8128" layer="16"/>
 </signal>
-<signal name="SPI0_SCK">
+<signal name="W5500_SCK">
 <contactref element="IC2" pad="29"/>
 <contactref element="IC1" pad="33"/>
 <via x="16.8344" y="52.53" extent="1-16" drill="0.2" diameter="0.3"/>
@@ -2891,7 +2891,7 @@ Copyright: Würth Elektronik</description>
 <wire x1="16.924" y1="44.512" x2="16.924" y2="42.64815625" width="0.2" layer="1"/>
 <wire x1="16.924" y1="42.64815625" x2="17.181078125" y2="42.391078125" width="0.2" layer="1"/>
 </signal>
-<signal name="SPI0_MISO">
+<signal name="W5500_MISO">
 <contactref element="IC2" pad="27"/>
 <contactref element="IC1" pad="34"/>
 <wire x1="23.4327" y1="55.07" x2="22.7327" y2="55.07" width="0.2" layer="1"/>
@@ -2911,7 +2911,7 @@ Copyright: Würth Elektronik</description>
 <wire x1="16.424" y1="42.056" x2="16.424" y2="44.512" width="0.2" layer="1"/>
 <wire x1="17.4622" y1="53.2078" x2="17.4622" y2="43.0678" width="0.2" layer="16"/>
 </signal>
-<signal name="SPI0_MOSI">
+<signal name="W5500_MOSI">
 <contactref element="IC2" pad="30"/>
 <contactref element="IC1" pad="35"/>
 <wire x1="24.67" y1="53.8327" x2="24.67" y2="53.29" width="0.2" layer="1"/>
@@ -2929,7 +2929,7 @@ Copyright: Würth Elektronik</description>
 <wire x1="15.924" y1="41.66815625" x2="15.924" y2="44.512" width="0.2" layer="1"/>
 <wire x1="19.8483875" y1="53.13625" x2="18.3936375" y2="51.6815" width="0.2" layer="1"/>
 </signal>
-<signal name="!INT">
+<signal name="!W5500_INT">
 <contactref element="IC2" pad="32"/>
 <contactref element="IC1" pad="36"/>
 <wire x1="25.47" y1="53.8327" x2="25.47" y2="52.87" width="0.2" layer="1"/>
@@ -3184,7 +3184,7 @@ Copyright: Würth Elektronik</description>
 <wire x1="40.106" y1="66.318" x2="40.1" y2="66.312" width="0.2" layer="1"/>
 <wire x1="40.1" y1="66.312" x2="40.1" y2="65.3" width="0.2" layer="1"/>
 </signal>
-<signal name="!RST">
+<signal name="!W5500_RST">
 <contactref element="IC2" pad="31"/>
 <contactref element="IC1" pad="37"/>
 <contactref element="R14" pad="1"/>
@@ -3210,7 +3210,7 @@ Copyright: Würth Elektronik</description>
 <wire x1="13.84" y1="43.102" x2="13.82" y2="43.082" width="0.2" layer="1"/>
 <wire x1="15.951" y1="45.251" x2="14.74" y2="44.04" width="0.2" layer="16"/>
 </signal>
-<signal name="!SPI0_CS">
+<signal name="!W5500_CS">
 <contactref element="IC2" pad="28"/>
 <contactref element="IC1" pad="32"/>
 <wire x1="17.424" y1="44.512" x2="17.424" y2="43.666" width="0.2" layer="1"/>
@@ -3522,7 +3522,7 @@ Copyright: Würth Elektronik</description>
 <via x="33.7076" y="8.15" extent="1-16" drill="0.15"/>
 <wire x1="33.7076" y1="8.15" x2="33.7" y2="8.1424" width="0.6096" layer="1"/>
 </signal>
-<signal name="V_USB">
+<signal name="ADC_V_USB">
 <contactref element="R25" pad="2"/>
 <contactref element="R26" pad="1"/>
 <contactref element="IC2" pad="38"/>

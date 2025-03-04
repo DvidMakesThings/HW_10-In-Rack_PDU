@@ -4242,28 +4242,28 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/TASV_6X6_SMD/"&gt;
 <junction x="99.06" y="213.36"/>
 </segment>
 </net>
-<net name="SPI0_SCK" class="0">
+<net name="W5500_SCK" class="0">
 <segment>
 <pinref part="IC2" gate="G$1" pin="GPIO18"/>
 <wire x1="182.88" y1="162.56" x2="208.28" y2="162.56" width="0.1524" layer="91"/>
 <label x="208.28" y="162.56" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="SPI0_MISO" class="0">
+<net name="W5500_MISO" class="0">
 <segment>
 <pinref part="IC2" gate="G$1" pin="GPIO16"/>
 <wire x1="182.88" y1="167.64" x2="208.28" y2="167.64" width="0.1524" layer="91"/>
 <label x="208.28" y="167.64" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="SPI0_MOSI" class="0">
+<net name="W5500_MOSI" class="0">
 <segment>
 <pinref part="IC2" gate="G$1" pin="GPIO19"/>
 <wire x1="182.88" y1="160.02" x2="208.28" y2="160.02" width="0.1524" layer="91"/>
 <label x="208.28" y="160.02" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="!INT" class="0">
+<net name="!W5500_INT" class="0">
 <segment>
 <pinref part="IC2" gate="G$1" pin="GPIO21"/>
 <wire x1="182.88" y1="154.94" x2="208.28" y2="154.94" width="0.1524" layer="91"/>
@@ -4425,14 +4425,14 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/TASV_6X6_SMD/"&gt;
 <junction x="40.64" y="116.84"/>
 </segment>
 </net>
-<net name="!RST" class="0">
+<net name="!W5500_RST" class="0">
 <segment>
 <pinref part="IC2" gate="G$1" pin="GPIO20"/>
 <wire x1="182.88" y1="157.48" x2="208.28" y2="157.48" width="0.1524" layer="91"/>
 <label x="208.28" y="157.48" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="!SPI0_CS" class="0">
+<net name="!W5500_CS" class="0">
 <segment>
 <pinref part="IC2" gate="G$1" pin="GPIO17"/>
 <wire x1="182.88" y1="165.1" x2="208.28" y2="165.1" width="0.1524" layer="91"/>
@@ -4680,7 +4680,7 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/TASV_6X6_SMD/"&gt;
 <label x="218.44" y="50.8" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="V_USB" class="0">
+<net name="ADC_V_USB" class="0">
 <segment>
 <pinref part="R25" gate="G$1" pin="2"/>
 <pinref part="R26" gate="G$1" pin="1"/>
@@ -5713,42 +5713,42 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/TASV_6X6_SMD/"&gt;
 <wire x1="50.8" y1="200.66" x2="81.28" y2="200.66" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="!SPI0_CS" class="0">
+<net name="!W5500_CS" class="0">
 <segment>
 <pinref part="IC1" gate="G$1" pin="!SCSN"/>
 <wire x1="124.46" y1="182.88" x2="111.76" y2="182.88" width="0.1524" layer="91"/>
 <label x="111.76" y="182.88" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="SPI0_SCK" class="0">
+<net name="W5500_SCK" class="0">
 <segment>
 <pinref part="IC1" gate="G$1" pin="SCLK"/>
 <wire x1="111.76" y1="185.42" x2="124.46" y2="185.42" width="0.1524" layer="91"/>
 <label x="111.76" y="185.42" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="SPI0_MISO" class="0">
+<net name="W5500_MISO" class="0">
 <segment>
 <pinref part="IC1" gate="G$1" pin="MISO"/>
 <wire x1="124.46" y1="187.96" x2="111.76" y2="187.96" width="0.1524" layer="91"/>
 <label x="111.76" y="187.96" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="SPI0_MOSI" class="0">
+<net name="W5500_MOSI" class="0">
 <segment>
 <pinref part="IC1" gate="G$1" pin="MOSI"/>
 <wire x1="111.76" y1="190.5" x2="124.46" y2="190.5" width="0.1524" layer="91"/>
 <label x="111.76" y="190.5" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="!INT" class="0">
+<net name="!W5500_INT" class="0">
 <segment>
 <pinref part="IC1" gate="G$1" pin="!INTN"/>
 <wire x1="124.46" y1="193.04" x2="111.76" y2="193.04" width="0.1524" layer="91"/>
 <label x="111.76" y="193.04" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="!RST" class="0">
+<net name="!W5500_RST" class="0">
 <segment>
 <pinref part="IC1" gate="G$1" pin="!RSTN"/>
 <wire x1="124.46" y1="205.74" x2="109.22" y2="205.74" width="0.1524" layer="91"/>
