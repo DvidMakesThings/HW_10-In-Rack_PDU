@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="9.2.1">
+<eagle version="9.6.2">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="16" fill="1" visible="no" active="no"/>
@@ -3428,7 +3428,7 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/TASV_6X6_SMD/"&gt;
 <part name="GND39" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="NC17" library="ds_passive" deviceset="NC" device=""/>
 <part name="IC6" library="ds_ic_memory" deviceset="CAT24C256" device="-HU4" package3d_urn="urn:adsk.eagle:package:45817778/1" value="CAT24C512HU5IGT3"/>
-<part name="R27" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="4.7K"/>
+<part name="R27" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="NC"/>
 <part name="R28" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="4.7K"/>
 <part name="GND44" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND45" library="ds_passive" deviceset="GND" device=""/>
@@ -3486,6 +3486,10 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/TASV_6X6_SMD/"&gt;
 <part name="DISPBOARD" library="Wurth_Connectors_WR-FPC" library_urn="urn:adsk.eagle:library:15778639" deviceset="6873XX124422_687320124422" device="" package3d_urn="urn:adsk.eagle:package:15743882/4" value="687320124422"/>
 <part name="BOOT" library="Wurth_Switch_WS-TASV" library_urn="urn:adsk.eagle:library:18304196" deviceset="430182043816" device="" package3d_urn="urn:adsk.eagle:package:18304300/2" value="430182043816"/>
 <part name="RESET" library="Wurth_Switch_WS-TASV" library_urn="urn:adsk.eagle:library:18304196" deviceset="430182043816" device="" package3d_urn="urn:adsk.eagle:package:18304300/2" value="430182043816"/>
+<part name="R12" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K"/>
+<part name="+3V17" library="ds_passive" deviceset="+3V3" device=""/>
+<part name="R29" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K"/>
+<part name="+3V18" library="ds_passive" deviceset="+3V3" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -5124,14 +5128,14 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/TASV_6X6_SMD/"&gt;
 <attribute name="VALUE" x="291.465" y="201.7014" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="NC23" gate="G$1" x="119.38" y="162.56" smashed="yes" rot="R180"/>
-<instance part="GND41" gate="1" x="271.78" y="43.18" smashed="yes">
-<attribute name="VALUE" x="271.78" y="40.64" size="1.778" layer="96" align="top-center"/>
+<instance part="GND41" gate="1" x="259.08" y="43.18" smashed="yes">
+<attribute name="VALUE" x="259.08" y="40.64" size="1.778" layer="96" align="top-center"/>
 </instance>
-<instance part="+3V3" gate="G$1" x="279.4" y="111.76" smashed="yes" rot="MR0">
-<attribute name="VALUE" x="279.4" y="114.3" size="1.778" layer="96" rot="MR0" align="top-center"/>
+<instance part="+3V3" gate="G$1" x="266.7" y="111.76" smashed="yes" rot="MR0">
+<attribute name="VALUE" x="266.7" y="114.3" size="1.778" layer="96" rot="MR0" align="top-center"/>
 </instance>
-<instance part="P+4" gate="1" x="289.56" y="111.76" smashed="yes">
-<attribute name="VALUE" x="289.56" y="114.3" size="1.778" layer="96" align="top-center"/>
+<instance part="P+4" gate="1" x="276.86" y="111.76" smashed="yes">
+<attribute name="VALUE" x="276.86" y="114.3" size="1.778" layer="96" align="top-center"/>
 </instance>
 <instance part="IC5" gate="G$1" x="134.62" y="48.26" smashed="yes">
 <attribute name="NAME" x="137.16" y="58.42" size="1.778" layer="95" rot="R180"/>
@@ -5185,9 +5189,23 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/TASV_6X6_SMD/"&gt;
 <instance part="NC18" gate="G$1" x="325.12" y="60.96" smashed="yes" rot="MR180"/>
 <instance part="NC19" gate="G$1" x="325.12" y="58.42" smashed="yes" rot="MR180"/>
 <instance part="NC20" gate="G$1" x="325.12" y="55.88" smashed="yes" rot="MR180"/>
-<instance part="DISPBOARD" gate="G$1" x="261.62" y="78.74" smashed="yes" rot="MR270">
-<attribute name="NAME" x="258.572" y="80.01" size="1.27" layer="95" rot="MR270" align="bottom-center"/>
-<attribute name="VALUE" x="258.572" y="66.548" size="1.27" layer="96" rot="MR270"/>
+<instance part="DISPBOARD" gate="G$1" x="248.92" y="78.74" smashed="yes" rot="MR270">
+<attribute name="NAME" x="245.872" y="80.01" size="1.27" layer="95" rot="MR270" align="bottom-center"/>
+<attribute name="VALUE" x="245.872" y="66.548" size="1.27" layer="96" rot="MR270"/>
+</instance>
+<instance part="R12" gate="G$1" x="284.48" y="63.5" smashed="yes" rot="MR180">
+<attribute name="NAME" x="288.925" y="64.5414" size="1.778" layer="95" rot="MR180"/>
+<attribute name="VALUE" x="287.655" y="62.0014" size="1.778" layer="96" rot="MR180"/>
+</instance>
+<instance part="+3V17" gate="G$1" x="284.48" y="73.66" smashed="yes" rot="MR0">
+<attribute name="VALUE" x="284.48" y="76.2" size="1.778" layer="96" rot="MR0" align="top-center"/>
+</instance>
+<instance part="R29" gate="G$1" x="358.14" y="76.2" smashed="yes" rot="MR180">
+<attribute name="NAME" x="362.585" y="77.2414" size="1.778" layer="95" rot="MR180"/>
+<attribute name="VALUE" x="361.315" y="74.7014" size="1.778" layer="96" rot="MR180"/>
+</instance>
+<instance part="+3V18" gate="G$1" x="358.14" y="86.36" smashed="yes" rot="MR0">
+<attribute name="VALUE" x="358.14" y="88.9" size="1.778" layer="96" rot="MR0" align="top-center"/>
 </instance>
 </instances>
 <busses>
@@ -5248,11 +5266,11 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/TASV_6X6_SMD/"&gt;
 <junction x="121.92" y="114.3"/>
 </segment>
 <segment>
-<wire x1="266.7" y1="104.14" x2="279.4" y2="104.14" width="0.1524" layer="91"/>
-<wire x1="279.4" y1="104.14" x2="279.4" y2="109.22" width="0.1524" layer="91"/>
-<wire x1="266.7" y1="101.6" x2="279.4" y2="101.6" width="0.1524" layer="91"/>
-<wire x1="279.4" y1="101.6" x2="279.4" y2="104.14" width="0.1524" layer="91"/>
-<junction x="279.4" y="104.14"/>
+<wire x1="254" y1="104.14" x2="266.7" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="266.7" y1="104.14" x2="266.7" y2="109.22" width="0.1524" layer="91"/>
+<wire x1="254" y1="101.6" x2="266.7" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="266.7" y1="101.6" x2="266.7" y2="104.14" width="0.1524" layer="91"/>
+<junction x="266.7" y="104.14"/>
 <pinref part="+3V3" gate="G$1" pin="+3V3"/>
 <pinref part="DISPBOARD" gate="G$1" pin="1"/>
 <pinref part="DISPBOARD" gate="G$1" pin="2"/>
@@ -5282,6 +5300,16 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/TASV_6X6_SMD/"&gt;
 <wire x1="345.44" y1="91.44" x2="345.44" y2="93.98" width="0.1524" layer="91"/>
 <junction x="345.44" y="93.98"/>
 <pinref part="+3V14" gate="G$1" pin="+3V3"/>
+</segment>
+<segment>
+<pinref part="R12" gate="G$1" pin="2"/>
+<pinref part="+3V17" gate="G$1" pin="+3V3"/>
+<wire x1="284.48" y1="71.12" x2="284.48" y2="68.58" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="R29" gate="G$1" pin="2"/>
+<pinref part="+3V18" gate="G$1" pin="+3V3"/>
+<wire x1="358.14" y1="83.82" x2="358.14" y2="81.28" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="TX_TD_N" class="1">
@@ -5477,32 +5505,32 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/TASV_6X6_SMD/"&gt;
 <pinref part="GND11" gate="1" pin="GND"/>
 </segment>
 <segment>
-<wire x1="266.7" y1="93.98" x2="271.78" y2="93.98" width="0.1524" layer="91"/>
-<wire x1="271.78" y1="93.98" x2="271.78" y2="86.36" width="0.1524" layer="91"/>
-<wire x1="271.78" y1="86.36" x2="271.78" y2="48.26" width="0.1524" layer="91"/>
-<wire x1="271.78" y1="48.26" x2="271.78" y2="45.72" width="0.1524" layer="91"/>
-<wire x1="266.7" y1="86.36" x2="271.78" y2="86.36" width="0.1524" layer="91"/>
-<junction x="271.78" y="86.36"/>
-<wire x1="261.62" y1="109.22" x2="261.62" y2="111.76" width="0.1524" layer="91"/>
-<wire x1="261.62" y1="111.76" x2="271.78" y2="111.76" width="0.1524" layer="91"/>
-<wire x1="271.78" y1="111.76" x2="271.78" y2="93.98" width="0.1524" layer="91"/>
-<junction x="271.78" y="93.98"/>
+<wire x1="254" y1="93.98" x2="259.08" y2="93.98" width="0.1524" layer="91"/>
+<wire x1="259.08" y1="93.98" x2="259.08" y2="86.36" width="0.1524" layer="91"/>
+<wire x1="259.08" y1="86.36" x2="259.08" y2="48.26" width="0.1524" layer="91"/>
+<wire x1="259.08" y1="48.26" x2="259.08" y2="45.72" width="0.1524" layer="91"/>
+<wire x1="254" y1="86.36" x2="259.08" y2="86.36" width="0.1524" layer="91"/>
+<junction x="259.08" y="86.36"/>
+<wire x1="248.92" y1="109.22" x2="248.92" y2="111.76" width="0.1524" layer="91"/>
+<wire x1="248.92" y1="111.76" x2="259.08" y2="111.76" width="0.1524" layer="91"/>
+<wire x1="259.08" y1="111.76" x2="259.08" y2="93.98" width="0.1524" layer="91"/>
+<junction x="259.08" y="93.98"/>
 <pinref part="GND41" gate="1" pin="GND"/>
 <pinref part="DISPBOARD" gate="G$1" pin="5"/>
 <pinref part="DISPBOARD" gate="G$1" pin="8"/>
 <pinref part="DISPBOARD" gate="G$1" pin="Z1"/>
 <pinref part="DISPBOARD" gate="G$1" pin="Z3"/>
-<wire x1="261.62" y1="50.8" x2="261.62" y2="48.26" width="0.1524" layer="91"/>
-<wire x1="261.62" y1="48.26" x2="271.78" y2="48.26" width="0.1524" layer="91"/>
-<junction x="271.78" y="48.26"/>
+<wire x1="248.92" y1="50.8" x2="248.92" y2="48.26" width="0.1524" layer="91"/>
+<wire x1="248.92" y1="48.26" x2="259.08" y2="48.26" width="0.1524" layer="91"/>
+<junction x="259.08" y="48.26"/>
 <pinref part="DISPBOARD" gate="G$1" pin="Z4"/>
-<wire x1="261.62" y1="48.26" x2="259.08" y2="48.26" width="0.1524" layer="91"/>
-<wire x1="259.08" y1="48.26" x2="259.08" y2="50.8" width="0.1524" layer="91"/>
-<junction x="261.62" y="48.26"/>
+<wire x1="248.92" y1="48.26" x2="246.38" y2="48.26" width="0.1524" layer="91"/>
+<wire x1="246.38" y1="48.26" x2="246.38" y2="50.8" width="0.1524" layer="91"/>
+<junction x="248.92" y="48.26"/>
 <pinref part="DISPBOARD" gate="G$1" pin="Z2"/>
-<wire x1="259.08" y1="109.22" x2="259.08" y2="111.76" width="0.1524" layer="91"/>
-<wire x1="259.08" y1="111.76" x2="261.62" y2="111.76" width="0.1524" layer="91"/>
-<junction x="261.62" y="111.76"/>
+<wire x1="246.38" y1="109.22" x2="246.38" y2="111.76" width="0.1524" layer="91"/>
+<wire x1="246.38" y1="111.76" x2="248.92" y2="111.76" width="0.1524" layer="91"/>
+<junction x="248.92" y="111.76"/>
 </segment>
 <segment>
 <pinref part="C36" gate="G$1" pin="2"/>
@@ -5828,11 +5856,11 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/TASV_6X6_SMD/"&gt;
 </net>
 <net name="+5V" class="0">
 <segment>
-<wire x1="266.7" y1="99.06" x2="289.56" y2="99.06" width="0.1524" layer="91"/>
-<wire x1="289.56" y1="99.06" x2="289.56" y2="109.22" width="0.1524" layer="91"/>
-<wire x1="266.7" y1="96.52" x2="289.56" y2="96.52" width="0.1524" layer="91"/>
-<wire x1="289.56" y1="96.52" x2="289.56" y2="99.06" width="0.1524" layer="91"/>
-<junction x="289.56" y="99.06"/>
+<wire x1="254" y1="99.06" x2="276.86" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="276.86" y1="99.06" x2="276.86" y2="109.22" width="0.1524" layer="91"/>
+<wire x1="254" y1="96.52" x2="276.86" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="276.86" y1="96.52" x2="276.86" y2="99.06" width="0.1524" layer="91"/>
+<junction x="276.86" y="99.06"/>
 <pinref part="P+4" gate="1" pin="+5V"/>
 <pinref part="DISPBOARD" gate="G$1" pin="3"/>
 <pinref part="DISPBOARD" gate="G$1" pin="4"/>
@@ -5854,15 +5882,15 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/TASV_6X6_SMD/"&gt;
 </net>
 <net name="I2C0_SDA" class="0">
 <segment>
-<wire x1="266.7" y1="91.44" x2="276.86" y2="91.44" width="0.1524" layer="91"/>
-<label x="276.86" y="91.44" size="1.27" layer="95" xref="yes"/>
+<wire x1="254" y1="91.44" x2="264.16" y2="91.44" width="0.1524" layer="91"/>
+<label x="264.16" y="91.44" size="1.27" layer="95" xref="yes"/>
 <pinref part="DISPBOARD" gate="G$1" pin="6"/>
 </segment>
 </net>
 <net name="I2C0_SCL" class="0">
 <segment>
-<wire x1="276.86" y1="88.9" x2="266.7" y2="88.9" width="0.1524" layer="91"/>
-<label x="276.86" y="88.9" size="1.27" layer="95" xref="yes"/>
+<wire x1="264.16" y1="88.9" x2="254" y2="88.9" width="0.1524" layer="91"/>
+<label x="264.16" y="88.9" size="1.27" layer="95" xref="yes"/>
 <pinref part="DISPBOARD" gate="G$1" pin="7"/>
 </segment>
 </net>
@@ -5923,91 +5951,99 @@ Details see: &lt;a href="https://www.we-online.com/catalog/en/TASV_6X6_SMD/"&gt;
 <net name="MCP_REL_RST" class="0">
 <segment>
 <pinref part="RELAYBOARD" gate="G$1" pin="15"/>
-<wire x1="320.04" y1="68.58" x2="335.28" y2="68.58" width="0.1524" layer="91"/>
-<label x="335.28" y="68.58" size="1.27" layer="95" xref="yes"/>
+<wire x1="320.04" y1="68.58" x2="358.14" y2="68.58" width="0.1524" layer="91"/>
+<label x="360.68" y="68.58" size="1.27" layer="95" xref="yes"/>
+<pinref part="R29" gate="G$1" pin="1"/>
+<wire x1="358.14" y1="68.58" x2="360.68" y2="68.58" width="0.1524" layer="91"/>
+<wire x1="358.14" y1="71.12" x2="358.14" y2="68.58" width="0.1524" layer="91"/>
+<junction x="358.14" y="68.58"/>
 </segment>
 </net>
 <net name="LCD_CS" class="0">
 <segment>
-<wire x1="266.7" y1="58.42" x2="276.86" y2="58.42" width="0.1524" layer="91"/>
-<label x="276.86" y="58.42" size="1.27" layer="95" xref="yes"/>
+<wire x1="254" y1="58.42" x2="264.16" y2="58.42" width="0.1524" layer="91"/>
+<label x="264.16" y="58.42" size="1.27" layer="95" xref="yes"/>
 <pinref part="DISPBOARD" gate="G$1" pin="19"/>
 </segment>
 </net>
 <net name="LCD_MOSI" class="0">
 <segment>
-<wire x1="276.86" y1="66.04" x2="266.7" y2="66.04" width="0.1524" layer="91"/>
-<label x="276.86" y="66.04" size="1.27" layer="95" rot="MR180" xref="yes"/>
+<wire x1="264.16" y1="66.04" x2="254" y2="66.04" width="0.1524" layer="91"/>
+<label x="264.16" y="66.04" size="1.27" layer="95" rot="MR180" xref="yes"/>
 <pinref part="DISPBOARD" gate="G$1" pin="16"/>
 </segment>
 </net>
 <net name="LCD_RES" class="0">
 <segment>
-<wire x1="266.7" y1="71.12" x2="276.86" y2="71.12" width="0.1524" layer="91"/>
-<label x="276.86" y="71.12" size="1.27" layer="95" xref="yes"/>
+<wire x1="254" y1="71.12" x2="264.16" y2="71.12" width="0.1524" layer="91"/>
+<label x="264.16" y="71.12" size="1.27" layer="95" xref="yes"/>
 <pinref part="DISPBOARD" gate="G$1" pin="14"/>
 </segment>
 </net>
 <net name="MCP_DSP_RST" class="0">
 <segment>
-<wire x1="276.86" y1="55.88" x2="266.7" y2="55.88" width="0.1524" layer="91"/>
-<label x="276.86" y="55.88" size="1.27" layer="95" xref="yes"/>
+<wire x1="287.02" y1="55.88" x2="284.48" y2="55.88" width="0.1524" layer="91"/>
+<label x="287.02" y="55.88" size="1.27" layer="95" xref="yes"/>
 <pinref part="DISPBOARD" gate="G$1" pin="20"/>
+<pinref part="R12" gate="G$1" pin="1"/>
+<wire x1="284.48" y1="55.88" x2="254" y2="55.88" width="0.1524" layer="91"/>
+<wire x1="284.48" y1="58.42" x2="284.48" y2="55.88" width="0.1524" layer="91"/>
+<junction x="284.48" y="55.88"/>
 </segment>
 </net>
 <net name="KEY_0" class="0">
 <segment>
-<wire x1="266.7" y1="76.2" x2="276.86" y2="76.2" width="0.1524" layer="91"/>
-<label x="276.86" y="76.2" size="1.27" layer="95" rot="MR180" xref="yes"/>
+<wire x1="254" y1="76.2" x2="264.16" y2="76.2" width="0.1524" layer="91"/>
+<label x="264.16" y="76.2" size="1.27" layer="95" rot="MR180" xref="yes"/>
 <pinref part="DISPBOARD" gate="G$1" pin="12"/>
 </segment>
 </net>
 <net name="KEY_1" class="0">
 <segment>
-<wire x1="276.86" y1="78.74" x2="266.7" y2="78.74" width="0.1524" layer="91"/>
-<label x="276.86" y="78.74" size="1.27" layer="95" rot="MR180" xref="yes"/>
+<wire x1="264.16" y1="78.74" x2="254" y2="78.74" width="0.1524" layer="91"/>
+<label x="264.16" y="78.74" size="1.27" layer="95" rot="MR180" xref="yes"/>
 <pinref part="DISPBOARD" gate="G$1" pin="11"/>
 </segment>
 </net>
 <net name="KEY_2" class="0">
 <segment>
-<wire x1="266.7" y1="81.28" x2="276.86" y2="81.28" width="0.1524" layer="91"/>
-<label x="276.86" y="81.28" size="1.27" layer="95" rot="MR180" xref="yes"/>
+<wire x1="254" y1="81.28" x2="264.16" y2="81.28" width="0.1524" layer="91"/>
+<label x="264.16" y="81.28" size="1.27" layer="95" rot="MR180" xref="yes"/>
 <pinref part="DISPBOARD" gate="G$1" pin="10"/>
 </segment>
 </net>
 <net name="KEY_3" class="0">
 <segment>
-<wire x1="276.86" y1="83.82" x2="266.7" y2="83.82" width="0.1524" layer="91"/>
-<label x="276.86" y="83.82" size="1.27" layer="95" rot="MR180" xref="yes"/>
+<wire x1="264.16" y1="83.82" x2="254" y2="83.82" width="0.1524" layer="91"/>
+<label x="264.16" y="83.82" size="1.27" layer="95" rot="MR180" xref="yes"/>
 <pinref part="DISPBOARD" gate="G$1" pin="9"/>
 </segment>
 </net>
 <net name="LCD_MISO" class="0">
 <segment>
-<wire x1="266.7" y1="68.58" x2="276.86" y2="68.58" width="0.1524" layer="91"/>
-<label x="276.86" y="68.58" size="1.27" layer="95" rot="MR180" xref="yes"/>
+<wire x1="254" y1="68.58" x2="264.16" y2="68.58" width="0.1524" layer="91"/>
+<label x="264.16" y="68.58" size="1.27" layer="95" rot="MR180" xref="yes"/>
 <pinref part="DISPBOARD" gate="G$1" pin="15"/>
 </segment>
 </net>
 <net name="LCD_SCLK" class="0">
 <segment>
-<wire x1="266.7" y1="63.5" x2="276.86" y2="63.5" width="0.1524" layer="91"/>
-<label x="276.86" y="63.5" size="1.27" layer="95" rot="MR180" xref="yes"/>
+<wire x1="254" y1="63.5" x2="264.16" y2="63.5" width="0.1524" layer="91"/>
+<label x="264.16" y="63.5" size="1.27" layer="95" rot="MR180" xref="yes"/>
 <pinref part="DISPBOARD" gate="G$1" pin="17"/>
 </segment>
 </net>
 <net name="LCD_DC" class="0">
 <segment>
-<wire x1="276.86" y1="60.96" x2="266.7" y2="60.96" width="0.1524" layer="91"/>
-<label x="276.86" y="60.96" size="1.27" layer="95" rot="MR180" xref="yes"/>
+<wire x1="264.16" y1="60.96" x2="254" y2="60.96" width="0.1524" layer="91"/>
+<label x="264.16" y="60.96" size="1.27" layer="95" rot="MR180" xref="yes"/>
 <pinref part="DISPBOARD" gate="G$1" pin="18"/>
 </segment>
 </net>
 <net name="LCD_BL" class="0">
 <segment>
-<wire x1="266.7" y1="73.66" x2="276.86" y2="73.66" width="0.1524" layer="91"/>
-<label x="276.86" y="73.66" size="1.27" layer="95" xref="yes"/>
+<wire x1="254" y1="73.66" x2="264.16" y2="73.66" width="0.1524" layer="91"/>
+<label x="264.16" y="73.66" size="1.27" layer="95" xref="yes"/>
 <pinref part="DISPBOARD" gate="G$1" pin="13"/>
 </segment>
 </net>

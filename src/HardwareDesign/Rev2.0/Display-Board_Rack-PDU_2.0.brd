@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="9.2.1">
+<eagle version="9.6.2">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -194,7 +194,7 @@
 <layer number="255" name="routoute" color="7" fill="1" visible="no" active="yes"/>
 </layers>
 <board>
-<fusionsync huburn="a.YnVzaW5lc3M6aG90bWFpbDE2OTAxNA" projecturn="a.YnVzaW5lc3M6aG90bWFpbDE2OTAxNCMyMDI1MDEwNTg1Mzg3MDcwMQ" f3durn="urn:adsk.wipprod:dm.lineage:GbDomELGSnWFUDar84XhKg" pcbguid="558671d2-386c-4ef5-b8c9-95f4a50e392c" lastpulledtime="" lastsyncedchangeguid="ce2625d4-578b-67bc-5794-c0587fbf7937"/>
+<fusionsync huburn="a.YnVzaW5lc3M6aG90bWFpbDE2OTAxNA" projecturn="a.YnVzaW5lc3M6aG90bWFpbDE2OTAxNCMyMDI1MDEwNTg1Mzg3MDcwMQ" f3durn="urn:adsk.wipprod:dm.lineage:GbDomELGSnWFUDar84XhKg" pcbguid="558671d2-386c-4ef5-b8c9-95f4a50e392c" lastpulledtime="" lastsyncedchangeguid="ce2625d4-578b-67bc-5794-c0587fbf7937" latestrevisionid="" lastsyncedrevisionid="" lastboardhashguid="" lastpushedtime="" linktopcb3d="false"/>
 <plain>
 <text x="129.9" y="7.5" size="1.4224" layer="22" font="vector" ratio="12" rot="MR90">github.com/DvidMakesThings/HW_10-In-Rack_PDU</text>
 <text x="-0.6" y="57.4" size="1.778" layer="21" font="vector" ratio="10" rot="R270">Display Board REV2.0</text>
@@ -2274,20 +2274,23 @@ by R. Vogg  15.March.2002</description>
 <mfgpreviewcolor name="substratecolor" color="0xFF786E46"/>
 </mfgpreviewcolors>
 <errors>
-<approved hash="21,19,b660b462b462b660"/>
-<approved hash="19,1,639872b3eecce40c"/>
-<approved hash="19,1,8a30d25da9ee011c"/>
-<approved hash="19,1,f8305f4172de8fd5"/>
-<approved hash="19,1,66a166d69cec9c9b"/>
-<approved hash="19,1,e37aeed784ed8940"/>
-<approved hash="19,1,e6d3e6d77ced7ce9"/>
-<approved hash="19,1,eadbead7d0edd0e1"/>
-<approved hash="19,1,e2dae2d788ed88e0"/>
-<approved hash="19,1,e773e2d778ed7d49"/>
-<approved hash="23,16,67906019b069c7ac"/>
-<approved hash="23,16,643b0e450e65641b"/>
-<approved hash="23,16,6a927119956a5eae"/>
-<approved hash="23,16,65399a1b8439c185"/>
+<approved hash="19,1,423e7c61fb41c51e"/>
+<approved hash="19,1,2205202e090e0b25"/>
+<approved hash="19,1,8622b862bb428502"/>
+<approved hash="19,1,87c2805e837e84e2"/>
+<approved hash="19,1,c6f8cae013c01fd8"/>
+<approved hash="19,1,43de445dc37dc4fe"/>
+<approved hash="19,1,820a802cb90cbb2a"/>
+<approved hash="19,1,c198c3e01ac018b8"/>
+<approved hash="19,1,c604c42c1d0c1f24"/>
+<approved hash="23,1,1d33718371b31d03"/>
+<approved hash="23,1,5d885f89dcaf934a"/>
+<approved hash="23,1,e59526e897e4ee29"/>
+<approved hash="23,1,7ded632d63ae7d6e"/>
+<approved hash="23,16,e908690bcb558e77"/>
+<approved hash="23,16,808f8d4f8c810241"/>
+<approved hash="11,1,d879a6779d5ce352"/>
+<approved hash="11,16,e3619d6f9a74e47a"/>
 </errors>
 </board>
 </drawing>
