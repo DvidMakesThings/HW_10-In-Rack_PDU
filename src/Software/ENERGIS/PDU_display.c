@@ -1,76 +1,173 @@
 /**
- * @file PDU_display.c
- * @author David Sipos
- * @brief Implements the UI for the PDU display.
- *        It fills the screen, displays test messages, and draws the static UI elements.
- * @version 1.1
- * @date 2025-03-03
- * 
- * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
- */
+* @file PDU_display.c
+* @author David Sipos
+* @brief Implements the UI for the PDU display.
+* @version 1.1
+* @date 2025-03-03
+* 
+* @project ENERGIS - The Managed PDU Project for 10-Inch Rack
+*/
 
- #include "PDU_display.h"
- #include "drivers/ILI9488_driver.h"
- #include "utils/EEPROM_MemoryMap.h"  // For reading system info from EEPROM
- #include "CONFIG.h"
- #include "pico/stdlib.h"
- #include <stdio.h>
- #include <string.h>
+#include "PDU_display.h"
+#include "drivers/ILI9488_driver.h"
+#include "CONFIG.h"
+#include "pico/stdlib.h"
+#include <stdio.h>
+#include <string.h>
  
- #define SYS_INFO_LEN 31   // Data length stored in System Info region (CRC is extra)
+// Positions for dynamic text fields
+#define BASE_Y 50
+#define ROW_HEIGHT 30
+#define STATE_X 100
+#define VOLT_X 170
+#define AMP_X 280
+#define TEXT_V_X 235
+#define TEXT_A_X 345
  
- /**
-  * @brief Reads the system information from EEPROM and displays it on the top bar.
-  */
- static void PDU_Display_ShowSysInfo(void) {
-     char sys_info[SYS_INFO_LEN + 1]; // +1 for null terminator
-     memset(sys_info, 0, sizeof(sys_info));
-     if (EEPROM_ReadSystemInfoWithChecksum((uint8_t *)sys_info, SYS_INFO_LEN) == 0) {
-          ILI9488_DrawText(200, 5, sys_info, COLOR_WHITE);
-     } else {
-          ILI9488_DrawText(200, 5, "SYS INFO ERR", COLOR_RED);
-     }
- }
+#define STATUS_X 140
+#define IP_X 100
+#define CONNECTION_X 300
+#define SAVED_X 405
  
- void PDU_Display_DrawStaticUI(void) {
-     char label[10];
-     int i;
-     uint16_t y;
-      
-     // Draw top blue bar (full width, 25 pixels tall) and display "PDU STATUS"
-     ILI9488_DrawBar(0, 0, ILI9488_WIDTH, 25, COLOR_BLUE);
-     ILI9488_DrawText(10, 5, "PDU STATUS", COLOR_WHITE);
-     PDU_Display_ShowSysInfo();
-      
-     // Draw bottom blue bar
-     ILI9488_DrawBar(0, 295, ILI9488_WIDTH, 25, COLOR_BLUE);
-      
-     // Draw channel labels and clear dynamic areas for 8 channels.
-     for (i = 0; i < 8; i++) {
-          y = 35 + i * 32;
-          snprintf(label, sizeof(label), "CH%d:", i + 1);
-          ILI9488_DrawText(10, y, label, COLOR_WHITE);
-          ILI9488_DrawBar(85, y - 6, 300, 22, COLOR_BLACK);
-          ILI9488_DrawText(90, y, "ON", COLOR_WHITE);
-          ILI9488_DrawText(150, y, "VOLT", COLOR_WHITE);
-          ILI9488_DrawText(230, y, "CURR", COLOR_WHITE);
-          ILI9488_DrawText(310, y, "PWR", COLOR_WHITE);
-      }
- }
-  
- void PDU_Display_Test(void) {
-     // Initialize display (if not already done in main)
-     ILI9488_Init();
+// Text buffer for updates
+static char textBuffer[10];
+ 
+/**
+ * @brief Initializes the PDU display.
+ */
+void PDU_Display_Init(void) {
+    ILI9488_Init();
+    PDU_Display_DrawBackground();
+    PDU_Display_DrawStaticUI();
+}
+ 
+/**
+ * @brief Draws the background from a BMP file.
+ */
+void PDU_Display_DrawBackground(void) {
+    ILI9488_FillScreenDMA(COLOR_BLACK);
+}
+
+
+ 
+/**
+ * @brief Draws the static UI elements (table, labels, and lines).
+ */
+void PDU_Display_DrawStaticUI(void) {
+    char label[10];
+    uint16_t y;
+ 
+    // Draw top and bottom bars
+    ILI9488_DrawBar(0, 5, ILI9488_WIDTH, 35, COLOR_DARK_BLUE);
+    ILI9488_DrawBar(0, 280, ILI9488_WIDTH, 35, COLOR_DARK_BLUE);
      
-     // Clear screen to black
-     ILI9488_FillScreen(COLOR_BLACK);
-     sleep_ms(200);
-     
-     // Draw test text
-     ILI9488_DrawText(50, ILI9488_HEIGHT / 2, "Hello, PDU!", COLOR_WHITE);
-     sleep_ms(2000);
-     
-     // Draw the static UI elements
-     PDU_Display_DrawStaticUI();
- }
+    // Draw table lines
+    for (uint8_t i = 0; i < 9; i++) {  
+        y = BASE_Y + (i * ROW_HEIGHT);
+        ILI9488_DrawLineDMA(0, y-9, 400, COLOR_LIGHT_GRAY); // Horizontal lines
+    }
+    ILI9488_DrawBar(400, 41, 1, 240, COLOR_LIGHT_GRAY);  // Vertical line
+
  
+    // IP and Connection status
+    ILI9488_DrawText(20, 20, "IP:", COLOR_WHITE);
+    PDU_Display_UpdateIP("192.168.0.100");
+    PDU_Display_UpdateConnectionStatus(0);
+ 
+    // Draw channel labels and clear dynamic areas
+    for (uint8_t i = 0; i < 8; i++) {
+        y = BASE_Y + i * ROW_HEIGHT;
+ 
+        snprintf(label, sizeof(label), "CH%d:", i + 1);
+        ILI9488_DrawText(20, y, label, COLOR_WHITE);
+ 
+        ILI9488_DrawBar(85, y - 6, 300, 22, COLOR_BLACK);
+ 
+        PDU_Display_UpdateState(i + 1, "OFF");
+        PDU_Display_UpdateVoltage(i + 1, 0.000);
+        PDU_Display_UpdateCurrent(i + 1, 0.000);
+    }
+ 
+    // Draw unit labels
+    for (uint8_t i = 0; i < 8; i++) {
+        y = BASE_Y + i * ROW_HEIGHT;
+        ILI9488_DrawText(TEXT_V_X, y, "V", COLOR_WHITE);
+        ILI9488_DrawText(TEXT_A_X, y, "A", COLOR_WHITE);
+    }
+ 
+    // Status Bar
+    ILI9488_DrawText(20, 295, "STATUS:", COLOR_WHITE);
+    PDU_Display_UpdateStatus("OK");
+}
+ 
+/**
+ * @brief Updates the ON/OFF state of a given channel.
+ */
+void PDU_Display_UpdateState(uint8_t channel, const char *state) {
+    if (channel < 1 || channel > 8) return;
+    uint16_t y = BASE_Y + (channel - 1) * ROW_HEIGHT;
+    ILI9488_DrawText(STATE_X, y, state, strcmp(state, "ON") == 0 ? COLOR_GREEN : COLOR_RED);
+}
+ 
+/**
+ * @brief Updates the voltage display for a given channel.
+ */
+void PDU_Display_UpdateVoltage(uint8_t channel, float voltage) {
+    if (channel < 1 || channel > 8) return;
+    uint16_t y = BASE_Y + (channel - 1) * ROW_HEIGHT;
+    snprintf(textBuffer, sizeof(textBuffer), "%.3f", voltage);
+    ILI9488_DrawText(VOLT_X, y, textBuffer, COLOR_WHITE);
+}
+ 
+/**
+ * @brief Updates the current display for a given channel.
+ */
+void PDU_Display_UpdateCurrent(uint8_t channel, float current) {
+    if (channel < 1 || channel > 8) return;
+    uint16_t y = BASE_Y + (channel - 1) * ROW_HEIGHT;
+    snprintf(textBuffer, sizeof(textBuffer), "%.3f", current);
+    ILI9488_DrawText(AMP_X, y, textBuffer, COLOR_WHITE);
+}
+ 
+/**
+ * @brief Updates the displayed IP address.
+ */
+void PDU_Display_UpdateIP(const char *ip) {
+    ILI9488_DrawBar(0, 5, 240, 35, COLOR_DARK_BLUE); // Clear IP bar
+    ILI9488_DrawText(20, 20, "IP:", COLOR_WHITE);
+    ILI9488_DrawText(IP_X, 20, ip, COLOR_WHITE);
+}
+ 
+/**
+ * @brief Updates the system status message.
+*/
+void PDU_Display_UpdateStatus(const char *status) {
+    ILI9488_DrawBar(0, 280, ILI9488_WIDTH, 35, COLOR_DARK_BLUE); // Clear status bar
+    ILI9488_DrawText(STATUS_X, 295, status, COLOR_WHITE);
+    ILI9488_DrawText(20, 295, "STATUS:", COLOR_WHITE);
+}
+
+/**
+ * @brief Shows the connection status.
+ * @param connected 1 if connected, 0 otherwise.
+ */
+void PDU_Display_UpdateConnectionStatus(uint8_t connected) {
+    ILI9488_DrawBar(240, 5, ILI9488_WIDTH, 35, COLOR_DARK_BLUE); // Clear IP bar, connection status part
+    if (!connected) {
+        ILI9488_DrawBar(CONNECTION_X-15, 10, 130, 25, COLOR_RED);  // Background red when not connected
+        ILI9488_DrawText(CONNECTION_X, 20, connected ? "CONNECTED" : "NOT CONNECTED", connected ? COLOR_BLACK : COLOR_WHITE);
+    } else {
+        ILI9488_DrawBar(CONNECTION_X-15, 10, 130, 30, COLOR_GREEN);  // Background red when not connected
+        ILI9488_DrawText(CONNECTION_X+10, 20, connected ? "CONNECTED" : "NOT CONNECTED", connected ? COLOR_BLACK : COLOR_WHITE);
+    }
+    
+}
+ 
+/**
+ * @brief Displays a "saved" message for 5 seconds when EEPROM save occurs.
+ */
+void PDU_Display_ShowEEPROM_Saved(void) {
+    ILI9488_DrawText(SAVED_X, 295, "saved", COLOR_WHITE);
+    sleep_ms(5000);
+    ILI9488_DrawBar(SAVED_X, 295, 50, 18, COLOR_DARK_GRAY); // Clear message
+}

@@ -9,7 +9,7 @@
 #define MCP23017_DISPLAY_I2C 	i2c0 ///< Using I2C1 for Display Board MCP23017
 
 // SPI Peripheral Assignments
-#define SPI_SPEED				80000000	//62.5MHz
+#define SPI_SPEED				40000000	//62.5MHz
 #define ILI9488_SPI_INSTANCE 	spi1  ///< SPI1 for ILI9488 Display
 #define W5500_SPI_INSTANCE   	spi0  ///< SPI0 for W5500 Ethernet Modul
 
@@ -160,33 +160,33 @@
 #define ILI9488_CMD_PAGE_ADDR    0x2B
 #define ILI9488_CMD_MEMORY_WRITE 0x2C
 
-#define ILI9488_WIDTH  320  ///< Display width in pixels
-#define ILI9488_HEIGHT 480  ///< Display height in pixels
+#define ILI9488_WIDTH  480  ///< Display width in pixels
+#define ILI9488_HEIGHT 320  ///< Display height in pixels
 
-// ==== Modern Dark UI Colors (RGB565) ====
-/// Primary & Accent Colors
-#define COLOR_BLUE         0x001F  ///< #0000FF
-#define COLOR_CYAN         0x07FF  ///< #00FFFF
-#define COLOR_GREEN        0x07E0  ///< #00FF00
-#define COLOR_YELLOW       0xFFE0  ///< #FFFF00
-#define COLOR_ORANGE       0xFD20  ///< #FFA500
-#define COLOR_RED          0xF800  ///< #FF0000
-#define COLOR_MAGENTA      0xF81F  ///< #FF00FF
-#define COLOR_PURPLE       0x780F  ///< #800080
-#define COLOR_TEAL         0x0410  ///< #008080
+// Use 24-bit RGB (R, G, B)
+#define COLOR_BLUE       0x0000FC  // (0, 0, 252)
+#define COLOR_CYAN       0x00FCFC  // (0, 252, 252)
+#define COLOR_GREEN      0x00FC00  // (0, 252, 0)
+#define COLOR_YELLOW     0xFCFC00  // (252, 252, 0)
+#define COLOR_ORANGE     0xFC8000  // (252, 128, 0)
+#define COLOR_RED        0xFC0000  // (252, 0, 0)
+#define COLOR_MAGENTA    0xFC00FC  // (252, 0, 252)
+#define COLOR_PURPLE     0x8000FC  // (128, 0, 252)
+#define COLOR_BLACK      0x000000  // (0, 0, 0)
+#define COLOR_WHITE      0xFCFCFC  // (252, 252, 252)
 
-/// UI-Specific Colors
-#define COLOR_BLACK        0x0000  ///< #000000
-#define COLOR_DARK_GRAY    0x18E3  ///< #303030
-#define COLOR_LIGHT_GRAY   0x8410  ///< #808080
-#define COLOR_WHITE        0xFFFF  ///< #FFFFFF
-#define COLOR_BG_PRIMARY   COLOR_DARK_GRAY   ///< Dark background
-#define COLOR_BG_SECONDARY COLOR_BLACK       ///< Even darker elements
-#define COLOR_TEXT_PRIMARY COLOR_WHITE       ///< Primary text
-#define COLOR_TEXT_SECONDARY COLOR_LIGHT_GRAY ///< Secondary text
-#define COLOR_HIGHLIGHT    COLOR_BLUE        ///< Interactive elements
-#define COLOR_WARNING      COLOR_YELLOW      ///< Warnings/alerts
-#define COLOR_ERROR        COLOR_RED         ///< Errors
+// UI-Specific Colors (Keep these as 16-bit if needed)
+#define COLOR_DARK_BLUE    0x000066
+#define COLOR_DARK_GRAY    0x050505  // Converted to 24-bit (48, 48, 48)
+#define COLOR_LIGHT_GRAY   0x303030  // Converted to 24-bit (128, 128, 128)
+
+#define COLOR_BG_PRIMARY   COLOR_DARK_GRAY
+#define COLOR_BG_SECONDARY COLOR_BLACK
+#define COLOR_TEXT_PRIMARY COLOR_WHITE
+#define COLOR_TEXT_SECONDARY COLOR_LIGHT_GRAY
+#define COLOR_HIGHLIGHT    COLOR_BLUE
+#define COLOR_WARNING      COLOR_YELLOW
+#define COLOR_ERROR        COLOR_RED
 
 // MCP23017 Registers
 #define MCP23017_IODIRA   0x00 // I/O Direction Register A

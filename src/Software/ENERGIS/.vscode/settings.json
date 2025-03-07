@@ -52,7 +52,8 @@
         "pdu_display.h": "c",
         "w5500_driver.h": "c",
         "stdlib.h": "c",
-        "gpio.h": "c"
+        "gpio.h": "c",
+        "stdbool.h": "c"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }

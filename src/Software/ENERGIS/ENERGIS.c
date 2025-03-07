@@ -1,5 +1,6 @@
 /**
  * @file main.c
+ * @author David Sipos
  * @brief 
  * @version 1.0
  * @date 2025-03-03
@@ -38,34 +39,49 @@ void activate_relay(uint8_t relay_number);
 int main(void) {
     // Initialize standard I/O (for debugging via USB serial, for example)
     stdio_init_all();
+    //sleep_ms(10000);
+    // --- Overclocking ---
+    if (set_sys_clock_khz(200000, true) == 0) {
+        printf("Overclocked to 200MHz successfully.\n");
+    } else {
+        printf("Failed to overclock to 200MHz.\n");
+    }
+
     startup_init();
     i2c_scan_bus(i2c0, "I2C0");
     i2c_scan_bus(i2c1, "I2C1");
-
-    // --- Overclocking ---
-    // Overclock the RP2040 to 200 MHz.
-    // set_sys_clock_khz() sets the system clock frequency in kHz.
-    if (set_sys_clock_khz(200000, true) != 0) {
-         printf("Failed to overclock to 200MHz.\n");
-    } else {
-         printf("Overclocked to 200MHz successfully.\n");
-    }
-    
+        
     // --- Hardware Initialization ---
     // Initialize the EEPROM (CAT24C512)
     CAT24C512_Init();   printf("EEPROM initialized\n");
-    
+    write_dummy_eeprom_content();
+
     // Initialize the MCP23017 I/O expanders.
     mcp_display_init(); printf("Display-board initialized\n");
     mcp_relay_init();   printf("Relay-board initialized\n");
+    
+    // Little showoff :D
+    mcp_display_write_reg(MCP23017_OLATA, 0xFF);
+    mcp_display_write_reg(MCP23017_OLATB, 0xFF);
+    sleep_ms(500);
+    for(uint8_t i = 16; i > 0; i--) {
+        mcp_display_write_pin(i-1, 0);
+        sleep_ms(50);
+    }
+    mcp_display_write_pin(PWR_LED, 1);
+    mcp_display_write_pin(FAULT_LED, 1);
 
+    // Initialize the ILI9488 display.
     ILI9488_Init();
-    ILI9488_FillScreenDMA(COLOR_RED);
+    PDU_Display_Init();
     sleep_ms(200);
-    ILI9488_FillScreenDMA(COLOR_GREEN);
-    sleep_ms(200);
-    ILI9488_FillScreenDMA(COLOR_BLUE);
-    sleep_ms(200);
+
+    PDU_Display_UpdateStatus("System initialized.");
+    mcp_display_write_pin(FAULT_LED, 0);
+    sleep_ms(1000);
+    PDU_Display_UpdateStatus("System ready.");
+
+
 
 	
     // --- Main loop on Core 0 ---

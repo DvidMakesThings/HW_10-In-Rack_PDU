@@ -1,3 +1,13 @@
+/**
+ * @file startup.c
+ * @author David Sipos
+ * @brief Contains the initialization code for the Pico board.
+ * @version 1.1
+ * @date 2025-03-03
+ * 
+ * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
+ */
+
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
 #include "hardware/i2c.h"
