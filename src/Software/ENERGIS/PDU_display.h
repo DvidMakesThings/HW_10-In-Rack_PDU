@@ -12,6 +12,8 @@
  #define PDU_DISPLAY_H
  
  #include <stdint.h>
+
+ #define SYS_INFO_LEN 31
  
  /**
   * @brief Run the display test procedure.

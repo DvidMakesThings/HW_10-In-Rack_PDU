@@ -38,9 +38,13 @@ add_executable(ENERGIS
     ENERGIS.c
     drivers/CAT24C512_driver.c
     drivers/ILI9488_driver.c
-    drivers/MCP23017_driver.c
+    drivers/MCP23017_display_driver.c
+    drivers/MCP23017_relay_driver.c
     drivers/w5500_driver.c
+    utils/EEPROM_MemoryMap.c
     PDU_display.c
+    dummy_eeprom.c
+    startup.c
 )
 
 pico_set_program_name(ENERGIS "ENERGIS")
@@ -51,7 +55,18 @@ pico_enable_stdio_uart(ENERGIS 1)
 pico_enable_stdio_usb(ENERGIS 1)
 
 # Add the standard library and necessary Pico libraries to the build
-target_link_libraries(ENERGIS pico_stdlib pico_multicore hardware_spi hardware_i2c)
+target_link_libraries(ENERGIS 
+    pico_stdlib         # Standard Pico SDK
+    hardware_spi        # SPI library
+    hardware_i2c        # I2C library
+    hardware_gpio       # GPIO control
+    hardware_pwm        # PWM control (for backlight)
+    hardware_sync       # Synchronization
+    hardware_watchdog   # Watchdog timer
+    hardware_clocks     # Clock configuration
+    hardware_resets     # Reset controller
+    hardware_dma      # DMA controller
+)
 
 # Add the standard include files to the build.
 # The FatFS directory is added here, as well as the directories for SPI and I2C.
@@ -61,6 +76,7 @@ target_include_directories(ENERGIS PRIVATE
     ${PICO_SDK_PATH}/src/rp2_common/hardware_spi/include
     ${PICO_SDK_PATH}/src/rp2_common/hardware_i2c/include
     ${PICO_SDK_PATH}/src/rp2_common/hardware_pwm/include
+    ${PICO_SDK_PATH}/src/rp2_common/hardware_resets/include
 )
 
 pico_add_extra_outputs(ENERGIS)

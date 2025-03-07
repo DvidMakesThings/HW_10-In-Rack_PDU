@@ -251,6 +251,25 @@ David Sipos @2025</text>
 <hole x="3" y="4" drill="3.5"/>
 <hole x="131" y="3" drill="3.5"/>
 <hole x="127" y="113.6" drill="3.5"/>
+<rectangle x1="129.9" y1="115.6" x2="146.4" y2="119.4" layer="29"/>
+<rectangle x1="129.9" y1="115.6" x2="146.4" y2="119.4" layer="30"/>
+<wire x1="146.9" y1="14.9" x2="146.9" y2="13.1" width="0.3048" layer="21"/>
+<wire x1="146.9" y1="13.1" x2="144.2" y2="13.1" width="0.3048" layer="21"/>
+<wire x1="144.2" y1="13.1" x2="144.2" y2="29.7" width="0.3048" layer="21"/>
+<wire x1="144.2" y1="29.7" x2="146.9" y2="29.7" width="0.3048" layer="21"/>
+<wire x1="146.9" y1="29.7" x2="146.9" y2="27.9" width="0.3048" layer="21"/>
+<wire x1="146.9" y1="27.9" x2="146.4" y2="27.9" width="0.3048" layer="21"/>
+<wire x1="146.4" y1="27.9" x2="146.4" y2="29.1" width="0.3048" layer="21"/>
+<wire x1="146.4" y1="29.1" x2="144.8" y2="29.1" width="0.3048" layer="21"/>
+<wire x1="144.8" y1="29.1" x2="144.8" y2="13.7" width="0.3048" layer="21"/>
+<wire x1="144.8" y1="13.7" x2="146.2" y2="13.7" width="0.3048" layer="21"/>
+<wire x1="146.2" y1="13.7" x2="146.2" y2="14.9" width="0.3048" layer="21"/>
+<wire x1="146.2" y1="14.9" x2="146.9" y2="14.9" width="0.3048" layer="21"/>
+<wire x1="146.6" y1="28.1" x2="146.6" y2="29.4" width="0.6096" layer="21"/>
+<wire x1="146.6" y1="29.4" x2="144.5" y2="29.4" width="0.6096" layer="21"/>
+<wire x1="144.5" y1="29.4" x2="144.5" y2="13.4" width="0.6096" layer="21"/>
+<wire x1="144.5" y1="13.4" x2="146.6" y2="13.4" width="0.6096" layer="21"/>
+<wire x1="146.6" y1="13.4" x2="146.6" y2="14.6" width="0.6096" layer="21"/>
 </plain>
 <libraries>
 <library name="diode" urn="urn:adsk.eagle:library:210">
@@ -2306,7 +2325,7 @@ MAX3223-MAX3243.pdf</description>
 <attribute name="NAME" x="28.17" y="65.23" size="1.016" layer="25" rot="R180"/>
 <attribute name="VALUE" x="28.17" y="69.04" size="1.016" layer="27" rot="R180"/>
 </element>
-<element name="U$3" library="ds_passive" package="2-LAYER" package3d_urn="urn:adsk.eagle:package:47078536/1" value="" x="117.6" y="115.9" smashed="yes"/>
+<element name="U$3" library="ds_passive" package="2-LAYER" package3d_urn="urn:adsk.eagle:package:47078536/1" value="" x="129.9" y="115.6" smashed="yes"/>
 <element name="OPT1" library="ds_ic_peripherals" package="SO16" package3d_urn="urn:adsk.eagle:package:46683889/2" value="TLP291-4" x="127" y="95.1" smashed="yes" rot="R270">
 <attribute name="NAME" x="125.27" y="101.75" size="1.27" layer="25" rot="R180"/>
 </element>

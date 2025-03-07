@@ -5,11 +5,11 @@
 
 // I2C Peripheral Assignments
 #define EEPROM_I2C         		i2c1  ///< Using I2C1 for EEPROM communication
-#define MCP23017_RELAY_I2C 		i2c0  ///< Using I2C0 for Relay Board MCP23017
-#define MCP23017_DISPLAY_I2C 	i2c1 ///< Using I2C1 for Display Board MCP23017
+#define MCP23017_RELAY_I2C 		i2c1  ///< Using I2C0 for Relay Board MCP23017
+#define MCP23017_DISPLAY_I2C 	i2c0 ///< Using I2C1 for Display Board MCP23017
 
 // SPI Peripheral Assignments
-#define SPI_SPEED				62500000	//62.5MHz
+#define SPI_SPEED				80000000	//62.5MHz
 #define ILI9488_SPI_INSTANCE 	spi1  ///< SPI1 for ILI9488 Display
 #define W5500_SPI_INSTANCE   	spi0  ///< SPI0 for W5500 Ethernet Modul
 
@@ -75,10 +75,10 @@
 
 #define LCD_DC          6
 #define LCD_BL          7
-#define LCD_MISO        8
-#define LCD_CS          9
-#define LCD_SCLK        10
-#define LCD_MOSI        11
+#define LCD_MISO        8   // spi1 rx
+#define LCD_CS          9   // spi1 csn
+#define LCD_SCLK        10  // spi1sck
+#define LCD_MOSI        11  // spi1 tx
 #define LCD_RESET       22
 
 #define KEY_0           12
@@ -115,7 +115,7 @@
 #define MUX_EN          11
 
 // MCP23017 on Display Board (I2C0)
-#define MCP_DISPLAY_ADDR 0x24 // 0b0100100
+#define MCP_DISPLAY_ADDR 0x21 // 0b0100001
 #define OUT_1           0
 #define OUT_2           1
 #define OUT_3           2
@@ -198,6 +198,7 @@
 
 // EEPROM Configuration
 #define CAT24C512_I2C_ADDR  0x50  ///< 7-bit I2C address of the EEPROM
+#define EEPROM_SIZE         65536 ///< Total EEPROM size in bytes
 #define CAT24C512_PAGE_SIZE 128   ///< EEPROM page write limit
 
 #endif // CONFIG_H

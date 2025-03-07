@@ -8,23 +8,40 @@
  */
 
 #include "pico/stdlib.h"
-#include "pico/multicore.h"
 #include "hardware/clocks.h"  // Required for set_sys_clock_khz()
+#include "hardware/i2c.h"
 #include <stdio.h>          // For printf()
-#include "CONFIG.h"                
+#include "CONFIG.h"            
 #include "drivers/CAT24C512_driver.h"      
 #include "drivers/ILI9488_driver.h"        
-#include "drivers/MCP23017_driver.h"       
-#include "drivers/w5500_driver.h"     
-#include "PDU_display.h"      // For PDU_Display_Test()     
+#include "drivers/MCP23017_display_driver.h"       
+#include "drivers/MCP23017_relay_driver.h"
+#include "drivers/w5500_driver.h"   
+#include "utils/EEPROM_MemoryMap.h"  
+#include "dummy_eeprom.h"
+#include "PDU_display.h"      // For PDU_Display_Test() 
+#include "startup.h"          // For init_gpio()    
+#include "hardware/resets.h"
+#include "hardware/regs/io_bank0.h"
+#include "hardware/spi.h"
+#include "hardware/structs/iobank0.h"
+#include "hardware/pwm.h"
+
+
 
 // Forward declaration for the function that will run on core 1.
 void core1_task(void);
+void i2c_scan_bus(i2c_inst_t *i2c, const char *bus_name);
+void activate_relay(uint8_t relay_number);
+
 
 int main(void) {
     // Initialize standard I/O (for debugging via USB serial, for example)
     stdio_init_all();
-    
+    startup_init();
+    i2c_scan_bus(i2c0, "I2C0");
+    i2c_scan_bus(i2c1, "I2C1");
+
     // --- Overclocking ---
     // Overclock the RP2040 to 200 MHz.
     // set_sys_clock_khz() sets the system clock frequency in kHz.
@@ -36,26 +53,24 @@ int main(void) {
     
     // --- Hardware Initialization ---
     // Initialize the EEPROM (CAT24C512)
-    CAT24C512_Init();
-    
-    // Initialize the TFT LCD display (ILI9488)
-    ILI9488_Init();
+    CAT24C512_Init();   printf("EEPROM initialized\n");
     
     // Initialize the MCP23017 I/O expanders.
-    // One for the relay board and one for the display board.
-    MCP23017_Init(i2c0, MCP_RELAY_ADDR);
-    MCP23017_Init(i2c1, MCP_DISPLAY_ADDR);
-    
-    // --- Launch Core 1 for Ethernet and additional tasks ---
-    multicore_launch_core1(core1_task);
-    
-	// Run our UI test procedure:
-    PDU_Display_Test();
+    mcp_display_init(); printf("Display-board initialized\n");
+    mcp_relay_init();   printf("Relay-board initialized\n");
+
+    ILI9488_Init();
+    ILI9488_FillScreenDMA(COLOR_RED);
+    sleep_ms(200);
+    ILI9488_FillScreenDMA(COLOR_GREEN);
+    sleep_ms(200);
+    ILI9488_FillScreenDMA(COLOR_BLUE);
+    sleep_ms(200);
+
 	
     // --- Main loop on Core 0 ---
     while (true) {
         // Core 0 is dedicated to tasks other than Ethernet.
-        printf("Core 0 running...\n");
         sleep_ms(1000);
     }
     
@@ -75,4 +90,36 @@ void core1_task(void) {
         w5500_http_server_task(HTTP_SOCKET);
         sleep_ms(10);
     }
+}
+
+void i2c_scan_bus(i2c_inst_t *i2c, const char *bus_name) {
+    printf("Scanning %s...\n", bus_name);
+    bool device_found = false;
+    uint8_t dummy = 0;
+    // Common I2C address range: 0x08 to 0x77
+    for (uint8_t addr = 0x08; addr <= 0x77; addr++) {
+        // A dummy write: we send one dummy byte.
+        // Some devices might not expect a byte, but for scanning purposes this usually works.
+        int ret = i2c_write_blocking(i2c, addr, &dummy, 1, false);
+        if (ret >= 0) {
+            printf("Found device at address 0x%02X\n", addr);
+            device_found = true;
+        }
+    }
+    if (!device_found) {
+        printf("No devices found on %s.\n", bus_name);
+    }
+}
+
+// Activates a relay (0-7) and turns on the corresponding LED on the display board.
+void activate_relay(uint8_t relay_number) {
+    if (relay_number > 7) {
+        printf("Invalid relay number %d. Must be between 0 and 7.\n", relay_number);
+        return;
+    }
+
+    // Turn on the relay on the relay board.
+    mcp_relay_write_pin(relay_number, 1);
+    // Turn on the corresponding LED on the display board.
+    mcp_display_write_pin(relay_number, 1);
 }

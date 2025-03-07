@@ -65,7 +65,7 @@ void CAT24C512_Dump(uint8_t *buffer);
  *        - 0 = Save to a file on Flash  
  *        - 1 = Send via Serial (UART)
  */
-void CAT24C512_DumpFormatted(uint8_t output_mode);
+void CAT24C512_DumpFormatted(void);
 
 
 #endif // CAT24C512_DRIVER_H

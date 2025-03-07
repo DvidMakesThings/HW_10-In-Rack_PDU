@@ -42,7 +42,17 @@
         "config.h": "c",
         "multicore.h": "c",
         "mcp23017_driver.h": "c",
-        "flash.h": "c"
+        "flash.h": "c",
+        "stdint.h": "c",
+        "startup.h": "c",
+        "ili9488_driver.h": "c",
+        "mcp23017_display_driver.h": "c",
+        "mcp23017_relay_driver.h": "c",
+        "eeprom_memorymap.h": "c",
+        "pdu_display.h": "c",
+        "w5500_driver.h": "c",
+        "stdlib.h": "c",
+        "gpio.h": "c"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }

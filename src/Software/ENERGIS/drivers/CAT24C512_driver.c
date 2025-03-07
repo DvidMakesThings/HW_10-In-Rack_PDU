@@ -96,100 +96,35 @@ void CAT24C512_Dump(uint8_t *buffer) {
 
 /**
  * @brief Dumps the EEPROM contents in a formatted hex table.
- * @param output_mode Selects where to send the data:
- *        - 0 = Save to a file on Flash
- *        - 1 = Send via Serial (UART)
  */
-/**
- * @brief Dumps the EEPROM contents in a formatted hex table with a header row.
- * @param output_mode Selects where to send the data:
- *        - 0 = Save to a file on Flash
- *        - 1 = Send via Serial (UART)
- */
-/**
- * @brief Dumps the EEPROM contents in a formatted hex table with a header row.
- *        The header columns are aligned with the data fields below.
- * @param output_mode Selects where to send the data:
- *        - 0 = Save to a file on Flash
- *        - 1 = Send via Serial (UART)
- */
-
-
-/**
- * @brief Dumps the EEPROM contents in a formatted hex table with a header row,
- *        and writes it into a file on flash (using FatFS).
- *        The header columns are aligned with the data fields below.
- * @param output_mode Selects where to send the data:
- *        - 0 = Save to a file on Flash (FatFS)
- *        - 1 = Send via Serial (UART)
- */
-void CAT24C512_DumpFormatted(uint8_t output_mode) {
+void CAT24C512_DumpFormatted(void) {
     char line[256];
     char field[16];
 
-    if (output_mode == 1) {
-        // --- Output via Serial (UART) ---
+    printf("EE_DUMP_START\n");
+    // Print header row
+    memset(line, 0, sizeof(line));
+    snprintf(line, sizeof(line), "%-7s", "Addr");
+    for (uint8_t col = 0; col < 16; col++) {
+        char colStr[8];
+        sprintf(colStr, "%02X", col);
+        sprintf(field, "%-7s", colStr);
+        strcat(line, field);
+    }
+    printf("%s\n", line);
+
+    // Dump EEPROM contents in 16-byte blocks using a 32-bit loop counter
+    for (uint32_t addr = 0; addr < EEPROM_SIZE; addr += 16) {
         memset(line, 0, sizeof(line));
-        snprintf(line, sizeof(line), "%-7s", "Addr");
-        for (uint8_t col = 0; col < 16; col++) {
-            char temp[8];
-            sprintf(temp, "%02X", col);
-            sprintf(field, "%-7s", temp);
+        sprintf(field, "0x%04X", (uint16_t)addr);
+        sprintf(line, "%-7s", field);
+        uint8_t buffer[16];
+        CAT24C512_ReadBuffer(addr, buffer, 16);
+        for (uint8_t i = 0; i < 16; i++) {
+            sprintf(field, "%02X     ", buffer[i]);
             strcat(line, field);
         }
         printf("%s\n", line);
-
-        // Dump EEPROM contents in 16-byte chunks.
-        for (uint16_t addr = 0; addr < 65536; addr += 16) {
-            memset(line, 0, sizeof(line));
-            sprintf(field, "0x%04X", addr);
-            sprintf(line, "%-7s", field);
-            uint8_t buffer[16];
-            CAT24C512_ReadBuffer(addr, buffer, 16);
-            for (uint8_t i = 0; i < 16; i++) {
-                sprintf(field, "0x%02X", buffer[i]);
-                char formatted_field[16];
-                sprintf(formatted_field, "%-7s", field);
-                strcat(line, formatted_field);
-            }
-            printf("%s\n", line);
-        }
-    } else {
-        // --- Output to a file on flash (using FatFS) ---
-        FIL file;
-        FRESULT res = f_open(&file, "0:/eeprom_dump.txt", FA_WRITE | FA_CREATE_ALWAYS);
-        if (res != FR_OK) {
-            printf("Failed to open file for writing: %d\n", res);
-            return;
-        }
-        UINT bw;
-        memset(line, 0, sizeof(line));
-        snprintf(line, sizeof(line), "%-7s", "Addr");
-        for (uint8_t col = 0; col < 16; col++) {
-            char temp[8];
-            sprintf(temp, "%02X", col);
-            sprintf(field, "%-7s", temp);
-            strcat(line, field);
-        }
-        strcat(line, "\r\n");
-        f_write(&file, line, strlen(line), &bw);
-
-        for (uint16_t addr = 0; addr < 65536; addr += 16) {
-            memset(line, 0, sizeof(line));
-            sprintf(field, "0x%04X", addr);
-            sprintf(line, "%-7s", field);
-            uint8_t buffer[16];
-            CAT24C512_ReadBuffer(addr, buffer, 16);
-            for (uint8_t i = 0; i < 16; i++) {
-                sprintf(field, "0x%02X", buffer[i]);
-                char formatted_field[16];
-                sprintf(formatted_field, "%-7s", field);
-                strcat(line, formatted_field);
-            }
-            strcat(line, "\r\n");
-            f_write(&file, line, strlen(line), &bw);
-        }
-        f_close(&file);
-        printf("EEPROM dump written to file: 0:/eeprom_dump.txt\n");
     }
+    printf("EE_DUMP_END\n");
 }

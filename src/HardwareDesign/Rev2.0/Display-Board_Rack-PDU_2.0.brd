@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="9.6.2">
+<eagle version="9.2.1">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -36,7 +36,7 @@
 <layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
-<layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
+<layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
 <layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
@@ -194,7 +194,7 @@
 <layer number="255" name="routoute" color="7" fill="1" visible="no" active="yes"/>
 </layers>
 <board>
-<fusionsync huburn="a.YnVzaW5lc3M6aG90bWFpbDE2OTAxNA" projecturn="a.YnVzaW5lc3M6aG90bWFpbDE2OTAxNCMyMDI1MDEwNTg1Mzg3MDcwMQ" f3durn="urn:adsk.wipprod:dm.lineage:GbDomELGSnWFUDar84XhKg" pcbguid="558671d2-386c-4ef5-b8c9-95f4a50e392c" lastpulledtime="" lastsyncedchangeguid="ce2625d4-578b-67bc-5794-c0587fbf7937" latestrevisionid="" lastsyncedrevisionid="" lastboardhashguid="" lastpushedtime="" linktopcb3d="false"/>
+<fusionsync huburn="a.YnVzaW5lc3M6aG90bWFpbDE2OTAxNA" projecturn="a.YnVzaW5lc3M6aG90bWFpbDE2OTAxNCMyMDI1MDEwNTg1Mzg3MDcwMQ" f3durn="urn:adsk.wipprod:dm.lineage:GbDomELGSnWFUDar84XhKg" pcbguid="558671d2-386c-4ef5-b8c9-95f4a50e392c" lastpulledtime="" lastsyncedchangeguid="ce2625d4-578b-67bc-5794-c0587fbf7937"/>
 <plain>
 <text x="129.9" y="7.5" size="1.4224" layer="22" font="vector" ratio="12" rot="MR90">github.com/DvidMakesThings/HW_10-In-Rack_PDU</text>
 <text x="-0.6" y="57.4" size="1.778" layer="21" font="vector" ratio="10" rot="R270">Display Board REV2.0</text>
@@ -260,6 +260,25 @@
 <wire x1="46.5" y1="42" x2="51.1" y2="42" width="0.1524" layer="25"/>
 <wire x1="51.1" y1="42" x2="51.1" y2="15.2" width="0.1524" layer="25"/>
 <wire x1="51.1" y1="15.2" x2="46.6" y2="15.2" width="0.1524" layer="25"/>
+<rectangle x1="113.85" y1="-3.75" x2="117.65" y2="12.75" layer="29" rot="R90"/>
+<rectangle x1="-1.8" y1="6.3" x2="2" y2="22.8" layer="30"/>
+<wire x1="81.5" y1="7.9" x2="83.3" y2="7.9" width="0.3048" layer="22"/>
+<wire x1="83.3" y1="7.9" x2="83.3" y2="10.6" width="0.3048" layer="22"/>
+<wire x1="83.3" y1="10.6" x2="66.7" y2="10.6" width="0.3048" layer="22"/>
+<wire x1="66.7" y1="10.6" x2="66.7" y2="7.9" width="0.3048" layer="22"/>
+<wire x1="66.7" y1="7.9" x2="68.5" y2="7.9" width="0.3048" layer="22"/>
+<wire x1="68.5" y1="7.9" x2="68.5" y2="8.4" width="0.3048" layer="22"/>
+<wire x1="68.5" y1="8.4" x2="67.3" y2="8.4" width="0.3048" layer="22"/>
+<wire x1="67.3" y1="8.4" x2="67.3" y2="10" width="0.3048" layer="22"/>
+<wire x1="67.3" y1="10" x2="82.7" y2="10" width="0.3048" layer="22"/>
+<wire x1="82.7" y1="10" x2="82.7" y2="8.6" width="0.3048" layer="22"/>
+<wire x1="82.7" y1="8.6" x2="81.5" y2="8.6" width="0.3048" layer="22"/>
+<wire x1="81.5" y1="8.6" x2="81.5" y2="7.9" width="0.3048" layer="22"/>
+<wire x1="68.3" y1="8.2" x2="67" y2="8.2" width="0.6096" layer="22"/>
+<wire x1="67" y1="8.2" x2="67" y2="10.3" width="0.6096" layer="22"/>
+<wire x1="67" y1="10.3" x2="83" y2="10.3" width="0.6096" layer="22"/>
+<wire x1="83" y1="10.3" x2="83" y2="8.2" width="0.6096" layer="22"/>
+<wire x1="83" y1="8.2" x2="81.8" y2="8.2" width="0.6096" layer="22"/>
 </plain>
 <libraries>
 <library name="ds_passive">
@@ -1185,7 +1204,7 @@ by R. Vogg  15.March.2002</description>
 <attribute name="NAME" x="54.985" y="17.915" size="1.016" layer="25" rot="R180"/>
 <attribute name="VALUE" x="54.985" y="20.455" size="1.016" layer="27" rot="R180"/>
 </element>
-<element name="U$1" library="ds_passive" package="2-LAYER" value="" x="-1.8" y="22.8" smashed="yes" rot="R270"/>
+<element name="U$1" library="ds_passive" package="2-LAYER" value="" x="107.5" y="2.6" smashed="yes"/>
 <element name="TFT" library="ds_con" package="FPC40_3.5TFT" package3d_urn="urn:adsk.eagle:package:47082499/2" value="FPC40-HD" x="27" y="28" smashed="yes">
 <attribute name="NAME" x="87.2099" y="55.231" size="1.27" layer="25" rot="R90" align="bottom-right"/>
 </element>
