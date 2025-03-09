@@ -1,6 +1,6 @@
 # ENERGIS - The Managed PDU Project for 10-Inch Rack
 
-![Development Status](https://img.shields.io/badge/status-Rev2.0%20Work%20in%20porgress-yellow)
+![Development Status](https://img.shields.io/badge/status-Firmware%20Writing%20and%20Debugging-yellow)
 
 ## Overview
 
@@ -10,20 +10,61 @@ rack-mounted environment. The project includes a controller board, a display
 board, and a relay board to handle switching and power management.
 
 
-## Development Phases
-
+## Hardware Development Phases
 | Phase                                | Status   |
 | ------------------------------------ | -------- |
-| **PCB Design & Prototyping**         | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **PCB Design for Rev1.0**            | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
 | **Enclosure Design**                 | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
 | **Order PCB**                        | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Prototyping and Hardware Testing** | ![In Progress](https://img.shields.io/badge/status-in%20progress-yellow) |
-| **Implementing Rev2.0**              | ![In Progress](https://img.shields.io/badge/status-in%20progress-yellow) |
-| **Initial Firmware Development**     | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
-| **Enclosure Testing & Ventilation**  | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
-| **Web-Based UI for Control**         | ![Planned](https://img.shields.io/badge/status-planned-blue) |
-| **Power Logging & Alerts**           | ![Planned](https://img.shields.io/badge/status-planned-blue) |
+| **Prototyping and Hardware Testing** | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **Implementing Rev2.0**              | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **Implementing Relay Board Rev2.1**  | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **Initial Firmware Development**     | ![In Progress](https://img.shields.io/badge/status-in%20progress-yellow) |
+| **Enclosure Testing & Ventilation**  | ![In Progress](https://img.shields.io/badge/status-in%20progress-yellow) |
+| **Power Monitoring**                 | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
 | **Production Optimization**          | ![Planned](https://img.shields.io/badge/status-planned-blue) |
+
+### Changelog:
+#### Rev1.0:
+- Initial desing
+
+#### Rev2.0:
+- Correct all hardware related bugs
+- Display-Board Rev2.0: 
+    - Buttons too close to each-other. Manual control is uncomfortable 
+    - MCP23S17 seems like unreachable, invertory shortage everywhere. Change to MCP23017
+- Controller-Board Rev2.0: 
+    - W5500 crystal wiring bug. 
+    - v1.0 connectors replaced to smaller FFC ones
+- Relay-Board Rev2.0: 
+    - Add HLW8032 for power monitoring
+    - Replace Flyback converter to a cheaper - ready made AC-DC converter unit
+
+#### Rev2.1:
+- Relay-Board Rev2.1: 
+    - Capacitive dropper does not have enough power to supply 8xHLW8032 - Non-Isolated  buck converter implemented
+- Display-Board Rev2.1:
+    - Planned revision without the LCD. This is the main size issue, going to do a version where the setup fits in 1U size. 
+    Currently for debug purposes 1.5U is perfectly fine
+
+## Firmware Development Phases
+| Phase                                | Status   |
+| ------------------------------------ | -------- |
+| **CONFIG file for HW description**   | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **ILI4988 TFT LCD Driver**           | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **MCP23017 Display-Board Driver**    | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **MCP23017 Relay-Board Driver**      | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **W5500 Ethernet Driver**            | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **CAT24C512 512K EEPROM Driver**     | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **HLW8032 Power Monitor Dirver**     | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
+| **Version Control and EEPROM Data**  | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **Display Functions**                | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **System Startup Script**            | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
+| **Multicore processing and RTOS**    | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
+| **Pushbutton control**               | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
+| **Make Everything work together**    | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
+| **Software debugging**               | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
+| **Ethernet based firmware update**   | ![Planned](https://img.shields.io/badge/status-planned-blue) |
 
 
 ![PDU 3D View](images/Assembly/Rev2.0/Assembled-in-case_2.0_3D_1.png)
