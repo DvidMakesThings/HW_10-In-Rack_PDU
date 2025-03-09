@@ -26,9 +26,9 @@ board, and a relay board to handle switching and power management.
 | **Production Optimization**          | ![Planned](https://img.shields.io/badge/status-planned-blue) |
 
 
-![PDU 3D View](images/Assembly/Assembled-in-case_2.0_3D_1.png)
+![PDU 3D View](images/Assembly/Rev2.0/Assembled-in-case_2.0_3D_1.png)
 
-![PDU 3D View](images/Assembly/Assembled-in-case_2.0_3D_2.png)
+![PDU 3D View](images/Assembly/Rev2.0/Assembled-in-case_2.0_3D_2.png)
 
 ## Features
 
@@ -74,11 +74,11 @@ board, and a relay board to handle switching and power management.
 - **Display Board:** 2-layer PCB.
 - **Controller Board:** 4-layer PCB (JLC04161H-3313, 1.56mm ±10% thickness)
 
-![Controller Board 3D View](images/Controller%20Board/ControllerBoard_2.0_3D-1.png)
+![Controller Board 3D View](images/Controller%20Board/Rev2.0/ControllerBoard_2.0_3D-1.png)
 
-![Display Board 3D View](images/Display%20Board/DisplayBoard_2.0_3D-1.png)
+![Display Board 3D View](images/Display%20Board/Rev2.0/DisplayBoard_2.0_3D-1.png)
 
-![Relay Board 3D View](images/Relay%20Board/RelayBoard_2.0_3D-1.png)
+![Relay Board 3D View](images/Relay%20Board/Rev2.1/RelayBoard_2.1_3D-2.png)
 
 ### **Impedance Control:**
 
@@ -103,9 +103,9 @@ board, and a relay board to handle switching and power management.
 
 The full schematics for each board are available:
 
-- **[Controller Board Schematics](src/PDF/Controller-Board_2.0_Schematics.pdf)**
-- **[Display Board Schematics](src/PDF/Display-Board_2.0_Schematics.pdf)**
-- **[Relay Board Schematics](src/PDF/Relay-Board_2.0_Schematics.pdf)**
+- **[Controller Board Schematics](src/PDF/Controller-Board/Rev%202.0/Controller-Board_2.0_Schematics.pdf)**
+- **[Display Board Schematics](src/PDF/Display-Board/Rev%202.0/Display-Board_2.0_Schematics.pdf)**
+- **[Relay Board Schematics](src/PDF/Relay-Board/Rev2.1/Relay-Board_2.1_Schematics.pdf)**
 
 ## Usage
 
