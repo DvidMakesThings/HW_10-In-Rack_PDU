@@ -40,8 +40,9 @@ add_executable(ENERGIS
     drivers/ILI9488_driver.c
     drivers/MCP23017_display_driver.c
     drivers/MCP23017_relay_driver.c
-    drivers/w5500_driver.c
+    drivers/W5500_RP2040_HTTP.c
     utils/EEPROM_MemoryMap.c
+    utils/helper_functions.c
     PDU_display.c
     dummy_eeprom.c
     startup.c
@@ -57,6 +58,7 @@ pico_enable_stdio_usb(ENERGIS 1)
 # Add the standard library and necessary Pico libraries to the build
 target_link_libraries(ENERGIS 
     pico_stdlib         # Standard Pico SDK
+    pico_multicore      # Multicore support
     hardware_spi        # SPI library
     hardware_i2c        # I2C library
     hardware_gpio       # GPIO control

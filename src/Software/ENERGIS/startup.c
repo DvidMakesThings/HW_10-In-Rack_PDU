@@ -48,6 +48,7 @@ void startup_init(void) {
     gpio_set_function(LCD_MOSI, GPIO_FUNC_SPI);
     gpio_set_function(LCD_CS, GPIO_OUT);
     
+    
     // LCD control pins
     gpio_init(LCD_DC);
     gpio_set_dir(LCD_DC, GPIO_OUT);
@@ -60,18 +61,15 @@ void startup_init(void) {
     gpio_put(LCD_RESET, 1);  // Release LCD reset
 
     // SPI for W5500 Ethernet Module (using W5500_SPI_INSTANCE, e.g. SPI0)
-    //spi_init(W5500_SPI_INSTANCE, SPI_SPEED);
-    //gpio_set_function(W5500_SCK, GPIO_FUNC_SPI);
-    //gpio_set_function(W5500_MOSI, GPIO_FUNC_SPI);
-    //gpio_set_function(W5500_MISO, GPIO_FUNC_SPI);
-    //gpio_set_function(W5500_CS, GPIO_FUNC_SPI);
-    
-    gpio_init(W5500_RESET);
-    gpio_set_dir(W5500_RESET, GPIO_OUT);
-    gpio_put(W5500_RESET, 1);  // Release W5500 reset
+    gpio_init(W5500_CS);
+    gpio_set_dir(W5500_CS, GPIO_OUT);
+    gpio_put(W5500_CS, 1);
 
-    gpio_init(W5500_INT);
-    gpio_set_dir(W5500_INT, GPIO_IN);  // External pull-up may be present
+    spi_init(W5500_SPI_INSTANCE, SPI_SPEED_W5500); // 10 MHz SPI
+    spi_set_format(W5500_SPI_INSTANCE, 8, SPI_CPOL_0, SPI_CPHA_0, SPI_MSB_FIRST);
+    gpio_set_function(W5500_MOSI, GPIO_FUNC_SPI); // MOSI
+    gpio_set_function(W5500_SCK, GPIO_FUNC_SPI); // SCK
+    gpio_set_function(W5500_MISO, GPIO_FUNC_SPI); // MISO
 
     // ----- Button Inputs -----
     // Initialize keys; external pull-ups are assumed so no internal pull-ups are set.

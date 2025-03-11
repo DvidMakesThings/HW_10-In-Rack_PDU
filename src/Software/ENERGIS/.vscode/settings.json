@@ -53,7 +53,15 @@
         "w5500_driver.h": "c",
         "stdlib.h": "c",
         "gpio.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "w5500_rp2040_http.h": "c",
+        "stdio.h": "c",
+        "string.h": "c",
+        "i2c.h": "c",
+        "spi.h": "c",
+        "cstdint": "c",
+        "helper_functions.h": "c",
+        "pwm.h": "c"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }

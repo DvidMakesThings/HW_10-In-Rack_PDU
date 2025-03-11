@@ -3,6 +3,9 @@
 
 #include <stdint.h>
 
+#define DEBUG 1
+#define DEBUG_PRINT(...) if (DEBUG) printf(__VA_ARGS__);
+
 // I2C Peripheral Assignments
 #define EEPROM_I2C         		i2c1  ///< Using I2C1 for EEPROM communication
 #define MCP23017_RELAY_I2C 		i2c1  ///< Using I2C0 for Relay Board MCP23017
@@ -10,58 +13,9 @@
 
 // SPI Peripheral Assignments
 #define SPI_SPEED				40000000	//62.5MHz
+#define SPI_SPEED_W5500			10000000	    //10MHz
 #define ILI9488_SPI_INSTANCE 	spi1  ///< SPI1 for ILI9488 Display
 #define W5500_SPI_INSTANCE   	spi0  ///< SPI0 for W5500 Ethernet Modul
-
-// Maximum number of sockets supported by the driver.
-#define MAX_SOCKETS 8
-// Socket that is used for the HTTP server (can be any 0..MAX_SOCKETS-1)
-#define HTTP_SOCKET 0
-// Socket protocols (currently only TCP is implemented)
-#define SOCKET_MR_TCP 0x01
-
-// --- Buffer Sizes and Socket Memory Mapping ---
-// (Assume each socket has 2KB TX and RX buffers)
-#define TX_BUF_SIZE 2048
-#define RX_BUF_SIZE 2048
-
-// Calculate the base register address for a socket.
-// According to the W5500 datasheet, each socket has a 0x100 register block.
-#define SOCKET_REG_BASE(sock) (0x4000 + ((sock) * 0x0100))
-
-// Calculate the base addresses for each socket's TX and RX buffers.
-// (These addresses are chosen for this example and must match your W5500 configuration.)
-#define SOCKET_TX_BUF_BASE(sock) (0x8000 + ((sock) * TX_BUF_SIZE))
-#define SOCKET_RX_BUF_BASE(sock) (0xC000 + ((sock) * RX_BUF_SIZE))
-
-// --- W5500 SPI Operation Macros ---
-#define W5500_VDM      0x00  // Variable Data Length Mode
-#define W5500_READ_OP  0x00
-#define W5500_WRITE_OP 0x04
-
-// --- Socket Register Offsets ---
-#define Sn_MR      0x0000  // Mode Register
-#define Sn_CR      0x0001  // Command Register
-#define Sn_IR      0x0002  // Interrupt Register
-#define Sn_SR      0x0003  // Status Register
-#define Sn_PORT    0x0004  // Source Port (2 bytes)
-#define Sn_TX_FSR  0x0020  // TX Free Size Register (2 bytes)
-#define Sn_TX_WR   0x0024  // TX Write Pointer Register (2 bytes)
-#define Sn_RX_RSR  0x0026  // RX Received Size Register (2 bytes)
-#define Sn_RX_RD   0x0028  // RX Read Pointer Register (2 bytes)
-
-// Socket Commands
-#define SOCKET_CMD_OPEN   0x01
-#define SOCKET_CMD_LISTEN 0x02
-#define SOCKET_CMD_SEND   0x20
-#define SOCKET_CMD_RECV   0x40
-#define SOCKET_CMD_CLOSE  0x10
-
-// Socket Status Values
-#define SOCK_CLOSED      0x00
-#define SOCK_INIT        0x13
-#define SOCK_LISTEN      0x14
-#define SOCK_ESTABLISHED 0x17
 
 
 // RP2040 GPIO Pin Assignments
