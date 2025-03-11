@@ -61,7 +61,8 @@
         "spi.h": "c",
         "cstdint": "c",
         "helper_functions.h": "c",
-        "pwm.h": "c"
+        "pwm.h": "c",
+        "w5500.h": "c"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }

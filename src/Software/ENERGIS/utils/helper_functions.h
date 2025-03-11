@@ -5,7 +5,8 @@
 #include "hardware/i2c.h"
 #include "../drivers/MCP23017_display_driver.h"
 #include "../drivers/MCP23017_relay_driver.h"
-#include "../drivers/W5500_RP2040_HTTP.h"
+#include "../network/w5500.h"   
+#include "../network/socket.h"    
 #include "../CONFIG.h"
 
 // Example handler for the root path

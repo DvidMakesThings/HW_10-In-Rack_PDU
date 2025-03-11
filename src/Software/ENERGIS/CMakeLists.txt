@@ -40,7 +40,8 @@ add_executable(ENERGIS
     drivers/ILI9488_driver.c
     drivers/MCP23017_display_driver.c
     drivers/MCP23017_relay_driver.c
-    drivers/W5500_RP2040_HTTP.c
+    network/w5500.c
+    network/socket.c
     utils/EEPROM_MemoryMap.c
     utils/helper_functions.c
     PDU_display.c

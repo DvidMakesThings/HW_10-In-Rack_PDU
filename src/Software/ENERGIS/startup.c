@@ -70,6 +70,17 @@ void startup_init(void) {
     gpio_set_function(W5500_MOSI, GPIO_FUNC_SPI); // MOSI
     gpio_set_function(W5500_SCK, GPIO_FUNC_SPI); // SCK
     gpio_set_function(W5500_MISO, GPIO_FUNC_SPI); // MISO
+    gpio_init(W5500_INT);
+    gpio_set_dir(W5500_INT, GPIO_IN);
+    
+    // Reset W5500
+    gpio_init(W5500_RESET);
+    gpio_set_dir(W5500_RESET, GPIO_OUT);
+    gpio_put(W5500_RESET, 1);  // Initially not in reset
+    sleep_ms(100);
+    gpio_put(W5500_RESET, 0);  // Reset
+    sleep_ms(100);
+    gpio_put(W5500_RESET, 1);  // Release reset
 
     // ----- Button Inputs -----
     // Initialize keys; external pull-ups are assumed so no internal pull-ups are set.

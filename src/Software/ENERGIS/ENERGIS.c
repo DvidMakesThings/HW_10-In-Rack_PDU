@@ -29,7 +29,8 @@
 #include "drivers/MCP23017_relay_driver.h"
 
 // Use the Wiznet ioLibrary headers:
-#include "drivers/W5500_RP2040_HTTP.h"         
+#include "network/w5500.h"   
+#include "network/socket.h"         
 
 // Use our embedded HTML pages.
 #include "html/html_files.h"
@@ -40,10 +41,10 @@
 #include "utils/helper_functions.h"
 
 // Static IP configuration
-const uint8_t ip_addr[4] = IP_ADDR;
-const uint8_t subnet_mask[4] = SUBNET_MASK;
-const uint8_t gateway[4] = GATEWAY;
-const uint8_t mac_addr[6] = MAC_ADDR;
+uint8_t ip_addr[4] = {192, 168, 0, 11};
+uint8_t subnet_mask[4] = {255, 255, 255, 0};
+uint8_t gateway[4] = {192, 168, 0, 1};
+uint8_t mac_addr[6] = {0x00, 0x08, 0xDC, 0xBE, 0xEF, 0x91};
 
 void core1_task(void);
 
@@ -105,44 +106,82 @@ int main(void) {
 // core1_task: Runs on Core 1. Initializes Ethernet, sets network parameters,
 // and starts the HTTP server.
 void core1_task(void) {
-    // Initialize the W5500
-    if (!w5500_init()) {
-        printf("W5500 Initialization Failed\n");
-        return;
+    printf("[CORE1] Starting core1_task...\n");
+
+    // Initialize the W5500 with network parameters.
+    if (w5500_init(gateway, subnet_mask, mac_addr, ip_addr) != 0) {
+        printf("[CORE1] ERROR: W5500 initialization failed!\n");
+        while(1) sleep_ms(1000);
+    }
+    printf("[CORE1] W5500 initialized successfully with IP %d.%d.%d.%d\n",
+           ip_addr[0], ip_addr[1], ip_addr[2], ip_addr[3]);
+
+    // Open a TCP socket on SERVER_PORT.
+    int sock = w5500_socket_open(W5500_SOCK_MR_TCP);
+    if (sock < 0) {
+        printf("[CORE1] ERROR: Failed to open TCP socket!\n");
+        while(1) sleep_ms(1000);
+    }
+    printf("[CORE1] TCP socket %d opened.\n", sock);
+
+    // Set the socket to LISTEN mode.
+    if(w5500_socket_listen(sock) == false) {
+        printf("[CORE1] ERROR: Failed to set socket %d to LISTEN mode!\n", sock);
+        while(1) sleep_ms(1000);
+    } else {
+        printf("[CORE1] Socket %d set to LISTEN mode.\n", sock);
+        printf("[CORE1] Test-NetConnection -ComputerName 192.168.0.11 -Port 80\n");
     }
 
-    // Set network configurations (MAC, IP, Subnet, Gateway)
-    w5500_set_mac(mac_addr);
-    w5500_set_ip(ip_addr);
-    w5500_set_subnet(subnet_mask);
-    w5500_set_gateway(gateway);
+    // Main loop: wait for an incoming HTTP connection.
+    while (1) {
+        // Print status every 1000 ms (or every 100 iterations of 10 ms)
+        static int counter = 0;
+        counter++;
+        if (counter >= 100) {
+            printf("[CORE1] Socket %d current status: 0x%02X\n", sock, w5500_read_reg(W5500_Sn_SR(sock)));
+            counter = 0;
+        }
+        sleep_ms(10);
 
-    printf("W5500 IP set to: %d.%d.%d.%d\n", ip_addr[0], ip_addr[1], ip_addr[2], ip_addr[3]);
+        // Poll the socket status.
+        uint8_t status = w5500_read_reg(W5500_Sn_SR(sock));
+        if (status == W5500_SR_ESTABLISHED) {  // Typically 0x17 for an established TCP connection.
+            printf("[CORE1] Client connected on socket %d.\n", sock);
 
-    // Initialize the socket memory before opening the socket
-    DEBUG_PRINT("[INFO] Set socket memory information\n");
-    w5500_socket_memory_setup(0);  // Set memory for socket 0 (2KB RX and TX buffers)
+            // Optionally, receive the HTTP request (for debugging).
+            uint8_t rx_buffer[1024] = {0};
+            int bytes_received = w5500_socket_recv(sock, rx_buffer, sizeof(rx_buffer) - 1);
+            if (bytes_received > 0) {
+                rx_buffer[bytes_received] = '\0';  // Null-terminate
+                printf("[CORE1] Received (%d bytes): %s\n", bytes_received, rx_buffer);
+            }
 
-    // Initialize the HTTP Server
-    http_server_t http_server;
-    http_server_init(&http_server, SERVER_PORT);  // Initialize HTTP server on port 8081
+            // Prepare a basic HTTP response.
+            http_response_t response;
+            http_response_set_status(&response, 200);
+            const char *html_body = "HTTP/1.1 200 OK\r\n"
+                                    "Content-Type: text/html\r\n"
+                                    "Content-Length: 46\r\n"
+                                    "\r\n"
+                                    "<html><body><h1>Hello, World!</h1></body></html>";
+            http_response_set_body(&response, html_body, strlen(html_body));
+            http_response_send(&response, sock);
+            printf("[CORE1] HTTP response sent on socket %d.\n", sock);
 
-    // Open the socket and start the server
-    if (!http_server_start(&http_server)) {
-        printf("Failed to start HTTP server\n");
-        return;
-    }
+            // Close the current socket connection.
+            w5500_socket_close(sock);
+            printf("[CORE1] Socket %d closed.\n", sock);
 
-    // Register routes, handle the HTTP server process
-    http_server_register_route(&http_server, "/", HTTP_METHOD_GET, handle_root_request);
-
-    printf("HTTP Server running on port %d...\n", SERVER_PORT);
-
-    // Main loop to process incoming requests
-    while (true) {
-        http_server_process(&http_server);  // Process incoming HTTP requests
-        sleep_ms(100);  // Adjust sleep time as necessary
+            // Reopen a new TCP socket and set it to LISTEN mode for the next connection.
+            sock = w5500_socket_open(W5500_SOCK_MR_TCP);
+            if (sock < 0) {
+                printf("[CORE1] ERROR: Failed to re-open TCP socket!\n");
+                while(1) sleep_ms(1000);
+            }
+            w5500_socket_listen(sock);
+            printf("[CORE1] Socket %d re-opened and set to LISTEN mode.\n", sock);
+        }
+        sleep_ms(10);
     }
 }
-
-
