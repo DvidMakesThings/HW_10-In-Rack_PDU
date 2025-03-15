@@ -40,6 +40,10 @@ add_executable(ENERGIS
     drivers/ILI9488_driver.c
     drivers/MCP23017_display_driver.c
     drivers/MCP23017_relay_driver.c
+    network/timer.c
+    network/w5x00_gpio_irq.c
+    network/w5x00_spi.c
+    network/wizchip_conf.c
     network/w5500.c
     network/socket.c
     utils/EEPROM_MemoryMap.c
@@ -48,6 +52,7 @@ add_executable(ENERGIS
     dummy_eeprom.c
     startup.c
 )
+
 
 pico_set_program_name(ENERGIS "ENERGIS")
 pico_set_program_version(ENERGIS "0.1")
@@ -75,6 +80,9 @@ target_link_libraries(ENERGIS
 # The FatFS directory is added here, as well as the directories for SPI and I2C.
 target_include_directories(ENERGIS PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/network
+    ${CMAKE_CURRENT_SOURCE_DIR}/network/port/ioLibrary_Driver/inc
+    ${CMAKE_CURRENT_SOURCE_DIR}/network/port/timer
     ${CMAKE_CURRENT_LIST_DIR}/FatFS
     ${PICO_SDK_PATH}/src/rp2_common/hardware_spi/include
     ${PICO_SDK_PATH}/src/rp2_common/hardware_i2c/include

@@ -1,0 +1,9 @@
+// Auto-generated C header file from HTML
+#ifndef USER_MANUAL_HTML_H
+#define USER_MANUAL_HTML_H
+
+const char user_manual_html[] = 
+    "<!DOCTYPE html><html><head><meta charset=\"UTF-8\" /><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>ENERGIS PDU - User Manual</title><style>* { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; } body { background-color: #1a1d23; color: #e4e4e4; } a { text-decoration: none; color: #aaa; } a:hover { color: #fff; } .topbar { width: 100%; height: 50px; background-color: #242731; display: flex; align-items: center; padding: 0 20px; } .topbar h1 { font-size: 1.2rem; color: #fff; } .container { display: flex; width: 100%; height: calc(100vh - 50px); } .sidebar { width: 220px; background-color: #2e323c; padding: 20px 0; } .sidebar ul { list-style: none; } .sidebar ul li { padding: 10px 20px; } .sidebar ul li:hover { background-color: #3b404d; } .main-content { flex: 1; padding: 20px; overflow-y: auto; } h2 { margin-bottom: 0.5rem; } p { margin: 0.5rem 0; } ul { margin-left: 20px; }</style></head><body><div class=\"topbar\"><h1>ENERGIS PDU</h1></div><div class=\"container\"><div class=\"sidebar\"><ul><li><a href=\"control.html\">Control</a></li><li><a href=\"settings.html\">Settings</a></li><li><a href=\"help.html\">Help</a></li><li><a href=\"user_manual.html\">User Manual</a></li><li><a href=\"programming_manual.html\">Programming Manual</a></li></ul></div><div class=\"main-content\"><h2>User Manual</h2><p>This manual explains how to operate the ENERGIS PDU:</p><ul><li>Turning channels on/off via sliding toggles</li><li>Monitoring voltage, current, uptime, and power</li><li>Configuring network and device settings</li><li>Troubleshooting tips</li></ul></div></div></body></html>\n"
+;
+
+#endif // USER_MANUAL_HTML_H

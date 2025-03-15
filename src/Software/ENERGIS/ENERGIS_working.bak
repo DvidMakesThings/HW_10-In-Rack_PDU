@@ -36,19 +36,14 @@
 #include "dummy_eeprom.h"
 #include "utils/helper_functions.h"
 #include "startup.h"
-#include "html/control_html.h"
-#include "html/settings_html.h"
-#include "html/user_manual_html.h"
-#include "html/programming_manual_html.h"
-#include "html/help_html.h"
-
+#include "html/control.h"
 
 // Static IP configuration
 static wiz_NetInfo g_net_info;  // Keep wiz_NetInfo for compatibility
 
 
 void core1_task(void);
-const char *get_page_content(const char *request);
+void W5500_Init(void);
 
 //------------------------------------------------------------------------------
 // main: Performs system initialization and launches core1_task on Core 1.
@@ -110,7 +105,6 @@ void core1_task(void) {
     int header_len;
     uint8_t server_socket = 0;
     uint16_t port = 80;
-    char request_buffer[256];
 
     networkInfo netConfig = LoadUserNetworkConfig(); // Get network info from EEPROM
     
@@ -152,7 +146,7 @@ void core1_task(void) {
             last_status = status;
         }
 
-        switch (status) {
+        switch (getSn_SR(server_socket)) {
             case SOCK_ESTABLISHED:
                 printf("[INFO] Client connected.\n");
 
@@ -161,26 +155,23 @@ void core1_task(void) {
                     printf("[DEBUG] Connection established flag cleared.\n");
                 }
 
-                int32_t recv_len = recv(server_socket, (uint8_t*)request_buffer, sizeof(request_buffer) - 1);
-                if (recv_len > 0) {  
-                    request_buffer[recv_len] = '\0'; // Null-terminate the request
-                    printf("[DEBUG] HTTP Request: %s\n", request_buffer);
+                int32_t recv_len = recv(server_socket, (uint8_t*)header, sizeof(header));
+                printf("[DEBUG] Received data length: %d bytes\n", recv_len);
 
-                    const char *page_content = get_page_content(request_buffer);
-                    int page_size = strlen(page_content);
-
+                if (recv_len > 0) {                    
                     header_len = sprintf(header,
                         "HTTP/1.1 200 OK\r\n"
                         "Content-Type: text/html\r\n"
                         "Content-Length: %d\r\n"
                         "Connection: close\r\n"
                         "\r\n",
-                        page_size
+                        (int)strlen(control_html)
                     );
-                    printf("[INFO] Sending HTTP response. Page size: %d bytes\n", page_size);
+                    printf("[INFO] Sending HTTP response. Content size: %d bytes\n", (int)strlen(control_html));
+
 
                     send(server_socket, (uint8_t *)header, header_len);
-                    send(server_socket, (uint8_t *)page_content, page_size);
+                    send(server_socket, (uint8_t *)control_html, strlen(control_html));
                     close(server_socket);
 
                     printf("[INFO] Connection closed. Reinitializing server socket...\n");
@@ -210,12 +201,5 @@ void core1_task(void) {
 
         sleep_ms(10);
     }
-}
 
-const char *get_page_content(const char *request) {
-    if (strstr(request, "GET /settings.html")) return settings_html;
-    if (strstr(request, "GET /user_manual.html")) return user_manual_html;
-    if (strstr(request, "GET /programming_manual.html")) return programming_manual_html;
-    if (strstr(request, "GET /help.html")) return help_html;
-    return control_html;  // Default page
-}
+}    

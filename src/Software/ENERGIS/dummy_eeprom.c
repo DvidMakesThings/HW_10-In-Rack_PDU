@@ -95,32 +95,31 @@ void write_dummy_eeprom_content(void) {
     // --------- 4. User Network Settings ---------
     // Default IP: 192.168.0.100 and Gateway: 192.168.0.1 (8 bytes total)
     {
-        const size_t data_len = 8;
-        uint8_t user_network[data_len];
-        user_network[0] = 192;
-        user_network[1] = 168;
-        user_network[2] = 0;
-        user_network[3] = 100;
-        user_network[4] = 192;
-        user_network[5] = 168;
-        user_network[6] = 0;
-        user_network[7] = 1;
-        // Use the provided functions for user network settings (which use CRC)
-        uint8_t stored_network[data_len];
-        if (EEPROM_ReadUserNetworkWithChecksum(stored_network, sizeof(user_network)) == 0) {
-            if (memcmp(stored_network, user_network, data_len) == 0) {
-                printf("User network settings unchanged. Skipping write.\n");
-            } else {
-                if (EEPROM_WriteUserNetworkWithChecksum(user_network, data_len) != 0)
+        networkInfo default_network = {
+            .ip = {192, 168, 0, 11},
+            .gw = {192, 168, 0, 1},
+            .sn = {255, 255, 255, 0},
+            .mac = {0x00, 0x08, 0xDC, 0xBE, 0xEF, 0x91},
+            .dns = {8, 8, 8, 8},
+            .dhcp = NETINFO_STATIC
+        };
+    
+        networkInfo stored_network;
+    
+        if (EEPROM_ReadUserNetworkWithChecksum(&stored_network) == 0) {
+            if (memcmp(&stored_network, &default_network, sizeof(networkInfo)) != 0) {
+                if (EEPROM_WriteUserNetworkWithChecksum(&default_network) != 0)
                     printf("Failed to update user network settings.\n");
                 else
                     printf("User network settings updated.\n");
+            } else {
+                printf("User network settings unchanged. Skipping write.\n");
             }
         } else {
-            if (EEPROM_WriteUserNetworkWithChecksum(user_network, data_len) != 0)
+            if (EEPROM_WriteUserNetworkWithChecksum(&default_network) != 0)
                 printf("Failed to write user network settings.\n");
             else
-                printf("User network settings written (CRC error detected, rewriting).\n");
+                printf("User network settings written.\n");
         }
     }
     

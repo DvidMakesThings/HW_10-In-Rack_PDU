@@ -62,7 +62,20 @@
         "cstdint": "c",
         "helper_functions.h": "c",
         "pwm.h": "c",
-        "w5500.h": "c"
+        "w5500.h": "c",
+        "socket.h": "c",
+        "port_common.h": "c",
+        "wiznet_spi_pio.h": "c",
+        "board_list.h": "c",
+        "wiznet_spi.h": "c",
+        "ssl_config.h": "c",
+        "timer.h": "c",
+        "wizchip_conf.h": "c",
+        "w5x00_gpio_irq.h": "c",
+        "w5x00_spi.h": "c",
+        "stddef.h": "c",
+        "html_files.h": "c",
+        "control_html.h": "c"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }

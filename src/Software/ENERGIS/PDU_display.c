@@ -68,10 +68,7 @@ void PDU_Display_DrawStaticUI(void) {
     }
     ILI9488_DrawBar(400, 41, 1, 240, COLOR_LIGHT_GRAY);  // Vertical line
 
- 
-    // IP and Connection status
-    ILI9488_DrawText(20, 20, "IP:", COLOR_WHITE);
-    PDU_Display_UpdateIP("192.168.0.100");
+
     PDU_Display_UpdateConnectionStatus(0);
  
     // Draw channel labels and clear dynamic areas
@@ -132,12 +129,14 @@ void PDU_Display_UpdateCurrent(uint8_t channel, float current) {
 /**
  * @brief Updates the displayed IP address.
  */
-void PDU_Display_UpdateIP(const char *ip) {
+void PDU_Display_UpdateIP(const uint8_t ip[4]) {
+    char ip_str[32];  // Ensure enough space for "IP Address: xxx.xxx.xxx.xxx"
+    snprintf(ip_str, sizeof(ip_str), "IP Address: %d.%d.%d.%d", ip[0], ip[1], ip[2], ip[3]);
+
     ILI9488_DrawBar(0, 5, 240, 35, COLOR_DARK_BLUE); // Clear IP bar
-    ILI9488_DrawText(20, 20, "IP:", COLOR_WHITE);
-    ILI9488_DrawText(IP_X, 20, ip, COLOR_WHITE);
+    ILI9488_DrawText(20, 20, ip_str, COLOR_WHITE);
 }
- 
+
 /**
  * @brief Updates the system status message.
 */
@@ -169,5 +168,5 @@ void PDU_Display_UpdateConnectionStatus(uint8_t connected) {
 void PDU_Display_ShowEEPROM_Saved(void) {
     ILI9488_DrawText(SAVED_X, 295, "saved", COLOR_WHITE);
     sleep_ms(5000);
-    ILI9488_DrawBar(SAVED_X, 295, 50, 18, COLOR_DARK_GRAY); // Clear message
+    ILI9488_DrawBar(SAVED_X, 295, 50, 18, COLOR_DARK_BLUE); // Clear message
 }

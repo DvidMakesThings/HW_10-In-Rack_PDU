@@ -44,7 +44,7 @@ void PDU_Display_UpdateCurrent(uint8_t channel, float current);
 /**
  * @brief Updates the displayed IP address.
  */
-void PDU_Display_UpdateIP(const char *ip);
+void PDU_Display_UpdateIP(const uint8_t ip[4]);
 
 /**
  * @brief Updates the system status message.

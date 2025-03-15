@@ -12,6 +12,8 @@
 #include "utils/EEPROM_MemoryMap.h"
 #include "drivers/CAT24C512_driver.h"  // Uses your EEPROM driver functions
 #include <string.h>
+#include <stdio.h>
+#include "../PDU_display.h"
 
 //----------------------------
 // Existing region implementations
@@ -151,24 +153,40 @@ int EEPROM_ReadSystemInfoWithChecksum(uint8_t *data, size_t len) {
 }
 
 // User Network with Checksum: Data length must be <= EEPROM_USER_NETWORK_SIZE - 1
-int EEPROM_WriteUserNetworkWithChecksum(const uint8_t *data, size_t len) {
-    if (len > EEPROM_USER_NETWORK_SIZE - 1) return -1;
-    uint8_t buffer[len + 1];
-    memcpy(buffer, data, len);
-    buffer[len] = calculate_crc8(data, len);
-    return CAT24C512_WriteBuffer(EEPROM_USER_NETWORK_START, buffer, len + 1);
+// Store user network settings in EEPROM
+int EEPROM_WriteUserNetworkWithChecksum(const networkInfo *net_info) {
+    uint8_t buffer[24];  // 16 (IP, GW, SN, MAC) + 4 (DNS) + 1 (DHCP) + 1 (Checksum)
+
+    // Copy data into buffer (order: IP, GW, SN, MAC, DNS, DHCP)
+    memcpy(&buffer[0], net_info->ip, 4);
+    memcpy(&buffer[4], net_info->gw, 4);
+    memcpy(&buffer[8], net_info->sn, 4);
+    memcpy(&buffer[12], net_info->mac, 6);
+    memcpy(&buffer[18], net_info->dns, 4);
+    buffer[22] = net_info->dhcp;  // Store DHCP mode
+
+    // Calculate and append CRC-8 checksum
+    buffer[23] = calculate_crc8(buffer, 23);
+
+    return CAT24C512_WriteBuffer(EEPROM_USER_NETWORK_START, buffer, 24);
 }
 
-int EEPROM_ReadUserNetworkWithChecksum(uint8_t *data, size_t len) {
-    if (len > EEPROM_USER_NETWORK_SIZE - 1) return -1;
-    uint8_t buffer[len + 1];
-    CAT24C512_ReadBuffer(EEPROM_USER_NETWORK_START, buffer, len + 1);
-    uint8_t crc = calculate_crc8(buffer, len);
-    if (crc != buffer[len]) {
-        return -1;  // CRC mismatch
+int EEPROM_ReadUserNetworkWithChecksum(networkInfo *net_info) {
+    uint8_t buffer[24];  // 16 + 4 + 1 + 1
+
+    CAT24C512_ReadBuffer(EEPROM_USER_NETWORK_START, buffer, 24);
+
+    // Validate CRC-8
+    if (calculate_crc8(buffer, 23) == buffer[23]) {
+        memcpy(net_info->ip, &buffer[0], 4);
+        memcpy(net_info->gw, &buffer[4], 4);
+        memcpy(net_info->sn, &buffer[8], 4);
+        memcpy(net_info->mac, &buffer[12], 6);
+        memcpy(net_info->dns, &buffer[18], 4);
+        net_info->dhcp = buffer[22];  // Restore DHCP mode
+        return 0; // Valid data
     }
-    memcpy(data, buffer, len);
-    return 0;
+    return -1; // Checksum error
 }
 
 //----------------------------
@@ -225,3 +243,29 @@ int EEPROM_AppendEventLog(const uint8_t *entry) {
     write_event_log_pointer(ptr);
     return 0;
 }
+
+networkInfo LoadUserNetworkConfig() {
+    networkInfo net_info;  // Local struct to hold network settings
+    uint8_t raw_data[23];  // 4 (IP) + 4 (Gateway) + 4 (Subnet) + 6 (MAC) + 4 (DNS) + 1 (DHCP)
+
+    if (EEPROM_ReadUserNetworkWithChecksum(&net_info) == 0) {
+        printf("Loaded network config from EEPROM.\n");
+    } else {
+        printf("EEPROM network config invalid. Using defaults.\n");
+
+        // Set default values
+        uint8_t default_net[23] = {
+            192, 168, 0, 100,  // IP
+            192, 168, 0, 1,    // Gateway
+            255, 255, 255, 0,  // Subnet Mask
+            0x00, 0x08, 0xDC, 0xBE, 0xEF, 0x91,  // MAC
+            8, 8, 8, 8,  // DNS
+            0  // Static IP mode
+        };
+        memcpy(&net_info, default_net, sizeof(default_net));
+    }
+
+    return net_info;  // Return the filled struct
+}
+
+

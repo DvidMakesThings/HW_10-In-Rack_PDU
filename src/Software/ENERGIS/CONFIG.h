@@ -12,8 +12,8 @@
 #define MCP23017_DISPLAY_I2C 	i2c0 ///< Using I2C1 for Display Board MCP23017
 
 // SPI Peripheral Assignments
-#define SPI_SPEED				40000000	//62.5MHz
-#define SPI_SPEED_W5500			10000000	    //10MHz
+#define SPI_SPEED				62500000	//62.5MHz
+#define SPI_SPEED_W5500			40000000	    //10MHz
 #define ILI9488_SPI_INSTANCE 	spi1  ///< SPI1 for ILI9488 Display
 #define W5500_SPI_INSTANCE   	spi0  ///< SPI0 for W5500 Ethernet Modul
 

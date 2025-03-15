@@ -1,252 +1,670 @@
+
 #include "socket.h"
-#include "w5500.h"
-#include "pico/stdlib.h"
-#include <stdio.h>
-#include "../CONFIG.h"
 
-#define SOCKET_OPEN_RETRY_LIMIT  10
-#define SOCKET_OPEN_DELAY_MS     500
+//M20150401 : Typing Error
+//#define SOCK_ANY_PORT_NUM  0xC000;
+#define SOCK_ANY_PORT_NUM  0xC000
 
-// Internal array to track socket usage (0 = available, 1 = open)
-static uint8_t W5500_socketStatus[W5500_MAX_SOCKETS] = { W5500_SOCKET_AVAILALE };
+static uint16_t sock_any_port = SOCK_ANY_PORT_NUM;
+static uint16_t sock_io_mode = 0;
+static uint16_t sock_is_sending = 0;
 
-/**
- * Open a socket with the specified protocol.
- *
- * This implements the following logic:
- *
- *   START:
- *      set Sn_MR = protocol;          // e.g., 0x01 for TCP
- *      set Sn_PORT = SERVER_PORT;       // source port
- *      set Sn_CR = OPEN;
- *      wait until Sn_CR becomes 0 and Sn_SR becomes SOCK_INIT.
- *      if not, then set Sn_CR = CLOSE and go back to START (with a retry limit).
- *
- * Returns socket number on success, or -1 on error.
- */
-int w5500_socket_open(uint8_t protocol) {
-    // Check that a valid protocol is passed.
-    if (protocol == 0) {
-        printf("[SOCKET] ERROR: Protocol value is 0. Please pass a valid protocol constant (e.g., W5500_SOCK_MR_TCP).\n");
-        return -1;
-    }
+static uint16_t sock_remained_size[_WIZCHIP_SOCK_NUM_] = {0,0,};
 
-    int sock = -1;
-    uint8_t sr, cr;
-    uint16_t port;
-    const int max_attempts = 3;
+//M20150601 : For extern decleation
+//static uint8_t  sock_pack_info[_WIZCHIP_SOCK_NUM_] = {0,};
+uint8_t  sock_pack_info[_WIZCHIP_SOCK_NUM_] = {0,};
 
-    // For TCP/UDP, socket 0 is reserved for MACRAW.
-    // Try sockets 1 to W5500_MAX_SOCKETS - 1.
-    for (int i = 1; i < W5500_MAX_SOCKETS; i++) {
-        sr = w5500_read_reg(W5500_Sn_SR(i)); // Using your function for common register reads is fine.
-        if (sr == W5500_SR_CLOSED) {
-            sock = i;
-            // Mark the socket as open in the internal status array.
-            W5500_socketStatus[sock] = W5500_SOCKET_OPEN;
-            // Clear any pending interrupts.
+
+
+#define CHECK_SOCKNUM()   \
+   do{                    \
+      if(sn > _WIZCHIP_SOCK_NUM_) return SOCKERR_SOCKNUM;   \
+   }while(0);             \
+
+#define CHECK_SOCKMODE(mode)  \
+   do{                     \
+      if((getSn_MR(sn) & 0x0F) != mode) return SOCKERR_SOCKMODE;  \
+   }while(0);              \
+
+#define CHECK_SOCKINIT()   \
+   do{                     \
+      if((getSn_SR(sn) != SOCK_INIT)) return SOCKERR_SOCKINIT; \
+   }while(0);              \
+
+#define CHECK_SOCKDATA()   \
+   do{                     \
+      if(len == 0) return SOCKERR_DATALEN;   \
+   }while(0);              \
+
+
+
+int8_t socket(uint8_t sn, uint8_t protocol, uint16_t port, uint8_t flag)
+{
+	CHECK_SOCKNUM();
+	switch(protocol)
+	{
+      case Sn_MR_TCP :
+         {
+            //M20150601 : Fixed the warning - taddr will never be NULL
+		    /*
+            uint8_t taddr[4];
+            getSIPR(taddr);
+            */
+            uint32_t taddr;
+            getSIPR((uint8_t*)&taddr);
+            if(taddr == 0) return SOCKERR_SOCKINIT;
+	    break;
+         }
+      case Sn_MR_UDP :
+      case Sn_MR_MACRAW :
+	   case Sn_MR_IPRAW :
+         break;
+      default :
+         return SOCKERR_SOCKMODE;
+	}
+	//M20150601 : For SF_TCP_ALIGN & W5300
+	//if((flag & 0x06) != 0) return SOCKERR_SOCKFLAG;
+	if((flag & 0x04) != 0) return SOCKERR_SOCKFLAG;
+	   
+	if(flag != 0)
+	{
+   	switch(protocol)
+   	{
+   	   case Sn_MR_TCP:
+   		  //M20150601 :  For SF_TCP_ALIGN & W5300
+   		   if((flag & (SF_TCP_NODELAY|SF_IO_NONBLOCK))==0) return SOCKERR_SOCKFLAG;
+
+   	      break;
+   	   case Sn_MR_UDP:
+   	      if(flag & SF_IGMP_VER2)
+   	      {
+   	         if((flag & SF_MULTI_ENABLE)==0) return SOCKERR_SOCKFLAG;
+   	      }
+   	      #if _WIZCHIP_ == 5500
+      	      if(flag & SF_UNI_BLOCK)
+      	      {
+      	         if((flag & SF_MULTI_ENABLE) == 0) return SOCKERR_SOCKFLAG;
+      	      }
+   	      #endif
+   	      break;
+   	   default:
+   	      break;
+   	}
+   }
+	close(sn);
+	//M20150601
+	setSn_MR(sn, (protocol | (flag & 0xF0)));
+
+	if(!port)
+	{
+	   port = sock_any_port++;
+	   if(sock_any_port == 0xFFF0) sock_any_port = SOCK_ANY_PORT_NUM;
+	}
+   setSn_PORT(sn,port);	
+   setSn_CR(sn,Sn_CR_OPEN);
+   while(getSn_CR(sn));
+   //A20150401 : For release the previous sock_io_mode
+   sock_io_mode &= ~(1 <<sn);
+   //
+	sock_io_mode |= ((flag & SF_IO_NONBLOCK) << sn);   
+   sock_is_sending &= ~(1<<sn);
+   sock_remained_size[sn] = 0;
+   //M20150601 : repalce 0 with PACK_COMPLETED
+   //sock_pack_info[sn] = 0;
+   sock_pack_info[sn] = PACK_COMPLETED;
+   //
+   while(getSn_SR(sn) == SOCK_CLOSED);
+   return (int8_t)sn;
+}	   
+
+int8_t close(uint8_t sn)
+{
+	CHECK_SOCKNUM();
+	setSn_CR(sn,Sn_CR_CLOSE);
+   /* wait to process the command... */
+	while( getSn_CR(sn) );
+	/* clear all interrupt of the socket. */
+	setSn_IR(sn, 0xFF);
+	//A20150401 : Release the sock_io_mode of socket n.
+	sock_io_mode &= ~(1<<sn);
+	//
+	sock_is_sending &= ~(1<<sn);
+	sock_remained_size[sn] = 0;
+	sock_pack_info[sn] = 0;
+	while(getSn_SR(sn) != SOCK_CLOSED);
+	return SOCK_OK;
+}
+
+int8_t listen(uint8_t sn)
+{
+	CHECK_SOCKNUM();
+   CHECK_SOCKMODE(Sn_MR_TCP);
+	CHECK_SOCKINIT();
+	setSn_CR(sn,Sn_CR_LISTEN);
+	while(getSn_CR(sn));
+   while(getSn_SR(sn) != SOCK_LISTEN)
+   {
+         close(sn);
+         return SOCKERR_SOCKCLOSED;
+   }
+   return SOCK_OK;
+}
+
+
+int8_t connect(uint8_t sn, uint8_t * addr, uint16_t port)
+{
+   CHECK_SOCKNUM();
+   CHECK_SOCKMODE(Sn_MR_TCP);
+   CHECK_SOCKINIT();
+   //M20140501 : For avoiding fatal error on memory align mismatched
+   //if( *((uint32_t*)addr) == 0xFFFFFFFF || *((uint32_t*)addr) == 0) return SOCKERR_IPINVALID;
+   {
+      uint32_t taddr;
+      taddr = ((uint32_t)addr[0] & 0x000000FF);
+      taddr = (taddr << 8) + ((uint32_t)addr[1] & 0x000000FF);
+      taddr = (taddr << 8) + ((uint32_t)addr[2] & 0x000000FF);
+      taddr = (taddr << 8) + ((uint32_t)addr[3] & 0x000000FF);
+      if( taddr == 0xFFFFFFFF || taddr == 0) return SOCKERR_IPINVALID;
+   }
+   //
+	
+	if(port == 0) return SOCKERR_PORTZERO;
+	setSn_DIPR(sn,addr);
+	setSn_DPORT(sn,port);
+	setSn_CR(sn,Sn_CR_CONNECT);
+   while(getSn_CR(sn));
+   if(sock_io_mode & (1<<sn)) return SOCK_BUSY;
+   while(getSn_SR(sn) != SOCK_ESTABLISHED)
+   {
+		if (getSn_IR(sn) & Sn_IR_TIMEOUT)
+		{
+			setSn_IR(sn, Sn_IR_TIMEOUT);
+            return SOCKERR_TIMEOUT;
+		}
+
+		if (getSn_SR(sn) == SOCK_CLOSED)
+		{
+			return SOCKERR_SOCKCLOSED;
+		}
+	}
+   
+   return SOCK_OK;
+}
+
+int8_t disconnect(uint8_t sn)
+{
+   CHECK_SOCKNUM();
+   CHECK_SOCKMODE(Sn_MR_TCP);
+	setSn_CR(sn,Sn_CR_DISCON);
+	/* wait to process the command... */
+	while(getSn_CR(sn));
+	sock_is_sending &= ~(1<<sn);
+   if(sock_io_mode & (1<<sn)) return SOCK_BUSY;
+	while(getSn_SR(sn) != SOCK_CLOSED)
+	{
+	   if(getSn_IR(sn) & Sn_IR_TIMEOUT)
+	   {
+	      close(sn);
+	      return SOCKERR_TIMEOUT;
+	   }
+	}
+	return SOCK_OK;
+}
+
+int32_t send(uint8_t sn, uint8_t * buf, uint16_t len)
+{
+   uint8_t tmp=0;
+   uint16_t freesize=0;
+   
+   CHECK_SOCKNUM();
+   CHECK_SOCKMODE(Sn_MR_TCP);
+   CHECK_SOCKDATA();
+   tmp = getSn_SR(sn);
+   if(tmp != SOCK_ESTABLISHED && tmp != SOCK_CLOSE_WAIT) return SOCKERR_SOCKSTATUS;
+   if( sock_is_sending & (1<<sn) )
+   {
+      tmp = getSn_IR(sn);
+      if(tmp & Sn_IR_SENDOK)
+      {
+         setSn_IR(sn, Sn_IR_SENDOK);
+         //M20150401 : Typing Error
+         sock_is_sending &= ~(1<<sn);         
+      }
+      else if(tmp & Sn_IR_TIMEOUT)
+      {
+         close(sn);
+         return SOCKERR_TIMEOUT;
+      }
+      else return SOCK_BUSY;
+   }
+   freesize = getSn_TxMAX(sn);
+   if (len > freesize) len = freesize; // check size not to exceed MAX size.
+   while(1)
+   {
+      freesize = getSn_TX_FSR(sn);
+      tmp = getSn_SR(sn);
+      if ((tmp != SOCK_ESTABLISHED) && (tmp != SOCK_CLOSE_WAIT))
+      {
+         close(sn);
+         return SOCKERR_SOCKSTATUS;
+      }
+      if( (sock_io_mode & (1<<sn)) && (len > freesize) ) return SOCK_BUSY;
+      if(len <= freesize) break;
+   }
+   wiz_send_data(sn, buf, len);
+
+   setSn_CR(sn,Sn_CR_SEND);
+   /* wait to process the command... */
+   while(getSn_CR(sn));
+   sock_is_sending |= (1 << sn);
+   //M20150409 : Explicit Type Casting
+   //return len;
+   return (int32_t)len;
+}
+
+
+int32_t recv(uint8_t sn, uint8_t * buf, uint16_t len)
+{
+   uint8_t  tmp = 0;
+   uint16_t recvsize = 0;
+//
+   CHECK_SOCKNUM();
+   CHECK_SOCKMODE(Sn_MR_TCP);
+   CHECK_SOCKDATA();
+   
+   recvsize = getSn_RxMAX(sn);
+   if(recvsize < len) len = recvsize;
+      
+      while(1)
+      {
+         recvsize = getSn_RX_RSR(sn);
+         tmp = getSn_SR(sn);
+         if (tmp != SOCK_ESTABLISHED)
+         {
+            if(tmp == SOCK_CLOSE_WAIT)
             {
-                uint8_t clear_val = 0xFF;
-                w5500_Send(W5500_SREG_IR_OFFSET, W5500_BLOCK_S_REG(sock), 1, &clear_val, 1);
+               if(recvsize != 0) break;
+               else if(getSn_TX_FSR(sn) == getSn_TxMAX(sn))
+               {
+                  close(sn);
+                  return SOCKERR_SOCKSTATUS;
+               }
             }
-            // Set the socket mode (Sn_MR) using w5500_Send.
+            else
             {
-                uint8_t proto = protocol;
-                w5500_Send(W5500_SREG_MR_OFFSET, W5500_BLOCK_S_REG(sock), 1, &proto, 1);
+               close(sn);
+               return SOCKERR_SOCKSTATUS;
             }
-            // Set the source port (Sn_PORT) using w5500_Send.
+         }
+         if((sock_io_mode & (1<<sn)) && (recvsize == 0)) return SOCK_BUSY;
+         if(recvsize != 0) break;
+      };
+
+   if(recvsize < len) len = recvsize;   
+   wiz_recv_data(sn, buf, len);
+   setSn_CR(sn,Sn_CR_RECV);
+   while(getSn_CR(sn));
+     
+   //M20150409 : Explicit Type Casting
+   //return len;
+   return (int32_t)len;
+}
+
+int32_t sendto(uint8_t sn, uint8_t * buf, uint16_t len, uint8_t * addr, uint16_t port)
+{
+   uint8_t tmp = 0;
+   uint16_t freesize = 0;
+   uint32_t taddr;
+
+   CHECK_SOCKNUM();
+   switch(getSn_MR(sn) & 0x0F)
+   {
+      case Sn_MR_UDP:
+      case Sn_MR_MACRAW:
+      case Sn_MR_IPRAW:
+         break;
+      default:
+         return SOCKERR_SOCKMODE;
+   }
+   CHECK_SOCKDATA();
+   //M20140501 : For avoiding fatal error on memory align mismatched
+   //if(*((uint32_t*)addr) == 0) return SOCKERR_IPINVALID;
+   //{
+      //uint32_t taddr;
+      taddr = ((uint32_t)addr[0]) & 0x000000FF;
+      taddr = (taddr << 8) + ((uint32_t)addr[1] & 0x000000FF);
+      taddr = (taddr << 8) + ((uint32_t)addr[2] & 0x000000FF);
+      taddr = (taddr << 8) + ((uint32_t)addr[3] & 0x000000FF);
+   //}
+   //
+   //if(*((uint32_t*)addr) == 0) return SOCKERR_IPINVALID;
+   if((taddr == 0) && ((getSn_MR(sn)&Sn_MR_MACRAW) != Sn_MR_MACRAW)) return SOCKERR_IPINVALID;
+   if((port  == 0) && ((getSn_MR(sn)&Sn_MR_MACRAW) != Sn_MR_MACRAW)) return SOCKERR_PORTZERO;
+   tmp = getSn_SR(sn);
+   if((tmp != SOCK_MACRAW) && (tmp != SOCK_UDP) && (tmp != SOCK_IPRAW)) return SOCKERR_SOCKSTATUS;
+      
+   setSn_DIPR(sn,addr);
+   setSn_DPORT(sn,port);      
+   freesize = getSn_TxMAX(sn);
+   if (len > freesize) len = freesize; // check size not to exceed MAX size.
+   while(1)
+   {
+      freesize = getSn_TX_FSR(sn);
+      if(getSn_SR(sn) == SOCK_CLOSED) return SOCKERR_SOCKCLOSED;
+      if( (sock_io_mode & (1<<sn)) && (len > freesize) ) return SOCK_BUSY;
+      if(len <= freesize) break;
+   };
+	wiz_send_data(sn, buf, len);
+
+	setSn_CR(sn,Sn_CR_SEND);
+	/* wait to process the command... */
+	while(getSn_CR(sn));
+   while(1)
+   {
+      tmp = getSn_IR(sn);
+      if(tmp & Sn_IR_SENDOK)
+      {
+         setSn_IR(sn, Sn_IR_SENDOK);
+         break;
+      }
+      //M:20131104
+      //else if(tmp & Sn_IR_TIMEOUT) return SOCKERR_TIMEOUT;
+      else if(tmp & Sn_IR_TIMEOUT)
+      {
+         setSn_IR(sn, Sn_IR_TIMEOUT);
+         return SOCKERR_TIMEOUT;
+      }
+      ////////////
+   }
+   //M20150409 : Explicit Type Casting
+   //return len;
+   return (int32_t)len;
+}
+
+int32_t recvfrom(uint8_t sn, uint8_t * buf, uint16_t len, uint8_t * addr, uint16_t *port)
+{
+   uint8_t  mr;
+//   
+   uint8_t  head[8];
+	uint16_t pack_len=0;
+
+   CHECK_SOCKNUM();
+   //CHECK_SOCKMODE(Sn_MR_UDP);  
+
+   switch((mr=getSn_MR(sn)) & 0x0F)
+   {
+      case Sn_MR_UDP:
+	  case Sn_MR_IPRAW:
+      case Sn_MR_MACRAW:
+         break;
+   #if ( _WIZCHIP_ < 5200 )         
+      case Sn_MR_PPPoE:
+         break;
+   #endif
+      default:
+         return SOCKERR_SOCKMODE;
+   }
+   CHECK_SOCKDATA();
+   if(sock_remained_size[sn] == 0)
+   {
+      while(1)
+      {
+         pack_len = getSn_RX_RSR(sn);
+         if(getSn_SR(sn) == SOCK_CLOSED) return SOCKERR_SOCKCLOSED;
+         if( (sock_io_mode & (1<<sn)) && (pack_len == 0) ) return SOCK_BUSY;
+         if(pack_len != 0) break;
+      };
+   }
+//D20150601 : Move it to bottom
+// sock_pack_info[sn] = PACK_COMPLETED;
+	switch (mr & 0x07)
+	{
+	   case Sn_MR_UDP :
+	      if(sock_remained_size[sn] == 0)
+	      {
+   			wiz_recv_data(sn, head, 8);
+   			setSn_CR(sn,Sn_CR_RECV);
+   			while(getSn_CR(sn));
+   			// read peer's IP address, port number & packet length
+
+               addr[0] = head[0];
+      			addr[1] = head[1];
+      			addr[2] = head[2];
+      			addr[3] = head[3];
+      			*port = head[4];
+      			*port = (*port << 8) + head[5];
+      			sock_remained_size[sn] = head[6];
+      			sock_remained_size[sn] = (sock_remained_size[sn] << 8) + head[7];
+   			   sock_pack_info[sn] = PACK_FIRST;
+   	   }
+			if(len < sock_remained_size[sn]) pack_len = len;
+			else pack_len = sock_remained_size[sn];
+
+			//
+			// Need to packet length check (default 1472)
+			//
+   		wiz_recv_data(sn, buf, pack_len); // data copy.
+			break;
+	   case Sn_MR_MACRAW :
+	      if(sock_remained_size[sn] == 0)
+	      {
+   			wiz_recv_data(sn, head, 2);
+   			setSn_CR(sn,Sn_CR_RECV);
+   			while(getSn_CR(sn));
+   			// read peer's IP address, port number & packet length
+    			sock_remained_size[sn] = head[0];
+   			sock_remained_size[sn] = (sock_remained_size[sn] <<8) + head[1] -2;
+
+   			if(sock_remained_size[sn] > 1514) 
+   			{
+   			   close(sn);
+   			   return SOCKFATAL_PACKLEN;
+   			}
+   			sock_pack_info[sn] = PACK_FIRST;
+   	   }
+			if(len < sock_remained_size[sn]) pack_len = len;
+			else pack_len = sock_remained_size[sn];
+			wiz_recv_data(sn,buf,pack_len);
+		   break;
+   //#if ( _WIZCHIP_ < 5200 )
+		case Sn_MR_IPRAW:
+		   if(sock_remained_size[sn] == 0)
+		   {
+   			wiz_recv_data(sn, head, 6);
+   			setSn_CR(sn,Sn_CR_RECV);
+   			while(getSn_CR(sn));
+   			addr[0] = head[0];
+   			addr[1] = head[1];
+   			addr[2] = head[2];
+   			addr[3] = head[3];
+   			sock_remained_size[sn] = head[4];
+   			//M20150401 : For Typing Error
+   			//sock_remaiend_size[sn] = (sock_remained_size[sn] << 8) + head[5];
+   			sock_remained_size[sn] = (sock_remained_size[sn] << 8) + head[5];
+   			sock_pack_info[sn] = PACK_FIRST;
+         }
+			//
+			// Need to packet length check
+			//
+			if(len < sock_remained_size[sn]) pack_len = len;
+			else pack_len = sock_remained_size[sn];
+   		wiz_recv_data(sn, buf, pack_len); // data copy.
+			break;
+   //#endif
+      default:
+         wiz_recv_ignore(sn, pack_len); // data copy.
+         sock_remained_size[sn] = pack_len;
+         break;
+   }
+	setSn_CR(sn,Sn_CR_RECV);
+	/* wait to process the command... */
+	while(getSn_CR(sn)) ;
+	sock_remained_size[sn] -= pack_len;
+	//M20150601 : 
+	//if(sock_remained_size[sn] != 0) sock_pack_info[sn] |= 0x01;
+	if(sock_remained_size[sn] != 0){
+	   sock_pack_info[sn] |= PACK_REMAINED;      
+	}	else sock_pack_info[sn] = PACK_COMPLETED;
+   //M20150409 : Explicit Type Casting
+   //return pack_len;
+   return (int32_t)pack_len;
+}
+
+
+int8_t  ctlsocket(uint8_t sn, ctlsock_type cstype, void* arg)
+{
+   uint8_t tmp = 0;
+   CHECK_SOCKNUM();
+   switch(cstype)
+   {
+      case CS_SET_IOMODE:
+         tmp = *((uint8_t*)arg);
+         if(tmp == SOCK_IO_NONBLOCK)  sock_io_mode |= (1<<sn);
+         else if(tmp == SOCK_IO_BLOCK) sock_io_mode &= ~(1<<sn);
+         else return SOCKERR_ARG;
+         break;
+      case CS_GET_IOMODE:   
+         //M20140501 : implict type casting -> explict type casting
+         //*((uint8_t*)arg) = (sock_io_mode >> sn) & 0x0001;
+         *((uint8_t*)arg) = (uint8_t)((sock_io_mode >> sn) & 0x0001);
+         //
+         break;
+      case CS_GET_MAXTXBUF:
+         *((uint16_t*)arg) = getSn_TxMAX(sn);
+         break;
+      case CS_GET_MAXRXBUF:    
+         *((uint16_t*)arg) = getSn_RxMAX(sn);
+         break;
+      case CS_CLR_INTERRUPT:
+         if( (*(uint8_t*)arg) > SIK_ALL) return SOCKERR_ARG;
+         setSn_IR(sn,*(uint8_t*)arg);
+         break;
+      case CS_GET_INTERRUPT:
+         *((uint8_t*)arg) = getSn_IR(sn);
+         break;
+   #if _WIZCHIP_ != 5100
+      case CS_SET_INTMASK:  
+         if( (*(uint8_t*)arg) > SIK_ALL) return SOCKERR_ARG;
+         setSn_IMR(sn,*(uint8_t*)arg);
+         break;
+      case CS_GET_INTMASK:   
+         *((uint8_t*)arg) = getSn_IMR(sn);
+         break;
+   #endif
+      default:
+         return SOCKERR_ARG;
+   }
+   return SOCK_OK;
+}
+
+int8_t  setsockopt(uint8_t sn, sockopt_type sotype, void* arg)
+{
+ // M20131220 : Remove warning
+ //uint8_t tmp;
+   CHECK_SOCKNUM();
+   switch(sotype)
+   {
+      case SO_TTL:
+         setSn_TTL(sn,*(uint8_t*)arg);
+         break;
+      case SO_TOS:
+         setSn_TOS(sn,*(uint8_t*)arg);
+         break;
+      case SO_MSS:
+         setSn_MSSR(sn,*(uint16_t*)arg);
+         break;
+      case SO_DESTIP:
+         setSn_DIPR(sn, (uint8_t*)arg);
+         break;
+      case SO_DESTPORT:
+         setSn_DPORT(sn, *(uint16_t*)arg);
+         break;
+#if _WIZCHIP_ != 5100
+      case SO_KEEPALIVESEND:
+         CHECK_SOCKMODE(Sn_MR_TCP);
+         #if _WIZCHIP_ > 5200
+            if(getSn_KPALVTR(sn) != 0) return SOCKERR_SOCKOPT;
+         #endif
+            setSn_CR(sn,Sn_CR_SEND_KEEP);
+            while(getSn_CR(sn) != 0)
             {
-                port = SERVER_PORT;
-                // Ensure the port is in network order (big-endian) if required.
-                uint8_t port_buf[2];
-                port_buf[0] = (port >> 8) & 0xFF;
-                port_buf[1] = port & 0xFF;
-                w5500_Send(W5500_SREG_PORT_OFFSET, W5500_BLOCK_S_REG(sock), 1, port_buf, 2);
+               // M20131220
+         		//if ((tmp = getSn_IR(sn)) & Sn_IR_TIMEOUT)
+               if (getSn_IR(sn) & Sn_IR_TIMEOUT)
+         		{
+         			setSn_IR(sn, Sn_IR_TIMEOUT);
+                  return SOCKERR_TIMEOUT;
+         		}
             }
-            // Read back MR and PORT for debugging.
-            {
-                uint8_t read_proto;
-                uint8_t port_buf[2];
-                w5500_Send(W5500_SREG_MR_OFFSET, W5500_BLOCK_S_REG(sock), 0, &read_proto, 1);
-                w5500_Send(W5500_SREG_PORT_OFFSET, W5500_BLOCK_S_REG(sock), 0, port_buf, 2);
-                printf("\n[SOCKET] Socket %d: Set MR=0x%02X, PORT=0x%02X%02X\n", sock, read_proto, port_buf[0], port_buf[1]);
-            }
-            
-            int attempts = 0;
-            while (attempts < max_attempts) {
-                // Issue the OPEN command (which is 0x01).
-                uint8_t open_cmd = 0x01;
-                if (w5500_ExecuteSocketCommand(sock, open_cmd) == 0) {
-                    sleep_ms(10);  // Allow brief time for state update.
-                    // Read back CR and SR using w5500_Send.
-                    w5500_Send(W5500_SREG_CR_OFFSET, W5500_BLOCK_S_REG(sock), 0, &cr, 1);
-                    w5500_Send(W5500_SREG_SR_OFFSET, W5500_BLOCK_S_REG(sock), 0, &sr, 1);
-                    printf("[SOCKET] Socket %d, attempt %d: CR = 0x%02X, SR = 0x%02X\n", sock, attempts + 1, cr, sr);
-                    if (sr == W5500_SR_INIT) {
-                        printf("[SOCKET] Socket %d opened successfully after %d attempt(s)\n", sock, attempts + 1);
-                        return sock;
-                    }
-                }
-                printf("[SOCKET] Attempt %d to open socket %d failed, retrying...\n", attempts + 1, sock);
-                attempts++;
-                sleep_ms(10);  // Delay between attempts.
-            }
-            printf("[SOCKET] Failed to open socket %d after %d attempts, trying next...\n", sock, max_attempts);
-            W5500_socketStatus[sock] = W5500_SOCKET_AVAILALE;
-        }
-    }
-    printf("[SOCKET] No available sockets for TCP/UDP\n");
-    return -1;
+         break;
+   #if !( (_WIZCHIP_ == 5100) || (_WIZCHIP_ == 5200) )
+      case SO_KEEPALIVEAUTO:
+         CHECK_SOCKMODE(Sn_MR_TCP);
+         setSn_KPALVTR(sn,*(uint8_t*)arg);
+         break;
+   #endif      
+#endif   
+      default:
+         return SOCKERR_ARG;
+   }   
+   return SOCK_OK;
 }
 
-/**
- * Execute a socket command and wait for the command register to clear.
- * Returns 0 if the command completed successfully, or 1 on timeout.
- */
-int w5500_ExecuteSocketCommand(uint8_t socket, uint8_t cmd) {
-    // Write the command to the socket's CR register
-    w5500_Send(W5500_SREG_CR_OFFSET, W5500_BLOCK_S_REG(socket), 1, &cmd, 1);
-
-    // Wait for the command register to clear
-    uint8_t cr;
-    uint32_t timeout = 125; // Adjust this if necessary
-    while (timeout--) {
-        sleep_ms(1);  // Small delay for W5500 to process
-        w5500_Send(W5500_SREG_CR_OFFSET, W5500_BLOCK_S_REG(socket), 0, &cr, 1);
-        if (cr == 0) {
-            return 0; // Success
-        }
-    }
-
-    // If CR doesn't clear, return error
-    printf("[SOCKET] ExecuteSocketCommand: Socket %d, command 0x%02X did not clear CR after 125 ms (CR = 0x%02X)\n",
-           socket, cmd, cr);
-    return -1;
-}
-
-/**
- * Close the specified socket.
- */
-void w5500_socket_close(uint8_t socket) {
-    if (socket >= W5500_MAX_SOCKETS) return;
-    w5500_send_socket_command(socket, W5500_CR_CLOSE);
-    // Wait until command register is cleared
-    while (w5500_read_reg(W5500_Sn_CR(socket)) != 0)
-        sleep_ms(1);
-    // Clear interrupts
-    w5500_write_reg(W5500_Sn_IR(socket), 0xFF);
-    W5500_socketStatus[socket] = W5500_SOCKET_AVAILALE;
-    printf("[SOCKET] Socket %d closed\n", socket);
-}
-
-/**
- * Set the socket to listen mode (for TCP server operation).
- */
-bool w5500_socket_listen(uint8_t socket) {
-    if (socket >= W5500_MAX_SOCKETS)
-        return false;
-
-    const uint32_t timeout_ms = 1000; // Total timeout period
-    uint32_t elapsed = 0;
-    uint8_t status = 0;
-    
-    // Repeatedly issue the LISTEN command until the socket status changes to LISTEN (0x14)
-    while (elapsed < timeout_ms) {
-        // Use ExecuteSocketCommand() to issue LISTEN command
-        if (w5500_ExecuteSocketCommand(socket, W5500_CR_LISTEN) == 0) {
-            sleep_ms(10);  // Allow time for the status to update
-            elapsed += 10;
-            w5500_Send(W5500_SREG_SR_OFFSET, W5500_BLOCK_S_REG(socket), 0, &status, 1);
-            if (status == W5500_SR_LISTEN) {
-                printf("[SOCKET] Socket %d entered LISTEN state (0x%02X) after %lu ms.\n", socket, status, elapsed);
-                return true;
-            }
-        }
-        sleep_ms(10);
-        elapsed += 10;
-    }
-    printf("[SOCKET] Socket %d did not enter LISTEN state (final status: 0x%02X) after %lu ms, closing socket.\n", socket, status, elapsed);
-    w5500_send_socket_command(socket, W5500_CR_CLOSE);
-    return false;
-}
-
-/**
- * Send data on the specified socket.
- */
-void w5500_socket_send(uint8_t socket, const uint8_t* data, uint16_t len) {
-    // Get free TX buffer space (16-bit value)
-    uint16_t freeSize = w5500_read_16(W5500_Sn_TX_FSR(socket));
-    if (freeSize < len) {
-        printf("[SOCKET] Not enough TX buffer space on socket %d (free: %d, needed: %d)\n", socket, freeSize, len);
-        return;
-    }
-    // Get the current TX write pointer
-    uint16_t ptr = w5500_read_16(W5500_Sn_TX_WR(socket));
-    // Calculate the absolute address in the TX buffer:
-    // (Assume the hardware maps the socket TX base at an offset computed as follows)
-    uint32_t addr = ((uint32_t)ptr << 8) + (W5500_Sn_TX_BASE(socket));
-    for (uint16_t i = 0; i < len; i++) {
-        w5500_write_reg(addr + i, data[i]);
-    }
-    ptr += len;
-    w5500_write_16(W5500_Sn_TX_WR(socket), ptr);
-    w5500_send_socket_command(socket, W5500_CR_SEND);
-    printf("[SOCKET] Sent %d bytes on socket %d\n", len, socket);
-}
-
-/**
- * Receive data from the specified socket.
- * Returns the number of bytes received.
- */
-uint16_t w5500_socket_recv(uint8_t socket, uint8_t* buffer, uint16_t len) {
-    uint16_t rxSize = w5500_read_16(W5500_Sn_RX_RSR(socket));
-    if (rxSize == 0)
-        return 0;
-    if (rxSize > len)
-        rxSize = len;
-    uint16_t ptr = w5500_read_16(W5500_Sn_RX_RD(socket));
-    uint32_t addr = ((uint32_t)ptr << 8) + (W5500_Sn_RX_BASE(socket));
-    for (uint16_t i = 0; i < rxSize; i++) {
-        buffer[i] = w5500_read_reg(addr + i);
-    }
-    ptr += rxSize;
-    w5500_write_16(W5500_Sn_RX_RD(socket), ptr);
-    w5500_send_socket_command(socket, W5500_CR_RECV);
-    printf("[SOCKET] Received %d bytes on socket %d\n", rxSize, socket);
-    return rxSize;
-}
-
-// Set the HTTP response status code (e.g. 200 for OK)
-void http_response_set_status(http_response_t* res, int status) {
-    res->status = status;
-    DEBUG_PRINT("[HTTP] Response status set to %d\n", status);
-}
-
-// Set the HTTP response body (with a maximum length of HTTP_MAX_BODY_SIZE)
-// The body is copied and null-terminated.
-void http_response_set_body(http_response_t* res, const char* body, size_t len) {
-    if (len > HTTP_MAX_BODY_SIZE) {
-        len = HTTP_MAX_BODY_SIZE;
-    }
-    memcpy(res->body, body, len);
-    res->body[len] = '\0';
-    res->body_length = (int)len;
-    DEBUG_PRINT("[HTTP] Response body set, length %zu\n", len);
-}
-
-// Format and send the HTTP response over the given socket.
-// This example builds a basic HTTP response with status line, Content-Length header, and the body.
-void http_response_send(http_response_t* res, uint8_t socket) {
-    char response[HTTP_MAX_BODY_SIZE + 256]; // Extra space for headers
-    int n = snprintf(response, sizeof(response),
-                     "HTTP/1.1 %d OK\r\n"
-                     "Content-Length: %d\r\n"
-                     "Content-Type: text/html\r\n"
-                     "\r\n"
-                     "%s",
-                     res->status, res->body_length, res->body);
-    DEBUG_PRINT("[HTTP] Sending response on socket %d, total length %d\n", socket, n);
-    // Use your socket send function to send the response.
-    // For example, if you have a function w5500_socket_send:
-    w5500_socket_send(socket, (uint8_t*)response, n);
+int8_t  getsockopt(uint8_t sn, sockopt_type sotype, void* arg)
+{
+   CHECK_SOCKNUM();
+   switch(sotype)
+   {
+      case SO_FLAG:
+         *(uint8_t*)arg = getSn_MR(sn) & 0xF0;
+         break;
+      case SO_TTL:
+         *(uint8_t*) arg = getSn_TTL(sn);
+         break;
+      case SO_TOS:
+         *(uint8_t*) arg = getSn_TOS(sn);
+         break;
+      case SO_MSS:   
+         *(uint16_t*) arg = getSn_MSSR(sn);
+         break;
+      case SO_DESTIP:
+         getSn_DIPR(sn, (uint8_t*)arg);
+         break;
+      case SO_DESTPORT:  
+         *(uint16_t*) arg = getSn_DPORT(sn);
+         break;
+   #if _WIZCHIP_ > 5200   
+      case SO_KEEPALIVEAUTO:
+         CHECK_SOCKMODE(Sn_MR_TCP);
+         *(uint16_t*) arg = getSn_KPALVTR(sn);
+         break;
+   #endif      
+      case SO_SENDBUF:
+         *(uint16_t*) arg = getSn_TX_FSR(sn);
+         break;
+      case SO_RECVBUF:
+         *(uint16_t*) arg = getSn_RX_RSR(sn);
+         break;
+      case SO_STATUS:
+         *(uint8_t*) arg = getSn_SR(sn);
+         break;
+      case SO_REMAINSIZE:
+         if(getSn_MR(sn) & Sn_MR_TCP)
+            *(uint16_t*)arg = getSn_RX_RSR(sn);
+         else
+            *(uint16_t*)arg = sock_remained_size[sn];
+         break;
+      case SO_PACKINFO:
+         //CHECK_SOCKMODE(Sn_MR_TCP);
+#if _WIZCHIP_ != 5300
+         if((getSn_MR(sn) == Sn_MR_TCP))
+             return SOCKERR_SOCKMODE;
+#endif
+         *(uint8_t*)arg = sock_pack_info[sn];
+         break;
+      default:
+         return SOCKERR_SOCKOPT;
+   }
+   return SOCK_OK;
 }

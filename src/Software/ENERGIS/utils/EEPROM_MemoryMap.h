@@ -34,8 +34,8 @@
 
 // 4. User Network Settings (256 bytes)
 //    Last byte reserved for an 8-bit checksum.
-#define EEPROM_USER_NETWORK_START 0x0300
-#define EEPROM_USER_NETWORK_SIZE  0x0100
+#define EEPROM_USER_NETWORK_START  0x0300
+#define EEPROM_USER_NETWORK_SIZE   (sizeof(networkInfo) + 1)
 
 // 5. Sensor Calibration & Thresholds (1024 bytes)
 #define EEPROM_SENSOR_CAL_START   0x0400
@@ -62,6 +62,19 @@
 // 9. Reserved for Future Expansion (remaining space)
 #define EEPROM_RESERVED_START     0x3000
 #define EEPROM_RESERVED_SIZE      (EEPROM_SIZE - EEPROM_RESERVED_START)
+
+#define NETINFO_STATIC  0
+#define NETINFO_DHCP    1
+
+typedef struct {
+    uint8_t mac[6];   // MAC Address
+    uint8_t ip[4];    // IP Address
+    uint8_t sn[4];    // Subnet Mask
+    uint8_t gw[4];    // Gateway
+    uint8_t dns[4];   // DNS Server
+    uint8_t dhcp;     // DHCP Mode (0 = Static, 1 = DHCP)
+} networkInfo;
+
 
 
 // Existing functions for each region
@@ -95,8 +108,8 @@ int EEPROM_ReadUserPreferences(uint8_t *data, size_t len);
 int EEPROM_WriteSystemInfoWithChecksum(const uint8_t *data, size_t len);
 int EEPROM_ReadSystemInfoWithChecksum(uint8_t *data, size_t len);  // returns 0 if valid, -1 if checksum fails
 
-int EEPROM_WriteUserNetworkWithChecksum(const uint8_t *data, size_t len);
-int EEPROM_ReadUserNetworkWithChecksum(uint8_t *data, size_t len);  // returns 0 if valid, -1 if checksum fails
+int EEPROM_WriteUserNetworkWithChecksum(const networkInfo *net_info);
+int EEPROM_ReadUserNetworkWithChecksum(networkInfo *net_info); 
 
 // New functions for Wear Leveling / Append for Energy Monitoring Data
 int EEPROM_AppendEnergyRecord(const uint8_t *data);  // data length fixed as ENERGY_RECORD_SIZE
@@ -104,4 +117,5 @@ int EEPROM_AppendEnergyRecord(const uint8_t *data);  // data length fixed as ENE
 // New functions for appending Event Logs
 int EEPROM_AppendEventLog(const uint8_t *entry);  // entry length fixed as EVENT_LOG_ENTRY_SIZE
 
+networkInfo LoadUserNetworkConfig() ;
 #endif // EEPROM_MEMORY_MAP_H

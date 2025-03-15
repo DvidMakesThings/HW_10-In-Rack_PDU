@@ -1,324 +1,267 @@
+//*****************************************************************************
+//
+//! \file w5500.c
+//! \brief W5500 HAL Interface.
+//! \version 1.0.2
+//! \date 2013/10/21
+//! \par  Revision history
+//!       <2015/02/05> Notice
+//!        The version history is not updated after this point.
+//!        Download the latest version directly from GitHub. Please visit the our GitHub repository for ioLibrary.
+//!        >> https://github.com/Wiznet/ioLibrary_Driver
+//!       <2014/05/01> V1.0.2
+//!         1. Implicit type casting -> Explicit type casting. Refer to M20140501
+//!            Fixed the problem on porting into under 32bit MCU
+//!            Issued by Mathias ClauBen, wizwiki forum ID Think01 and bobh
+//!            Thank for your interesting and serious advices.
+//!       <2013/12/20> V1.0.1
+//!         1. Remove warning
+//!         2. WIZCHIP_READ_BUF WIZCHIP_WRITE_BUF in case _WIZCHIP_IO_MODE_SPI_FDM_
+//!            for loop optimized(removed). refer to M20131220
+//!       <2013/10/21> 1st Release
+//! \author MidnightCow
+//! \copyright
+//!
+//! Copyright (c)  2013, WIZnet Co., LTD.
+//! All rights reserved.
+//! 
+//! Redistribution and use in source and binary forms, with or without 
+//! modification, are permitted provided that the following conditions 
+//! are met: 
+//! 
+//!     * Redistributions of source code must retain the above copyright 
+//! notice, this list of conditions and the following disclaimer. 
+//!     * Redistributions in binary form must reproduce the above copyright
+//! notice, this list of conditions and the following disclaimer in the
+//! documentation and/or other materials provided with the distribution. 
+//!     * Neither the name of the <ORGANIZATION> nor the names of its 
+//! contributors may be used to endorse or promote products derived 
+//! from this software without specific prior written permission. 
+//! 
+//! THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+//! AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+//! IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+//! ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
+//! LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+//! CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+//! SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+//! INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+//! CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+//! ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+//! THE POSSIBILITY OF SUCH DAMAGE.
+//
+//*****************************************************************************
+//#include <stdio.h>
 #include "w5500.h"
-#include "pico/stdlib.h"
-#include "hardware/spi.h"
-#include <stdio.h>
-#include "../CONFIG.h"
 
-/*===========================================================================
-  Low-level SPI functions
-===========================================================================*/
-void w5500_select(void) {
-    gpio_put(W5500_CS, 0);
+#define _W5500_SPI_VDM_OP_          0x00
+#define _W5500_SPI_FDM_OP_LEN1_     0x01
+#define _W5500_SPI_FDM_OP_LEN2_     0x02
+#define _W5500_SPI_FDM_OP_LEN4_     0x03
+
+#if   (_WIZCHIP_ == 5500)
+////////////////////////////////////////////////////
+
+uint8_t  WIZCHIP_READ(uint32_t AddrSel)
+{
+   uint8_t ret;
+   uint8_t spi_data[3];
+
+   WIZCHIP_CRITICAL_ENTER();
+   WIZCHIP.CS._select();
+
+   AddrSel |= (_W5500_SPI_READ_ | _W5500_SPI_VDM_OP_);
+
+   if(!WIZCHIP.IF.SPI._read_burst || !WIZCHIP.IF.SPI._write_burst) 	// byte operation
+   {
+	   WIZCHIP.IF.SPI._write_byte((AddrSel & 0x00FF0000) >> 16);
+		WIZCHIP.IF.SPI._write_byte((AddrSel & 0x0000FF00) >>  8);
+		WIZCHIP.IF.SPI._write_byte((AddrSel & 0x000000FF) >>  0);
+   }
+   else																// burst operation
+   {
+		spi_data[0] = (AddrSel & 0x00FF0000) >> 16;
+		spi_data[1] = (AddrSel & 0x0000FF00) >> 8;
+		spi_data[2] = (AddrSel & 0x000000FF) >> 0;
+		WIZCHIP.IF.SPI._write_burst(spi_data, 3);
+   }
+   ret = WIZCHIP.IF.SPI._read_byte();
+
+   WIZCHIP.CS._deselect();
+   WIZCHIP_CRITICAL_EXIT();
+   return ret;
 }
 
-void w5500_deselect(void) {
-    gpio_put(W5500_CS, 1);
+void     WIZCHIP_WRITE(uint32_t AddrSel, uint8_t wb )
+{
+   uint8_t spi_data[4];
+
+   WIZCHIP_CRITICAL_ENTER();
+   WIZCHIP.CS._select();
+
+   AddrSel |= (_W5500_SPI_WRITE_ | _W5500_SPI_VDM_OP_);
+
+   //if(!WIZCHIP.IF.SPI._read_burst || !WIZCHIP.IF.SPI._write_burst) 	// byte operation
+   if(!WIZCHIP.IF.SPI._write_burst) 	// byte operation
+   {
+		WIZCHIP.IF.SPI._write_byte((AddrSel & 0x00FF0000) >> 16);
+		WIZCHIP.IF.SPI._write_byte((AddrSel & 0x0000FF00) >>  8);
+		WIZCHIP.IF.SPI._write_byte((AddrSel & 0x000000FF) >>  0);
+		WIZCHIP.IF.SPI._write_byte(wb);
+   }
+   else									// burst operation
+   {
+		spi_data[0] = (AddrSel & 0x00FF0000) >> 16;
+		spi_data[1] = (AddrSel & 0x0000FF00) >> 8;
+		spi_data[2] = (AddrSel & 0x000000FF) >> 0;
+		spi_data[3] = wb;
+		WIZCHIP.IF.SPI._write_burst(spi_data, 4);
+   }
+
+   WIZCHIP.CS._deselect();
+   WIZCHIP_CRITICAL_EXIT();
+}
+         
+void     WIZCHIP_READ_BUF (uint32_t AddrSel, uint8_t* pBuf, uint16_t len)
+{
+   uint8_t spi_data[3];
+   uint16_t i;
+
+   WIZCHIP_CRITICAL_ENTER();
+   WIZCHIP.CS._select();
+
+   AddrSel |= (_W5500_SPI_READ_ | _W5500_SPI_VDM_OP_);
+
+   if(!WIZCHIP.IF.SPI._read_burst || !WIZCHIP.IF.SPI._write_burst) 	// byte operation
+   {
+		WIZCHIP.IF.SPI._write_byte((AddrSel & 0x00FF0000) >> 16);
+		WIZCHIP.IF.SPI._write_byte((AddrSel & 0x0000FF00) >>  8);
+		WIZCHIP.IF.SPI._write_byte((AddrSel & 0x000000FF) >>  0);
+		for(i = 0; i < len; i++)
+		   pBuf[i] = WIZCHIP.IF.SPI._read_byte();
+   }
+   else																// burst operation
+   {
+		spi_data[0] = (AddrSel & 0x00FF0000) >> 16;
+		spi_data[1] = (AddrSel & 0x0000FF00) >> 8;
+		spi_data[2] = (AddrSel & 0x000000FF) >> 0;
+		WIZCHIP.IF.SPI._write_burst(spi_data, 3);
+		WIZCHIP.IF.SPI._read_burst(pBuf, len);
+   }
+
+   WIZCHIP.CS._deselect();
+   WIZCHIP_CRITICAL_EXIT();
 }
 
-/*===========================================================================
-  SPI register access functions
-===========================================================================*/
-void w5500_write_reg(uint16_t addr, uint8_t value) {
-    uint8_t tx_buf[4];
-    tx_buf[0] = (addr >> 8) & 0xFF;
-    tx_buf[1] = addr & 0xFF;
-    tx_buf[2] = 0x04; // Control byte: Write, VDM mode
-    tx_buf[3] = value;
-    w5500_select();
-    spi_write_blocking(W5500_SPI_INSTANCE, tx_buf, 4);
-    w5500_deselect();
-}
+void     WIZCHIP_WRITE_BUF(uint32_t AddrSel, uint8_t* pBuf, uint16_t len)
+{
+   uint8_t spi_data[3];
+   uint16_t i;
 
-uint8_t w5500_read_reg(uint16_t addr) {
-    uint8_t tx_buf[3];
-    uint8_t rx;
-    tx_buf[0] = (addr >> 8) & 0xFF;
-    tx_buf[1] = addr & 0xFF;
-    tx_buf[2] = 0x00; // Control byte: Read, VDM mode
-    w5500_select();
-    spi_write_blocking(W5500_SPI_INSTANCE, tx_buf, 3);
-    spi_read_blocking(W5500_SPI_INSTANCE, 0xFF, &rx, 1);
-    w5500_deselect();
-    return rx;
-}
+   WIZCHIP_CRITICAL_ENTER();
+   WIZCHIP.CS._select();
 
-void w5500_write_16(uint16_t addr, uint16_t value) {
-    w5500_write_reg(addr, (value >> 8) & 0xFF);
-    w5500_write_reg(addr + 1, value & 0xFF);
-}
+   AddrSel |= (_W5500_SPI_WRITE_ | _W5500_SPI_VDM_OP_);
 
-uint16_t w5500_read_16(uint16_t addr) {
-    uint16_t high = w5500_read_reg(addr);
-    uint16_t low  = w5500_read_reg(addr + 1);
-    return (high << 8) | low;
-}
+   if(!WIZCHIP.IF.SPI._write_burst) 	// byte operation
+   {
+		WIZCHIP.IF.SPI._write_byte((AddrSel & 0x00FF0000) >> 16);
+		WIZCHIP.IF.SPI._write_byte((AddrSel & 0x0000FF00) >>  8);
+		WIZCHIP.IF.SPI._write_byte((AddrSel & 0x000000FF) >>  0);
+		for(i = 0; i < len; i++)
+			WIZCHIP.IF.SPI._write_byte(pBuf[i]);
+   }
+   else									// burst operation
+   {
+		spi_data[0] = (AddrSel & 0x00FF0000) >> 16;
+		spi_data[1] = (AddrSel & 0x0000FF00) >> 8;
+		spi_data[2] = (AddrSel & 0x000000FF) >> 0;
+		WIZCHIP.IF.SPI._write_burst(spi_data, 3);
+		WIZCHIP.IF.SPI._write_burst(pBuf, len);
+   }
 
-void w5500_Send(uint16_t offset, uint8_t block_select, uint8_t write, uint8_t *buffer, uint16_t len) {
-    // Build the header: 16-bit address + 1 control byte
-    uint8_t header[3];
-    header[0] = (offset >> 8) & 0xFF;   // High byte of address
-    header[1] = offset & 0xFF;          // Low byte of address
-    
-    // Control byte:
-    // - block_select determines the register bank (common or socket)
-    // - bit 2: set to 1 for write, 0 for read
-    // - bits [1:0]: define access size (1, 2, or 4 bytes)
-    uint8_t len_bits = (len == 1) ? 0x01 : (len == 2) ? 0x02 : 0x03;
-    header[2] = block_select | (write ? 0x04 : 0x00) | len_bits;
-
-    // Assert chip select
-    gpio_put(W5500_CS, 0);
-
-    // Send the header
-    spi_write_blocking(W5500_SPI_INSTANCE, header, 3);
-
-    if (write) {
-        // Write the data
-        spi_write_blocking(W5500_SPI_INSTANCE, buffer, len);
-    } else {
-        // Read data into buffer
-        spi_read_blocking(W5500_SPI_INSTANCE, 0xFF, buffer, len);
-    }
-
-    // Deassert chip select
-    gpio_put(W5500_CS, 1);
-}
-
-void w5500_send_socket_command(uint8_t socket, uint8_t cmd) {
-    w5500_Send(W5500_SREG_CR_OFFSET, W5500_BLOCK_S_REG(socket), 1, &cmd, 1);
-}
-
-bool w5500_check_phy(void) {
-    uint8_t phycfgr;
-
-    // Read current PHYCFGR for debugging.
-    phycfgr = w5500_read_reg(W5500_REG_PHYCFGR);
-    printf("[W5500-PHY] PHYCFGR before reset: 0x%02X\n", phycfgr);
-
-    // Force a PHY reset by clearing the RST bit (bit 7)
-    phycfgr &= ~(1 << 7);
-    w5500_write_reg(W5500_REG_PHYCFGR, phycfgr);
-    sleep_ms(50);  // Wait for the PHY to reset
-
-    // Now configure the PHY:
-    // Set RST bit to indicate no reset is in progress.
-    // Set OPMD (bit 6) so that OPMDC bits are used.
-    // Clear bits 5-3 (OPMDC) and set them to 0b111 (All capable, Auto-negotiation enabled).
-    phycfgr |= (1 << 7);      // Set RST bit
-    phycfgr |= (1 << 6);      // Set OPMD bit
-    phycfgr &= ~0x38;         // Clear OPMDC bits (bits 5-3)
-    phycfgr |= (0x07 << 3);    // Set OPMDC to 0b111
-
-    // Write the new configuration to PHYCFGR.
-    w5500_write_reg(W5500_REG_PHYCFGR, phycfgr);
-
-    // Poll until link is up or until 10 seconds have elapsed.
-    const uint32_t timeout = 10000;   // 10 seconds in ms
-    const uint32_t poll_interval = 100; // poll every 100ms
-    uint32_t elapsed = 0;
-    do {
-        sleep_ms(poll_interval);
-        elapsed += poll_interval;
-        phycfgr = w5500_read_reg(W5500_REG_PHYCFGR);
-        if (phycfgr & 0x01) {
-            printf("[W5500-PHY] PHY link is up after %lu ms.\n\n", elapsed);
-            return true;
-        }
-    } while (elapsed < timeout);
-}
-
-/*===========================================================================
-  Socket memory configuration: write a 14-byte configuration block into
-  the socket’s RX buffer size register area.
-===========================================================================*/
-bool w5500_socket_memory_setup(uint8_t socket) {
-    uint8_t socket_cfg[14] = { 
-        W5500_SOCKET_MEM, W5500_SOCKET_MEM, 0x80,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 
-    };
-    // Calculate the base address for the socket's RX buffer configuration.
-    uint16_t base_addr = W5500_SOCKET_REG_BASE(socket) + W5500_SREG_RXBUF_SIZE;
-    bool success = true;
-    uint8_t reg_value;
-
-    // Print the base address for this socket.
-    DEBUG_PRINT("\n[W5500-memory] Socket %d: Base Address = 0x%04X\n", socket, base_addr);
-
-    // Write the configuration values.
-    for (uint8_t i = 0; i < 14; i++) {
-         w5500_write_reg(base_addr + i, socket_cfg[i]);
-    }
-
-    // Verify and print the actual register values.
-    DEBUG_PRINT("[W5500-memory] Socket %d: Actual register values:\n", socket);
-    for (uint8_t i = 0; i < 14; i++) {
-         reg_value = w5500_read_reg(base_addr + i);
-         DEBUG_PRINT("  Addr 0x%04X: 0x%02X\n", base_addr + i, reg_value);
-         if (reg_value != socket_cfg[i]) {
-             DEBUG_PRINT("[W5500-memory] Socket %d: Verification failed at offset %d: expected 0x%02X, got 0x%02X\n",
-                    socket, i, socket_cfg[i], reg_value);
-             success = false;
-         }
-    }
-    if (success) {
-         DEBUG_PRINT("[W5500-memory] Socket %d: Memory configured successfully\n", socket);
-    }
-    return success;
-}
-
-bool w5500_basic_register_setup(void) {
-    bool success = true;
-    uint8_t reg_val;
-
-    // --- Mode Register (MR) ---
-    // For normal operation, MR is typically set to 0x00 (ensure reset bit is cleared).
-    uint8_t expected_MR = 0x00;
-    w5500_write_reg(W5500_REG_MODE, expected_MR);
-    reg_val = w5500_read_reg(W5500_REG_MODE);
-    printf("[W5500-basic] MR (Mode Register) at address 0x%04X: Expected 0x%02X, Read 0x%02X\n", 
-           W5500_REG_MODE, expected_MR, reg_val);
-    if (reg_val != expected_MR) {
-        success = false;
-    }
-
-    // --- Interrupt Mask Register (IMR) ---
-    // For example, enable all interrupts (0xFF) or adjust to your needs.
-    uint8_t expected_IMR = 0xFF;
-    w5500_write_reg(W5500_REG_IMR, expected_IMR);
-    reg_val = w5500_read_reg(W5500_REG_IMR);
-    printf("[W5500-basic] IMR (Interrupt Mask Register) at address 0x%04X: Expected 0x%02X, Read 0x%02X\n", 
-           W5500_REG_IMR, expected_IMR, reg_val);
-    if (reg_val != expected_IMR) {
-        success = false;
-    }
-
-    // --- Retry Time-value Register (RTR) ---
-    // This register is 16 bits wide. For example, setting a retry time value of 0x07D0.
-    uint8_t expected_RTR_high = 0x07;
-    uint8_t expected_RTR_low  = 0xD0;
-    w5500_write_reg(W5500_REG_RTR, expected_RTR_high);
-    w5500_write_reg(W5500_REG_RTR + 1, expected_RTR_low);
-    uint8_t read_RTR_high = w5500_read_reg(W5500_REG_RTR);
-    uint8_t read_RTR_low  = w5500_read_reg(W5500_REG_RTR + 1);
-    printf("[W5500-basic] RTR (Retry Time-value Register) at addresses 0x%04X/0x%04X: Expected 0x%02X 0x%02X, Read 0x%02X 0x%02X\n",
-           W5500_REG_RTR, W5500_REG_RTR + 1, expected_RTR_high, expected_RTR_low, read_RTR_high, read_RTR_low);
-    if (read_RTR_high != expected_RTR_high || read_RTR_low != expected_RTR_low) {
-        success = false;
-    }
-
-    // --- Retry Count Register (RCR) ---
-    // For example, set the retry count to 8.
-    uint8_t expected_RCR = 0x08;
-    w5500_write_reg(W5500_REG_RCR, expected_RCR);
-    reg_val = w5500_read_reg(W5500_REG_RCR);
-    printf("[W5500-basic] RCR (Retry Count Register) at address 0x%04X: Expected 0x%02X, Read 0x%02X\n",
-           W5500_REG_RCR, expected_RCR, reg_val);
-    if (reg_val != expected_RCR) {
-        success = false;
-    }
-
-    if (success) {
-        printf("[W5500-basic] Basic register configuration verified successfully.\n");
-    } else {
-        printf("[W5500-basic] Basic register configuration verification FAILED.\n");
-    }
-    return success;
+   WIZCHIP.CS._deselect();
+   WIZCHIP_CRITICAL_EXIT();
 }
 
 
-/*===========================================================================
-  Network initialization and configuration
-===========================================================================*/
-int w5500_init(uint8_t *gateway, uint8_t *subnet, uint8_t *mac, uint8_t *ip) {
-    // Check chip version
-    uint8_t ver = w5500_read_reg(W5500_REG_VERSIONR);
-    if (ver != 0x04) {
-        printf("[W5500-init] Version mismatch: 0x%02X\n", ver);
-        return -1;
-    } else {
-        printf("[W5500-init] Version 0x%02X\n", ver);
-    }
-    
-    // Check PHY link
-    if (!w5500_check_phy()) {
-        printf("[W5500-init] PHY link down!\n");
-        return -1;
-    } else {
-        printf("[W5500-init] PHY link up.\n");
-    }
+uint16_t getSn_TX_FSR(uint8_t sn)
+{
+   uint16_t val=0,val1=0;
 
-    // Basic register configuration with debug verification
-    if (!w5500_basic_register_setup()) {
-        printf("[W5500-init] Basic register configuration verification FAILED.\n");
-        return -1;
-    }
-    
-    // Configure socket memory for all sockets and verify configuration.
-    bool mem_success = true;
-    for (uint8_t s = 0; s < W5500_MAX_SOCKETS; s++) {
-         if (!w5500_socket_memory_setup(s)) {
-             mem_success = false;
-         }
-    }
-    if (!mem_success) {
-         printf("[W5500-init] Memory configuration failed for one or more sockets.\n");
-         return -1;
-    }
-    
-    // Set network information if provided
-    if (gateway) {
-        for (int i = 0; i < 4; i++) {
-            w5500_write_reg(W5500_REG_GAR + i, gateway[i]);
-        }
-        printf("[W5500-init] Gateway set to %d.%d.%d.%d\n", gateway[0], gateway[1], gateway[2], gateway[3]);
-    }
-    if (subnet) {
-        for (int i = 0; i < 4; i++) {
-            w5500_write_reg(W5500_REG_SUBR + i, subnet[i]);
-        }
-        printf("[W5500-init] Subnet set to %d.%d.%d.%d\n", subnet[0], subnet[1], subnet[2], subnet[3]);
-    }
-    if (mac) {
-        for (int i = 0; i < 6; i++) {
-            w5500_write_reg(W5500_REG_SHAR + i, mac[i]);
-        }
-        printf("[W5500-init] MAC set to %02X:%02X:%02X:%02X:%02X:%02X\n",
-            mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
-    }
-    if (ip) {
-        for (int i = 0; i < 4; i++) {
-            w5500_write_reg(W5500_REG_SIPR + i, ip[i]);
-        }
-        printf("[W5500-init] IP set to %d.%d.%d.%d\n", ip[0], ip[1], ip[2], ip[3]);
-    }
-    printf("[W5500-init] Initialization complete.\n\n");
-    return 0;
+   do
+   {
+      val1 = WIZCHIP_READ(Sn_TX_FSR(sn));
+      val1 = (val1 << 8) + WIZCHIP_READ(WIZCHIP_OFFSET_INC(Sn_TX_FSR(sn),1));
+      if (val1 != 0)
+      {
+        val = WIZCHIP_READ(Sn_TX_FSR(sn));
+        val = (val << 8) + WIZCHIP_READ(WIZCHIP_OFFSET_INC(Sn_TX_FSR(sn),1));
+      }
+   }while (val != val1);
+   return val;
 }
 
-void w5500_set_mac(const uint8_t* mac) {
-    for (int i = 0; i < 6; i++) {
-        w5500_write_reg(W5500_REG_SHAR + i, mac[i]);
-    }
-    printf("[W5500-init] MAC set.\n");
+
+uint16_t getSn_RX_RSR(uint8_t sn)
+{
+   uint16_t val=0,val1=0;
+
+   do
+   {
+      val1 = WIZCHIP_READ(Sn_RX_RSR(sn));
+      val1 = (val1 << 8) + WIZCHIP_READ(WIZCHIP_OFFSET_INC(Sn_RX_RSR(sn),1));
+      if (val1 != 0)
+      {
+        val = WIZCHIP_READ(Sn_RX_RSR(sn));
+        val = (val << 8) + WIZCHIP_READ(WIZCHIP_OFFSET_INC(Sn_RX_RSR(sn),1));
+      }
+   }while (val != val1);
+   return val;
 }
 
-void w5500_set_ip(const uint8_t* ip) {
-    for (int i = 0; i < 4; i++) {
-        w5500_write_reg(W5500_REG_SIPR + i, ip[i]);
-    }
-    printf("[W5500-init] IP set.\n");
+void wiz_send_data(uint8_t sn, uint8_t *wizdata, uint16_t len)
+{
+   uint16_t ptr = 0;
+   uint32_t addrsel = 0;
+
+   if(len == 0)  return;
+   ptr = getSn_TX_WR(sn);
+   //M20140501 : implict type casting -> explict type casting
+   //addrsel = (ptr << 8) + (WIZCHIP_TXBUF_BLOCK(sn) << 3);
+   addrsel = ((uint32_t)ptr << 8) + (WIZCHIP_TXBUF_BLOCK(sn) << 3);
+   //
+   WIZCHIP_WRITE_BUF(addrsel,wizdata, len);
+   
+   ptr += len;
+   setSn_TX_WR(sn,ptr);
 }
 
-void w5500_set_subnet(const uint8_t* subnet) {
-    for (int i = 0; i < 4; i++) {
-        w5500_write_reg(W5500_REG_SUBR + i, subnet[i]);
-    }
-    printf("[W5500-init] Subnet set.\n");
+void wiz_recv_data(uint8_t sn, uint8_t *wizdata, uint16_t len)
+{
+   uint16_t ptr = 0;
+   uint32_t addrsel = 0;
+   
+   if(len == 0) return;
+   ptr = getSn_RX_RD(sn);
+   //M20140501 : implict type casting -> explict type casting
+   //addrsel = ((ptr << 8) + (WIZCHIP_RXBUF_BLOCK(sn) << 3);
+   addrsel = ((uint32_t)ptr << 8) + (WIZCHIP_RXBUF_BLOCK(sn) << 3);
+   //
+   WIZCHIP_READ_BUF(addrsel, wizdata, len);
+   ptr += len;
+   
+   setSn_RX_RD(sn,ptr);
 }
 
-void w5500_set_gateway(const uint8_t* gateway) {
-    for (int i = 0; i < 4; i++) {
-        w5500_write_reg(W5500_REG_GAR + i, gateway[i]);
-    }
-    printf("[W5500-init] Gateway set.\n");
+
+void wiz_recv_ignore(uint8_t sn, uint16_t len)
+{
+   uint16_t ptr = 0;
+
+   ptr = getSn_RX_RD(sn);
+   ptr += len;
+   setSn_RX_RD(sn,ptr);
 }
+
+#endif

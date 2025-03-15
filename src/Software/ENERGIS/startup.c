@@ -65,7 +65,7 @@ void startup_init(void) {
     gpio_set_dir(W5500_CS, GPIO_OUT);
     gpio_put(W5500_CS, 1);
 
-    spi_init(W5500_SPI_INSTANCE, SPI_SPEED_W5500); // 10 MHz SPI
+    spi_init(W5500_SPI_INSTANCE, SPI_SPEED_W5500); 
     spi_set_format(W5500_SPI_INSTANCE, 8, SPI_CPOL_0, SPI_CPHA_0, SPI_MSB_FIRST);
     gpio_set_function(W5500_MOSI, GPIO_FUNC_SPI); // MOSI
     gpio_set_function(W5500_SCK, GPIO_FUNC_SPI); // SCK

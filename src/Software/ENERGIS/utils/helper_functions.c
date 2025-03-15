@@ -1,21 +1,5 @@
 #include "helper_functions.h"
 
-// Example handler for the root path
-void handle_root_request(http_request_t* request, http_response_t* response) {
-    DEBUG_PRINT("[DEBUG] Handling root request...\n");
-
-    const char* html_response = "<html><body><h1>ENERGIS PDU</h1><p>System is running.</p></body></html>";
-    
-    // Set the response body and status
-    http_response_set_body(response, html_response, strlen(html_response));
-    http_response_set_status(response, 200);  // OK status
-    
-    // Send the response
-    http_response_send(response, request->socket);
-}
-
-
-
 // i2c_scan_bus: Scans an I2C bus and prints detected devices.
 void i2c_scan_bus(i2c_inst_t *i2c, const char *bus_name) {
     printf("Scanning %s...\n", bus_name);

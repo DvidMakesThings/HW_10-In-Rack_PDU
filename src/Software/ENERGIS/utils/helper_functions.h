@@ -4,13 +4,8 @@
 #include <stdio.h>          // For printf()
 #include "hardware/i2c.h"
 #include "../drivers/MCP23017_display_driver.h"
-#include "../drivers/MCP23017_relay_driver.h"
-#include "../network/w5500.h"   
-#include "../network/socket.h"    
+#include "../drivers/MCP23017_relay_driver.h"  
 #include "../CONFIG.h"
-
-// Example handler for the root path
-void handle_root_request(http_request_t* request, http_response_t* response);
 
 // i2c_scan_bus: Scans an I2C bus and prints detected devices.
 void i2c_scan_bus(i2c_inst_t *i2c, const char *bus_name);
