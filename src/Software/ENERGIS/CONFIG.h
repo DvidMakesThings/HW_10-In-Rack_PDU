@@ -2,9 +2,16 @@
 #define CONFIG_H
 
 #include <stdint.h>
+#include <stdio.h> 
 
 #define DEBUG 1
-#define DEBUG_PRINT(...) if (DEBUG) printf(__VA_ARGS__);
+#define DEBUG_PRINT(...) if (DEBUG) printf("[DEBUG] " __VA_ARGS__);
+#define INFO 1
+#define INFO_PRINT(...) if (INFO) printf("[INFO] " __VA_ARGS__);
+#define ERROR 1
+#define ERROR_PRINT(...) if (ERROR) printf("[ERROR] " __VA_ARGS__);
+#define WARNING 1
+#define WARNING_PRINT(...) if (WARNING) printf("[WARNING] " __VA_ARGS__);
 
 // I2C Peripheral Assignments
 #define EEPROM_I2C         		i2c1  ///< Using I2C1 for EEPROM communication
@@ -39,6 +46,10 @@
 #define KEY_1           13
 #define KEY_2           14
 #define KEY_3           15
+#define BUT_PLUS        KEY_0           
+#define BUT_MINUS       KEY_1           
+#define BUT_SET         KEY_2           
+#define BUT_PWR         KEY_3        
 
 #define W5500_MISO      16
 #define W5500_CS        17
@@ -154,5 +165,8 @@
 #define CAT24C512_I2C_ADDR  0x50  ///< 7-bit I2C address of the EEPROM
 #define EEPROM_SIZE         65536 ///< Total EEPROM size in bytes
 #define CAT24C512_PAGE_SIZE 128   ///< EEPROM page write limit
+
+// Stores the currently selected row
+extern volatile uint8_t selected_row;
 
 #endif // CONFIG_H

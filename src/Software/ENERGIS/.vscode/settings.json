@@ -75,7 +75,17 @@
         "w5x00_spi.h": "c",
         "stddef.h": "c",
         "html_files.h": "c",
-        "control_html.h": "c"
+        "control_html.h": "c",
+        "dummy_eeprom.h": "c",
+        "settings_html.h": "c",
+        "resets.h": "c",
+        "core1_task.h": "c",
+        "help_html.h": "c",
+        "core0_task.h": "c",
+        "user_manual_html.h": "c",
+        "programming_manual_html.h": "c",
+        "button_driver.h": "c",
+        "vreg_and_chip_reset.h": "c"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }

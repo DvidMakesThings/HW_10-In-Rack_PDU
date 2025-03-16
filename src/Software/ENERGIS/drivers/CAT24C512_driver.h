@@ -61,9 +61,6 @@ void CAT24C512_Dump(uint8_t *buffer);
 
 /**
  * @brief Dumps the EEPROM contents in a formatted hex table.
- * @param output_mode Selects where to send the data:  
- *        - 0 = Save to a file on Flash  
- *        - 1 = Send via Serial (UART)
  */
 void CAT24C512_DumpFormatted(void);
 

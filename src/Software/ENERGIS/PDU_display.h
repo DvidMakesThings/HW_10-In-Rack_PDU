@@ -4,22 +4,22 @@
  * @brief Display UI handling for the Energis PDU.
  * @version 1.0
  * @date 2025-03-03
- * 
+ *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  */
 
- #ifndef PDU_DISPLAY_H
- #define PDU_DISPLAY_H
- 
- #include <stdint.h>
- #include <stdbool.h>
- 
- #define SYS_INFO_LEN 31
- 
- /**
-  * @brief Initializes the PDU display.
-  */
- void PDU_Display_Init(void);
+#ifndef PDU_DISPLAY_H
+#define PDU_DISPLAY_H
+
+#include <stdbool.h>
+#include <stdint.h>
+
+#define SYS_INFO_LEN 31
+
+/**
+ * @brief Initializes the PDU display.
+ */
+void PDU_Display_Init(void);
 
 /**
  * @brief Draws the static UI elements (table, labels, and lines).
@@ -67,5 +67,19 @@ void PDU_Display_ShowEEPROM_Saved(void);
  */
 void PDU_Display_DrawBackground(void);
 
+/**
+ * @brief Updates the selection indicator (*) in the menu.
+ */
+void PDU_Display_UpdateSelection(uint8_t row);
+
+/**
+ * @brief Toggles the selected relay ON/OFF.
+ */
+void PDU_Display_ToggleRelay(uint8_t channel);
+
+/**
+ * @brief Handles the power button behavior (short press = sleep, long press = wake-up).
+ */
+void PDU_Display_HandlePowerButton(bool long_press);
 
 #endif // PDU_DISPLAY_H

@@ -1,7 +1,6 @@
-#ifndef HELPER_FUNCTIONS_H
-#define HELPER_FUNCTIONS_H
+#ifndef CORE1_TASK_H
+#define CORE1_TASK_H
 
-#include <stdio.h>          // For printf()
 #include "pico/stdlib.h"
 #include "hardware/spi.h"
 #include "hardware/gpio.h"
@@ -12,8 +11,9 @@
 #include <string.h>
 
 #include "CONFIG.h"
+#include "core0_task.h"
 
-// Wiznet IoLibrary headers (exactly this order!)
+// Wiznet IoLibrary headers
 #include "network/wizchip_conf.h"
 #include "network/socket.h"
 #include "network/w5x00_spi.h"
@@ -27,19 +27,15 @@
 #include "PDU_display.h"
 #include "utils/helper_functions.h"
 #include "startup.h"
+
 #include "html/control_html.h"
 #include "html/settings_html.h"
 #include "html/user_manual_html.h"
 #include "html/programming_manual_html.h"
 #include "html/help_html.h"
 
-// i2c_scan_bus: Scans an I2C bus and prints detected devices.
-void i2c_scan_bus(i2c_inst_t *i2c, const char *bus_name);
+extern wiz_NetInfo g_net_info;  // Global network config
 
-//------------------------------------------------------------------------------
-// activate_relay: Activates a relay (0-7) and turns on the corresponding LED.
-void activate_relay(uint8_t relay_number);
+void core1_task(void);
 
-const char *get_page_content(const char *request);
-
-#endif // HELPER_FUNCTIONS_H
+#endif // CORE1_TASK_H

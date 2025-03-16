@@ -40,17 +40,20 @@ add_executable(ENERGIS
     drivers/ILI9488_driver.c
     drivers/MCP23017_display_driver.c
     drivers/MCP23017_relay_driver.c
+    drivers/button_driver.c
     network/timer.c
     network/w5x00_gpio_irq.c
     network/w5x00_spi.c
     network/wizchip_conf.c
     network/w5500.c
     network/socket.c
+    html/web_pages.c
     utils/EEPROM_MemoryMap.c
     utils/helper_functions.c
     PDU_display.c
-    dummy_eeprom.c
     startup.c
+    core0_task.c
+    core1_task.c
 )
 
 
@@ -73,7 +76,7 @@ target_link_libraries(ENERGIS
     hardware_watchdog   # Watchdog timer
     hardware_clocks     # Clock configuration
     hardware_resets     # Reset controller
-    hardware_dma      # DMA controller
+    hardware_dma        # DMA controller
 )
 
 # Add the standard include files to the build.
@@ -88,6 +91,11 @@ target_include_directories(ENERGIS PRIVATE
     ${PICO_SDK_PATH}/src/rp2_common/hardware_i2c/include
     ${PICO_SDK_PATH}/src/rp2_common/hardware_pwm/include
     ${PICO_SDK_PATH}/src/rp2_common/hardware_resets/include
+    ${PICO_SDK_PATH}/src/rp2_common/hardware_watchdog/include   # For watchdog.h
+    ${PICO_SDK_PATH}/src/rp2_common/hardware_clocks/include     # For clocks.h
+    ${PICO_SDK_PATH}/src/rp2_common/hardware_structs/include    # For scb.h and vreg_and_chip_reset.h
+    ${PICO_SDK_PATH}/src/rp2_common/hardware_base/include       # Additional base hardware includes
+    
 )
 
 pico_add_extra_outputs(ENERGIS)

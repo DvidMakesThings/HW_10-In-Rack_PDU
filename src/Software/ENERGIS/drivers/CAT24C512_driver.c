@@ -17,7 +17,6 @@
 #include "../CONFIG.h"
 #include <stdio.h>
 #include <string.h>
-#include "../utils/ff.h"  // FatFS header
 
 /**
  * @brief Initializes I2C1 for EEPROM communication.
