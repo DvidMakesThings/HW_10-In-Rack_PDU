@@ -1,0 +1,86 @@
+Bidirectional Synchronization Plan (Web UI ↔ SNMP ↔ Hardware)
+This document outlines the implementation of a unified state management system for the ENERGIS PDU, ensuring consistent synchronization between Web UI, SNMP, and hardware while maintaining efficiency.
+
+1. Core Principle: EEPROM as the Single Source of Truth
+All system states (channel statuses, network settings, power values, etc.) are stored in EEPROM.
+Any state change (from Web UI, SNMP, or physical hardware changes) is first written to EEPROM before being applied.
+Both SNMP and Web UI read directly from EEPROM when retrieving data.
+Hardware always updates based on EEPROM values.
+This ensures persistent state management and prevents inconsistencies between different control interfaces.
+2. Change Management: Flag-Based Update Tracking
+To optimize performance and prevent unnecessary updates, a state change flag in RAM is introduced:
+
+Whenever a setting is modified (via SNMP, Web UI, or hardware interaction), a "state change" flag is set.
+Hardware updates are only applied if this flag is set, reducing redundant writes and processing overhead.
+Once the hardware is updated, the flag is cleared.
+Proposed Flag Structure (Stored in RAM)
+c
+Copy
+Edit
+typedef struct {
+    bool channel_state_changed;  // Set when any relay state changes
+    bool network_config_changed; // Set when IP/Gateway/Subnet is modified
+    bool system_config_changed;  // Set when any device-wide setting changes
+} PDU_StateChangeFlags;
+These flags are cleared after updates are successfully applied.
+This prevents unnecessary writes to GPIOs, relays, or network settings unless an actual change occurs.
+3. Handling Web UI Interactions
+3.1 When a User Changes a Setting in the Web UI
+Web UI sends a POST request (e.g., /control or /settings).
+MCU writes the new value to EEPROM.
+State change flag is set (e.g., channel_state_changed = true).
+Hardware updates based on the new EEPROM value.
+If the user refreshes the page, Web UI fetches updated values from /api/status.
+3.2 When Web UI Loads or Refreshes
+Web UI requests /api/status.
+MCU reads the current state from EEPROM.
+The page updates UI elements (toggle switches, voltage displays, etc.).
+No unnecessary updates are applied—only a data refresh.
+3.3 Web UI Polling Strategy
+Settings Page: Fetches values only when loaded (static settings don’t change frequently).
+Control Page: Fetches /api/status every 5–10 seconds to reflect SNMP or other updates dynamically.
+4. Handling SNMP Requests
+4.1 SNMP GET Request (Client Reads a Value)
+MCU reads requested values from EEPROM.
+SNMP response is generated using the latest stored values.
+No state change occurs.
+4.2 SNMP SET Request (Client Modifies a Value)
+MCU writes the new value to EEPROM.
+Corresponding state change flag is set.
+Hardware updates are applied based on EEPROM values.
+Next time Web UI loads /api/status, it reflects the updated value.
+This ensures SNMP is always accurate without needing active updates.
+5. Hardware Synchronization
+5.1 Applying Changes to Hardware
+Hardware (relays, voltage/current monitors, GPIO states) is updated based on EEPROM values.
+This occurs only when a state change flag is detected, preventing redundant updates.
+5.2 Ensuring GPIO & Relays Match EEPROM
+A background task periodically checks if any state change flag is set.
+
+If set, it:
+
+Reads values from EEPROM.
+Updates GPIOs and relays accordingly.
+Clears the corresponding state change flag.
+This keeps hardware in sync while avoiding unnecessary operations.
+
+6. Network Configuration Handling
+6.1 Updating Network Settings (IP, Gateway, Subnet, etc.)
+When the user changes network settings in Web UI or SNMP, values are written to EEPROM.
+A network_config_changed flag is set.
+(If supported) Apply changes dynamically without rebooting.
+Otherwise, changes take effect after reboot.
+7. API Endpoints & Implementation
+Endpoint	Method	Purpose
+/api/status	GET	Returns current PDU state from EEPROM
+/control	POST	Updates relay states (writes to EEPROM)
+/settings	POST	Updates network/device settings (writes to EEPROM)
+All writes go to EEPROM first, ensuring persistent state tracking.
+Web UI fetches fresh data via /api/status when needed.
+8. Execution Order
+✅ 1. Implement EEPROM-backed state tracking (as the single source of truth).
+✅ 2. Introduce state change flags to prevent redundant updates.
+✅ 3. Modify hardware update logic to pull values from EEPROM.
+✅ 4. Modify SNMP handlers to read/write EEPROM instead of RAM.
+✅ 5. Implement Web API endpoints (/control, /settings, /api/status).
+✅ 6. Update Web UI to pull data from EEPROM-backed API and refresh on load/poll.

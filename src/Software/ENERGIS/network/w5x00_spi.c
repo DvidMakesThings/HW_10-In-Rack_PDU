@@ -254,8 +254,8 @@ void wizchip_initialize(void)
     //uint8_t memsize[2][8] = {{2, 2, 2, 2, 2, 2, 2, 2}, {2, 2, 2, 2, 2, 2, 2, 2}};
     
     uint8_t memsize[2][8] = {
-        {8, 8, 0, 0, 0, 0, 0, 0}, // 8KB TX for socket 0
-        {8, 8, 0, 0, 0, 0, 0, 0}  // 8KB RX for socket 0
+        {8, 4, 4, 0, 0, 0, 0, 0}, // 8KB TX for socket 0
+        {8, 4, 4, 0, 0, 0, 0, 0}  // 8KB RX for socket 0
     };
     
 #endif

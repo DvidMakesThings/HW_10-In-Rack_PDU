@@ -85,7 +85,11 @@
         "user_manual_html.h": "c",
         "programming_manual_html.h": "c",
         "button_driver.h": "c",
-        "vreg_and_chip_reset.h": "c"
+        "vreg_and_chip_reset.h": "c",
+        "net-snmp-config.h": "c",
+        "net-snmp-includes.h": "c",
+        "compare": "c",
+        "bootrom.h": "c"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }

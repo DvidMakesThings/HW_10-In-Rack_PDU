@@ -1,19 +1,22 @@
 /**
- * @file main.c
- * @brief Main application for ENERGIS PDU using Wiznet ioLibrary.
+ * @file ENERGIS.c
+ * @brief Main application for ENERGIS PDU.
  * @version 1.0
  * @date 2025-03-03
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  *
- * This example initializes the W5500 using the Wiznet ioLibrary and runs an HTTP
- * server on port 80 that serves the PDU UI pages (embedded via html_files.h).
- * The W5500 is used on SPI0 at 10MHz while the LCD continues to use SPI1 at 40MHz.
+ * This file serves as the entry point for the ENERGIS PDU application.
  */
+
 #include "hardware/clocks.h"
 #include "hardware/gpio.h"
+#include "hardware/irq.h"
 #include "hardware/resets.h"
 #include "hardware/spi.h"
+#include "hardware/watchdog.h"
+#include "misc/uart_command_handler.h"
+#include "pico/bootrom.h"
 #include "pico/multicore.h"
 #include "pico/stdlib.h"
 #include <stdio.h>
@@ -39,13 +42,18 @@
 #include "utils/helper_functions.h"
 
 wiz_NetInfo g_net_info;
-
-void core1_task(void);
+__attribute__((section(".uninitialized_data"))) uint32_t bootloader_trigger;
 
 //------------------------------------------------------------------------------
-// main: Performs system initialization and launches core1_task on Core 1.
+// main: Performs system initialization on Core 0 and launches core1_task on Core 1.
 int main(void) {
-    stdio_init_all();
+    // Early BOOTSEL check before anything touches USB
+    if (bootloader_trigger == 0xDEADBEEF) {
+        bootloader_trigger = 0;
+        sleep_ms(100);
+        reset_usb_boot(0, 0);
+    }
+
     sleep_ms(2000); // Delay for debugging
 
     if (!startup_init()) {
@@ -54,6 +62,7 @@ int main(void) {
     }
 
     if (core0_init()) {
+        uart_command_init(); // sets up IRQ for command listening
         mcp_display_write_pin(FAULT_LED, 0);
         PDU_Display_UpdateStatus("System ready.");
         INFO_PRINT("Core 0 initialized.\n\n");
@@ -72,10 +81,15 @@ int main(void) {
     // Launch Ethernet/HTTP server handling on Core 1.
     multicore_launch_core1(core1_task);
 
-    // Main loop on Core 0: for other tasks.
     while (true) {
-        sleep_ms(1000);
-    }
+        if (bootsel_requested) {
+            // Set trigger and reboot — BOOTSEL handled on next boot
+            bootloader_trigger = 0xDEADBEEF;
+            watchdog_reboot(0, 0, 0);
+            while (1)
+                __wfi(); // hang until reboot
+        }
 
-    return 0;
+        sleep_ms(10);
+    }
 }

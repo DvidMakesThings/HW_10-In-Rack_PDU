@@ -41,19 +41,22 @@ add_executable(ENERGIS
     drivers/MCP23017_display_driver.c
     drivers/MCP23017_relay_driver.c
     drivers/button_driver.c
+    misc/uart_command_handler.c
     network/timer.c
     network/w5x00_gpio_irq.c
     network/w5x00_spi.c
     network/wizchip_conf.c
     network/w5500.c
     network/socket.c
+    network/snmp.c
+    network/snmp_custom.c
     html/web_pages.c
     utils/EEPROM_MemoryMap.c
     utils/helper_functions.c
     PDU_display.c
     startup.c
     core0_task.c
-    core1_task.c
+    core1_snmp.c
 )
 
 
@@ -61,8 +64,9 @@ pico_set_program_name(ENERGIS "ENERGIS")
 pico_set_program_version(ENERGIS "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(ENERGIS 1)
 pico_enable_stdio_usb(ENERGIS 1)
+pico_enable_stdio_uart(ENERGIS 1)
+
 
 # Add the standard library and necessary Pico libraries to the build
 target_link_libraries(ENERGIS 
@@ -80,7 +84,6 @@ target_link_libraries(ENERGIS
 )
 
 # Add the standard include files to the build.
-# The FatFS directory is added here, as well as the directories for SPI and I2C.
 target_include_directories(ENERGIS PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/network

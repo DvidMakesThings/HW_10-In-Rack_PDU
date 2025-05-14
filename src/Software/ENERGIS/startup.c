@@ -119,20 +119,34 @@ bool startup_init(void) {
  */
 bool core0_init(void) {
     if (DEBUG) {
+        uart_init(UART_ID, BAUD_RATE);
+        uart_set_hw_flow(UART_ID, false, false);
+        uart_set_format(UART_ID, 8, 1, UART_PARITY_NONE);
+        uart_set_fifo_enabled(UART_ID, true);
+    }
+
+    if (DEBUG) INFO_PRINT("Core 0 initializing...\n");
+
+    if (DEBUG) {
+        INFO_PRINT("I2C scanning...\n");
         i2c_scan_bus(i2c0, "I2C0");
         i2c_scan_bus(i2c1, "I2C1");
     }
 
     // Initialize EEPROM.
-    CAT24C512_Init();
-    INFO_PRINT("EEPROM initialized\n\n");
-    EEPROM_ReadFactoryDefaults();
+    if (DEBUG) {
+        INFO_PRINT("EEPROM initializing...\n");
+        CAT24C512_Init();
+        EEPROM_ReadFactoryDefaults();
+        INFO_PRINT("EEPROM factory defaults read\n\n");
+    }
 
     // Initialize MCP23017 I/O expanders.
-    mcp_display_init();
-    INFO_PRINT("Display-board initialized\n\n");
-    mcp_relay_init();
-    INFO_PRINT("Relay-board initialized\n\n");
+    if (DEBUG) {
+        INFO_PRINT("MCP23017 initializing...\n");
+        mcp_display_init();
+        mcp_relay_init();
+    }
 
     // Little showoff.
     mcp_display_write_reg(MCP23017_OLATA, 0xFF);
@@ -146,12 +160,21 @@ bool core0_init(void) {
     mcp_display_write_pin(FAULT_LED, 1);
 
     // Initialize the ILI9488 display.
-    ILI9488_Init();
-    PDU_Display_Init();
-    sleep_ms(200);
-    PDU_Display_UpdateStatus("System initialized.");
+    if (DEBUG) {
+        INFO_PRINT("ILI9488 display initializing...\n");
+        ILI9488_Init();
+    }
+    if (DEBUG) {
+        INFO_PRINT("Starting PDU display\n\n");
+        PDU_Display_Init();
+        sleep_ms(200);
+        PDU_Display_UpdateStatus("System initialized.");
+    }
 
-    button_driver_init(); // Initialize buttons
+    if (DEBUG) {
+        INFO_PRINT("Initializing buttons...\n");
+        button_driver_init(); // Initialize buttons
+    }
 
     return true;
 }

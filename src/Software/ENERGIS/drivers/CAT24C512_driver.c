@@ -4,17 +4,16 @@
  * @brief Implementation of CAT24C512 I2C EEPROM Driver
  * @version 1.0
  * @date 2025-03-03
- * 
+ *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
  */
 
 #include "CAT24C512_driver.h"
-#include "pico/stdlib.h"
+#include "../CONFIG.h"
 #include "hardware/i2c.h"
 #include "hardware/uart.h"
-#include "hardware/flash.h"
-#include "../CONFIG.h"
+#include "pico/stdlib.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -22,9 +21,9 @@
  * @brief Initializes I2C1 for EEPROM communication.
  */
 void CAT24C512_Init(void) {
-    i2c_init(EEPROM_I2C, 400000); // 400 kHz Fast Mode
-    gpio_set_function(2, GPIO_FUNC_I2C);  // SDA (adjust based on config)
-    gpio_set_function(3, GPIO_FUNC_I2C);  // SCL (adjust based on config)
+    i2c_init(EEPROM_I2C, 400000);        // 400 kHz Fast Mode
+    gpio_set_function(2, GPIO_FUNC_I2C); // SDA (adjust based on config)
+    gpio_set_function(3, GPIO_FUNC_I2C); // SCL (adjust based on config)
     gpio_pull_up(2);
     gpio_pull_up(3);
 }
@@ -33,7 +32,7 @@ void CAT24C512_Init(void) {
  * @brief Writes a byte to the EEPROM.
  */
 int CAT24C512_WriteByte(uint16_t addr, uint8_t data) {
-    uint8_t buffer[3] = { addr >> 8, addr & 0xFF, data };
+    uint8_t buffer[3] = {addr >> 8, addr & 0xFF, data};
 
     int res = i2c_write_blocking(EEPROM_I2C, CAT24C512_I2C_ADDR, buffer, 3, false);
     sleep_ms(5); // Write cycle delay
@@ -45,7 +44,7 @@ int CAT24C512_WriteByte(uint16_t addr, uint8_t data) {
  * @brief Reads a byte from the EEPROM.
  */
 uint8_t CAT24C512_ReadByte(uint16_t addr) {
-    uint8_t addr_buf[2] = { addr >> 8, addr & 0xFF };
+    uint8_t addr_buf[2] = {addr >> 8, addr & 0xFF};
     uint8_t data;
 
     i2c_write_blocking(EEPROM_I2C, CAT24C512_I2C_ADDR, addr_buf, 2, true);
@@ -66,7 +65,8 @@ int CAT24C512_WriteBuffer(uint16_t addr, const uint8_t *data, uint16_t len) {
         memcpy(&buffer[2], data, chunk_size);
 
         int res = i2c_write_blocking(EEPROM_I2C, CAT24C512_I2C_ADDR, buffer, chunk_size + 2, false);
-        if (res != (chunk_size + 2)) return -1;
+        if (res != (chunk_size + 2))
+            return -1;
 
         sleep_ms(5); // Write cycle delay
         addr += chunk_size;
@@ -80,8 +80,8 @@ int CAT24C512_WriteBuffer(uint16_t addr, const uint8_t *data, uint16_t len) {
  * @brief Reads a buffer of data from the EEPROM.
  */
 void CAT24C512_ReadBuffer(uint16_t addr, uint8_t *buffer, uint32_t len) {
-    uint8_t addr_buf[2] = { addr >> 8, addr & 0xFF };
-    
+    uint8_t addr_buf[2] = {addr >> 8, addr & 0xFF};
+
     i2c_write_blocking(EEPROM_I2C, CAT24C512_I2C_ADDR, addr_buf, 2, true);
     i2c_read_blocking(EEPROM_I2C, CAT24C512_I2C_ADDR, buffer, len, false);
 }
