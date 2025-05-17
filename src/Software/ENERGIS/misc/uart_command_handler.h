@@ -8,7 +8,16 @@
 #include "pico/multicore.h"
 #include <string.h>
 
-void uart_command_init(void);        // Call this during startup
-void uart_command_irq_handler(void); // UART IRQ callback
+/**
+ * Poll UART for a complete line and echo it back.
+ * Call this each iteration of your main loop.
+ */
+void uart_command_loop(void);
+void bootsel_trigger(void);
 
+void reboot(void);
+
+void dump_eeprom(void);
+
+void set_ip(const char *ip, const char *cmd);
 #endif // UART_COMMAND_HANDLER_H

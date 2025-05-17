@@ -125,7 +125,8 @@ bool core0_init(void) {
         uart_set_fifo_enabled(UART_ID, true);
     }
 
-    if (DEBUG) INFO_PRINT("Core 0 initializing...\n");
+    if (DEBUG)
+        INFO_PRINT("Core 0 initializing...\n");
 
     if (DEBUG) {
         INFO_PRINT("I2C scanning...\n");
@@ -135,15 +136,15 @@ bool core0_init(void) {
 
     // Initialize EEPROM.
     if (DEBUG) {
-        INFO_PRINT("EEPROM initializing...\n");
+        INFO_PRINT("EEPROM initializing...");
         CAT24C512_Init();
-        EEPROM_ReadFactoryDefaults();
-        INFO_PRINT("EEPROM factory defaults read\n\n");
+        // EEPROM_ReadFactoryDefaults();
+        INFO_PRINT("EEPROM factory defaults read\n");
     }
 
     // Initialize MCP23017 I/O expanders.
     if (DEBUG) {
-        INFO_PRINT("MCP23017 initializing...\n");
+        INFO_PRINT("MCP23017 initializing...");
         mcp_display_init();
         mcp_relay_init();
     }
@@ -161,18 +162,18 @@ bool core0_init(void) {
 
     // Initialize the ILI9488 display.
     if (DEBUG) {
-        INFO_PRINT("ILI9488 display initializing...\n");
+        INFO_PRINT("ILI9488 display initializing...");
         ILI9488_Init();
     }
     if (DEBUG) {
-        INFO_PRINT("Starting PDU display\n\n");
+        INFO_PRINT("Starting PDU display\n");
         PDU_Display_Init();
         sleep_ms(200);
         PDU_Display_UpdateStatus("System initialized.");
     }
 
     if (DEBUG) {
-        INFO_PRINT("Initializing buttons...\n");
+        INFO_PRINT("Initializing buttons...");
         button_driver_init(); // Initialize buttons
     }
 

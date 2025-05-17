@@ -1,26 +1,55 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+#include "hardware/clocks.h"
+#include "hardware/gpio.h"
+#include "hardware/irq.h"
+#include "hardware/resets.h"
+#include "hardware/spi.h"
+#include "hardware/watchdog.h"
+#include "misc/uart_command_handler.h"
+#include "pico/bootrom.h"
+#include "pico/multicore.h"
+#include "pico/stdlib.h"
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <string.h>
+
+#include "core0_task.h"
+#include "core1_task.h"
+
+// Wiznet IoLibrary headers
+#include "network/socket.h"
+#include "network/w5x00_spi.h"
+#include "network/wizchip_conf.h"
+
+// Drivers & utilities
+#include "PDU_display.h"
+#include "drivers/CAT24C512_driver.h"
+#include "drivers/ILI9488_driver.h"
+#include "drivers/MCP23017_display_driver.h"
+#include "drivers/MCP23017_relay_driver.h"
+#include "startup.h"
+#include "utils/EEPROM_MemoryMap.h"
+#include "utils/helper_functions.h"
 
 #define DEBUG 1
 #define DEBUG_PRINT(...)                                                                           \
     if (DEBUG)                                                                                     \
-        printf("[DEBUG] " __VA_ARGS__);
+        printf("\n[DEBUG] " __VA_ARGS__);
 #define INFO 1
 #define INFO_PRINT(...)                                                                            \
     if (INFO)                                                                                      \
-        printf("[INFO] " __VA_ARGS__);
+        printf("\n[INFO] " __VA_ARGS__);
 #define ERROR 1
 #define ERROR_PRINT(...)                                                                           \
     if (ERROR)                                                                                     \
-        printf("[ERROR] " __VA_ARGS__);
+        printf("\n[ERROR] " __VA_ARGS__);
 #define WARNING 1
 #define WARNING_PRINT(...)                                                                         \
     if (WARNING)                                                                                   \
-        printf("[WARNING] " __VA_ARGS__);
+        printf("\n[WARNING] " __VA_ARGS__);
 
 // I2C Peripheral Assignments
 #define EEPROM_I2C i2c1           ///< Using I2C1 for EEPROM communication
@@ -182,5 +211,6 @@
 // Stores the currently selected row
 extern volatile uint8_t selected_row;
 extern volatile bool bootsel_requested;
+extern volatile bool dump_eeprom_pending;
 
 #endif // CONFIG_H

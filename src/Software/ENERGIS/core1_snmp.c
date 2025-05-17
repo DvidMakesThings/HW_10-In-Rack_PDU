@@ -1,174 +1,121 @@
 /**
  * @file core1_task.c
- * @brief Ethernet server task for ENERGIS PDU.
- * @version 1.0
- * @date 2025-03-03
- *
- * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
- *
- * This file implements the Ethernet server task for the ENERGIS PDU. It
- * initializes the W5500 Ethernet controller and runs an HTTP server on
- * port 80 to serve the PDU UI pages embedded via `html_files.h`.
+ * @brief Ethernet + SNMP server task for ENERGIS PDU.
+ * @version 1.1
+ * @date 2025-05-17
  */
 
 #include "core1_task.h"
+#include "hardware/irq.h"
+#include "hardware/watchdog.h"
 #include "network/snmp.h"
 #include "network/snmp_custom.h"
+#include "pico/stdlib.h"
 #include "socket.h"
+#include <stdio.h>
+#include <string.h>
 
-void core1_snmp_task(void);
+#define HTTP_PORT 80
+#define SNMP_AGENT_PORT PORT_SNMP_AGENT // 161
+#define SNMP_TRAP_PORT PORT_SNMP_TRAP   // 162
 
-// Main task function for handling Ethernet server operations
 void core1_task(void) {
-    char header[128];         // Buffer for HTTP response header
-    int header_len;           // Length of the HTTP response header
-    uint16_t port = 80;       // Port number for the server
-    char request_buffer[256]; // Buffer for storing incoming HTTP requests
+    uint8_t http_sock = 0;
+    uint8_t snmp_agent_sock = 1;
+    uint8_t snmp_trap_sock = 2;
+    uint8_t managerIP[4] = {192, 168, 0, 100}; // NMS
+    uint8_t agentIP[4] = {192, 168, 0, 101};   // this device
 
-    uint8_t server_socket = 0; // Socket identifier
+    char http_buf[256];
+    char header[128];
+    int hdr_len;
+    uint8_t last_status = 0xFF;
 
-    // Initialize the server socket
-    while (socket(server_socket, Sn_MR_TCP, port, 0) != server_socket) {
-        ERROR_PRINT("Socket creation failed. Retrying...\n");
-        sleep_ms(500); // Retry after a short delay
+    // --- 1) Initialize SNMP agent/trap ---
+    snmpd_init(managerIP, agentIP, snmp_agent_sock, snmp_trap_sock);
+    INFO_PRINT("SNMP agent initialized on port %d, trap on %d\n", SNMP_AGENT_PORT, SNMP_TRAP_PORT);
+
+    // --- 2) Initialize HTTP TCP socket ---
+    while (socket(http_sock, Sn_MR_TCP, HTTP_PORT, 0) != http_sock) {
+        ERROR_PRINT("HTTP socket creation failed. Retrying...\n");
+        sleep_ms(500);
     }
-
-    // Start listening for incoming connections
-    if (listen(server_socket) != SOCK_OK) {
-        ERROR_PRINT("Listen failed\n");
-        close(server_socket); // Close the socket if listening fails
+    if (listen(http_sock) != SOCK_OK) {
+        ERROR_PRINT("HTTP listen failed\n");
         return;
     }
+    INFO_PRINT("HTTP server listening on port %d\n", HTTP_PORT);
 
-    INFO_PRINT("Ethernet server started on port %d\n", port);
-
-    uint8_t last_status = 0xFF; // Variable to track the last socket status
-
-    // Main server loop
+    // --- 3) Main loop: handle HTTP and SNMP ---
     while (1) {
-        uint8_t status = getSn_SR(server_socket); // Get the current socket status
-
-        // Log status changes for debugging
+        // ---- HTTP server handling ----
+        uint8_t status = getSn_SR(http_sock);
         if (status != last_status) {
-            DEBUG_PRINT("Socket Status Changed: 0x%02X\n", status);
+            DEBUG_PRINT("HTTP socket status: 0x%02X\n", status);
             last_status = status;
         }
 
-        // Handle different socket states
-        switch (status) {
-        case SOCK_ESTABLISHED: // Client connected
-            INFO_PRINT("Client connected.\n");
-
-            // Clear the connection established flag
-            if (getSn_IR(server_socket) & Sn_IR_CON) {
-                setSn_IR(server_socket, Sn_IR_CON);
-                DEBUG_PRINT("Connection established flag cleared.\n");
+        if (status == SOCK_ESTABLISHED) {
+            // clear CON flag
+            if (getSn_IR(http_sock) & Sn_IR_CON) {
+                setSn_IR(http_sock, Sn_IR_CON);
             }
 
-            // Receive data from the client
-            int32_t recv_len =
-                recv(server_socket, (uint8_t *)request_buffer, sizeof(request_buffer) - 1);
-            if (recv_len > 0) {
-                request_buffer[recv_len] = '\0'; // Null-terminate the received data
-                DEBUG_PRINT("HTTP Request: %s\n", request_buffer);
+            // recv request
+            int32_t len = recv(http_sock, (uint8_t *)http_buf, sizeof(http_buf) - 1);
+            if (len > 0) {
+                http_buf[len] = '\0';
+                DEBUG_PRINT("HTTP Request: %s\n", http_buf);
 
-                // Generate the HTTP response
-                const char *page_content = get_page_content(request_buffer); // Get the page content
-                int page_size = strlen(page_content);
+                const char *page = get_page_content(http_buf);
+                int page_len = strlen(page);
 
-                // Create the HTTP response header
-                header_len = snprintf(header, sizeof(header),
-                                      "HTTP/1.1 200 OK\r\n"
-                                      "Content-Type: text/html\r\n"
-                                      "Content-Length: %d\r\n"
-                                      "Connection: close\r\n"
-                                      "\r\n",
-                                      page_size);
+                //                                   "Connection: close\r\n"
+                hdr_len = snprintf(header, sizeof(header),
+                                   "HTTP/1.1 200 OK\r\n"
+                                   "Content-Type: text/html\r\n"
+                                   "Content-Length: %d\r\n"
+                                   "\r\n",
+                                   page_len);
 
-                INFO_PRINT("Sending HTTP response. Page size: %d bytes\n", page_size);
-
-                // Send the HTTP response header and content
-                send(server_socket, (uint8_t *)header, header_len);
-                send(server_socket, (uint8_t *)page_content, page_size);
-
-                // Close the connection after sending the response
-                close(server_socket);
-                INFO_PRINT("Connection closed. Waiting for next request...\n");
-
-                // Ensure the socket is released before reinitialization
-                sleep_ms(50);
-
-                // Reinitialize the socket for the next connection
-                while (socket(server_socket, Sn_MR_TCP, port, 0) != server_socket) {
-                    ERROR_PRINT("Socket re-initialization failed. Retrying...\n");
-                    sleep_ms(500);
-                }
-
-                listen(server_socket); // Start listening again
-            }
-            break;
-
-        case SOCK_CLOSE_WAIT: // Client disconnected
-            INFO_PRINT("Client disconnected, waiting for final data...\n");
-
-            // Ensure all data is received before closing the socket
-            while (recv(server_socket, (uint8_t *)request_buffer, sizeof(request_buffer)) > 0)
-                ;
-
-            INFO_PRINT("Closing socket...\n");
-            close(server_socket); // Close the socket
-
-            sleep_ms(50); // Short delay to ensure the socket is fully released
-
-            // Reinitialize the socket for the next connection
-            while (socket(server_socket, Sn_MR_TCP, port, 0) != server_socket) {
-                ERROR_PRINT("Socket re-initialization failed. Retrying...\n");
-                sleep_ms(500);
+                send(http_sock, (uint8_t *)header, hdr_len);
+                send(http_sock, (uint8_t *)page, page_len);
             }
 
-            listen(server_socket); // Start listening again
-            break;
-
-        case SOCK_CLOSED: // Socket unexpectedly closed
-            WARNING_PRINT("Socket unexpectedly closed, restarting...\n");
-
-            // Ensure the socket is fully closed before reinitializing
+            close(http_sock);
+            INFO_PRINT("HTTP connection closed, reopening...\n");
             sleep_ms(50);
-
-            // Reinitialize the socket
-            while (socket(server_socket, Sn_MR_TCP, port, 0) != server_socket) {
-                ERROR_PRINT("Socket re-initialization failed. Retrying...\n");
+            // reopen & listen again
+            while (socket(http_sock, Sn_MR_TCP, HTTP_PORT, 0) != http_sock) {
+                ERROR_PRINT("Reopen HTTP socket failed. Retrying...\n");
                 sleep_ms(500);
             }
-
-            listen(server_socket); // Start listening again
-            break;
-
-        default:
-            break; // Avoid log spam for unhandled states
+            listen(http_sock);
+        } else if (status == SOCK_CLOSE_WAIT) {
+            // ensure all data drained
+            while (recv(http_sock, (uint8_t *)http_buf, sizeof(http_buf)) > 0) {}
+            close(http_sock);
+            sleep_ms(50);
+            while (socket(http_sock, Sn_MR_TCP, HTTP_PORT, 0) != http_sock) {
+                sleep_ms(500);
+            }
+            listen(http_sock);
+        } else if (status == SOCK_CLOSED) {
+            WARNING_PRINT("HTTP socket closed unexpectedly, restarting...\n");
+            sleep_ms(50);
+            while (socket(http_sock, Sn_MR_TCP, HTTP_PORT, 0) != http_sock) {
+                sleep_ms(500);
+            }
+            listen(http_sock);
         }
 
-        sleep_ms(10); // Short delay to prevent high CPU usage
+        // ---- SNMP handling ----
+        // Poll for any incoming SNMP requests and respond
+        snmpd_run();
+        // Advance the SNMP time base (for SNMP TimeTicks)
+        SNMP_time_handler();
+
+        // small delay to avoid 100% CPU
+        sleep_ms(10);
     }
-
-    core1_snmp_task(); // Call the SNMP task function
-}
-
-void core1_snmp_task(void) {
-    uint8_t managerIP[4] = {192, 168, 0, 100}; // Example Manager IP
-    uint8_t agentIP[4] = {192, 168, 0, 101};   // Example Agent IP
-    uint8_t snmp_agent_socket = 1;             // SNMP Agent socket identifier
-    uint8_t snmp_trap_socket = 2;              // SNMP Trap socket identifier
-
-    // Initialize SNMP Daemon
-    snmpd_init(managerIP, agentIP, snmp_agent_socket, snmp_trap_socket);
-
-    // Run the SNMP daemon to handle incoming SNMP requests
-    snmpd_run();
-
-    // Handle SNMP time updates
-    SNMP_time_handler();
-
-    // Short delay to prevent high CPU usage
-    sleep_ms(10);
 }

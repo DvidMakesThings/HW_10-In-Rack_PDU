@@ -89,7 +89,10 @@
         "net-snmp-config.h": "c",
         "net-snmp-includes.h": "c",
         "compare": "c",
-        "bootrom.h": "c"
+        "bootrom.h": "c",
+        "irq.h": "c",
+        "ctype.h": "c",
+        "uart_command_handler.h": "c"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }

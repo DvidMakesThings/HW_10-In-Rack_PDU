@@ -1,0 +1,64 @@
+# Walk the enterprise subtree (ignore ordering errors)
+snmpwalk -v1 -c public -Ci -Cc 192.168.0.11 1.3.6.1.4.1.19865
+
+# MIB-II “system” group
+snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.1.0   # sysDescr
+snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.2.0   # sysObjectID
+snmpget -v1 -c public 192.168.0.11 1.3.6.0.2.1.1.3.0   # sysUpTime
+snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.4.0   # sysContact
+snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.5.0   # sysName
+snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.6.0   # sysLocation
+snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.7.0   # sysServices
+
+# “Long-length” test entries
+snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.1.0   # Test #1
+snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.0   # Test #2
+
+# Network configuration (enterprise .4 subtree)
+snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.4.1.0   # IP address
+snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.4.2.0   # Subnet mask
+snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.4.3.0   # Gateway
+snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.4.4.0   # DNS server
+
+# Outlet 1
+snmpget  -v1 -c public  192.168.0.11 1.3.6.1.4.1.19865.2.1.0
+snmpset  -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 i 1   # turn on
+snmpset  -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 i 0   # turn off
+
+# Outlet 2
+snmpget  -v1 -c public  192.168.0.11 1.3.6.1.4.1.19865.2.2.0
+snmpset  -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 i 1
+snmpset  -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 i 0
+
+# Outlet 3
+snmpget  -v1 -c public  192.168.0.11 1.3.6.1.4.1.19865.2.3.0
+snmpset  -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 i 1
+snmpset  -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 i 0
+
+# Outlet 4
+snmpget  -v1 -c public  192.168.0.11 1.3.6.1.4.1.19865.2.4.0
+snmpset  -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 i 1
+snmpset  -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 i 0
+
+# Outlet 5
+snmpget  -v1 -c public  192.168.0.11 1.3.6.1.4.1.19865.2.5.0
+snmpset  -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 i 1
+snmpset  -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 i 0
+
+# Outlet 6
+snmpget  -v1 -c public  192.168.0.11 1.3.6.1.4.1.19865.2.6.0
+snmpset  -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 i 1
+snmpset  -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 i 0
+
+# Outlet 7
+snmpget  -v1 -c public  192.168.0.11 1.3.6.1.4.1.19865.2.7.0
+snmpset  -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 i 1
+snmpset  -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 i 0
+
+# Outlet 8
+snmpget  -v1 -c public  192.168.0.11 1.3.6.1.4.1.19865.2.8.0
+snmpset  -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 i 1
+snmpset  -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 i 0
+
+# All off
+snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.9.0 i 1

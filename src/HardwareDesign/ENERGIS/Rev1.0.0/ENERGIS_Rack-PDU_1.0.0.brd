@@ -8946,7 +8946,7 @@ chip 0805</description>
 <attribute name="NAME" x="169.1552" y="10.4672" size="0.8128" layer="25" rot="R180"/>
 </element>
 <element name="C66" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="100nF" x="171.7822" y="11.6528" smashed="yes" rot="R180">
-<attribute name="NAME" x="170.8314" y="12.4962" size="0.8128" layer="25"/>
+<attribute name="NAME" x="170.8814" y="12.1862" size="0.8128" layer="25"/>
 </element>
 <element name="USBC" library="Wurth_Connectors_WR-USB" library_urn="urn:adsk.eagle:library:16513831" package="629722000214" package3d_urn="urn:adsk.eagle:package:32827710/4" value="USB-TYPE-C-018" x="175.2186" y="2.6534" smashed="yes">
 <attribute name="APPLICATION" value="USB 2.0" x="119.5164" y="-82.5382" size="1.778" layer="27" display="off"/>
@@ -9007,7 +9007,7 @@ chip 0805</description>
 <attribute name="VALUE" x="-3.2434" y="62.743" size="1.778" layer="27" rot="R270"/>
 </element>
 <element name="R126" library="ds_passive" package="R0201" package3d_urn="urn:adsk.eagle:package:47403529/2" value="10K" x="169.7422" y="13.0802" smashed="yes" rot="R270">
-<attribute name="NAME" x="169.1112" y="13.6074" size="0.8128" layer="25" rot="R180"/>
+<attribute name="NAME" x="170.3888" y="13.2326" size="0.8128" layer="25"/>
 </element>
 <element name="R127" library="ds_passive" package="R0201" package3d_urn="urn:adsk.eagle:package:47403529/2" value="10K" x="169.7322" y="11.7758" smashed="yes" rot="R270">
 <attribute name="NAME" x="169.1412" y="12.2894" size="0.8128" layer="25" rot="R180"/>
@@ -9046,11 +9046,11 @@ chip 0805</description>
 <attribute name="NAME" x="185.0598" y="34.2406" size="0.8128" layer="25" rot="R180"/>
 </element>
 <element name="BOOT" library="BeagleBone_Blue_R3" library_urn="urn:adsk.eagle:library:5828899" package="TACTILE-SWITCH-1101NE" package3d_urn="urn:adsk.eagle:package:5829833/3" value="RS032G05A3SM" x="203.369" y="40.7958" smashed="yes">
-<attribute name="NAME" x="199.097" y="42.9318" size="1.4224" layer="25"/>
+<attribute name="NAME" x="203.013" y="44.3082" size="1.4224" layer="25" rot="R180"/>
 <attribute name="PROD_ID" value="SWCH-00815" x="124.6544" y="-137.2074" size="1.778" layer="27" display="off"/>
 </element>
 <element name="RESET" library="BeagleBone_Blue_R3" library_urn="urn:adsk.eagle:library:5828899" package="TACTILE-SWITCH-1101NE" package3d_urn="urn:adsk.eagle:package:5829833/3" value="RS032G05A3SM" x="203.441" y="35.9688" smashed="yes" rot="R180">
-<attribute name="NAME" x="206.183" y="33.7728" size="1.4224" layer="25" rot="R180"/>
+<attribute name="NAME" x="198.823" y="36.6828" size="1.4224" layer="25" rot="R180"/>
 <attribute name="PROD_ID" value="SWCH-00815" x="282.1556" y="213.972" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
 <element name="IC20" library="ds_ic_peripherals" package="LQFP48" package3d_urn="urn:adsk.eagle:package:46756750/2" value="W5500" x="178.037246875" y="28.994534375" smashed="yes" rot="R180">
@@ -9086,7 +9086,7 @@ chip 0805</description>
 <element name="ETH1" library="ds_con" package="RJ45-CAT5" package3d_urn="urn:adsk.eagle:package:46756799/3" value="SI-60118-F" x="191.5508" y="5.6578" smashed="yes">
 <attribute name="MANUFACTURER" value="Bel Fuse" x="160.766" y="-8.8964" size="1.778" layer="27" display="off"/>
 <attribute name="MAXIMUM_PACKAGE_HEIGHT" value="15.21mm" x="160.766" y="-8.8964" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="200.386" y="16.0936" size="1.016" layer="25"/>
+<attribute name="NAME" x="201.1164" y="13.166" size="1.016" layer="25" rot="R90"/>
 <attribute name="PARTREV" value="A0" x="160.766" y="-8.8964" size="1.778" layer="27" display="off"/>
 <attribute name="STANDARD" value="Manufacturer Recommendations" x="160.766" y="-8.8964" size="1.778" layer="27" display="off"/>
 </element>
@@ -9280,27 +9280,27 @@ chip 0805</description>
 <element name="IC22" library="ftdichip" package="QFN32" package3d_urn="urn:adsk.eagle:package:14014/1" value="FT232RNQ" x="202.41" y="25.62" smashed="yes" rot="R270">
 <attribute name="MF" value="" x="212.36" y="33.37" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MPN" value="FT232RQ" x="212.36" y="33.37" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="203.01" y="29.3" size="0.8128" layer="25" rot="R180"/>
+<attribute name="NAME" x="201.83" y="29.53" size="0.8128" layer="25" rot="R180"/>
 <attribute name="OC_FARNELL" value="1146033" x="212.36" y="33.37" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="OC_NEWARK" value="91K9919" x="212.36" y="33.37" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="POPULARITY" value="1" x="212.36" y="33.37" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="208.01" y="37.42" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="L6" library="ds_passive" package="0603" package3d_urn="urn:adsk.eagle:package:46683743/2" value="BLM18EG221TN1D" x="201.28" y="21.2" smashed="yes" rot="R90">
-<attribute name="NAME" x="203.125" y="20.105" size="0.8128" layer="25" rot="R90"/>
+<attribute name="NAME" x="200.815" y="19.615" size="0.8128" layer="25" rot="R270"/>
 <attribute name="VALUE" x="184.195" y="12.825" size="1.016" layer="27" rot="R90"/>
 </element>
 <element name="J1" library="jump-0r-smd" library_urn="urn:adsk.eagle:library:251" package="A0R-JMP" package3d_urn="urn:adsk.eagle:package:15385/1" value="0R-JUMPA" x="203.6" y="30.88" smashed="yes" rot="R270">
-<attribute name="NAME" x="202.446" y="33.572" size="0.8128" layer="25" rot="R270"/>
+<attribute name="NAME" x="201.928" y="32.066" size="0.8128" layer="25"/>
 <attribute name="POPULARITY" value="3" x="218.08" y="46.46" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="214.094" y="47.222" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="R110" library="ds_passive" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="1K" x="203.71" y="21.18" smashed="yes" rot="R270">
-<attribute name="NAME" x="204.345" y="21.815" size="0.8128" layer="25" rot="R270"/>
+<attribute name="NAME" x="203.385" y="19.715" size="0.8128" layer="25" rot="R270"/>
 <attribute name="VALUE" x="201.805" y="21.815" size="1.016" layer="27" rot="R270"/>
 </element>
 <element name="R148" library="ds_passive" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="1K" x="202.6" y="21.19" smashed="yes" rot="R270">
-<attribute name="NAME" x="203.235" y="21.825" size="0.8128" layer="25" rot="R270"/>
+<attribute name="NAME" x="202.325" y="19.735" size="0.8128" layer="25" rot="R270"/>
 <attribute name="VALUE" x="200.695" y="21.825" size="1.016" layer="27" rot="R270"/>
 </element>
 <element name="D16" library="LED" library_urn="urn:adsk.eagle:library:22900745" package="LEDC1608X35N_FLAT-B" package3d_urn="urn:adsk.eagle:package:24294787/2" value="CHIP-FLAT-B_0603-0.35MM" x="181.36" y="1.66" smashed="yes" rot="R90">
@@ -9346,15 +9346,15 @@ chip 0805</description>
 <attribute name="VALUE" x="170.4349" y="1.423" size="1.27" layer="27" rot="R90" align="top-center"/>
 </element>
 <element name="C102" library="ds_passive" package="0201" package3d_urn="urn:adsk.eagle:package:47403530/2" value="100nF/16V" x="204.45" y="29.09" smashed="yes" rot="R90">
-<attribute name="NAME" x="205.195" y="29.865" size="0.8128" layer="25" rot="R90"/>
+<attribute name="NAME" x="206.175" y="28.125" size="0.8128" layer="25"/>
 <attribute name="VALUE" x="206.355" y="28.455" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="C103" library="ds_passive" package="0201" package3d_urn="urn:adsk.eagle:package:47403530/2" value="4.7uF/16V" x="205.41" y="29.09" smashed="yes" rot="R90">
-<attribute name="NAME" x="206.355" y="29.975" size="0.8128" layer="25" rot="R90"/>
+<attribute name="NAME" x="206.195" y="29.265" size="0.8128" layer="25"/>
 <attribute name="VALUE" x="202.435" y="28.455" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="C104" library="ds_passive" package="0201" package3d_urn="urn:adsk.eagle:package:47403530/2" value="100nF/16V" x="199.95" y="22.35" smashed="yes" rot="R270">
-<attribute name="NAME" x="199.885" y="20.995" size="0.8128" layer="25" rot="R270"/>
+<attribute name="NAME" x="198.525" y="22.685" size="0.8128" layer="25" rot="R270"/>
 <attribute name="VALUE" x="193.165" y="22.985" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="IC23" library="ds_ic_peripherals" package="QFN40P120X140X35-10N" package3d_urn="urn:adsk.eagle:package:48463072/1" value="" x="170.62" y="18.48" smashed="yes" rot="R180">
@@ -9362,11 +9362,11 @@ chip 0805</description>
 <attribute name="VALUE" x="170.62" y="20.0709" size="1.27" layer="27" rot="R180" align="top-center"/>
 </element>
 <element name="R150" library="ds_passive" package="R0201" package3d_urn="urn:adsk.eagle:package:47403529/2" value="10K" x="171.61" y="16.61" smashed="yes" rot="R90">
-<attribute name="NAME" x="171.415" y="15.765" size="0.8128" layer="25" rot="R270"/>
+<attribute name="NAME" x="171.415" y="15.105" size="0.8128" layer="25"/>
 <attribute name="VALUE" x="173.515" y="15.975" size="1.016" layer="27" rot="R90"/>
 </element>
 <element name="C105" library="ds_passive" package="0201" package3d_urn="urn:adsk.eagle:package:47403530/2" value="100nF/16V" x="170.63" y="16.3" smashed="yes" rot="R270">
-<attribute name="NAME" x="170.105" y="15.445" size="0.8128" layer="25" rot="R270"/>
+<attribute name="NAME" x="170.055" y="16.625" size="0.8128" layer="25" rot="R180"/>
 <attribute name="VALUE" x="168.725" y="16.935" size="1.27" layer="27" rot="R270"/>
 </element>
 </elements>
