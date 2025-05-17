@@ -22,8 +22,6 @@
 #include <string.h>
 
 #include "CONFIG.h"
-#include "core0_task.h"
-#include "core1_task.h"
 
 // Wiznet IoLibrary headers
 #include "network/socket.h"
@@ -40,7 +38,6 @@
 #include "startup.h"
 #include "utils/EEPROM_MemoryMap.h"
 #include "utils/helper_functions.h"
-
 
 // Static IP configuration
 extern wiz_NetInfo g_net_info;

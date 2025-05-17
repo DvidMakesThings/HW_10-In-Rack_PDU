@@ -55,8 +55,7 @@ add_executable(ENERGIS
     utils/helper_functions.c
     PDU_display.c
     startup.c
-    core0_task.c
-    core1_snmp.c
+    core1_task.c
 )
 
 

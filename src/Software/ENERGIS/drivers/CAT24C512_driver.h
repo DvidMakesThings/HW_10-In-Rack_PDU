@@ -4,7 +4,7 @@
  * @brief Driver for CAT24C512 I2C EEPROM
  * @version 1.0
  * @date 2025-03-03
- * 
+ *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
  */
@@ -12,8 +12,8 @@
 #ifndef CAT24C512_DRIVER_H
 #define CAT24C512_DRIVER_H
 
-#include <stdint.h>
 #include "../CONFIG.h"
+#include <stdint.h>
 
 /**
  * @brief Initializes the CAT24C512 EEPROM.
@@ -63,6 +63,5 @@ void CAT24C512_Dump(uint8_t *buffer);
  * @brief Dumps the EEPROM contents in a formatted hex table.
  */
 void CAT24C512_DumpFormatted(void);
-
 
 #endif // CAT24C512_DRIVER_H

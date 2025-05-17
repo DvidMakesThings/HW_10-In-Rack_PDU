@@ -92,7 +92,9 @@
         "bootrom.h": "c",
         "irq.h": "c",
         "ctype.h": "c",
-        "uart_command_handler.h": "c"
+        "uart_command_handler.h": "c",
+        "snmp.h": "c",
+        "type_traits": "c"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }

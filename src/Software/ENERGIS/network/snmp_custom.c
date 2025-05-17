@@ -1,3 +1,14 @@
+/**
+ * @file snmp_custom.c
+ * @author David Sipos
+ * @brief Custom SNMP agent implementation for ENERGIS PDU.
+ * @version 1.0
+ * @date 2025-05-17
+ *
+ * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
+ * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
+ */
+
 #include "snmp_custom.h"           
 #include "snmp.h"
 #include "drivers/CAT24C512_driver.h"
@@ -11,30 +22,7 @@
 extern wiz_NetInfo g_net_info;
 
 // Forward‐declare our new callbacks
-static void get_networkIP(void *ptr, uint8_t *len);
-static void get_networkMask(void *ptr, uint8_t *len);
-static void get_networkGateway(void *ptr, uint8_t *len);
-static void get_networkDNS(void *ptr, uint8_t *len);
-static void get_serialNumber(void *buf, uint8_t *len);
-static void get_sysContact(void *buf, uint8_t *len);
-static void get_outlet1_State(void *buf, uint8_t *len);
-static void set_outlet1_State(int32_t val);
-static void get_outlet2_State(void *buf, uint8_t *len);
-static void set_outlet2_State(int32_t val);
-static void get_outlet3_State(void *buf, uint8_t *len);
-static void set_outlet3_State(int32_t val);
-static void get_outlet4_State(void *buf, uint8_t *len);
-static void set_outlet4_State(int32_t val);
-static void get_outlet5_State(void *buf, uint8_t *len);
-static void set_outlet5_State(int32_t val);
-static void get_outlet6_State(void *buf, uint8_t *len);
-static void set_outlet6_State(int32_t val);
-static void get_outlet7_State(void *buf, uint8_t *len);
-static void set_outlet7_State(int32_t val);
-static void get_outlet8_State(void *buf, uint8_t *len);
-static void set_outlet8_State(int32_t val);
-static void get_allOff(void *buf, uint8_t *len);
-static void set_allOff(int32_t val);
+
 
 //------------------------------------------------------------------------------
 // the full table of OID support:
@@ -83,11 +71,23 @@ dataEntryType snmpData[] = {
 
 const int32_t maxData = (sizeof(snmpData) / sizeof(dataEntryType));
 
+/**
+* @brief Initialize the SNMP table with default values.
+*
+* This function initializes the SNMP table with default values for
+* various OIDs. It is called during the initialization of the SNMP agent.
+*/
 void initTable() {
     // Example integer value for [OID 1.3.6.1.2.1.1.7.0]
     snmpData[6].u.intval = -5;
 }
 
+/**
+ * @brief Initialize the SNMP agent with the given manager and agent IP addresses.
+ *
+ * @param managerIP Pointer to the manager IP address.
+ * @param agentIP Pointer to the agent IP address.
+ */
 void initial_Trap(uint8_t *managerIP, uint8_t *agentIP) {
     // SNMP Trap: WarmStart(1) Trap
     {
@@ -107,7 +107,7 @@ void initial_Trap(uint8_t *managerIP, uint8_t *agentIP) {
  * @param buf Pointer to the buffer to store the contact information.
  * @param len Pointer to the length of the contact information.
  */
-static void get_sysContact(void *buf, uint8_t *len) {
+void get_sysContact(void *buf, uint8_t *len) {
     const char *s = "dvidmakesthings@gmail.com";
     *len = strlen(s);
     memcpy(buf, s, *len);
@@ -118,7 +118,7 @@ static void get_sysContact(void *buf, uint8_t *len) {
  * @param buf Pointer to the buffer to store the serial number.
  * @param len Pointer to the length of the serial number.
  */
-static void get_serialNumber(void *buf, uint8_t *len) {
+void get_serialNumber(void *buf, uint8_t *len) {
     // Buffer must hold DEFAULT_SN plus terminating '\0'
     char sn[sizeof(DEFAULT_SN)];
     // Read exactly strlen(DEFAULT_SN)+1 bytes (including the '\0')
@@ -136,7 +136,7 @@ static void get_serialNumber(void *buf, uint8_t *len) {
  * @param ptr Pointer to the buffer to store the IP address.
  * @param len Pointer to the length of the IP address.
  */
-static void get_networkIP(void *ptr, uint8_t *len) {
+void get_networkIP(void *ptr, uint8_t *len) {
     char *dst = (char *)ptr;
     *len = snprintf(dst, 16, "%u.%u.%u.%u",
         g_net_info.ip[0], g_net_info.ip[1],
@@ -148,7 +148,7 @@ static void get_networkIP(void *ptr, uint8_t *len) {
  * @param ptr Pointer to the buffer to store the subnet mask.
  * @param len Pointer to the length of the subnet mask.
  */
-static void get_networkMask(void *ptr, uint8_t *len) {
+void get_networkMask(void *ptr, uint8_t *len) {
     char *dst = (char *)ptr;
     *len = snprintf(dst, 16, "%u.%u.%u.%u",
         g_net_info.sn[0], g_net_info.sn[1],
@@ -160,7 +160,7 @@ static void get_networkMask(void *ptr, uint8_t *len) {
  * @param ptr Pointer to the buffer to store the gateway address.
  * @param len Pointer to the length of the gateway address.
  */
-static void get_networkGateway(void *ptr, uint8_t *len) {
+void get_networkGateway(void *ptr, uint8_t *len) {
     char *dst = (char *)ptr;
     *len = snprintf(dst, 16, "%u.%u.%u.%u",
         g_net_info.gw[0], g_net_info.gw[1],
@@ -172,7 +172,7 @@ static void get_networkGateway(void *ptr, uint8_t *len) {
  * @param ptr Pointer to the buffer to store the DNS server address.
  * @param len Pointer to the length of the DNS server address.
  */
-static void get_networkDNS(void *ptr, uint8_t *len) {
+void get_networkDNS(void *ptr, uint8_t *len) {
     char *dst = (char *)ptr;
     *len = snprintf(dst, 16, "%u.%u.%u.%u",
         g_net_info.dns[0], g_net_info.dns[1],
@@ -189,7 +189,7 @@ static void get_networkDNS(void *ptr, uint8_t *len) {
  * @param buf Pointer to the buffer to store the state.
  * @param len Pointer to the length of the state.
  */
-static void get_outlet1_State(void *buf, uint8_t *len) {
+void get_outlet1_State(void *buf, uint8_t *len) {
     int32_t v = mcp_relay_read_pin(0) ? 1 : 0; memcpy(buf,&v,4); *len=4;
 }
 
@@ -197,7 +197,7 @@ static void get_outlet1_State(void *buf, uint8_t *len) {
  * @brief Set the state of the outlet (relay) based on the input value.
  * @param val The desired state (0 or 1).
  */
-static void set_outlet1_State(int32_t val) {
+void set_outlet1_State(int32_t val) {
     bool curr=mcp_relay_read_pin(0), want=(val!=0);
     if(curr!=want) PDU_Display_ToggleRelay(1);
 }
@@ -207,7 +207,7 @@ static void set_outlet1_State(int32_t val) {
  * @param buf Pointer to the buffer to store the state.
  * @param len Pointer to the length of the state.
  */
-static void get_outlet2_State(void *buf, uint8_t *len) {
+void get_outlet2_State(void *buf, uint8_t *len) {
     int32_t v = mcp_relay_read_pin(1) ? 1 : 0; memcpy(buf,&v,4); *len=4;
 }
 
@@ -215,7 +215,7 @@ static void get_outlet2_State(void *buf, uint8_t *len) {
  * @brief Set the state of outlet 2 (relay) based on the input value.
  * @param val The desired state (0 or 1).
  */
-static void set_outlet2_State(int32_t val) {
+void set_outlet2_State(int32_t val) {
     bool curr=mcp_relay_read_pin(1), want=(val!=0);
     if(curr!=want) PDU_Display_ToggleRelay(2);
 }
@@ -225,7 +225,7 @@ static void set_outlet2_State(int32_t val) {
  * @param buf Pointer to the buffer to store the state.
  * @param len Pointer to the length of the state.
  */
-static void get_outlet3_State(void *buf, uint8_t *len) {
+void get_outlet3_State(void *buf, uint8_t *len) {
     int32_t v = mcp_relay_read_pin(2) ? 1 : 0; memcpy(buf,&v,4); *len=4;
 }
 
@@ -233,7 +233,7 @@ static void get_outlet3_State(void *buf, uint8_t *len) {
  * @brief Set the state of outlet 3 (relay) based on the input value.
  * @param val The desired state (0 or 1).
  */
-static void set_outlet3_State(int32_t val) {
+void set_outlet3_State(int32_t val) {
     bool curr=mcp_relay_read_pin(2), want=(val!=0);
     if(curr!=want) PDU_Display_ToggleRelay(3);
 }
@@ -243,7 +243,7 @@ static void set_outlet3_State(int32_t val) {
  * @param buf Pointer to the buffer to store the state.
  * @param len Pointer to the length of the state.
  */
-static void get_outlet4_State(void *buf, uint8_t *len) {
+void get_outlet4_State(void *buf, uint8_t *len) {
     int32_t v = mcp_relay_read_pin(3) ? 1 : 0; memcpy(buf,&v,4); *len=4;
 }
 
@@ -251,7 +251,7 @@ static void get_outlet4_State(void *buf, uint8_t *len) {
  * @brief Set the state of outlet 4 (relay) based on the input value.
  * @param val The desired state (0 or 1).
  */
-static void set_outlet4_State(int32_t val) {
+void set_outlet4_State(int32_t val) {
     bool curr=mcp_relay_read_pin(3), want=(val!=0);
     if(curr!=want) PDU_Display_ToggleRelay(4);
 }
@@ -261,7 +261,7 @@ static void set_outlet4_State(int32_t val) {
  * @param buf Pointer to the buffer to store the state.
  * @param len Pointer to the length of the state.
  */
-static void get_outlet5_State(void *buf, uint8_t *len) {
+void get_outlet5_State(void *buf, uint8_t *len) {
     int32_t v = mcp_relay_read_pin(4) ? 1 : 0; memcpy(buf,&v,4); *len=4;
 }
 
@@ -269,7 +269,7 @@ static void get_outlet5_State(void *buf, uint8_t *len) {
  * @brief Set the state of outlet 5 (relay) based on the input value.
  * @param val The desired state (0 or 1).
  */
-static void set_outlet5_State(int32_t val) {
+void set_outlet5_State(int32_t val) {
     bool curr=mcp_relay_read_pin(4), want=(val!=0);
     if(curr!=want) PDU_Display_ToggleRelay(5);
 }
@@ -279,7 +279,7 @@ static void set_outlet5_State(int32_t val) {
  * @param buf Pointer to the buffer to store the state.
  * @param len Pointer to the length of the state.
  */
-static void get_outlet6_State(void *buf, uint8_t *len) {
+void get_outlet6_State(void *buf, uint8_t *len) {
     int32_t v = mcp_relay_read_pin(5) ? 1 : 0; memcpy(buf,&v,4); *len=4;
 }
 
@@ -287,7 +287,7 @@ static void get_outlet6_State(void *buf, uint8_t *len) {
  * @brief Set the state of outlet 6 (relay) based on the input value.
  * @param val The desired state (0 or 1).
  */
-static void set_outlet6_State(int32_t val) {
+void set_outlet6_State(int32_t val) {
     bool curr=mcp_relay_read_pin(5), want=(val!=0);
     if(curr!=want) PDU_Display_ToggleRelay(6);
 }
@@ -297,7 +297,7 @@ static void set_outlet6_State(int32_t val) {
  * @param buf Pointer to the buffer to store the state.
  * @param len Pointer to the length of the state.
  */
-static void get_outlet7_State(void *buf, uint8_t *len) {
+void get_outlet7_State(void *buf, uint8_t *len) {
     int32_t v = mcp_relay_read_pin(6) ? 1 : 0; memcpy(buf,&v,4); *len=4;
 }
 
@@ -305,7 +305,7 @@ static void get_outlet7_State(void *buf, uint8_t *len) {
  * @brief Set the state of outlet 7 (relay) based on the input value.
  * @param val The desired state (0 or 1).
  */
-static void set_outlet7_State(int32_t val) {
+void set_outlet7_State(int32_t val) {
     bool curr=mcp_relay_read_pin(6), want=(val!=0);
     if(curr!=want) PDU_Display_ToggleRelay(7);
 }
@@ -315,7 +315,7 @@ static void set_outlet7_State(int32_t val) {
  * @param buf Pointer to the buffer to store the state.
  * @param len Pointer to the length of the state.
  */
-static void get_outlet8_State(void *buf, uint8_t *len) {
+void get_outlet8_State(void *buf, uint8_t *len) {
     int32_t v = mcp_relay_read_pin(7) ? 1 : 0; memcpy(buf,&v,4); *len=4;
 }
 
@@ -323,7 +323,7 @@ static void get_outlet8_State(void *buf, uint8_t *len) {
  * @brief Set the state of outlet 8 (relay) based on the input value.
  * @param val The desired state (0 or 1).
  */
-static void set_outlet8_State(int32_t val) {
+void set_outlet8_State(int32_t val) {
     bool curr=mcp_relay_read_pin(7), want=(val!=0);
     if(curr!=want) PDU_Display_ToggleRelay(8);
 }
@@ -333,7 +333,7 @@ static void set_outlet8_State(int32_t val) {
  * @param buf Pointer to the buffer to store the state.
  * @param len Pointer to the length of the state.
  */
-static void get_allOff(void *buf, uint8_t *len) {
+void get_allOff(void *buf, uint8_t *len) {
     int32_t v = 0;
     memcpy(buf, &v, 4);
     *len = 4;
@@ -343,7 +343,7 @@ static void get_allOff(void *buf, uint8_t *len) {
  * @brief Set the state of all outlets (relays) based on the input value.
  * @param val The desired state (0 or 1).
  */
-static void set_allOff(int32_t val) {
+void set_allOff(int32_t val) {
     if (val == 1) {
         for (uint8_t ch = 1; ch <= 8; ch++) {
             if (mcp_relay_read_pin(ch-1)) {

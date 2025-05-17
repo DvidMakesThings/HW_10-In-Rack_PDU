@@ -30,6 +30,9 @@ void CAT24C512_Init(void) {
 
 /**
  * @brief Writes a byte to the EEPROM.
+ * @param addr 16-bit memory address.
+ * @param data Byte to write.
+ * @return 0 if successful, -1 if failed.
  */
 int CAT24C512_WriteByte(uint16_t addr, uint8_t data) {
     uint8_t buffer[3] = {addr >> 8, addr & 0xFF, data};
@@ -42,6 +45,8 @@ int CAT24C512_WriteByte(uint16_t addr, uint8_t data) {
 
 /**
  * @brief Reads a byte from the EEPROM.
+ * @param addr 16-bit memory address.
+ * @return The read byte.
  */
 uint8_t CAT24C512_ReadByte(uint16_t addr) {
     uint8_t addr_buf[2] = {addr >> 8, addr & 0xFF};
@@ -55,6 +60,10 @@ uint8_t CAT24C512_ReadByte(uint16_t addr) {
 
 /**
  * @brief Writes a buffer of data to the EEPROM.
+ * @param addr 16-bit memory address.
+ * @param data Pointer to data buffer.
+ * @param len Number of bytes to write.
+ * @return 0 if successful, -1 if failed.
  */
 int CAT24C512_WriteBuffer(uint16_t addr, const uint8_t *data, uint16_t len) {
     while (len > 0) {
@@ -78,6 +87,9 @@ int CAT24C512_WriteBuffer(uint16_t addr, const uint8_t *data, uint16_t len) {
 
 /**
  * @brief Reads a buffer of data from the EEPROM.
+ * @param addr 16-bit memory address.
+ * @param buffer Pointer to buffer to store data.
+ * @param len Number of bytes to read.
  */
 void CAT24C512_ReadBuffer(uint16_t addr, uint8_t *buffer, uint32_t len) {
     uint8_t addr_buf[2] = {addr >> 8, addr & 0xFF};
@@ -88,6 +100,7 @@ void CAT24C512_ReadBuffer(uint16_t addr, uint8_t *buffer, uint32_t len) {
 
 /**
  * @brief Dumps the entire EEPROM contents into a buffer.
+ * @param buffer Pointer to a 64 KB buffer (EEPROM size).
  */
 void CAT24C512_Dump(uint8_t *buffer) {
     CAT24C512_ReadBuffer(0x0000, buffer, 65536); // Read entire EEPROM (64KB)

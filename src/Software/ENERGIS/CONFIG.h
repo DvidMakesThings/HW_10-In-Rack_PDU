@@ -1,3 +1,14 @@
+/**
+ * @file CONFIG.h
+ * @author David Sipos
+ * @brief Configuration file for the ENERGIS PDU project.
+ * @version 1.0
+ * @date 2025-05-17
+ *
+ * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
+ * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
+ */
+
 #ifndef CONFIG_H
 #define CONFIG_H
 
@@ -16,7 +27,6 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "core0_task.h"
 #include "core1_task.h"
 
 // Wiznet IoLibrary headers

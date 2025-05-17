@@ -1,9 +1,12 @@
 /**
  * @file uart_command_handler.c
+ * @author David Sipos
  * @brief UART command handler over stdio (USB-CDC) for ENERGIS PDU.
+ * @version 1.0
+ * @date 2025-03-03
  *
- * Reads lines from stdin (your CDC serial port), matches them against
- * known commands, and sends responses back via printf().
+ * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
+ * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
  */
 
 #include "CONFIG.h"
@@ -14,10 +17,10 @@
 extern volatile uint32_t bootloader_trigger;
 extern wiz_NetInfo g_net_info; // current network info in RAM
 
-//------------------------------------------------------------------------------
-// Helper: trim leading and trailing whitespace in place.
-// Returns pointer to the first non-space character.
-// Helper: trim leading/trailing whitespace in place.
+/**
+ * @brief Buffer length for UART command input.
+ * @param s The string to trim.
+ */
 static char *trim(char *s) {
     char *end;
     while (*s && isspace((unsigned char)*s))
@@ -30,9 +33,10 @@ static char *trim(char *s) {
     return s;
 }
 
-//------------------------------------------------------------------------------
-// process_command(): compare a null–terminated, trimmed command string
-// and perform the associated action.
+/**
+ * @brief Process the command received from UART.
+ * @param cmd The command string to process.
+ */
 static void process_command(const char *cmd) {
     if (strcmp(cmd, "HELP") == 0) {
         printf("\nAvailable commands:\r\n"
@@ -59,9 +63,11 @@ static void process_command(const char *cmd) {
     }
 }
 
-//------------------------------------------------------------------------------
-// uart_command_loop(): blocks on fgets(), dispatches each entered line.
-// Call this once (it never returns) after stdio_init_all()/stdio_usb_init().
+/**
+ * @brief Main command loop for UART input.
+ *
+ * Continuously reads from the UART and processes commands.
+ */
 void uart_command_loop(void) {
     static char line[UART_CMD_BUF_LEN];
 
@@ -83,6 +89,11 @@ void uart_command_loop(void) {
     }
 }
 
+/**
+ * @brief Trigger the BOOTSEL mode on the next reboot.
+ *
+ * This function sets a flag to enter BOOTSEL mode on the next reboot.
+ */
 void bootsel_trigger(void) {
     // trigger BOOTSEL on next reboot
     bootloader_trigger = 0xDEADBEEF;
@@ -90,17 +101,34 @@ void bootsel_trigger(void) {
     watchdog_reboot(0, 0, 0);
 }
 
+/**
+ * @brief Reboot the system.
+ *
+ * This function reboots the system immediately.
+ */
 void reboot(void) {
     INFO_PRINT("OK: REBOOTING\r\n");
     watchdog_reboot(0, 0, 0);
 }
 
+/**
+ * @brief Dump the EEPROM contents.
+ *
+ * This function dumps the entire EEPROM contents in a formatted hex table.
+ */
 void dump_eeprom(void) {
     // dump EEPROM, then acknowledge
     CAT24C512_DumpFormatted();
     INFO_PRINT("OK: DUMP_EEPROM\r\n");
 }
 
+/**
+ * @brief Set the IP address of the device.
+ *
+ * This function sets the IP address of the device and reconfigures the Wiznet chip.
+ * @param ip The new IP address in dotted-decimal format.
+ * @param cmd The command string containing the IP address.
+ */
 void set_ip(const char *ip, const char *cmd) {
     unsigned ip0, ip1, ip2, ip3;
     char ip_str[16];

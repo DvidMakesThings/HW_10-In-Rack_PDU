@@ -1,6 +1,21 @@
+/**
+ * @file helper_functions.h
+ * @author David Sipos
+ * @brief Helper functions for the ENERGIS PDU project.
+ * @version 1.0
+ * @date 2025-03-03
+ *
+ * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
+ * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
+ */
+
 #include "helper_functions.h"
 
-// i2c_scan_bus: Scans an I2C bus and prints detected devices.
+/**
+ * @brief Scans an I2C bus for devices and prints their addresses.
+ * @param i2c The I2C instance to scan.
+ * @param bus_name The name of the bus for logging purposes.
+ */
 void i2c_scan_bus(i2c_inst_t *i2c, const char *bus_name) {
     DEBUG_PRINT("Scanning %s...\n", bus_name);
     bool device_found = false;
@@ -17,17 +32,11 @@ void i2c_scan_bus(i2c_inst_t *i2c, const char *bus_name) {
     }
 }
 
-//------------------------------------------------------------------------------
-// activate_relay: Activates a relay (0-7) and turns on the corresponding LED.
-void activate_relay(uint8_t relay_number) {
-    if (relay_number > 7) {
-        ERROR_PRINT("Invalid relay number %d. Must be between 0 and 7.\n", relay_number);
-        return;
-    }
-    mcp_relay_write_pin(relay_number, 1);
-    mcp_display_write_pin(relay_number, 1);
-}
-
+/**
+ * @brief Returns the HTML content for a given request.
+ * @param request The HTTP request string.
+ * @return The HTML content as a string.
+ */
 const char *get_page_content(const char *request) {
     if (strstr(request, "GET /settings.html"))
         return settings_html;

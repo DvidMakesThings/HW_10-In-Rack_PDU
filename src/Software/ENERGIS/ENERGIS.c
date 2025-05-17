@@ -1,21 +1,29 @@
 /**
  * @file ENERGIS.c
- * @brief Main application for ENERGIS PDU.
+ * @author David Sipos
+ * @brief Main entry point for the ENERGIS PDU firmware.
  * @version 1.0
- * @date 2025-03-03
+ * @date 2025-05-17
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
- *
- * This file serves as the entry point for the ENERGIS PDU application.
+ * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
  */
 
 #include "CONFIG.h"
 
 wiz_NetInfo g_net_info;
+
+/**
+ * @brief Global variable to trigger BOOTSEL mode.
+ *
+ * This variable is used to trigger the BOOTSEL mode on the next reboot.
+ */
 __attribute__((section(".uninitialized_data"))) uint32_t bootloader_trigger;
 
-//------------------------------------------------------------------------------
-// main: Performs system initialization on Core 0 and launches core1_task on Core 1.
+/**
+ * @brief Main function for the ENERGIS PDU firmware.
+ * @return int
+ */
 int main(void) {
     // Early BOOTSEL check before anything touches USB
     if (bootloader_trigger == 0xDEADBEEF) {
@@ -46,8 +54,6 @@ int main(void) {
         ERROR_PRINT("Core 1 initialization failed.\n\n");
         return -1;
     }
-
-    // ————————— Hook in IRQ-driven UART command parser —————————
 
     // Launch Ethernet/HTTP server handling on Core 1.
     multicore_launch_core1(core1_task);

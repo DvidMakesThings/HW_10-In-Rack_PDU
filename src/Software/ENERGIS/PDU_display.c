@@ -2,10 +2,11 @@
  * @file PDU_display.c
  * @author David Sipos
  * @brief Implements the UI for the PDU display.
- * @version 1.1
+ * @version 1.0
  * @date 2025-03-03
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
+ * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
  */
 
 #include "PDU_display.h"
@@ -98,6 +99,8 @@ void PDU_Display_DrawStaticUI(void) {
 
 /**
  * @brief Updates the ON/OFF state of a given channel.
+ * @param channel The channel number (1-8).
+ * @param state The state to set (ON or OFF).
  */
 void PDU_Display_UpdateState(uint8_t channel, const char *state) {
     if (channel < 1 || channel > 8)
@@ -115,6 +118,8 @@ void PDU_Display_UpdateState(uint8_t channel, const char *state) {
 
 /**
  * @brief Updates the voltage display for a given channel.
+ * @param channel The channel number (1-8).
+ * @param voltage The voltage value to display.
  */
 void PDU_Display_UpdateVoltage(uint8_t channel, float voltage) {
     if (channel < 1 || channel > 8)
@@ -126,6 +131,8 @@ void PDU_Display_UpdateVoltage(uint8_t channel, float voltage) {
 
 /**
  * @brief Updates the current display for a given channel.
+ * @param channel The channel number (1-8).
+ * @param current The current value to display.
  */
 void PDU_Display_UpdateCurrent(uint8_t channel, float current) {
     if (channel < 1 || channel > 8)
@@ -137,6 +144,7 @@ void PDU_Display_UpdateCurrent(uint8_t channel, float current) {
 
 /**
  * @brief Updates the displayed IP address.
+ * @param ip The IP address to display (4 bytes).
  */
 void PDU_Display_UpdateIP(const uint8_t ip[4]) {
     char ip_str[32]; // Ensure enough space for "IP Address: xxx.xxx.xxx.xxx"
@@ -148,6 +156,7 @@ void PDU_Display_UpdateIP(const uint8_t ip[4]) {
 
 /**
  * @brief Updates the system status message.
+ * @param status The status message to display.
  */
 void PDU_Display_UpdateStatus(const char *status) {
     ILI9488_DrawBar(0, 280, ILI9488_WIDTH, 35, COLOR_DARK_BLUE); // Clear status bar
@@ -186,6 +195,8 @@ void PDU_Display_ShowEEPROM_Saved(void) {
 
 /**
  * @brief Updates the selection indicator (*) for UI navigation.
+ * @param row The row number to highlight (0-based index).
+ * @note This function should be called after the static UI is drawn.
  */
 void PDU_Display_UpdateSelection(uint8_t row) {
     static uint8_t prev_row = 0;
@@ -201,6 +212,8 @@ void PDU_Display_UpdateSelection(uint8_t row) {
 
 /**
  * @brief Toggles the ON/OFF state of the currently selected relay.
+ * @param channel The channel number (1-8).
+ * @note This function is called when the user presses the "OK" button.
  */
 void PDU_Display_ToggleRelay(uint8_t channel) {
     if (channel < 1 || channel > 8)
