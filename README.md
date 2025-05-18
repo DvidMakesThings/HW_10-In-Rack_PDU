@@ -9,6 +9,9 @@ management system designed for efficient control and monitoring of power in a
 rack-mounted environment. The project includes a controller board, a display
 board, and a relay board to handle switching and power management.
 
+Update 05.2025: Since lot of people said, it would be nice to have a Non-230V-Version, I started to develop
+the USB-C version of ENERGIS with USB PD Source functionality: [PDNode-600 Pro](https://github.com/DvidMakesThings/HW_PDNode-600-Pro)
+
 
 ## Hardware Development Phases
 | Phase                                | Status   |
@@ -20,7 +23,8 @@ board, and a relay board to handle switching and power management.
 | **Implementing Rev2.0**              | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
 | **Implementing Relay Board Rev2.1**  | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
 | **Initial Firmware Development**     | ![In Progress](https://img.shields.io/badge/status-in%20progress-yellow) |
-| **Enclosure Testing & Ventilation**  | ![In Progress](https://img.shields.io/badge/status-in%20progress-yellow) |
+| **Final PCB Revision**               | ![In Progress](https://img.shields.io/badge/status-PCB%20Design%20ready,%20ordering%20when%20SW%20is%20ready-yellow) |
+| **Enclosure Testing & Ventilation**  | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
 | **Power Monitoring**                 | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
 | **Production Optimization**          | ![Planned](https://img.shields.io/badge/status-planned-blue) |
 
@@ -47,6 +51,13 @@ board, and a relay board to handle switching and power management.
     - Planned revision without the LCD. This is the main size issue, going to do a version where the setup fits in 1U size. 
     Currently for debug purposes 1.5U is perfectly fine
 
+#### ENERGIS 1.0.0 Final revision
+- Relay-Board and Controller board is now combined
+- Added FT232 to separate CDC/UART
+- Added 2:1 USB MUX
+- Added enable functionality to the PSU
+- Added high precision LDO to supply the MCU
+
 ## Firmware Development Phases
 | Phase                                | Status   |
 | ------------------------------------ | -------- |
@@ -56,14 +67,15 @@ board, and a relay board to handle switching and power management.
 | **MCP23017 Relay-Board Driver**      | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
 | **W5500 Ethernet Driver**            | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
 | **CAT24C512 512K EEPROM Driver**     | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **HLW8032 Power Monitor Dirver**     | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
 | **Version Control and EEPROM Data**  | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
 | **Display Functions**                | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **System Startup Script**            | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
-| **Multicore processing and RTOS**    | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
-| **Pushbutton control**               | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
-| **Make Everything work together**    | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
-| **Software debugging**               | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
+| **System Startup Script**            | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **Multicore processing and RTOS**    | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **Pushbutton control**               | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **HLW8032 Power Monitor Dirver**     | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
+| **Make Everything work together**    | ![In Progress](https://img.shields.io/badge/status-in%20progress-yellow) |
+| **HTML Server Implementation**       | ![In Progress](https://img.shields.io/badge/status-in%20progress-yellow) |
+| **Software debugging**               | ![In Progress](https://img.shields.io/badge/status-in%20progress-yellow) |
 | **Ethernet based firmware update**   | ![Planned](https://img.shields.io/badge/status-planned-blue) |
 
 
@@ -115,11 +127,11 @@ board, and a relay board to handle switching and power management.
 - **Display Board:** 2-layer PCB.
 - **Controller Board:** 4-layer PCB (JLC04161H-3313, 1.56mm ±10% thickness)
 
-![Controller Board 3D View](images/Controller%20Board/Rev2.0/ControllerBoard_2.0_3D-1.png)
+![Controller Board 3D View](images/_proto/Controller%20Board/Rev2.0/ControllerBoard_2.0_3D-1.png)
 
-![Display Board 3D View](images/Display%20Board/Rev2.0/DisplayBoard_2.0_3D-1.png)
+![Display Board 3D View](images/_proto/Display%20Board/Rev2.0/DisplayBoard_2.0_3D-1.png)
 
-![Relay Board 3D View](images/Relay%20Board/Rev2.1/RelayBoard_2.1_3D-2.png)
+![Relay Board 3D View](images/_proto/Relay%20Board/Rev2.1/RelayBoard_2.1_3D-2.png)
 
 ### **Impedance Control:**
 
@@ -144,9 +156,9 @@ board, and a relay board to handle switching and power management.
 
 The full schematics for each board are available:
 
-- **[Controller Board Schematics](src/PDF/Controller-Board/Rev%202.0/Controller-Board_2.0_Schematics.pdf)**
-- **[Display Board Schematics](src/PDF/Display-Board/Rev%202.0/Display-Board_2.0_Schematics.pdf)**
-- **[Relay Board Schematics](src/PDF/Relay-Board/Rev2.1/Relay-Board_2.1_Schematics.pdf)**
+- **[Controller Board Schematics](src/PDF/_proto/Controller-Board/Rev%202.0/Controller-Board_2.0_Schematics.pdf)**
+- **[Display Board Schematics](src/PDF/_proto/Display-Board/Rev%202.0/Display-Board_2.0_Schematics.pdf)**
+- **[Relay Board Schematics](src/PDF/_proto/Relay-Board/Rev2.1/Relay-Board_2.1_Schematics.pdf)**
 
 ## Usage
 
