@@ -12,6 +12,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+#include "hardware/address_mapped.h"
 #include "hardware/clocks.h"
 #include "hardware/gpio.h"
 #include "hardware/irq.h"
@@ -76,6 +77,10 @@
 #define UART_ID uart0
 #define BAUD_RATE 115200
 #define UART_CMD_BUF_LEN 256
+
+// MCU Specific Defines
+#define VREG_BASE 0x40064000
+#define VREG_VSEL_MASK 0x7
 
 // RP2040 GPIO Pin Assignments
 #define UART0_RX 0

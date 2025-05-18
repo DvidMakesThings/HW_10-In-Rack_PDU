@@ -5,6 +5,7 @@ cmake_minimum_required(VERSION 3.13)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(PICO_SDK_PATH "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk" CACHE PATH "Path to Pico SDK")
 
 # Initialise pico_sdk from installed location
 # (note this can come from environment, CMake cache etc)
@@ -15,18 +16,17 @@ if(WIN32)
 else()
     set(USERHOME $ENV{HOME})
 endif()
-set(sdkVersion 2.1.1)
-set(toolchainVersion 14_2_Rel1)
-set(picotoolVersion 2.1.1)
-set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
-if (EXISTS ${picoVscode})
-    include(${picoVscode})
-endif()
+
 # ====================================================================================
 set(PICO_BOARD pico CACHE STRING "Board type")
 
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
+
+set(PICO_NO_DOWNLOADS 1)
+set(PICOTOOL_PATH "C:/picotool/picotool/build/picotool.exe")
+
+set(PICO_NO_BUILD_PICOTOOL 1)
 
 project(ENERGIS C CXX ASM)
 
@@ -66,6 +66,11 @@ pico_set_program_version(ENERGIS "0.1")
 pico_enable_stdio_usb(ENERGIS 1)
 pico_enable_stdio_uart(ENERGIS 0)
 
+# Enable float support in printf
+target_compile_definitions(ENERGIS PRIVATE
+    PICO_STDIO_ENABLE_FLOAT=1
+    PICO_PRINTF_ALWAYS_INCLUDE_FLOAT=1
+)
 
 # Add the standard library and necessary Pico libraries to the build
 target_link_libraries(ENERGIS 

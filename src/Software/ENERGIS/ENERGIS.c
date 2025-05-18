@@ -10,6 +10,7 @@
  */
 
 #include "CONFIG.h"
+#include "hardware/vreg.h"
 
 wiz_NetInfo g_net_info;
 
@@ -25,6 +26,13 @@ __attribute__((section(".uninitialized_data"))) uint32_t bootloader_trigger;
  * @return int
  */
 int main(void) {
+    // Set core voltage to 1.20V (max safe level)
+    vreg_set_voltage(VREG_VOLTAGE_1_20);
+
+    sleep_ms(10); // Allow voltage to settle
+
+    // Set system clock to 200 MHz
+    set_sys_clock_khz(200000, true); // Set system clock to 200 MHz
     // Early BOOTSEL check before anything touches USB
     if (bootloader_trigger == 0xDEADBEEF) {
         bootloader_trigger = 0;
@@ -32,7 +40,7 @@ int main(void) {
         reset_usb_boot(0, 0);
     }
 
-    sleep_ms(5000); // Delay for debugging
+    sleep_ms(1000); // Delay for debugging
 
     if (!startup_init()) {
         ERROR_PRINT("Startup initialization failed.\n");

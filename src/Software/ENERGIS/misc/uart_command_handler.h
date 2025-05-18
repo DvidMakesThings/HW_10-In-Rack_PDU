@@ -55,4 +55,11 @@ void dump_eeprom(void);
  */
 void set_ip(const char *ip, const char *cmd);
 
+/**
+ * @brief Get system information.
+ *
+ * This function retrieves and prints system information such as clock frequencies and voltage.
+ */
+void getSysInfo(void);
+
 #endif // UART_COMMAND_HANDLER_H

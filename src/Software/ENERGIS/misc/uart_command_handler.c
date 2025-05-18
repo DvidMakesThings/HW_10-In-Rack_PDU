@@ -18,18 +18,37 @@ extern volatile uint32_t bootloader_trigger;
 extern wiz_NetInfo g_net_info; // current network info in RAM
 
 /**
- * @brief Buffer length for UART command input.
- * @param s The string to trim.
+ * @brief Trims leading/trailing whitespace and removes non-printable or glitch bytes from a string.
+ * @param s The string to clean (in-place).
+ * @return Cleaned string pointer.
  */
 static char *trim(char *s) {
-    char *end;
+    // Skip leading whitespace
     while (*s && isspace((unsigned char)*s))
         s++;
+
+    // Early out if string is empty after trim
     if (*s == '\0')
         return s;
-    end = s + strlen(s) - 1;
-    while (end > s && isspace((unsigned char)*end))
+
+    // Remove trailing whitespace + non-printables
+    char *end = s + strlen(s) - 1;
+    while (end > s && (isspace((unsigned char)*end) || !isprint((unsigned char)*end))) {
         *end-- = '\0';
+    }
+
+    // Clean inline non-printables / control characters
+    char *read = s;
+    char *write = s;
+    while (*read) {
+        unsigned char c = *read++;
+        if (isprint(c)) {
+            *write++ = c;
+        }
+        // else: skip glitch byte silently
+    }
+    *write = '\0';
+
     return s;
 }
 
@@ -37,29 +56,42 @@ static char *trim(char *s) {
  * @brief Process the command received from UART.
  * @param cmd The command string to process.
  */
-static void process_command(const char *cmd) {
-    if (strcmp(cmd, "HELP") == 0) {
+static void process_command(const char *cmd_in) {
+    char cmd[32];
+    strncpy(cmd, cmd_in, sizeof(cmd) - 1);
+    cmd[sizeof(cmd) - 1] = '\0';
+
+    // Trim and uppercase
+    char *trimmed = trim(cmd);
+    for (char *p = trimmed; *p; ++p)
+        *p = toupper(*p);
+
+    INFO_PRINT("Received CMD: \"%s\"\r\n", cmd);
+    if (strcmp(trimmed, "HELP") == 0) {
         printf("\nAvailable commands:\r\n"
                "HELP\r\n"
                "BOOTSEL\r\n"
                "DUMP_EEPROM\r\n"
                "REBOOT\r\n"
                "SET_IP <addr>\r\n"
-               "NETINFO\r\n");
-    } else if (strcmp(cmd, "BOOTSEL") == 0) {
+               "NETINFO\r\n"
+               "SYSINFO\r\n");
+    } else if (strcmp(trimmed, "BOOTSEL") == 0) {
         bootsel_trigger();
-    } else if (strcmp(cmd, "REBOOT") == 0) {
+    } else if (strcmp(trimmed, "REBOOT") == 0) {
         reboot();
-    } else if (strcmp(cmd, "DUMP_EEPROM") == 0) {
+    } else if (strcmp(trimmed, "DUMP_EEPROM") == 0) {
         dump_eeprom();
-    } else if (strncmp(cmd, "SET_IP ", 7) == 0) {
-        set_ip(cmd + 7, cmd);
-    } else if (strncmp(cmd, "NETINFO", 9) == 0) {
+    } else if (strncmp(trimmed, "SET_IP ", 7) == 0) {
+        set_ip(trimmed + 7, trimmed);
+    } else if (strcmp(trimmed, "NETINFO") == 0) {
         INFO_PRINT("NETWORK INFORMATION:\r\n");
         print_network_information(g_net_info);
+    } else if (strcmp(trimmed, "SYSINFO") == 0) {
+        INFO_PRINT("SYSTEM INFORMATION:\r\n");
+        getSysInfo();
     } else {
-        // unrecognized command
-        ERROR_PRINT("Unknown command \"%s\"\r\n", cmd);
+        ERROR_PRINT("Unknown command \"%s\"\r\n", trimmed);
     }
 }
 
@@ -71,20 +103,20 @@ static void process_command(const char *cmd) {
 void uart_command_loop(void) {
     static char line[UART_CMD_BUF_LEN];
 
+    // Flush any garbage
+    while (getchar_timeout_us(0) != PICO_ERROR_TIMEOUT)
+        ;
+
     while (fgets(line, sizeof(line), stdin)) {
-        // Strip trailing newline or carriage return
         size_t len = strlen(line);
         if (len > 0 && (line[len - 1] == '\n' || line[len - 1] == '\r')) {
             line[--len] = '\0';
         }
 
-        // Trim spaces and skip empty
         char *cmd = trim(line);
-        if (*cmd == '\0') {
+        if (*cmd == '\0')
             continue;
-        }
 
-        // Dispatch
         process_command(cmd);
     }
 }
@@ -109,6 +141,26 @@ void bootsel_trigger(void) {
 void reboot(void) {
     INFO_PRINT("OK: REBOOTING\r\n");
     watchdog_reboot(0, 0, 0);
+}
+
+/**
+ * @brief Get system information.
+ *
+ * This function retrieves and prints system information such as clock frequencies and voltage.
+ */
+void getSysInfo(void) {
+    uint sys_freq = clock_get_hz(clk_sys);
+    uint usb_freq = clock_get_hz(clk_usb);
+    uint peri_freq = clock_get_hz(clk_peri);
+    uint adc_freq = clock_get_hz(clk_adc);
+
+    uint32_t vreg_raw = *((volatile uint32_t *)VREG_BASE);
+    uint vsel = vreg_raw & VREG_VSEL_MASK;
+    float voltage = 1.10f + 0.05f * vsel;
+
+    INFO_PRINT("Core voltage: %.2f V (vsel = %u)\n", voltage, vsel);
+    INFO_PRINT("SYS: %u Hz\nUSB: %u Hz\nPERI: %u Hz\nADC: %u Hz\n", sys_freq, usb_freq, peri_freq,
+               adc_freq);
 }
 
 /**
