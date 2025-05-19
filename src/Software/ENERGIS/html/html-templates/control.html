@@ -1,4 +1,3 @@
-<!-- control.html -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -160,6 +159,9 @@
     }
   </style>
   <script>
+    // Store pending changes
+    let pendingChanges = new Set();
+
     // Fetch & update table every 5s
     function updateStatus() {
       fetch('/api/status')
@@ -170,23 +172,55 @@
             document.getElementById(`current-${i + 1}`).innerText = ch.current.toFixed(2);
             document.getElementById(`uptime-${i + 1}`).innerText = ch.uptime;
             document.getElementById(`power-${i + 1}`).innerText = ch.power.toFixed(2);
+            // Only update switch state if not pending
+            if (!pendingChanges.has(i + 1)) {
+              document.getElementById(`toggle-${i + 1}`).checked = ch.state;
+            }
           });
-          document.getElementById('internal-temperature')
-            .innerText = data.internalTemperature.toFixed(1);
-          document.getElementById('system-status')
-            .innerText = data.systemStatus;
+          document.getElementById('internal-temperature').innerText =
+            data.internalTemperature.toFixed(1);
+          document.getElementById('system-status').innerText = data.systemStatus;
         })
         .catch(console.error);
     }
 
-    // Toggle channel immediately
+    // Mark channel for change
     function toggleChannel(channel) {
-      const state = document.getElementById(`toggle-${channel}`).checked ? 'on' : 'off';
+      pendingChanges.add(channel);
+    }
+
+    // Apply all pending changes
+    function applyChanges(event) {
+      event.preventDefault();
+
+      const formData = new FormData(event.target);
+      const data = new URLSearchParams();
+
+      for (const [key, value] of formData) {
+        if (key.startsWith('channel')) {
+          const channel = key.replace('channel', '');
+          if (document.getElementById(`toggle-${channel}`).checked) {
+            data.append(key, 'on');
+          }
+        }
+      }
+
       fetch('/control', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: `channel${channel}=${state}`
-      }).catch(console.error);
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: data.toString()
+      })
+        .then(response => {
+          if (!response.ok) throw new Error('Network response was not ok');
+          pendingChanges.clear();
+          updateStatus();
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          updateStatus();
+        });
     }
 
     window.addEventListener('load', () => {
@@ -213,7 +247,7 @@
     <main class="main-content">
       <h2>Control</h2>
       <p>Manage power channels and monitor real-time data.</p>
-      <form method="post" action="/control">
+      <form method="post" action="/control" onsubmit="applyChanges(event)">
         <table>
           <tr>
             <th>Chan</th>
@@ -223,12 +257,11 @@
             <th>Uptime (s)</th>
             <th>Power (W)</th>
           </tr>
-          <!-- Channels 1–8 -->
           <tr>
             <td>1</td>
             <td>
               <label class="switch">
-                <input id="toggle-1" type="checkbox" name="channel1" value="on" onclick="toggleChannel(1)">
+                <input id="toggle-1" type="checkbox" name="channel1" onclick="toggleChannel(1)">
                 <span class="slider"></span>
               </label>
             </td>
@@ -237,12 +270,11 @@
             <td id="uptime-1">--</td>
             <td id="power-1">--</td>
           </tr>
-          <!-- repeat for 2–8 -->
           <tr>
             <td>2</td>
             <td><label class="switch">
-                <input id="toggle-2" type="checkbox" name="channel2" value="on" onclick="toggleChannel(2)"><span
-                  class="slider"></span>
+                <input id="toggle-2" type="checkbox" name="channel2" onclick="toggleChannel(2)">
+                <span class="slider"></span>
               </label></td>
             <td id="voltage-2">--</td>
             <td id="current-2">--</td>
@@ -252,8 +284,8 @@
           <tr>
             <td>3</td>
             <td><label class="switch">
-                <input id="toggle-3" type="checkbox" name="channel3" value="on" onclick="toggleChannel(3)"><span
-                  class="slider"></span>
+                <input id="toggle-3" type="checkbox" name="channel3" onclick="toggleChannel(3)">
+                <span class="slider"></span>
               </label></td>
             <td id="voltage-3">--</td>
             <td id="current-3">--</td>
@@ -263,8 +295,8 @@
           <tr>
             <td>4</td>
             <td><label class="switch">
-                <input id="toggle-4" type="checkbox" name="channel4" value="on" onclick="toggleChannel(4)"><span
-                  class="slider"></span>
+                <input id="toggle-4" type="checkbox" name="channel4" onclick="toggleChannel(4)">
+                <span class="slider"></span>
               </label></td>
             <td id="voltage-4">--</td>
             <td id="current-4">--</td>
@@ -274,8 +306,8 @@
           <tr>
             <td>5</td>
             <td><label class="switch">
-                <input id="toggle-5" type="checkbox" name="channel5" value="on" onclick="toggleChannel(5)"><span
-                  class="slider"></span>
+                <input id="toggle-5" type="checkbox" name="channel5" onclick="toggleChannel(5)">
+                <span class="slider"></span>
               </label></td>
             <td id="voltage-5">--</td>
             <td id="current-5">--</td>
@@ -285,8 +317,8 @@
           <tr>
             <td>6</td>
             <td><label class="switch">
-                <input id="toggle-6" type="checkbox" name="channel6" value="on" onclick="toggleChannel(6)"><span
-                  class="slider"></span>
+                <input id="toggle-6" type="checkbox" name="channel6" onclick="toggleChannel(6)">
+                <span class="slider"></span>
               </label></td>
             <td id="voltage-6">--</td>
             <td id="current-6">--</td>
@@ -296,8 +328,8 @@
           <tr>
             <td>7</td>
             <td><label class="switch">
-                <input id="toggle-7" type="checkbox" name="channel7" value="on" onclick="toggleChannel(7)"><span
-                  class="slider"></span>
+                <input id="toggle-7" type="checkbox" name="channel7" onclick="toggleChannel(7)">
+                <span class="slider"></span>
               </label></td>
             <td id="voltage-7">--</td>
             <td id="current-7">--</td>
@@ -307,8 +339,8 @@
           <tr>
             <td>8</td>
             <td><label class="switch">
-                <input id="toggle-8" type="checkbox" name="channel8" value="on" onclick="toggleChannel(8)"><span
-                  class="slider"></span>
+                <input id="toggle-8" type="checkbox" name="channel8" onclick="toggleChannel(8)">
+                <span class="slider"></span>
               </label></td>
             <td id="voltage-8">--</td>
             <td id="current-8">--</td>
@@ -320,10 +352,10 @@
         <button type="submit" class="btn">Apply Changes</button>
       </form>
       <div class="status">
-        <p><strong>Internal Temperature:</strong>
-          <span id="internal-temperature">--</span>
+        <p><strong>Internal Temperature: </strong>
+          <span id="internal-temperature">--</span>°C
         </p>
-        <p><strong>System Status:</strong>
+        <p><strong>System Status: </strong>
           <span id="system-status">--</span>
         </p>
       </div>
