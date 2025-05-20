@@ -57,7 +57,7 @@ static char *trim(char *s) {
  * @param cmd The command string to process.
  */
 static void process_command(const char *cmd_in) {
-    char cmd[32];
+    char cmd[128];
     strncpy(cmd, cmd_in, sizeof(cmd) - 1);
     cmd[sizeof(cmd) - 1] = '\0';
 
@@ -74,6 +74,9 @@ static void process_command(const char *cmd_in) {
                "DUMP_EEPROM\r\n"
                "REBOOT\r\n"
                "SET_IP <addr>\r\n"
+               "SET_DNS <addr>\r\n"
+               "SET_GW <addr>\r\n"
+               "SET_SN <addr>\r\n"
                "NETINFO\r\n"
                "SYSINFO\r\n");
     } else if (strcmp(trimmed, "BOOTSEL") == 0) {
@@ -84,6 +87,14 @@ static void process_command(const char *cmd_in) {
         dump_eeprom();
     } else if (strncmp(trimmed, "SET_IP ", 7) == 0) {
         set_ip(trimmed + 7, trimmed);
+    } else if (strncmp(trimmed, "SET_DNS ", 7) == 0) {
+        set_dns(trimmed + 7, trimmed);
+    } else if (strncmp(trimmed, "SET_GW ", 7) == 0) {
+        set_gateway(trimmed + 7, trimmed);
+    } else if (strncmp(trimmed, "SET_SN ", 7) == 0) {
+        set_subnet(trimmed + 7, trimmed);
+    } else if (strncmp(trimmed, "CONFIG_NETWORK ", 15) == 0) {
+        set_network(trimmed + 15, trimmed);
     } else if (strcmp(trimmed, "NETINFO") == 0) {
         INFO_PRINT("NETWORK INFORMATION:\r\n");
         print_network_information(g_net_info);
@@ -221,4 +232,205 @@ void set_ip(const char *ip, const char *cmd) {
     INFO_PRINT("OK: SET_IP %s\r\nRebooting...\r\n", ip_str);
     watchdog_reboot(0, 0, 0);
     return;
+}
+
+/**
+ * @brief Set the subnet mask of the device.
+ *
+ * This function sets the subnet mask of the device and reconfigures the Wiznet chip.
+ * @param mask The new subnet mask in dotted-decimal format.
+ * @param cmd The command string containing the subnet mask.
+ */
+void set_subnet(const char *mask, const char *cmd) {
+    unsigned sn0, sn1, sn2, sn3;
+    char sn_str[16];
+    strncpy(sn_str, cmd + 7, sizeof(sn_str));
+    sn_str[sizeof(sn_str) - 1] = '\0';
+
+    if (sscanf(sn_str, "%u.%u.%u.%u", &sn0, &sn1, &sn2, &sn3) != 4 || sn0 > 255 || sn1 > 255 ||
+        sn2 > 255 || sn3 > 255) {
+        ERROR_PRINT("Invalid Subnet Mask \"%s\"\r\n", sn_str);
+        return;
+    }
+
+    networkInfo net = LoadUserNetworkConfig();
+    net.sn[0] = (uint8_t)sn0;
+    net.sn[1] = (uint8_t)sn1;
+    net.sn[2] = (uint8_t)sn2;
+    net.sn[3] = (uint8_t)sn3;
+
+    if (EEPROM_WriteUserNetworkWithChecksum(&net) != 0) {
+        ERROR_PRINT("Failed to save Subnet Mask\r\n");
+        return;
+    }
+
+    wiz_NetInfo wiz = {
+        .mac = {net.mac[0], net.mac[1], net.mac[2], net.mac[3], net.mac[4], net.mac[5]},
+        .ip = {net.ip[0], net.ip[1], net.ip[2], net.ip[3]},
+        .sn = {net.sn[0], net.sn[1], net.sn[2], net.sn[3]},
+        .gw = {net.gw[0], net.gw[1], net.gw[2], net.gw[3]},
+        .dns = {net.dns[0], net.dns[1], net.dns[2], net.dns[3]},
+        .dhcp = net.dhcp};
+    wizchip_setnetinfo(&wiz);
+
+    INFO_PRINT("OK: SET_SUBNET %s\r\nRebooting...\r\n", sn_str);
+    watchdog_reboot(0, 0, 0);
+}
+
+/**
+ * @brief Set the gateway address of the device.
+ * This function sets the gateway address of the device and reconfigures the Wiznet chip.
+ * @param gw The new gateway address in dotted-decimal format.
+ * @param cmd The command string containing the gateway address.
+ */
+void set_gateway(const char *gw, const char *cmd) {
+    unsigned gw0, gw1, gw2, gw3;
+    char gw_str[16];
+    strncpy(gw_str, cmd + 7, sizeof(gw_str));
+    gw_str[sizeof(gw_str) - 1] = '\0';
+
+    if (sscanf(gw_str, "%u.%u.%u.%u", &gw0, &gw1, &gw2, &gw3) != 4 || gw0 > 255 || gw1 > 255 ||
+        gw2 > 255 || gw3 > 255) {
+        ERROR_PRINT("Invalid Gateway \"%s\"\r\n", gw_str);
+        return;
+    }
+
+    networkInfo net = LoadUserNetworkConfig();
+    net.gw[0] = (uint8_t)gw0;
+    net.gw[1] = (uint8_t)gw1;
+    net.gw[2] = (uint8_t)gw2;
+    net.gw[3] = (uint8_t)gw3;
+
+    if (EEPROM_WriteUserNetworkWithChecksum(&net) != 0) {
+        ERROR_PRINT("Failed to save Gateway\r\n");
+        return;
+    }
+
+    wiz_NetInfo wiz = {
+        .mac = {net.mac[0], net.mac[1], net.mac[2], net.mac[3], net.mac[4], net.mac[5]},
+        .ip = {net.ip[0], net.ip[1], net.ip[2], net.ip[3]},
+        .sn = {net.sn[0], net.sn[1], net.sn[2], net.sn[3]},
+        .gw = {net.gw[0], net.gw[1], net.gw[2], net.gw[3]},
+        .dns = {net.dns[0], net.dns[1], net.dns[2], net.dns[3]},
+        .dhcp = net.dhcp};
+    wizchip_setnetinfo(&wiz);
+
+    INFO_PRINT("OK: SET_GATEWAY %s\r\nRebooting...\r\n", gw_str);
+    watchdog_reboot(0, 0, 0);
+}
+
+/**
+ * @brief Set the DNS server address of the device.
+ * This function sets the DNS server address of the device and reconfigures the Wiznet chip.
+ * @param dns The new DNS server address in dotted-decimal format.
+ * @param cmd The command string containing the DNS server address.
+ */
+void set_dns(const char *dns, const char *cmd) {
+    unsigned d0, d1, d2, d3;
+    char dns_str[16];
+    strncpy(dns_str, cmd + 8, sizeof(dns_str));
+    dns_str[sizeof(dns_str) - 1] = '\0';
+
+    if (sscanf(dns_str, "%u.%u.%u.%u", &d0, &d1, &d2, &d3) != 4 || d0 > 255 || d1 > 255 ||
+        d2 > 255 || d3 > 255) {
+        ERROR_PRINT("Invalid DNS \"%s\"\r\n", dns_str);
+        return;
+    }
+
+    networkInfo net = LoadUserNetworkConfig();
+    net.dns[0] = (uint8_t)d0;
+    net.dns[1] = (uint8_t)d1;
+    net.dns[2] = (uint8_t)d2;
+    net.dns[3] = (uint8_t)d3;
+
+    if (EEPROM_WriteUserNetworkWithChecksum(&net) != 0) {
+        ERROR_PRINT("Failed to save DNS\r\n");
+        return;
+    }
+
+    wiz_NetInfo wiz = {
+        .mac = {net.mac[0], net.mac[1], net.mac[2], net.mac[3], net.mac[4], net.mac[5]},
+        .ip = {net.ip[0], net.ip[1], net.ip[2], net.ip[3]},
+        .sn = {net.sn[0], net.sn[1], net.sn[2], net.sn[3]},
+        .gw = {net.gw[0], net.gw[1], net.gw[2], net.gw[3]},
+        .dns = {net.dns[0], net.dns[1], net.dns[2], net.dns[3]},
+        .dhcp = net.dhcp};
+    wizchip_setnetinfo(&wiz);
+
+    INFO_PRINT("OK: SET_DNS %s\r\nRebooting...\r\n", dns_str);
+    watchdog_reboot(0, 0, 0);
+}
+
+/**
+ * @brief Set the network configuration of the device.
+ * This function sets the network configuration including IP, subnet, gateway, and DNS.
+ * @param full The full command string.
+ * @param cmd The command string containing the network configuration.
+ */
+void set_network(const char *full_cmd, const char *cmd) {
+    const char *params = cmd + 15; // Skip "CONFIG_NETWORK "
+    char buffer[128];
+    strncpy(buffer, params, sizeof(buffer));
+    buffer[sizeof(buffer) - 1] = '\0';
+
+    char *ip_str = strtok(buffer, "$");
+    char *sn_str = strtok(NULL, "$");
+    char *gw_str = strtok(NULL, "$");
+    char *dns_str = strtok(NULL, "$");
+
+    if (!ip_str || !sn_str || !gw_str || !dns_str) {
+        ERROR_PRINT("Missing parameters in CONFIG_NETWORK\r\n");
+        return;
+    }
+
+    unsigned ip0, ip1, ip2, ip3;
+    unsigned sn0, sn1, sn2, sn3;
+    unsigned gw0, gw1, gw2, gw3;
+    unsigned d0, d1, d2, d3;
+
+    if (sscanf(ip_str, "%u.%u.%u.%u", &ip0, &ip1, &ip2, &ip3) != 4 ||
+        sscanf(sn_str, "%u.%u.%u.%u", &sn0, &sn1, &sn2, &sn3) != 4 ||
+        sscanf(gw_str, "%u.%u.%u.%u", &gw0, &gw1, &gw2, &gw3) != 4 ||
+        sscanf(dns_str, "%u.%u.%u.%u", &d0, &d1, &d2, &d3) != 4 || ip0 > 255 || ip1 > 255 ||
+        ip2 > 255 || ip3 > 255 || sn0 > 255 || sn1 > 255 || sn2 > 255 || sn3 > 255 || gw0 > 255 ||
+        gw1 > 255 || gw2 > 255 || gw3 > 255 || d0 > 255 || d1 > 255 || d2 > 255 || d3 > 255) {
+        ERROR_PRINT("Invalid IP format in CONFIG_NETWORK\r\n");
+        return;
+    }
+
+    networkInfo net = LoadUserNetworkConfig();
+    net.ip[0] = ip0;
+    net.ip[1] = ip1;
+    net.ip[2] = ip2;
+    net.ip[3] = ip3;
+    net.sn[0] = sn0;
+    net.sn[1] = sn1;
+    net.sn[2] = sn2;
+    net.sn[3] = sn3;
+    net.gw[0] = gw0;
+    net.gw[1] = gw1;
+    net.gw[2] = gw2;
+    net.gw[3] = gw3;
+    net.dns[0] = d0;
+    net.dns[1] = d1;
+    net.dns[2] = d2;
+    net.dns[3] = d3;
+
+    if (EEPROM_WriteUserNetworkWithChecksum(&net) != 0) {
+        ERROR_PRINT("Failed to save network config\r\n");
+        return;
+    }
+
+    wiz_NetInfo wiz = {
+        .mac = {net.mac[0], net.mac[1], net.mac[2], net.mac[3], net.mac[4], net.mac[5]},
+        .ip = {net.ip[0], net.ip[1], net.ip[2], net.ip[3]},
+        .sn = {net.sn[0], net.sn[1], net.sn[2], net.sn[3]},
+        .gw = {net.gw[0], net.gw[1], net.gw[2], net.gw[3]},
+        .dns = {net.dns[0], net.dns[1], net.dns[2], net.dns[3]},
+        .dhcp = net.dhcp};
+    wizchip_setnetinfo(&wiz);
+
+    INFO_PRINT("OK: CONFIG_NETWORK %s$%s$%s$%s\r\nRebooting...\r\n", ip_str, sn_str, gw_str,
+               dns_str);
+    watchdog_reboot(0, 0, 0);
 }

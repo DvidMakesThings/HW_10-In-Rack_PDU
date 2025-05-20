@@ -50,6 +50,8 @@ add_executable(ENERGIS
     network/socket.c
     network/snmp.c
     network/snmp_custom.c
+    web_handlers/api_handlers.c
+    web_handlers/http_server.c
     html/web_pages.c
     utils/EEPROM_MemoryMap.c
     utils/helper_functions.c

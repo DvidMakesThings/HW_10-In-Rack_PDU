@@ -20,6 +20,7 @@
 #include "hardware/spi.h"
 #include "hardware/watchdog.h"
 #include "misc/uart_command_handler.h"
+#include "network/snmp_custom.h"
 #include "pico/bootrom.h"
 #include "pico/multicore.h"
 #include "pico/stdlib.h"
@@ -76,7 +77,7 @@
 // UART Peripheral Assignments
 #define UART_ID uart0
 #define BAUD_RATE 115200
-#define UART_CMD_BUF_LEN 256
+#define UART_CMD_BUF_LEN 1024
 
 // MCU Specific Defines
 #define VREG_BASE 0x40064000

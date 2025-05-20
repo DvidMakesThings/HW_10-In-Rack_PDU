@@ -56,6 +56,39 @@ void dump_eeprom(void);
 void set_ip(const char *ip, const char *cmd);
 
 /**
+ * @brief Set the subnet mask of the device.
+ *
+ * This function sets the subnet mask of the device and reconfigures the Wiznet chip.
+ * @param mask The new subnet mask in dotted-decimal format.
+ * @param cmd The command string containing the subnet mask.
+ */
+void set_subnet(const char *mask, const char *cmd);
+
+/**
+ * @brief Set the gateway address of the device.
+ * This function sets the gateway address of the device and reconfigures the Wiznet chip.
+ * @param gw The new gateway address in dotted-decimal format.
+ * @param cmd The command string containing the gateway address.
+ */
+void set_gateway(const char *gw, const char *cmd);
+
+/**
+ * @brief Set the DNS server address of the device.
+ * This function sets the DNS server address of the device and reconfigures the Wiznet chip.
+ * @param dns The new DNS server address in dotted-decimal format.
+ * @param cmd The command string containing the DNS server address.
+ */
+void set_dns(const char *dns, const char *cmd);
+
+/**
+ * @brief Set the network configuration of the device.
+ * This function sets the network configuration including IP, subnet, gateway, and DNS.
+ * @param full The full command string.
+ * @param cmd The command string containing the network configuration.
+ */
+void set_network(const char *full, const char *cmd);
+
+/**
  * @brief Get system information.
  *
  * This function retrieves and prints system information such as clock frequencies and voltage.
