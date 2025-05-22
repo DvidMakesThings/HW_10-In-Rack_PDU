@@ -125,9 +125,10 @@ the USB-C version of ENERGIS with USB PD Source functionality: [PDNode-600 Pro](
 - **Display Board:** 2-layer PCB.
 - **Main Board:** 4-layer PCB (JLC04161H-3313, 1.56mm ±10% thickness)
 
-![Main Board 3D View](images/_proto/Controller%20Board/Rev2.0/ControllerBoard_2.0_3D-1.png)
-
-![Display Board 3D View](images/_proto/Display%20Board/Rev2.0/DisplayBoard_2.0_3D-1.png)
+![Main Board 3D View](images/ENERGIS_1.0.0/ENERGIS_Rack-PDU_1.0.0-1.png)
+![Main Board 3D View](images/ENERGIS_1.0.0/ENERGIS_Rack-PDU_1.0.0-3.png)
+![Display Board 3D View](images/ENERGIS_1.0.0/Display-Board_Rack-PDU_3.0-1.png)
+![Display Board 3D View](images/ENERGIS_1.0.0/Display-Board_Rack-PDU_3.0-2.png)
 
 ### **Impedance Control:**
 
