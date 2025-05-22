@@ -1,35 +1,34 @@
 {
-    "configurations": [
-        {
-            "name": "Pico",
-            "includePath": [
-                "${workspaceFolder}/**",
-                "C:/Users/sdvid/.pico-sdk/sdk/2.1.1/src/rp2_common/hardware_spi/include",
-                "C:/Users/sdvid/.pico-sdk/sdk/2.1.1/src/rp2_common/hardware_i2c/include",
-                "C:/Users/sdvid/.pico-sdk/sdk/2.1.1/src/rp2_common/pico_multicore/include",
-                "${userHome}/.pico-sdk/sdk/2.1.1/**"
-            ],
-            "browse": {
-                "path": [
-                    "${workspaceFolder}",
-                    "C:/Users/sdvid/.pico-sdk/sdk/2.1.1/src/rp2_common/hardware_spi/include",
-                    "C:/Users/sdvid/.pico-sdk/sdk/2.1.1/src/rp2_common/hardware_i2c/include",
-                    "C:/Users/sdvid/.pico-sdk/sdk/2.1.1/src/rp2_common/pico_multicore/include"
-                ],
-                "limitSymbolsToIncludedHeaders": true
-            },
-            "forcedInclude": [
-                "C:/Users/sdvid/.pico-sdk/sdk/2.1.1/src/common/pico_base_headers/include/pico.h",
-                "${workspaceFolder}/build/generated/pico_base/pico/config_autogen.h",
-                "${userHome}/.pico-sdk/sdk/2.1.1/src/common/pico_base_headers/include/pico.h"
-            ],
-            "defines": [],
-            "compilerPath": "${userHome}/.pico-sdk/toolchain/14_2_Rel1/bin/arm-none-eabi-gcc",
-            "compileCommands": "${workspaceFolder}/build/compile_commands.json",
-            "cStandard": "c17",
-            "cppStandard": "c++14",
-            "intelliSenseMode": "linux-gcc-arm"
-        }
-    ],
-    "version": 4
+  "configurations": [
+    {
+      "name": "Pico",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_spi/include",
+        "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_i2c/include",
+        "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/pico_multicore/include",
+        "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/**"
+      ],
+      "browse": {
+        "path": [
+          "${workspaceFolder}",
+          "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_spi/include",
+          "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_i2c/include",
+          "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/pico_multicore/include"
+        ],
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "forcedInclude": [
+        "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/common/pico_base_headers/include/pico.h",
+        "${workspaceFolder}/build/generated/pico_base/pico/config_autogen.h"
+      ],
+      "defines": [],
+      "compilerPath": "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/gcc-arm-none-eabi/bin/arm-none-eabi-gcc.exe",
+      "compileCommands": "${workspaceFolder}/build/compile_commands.json",
+      "cStandard": "c17",
+      "cppStandard": "c++14",
+      "intelliSenseMode": "gcc-arm"
+    }
+  ],
+  "version": 4
 }

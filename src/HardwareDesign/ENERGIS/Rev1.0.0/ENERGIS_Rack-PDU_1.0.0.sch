@@ -8,34 +8,34 @@
 </settings>
 <grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
-<layer number="1" name="Top" color="4" fill="1" visible="yes" active="no"/>
-<layer number="2" name="Route2" color="16" fill="1" visible="yes" active="no"/>
-<layer number="3" name="Route3" color="17" fill="1" visible="yes" active="no"/>
-<layer number="4" name="Route4" color="18" fill="1" visible="yes" active="no"/>
-<layer number="5" name="Route5" color="19" fill="1" visible="yes" active="no"/>
-<layer number="6" name="Route6" color="25" fill="1" visible="yes" active="no"/>
-<layer number="7" name="Route7" color="26" fill="1" visible="yes" active="no"/>
-<layer number="8" name="Route8" color="27" fill="1" visible="yes" active="no"/>
-<layer number="9" name="Route9" color="28" fill="1" visible="yes" active="no"/>
-<layer number="10" name="Route10" color="29" fill="1" visible="yes" active="no"/>
-<layer number="11" name="Route11" color="30" fill="1" visible="yes" active="no"/>
-<layer number="12" name="Route12" color="20" fill="1" visible="yes" active="no"/>
-<layer number="13" name="Route13" color="21" fill="1" visible="yes" active="no"/>
-<layer number="14" name="Route14" color="22" fill="1" visible="yes" active="no"/>
-<layer number="15" name="Route15" color="63" fill="1" visible="yes" active="no"/>
-<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="no"/>
-<layer number="17" name="Pads" color="2" fill="1" visible="yes" active="no"/>
-<layer number="18" name="Vias" color="2" fill="1" visible="yes" active="no"/>
-<layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="no"/>
-<layer number="20" name="Dimension" color="24" fill="1" visible="yes" active="no"/>
-<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="no"/>
-<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="no"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="no"/>
-<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="no"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="no"/>
-<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="no"/>
-<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="no"/>
-<layer number="28" name="bValues" color="7" fill="1" visible="yes" active="no"/>
+<layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
+<layer number="2" name="Route2" color="16" fill="1" visible="no" active="no"/>
+<layer number="3" name="Route3" color="17" fill="1" visible="no" active="no"/>
+<layer number="4" name="Route4" color="18" fill="1" visible="no" active="no"/>
+<layer number="5" name="Route5" color="19" fill="1" visible="no" active="no"/>
+<layer number="6" name="Route6" color="25" fill="1" visible="no" active="no"/>
+<layer number="7" name="Route7" color="26" fill="1" visible="no" active="no"/>
+<layer number="8" name="Route8" color="27" fill="1" visible="no" active="no"/>
+<layer number="9" name="Route9" color="28" fill="1" visible="no" active="no"/>
+<layer number="10" name="Route10" color="29" fill="1" visible="no" active="no"/>
+<layer number="11" name="Route11" color="30" fill="1" visible="no" active="no"/>
+<layer number="12" name="Route12" color="20" fill="1" visible="no" active="no"/>
+<layer number="13" name="Route13" color="21" fill="1" visible="no" active="no"/>
+<layer number="14" name="Route14" color="22" fill="1" visible="no" active="no"/>
+<layer number="15" name="Route15" color="63" fill="1" visible="no" active="no"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="no" active="no"/>
+<layer number="17" name="Pads" color="2" fill="1" visible="no" active="no"/>
+<layer number="18" name="Vias" color="2" fill="1" visible="no" active="no"/>
+<layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="no"/>
+<layer number="20" name="Dimension" color="24" fill="1" visible="no" active="no"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="no" active="no"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="no" active="no"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="no"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="no"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="no" active="no"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="no" active="no"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="no" active="no"/>
+<layer number="28" name="bValues" color="7" fill="1" visible="no" active="no"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="no"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="no"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="no"/>
@@ -44,8 +44,8 @@
 <layer number="34" name="bFinish" color="6" fill="6" visible="no" active="no"/>
 <layer number="35" name="tGlue" color="7" fill="4" visible="no" active="no"/>
 <layer number="36" name="bGlue" color="7" fill="5" visible="no" active="no"/>
-<layer number="37" name="tTest" color="7" fill="1" visible="yes" active="no"/>
-<layer number="38" name="bTest" color="7" fill="1" visible="yes" active="no"/>
+<layer number="37" name="tTest" color="7" fill="1" visible="no" active="no"/>
+<layer number="38" name="bTest" color="7" fill="1" visible="no" active="no"/>
 <layer number="39" name="tKeepout" color="4" fill="11" visible="no" active="no"/>
 <layer number="40" name="bKeepout" color="1" fill="11" visible="no" active="no"/>
 <layer number="41" name="tRestrict" color="4" fill="10" visible="no" active="no"/>
@@ -53,20 +53,21 @@
 <layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="no"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="no"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="no" active="no"/>
-<layer number="46" name="Milling" color="3" fill="1" visible="yes" active="no"/>
-<layer number="47" name="Measures" color="7" fill="1" visible="yes" active="no"/>
-<layer number="48" name="Document" color="7" fill="1" visible="yes" active="no"/>
-<layer number="49" name="Reference" color="7" fill="1" visible="yes" active="no"/>
-<layer number="50" name="dxf" color="7" fill="1" visible="yes" active="no"/>
-<layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="no"/>
-<layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="no"/>
-<layer number="53" name="tGND_GNDA" color="7" fill="9" visible="yes" active="no"/>
-<layer number="54" name="bGND_GNDA" color="1" fill="9" visible="yes" active="no"/>
-<layer number="56" name="wert" color="7" fill="1" visible="yes" active="no"/>
-<layer number="57" name="tCAD" color="7" fill="1" visible="yes" active="no"/>
-<layer number="58" name="bCAD" color="7" fill="1" visible="yes" active="no"/>
-<layer number="59" name="tCarbon" color="7" fill="1" visible="yes" active="no"/>
-<layer number="60" name="bCarbon" color="7" fill="1" visible="yes" active="no"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="no" active="no"/>
+<layer number="47" name="Measures" color="7" fill="1" visible="no" active="no"/>
+<layer number="48" name="Document" color="7" fill="1" visible="no" active="no"/>
+<layer number="49" name="Reference" color="7" fill="1" visible="no" active="no"/>
+<layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
+<layer number="51" name="tDocu" color="7" fill="1" visible="no" active="no"/>
+<layer number="52" name="bDocu" color="7" fill="1" visible="no" active="no"/>
+<layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
+<layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
+<layer number="56" name="wert" color="7" fill="1" visible="no" active="no"/>
+<layer number="57" name="tCAD" color="7" fill="1" visible="no" active="no"/>
+<layer number="58" name="bCAD" color="7" fill="1" visible="no" active="no"/>
+<layer number="59" name="tCarbon" color="7" fill="1" visible="no" active="no"/>
+<layer number="60" name="bCarbon" color="7" fill="1" visible="no" active="no"/>
+<layer number="61" name="stand" color="7" fill="1" visible="no" active="no"/>
 <layer number="88" name="SimResults" color="9" fill="1" visible="yes" active="yes"/>
 <layer number="89" name="SimProbes" color="9" fill="1" visible="yes" active="yes"/>
 <layer number="90" name="Modules" color="5" fill="1" visible="yes" active="yes"/>
@@ -3774,7 +3775,7 @@ MAX3223-MAX3243.pdf</description>
 <pad name="11" x="4.085" y="-4.06" drill="1.1"/>
 <pad name="12" x="6.625" y="-4.06" drill="1.1"/>
 </package>
-<package name="FPC20" urn="urn:adsk.eagle:footprint:47082458/2">
+<package name="FPC20" urn="urn:adsk.eagle:footprint:47082458/2" locally_modified="yes">
 <circle x="-4.602" y="-0.062" radius="0.1" width="0.2" layer="21"/>
 <wire x1="-8.002" y1="1.038" x2="-8.002" y2="-0.962" width="0.1" layer="51"/>
 <wire x1="-8.002" y1="-0.962" x2="8.398" y2="-0.962" width="0.1" layer="51"/>
@@ -3812,8 +3813,27 @@ MAX3223-MAX3243.pdf</description>
 <smd name="Z4" x="5.948" y="1.438" dx="0.8" dy="1.5" layer="1" rot="R180"/>
 <smd name="Z0" x="-7.3025" y="0" dx="3.81" dy="1.9304" layer="1" rot="R90"/>
 <smd name="Z5" x="7.62" y="0" dx="3.81" dy="1.9304" layer="1" rot="R90"/>
-<text x="-8.862" y="1.013" size="1.016" layer="25" align="bottom-right">&gt;NAME</text>
-<text x="-8.912" y="-1.312" size="1.016" layer="27" align="bottom-right">&gt;VALUE</text>
+<text x="-9.426" y="5.337" size="1.016" layer="25" rot="R180" align="bottom-right">&gt;NAME</text>
+<text x="3.28" y="-4.106" size="1.016" layer="27" align="bottom-right">&gt;VALUE</text>
+<polygon width="0.1524" layer="21">
+<vertex x="-9.652" y="-4.064"/>
+<vertex x="-9.652" y="3.81"/>
+<vertex x="9.906" y="3.81"/>
+<vertex x="9.906" y="-4.064"/>
+<vertex x="5.842" y="-4.064"/>
+<vertex x="5.842" y="-3.048"/>
+<vertex x="8.89" y="-3.048"/>
+<vertex x="8.89" y="2.794"/>
+<vertex x="-8.636" y="2.794"/>
+<vertex x="-8.636" y="-3.048"/>
+<vertex x="-5.334" y="-3.048"/>
+<vertex x="-5.334" y="-4.064"/>
+</polygon>
+<polygon width="0.1524" layer="21">
+<vertex x="-4.826" y="-3.556"/>
+<vertex x="-4.572" y="-2.794"/>
+<vertex x="-4.318" y="-3.556"/>
+</polygon>
 </package>
 </packages>
 <packages3d>
@@ -3827,7 +3847,7 @@ MAX3223-MAX3243.pdf</description>
 <packageinstance name="RJ45-CAT5"/>
 </packageinstances>
 </package3d>
-<package3d name="FPC20" urn="urn:adsk.eagle:package:47082459/3" type="model">
+<package3d name="FPC20" urn="urn:adsk.eagle:package:47082459/3" locally_modified="yes" type="model">
 <packageinstances>
 <packageinstance name="FPC20"/>
 </packageinstances>
@@ -4008,7 +4028,7 @@ MAX3223-MAX3243.pdf</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="FPC20-H" urn="urn:adsk.eagle:component:47082460/3" prefix="CON">
+<deviceset name="AFC11-S20ICC-00" urn="urn:adsk.eagle:component:47082460/3" locally_modified="yes" prefix="CON">
 <gates>
 <gate name="G$1" symbol="FPC20" x="0" y="0"/>
 </gates>
@@ -8971,7 +8991,6 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <part name="GND75" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="NC38" library="ds_passive" deviceset="NC" device=""/>
 <part name="GND76" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
-<part name="DISPBOARD" library="ds_con" deviceset="FPC20-H" device="" package3d_urn="urn:adsk.eagle:package:47082459/3" value="FPC20-H"/>
 <part name="R147" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K"/>
 <part name="+3V27" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="R149" library="Resistor Array" library_urn="urn:adsk.eagle:library:16491332" deviceset="742C083103JP" device="" package3d_urn="urn:adsk.eagle:package:16445849/4" value="4D03WGJ0332T5E"/>
@@ -9038,8 +9057,8 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <part name="NC41" library="ds_passive" deviceset="NC" device=""/>
 <part name="R110" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="1K"/>
 <part name="R148" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="1K"/>
-<part name="D16" library="LED" library_urn="urn:adsk.eagle:library:22900745" deviceset="CHIP-FLAT-B" device="_0603-0.35MM" package3d_urn="urn:adsk.eagle:package:24294787/2"/>
-<part name="D17" library="LED" library_urn="urn:adsk.eagle:library:22900745" deviceset="CHIP-FLAT-G" device="_0603-0.35MM" package3d_urn="urn:adsk.eagle:package:24294786/2"/>
+<part name="TX" library="LED" library_urn="urn:adsk.eagle:library:22900745" deviceset="CHIP-FLAT-B" device="_0603-0.35MM" package3d_urn="urn:adsk.eagle:package:24294787/2"/>
+<part name="RX" library="LED" library_urn="urn:adsk.eagle:library:22900745" deviceset="CHIP-FLAT-G" device="_0603-0.35MM" package3d_urn="urn:adsk.eagle:package:24294786/2"/>
 <part name="VBUS6" library="ds_passive" deviceset="VBUS" device=""/>
 <part name="VBUS7" library="ds_passive" deviceset="VBUS" device=""/>
 <part name="C102" library="ds_passive" deviceset="C" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/2" value="100nF/16V"/>
@@ -9048,7 +9067,7 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <part name="GND78" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND79" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND80" library="ds_passive" deviceset="GND" device=""/>
-<part name="IC23" library="ds_ic_peripherals" deviceset="PI3USB102J" device="XUCEX" package3d_urn="urn:adsk.eagle:package:48463072/1"/>
+<part name="IC23" library="ds_ic_peripherals" deviceset="PI3USB102J" device="XUCEX" package3d_urn="urn:adsk.eagle:package:48463072/1" value="PI3USB102JXUCEX"/>
 <part name="R150" library="ds_passive" deviceset="R" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/2" value="10K"/>
 <part name="GND81" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND82" library="ds_passive" deviceset="GND" device=""/>
@@ -9058,6 +9077,14 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <part name="+3V3_MCU12" library="ds_passive" deviceset="+3V3_MCU" device=""/>
 <part name="NC22" library="ds_passive" deviceset="NC" device=""/>
 <part name="NC25" library="ds_passive" deviceset="NC" device=""/>
+<part name="CON1" library="ds_con" deviceset="AFC11-S20ICC-00" device="" package3d_urn="urn:adsk.eagle:package:47082459/3"/>
+<part name="R122" library="ds_passive" deviceset="R" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/2" value="DNI"/>
+<part name="R123" library="ds_passive" deviceset="R" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/2" value="DNI"/>
+<part name="R151" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="1K"/>
+<part name="PWR" library="LED" library_urn="urn:adsk.eagle:library:22900745" deviceset="CHIP-FLAT-G" device="_0603-0.35MM" package3d_urn="urn:adsk.eagle:package:24294786/2"/>
+<part name="GND84" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
+<part name="R152" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="DNI"/>
+<part name="+3V3_MCU13" library="ds_passive" deviceset="+3V3_MCU" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -9481,6 +9508,17 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <instance part="P+14" gate="1" x="266.7" y="96.52" smashed="yes">
 <attribute name="VALUE" x="266.7" y="99.06" size="1.778" layer="96" align="top-center"/>
 </instance>
+<instance part="R151" gate="G$1" x="373.38" y="63.5" smashed="yes" rot="R180">
+<attribute name="NAME" x="371.8814" y="56.515" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="371.8814" y="64.135" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="PWR" gate="G$1" x="373.38" y="83.82" smashed="yes">
+<attribute name="NAME" x="370.84" y="83.82" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="378.46" y="68.58" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="GND84" gate="1" x="373.38" y="50.8" smashed="yes" rot="MR0">
+<attribute name="VALUE" x="373.38" y="48.26" size="1.778" layer="96" rot="MR0" align="top-center"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -9762,6 +9800,11 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <wire x1="304.8" y1="81.28" x2="302.26" y2="81.28" width="0.1524" layer="91"/>
 <wire x1="302.26" y1="81.28" x2="302.26" y2="71.12" width="0.1524" layer="91"/>
 <pinref part="GND76" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="R151" gate="G$1" pin="1"/>
+<wire x1="373.38" y1="58.42" x2="373.38" y2="53.34" width="0.1524" layer="91"/>
+<pinref part="GND84" gate="1" pin="GND"/>
 </segment>
 </net>
 <net name="W5500_SCK" class="0">
@@ -10533,6 +10576,10 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <wire x1="330.2" y1="91.44" x2="353.06" y2="91.44" width="0.1524" layer="91"/>
 <wire x1="353.06" y1="91.44" x2="353.06" y2="96.52" width="0.1524" layer="91"/>
 <pinref part="+3V3_MCU1" gate="G$1" pin="+3V3_MCU"/>
+<pinref part="PWR" gate="G$1" pin="A"/>
+<wire x1="363.22" y1="91.44" x2="373.38" y2="91.44" width="0.1524" layer="91"/>
+<wire x1="373.38" y1="91.44" x2="373.38" y2="86.36" width="0.1524" layer="91"/>
+<junction x="363.22" y="91.44"/>
 </segment>
 </net>
 <net name="+5V" class="0">
@@ -10562,6 +10609,13 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <pinref part="IC15" gate="G$1" pin="GPIO27/ADC1"/>
 <wire x1="182.88" y1="137.16" x2="190.5" y2="137.16" width="0.1524" layer="91"/>
 <label x="190.5" y="137.16" size="1.27" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="N$112" class="0">
+<segment>
+<pinref part="R151" gate="G$1" pin="2"/>
+<pinref part="PWR" gate="G$1" pin="C"/>
+<wire x1="373.38" y1="78.74" x2="373.38" y2="68.58" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
@@ -10792,9 +10846,6 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <instance part="P+15" gate="1" x="63.5" y="83.82" smashed="yes">
 <attribute name="VALUE" x="63.5" y="86.36" size="1.778" layer="96" align="top-center"/>
 </instance>
-<instance part="DISPBOARD" gate="G$1" x="33.02" y="50.8" smashed="yes">
-<attribute name="NAME" x="31.75" y="53.848" size="1.27" layer="95" align="bottom-center"/>
-</instance>
 <instance part="R147" gate="G$1" x="71.12" y="35.56" smashed="yes" rot="MR180">
 <attribute name="NAME" x="75.565" y="36.6014" size="1.778" layer="95" rot="MR180"/>
 <attribute name="VALUE" x="74.295" y="34.0614" size="1.778" layer="96" rot="MR180"/>
@@ -10853,11 +10904,11 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <attribute name="NAME" x="323.215" y="90.3986" size="1.778" layer="95"/>
 <attribute name="VALUE" x="330.835" y="90.3986" size="1.778" layer="96"/>
 </instance>
-<instance part="D16" gate="G$1" x="345.44" y="91.44" smashed="yes" rot="R270">
+<instance part="TX" gate="G$1" x="345.44" y="91.44" smashed="yes" rot="R270">
 <attribute name="NAME" x="345.44" y="86.36" size="1.778" layer="95"/>
 <attribute name="VALUE" x="345.44" y="83.82" size="1.778" layer="96"/>
 </instance>
-<instance part="D17" gate="G$1" x="345.44" y="99.06" smashed="yes" rot="R270">
+<instance part="RX" gate="G$1" x="345.44" y="99.06" smashed="yes" rot="R270">
 <attribute name="NAME" x="342.9" y="106.68" size="1.778" layer="95"/>
 <attribute name="VALUE" x="342.9" y="104.14" size="1.778" layer="96"/>
 </instance>
@@ -10917,6 +10968,25 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 </instance>
 <instance part="NC22" gate="G$1" x="276.86" y="106.68" smashed="yes" rot="R180"/>
 <instance part="NC25" gate="G$1" x="276.86" y="104.14" smashed="yes" rot="R180"/>
+<instance part="CON1" gate="G$1" x="33.02" y="50.8" smashed="yes">
+<attribute name="NAME" x="30.48" y="76.2" size="1.778" layer="95" rot="R270"/>
+<attribute name="VALUE" x="30.48" y="45.72" size="1.778" layer="95" rot="R270"/>
+</instance>
+<instance part="R122" gate="G$1" x="203.2" y="83.82" smashed="yes" rot="R90">
+<attribute name="NAME" x="196.215" y="85.3186" size="1.778" layer="95"/>
+<attribute name="VALUE" x="203.835" y="85.3186" size="1.778" layer="96"/>
+</instance>
+<instance part="R123" gate="G$1" x="203.2" y="78.74" smashed="yes" rot="R90">
+<attribute name="NAME" x="196.215" y="80.2386" size="1.778" layer="95"/>
+<attribute name="VALUE" x="203.835" y="80.2386" size="1.778" layer="96"/>
+</instance>
+<instance part="R152" gate="G$1" x="165.1" y="43.18" smashed="yes" rot="R180">
+<attribute name="NAME" x="160.655" y="44.2214" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="161.925" y="41.6814" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="+3V3_MCU13" gate="G$1" x="160.02" y="35.56" smashed="yes" rot="R90">
+<attribute name="VALUE" x="154.94" y="33.02" size="1.778" layer="96" align="top-center"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -10982,8 +11052,8 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <wire x1="53.34" y1="73.66" x2="53.34" y2="76.2" width="0.1524" layer="91"/>
 <junction x="53.34" y="76.2"/>
 <pinref part="+3V24" gate="G$1" pin="+3V3"/>
-<pinref part="DISPBOARD" gate="G$1" pin="1"/>
-<pinref part="DISPBOARD" gate="G$1" pin="2"/>
+<pinref part="CON1" gate="G$1" pin="1"/>
+<pinref part="CON1" gate="G$1" pin="2"/>
 </segment>
 <segment>
 <pinref part="R147" gate="G$1" pin="2"/>
@@ -11201,21 +11271,21 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <wire x1="45.72" y1="83.82" x2="45.72" y2="66.04" width="0.1524" layer="91"/>
 <junction x="45.72" y="66.04"/>
 <pinref part="GND73" gate="1" pin="GND"/>
-<pinref part="DISPBOARD" gate="G$1" pin="5"/>
-<pinref part="DISPBOARD" gate="G$1" pin="8"/>
-<pinref part="DISPBOARD" gate="G$1" pin="Z1"/>
-<pinref part="DISPBOARD" gate="G$1" pin="Z3"/>
 <wire x1="35.56" y1="22.86" x2="35.56" y2="20.32" width="0.1524" layer="91"/>
 <wire x1="35.56" y1="20.32" x2="45.72" y2="20.32" width="0.1524" layer="91"/>
 <junction x="45.72" y="20.32"/>
-<pinref part="DISPBOARD" gate="G$1" pin="Z4"/>
 <wire x1="35.56" y1="20.32" x2="33.02" y2="20.32" width="0.1524" layer="91"/>
 <wire x1="33.02" y1="20.32" x2="33.02" y2="22.86" width="0.1524" layer="91"/>
 <junction x="35.56" y="20.32"/>
-<pinref part="DISPBOARD" gate="G$1" pin="Z2"/>
 <wire x1="33.02" y1="81.28" x2="33.02" y2="83.82" width="0.1524" layer="91"/>
 <wire x1="33.02" y1="83.82" x2="35.56" y2="83.82" width="0.1524" layer="91"/>
 <junction x="35.56" y="83.82"/>
+<pinref part="CON1" gate="G$1" pin="Z4"/>
+<pinref part="CON1" gate="G$1" pin="Z3"/>
+<pinref part="CON1" gate="G$1" pin="Z2"/>
+<pinref part="CON1" gate="G$1" pin="Z1"/>
+<pinref part="CON1" gate="G$1" pin="5"/>
+<pinref part="CON1" gate="G$1" pin="8"/>
 </segment>
 <segment>
 <pinref part="IC22" gate="1" pin="GND@A"/>
@@ -11548,29 +11618,29 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <wire x1="63.5" y1="68.58" x2="63.5" y2="71.12" width="0.1524" layer="91"/>
 <junction x="63.5" y="71.12"/>
 <pinref part="P+15" gate="1" pin="+5V"/>
-<pinref part="DISPBOARD" gate="G$1" pin="3"/>
-<pinref part="DISPBOARD" gate="G$1" pin="4"/>
+<pinref part="CON1" gate="G$1" pin="3"/>
+<pinref part="CON1" gate="G$1" pin="4"/>
 </segment>
 </net>
 <net name="I2C0_SDA" class="0">
 <segment>
 <wire x1="40.64" y1="63.5" x2="50.8" y2="63.5" width="0.1524" layer="91"/>
 <label x="50.8" y="63.5" size="1.27" layer="95" xref="yes"/>
-<pinref part="DISPBOARD" gate="G$1" pin="6"/>
+<pinref part="CON1" gate="G$1" pin="6"/>
 </segment>
 </net>
 <net name="I2C0_SCL" class="0">
 <segment>
 <wire x1="50.8" y1="60.96" x2="40.64" y2="60.96" width="0.1524" layer="91"/>
 <label x="50.8" y="60.96" size="1.27" layer="95" xref="yes"/>
-<pinref part="DISPBOARD" gate="G$1" pin="7"/>
+<pinref part="CON1" gate="G$1" pin="7"/>
 </segment>
 </net>
 <net name="LCD_CS" class="0">
 <segment>
 <wire x1="40.64" y1="30.48" x2="50.8" y2="30.48" width="0.1524" layer="91"/>
 <label x="50.8" y="30.48" size="1.27" layer="95" xref="yes"/>
-<pinref part="DISPBOARD" gate="G$1" pin="19"/>
+<pinref part="CON1" gate="G$1" pin="19"/>
 </segment>
 <segment>
 <pinref part="R149" gate="G$1" pin="6"/>
@@ -11582,14 +11652,14 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <segment>
 <wire x1="50.8" y1="38.1" x2="40.64" y2="38.1" width="0.1524" layer="91"/>
 <label x="50.8" y="38.1" size="1.27" layer="95" rot="MR180" xref="yes"/>
-<pinref part="DISPBOARD" gate="G$1" pin="16"/>
+<pinref part="CON1" gate="G$1" pin="16"/>
 </segment>
 </net>
 <net name="LCD_RES" class="0">
 <segment>
 <wire x1="40.64" y1="43.18" x2="50.8" y2="43.18" width="0.1524" layer="91"/>
 <label x="50.8" y="43.18" size="1.27" layer="95" xref="yes"/>
-<pinref part="DISPBOARD" gate="G$1" pin="14"/>
+<pinref part="CON1" gate="G$1" pin="14"/>
 </segment>
 <segment>
 <pinref part="R149" gate="G$1" pin="8"/>
@@ -11601,46 +11671,46 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <segment>
 <wire x1="73.66" y1="27.94" x2="71.12" y2="27.94" width="0.1524" layer="91"/>
 <label x="73.66" y="27.94" size="1.27" layer="95" xref="yes"/>
-<pinref part="DISPBOARD" gate="G$1" pin="20"/>
 <pinref part="R147" gate="G$1" pin="1"/>
 <wire x1="71.12" y1="27.94" x2="40.64" y2="27.94" width="0.1524" layer="91"/>
 <wire x1="71.12" y1="30.48" x2="71.12" y2="27.94" width="0.1524" layer="91"/>
 <junction x="71.12" y="27.94"/>
+<pinref part="CON1" gate="G$1" pin="20"/>
 </segment>
 </net>
 <net name="KEY_0" class="0">
 <segment>
 <wire x1="40.64" y1="48.26" x2="50.8" y2="48.26" width="0.1524" layer="91"/>
 <label x="50.8" y="48.26" size="1.27" layer="95" rot="MR180" xref="yes"/>
-<pinref part="DISPBOARD" gate="G$1" pin="12"/>
+<pinref part="CON1" gate="G$1" pin="12"/>
 </segment>
 </net>
 <net name="KEY_1" class="0">
 <segment>
 <wire x1="50.8" y1="50.8" x2="40.64" y2="50.8" width="0.1524" layer="91"/>
 <label x="50.8" y="50.8" size="1.27" layer="95" rot="MR180" xref="yes"/>
-<pinref part="DISPBOARD" gate="G$1" pin="11"/>
+<pinref part="CON1" gate="G$1" pin="11"/>
 </segment>
 </net>
 <net name="KEY_2" class="0">
 <segment>
 <wire x1="40.64" y1="53.34" x2="50.8" y2="53.34" width="0.1524" layer="91"/>
 <label x="50.8" y="53.34" size="1.27" layer="95" rot="MR180" xref="yes"/>
-<pinref part="DISPBOARD" gate="G$1" pin="10"/>
+<pinref part="CON1" gate="G$1" pin="10"/>
 </segment>
 </net>
 <net name="KEY_3" class="0">
 <segment>
 <wire x1="50.8" y1="55.88" x2="40.64" y2="55.88" width="0.1524" layer="91"/>
 <label x="50.8" y="55.88" size="1.27" layer="95" rot="MR180" xref="yes"/>
-<pinref part="DISPBOARD" gate="G$1" pin="9"/>
+<pinref part="CON1" gate="G$1" pin="9"/>
 </segment>
 </net>
 <net name="LCD_MISO" class="0">
 <segment>
 <wire x1="40.64" y1="40.64" x2="50.8" y2="40.64" width="0.1524" layer="91"/>
 <label x="50.8" y="40.64" size="1.27" layer="95" rot="MR180" xref="yes"/>
-<pinref part="DISPBOARD" gate="G$1" pin="15"/>
+<pinref part="CON1" gate="G$1" pin="15"/>
 </segment>
 <segment>
 <pinref part="R149" gate="G$1" pin="7"/>
@@ -11652,21 +11722,21 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <segment>
 <wire x1="40.64" y1="35.56" x2="50.8" y2="35.56" width="0.1524" layer="91"/>
 <label x="50.8" y="35.56" size="1.27" layer="95" rot="MR180" xref="yes"/>
-<pinref part="DISPBOARD" gate="G$1" pin="17"/>
+<pinref part="CON1" gate="G$1" pin="17"/>
 </segment>
 </net>
 <net name="LCD_DC" class="0">
 <segment>
 <wire x1="50.8" y1="33.02" x2="40.64" y2="33.02" width="0.1524" layer="91"/>
 <label x="50.8" y="33.02" size="1.27" layer="95" rot="MR180" xref="yes"/>
-<pinref part="DISPBOARD" gate="G$1" pin="18"/>
+<pinref part="CON1" gate="G$1" pin="18"/>
 </segment>
 </net>
 <net name="LCD_BL" class="0">
 <segment>
 <wire x1="40.64" y1="45.72" x2="50.8" y2="45.72" width="0.1524" layer="91"/>
 <label x="50.8" y="45.72" size="1.27" layer="95" xref="yes"/>
-<pinref part="DISPBOARD" gate="G$1" pin="13"/>
+<pinref part="CON1" gate="G$1" pin="13"/>
 </segment>
 </net>
 <net name="VBUS" class="0">
@@ -11681,12 +11751,12 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <junction x="254" y="119.38"/>
 </segment>
 <segment>
-<pinref part="D17" gate="G$1" pin="A"/>
+<pinref part="RX" gate="G$1" pin="A"/>
 <pinref part="VBUS6" gate="G$1" pin="VBUS"/>
 <wire x1="353.06" y1="99.06" x2="347.98" y2="99.06" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="D16" gate="G$1" pin="A"/>
+<pinref part="TX" gate="G$1" pin="A"/>
 <pinref part="VBUS7" gate="G$1" pin="VBUS"/>
 <wire x1="353.06" y1="91.44" x2="347.98" y2="91.44" width="0.1524" layer="91"/>
 </segment>
@@ -11793,7 +11863,7 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <net name="N$110" class="0">
 <segment>
 <pinref part="R148" gate="G$1" pin="2"/>
-<pinref part="D16" gate="G$1" pin="C"/>
+<pinref part="TX" gate="G$1" pin="C"/>
 <wire x1="340.36" y1="91.44" x2="337.82" y2="91.44" width="0.1524" layer="91"/>
 <wire x1="337.82" y1="91.44" x2="337.82" y2="93.98" width="0.1524" layer="91"/>
 <wire x1="337.82" y1="93.98" x2="335.28" y2="93.98" width="0.1524" layer="91"/>
@@ -11802,7 +11872,7 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <net name="N$111" class="0">
 <segment>
 <pinref part="R110" gate="G$1" pin="2"/>
-<pinref part="D17" gate="G$1" pin="C"/>
+<pinref part="RX" gate="G$1" pin="C"/>
 <wire x1="340.36" y1="99.06" x2="337.82" y2="99.06" width="0.1524" layer="91"/>
 <wire x1="337.82" y1="99.06" x2="337.82" y2="96.52" width="0.1524" layer="91"/>
 <wire x1="337.82" y1="96.52" x2="335.28" y2="96.52" width="0.1524" layer="91"/>
@@ -11812,28 +11882,48 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <segment>
 <label x="162.56" y="55.88" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="IC23" gate="G$1" pin="Y-"/>
-<wire x1="162.56" y1="55.88" x2="193.04" y2="55.88" width="0.1524" layer="91"/>
+<wire x1="162.56" y1="55.88" x2="172.72" y2="55.88" width="0.1524" layer="91"/>
+<pinref part="R123" gate="G$1" pin="1"/>
+<wire x1="172.72" y1="55.88" x2="193.04" y2="55.88" width="0.1524" layer="91"/>
+<wire x1="198.12" y1="78.74" x2="172.72" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="172.72" y1="78.74" x2="172.72" y2="55.88" width="0.1524" layer="91"/>
+<junction x="172.72" y="55.88"/>
 </segment>
 </net>
 <net name="DP_P" class="2">
 <segment>
 <label x="162.56" y="58.42" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="IC23" gate="G$1" pin="Y+"/>
-<wire x1="162.56" y1="58.42" x2="193.04" y2="58.42" width="0.1524" layer="91"/>
+<wire x1="162.56" y1="58.42" x2="170.18" y2="58.42" width="0.1524" layer="91"/>
+<pinref part="R122" gate="G$1" pin="1"/>
+<wire x1="170.18" y1="58.42" x2="193.04" y2="58.42" width="0.1524" layer="91"/>
+<wire x1="198.12" y1="83.82" x2="170.18" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="170.18" y1="83.82" x2="170.18" y2="58.42" width="0.1524" layer="91"/>
+<junction x="170.18" y="58.42"/>
 </segment>
 </net>
 <net name="USBRP_DP_P" class="2">
 <segment>
 <pinref part="IC23" gate="G$1" pin="M+"/>
-<wire x1="218.44" y1="58.42" x2="228.6" y2="58.42" width="0.1524" layer="91"/>
+<wire x1="218.44" y1="58.42" x2="226.06" y2="58.42" width="0.1524" layer="91"/>
 <label x="228.6" y="58.42" size="1.27" layer="95" xref="yes"/>
+<pinref part="R122" gate="G$1" pin="2"/>
+<wire x1="226.06" y1="58.42" x2="228.6" y2="58.42" width="0.1524" layer="91"/>
+<wire x1="208.28" y1="83.82" x2="226.06" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="226.06" y1="83.82" x2="226.06" y2="58.42" width="0.1524" layer="91"/>
+<junction x="226.06" y="58.42"/>
 </segment>
 </net>
 <net name="USBRP_DP_N" class="2">
 <segment>
 <pinref part="IC23" gate="G$1" pin="M-"/>
-<wire x1="218.44" y1="55.88" x2="228.6" y2="55.88" width="0.1524" layer="91"/>
+<wire x1="218.44" y1="55.88" x2="223.52" y2="55.88" width="0.1524" layer="91"/>
 <label x="228.6" y="55.88" size="1.27" layer="95" xref="yes"/>
+<pinref part="R123" gate="G$1" pin="2"/>
+<wire x1="223.52" y1="55.88" x2="228.6" y2="55.88" width="0.1524" layer="91"/>
+<wire x1="208.28" y1="78.74" x2="223.52" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="223.52" y1="78.74" x2="223.52" y2="55.88" width="0.1524" layer="91"/>
+<junction x="223.52" y="55.88"/>
 </segment>
 </net>
 <net name="USB_SEL" class="0">
@@ -11841,10 +11931,14 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <pinref part="IC23" gate="G$1" pin="SEL"/>
 <wire x1="193.04" y1="50.8" x2="180.34" y2="50.8" width="0.1524" layer="91"/>
 <pinref part="R150" gate="G$1" pin="2"/>
-<wire x1="180.34" y1="50.8" x2="162.56" y2="50.8" width="0.1524" layer="91"/>
+<wire x1="180.34" y1="50.8" x2="165.1" y2="50.8" width="0.1524" layer="91"/>
+<wire x1="165.1" y1="50.8" x2="162.56" y2="50.8" width="0.1524" layer="91"/>
 <wire x1="180.34" y1="48.26" x2="180.34" y2="50.8" width="0.1524" layer="91"/>
 <junction x="180.34" y="50.8"/>
 <label x="162.56" y="50.8" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="R152" gate="G$1" pin="2"/>
+<wire x1="165.1" y1="48.26" x2="165.1" y2="50.8" width="0.1524" layer="91"/>
+<junction x="165.1" y="50.8"/>
 </segment>
 </net>
 <net name="+3V3_MCU" class="0">
@@ -11858,6 +11952,12 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <pinref part="C105" gate="G$1" pin="1"/>
 <pinref part="+3V3_MCU12" gate="G$1" pin="+3V3_MCU"/>
 <wire x1="254" y1="66.04" x2="254" y2="58.42" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="R152" gate="G$1" pin="1"/>
+<wire x1="165.1" y1="38.1" x2="165.1" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="165.1" y1="35.56" x2="160.02" y2="35.56" width="0.1524" layer="91"/>
+<pinref part="+3V3_MCU13" gate="G$1" pin="+3V3_MCU"/>
 </segment>
 </net>
 </nets>
