@@ -113,6 +113,15 @@ typedef struct {
     uint8_t dhcp;   /**< DHCP Mode (0 = Static, 1 = DHCP) */
 } networkInfo;
 
+/**
+ * @brief User Preferences (Device & Time Settings)
+ */
+typedef struct {
+    char device_name[32];
+    char location[32];
+    uint8_t temp_unit; // 0 = Celsius, 1 = Fahrenheit, 2 = Kelvin
+} userPrefInfo;
+
 // ======================================================================
 //                         DEFAULT VALUES
 // ======================================================================
@@ -225,6 +234,26 @@ int EEPROM_AppendEnergyRecord(const uint8_t *data);
  * @return 0 if success, -1 if failure.
  */
 int EEPROM_AppendEventLog(const uint8_t *entry);
+
+/**
+ * @brief Write user preferences + CRC‐8 into EEPROM.
+ * @param prefs Pointer to prefs to write.
+ * @return 0 on success, non‐zero on error.
+ */
+int EEPROM_WriteUserPrefsWithChecksum(const userPrefInfo *prefs);
+
+/**
+ * @brief Read user preferences + CRC‐8 from EEPROM.
+ * @param prefs Out pointer where data is loaded.
+ * @return 0 on success (CRC OK), non‐zero on error.
+ */
+int EEPROM_ReadUserPrefsWithChecksum(userPrefInfo *prefs);
+
+/**
+ * @brief Load user preferences, falling back to defaults if CRC fails.
+ * @return A fully populated userPrefInfo.
+ */
+userPrefInfo LoadUserPreferences(void);
 
 /**
  * @brief Loads User Network Configuration.

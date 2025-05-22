@@ -6,8 +6,8 @@
 
 The **10-Inch Rack PDU (Power Distribution Unit)** is a modular power
 management system designed for efficient control and monitoring of power in a
-rack-mounted environment. The project includes a controller board, a display
-board, and a relay board to handle switching and power management.
+rack-mounted environment. The project includes a Main Board and a display
+board to handle switching and power management.
 
 Update 05.2025: Since lot of people said, it would be nice to have a Non-230V-Version, I started to develop
 the USB-C version of ENERGIS with USB PD Source functionality: [PDNode-600 Pro](https://github.com/DvidMakesThings/HW_PDNode-600-Pro)
@@ -52,7 +52,7 @@ the USB-C version of ENERGIS with USB PD Source functionality: [PDNode-600 Pro](
     Currently for debug purposes 1.5U is perfectly fine
 
 #### ENERGIS 1.0.0 Final revision
-- Relay-Board and Controller board is now combined
+- Relay-Board and Controller Board is now combined: Main Board
 - Added FT232 to separate CDC/UART
 - Added 2:1 USB MUX
 - Added enable functionality to the PSU
@@ -85,17 +85,16 @@ the USB-C version of ENERGIS with USB PD Source functionality: [PDNode-600 Pro](
 
 ## Features
 
-- **Controller Board:** Handles Ethernet communication, power conversion, and
-  system logic.
-- **Display Board:** Provides user interaction with OLED display and status LEDs.
-- **Relay Board:** Manages AC switching with 8x 230V relays, fuses, and safety
+- **Main Board:** Handles Ethernet communication, power conversion, and
+  system logic. Manages AC switching with 8x 230V relays and safety
   isolation.
+- **Display Board:** 
+  - 1U version: Headless mode, possible manual control with push buttons and real-time LED feedback
+  - 1.5U version: Provides user interaction with TFT display and push buttons.
 - **Ethernet Connectivity:** Uses the W5500 SPI-based Ethernet chip for remote
-  control and monitoring.
-- **Power Measurement:** AC voltage and current sensing for real-time
-  monitoring.
-- **3D Printed Enclosure:** Designed for 10-inch rack mounting with front and
-  rear access.
+  control and monitoring via SNMPv1 and/or Web-UI
+- **Power Measurement:** AC voltage and current sensing for monitoring.
+- **3D Printed Enclosure:** Designed for 10-inch rack mounting with front and rear access.
 
 ## Specifications
 
@@ -123,15 +122,12 @@ the USB-C version of ENERGIS with USB PD Source functionality: [PDNode-600 Pro](
 
 ### **PCB Layer Configuration:**
 
-- **Relay Board:** 2-layer PCB.
 - **Display Board:** 2-layer PCB.
-- **Controller Board:** 4-layer PCB (JLC04161H-3313, 1.56mm ±10% thickness)
+- **Main Board:** 4-layer PCB (JLC04161H-3313, 1.56mm ±10% thickness)
 
-![Controller Board 3D View](images/_proto/Controller%20Board/Rev2.0/ControllerBoard_2.0_3D-1.png)
+![Main Board 3D View](images/_proto/Controller%20Board/Rev2.0/ControllerBoard_2.0_3D-1.png)
 
 ![Display Board 3D View](images/_proto/Display%20Board/Rev2.0/DisplayBoard_2.0_3D-1.png)
-
-![Relay Board 3D View](images/_proto/Relay%20Board/Rev2.1/RelayBoard_2.1_3D-2.png)
 
 ### **Impedance Control:**
 
@@ -156,26 +152,16 @@ the USB-C version of ENERGIS with USB PD Source functionality: [PDNode-600 Pro](
 
 The full schematics for each board are available:
 
-- **[Controller Board Schematics](src/PDF/_proto/Controller-Board/Rev%202.0/Controller-Board_2.0_Schematics.pdf)**
-- **[Display Board Schematics](src/PDF/_proto/Display-Board/Rev%202.0/Display-Board_2.0_Schematics.pdf)**
-- **[Relay Board Schematics](src/PDF/_proto/Relay-Board/Rev2.1/Relay-Board_2.1_Schematics.pdf)**
+- **[Main Board Schematics](src/PDF/ENERGIS-1.0.0_mainBoard_schematics.pdf)**
+- **[Display Board Schematics](src/PDF/ENERGIS-1.0.0_displayBoard_schematics.pdf)**
 
 ## Usage
 
-1. **Setup the hardware** by assembling the three boards.
-2. **Power on the system** and configure settings via the display or Ethernet
-   interface.
-3. **Monitor and control** relay switching and power parameters.
+TBD
 
 ## Future Plans
 
 ### Planned Improvements
-
-- **Ventilation Testing & Optimization:** Evaluate enclosure thermals and, if
-  needed, add passive or active cooling.
-- **Firmware Development:** Implement remote control and monitoring via
-  Ethernet.
-- **Web-Based UI:** A browser-accessible interface for managing power outputs.
 - **Metal Enclosure:** If production scales up, explore CNC or sheet-metal
   enclosures.
 

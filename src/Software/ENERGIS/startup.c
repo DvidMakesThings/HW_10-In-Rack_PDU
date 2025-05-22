@@ -129,6 +129,8 @@ bool core0_init(void) {
     if (DEBUG)
         INFO_PRINT("Core 0 initializing...\n");
 
+    getSysInfo(); // Print system information
+
     if (DEBUG) {
         INFO_PRINT("I2C scanning...\n");
         i2c_scan_bus(i2c0, "I2C0");

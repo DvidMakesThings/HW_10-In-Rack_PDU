@@ -1,0 +1,10 @@
+{
+    "type": "pico",
+    "cmakeSourceDir": "${workspaceFolder}",
+    "cmakeBuildDir": "${workspaceFolder}/build",
+    "cmakeToolchainFile": "${env:USERPROFILE}/.pico-sdk/sdk/1.5.1/pico-sdk/cmake/preload/toolchains/pico_arm_gcc.cmake",
+    "cmakeConfigurePreset": "",
+    "cmakeBuildPreset": "",
+    "board": "pico",
+    "sdkPath": "${env:USERPROFILE}/.pico-sdk/sdk/1.5.1"
+}

@@ -1,5 +1,5 @@
 /**
- * @file helper_functions.h
+ * @file helper_functions.c
  * @author David Sipos
  * @brief Helper functions for the ENERGIS PDU project.
  * @version 1.0

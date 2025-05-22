@@ -14,7 +14,16 @@
 #include <stdio.h>
 #include <string.h>
 
+// Size of record: struct + 1‐byte CRC
+#define USER_PREF_RECORD_SIZE (sizeof(userPrefInfo) + 1)
+
 static uint8_t calculate_crc8(const uint8_t *data, size_t len);
+
+/**
+ * @brief Factory defaults (only in this .c, not exposed as extern).
+ */
+static const userPrefInfo DEFAULT_USER_PREFS = {
+    .device_name = "ENERGIS", .location = "Server Room", .temp_unit = 0};
 
 // ======================================================================
 //                     SYSTEM INFO & CALIBRATION
@@ -531,17 +540,40 @@ int EEPROM_AppendEventLog(const uint8_t *entry) {
     return 0;
 }
 
-/**
- * @brief Loads user network configuration from EEPROM or sets defaults if invalid.
- * @return networkInfo structure containing network settings.
- */
+int EEPROM_WriteUserPrefsWithChecksum(const userPrefInfo *prefs) {
+    uint8_t buf[USER_PREF_RECORD_SIZE];
+    memcpy(buf, prefs, sizeof(userPrefInfo));
+    buf[sizeof(userPrefInfo)] = calculate_crc8(buf, sizeof(userPrefInfo));
+    return CAT24C512_WriteBuffer(EEPROM_USER_PREF_START, buf, USER_PREF_RECORD_SIZE);
+}
+
+int EEPROM_ReadUserPrefsWithChecksum(userPrefInfo *prefs) {
+    uint8_t buf[USER_PREF_RECORD_SIZE];
+    CAT24C512_ReadBuffer(EEPROM_USER_PREF_START, buf, USER_PREF_RECORD_SIZE);
+    if (calculate_crc8(buf, sizeof(userPrefInfo)) != buf[sizeof(userPrefInfo)])
+        return -1;
+    memcpy(prefs, buf, sizeof(userPrefInfo));
+    return 0;
+}
+
+userPrefInfo LoadUserPreferences(void) {
+    userPrefInfo prefs;
+    if (EEPROM_ReadUserPrefsWithChecksum(&prefs) == 0) {
+        INFO_PRINT("Loaded user prefs\n");
+    } else {
+        ERROR_PRINT("No saved prefs, using defaults\n");
+        prefs = DEFAULT_USER_PREFS;
+    }
+    return prefs;
+}
+
 networkInfo LoadUserNetworkConfig(void) {
     networkInfo net_info;
     if (EEPROM_ReadUserNetworkWithChecksum(&net_info) == 0) {
         INFO_PRINT("Loaded network config from EEPROM.\n");
     } else {
         ERROR_PRINT("EEPROM network config invalid. Using defaults.\n");
-        net_info = DEFAULT_NETWORK; // Use predefined default values
+        net_info = DEFAULT_NETWORK;
     }
     return net_info;
 }
