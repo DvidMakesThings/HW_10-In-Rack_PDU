@@ -9083,6 +9083,8 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <part name="R151" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="1K"/>
 <part name="PWR" library="LED" library_urn="urn:adsk.eagle:library:22900745" deviceset="CHIP-FLAT-G" device="_0603-0.35MM" package3d_urn="urn:adsk.eagle:package:24294786/2"/>
 <part name="GND84" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
+<part name="R152" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="DNI"/>
+<part name="+3V3_MCU13" library="ds_passive" deviceset="+3V3_MCU" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -10978,6 +10980,13 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <attribute name="NAME" x="196.215" y="80.2386" size="1.778" layer="95"/>
 <attribute name="VALUE" x="203.835" y="80.2386" size="1.778" layer="96"/>
 </instance>
+<instance part="R152" gate="G$1" x="165.1" y="43.18" smashed="yes" rot="R180">
+<attribute name="NAME" x="160.655" y="44.2214" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="161.925" y="41.6814" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="+3V3_MCU13" gate="G$1" x="160.02" y="35.56" smashed="yes" rot="R90">
+<attribute name="VALUE" x="154.94" y="33.02" size="1.778" layer="96" align="top-center"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -11922,10 +11931,14 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <pinref part="IC23" gate="G$1" pin="SEL"/>
 <wire x1="193.04" y1="50.8" x2="180.34" y2="50.8" width="0.1524" layer="91"/>
 <pinref part="R150" gate="G$1" pin="2"/>
-<wire x1="180.34" y1="50.8" x2="162.56" y2="50.8" width="0.1524" layer="91"/>
+<wire x1="180.34" y1="50.8" x2="165.1" y2="50.8" width="0.1524" layer="91"/>
+<wire x1="165.1" y1="50.8" x2="162.56" y2="50.8" width="0.1524" layer="91"/>
 <wire x1="180.34" y1="48.26" x2="180.34" y2="50.8" width="0.1524" layer="91"/>
 <junction x="180.34" y="50.8"/>
 <label x="162.56" y="50.8" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="R152" gate="G$1" pin="2"/>
+<wire x1="165.1" y1="48.26" x2="165.1" y2="50.8" width="0.1524" layer="91"/>
+<junction x="165.1" y="50.8"/>
 </segment>
 </net>
 <net name="+3V3_MCU" class="0">
@@ -11939,6 +11952,12 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <pinref part="C105" gate="G$1" pin="1"/>
 <pinref part="+3V3_MCU12" gate="G$1" pin="+3V3_MCU"/>
 <wire x1="254" y1="66.04" x2="254" y2="58.42" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="R152" gate="G$1" pin="1"/>
+<wire x1="165.1" y1="38.1" x2="165.1" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="165.1" y1="35.56" x2="160.02" y2="35.56" width="0.1524" layer="91"/>
+<pinref part="+3V3_MCU13" gate="G$1" pin="+3V3_MCU"/>
 </segment>
 </net>
 </nets>
