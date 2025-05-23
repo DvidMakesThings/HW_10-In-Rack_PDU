@@ -2,10 +2,18 @@
 
 cmake_minimum_required(VERSION 3.13)
 
+# Set BEFORE importing SDK — don't let anything reset it!
+set(PICO_NO_BUILD_PICOTOOL 1)
+set(PICO_NO_DOWNLOADS 1)
+set(PICOTOOL_PATH "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/picotool/picotool.exe")
+set(PICO_SDK_PATH "C:/Program Files/Raspberry Pi/pico-sdk-2.1.1")
+
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-set(PICO_SDK_PATH "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk" CACHE PATH "Path to Pico SDK")
+
+# Import SDK
+include(pico_sdk_import.cmake)
 
 # Initialise pico_sdk from installed location
 # (note this can come from environment, CMake cache etc)
@@ -21,12 +29,6 @@ endif()
 set(PICO_BOARD pico CACHE STRING "Board type")
 
 # Pull in Raspberry Pi Pico SDK (must be before project)
-include(pico_sdk_import.cmake)
-
-set(PICO_NO_DOWNLOADS 1)
-set(PICOTOOL_PATH "C:/picotool/picotool/build/picotool.exe")
-
-set(PICO_NO_BUILD_PICOTOOL 1)
 
 project(ENERGIS C CXX ASM)
 
@@ -41,6 +43,7 @@ add_executable(ENERGIS
     drivers/MCP23017_display_driver.c
     drivers/MCP23017_relay_driver.c
     drivers/button_driver.c
+    drivers/HLW8032_driver.c
     misc/uart_command_handler.c
     network/timer.c
     network/w5x00_gpio_irq.c
@@ -69,7 +72,7 @@ pico_set_program_version(ENERGIS "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
 pico_enable_stdio_usb(ENERGIS 1)
-pico_enable_stdio_uart(ENERGIS 0)
+pico_enable_stdio_uart(ENERGIS 1)
 
 # Enable float support in printf
 target_compile_definitions(ENERGIS PRIVATE
@@ -81,6 +84,7 @@ target_compile_definitions(ENERGIS PRIVATE
 target_link_libraries(ENERGIS 
     pico_stdlib         # Standard Pico SDK
     pico_multicore      # Multicore support
+    hardware_vreg       # VREG and chip reset
     hardware_spi        # SPI library
     hardware_i2c        # I2C library
     hardware_gpio       # GPIO control
@@ -96,19 +100,21 @@ target_link_libraries(ENERGIS
 # Add the standard include files to the build.
 target_include_directories(ENERGIS PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/drivers
+    ${CMAKE_CURRENT_SOURCE_DIR}/html
+    ${CMAKE_CURRENT_SOURCE_DIR}/misc
+    ${CMAKE_CURRENT_SOURCE_DIR}/utils
     ${CMAKE_CURRENT_SOURCE_DIR}/network
-    ${CMAKE_CURRENT_SOURCE_DIR}/network/port/ioLibrary_Driver/inc
-    ${CMAKE_CURRENT_SOURCE_DIR}/network/port/timer
-    ${CMAKE_CURRENT_LIST_DIR}/FatFS
-    ${PICO_SDK_PATH}/src/rp2_common/hardware_spi/include
-    ${PICO_SDK_PATH}/src/rp2_common/hardware_i2c/include
-    ${PICO_SDK_PATH}/src/rp2_common/hardware_pwm/include
-    ${PICO_SDK_PATH}/src/rp2_common/hardware_resets/include
-    ${PICO_SDK_PATH}/src/rp2_common/hardware_watchdog/include   # For watchdog.h
-    ${PICO_SDK_PATH}/src/rp2_common/hardware_clocks/include     # For clocks.h
-    ${PICO_SDK_PATH}/src/rp2_common/hardware_structs/include    # For scb.h and vreg_and_chip_reset.h
-    ${PICO_SDK_PATH}/src/rp2_common/hardware_base/include       # Additional base hardware includes
+    ${CMAKE_CURRENT_SOURCE_DIR}/web_handlers
+    ${PICO_SDK_PATH}/src/rp2_common
     
 )
 
 pico_add_extra_outputs(ENERGIS)
+
+add_custom_command(TARGET ENERGIS POST_BUILD
+    COMMAND "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/tools/elf2uf2/build/Debug/elf2uf2.exe"
+        $<TARGET_FILE:ENERGIS>
+        ${CMAKE_CURRENT_BINARY_DIR}/ENERGIS.uf2
+    COMMENT "Manually converting ELF to UF2 without picotool"
+)

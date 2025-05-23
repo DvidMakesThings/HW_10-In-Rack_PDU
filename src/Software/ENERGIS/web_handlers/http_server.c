@@ -24,6 +24,12 @@
 static int8_t http_sock;
 static char *http_buf;
 
+/**
+ * @brief Initializes the HTTP server.
+ *
+ * This function sets up the HTTP server by creating a socket and listening for incoming
+ * connections. It also allocates memory for the HTTP buffer.
+ */
 void http_server_init(void) {
     http_buf = malloc(HTTP_BUF_SIZE);
     if (!http_buf) {
@@ -48,6 +54,12 @@ void http_server_init(void) {
     INFO_PRINT("HTTP server listening on port %d\n", HTTP_PORT);
 }
 
+/**
+ * @brief Processes incoming HTTP requests.
+ *
+ * This function checks the status of the HTTP socket and handles incoming requests.
+ * It responds to various API endpoints and serves static content.
+ */
 void http_server_process(void) {
     uint8_t status = getSn_SR(http_sock);
 

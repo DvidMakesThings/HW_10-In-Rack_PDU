@@ -3,19 +3,19 @@
   "configurations": [
     {
       "name": "Pico Debug (Cortex-Debug)",
-      "cwd": "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/openocd/scripts",
+      "cwd": "C:/Program Files/Raspberry Pi/pico-sdk-2.1.1/openocd/scripts",
       "executable": "${command:raspberry-pi-pico.launchTargetPath}",
       "request": "launch",
       "type": "cortex-debug",
       "servertype": "openocd",
-      "serverpath": "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/openocd/openocd.exe",
+      "serverpath": "C:/Program Files/Raspberry Pi/pico-sdk-2.1.1/openocd/openocd.exe",
       "gdbPath": "${command:raspberry-pi-pico.getGDBPath}",
       "device": "${command:raspberry-pi-pico.getChipUppercase}",
       "configFiles": [
         "interface/cmsis-dap.cfg",
         "target/${command:raspberry-pi-pico.getTarget}.cfg"
       ],
-      "svdFile": "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/${command:raspberry-pi-pico.getChip}/hardware_regs/${command:raspberry-pi-pico.getChipUppercase}.svd",
+      "svdFile": "C:/Program Files/Raspberry Pi/pico-sdk-2.1.1/pico-sdk/src/${command:raspberry-pi-pico.getChip}/hardware_regs/${command:raspberry-pi-pico.getChipUppercase}.svd",
       "runToEntryPoint": "main",
       "overrideLaunchCommands": [
         "monitor reset init",
@@ -35,7 +35,7 @@
       "gdbTarget": "localhost:3333",
       "gdbPath": "${command:raspberry-pi-pico.getGDBPath}",
       "device": "${command:raspberry-pi-pico.getChipUppercase}",
-      "svdFile": "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/${command:raspberry-pi-pico.getChip}/hardware_regs/${command:raspberry-pi-pico.getChipUppercase}.svd",
+      "svdFile": "C:/Program Files/Raspberry Pi/pico-sdk-2.1.1/pico-sdk/src/${command:raspberry-pi-pico.getChip}/hardware_regs/${command:raspberry-pi-pico.getChipUppercase}.svd",
       "runToEntryPoint": "main",
       "overrideLaunchCommands": [
         "monitor reset init",
@@ -51,7 +51,7 @@
       "MIMode": "gdb",
       "miDebuggerPath": "${command:raspberry-pi-pico.getGDBPath}",
       "miDebuggerServerAddress": "localhost:3333",
-      "debugServerPath": "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/openocd/openocd.exe",
+      "debugServerPath": "C:/Program Files/Raspberry Pi/pico-sdk-2.1.1/openocd/openocd.exe",
       "debugServerArgs": "-f interface/cmsis-dap.cfg -f target/${command:raspberry-pi-pico.getTarget}.cfg -c \"adapter speed 5000\"",
       "serverStarted": "Listening on port .* for gdb connections",
       "filterStderr": true,
@@ -60,7 +60,7 @@
         "limit": 4
       },
       "preLaunchTask": "Flash",
-      "svdPath": "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/${command:raspberry-pi-pico.getChip}/hardware_regs/${command:raspberry-pi-pico.getChipUppercase}.svd"
+      "svdPath": "C:/Program Files/Raspberry Pi/pico-sdk-2.1.1/pico-sdk/src/${command:raspberry-pi-pico.getChip}/hardware_regs/${command:raspberry-pi-pico.getChipUppercase}.svd"
     }
   ]
 }

@@ -40,6 +40,7 @@
 // Drivers & utilities
 #include "PDU_display.h"
 #include "drivers/CAT24C512_driver.h"
+#include "drivers/HLW8032_driver.h"
 #include "drivers/ILI9488_driver.h"
 #include "drivers/MCP23017_display_driver.h"
 #include "drivers/MCP23017_relay_driver.h"
@@ -77,9 +78,14 @@
 #define W5500_SPI_INSTANCE spi0   ///< SPI0 for W5500 Ethernet Modul
 
 // UART Peripheral Assignments
-#define UART_ID uart0
+#define UART_ID uart1
 #define BAUD_RATE 115200
 #define UART_CMD_BUF_LEN 1024
+
+// HLW8032 UART Settings
+#define HLW8032_UART_ID uart0
+#define HLW8032_BAUDRATE 4800
+#define HLW8032_FRAME_LENGTH 24
 
 // MCU Specific Defines
 #define VREG_BASE 0x40064000

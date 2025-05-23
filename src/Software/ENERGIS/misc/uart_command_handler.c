@@ -101,6 +101,8 @@ static void process_command(const char *cmd_in) {
     } else if (strcmp(trimmed, "SYSINFO") == 0) {
         INFO_PRINT("SYSTEM INFORMATION:\r\n");
         getSysInfo();
+    } else if (strcmp(trimmed, "READ_HLW8032") == 0) {
+        test_hlw8032_readings();
     } else {
         ERROR_PRINT("Unknown command \"%s\"\r\n", trimmed);
     }
@@ -169,7 +171,7 @@ void getSysInfo(void) {
     uint vsel = vreg_raw & VREG_VSEL_MASK;
     float voltage = 1.10f + 0.05f * vsel;
 
-    INFO_PRINT("Core voltage: %.2f V (vsel = %u)", voltage, vsel);
+    INFO_PRINT("Core voltage: %.2f V (vsel = %u)\n", voltage, vsel);
     INFO_PRINT("Clock Sources:\n\tSYS: %u Hz\n\tUSB: %u Hz\n\tPER: %u Hz\n\tADC: %u Hz\n", sys_freq,
                usb_freq, peri_freq, adc_freq);
 }
@@ -433,4 +435,19 @@ void set_network(const char *full_cmd, const char *cmd) {
     INFO_PRINT("OK: CONFIG_NETWORK %s$%s$%s$%s\r\nRebooting...\r\n", ip_str, sn_str, gw_str,
                dns_str);
     watchdog_reboot(0, 0, 0);
+}
+
+/**
+ * @brief Test and print values from HLW8032 channels.
+ */
+void test_hlw8032_readings(void) {
+    INFO_PRINT("Reading HLW8032 values for all 8 channels...\n");
+    for (uint8_t ch = 0; ch < 8; ch++) {
+        float voltage = 0, current = 0, power = 0;
+        if (hlw8032_read_values(ch, &voltage, &current, &power)) {
+            INFO_PRINT("CH%u: V=%.2f V, I=%.3f A, P=%.2f W\n", ch + 1, voltage, current, power);
+        } else {
+            ERROR_PRINT("CH%u: Failed to read HLW8032 data\n", ch + 1);
+        }
+    }
 }

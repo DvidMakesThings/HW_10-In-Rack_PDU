@@ -62,11 +62,11 @@
         "-File",
         "${workspaceFolder}/scripts/flash_rp2040.ps1"
       ],
-      "problemMatcher": [],
       "presentation": {
         "reveal": "always",
         "panel": "shared"
-      }
+      },
+      "problemMatcher": []
     }
   ]
 }

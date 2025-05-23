@@ -130,6 +130,9 @@ bool core0_init(void) {
         DEBUG_PRINT("ADC OK\n");
     }
 
+    uint32_t vreg = *((volatile uint32_t *)0x40064000); // VREG_AND_CHIP_RESET->vreg
+    printf("VREG register: 0x%08X\n", vreg);
+
     if (DEBUG) {
         INFO_PRINT("I2C scanning...\n");
         i2c_scan_bus(i2c0, "I2C0");
@@ -175,6 +178,12 @@ bool core0_init(void) {
         sleep_ms(200);
         DEBUG_PRINT("PDU display started\n");
         PDU_Display_UpdateStatus("System initialized.");
+    }
+
+    if (DEBUG) {
+        INFO_PRINT("Initializing HLW8032...\n");
+        hlw8032_init();
+        DEBUG_PRINT("HLW8032 OK\n");
     }
 
     if (DEBUG) {

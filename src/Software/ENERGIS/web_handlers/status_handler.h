@@ -13,6 +13,12 @@
 #define STATUS_HANDLER_H
 
 #include <stdint.h>
+
+/**
+ * @brief Handles the HTTP request for the status page.
+ * @param sock The socket number.
+ * @note This function is called when the user interacts with the status page.
+ */
 void handle_status_request(uint8_t sock);
 
 #endif // STATUS_HANDLER_H

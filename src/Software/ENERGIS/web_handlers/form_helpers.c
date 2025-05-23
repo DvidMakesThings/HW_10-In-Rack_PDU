@@ -12,6 +12,11 @@
 #include "form_helpers.h"
 #include "CONFIG.h"
 
+/**
+ * @brief Converts a hexadecimal character to its integer value.
+ * @param c The hexadecimal character.
+ * @return The integer value of the character, or -1 if invalid.
+ */
 static inline int hexval(char c) {
     if (c >= '0' && c <= '9')
         return c - '0';
@@ -22,6 +27,11 @@ static inline int hexval(char c) {
     return -1;
 }
 
+/**
+ * @brief Extract key=value from URL‐encoded body (in‐place), returns NULL if missing.
+ * @param c The hexadecimal character.
+ * @return The integer value of the character, or -1 if invalid.
+ */
 char *get_form_value(const char *body, const char *key) {
     static char value[64];
     char search[32];
@@ -41,6 +51,10 @@ char *get_form_value(const char *body, const char *key) {
     return value;
 }
 
+/**
+ * @brief Decode '+'→' ' and "%XX"→char, in‐place.
+ * @param c The hexadecimal character.
+ */
 void urldecode(char *s) {
     char *dst = s, *src = s;
     while (*src) {

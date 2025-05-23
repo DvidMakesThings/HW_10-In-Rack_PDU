@@ -12,6 +12,12 @@
 #include "control_handler.h"
 #include "CONFIG.h"
 
+/**
+ * @brief Handles the HTTP request for the control page.
+ * @param sock The socket number.
+ * @param body The request body.
+ * @note This function is called when the user interacts with the control page.
+ */
 void handle_control_request(uint8_t sock, char *body) {
     if (!body) {
         const char *resp = "HTTP/1.1 400 Bad Request\r\n"

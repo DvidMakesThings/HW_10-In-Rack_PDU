@@ -4,22 +4,17 @@
       "name": "Pico",
       "includePath": [
         "${workspaceFolder}/**",
-        "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_spi/include",
-        "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_i2c/include",
-        "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/pico_multicore/include",
-        "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/**"
+        "C:/Program Files/Raspberry Pi/pico-sdk-2.1.1/src/**"
       ],
       "browse": {
         "path": [
           "${workspaceFolder}",
-          "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_spi/include",
-          "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_i2c/include",
-          "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/pico_multicore/include"
+          "C:/Program Files/Raspberry Pi/pico-sdk-2.1.1/src/**"
         ],
         "limitSymbolsToIncludedHeaders": true
       },
       "forcedInclude": [
-        "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/common/pico_base_headers/include/pico.h",
+        "C:/Program Files/Raspberry Pi/pico-sdk-2.1.1/src/common/pico_base_headers/include/pico.h",
         "${workspaceFolder}/build/generated/pico_base/pico/config_autogen.h"
       ],
       "defines": [],
