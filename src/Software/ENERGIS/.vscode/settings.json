@@ -107,7 +107,10 @@
     "irq.h": "c",
     "ctype.h": "c",
     "uart_command_handler.h": "c",
-    "vreg.h": "c"
+    "vreg.h": "c",
+    "status_handler.h": "c",
+    "form_helpers.h": "c",
+    "adc.h": "c"
   },
   "C_Cpp.errorSquiggles": "enabled"
 }

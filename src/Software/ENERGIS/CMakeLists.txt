@@ -50,8 +50,11 @@ add_executable(ENERGIS
     network/socket.c
     network/snmp.c
     network/snmp_custom.c
-    web_handlers/api_handlers.c
     web_handlers/http_server.c
+    web_handlers/control_handler.c
+    web_handlers/settings_handler.c
+    web_handlers/form_helpers.c
+    web_handlers/status_handler.c
     html/web_pages.c
     utils/EEPROM_MemoryMap.c
     utils/helper_functions.c
@@ -87,6 +90,7 @@ target_link_libraries(ENERGIS
     hardware_clocks     # Clock configuration
     hardware_resets     # Reset controller
     hardware_dma        # DMA controller
+    hardware_adc        # ADC controller
 )
 
 # Add the standard include files to the build.
