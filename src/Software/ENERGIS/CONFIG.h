@@ -12,6 +12,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+#include "hardware/adc.h"
 #include "hardware/address_mapped.h"
 #include "hardware/clocks.h"
 #include "hardware/gpio.h"
@@ -45,6 +46,7 @@
 #include "startup.h"
 #include "utils/EEPROM_MemoryMap.h"
 #include "utils/helper_functions.h"
+#include "web_handlers/form_helpers.h"
 
 #define DEBUG 1
 #define DEBUG_PRINT(...)                                                                           \

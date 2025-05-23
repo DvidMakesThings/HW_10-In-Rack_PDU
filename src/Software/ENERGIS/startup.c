@@ -124,6 +124,13 @@ bool core0_init(void) {
     getSysInfo(); // Print system information
 
     if (DEBUG) {
+        INFO_PRINT("ADC initializing\n");
+        adc_init();
+        adc_set_temp_sensor_enabled(true); // Enable internal temperature sensor
+        DEBUG_PRINT("ADC OK\n");
+    }
+
+    if (DEBUG) {
         INFO_PRINT("I2C scanning...\n");
         i2c_scan_bus(i2c0, "I2C0");
         i2c_scan_bus(i2c1, "I2C1");

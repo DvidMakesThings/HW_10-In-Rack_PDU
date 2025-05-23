@@ -12,6 +12,7 @@
 #ifndef HTTP_SERVER_H
 #define HTTP_SERVER_H
 
+#include "../CONFIG.h"
 #include <stdint.h>
 
 void http_server_init(void);
