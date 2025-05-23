@@ -40,7 +40,17 @@ int main(void) {
         reset_usb_boot(0, 0);
     }
 
-    sleep_ms(1000); // Delay for debugging
+    // Initialize stdio
+    stdio_init_all();
+
+    if (DEBUG) {
+        uart_init(UART_ID, BAUD_RATE);
+        uart_set_hw_flow(UART_ID, false, false);
+        uart_set_format(UART_ID, 8, 1, UART_PARITY_NONE);
+        uart_set_fifo_enabled(UART_ID, true);
+    }
+
+    sleep_ms(4000); // Delay for debugging
 
     if (!startup_init()) {
         ERROR_PRINT("Startup initialization failed.\n");
@@ -50,14 +60,14 @@ int main(void) {
     if (core0_init()) {
         mcp_display_write_pin(FAULT_LED, 0);
         PDU_Display_UpdateStatus("System ready.");
-        INFO_PRINT("Core 0 initialized.\n\n");
+        DEBUG_PRINT("Core 0 initialized.\n\n");
     } else {
         ERROR_PRINT("Core 0 initialization failed.\n\n");
         return -1;
     }
 
     if (core1_init()) {
-        INFO_PRINT("Core 1 initialized.\n\n");
+        DEBUG_PRINT("Core 1 initialized.\n\n");
     } else {
         ERROR_PRINT("Core 1 initialization failed.\n\n");
         return -1;

@@ -36,7 +36,7 @@ void core1_task(void) {
     snmp_agent_sock = 1;
     snmp_trap_sock = 2;
     snmpd_init(managerIP, agentIP, snmp_agent_sock, snmp_trap_sock);
-    INFO_PRINT("SNMP agent ready on port %d, traps on %d\n", SNMP_AGENT_PORT, SNMP_TRAP_PORT);
+    DEBUG_PRINT("SNMP agent ready on port %d, traps on %d\n", SNMP_AGENT_PORT, SNMP_TRAP_PORT);
 
     // Initialize HTTP server
     http_server_init();

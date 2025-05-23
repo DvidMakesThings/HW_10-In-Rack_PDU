@@ -49,19 +49,19 @@
 #define DEBUG 1
 #define DEBUG_PRINT(...)                                                                           \
     if (DEBUG)                                                                                     \
-        printf("\n[DEBUG] " __VA_ARGS__);
+        printf("\t[DEBUG] " __VA_ARGS__);
 #define INFO 1
 #define INFO_PRINT(...)                                                                            \
     if (INFO)                                                                                      \
-        printf("\n[INFO] " __VA_ARGS__);
+        printf("[INFO] " __VA_ARGS__);
 #define ERROR 1
 #define ERROR_PRINT(...)                                                                           \
     if (ERROR)                                                                                     \
-        printf("\n[ERROR] " __VA_ARGS__);
+        printf("[ERROR] " __VA_ARGS__);
 #define WARNING 1
 #define WARNING_PRINT(...)                                                                         \
     if (WARNING)                                                                                   \
-        printf("\n[WARNING] " __VA_ARGS__);
+        printf("[WARNING] " __VA_ARGS__);
 
 // I2C Peripheral Assignments
 #define EEPROM_I2C i2c1           ///< Using I2C1 for EEPROM communication

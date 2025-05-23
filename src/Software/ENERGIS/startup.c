@@ -17,9 +17,6 @@
  * Sets up GPIO directions and functions, and initializes the I2C and SPI buses.
  */
 bool startup_init(void) {
-    // Initialize stdio (if needed for debugging)
-    stdio_init_all();
-
     // ----- UART Initialization -----
     gpio_set_function(UART0_RX, GPIO_FUNC_UART);
     gpio_set_function(UART0_TX, GPIO_FUNC_UART);
@@ -119,12 +116,7 @@ bool startup_init(void) {
  * Also initializes the PDU display and updates the status message.
  */
 bool core0_init(void) {
-    if (DEBUG) {
-        uart_init(UART_ID, BAUD_RATE);
-        uart_set_hw_flow(UART_ID, false, false);
-        uart_set_format(UART_ID, 8, 1, UART_PARITY_NONE);
-        uart_set_fifo_enabled(UART_ID, true);
-    }
+    sleep_ms(1000); // Delay for debugging
 
     if (DEBUG)
         INFO_PRINT("Core 0 initializing...\n");
@@ -139,17 +131,18 @@ bool core0_init(void) {
 
     // Initialize EEPROM.
     if (DEBUG) {
-        INFO_PRINT("EEPROM initializing...");
+        INFO_PRINT("EEPROM initializing...\n");
         CAT24C512_Init();
         // EEPROM_ReadFactoryDefaults();
-        INFO_PRINT("EEPROM factory defaults read\n");
+        DEBUG_PRINT("EEPROM OK\n");
     }
 
     // Initialize MCP23017 I/O expanders.
     if (DEBUG) {
-        INFO_PRINT("MCP23017 initializing...");
+        INFO_PRINT("MCP23017 initializing...\n");
         mcp_display_init();
         mcp_relay_init();
+        DEBUG_PRINT("MCP23017 OK\n");
     }
 
     // Little showoff.
@@ -165,19 +158,22 @@ bool core0_init(void) {
 
     // Initialize the ILI9488 display.
     if (DEBUG) {
-        INFO_PRINT("ILI9488 display initializing...");
+        INFO_PRINT("ILI9488 display initializing...\n");
         ILI9488_Init();
+        DEBUG_PRINT("ILI9488 OK\n");
     }
     if (DEBUG) {
         INFO_PRINT("Starting PDU display\n");
         PDU_Display_Init();
         sleep_ms(200);
+        DEBUG_PRINT("PDU display started\n");
         PDU_Display_UpdateStatus("System initialized.");
     }
 
     if (DEBUG) {
-        INFO_PRINT("Initializing buttons...");
+        INFO_PRINT("Initializing buttons...\n");
         button_driver_init(); // Initialize buttons
+        DEBUG_PRINT("Buttons initialized\n");
     }
 
     return true;
@@ -195,8 +191,9 @@ bool core1_init(void) {
 
     // Copy data to g_net_info
     memcpy(&g_net_info, &netConfig, sizeof(wiz_NetInfo));
-    INFO_PRINT("Loaded network config: IP %d.%d.%d.%d\n", g_net_info.ip[0], g_net_info.ip[1],
-               g_net_info.ip[2], g_net_info.ip[3]);
+    DEBUG_PRINT("Loaded network config: IP %d.%d.%d.%d\n", g_net_info.ip[0], g_net_info.ip[1],
+                g_net_info.ip[2], g_net_info.ip[3]);
+    DEBUG_PRINT("Network config loaded, continuing...\n\n");
 
     wizchip_spi_initialize();
     wizchip_cris_initialize();
