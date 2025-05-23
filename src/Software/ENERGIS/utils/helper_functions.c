@@ -23,7 +23,7 @@ void i2c_scan_bus(i2c_inst_t *i2c, const char *bus_name) {
     for (uint8_t addr = 0x08; addr <= 0x77; addr++) {
         int ret = i2c_write_blocking(i2c, addr, &dummy, 1, false);
         if (ret >= 0) {
-            DEBUG_PRINT("Found device at address 0x%02X\n\n", addr);
+            DEBUG_PRINT("Found device at address 0x%02X\n", addr);
             device_found = true;
         }
     }

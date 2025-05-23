@@ -169,9 +169,9 @@ void getSysInfo(void) {
     uint vsel = vreg_raw & VREG_VSEL_MASK;
     float voltage = 1.10f + 0.05f * vsel;
 
-    INFO_PRINT("Core voltage: %.2f V (vsel = %u)\n", voltage, vsel);
-    INFO_PRINT("SYS: %u Hz\nUSB: %u Hz\nPERI: %u Hz\nADC: %u Hz\n", sys_freq, usb_freq, peri_freq,
-               adc_freq);
+    INFO_PRINT("Core voltage: %.2f V (vsel = %u)", voltage, vsel);
+    INFO_PRINT("Clock Sources:\n\tSYS: %u Hz\n\tUSB: %u Hz\n\tPER: %u Hz\n\tADC: %u Hz\n", sys_freq,
+               usb_freq, peri_freq, adc_freq);
 }
 
 /**
