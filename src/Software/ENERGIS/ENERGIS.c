@@ -26,13 +26,15 @@ __attribute__((section(".uninitialized_data"))) uint32_t bootloader_trigger;
  * @return int
  */
 int main(void) {
-    // Set core voltage to 1.20V (max safe level)
-    vreg_set_voltage(VREG_VOLTAGE_1_20);
+    // Set core voltage to 1.25V (must be first)
+    vreg_set_voltage(VREG_VOLTAGE_1_25);
 
-    sleep_ms(10); // Allow voltage to settle
+    // Let voltage settle properly
+    sleep_ms(1000); // do not replace with volatile delay, this is critical
 
     // Set system clock to 200 MHz
-    set_sys_clock_khz(200000, true); // Set system clock to 200 MHz
+    set_sys_clock_khz(200000, true);
+
     // Early BOOTSEL check before anything touches USB
     if (bootloader_trigger == 0xDEADBEEF) {
         bootloader_trigger = 0;
@@ -40,15 +42,7 @@ int main(void) {
         reset_usb_boot(0, 0);
     }
 
-    // Initialize stdio
-    stdio_init_all();
-
-    if (DEBUG) {
-        uart_init(UART_ID, BAUD_RATE);
-        uart_set_hw_flow(UART_ID, false, false);
-        uart_set_format(UART_ID, 8, 1, UART_PARITY_NONE);
-        uart_set_fifo_enabled(UART_ID, true);
-    }
+    stdio_usb_init();
 
     sleep_ms(4000); // Delay for debugging
 

@@ -14,15 +14,32 @@
 
 #include <stdint.h>
 
-// JSON/status endpoint
+/**
+ * @brief Handles the HTTP request for the given socket.
+ * @param sock The socket number.
+ */
 void handle_status_request(uint8_t sock);
 
-// Render & process /settings.html GET
+/**
+ * @brief Handles the HTTP request for the settings page.
+ * @param sock The socket number.
+ */
 void handle_settings_request(uint8_t sock);
-// Handle POST /settings
+
+/**
+ * @brief Handles the HTTP request for the control page.
+ * @param sock The socket number.
+ * @param body The request body.
+ * @note This function is called when the user interacts with the control page.
+ */
 void handle_settings_post(uint8_t sock, char *body);
 
-// Handle POST /control
+/**
+ * @brief Handles the HTTP request for the control page.
+ * @param sock The socket number.
+ * @param body The request body.
+ * @note This function is called when the user interacts with the control page.
+ */
 void handle_control_request(uint8_t sock, char *body);
 
 #endif // API_HANDLERS_H

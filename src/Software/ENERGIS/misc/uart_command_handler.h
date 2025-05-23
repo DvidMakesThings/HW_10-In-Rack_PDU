@@ -95,4 +95,9 @@ void set_network(const char *full, const char *cmd);
  */
 void getSysInfo(void);
 
+/**
+ * @brief Test and print values from HLW8032 channels.
+ */
+void test_hlw8032_readings(void);
+
 #endif // UART_COMMAND_HANDLER_H

@@ -12,6 +12,11 @@
 #include "settings_handler.h"
 #include "CONFIG.h"
 
+/**
+ * @brief Handles the HTTP request for the settings page.
+ * @param sock The socket number.
+ * @note This function is called when the user interacts with the settings page.
+ */
 void handle_settings_request(uint8_t sock) {
     INFO_PRINT(">> handle_settings_request()\n");
 
@@ -111,6 +116,12 @@ void handle_settings_request(uint8_t sock) {
     INFO_PRINT("<< handle_settings_request() done\n");
 }
 
+/**
+ * @brief Handles the HTTP POST request for the settings page.
+ * @param sock The socket number.
+ * @param body The body of the POST request.
+ * @note This function is called when the user submits the settings form.
+ */
 void handle_settings_post(uint8_t sock, char *body) {
     INFO_PRINT(">> handle_settings_post()\n");
     DEBUG_PRINT("Raw POST body: \"%s\"\n", body);

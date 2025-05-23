@@ -15,6 +15,12 @@
 #include "../CONFIG.h"
 #include <stdint.h>
 
+/**
+ * @brief Handles the HTTP request for the control page.
+ * @param sock The socket number.
+ * @param body The request body.
+ * @note This function is called when the user interacts with the control page.
+ */
 void handle_control_request(uint8_t sock, char *body);
 
 #endif // CONTROL_HANDLER_H

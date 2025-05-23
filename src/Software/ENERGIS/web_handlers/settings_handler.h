@@ -15,7 +15,19 @@
 #include "../CONFIG.h"
 #include <stdint.h>
 
+/**
+ * @brief Handles the HTTP request for the settings page.
+ * @param sock The socket number.
+ * @note This function is called when the user interacts with the settings page.
+ */
 void handle_settings_request(uint8_t sock);
+
+/**
+ * @brief Handles the HTTP request for the settings page.
+ * @param sock The socket number.
+ * @param body The request body.
+ * @note This function is called when the user interacts with the settings page.
+ */
 void handle_settings_post(uint8_t sock, char *body);
 
 #endif // SETTINGS_HANDLER_H
