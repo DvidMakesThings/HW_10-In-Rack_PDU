@@ -1,6 +1,6 @@
 /**
  * @file ILI9488_driver.h
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief Header file for the ILI9488 TFT LCD Driver
  * @version 1.4
  * @date 2025-03-03

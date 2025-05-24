@@ -1,6 +1,6 @@
 /**
  * @file helper_functions.h
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief Header file for helper functions used in the ENERGIS PDU project.
  * @version 1.0
  * @date 2025-03-03

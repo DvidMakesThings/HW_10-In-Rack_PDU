@@ -1,6 +1,6 @@
 /**
  * @file button_driver.c
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief Handles button inputs and actions for the Energis PDU.
  * @version 1.0
  * @date 2025-03-03

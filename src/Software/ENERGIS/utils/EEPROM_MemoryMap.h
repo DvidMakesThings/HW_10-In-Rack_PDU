@@ -1,6 +1,6 @@
 /**
  * @file EEPROM_MemoryMap.h
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief Header file for the EEPROM Memory Map and functions.
  * @version 1.4
  * @date 2025-03-03

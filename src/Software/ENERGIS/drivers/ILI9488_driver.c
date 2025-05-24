@@ -1,6 +1,6 @@
 /**
  * @file ILI9488_driver.c
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief Optimized ILI9488 TFT LCD Driver for 16-bit color (RGB565)
  * @version 1.4
  * @date 2025-03-03

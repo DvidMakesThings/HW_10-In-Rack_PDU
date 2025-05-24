@@ -1,6 +1,6 @@
 /**
  * @file api_handlers.h
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief API endpoint handlers for the ENERGIS PDU web interface
  * @version 1.0
  * @date 2025-05-23

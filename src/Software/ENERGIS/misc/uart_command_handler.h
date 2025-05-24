@@ -1,6 +1,6 @@
 /**
  * @file uart_command_handler.h
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief Header file for UART command handler over stdio (USB-CDC) for ENERGIS PDU.
  * @version 1.0
  * @date 2025-03-03
@@ -97,7 +97,16 @@ void getSysInfo(void);
 
 /**
  * @brief Test and print values from HLW8032 channels.
+ * This function reads the HLW8032 data for all channels and prints the results.
+ * This function iterates through all 8 channels and prints the voltage, current, and power
+ * readings.
  */
 void test_hlw8032_readings(void);
 
+/**
+ * @brief Test and print values from HLW8032 channels.
+ * This function reads the HLW8032 data for a specific channel and prints the results.
+ * @param channel Channel index (1–8) to read from.
+ */
+void test_hlw8032_read_channel(uint8_t channel);
 #endif // UART_COMMAND_HANDLER_H

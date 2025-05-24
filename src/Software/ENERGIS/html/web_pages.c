@@ -1,6 +1,6 @@
 /**
  * @file web_pages.c
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief HTML content for the ENERGIS PDU web interface.
  * @version 1.0
  * @date 2025-03-03

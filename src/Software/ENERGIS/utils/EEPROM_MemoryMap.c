@@ -1,6 +1,6 @@
 /**
  * @file EEPROM_MemoryMap.c
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief Implementation of the EEPROM Memory Map functions.
  * @version 1.4
  * @date 2025-03-03

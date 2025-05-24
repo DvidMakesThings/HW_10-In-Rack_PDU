@@ -1,6 +1,6 @@
 /**
  * @file http_server.h
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief Header file for the HTTP server functionality
  * @version 1.0
  * @date 2025-05-19

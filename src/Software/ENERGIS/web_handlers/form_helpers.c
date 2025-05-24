@@ -1,6 +1,6 @@
 /**
  * @file form_helpers.c
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief Helper functions for handling form data in HTTP requests.
  * @version 1.0
  * @date 2025-05-23

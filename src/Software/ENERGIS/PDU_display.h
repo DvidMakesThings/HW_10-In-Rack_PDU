@@ -1,6 +1,6 @@
 /**
  * @file PDU_display.h
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief Display UI handling for the Energis PDU.
  * @version 1.0
  * @date 2025-03-03
