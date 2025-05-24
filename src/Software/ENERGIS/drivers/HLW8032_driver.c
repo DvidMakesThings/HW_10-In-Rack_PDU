@@ -88,7 +88,7 @@ void hlw8032_init(void) {
  */
 bool hlw8032_read(uint8_t channel) {
     mux_select(channel);
-
+    hlw8032_flush_rx(); // Clear any previous data
     uint8_t buffer[MAX_RX_BYTES];
     int count = 0;
 
