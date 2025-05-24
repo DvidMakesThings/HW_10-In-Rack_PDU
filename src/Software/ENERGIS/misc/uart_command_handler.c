@@ -119,22 +119,25 @@ static void process_command(const char *cmd_in) {
  */
 void uart_command_loop(void) {
     static char line[UART_CMD_BUF_LEN];
+    static size_t idx = 0;
 
-    // Flush any garbage
-    while (getchar_timeout_us(0) != PICO_ERROR_TIMEOUT)
-        ;
-
-    while (fgets(line, sizeof(line), stdin)) {
-        size_t len = strlen(line);
-        if (len > 0 && (line[len - 1] == '\n' || line[len - 1] == '\r')) {
-            line[--len] = '\0';
+    int c;
+    // Read all available chars without blocking
+    while ((c = getchar_timeout_us(0)) != PICO_ERROR_TIMEOUT) {
+        if (c == '\r' || c == '\n') {
+            if (idx) {
+                line[idx] = '\0';
+                char *cmd = trim(line);
+                if (*cmd)
+                    process_command(cmd);
+                idx = 0;
+            }
+        } else {
+            // store printable non-null chars
+            if (idx < sizeof(line) - 1 && c >= 32 && c < 127) {
+                line[idx++] = (char)c;
+            }
         }
-
-        char *cmd = trim(line);
-        if (*cmd == '\0')
-            continue;
-
-        process_command(cmd);
     }
 }
 

@@ -87,6 +87,8 @@
 #define HLW8032_UART_ID uart0
 #define HLW8032_BAUDRATE 4800
 #define HLW8032_FRAME_LENGTH 24
+#define NUM_CHANNELS 8
+#define POLL_INTERVAL_MS 5000u
 
 // MCU Specific Defines
 #define VREG_BASE 0x40064000

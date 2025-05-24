@@ -124,9 +124,16 @@ void PDU_Display_UpdateState(uint8_t channel, const char *state) {
 void PDU_Display_UpdateVoltage(uint8_t channel, float voltage) {
     if (channel < 1 || channel > 8)
         return;
+
     uint16_t y = BASE_Y + (channel - 1) * ROW_HEIGHT;
-    snprintf(textBuffer, sizeof(textBuffer), "%.3f", voltage);
-    ILI9488_DrawText(VOLT_X, y, textBuffer, COLOR_WHITE);
+
+    // 1) Clear the old reading area
+    ILI9488_DrawBar(VOLT_X, y - 6, TEXT_V_X - VOLT_X, ROW_HEIGHT - 8, COLOR_BLACK);
+
+    // 2) Draw the new reading
+    char buf[16];
+    snprintf(buf, sizeof(buf), "%.3f", voltage);
+    ILI9488_DrawText(VOLT_X, y, buf, COLOR_WHITE);
 }
 
 /**
@@ -137,7 +144,15 @@ void PDU_Display_UpdateVoltage(uint8_t channel, float voltage) {
 void PDU_Display_UpdateCurrent(uint8_t channel, float current) {
     if (channel < 1 || channel > 8)
         return;
+
     uint16_t y = BASE_Y + (channel - 1) * ROW_HEIGHT;
+
+    // Clear just the current‐value area (from AMP_X over to the "A" label)
+    //   width = TEXT_A_X - AMP_X, height = ROW_HEIGHT - 8 (same as your init bar)
+    ILI9488_DrawBar(AMP_X, y - 6, TEXT_A_X - AMP_X, ROW_HEIGHT - 8, COLOR_BLACK);
+
+    // Draw the new current value
+    char textBuffer[16];
     snprintf(textBuffer, sizeof(textBuffer), "%.3f", current);
     ILI9488_DrawText(AMP_X, y, textBuffer, COLOR_WHITE);
 }

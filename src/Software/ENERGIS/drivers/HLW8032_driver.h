@@ -19,7 +19,7 @@
 #define HLW8032_VF (1880000.0f / 1000.0f) // Voltage divider factor (e.g., 1880K:1K)
 #define HLW8032_CF (1.0f / 0.001f)        // Current factor for 1 mΩ shunt
 #define UART_READ_TIMEOUT_US 200000
-#define MAX_RX_BYTES 64
+#define MAX_RX_BYTES 80
 
 /**
  * @brief Initialize the HLW8032 interface.
