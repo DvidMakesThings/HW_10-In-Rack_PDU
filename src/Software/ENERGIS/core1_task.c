@@ -1,6 +1,6 @@
 /**
  * @file core1_task.c
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief Core 1 task for handling SNMP and HTTP server.
  * @version 1.0
  * @date 2025-05-17

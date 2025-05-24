@@ -1,6 +1,6 @@
 /**
  * @file uart_command_handler.c
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief UART command handler over stdio (USB-CDC) for ENERGIS PDU.
  * @version 1.0
  * @date 2025-03-03
@@ -12,6 +12,7 @@
 #include "CONFIG.h"
 #include <ctype.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 extern volatile uint32_t bootloader_trigger;
@@ -103,6 +104,9 @@ static void process_command(const char *cmd_in) {
         getSysInfo();
     } else if (strcmp(trimmed, "READ_HLW8032") == 0) {
         test_hlw8032_readings();
+    } else if (strncmp(trimmed, "READ_HLW8032 ", 13) == 0) {
+        uint8_t ch = (uint8_t)atoi(trimmed + 13);
+        test_hlw8032_read_channel(ch);
     } else {
         ERROR_PRINT("Unknown command \"%s\"\r\n", trimmed);
     }
@@ -439,15 +443,37 @@ void set_network(const char *full_cmd, const char *cmd) {
 
 /**
  * @brief Test and print values from HLW8032 channels.
+ * This function reads the HLW8032 data for all channels and prints the results.
+ * This function iterates through all 8 channels and prints the voltage, current, and power
+ * readings.
  */
 void test_hlw8032_readings(void) {
     INFO_PRINT("Reading HLW8032 values for all 8 channels...\n");
     for (uint8_t ch = 0; ch < 8; ch++) {
-        float voltage = 0, current = 0, power = 0;
-        if (hlw8032_read_values(ch, &voltage, &current, &power)) {
+        if (hlw8032_read(ch)) {
+            float voltage = hlw8032_get_voltage();
+            float current = hlw8032_get_current();
+            float power = hlw8032_get_power();
             INFO_PRINT("CH%u: V=%.2f V, I=%.3f A, P=%.2f W\n", ch + 1, voltage, current, power);
         } else {
             ERROR_PRINT("CH%u: Failed to read HLW8032 data\n", ch + 1);
         }
+    }
+}
+
+/**
+ * @brief Test and print values from HLW8032 channels.
+ * This function reads the HLW8032 data for a specific channel and prints the results.
+ * @param channel Channel index (1–8) to read from.
+ */
+void test_hlw8032_read_channel(uint8_t channel) {
+    INFO_PRINT("Reading HLW8032 values for channel %u...\n", channel);
+    if (hlw8032_read(channel)) {
+        float voltage = hlw8032_get_voltage();
+        float current = hlw8032_get_current();
+        float power = hlw8032_get_power();
+        INFO_PRINT("CH%u: V=%.2f V, I=%.3f A, P=%.2f W\n", channel, voltage, current, power);
+    } else {
+        ERROR_PRINT("CH%u: Failed to read HLW8032 data\n", channel);
     }
 }

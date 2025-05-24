@@ -1,6 +1,6 @@
 /**
  * @file ENERGIS.c
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief Main entry point for the ENERGIS PDU firmware.
  * @version 1.0
  * @date 2025-05-17
@@ -27,7 +27,7 @@ __attribute__((section(".uninitialized_data"))) uint32_t bootloader_trigger;
  */
 int main(void) {
     // Set core voltage to 1.25V (must be first)
-    vreg_set_voltage(VREG_VOLTAGE_1_25);
+    vreg_set_voltage(VREG_VOLTAGE_1_20);
 
     // Let voltage settle properly
     sleep_ms(1000); // do not replace with volatile delay, this is critical
@@ -44,7 +44,7 @@ int main(void) {
 
     stdio_usb_init();
 
-    sleep_ms(4000); // Delay for debugging
+    // sleep_ms(4000); // Delay for debugging
 
     if (!startup_init()) {
         ERROR_PRINT("Startup initialization failed.\n");

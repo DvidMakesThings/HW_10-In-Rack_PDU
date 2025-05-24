@@ -1,6 +1,6 @@
 /**
  * @file status_handler.h
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief Handler for building JSON for /api/status
  * @version 1.0
  * @date 2025-05-23

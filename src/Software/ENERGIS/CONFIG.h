@@ -1,6 +1,6 @@
 /**
  * @file CONFIG.h
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief Configuration file for the ENERGIS PDU project.
  * @version 1.0
  * @date 2025-05-17
@@ -25,6 +25,7 @@
 #include "pico/bootrom.h"
 #include "pico/multicore.h"
 #include "pico/stdlib.h"
+#include "pico/time.h"
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>

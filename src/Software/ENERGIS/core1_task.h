@@ -1,6 +1,6 @@
 /**
  * @file core1_task.h
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief Header file for Core 1 task handling SNMP and HTTP server.
  * @version 1.0
  * @date 2025-05-17

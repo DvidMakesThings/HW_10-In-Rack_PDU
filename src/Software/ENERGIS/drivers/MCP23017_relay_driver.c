@@ -1,6 +1,6 @@
 /**
  * @file MCP23017_relay_driver.c
- * @author David Sipos (DvidMakesThings)
+ * @author DvidMakesThings - David Sipos (DvidMakesThings)
  * @brief Driver for the Relay Board's MCP23017 I/O Expander.
  * @version 1.0
  * @date 2025-03-03

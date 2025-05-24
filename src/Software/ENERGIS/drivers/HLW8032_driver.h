@@ -1,63 +1,83 @@
 /**
  * @file HLW8032_driver.h
- * @author David Sipos (DvidMakesThings)
- * @brief Header file for HLW8032 driver.
+ * @author DvidMakesThings - David Sipos
+ * @brief Driver for HLW8032 energy measurement IC.
  * @version 1.0
- * @date 2025-05-23
+ * @date 2025-05-24
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
  */
 
-#ifndef HLW8032_DISPLAY_DRIVER_H
-#define HLW8032_DISPLAY_DRIVER_H
+#ifndef HLW8032_DRIVER_H
+#define HLW8032_DRIVER_H
 
-#include "../CONFIG.h" // Ensure this includes the MCP23017 register definitions and bus/address info
+#include <stdbool.h>
 #include <stdint.h>
 
-#define SAMPLE_RATE (HLW8032_BAUDRATE * 10)     // 10× oversampling
-#define SAMPLE_INTERVAL (1000000 / SAMPLE_RATE) // in microseconds
-#define SAMPLE_TIME_MS 300
-#define SAMPLE_COUNT ((SAMPLE_RATE * SAMPLE_TIME_MS) / 1000)
-#define UART_BIT_COUNT 11 // 1 start + 8 data + 1 parity + 1 stop
+// Hardware Calibration Constants
+#define HLW8032_VF (1880000.0f / 1000.0f) // Voltage divider factor (e.g., 1880K:1K)
+#define HLW8032_CF (1.0f / 0.001f)        // Current factor for 1 mΩ shunt
+#define UART_READ_TIMEOUT_US 200000
+#define MAX_RX_BYTES 64
 
 /**
- * @brief Initializes HLW8032 logic by disabling MUX output initially.
+ * @brief Initialize the HLW8032 interface.
+ * This function sets up the UART for HLW8032 communication and configures the MUX.
  */
 void hlw8032_init(void);
 
-/**
- * @brief Selects an HLW8032 channel via the SN74HC151 mux.
- * @param channel Channel index (0–7).
- * @return true if valid, false if invalid channel.
+/** * @brief Read and parse measurement frame for a given channel (0–7).
+ * This function reads the HLW8032 data for the specified channel and parses the frame.
+ * It reads 64 bytes maximum or until a valid frame is found.
+ * If a valid frame is found, it extracts the voltage, current, power, and power factor values.
+ * @param channel Channel index (0–7)
+ * @return true if frame read and parsed successfully, false otherwise
  */
-bool hlw8032_select_channel(uint8_t channel);
+bool hlw8032_read(uint8_t channel);
 
 /**
- * @brief Reads raw UART data from the selected HLW8032.
- * @param channel The HLW8032 channel.
- * @param buffer Buffer to fill.
- * @param length Number of bytes to read.
- * @return true if successful.
+ * @brief Get last parsed voltage reading (in volts).
+ * This function returns the last measured voltage value.
+ * @return Last voltage reading in volts
  */
-bool hlw8032_read_raw(uint8_t channel, uint8_t *buffer, size_t length);
+float hlw8032_get_voltage(void);
 
 /**
- * @brief Reads a 24-byte HLW8032 frame from the specified channel.
- * @param channel Channel index.
- * @param frame Pointer to 24-byte buffer.
- * @return true if successful and frame is valid.
+ * @brief Get last parsed current reading (in amps).
+ * This function returns the last measured current value.
+ * @return Last current reading in amps
  */
-bool hlw8032_read_frame(uint8_t channel, uint8_t *frame);
+float hlw8032_get_current(void);
 
 /**
- * @brief Parses HLW8032 frame and extracts voltage, current, and power.
- * @param frame Pointer to 24-byte buffer.
- * @param voltage Pointer to store voltage in volts.
- * @param current Pointer to store current in amps.
- * @param power Pointer to store power in watts.
- * @return true if CRC is valid and values parsed.
+ * @brief Get last parsed active power (in watts).
+ * This function returns the last measured power value.
+ * @return Last power reading in watts
  */
-bool hlw8032_read_values(uint8_t channel, float *voltage, float *current, float *power);
+float hlw8032_get_power(void);
 
-#endif // HLW8032_DISPLAY_DRIVER_H
+/**
+ * @brief Get estimated power using V × I (not factory-calibrated).
+ * This function calculates the estimated power by multiplying voltage and current.
+ * @return Estimated power in watts
+ */
+float hlw8032_get_power_inspect(void);
+
+/**
+ * @brief Get estimated power factor (Active / Apparent).
+ * This function calculates the power factor based on the last measured power and apparent power.
+ * @return Power factor as a float
+ */
+float hlw8032_get_power_factor(void);
+
+/**
+ * @brief Get estimated energy in kilowatt-hours.
+ * This function calculates the total energy consumed in kWh based on the power factor and count.
+ * It uses the formula: kWh = (PF * PF_Count) / (imp_per_wh * 3600)
+ * where imp_per_wh is derived from the power parameters.
+ * @return Estimated energy in kilowatt-hours
+ */
+float hlw8032_get_kwh(void);
+
+#endif // HLW8032_DRIVER_H

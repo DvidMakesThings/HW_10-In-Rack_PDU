@@ -1,6 +1,6 @@
 /**
  * @file snmp_custom.c
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief Custom SNMP agent implementation for ENERGIS PDU.
  * @version 1.0
  * @date 2025-05-17

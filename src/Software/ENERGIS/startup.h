@@ -1,6 +1,6 @@
 /**
  * @file startup.h
- * @author David Sipos (DvidMakesThings)
+ * @author DvidMakesThings - David Sipos (DvidMakesThings)
  * @brief Initialization functions for RP2040 GPIOs and peripherals.
  * @version 1.0
  * @date 2025-03-06

@@ -1,6 +1,6 @@
 /**
  * @file control_handler.c
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief Handler for the page control.html
  * @version 1.0
  * @date 2025-05-23

@@ -1,6 +1,6 @@
 /**
  * @file MCP23017_driver.c
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief Implementation of MCP23017 I/O Expander Driver
  * @version 1.1
  * @date 2025-03-03

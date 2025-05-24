@@ -1,6 +1,6 @@
 /**
  * @file PDU_display.c
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief Implements the UI for the PDU display.
  * @version 1.0
  * @date 2025-03-03

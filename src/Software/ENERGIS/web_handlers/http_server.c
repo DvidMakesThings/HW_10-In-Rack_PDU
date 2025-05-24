@@ -1,6 +1,6 @@
 /**
  * @file http_server.c
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief HTTP server functionality for the ENERGIS PDU project.
  * @version 1.0
  * @date 2025-05-17

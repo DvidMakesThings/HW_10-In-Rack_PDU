@@ -1,6 +1,6 @@
 /**
  * @file CAT24C512_driver.c
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief Implementation of CAT24C512 I2C EEPROM Driver
  * @version 1.0
  * @date 2025-03-03

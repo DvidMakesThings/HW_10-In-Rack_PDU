@@ -1,6 +1,6 @@
 /**
  * @file font_8x12.h
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief Font data for 8x12 pixel characters.
  * @version 1.0
  * @date 2025-03-03

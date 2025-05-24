@@ -1,6 +1,6 @@
 /**
  * @file startup.c
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief Contains the initialization code for the Pico board.
  * @version 1.0
  * @date 2025-03-03
@@ -116,7 +116,7 @@ bool startup_init(void) {
  * Also initializes the PDU display and updates the status message.
  */
 bool core0_init(void) {
-    sleep_ms(1000); // Delay for debugging
+    // sleep_ms(1000); // Delay for debugging
 
     if (DEBUG)
         INFO_PRINT("Core 0 initializing...\n");

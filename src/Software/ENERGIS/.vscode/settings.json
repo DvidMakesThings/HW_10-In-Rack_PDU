@@ -42,6 +42,8 @@
     "hlw8032_driver.h": "c",
     "uart.h": "c",
     "mcp23017_relay_driver.h": "c",
-    "config.h": "c"
+    "config.h": "c",
+    "valarray": "c",
+    "cstddef": "c"
   }
 }

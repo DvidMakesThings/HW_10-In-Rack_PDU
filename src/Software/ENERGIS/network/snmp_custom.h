@@ -1,6 +1,6 @@
 /**
  * @file snmp_custom.h
- * @author David Sipos
+ * @author DvidMakesThings - David Sipos
  * @brief Custom SNMP functions for the ENERGIS PDU project.
  * @version 1.0
  * @date 2025-05-19
