@@ -75,7 +75,7 @@ int main(void) {
     while (1) {
         // 1) UART
         uart_command_loop();
-
+        /*
         // 2) time check
         uint64_t now = to_ms_since_boot(get_absolute_time());
         if (now - last_ts >= POLL_INTERVAL_MS) {
@@ -89,7 +89,7 @@ int main(void) {
                 PDU_Display_UpdateCurrent(ch, i);
             }
         }
-
+        */
         // 3) tiny yield
         sleep_us(100);
     }

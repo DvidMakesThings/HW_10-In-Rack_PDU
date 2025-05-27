@@ -209,4 +209,14 @@ void get_allOff(void *buf, uint8_t *len);
  */
 void set_allOff(int32_t val);
 
+/**
+ * @brief Return 1 if *all* outlets are on, 0 otherwise.
+ */
+void get_allOn(void *buf, uint8_t *len);
+
+/**
+ * @brief Turn *all* outlets on when val != 0.
+ */
+void set_allOn(int32_t val);
+
 #endif
