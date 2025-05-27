@@ -167,6 +167,13 @@ dataEntryType snmpData[] = {
      {""},
      get_allOff,
      set_allOff},
+    {11,
+     {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x02, 0x0A, 0x00},
+     SNMPDTYPE_INTEGER,
+     4,
+     {""},
+     get_allOn,
+     set_allOn},
 };
 
 const int32_t maxData = (sizeof(snmpData) / sizeof(dataEntryType));
@@ -472,6 +479,36 @@ void set_allOff(int32_t val) {
         for (uint8_t ch = 1; ch <= 8; ch++) {
             if (mcp_relay_read_pin(ch - 1)) {
                 PDU_Display_ToggleRelay(ch);
+            }
+        }
+    }
+}
+
+/**
+ * @brief Return 1 if *all* outlets are on, 0 otherwise.
+ */
+void get_allOn(void *buf, uint8_t *len) {
+    int32_t v = 1;
+    // if any relay pin is low (0), not all on
+    for (uint8_t ch = 0; ch < 8; ch++) {
+        if (!mcp_relay_read_pin(ch)) {
+            v = 0;
+            break;
+        }
+    }
+    memcpy(buf, &v, sizeof(v));
+    *len = sizeof(v);
+}
+
+/**
+ * @brief Turn *all* outlets on when val != 0.
+ */
+void set_allOn(int32_t val) {
+    if (val != 0) {
+        // loop channels 1–8, toggle on any that are off
+        for (uint8_t ch = 0; ch < 8; ch++) {
+            if (!mcp_relay_read_pin(ch)) {
+                PDU_Display_ToggleRelay(ch + 1);
             }
         }
     }

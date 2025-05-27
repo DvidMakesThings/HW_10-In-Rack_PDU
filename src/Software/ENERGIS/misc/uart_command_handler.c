@@ -105,7 +105,7 @@ static void process_command(const char *cmd_in) {
     } else if (strcmp(trimmed, "READ_HLW8032") == 0) {
         test_hlw8032_readings();
     } else if (strncmp(trimmed, "READ_HLW8032 ", 13) == 0) {
-        uint8_t ch = (uint8_t)atoi(trimmed + 13);
+        uint8_t ch = (uint8_t)atoi(trimmed + 13) - 1;
         test_hlw8032_read_channel(ch);
     } else {
         ERROR_PRINT("Unknown command \"%s\"\r\n", trimmed);
@@ -457,7 +457,7 @@ void test_hlw8032_readings(void) {
             float voltage = hlw8032_get_voltage();
             float current = hlw8032_get_current();
             float power = hlw8032_get_power();
-            INFO_PRINT("CH%u: V=%.2f V, I=%.3f A, P=%.2f W\n", ch + 1, voltage, current, power);
+            INFO_PRINT("CH%u: V=%.2f V, I=%.3f A, P=%.2f W\n\n", ch + 1, voltage, current, power);
         } else {
             ERROR_PRINT("CH%u: Failed to read HLW8032 data\n", ch + 1);
         }

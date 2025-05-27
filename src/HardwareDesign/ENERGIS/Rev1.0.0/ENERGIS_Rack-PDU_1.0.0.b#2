@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mm"/>
+<grid distance="1" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mm"/>
 <layers>
 <layer number="1" name="SIG_HS/SIG" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="GND/AGND" color="25" fill="1" visible="yes" active="yes"/>
@@ -10864,19 +10864,15 @@ Copyright: Würth Elektronik</description>
 <wire x1="159.06855625" y1="11.7158875" x2="161.74" y2="9.04444375" width="0.2032" layer="1"/>
 <wire x1="161.74" y1="9.04444375" x2="161.74" y2="8.89" width="0.2032" layer="1"/>
 <via x="161.74" y="8.89" extent="1-16" drill="0.2"/>
-<wire x1="163.82" y1="19.67" x2="163.82" y2="10.97" width="0.2032" layer="16"/>
+<wire x1="163.82" y1="17.27" x2="163.82" y2="10.97" width="0.2032" layer="16"/>
 <wire x1="161.74" y1="8.89" x2="163.82" y2="10.97" width="0.2032" layer="16"/>
-<wire x1="152.63" y1="34.6" x2="156.79" y2="30.44" width="0.2032" layer="16"/>
+<wire x1="163.82" y1="17.27" x2="156.79" y2="24.3" width="0.2032" layer="16"/>
+<wire x1="156.79" y1="24.3" x2="156.79" y2="30.44" width="0.2032" layer="16"/>
+<wire x1="156.79" y1="30.44" x2="152.63" y2="34.6" width="0.2032" layer="16"/>
 <wire x1="152.63" y1="34.6" x2="148.69" y2="34.6" width="0.2032" layer="16"/>
 <via x="148.69" y="34.6" extent="1-16" drill="0.2"/>
 <wire x1="148.69" y1="34.6" x2="149.183359375" y2="34.106640625" width="0.2032" layer="1"/>
 <wire x1="149.183359375" y1="34.106640625" x2="149.183359375" y2="33.4423" width="0.2032" layer="1"/>
-<wire x1="159.3" y1="24" x2="159.3" y2="21.7" width="0.2032" layer="16"/>
-<wire x1="159.3" y1="21.7" x2="160.7" y2="20.3" width="0.2032" layer="16"/>
-<wire x1="163.19" y1="20.3" x2="163.82" y2="19.67" width="0.2032" layer="16"/>
-<wire x1="156.79" y1="30.44" x2="156.79" y2="26.51" width="0.2032" layer="16"/>
-<wire x1="156.79" y1="26.51" x2="159.3" y2="24" width="0.2032" layer="16"/>
-<wire x1="160.7" y1="20.3" x2="163.19" y2="20.3" width="0.2032" layer="16"/>
 </signal>
 <signal name="12VRAW">
 <contactref element="AC/DC1" pad="+V"/>
@@ -16018,7 +16014,7 @@ Copyright: Würth Elektronik</description>
 </signal>
 </signals>
 <mfgpreviewcolors>
-<mfgpreviewcolor name="soldermaskcolor" color="0xC8005500"/>
+<mfgpreviewcolor name="soldermaskcolor" color="0xC8000000"/>
 <mfgpreviewcolor name="silkscreencolor" color="0xFFFEFEFE"/>
 <mfgpreviewcolor name="backgroundcolor" color="0xFF282828"/>
 <mfgpreviewcolor name="coppercolor" color="0xFFC5CBC1"/>
