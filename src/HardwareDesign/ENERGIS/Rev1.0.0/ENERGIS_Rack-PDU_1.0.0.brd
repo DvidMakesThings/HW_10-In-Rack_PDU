@@ -802,7 +802,7 @@ Used 0.8128 mm (32 mil) clearance on polygon pours</text>
 <circle x="170.4" y="34.8" radius="0.14141875" width="0.254" layer="25"/>
 <circle x="149.9" y="25.5" radius="0.14141875" width="0.254" layer="25"/>
 <circle x="142.3" y="23.6" radius="0.2" width="0.254" layer="25"/>
-<circle x="138.8" y="20.9" radius="0.14141875" width="0.254" layer="25"/>
+<circle x="139.6" y="20.9" radius="0.14141875" width="0.254" layer="25"/>
 <circle x="106.8" y="6.7" radius="0.1" width="0.254" layer="25"/>
 <circle x="89.8" y="6.8" radius="0.14141875" width="0.254" layer="25"/>
 <circle x="177" y="15" radius="0.14141875" width="0.254" layer="25"/>
@@ -5638,9 +5638,6 @@ Copyright: Würth Elektronik</description>
 <element name="C3" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="100nF" x="108.4576" y="6.2496" smashed="yes">
 <attribute name="NAME" x="111.1226" y="5.8146" size="0.8128" layer="25" rot="R90"/>
 </element>
-<element name="R1" library="ds_passive" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K" x="103.8576" y="6.2496" smashed="yes" rot="R180">
-<attribute name="NAME" x="103.0354" y="5.3526" size="0.8128" layer="25" rot="R270"/>
-</element>
 <element name="C6" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="100nF" x="108.3576" y="13.1496" smashed="yes" rot="R90">
 <attribute name="NAME" x="108.8226" y="14.7146" size="0.8128" layer="25" rot="R90"/>
 </element>
@@ -6281,7 +6278,7 @@ Copyright: Würth Elektronik</description>
 <attribute name="NAME" x="167.3774" y="16.4294" size="1.016" layer="25" align="center-left"/>
 </element>
 <element name="REF1" library="ds_ic_vreg" package="SOT23" package3d_urn="urn:adsk.eagle:package:46684430/3" value="LM4040BXX" x="136.9718" y="15.7638" smashed="yes" rot="R180">
-<attribute name="NAME" x="134.1702" y="17.0016" size="0.8128" layer="25" rot="R270"/>
+<attribute name="NAME" x="134.2702" y="17.3016" size="0.8128" layer="25" rot="R270"/>
 </element>
 <element name="R109" library="ds_passive" package="R0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="4.7K" x="139.4566" y="16.0022" smashed="yes">
 <attribute name="NAME" x="138.694" y="13.709" size="0.8128" layer="25"/>
@@ -6293,7 +6290,7 @@ Copyright: Würth Elektronik</description>
 <attribute name="NAME" x="143.3542" y="16.3638" size="1.016" layer="25" align="center-left"/>
 </element>
 <element name="IC17" library="ds_ic_opa" package="SOT23-5" package3d_urn="urn:adsk.eagle:package:25419215/3" value="MCP6001R" x="140.7674" y="19.2632" smashed="yes" rot="R270">
-<attribute name="NAME" x="144.021" y="17.7744" size="0.8128" layer="25" rot="R90"/>
+<attribute name="NAME" x="143.921" y="17.4744" size="0.8128" layer="25" rot="R90"/>
 </element>
 <element name="C60" library="ds_passive" package="C0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="1uF" x="136.9942" y="18.3498" smashed="yes" rot="R180">
 <attribute name="NAME" x="135.4234" y="18.6554" size="0.8128" layer="25" rot="R180"/>
@@ -6301,12 +6298,8 @@ Copyright: Würth Elektronik</description>
 <element name="C61" library="ds_passive" package="0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="100nF" x="139.457" y="16.8672" smashed="yes">
 <attribute name="NAME" x="138.7566" y="14.7926" size="0.8128" layer="25"/>
 </element>
-<element name="C62" library="ds_passive" package="0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="100nF" x="137.8628" y="20.2628" smashed="yes" rot="R180">
-<attribute name="NAME" x="137.0234" y="20.8694" size="0.8128" layer="25" rot="R180"/>
-</element>
-<element name="C63" library="ds_passive" package="0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="100nF" x="137.8826" y="19.3128" smashed="yes" rot="R180">
-<attribute name="NAME" x="136.9234" y="19.8214" size="0.8128" layer="25" rot="R180"/>
-</element>
+<element name="C62" library="ds_passive" package="0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="100nF" x="138.7628" y="20.9628" smashed="yes" rot="R180"/>
+<element name="C63" library="ds_passive" package="0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="100nF" x="138.3128" y="19.7174" smashed="yes" rot="R90"/>
 <element name="AVDD" library="ds_passive" package="TP" package3d_urn="urn:adsk.eagle:package:46683740/2" value="TP" x="140.6534" y="21.7888" smashed="yes" rot="R180">
 <attribute name="NAME" x="138.9132" y="22.0954" size="1.016" layer="25" rot="R180" align="center-left"/>
 </element>
@@ -6916,6 +6909,27 @@ Copyright: Würth Elektronik</description>
 </element>
 <element name="U$5" library="ds_silkscreen" package="DMT" value="" x="19.4" y="13.2" smashed="yes"/>
 <element name="U$7" library="ds_silkscreen" package="DMT" value="" x="137.9" y="28" smashed="yes" rot="MR0"/>
+<element name="C102" library="ds_passive" package="0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="1uF" x="137.6" y="19.7" smashed="yes" rot="R90">
+<attribute name="VALUE" x="139.505" y="19.065" size="1.27" layer="27" rot="R90"/>
+</element>
+<element name="C104" library="ds_passive" package="0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="1uF" x="136.5" y="20.1" smashed="yes">
+<attribute name="VALUE" x="135.865" y="18.195" size="1.27" layer="27"/>
+</element>
+<element name="R152" library="ds_passive" package="R0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="10R" x="136.5" y="19.4" smashed="yes">
+<attribute name="VALUE" x="135.865" y="17.495" size="1.27" layer="27"/>
+</element>
+<element name="R161" library="ds_passive" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="DNI" x="109.5" y="13.1" smashed="yes" rot="R270">
+<attribute name="NAME" x="110.135" y="13.735" size="1.016" layer="25" rot="R270"/>
+<attribute name="VALUE" x="107.595" y="13.735" size="1.016" layer="27" rot="R270"/>
+</element>
+<element name="R1" library="ds_passive" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="DNI" x="102.1" y="6.3" smashed="yes" rot="R180">
+<attribute name="NAME" x="102.735" y="5.665" size="1.016" layer="25" rot="R180"/>
+<attribute name="VALUE" x="102.735" y="8.205" size="1.016" layer="27" rot="R180"/>
+</element>
+<element name="R162" library="ds_passive" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K" x="105.1" y="6.3" smashed="yes">
+<attribute name="NAME" x="104.465" y="6.935" size="1.016" layer="25"/>
+<attribute name="VALUE" x="104.465" y="4.395" size="1.016" layer="27"/>
+</element>
 </elements>
 <signals>
 <signal name="RELAY_1">
@@ -7043,11 +7057,8 @@ Copyright: Würth Elektronik</description>
 <vertex x="104.2" y="3.4"/>
 <vertex x="104.2" y="5.2"/>
 <vertex x="104.5" y="5.5"/>
-<vertex x="106.3" y="5.5"/>
-<vertex x="106.5" y="5.5"/>
-<vertex x="107" y="6"/>
-<vertex x="107.7" y="6.7"/>
-<vertex x="107.7" y="8.4"/>
+<vertex x="105.4" y="5.5"/>
+<vertex x="105.4" y="8.4"/>
 </polygon>
 <wire x1="107.8326" y1="7.8216" x2="107.8076" y2="7.7966" width="0.3048" layer="1"/>
 <wire x1="107.8076" y1="7.7966" x2="107.8076" y2="6.2496" width="0.3048" layer="1"/>
@@ -7099,6 +7110,9 @@ Copyright: Würth Elektronik</description>
 <contactref element="R150" pad="1"/>
 <wire x1="112.1052" y1="18.2372" x2="112.1424" y2="18.2" width="0.2032" layer="1"/>
 <wire x1="112.1424" y1="18.2" x2="114.2" y2="18.2" width="0.2032" layer="1"/>
+<contactref element="R162" pad="2"/>
+<wire x1="105.75" y1="6.3" x2="105.8004" y2="6.2496" width="0.2" layer="1"/>
+<wire x1="105.8004" y1="6.2496" x2="107.8076" y2="6.2496" width="0.2" layer="1"/>
 <wire x1="129.1336" y1="34.1336" x2="129.0622" y2="55.0944" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="AC_L">
@@ -8071,12 +8085,10 @@ Copyright: Würth Elektronik</description>
 <wire x1="136.3442" y1="18.3498" x2="135.4302" y2="18.3498" width="0.4064" layer="1"/>
 <wire x1="135.4302" y1="18.3498" x2="135.43" y2="18.35" width="0.4064" layer="1"/>
 <via x="135.43" y="18.35" extent="1-16" drill="0.2"/>
-<wire x1="137.0028" y1="19.3128" x2="136.99" y2="19.3" width="0.4064" layer="1"/>
-<via x="136.99" y="19.3" extent="1-16" drill="0.2"/>
-<wire x1="136.9428" y1="20.2628" x2="136.93" y2="20.25" width="0.4064" layer="1"/>
-<via x="136.93" y="20.25" extent="1-16" drill="0.2"/>
-<wire x1="137.5878" y1="20.2628" x2="136.9428" y2="20.2628" width="0.254" layer="1"/>
-<wire x1="137.6076" y1="19.3128" x2="137.0028" y2="19.3128" width="0.254" layer="1"/>
+<wire x1="137.6428" y1="20.9628" x2="137.63" y2="20.95" width="0.4064" layer="1"/>
+<via x="137.63" y="20.95" extent="1-16" drill="0.2"/>
+<wire x1="138.4878" y1="20.9628" x2="138.4" y2="20.9628" width="0.254" layer="1"/>
+<wire x1="138.4" y1="20.9628" x2="137.6428" y2="20.9628" width="0.254" layer="1"/>
 <wire x1="140.2168" y1="16.9704" x2="140.1136" y2="16.8672" width="0.254" layer="1"/>
 <wire x1="139.732" y1="16.8672" x2="140.1136" y2="16.8672" width="0.254" layer="1"/>
 <wire x1="140.2168" y1="16.9704" x2="140.2168" y2="17.5004" width="0.254" layer="1"/>
@@ -8268,7 +8280,6 @@ Copyright: Würth Elektronik</description>
 <wire x1="179.3" y1="22.6952" x2="179.3" y2="22.03" width="0.2" layer="1"/>
 <wire x1="179.3" y1="22.03" x2="179.31" y2="22.02" width="0.2" layer="1"/>
 <via x="179.31" y="22.02" extent="1-16" drill="0.2"/>
-<contactref element="R1" pad="1"/>
 <wire x1="160.0561875" y1="9.498328125" x2="160.37" y2="9.184515625" width="0.2032" layer="1"/>
 <wire x1="160.37" y1="9.184515625" x2="160.37" y2="8.85" width="0.2032" layer="1"/>
 <via x="160.37" y="8.85" extent="1-16" drill="0.2"/>
@@ -8311,9 +8322,6 @@ Copyright: Würth Elektronik</description>
 <via x="104.7" y="9.8" extent="1-16" drill="0.35"/>
 <wire x1="105.9576" y1="8.9996" x2="105.5004" y2="8.9996" width="0.3048" layer="1"/>
 <wire x1="105.5004" y1="8.9996" x2="104.7" y2="9.8" width="0.3048" layer="1"/>
-<wire x1="105.8" y1="6.2" x2="105.7504" y2="6.2496" width="0.3048" layer="1"/>
-<wire x1="104.5076" y1="6.2496" x2="105.7504" y2="6.2496" width="0.3048" layer="1"/>
-<via x="105.8" y="6.2" extent="1-16" drill="0.35"/>
 <wire x1="109.1076" y1="6.2496" x2="109.1076" y2="5.4924" width="0.3048" layer="1"/>
 <wire x1="109.8796" y1="4.7204" x2="109.8796" y2="4.4496" width="0.3048" layer="1"/>
 <wire x1="109.1076" y1="5.4924" x2="109.8796" y2="4.7204" width="0.3048" layer="1"/>
@@ -8460,6 +8468,15 @@ Copyright: Würth Elektronik</description>
 <via x="157.5" y="41.5" extent="1-16" drill="0.35"/>
 <via x="144.9" y="41.9" extent="1-16" drill="0.35"/>
 <via x="154.2" y="41.8" extent="1-16" drill="0.35"/>
+<contactref element="C102" pad="2"/>
+<contactref element="C104" pad="2"/>
+<contactref element="R161" pad="1"/>
+<wire x1="137.6" y1="19.975" x2="137.6" y2="20.1" width="0.254" layer="1"/>
+<wire x1="137.6" y1="20.1" x2="137.6" y2="20.92" width="0.254" layer="1"/>
+<wire x1="137.6" y1="20.92" x2="137.6428" y2="20.9628" width="0.254" layer="1"/>
+<wire x1="138.3128" y1="19.9924" x2="138.3128" y2="20.8756" width="0.254" layer="1"/>
+<wire x1="138.3128" y1="20.8756" x2="138.4" y2="20.9628" width="0.254" layer="1"/>
+<wire x1="136.775" y1="20.1" x2="137.6" y2="20.1" width="0.254" layer="1"/>
 </signal>
 <signal name="+3V3">
 <contactref element="IC4" pad="5"/>
@@ -9125,18 +9142,16 @@ Copyright: Würth Elektronik</description>
 <wire x1="166.97" y1="8.03" x2="166.97" y2="1.58" width="0.2032" layer="1"/>
 <wire x1="86.53" y1="2.02" x2="86.53" y2="5.54" width="0.2032" layer="16"/>
 <via x="86.53" y="5.54" extent="1-16" drill="0.2"/>
-<wire x1="143.8417125" y1="0.30160625" x2="103.21" y2="0.30160625" width="0.2032" layer="16"/>
-<wire x1="103.21" y1="0.30160625" x2="88.24839375" y2="0.30160625" width="0.2032" layer="16"/>
+<wire x1="143.8417125" y1="0.30160625" x2="101.61" y2="0.30160625" width="0.2032" layer="16"/>
+<wire x1="101.61" y1="0.30160625" x2="88.24839375" y2="0.30160625" width="0.2032" layer="16"/>
 <wire x1="88.24839375" y1="0.30160625" x2="86.53" y2="2.02" width="0.2032" layer="16"/>
 <wire x1="86.5012" y1="6.5922" x2="86.5012" y2="5.5688" width="0.2032" layer="1"/>
 <wire x1="86.5012" y1="5.5688" x2="86.53" y2="5.54" width="0.2032" layer="1"/>
-<contactref element="R1" pad="2"/>
-<contactref element="IC1" pad="6"/>
-<wire x1="103.21" y1="5.54" x2="103.2076" y2="5.5424" width="0.2032" layer="1"/>
-<wire x1="103.2076" y1="6.2496" x2="103.2076" y2="5.5424" width="0.2032" layer="1"/>
-<wire x1="103.21" y1="5.54" x2="103.21" y2="5.14" width="0.2032" layer="1"/>
-<via x="103.21" y="5.14" extent="1-16" drill="0.2"/>
-<wire x1="103.21" y1="5.14" x2="103.21" y2="0.30160625" width="0.2032" layer="16"/>
+<wire x1="101.5076" y1="4.9424" x2="101.5076" y2="5.3424" width="0.2032" layer="1"/>
+<wire x1="101.51" y1="4.94" x2="101.5076" y2="4.9424" width="0.2032" layer="1"/>
+<via x="101.51" y="4.94" extent="1-16" drill="0.2"/>
+<wire x1="101.51" y1="4.94" x2="101.61" y2="4.84" width="0.2032" layer="16"/>
+<wire x1="101.61" y1="4.84" x2="101.61" y2="0.30160625" width="0.2032" layer="16"/>
 <wire x1="86.5012" y1="6.5922" x2="85.3322" y2="6.5922" width="0.3048" layer="1"/>
 <wire x1="85.3322" y1="6.5922" x2="85.3" y2="6.56" width="0.3048" layer="1"/>
 <via x="85.3" y="6.56" extent="1-16" drill="0.35"/>
@@ -9149,20 +9164,9 @@ Copyright: Würth Elektronik</description>
 <wire x1="87.51" y1="7.38" x2="89.97" y2="7.38" width="0.3048" layer="14"/>
 <wire x1="89.97" y1="7.38" x2="92.16" y2="9.57" width="0.3048" layer="14"/>
 <wire x1="92.16" y1="9.57" x2="92.16" y2="11.71" width="0.3048" layer="14"/>
-<wire x1="103.2076" y1="6.2496" x2="102.4504" y2="6.2496" width="0.3048" layer="1"/>
-<wire x1="102.4504" y1="6.2496" x2="102.3" y2="6.4" width="0.3048" layer="1"/>
-<via x="102.3" y="6.4" extent="1-16" drill="0.35"/>
-<wire x1="102.3" y1="6.4" x2="103" y2="7.1" width="0.3048" layer="14"/>
-<wire x1="108.6" y1="11.0895125" x2="109.40524375" y2="11.89475625" width="0.3048" layer="14"/>
-<via x="109.40524375" y="11.89475625" extent="1-16" drill="0.35"/>
-<wire x1="109.40524375" y1="11.89475625" x2="109.19475625" y2="11.89475625" width="0.3048" layer="1"/>
-<wire x1="108.5878" y1="11.2878" x2="108.5878" y2="11.18718125" width="0.3048" layer="1"/>
-<wire x1="108.5878" y1="11.18718125" x2="108.4826" y2="11.08198125" width="0.3048" layer="1"/>
-<wire x1="108.4826" y1="11.08198125" x2="108.4826" y2="10.2776" width="0.3048" layer="1"/>
-<wire x1="109.19475625" y1="11.89475625" x2="108.5878" y2="11.2878" width="0.3048" layer="1"/>
-<wire x1="103" y1="7.1" x2="106.5" y2="7.1" width="0.3048" layer="14"/>
-<wire x1="106.5" y1="7.1" x2="108.6" y2="9.2" width="0.3048" layer="14"/>
-<wire x1="108.6" y1="9.2" x2="108.6" y2="11.0895125" width="0.3048" layer="14"/>
+<contactref element="R1" pad="2"/>
+<wire x1="101.5076" y1="5.3424" x2="101.5076" y2="6.2424" width="0.2" layer="1"/>
+<wire x1="101.5076" y1="6.2424" x2="101.45" y2="6.3" width="0.2" layer="1"/>
 </signal>
 <signal name="N$44">
 <contactref element="IC2" pad="7"/>
@@ -11579,8 +11583,8 @@ Copyright: Würth Elektronik</description>
 <wire x1="161.04845625" y1="14.879909375" x2="161.308546875" y2="15.14" width="0.2" layer="1"/>
 <wire x1="162.2733625" y1="15.14" x2="162.469278125" y2="15.335915625" width="0.2" layer="1"/>
 <wire x1="161.308546875" y1="15.14" x2="162.2733625" y2="15.14" width="0.2" layer="1"/>
-<wire x1="138.1378" y1="20.2628" x2="139.4178" y2="20.2628" width="0.254" layer="1"/>
-<wire x1="139.4178" y1="20.2628" x2="139.4674" y2="20.2132" width="0.254" layer="1"/>
+<wire x1="139.0378" y1="20.9628" x2="139.0378" y2="20.6428" width="0.254" layer="1"/>
+<wire x1="139.0378" y1="20.6428" x2="139.4674" y2="20.2132" width="0.254" layer="1"/>
 <wire x1="139.4674" y1="20.2132" x2="140.6668" y2="20.2132" width="0.254" layer="1"/>
 <wire x1="141.21" y1="19.67" x2="141.21" y2="18.78" width="0.254" layer="1"/>
 <wire x1="141.21" y1="18.78" x2="141.6768" y2="18.3132" width="0.254" layer="1"/>
@@ -12782,8 +12786,6 @@ Copyright: Würth Elektronik</description>
 <contactref element="C73" pad="1"/>
 <contactref element="C101" pad="1"/>
 <contactref element="R109" pad="2"/>
-<contactref element="IC17" pad="2"/>
-<contactref element="C63" pad="1"/>
 <contactref element="PWR" pad="A"/>
 <polygon width="0.2" layer="3" isolate="0.2032" thermals="no" rank="5">
 <vertex x="147" y="13"/>
@@ -12865,9 +12867,6 @@ Copyright: Würth Elektronik</description>
 <wire x1="155.1978" y1="24.3846" x2="155.1978" y2="25.4522" width="0.2" layer="1"/>
 <wire x1="155.1978" y1="25.4522" x2="155.19" y2="25.46" width="0.2" layer="1"/>
 <via x="155.19" y="25.46" extent="1-16" drill="0.2"/>
-<wire x1="138.1576" y1="19.3128" x2="139.4178" y2="19.3128" width="0.254" layer="1"/>
-<wire x1="139.4178" y1="19.3128" x2="139.4674" y2="19.2632" width="0.254" layer="1"/>
-<wire x1="139.4674" y1="19.2632" x2="140.5368" y2="19.2632" width="0.254" layer="1"/>
 <wire x1="140.5368" y1="19.2632" x2="140.54" y2="19.26" width="0.254" layer="1"/>
 <via x="140.54" y="19.26" extent="1-16" drill="0.2"/>
 <wire x1="139.7316" y1="16.0022" x2="139.7316" y2="15.2784" width="0.254" layer="1"/>
@@ -12921,6 +12920,14 @@ Copyright: Würth Elektronik</description>
 <wire x1="140.54" y1="18.06730625" x2="140.54" y2="19.26" width="0.2032" layer="3"/>
 <wire x1="139.77" y1="15.24" x2="140.8462" y2="16.3162" width="0.2032" layer="3"/>
 <wire x1="140.8462" y1="16.3162" x2="140.8462" y2="17.76110625" width="0.2032" layer="3"/>
+<contactref element="R152" pad="1"/>
+<contactref element="C104" pad="1"/>
+<wire x1="136.225" y1="20.1" x2="136.225" y2="19.7" width="0.2" layer="1"/>
+<wire x1="136.225" y1="19.7" x2="136.225" y2="19.4" width="0.2" layer="1"/>
+<wire x1="136.225" y1="19.7" x2="135.5" y2="19.7" width="0.2" layer="1"/>
+<via x="135.5" y="19.7" extent="1-16" drill="0.2"/>
+<wire x1="140.54" y1="19.26" x2="135.94" y2="19.26" width="0.254" layer="3"/>
+<wire x1="135.94" y1="19.26" x2="135.5" y2="19.7" width="0.254" layer="3"/>
 </signal>
 <signal name="USB_SEL">
 <contactref element="IC15" pad="39"/>
@@ -13920,6 +13927,38 @@ Copyright: Würth Elektronik</description>
 <wire x1="158.7762" y1="39.8562" x2="159.3464" y2="39.8562" width="0.2" layer="1"/>
 <wire x1="158.06" y1="39.14" x2="158.7762" y2="39.8562" width="0.2" layer="1"/>
 <wire x1="159.3464" y1="39.8562" x2="160.5464" y2="39.8562" width="0.2" layer="1"/>
+</signal>
+<signal name="MCP_VIN">
+<contactref element="C63" pad="1"/>
+<contactref element="IC17" pad="2"/>
+<contactref element="C102" pad="1"/>
+<contactref element="R152" pad="2"/>
+<wire x1="136.775" y1="19.4" x2="137.575" y2="19.4" width="0.254" layer="1"/>
+<wire x1="137.575" y1="19.4" x2="137.6" y2="19.425" width="0.254" layer="1"/>
+<wire x1="139.4674" y1="19.2632" x2="138.492" y2="19.2632" width="0.254" layer="1"/>
+<wire x1="138.492" y1="19.2632" x2="138.3128" y2="19.4424" width="0.254" layer="1"/>
+<wire x1="138.3128" y1="19.4424" x2="137.6174" y2="19.4424" width="0.254" layer="1"/>
+<wire x1="137.6174" y1="19.4424" x2="137.6" y2="19.425" width="0.254" layer="1"/>
+</signal>
+<signal name="5V_EN">
+<contactref element="R161" pad="2"/>
+<contactref element="R162" pad="1"/>
+<contactref element="R1" pad="1"/>
+<contactref element="IC1" pad="6"/>
+<wire x1="102.75" y1="6.3" x2="103.6" y2="6.3" width="0.2" layer="1"/>
+<wire x1="103.6" y1="6.3" x2="104.45" y2="6.3" width="0.2" layer="1"/>
+<via x="103.6" y="6.3" extent="1-16" drill="0.2"/>
+<wire x1="103.6" y1="6.3" x2="105.9" y2="6.3" width="0.2" layer="14"/>
+<wire x1="108.4" y1="10.9" x2="109" y2="11.5" width="0.2" layer="14"/>
+<via x="109" y="11.5" extent="1-16" drill="0.2"/>
+<wire x1="105.9" y1="6.3" x2="108.4" y2="8.8" width="0.2" layer="14"/>
+<wire x1="108.4" y1="8.8" x2="108.4" y2="10.9" width="0.2" layer="14"/>
+<wire x1="109.5" y1="12.45" x2="109.5" y2="11.8" width="0.2" layer="1"/>
+<wire x1="109.5" y1="11.8" x2="109.2" y2="11.5" width="0.2" layer="1"/>
+<wire x1="109.2" y1="11.5" x2="109" y2="11.5" width="0.2" layer="1"/>
+<wire x1="108.4826" y1="10.2776" x2="108.4826" y2="11.0826" width="0.2" layer="1"/>
+<wire x1="108.9" y1="11.5" x2="109" y2="11.5" width="0.2" layer="1"/>
+<wire x1="108.9" y1="11.5" x2="108.4826" y2="11.0826" width="0.2" layer="1"/>
 </signal>
 </signals>
 <mfgpreviewcolors>
