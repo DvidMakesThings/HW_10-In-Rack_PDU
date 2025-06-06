@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ENERGIS PDU - Programming Manual</title>
+  <title>ENERGIS PDU – Programming Manual</title>
+
   <style>
     * {
       margin: 0;
@@ -14,13 +15,13 @@
     }
 
     body {
-      background-color: #1a1d23;
+      background: #1a1d23;
       color: #e4e4e4;
     }
 
     a {
-      text-decoration: none;
       color: #aaa;
+      text-decoration: none;
     }
 
     a:hover {
@@ -28,9 +29,8 @@
     }
 
     .topbar {
-      width: 100%;
       height: 50px;
-      background-color: #242731;
+      background: #242731;
       display: flex;
       align-items: center;
       padding: 0 20px;
@@ -43,13 +43,12 @@
 
     .container {
       display: flex;
-      width: 100%;
       height: calc(100vh - 50px);
     }
 
     .sidebar {
       width: 220px;
-      background-color: #2e323c;
+      background: #2e323c;
       padding: 20px 0;
     }
 
@@ -57,46 +56,38 @@
       list-style: none;
     }
 
-    .sidebar ul li {
+    .sidebar li {
       padding: 10px 20px;
     }
 
-    .sidebar ul li:hover {
-      background-color: #3b404d;
+    .sidebar li:hover {
+      background: #3b404d;
     }
 
-    .sidebar ul li a {
+    .sidebar a {
       color: #ccc;
     }
 
-    .sidebar ul li a:hover {
+    .sidebar a:hover {
       color: #fff;
     }
 
-    .main-content {
+    /* Right-side area */
+    .content {
       flex: 1;
-      padding: 20px;
-      overflow-y: auto;
-    }
-
-    h2 {
-      margin-bottom: 0.5rem;
-    }
-
-    p {
-      margin: 0.5rem 0;
-    }
-
-    ul {
-      margin-left: 20px;
-      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
     }
 
     .pdf-container {
-      width: 100%;
-      height: 70vh;
-      margin-top: 1rem;
+      flex: 1;
       border: 1px solid #444;
+    }
+
+    .note {
+      padding: 0.5rem;
+      text-align: right;
+      font-size: 0.9rem;
     }
   </style>
 </head>
@@ -105,6 +96,7 @@
   <div class="topbar">
     <h1>ENERGIS PDU</h1>
   </div>
+
   <div class="container">
     <div class="sidebar">
       <ul>
@@ -115,24 +107,19 @@
         <li><a href="programming_manual.html">Programming Manual</a></li>
       </ul>
     </div>
-    <div class="main-content">
-      <h2>Programming Manual</h2>
-      <p>This manual provides details on the programming interface for the ENERGIS PDU:</p>
-      <ul>
-        <li>RP2040 firmware details</li>
-        <li>Communication with the W5500 Ethernet module</li>
-        <li>EEPROM storage of settings</li>
-        <li>Command formats and interfacing instructions</li>
-      </ul>
 
+    <div class="content">
       <div class="pdf-container">
-        <iframe src="https://<your-github-username>.github.io/energispdu-docs/ProgrammingManual.pdf" width="100%"
+        <iframe src="https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Manuals/Programming_Manual.pdf" width="100%"
           height="100%" frameborder="0">
         </iframe>
       </div>
-      <p>If your browser does not display the PDF, you can download it directly <a
-          href="https://<your-github-username>.github.io/energispdu-docs/ProgrammingManual.pdf"
-          target="_blank">here</a>.</p>
+
+      <p class="note">
+        If your browser does not display the PDF, you can download it directly
+        <a href="https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Manuals/Programming_Manual.pdf"
+          target="_blank">here</a>.
+      </p>
     </div>
   </div>
 </body>
