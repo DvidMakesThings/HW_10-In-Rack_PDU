@@ -174,5 +174,5 @@ file for details.
 ## Contact
 
 For questions or feedback:
-- **Email:** [s.dvid@hotmail.com](mailto:s.dvid@hotmail.com)
+- **Email:** [dvidmakesthings@gmail.com](mailto:dvidmakesthings@gmail.com)
 - **GitHub:** [DvidMakesThings](https://github.com/DvidMakesThings)
