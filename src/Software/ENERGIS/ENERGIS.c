@@ -73,24 +73,8 @@ int main(void) {
     uint64_t last_ts = to_ms_since_boot(get_absolute_time());
 
     while (1) {
-        // 1) UART
         uart_command_loop();
-        /*
-        // 2) time check
-        uint64_t now = to_ms_since_boot(get_absolute_time());
-        if (now - last_ts >= POLL_INTERVAL_MS) {
-            last_ts = now;
-            for (uint8_t ch = 1; ch <= NUM_CHANNELS; ch++) {
-                bool ok = hlw8032_read(ch - 1); // driver takes 0–7
-                float v = ok ? hlw8032_get_voltage() : 9999.0f;
-                float i = ok ? hlw8032_get_current() : 9999.0f;
 
-                PDU_Display_UpdateVoltage(ch, v);
-                PDU_Display_UpdateCurrent(ch, i);
-            }
-        }
-        */
-        // 3) tiny yield
         sleep_us(100);
     }
 }
