@@ -123,7 +123,7 @@ the USB-C version of ENERGIS with USB PD Source functionality: [PDNode-600 Pro](
 ### **PCB Layer Configuration:**
 
 - **Display Board:** 2-layer PCB.
-- **Main Board:** 4-layer PCB (JLC04161H-3313, 1.56mm ±10% thickness)
+- **Main Board:** 6-layer PCB (JLC06161H-3313, 1.56mm ±10% thickness)
 
 ![Main Board 3D View](images/ENERGIS_1.0.0/ENERGIS_Rack-PDU_1.0.0-1.png)
 ![Main Board 3D View](images/ENERGIS_1.0.0/ENERGIS_Rack-PDU_1.0.0-3.png)
@@ -132,22 +132,27 @@ the USB-C version of ENERGIS with USB PD Source functionality: [PDNode-600 Pro](
 
 ### **Impedance Control:**
 
-| Impedance (Ω)  | Type                             | Signal  | Bottom  | Trace Width (mm) | Trace Spacing (mm) |
-| -------------- | -------------------------------- | ------- | ------- | ---------------- | ------------------ |
-| 90             | Differential Pair (Non-coplanar) | L1      | L2      | 0.1549           | 0.1905             |
-| 100            | Differential Pair (Non-coplanar) | L1      | L2      | 0.1209           | 0.1905             |
+| Impedance (Ω) | Type                         | Signal | Bottom | Trace Width (mm) | Trace Spacing (mm) |
+| ------------- | ---------------------------- | ------ | ------ | ---------------- | ------------------ |
+| 50            | Coplanar Single Ended        | L1     | L2     | 0.2000           | /                  |
+| 90            | Coplanar Differential Pair   | L1     | L2     | 0.1549           | 0.1905             |
+| 100           | Coplanar Differential Pair   | L1     | L2     | 0.1209           | 0.1905             |
+| 100           | Coplanar Differential Pair   | L6     | /      | 0.1209           | 0.1905             |
+| 90            | Coplanar Differential Pair   | L6     | /      | 0.1549           | 0.1905             |
+| 50            | Coplanar Single Ended        | L6     | /      | 0.2000           | /                  |
 
 ### **Layer Stackup:**
 
 | Layer    | Material                   | Thickness (mm) |
 | -------- | -------------------------- | -------------- |
-| L1 (SIG) | Outer Copper Weight 1oz    | 0.0350 |
-| Prepreg  | 3313 RC57% 4.2mil          | 0.0994 |
-| L2 (GND) | Inner Copper Weight        | 0.0152 |
-| Core     | 1.3mm H/HOZ with copper    | 1.2650 |
-| L3 (GND) | Inner Copper Weight        | 0.0152 |
-| Prepreg  | 3313 RC57% 4.2mil          | 0.0994 |
-| L4 (SIG) | Outer Copper Weight 1oz    | 0.0350 |
+| L1 (SIG) | Outer Copper Weight 1 oz   | 0.0350         |
+| Prepreg  | 3313 RC57 % 4.2 mil        | 0.0994         |
+| L2 (GND) | Inner Copper Weight 0.5 oz | 0.0152         |
+| Core     | 0.55 mm H (without copper) | 0.5500         |
+| L3 (PWR) | Inner Copper Weight 0.5 oz | 0.0152         |
+| Prepreg  | 2116 RC54 % 4.9 mil        | 0.1088         |
+| L4 (SIG) | Inner Copper Weight 0.5 oz | 0.0152         |
+
 
 ## Schematics
 
@@ -155,16 +160,6 @@ The full schematics for each board are available:
 
 - **[Main Board Schematics](src/PDF/ENERGIS-1.0.0_mainBoard_schematics.pdf)**
 - **[Display Board Schematics](src/PDF/ENERGIS-1.0.0_displayBoard_schematics.pdf)**
-
-## Usage
-
-TBD
-
-## Future Plans
-
-### Planned Improvements
-- **Metal Enclosure:** If production scales up, explore CNC or sheet-metal
-  enclosures.
 
 ## License
 
