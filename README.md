@@ -120,39 +120,40 @@ the USB-C version of ENERGIS with USB PD Source functionality: [PDNode-600 Pro](
 
 ## Hardware Stackup
 
-### **PCB Layer Configuration:**
-
-- **Display Board:** 2-layer PCB.
-- **Main Board:** 6-layer PCB (JLC06161H-3313, 1.56mm ±10% thickness)
-
 ![Main Board 3D View](images/ENERGIS_1.0.0/ENERGIS_Rack-PDU_1.0.0-1.png)
-![Main Board 3D View](images/ENERGIS_1.0.0/ENERGIS_Rack-PDU_1.0.0-3.png)
-![Display Board 3D View](images/ENERGIS_1.0.0/Display-Board_Rack-PDU_3.0-1.png)
 ![Display Board 3D View](images/ENERGIS_1.0.0/Display-Board_Rack-PDU_3.0-2.png)
 
-### **Impedance Control:**
 
-| Impedance (Ω) | Type                         | Signal | Bottom | Trace Width (mm) | Trace Spacing (mm) |
-| ------------- | ---------------------------- | ------ | ------ | ---------------- | ------------------ |
-| 50            | Coplanar Single Ended        | L1     | L2     | 0.2000           | /                  |
-| 90            | Coplanar Differential Pair   | L1     | L2     | 0.1549           | 0.1905             |
-| 100           | Coplanar Differential Pair   | L1     | L2     | 0.1209           | 0.1905             |
-| 100           | Coplanar Differential Pair   | L6     | /      | 0.1209           | 0.1905             |
-| 90            | Coplanar Differential Pair   | L6     | /      | 0.1549           | 0.1905             |
-| 50            | Coplanar Single Ended        | L6     | /      | 0.2000           | /                  |
+## JLC06161H-3313 (Finished Thickness: ~1.54 mm ±10 %) (6 layers – standard settings)
+- **Total Layers:** 6  
+- **Finished Thickness:** ~1.54 mm (±10 %)  
+- **Outer Copper Weight:** 1 oz  
+- **Inner Copper Weight:** 0.5 oz  
+- **Prepreg & Core Materials:** FR4 (JLC06161H-3313)  
 
-### **Layer Stackup:**
+### Layer Stackup
 
-| Layer    | Material                   | Thickness (mm) |
-| -------- | -------------------------- | -------------- |
-| L1 (SIG) | Outer Copper Weight 1 oz   | 0.0350         |
-| Prepreg  | 3313 RC57 % 4.2 mil        | 0.0994         |
-| L2 (GND) | Inner Copper Weight 0.5 oz | 0.0152         |
-| Core     | 0.55 mm H (without copper) | 0.5500         |
-| L3 (PWR) | Inner Copper Weight 0.5 oz | 0.0152         |
-| Prepreg  | 2116 RC54 % 4.9 mil        | 0.1088         |
-| L4 (SIG) | Inner Copper Weight 0.5 oz | 0.0152         |
+| Layer    | Material                     | Thickness (mm) |
+| -------- | ---------------------------- | -------------- |
+| L1 (SIG) | Outer Copper Weight 1 oz     | 0.0350         |
+| Prepreg  | 3313 RC57 % 4.2 mil           | 0.0994         |
+| L2 (GND) | Inner Copper Weight 0.5 oz   | 0.0152         |
+| Core     | 0.55 mm H (without copper)   | 0.5500         |
+| L3 (PWR) | Inner Copper Weight 0.5 oz   | 0.0152         |
+| Prepreg  | 2116 RC54 % 4.9 mil           | 0.1088         |
+| L4 (SIG) | Inner Copper Weight 0.5 oz   | 0.0152         |
 
+
+### Impedance Control
+
+| Impedance (Ω) | Type                       | Signal | Top Ref | Bottom Ref | Trace Width (mm) | Trace Spacing (mm) |
+| ------------- | -------------------------- | ------ | ------- | ---------- | ---------------- | ------------------ |
+| 50            | Coplanar Single Ended      | L1     | /       | L2         | 0.2000           | /                  |
+| 90            | Coplanar Differential Pair | L1     | /       | L2         | 0.1549           | 0.1905             |
+| 100           | Coplanar Differential Pair | L1     | /       | L2         | 0.1209           | 0.1905             |
+| 100           | Coplanar Differential Pair | L6     | L5      | /          | 0.1209           | 0.1905             |
+| 90            | Coplanar Differential Pair | L6     | L5      | /          | 0.1549           | 0.1905             |
+| 50            | Coplanar Single Ended      | L6     | L5      | /          | 0.2000           | /                  |
 
 ## Schematics
 
