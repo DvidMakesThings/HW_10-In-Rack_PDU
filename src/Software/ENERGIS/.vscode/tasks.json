@@ -1,72 +1,78 @@
 {
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "Compile Project",
-      "type": "process",
-      "isBuildCommand": true,
-      "command": "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/ninja/ninja.exe",
-      "args": [
-        "-C",
-        "${workspaceFolder}/build"
-      ],
-      "group": "build",
-      "presentation": {
-        "reveal": "always",
-        "panel": "dedicated"
-      },
-      "problemMatcher": "$gcc"
-    },
-    {
-      "label": "Run Project",
-      "type": "process",
-      "command": "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/picotool/picotool.exe",
-      "args": [
-        "load",
-        "${command:raspberry-pi-pico.launchTargetPath}",
-        "-fx"
-      ],
-      "presentation": {
-        "reveal": "always",
-        "panel": "dedicated"
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "Flash",
-      "type": "process",
-      "command": "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/openocd/openocd.exe",
-      "args": [
-        "-s",
-        "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/openocd/scripts",
-        "-f",
-        "interface/cmsis-dap.cfg",
-        "-f",
-        "target/${command:raspberry-pi-pico.getTarget}.cfg",
-        "-c",
-        "adapter speed 5000; program \"${command:raspberry-pi-pico.launchTargetPath}\" verify reset exit"
-      ],
-      "problemMatcher": []
-    },
-    {
-      "label": "Flash RP2040 via bootsel",
-      "type": "shell",
-      "dependsOn": [
-        "Compile Project"
-      ],
-      "command": "powershell.exe",
-      "args": [
-        "-NoProfile",
-        "-ExecutionPolicy",
-        "Bypass",
-        "-File",
-        "${workspaceFolder}/scripts/flash_rp2040.ps1"
-      ],
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared"
-      },
-      "problemMatcher": []
-    }
-  ]
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compile Project",
+            "type": "process",
+            "isBuildCommand": true,
+            "command": "${userHome}/.pico-sdk/ninja/v1.12.1/ninja",
+            "args": ["-C", "${workspaceFolder}/build"],
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            },
+            "problemMatcher": "$gcc",
+            "windows": {
+                "command": "${env:USERPROFILE}/.pico-sdk/ninja/v1.12.1/ninja.exe"
+            }
+        },
+        {
+            "label": "Run Project",
+            "type": "process",
+            "command": "${env:HOME}/.pico-sdk/picotool/2.1.1/picotool/picotool",
+            "args": [
+                "load",
+                "${command:raspberry-pi-pico.launchTargetPath}",
+                "-fx"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            },
+            "problemMatcher": [],
+            "windows": {
+                "command": "${env:USERPROFILE}/.pico-sdk/picotool/2.1.1/picotool/picotool.exe"
+            }
+        },
+        {
+            "label": "Flash",
+            "type": "process",
+            "command": "${userHome}/.pico-sdk/openocd/0.12.0+dev/openocd.exe",
+            "args": [
+                "-s",
+                "${userHome}/.pico-sdk/openocd/0.12.0+dev/scripts",
+                "-f",
+                "interface/cmsis-dap.cfg",
+                "-f",
+                "target/${command:raspberry-pi-pico.getTarget}.cfg",
+                "-c",
+                "adapter speed 5000; program \"${command:raspberry-pi-pico.launchTargetPath}\" verify reset exit"
+            ],
+            "problemMatcher": [],
+            "windows": {
+                "command": "${env:USERPROFILE}/.pico-sdk/openocd/0.12.0+dev/openocd.exe",
+            }
+        },
+        {
+            "label": "Flash RP2040 via bootsel",
+            "type": "shell",
+            "dependsOn": [
+                "Compile Project"
+            ],
+            "command": "powershell.exe",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/scripts/flash_rp2040.ps1"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+            }
+    ]
 }

@@ -258,7 +258,7 @@
                     "type": "gerber_layer"
                 },
                 {
-                    "board_outline": false,
+                    "board_outline": true,
                     "config": {
                         "file_function": "Legend",
                         "index": 1,
@@ -267,7 +267,8 @@
                     "filename_format": "%N_%FF.GTO",
                     "layers": [
                         21,
-                        25
+                        25,
+                        51
                     ],
                     "milling": false,
                     "name": "Silkscreen Top",
@@ -275,7 +276,7 @@
                     "type": "gerber_layer"
                 },
                 {
-                    "board_outline": false,
+                    "board_outline": true,
                     "config": {
                         "file_function": "Legend",
                         "index": 1,
@@ -284,7 +285,8 @@
                     "filename_format": "%N_%FF.GBO",
                     "layers": [
                         22,
-                        26
+                        26,
+                        52
                     ],
                     "milling": false,
                     "name": "Silkscreen Bottom",
@@ -301,7 +303,7 @@
             ]
         }
     ],
-    "timestamp": "2025-03-14T21:22:44",
+    "timestamp": "2025-06-09T13:51:26",
     "type": "EAGLE CAM job",
     "units": "metric",
     "version": "9.2.0"

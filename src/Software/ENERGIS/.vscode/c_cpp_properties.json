@@ -1,29 +1,22 @@
 {
-  "configurations": [
-    {
-      "name": "Pico",
-      "includePath": [
-        "${workspaceFolder}/**",
-        "C:/Program Files/Raspberry Pi/pico-sdk-2.1.1/src/**"
-      ],
-      "browse": {
-        "path": [
-          "${workspaceFolder}",
-          "C:/Program Files/Raspberry Pi/pico-sdk-2.1.1/src/**"
-        ],
-        "limitSymbolsToIncludedHeaders": true
-      },
-      "forcedInclude": [
-        "C:/Program Files/Raspberry Pi/pico-sdk-2.1.1/src/common/pico_base_headers/include/pico.h",
-        "${workspaceFolder}/build/generated/pico_base/pico/config_autogen.h"
-      ],
-      "defines": [],
-      "compilerPath": "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/gcc-arm-none-eabi/bin/arm-none-eabi-gcc.exe",
-      "compileCommands": "${workspaceFolder}/build/compile_commands.json",
-      "cStandard": "c17",
-      "cppStandard": "c++14",
-      "intelliSenseMode": "gcc-arm"
-    }
-  ],
-  "version": 4
+    "configurations": [
+        {
+            "name": "Pico",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${userHome}/.pico-sdk/sdk/2.1.1/**"
+            ],
+            "forcedInclude": [
+                "${userHome}/.pico-sdk/sdk/2.1.1/src/common/pico_base_headers/include/pico.h",
+                "${workspaceFolder}/build/generated/pico_base/pico/config_autogen.h"
+            ],
+            "defines": [],
+            "compilerPath": "${userHome}/.pico-sdk/toolchain/14_2_Rel1/bin/arm-none-eabi-gcc.exe",
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json",
+            "cStandard": "c17",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "linux-gcc-arm"
+        }
+    ],
+    "version": 4
 }
