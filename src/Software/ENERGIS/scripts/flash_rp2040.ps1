@@ -1,4 +1,4 @@
-$portName = "COM6"
+$portName = "COM3"
 $uf2Path = "G:\_GitHub\HW_10-In-Rack_PDU\src\Software\ENERGIS\build\ENERGIS.uf2"
 $plinkPath = "C:\Program Files\PuTTY\plink.exe"
 

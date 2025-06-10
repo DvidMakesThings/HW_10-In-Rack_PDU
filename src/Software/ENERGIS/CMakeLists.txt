@@ -2,18 +2,9 @@
 
 cmake_minimum_required(VERSION 3.13)
 
-# Set BEFORE importing SDK — don't let anything reset it!
-set(PICO_NO_BUILD_PICOTOOL 1)
-set(PICO_NO_DOWNLOADS 1)
-set(PICOTOOL_PATH "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/picotool/picotool.exe")
-set(PICO_SDK_PATH "C:/Program Files/Raspberry Pi/pico-sdk-2.1.1")
-
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
-# Import SDK
-include(pico_sdk_import.cmake)
 
 # Initialise pico_sdk from installed location
 # (note this can come from environment, CMake cache etc)
@@ -24,18 +15,26 @@ if(WIN32)
 else()
     set(USERHOME $ENV{HOME})
 endif()
-
+set(sdkVersion 2.1.1)
+set(toolchainVersion 14_2_Rel1)
+set(picotoolVersion 2.1.1)
+set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
+if (EXISTS ${picoVscode})
+    include(${picoVscode})
+endif()
 # ====================================================================================
 set(PICO_BOARD pico CACHE STRING "Board type")
 
 # Pull in Raspberry Pi Pico SDK (must be before project)
+include(pico_sdk_import.cmake)
 
-project(ENERGIS C CXX ASM)
+project(Test C CXX ASM)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
+
 add_executable(ENERGIS 
     ENERGIS.c
     drivers/CAT24C512_driver.c
@@ -111,10 +110,3 @@ target_include_directories(ENERGIS PRIVATE
 )
 
 pico_add_extra_outputs(ENERGIS)
-
-add_custom_command(TARGET ENERGIS POST_BUILD
-    COMMAND "C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/tools/elf2uf2/build/Debug/elf2uf2.exe"
-        $<TARGET_FILE:ENERGIS>
-        ${CMAKE_CURRENT_BINARY_DIR}/ENERGIS.uf2
-    COMMENT "Manually converting ELF to UF2 without picotool"
-)
