@@ -79,9 +79,9 @@ the USB-C version of ENERGIS with USB PD Source functionality: [PDNode-600 Pro](
 | **Ethernet based firmware update**   | ![Planned](https://img.shields.io/badge/status-planned-blue) |
 
 
-![PDU 3D View](images/Assembly/Rev2.0/Assembled-in-case_2.0_3D_1.png)
+![PDU 3D View](images/ENERGIS_1.0.0/Assembled-in-case_1.0.0_3D_1.png)
 
-![PDU 3D View](images/Assembly/Rev2.0/Assembled-in-case_2.0_3D_2.png)
+![PDU 3D View](images/ENERGIS_1.0.0/Assembled-in-case_1.0.0_3D_2.png)
 
 ## Features
 

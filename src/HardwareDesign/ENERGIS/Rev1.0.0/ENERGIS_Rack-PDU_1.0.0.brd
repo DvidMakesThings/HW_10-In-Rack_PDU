@@ -3,7 +3,7 @@
 <eagle version="9.2.1">
 <drawing>
 <settings>
-<setting alwaysvectorfont="no"/>
+<setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.01" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mm"/>
@@ -34,29 +34,29 @@
 <layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
-<layer number="30" name="bStop" color="7" fill="6" visible="yes" active="yes"/>
-<layer number="31" name="tCream" color="7" fill="4" visible="yes" active="yes"/>
-<layer number="32" name="bCream" color="7" fill="5" visible="yes" active="yes"/>
-<layer number="33" name="tFinish" color="6" fill="3" visible="yes" active="yes"/>
-<layer number="34" name="bFinish" color="6" fill="6" visible="yes" active="yes"/>
-<layer number="35" name="tGlue" color="7" fill="4" visible="yes" active="yes"/>
-<layer number="36" name="bGlue" color="7" fill="5" visible="yes" active="yes"/>
-<layer number="37" name="tTest" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="38" name="bTest" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
+<layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
+<layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
+<layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
+<layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
+<layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
+<layer number="33" name="tFinish" color="6" fill="3" visible="no" active="yes"/>
+<layer number="34" name="bFinish" color="6" fill="6" visible="no" active="yes"/>
+<layer number="35" name="tGlue" color="7" fill="4" visible="no" active="yes"/>
+<layer number="36" name="bGlue" color="7" fill="5" visible="no" active="yes"/>
+<layer number="37" name="tTest" color="7" fill="1" visible="no" active="yes"/>
+<layer number="38" name="bTest" color="7" fill="1" visible="no" active="yes"/>
 <layer number="39" name="tKeepout" color="4" fill="11" visible="yes" active="yes"/>
 <layer number="40" name="bKeepout" color="1" fill="11" visible="yes" active="yes"/>
 <layer number="41" name="tRestrict" color="4" fill="10" visible="yes" active="yes"/>
 <layer number="42" name="bRestrict" color="1" fill="10" visible="yes" active="yes"/>
-<layer number="43" name="vRestrict" color="2" fill="10" visible="yes" active="yes"/>
-<layer number="44" name="Drills" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="46" name="Milling" color="3" fill="1" visible="yes" active="yes"/>
-<layer number="47" name="Measures" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="48" name="Document" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="49" name="Reference" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="yes"/>
+<layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
+<layer number="45" name="Holes" color="7" fill="1" visible="no" active="yes"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
+<layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
+<layer number="48" name="Document" color="7" fill="1" visible="no" active="yes"/>
+<layer number="49" name="Reference" color="7" fill="1" visible="no" active="yes"/>
 <layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
 <layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="yes"/>
@@ -81,38 +81,38 @@
 <layer number="98" name="Guide" color="6" fill="1" visible="no" active="no"/>
 <layer number="99" name="SpiceOrder" color="5" fill="1" visible="no" active="no"/>
 <layer number="100" name="Muster" color="7" fill="1" visible="no" active="no"/>
-<layer number="101" name="Hidden" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="102" name="Changes" color="12" fill="1" visible="yes" active="yes"/>
-<layer number="103" name="fp3" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="104" name="Name" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="105" name="Beschreib" color="9" fill="1" visible="yes" active="yes"/>
-<layer number="106" name="BGA-Top" color="4" fill="1" visible="yes" active="yes"/>
-<layer number="107" name="BD-Top" color="5" fill="1" visible="yes" active="yes"/>
-<layer number="108" name="fp8" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="109" name="fp9" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="110" name="fp0" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="111" name="LPC17xx" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="112" name="tSilk" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="101" name="Hidden" color="15" fill="1" visible="no" active="yes"/>
+<layer number="102" name="Changes" color="12" fill="1" visible="no" active="yes"/>
+<layer number="103" name="fp3" color="7" fill="1" visible="no" active="yes"/>
+<layer number="104" name="Name" color="7" fill="1" visible="no" active="yes"/>
+<layer number="105" name="Beschreib" color="9" fill="1" visible="no" active="yes"/>
+<layer number="106" name="BGA-Top" color="4" fill="1" visible="no" active="yes"/>
+<layer number="107" name="BD-Top" color="5" fill="1" visible="no" active="yes"/>
+<layer number="108" name="fp8" color="7" fill="1" visible="no" active="yes"/>
+<layer number="109" name="fp9" color="7" fill="1" visible="no" active="yes"/>
+<layer number="110" name="fp0" color="7" fill="1" visible="no" active="yes"/>
+<layer number="111" name="LPC17xx" color="7" fill="1" visible="no" active="yes"/>
+<layer number="112" name="tSilk" color="7" fill="1" visible="no" active="yes"/>
 <layer number="113" name="ReferenceLS" color="7" fill="1" visible="no" active="no"/>
-<layer number="114" name="Glass" color="46" fill="1" visible="yes" active="yes"/>
-<layer number="115" name="FRAME" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="116" name="Patch_BOT" color="9" fill="4" visible="yes" active="yes"/>
-<layer number="117" name="displ" color="61" fill="1" visible="yes" active="yes"/>
+<layer number="114" name="Glass" color="46" fill="1" visible="no" active="yes"/>
+<layer number="115" name="FRAME" color="15" fill="1" visible="no" active="yes"/>
+<layer number="116" name="Patch_BOT" color="9" fill="4" visible="no" active="yes"/>
+<layer number="117" name="displ" color="61" fill="1" visible="no" active="yes"/>
 <layer number="118" name="Rect_Pads" color="7" fill="1" visible="no" active="no"/>
 <layer number="119" name="PF_Ref" color="7" fill="1" visible="no" active="no"/>
 <layer number="120" name="WFL_Ref" color="7" fill="1" visible="no" active="no"/>
-<layer number="121" name="_tsilk" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="122" name="_bsilk" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="123" name="tTestmark" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="124" name="bTestmark" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="125" name="_tNames" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="126" name="_bNames" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="127" name="_tValues" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="128" name="_bValues" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="129" name="Mask" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="121" name="_tsilk" color="7" fill="1" visible="no" active="yes"/>
+<layer number="122" name="_bsilk" color="7" fill="1" visible="no" active="yes"/>
+<layer number="123" name="tTestmark" color="7" fill="1" visible="no" active="yes"/>
+<layer number="124" name="bTestmark" color="7" fill="1" visible="no" active="yes"/>
+<layer number="125" name="_tNames" color="7" fill="1" visible="no" active="yes"/>
+<layer number="126" name="_bNames" color="7" fill="1" visible="no" active="yes"/>
+<layer number="127" name="_tValues" color="7" fill="1" visible="no" active="yes"/>
+<layer number="128" name="_bValues" color="7" fill="1" visible="no" active="yes"/>
+<layer number="129" name="Mask" color="7" fill="1" visible="no" active="yes"/>
 <layer number="130" name="SMDSTROOK" color="7" fill="1" visible="no" active="no"/>
-<layer number="131" name="tAdjust" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="132" name="bAdjust" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="131" name="tAdjust" color="7" fill="1" visible="no" active="yes"/>
+<layer number="132" name="bAdjust" color="7" fill="1" visible="no" active="yes"/>
 <layer number="133" name="bottom_silk" color="7" fill="1" visible="no" active="no"/>
 <layer number="134" name="silk_top" color="7" fill="1" visible="no" active="no"/>
 <layer number="135" name="silk_bottom" color="7" fill="1" visible="no" active="no"/>
@@ -124,15 +124,15 @@
 <layer number="141" name="ASSEMBLY_TOP" color="7" fill="1" visible="no" active="no"/>
 <layer number="142" name="mbRestrict" color="7" fill="1" visible="no" active="no"/>
 <layer number="143" name="PLACE_BOUND_TOP" color="7" fill="1" visible="no" active="no"/>
-<layer number="144" name="Drill_legend" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="144" name="Drill_legend" color="7" fill="1" visible="no" active="yes"/>
 <layer number="145" name="DrillLegend_01-16" color="7" fill="1" visible="no" active="no"/>
 <layer number="146" name="DrillLegend_01-20" color="7" fill="1" visible="no" active="no"/>
 <layer number="147" name="PIN_NUMBER" color="7" fill="1" visible="no" active="no"/>
 <layer number="148" name="DrillLegend_01-20" color="7" fill="1" visible="no" active="no"/>
 <layer number="149" name="DrillLegend_02-15" color="7" fill="1" visible="no" active="no"/>
-<layer number="150" name="Notes" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="151" name="HeatSink" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="152" name="_bDocu" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="150" name="Notes" color="7" fill="1" visible="no" active="yes"/>
+<layer number="151" name="HeatSink" color="7" fill="1" visible="no" active="yes"/>
+<layer number="152" name="_bDocu" color="7" fill="1" visible="no" active="yes"/>
 <layer number="153" name="FabDoc1" color="6" fill="1" visible="no" active="no"/>
 <layer number="154" name="FabDoc2" color="2" fill="1" visible="no" active="no"/>
 <layer number="155" name="FabDoc3" color="7" fill="15" visible="no" active="no"/>
@@ -150,24 +150,24 @@
 <layer number="194" name="mSymbols" color="7" fill="1" visible="no" active="no"/>
 <layer number="195" name="mNames" color="7" fill="1" visible="no" active="no"/>
 <layer number="196" name="mValues" color="7" fill="1" visible="no" active="no"/>
-<layer number="199" name="Contour" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="200" name="200bmp" color="1" fill="10" visible="yes" active="yes"/>
+<layer number="199" name="Contour" color="7" fill="1" visible="no" active="yes"/>
+<layer number="200" name="200bmp" color="1" fill="10" visible="no" active="yes"/>
 <layer number="201" name="201bmp" color="2" fill="1" visible="no" active="no"/>
 <layer number="202" name="202bmp" color="3" fill="1" visible="no" active="no"/>
-<layer number="203" name="203bmp" color="4" fill="10" visible="yes" active="yes"/>
-<layer number="204" name="204bmp" color="5" fill="10" visible="yes" active="yes"/>
-<layer number="205" name="205bmp" color="6" fill="10" visible="yes" active="yes"/>
-<layer number="206" name="206bmp" color="7" fill="10" visible="yes" active="yes"/>
-<layer number="207" name="207bmp" color="8" fill="10" visible="yes" active="yes"/>
-<layer number="208" name="208bmp" color="9" fill="10" visible="yes" active="yes"/>
-<layer number="209" name="209bmp" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="210" name="210bmp" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="211" name="211bmp" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="212" name="212bmp" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="213" name="213bmp" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="214" name="214bmp" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="215" name="215bmp" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="216" name="216bmp" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="203" name="203bmp" color="4" fill="10" visible="no" active="yes"/>
+<layer number="204" name="204bmp" color="5" fill="10" visible="no" active="yes"/>
+<layer number="205" name="205bmp" color="6" fill="10" visible="no" active="yes"/>
+<layer number="206" name="206bmp" color="7" fill="10" visible="no" active="yes"/>
+<layer number="207" name="207bmp" color="8" fill="10" visible="no" active="yes"/>
+<layer number="208" name="208bmp" color="9" fill="10" visible="no" active="yes"/>
+<layer number="209" name="209bmp" color="7" fill="1" visible="no" active="yes"/>
+<layer number="210" name="210bmp" color="7" fill="1" visible="no" active="yes"/>
+<layer number="211" name="211bmp" color="7" fill="1" visible="no" active="yes"/>
+<layer number="212" name="212bmp" color="7" fill="1" visible="no" active="yes"/>
+<layer number="213" name="213bmp" color="7" fill="1" visible="no" active="yes"/>
+<layer number="214" name="214bmp" color="7" fill="1" visible="no" active="yes"/>
+<layer number="215" name="215bmp" color="7" fill="1" visible="no" active="yes"/>
+<layer number="216" name="216bmp" color="7" fill="1" visible="no" active="yes"/>
 <layer number="217" name="217bmp" color="18" fill="1" visible="no" active="no"/>
 <layer number="218" name="218bmp" color="19" fill="1" visible="no" active="no"/>
 <layer number="219" name="219bmp" color="20" fill="1" visible="no" active="no"/>
@@ -176,23 +176,23 @@
 <layer number="222" name="222bmp" color="23" fill="1" visible="no" active="no"/>
 <layer number="223" name="223bmp" color="24" fill="1" visible="no" active="no"/>
 <layer number="224" name="224bmp" color="25" fill="1" visible="no" active="no"/>
-<layer number="225" name="225bmp" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="226" name="226bmp" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="227" name="227bmp" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="228" name="228bmp" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="229" name="229bmp" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="230" name="230bmp" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="225" name="225bmp" color="7" fill="1" visible="no" active="yes"/>
+<layer number="226" name="226bmp" color="7" fill="1" visible="no" active="yes"/>
+<layer number="227" name="227bmp" color="7" fill="1" visible="no" active="yes"/>
+<layer number="228" name="228bmp" color="7" fill="1" visible="no" active="yes"/>
+<layer number="229" name="229bmp" color="7" fill="1" visible="no" active="yes"/>
+<layer number="230" name="230bmp" color="7" fill="1" visible="no" active="yes"/>
 <layer number="231" name="Eagle3D_PG1" color="7" fill="1" visible="no" active="no"/>
 <layer number="232" name="Eagle3D_PG2" color="7" fill="1" visible="no" active="no"/>
 <layer number="233" name="Eagle3D_PG3" color="7" fill="1" visible="no" active="no"/>
-<layer number="248" name="Housing" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="249" name="Edge" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="248" name="Housing" color="7" fill="1" visible="no" active="yes"/>
+<layer number="249" name="Edge" color="7" fill="1" visible="no" active="yes"/>
 <layer number="250" name="Descript" color="3" fill="1" visible="no" active="no"/>
 <layer number="251" name="SMDround" color="12" fill="11" visible="no" active="no"/>
 <layer number="252" name="BR-BS" color="7" fill="1" visible="no" active="no"/>
 <layer number="253" name="Extra" color="7" fill="1" visible="no" active="no"/>
-<layer number="254" name="cooling" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="255" name="routoute" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="254" name="cooling" color="7" fill="1" visible="no" active="yes"/>
+<layer number="255" name="routoute" color="7" fill="1" visible="no" active="yes"/>
 </layers>
 <board>
 <plain>
@@ -1814,7 +1814,7 @@ MAX3223-MAX3243.pdf</description>
 <text x="-1.905" y="5.715" size="1.778" layer="25">&gt;NAME</text>
 <text x="-1.905" y="-7.62" size="1.778" layer="27">&gt;VALUE</text>
 </package>
-<package name="FPC20" urn="urn:adsk.eagle:footprint:47082458/2" locally_modified="yes">
+<package name="FPC20" urn="urn:adsk.eagle:footprint:47082458/3">
 <circle x="-4.602" y="-0.062" radius="0.1" width="0.2" layer="21"/>
 <wire x1="-8.002" y1="1.038" x2="-8.002" y2="-0.962" width="0.1" layer="51"/>
 <wire x1="-8.002" y1="-0.962" x2="8.398" y2="-0.962" width="0.1" layer="51"/>
@@ -1874,7 +1874,7 @@ MAX3223-MAX3243.pdf</description>
 <vertex x="-4.318" y="-3.556"/>
 </polygon>
 </package>
-<package name="J1B1211CCD">
+<package name="J1B1211CCD" urn="urn:adsk.eagle:footprint:48944380/1">
 <wire x1="-8" y1="10.6" x2="-8" y2="-10.75" width="0.127" layer="21"/>
 <wire x1="-8" y1="-10.75" x2="8" y2="-10.75" width="0.127" layer="21"/>
 <wire x1="8" y1="-10.75" x2="8" y2="10.6" width="0.127" layer="21"/>
@@ -2080,7 +2080,7 @@ MAX3223-MAX3243.pdf</description>
 <packageinstance name="1X4"/>
 </packageinstances>
 </package3d>
-<package3d name="FPC20" urn="urn:adsk.eagle:package:47082459/3" locally_modified="yes" type="model">
+<package3d name="FPC20" urn="urn:adsk.eagle:package:47082459/4" type="model">
 <packageinstances>
 <packageinstance name="FPC20"/>
 </packageinstances>
@@ -2088,6 +2088,11 @@ MAX3223-MAX3243.pdf</description>
 <package3d name="USB-C" urn="urn:adsk.eagle:package:47392229/3" type="model">
 <packageinstances>
 <packageinstance name="USB-C"/>
+</packageinstances>
+</package3d>
+<package3d name="J1B1211CCD" urn="urn:adsk.eagle:package:48944391/2" type="model">
+<packageinstances>
+<packageinstance name="J1B1211CCD"/>
 </packageinstances>
 </package3d>
 </packages3d>
@@ -4282,7 +4287,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <rectangle x1="0.15" y1="-0.15" x2="0.3" y2="0.15" layer="51"/>
 <rectangle x1="-0.15" y1="-0.15" x2="0.15" y2="0.15" layer="21"/>
 </package>
-<package name="0402" urn="urn:adsk.eagle:footprint:46766476/1" locally_modified="yes">
+<package name="0402" urn="urn:adsk.eagle:footprint:46766476/2">
 <wire x1="-0.245" y1="0.224" x2="0.245" y2="0.224" width="0.1524" layer="51"/>
 <wire x1="0.245" y1="-0.224" x2="-0.245" y2="-0.224" width="0.1524" layer="51"/>
 <wire x1="-1.473" y1="0.483" x2="1.473" y2="0.483" width="0.0508" layer="39"/>
@@ -4296,7 +4301,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <rectangle x1="-0.554" y1="-0.3048" x2="-0.254" y2="0.2951" layer="51"/>
 <rectangle x1="0.2588" y1="-0.3048" x2="0.5588" y2="0.2951" layer="51"/>
 </package>
-<package name="0805" urn="urn:adsk.eagle:footprint:46766478/1" locally_modified="yes">
+<package name="0805" urn="urn:adsk.eagle:footprint:46766478/2">
 <wire x1="-0.41" y1="0.635" x2="0.41" y2="0.635" width="0.1524" layer="51"/>
 <wire x1="-0.41" y1="-0.635" x2="0.41" y2="-0.635" width="0.1524" layer="51"/>
 <wire x1="-1.973" y1="0.983" x2="1.973" y2="0.983" width="0.0508" layer="39"/>
@@ -4310,7 +4315,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <rectangle x1="0.4064" y1="-0.6985" x2="1.0564" y2="0.7015" layer="51"/>
 <rectangle x1="-1.0668" y1="-0.6985" x2="-0.4168" y2="0.7015" layer="51"/>
 </package>
-<package name="1206" urn="urn:adsk.eagle:footprint:46766479/1" locally_modified="yes">
+<package name="1206" urn="urn:adsk.eagle:footprint:46766479/2">
 <wire x1="0.9525" y1="-0.8128" x2="-0.9652" y2="-0.8128" width="0.1524" layer="51"/>
 <wire x1="0.9525" y1="0.8128" x2="-0.9652" y2="0.8128" width="0.1524" layer="51"/>
 <wire x1="-2.473" y1="0.983" x2="2.473" y2="0.983" width="0.0508" layer="39"/>
@@ -4324,7 +4329,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <rectangle x1="-1.6891" y1="-0.8763" x2="-0.9525" y2="0.8763" layer="51"/>
 <rectangle x1="0.9525" y1="-0.8763" x2="1.6891" y2="0.8763" layer="51"/>
 </package>
-<package name="6.3X7.7(DXL)" urn="urn:adsk.eagle:footprint:18354430/1" locally_modified="yes">
+<package name="6.3X7.7(DXL)" urn="urn:adsk.eagle:footprint:48944445/1">
 <description>&lt;B&gt;WCAP-AS5H&lt;/B&gt;&lt;BR&gt; Aluminium Electrolytic Capacitors,6.3X7.7X2.1(DiameterXLengthXP)</description>
 <smd name="2" x="-2.8" y="0" dx="3.5" dy="1.6" layer="1"/>
 <smd name="1" x="2.8" y="0" dx="3.5" dy="1.6" layer="1"/>
@@ -4364,7 +4369,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </polygon>
 <circle x="0" y="0" radius="3.15" width="0.1" layer="51"/>
 </package>
-<package name="0603" urn="urn:adsk.eagle:footprint:46766477/1" locally_modified="yes">
+<package name="0603" urn="urn:adsk.eagle:footprint:46766477/2">
 <wire x1="-0.432" y1="-0.356" x2="0.432" y2="-0.356" width="0.1524" layer="51"/>
 <wire x1="0.432" y1="0.356" x2="-0.432" y2="0.356" width="0.1524" layer="51"/>
 <wire x1="-1.473" y1="0.729" x2="1.473" y2="0.729" width="0.0508" layer="39"/>
@@ -4386,24 +4391,30 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <packageinstance name="0201"/>
 </packageinstances>
 </package3d>
-<package3d name="C0402" urn="urn:adsk.eagle:package:46766485/2" locally_modified="yes" type="model">
+<package3d name="C0402" urn="urn:adsk.eagle:package:46766485/3" type="model">
 <packageinstances>
 <packageinstance name="0402"/>
 </packageinstances>
 </package3d>
-<package3d name="C0805" urn="urn:adsk.eagle:package:46766483/2" locally_modified="yes" type="model">
+<package3d name="C0805" urn="urn:adsk.eagle:package:46766483/3" type="model">
 <packageinstances>
 <packageinstance name="0805"/>
 </packageinstances>
 </package3d>
-<package3d name="C1206" urn="urn:adsk.eagle:package:46766482/2" locally_modified="yes" type="model">
+<package3d name="C1206" urn="urn:adsk.eagle:package:46766482/3" type="model">
 <packageinstances>
 <packageinstance name="1206"/>
 </packageinstances>
 </package3d>
-<package3d name="C0603" urn="urn:adsk.eagle:package:46766484/2" locally_modified="yes" type="model">
+<package3d name="C0603" urn="urn:adsk.eagle:package:46766484/3" type="model">
 <packageinstances>
 <packageinstance name="0603"/>
+</packageinstances>
+</package3d>
+<package3d name="6.3X7.7(DXL)" urn="urn:adsk.eagle:package:48944449/2" type="model">
+<description>&lt;B&gt;WCAP-AS5H&lt;/B&gt;&lt;BR&gt; Aluminium Electrolytic Capacitors,6.3X7.7X2.1(DiameterXLengthXP)</description>
+<packageinstances>
+<packageinstance name="6.3X7.7(DXL)"/>
 </packageinstances>
 </package3d>
 </packages3d>
@@ -4814,14 +4825,14 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="U$1" library="logo" library_urn="urn:adsk.eagle:library:264" package="ESD_10.00" value="" x="102.6042" y="68.4166" smashed="yes" rot="MR0"/>
 <element name="U$2" library="logo" library_urn="urn:adsk.eagle:library:264" package="ESD_10.00" value="" x="6.2368" y="59.6036" smashed="yes"/>
-<element name="C19" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="100nF 25V" x="152.199090625" y="26.346403125" smashed="yes" rot="R315">
+<element name="C19" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="152.199090625" y="26.346403125" smashed="yes" rot="R315">
 <attribute name="DESCRIPTION" value="25V 100nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="152.199090625" y="26.346403125" size="1.778" layer="27" rot="R315" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="152.199090625" y="26.346403125" size="1.778" layer="27" rot="R315" display="off"/>
 <attribute name="NAME" x="150.018328125" y="25.9867125" size="0.8128" layer="25" rot="R315"/>
 <attribute name="VALUE" value="100nF 25V" x="152.199090625" y="26.346403125" size="1.778" layer="27" rot="R315" display="off"/>
 <attribute name="VALUE" x="150.4030375" y="25.448375" size="1.016" layer="27" rot="R315"/>
 </element>
-<element name="C20" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="100nF 25V" x="152.94761875" y="27.09493125" smashed="yes" rot="R315">
+<element name="C20" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="152.94761875" y="27.09493125" smashed="yes" rot="R315">
 <attribute name="DESCRIPTION" value="25V 100nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="152.94761875" y="27.09493125" size="1.778" layer="27" rot="R315" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="152.94761875" y="27.09493125" size="1.778" layer="27" rot="R315" display="off"/>
 <attribute name="NAME" x="152.748278125" y="28.4866625" size="0.8128" layer="25" rot="R315"/>
@@ -4852,21 +4863,21 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="SMAJ15A" x="121.7876" y="19.8186" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="119.0776" y="16.8086" size="1.016" layer="27"/>
 </element>
-<element name="C10" library="ds_capacitors" package="6.3X7.7(DXL)" value="100uF 25V" x="120.7324" y="40.6614" smashed="yes" rot="R180">
+<element name="C10" library="ds_capacitors" package="6.3X7.7(DXL)" package3d_urn="urn:adsk.eagle:package:48944449/2" value="100uF 25V" x="120.7324" y="40.6614" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="100uF 25V 90mA@120Hz ±20% SMD,D6.3xL7.7mm Aluminum Electrolytic Capacitors - SMD ROHS" x="120.7324" y="40.6614" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LCSC_PART" value="C267469" x="120.7324" y="40.6614" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="116.0074" y="37.818" size="1.016" layer="25" rot="R270" align="center"/>
 <attribute name="VALUE" value="100uF 25V" x="120.7324" y="40.6614" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="121.9324" y="45.5614" size="1.016" layer="27" rot="R180" align="bottom-center"/>
 </element>
-<element name="C13" library="ds_capacitors" package="6.3X7.7(DXL)" value="100uF 25V" x="120.6324" y="33.1614" smashed="yes" rot="R180">
+<element name="C13" library="ds_capacitors" package="6.3X7.7(DXL)" package3d_urn="urn:adsk.eagle:package:48944449/2" value="100uF 25V" x="120.6324" y="33.1614" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="100uF 25V 90mA@120Hz ±20% SMD,D6.3xL7.7mm Aluminum Electrolytic Capacitors - SMD ROHS" x="120.6324" y="33.1614" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LCSC_PART" value="C267469" x="120.6324" y="33.1614" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="116.1926" y="30.082" size="1.016" layer="25" rot="R90" align="center"/>
 <attribute name="VALUE" value="100uF 25V" x="120.6324" y="33.1614" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="121.8324" y="38.0614" size="1.016" layer="27" rot="R180" align="bottom-center"/>
 </element>
-<element name="C16" library="ds_capacitors" package="6.3X7.7(DXL)" value="100uF 25V" x="120.6324" y="25.5614" smashed="yes" rot="R180">
+<element name="C16" library="ds_capacitors" package="6.3X7.7(DXL)" package3d_urn="urn:adsk.eagle:package:48944449/2" value="100uF 25V" x="120.6324" y="25.5614" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="100uF 25V 90mA@120Hz ±20% SMD,D6.3xL7.7mm Aluminum Electrolytic Capacitors - SMD ROHS" x="120.6324" y="25.5614" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LCSC_PART" value="C267469" x="120.6324" y="25.5614" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="116.1698" y="22.8468" size="1.016" layer="25" rot="R90" align="center"/>
@@ -4884,14 +4895,14 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" x="110.3675" y="9.0496" size="1.27" layer="27" rot="R90" align="top-center"/>
 <attribute name="VALUE" value="MP2315GJ-Z " x="108.1576" y="9.0496" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
-<element name="C3" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="100nF 25V" x="108.4576" y="6.2496" smashed="yes">
+<element name="C3" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="108.4576" y="6.2496" smashed="yes">
 <attribute name="DESCRIPTION" value="25V 100nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="108.4576" y="6.2496" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="108.4576" y="6.2496" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="111.1226" y="5.8146" size="0.8128" layer="25" rot="R90"/>
 <attribute name="VALUE" value="100nF 25V" x="108.4576" y="6.2496" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="107.8226" y="4.3446" size="1.016" layer="27"/>
 </element>
-<element name="C6" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="100nF 25V" x="108.3576" y="13.1496" smashed="yes" rot="R90">
+<element name="C6" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="108.3576" y="13.1496" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="25V 100nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="108.3576" y="13.1496" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="108.3576" y="13.1496" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="108.5426" y="14.6746" size="0.8128" layer="25" rot="R90"/>
@@ -4912,7 +4923,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="10R 1%" x="110.7576" y="10.9496" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="108.8526" y="11.5846" size="1.016" layer="27" rot="R270"/>
 </element>
-<element name="C8" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="100nF 25V" x="112.9576" y="12.8496" smashed="yes">
+<element name="C8" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="112.9576" y="12.8496" smashed="yes">
 <attribute name="DESCRIPTION" value="25V 100nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="112.9576" y="12.8496" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="112.9576" y="12.8496" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="114.8226" y="12.4146" size="0.8128" layer="25"/>
@@ -4943,7 +4954,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="7.5K 1%" x="104.7576" y="11.4496" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="102.8526" y="12.0846" size="1.016" layer="27" rot="R270"/>
 </element>
-<element name="C11" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="33pF 50V" x="104.7576" y="14.5496" smashed="yes" rot="R270">
+<element name="C11" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="33pF 50V" x="104.7576" y="14.5496" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="50V 33pF NP0 ±5% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="104.7576" y="14.5496" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C107005" x="104.7576" y="14.5496" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="105.0526" y="15.9046" size="0.8128" layer="25" rot="R90"/>
@@ -4972,21 +4983,21 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="100K 1%" x="103.8576" y="7.6496" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="103.2226" y="5.7446" size="1.016" layer="27"/>
 </element>
-<element name="C1" library="ds_capacitors" package="1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="22uF 25V" x="108.4576" y="4.4496" smashed="yes">
+<element name="C1" library="ds_capacitors" package="1206" package3d_urn="urn:adsk.eagle:package:46766482/3" value="22uF 25V" x="108.4576" y="4.4496" smashed="yes">
 <attribute name="DESCRIPTION" value="25V 22uF X5R ±10% 1206 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="108.4576" y="4.4496" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C12891" x="108.4576" y="4.4496" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="105.7276" y="4.2796" size="0.8128" layer="25" rot="R180"/>
 <attribute name="VALUE" value="22uF 25V" x="108.4576" y="4.4496" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="107.1876" y="1.9096" size="1.016" layer="27"/>
 </element>
-<element name="C14" library="ds_capacitors" package="1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="22uF 25V" x="115.5576" y="3.1496" smashed="yes" rot="R270">
+<element name="C14" library="ds_capacitors" package="1206" package3d_urn="urn:adsk.eagle:package:46766482/3" value="22uF 25V" x="115.5576" y="3.1496" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="25V 22uF X5R ±10% 1206 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="115.5576" y="3.1496" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C12891" x="115.5576" y="3.1496" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="116.8576" y="4.3296" size="0.8128" layer="25" rot="R270"/>
 <attribute name="VALUE" value="22uF 25V" x="115.5576" y="3.1496" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="113.0176" y="4.4196" size="1.016" layer="27" rot="R270"/>
 </element>
-<element name="C17" library="ds_capacitors" package="1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="22uF 25V" x="113.0576" y="3.1496" smashed="yes" rot="R270">
+<element name="C17" library="ds_capacitors" package="1206" package3d_urn="urn:adsk.eagle:package:46766482/3" value="22uF 25V" x="113.0576" y="3.1496" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="25V 22uF X5R ±10% 1206 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="113.0576" y="3.1496" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C12891" x="113.0576" y="3.1496" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="110.8276" y="2.7196" size="0.8128" layer="25" rot="R270"/>
@@ -5001,7 +5012,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" x="93.6411" y="9.2422" size="1.27" layer="27" rot="R90" align="top-center"/>
 <attribute name="VALUE" value="MP2315GJ-Z " x="91.4312" y="9.2422" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
-<element name="C4" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="100nF 25V" x="91.7312" y="6.4422" smashed="yes">
+<element name="C4" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="91.7312" y="6.4422" smashed="yes">
 <attribute name="DESCRIPTION" value="25V 100nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="91.7312" y="6.4422" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="91.7312" y="6.4422" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="93.3172" y="6.0038" size="0.8128" layer="25"/>
@@ -5015,7 +5026,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="10K 1%" x="87.1512" y="6.5922" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="87.7862" y="8.4972" size="1.016" layer="27" rot="R180"/>
 </element>
-<element name="C7" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="100nF 25V" x="91.6312" y="13.3422" smashed="yes" rot="R90">
+<element name="C7" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="91.6312" y="13.3422" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="25V 100nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="91.6312" y="13.3422" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="91.6312" y="13.3422" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="92.4972" y="13.8438" size="0.8128" layer="25"/>
@@ -5036,7 +5047,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="10R 1%" x="94.0312" y="11.1422" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="92.1262" y="11.7772" size="1.016" layer="27" rot="R270"/>
 </element>
-<element name="C9" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="100nF 25V" x="96.2312" y="13.0422" smashed="yes">
+<element name="C9" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="96.2312" y="13.0422" smashed="yes">
 <attribute name="DESCRIPTION" value="25V 100nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="96.2312" y="13.0422" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="96.2312" y="13.0422" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="98.3962" y="12.6472" size="0.8128" layer="25"/>
@@ -5063,7 +5074,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="12.7K 1%" x="88.0312" y="11.6422" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="86.1262" y="12.2772" size="1.016" layer="27" rot="R270"/>
 </element>
-<element name="C12" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="33pF 50V" x="88.0312" y="14.7422" smashed="yes" rot="R270">
+<element name="C12" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="33pF 50V" x="88.0312" y="14.7422" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="50V 33pF NP0 ±5% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="88.0312" y="14.7422" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C107005" x="88.0312" y="14.7422" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="90.7198" y="15.3048" size="0.8128" layer="25" rot="R90"/>
@@ -5089,21 +5100,21 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="100K 1%" x="87.1312" y="7.9422" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="86.4962" y="6.0372" size="1.016" layer="27"/>
 </element>
-<element name="C2" library="ds_capacitors" package="1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="22uF 25V" x="91.7312" y="4.6422" smashed="yes">
+<element name="C2" library="ds_capacitors" package="1206" package3d_urn="urn:adsk.eagle:package:46766482/3" value="22uF 25V" x="91.7312" y="4.6422" smashed="yes">
 <attribute name="DESCRIPTION" value="25V 22uF X5R ±10% 1206 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="91.7312" y="4.6422" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C12891" x="91.7312" y="4.6422" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="88.0678" y="5.3312" size="0.8128" layer="25" rot="R270"/>
 <attribute name="VALUE" value="22uF 25V" x="91.7312" y="4.6422" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="90.4612" y="2.1022" size="1.016" layer="27"/>
 </element>
-<element name="C15" library="ds_capacitors" package="1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="22uF 25V" x="98.8312" y="3.3422" smashed="yes" rot="R270">
+<element name="C15" library="ds_capacitors" package="1206" package3d_urn="urn:adsk.eagle:package:46766482/3" value="22uF 25V" x="98.8312" y="3.3422" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="25V 22uF X5R ±10% 1206 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="98.8312" y="3.3422" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C12891" x="98.8312" y="3.3422" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="100.2578" y="2.7312" size="0.8128" layer="25"/>
 <attribute name="VALUE" value="22uF 25V" x="98.8312" y="3.3422" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="96.2912" y="4.6122" size="1.016" layer="27" rot="R270"/>
 </element>
-<element name="C18" library="ds_capacitors" package="1206" package3d_urn="urn:adsk.eagle:package:46766482/2" value="22uF 25V" x="96.3312" y="3.3422" smashed="yes" rot="R270">
+<element name="C18" library="ds_capacitors" package="1206" package3d_urn="urn:adsk.eagle:package:46766482/3" value="22uF 25V" x="96.3312" y="3.3422" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="25V 22uF X5R ±10% 1206 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="96.3312" y="3.3422" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C12891" x="96.3312" y="3.3422" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="95.0422" y="3.2688" size="0.8128" layer="25" rot="R180"/>
@@ -5118,14 +5129,14 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="HLW8032" x="13.163" y="83.7248" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="11.258" y="79.2798" size="1.27" layer="27"/>
 </element>
-<element name="C24" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="33nF 50V" x="13.3824" y="90.1562" smashed="yes" rot="R270">
+<element name="C24" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="33nF 50V" x="13.3824" y="90.1562" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="50V 33nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="13.3824" y="90.1562" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C107150" x="13.3824" y="90.1562" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="11.2524" y="91.4562" size="1.016" layer="25" rot="R270"/>
 <attribute name="VALUE" value="33nF 50V" x="13.3824" y="90.1562" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="10.8424" y="90.7912" size="1.016" layer="27" rot="R270"/>
 </element>
-<element name="C25" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="33nF 50V" x="17.1316" y="90.1562" smashed="yes" rot="R270">
+<element name="C25" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="33nF 50V" x="17.1316" y="90.1562" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="50V 33nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="17.1316" y="90.1562" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C107150" x="17.1316" y="90.1562" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="15.1016" y="91.5562" size="1.016" layer="25" rot="R270"/>
@@ -5188,7 +5199,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="1K 1%" x="12.0252" y="77.767" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="11.3902" y="75.227" size="1.016" layer="27"/>
 </element>
-<element name="C26" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="33nF 50V" x="12.0008" y="79.897" smashed="yes">
+<element name="C26" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="33nF 50V" x="12.0008" y="79.897" smashed="yes">
 <attribute name="DESCRIPTION" value="50V 33nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="12.0008" y="79.897" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C107150" x="12.0008" y="79.897" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="9.9692" y="80.233" size="1.016" layer="25" rot="R180"/>
@@ -5203,14 +5214,14 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="HLW8032" x="37.203" y="83.8448" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="35.298" y="79.3998" size="1.27" layer="27"/>
 </element>
-<element name="C30" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="33nF 50V" x="36.6824" y="90.1562" smashed="yes" rot="R270">
+<element name="C30" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="33nF 50V" x="36.6824" y="90.1562" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="50V 33nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="36.6824" y="90.1562" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C107150" x="36.6824" y="90.1562" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="34.4524" y="91.4562" size="1.016" layer="25" rot="R270"/>
 <attribute name="VALUE" value="33nF 50V" x="36.6824" y="90.1562" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="34.1424" y="90.7912" size="1.016" layer="27" rot="R270"/>
 </element>
-<element name="C31" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="33nF 50V" x="40.4316" y="90.1562" smashed="yes" rot="R270">
+<element name="C31" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="33nF 50V" x="40.4316" y="90.1562" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="50V 33nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="40.4316" y="90.1562" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C107150" x="40.4316" y="90.1562" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="38.3016" y="91.4562" size="1.016" layer="25" rot="R270"/>
@@ -5273,7 +5284,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="1K 1%" x="35.9352" y="80.117" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="35.3002" y="77.577" size="1.016" layer="27"/>
 </element>
-<element name="C32" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="33nF 50V" x="35.9508" y="77.987" smashed="yes">
+<element name="C32" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="33nF 50V" x="35.9508" y="77.987" smashed="yes">
 <attribute name="DESCRIPTION" value="50V 33nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="35.9508" y="77.987" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C107150" x="35.9508" y="77.987" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="34.0792" y="78.303" size="1.016" layer="25" rot="R180"/>
@@ -5288,14 +5299,14 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="HLW8032" x="60.973" y="83.9948" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="59.068" y="79.5498" size="1.27" layer="27"/>
 </element>
-<element name="C36" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="33nF 50V" x="60.3824" y="90.2562" smashed="yes" rot="R270">
+<element name="C36" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="33nF 50V" x="60.3824" y="90.2562" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="50V 33nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="60.3824" y="90.2562" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C107150" x="60.3824" y="90.2562" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="58.1524" y="91.6562" size="1.016" layer="25" rot="R270"/>
 <attribute name="VALUE" value="33nF 50V" x="60.3824" y="90.2562" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="57.8424" y="90.8912" size="1.016" layer="27" rot="R270"/>
 </element>
-<element name="C37" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="33nF 50V" x="64.1316" y="90.2562" smashed="yes" rot="R270">
+<element name="C37" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="33nF 50V" x="64.1316" y="90.2562" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="50V 33nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="64.1316" y="90.2562" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C107150" x="64.1316" y="90.2562" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="62.9984" y="89.2438" size="1.016" layer="25" rot="R90"/>
@@ -5358,7 +5369,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="1K 1%" x="59.4752" y="78.017" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="58.8402" y="75.477" size="1.016" layer="27"/>
 </element>
-<element name="C38" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="33nF 50V" x="59.4708" y="80.157" smashed="yes">
+<element name="C38" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="33nF 50V" x="59.4708" y="80.157" smashed="yes">
 <attribute name="DESCRIPTION" value="50V 33nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="59.4708" y="80.157" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C107150" x="59.4708" y="80.157" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="57.5992" y="80.573" size="1.016" layer="25" rot="R180"/>
@@ -5373,14 +5384,14 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="HLW8032" x="84.343" y="84.0148" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="82.438" y="79.5698" size="1.27" layer="27"/>
 </element>
-<element name="C42" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="33nF 50V" x="84.0824" y="90.1562" smashed="yes" rot="R270">
+<element name="C42" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="33nF 50V" x="84.0824" y="90.1562" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="50V 33nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="84.0824" y="90.1562" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C107150" x="84.0824" y="90.1562" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="81.9524" y="91.4562" size="1.016" layer="25" rot="R270"/>
 <attribute name="VALUE" value="33nF 50V" x="84.0824" y="90.1562" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="81.5424" y="90.7912" size="1.016" layer="27" rot="R270"/>
 </element>
-<element name="C43" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="33nF 50V" x="88.4316" y="90.1562" smashed="yes" rot="R270">
+<element name="C43" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="33nF 50V" x="88.4316" y="90.1562" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="50V 33nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="88.4316" y="90.1562" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C107150" x="88.4316" y="90.1562" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="87.1984" y="88.9438" size="1.016" layer="25" rot="R90"/>
@@ -5443,7 +5454,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="1K 1%" x="83.3752" y="77.817" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="82.7402" y="75.277" size="1.016" layer="27"/>
 </element>
-<element name="C44" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="33nF 50V" x="83.3708" y="79.957" smashed="yes">
+<element name="C44" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="33nF 50V" x="83.3708" y="79.957" smashed="yes">
 <attribute name="DESCRIPTION" value="50V 33nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="83.3708" y="79.957" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C107150" x="83.3708" y="79.957" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="81.2992" y="80.173" size="1.016" layer="25" rot="R180"/>
@@ -5458,14 +5469,14 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="HLW8032" x="108.403" y="83.7348" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="106.498" y="79.2898" size="1.27" layer="27"/>
 </element>
-<element name="C27" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="33nF 50V" x="107.9824" y="90.1762" smashed="yes" rot="R270">
+<element name="C27" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="33nF 50V" x="107.9824" y="90.1762" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="50V 33nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="107.9824" y="90.1762" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C107150" x="107.9824" y="90.1762" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="105.7524" y="91.8762" size="1.016" layer="25" rot="R270"/>
 <attribute name="VALUE" value="33nF 50V" x="107.9824" y="90.1762" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="105.4424" y="90.8112" size="1.016" layer="27" rot="R270"/>
 </element>
-<element name="C28" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="33nF 50V" x="112.2316" y="90.1562" smashed="yes" rot="R270">
+<element name="C28" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="33nF 50V" x="112.2316" y="90.1562" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="50V 33nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="112.2316" y="90.1562" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C107150" x="112.2316" y="90.1562" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="110.1016" y="91.7562" size="1.016" layer="25" rot="R270"/>
@@ -5528,7 +5539,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="1K 1%" x="107.3752" y="77.617" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="106.7402" y="75.077" size="1.016" layer="27"/>
 </element>
-<element name="C29" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="33nF 50V" x="107.3708" y="79.757" smashed="yes">
+<element name="C29" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="33nF 50V" x="107.3708" y="79.757" smashed="yes">
 <attribute name="DESCRIPTION" value="50V 33nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="107.3708" y="79.757" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C107150" x="107.3708" y="79.757" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="105.2992" y="80.073" size="1.016" layer="25" rot="R180"/>
@@ -5543,14 +5554,14 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="HLW8032" x="132.453" y="83.6248" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="130.548" y="79.1798" size="1.27" layer="27"/>
 </element>
-<element name="C39" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="33nF 50V" x="132.2024" y="90.3062" smashed="yes" rot="R270">
+<element name="C39" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="33nF 50V" x="132.2024" y="90.3062" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="50V 33nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="132.2024" y="90.3062" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C107150" x="132.2024" y="90.3062" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="129.9724" y="91.7062" size="1.016" layer="25" rot="R270"/>
 <attribute name="VALUE" value="33nF 50V" x="132.2024" y="90.3062" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="129.6624" y="90.9412" size="1.016" layer="27" rot="R270"/>
 </element>
-<element name="C40" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="33nF 50V" x="136.5316" y="90.3562" smashed="yes" rot="R270">
+<element name="C40" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="33nF 50V" x="136.5316" y="90.3562" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="50V 33nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="136.5316" y="90.3562" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C107150" x="136.5316" y="90.3562" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="134.4016" y="91.6562" size="1.016" layer="25" rot="R270"/>
@@ -5613,7 +5624,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="1K 1%" x="131.6752" y="77.617" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="131.0402" y="75.077" size="1.016" layer="27"/>
 </element>
-<element name="C41" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="33nF 50V" x="131.6708" y="79.757" smashed="yes">
+<element name="C41" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="33nF 50V" x="131.6708" y="79.757" smashed="yes">
 <attribute name="DESCRIPTION" value="50V 33nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="131.6708" y="79.757" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C107150" x="131.6708" y="79.757" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="129.6992" y="80.173" size="1.016" layer="25" rot="R180"/>
@@ -5628,14 +5639,14 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="HLW8032" x="157.1052" y="83.7426" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="155.2002" y="79.2976" size="1.27" layer="27"/>
 </element>
-<element name="C48" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="33nF 50V" x="157.2046" y="90.174" smashed="yes" rot="R270">
+<element name="C48" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="33nF 50V" x="157.2046" y="90.174" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="50V 33nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="157.2046" y="90.174" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C107150" x="157.2046" y="90.174" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="154.9746" y="91.374" size="1.016" layer="25" rot="R270"/>
 <attribute name="VALUE" value="33nF 50V" x="157.2046" y="90.174" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="154.6646" y="90.809" size="1.016" layer="27" rot="R270"/>
 </element>
-<element name="C49" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="33nF 50V" x="161.2338" y="90.174" smashed="yes" rot="R270">
+<element name="C49" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="33nF 50V" x="161.2338" y="90.174" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="50V 33nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="161.2338" y="90.174" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C107150" x="161.2338" y="90.174" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="160.1962" y="89.026" size="1.016" layer="25" rot="R90"/>
@@ -5698,7 +5709,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="1K 1%" x="156.2574" y="77.8192" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="155.6224" y="75.2792" size="1.016" layer="27"/>
 </element>
-<element name="C50" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="33nF 50V" x="156.253" y="79.9592" smashed="yes">
+<element name="C50" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="33nF 50V" x="156.253" y="79.9592" smashed="yes">
 <attribute name="DESCRIPTION" value="50V 33nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="156.253" y="79.9592" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C107150" x="156.253" y="79.9592" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="154.317" y="80.1708" size="1.016" layer="25" rot="R180"/>
@@ -5713,14 +5724,14 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="HLW8032" x="181.7352" y="83.6626" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="179.8302" y="79.2176" size="1.27" layer="27"/>
 </element>
-<element name="C54" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="33nF 50V" x="181.3946" y="89.974" smashed="yes" rot="R270">
+<element name="C54" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="33nF 50V" x="181.3946" y="89.974" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="50V 33nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="181.3946" y="89.974" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C107150" x="181.3946" y="89.974" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="179.1646" y="91.574" size="1.016" layer="25" rot="R270"/>
 <attribute name="VALUE" value="33nF 50V" x="181.3946" y="89.974" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="178.8546" y="90.609" size="1.016" layer="27" rot="R270"/>
 </element>
-<element name="C55" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="33nF 50V" x="186.1338" y="89.974" smashed="yes" rot="R270">
+<element name="C55" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="33nF 50V" x="186.1338" y="89.974" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="50V 33nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="186.1338" y="89.974" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C107150" x="186.1338" y="89.974" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="183.8038" y="91.174" size="1.016" layer="25" rot="R270"/>
@@ -5783,7 +5794,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="1K 1%" x="180.9574" y="77.6192" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="180.3224" y="75.0792" size="1.016" layer="27"/>
 </element>
-<element name="C56" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="33nF 50V" x="180.953" y="79.7592" smashed="yes">
+<element name="C56" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="33nF 50V" x="180.953" y="79.7592" smashed="yes">
 <attribute name="DESCRIPTION" value="50V 33nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="180.953" y="79.7592" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C107150" x="180.953" y="79.7592" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="179.017" y="80.0708" size="1.016" layer="25" rot="R180"/>
@@ -5846,7 +5857,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="0.002R 1%" x="38.557" y="98.6748" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="VALUE" x="42.467" y="96.6148" size="0.5" layer="28" rot="MR0" align="top-left"/>
 </element>
-<element name="C21" library="ds_capacitors" package="0603" package3d_urn="urn:adsk.eagle:package:46766484/2" value="2.2uF 50V" x="26.2822" y="35.5136" smashed="yes">
+<element name="C21" library="ds_capacitors" package="0603" package3d_urn="urn:adsk.eagle:package:46766484/3" value="2.2uF 50V" x="26.2822" y="35.5136" smashed="yes">
 <attribute name="DESCRIPTION" value="50V 2.2uF X5R ±10% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="26.2822" y="35.5136" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C913904" x="26.2822" y="35.5136" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="2.2uF 50V" x="26.2822" y="35.5136" size="1.778" layer="27" display="off"/>
@@ -5900,14 +5911,14 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="SN74HC151PWR" x="160.8464" y="33.4062" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="156.9602" y="35.489" size="1.016" layer="27" ratio="10" rot="R270"/>
 </element>
-<element name="C33" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="100nF 25V" x="165.1464" y="31.2062" smashed="yes">
+<element name="C33" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="165.1464" y="31.2062" smashed="yes">
 <attribute name="DESCRIPTION" value="25V 100nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="165.1464" y="31.2062" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="165.1464" y="31.2062" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="164.0614" y="29.7412" size="0.8128" layer="25"/>
 <attribute name="VALUE" value="100nF 25V" x="165.1464" y="31.2062" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="164.5114" y="29.3012" size="1.016" layer="27"/>
 </element>
-<element name="C34" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="100nF 25V" x="165.1464" y="32.3062" smashed="yes">
+<element name="C34" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="165.1464" y="32.3062" smashed="yes">
 <attribute name="DESCRIPTION" value="25V 100nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="165.1464" y="32.3062" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="165.1464" y="32.3062" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="164.3214" y="33.1112" size="0.8128" layer="25"/>
@@ -5960,7 +5971,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="10K 1%" x="122.6796" y="17.2374" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="123.3146" y="19.1424" size="1.016" layer="27" rot="R180"/>
 </element>
-<element name="C35" library="ds_capacitors" package="6.3X7.7(DXL)" value="2.2uF 400V" x="18.2896" y="41.223" smashed="yes" rot="R270">
+<element name="C35" library="ds_capacitors" package="6.3X7.7(DXL)" package3d_urn="urn:adsk.eagle:package:48944449/2" value="2.2uF 400V" x="18.2896" y="41.223" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="2.2uF 400V 28mA@120Hz ±20% SMD,D6.3xL10mm Aluminum Electrolytic Capacitors - SMD ROHS" x="18.2896" y="41.223" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C3345109" x="18.2896" y="41.223" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
@@ -5973,7 +5984,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="4.99K 1%" x="30.5822" y="39.1136" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="32.4872" y="38.4786" size="1.016" layer="27" rot="R90"/>
 </element>
-<element name="C5" library="ds_capacitors" package="0603" package3d_urn="urn:adsk.eagle:package:46766484/2" value="1nF 50V" x="28.8822" y="39.1136" smashed="yes" rot="R270">
+<element name="C5" library="ds_capacitors" package="0603" package3d_urn="urn:adsk.eagle:package:46766484/3" value="1nF 50V" x="28.8822" y="39.1136" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="50V 1nF X7R ±10% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="28.8822" y="39.1136" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C1588" x="28.8822" y="39.1136" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" value="1nF 50V" x="28.8822" y="39.1136" size="1.778" layer="27" rot="R270" display="off"/>
@@ -5986,7 +5997,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" x="29.6722" y="30.0236" size="1.016" layer="27" rot="R270"/>
 <attribute name="VALUE" value="1N4007" x="32.6822" y="27.3136" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="C22" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="220nF 50V" x="32.5822" y="38.0136" smashed="yes" rot="R270">
+<element name="C22" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="220nF 50V" x="32.5822" y="38.0136" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="50V 220nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="32.5822" y="38.0136" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C5378" x="32.5822" y="38.0136" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" value="220nF 50V" x="32.5822" y="38.0136" size="1.778" layer="27" rot="R270" display="off"/>
@@ -6003,11 +6014,11 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="DESCRIPTION" value="260mA 1mH ±20% 220mA SMD,6x6mm Power Inductors ROHS" x="25.8822" y="27.6136" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C168049" x="25.8822" y="27.6136" size="1.778" layer="27" display="off"/>
 </element>
-<element name="C23" library="ds_capacitors" package="6.3X7.7(DXL)" value="100uF 50V" x="17.2822" y="23.5136" smashed="yes" rot="R270">
+<element name="C23" library="ds_capacitors" package="6.3X7.7(DXL)" package3d_urn="urn:adsk.eagle:package:48944449/2" value="100uF 50V" x="17.2822" y="23.5136" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="100uF 50V 229mA@120Hz ±20% SMD,D6.3xL7.7mm Aluminum Electrolytic Capacitors - SMD ROHS" x="17.2822" y="23.5136" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C3151829" x="17.2822" y="23.5136" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="C45" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="1uF 50V" x="19.3822" y="29.8136" smashed="yes">
+<element name="C45" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="1uF 50V" x="19.3822" y="29.8136" smashed="yes">
 <attribute name="DESCRIPTION" value="50V 1uF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="19.3822" y="29.8136" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C28323" x="19.3822" y="29.8136" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="1uF 50V" x="19.3822" y="29.8136" size="1.778" layer="27" display="off"/>
@@ -6031,7 +6042,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <element name="L-REC1" library="ds_passive" package="TP" package3d_urn="urn:adsk.eagle:package:46683740/2" value="TP" x="22.463" y="47.8606" smashed="yes" rot="R180">
 <attribute name="NAME" x="20.632" y="47.2028" size="1.27" layer="25" rot="R180" align="center-left"/>
 </element>
-<element name="C46" library="ds_capacitors" package="0603" package3d_urn="urn:adsk.eagle:package:46766484/2" value="2.2uF 50V" x="48.4768" y="35.2292" smashed="yes">
+<element name="C46" library="ds_capacitors" package="0603" package3d_urn="urn:adsk.eagle:package:46766484/3" value="2.2uF 50V" x="48.4768" y="35.2292" smashed="yes">
 <attribute name="DESCRIPTION" value="50V 2.2uF X5R ±10% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="48.4768" y="35.2292" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C913904" x="48.4768" y="35.2292" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="2.2uF 50V" x="48.4768" y="35.2292" size="1.778" layer="27" display="off"/>
@@ -6056,7 +6067,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="39R 1% 2W" x="54.029" y="46.9814" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="51.969" y="50.8914" size="0.5" layer="27" rot="R270" align="top-left"/>
 </element>
-<element name="C47" library="ds_capacitors" package="6.3X7.7(DXL)" value="2.2uF 400V" x="39.7444" y="41.625" smashed="yes" rot="R270">
+<element name="C47" library="ds_capacitors" package="6.3X7.7(DXL)" package3d_urn="urn:adsk.eagle:package:48944449/2" value="2.2uF 400V" x="39.7444" y="41.625" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="2.2uF 400V 28mA@120Hz ±20% SMD,D6.3xL10mm Aluminum Electrolytic Capacitors - SMD ROHS" x="39.7444" y="41.625" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C3345109" x="39.7444" y="41.625" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
@@ -6069,7 +6080,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="4.99K 1%" x="53.0768" y="39.3292" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="54.9818" y="38.6942" size="1.016" layer="27" rot="R90"/>
 </element>
-<element name="C51" library="ds_capacitors" package="0603" package3d_urn="urn:adsk.eagle:package:46766484/2" value="1nF 50V" x="51.3768" y="39.3292" smashed="yes" rot="R270">
+<element name="C51" library="ds_capacitors" package="0603" package3d_urn="urn:adsk.eagle:package:46766484/3" value="1nF 50V" x="51.3768" y="39.3292" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="50V 1nF X7R ±10% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="51.3768" y="39.3292" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C1588" x="51.3768" y="39.3292" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" value="1nF 50V" x="51.3768" y="39.3292" size="1.778" layer="27" rot="R270" display="off"/>
@@ -6082,7 +6093,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" x="52.0668" y="29.6392" size="1.016" layer="27" rot="R270"/>
 <attribute name="VALUE" value="1N4007" x="55.0768" y="26.9292" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="C52" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="220nF 50V" x="55.0482" y="37.4434" smashed="yes" rot="R270">
+<element name="C52" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="220nF 50V" x="55.0482" y="37.4434" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="50V 220nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="55.0482" y="37.4434" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C5378" x="55.0482" y="37.4434" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" value="220nF 50V" x="55.0482" y="37.4434" size="1.778" layer="27" rot="R270" display="off"/>
@@ -6099,11 +6110,11 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="DESCRIPTION" value="260mA 1mH ±20% 220mA SMD,6x6mm Power Inductors ROHS" x="48.4768" y="27.3292" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C168049" x="48.4768" y="27.3292" size="1.778" layer="27" display="off"/>
 </element>
-<element name="C53" library="ds_capacitors" package="6.3X7.7(DXL)" value="100uF 50V" x="39.8768" y="22.7292" smashed="yes" rot="R270">
+<element name="C53" library="ds_capacitors" package="6.3X7.7(DXL)" package3d_urn="urn:adsk.eagle:package:48944449/2" value="100uF 50V" x="39.8768" y="22.7292" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="100uF 50V 229mA@120Hz ±20% SMD,D6.3xL7.7mm Aluminum Electrolytic Capacitors - SMD ROHS" x="39.8768" y="22.7292" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C3151829" x="39.8768" y="22.7292" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="C57" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="1uF 50V" x="41.5768" y="28.9292" smashed="yes">
+<element name="C57" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="1uF 50V" x="41.5768" y="28.9292" smashed="yes">
 <attribute name="DESCRIPTION" value="50V 1uF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="41.5768" y="28.9292" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C28323" x="41.5768" y="28.9292" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="1uF 50V" x="41.5768" y="28.9292" size="1.778" layer="27" display="off"/>
@@ -6204,7 +6215,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="NAME" x="142.981" y="21.0144" size="0.8128" layer="25" rot="R90"/>
 <attribute name="VALUE" value="MCP6001RT-I/OT" x="140.7674" y="19.2632" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="C60" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="1uF 25V" x="136.9942" y="18.3498" smashed="yes" rot="R180">
+<element name="C60" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="1uF 25V" x="136.9942" y="18.3498" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="25V 1uF X5R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="136.9942" y="18.3498" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LCSC_PART" value="C52923" x="136.9942" y="18.3498" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="135.4234" y="18.6554" size="0.8128" layer="25" rot="R180"/>
@@ -6265,14 +6276,14 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="2.2K 1%" x="178.3052" y="6.6572" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="177.6702" y="4.7522" size="1.27" layer="27"/>
 </element>
-<element name="C65" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="10uF 50V" x="171.2886" y="10.0278" smashed="yes" rot="R180">
+<element name="C65" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="10uF 50V" x="171.2886" y="10.0278" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="50V 10uF X5R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="171.2886" y="10.0278" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LCSC_PART" value="C440198" x="171.2886" y="10.0278" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="172.1552" y="8.9672" size="0.8128" layer="25" rot="R180"/>
 <attribute name="VALUE" value="10uF 50V" x="171.2886" y="10.0278" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="171.9236" y="12.5678" size="1.016" layer="27" rot="R180"/>
 </element>
-<element name="C66" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="100nF 25V" x="171.7822" y="11.6528" smashed="yes" rot="R180">
+<element name="C66" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="171.7822" y="11.6528" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="25V 100nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="171.7822" y="11.6528" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="171.7822" y="11.6528" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="170.8814" y="12.3862" size="0.8128" layer="25"/>
@@ -6426,7 +6437,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="1M 1%" x="169.2278" y="4.7474" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="171.1328" y="4.1124" size="1.016" layer="27" rot="R90"/>
 </element>
-<element name="C78" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="4.7nF 50V" x="167.9678" y="4.7736" smashed="yes" rot="R90">
+<element name="C78" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="4.7nF 50V" x="167.9678" y="4.7736" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="50V 4.7nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="167.9678" y="4.7736" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="LCSC_PART" value="C1538" x="167.9678" y="4.7736" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="166.4414" y="5.8412" size="0.8128" layer="25" rot="R270"/>
@@ -6513,7 +6524,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="49.9R 1%" x="185.595946875" y="30.329984375" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="184.960946875" y="28.424984375" size="1.27" layer="27"/>
 </element>
-<element name="C79" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="100nF 25V" x="195.993878125" y="19.59550625" smashed="yes" rot="R90">
+<element name="C79" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="195.993878125" y="19.59550625" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="25V 100nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="195.993878125" y="19.59550625" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="195.993878125" y="19.59550625" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="194.586078125" y="20.618709375" size="0.8128" layer="25" rot="R270"/>
@@ -6548,7 +6559,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="470R 1%" x="185.664" y="19.4546" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="183.759" y="20.0896" size="1.016" layer="27" rot="R270"/>
 </element>
-<element name="C80" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="22nF 50V" x="186.956" y="19.4318" smashed="yes" rot="R90">
+<element name="C80" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="22nF 50V" x="186.956" y="19.4318" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="50V 22nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="186.956" y="19.4318" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="LCSC_PART" value="C1532" x="186.956" y="19.4318" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="188.8578" y="18.1018" size="0.8128" layer="25" rot="R90"/>
@@ -6582,7 +6593,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="100nF 25V" x="175.66" y="35.3594" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="177.565" y="34.7244" size="1.27" layer="27" rot="R90"/>
 </element>
-<element name="C85" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="4.7uF 25V" x="177.294" y="36.2368" smashed="yes" rot="R90">
+<element name="C85" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="4.7uF 25V" x="177.294" y="36.2368" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="25V 4.7uF X5R ±20% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="177.294" y="36.2368" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="LCSC_PART" value="C22367824" x="177.294" y="36.2368" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="176.5982" y="37.769" size="0.8128" layer="25" rot="R180"/>
@@ -6701,7 +6712,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="NAME" x="179.0672" y="14.5112" size="0.8128" layer="25" rot="R180"/>
 <attribute name="VALUE" value="MIC5504-3.3YM5 " x="178.6242" y="17.1666" size="1.778" layer="27" display="off"/>
 </element>
-<element name="C97" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="10uF 50V" x="181.2342" y="17.8862" smashed="yes" rot="R90">
+<element name="C97" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="10uF 50V" x="181.2342" y="17.8862" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="50V 10uF X5R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="181.2342" y="17.8862" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="LCSC_PART" value="C440198" x="181.2342" y="17.8862" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="183.3578" y="18.124" size="0.8128" layer="25" rot="R90"/>
@@ -6715,7 +6726,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="100nF 25V" x="180.9962" y="15.398" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="180.3612" y="13.493" size="1.27" layer="27"/>
 </element>
-<element name="C99" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/2" value="10uF 50V" x="175.8052" y="17.1412" smashed="yes" rot="R270">
+<element name="C99" library="ds_capacitors" package="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="10uF 50V" x="175.8052" y="17.1412" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="50V 10uF X5R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="175.8052" y="17.1412" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C440198" x="175.8052" y="17.1412" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="174.611" y="16.924" size="0.8128" layer="25" rot="R90"/>
@@ -6877,7 +6888,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="NAME" x="122.43" y="10.35" size="1.2" layer="25" ratio="10"/>
 <attribute name="VALUE" value="SS12" x="125.604" y="11.518" size="1.2" layer="27" ratio="10" rot="R180"/>
 </element>
-<element name="DSP" library="ds_con" package="FPC20" package3d_urn="urn:adsk.eagle:package:47082459/3" value="AFC11-S20ICC-00 " x="136.69" y="3.8" smashed="yes" rot="R180">
+<element name="DSP" library="ds_con" package="FPC20" package3d_urn="urn:adsk.eagle:package:47082459/4" value="AFC11-S20ICC-00 " x="136.69" y="3.8" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="Drawer Type 20P Single-sided contact points/Vertical Standing paste 0.5mm SMD,P=0.5mm FFC, FPC (Flat Flexible) Connector Assemblies ROHS " x="136.69" y="3.8" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LCSC_PART" value="C11073" x="136.69" y="3.8" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="145.616" y="8.463" size="1.016" layer="25" align="bottom-right"/>
@@ -7121,7 +7132,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="LCSC_PART" value="C307385" x="137.6" y="19.7" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" value="1uF 16V" x="139.505" y="19.065" size="1.27" layer="27" rot="R90"/>
 </element>
-<element name="C104" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="1uF 25V" x="135.1" y="20.9" smashed="yes">
+<element name="C104" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="1uF 25V" x="135.1" y="20.9" smashed="yes">
 <attribute name="DESCRIPTION" value="25V 1uF X5R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="135.1" y="20.9" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C52923" x="135.1" y="20.9" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="1uF 25V" x="134.465" y="18.995" size="1.27" layer="27"/>
@@ -7157,7 +7168,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="NAME" x="167.2592875" y="10.26984375" size="1.016" layer="25" rot="R135"/>
 <attribute name="VALUE" x="169.0553375" y="12.06589375" size="1.016" layer="27" rot="R135"/>
 </element>
-<element name="ETH1" library="ds_con" package="J1B1211CCD" value="J1B1211CCD" x="191.48" y="6.92" smashed="yes">
+<element name="ETH1" library="ds_con" package="J1B1211CCD" package3d_urn="urn:adsk.eagle:package:48944391/2" value="J1B1211CCD" x="191.48" y="6.92" smashed="yes">
 <attribute name="DATASHEET" value="file:///C:/Users/sdvid/Downloads/j1b1211ccd.pdf" x="191.48" y="6.92" size="1.778" layer="27" display="off"/>
 <attribute name="DESCRIPTION" value="RJ45Receptacle 1 Shielded Bend insert cat5 Gold Phosphor Bronze WithLED -40℃~+85℃ Plugin Ethernet Connectors / Modular Connectors (RJ45 RJ11) ROHS " x="191.48" y="6.92" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C910371" x="191.48" y="6.92" size="1.778" layer="27" display="off"/>
