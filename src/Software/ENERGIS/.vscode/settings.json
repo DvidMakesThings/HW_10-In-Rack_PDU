@@ -43,5 +43,12 @@
         "hlw8032_cache.h": "c",
         "helper_functions.h": "c",
         "random": "c"
+    },
+    "editor.formatOnSave": true,
+    "[c]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools"
+    },
+    "[cpp]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools"
     }
 }

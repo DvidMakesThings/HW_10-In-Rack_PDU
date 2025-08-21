@@ -1,12 +1,14 @@
 /**
- * @file MCP23017_driver.c
- * @author DvidMakesThings - David Sipos
- * @brief Implementation of MCP23017 I/O Expander Driver
+ * @file MCP23017_display_driver.c
+ * @author David Sipos
+ * @brief Implementation for MCP23017 I/O Expander driver on ENERGIS display board.
  * @version 1.1
  * @date 2025-03-03
+ * @copyright Copyright (c) 2025
  *
- * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
- * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
+ * @details
+ * This file implements functions for initializing and controlling the MCP23017
+ * I/O expander on the ENERGIS display board, including register access and pin manipulation.
  */
 
 #include "MCP23017_display_driver.h"
@@ -14,9 +16,12 @@
 #include "pico/stdlib.h"
 
 /**
- * @brief Reads a register from the MCP23017.
- * @param reg The register address.
- * @return The value read from the register.
+ * @brief Reads a register from the MCP23017 device.
+ *
+ * Writes the register address, then reads a single byte from the device.
+ *
+ * @param reg Register address to read.
+ * @return Value read from the register.
  */
 static uint8_t mcp_display_read_register(uint8_t reg) {
     uint8_t value;
@@ -27,9 +32,12 @@ static uint8_t mcp_display_read_register(uint8_t reg) {
 }
 
 /**
- * @brief Writes a value to a register on the MCP23017.
- * @param reg The register address.
- * @param value The value to write.
+ * @brief Writes a value to a register on the MCP23017 device.
+ *
+ * Sends the register address and value as a two-byte sequence.
+ *
+ * @param reg Register address to write.
+ * @param value Value to write to the register.
  */
 static void mcp_display_write_register(uint8_t reg, uint8_t value) {
     uint8_t data[2] = {reg, value};
@@ -37,23 +45,25 @@ static void mcp_display_write_register(uint8_t reg, uint8_t value) {
 }
 
 /**
- * @brief Writes a value to a specified MCP23017 register.
- * @param reg The register address.
- * @param value The value to write.
+ * @brief Writes a value to a specific MCP23017 register.
+ *
+ * @param reg Register address to write.
+ * @param value Value to write.
  */
 void mcp_display_write_reg(uint8_t reg, uint8_t value) { mcp_display_write_register(reg, value); }
 
 /**
- * @brief Reads a value from a specified MCP23017 register.
- * @param reg The register address.
- * @return The value read.
+ * @brief Reads a value from a specific MCP23017 register.
+ *
+ * @param reg Register address to read.
+ * @return Value read from the register.
  */
 uint8_t mcp_display_read_reg(uint8_t reg) { return mcp_display_read_register(reg); }
 
 /**
- * @brief Initializes the display board's MCP23017.
+ * @brief Initializes the MCP23017 I/O expander for the display board.
  *
- * Performs a hardware reset using the MCP_LCD_RST pin and configures all ports as outputs.
+ * Performs a hardware reset using MCP_LCD_RST and sets all pins as outputs.
  */
 void mcp_display_init(void) {
     // Perform a hardware reset on the MCP23017 using MCP_LCD_RST.
@@ -70,8 +80,11 @@ void mcp_display_init(void) {
 
 /**
  * @brief Sets the direction of a specific MCP23017 pin.
- * @param pin The pin number (0-15).
- * @param direction 0 = output, 1 = input.
+ *
+ * Configures the pin as input or output by updating the IODIR register.
+ *
+ * @param pin Pin number (0-15).
+ * @param direction Pin direction: 0 for output, 1 for input.
  */
 void mcp_display_set_direction(uint8_t pin, uint8_t direction) {
     // Determine the register (IODIRA for pins 0-7, IODIRB for pins 8-15).
@@ -89,8 +102,11 @@ void mcp_display_set_direction(uint8_t pin, uint8_t direction) {
 
 /**
  * @brief Writes a digital value to a specific MCP23017 pin.
- * @param pin The pin number (0-15).
- * @param value 0 = low, 1 = high.
+ *
+ * Updates the output latch register to set the pin high or low.
+ *
+ * @param pin Pin number (0-15).
+ * @param value Digital value: 0 for low, 1 for high.
  */
 void mcp_display_write_pin(uint8_t pin, uint8_t value) {
     // Write to output latch registers (OLATA for pins 0-7, OLATB for pins 8-15).
@@ -108,8 +124,11 @@ void mcp_display_write_pin(uint8_t pin, uint8_t value) {
 
 /**
  * @brief Reads the digital value from a specific MCP23017 pin.
- * @param pin The pin number (0-15).
- * @return 0 = low, 1 = high.
+ *
+ * Reads the GPIO register and returns the value of the specified pin.
+ *
+ * @param pin Pin number (0-15).
+ * @return Digital value: 0 if low, 1 if high.
  */
 uint8_t mcp_display_read_pin(uint8_t pin) {
     // Read from the GPIO registers (GPIOA for pins 0-7, GPIOB for pins 8-15).
