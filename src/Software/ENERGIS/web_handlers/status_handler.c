@@ -70,8 +70,11 @@ void handle_status_request(uint8_t sock) {
         float    P  = hlw8032_cached_power((uint8_t)i);
         uint32_t up = hlw8032_cached_uptime((uint8_t)i);
 
-        DEBUG_PRINT("Channel %d: state=%s, uptime=%u, voltage=%.2f, current=%.2f, power=%.2f\n",
-                    i, state ? "true" : "false", up, V, I, P);
+        PLOT("voltage%d_Channel%d: %.2f\n", i + 1, i + 1, V);
+        PLOT("current%d_Channel%d: %.2f\n", i + 1, i + 1, I);
+        PLOT("power%d_Channel%d: %.2f\n", i + 1, i + 1, P);
+        PLOT("uptime%d_Channel%d: %u\n", i + 1, i + 1, up);
+        PLOT("state%d_Channel%d: %s\n", i + 1, i + 1, state ? "true" : "false");
 
         pos += snprintf(json + pos, sizeof(json) - pos,
                         "{ \"voltage\": %.2f, \"current\": %.2f, \"uptime\": %u, "
