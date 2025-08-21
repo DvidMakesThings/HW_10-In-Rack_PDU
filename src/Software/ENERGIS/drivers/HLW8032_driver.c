@@ -8,6 +8,8 @@
 // frame buffer
 static uint8_t frame[HLW8032_FRAME_LENGTH];
 static uint8_t rx_buf[MAX_RX_BYTES];
+static uint32_t channel_uptime[8] = {0};
+static absolute_time_t channel_last_on[8];
 
 // raw registers
 static uint32_t VolPar, VolData;
@@ -20,6 +22,16 @@ static uint32_t PF_Count = 1;
 static float last_voltage = 0.0f;
 static float last_current = 0.0f;
 static float last_power = 0.0f;
+
+// Cached measurements
+static float cached_voltage[8];
+static float cached_current[8];
+static float cached_power[8];
+static uint32_t cached_uptime[8];
+static bool cached_state[8];
+
+// For reading schedule
+static uint8_t poll_channel = 0;
 
 // select MUX channel (3-bit)
 static void mux_select(uint8_t ch) {
@@ -117,3 +129,64 @@ float hlw8032_get_kwh(void) {
     float imp_per_wh = ((float)PowPar / app) / 1e9f;
     return ((float)PF * PF_Count) / (imp_per_wh * 3600.0f);
 }
+
+// Call when channel is ON to update uptime
+void hlw8032_update_uptime(uint8_t ch, bool state) {
+    if (state) {
+        if (is_nil_time(channel_last_on[ch])) {
+            channel_last_on[ch] = get_absolute_time();
+        } else {
+            // accumulate elapsed seconds
+            absolute_time_t now = get_absolute_time();
+            int64_t diff_us = absolute_time_diff_us(channel_last_on[ch], now);
+            channel_uptime[ch] += diff_us / 1000000;
+            channel_last_on[ch] = now;
+        }
+    } else {
+        channel_last_on[ch] = nil_time; // reset timer if off
+    }
+}
+
+uint32_t hlw8032_get_uptime(uint8_t ch) {
+    return channel_uptime[ch];
+}
+
+void hlw8032_poll_once(void) {
+    bool state = mcp_relay_read_pin(poll_channel);
+    cached_state[poll_channel] = state;
+
+    hlw8032_update_uptime(poll_channel, state);
+
+    bool ok = hlw8032_read(poll_channel);
+    cached_voltage[poll_channel] = ok ? hlw8032_get_voltage() : 0.0f;
+    cached_current[poll_channel] = ok ? hlw8032_get_current() : 0.0f;
+    cached_power[poll_channel]   = ok ? hlw8032_get_power()   : 0.0f;
+    cached_uptime[poll_channel]  = hlw8032_get_uptime(poll_channel);
+
+    poll_channel = (poll_channel + 1) % 8;  // next channel next time
+}
+
+void hlw8032_refresh_all(void) {
+    for (uint8_t ch = 0; ch < 8; ch++) {
+        // Latch current relay state and update uptime bookkeeping
+        bool state = mcp_relay_read_pin(ch);
+        cached_state[ch] = state;
+        hlw8032_update_uptime(ch, state);
+
+        // Read one fresh frame for this channel (blocking per channel)
+        bool ok = hlw8032_read(ch);
+
+        // Store scaled results into SRAM cache (read-only for Core1)
+        cached_voltage[ch] = ok ? hlw8032_get_voltage() : 0.0f;
+        cached_current[ch] = ok ? hlw8032_get_current() : 0.0f;
+        cached_power[ch]   = ok ? hlw8032_get_power()   : 0.0f;
+        cached_uptime[ch]  = hlw8032_get_uptime(ch);
+    }
+}
+
+// Getters for cached values
+float hlw8032_cached_voltage(uint8_t ch) { return cached_voltage[ch]; }
+float hlw8032_cached_current(uint8_t ch) { return cached_current[ch]; }
+float hlw8032_cached_power(uint8_t ch)   { return cached_power[ch]; }
+uint32_t hlw8032_cached_uptime(uint8_t ch) { return cached_uptime[ch]; }
+bool hlw8032_cached_state(uint8_t ch)    { return cached_state[ch]; }
