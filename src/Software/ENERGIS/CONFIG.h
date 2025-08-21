@@ -66,6 +66,10 @@
 #define WARNING_PRINT(...)                                                                         \
     if (WARNING)                                                                                   \
         printf("[WARNING] " __VA_ARGS__);
+#define PLOT_EN 1
+#define PLOT(...)                                                                           \
+    if (PLOT_EN)                                                                                     \
+        printf("\t[PLOT] " __VA_ARGS__);
 
 // I2C Peripheral Assignments
 #define EEPROM_I2C i2c1           ///< Using I2C1 for EEPROM communication

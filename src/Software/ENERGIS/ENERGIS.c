@@ -26,7 +26,7 @@ __attribute__((section(".uninitialized_data"))) uint32_t bootloader_trigger;
  * @return int
  */
 int main(void) {
-    // Set core voltage to 1.25V (must be first)
+    // Set core voltage to 1.20V (must be first)
     vreg_set_voltage(VREG_VOLTAGE_1_20);
 
     // Let voltage settle properly
@@ -43,8 +43,6 @@ int main(void) {
     }
 
     stdio_usb_init();
-
-    // sleep_ms(4000); // Delay for debugging
 
     if (!startup_init()) {
         ERROR_PRINT("Startup initialization failed.\n");
@@ -67,14 +65,26 @@ int main(void) {
         return -1;
     }
 
-    // Launch Ethernet/HTTP server handling on Core 1.
+    /*  NOTE:
+     *  - hlw8032_init() is already called from startup_init().
+     *  - Core0 is the PRODUCER: every POLL_INTERVAL_MS it refreshes ALL 8 channels
+     *    in a blocking loop and stores results in SRAM cache.
+     *  - Core1 (launched below) is the CONSUMER: it serves Web/SNMP using only
+     *    the cached values (non‑blocking).
+     */
     multicore_launch_core1(core1_task);
 
-    uint64_t last_ts = to_ms_since_boot(get_absolute_time());
+    uint32_t last_poll_ms = to_ms_since_boot(get_absolute_time());
 
     while (1) {
-        uart_command_loop();
+        uint32_t now_ms = to_ms_since_boot(get_absolute_time());
+        if ((now_ms - last_poll_ms) >= POLL_INTERVAL_MS) {
+            hlw8032_refresh_all();       // refresh ALL channels (blocking, once/5s)
+            last_poll_ms = now_ms;
+        }
 
-        sleep_us(100);
+        uart_command_loop();             // keep CLI responsive
+        sleep_us(100);                   // tiny idle to be kind to CPU
     }
 }
+

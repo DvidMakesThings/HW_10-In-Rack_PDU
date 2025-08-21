@@ -534,7 +534,7 @@ DIN A3, landscape with location and doc. field</description>
 <text x="-5.7404" y="16.5354" size="1.27" layer="27" ratio="6" rot="SR0">&gt;Name</text>
 <text x="8.8646" y="8.4836" size="1.27" layer="27" ratio="6" rot="SR90">&gt;Value</text>
 </package>
-<package name="B3U-1000P">
+<package name="B3U-1000P" urn="urn:adsk.eagle:footprint:49287349/1">
 <wire x1="-1.5" y1="-1.25" x2="-1.5" y2="1.25" width="0.127" layer="51"/>
 <wire x1="1.5" y1="1.25" x2="1.5" y2="-1.25" width="0.127" layer="51"/>
 <wire x1="1.5" y1="-1.25" x2="-1.5" y2="-1.25" width="0.127" layer="51"/>
@@ -551,12 +551,12 @@ DIN A3, landscape with location and doc. field</description>
 <wire x1="-1.75" y1="1.1" x2="-1.75" y2="1.5" width="0.05" layer="39"/>
 <wire x1="-1.75" y1="1.5" x2="1.75" y2="1.5" width="0.05" layer="39"/>
 <wire x1="1.75" y1="1.5" x2="1.75" y2="1.1" width="0.05" layer="39"/>
+<wire x1="-1.5" y1="1.25" x2="1.5" y2="1.25" width="0.127" layer="21"/>
+<wire x1="1.5" y1="1.25" x2="-1.5" y2="1.25" width="0.127" layer="51"/>
 <text x="-2.7" y="1.7" size="1.27" layer="25">&gt;NAME</text>
 <text x="-2.7" y="-2.9" size="1.27" layer="27">&gt;VALUE</text>
 <circle x="-2.7" y="0.2" radius="0.1" width="0.2" layer="21"/>
 <circle x="-2.7" y="0.2" radius="0.1" width="0.2" layer="51"/>
-<wire x1="-1.5" y1="1.25" x2="1.5" y2="1.25" width="0.127" layer="21"/>
-<wire x1="1.5" y1="1.25" x2="-1.5" y2="1.25" width="0.127" layer="51"/>
 <smd name="1" x="-1.7" y="0" dx="0.8" dy="1.7" layer="1"/>
 <smd name="2" x="1.7" y="0" dx="0.8" dy="1.7" layer="1"/>
 </package>
@@ -681,6 +681,11 @@ DIN A3, landscape with location and doc. field</description>
 <packageinstance name="WE-XTAL_CFPX-180"/>
 </packageinstances>
 </package3d>
+<package3d name="B3U-1000P" urn="urn:adsk.eagle:package:49287356/2" type="model">
+<packageinstances>
+<packageinstance name="B3U-1000P"/>
+</packageinstances>
+</package3d>
 </packages3d>
 <symbols>
 <symbol name="+12V" urn="urn:adsk.eagle:symbol:46683732/1">
@@ -762,7 +767,7 @@ DIN A3, landscape with location and doc. field</description>
 <text x="-2.54" y="-2.54" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
 <pin name="AGND" x="0" y="2.54" visible="off" length="short" direction="sup" rot="R270"/>
 </symbol>
-<symbol name="+1V1" urn="urn:adsk.eagle:symbol:46766474/1" locally_modified="yes">
+<symbol name="+1V1" urn="urn:adsk.eagle:symbol:46766474/2">
 <wire x1="1.27" y1="-1.905" x2="0" y2="0" width="0.254" layer="94"/>
 <wire x1="0" y1="0" x2="-1.27" y2="-1.905" width="0.254" layer="94"/>
 <text x="0" y="2.54" size="1.778" layer="96" align="top-center">&gt;VALUE</text>
@@ -808,20 +813,20 @@ DIN A3, landscape with location and doc. field</description>
 <text x="-6.6294" y="11.0236" size="2.0828" layer="95" ratio="6" rot="SR0">&gt;Name</text>
 <text x="4.7244" y="-8.4836" size="2.0828" layer="96" ratio="6" rot="SR180">&gt;Value</text>
 </symbol>
-<symbol name="+3V3_MCU">
+<symbol name="+3V3_MCU" urn="urn:adsk.eagle:symbol:49287323/1">
 <wire x1="1.27" y1="-1.905" x2="0" y2="0" width="0.254" layer="94"/>
 <wire x1="0" y1="0" x2="-1.27" y2="-1.905" width="0.254" layer="94"/>
 <text x="0" y="2.54" size="1.778" layer="96" align="top-center">&gt;VALUE</text>
 <pin name="+3V3_MCU" x="0" y="-2.54" visible="off" length="short" direction="sup" rot="R90"/>
 </symbol>
-<symbol name="DTSM31N" urn="urn:adsk.eagle:symbol:46683736/1" locally_modified="yes">
+<symbol name="DTSM31N" urn="urn:adsk.eagle:symbol:46683736/2">
 <pin name="P$1" x="-5.08" y="0" visible="off" length="short"/>
 <pin name="P$2" x="5.08" y="0" visible="off" length="short" rot="R180"/>
 <wire x1="-2.54" y1="0" x2="2.54" y2="2.54" width="0.1524" layer="94"/>
 <text x="0" y="5.08" size="1.778" layer="95" rot="R180">&gt;NAME</text>
 <text x="-5.08" y="-2.54" size="1.778" layer="96">&gt;VALUE</text>
 </symbol>
-<symbol name="CRYSTAL-4PIN">
+<symbol name="CRYSTAL-4PIN" urn="urn:adsk.eagle:symbol:49287338/1">
 <wire x1="1.016" y1="0" x2="2.54" y2="0" width="0.1524" layer="94"/>
 <wire x1="-2.54" y1="0" x2="-1.016" y2="0" width="0.1524" layer="94"/>
 <wire x1="-0.381" y1="1.524" x2="-0.381" y2="-1.524" width="0.254" layer="94"/>
@@ -845,7 +850,7 @@ DIN A3, landscape with location and doc. field</description>
 <pin name="1" x="-5.08" y="0" visible="pad" length="short" direction="pas"/>
 <pin name="GND" x="0" y="-5.08" visible="pad" length="short" direction="pas" rot="R90"/>
 </symbol>
-<symbol name="DIFFPAIR">
+<symbol name="DIFFPAIR" urn="urn:adsk.eagle:symbol:49287332/1">
 <wire x1="-3.048" y1="-0.889" x2="-1.27" y2="-0.889" width="0.4064" layer="94"/>
 <wire x1="-1.27" y1="-0.889" x2="-0.762" y2="-0.127" width="0.4064" layer="94"/>
 <wire x1="-0.762" y1="-0.127" x2="0.762" y2="-0.127" width="0.4064" layer="94"/>
@@ -1157,7 +1162,7 @@ DIN A3, landscape with location and doc. field</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="+1V1" urn="urn:adsk.eagle:component:46766487/1" locally_modified="yes" prefix="+1V1">
+<deviceset name="+1V1" urn="urn:adsk.eagle:component:46766487/2" prefix="+1V1">
 <description>&lt;b&gt;SUPPLY SYMBOL&lt;/b&gt;</description>
 <gates>
 <gate name="G$1" symbol="+1V1" x="0" y="0"/>
@@ -1183,7 +1188,7 @@ DIN A3, landscape with location and doc. field</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="G2RL-1A-E_DC12" urn="urn:adsk.eagle:component:46756718/2" locally_modified="yes" prefix="K">
+<deviceset name="G2RL-1A-E_DC12" urn="urn:adsk.eagle:component:46756718/3" prefix="K">
 <description>12V 16A One Normally Open: 1A (SPST-NO) DIP,12.5x28.8mm Power Relays ROHS</description>
 <gates>
 <gate name="A" symbol="RELAY_G2R-1A-E_AC12" x="0" y="0"/>
@@ -1211,7 +1216,7 @@ DIN A3, landscape with location and doc. field</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="+3V3_MCU" prefix="+3V3_MCU">
+<deviceset name="+3V3_MCU" urn="urn:adsk.eagle:component:49287367/1" prefix="+3V3_MCU">
 <gates>
 <gate name="G$1" symbol="+3V3_MCU" x="0" y="0"/>
 </gates>
@@ -1223,7 +1228,7 @@ DIN A3, landscape with location and doc. field</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="B3U-1000P" prefix="SW" uservalue="yes">
+<deviceset name="B3U-1000P" urn="urn:adsk.eagle:component:49287377/1" locally_modified="yes" prefix="SW" uservalue="yes">
 <description>2.5mm 1.6mm Round Button 50mA Standing paste 3mm SPST 153gf 12V SMD,2.5x3mm Tactile Switches ROHS</description>
 <gates>
 <gate name="G$1" symbol="DTSM31N" x="0" y="0"/>
@@ -1234,6 +1239,9 @@ DIN A3, landscape with location and doc. field</description>
 <connect gate="G$1" pin="P$1" pad="1"/>
 <connect gate="G$1" pin="P$2" pad="2"/>
 </connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:49287356/2"/>
+</package3dinstances>
 <technologies>
 <technology name="">
 <attribute name="DATASHEET" value="https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3u.pdf" constant="no"/>
@@ -1245,7 +1253,7 @@ DIN A3, landscape with location and doc. field</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="CRYSTAL-3225" prefix="X" uservalue="yes">
+<deviceset name="CRYSTAL-3225" urn="urn:adsk.eagle:component:49287378/1" prefix="X" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="CRYSTAL-4PIN" x="0" y="0"/>
 </gates>
@@ -1262,8 +1270,8 @@ DIN A3, landscape with location and doc. field</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="12MHz Surface Mount Crystal 20pF ±10ppm ±20ppm SMD3225-4P Crystals ROHS " constant="no"/>
-<attribute name="LCSC_PART" value="C9002" constant="no"/>
-<attribute name="VALUE" value="12MHz" constant="no"/>
+<attribute name="LCSC_PART" value="C20625731" constant="no"/>
+<attribute name="VALUE" value="ABM8-272-T3 12MHz" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -1303,7 +1311,7 @@ DIN A3, landscape with location and doc. field</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="DIFPAIR" prefix="DP">
+<deviceset name="DIFPAIR" urn="urn:adsk.eagle:component:49287371/1" prefix="DP">
 <gates>
 <gate name="B" symbol="DIFFPAIR" x="0" y="0"/>
 </gates>
@@ -3132,138 +3140,6 @@ The MP2315 is a high frequency synchronous rectified step-down switch mode conve
 </deviceset>
 </devicesets>
 </library>
-<library name="Resistor Array" urn="urn:adsk.eagle:library:16491332">
-<description>&lt;h3&gt; PCBLayout.com - Frequently Used &lt;i&gt;Resistor Array&lt;/i&gt;&lt;/h3&gt;
-
-Visit us at &lt;a href="http://www.PCBLayout.com"&gt;PCBLayout.com&lt;/a&gt; for quick and hassle-free PCB Layout/Manufacturing ordering experience.
-&lt;BR&gt;
-&lt;BR&gt;
-This library has been generated by our experienced pcb layout engineers using current IPC and/or industry standards. We &lt;b&gt;believe&lt;/b&gt; the content to be accurate, complete and current. But, this content is provided as a courtesy and &lt;u&gt;user assumes all risk and responsiblity of it's usage&lt;/u&gt;.
-&lt;BR&gt;
-&lt;BR&gt;
-Feel free to contact us at &lt;a href="mailto:Support@PCBLayout.com"&gt;Support@PCBLayout.com&lt;/a&gt; if you have any questions/concerns regarding any of our content or services.</description>
-<packages>
-<package name="742C083103JP" urn="urn:adsk.eagle:footprint:16445837/2" library_version="1">
-<wire x1="-1.7" y1="0.9" x2="1.7" y2="0.9" width="0.127" layer="51"/>
-<wire x1="1.7" y1="-0.9" x2="-1.7" y2="-0.9" width="0.127" layer="51"/>
-<wire x1="-1.95" y1="1.55" x2="1.95" y2="1.55" width="0.05" layer="39"/>
-<wire x1="1.95" y1="1.55" x2="1.95" y2="-1.55" width="0.05" layer="39"/>
-<wire x1="1.95" y1="-1.55" x2="-1.95" y2="-1.55" width="0.05" layer="39"/>
-<wire x1="-1.95" y1="-1.55" x2="-1.95" y2="1.55" width="0.05" layer="39"/>
-<wire x1="-1.7" y1="0.9" x2="-1.7" y2="-0.9" width="0.127" layer="51"/>
-<wire x1="1.7" y1="0.9" x2="1.7" y2="-0.9" width="0.127" layer="51"/>
-<wire x1="-1.7" y1="0.9" x2="-1.7" y2="-0.9" width="0.127" layer="21"/>
-<wire x1="1.7" y1="0.9" x2="1.7" y2="-0.9" width="0.127" layer="21"/>
-<text x="-1.88873125" y="1.61891875" size="0.657928125" layer="25">&gt;NAME</text>
-<text x="-1.774390625" y="-2.389609375" size="0.66234375" layer="27">&gt;VALUE</text>
-<smd name="1" x="-1.2" y="-0.8" dx="0.92" dy="0.59" layer="1" roundness="15" rot="R90"/>
-<smd name="2" x="-0.4" y="-0.8" dx="0.92" dy="0.59" layer="1" roundness="13" rot="R90"/>
-<smd name="3" x="0.4" y="-0.8" dx="0.92" dy="0.59" layer="1" roundness="13" rot="R90"/>
-<smd name="4" x="1.2" y="-0.8" dx="0.92" dy="0.59" layer="1" roundness="15" rot="R90"/>
-<smd name="5" x="1.2" y="0.8" dx="0.92" dy="0.59" layer="1" roundness="15" rot="R90"/>
-<smd name="6" x="0.4" y="0.8" dx="0.92" dy="0.59" layer="1" roundness="13" rot="R90"/>
-<smd name="7" x="-0.4" y="0.8" dx="0.92" dy="0.59" layer="1" roundness="13" rot="R90"/>
-<smd name="8" x="-1.2" y="0.8" dx="0.92" dy="0.59" layer="1" roundness="15" rot="R90"/>
-</package>
-</packages>
-<packages3d>
-<package3d name="742C083103JP" urn="urn:adsk.eagle:package:16445849/4" type="model" library_version="1">
-<packageinstances>
-<packageinstance name="742C083103JP"/>
-</packageinstances>
-</package3d>
-</packages3d>
-<symbols>
-<symbol name="742C083103JP" urn="urn:adsk.eagle:symbol:16480735/1" library_version="1">
-<wire x1="-2.54" y1="2.54" x2="-2.159" y2="3.556" width="0.2032" layer="94"/>
-<wire x1="-2.159" y1="3.556" x2="-1.524" y2="1.524" width="0.2032" layer="94"/>
-<wire x1="-1.524" y1="1.524" x2="-0.889" y2="3.556" width="0.2032" layer="94"/>
-<wire x1="-0.889" y1="3.556" x2="-0.254" y2="1.524" width="0.2032" layer="94"/>
-<wire x1="-0.254" y1="1.524" x2="0.381" y2="3.556" width="0.2032" layer="94"/>
-<wire x1="0.381" y1="3.556" x2="1.016" y2="1.524" width="0.2032" layer="94"/>
-<wire x1="1.016" y1="1.524" x2="1.651" y2="3.556" width="0.2032" layer="94"/>
-<wire x1="1.651" y1="3.556" x2="2.286" y2="1.524" width="0.2032" layer="94"/>
-<wire x1="2.286" y1="1.524" x2="2.54" y2="2.54" width="0.2032" layer="94"/>
-<wire x1="-2.54" y1="0" x2="-2.159" y2="1.016" width="0.2032" layer="94"/>
-<wire x1="-2.159" y1="1.016" x2="-1.524" y2="-1.016" width="0.2032" layer="94"/>
-<wire x1="-1.524" y1="-1.016" x2="-0.889" y2="1.016" width="0.2032" layer="94"/>
-<wire x1="-0.889" y1="1.016" x2="-0.254" y2="-1.016" width="0.2032" layer="94"/>
-<wire x1="-0.254" y1="-1.016" x2="0.381" y2="1.016" width="0.2032" layer="94"/>
-<wire x1="0.381" y1="1.016" x2="1.016" y2="-1.016" width="0.2032" layer="94"/>
-<wire x1="1.016" y1="-1.016" x2="1.651" y2="1.016" width="0.2032" layer="94"/>
-<wire x1="1.651" y1="1.016" x2="2.286" y2="-1.016" width="0.2032" layer="94"/>
-<wire x1="2.286" y1="-1.016" x2="2.54" y2="0" width="0.2032" layer="94"/>
-<wire x1="-2.54" y1="-2.54" x2="-2.159" y2="-1.524" width="0.2032" layer="94"/>
-<wire x1="-2.159" y1="-1.524" x2="-1.524" y2="-3.556" width="0.2032" layer="94"/>
-<wire x1="-1.524" y1="-3.556" x2="-0.889" y2="-1.524" width="0.2032" layer="94"/>
-<wire x1="-0.889" y1="-1.524" x2="-0.254" y2="-3.556" width="0.2032" layer="94"/>
-<wire x1="-0.254" y1="-3.556" x2="0.381" y2="-1.524" width="0.2032" layer="94"/>
-<wire x1="0.381" y1="-1.524" x2="1.016" y2="-3.556" width="0.2032" layer="94"/>
-<wire x1="1.016" y1="-3.556" x2="1.651" y2="-1.524" width="0.2032" layer="94"/>
-<wire x1="1.651" y1="-1.524" x2="2.286" y2="-3.556" width="0.2032" layer="94"/>
-<wire x1="2.286" y1="-3.556" x2="2.54" y2="-2.54" width="0.2032" layer="94"/>
-<wire x1="-2.54" y1="-5.08" x2="-2.159" y2="-4.064" width="0.2032" layer="94"/>
-<wire x1="-2.159" y1="-4.064" x2="-1.524" y2="-6.096" width="0.2032" layer="94"/>
-<wire x1="-1.524" y1="-6.096" x2="-0.889" y2="-4.064" width="0.2032" layer="94"/>
-<wire x1="-0.889" y1="-4.064" x2="-0.254" y2="-6.096" width="0.2032" layer="94"/>
-<wire x1="-0.254" y1="-6.096" x2="0.381" y2="-4.064" width="0.2032" layer="94"/>
-<wire x1="0.381" y1="-4.064" x2="1.016" y2="-6.096" width="0.2032" layer="94"/>
-<wire x1="1.016" y1="-6.096" x2="1.651" y2="-4.064" width="0.2032" layer="94"/>
-<wire x1="1.651" y1="-4.064" x2="2.286" y2="-6.096" width="0.2032" layer="94"/>
-<wire x1="2.286" y1="-6.096" x2="2.54" y2="-5.08" width="0.2032" layer="94"/>
-<wire x1="-5.08" y1="5.08" x2="-5.08" y2="-7.62" width="0.254" layer="94"/>
-<wire x1="-5.08" y1="-7.62" x2="5.08" y2="-7.62" width="0.254" layer="94"/>
-<wire x1="5.08" y1="-7.62" x2="5.08" y2="5.08" width="0.254" layer="94"/>
-<wire x1="5.08" y1="5.08" x2="-5.08" y2="5.08" width="0.254" layer="94"/>
-<text x="-5.08" y="6.3246" size="1.778" layer="95">&gt;NAME</text>
-<text x="-5.08" y="-9.906" size="1.778" layer="96">&gt;VALUE</text>
-<pin name="8" x="7.62" y="2.54" visible="pad" length="middle" direction="pas" rot="R180"/>
-<pin name="1" x="-7.62" y="2.54" visible="pad" length="middle" direction="pas"/>
-<pin name="7" x="7.62" y="0" visible="pad" length="middle" direction="pas" rot="R180"/>
-<pin name="2" x="-7.62" y="0" visible="pad" length="middle" direction="pas"/>
-<pin name="6" x="7.62" y="-2.54" visible="pad" length="middle" direction="pas" rot="R180"/>
-<pin name="3" x="-7.62" y="-2.54" visible="pad" length="middle" direction="pas"/>
-<pin name="5" x="7.62" y="-5.08" visible="pad" length="middle" direction="pas" rot="R180"/>
-<pin name="4" x="-7.62" y="-5.08" visible="pad" length="middle" direction="pas"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="742C083103JP" urn="urn:adsk.eagle:component:16480748/3" prefix="R" library_version="1">
-<description>&lt;h3&gt; RES ARRAY 4 RES 10K OHM 1206 &lt;/h3&gt;
-&lt;BR&gt;
-&lt;a href="https://www.ctscorp.com/wp-content/uploads/74x.pdf"&gt; Manufacturer's datasheet&lt;/a&gt;</description>
-<gates>
-<gate name="G$1" symbol="742C083103JP" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="742C083103JP">
-<connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="2" pad="2"/>
-<connect gate="G$1" pin="3" pad="3"/>
-<connect gate="G$1" pin="4" pad="4"/>
-<connect gate="G$1" pin="5" pad="5"/>
-<connect gate="G$1" pin="6" pad="6"/>
-<connect gate="G$1" pin="7" pad="7"/>
-<connect gate="G$1" pin="8" pad="8"/>
-</connects>
-<package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:16445849/4"/>
-</package3dinstances>
-<technologies>
-<technology name="">
-<attribute name="CREATED_BY" value="PCBLayout.com" constant="no"/>
-<attribute name="DIGIKEY_PN" value="742C083103JPTR-ND" constant="no"/>
-<attribute name="MANUFACTURER" value="CTS Resistor Products" constant="no"/>
-<attribute name="MPN" value="742C083103JP" constant="no"/>
-<attribute name="PACKAGE" value="1206" constant="no"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 <library name="ds_ic_logic">
 <packages>
 <package name="TSSOP16" urn="urn:adsk.eagle:footprint:16352/1">
@@ -3427,7 +3303,7 @@ MAX3223-MAX3243.pdf</description>
 <text x="-1.905" y="5.715" size="1.778" layer="25">&gt;NAME</text>
 <text x="-1.905" y="-7.62" size="1.778" layer="27">&gt;VALUE</text>
 </package>
-<package name="FPC20" urn="urn:adsk.eagle:footprint:47082458/3">
+<package name="FPC20" urn="urn:adsk.eagle:footprint:47082458/3" locally_modified="yes">
 <circle x="-4.602" y="-0.062" radius="0.1" width="0.2" layer="21"/>
 <wire x1="-8.002" y1="1.038" x2="-8.002" y2="-0.962" width="0.1" layer="51"/>
 <wire x1="-8.002" y1="-0.962" x2="8.398" y2="-0.962" width="0.1" layer="51"/>
@@ -3463,8 +3339,8 @@ MAX3223-MAX3243.pdf</description>
 <smd name="Z2" x="-5.552" y="1.438" dx="0.8" dy="1.5" layer="1" rot="R180"/>
 <smd name="Z3" x="5.948" y="-1.362" dx="0.8" dy="1.5" layer="1" rot="R180"/>
 <smd name="Z4" x="5.948" y="1.438" dx="0.8" dy="1.5" layer="1" rot="R180"/>
-<smd name="Z0" x="-7.3025" y="0" dx="3.81" dy="1.9304" layer="1" rot="R90"/>
-<smd name="Z5" x="7.62" y="0" dx="3.81" dy="1.9304" layer="1" rot="R90"/>
+<smd name="Z0" x="-6.7945" y="0" dx="3.81" dy="3.048" layer="1" rot="R90"/>
+<smd name="Z5" x="7.112" y="0" dx="3.81" dy="3.048" layer="1" rot="R90"/>
 <text x="-9.426" y="5.337" size="1.016" layer="25" rot="R180" align="bottom-right">&gt;NAME</text>
 <text x="3.28" y="-4.106" size="1.016" layer="27" align="bottom-right">&gt;VALUE</text>
 <polygon width="0.1524" layer="21">
@@ -3487,7 +3363,7 @@ MAX3223-MAX3243.pdf</description>
 <vertex x="-4.318" y="-3.556"/>
 </polygon>
 </package>
-<package name="J1B1211CCD" urn="urn:adsk.eagle:footprint:48944380/1">
+<package name="J1B1211CCD" urn="urn:adsk.eagle:footprint:48944380/1" locally_modified="yes">
 <wire x1="-8" y1="10.6" x2="-8" y2="-10.75" width="0.127" layer="21"/>
 <wire x1="-8" y1="-10.75" x2="8" y2="-10.75" width="0.127" layer="21"/>
 <wire x1="8" y1="-10.75" x2="8" y2="10.6" width="0.127" layer="21"/>
@@ -3508,6 +3384,8 @@ MAX3223-MAX3243.pdf</description>
 <pad name="12" x="6.325" y="-3.38" drill="1.02" shape="octagon"/>
 <pad name="13" x="-7.75" y="3.05" drill="1.6"/>
 <pad name="14" x="7.75" y="3.05" drill="1.6"/>
+<hole x="-5.715" y="0" drill="3.25"/>
+<hole x="5.715" y="0" drill="3.25"/>
 </package>
 <package name="USBC" urn="urn:adsk.eagle:footprint:46619826/1">
 <smd name="B6" x="0.75" y="3.47" dx="0.3" dy="1" layer="1"/>
@@ -3738,7 +3616,7 @@ MAX3223-MAX3243.pdf</description>
 <packageinstance name="1X4"/>
 </packageinstances>
 </package3d>
-<package3d name="FPC20" urn="urn:adsk.eagle:package:47082459/4" type="model">
+<package3d name="FPC20" urn="urn:adsk.eagle:package:47082459/4" locally_modified="yes" type="model">
 <packageinstances>
 <packageinstance name="FPC20"/>
 </packageinstances>
@@ -3753,7 +3631,7 @@ MAX3223-MAX3243.pdf</description>
 <packageinstance name="USB-C"/>
 </packageinstances>
 </package3d>
-<package3d name="J1B1211CCD" urn="urn:adsk.eagle:package:48944391/2" type="model">
+<package3d name="J1B1211CCD" urn="urn:adsk.eagle:package:48944391/2" locally_modified="yes" type="model">
 <packageinstances>
 <packageinstance name="J1B1211CCD"/>
 </packageinstances>
@@ -4126,7 +4004,7 @@ MAX3223-MAX3243.pdf</description>
 <pin name="YELLOW+" x="-27.94" y="-17.78" visible="pad" length="middle" direction="pas"/>
 <pin name="YELLOW-" x="-27.94" y="-22.86" visible="pad" length="middle" direction="pas"/>
 </symbol>
-<symbol name="USB-C" urn="urn:adsk.eagle:symbol:46619830/2" locally_modified="yes">
+<symbol name="USB-C" urn="urn:adsk.eagle:symbol:46619830/3">
 <pin name="VBUS" x="15.24" y="15.24" length="middle" direction="pwr" rot="R180"/>
 <pin name="GND" x="15.24" y="-12.7" length="middle" direction="pwr" rot="R180"/>
 <pin name="CC1" x="15.24" y="2.54" length="middle" rot="R180"/>
@@ -4144,12 +4022,12 @@ MAX3223-MAX3243.pdf</description>
 <wire x1="-1.4879125" y1="-20.32" x2="-10.16" y2="-11.6479125" width="0.254" layer="94" curve="-90"/>
 <wire x1="-10.16" y1="-11.6479125" x2="-10.16" y2="14.1879125" width="0.254" layer="94"/>
 <wire x1="-10.16" y1="14.1879125" x2="-1.4879125" y2="22.86" width="0.254" layer="94" curve="-90"/>
-<text x="7.62" y="25.4" size="1.778" layer="95" rot="R180">&gt;NAME</text>
-<text x="-7.62" y="-22.86" size="1.778" layer="96">USB-TYPE C</text>
 <wire x1="0" y1="-10.795" x2="0" y2="13.97" width="0.254" layer="94"/>
 <wire x1="0" y1="13.97" x2="-0.635" y2="13.97" width="0.254" layer="94"/>
 <wire x1="-0.635" y1="13.97" x2="-0.635" y2="-10.795" width="0.254" layer="94"/>
 <wire x1="-0.635" y1="-10.795" x2="0" y2="-10.795" width="0.254" layer="94"/>
+<text x="7.62" y="25.4" size="1.778" layer="95" rot="R180">&gt;NAME</text>
+<text x="-7.62" y="-22.86" size="1.778" layer="96">USB-TYPE C</text>
 <rectangle x1="-0.635" y1="-10.795" x2="0" y2="13.97" layer="94"/>
 </symbol>
 </symbols>
@@ -4175,7 +4053,7 @@ MAX3223-MAX3243.pdf</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="AFC11-S20ICC-00" urn="urn:adsk.eagle:component:47082460/4" prefix="CON">
+<deviceset name="AFC11-S20ICC-00" urn="urn:adsk.eagle:component:47082460/4" locally_modified="yes" prefix="CON">
 <description>Drawer Type 20P Single-sided contact points/Vertical Standing paste 0.5mm SMD,P=0.5mm FFC, FPC (Flat Flexible) Connector Assemblies ROHS</description>
 <gates>
 <gate name="G$1" symbol="FPC20" x="0" y="0"/>
@@ -4221,7 +4099,7 @@ MAX3223-MAX3243.pdf</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="J1B1211CCD" urn="urn:adsk.eagle:component:48944403/1" locally_modified="yes" prefix="ETH">
+<deviceset name="J1B1211CCD" urn="urn:adsk.eagle:component:48944403/2" locally_modified="yes" prefix="ETH">
 <description>RJ45Receptacle 1 Shielded Bend insert cat5 Gold Phosphor Bronze WithLED -40℃~+85℃ Plugin Ethernet Connectors / Modular Connectors (RJ45 RJ11) ROHS</description>
 <gates>
 <gate name="G$1" symbol="HR911105A" x="0" y="0"/>
@@ -4256,7 +4134,7 @@ MAX3223-MAX3243.pdf</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="USB_C" urn="urn:adsk.eagle:component:46619839/4" locally_modified="yes" prefix="USB" uservalue="yes">
+<deviceset name="USB_C" urn="urn:adsk.eagle:component:46619839/5" prefix="USB" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="USB-C" x="0" y="0"/>
 </gates>
@@ -4770,7 +4648,7 @@ MAX3223-MAX3243.pdf</description>
 <text x="0" y="2.274" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
 <text x="0" y="-1.834" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
 </package>
-<package name="SON127P600X500X75-8N" urn="urn:adsk.eagle:footprint:45369669/1" locally_modified="yes">
+<package name="SON127P600X500X75-8N" urn="urn:adsk.eagle:footprint:45369669/2">
 <description>8-SON (DFN), 1.27 mm pitch, 5.00 X 6.00 X 0.75 mm body
 &lt;p&gt;8-pin SON (DFN) package with 1.27 mm pitch with body size 5.00 X 6.00 X 0.75 mm&lt;/p&gt;</description>
 <circle x="-3.504" y="2.6249" radius="0.25" width="0" layer="21"/>
@@ -4792,52 +4670,9 @@ MAX3223-MAX3243.pdf</description>
 <smd name="6" x="2.85" y="-0.635" dx="1.0118" dy="0.4318" layer="1" roundness="100"/>
 <smd name="7" x="2.85" y="0.635" dx="1.0118" dy="0.4318" layer="1" roundness="100"/>
 <smd name="8" x="2.85" y="1.905" dx="1.0118" dy="0.4318" layer="1" roundness="100"/>
+<smd name="PAD" x="0" y="0" dx="3.4" dy="4.3" layer="1"/>
 <text x="0" y="3.5099" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
 <text x="0" y="-3.135" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
-<smd name="PAD" x="0" y="0" dx="3.4" dy="4.3" layer="1"/>
-</package>
-<package name="BGA25C100P5X5_800X600X120N" urn="urn:adsk.eagle:footprint:48547598/1" locally_modified="yes">
-<description>25-BGA, collapsing, 1.00 mm pitch, 8.00 X 6.00 X 1.20 mm body
-&lt;p&gt;25-pin collapsing BGA package with 1.00 mm col pitch and 1.00 mm row pitch with body size 8.00 X 6.00 X 1.20 mm&lt;/p&gt;</description>
-<circle x="-3.554" y="2" radius="0.25" width="0" layer="21"/>
-<wire x1="-3.05" y1="2.525" x2="-3.05" y2="4.05" width="0.12" layer="21"/>
-<wire x1="-3.05" y1="4.05" x2="-1.525" y2="4.05" width="0.12" layer="21"/>
-<wire x1="3.05" y1="2.525" x2="3.05" y2="4.05" width="0.12" layer="21"/>
-<wire x1="3.05" y1="4.05" x2="1.525" y2="4.05" width="0.12" layer="21"/>
-<wire x1="3.05" y1="-2.525" x2="3.05" y2="-4.05" width="0.12" layer="21"/>
-<wire x1="3.05" y1="-4.05" x2="1.525" y2="-4.05" width="0.12" layer="21"/>
-<wire x1="-3.05" y1="-2.525" x2="-3.05" y2="-4.05" width="0.12" layer="21"/>
-<wire x1="-3.05" y1="-4.05" x2="-1.525" y2="-4.05" width="0.12" layer="21"/>
-<wire x1="3.05" y1="-4.05" x2="-3.05" y2="-4.05" width="0.12" layer="51"/>
-<wire x1="-3.05" y1="-4.05" x2="-3.05" y2="4.05" width="0.12" layer="51"/>
-<wire x1="-3.05" y1="4.05" x2="3.05" y2="4.05" width="0.12" layer="51"/>
-<wire x1="3.05" y1="4.05" x2="3.05" y2="-4.05" width="0.12" layer="51"/>
-<smd name="A2" x="-1" y="2" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
-<smd name="A3" x="0" y="2" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
-<smd name="A4" x="1" y="2" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
-<smd name="A5" x="2" y="2" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
-<smd name="B1" x="-2" y="1" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
-<smd name="B2" x="-1" y="1" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
-<smd name="B3" x="0" y="1" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
-<smd name="B4" x="1" y="1" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
-<smd name="B5" x="2" y="1" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
-<smd name="C1" x="-2" y="0" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
-<smd name="C2" x="-1" y="0" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
-<smd name="C3" x="0" y="0" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
-<smd name="C4" x="1" y="0" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
-<smd name="C5" x="2" y="0" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
-<smd name="D1" x="-2" y="-1" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
-<smd name="D2" x="-1" y="-1" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
-<smd name="D3" x="0" y="-1" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
-<smd name="D4" x="1" y="-1" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
-<smd name="D5" x="2" y="-1" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
-<smd name="E1" x="-2" y="-2" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
-<smd name="E2" x="-1" y="-2" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
-<smd name="E3" x="0" y="-2" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
-<smd name="E4" x="1" y="-2" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
-<smd name="E5" x="2" y="-2" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
-<text x="0" y="4.685" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
-<text x="0" y="-4.685" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
 </package>
 <package name="BGA24C100P4X6_800X600X120N" urn="urn:adsk.eagle:footprint:48547603/1">
 <description>24-BGA, collapsing, 1.00 mm pitch, 8.00 X 6.00 X 1.20 mm body
@@ -4882,6 +4717,49 @@ MAX3223-MAX3243.pdf</description>
 <text x="0" y="4.66" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
 <text x="0" y="-4.66" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
 </package>
+<package name="BGA25C100P5X5_800X600X120N" urn="urn:adsk.eagle:footprint:48547598/2">
+<description>25-BGA, collapsing, 1.00 mm pitch, 8.00 X 6.00 X 1.20 mm body
+&lt;p&gt;25-pin collapsing BGA package with 1.00 mm col pitch and 1.00 mm row pitch with body size 8.00 X 6.00 X 1.20 mm&lt;/p&gt;</description>
+<circle x="-3.554" y="2" radius="0.25" width="0" layer="21"/>
+<wire x1="-3.05" y1="2.525" x2="-3.05" y2="4.05" width="0.12" layer="21"/>
+<wire x1="-3.05" y1="4.05" x2="-1.525" y2="4.05" width="0.12" layer="21"/>
+<wire x1="3.05" y1="2.525" x2="3.05" y2="4.05" width="0.12" layer="21"/>
+<wire x1="3.05" y1="4.05" x2="1.525" y2="4.05" width="0.12" layer="21"/>
+<wire x1="3.05" y1="-2.525" x2="3.05" y2="-4.05" width="0.12" layer="21"/>
+<wire x1="3.05" y1="-4.05" x2="1.525" y2="-4.05" width="0.12" layer="21"/>
+<wire x1="-3.05" y1="-2.525" x2="-3.05" y2="-4.05" width="0.12" layer="21"/>
+<wire x1="-3.05" y1="-4.05" x2="-1.525" y2="-4.05" width="0.12" layer="21"/>
+<wire x1="3.05" y1="-4.05" x2="-3.05" y2="-4.05" width="0.12" layer="51"/>
+<wire x1="-3.05" y1="-4.05" x2="-3.05" y2="4.05" width="0.12" layer="51"/>
+<wire x1="-3.05" y1="4.05" x2="3.05" y2="4.05" width="0.12" layer="51"/>
+<wire x1="3.05" y1="4.05" x2="3.05" y2="-4.05" width="0.12" layer="51"/>
+<smd name="A2" x="-1" y="2" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
+<smd name="A3" x="0" y="2" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
+<smd name="A4" x="1" y="2" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
+<smd name="A5" x="2" y="2" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
+<smd name="B1" x="-2" y="1" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
+<smd name="B2" x="-1" y="1" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
+<smd name="B3" x="0" y="1" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
+<smd name="B4" x="1" y="1" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
+<smd name="B5" x="2" y="1" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
+<smd name="C1" x="-2" y="0" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
+<smd name="C2" x="-1" y="0" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
+<smd name="C3" x="0" y="0" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
+<smd name="C4" x="1" y="0" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
+<smd name="C5" x="2" y="0" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
+<smd name="D1" x="-2" y="-1" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
+<smd name="D2" x="-1" y="-1" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
+<smd name="D3" x="0" y="-1" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
+<smd name="D4" x="1" y="-1" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
+<smd name="D5" x="2" y="-1" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
+<smd name="E1" x="-2" y="-2" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
+<smd name="E2" x="-1" y="-2" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
+<smd name="E3" x="0" y="-2" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
+<smd name="E4" x="1" y="-2" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
+<smd name="E5" x="2" y="-2" dx="0.35" dy="0.35" layer="1" roundness="100" thermals="no"/>
+<text x="0" y="4.685" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-4.685" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
+</package>
 </packages>
 <packages3d>
 <package3d name="SON50P300X200X50-9T130X140N" urn="urn:adsk.eagle:package:45817778/1" type="model">
@@ -4891,18 +4769,11 @@ MAX3223-MAX3243.pdf</description>
 <packageinstance name="SON50P300X200X50-9T130X140N"/>
 </packageinstances>
 </package3d>
-<package3d name="SON127P600X500X75-8N" urn="urn:adsk.eagle:package:45369668/1" locally_modified="yes" type="model">
+<package3d name="SON127P600X500X75-8N" urn="urn:adsk.eagle:package:45369668/2" type="model">
 <description>8-SON (DFN), 1.27 mm pitch, 5.00 X 6.00 X 0.75 mm body
 &lt;p&gt;8-pin SON (DFN) package with 1.27 mm pitch with body size 5.00 X 6.00 X 0.75 mm&lt;/p&gt;</description>
 <packageinstances>
 <packageinstance name="SON127P600X500X75-8N"/>
-</packageinstances>
-</package3d>
-<package3d name="BGA25C100P5X5_800X600X120N" urn="urn:adsk.eagle:package:48547597/1" locally_modified="yes" type="model">
-<description>25-BGA, collapsing, 1.00 mm pitch, 8.00 X 6.00 X 1.20 mm body
-&lt;p&gt;25-pin collapsing BGA package with 1.00 mm col pitch and 1.00 mm row pitch with body size 8.00 X 6.00 X 1.20 mm&lt;/p&gt;</description>
-<packageinstances>
-<packageinstance name="BGA25C100P5X5_800X600X120N"/>
 </packageinstances>
 </package3d>
 <package3d name="BGA24C100P4X6_800X600X120N" urn="urn:adsk.eagle:package:48547600/2" type="model">
@@ -4910,6 +4781,13 @@ MAX3223-MAX3243.pdf</description>
 &lt;p&gt;24-pin collapsing BGA package with 1.00 mm col pitch and 1.00 mm row pitch with body size 8.00 X 6.00 X 1.20 mm&lt;/p&gt;</description>
 <packageinstances>
 <packageinstance name="BGA24C100P4X6_800X600X120N"/>
+</packageinstances>
+</package3d>
+<package3d name="BGA25C100P5X5_800X600X120N" urn="urn:adsk.eagle:package:48547597/2" type="model">
+<description>25-BGA, collapsing, 1.00 mm pitch, 8.00 X 6.00 X 1.20 mm body
+&lt;p&gt;25-pin collapsing BGA package with 1.00 mm col pitch and 1.00 mm row pitch with body size 8.00 X 6.00 X 1.20 mm&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="BGA25C100P5X5_800X600X120N"/>
 </packageinstances>
 </package3d>
 </packages3d>
@@ -4930,7 +4808,7 @@ MAX3223-MAX3243.pdf</description>
 <text x="-7.62" y="-10.16" size="1.778" layer="96">CAT24C256</text>
 <text x="5.08" y="12.7" size="1.778" layer="95" rot="R180">&gt;NAME</text>
 </symbol>
-<symbol name="W25Q128JV" urn="urn:adsk.eagle:symbol:48272620/1" locally_modified="yes">
+<symbol name="W25Q128JV" urn="urn:adsk.eagle:symbol:48272620/2">
 <pin name="!CS" x="-15.24" y="0" length="middle"/>
 <pin name="DO/IO1" x="17.78" y="0" length="middle" rot="R180"/>
 <pin name="!WP!/IO2" x="17.78" y="-2.54" length="middle" rot="R180"/>
@@ -4948,7 +4826,7 @@ MAX3223-MAX3243.pdf</description>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="CAT24C256" urn="urn:adsk.eagle:component:48272633/1" locally_modified="yes" prefix="IC" uservalue="yes">
+<deviceset name="CAT24C256" urn="urn:adsk.eagle:component:48272633/2" prefix="IC" uservalue="yes">
 <description>The CAT24C256 is a EEPROM Serial 256−Kb I2C, internally
 organized as 32,768 words of 8 bits each.
 It features a 64−byte page write buffer and supports the Standard
@@ -4988,7 +4866,7 @@ for high reliability applications.</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="W25Q128JV" urn="urn:adsk.eagle:component:48272636/1" locally_modified="yes" prefix="IC" uservalue="yes">
+<deviceset name="W25Q128JV" urn="urn:adsk.eagle:component:48272636/2" prefix="IC" uservalue="yes">
 <description>3V 128M-BIT
 SERIAL FLASH MEMORY WITH
 DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
@@ -5008,7 +4886,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="VCC" pad="8"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:45369668/1"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:45369668/2"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -5031,7 +4909,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="VCC" pad="B4"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:48547597/1"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:48547597/2"/>
 </package3dinstances>
 <technologies>
 <technology name=""/>
@@ -5383,13 +5261,13 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </library>
 <library name="ds_resistor">
 <packages>
-<package name="0402" urn="urn:adsk.eagle:footprint:46683723/1">
+<package name="0402" urn="urn:adsk.eagle:footprint:46683723/2">
 <wire x1="-0.245" y1="0.224" x2="0.245" y2="0.224" width="0.1524" layer="51"/>
 <wire x1="0.245" y1="-0.224" x2="-0.245" y2="-0.224" width="0.1524" layer="51"/>
-<wire x1="-1.473" y1="0.483" x2="1.473" y2="0.483" width="0.0508" layer="39"/>
-<wire x1="1.473" y1="0.483" x2="1.473" y2="-0.483" width="0.0508" layer="39"/>
-<wire x1="1.473" y1="-0.483" x2="-1.473" y2="-0.483" width="0.0508" layer="39"/>
-<wire x1="-1.473" y1="-0.483" x2="-1.473" y2="0.483" width="0.0508" layer="39"/>
+<wire x1="-1.173" y1="0.483" x2="1.173" y2="0.483" width="0.0508" layer="39"/>
+<wire x1="1.173" y1="0.483" x2="1.173" y2="-0.483" width="0.0508" layer="39"/>
+<wire x1="1.173" y1="-0.483" x2="-1.173" y2="-0.483" width="0.0508" layer="39"/>
+<wire x1="-1.173" y1="-0.483" x2="-1.173" y2="0.483" width="0.0508" layer="39"/>
 <smd name="1" x="-0.65" y="0" dx="0.7" dy="0.9" layer="1"/>
 <smd name="2" x="0.65" y="0" dx="0.7" dy="0.9" layer="1"/>
 <text x="-0.635" y="0.635" size="1.016" layer="25">&gt;NAME</text>
@@ -5439,20 +5317,6 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <rectangle x1="-1.6891" y1="-0.8763" x2="-0.9525" y2="0.8763" layer="51"/>
 <rectangle x1="0.9525" y1="-0.8763" x2="1.6891" y2="0.8763" layer="51"/>
 </package>
-<package name="0201" urn="urn:adsk.eagle:footprint:47403528/2" locally_modified="yes">
-<description>&lt;b&gt;Chip RESISTOR, 0201 EIA (0603 Metric)&lt;/b&gt;</description>
-<wire x1="-0.6" y1="0.315" x2="0.6" y2="0.315" width="0.0508" layer="39"/>
-<wire x1="0.6" y1="0.315" x2="0.6" y2="-0.315" width="0.0508" layer="39"/>
-<wire x1="0.6" y1="-0.315" x2="-0.6" y2="-0.315" width="0.0508" layer="39"/>
-<wire x1="-0.6" y1="-0.315" x2="-0.6" y2="0.315" width="0.0508" layer="39"/>
-<smd name="1" x="-0.275" y="0" dx="0.34" dy="0.35" layer="1"/>
-<smd name="2" x="0.275" y="0" dx="0.34" dy="0.35" layer="1"/>
-<text x="-0.635" y="0.635" size="1.27" layer="25">&gt;NAME</text>
-<text x="-0.635" y="-1.905" size="1.27" layer="27">&gt;VALUE</text>
-<rectangle x1="-0.3" y1="-0.15" x2="-0.15" y2="0.15" layer="51"/>
-<rectangle x1="0.15" y1="-0.15" x2="0.3" y2="0.15" layer="51"/>
-<rectangle x1="-0.15" y1="-0.15" x2="0.15" y2="0.15" layer="21"/>
-</package>
 <package name="2512" urn="urn:adsk.eagle:footprint:47078530/1">
 <text x="-3.91" y="-2.06" size="0.5" layer="27" align="top-left">&gt;VALUE</text>
 <text x="-3.91" y="2.06" size="0.5" layer="25">&gt;NAME</text>
@@ -5469,7 +5333,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <smd name="1" x="-2.616" y="0" dx="2.08" dy="3.44" layer="1"/>
 <smd name="2" x="2.616" y="0" dx="2.08" dy="3.44" layer="1"/>
 </package>
-<package name="_0603X4-1206" urn="urn:adsk.eagle:footprint:16445837/2" locally_modified="yes">
+<package name="_0603X4-1206" urn="urn:adsk.eagle:footprint:49287420/1">
 <wire x1="-1.7" y1="0.9" x2="1.7" y2="0.9" width="0.127" layer="51"/>
 <wire x1="1.7" y1="-0.9" x2="-1.7" y2="-0.9" width="0.127" layer="51"/>
 <wire x1="-1.95" y1="1.55" x2="1.95" y2="1.55" width="0.05" layer="39"/>
@@ -5491,9 +5355,23 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <smd name="B2" x="-0.4" y="0.8" dx="0.92" dy="0.59" layer="1" roundness="13" rot="R90"/>
 <smd name="A2" x="-1.2" y="0.8" dx="0.92" dy="0.59" layer="1" roundness="15" rot="R90"/>
 </package>
+<package name="0201" urn="urn:adsk.eagle:footprint:47403528/3">
+<description>&lt;b&gt;Chip RESISTOR, 0201 EIA (0603 Metric)&lt;/b&gt;</description>
+<wire x1="-0.6" y1="0.315" x2="0.6" y2="0.315" width="0.0508" layer="39"/>
+<wire x1="0.6" y1="0.315" x2="0.6" y2="-0.315" width="0.0508" layer="39"/>
+<wire x1="0.6" y1="-0.315" x2="-0.6" y2="-0.315" width="0.0508" layer="39"/>
+<wire x1="-0.6" y1="-0.315" x2="-0.6" y2="0.315" width="0.0508" layer="39"/>
+<smd name="1" x="-0.275" y="0" dx="0.34" dy="0.35" layer="1"/>
+<smd name="2" x="0.275" y="0" dx="0.34" dy="0.35" layer="1"/>
+<text x="-0.635" y="0.635" size="1.27" layer="25">&gt;NAME</text>
+<text x="-0.635" y="-1.905" size="1.27" layer="27">&gt;VALUE</text>
+<rectangle x1="-0.3" y1="-0.15" x2="-0.15" y2="0.15" layer="51"/>
+<rectangle x1="0.15" y1="-0.15" x2="0.3" y2="0.15" layer="51"/>
+<rectangle x1="-0.15" y1="-0.15" x2="0.15" y2="0.15" layer="21"/>
+</package>
 </packages>
 <packages3d>
-<package3d name="0402" urn="urn:adsk.eagle:package:46683744/2" locally_modified="yes" type="model">
+<package3d name="0402" urn="urn:adsk.eagle:package:46683744/3" type="model">
 <packageinstances>
 <packageinstance name="0402"/>
 </packageinstances>
@@ -5513,20 +5391,25 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <packageinstance name="1206"/>
 </packageinstances>
 </package3d>
-<package3d name="R0201" urn="urn:adsk.eagle:package:47403529/3" locally_modified="yes" type="model">
-<description>&lt;b&gt;Chip RESISTOR, 0201 EIA (0603 Metric)&lt;/b&gt;</description>
-<packageinstances>
-<packageinstance name="0201"/>
-</packageinstances>
-</package3d>
 <package3d name="2512" urn="urn:adsk.eagle:package:47078537/2" type="model">
 <packageinstances>
 <packageinstance name="2512"/>
 </packageinstances>
 </package3d>
+<package3d name="R0201" urn="urn:adsk.eagle:package:47403529/4" type="model">
+<description>&lt;b&gt;Chip RESISTOR, 0201 EIA (0603 Metric)&lt;/b&gt;</description>
+<packageinstances>
+<packageinstance name="0201"/>
+</packageinstances>
+</package3d>
+<package3d name="_0603X4-1206" urn="urn:adsk.eagle:package:49287421/2" type="model">
+<packageinstances>
+<packageinstance name="_0603X4-1206"/>
+</packageinstances>
+</package3d>
 </packages3d>
 <symbols>
-<symbol name="R">
+<symbol name="R" urn="urn:adsk.eagle:symbol:49287417/1">
 <wire x1="-0.889" y1="2.54" x2="-0.889" y2="-2.54" width="0.254" layer="94"/>
 <wire x1="0.889" y1="-2.54" x2="0.889" y2="2.54" width="0.254" layer="94"/>
 <wire x1="-0.889" y1="-2.54" x2="0.889" y2="-2.54" width="0.254" layer="94"/>
@@ -5536,7 +5419,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <pin name="2" x="0" y="-5.08" visible="off" length="short" direction="pas" swaplevel="1" rot="R90"/>
 <pin name="1" x="0" y="5.08" visible="off" length="short" direction="pas" swaplevel="1" rot="R270"/>
 </symbol>
-<symbol name="742C083103JP">
+<symbol name="742C083103JP" urn="urn:adsk.eagle:symbol:49287413/1">
 <wire x1="-2.54" y1="2.54" x2="-2.159" y2="3.556" width="0.2032" layer="94"/>
 <wire x1="-2.159" y1="3.556" x2="-1.524" y2="1.524" width="0.2032" layer="94"/>
 <wire x1="-1.524" y1="1.524" x2="-0.889" y2="3.556" width="0.2032" layer="94"/>
@@ -5590,7 +5473,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="1K-1%" prefix="R" uservalue="yes">
+<deviceset name="1K-1%" urn="urn:adsk.eagle:component:49287454/1" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -5601,7 +5484,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/3"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -5665,7 +5548,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/4"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -5677,7 +5560,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="27R-1%" prefix="R" uservalue="yes">
+<deviceset name="27R-1%" urn="urn:adsk.eagle:component:49287450/1" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -5688,7 +5571,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/4"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -5704,7 +5587,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/3"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -5780,7 +5663,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="10K-1%" prefix="R" uservalue="yes">
+<deviceset name="10K-1%" urn="urn:adsk.eagle:component:49287453/1" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -5791,7 +5674,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/3"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -5855,7 +5738,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/4"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -5867,7 +5750,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="4.7K-1%" prefix="R" uservalue="yes">
+<deviceset name="4.7K-1%" urn="urn:adsk.eagle:component:49287447/1" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -5878,7 +5761,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/4"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -5894,7 +5777,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/3"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -5970,7 +5853,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="1M-1%" prefix="R" uservalue="yes">
+<deviceset name="1M-1%" urn="urn:adsk.eagle:component:49287442/1" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -5981,7 +5864,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/4"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -5997,7 +5880,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/3"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -6057,7 +5940,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="470R-1%" prefix="R" uservalue="yes">
+<deviceset name="470R-1%" urn="urn:adsk.eagle:component:49287467/1" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -6068,7 +5951,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/4"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -6084,7 +5967,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/3"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -6144,7 +6027,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="49.9R-1%" prefix="R" uservalue="yes">
+<deviceset name="49.9R-1%" urn="urn:adsk.eagle:component:49287465/1" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -6155,7 +6038,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/4"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -6171,7 +6054,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/3"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -6215,7 +6098,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="3.3R-1%" prefix="R" uservalue="yes">
+<deviceset name="3.3R-1%" urn="urn:adsk.eagle:component:49287466/1" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -6226,7 +6109,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/4"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -6242,7 +6125,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/3"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -6318,7 +6201,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="5.1K-1%" prefix="R" uservalue="yes">
+<deviceset name="5.1K-1%" urn="urn:adsk.eagle:component:49287462/1" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -6329,7 +6212,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/4"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -6345,7 +6228,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/3"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -6405,7 +6288,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="2.2K-1%" prefix="R" uservalue="yes">
+<deviceset name="2.2K-1%" urn="urn:adsk.eagle:component:49287463/1" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -6416,7 +6299,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/4"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -6432,7 +6315,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/3"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -6492,7 +6375,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="10R-1%" prefix="R" uservalue="yes">
+<deviceset name="10R-1%" urn="urn:adsk.eagle:component:49287461/1" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -6503,7 +6386,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/4"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -6519,7 +6402,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/3"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -6595,7 +6478,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="4.99K-1%" prefix="R" uservalue="yes">
+<deviceset name="4.99K-1%" urn="urn:adsk.eagle:component:49287439/1" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -6606,7 +6489,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/4"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -6622,7 +6505,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/3"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -6682,7 +6565,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="100K-1%" prefix="R" uservalue="yes">
+<deviceset name="100K-1%" urn="urn:adsk.eagle:component:49287434/1" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -6693,7 +6576,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/4"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -6709,7 +6592,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/3"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -6769,7 +6652,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="9.09K-1%" prefix="R" uservalue="yes">
+<deviceset name="9.09K-1%" urn="urn:adsk.eagle:component:49287446/1" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -6780,7 +6663,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/4"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -6796,7 +6679,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/3"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -6856,7 +6739,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="20K-1%" prefix="R" uservalue="yes">
+<deviceset name="20K-1%" urn="urn:adsk.eagle:component:49287468/1" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -6867,7 +6750,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/4"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -6883,7 +6766,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/3"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -6943,7 +6826,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="40.2K-1%" prefix="R" uservalue="yes">
+<deviceset name="40.2K-1%" urn="urn:adsk.eagle:component:49287470/1" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -6954,7 +6837,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/4"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -6970,7 +6853,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/3"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -7030,7 +6913,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="7.5K-1%" prefix="R" uservalue="yes">
+<deviceset name="7.5K-1%" urn="urn:adsk.eagle:component:49287469/1" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -7041,7 +6924,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/4"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -7057,7 +6940,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/3"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -7133,7 +7016,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="12.7K-1%" prefix="R" uservalue="yes">
+<deviceset name="12.7K-1%" urn="urn:adsk.eagle:component:49287472/1" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -7144,7 +7027,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/4"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -7160,7 +7043,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/3"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -7220,7 +7103,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="2.4K-1%" prefix="R" uservalue="yes">
+<deviceset name="2.4K-1%" urn="urn:adsk.eagle:component:49287473/1" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -7231,7 +7114,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/4"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -7247,7 +7130,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/3"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -7307,7 +7190,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="8.2K-1%" prefix="R" uservalue="yes">
+<deviceset name="8.2K-1%" urn="urn:adsk.eagle:component:49287474/1" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -7318,7 +7201,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/4"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -7334,7 +7217,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/3"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -7394,7 +7277,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="39R-1%" prefix="R" uservalue="yes">
+<deviceset name="39R-1%" urn="urn:adsk.eagle:component:49287475/1" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -7405,7 +7288,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/4"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -7421,7 +7304,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/3"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -7497,7 +7380,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="0.002R-1%" prefix="R" uservalue="yes">
+<deviceset name="0.002R-1%" urn="urn:adsk.eagle:component:49287477/1" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -7552,7 +7435,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="470K-1%" prefix="R" uservalue="yes">
+<deviceset name="470K-1%" urn="urn:adsk.eagle:component:49287476/1" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -7563,7 +7446,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/4"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -7579,7 +7462,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/3"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -7639,7 +7522,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="330R-1%" prefix="R" uservalue="yes">
+<deviceset name="330R-1%" urn="urn:adsk.eagle:component:49287443/1" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -7650,7 +7533,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/3"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -7714,7 +7597,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/4"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -7742,7 +7625,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="0R" prefix="R" uservalue="yes">
+<deviceset name="0R" urn="urn:adsk.eagle:component:49287455/1" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -7753,7 +7636,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/3"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -7833,7 +7716,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/4"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -7845,7 +7728,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="3.3K-1%_ARRAY" prefix="RN" uservalue="yes">
+<deviceset name="3.3K-1%_ARRAY" urn="urn:adsk.eagle:component:49287431/1" locally_modified="yes" prefix="RN" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="742C083103JP" x="0" y="0"/>
 </gates>
@@ -7861,6 +7744,9 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="7" pad="B2"/>
 <connect gate="G$1" pin="8" pad="A2"/>
 </connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:49287421/2"/>
+</package3dinstances>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="4 ±1% 3.3kΩ 62.5mW ±200ppm/℃ 0603x4 Resistor Networks, Arrays ROHS " constant="no"/>
@@ -7871,7 +7757,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="1K-1%_ARRAY" prefix="RN" uservalue="yes">
+<deviceset name="1K-1%_ARRAY" urn="urn:adsk.eagle:component:49287482/1" locally_modified="yes" prefix="RN" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="742C083103JP" x="0" y="0"/>
 </gates>
@@ -7887,6 +7773,9 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="7" pad="B2"/>
 <connect gate="G$1" pin="8" pad="A2"/>
 </connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:49287421/2"/>
+</package3dinstances>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="4 ±1% 1kΩ 62.5mW ±200ppm/℃ 0603x4 Resistor Networks, Arrays ROHS " constant="no"/>
@@ -7897,7 +7786,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="10K-1%_ARRAY" prefix="RN" uservalue="yes">
+<deviceset name="10K-1%_ARRAY" urn="urn:adsk.eagle:component:49287432/1" locally_modified="yes" prefix="RN" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="742C083103JP" x="0" y="0"/>
 </gates>
@@ -7913,6 +7802,9 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="7" pad="B2"/>
 <connect gate="G$1" pin="8" pad="A2"/>
 </connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:49287421/2"/>
+</package3dinstances>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="4 ±1% 10kΩ 62.5mW ±200ppm/℃ 0603x4 Resistor Networks, Arrays ROHS " constant="no"/>
@@ -7941,13 +7833,13 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <rectangle x1="0.15" y1="-0.15" x2="0.3" y2="0.15" layer="51"/>
 <rectangle x1="-0.15" y1="-0.15" x2="0.15" y2="0.15" layer="21"/>
 </package>
-<package name="0402" urn="urn:adsk.eagle:footprint:46766476/2">
+<package name="0402" urn="urn:adsk.eagle:footprint:46766476/2" locally_modified="yes">
 <wire x1="-0.245" y1="0.224" x2="0.245" y2="0.224" width="0.1524" layer="51"/>
 <wire x1="0.245" y1="-0.224" x2="-0.245" y2="-0.224" width="0.1524" layer="51"/>
-<wire x1="-1.473" y1="0.483" x2="1.473" y2="0.483" width="0.0508" layer="39"/>
-<wire x1="1.473" y1="0.483" x2="1.473" y2="-0.483" width="0.0508" layer="39"/>
-<wire x1="1.473" y1="-0.483" x2="-1.473" y2="-0.483" width="0.0508" layer="39"/>
-<wire x1="-1.473" y1="-0.483" x2="-1.473" y2="0.483" width="0.0508" layer="39"/>
+<wire x1="-1.173" y1="0.483" x2="1.173" y2="0.483" width="0.0508" layer="39"/>
+<wire x1="1.173" y1="0.483" x2="1.173" y2="-0.483" width="0.0508" layer="39"/>
+<wire x1="1.173" y1="-0.483" x2="-1.173" y2="-0.483" width="0.0508" layer="39"/>
+<wire x1="-1.173" y1="-0.483" x2="-1.173" y2="0.483" width="0.0508" layer="39"/>
 <smd name="1" x="-0.65" y="0" dx="0.7" dy="0.9" layer="1"/>
 <smd name="2" x="0.65" y="0" dx="0.7" dy="0.9" layer="1"/>
 <text x="-0.635" y="0.635" size="1.016" layer="25">&gt;NAME</text>
@@ -8125,7 +8017,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <packageinstance name="0201"/>
 </packageinstances>
 </package3d>
-<package3d name="C0402" urn="urn:adsk.eagle:package:46766485/3" type="model">
+<package3d name="C0402" urn="urn:adsk.eagle:package:46766485/3" locally_modified="yes" type="model">
 <packageinstances>
 <packageinstance name="0402"/>
 </packageinstances>
@@ -8189,7 +8081,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="15PF-50V" urn="urn:adsk.eagle:component:48944506/1" prefix="C" uservalue="yes">
+<deviceset name="15PF-50V" urn="urn:adsk.eagle:component:48944506/1" locally_modified="yes" prefix="C" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="C" x="0" y="0"/>
 </gates>
@@ -8260,7 +8152,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="18PF-50V" urn="urn:adsk.eagle:component:48944463/1" prefix="C" uservalue="yes">
+<deviceset name="18PF-50V" urn="urn:adsk.eagle:component:48944463/1" locally_modified="yes" prefix="C" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="C" x="0" y="0"/>
 </gates>
@@ -8347,7 +8239,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="100NF-25V" urn="urn:adsk.eagle:component:48944476/1" prefix="C" uservalue="yes">
+<deviceset name="100NF-25V" urn="urn:adsk.eagle:component:48944476/1" locally_modified="yes" prefix="C" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="C" x="0" y="0"/>
 </gates>
@@ -8473,7 +8365,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="1UF-16V" urn="urn:adsk.eagle:component:48944487/1" prefix="C" uservalue="yes">
+<deviceset name="1UF-16V" urn="urn:adsk.eagle:component:48944487/1" locally_modified="yes" prefix="C" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="C" x="0" y="0"/>
 </gates>
@@ -8560,7 +8452,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="1UF-25V" urn="urn:adsk.eagle:component:48944488/1" prefix="C" uservalue="yes">
+<deviceset name="1UF-25V" urn="urn:adsk.eagle:component:48944488/1" locally_modified="yes" prefix="C" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="C" x="0" y="0"/>
 </gates>
@@ -8631,7 +8523,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="4.7NF-50V" urn="urn:adsk.eagle:component:48944494/1" prefix="C" uservalue="yes">
+<deviceset name="4.7NF-50V" urn="urn:adsk.eagle:component:48944494/1" locally_modified="yes" prefix="C" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="C" x="0" y="0"/>
 </gates>
@@ -8702,7 +8594,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="4.7UF-25V" urn="urn:adsk.eagle:component:48944496/1" prefix="C" uservalue="yes">
+<deviceset name="4.7UF-25V" urn="urn:adsk.eagle:component:48944496/1" locally_modified="yes" prefix="C" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="C" x="0" y="0"/>
 </gates>
@@ -8773,7 +8665,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="1NF-25V" urn="urn:adsk.eagle:component:48944469/1" prefix="C" uservalue="yes">
+<deviceset name="1NF-25V" urn="urn:adsk.eagle:component:48944469/1" locally_modified="yes" prefix="C" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="C" x="0" y="0"/>
 </gates>
@@ -8938,7 +8830,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="1UF-50V" urn="urn:adsk.eagle:component:48944489/1" prefix="C" uservalue="yes">
+<deviceset name="1UF-50V" urn="urn:adsk.eagle:component:48944489/1" locally_modified="yes" prefix="C" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="C" x="0" y="0"/>
 </gates>
@@ -9009,7 +8901,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="1NF-50V" urn="urn:adsk.eagle:component:48944468/1" prefix="C" uservalue="yes">
+<deviceset name="1NF-50V" urn="urn:adsk.eagle:component:48944468/1" locally_modified="yes" prefix="C" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="C" x="0" y="0"/>
 </gates>
@@ -9096,7 +8988,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="33PF-50V" urn="urn:adsk.eagle:component:48944501/1" prefix="C" uservalue="yes">
+<deviceset name="33PF-50V" urn="urn:adsk.eagle:component:48944501/1" locally_modified="yes" prefix="C" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="C" x="0" y="0"/>
 </gates>
@@ -9222,7 +9114,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="220NF-50V" urn="urn:adsk.eagle:component:48944500/1" prefix="C" uservalue="yes">
+<deviceset name="220NF-50V" urn="urn:adsk.eagle:component:48944500/1" locally_modified="yes" prefix="C" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="C" x="0" y="0"/>
 </gates>
@@ -9293,7 +9185,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="33NF-50V" urn="urn:adsk.eagle:component:48944502/1" prefix="C" uservalue="yes">
+<deviceset name="33NF-50V" urn="urn:adsk.eagle:component:48944502/1" locally_modified="yes" prefix="C" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="C" x="0" y="0"/>
 </gates>
@@ -9442,7 +9334,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="6.8NF-50V" urn="urn:adsk.eagle:component:48944505/1" prefix="C" uservalue="yes">
+<deviceset name="6.8NF-50V" urn="urn:adsk.eagle:component:48944505/1" locally_modified="yes" prefix="C" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="C" x="0" y="0"/>
 </gates>
@@ -9513,7 +9405,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="22NF-50V" urn="urn:adsk.eagle:component:48944504/1" prefix="C" uservalue="yes">
+<deviceset name="22NF-50V" urn="urn:adsk.eagle:component:48944504/1" locally_modified="yes" prefix="C" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="C" x="0" y="0"/>
 </gates>
@@ -9588,7 +9480,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </library>
 <library name="ds_LED">
 <packages>
-<package name="LED-0603" urn="urn:adsk.eagle:footprint:24294728/1" locally_modified="yes">
+<package name="LED-0603" urn="urn:adsk.eagle:footprint:49260828/1">
 <description>Chip LED, 1.60 X 0.80 X 0.35 mm body
  &lt;p&gt;Chip LED package with body size 1.60 X 0.80 X 0.35 mm&lt;/p&gt;</description>
 <smd name="C" x="-0.75" y="0" dx="0.6118" dy="0.9118" layer="1"/>
@@ -9603,7 +9495,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <text x="-0.127" y="1.4049" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
 <text x="-0.127" y="-1.4049" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
 </package>
-<package name="LED-0402" urn="urn:adsk.eagle:footprint:22900746/2" locally_modified="yes">
+<package name="LED-0402" urn="urn:adsk.eagle:footprint:49260826/1">
 <description>Chip LED, 1.00 X 0.50 X 0.25 mm body
  &lt;p&gt;Chip LED package with body size 1.00 X 0.50 X 0.25 mm&lt;/p&gt;</description>
 <smd name="C" x="-0.45" y="0" dx="0.7" dy="0.5" layer="1"/>
@@ -9618,7 +9510,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <text x="-0.127" y="1.2549" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
 <text x="-0.127" y="-1.2549" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
 </package>
-<package name="LED-0805" urn="urn:adsk.eagle:footprint:24294710/1" locally_modified="yes">
+<package name="LED-0805" urn="urn:adsk.eagle:footprint:49260825/1">
 <description>Chip LED, 2.00 X 1.25 X 1.10 mm body
  &lt;p&gt;Chip LED package with body size 2.00 X 1.25 X 1.10 mm&lt;/p&gt;</description>
 <smd name="C" x="-1.025" y="0" dx="0.7618" dy="1.3618" layer="1"/>
@@ -9633,7 +9525,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <text x="-0.127" y="1.6299" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
 <text x="-0.127" y="-1.6299" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
 </package>
-<package name="LED-1206" urn="urn:adsk.eagle:footprint:24294704/1" locally_modified="yes">
+<package name="LED-1206" urn="urn:adsk.eagle:footprint:49260827/1">
 <description>Chip LED, 3.20 X 1.60 X 0.75 mm body
  &lt;p&gt;Chip LED package with body size 3.20 X 1.60 X 0.75 mm&lt;/p&gt;</description>
 <smd name="C" x="-1.525" y="0" dx="0.9618" dy="1.7118" layer="1"/>
@@ -9648,39 +9540,73 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <text x="-0.127" y="1.8049" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
 <text x="-0.127" y="-1.8049" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
 </package>
+<package name="LED3MM" urn="urn:adsk.eagle:footprint:15654/1">
+<description>&lt;B&gt;LED&lt;/B&gt;&lt;p&gt;
+3 mm, round</description>
+<wire x1="1.5748" y1="-1.27" x2="1.5748" y2="1.27" width="0.254" layer="51"/>
+<wire x1="-1.524" y1="0" x2="-1.1708" y2="0.9756" width="0.1524" layer="51" curve="-39.80361"/>
+<wire x1="-1.524" y1="0" x2="-1.1391" y2="-1.0125" width="0.1524" layer="51" curve="41.633208"/>
+<wire x1="1.1571" y1="0.9918" x2="1.524" y2="0" width="0.1524" layer="51" curve="-40.601165"/>
+<wire x1="1.1708" y1="-0.9756" x2="1.524" y2="0" width="0.1524" layer="51" curve="39.80361"/>
+<wire x1="0" y1="1.524" x2="1.2401" y2="0.8858" width="0.1524" layer="21" curve="-54.461337"/>
+<wire x1="-1.2192" y1="0.9144" x2="0" y2="1.524" width="0.1524" layer="21" curve="-53.130102"/>
+<wire x1="0" y1="-1.524" x2="1.203" y2="-0.9356" width="0.1524" layer="21" curve="52.126876"/>
+<wire x1="-1.203" y1="-0.9356" x2="0" y2="-1.524" width="0.1524" layer="21" curve="52.126876"/>
+<wire x1="-0.635" y1="0" x2="0" y2="0.635" width="0.1524" layer="51" curve="-90"/>
+<wire x1="-1.016" y1="0" x2="0" y2="1.016" width="0.1524" layer="51" curve="-90"/>
+<wire x1="0" y1="-0.635" x2="0.635" y2="0" width="0.1524" layer="51" curve="90"/>
+<wire x1="0" y1="-1.016" x2="1.016" y2="0" width="0.1524" layer="51" curve="90"/>
+<wire x1="0" y1="2.032" x2="1.561" y2="1.3009" width="0.254" layer="21" curve="-50.193108"/>
+<wire x1="-1.7929" y1="0.9562" x2="0" y2="2.032" width="0.254" layer="21" curve="-61.926949"/>
+<wire x1="0" y1="-2.032" x2="1.5512" y2="-1.3126" width="0.254" layer="21" curve="49.763022"/>
+<wire x1="-1.7643" y1="-1.0082" x2="0" y2="-2.032" width="0.254" layer="21" curve="60.255215"/>
+<wire x1="-2.032" y1="0" x2="-1.7891" y2="0.9634" width="0.254" layer="51" curve="-28.301701"/>
+<wire x1="-2.032" y1="0" x2="-1.7306" y2="-1.065" width="0.254" layer="51" curve="31.60822"/>
+<pad name="A" x="-1.27" y="0" drill="0.8128" shape="octagon"/>
+<pad name="K" x="1.27" y="0" drill="0.8128" shape="octagon"/>
+<text x="1.905" y="0.381" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="1.905" y="-1.651" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
+</package>
 </packages>
 <packages3d>
-<package3d name="LEDC1608X35N_FLAT-B" urn="urn:adsk.eagle:package:24294787/2" locally_modified="yes" type="model">
+<package3d name="LEDC1608X35N_FLAT-B" urn="urn:adsk.eagle:package:49260835/1" type="model">
 <description>Chip LED, 1.60 X 0.80 X 0.35 mm body
  &lt;p&gt;Chip LED package with body size 1.60 X 0.80 X 0.35 mm&lt;/p&gt;</description>
 <packageinstances>
 <packageinstance name="LED-0603"/>
 </packageinstances>
 </package3d>
-<package3d name="LEDC1005X25N_FLAT-B" urn="urn:adsk.eagle:package:22900837/3" locally_modified="yes" type="model">
+<package3d name="LEDC1005X25N_FLAT-B" urn="urn:adsk.eagle:package:49260837/1" type="model">
 <description>Chip LED, 1.00 X 0.50 X 0.25 mm body
  &lt;p&gt;Chip LED package with body size 1.00 X 0.50 X 0.25 mm&lt;/p&gt;</description>
 <packageinstances>
 <packageinstance name="LED-0402"/>
 </packageinstances>
 </package3d>
-<package3d name="LEDC2012X110N_FLAT-B" urn="urn:adsk.eagle:package:24294759/2" locally_modified="yes" type="model">
+<package3d name="LEDC2012X110N_FLAT-B" urn="urn:adsk.eagle:package:49260836/1" type="model">
 <description>Chip LED, 2.00 X 1.25 X 1.10 mm body
  &lt;p&gt;Chip LED package with body size 2.00 X 1.25 X 1.10 mm&lt;/p&gt;</description>
 <packageinstances>
 <packageinstance name="LED-0805"/>
 </packageinstances>
 </package3d>
-<package3d name="LEDC3216X75N_FLAT-B" urn="urn:adsk.eagle:package:24294749/2" locally_modified="yes" type="model">
+<package3d name="LEDC3216X75N_FLAT-B" urn="urn:adsk.eagle:package:49260834/1" type="model">
 <description>Chip LED, 3.20 X 1.60 X 0.75 mm body
  &lt;p&gt;Chip LED package with body size 3.20 X 1.60 X 0.75 mm&lt;/p&gt;</description>
 <packageinstances>
 <packageinstance name="LED-1206"/>
 </packageinstances>
 </package3d>
+<package3d name="LED3MM" urn="urn:adsk.eagle:package:49260829/2" type="model">
+<description>LED
+3 mm, round</description>
+<packageinstances>
+<packageinstance name="LED3MM"/>
+</packageinstances>
+</package3d>
 </packages3d>
 <symbols>
-<symbol name="LED">
+<symbol name="LED" urn="urn:adsk.eagle:symbol:49260824/1">
 <wire x1="1.27" y1="0" x2="0" y2="-2.54" width="0.1524" layer="94"/>
 <wire x1="0" y1="-2.54" x2="-1.27" y2="0" width="0.1524" layer="94"/>
 <wire x1="1.27" y1="-2.54" x2="0" y2="-2.54" width="0.1524" layer="94"/>
@@ -9705,7 +9631,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="LED-GREEN" prefix="D" uservalue="yes">
+<deviceset name="LED-GREEN" urn="urn:adsk.eagle:component:49260842/1" locally_modified="yes" prefix="D" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="LED" x="0" y="0"/>
 </gates>
@@ -9716,7 +9642,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="C" pad="C"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:22900837/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:49260837/1"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -9732,7 +9658,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="C" pad="C"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:24294787/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:49260835/1"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -9748,7 +9674,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="C" pad="C"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:24294759/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:49260836/1"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -9764,7 +9690,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="C" pad="C"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:24294749/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:49260834/1"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -9774,9 +9700,25 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </technology>
 </technologies>
 </device>
+<device name="3MM-CLEAR" package="LED3MM">
+<connects>
+<connect gate="G$1" pin="A" pad="A"/>
+<connect gate="G$1" pin="C" pad="K"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:49260829/2"/>
+</package3dinstances>
+<technologies>
+<technology name="">
+<attribute name="DESCRIPTION" value="-20℃~+80℃ 20mA 30° 3mm Round Lens 600nm~610nm 610nm 72mW Amber Water Clear Plugin,D=3mm LED Indication - Discrete ROHS " constant="no"/>
+<attribute name="LCSC_PART" value="C414645" constant="no"/>
+<attribute name="VALUE" value="GREEN" constant="no"/>
+</technology>
+</technologies>
+</device>
 </devices>
 </deviceset>
-<deviceset name="LED-BLUE" prefix="D" uservalue="yes">
+<deviceset name="LED-BLUE" urn="urn:adsk.eagle:component:49260843/1" locally_modified="yes" prefix="D" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="LED" x="0" y="0"/>
 </gates>
@@ -9787,7 +9729,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="C" pad="C"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:22900837/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:49260837/1"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -9803,7 +9745,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="C" pad="C"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:24294787/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:49260835/1"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -9819,7 +9761,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="C" pad="C"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:24294759/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:49260836/1"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -9835,7 +9777,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="C" pad="C"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:24294749/2"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:49260834/1"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -9845,13 +9787,29 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </technology>
 </technologies>
 </device>
+<device name="3MM-CLEAR" package="LED3MM">
+<connects>
+<connect gate="G$1" pin="A" pad="A"/>
+<connect gate="G$1" pin="C" pad="K"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:49260829/2"/>
+</package3dinstances>
+<technologies>
+<technology name="">
+<attribute name="DESCRIPTION" value="3mm Round Lens Blue Plugin,D=3mm LED Indication - Discrete ROHS" constant="no"/>
+<attribute name="LCSC_PART" value="C86881" constant="no"/>
+<attribute name="VALUE" value="BLUE" constant="no"/>
+</technology>
+</technologies>
+</device>
 </devices>
 </deviceset>
 </devicesets>
 </library>
 <library name="ds_inductor">
 <packages>
-<package name="L-6.6X6.6" urn="urn:adsk.eagle:footprint:12989874/4" locally_modified="yes">
+<package name="L-6.6X6.6" urn="urn:adsk.eagle:footprint:49051867/1">
 <description>&lt;b&gt;WE-LHMI SMT Power Inductor&lt;br&gt;&lt;/b&gt;
 &lt;br&gt;Size: 7030, SMT, 2pins
 &lt;br&gt;LXWXH = 6.6x6.6x2.8mm</description>
@@ -9880,7 +9838,21 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <circle x="-5" y="0" radius="0.2" width="0.4" layer="21"/>
 <circle x="-0.7" y="0" radius="0.1" width="0.4" layer="51"/>
 </package>
-<package name="L-12.5X12.5" urn="urn:adsk.eagle:footprint:12989879/4" locally_modified="yes">
+<package name="0603" urn="urn:adsk.eagle:footprint:46683722/1">
+<wire x1="-0.432" y1="-0.356" x2="0.432" y2="-0.356" width="0.1524" layer="51"/>
+<wire x1="0.432" y1="0.356" x2="-0.432" y2="0.356" width="0.1524" layer="51"/>
+<wire x1="-1.473" y1="0.729" x2="1.473" y2="0.729" width="0.0508" layer="39"/>
+<wire x1="1.473" y1="0.729" x2="1.473" y2="-0.729" width="0.0508" layer="39"/>
+<wire x1="1.473" y1="-0.729" x2="-1.473" y2="-0.729" width="0.0508" layer="39"/>
+<wire x1="-1.473" y1="-0.729" x2="-1.473" y2="0.729" width="0.0508" layer="39"/>
+<smd name="1" x="-0.85" y="0" dx="1" dy="1.1" layer="1"/>
+<smd name="2" x="0.85" y="0" dx="1" dy="1.1" layer="1"/>
+<text x="-0.635" y="0.635" size="1.016" layer="25">&gt;NAME</text>
+<text x="-0.635" y="-1.905" size="1.016" layer="27">&gt;VALUE</text>
+<rectangle x1="0.4318" y1="-0.4318" x2="0.8382" y2="0.4318" layer="51"/>
+<rectangle x1="-0.8382" y1="-0.4318" x2="-0.4318" y2="0.4318" layer="51"/>
+</package>
+<package name="L-12.5X12.5" urn="urn:adsk.eagle:footprint:49051866/1">
 <description>&lt;b&gt;WE-LHMI SMT Power Inductor&lt;br&gt;&lt;/b&gt;
 &lt;br&gt;Size: 1365, SMT, 2pins
 &lt;br&gt;LXWXH = 12.5x12.5x6.2mm</description>
@@ -9909,7 +9881,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <circle x="-8" y="0" radius="0.2" width="0.4" layer="21"/>
 <circle x="-3" y="0" radius="0.2" width="0.4" layer="51"/>
 </package>
-<package name="L-7.3X7.3" urn="urn:adsk.eagle:footprint:13009189/3" locally_modified="yes">
+<package name="L-7.3X7.3" urn="urn:adsk.eagle:footprint:49051862/1">
 <description>&lt;b&gt; WE-PD SMD Power Inductor&lt;br&gt;&lt;/b&gt;
 
 &lt;br&gt;Size: 7345P, SMT, 2pins
@@ -9981,23 +9953,9 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <circle x="-2" y="4.3" radius="0.15" width="0.3" layer="21"/>
 <circle x="0" y="1.75" radius="0.2" width="0.4" layer="51"/>
 </package>
-<package name="0603" urn="urn:adsk.eagle:footprint:46683722/1">
-<wire x1="-0.432" y1="-0.356" x2="0.432" y2="-0.356" width="0.1524" layer="51"/>
-<wire x1="0.432" y1="0.356" x2="-0.432" y2="0.356" width="0.1524" layer="51"/>
-<wire x1="-1.473" y1="0.729" x2="1.473" y2="0.729" width="0.0508" layer="39"/>
-<wire x1="1.473" y1="0.729" x2="1.473" y2="-0.729" width="0.0508" layer="39"/>
-<wire x1="1.473" y1="-0.729" x2="-1.473" y2="-0.729" width="0.0508" layer="39"/>
-<wire x1="-1.473" y1="-0.729" x2="-1.473" y2="0.729" width="0.0508" layer="39"/>
-<smd name="1" x="-0.85" y="0" dx="1" dy="1.1" layer="1"/>
-<smd name="2" x="0.85" y="0" dx="1" dy="1.1" layer="1"/>
-<text x="-0.635" y="0.635" size="1.016" layer="25">&gt;NAME</text>
-<text x="-0.635" y="-1.905" size="1.016" layer="27">&gt;VALUE</text>
-<rectangle x1="0.4318" y1="-0.4318" x2="0.8382" y2="0.4318" layer="51"/>
-<rectangle x1="-0.8382" y1="-0.4318" x2="-0.4318" y2="0.4318" layer="51"/>
-</package>
 </packages>
 <packages3d>
-<package3d name="WE-LHMI_7030" urn="urn:adsk.eagle:package:12989888/6" locally_modified="yes" type="model">
+<package3d name="WE-LHMI_7030" urn="urn:adsk.eagle:package:49051880/1" type="model">
 <description>&lt;b&gt;WE-LHMI SMT Power Inductor&lt;br&gt;&lt;/b&gt;
 &lt;br&gt;Size: 7030, SMT, 2pins
 &lt;br&gt;LXWXH = 6.6x6.6x2.8mm</description>
@@ -10005,7 +9963,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <packageinstance name="L-6.6X6.6"/>
 </packageinstances>
 </package3d>
-<package3d name="WE-LHMI_1365" urn="urn:adsk.eagle:package:12989893/6" locally_modified="yes" type="model">
+<package3d name="WE-LHMI_1365" urn="urn:adsk.eagle:package:49051879/1" type="model">
 <description>&lt;b&gt;WE-LHMI SMT Power Inductor&lt;br&gt;&lt;/b&gt;
 &lt;br&gt;Size: 1365, SMT, 2pins
 &lt;br&gt;LXWXH = 12.5x12.5x6.2mm</description>
@@ -10013,9 +9971,23 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <packageinstance name="L-12.5X12.5"/>
 </packageinstances>
 </package3d>
+<package3d name="L-7.3X7.3" urn="urn:adsk.eagle:package:49051868/2" type="model">
+<description>&lt;b&gt; WE-PD SMD Power Inductor&lt;br&gt;&lt;/b&gt;
+
+&lt;br&gt;Size: 7345P, SMT, 2pins
+&lt;br&gt;LxWxH=7.3x7.3x4.5mm</description>
+<packageinstances>
+<packageinstance name="L-7.3X7.3"/>
+</packageinstances>
+</package3d>
+<package3d name="0603" urn="urn:adsk.eagle:package:49051870/2" type="model">
+<packageinstances>
+<packageinstance name="0603"/>
+</packageinstances>
+</package3d>
 </packages3d>
 <symbols>
-<symbol name="L">
+<symbol name="L" urn="urn:adsk.eagle:symbol:49051860/1">
 <text x="-5.715" y="4.0386" size="1.778" layer="95">&gt;NAME</text>
 <text x="-5.715" y="-3.302" size="1.778" layer="96">&gt;VALUE</text>
 <wire x1="-5.08" y1="0" x2="-2.54" y2="0" width="0.254" layer="94" curve="-180"/>
@@ -10028,7 +10000,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <pin name="2" x="7.62" y="0" visible="off" length="short" direction="pas" rot="R180"/>
 <circle x="-5.842" y="0.508" radius="0.127" width="0.254" layer="94"/>
 </symbol>
-<symbol name="FERRITE">
+<symbol name="FERRITE" urn="urn:adsk.eagle:symbol:49051859/1">
 <text x="-3.81" y="2.7686" size="1.778" layer="95">&gt;NAME</text>
 <text x="-4.445" y="-3.937" size="1.778" layer="96">&gt;VALUE</text>
 <pin name="1" x="-7.62" y="0" visible="off" length="short" direction="pas"/>
@@ -10039,7 +10011,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="1MH" prefix="L" uservalue="yes">
+<deviceset name="1MH" urn="urn:adsk.eagle:component:49051886/1" locally_modified="yes" prefix="L" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="L" x="0" y="0"/>
 </gates>
@@ -10050,7 +10022,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:12989893/6"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:49051879/1"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -10066,7 +10038,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:12989888/6"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:49051880/1"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -10077,6 +10049,9 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </technologies>
 </device>
 <device name="L-7.3X7.3" package="L-7.3X7.3">
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:49051868/2"/>
+</package3dinstances>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="250mA 1mH ±20% SMD Power Inductors ROHS" constant="no"/>
@@ -10087,7 +10062,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="BLM18EG221TN1D" prefix="L">
+<deviceset name="BLM18EG221TN1D" urn="urn:adsk.eagle:component:49051885/1" locally_modified="yes" prefix="L">
 <description>150mΩ ±25% 220Ω@100MHz 0603 Ferrite Beads ROHS</description>
 <gates>
 <gate name="G$1" symbol="FERRITE" x="0" y="0"/>
@@ -10098,6 +10073,9 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <connect gate="G$1" pin="1" pad="1"/>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:49051870/2"/>
+</package3dinstances>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="150mΩ ±25% 220Ω@100MHz 0603 Ferrite Beads ROHS " constant="no"/>
@@ -10408,15 +10386,15 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <part name="GND1" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="GND3" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="GND5" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
-<part name="R4" library="ds_resistor" deviceset="9.09K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="9.09K 1%"/>
+<part name="R4" library="ds_resistor" deviceset="9.09K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="9.09K 1%"/>
 <part name="GND9" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="GND7" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
-<part name="R7" library="ds_resistor" deviceset="10R-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10R 1%"/>
+<part name="R7" library="ds_resistor" deviceset="10R-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="10R 1%"/>
 <part name="C8" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
-<part name="R8" library="ds_resistor" deviceset="20K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="20K 1%"/>
+<part name="R8" library="ds_resistor" deviceset="20K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="20K 1%"/>
 <part name="L1" library="ds_passive" deviceset="L" device="" package3d_urn="urn:adsk.eagle:package:46684196/2" value="4.9uH"/>
-<part name="R11" library="ds_resistor" deviceset="40.2K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="40.2K 1%"/>
-<part name="R12" library="ds_resistor" deviceset="7.5K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="7.5K 1%"/>
+<part name="R11" library="ds_resistor" deviceset="40.2K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="40.2K 1%"/>
+<part name="R12" library="ds_resistor" deviceset="7.5K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="7.5K 1%"/>
 <part name="GND13" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="C11" library="ds_capacitors" deviceset="33PF-50V" device="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="33pF 50V"/>
 <part name="GND17" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
@@ -10426,7 +10404,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <part name="5VFB" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
 <part name="GND" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
 <part name="GND-5" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
-<part name="R3" library="ds_resistor" deviceset="100K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="100K 1%"/>
+<part name="R3" library="ds_resistor" deviceset="100K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="100K 1%"/>
 <part name="P+9" library="ds_passive" deviceset="+12V" device=""/>
 <part name="C1" library="ds_capacitors" deviceset="22UF-25V" device="-1206" package3d_urn="urn:adsk.eagle:package:46766482/3" value="22uF 25V"/>
 <part name="C14" library="ds_capacitors" deviceset="22UF-25V" device="-1206" package3d_urn="urn:adsk.eagle:package:46766482/3" value="22uF 25V"/>
@@ -10434,20 +10412,20 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <part name="GND20" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="IC2" library="ds_ic_vreg" deviceset="MP2315" device="TSOT23-8" package3d_urn="urn:adsk.eagle:package:29335450/2" value="MP2315GJ-Z "/>
 <part name="C4" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
-<part name="R2" library="ds_resistor" deviceset="10K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K 1%"/>
+<part name="R2" library="ds_resistor" deviceset="10K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="10K 1%"/>
 <part name="C7" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
 <part name="GND2" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="GND4" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="GND6" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
-<part name="R6" library="ds_resistor" deviceset="7.5K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="7.5K 1%"/>
+<part name="R6" library="ds_resistor" deviceset="7.5K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="7.5K 1%"/>
 <part name="GND10" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="GND8" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
-<part name="R9" library="ds_resistor" deviceset="10R-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10R 1%"/>
+<part name="R9" library="ds_resistor" deviceset="10R-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="10R 1%"/>
 <part name="C9" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
 <part name="R10" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="33K"/>
 <part name="L2" library="ds_passive" deviceset="L" device="" package3d_urn="urn:adsk.eagle:package:46684196/2" value="4.2uH"/>
-<part name="R13" library="ds_resistor" deviceset="40.2K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="40.2K 1%"/>
-<part name="R14" library="ds_resistor" deviceset="12.7K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="12.7K 1%"/>
+<part name="R13" library="ds_resistor" deviceset="40.2K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="40.2K 1%"/>
+<part name="R14" library="ds_resistor" deviceset="12.7K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="12.7K 1%"/>
 <part name="GND14" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="C12" library="ds_capacitors" deviceset="33PF-50V" device="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="33pF 50V"/>
 <part name="GND18" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
@@ -10455,7 +10433,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <part name="SW3" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
 <part name="3VFB" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
 <part name="GND-3" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
-<part name="R5" library="ds_resistor" deviceset="100K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="100K 1%"/>
+<part name="R5" library="ds_resistor" deviceset="100K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="100K 1%"/>
 <part name="P+10" library="ds_passive" deviceset="+12V" device=""/>
 <part name="+3V31" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="C2" library="ds_capacitors" deviceset="22UF-25V" device="-1206" package3d_urn="urn:adsk.eagle:package:46766482/3" value="22uF 25V"/>
@@ -10620,25 +10598,25 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <part name="R62" library="ds_resistor" deviceset="39R-1%" device="2512" package3d_urn="urn:adsk.eagle:package:47078537/2" value="39R 1% 2W"/>
 <part name="AGND4" library="ds_passive" deviceset="AGND" device=""/>
 <part name="OPT1" library="ds_ic_peripherals" deviceset="ACPL-247" device="1" package3d_urn="urn:adsk.eagle:package:46683889/2" value="ACPL-247-500E "/>
-<part name="R63" library="ds_resistor" deviceset="1K-1%_ARRAY" device="0603X4-1206" value="1K 1%"/>
-<part name="R64" library="ds_resistor" deviceset="1K-1%_ARRAY" device="0603X4-1206" value="1K 1%"/>
+<part name="R63" library="ds_resistor" deviceset="1K-1%_ARRAY" device="0603X4-1206" package3d_urn="urn:adsk.eagle:package:49287421/2" value="1K 1%"/>
+<part name="R64" library="ds_resistor" deviceset="1K-1%_ARRAY" device="0603X4-1206" package3d_urn="urn:adsk.eagle:package:49287421/2" value="1K 1%"/>
 <part name="GND25" library="ds_passive" deviceset="GND" device=""/>
 <part name="IC9" library="ds_ic_logic" deviceset="SN74HC151PWR" device="" package3d_urn="urn:adsk.eagle:package:16485/2" value="SN74HC151PWR"/>
 <part name="+3V1" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="C33" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
 <part name="C34" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
 <part name="GND27" library="ds_passive" deviceset="GND" device=""/>
-<part name="R89" library="ds_resistor" deviceset="10K-1%_ARRAY" device="0603X4-1206" value="10K 1%"/>
-<part name="R90" library="ds_resistor" deviceset="10K-1%_ARRAY" device="0603X4-1206" value="10K 1%"/>
+<part name="R89" library="ds_resistor" deviceset="10K-1%_ARRAY" device="0603X4-1206" package3d_urn="urn:adsk.eagle:package:49287421/2" value="10K 1%"/>
+<part name="R90" library="ds_resistor" deviceset="10K-1%_ARRAY" device="0603X4-1206" package3d_urn="urn:adsk.eagle:package:49287421/2" value="10K 1%"/>
 <part name="+3V2" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="+3V3" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="GND28" library="ds_passive" deviceset="GND" device=""/>
 <part name="+3V4" library="ds_passive" deviceset="+3V3" device=""/>
-<part name="R91" library="ds_resistor" deviceset="0R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="0R 1%"/>
+<part name="R91" library="ds_resistor" deviceset="0R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="0R 1%"/>
 <part name="R92" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="DNI"/>
-<part name="R93" library="Resistor Array" library_urn="urn:adsk.eagle:library:16491332" deviceset="742C083103JP" device="" package3d_urn="urn:adsk.eagle:package:16445849/4" value="4x10K 1206"/>
-<part name="R94" library="ds_resistor" deviceset="100K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="100K 1%"/>
-<part name="R95" library="ds_resistor" deviceset="10K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K 1%"/>
+<part name="R93" library="ds_resistor" deviceset="10K-1%_ARRAY" device="0603X4-1206" package3d_urn="urn:adsk.eagle:package:49287421/2" value="10K 1%"/>
+<part name="R94" library="ds_resistor" deviceset="100K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="100K 1%"/>
+<part name="R95" library="ds_resistor" deviceset="10K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="10K 1%"/>
 <part name="GND30" library="ds_passive" deviceset="GND" device=""/>
 <part name="C35" library="ds_capacitors" deviceset="2.2UF-400V" device="6.3X7.7(DXL)" package3d_urn="urn:adsk.eagle:package:48944449/2" value="2.2uF 400V"/>
 <part name="IC13" library="ds_ic_vreg" deviceset="MP150" device="GJ" package3d_urn="urn:adsk.eagle:package:25419215/2" value="MP150GJ"/>
@@ -10648,7 +10626,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <part name="C22" library="ds_capacitors" deviceset="220NF-50V" device="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="220nF 50V"/>
 <part name="D11" library="ds_diode" deviceset="US1J" device="-E3/61T" package3d_urn="urn:adsk.eagle:package:12146531/2" value="US1J-E3/61T "/>
 <part name="AGND2" library="ds_passive" deviceset="AGND" device=""/>
-<part name="L3" library="ds_inductor" deviceset="1MH" device="L-6.6X6.6" package3d_urn="urn:adsk.eagle:package:12989888/6" value="1mH"/>
+<part name="L3" library="ds_inductor" deviceset="1MH" device="L-6.6X6.6" package3d_urn="urn:adsk.eagle:package:49051880/1" value="1mH"/>
 <part name="C23" library="ds_capacitors" deviceset="100UF-50V" device="6.3X7.7(DXL)" package3d_urn="urn:adsk.eagle:package:48944449/2" value="100uF 50V"/>
 <part name="C45" library="ds_capacitors" deviceset="1UF-50V" device="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="1uF 50V"/>
 <part name="AGND3" library="ds_passive" deviceset="AGND" device=""/>
@@ -10672,7 +10650,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <part name="C52" library="ds_capacitors" deviceset="220NF-50V" device="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="220nF 50V"/>
 <part name="D14" library="ds_diode" deviceset="US1J" device="-E3/61T" package3d_urn="urn:adsk.eagle:package:12146531/2" value="US1J-E3/61T "/>
 <part name="AGND23" library="ds_passive" deviceset="AGND" device=""/>
-<part name="L5" library="ds_inductor" deviceset="1MH" device="L-6.6X6.6" package3d_urn="urn:adsk.eagle:package:12989888/6" value="1mH"/>
+<part name="L5" library="ds_inductor" deviceset="1MH" device="L-6.6X6.6" package3d_urn="urn:adsk.eagle:package:49051880/1" value="1mH"/>
 <part name="C53" library="ds_capacitors" deviceset="100UF-50V" device="6.3X7.7(DXL)" package3d_urn="urn:adsk.eagle:package:48944449/2" value="100uF 50V"/>
 <part name="C57" library="ds_capacitors" deviceset="1UF-50V" device="0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="1uF 50V"/>
 <part name="AGND24" library="ds_passive" deviceset="AGND" device=""/>
@@ -10693,12 +10671,12 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <part name="C59" library="ds_capacitors" deviceset="15PF-50V" device="0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="15pF 50V"/>
 <part name="GND32" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND33" library="ds_passive" deviceset="GND" device=""/>
-<part name="R16" library="ds_resistor" deviceset="1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="1K 1%"/>
+<part name="R16" library="ds_resistor" deviceset="1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="1K 1%"/>
 <part name="GND34" library="ds_passive" deviceset="GND" device=""/>
 <part name="DVDD" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
 <part name="REF1" library="ds_ic_vreg" deviceset="LM4040BXX" device="" package3d_urn="urn:adsk.eagle:package:46684430/3" value="LM4040B30FTA"/>
 <part name="GND35" library="ds_passive" deviceset="GND" device=""/>
-<part name="R109" library="ds_resistor" deviceset="4.7K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="4.7K 1%"/>
+<part name="R109" library="ds_resistor" deviceset="4.7K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="4.7K 1%"/>
 <part name="IOVDD" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
 <part name="VREF" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
 <part name="IC17" library="ds_ic_opa" deviceset="MCP6001RT" device="" package3d_urn="urn:adsk.eagle:package:25419215/3" value="MCP6001RT-I/OT"/>
@@ -10712,21 +10690,21 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <part name="C63" library="ds_capacitors" deviceset="100NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="100nF 25V"/>
 <part name="GND40" library="ds_passive" deviceset="GND" device=""/>
 <part name="AVDD" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
-<part name="IC18" library="ds_ic_memory" deviceset="W25Q128JV" device="P" package3d_urn="urn:adsk.eagle:package:45369668/1" value="W25Q128JVPIQ"/>
+<part name="IC18" library="ds_ic_memory" deviceset="W25Q128JV" device="P" package3d_urn="urn:adsk.eagle:package:45369668/2" value="W25Q128JVPIQ"/>
 <part name="R111" library="ds_passive" deviceset="R" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="DNI"/>
 <part name="GND41" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND42" library="ds_passive" deviceset="GND" device=""/>
-<part name="R112" library="ds_resistor" deviceset="1K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="1K 1%"/>
+<part name="R112" library="ds_resistor" deviceset="1K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="1K 1%"/>
 <part name="C64" library="ds_capacitors" deviceset="100NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="100nF 25V"/>
 <part name="GND44" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="NC24" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="NC" device=""/>
-<part name="R121" library="ds_resistor" deviceset="2.2K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="2.2K 1%"/>
+<part name="R121" library="ds_resistor" deviceset="2.2K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="2.2K 1%"/>
 <part name="GND45" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="C65" library="ds_capacitors" deviceset="10UF-50V" device="-0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="10uF 50V"/>
 <part name="C66" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
 <part name="GND46" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
-<part name="R124" library="ds_resistor" deviceset="5.1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="5.1K 1%"/>
-<part name="R125" library="ds_resistor" deviceset="5.1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="5.1K 1%"/>
+<part name="R124" library="ds_resistor" deviceset="5.1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="5.1K 1%"/>
+<part name="R125" library="ds_resistor" deviceset="5.1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="5.1K 1%"/>
 <part name="GND47" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="GND48" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="VBUS" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
@@ -10747,12 +10725,12 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <part name="GND52" library="ds_passive" deviceset="GND" device=""/>
 <part name="GDGC" library="ds_con" deviceset="CON-1X4" device="" package3d_urn="urn:adsk.eagle:package:46684991/2"/>
 <part name="GND53" library="ds_passive" deviceset="GND" device=""/>
-<part name="R126" library="ds_resistor" deviceset="10K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="10K 1%"/>
-<part name="R127" library="ds_resistor" deviceset="10K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="10K 1%"/>
+<part name="R126" library="ds_resistor" deviceset="10K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="10K 1%"/>
+<part name="R127" library="ds_resistor" deviceset="10K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="10K 1%"/>
 <part name="GND54" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="IC19" library="ds_ic_memory" deviceset="CAT24C256" device="-HU4" package3d_urn="urn:adsk.eagle:package:45817778/1" value="CAT24C256HU4IGT3"/>
 <part name="R128" library="ds_passive" deviceset="R" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="NC"/>
-<part name="R129" library="ds_resistor" deviceset="4.7K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="4.7K 1%"/>
+<part name="R129" library="ds_resistor" deviceset="4.7K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="4.7K 1%"/>
 <part name="GND55" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND56" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND57" library="ds_passive" deviceset="GND" device=""/>
@@ -10760,35 +10738,35 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <part name="VBUS3" library="ds_passive" deviceset="VBUS" device=""/>
 <part name="+1V1" library="ds_passive" deviceset="+1V1" device=""/>
 <part name="+1V2" library="ds_passive" deviceset="+1V1" device=""/>
-<part name="R130" library="ds_resistor" deviceset="3.3K-1%_ARRAY" device="0603X4-1206" value="3.3K 1%"/>
+<part name="R130" library="ds_resistor" deviceset="3.3K-1%_ARRAY" device="0603X4-1206" package3d_urn="urn:adsk.eagle:package:49287421/2" value="3.3K 1%"/>
 <part name="RGTG" library="ds_con" deviceset="CON-1X4" device="" package3d_urn="urn:adsk.eagle:package:46684991/2"/>
 <part name="GND65" library="ds_passive" deviceset="GND" device=""/>
-<part name="R131" library="ds_resistor" deviceset="1M-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="1M 1%"/>
+<part name="R131" library="ds_resistor" deviceset="1M-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="1M 1%"/>
 <part name="C78" library="ds_capacitors" deviceset="4.7NF-50V" device="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="4.7nF 50V"/>
 <part name="GND66" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="ESD1" library="ds_ic_peripherals" deviceset="SP0503BAHT" device="" package3d_urn="urn:adsk.eagle:package:25572586/2" value="SP0503BAHTG"/>
 <part name="GND67" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="GND58" library="ds_passive" deviceset="GND" device=""/>
-<part name="R132" library="ds_resistor" deviceset="10K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K 1%"/>
-<part name="BOOT" library="ds_passive" deviceset="B3U-1000P" device="" value="B3U-1000P "/>
-<part name="RESET" library="ds_passive" deviceset="B3U-1000P" device="" value="B3U-1000P "/>
+<part name="R132" library="ds_resistor" deviceset="10K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="10K 1%"/>
+<part name="BOOT" library="ds_passive" deviceset="B3U-1000P" device="" package3d_urn="urn:adsk.eagle:package:49287356/2" value="B3U-1000P "/>
+<part name="RESET" library="ds_passive" deviceset="B3U-1000P" device="" package3d_urn="urn:adsk.eagle:package:49287356/2" value="B3U-1000P "/>
 <part name="FRAME5" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A3L-LOC" device=""/>
 <part name="IC20" library="ds_ic_peripherals" deviceset="W5500" device="" package3d_urn="urn:adsk.eagle:package:46756750/2" value="W5500"/>
 <part name="+3V7" library="ds_passive" deviceset="+3V3" device=""/>
-<part name="R133" library="ds_resistor" deviceset="3.3R-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="3.3R 1%"/>
-<part name="R134" library="ds_resistor" deviceset="3.3R-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="3.3R 1%"/>
-<part name="R135" library="ds_resistor" deviceset="3.3R-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="3.3R 1%"/>
-<part name="R136" library="ds_resistor" deviceset="3.3R-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="3.3R 1%"/>
+<part name="R133" library="ds_resistor" deviceset="3.3R-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="3.3R 1%"/>
+<part name="R134" library="ds_resistor" deviceset="3.3R-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="3.3R 1%"/>
+<part name="R135" library="ds_resistor" deviceset="3.3R-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="3.3R 1%"/>
+<part name="R136" library="ds_resistor" deviceset="3.3R-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="3.3R 1%"/>
 <part name="GND59" library="ds_passive" deviceset="GND" device=""/>
-<part name="R137" library="ds_resistor" deviceset="49.9R-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="49.9R 1%"/>
-<part name="R138" library="ds_resistor" deviceset="49.9R-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="49.9R 1%"/>
+<part name="R137" library="ds_resistor" deviceset="49.9R-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="49.9R 1%"/>
+<part name="R138" library="ds_resistor" deviceset="49.9R-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="49.9R 1%"/>
 <part name="C79" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
 <part name="GND60" library="ds_passive" deviceset="GND" device=""/>
-<part name="R139" library="ds_resistor" deviceset="49.9R-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="49.9R 1%"/>
-<part name="R140" library="ds_resistor" deviceset="49.9R-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="49.9R 1%"/>
+<part name="R139" library="ds_resistor" deviceset="49.9R-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="49.9R 1%"/>
+<part name="R140" library="ds_resistor" deviceset="49.9R-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="49.9R 1%"/>
 <part name="+3V14" library="ds_passive" deviceset="+3V3" device=""/>
-<part name="R141" library="ds_resistor" deviceset="470R-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="470R 1%"/>
-<part name="R142" library="ds_resistor" deviceset="470R-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="470R 1%"/>
+<part name="R141" library="ds_resistor" deviceset="470R-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="470R 1%"/>
+<part name="R142" library="ds_resistor" deviceset="470R-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="470R 1%"/>
 <part name="C80" library="ds_capacitors" deviceset="22NF-50V" device="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="22nF 50V"/>
 <part name="+3V17" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="GND61" library="ds_passive" deviceset="GND" device=""/>
@@ -10815,8 +10793,8 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <part name="C87" library="ds_capacitors" deviceset="18PF-50V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="18pF 50V"/>
 <part name="GND69" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND70" library="ds_passive" deviceset="GND" device=""/>
-<part name="R144" library="ds_resistor" deviceset="1M-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="1M 1%"/>
-<part name="R145" library="ds_resistor" deviceset="4.7K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="4.7K 1%"/>
+<part name="R144" library="ds_resistor" deviceset="1M-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="1M 1%"/>
+<part name="R145" library="ds_resistor" deviceset="4.7K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="4.7K 1%"/>
 <part name="+3V18" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="C88" library="ds_capacitors" deviceset="100NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="100nF 25V"/>
 <part name="C89" library="ds_capacitors" deviceset="100NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="100nF 25V"/>
@@ -10830,8 +10808,8 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <part name="GND71" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND72" library="ds_passive" deviceset="GND" device=""/>
 <part name="+3V21" library="ds_passive" deviceset="+3V3" device=""/>
-<part name="L4" library="ds_inductor" deviceset="BLM18EG221TN1D" device="" value="BLM18EG221TN1D"/>
-<part name="R146" library="ds_resistor" deviceset="470R-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="470R 1%"/>
+<part name="L4" library="ds_inductor" deviceset="BLM18EG221TN1D" device="" package3d_urn="urn:adsk.eagle:package:49051870/2" value="BLM18EG221TN1D"/>
+<part name="R146" library="ds_resistor" deviceset="470R-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="470R 1%"/>
 <part name="NC37" library="ds_passive" deviceset="NC" device=""/>
 <part name="GND73" library="ds_passive" deviceset="GND" device=""/>
 <part name="+3V24" library="ds_passive" deviceset="+3V3" device=""/>
@@ -10846,9 +10824,9 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <part name="GND75" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="NC38" library="ds_passive" deviceset="NC" device=""/>
 <part name="GND76" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
-<part name="R147" library="ds_resistor" deviceset="10K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K 1%"/>
+<part name="R147" library="ds_resistor" deviceset="10K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="10K 1%"/>
 <part name="+3V27" library="ds_passive" deviceset="+3V3" device=""/>
-<part name="R149" library="ds_resistor" deviceset="3.3K-1%_ARRAY" device="0603X4-1206" value="3.3K 1%"/>
+<part name="R149" library="ds_resistor" deviceset="3.3K-1%_ARRAY" device="0603X4-1206" package3d_urn="urn:adsk.eagle:package:49287421/2" value="3.3K 1%"/>
 <part name="NC43" library="ds_passive" deviceset="NC" device=""/>
 <part name="+3V29" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="K1" library="ds_passive" deviceset="G2RL-1A-E_DC12" device="" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E DC12 "/>
@@ -10891,8 +10869,8 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <part name="D15" library="ds_diode" deviceset="SS12" device="" package3d_urn="urn:adsk.eagle:package:12146531/2" value="SS12"/>
 <part name="P+14" library="ds_passive" deviceset="+5V" device=""/>
 <part name="DSP" library="ds_con" deviceset="AFC11-S20ICC-00" device="" package3d_urn="urn:adsk.eagle:package:47082459/4" value="AFC11-S20ICC-00 "/>
-<part name="R151" library="ds_resistor" deviceset="1K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="1K 1%"/>
-<part name="PWR" library="ds_LED" deviceset="LED-GREEN" device="LED-0603" package3d_urn="urn:adsk.eagle:package:24294787/2" value="Green"/>
+<part name="R151" library="ds_resistor" deviceset="1K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="1K 1%"/>
+<part name="PWR" library="ds_LED" deviceset="LED-GREEN" device="LED-0603" package3d_urn="urn:adsk.eagle:package:49260835/1" value="Green"/>
 <part name="GND84" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="L_OUT1" library="holes" library_urn="urn:adsk.eagle:library:237" deviceset="MOUNT-PAD-ROUND" device="2.8" package3d_urn="urn:adsk.eagle:package:14281/1" value="MOUNT-PAD-ROUND2.8"/>
 <part name="N_OUT1" library="holes" library_urn="urn:adsk.eagle:library:237" deviceset="MOUNT-PAD-ROUND" device="2.8" package3d_urn="urn:adsk.eagle:package:14281/1" value="MOUNT-PAD-ROUND2.8"/>
@@ -10914,24 +10892,24 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <part name="AC_N" library="holes" library_urn="urn:adsk.eagle:library:237" deviceset="MOUNT-PAD-ROUND" device="3.0" package3d_urn="urn:adsk.eagle:package:14280/1"/>
 <part name="FRAME1" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A3P-LOC" device=""/>
 <part name="GND85" library="ds_passive" deviceset="GND" device=""/>
-<part name="R57" library="ds_resistor" deviceset="0R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="0R 1%"/>
+<part name="R57" library="ds_resistor" deviceset="0R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="0R 1%"/>
 <part name="R58" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="DNI"/>
 <part name="C106" library="ds_capacitors" deviceset="1NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="1nF 25V"/>
 <part name="C107" library="ds_capacitors" deviceset="1NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="1nF 25V"/>
 <part name="C108" library="ds_capacitors" deviceset="1NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="1nF 25V"/>
 <part name="C109" library="ds_capacitors" deviceset="1NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="1nF 25V"/>
-<part name="R59" library="ds_resistor" deviceset="1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="1K 1%"/>
-<part name="R153" library="ds_resistor" deviceset="1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="1K 1%"/>
-<part name="R154" library="ds_resistor" deviceset="1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="1K 1%"/>
-<part name="R155" library="ds_resistor" deviceset="1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="1K 1%"/>
+<part name="R59" library="ds_resistor" deviceset="1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="1K 1%"/>
+<part name="R153" library="ds_resistor" deviceset="1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="1K 1%"/>
+<part name="R154" library="ds_resistor" deviceset="1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="1K 1%"/>
+<part name="R155" library="ds_resistor" deviceset="1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="1K 1%"/>
 <part name="C110" library="ds_capacitors" deviceset="1NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="1nF 25V"/>
 <part name="C111" library="ds_capacitors" deviceset="1NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="1nF 25V"/>
 <part name="C112" library="ds_capacitors" deviceset="1NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="1nF 25V"/>
 <part name="C113" library="ds_capacitors" deviceset="1NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="1nF 25V"/>
-<part name="R156" library="ds_resistor" deviceset="1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="1K 1%"/>
-<part name="R157" library="ds_resistor" deviceset="1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="1K 1%"/>
-<part name="R158" library="ds_resistor" deviceset="1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="1K 1%"/>
-<part name="R159" library="ds_resistor" deviceset="1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="1K 1%"/>
+<part name="R156" library="ds_resistor" deviceset="1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="1K 1%"/>
+<part name="R157" library="ds_resistor" deviceset="1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="1K 1%"/>
+<part name="R158" library="ds_resistor" deviceset="1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="1K 1%"/>
+<part name="R159" library="ds_resistor" deviceset="1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="1K 1%"/>
 <part name="NC26" library="ds_passive" deviceset="NC" device=""/>
 <part name="NC42" library="ds_passive" deviceset="NC" device=""/>
 <part name="NC44" library="ds_passive" deviceset="NC" device=""/>
@@ -10943,10 +10921,10 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <part name="J2" library="jumper" library_urn="urn:adsk.eagle:library:252" deviceset="SJ" device="" package3d_urn="urn:adsk.eagle:package:15471/1" value="JP"/>
 <part name="AGND1" library="ds_passive" deviceset="AGND" device=""/>
 <part name="AGND43" library="ds_passive" deviceset="AGND" device=""/>
-<part name="X1" library="ds_passive" deviceset="CRYSTAL-3225" device="X322512MSB4SI" package3d_urn="urn:adsk.eagle:package:13029090/4" value="12MHz"/>
+<part name="X1" library="ds_passive" deviceset="CRYSTAL-3225" device="X322512MSB4SI" package3d_urn="urn:adsk.eagle:package:13029090/4" value="ABM8-272-T3 12MHz"/>
 <part name="GND86" library="ds_passive" deviceset="GND" device=""/>
-<part name="R15" library="ds_resistor" deviceset="27R-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="27R 1%"/>
-<part name="R160" library="ds_resistor" deviceset="27R-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="27R 1%"/>
+<part name="R15" library="ds_resistor" deviceset="27R-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="27R 1%"/>
+<part name="R160" library="ds_resistor" deviceset="27R-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="27R 1%"/>
 <part name="X2" library="ds_passive" deviceset="CRYSTAL-3225" device="X322525MOB4SI" package3d_urn="urn:adsk.eagle:package:13029090/4" value="25MHz"/>
 <part name="GND29" library="ds_passive" deviceset="GND" device=""/>
 <part name="+3V3_MCU11" library="ds_passive" deviceset="+3V3_MCU" device=""/>
@@ -10959,18 +10937,18 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <part name="C103" library="ds_capacitors" deviceset="100NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="100nF 25V"/>
 <part name="GND80" library="ds_passive" deviceset="GND" device=""/>
 <part name="+3V5" library="ds_passive" deviceset="+3V3" device=""/>
-<part name="R122" library="ds_resistor" deviceset="1K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="1K 1%"/>
-<part name="DAT" library="ds_LED" deviceset="LED-BLUE" device="LED-0603" package3d_urn="urn:adsk.eagle:package:24294787/2" value="Blue"/>
+<part name="R122" library="ds_resistor" deviceset="1K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="1K 1%"/>
+<part name="DAT" library="ds_LED" deviceset="LED-BLUE" device="LED-0603" package3d_urn="urn:adsk.eagle:package:49260835/1" value="Blue"/>
 <part name="GND79" library="ds_passive" deviceset="GND" device=""/>
-<part name="P3ON" library="ds_LED" deviceset="LED-GREEN" device="LED-0603" package3d_urn="urn:adsk.eagle:package:24294787/2" value="Green"/>
+<part name="P3ON" library="ds_LED" deviceset="LED-GREEN" device="LED-0603" package3d_urn="urn:adsk.eagle:package:49260835/1" value="Green"/>
 <part name="+3V6" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="P+16" library="ds_passive" deviceset="+5V" device=""/>
 <part name="P+17" library="ds_passive" deviceset="+12V" device=""/>
-<part name="R123" library="ds_resistor" deviceset="1K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="1K 1%"/>
-<part name="R148" library="ds_resistor" deviceset="2.4K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="2.4K 1%"/>
-<part name="R150" library="ds_resistor" deviceset="8.2K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="8.2K 1%"/>
-<part name="P5ON" library="ds_LED" deviceset="LED-GREEN" device="LED-0603" package3d_urn="urn:adsk.eagle:package:24294787/2" value="Green"/>
-<part name="P12ON" library="ds_LED" deviceset="LED-GREEN" device="LED-0603" package3d_urn="urn:adsk.eagle:package:24294787/2" value="Green"/>
+<part name="R123" library="ds_resistor" deviceset="1K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="1K 1%"/>
+<part name="R148" library="ds_resistor" deviceset="2.4K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="2.4K 1%"/>
+<part name="R150" library="ds_resistor" deviceset="8.2K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="8.2K 1%"/>
+<part name="P5ON" library="ds_LED" deviceset="LED-GREEN" device="LED-0603" package3d_urn="urn:adsk.eagle:package:49260835/1" value="Green"/>
+<part name="P12ON" library="ds_LED" deviceset="LED-GREEN" device="LED-0603" package3d_urn="urn:adsk.eagle:package:49260835/1" value="Green"/>
 <part name="GND81" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="GND82" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="GND83" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
@@ -10978,14 +10956,14 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <part name="C102" library="ds_capacitors" deviceset="1UF-16V" device="0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="1uF 16V"/>
 <part name="GND87" library="ds_passive" deviceset="GND" device=""/>
 <part name="C104" library="ds_capacitors" deviceset="1UF-25V" device="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="1uF 25V"/>
-<part name="R152" library="ds_resistor" deviceset="10R-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="10R 1%"/>
+<part name="R152" library="ds_resistor" deviceset="10R-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="10R 1%"/>
 <part name="GND88" library="ds_passive" deviceset="GND" device=""/>
 <part name="R161" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="DNI"/>
 <part name="R1" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="DNI"/>
-<part name="R162" library="ds_resistor" deviceset="10K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="10K 1%"/>
+<part name="R162" library="ds_resistor" deviceset="10K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="10K 1%"/>
 <part name="+3V3_MCU9" library="ds_passive" deviceset="+3V3_MCU" device=""/>
-<part name="PROC" library="ds_LED" deviceset="LED-GREEN" device="LED-0603" package3d_urn="urn:adsk.eagle:package:24294787/2" value="Green"/>
-<part name="R163" library="ds_resistor" deviceset="1K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="1K 1%"/>
+<part name="PROC" library="ds_LED" deviceset="LED-GREEN" device="LED-0603" package3d_urn="urn:adsk.eagle:package:49260835/1" value="Green"/>
+<part name="R163" library="ds_resistor" deviceset="1K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="1K 1%"/>
 <part name="GND89" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="NC7" library="ds_passive" deviceset="NC" device=""/>
 <part name="ETH1" library="ds_con" deviceset="J1B1211CCD" device="" package3d_urn="urn:adsk.eagle:package:48944391/2" value="J1B1211CCD"/>
