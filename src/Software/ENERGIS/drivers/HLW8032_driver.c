@@ -1,4 +1,17 @@
-/* HLW8032_driver.c */
+
+/**
+ * @file HLW8032_driver.c
+ * @brief HLW8032 Power Measurement Driver Source
+ *
+ * Provides API for interfacing with the HLW8032 power measurement chip.
+ * Includes functions for initialization, reading measurements, uptime tracking,
+ * and cached access for multi-core systems.
+ *
+ * @author DvidMakesThings - David Sipos
+ * @date 2025-08-21
+ * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
+ * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
+ */
 
 #include "HLW8032_driver.h"
 #include "../CONFIG.h" // for HLW8032_UART_ID, HLW8032_BAUDRATE, mcp_relay_write_pin
@@ -33,7 +46,14 @@ static bool cached_state[8];
 // For reading schedule
 static uint8_t poll_channel = 0;
 
-// select MUX channel (3-bit)
+/**
+ * @brief Select a channel on the multiplexer
+ * 
+ * This function sets the multiplexer select pins to choose one of 8 channels.
+ * It uses a binary encoding (3 bits) to select the desired channel.
+ *
+ * @param ch Channel index (0-7) to select
+ */
 static void mux_select(uint8_t ch) {
     mcp_relay_write_pin(MUX_SELECT_A, 0);
     mcp_relay_write_pin(MUX_SELECT_B, 0);
@@ -45,7 +65,15 @@ static void mux_select(uint8_t ch) {
     sleep_us(500);
 }
 
-// verify checksum over bytes 2–22 matches byte 23
+/**
+ * @brief Validate the checksum of a HLW8032 frame
+ * 
+ * This function verifies that the checksum in the frame (byte 23) matches
+ * the calculated sum of bytes 2-22.
+ *
+ * @param f Pointer to the frame buffer containing the 24-byte frame
+ * @return true if checksum is valid, false otherwise
+ */
 static bool checksum_ok(const uint8_t *f) {
     uint8_t sum = 0;
     for (int i = 2; i <= 22; i++)
@@ -53,7 +81,15 @@ static bool checksum_ok(const uint8_t *f) {
     return sum == f[23];
 }
 
-// read one valid 24-byte frame into `frame[]`, return false on timeout or CRC fail
+/**
+ * @brief Read one valid 24-byte frame from the UART
+ * 
+ * This function attempts to read a valid frame from the HLW8032 chip via UART.
+ * It has a timeout mechanism and scans the received data for a valid frame
+ * with correct checksum.
+ *
+ * @return true if a valid frame was read, false on timeout or checksum failure
+ */
 static bool read_frame(void) {
     uint64_t start = time_us_64();
     int cnt = 0;
@@ -73,12 +109,29 @@ static bool read_frame(void) {
     return false;
 }
 
+/**
+ * @brief Initialize the HLW8032 power measurement interface
+ * 
+ * This function initializes the UART interface for the HLW8032 power measurement chip.
+ * It configures the UART with 8 data bits, 1 stop bit, and even parity.
+ * It also activates the multiplexer by setting the MUX_ENABLE pin low.
+ */
 void hlw8032_init(void) {
     uart_init(HLW8032_UART_ID, HLW8032_BAUDRATE);
     uart_set_format(HLW8032_UART_ID, 8, 1, UART_PARITY_EVEN);
     mcp_relay_write_pin(MUX_ENABLE, 0);
 }
 
+/**
+ * @brief Read power measurements from the specified channel
+ * 
+ * This function reads and parses a measurement frame from the HLW8032 chip for a given channel.
+ * It selects the appropriate multiplexer channel, flushes any stale data, and reads a fresh frame.
+ * The raw values are parsed and converted to scaled voltage, current, and power measurements.
+ *
+ * @param channel Channel index (0-7) to read from
+ * @return true if a valid frame was read and parsed successfully, false otherwise
+ */
 bool hlw8032_read(uint8_t channel) {
     // 1) select the channel on your MUX
     mux_select(channel);
@@ -114,14 +167,48 @@ bool hlw8032_read(uint8_t channel) {
     return true;
 }
 
+/**
+ * @brief Get the most recently measured voltage
+ * 
+ * @return Voltage in volts (V) from the last successful measurement
+ */
 float hlw8032_get_voltage(void) { return last_voltage; }
+
+/**
+ * @brief Get the most recently measured current
+ * 
+ * @return Current in amperes (A) from the last successful measurement
+ */
 float hlw8032_get_current(void) { return last_current; }
+
+/**
+ * @brief Get the most recently measured power
+ * 
+ * @return Power in watts (W) from the last successful measurement
+ */
 float hlw8032_get_power(void) { return last_power; }
+
+/**
+ * @brief Get power value calculated from voltage and current measurements
+ * 
+ * @return Power in watts (W) calculated as voltage * current
+ */
 float hlw8032_get_power_inspect(void) { return last_voltage * last_current; }
+
+/**
+ * @brief Get the power factor from the most recent measurements
+ * 
+ * @return Power factor (0.0-1.0) calculated as actual power / apparent power
+ */
 float hlw8032_get_power_factor(void) {
     float app = last_voltage * last_current;
     return app > 0.0f ? last_power / app : 0.0f;
 }
+/**
+ * @brief Get the accumulated energy consumption
+ * 
+ * @return Energy in kilowatt-hours (kWh) based on power measurements and pulse counts
+ */
 float hlw8032_get_kwh(void) {
     float app = last_voltage * last_current;
     if (app <= 0.0f || PowPar == 0)
@@ -130,7 +217,16 @@ float hlw8032_get_kwh(void) {
     return ((float)PF * PF_Count) / (imp_per_wh * 3600.0f);
 }
 
-// Call when channel is ON to update uptime
+/**
+ * @brief Update the uptime counter for a channel based on its state
+ * 
+ * This function tracks the total time a channel has been in the ON state.
+ * It accumulates elapsed time when a channel remains ON and resets timing
+ * when a channel is turned OFF.
+ *
+ * @param ch Channel index (0-7) to update
+ * @param state Current state of the channel (true = ON, false = OFF)
+ */
 void hlw8032_update_uptime(uint8_t ch, bool state) {
     if (state) {
         if (is_nil_time(channel_last_on[ch])) {
@@ -147,10 +243,23 @@ void hlw8032_update_uptime(uint8_t ch, bool state) {
     }
 }
 
+/**
+ * @brief Get the accumulated uptime for a channel
+ * 
+ * @param ch Channel index (0-7) to query
+ * @return Total uptime in seconds for the specified channel
+ */
 uint32_t hlw8032_get_uptime(uint8_t ch) {
     return channel_uptime[ch];
 }
 
+/**
+ * @brief Poll a single channel for power measurements
+ * 
+ * This function reads the current state and power measurements for one channel
+ * in a round-robin fashion. It updates cached values for the current channel
+ * and increments to the next channel for the next call.
+ */
 void hlw8032_poll_once(void) {
     bool state = mcp_relay_read_pin(poll_channel);
     cached_state[poll_channel] = state;
@@ -166,6 +275,16 @@ void hlw8032_poll_once(void) {
     poll_channel = (poll_channel + 1) % 8;  // next channel next time
 }
 
+/**
+ * @brief Refresh power measurements for all channels
+ * 
+ * This function reads and caches power measurements for all 8 channels.
+ * It is a blocking function that updates voltage, current, power and uptime
+ * values for each channel sequentially.
+ * 
+ * Intended to be called periodically by Core0 to provide fresh measurements
+ * that can be read by either core without blocking.
+ */
 void hlw8032_refresh_all(void) {
     for (uint8_t ch = 0; ch < 8; ch++) {
         // Latch current relay state and update uptime bookkeeping
@@ -184,9 +303,42 @@ void hlw8032_refresh_all(void) {
     }
 }
 
-// Getters for cached values
+/**
+ * @brief Get the cached voltage for a channel
+ * 
+ * @param ch Channel index (0-7) to query
+ * @return Cached voltage in volts (V) for the specified channel
+ */
 float hlw8032_cached_voltage(uint8_t ch) { return cached_voltage[ch]; }
+
+/**
+ * @brief Get the cached current for a channel
+ * 
+ * @param ch Channel index (0-7) to query
+ * @return Cached current in amperes (A) for the specified channel
+ */
 float hlw8032_cached_current(uint8_t ch) { return cached_current[ch]; }
+
+/**
+ * @brief Get the cached power for a channel
+ * 
+ * @param ch Channel index (0-7) to query
+ * @return Cached power in watts (W) for the specified channel
+ */
 float hlw8032_cached_power(uint8_t ch)   { return cached_power[ch]; }
+
+/**
+ * @brief Get the cached uptime for a channel
+ * 
+ * @param ch Channel index (0-7) to query
+ * @return Cached uptime in seconds for the specified channel
+ */
 uint32_t hlw8032_cached_uptime(uint8_t ch) { return cached_uptime[ch]; }
+
+/**
+ * @brief Get the cached state for a channel
+ * 
+ * @param ch Channel index (0-7) to query
+ * @return Cached state (true = ON, false = OFF) for the specified channel
+ */
 bool hlw8032_cached_state(uint8_t ch)    { return cached_state[ch]; }
