@@ -227,12 +227,29 @@
 #define COLOR_ERROR COLOR_RED
 
 // MCP23017 Registers
-#define MCP23017_IODIRA 0x00 // I/O Direction Register A
-#define MCP23017_IODIRB 0x01 // I/O Direction Register B
-#define MCP23017_GPIOA 0x12  // GPIO Register A
-#define MCP23017_GPIOB 0x13  // GPIO Register B
-#define MCP23017_OLATA 0x14  // Output Latch Register A
-#define MCP23017_OLATB 0x15  // Output Latch Register B
+#define MCP23017_IODIRA   0x00 // I/O Direction Register A
+#define MCP23017_IODIRB   0x01 // I/O Direction Register B
+#define MCP23017_IPOLA    0x02 // Input Polarity Register A
+#define MCP23017_IPOLB    0x03 // Input Polarity Register B
+#define MCP23017_GPINTENA 0x04 // Interrupt-on-Change Control Register A
+#define MCP23017_GPINTENB 0x05 // Interrupt-on-Change Control Register B
+#define MCP23017_DEFVALA  0x06 // Default Compare Register A
+#define MCP23017_DEFVALB  0x07 // Default Compare Register B
+#define MCP23017_INTCONA  0x08 // Interrupt Control Register A
+#define MCP23017_INTCONB  0x09 // Interrupt Control Register B
+#define MCP23017_IOCON    0x0A // Configuration Register (Bank=0)
+#define MCP23017_IOCONB   0x0B // Configuration Register (Bank=1)
+#define MCP23017_GPPUA    0x0C // Pull-up Resistor Config Register A
+#define MCP23017_GPPUB    0x0D // Pull-up Resistor Config Register B
+#define MCP23017_INTFA    0x0E // Interrupt Flag Register A
+#define MCP23017_INTFB    0x0F // Interrupt Flag Register B
+#define MCP23017_INTCAPA  0x10 // Interrupt Captured Value Register A
+#define MCP23017_INTCAPB  0x11 // Interrupt Captured Value Register B
+#define MCP23017_GPIOA    0x12 // GPIO Register A
+#define MCP23017_GPIOB    0x13 // GPIO Register B
+#define MCP23017_OLATA    0x14 // Output Latch Register A
+#define MCP23017_OLATB    0x15 // Output Latch Register B
+
 
 // EEPROM Configuration
 #define CAT24C512_I2C_ADDR 0x50 ///< 7-bit I2C address of the EEPROM
