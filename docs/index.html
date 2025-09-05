@@ -173,108 +173,83 @@
     </div>
 
     <script>
-        function esc(str) {
-            return String(str).replace(/[&<>"']/g, s => ({
-                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-            }[s]));
-        }
-
-        function formatDate(d) {
-            try {
-                const dt = (d instanceof Date) ? d : new Date(d);
-                if (isNaN(dt)) return '';
-                return dt.toLocaleDateString(undefined, {
-                    year: 'numeric', month: 'short', day: '2-digit'
-                });
-            } catch {
-                return '';
-            }
-        }
-
-        function normalizeType(type, href) {
-            const ext = (href || '').split('.').pop()?.toLowerCase();
-            if (type) return type.toLowerCase();
-            if (ext === 'html' || ext === 'htm') return 'html';
-            if (ext === 'pdf') return 'pdf';
-            return 'file';
-        }
-
-        function compareByDateDesc(a, b) {
-            const da = Date.parse(a.date || a.updated || 0) || 0;
-            const db = Date.parse(b.date || b.updated || 0) || 0;
-            return db - da;
-        }
-
-        function renderReports(data) {
-            const container = document.getElementById('tests');
-            container.innerHTML = '';
-
-            const reports = Array.isArray(data?.reports) ? data.reports.slice() : [];
-            reports.sort(compareByDateDesc);
-
-            if (!reports.length) {
-                container.innerHTML = '<div class="card muted">No reports found in <code>/tests/tests.json</code>.</div>';
-                return;
-            }
-
-            const updatedEl = document.getElementById('updated');
-            if (data?.updated) {
-                updatedEl.textContent = `Index updated: ${formatDate(data.updated)}`;
-            } else {
-                updatedEl.textContent = '';
-            }
-
-            for (const r of reports) {
-                const href = String(r.href || '').trim();
-                if (!href) continue;
-
-                const title = r.title ? String(r.title).trim() : href.split('/').pop();
-                const dateStr = r.date ? formatDate(r.date) : '';
-                const t = normalizeType(r.type, href);
-
-                const badge = `<span class="badge ${esc(t)}">${esc(t)}</span>`;
-                const date = dateStr ? `<span class="muted small">${esc(dateStr)}</span>` : '';
-                const size = (r.size && Number.isFinite(r.size))
-                    ? `<span class="muted small"> • ${(r.size / 1024).toFixed(0)} KB</span>` : '';
-
-                const li = document.createElement('div');
-                li.className = 'card';
-                li.innerHTML = `
+    function esc(str){return String(str).replace(/[&<>"']/g,s=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));}
+    function formatDate(d){try{const dt=(d instanceof Date)?d:new Date(d);if(isNaN(dt))return'';return dt.toLocaleDateString(undefined,{year:'numeric',month:'short',day:'2-digit'});}catch{return'';}}
+    function normalizeType(type,href){const ext=(href||'').split('.').pop()?.toLowerCase();if(type)return type.toLowerCase();if(ext==='html'||ext==='htm')return'html';if(ext==='pdf')return'pdf';return'file';}
+    function compareByDateDesc(a,b){const da=Date.parse(a.date||a.updated||0)||0;const db=Date.parse(b.date||b.updated||0)||0;return db-da;}
+    function renderReports(data){
+        const container=document.getElementById('tests');container.innerHTML='';
+        const reports=Array.isArray(data?.reports)?data.reports.slice():[];reports.sort(compareByDateDesc);
+        if(!reports.length){container.innerHTML='<div class="card muted">No reports found in <code>tests.json</code>.</div>';return;}
+        const updatedEl=document.getElementById('updated');updatedEl.textContent=data?.updated?`Index updated: ${formatDate(data.updated)}`:'';
+        for(const r of reports){
+            const href=String(r.href||'').trim(); if(!href) continue;
+            const title=r.title?String(r.title).trim():href.split('/').pop();
+            const dateStr=r.date?formatDate(r.date):''; const t=normalizeType(r.type,href);
+            const badge=`<span class="badge ${esc(t)}">${esc(t)}</span>`;
+            const date=dateStr?`<span class="muted small">${esc(dateStr)}</span>`:'';
+            const size=(r.size&&Number.isFinite(r.size))?`<span class="muted small"> • ${(r.size/1024).toFixed(0)} KB</span>`:'';
+            const li=document.createElement('div'); li.className='card';
+            li.innerHTML=`
+                <div class="row">
+                    <div class="title">
+                        <a href="${esc((/^[.\/]/.test(href)?'':'./tests/')+href)}" target="_blank" rel="noopener">${esc(title)}</a>
+                        ${size}
+                    </div>
                     <div class="row">
-                        <div class="title">
-                            <a href="./tests/${esc(href)}" target="_blank" rel="noopener">${esc(title)}</a>
-                            ${size}
-                        </div>
-                        <div class="row">
-                            ${date}
-                            ${badge}
-                        </div>
+                        ${date}
+                        ${badge}
                     </div>
-                    ${r.note ? `<div class="muted small" style="margin-top:.4rem">${esc(r.note)}</div>` : ''}
-                `;
-                container.appendChild(li);
-            }
+                </div>
+                ${r.note?`<div class="muted small" style="margin-top:.4rem">${esc(r.note)}</div>`:''}
+            `;
+            container.appendChild(li);
         }
+    }
 
-        async function loadIndex() {
-            const container = document.getElementById('tests');
-            try {
-                const res = await fetch('./tests/tests.json', { cache: 'no-store' });
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                const json = await res.json();
-                renderReports(json);
-            } catch (e) {
-                container.innerHTML = `
-                    <div class="card">
-                        <div class="error">Could not load <code>/tests/tests.json</code>.</div>
-                        <div class="muted small" style="margin-top:.4rem">Ensure the file exists in your repository and is served by GitHub Pages.</div>
+    async function fetchFirst(urls){
+        const errs=[];
+        for(const u of urls){
+            try{
+                const res=await fetch(u,{cache:'no-store'});
+                if(res.ok){ return await res.json(); }
+                errs.push(`${u} → HTTP ${res.status}`);
+            }catch(e){ errs.push(`${u} → ${e}`); }
+        }
+        throw new Error(errs.join(' | '));
+    }
+
+    async function loadIndex(){
+        const container=document.getElementById('tests');
+        const base=location.pathname.replace(/[^\/]*$/,''); // folder of index.html
+        // Try common variants (relative, absolute, case)
+        const bust=`?t=${Date.now()}`;
+        const candidates=[
+            `${base}tests/tests.json${bust}`,
+            `${base}Test/tests.json${bust}`,
+            `/tests/tests.json${bust}`,
+            `/Test/tests.json${bust}`
+        ];
+        try{
+            const json=await fetchFirst(candidates);
+            renderReports(json);
+        }catch(e){
+            console.error('tests.json load errors:', e.message);
+            container.innerHTML=`
+                <div class="card">
+                    <div class="error">Could not load <code>tests/tests.json</code>.</div>
+                    <div class="muted small" style="margin-top:.4rem">
+                        Tried: ${candidates.map(esc).join(', ')}.<br/>
+                        Check: exact folder <strong>name &amp; case</strong>, and that it’s in the published Pages source (root / <code>docs/</code> / <code>gh-pages</code>).
                     </div>
-                `;
-            }
+                </div>
+            `;
         }
+    }
 
-        loadIndex();
-    </script>
+    loadIndex();
+</script>
+
 </body>
 
 </html>
