@@ -1,0 +1,31 @@
+<map id="http_server_init" name="http_server_init">
+<area shape="rect" id="Node000001" title="Initializes the HTTP server." alt="" coords="5,56,116,83"/>
+<area shape="rect" id="Node000002" href="$group__net1.html#gaf7c8a46c623edfab31d9e09788394b2f" title="Close a socket." alt="" coords="330,31,382,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,53,118,33,163,16,204,11,245,13,316,28,315,33,244,18,204,16,164,21,120,37,84,58"/>
+<area shape="rect" id="Node000003" href="$group__net1.html#ga58ae959798d5d874ac5ea796da90db8c" title="Listen to a connection request from a client." alt="" coords="171,31,224,57"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="116,56,155,49,156,54,117,62"/>
+<area shape="rect" id="Node000004" href="$group__util2.html#gae73b9c33649b5f5f7388f1b4fe42d32d" title="Sets the error state on the display." alt="" coords="164,132,231,159"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="88,81,160,122,157,127,85,86"/>
+<area shape="rect" id="Node000012" href="$group__net1.html#ga8cc0a2074b3aae98a132c1ae3c51188f" title="Open a socket." alt="" coords="167,81,228,108"/>
+<area shape="poly" id="edge16_Node000001_Node000012" title=" " alt="" coords="117,77,152,84,151,89,116,82"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="224,41,314,41,314,47,224,47"/>
+<area shape="rect" id="Node000005" href="$group__driver5.html#ga1f2aea8f1cb5fb271e2b68ab119fa503" title="Writes a digital value to a specific MCP23017 pin. Uses shadowed whole&#45;port writes under a mutex to a..." alt="" coords="279,132,432,159"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="231,143,264,143,264,148,231,148"/>
+<area shape="rect" id="Node000006" href="$group__driver5.html#gad23a5248f3f3fc671c373a437e16e985" title="Initializes the relay board&#39;s MCP23017." alt="" coords="480,107,599,133"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="432,132,464,128,465,133,433,137"/>
+<area shape="rect" id="Node000009" href="$group__driver5.html#gaba4e8ca33cf356bc41af763ae4aa3310" title=" " alt="" coords="690,157,767,184"/>
+<area shape="poly" id="edge13_Node000005_Node000009" title=" " alt="" coords="433,148,674,164,674,170,433,153"/>
+<area shape="rect" id="Node000010" href="$group__driver5.html#ga713d78b9106bd7706abb1ed29d8fad27" title=" " alt="" coords="683,208,774,235"/>
+<area shape="poly" id="edge14_Node000005_Node000010" title=" " alt="" coords="425,157,668,207,667,212,424,162"/>
+<area shape="rect" id="Node000011" href="$group__driver5.html#ga51d31ad5757c79b0f72f1e785115efed" title=" " alt="" coords="647,5,810,32"/>
+<area shape="poly" id="edge15_Node000005_Node000011" title=" " alt="" coords="388,129,479,92,662,34,664,39,481,97,390,134"/>
+<area shape="rect" id="Node000007" href="$group__driver5.html#ga4cde98019aa1b07cd4c5f6bd7929bd8c" title=" " alt="" coords="700,107,756,133"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="599,117,685,117,685,123,599,123"/>
+<area shape="rect" id="Node000008" href="$group__driver5.html#ga88ff03a249bfc75eaac4cab1d7955107" title=" " alt="" coords="858,31,917,57"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="597,103,646,92,843,50,844,55,647,97,598,109"/>
+<area shape="poly" id="edge9_Node000006_Node000009" title=" " alt="" coords="593,131,676,154,674,159,591,137"/>
+<area shape="poly" id="edge10_Node000006_Node000010" title=" " alt="" coords="558,132,598,163,648,194,669,203,667,208,645,198,595,167,555,136"/>
+<area shape="poly" id="edge11_Node000006_Node000011" title=" " alt="" coords="558,104,597,77,645,48,672,36,675,41,648,53,600,81,561,108"/>
+<area shape="poly" id="edge12_Node000011_Node000008" title=" " alt="" coords="811,29,843,34,842,40,810,34"/>
+<area shape="poly" id="edge17_Node000012_Node000002" title=" " alt="" coords="227,83,314,54,316,59,229,88"/>
+</map>

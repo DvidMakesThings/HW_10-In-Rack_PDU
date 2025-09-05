@@ -1,0 +1,7 @@
+<map id="ENERGIS/web_handlers/control_handler.h" name="ENERGIS/web_handlers/control_handler.h">
+<area shape="rect" id="Node000001" title="Handler for the page control.html." alt="" coords="100,5,266,48"/>
+<area shape="rect" id="Node000002" href="$control__handler_8c.html" title=" " alt="" coords="5,96,172,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,61,112,98,109,94,148,57"/>
+<area shape="rect" id="Node000003" href="$http__server_8c.html" title=" " alt="" coords="196,96,362,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="218,57,259,94,255,98,215,61"/>
+</map>

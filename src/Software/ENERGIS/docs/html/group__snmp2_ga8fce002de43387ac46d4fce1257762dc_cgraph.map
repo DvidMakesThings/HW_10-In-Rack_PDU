@@ -1,0 +1,21 @@
+<map id="get_outlet_State_common" name="get_outlet_State_common">
+<area shape="rect" id="Node000001" title="Read relay state for channel ch (0..7) into SNMP buffer." alt="" coords="5,81,179,108"/>
+<area shape="rect" id="Node000002" href="$group__driver7.html#ga9b5f742b94d4fe906f755ee724283ed0" title="Reads the digital value from a specific MCP23017 pin." alt="" coords="227,81,364,108"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,92,211,92,211,97,179,97"/>
+<area shape="rect" id="Node000003" href="$group__driver7.html#ga4cde98019aa1b07cd4c5f6bd7929bd8c" title=" " alt="" coords="619,5,675,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="345,78,411,61,603,23,604,29,413,67,347,83"/>
+<area shape="rect" id="Node000004" href="$group__driver7.html#gaba4e8ca33cf356bc41af763ae4aa3310" title=" " alt="" coords="608,56,686,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="364,87,593,71,593,76,365,92"/>
+<area shape="rect" id="Node000005" href="$group__driver7.html#ga5d50f36be11f0195d0f36b793b69e4fb" title="Initializes the relay board&#39;s MCP23017." alt="" coords="412,107,517,133"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="365,102,397,107,396,112,364,108"/>
+<area shape="rect" id="Node000007" href="$group__driver7.html#ga713d78b9106bd7706abb1ed29d8fad27" title=" " alt="" coords="601,208,693,235"/>
+<area shape="poly" id="edge11_Node000002_Node000007" title=" " alt="" coords="327,106,413,143,489,170,566,193,587,200,586,205,565,199,487,175,411,148,325,111"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="479,104,516,73,564,42,603,26,605,31,567,46,519,78,482,108"/>
+<area shape="poly" id="edge7_Node000005_Node000004" title=" " alt="" coords="515,103,593,81,594,87,516,109"/>
+<area shape="rect" id="Node000006" href="$group__driver7.html#ga88ff03a249bfc75eaac4cab1d7955107" title=" " alt="" coords="777,132,836,159"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="518,121,761,139,761,145,518,127"/>
+<area shape="poly" id="edge8_Node000005_Node000007" title=" " alt="" coords="482,132,519,162,567,194,588,203,586,208,564,198,516,167,479,136"/>
+<area shape="rect" id="Node000008" href="$group__driver7.html#ga51d31ad5757c79b0f72f1e785115efed" title=" " alt="" coords="565,157,729,184"/>
+<area shape="poly" id="edge9_Node000005_Node000008" title=" " alt="" coords="516,131,582,150,581,155,515,137"/>
+<area shape="poly" id="edge10_Node000008_Node000006" title=" " alt="" coords="729,155,761,150,762,155,729,160"/>
+</map>

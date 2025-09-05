@@ -1,0 +1,19 @@
+<map id="EEPROM_ReadUserPrefsWithChecksum" name="EEPROM_ReadUserPrefsWithChecksum">
+<area shape="rect" id="Node000001" title="Reads user preferences from EEPROM." alt="" coords="881,48,1084,91"/>
+<area shape="rect" id="Node000002" href="$group__webui4.html#gae50a830dd3536accfe480e0cefb7c4b1" title="Handles the HTTP request for the settings page." alt="" coords="671,5,833,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="867,47,815,35,816,30,868,41"/>
+<area shape="rect" id="Node000006" href="$group__webui5.html#gabec26dab8e118ff845c2fde12dc885cf" title="Handles the HTTP request for the status page." alt="" coords="470,56,623,83"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="866,72,623,72,623,67,866,67"/>
+<area shape="rect" id="Node000007" href="$group__util1.html#gada0abcfc99e366656030e908187d6d6d" title="Loads user preferences from EEPROM." alt="" coords="678,107,826,133"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="868,97,816,109,815,103,867,92"/>
+<area shape="rect" id="Node000003" href="$group__webui3.html#ga52702a4dcaff4540a9ddd10e4d5f4525" title="Processes incoming HTTP requests." alt="" coords="283,56,422,83"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="655,27,566,35,471,47,412,58,411,53,470,41,565,29,655,22"/>
+<area shape="rect" id="Node000004" href="$group__main02.html#gad25e95c5993e865b3f941472b7a328e0" title="Core 1 task for handling SNMP and HTTP server." alt="" coords="150,56,235,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="267,72,235,72,235,67,267,67"/>
+<area shape="rect" id="Node000005" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,56,102,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="134,72,102,72,102,67,134,67"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="455,72,423,72,423,67,455,67"/>
+<area shape="rect" id="Node000008" href="$group__webui4.html#ga0fe4c530cf7754724a14147a82c71108" title="Handles the HTTP POST request for the settings page." alt="" coords="474,107,619,133"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="663,123,619,123,619,117,663,117"/>
+<area shape="poly" id="edge9_Node000008_Node000003" title=" " alt="" coords="478,105,406,86,407,81,479,100"/>
+</map>

@@ -1,0 +1,39 @@
+<map id="mcp_dual_write_reg" name="mcp_dual_write_reg">
+<area shape="rect" id="Node000001" title="Write a value to a register on both MCP23017 chips." alt="" coords="5,236,143,263"/>
+<area shape="rect" id="Node000002" href="$group__driver5.html#ga125dff7e60af78727ec7d4377c472499" title="Writes a value to a specified MCP23017 register (guarded)." alt="" coords="191,160,345,187"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,233,217,191,219,196,111,238"/>
+<area shape="rect" id="Node000009" href="$group__driver7.html#gaf73b2d26f4d7ccd1f537fe726ba1f462" title="Writes a value to a specified MCP23017 register (guarded)." alt="" coords="197,312,338,339"/>
+<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="111,261,219,304,217,309,109,266"/>
+<area shape="rect" id="Node000003" href="$group__driver5.html#ga88ff03a249bfc75eaac4cab1d7955107" title=" " alt="" coords="771,8,830,35"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="285,158,329,125,395,83,473,42,516,25,559,12,611,4,664,3,756,11,755,16,664,8,612,10,560,18,517,30,476,47,397,87,332,129,288,162"/>
+<area shape="rect" id="Node000004" href="$group__driver5.html#gad23a5248f3f3fc671c373a437e16e985" title="Initializes the relay board&#39;s MCP23017." alt="" coords="393,110,511,136"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="319,157,385,138,387,144,320,162"/>
+<area shape="rect" id="Node000006" href="$group__driver5.html#gaba4e8ca33cf356bc41af763ae4aa3310" title=" " alt="" coords="602,160,680,187"/>
+<area shape="poly" id="edge10_Node000002_Node000006" title=" " alt="" coords="345,171,587,171,587,176,345,176"/>
+<area shape="rect" id="Node000007" href="$group__driver5.html#ga713d78b9106bd7706abb1ed29d8fad27" title=" " alt="" coords="595,211,687,238"/>
+<area shape="poly" id="edge11_Node000002_Node000007" title=" " alt="" coords="346,181,580,213,580,219,345,187"/>
+<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="465,107,505,75,531,58,558,44,610,29,663,21,755,17,756,22,664,26,611,35,560,49,533,62,508,79,469,111"/>
+<area shape="rect" id="Node000005" href="$group__driver5.html#ga4cde98019aa1b07cd4c5f6bd7929bd8c" title=" " alt="" coords="613,59,669,86"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="504,106,597,81,599,86,506,111"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="506,134,588,157,587,162,504,139"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="471,135,510,165,561,197,582,206,580,211,558,201,507,170,468,139"/>
+<area shape="rect" id="Node000008" href="$group__driver5.html#ga51d31ad5757c79b0f72f1e785115efed" title=" " alt="" coords="559,110,723,136"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="512,120,544,120,544,126,512,126"/>
+<area shape="poly" id="edge9_Node000008_Node000003" title=" " alt="" coords="698,107,721,95,752,71,777,45,781,49,756,75,724,100,700,111"/>
+<area shape="rect" id="Node000010" href="$group__driver7.html#ga88ff03a249bfc75eaac4cab1d7955107" title=" " alt="" coords="771,363,830,390"/>
+<area shape="poly" id="edge13_Node000009_Node000010" title=" " alt="" coords="310,309,389,289,494,272,552,269,610,271,668,280,724,298,758,320,784,349,780,352,754,324,722,303,667,285,610,276,552,274,495,277,390,294,311,314"/>
+<area shape="rect" id="Node000011" href="$group__driver7.html#gaba4e8ca33cf356bc41af763ae4aa3310" title=" " alt="" coords="602,312,680,339"/>
+<area shape="poly" id="edge14_Node000009_Node000011" title=" " alt="" coords="339,323,587,323,587,328,339,328"/>
+<area shape="rect" id="Node000012" href="$group__driver7.html#ga5d50f36be11f0195d0f36b793b69e4fb" title="Initializes the relay board&#39;s MCP23017." alt="" coords="400,388,505,415"/>
+<area shape="poly" id="edge15_Node000009_Node000012" title=" " alt="" coords="304,337,405,379,403,384,301,342"/>
+<area shape="rect" id="Node000014" href="$group__driver7.html#ga713d78b9106bd7706abb1ed29d8fad27" title=" " alt="" coords="595,515,687,542"/>
+<area shape="poly" id="edge22_Node000009_Node000014" title=" " alt="" coords="285,337,332,379,394,425,475,468,560,500,581,508,579,513,558,505,472,473,392,429,329,383,282,341"/>
+<area shape="poly" id="edge17_Node000012_Node000010" title=" " alt="" coords="505,395,755,377,756,382,505,400"/>
+<area shape="poly" id="edge18_Node000012_Node000011" title=" " alt="" coords="486,385,558,355,589,343,591,348,560,360,488,390"/>
+<area shape="rect" id="Node000013" href="$group__driver7.html#ga4cde98019aa1b07cd4c5f6bd7929bd8c" title=" " alt="" coords="613,414,669,440"/>
+<area shape="poly" id="edge16_Node000012_Node000013" title=" " alt="" coords="506,406,598,418,597,424,505,411"/>
+<area shape="poly" id="edge19_Node000012_Node000014" title=" " alt="" coords="466,414,505,456,532,480,561,501,582,511,579,515,558,505,528,484,501,460,462,417"/>
+<area shape="rect" id="Node000015" href="$group__driver7.html#ga51d31ad5757c79b0f72f1e785115efed" title=" " alt="" coords="559,464,723,491"/>
+<area shape="poly" id="edge20_Node000012_Node000015" title=" " alt="" coords="481,413,560,450,578,456,576,461,558,455,479,418"/>
+<area shape="poly" id="edge21_Node000015_Node000010" title=" " alt="" coords="698,461,721,450,752,426,777,400,781,403,756,430,724,455,700,466"/>
+</map>

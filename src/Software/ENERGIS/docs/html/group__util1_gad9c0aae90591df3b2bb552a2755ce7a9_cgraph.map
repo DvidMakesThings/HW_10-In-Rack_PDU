@@ -1,0 +1,5 @@
+<map id="EEPROM_ReadEventLogs" name="EEPROM_ReadEventLogs">
+<area shape="rect" id="Node000001" title="Reads event log data from EEPROM." alt="" coords="5,5,185,32"/>
+<area shape="rect" id="Node000002" href="$group__driver2.html#ga32e8f6f7cd5d0fba27b004b8c2637ea4" title="Reads a buffer of data from the EEPROM." alt="" coords="233,5,397,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,16,217,16,217,21,185,21"/>
+</map>

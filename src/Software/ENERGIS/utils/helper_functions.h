@@ -30,6 +30,7 @@
 #include "network/wizchip_conf.h"
 
 // Drivers & utilities
+#include "ENERGIS_startup.h"
 #include "PDU_display.h"
 #include "drivers/CAT24C512_driver.h"
 #include "drivers/ILI9488_driver.h"
@@ -40,7 +41,6 @@
 #include "html/programming_manual_html.h"
 #include "html/settings_html.h"
 #include "html/user_manual_html.h"
-#include "startup.h"
 #include "utils/EEPROM_MemoryMap.h"
 #include "utils/helper_functions.h"
 
@@ -57,5 +57,20 @@ void i2c_scan_bus(i2c_inst_t *i2c, const char *bus_name);
  * @return The HTML content as a string.
  */
 const char *get_page_content(const char *request);
+
+/**
+ * @brief Reads the voltage from a specified ADC channel.
+ * @param ch The ADC channel to read from.
+ * @param len Pointer to store the length of the data read (not used here).
+ * @return The voltage as a float.
+ */
+float get_Voltage(uint8_t ch);
+
+/**
+ * @brief Sets the error state on the display.
+ * @param error True to indicate an error, false to clear the error.
+ * @return None
+ */
+void setError(bool error);
 
 #endif // HELPER_FUNCTIONS_H

@@ -1,0 +1,13 @@
+<map id="EEPROM_AppendEventLog" name="EEPROM_AppendEventLog">
+<area shape="rect" id="Node000001" title="Appends an event log entry to EEPROM." alt="" coords="5,56,191,83"/>
+<area shape="rect" id="Node000002" href="$group__driver2.html#ga32a5def129c38d7a4d232142105671c0" title="Writes a buffer of data to the EEPROM." alt="" coords="239,5,402,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="159,53,243,33,244,39,161,58"/>
+<area shape="rect" id="Node000003" href="$group__util1.html#ga985e6f8b90477769f7f328a8c460517a" title="Reads the current write pointer for event logs." alt="" coords="243,56,398,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="191,67,227,67,227,72,191,72"/>
+<area shape="rect" id="Node000005" href="$group__util1.html#gaa89c28a7fc89bccdb43fa761a6739330" title="Updates the write pointer for event logs." alt="" coords="241,107,400,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="161,81,244,100,243,105,159,86"/>
+<area shape="rect" id="Node000004" href="$group__driver2.html#ga3c156ce369df5b4a1a29e47955a5d7c1" title="Reads a byte from the EEPROM." alt="" coords="450,56,607,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="398,67,434,67,434,72,398,72"/>
+<area shape="rect" id="Node000006" href="$group__driver2.html#gaaec04a90cbe79c0c717ea448204e7283" title="Writes a byte to the EEPROM." alt="" coords="450,107,607,133"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="400,117,435,117,435,123,400,123"/>
+</map>

@@ -1,0 +1,40 @@
+<map id="wizchip_gpio_interrupt_initialize" name="wizchip_gpio_interrupt_initialize">
+<area shape="rect" id="Node000001" title="Initialize w5x00 gpio interrupt callback function." alt="" coords="5,327,156,369"/>
+<area shape="rect" id="Node000002" href="$group__net1.html#gae2f94d7d4ce040f6bf68779e064d224e" title="Control socket." alt="" coords="242,259,316,285"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,324,203,295,226,286,228,291,205,300,134,329"/>
+<area shape="rect" id="Node000003" href="$group__net6.html#ga0ff8fc15549599a1d08dc5ec378779d9" title="Controls to the WIZCHIP." alt="" coords="239,309,318,336"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="155,336,224,327,224,332,156,341"/>
+<area shape="rect" id="Node000016" href="$group__net1.html#ga8cc0a2074b3aae98a132c1ae3c51188f" title="Open a socket." alt="" coords="249,360,309,387"/>
+<area shape="poly" id="edge18_Node000001_Node000016" title=" " alt="" coords="156,355,234,365,233,370,155,360"/>
+<area shape="rect" id="Node000018" href="$group__net4.html#gab3dd0bc3e8342b16fa9a61c45799d830" title=" " alt="" coords="204,411,354,453"/>
+<area shape="poly" id="edge20_Node000001_Node000018" title=" " alt="" coords="134,367,214,402,211,407,132,372"/>
+<area shape="rect" id="Node000004" href="$group__net6.html#ga41f91261077bc64e240d506923c29181" title="Clear Interrupt of WIZCHIP." alt="" coords="420,5,553,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="318,315,337,307,352,296,372,264,380,233,379,202,375,171,370,139,370,107,379,75,400,42,405,37,409,41,404,46,383,77,375,108,376,139,380,170,385,201,385,234,377,266,356,299,339,312,320,320"/>
+<area shape="rect" id="Node000005" href="$group__net6.html#gae5858fe7ca3d498e9fec4c3457a02e2e" title="Get Interrupt of WIZCHIP." alt="" coords="418,56,555,83"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="318,315,337,307,352,295,369,271,376,246,377,221,375,196,373,170,374,145,382,119,400,93,403,90,407,94,404,96,387,121,379,146,378,170,380,195,382,221,381,247,374,273,356,299,339,312,320,320"/>
+<area shape="rect" id="Node000006" href="$group__net6.html#ga54ab95788a37781b24e2279022a8705b" title="Get Interrupt mask of WIZCHIP." alt="" coords="402,107,571,133"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="318,314,336,307,352,295,366,277,373,259,375,221,378,182,385,163,400,144,403,140,407,144,404,147,390,165,383,184,380,221,378,260,371,280,356,299,339,312,320,319"/>
+<area shape="rect" id="Node000007" href="$group__net6.html#ga1bd1977c0db22c93e1841f8353dd919e" title="Initializes WIZCHIP with socket buffer size." alt="" coords="442,157,531,184"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="318,313,336,306,352,295,369,273,376,250,382,225,400,201,427,184,429,188,404,205,387,228,381,251,374,275,356,299,339,310,320,318"/>
+<area shape="rect" id="Node000008" href="$group__net6.html#ga4033269f88b0e202837c4c56a1d8d437" title="Reset WIZCHIP by softly." alt="" coords="619,183,745,209"/>
+<area shape="poly" id="edge9_Node000003_Node000008" title=" " alt="" coords="318,311,353,295,367,283,375,270,385,257,401,244,451,223,504,208,556,199,604,195,604,200,557,204,505,213,453,228,403,249,389,260,380,273,371,286,355,300,320,316"/>
+<area shape="rect" id="Node000009" href="$group__net6.html#gafb30bdc1c5333b6bb67bdd20399b0f38" title="Mask or Unmask Interrupt of WIZCHIP." alt="" coords="402,259,571,285"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="318,311,413,287,415,292,319,316"/>
+<area shape="rect" id="Node000010" href="$group__net6.html#ga4745d0ce5551dd24df8550d4e0602aec" title="Get phy configuration information." alt="" coords="420,309,553,336"/>
+<area shape="poly" id="edge10_Node000003_Node000010" title=" " alt="" coords="319,320,404,320,404,325,319,325"/>
+<area shape="rect" id="Node000011" href="$group__net6.html#ga4236dcf85dce5f74aa27236cd82fa902" title="get the link status of phy in WIZCHIP. No use in W5100" alt="" coords="422,360,551,387"/>
+<area shape="poly" id="edge11_Node000003_Node000011" title=" " alt="" coords="319,330,415,353,413,358,318,335"/>
+<area shape="rect" id="Node000012" href="$group__net6.html#ga337e51d795347c22d9b5a99a002c8c39" title="get the power mode of PHY in WIZCHIP. No use in W5100" alt="" coords="413,411,560,437"/>
+<area shape="poly" id="edge12_Node000003_Node000012" title=" " alt="" coords="320,330,355,346,371,359,380,372,389,384,404,396,413,402,411,407,400,401,385,388,376,375,367,362,353,350,318,335"/>
+<area shape="rect" id="Node000013" href="$group__net6.html#ga46a76bce886968fef0c9ff15f8a104d5" title="Reset phy. Vailid only in W5500." alt="" coords="633,512,731,539"/>
+<area shape="poly" id="edge13_Node000003_Node000013" title=" " alt="" coords="320,327,339,335,356,346,367,359,374,372,380,399,386,424,393,436,403,447,484,472,618,507,617,512,482,477,401,452,388,439,381,426,375,400,369,374,363,362,352,350,336,339,318,332"/>
+<area shape="rect" id="Node000014" href="$group__net6.html#ga60359c86bf85ccd5ca8f6e7cafc849dc" title="Set the phy information for WIZCHIP without power mode." alt="" coords="420,512,553,539"/>
+<area shape="poly" id="edge14_Node000003_Node000014" title=" " alt="" coords="320,326,339,334,356,346,370,365,378,384,381,420,384,456,391,474,404,491,417,502,414,506,400,495,386,476,379,457,376,421,372,385,366,367,352,350,336,339,318,331"/>
+<area shape="rect" id="Node000015" href="$group__net6.html#ga64a4fd3427b5c5f43a3f35fb433cb06c" title="set the power mode of phy inside WIZCHIP. Refer to PHYCFGR in W5500, PHYSTATUS in W5200" alt="" coords="413,563,560,589"/>
+<area shape="poly" id="edge16_Node000003_Node000015" title=" " alt="" coords="320,326,339,333,356,346,374,372,381,399,382,425,380,450,378,475,379,500,387,524,404,549,407,552,403,555,400,552,382,527,374,501,373,475,375,450,377,424,376,400,369,375,352,350,337,338,318,331"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="532,174,604,183,604,189,531,179"/>
+<area shape="poly" id="edge15_Node000014_Node000013" title=" " alt="" coords="554,523,617,523,617,528,554,528"/>
+<area shape="poly" id="edge17_Node000015_Node000013" title=" " alt="" coords="540,559,617,539,618,544,542,565"/>
+<area shape="rect" id="Node000017" href="$group__net1.html#gaf7c8a46c623edfab31d9e09788394b2f" title="Close a socket." alt="" coords="460,613,513,640"/>
+<area shape="poly" id="edge19_Node000016_Node000017" title=" " alt="" coords="310,374,334,382,356,397,374,423,381,449,382,475,380,501,378,526,379,550,387,575,404,599,423,613,446,620,444,626,421,618,400,603,382,577,374,551,373,526,375,500,377,475,376,450,369,425,352,401,332,387,309,379"/>
+</map>

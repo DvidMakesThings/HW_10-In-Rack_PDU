@@ -1,0 +1,9 @@
+<map id="ENERGIS/network/wizchip_conf.h" name="ENERGIS/network/wizchip_conf.h">
+<area shape="rect" id="Node000001" title="WIZCHIP Config Header File." alt="" coords="5,5,186,48"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="27,171,92,197"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="79,50,63,72,51,97,48,126,53,155,48,156,43,126,46,95,59,69,75,47"/>
+<area shape="rect" id="Node000003" href="$w5500_8h.html" title="W5500 HAL Header File." alt="" coords="60,96,131,123"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="90,49,90,81,84,80,85,49"/>
+<area shape="poly" id="edge3_Node000003_Node000001" title=" " alt="" coords="100,95,102,64,107,64,105,96"/>
+<area shape="poly" id="edge4_Node000003_Node000002" title=" " alt="" coords="92,124,75,158,70,155,87,122"/>
+</map>

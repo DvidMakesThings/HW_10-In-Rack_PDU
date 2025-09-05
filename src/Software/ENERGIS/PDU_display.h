@@ -86,7 +86,7 @@ void PDU_Display_UpdateSelection(uint8_t row);
 /**
  * @brief Toggles the selected relay ON/OFF.
  * @param channel The channel number (1-8).
- * @note This function is called when the user presses the "OK" button.
+ * @note This function is obsolete since the dual MCP driver was introduced.
  */
 void PDU_Display_ToggleRelay(uint8_t channel);
 

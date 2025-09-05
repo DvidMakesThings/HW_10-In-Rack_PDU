@@ -1,0 +1,22 @@
+<map id="ENERGIS/network/w5x00_gpio_irq.c" name="ENERGIS/network/w5x00_gpio_irq.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="238,5,412,48"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,96,66,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="250,51,82,98,80,93,249,46"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="90,96,203,123"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="280,51,189,92,187,87,278,46"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="227,96,318,123"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="314,50,291,84,287,81,309,47"/>
+<area shape="rect" id="Node000005" href="$socket_8h.html" title="SOCKET APIs Header file." alt="" coords="342,96,414,123"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="341,47,364,81,359,84,336,50"/>
+<area shape="rect" id="Node000006" href="$wizchip__conf_8h.html" title="WIZCHIP Config Header File." alt="" coords="360,171,468,197"/>
+<area shape="poly" id="edge11_Node000001_Node000006" title=" " alt="" coords="376,46,405,67,428,95,434,110,435,126,428,157,423,156,429,126,428,111,424,97,402,70,373,51"/>
+<area shape="rect" id="Node000009" href="$w5x00__gpio__irq_8h.html" title=" " alt="" coords="489,96,611,123"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="384,46,501,88,500,93,382,51"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="387,122,404,155,399,158,382,124"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="346,320,410,347"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="403,199,384,220,370,246,367,276,372,305,366,306,361,276,365,245,380,217,399,196"/>
+<area shape="rect" id="Node000008" href="$w5500_8h.html" title="W5500 HAL Header File." alt="" coords="379,245,449,272"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="410,198,408,230,403,230,404,198"/>
+<area shape="poly" id="edge8_Node000008_Node000006" title=" " alt="" coords="418,245,420,213,426,213,424,245"/>
+<area shape="poly" id="edge9_Node000008_Node000007" title=" " alt="" coords="410,274,394,307,389,305,406,271"/>
+</map>

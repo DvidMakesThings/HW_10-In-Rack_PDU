@@ -36,9 +36,10 @@ pico_sdk_init()
 # Add executable. Default name is the project name, version 0.1
 
 add_executable(ENERGIS 
-    ENERGIS.c
+    ENERGIS_core0_task.c
     drivers/CAT24C512_driver.c
     drivers/ILI9488_driver.c
+    drivers/MCP23017_dual_driver.c
     drivers/MCP23017_display_driver.c
     drivers/MCP23017_relay_driver.c
     drivers/button_driver.c
@@ -61,8 +62,8 @@ add_executable(ENERGIS
     utils/EEPROM_MemoryMap.c
     utils/helper_functions.c
     PDU_display.c
-    startup.c
-    core1_task.c
+    ENERGIS_startup.c
+    ENERGIS_core1_task.c
 )
 
 

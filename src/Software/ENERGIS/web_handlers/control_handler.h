@@ -15,6 +15,8 @@
 #include "../CONFIG.h"
 #include <stdint.h>
 
+#define CONTROL_HANDLER_TAG "<Control Handler>"
+
 /**
  * @brief Handles the HTTP request for the control page.
  * @param sock The socket number.

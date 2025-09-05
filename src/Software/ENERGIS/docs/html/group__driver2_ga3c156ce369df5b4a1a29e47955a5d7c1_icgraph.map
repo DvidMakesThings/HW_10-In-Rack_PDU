@@ -1,0 +1,11 @@
+<map id="CAT24C512_ReadByte" name="CAT24C512_ReadByte">
+<area shape="rect" id="Node000001" title="Reads a byte from the EEPROM." alt="" coords="470,31,627,57"/>
+<area shape="rect" id="Node000002" href="$group__util1.html#gab695b3ae06e6efee0452967e689920b7" title="Reads the current write pointer for energy monitoring records." alt="" coords="275,5,414,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="454,35,413,30,414,25,455,30"/>
+<area shape="rect" id="Node000004" href="$group__util1.html#ga985e6f8b90477769f7f328a8c460517a" title="Reads the current write pointer for event logs." alt="" coords="267,56,422,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="455,58,422,62,422,57,454,53"/>
+<area shape="rect" id="Node000003" href="$group__util1.html#ga718d1f1b5a07b4a0afee080ae1b18f2d" title="Appends an energy monitoring record to EEPROM." alt="" coords="5,5,219,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="260,21,219,21,219,16,260,16"/>
+<area shape="rect" id="Node000005" href="$group__util1.html#gad0eb91b4220eb372727d5d4af70a6a5f" title="Appends an event log entry to EEPROM." alt="" coords="19,56,205,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="251,72,205,72,205,67,251,67"/>
+</map>

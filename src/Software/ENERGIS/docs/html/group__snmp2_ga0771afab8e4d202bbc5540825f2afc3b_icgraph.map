@@ -1,0 +1,7 @@
+<map id="get_allState" name="get_allState">
+<area shape="rect" id="Node000001" title="Read all 8 relay states and return as a bitmask." alt="" coords="130,31,220,57"/>
+<area shape="rect" id="Node000002" href="$group__snmp2.html#gaae5465f6b70d234aa38096a810f5fad8" title="SNMP getter for “all off” OID. Returns the same bitmask as get_allState()." alt="" coords="5,5,82,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="114,35,81,29,82,23,115,30"/>
+<area shape="rect" id="Node000003" href="$group__snmp2.html#ga4ef4a107594909096b39054767b014f4" title="SNMP getter for “all on” OID. Returns the same bitmask as get_allState()." alt="" coords="5,56,82,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="115,58,82,65,81,59,114,53"/>
+</map>

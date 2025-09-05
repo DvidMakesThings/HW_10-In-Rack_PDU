@@ -1,0 +1,5 @@
+<map id="getSn_RX_RSR" name="getSn_RX_RSR">
+<area shape="rect" id="Node000001" title="Get Sn_RX_RSR register." alt="" coords="5,5,123,32"/>
+<area shape="rect" id="Node000002" href="$group__net3.html#ga674a6dc857166809ddc71ea8d40d56b8" title="It reads 1 byte value from a register." alt="" coords="171,5,295,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,16,155,16,155,21,123,21"/>
+</map>

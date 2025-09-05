@@ -1,0 +1,19 @@
+<map id="hlw8032_get_current" name="hlw8032_get_current">
+<area shape="rect" id="Node000001" title="Get the most recently measured current." alt="" coords="717,81,858,108"/>
+<area shape="rect" id="Node000002" href="$group__driver3.html#ga0b3a5c410541deaf144c3e33d4b65175" title="Poll a single channel for power measurements." alt="" coords="336,5,467,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="746,76,708,60,668,47,616,36,563,28,468,22,468,17,564,23,617,30,669,41,710,55,748,72"/>
+<area shape="rect" id="Node000004" href="$group__uart.html#gaa0cfe9fea91a783744a3ef36f146da0a" title="Read and print HLW8032 sensor values for a specific channel." alt="" coords="515,56,669,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="701,86,669,82,670,77,702,81"/>
+<area shape="rect" id="Node000007" href="$group__uart.html#ga900a7219fe90e05fa69922b219cd6cfd" title="Read and print HLW8032 sensor values for all channels." alt="" coords="529,107,655,133"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="702,108,655,115,655,109,701,103"/>
+<area shape="rect" id="Node000008" href="$group__driver3.html#ga76f09e4482db113563628126492d3200" title="Refresh power measurements for all channels." alt="" coords="524,157,660,184"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="743,117,670,148,638,159,636,154,668,143,741,112"/>
+<area shape="rect" id="Node000003" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,31,102,57"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="320,27,103,43,102,38,320,22"/>
+<area shape="rect" id="Node000005" href="$group__uart.html#gaf78d8689607ba97d44d30e4e3fc56533" title="Parse and execute a received UART command string." alt="" coords="336,56,467,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="500,72,468,72,468,67,500,67"/>
+<area shape="rect" id="Node000006" href="$group__uart.html#ga6c04950ec7c317f61e910caa14e9e893" title="Main loop for reading and processing UART commands." alt="" coords="150,56,288,83"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="321,72,289,72,289,67,321,67"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="134,59,101,54,102,49,135,54"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="524,105,454,86,455,81,525,99"/>
+</map>

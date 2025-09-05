@@ -6,7 +6,10 @@
             "type": "process",
             "isBuildCommand": true,
             "command": "${userHome}/.pico-sdk/ninja/v1.12.1/ninja",
-            "args": ["-C", "${workspaceFolder}/build"],
+            "args": [
+                "-C",
+                "${workspaceFolder}/build"
+            ],
             "group": "build",
             "presentation": {
                 "reveal": "always",
@@ -51,28 +54,118 @@
             ],
             "problemMatcher": [],
             "windows": {
-                "command": "${env:USERPROFILE}/.pico-sdk/openocd/0.12.0+dev/openocd.exe",
+                "command": "${env:USERPROFILE}/.pico-sdk/openocd/0.12.0+dev/openocd.exe"
             }
         },
         {
-            "label": "Flash RP2040 via bootsel",
+            "label": "Compile Project",
             "type": "shell",
-            "dependsOn": [
-                "Compile Project"
-            ],
-            "command": "powershell.exe",
-            "args": [
-                "-NoProfile",
-                "-ExecutionPolicy",
-                "Bypass",
-                "-File",
-                "${workspaceFolder}/scripts/flash_rp2040.ps1"
-            ],
+            "command": "${workspaceFolder}/scripts/build.sh",
+            "linux": {
+                "command": "${workspaceFolder}/scripts/build.sh"
+            },
+            "windows": {
+                "command": "powershell.exe",
+                "args": [
+                    "-NoProfile",
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-File",
+                    "${workspaceFolder}\\scripts\\build.ps1"
+                ]
+            },
             "presentation": {
                 "reveal": "always",
                 "panel": "shared"
             },
             "problemMatcher": []
-            }
+        },
+        {
+            "label": "ENERGIS: Upload Only",
+            "type": "shell",
+            "dependsOn": [
+                "Compile Project"
+            ],
+            "linux": {
+                "command": "${workspaceFolder}/scripts/flash_rp2040.sh",
+                "args": []
+            },
+            "windows": {
+                "command": "powershell.exe",
+                "args": [
+                    "-NoProfile",
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-File",
+                    "${workspaceFolder}\\scripts\\flash_rp2040.ps1"
+                ]
+            },
+            "osx": {
+                "command": "${workspaceFolder}/scripts/flash_rp2040.sh",
+                "args": []
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "ENERGIS: Upload and Serial",
+            "type": "shell",
+            "dependsOn": [
+                "Compile Project"
+            ],
+            "linux": {
+                "command": "${workspaceFolder}/scripts/flash_rp2040_and_serial.sh",
+                "args": []
+            },
+            "windows": {
+                "command": "powershell.exe",
+                "args": [
+                    "-NoProfile",
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-File",
+                    "${workspaceFolder}\\scripts\\flash_rp2040_and_serial.ps1"
+                ]
+            },
+            "osx": {
+                "command": "${workspaceFolder}/scripts/flash_rp2040_and_serial.sh",
+                "args": []
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "ENERGIS: Serial Only",
+            "type": "shell",
+            "linux": {
+                "command": "${workspaceFolder}/scripts/openSerial.sh",
+                "args": []
+            },
+            "windows": {
+                "command": "powershell.exe",
+                "args": [
+                    "-NoProfile",
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-File",
+                    "${workspaceFolder}\\scripts\\openSerial.ps1"
+                ]
+            },
+            "osx": {
+                "command": "${workspaceFolder}/scripts/openSerial.sh",
+                "args": []
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        }
     ]
 }

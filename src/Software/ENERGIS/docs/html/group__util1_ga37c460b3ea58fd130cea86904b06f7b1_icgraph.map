@@ -1,0 +1,33 @@
+<map id="LoadUserNetworkConfig" name="LoadUserNetworkConfig">
+<area shape="rect" id="Node000001" title="Loads user network configuration from EEPROM." alt="" coords="716,157,880,184"/>
+<area shape="rect" id="Node000002" href="$group__main03.html#ga4f6be798db44b5ed4b9b12eeb705f6e9" title="Initializes Core 1." alt="" coords="367,5,444,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="777,146,731,93,701,67,667,46,609,27,548,18,492,16,445,17,445,12,492,10,549,12,610,22,669,42,704,63,735,90,781,143"/>
+<area shape="rect" id="Node000004" href="$group__webui4.html#ga0fe4c530cf7754724a14147a82c71108" title="Handles the HTTP POST request for the settings page." alt="" coords="523,56,668,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="762,151,717,124,667,97,639,86,641,81,669,92,720,119,765,146"/>
+<area shape="rect" id="Node000007" href="$group__uart.html#ga0861a9960c0f8e70f10272158aa9c937" title="Set the DNS server address and reconfigure network." alt="" coords="562,107,629,133"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="726,156,629,131,630,126,727,150"/>
+<area shape="rect" id="Node000010" href="$group__uart.html#ga7d7af9628af84c182e9978c253c5bf14" title="Set the gateway address and reconfigure network." alt="" coords="548,157,643,184"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="700,173,644,173,644,168,700,168"/>
+<area shape="rect" id="Node000011" href="$group__uart.html#ga387b6d0d56433cf41937ae4721c0ddbf" title="Set the device IP address and reconfigure network." alt="" coords="567,208,624,235"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="727,191,625,217,624,212,726,186"/>
+<area shape="rect" id="Node000012" href="$group__uart.html#ga63f75ffc96f9e37736f5d65e4c845616" title="Set full network configuration (IP, subnet, gateway, DNS)." alt="" coords="549,259,642,285"/>
+<area shape="poly" id="edge15_Node000001_Node000012" title=" " alt="" coords="765,195,720,222,669,249,641,260,639,256,667,244,717,218,762,190"/>
+<area shape="rect" id="Node000013" href="$group__uart.html#ga7b9dad04ce3e7c959f434dfc503b22f4" title="Set the subnet mask and reconfigure network." alt="" coords="553,309,638,336"/>
+<area shape="poly" id="edge17_Node000001_Node000013" title=" " alt="" coords="778,198,732,249,702,276,669,300,640,313,638,309,666,295,698,272,728,245,775,194"/>
+<area shape="rect" id="Node000003" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,56,102,83"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="352,24,257,32,150,47,101,58,100,53,149,41,257,27,351,19"/>
+<area shape="rect" id="Node000005" href="$group__webui3.html#ga52702a4dcaff4540a9ddd10e4d5f4525" title="Processes incoming HTTP requests." alt="" coords="336,56,475,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="508,72,476,72,476,67,508,67"/>
+<area shape="rect" id="Node000006" href="$group__main02.html#gad25e95c5993e865b3f941472b7a328e0" title="Core 1 task for handling SNMP and HTTP server." alt="" coords="176,56,262,83"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="320,72,262,72,262,67,320,67"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="161,72,102,72,102,67,161,67"/>
+<area shape="rect" id="Node000008" href="$group__uart.html#gaf78d8689607ba97d44d30e4e3fc56533" title="Parse and execute a received UART command string." alt="" coords="340,183,471,209"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="548,139,524,148,438,185,436,180,522,143,546,134"/>
+<area shape="rect" id="Node000009" href="$group__uart.html#ga6c04950ec7c317f61e910caa14e9e893" title="Main loop for reading and processing UART commands." alt="" coords="150,157,288,184"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="324,188,288,183,289,177,325,182"/>
+<area shape="poly" id="edge10_Node000009_Node000003" title=" " alt="" coords="181,151,75,85,78,81,184,147"/>
+<area shape="poly" id="edge12_Node000010_Node000008" title=" " alt="" coords="533,182,472,190,471,185,532,176"/>
+<area shape="poly" id="edge14_Node000011_Node000008" title=" " alt="" coords="551,218,472,207,472,202,552,213"/>
+<area shape="poly" id="edge16_Node000012_Node000008" title=" " alt="" coords="539,255,522,249,436,212,438,207,524,244,540,250"/>
+<area shape="poly" id="edge18_Node000013_Node000008" title=" " alt="" coords="537,307,522,300,491,278,461,254,418,212,422,208,465,250,494,274,525,295,540,303"/>
+</map>

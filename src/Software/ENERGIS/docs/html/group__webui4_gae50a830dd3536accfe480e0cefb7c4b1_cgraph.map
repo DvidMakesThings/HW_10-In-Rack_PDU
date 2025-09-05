@@ -1,0 +1,25 @@
+<map id="handle_settings_request" name="handle_settings_request">
+<area shape="rect" id="Node000001" title="Handles the HTTP request for the settings page." alt="" coords="5,80,168,107"/>
+<area shape="rect" id="Node000002" href="$group__util1.html#gaef5b120a12ff3e275706067ea3cf7e46" title="Reads user network settings with CRC&#45;8 checksum verification." alt="" coords="216,72,437,115"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="168,91,200,91,200,96,168,96"/>
+<area shape="rect" id="Node000005" href="$group__util1.html#ga708039b6b7c8a2535429849aaf0bef39" title="Reads user preferences from EEPROM." alt="" coords="225,5,428,48"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="137,77,232,50,233,55,138,82"/>
+<area shape="rect" id="Node000006" href="$group__net1.html#gacd77c3cc60e87d09a5714932506d7c4b" title="Send data to the connected peer in TCP socket." alt="" coords="302,152,351,179"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="134,105,288,151,286,156,133,110"/>
+<area shape="rect" id="Node000003" href="$group__util1.html#gac234fd9aa26c0f3a24a54afa80ca8035" title="Calculates the CRC&#45;8 checksum of the given data." alt="" coords="514,64,620,91"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="437,83,499,79,500,84,438,89"/>
+<area shape="rect" id="Node000004" href="$group__driver2.html#ga32e8f6f7cd5d0fba27b004b8c2637ea4" title="Reads a buffer of data from the EEPROM." alt="" coords="485,13,649,40"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="405,69,501,42,502,47,406,74"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="429,45,500,61,499,66,428,51"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="428,24,470,24,470,29,428,29"/>
+<area shape="rect" id="Node000007" href="$group__net1.html#gaf7c8a46c623edfab31d9e09788394b2f" title="Close a socket." alt="" coords="541,115,593,141"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="351,159,525,132,526,137,352,164"/>
+<area shape="rect" id="Node000008" href="$group__net3.html#gadd5918adebaa3744ddc01a76c84a894a" title="Get Sn_TX_FSR register." alt="" coords="510,165,624,192"/>
+<area shape="poly" id="edge9_Node000006_Node000008" title=" " alt="" coords="352,164,495,172,495,177,351,169"/>
+<area shape="rect" id="Node000010" href="$group__net3.html#gab3dd6071b87bea9afcedcb57e248a7d0" title="It copies data to internal TX memory." alt="" coords="513,216,621,243"/>
+<area shape="poly" id="edge11_Node000006_Node000010" title=" " alt="" coords="352,169,500,209,498,214,351,174"/>
+<area shape="rect" id="Node000009" href="$group__net3.html#ga674a6dc857166809ddc71ea8d40d56b8" title="It reads 1 byte value from a register." alt="" coords="717,165,842,192"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="624,176,702,176,702,181,624,181"/>
+<area shape="rect" id="Node000011" href="$group__net3.html#gace1d7f17bb930589033e06e067888b2f" title="It writes sequence data to registers." alt="" coords="697,216,862,243"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="622,227,682,227,682,232,622,232"/>
+</map>

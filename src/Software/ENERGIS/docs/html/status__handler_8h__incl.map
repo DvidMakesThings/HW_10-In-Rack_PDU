@@ -1,0 +1,5 @@
+<map id="ENERGIS/web_handlers/status_handler.h" name="ENERGIS/web_handlers/status_handler.h">
+<area shape="rect" id="Node000001" title="Handler for building JSON for /api/status." alt="" coords="5,5,172,48"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="56,96,121,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,49,91,80,86,80,86,49"/>
+</map>

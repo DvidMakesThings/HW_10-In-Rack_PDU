@@ -1,0 +1,5 @@
+<map id="disconnect" name="disconnect">
+<area shape="rect" id="Node000001" title="Try to disconnect a connection socket." alt="" coords="5,5,90,32"/>
+<area shape="rect" id="Node000002" href="$group__net1.html#gaf7c8a46c623edfab31d9e09788394b2f" title="Close a socket." alt="" coords="138,5,190,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="90,16,122,16,122,21,90,21"/>
+</map>

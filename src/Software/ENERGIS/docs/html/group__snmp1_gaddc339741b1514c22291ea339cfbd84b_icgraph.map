@@ -1,0 +1,13 @@
+<map id="makeTrapVariableBindings" name="makeTrapVariableBindings">
+<area shape="rect" id="Node000001" title=" " alt="" coords="710,5,885,32"/>
+<area shape="rect" id="Node000002" href="$group__snmp__module.html#ga8a5d8ad5c6c10d2f74370649c4aa41e6" title=" " alt="" coords="548,5,662,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="694,21,662,21,662,16,694,16"/>
+<area shape="rect" id="Node000003" href="$group__snmp2.html#ga01e7036f2bce7c2647b681dcfe2b3731" title="Initialize the SNMP agent with the given manager and agent IP addresses." alt="" coords="415,5,500,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="532,21,500,21,500,16,532,16"/>
+<area shape="rect" id="Node000004" href="$group__snmp__module.html#ga6515f727d7f9d2333eaeef21b062accb" title=" " alt="" coords="283,5,367,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="400,21,368,21,368,16,400,16"/>
+<area shape="rect" id="Node000005" href="$group__main02.html#gad25e95c5993e865b3f941472b7a328e0" title="Core 1 task for handling SNMP and HTTP server." alt="" coords="150,5,235,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="267,21,235,21,235,16,267,16"/>
+<area shape="rect" id="Node000006" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,5,102,32"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="134,21,102,21,102,16,134,16"/>
+</map>

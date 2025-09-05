@@ -1,0 +1,47 @@
+<map id="EEPROM_ReadFactoryDefaults" name="EEPROM_ReadFactoryDefaults">
+<area shape="rect" id="Node000001" title="Reads and validates factory defaults stored in EEPROM. If any section is invalid, it restores the def..." alt="" coords="5,183,216,209"/>
+<area shape="rect" id="Node000002" href="$group__util1.html#ga9fb1f24e48771317aaa7c8b6c02c9786" title="Reads energy monitoring data from EEPROM." alt="" coords="265,5,484,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,180,174,113,215,74,262,42,275,35,277,40,265,46,219,79,178,117,123,184"/>
+<area shape="rect" id="Node000004" href="$group__util1.html#gad9c0aae90591df3b2bb552a2755ce7a9" title="Reads event log data from EEPROM." alt="" coords="285,56,464,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="126,180,184,137,222,113,263,92,281,85,283,90,265,97,225,117,187,141,130,184"/>
+<area shape="rect" id="Node000005" href="$group__util1.html#ga7182e6e053685a9aac34eee5097a7416" title="Reads sensor calibration data from EEPROM." alt="" coords="264,107,484,133"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="149,180,263,143,293,135,294,140,264,148,151,185"/>
+<area shape="rect" id="Node000006" href="$group__util1.html#gab6868e2a26481771ef8ed81d4e909814" title="Reads system info from EEPROM." alt="" coords="282,157,466,184"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="216,183,266,178,267,184,216,189"/>
+<area shape="rect" id="Node000007" href="$group__util1.html#gaef5b120a12ff3e275706067ea3cf7e46" title="Reads user network settings with CRC&#45;8 checksum verification." alt="" coords="264,309,485,352"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="131,208,188,250,265,295,278,301,276,306,262,300,185,255,127,212"/>
+<area shape="rect" id="Node000009" href="$group__util1.html#ga25688db788c627b0458f2fd63711af25" title="Reads user output configuration from EEPROM." alt="" coords="282,208,466,235"/>
+<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="216,203,267,208,266,214,216,209"/>
+<area shape="rect" id="Node000010" href="$group__util1.html#ga9f082445c1a6ae5112beee80a6074d97" title="Reads user preferences from EEPROM." alt="" coords="267,259,482,285"/>
+<area shape="poly" id="edge14_Node000001_Node000010" title=" " alt="" coords="151,207,264,244,294,252,293,257,263,249,149,212"/>
+<area shape="rect" id="Node000011" href="$group__util2.html#gae73b9c33649b5f5f7388f1b4fe42d32d" title="Sets the error state on the display." alt="" coords="341,376,408,403"/>
+<area shape="poly" id="edge16_Node000001_Node000011" title=" " alt="" coords="122,208,144,240,176,282,217,326,265,362,295,375,326,382,325,387,293,380,262,366,213,329,172,286,139,244,118,211"/>
+<area shape="rect" id="Node000003" href="$group__driver2.html#ga32e8f6f7cd5d0fba27b004b8c2637ea4" title="Reads a buffer of data from the EEPROM." alt="" coords="533,157,697,184"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="459,30,486,42,520,64,550,91,597,143,593,146,547,95,517,68,484,46,457,35"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="450,81,486,92,539,118,584,146,581,151,536,123,484,97,449,86"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="442,131,534,151,533,156,441,137"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="467,168,517,168,517,173,467,173"/>
+<area shape="poly" id="edge11_Node000007_Node000003" title=" " alt="" coords="460,307,484,295,516,272,546,245,592,194,596,198,550,249,520,276,486,300,463,311"/>
+<area shape="rect" id="Node000008" href="$group__util1.html#gac234fd9aa26c0f3a24a54afa80ca8035" title="Calculates the CRC&#45;8 checksum of the given data." alt="" coords="562,317,668,344"/>
+<area shape="poly" id="edge10_Node000007_Node000008" title=" " alt="" coords="485,328,547,328,547,333,485,333"/>
+<area shape="poly" id="edge13_Node000009_Node000003" title=" " alt="" coords="441,205,533,185,534,190,442,210"/>
+<area shape="poly" id="edge15_Node000010_Node000003" title=" " alt="" coords="449,256,484,244,536,219,581,191,584,195,539,223,486,249,450,261"/>
+<area shape="rect" id="Node000012" href="$group__driver5.html#ga1f2aea8f1cb5fb271e2b68ab119fa503" title="Writes a digital value to a specific MCP23017 pin. Uses shadowed whole&#45;port writes under a mutex to a..." alt="" coords="538,376,692,403"/>
+<area shape="poly" id="edge17_Node000011_Node000012" title=" " alt="" coords="408,387,523,387,523,392,408,392"/>
+<area shape="rect" id="Node000013" href="$group__driver5.html#gad23a5248f3f3fc671c373a437e16e985" title="Initializes the relay board&#39;s MCP23017." alt="" coords="745,351,864,377"/>
+<area shape="poly" id="edge18_Node000012_Node000013" title=" " alt="" coords="692,376,730,371,731,377,693,382"/>
+<area shape="rect" id="Node000016" href="$group__driver5.html#gaba4e8ca33cf356bc41af763ae4aa3310" title=" " alt="" coords="955,401,1032,428"/>
+<area shape="poly" id="edge25_Node000012_Node000016" title=" " alt="" coords="693,392,940,408,939,414,692,397"/>
+<area shape="rect" id="Node000017" href="$group__driver5.html#ga713d78b9106bd7706abb1ed29d8fad27" title=" " alt="" coords="948,452,1039,479"/>
+<area shape="poly" id="edge26_Node000012_Node000017" title=" " alt="" coords="686,401,933,451,932,456,685,406"/>
+<area shape="rect" id="Node000018" href="$group__driver5.html#ga51d31ad5757c79b0f72f1e785115efed" title=" " alt="" coords="912,249,1075,276"/>
+<area shape="poly" id="edge27_Node000012_Node000018" title=" " alt="" coords="649,373,744,336,928,278,930,283,746,341,651,378"/>
+<area shape="rect" id="Node000014" href="$group__driver5.html#ga4cde98019aa1b07cd4c5f6bd7929bd8c" title=" " alt="" coords="965,351,1022,377"/>
+<area shape="poly" id="edge19_Node000013_Node000014" title=" " alt="" coords="864,361,950,361,950,367,864,367"/>
+<area shape="rect" id="Node000015" href="$group__driver5.html#ga88ff03a249bfc75eaac4cab1d7955107" title=" " alt="" coords="1123,275,1182,301"/>
+<area shape="poly" id="edge20_Node000013_Node000015" title=" " alt="" coords="862,347,911,336,1108,294,1109,299,912,341,863,353"/>
+<area shape="poly" id="edge21_Node000013_Node000016" title=" " alt="" coords="858,375,941,398,939,403,856,381"/>
+<area shape="poly" id="edge22_Node000013_Node000017" title=" " alt="" coords="823,376,863,407,913,438,934,447,932,452,910,442,860,411,820,380"/>
+<area shape="poly" id="edge23_Node000013_Node000018" title=" " alt="" coords="823,348,862,321,910,292,937,280,940,285,913,297,865,325,826,352"/>
+<area shape="poly" id="edge24_Node000018_Node000015" title=" " alt="" coords="1076,273,1108,278,1107,284,1075,278"/>
+</map>

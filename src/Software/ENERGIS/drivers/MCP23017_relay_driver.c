@@ -1,15 +1,22 @@
 /**
  * @file MCP23017_relay_driver.c
- * @author DvidMakesThings - David Sipos (DvidMakesThings)
+ * @author DvidMakesThings - David Sipos
+ * @defgroup driver7 7. MCP23017 Relay Driver
+ * @ingroup drivers
  * @brief Driver for the Relay Board's MCP23017 I/O Expander with
  *        race-free, shadow-latched writes to prevent random relay flips.
+ * @{
  * @version 1.1
  * @date 2025-08-21
  *
+ * Previously, mcp_relay_write_pin() performed a read-modify-write (RMW) on OLATx,
+ * which could cause random relay flips under concurrent access.
+ * This driver fixes the issue by maintaining software shadow latches and using mutex protection.
+ *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
- *
- * --------------------------------------------------------------------------
+ */
+/* --------------------------------------------------------------------------
  * WHY THIS REV EXISTS
  * --------------------------------------------------------------------------
  * Previously, mcp_relay_write_pin() performed a read‑modify‑write (RMW) on
@@ -35,31 +42,33 @@
 
 #include "MCP23017_relay_driver.h"
 #include "hardware/i2c.h"
-#include "pico/stdlib.h"
 #include "pico/mutex.h"
+#include "pico/stdlib.h"
 
 /* ------------------------- Local helpers & state ------------------------ */
 
-static mutex_t              s_relay_mutex;
-static volatile uint8_t     s_olat_a = 0x00;   // software shadow for OLATA
-static volatile uint8_t     s_olat_b = 0x00;   // software shadow for OLATB
-static volatile bool        s_inited  = false;
+static mutex_t s_relay_mutex;
+static volatile uint8_t s_olat_a = 0x00; // software shadow for OLATA
+static volatile uint8_t s_olat_b = 0x00; // software shadow for OLATB
+static volatile bool s_inited = false;
 
-static inline void mcp_lock(void)   { mutex_enter_blocking(&s_relay_mutex); }
+static inline void mcp_lock(void) { mutex_enter_blocking(&s_relay_mutex); }
 static inline void mcp_unlock(void) { mutex_exit(&s_relay_mutex); }
 
 /* Robust I2C write: returns true on success (all bytes written) */
 static bool i2c_wr(uint8_t reg, uint8_t val) {
     uint8_t data[2] = {reg, val};
-    int     n = i2c_write_blocking(MCP23017_RELAY_I2C, MCP_RELAY_ADDR, data, 2, false);
+    int n = i2c_write_blocking(MCP23017_RELAY_I2C, MCP_RELAY_ADDR, data, 2, false);
     return (n == 2);
 }
 
 /* Robust I2C read: returns true on success (value in *out) */
 static bool i2c_rd(uint8_t reg, uint8_t *out) {
-    if (!out) return false;
+    if (!out)
+        return false;
     int n = i2c_write_blocking(MCP23017_RELAY_I2C, MCP_RELAY_ADDR, &reg, 1, true);
-    if (n != 1) return false;
+    if (n != 1)
+        return false;
     n = i2c_read_blocking(MCP23017_RELAY_I2C, MCP_RELAY_ADDR, out, 1, false);
     return (n == 1);
 }
@@ -121,8 +130,10 @@ void mcp_relay_init(void) {
     /* Seed software shadow from silicon OLAT to avoid an initial "jump".
        If read fails, default to 0x00 (all off). */
     uint8_t olata = 0, olatb = 0;
-    if (!i2c_rd(MCP23017_OLATA, &olata)) olata = 0x00;
-    if (!i2c_rd(MCP23017_OLATB, &olatb)) olatb = 0x00;
+    if (!i2c_rd(MCP23017_OLATA, &olata))
+        olata = 0x00;
+    if (!i2c_rd(MCP23017_OLATB, &olatb))
+        olatb = 0x00;
     s_olat_a = olata;
     s_olat_b = olatb;
 
@@ -140,12 +151,15 @@ void mcp_relay_init(void) {
  * If OLATA/OLATB is written, the shadow is kept in sync.
  */
 void mcp_relay_write_reg(uint8_t reg, uint8_t value) {
-    if (!s_inited) mcp_relay_init();
+    if (!s_inited)
+        mcp_relay_init();
     mcp_lock();
 
     /* If the caller touches OLAT, keep shadow consistent */
-    if (reg == MCP23017_OLATA) s_olat_a = value;
-    if (reg == MCP23017_OLATB) s_olat_b = value;
+    if (reg == MCP23017_OLATA)
+        s_olat_a = value;
+    if (reg == MCP23017_OLATB)
+        s_olat_b = value;
 
     i2c_wr(reg, value);
     mcp_unlock();
@@ -155,7 +169,8 @@ void mcp_relay_write_reg(uint8_t reg, uint8_t value) {
  * @brief Reads a value from a specified MCP23017 register (guarded).
  */
 uint8_t mcp_relay_read_reg(uint8_t reg) {
-    if (!s_inited) mcp_relay_init();
+    if (!s_inited)
+        mcp_relay_init();
     mcp_lock();
     uint8_t v = 0;
     (void)i2c_rd(reg, &v);
@@ -170,16 +185,20 @@ uint8_t mcp_relay_read_reg(uint8_t reg) {
  * @param direction 0 = output, 1 = input.
  */
 void mcp_relay_set_direction(uint8_t pin, uint8_t direction) {
-    if (!s_inited) mcp_relay_init();
+    if (!s_inited)
+        mcp_relay_init();
 
     const uint8_t is_port_a = (pin < 8) ? 1 : 0;
-    const uint8_t reg       = is_port_a ? MCP23017_IODIRA : MCP23017_IODIRB;
-    const uint8_t bit       = pin & 0x07;
+    const uint8_t reg = is_port_a ? MCP23017_IODIRA : MCP23017_IODIRB;
+    const uint8_t bit = pin & 0x07;
 
     mcp_lock();
     uint8_t cur = 0;
     (void)i2c_rd(reg, &cur);
-    if (direction) cur |=  (1u << bit); else cur &= ~(1u << bit);
+    if (direction)
+        cur |= (1u << bit);
+    else
+        cur &= ~(1u << bit);
     i2c_wr(reg, cur);
     mcp_unlock();
 }
@@ -192,19 +211,24 @@ void mcp_relay_set_direction(uint8_t pin, uint8_t direction) {
  * @param value 0 = low, 1 = high.
  */
 void mcp_relay_write_pin(uint8_t pin, uint8_t value) {
-    if (!s_inited) mcp_relay_init();
+    if (!s_inited)
+        mcp_relay_init();
 
     const uint8_t is_port_a = (pin < 8) ? 1 : 0;
-    const uint8_t bit       = pin & 0x07;
+    const uint8_t bit = pin & 0x07;
 
     mcp_lock();
     if (is_port_a) {
-        if (value) s_olat_a |=  (1u << bit);
-        else       s_olat_a &= ~(1u << bit);
+        if (value)
+            s_olat_a |= (1u << bit);
+        else
+            s_olat_a &= ~(1u << bit);
         write_port_from_shadow(0);
     } else {
-        if (value) s_olat_b |=  (1u << bit);
-        else       s_olat_b &= ~(1u << bit);
+        if (value)
+            s_olat_b |= (1u << bit);
+        else
+            s_olat_b &= ~(1u << bit);
         write_port_from_shadow(1);
     }
     mcp_unlock();
@@ -217,7 +241,8 @@ void mcp_relay_write_pin(uint8_t pin, uint8_t value) {
  * @return 0 = low, 1 = high.
  */
 uint8_t mcp_relay_read_pin(uint8_t pin) {
-    if (!s_inited) mcp_relay_init();
+    if (!s_inited)
+        mcp_relay_init();
 
     const uint8_t reg = (pin < 8) ? MCP23017_GPIOA : MCP23017_GPIOB;
     const uint8_t bit = pin & 0x07;
@@ -238,7 +263,8 @@ uint8_t mcp_relay_read_pin(uint8_t pin) {
  * @param value_bits Values for those bits (only masked bits are applied)
  */
 void mcp_relay_write_mask(uint8_t port_ab, uint8_t mask, uint8_t value_bits) {
-    if (!s_inited) mcp_relay_init();
+    if (!s_inited)
+        mcp_relay_init();
 
     mcp_lock();
     if (port_ab == 0) {
@@ -255,7 +281,8 @@ void mcp_relay_write_mask(uint8_t port_ab, uint8_t mask, uint8_t value_bits) {
  * @brief Re-sync software shadows from hardware OLAT (optional utility).
  */
 void mcp_relay_resync_from_hw(void) {
-    if (!s_inited) mcp_relay_init();
+    if (!s_inited)
+        mcp_relay_init();
 
     mcp_lock();
     uint8_t a = 0, b = 0;

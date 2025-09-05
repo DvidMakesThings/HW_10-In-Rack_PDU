@@ -1,0 +1,5 @@
+<map id="write_energy_pointer" name="write_energy_pointer">
+<area shape="rect" id="Node000001" title="Updates the write pointer for energy monitoring records." alt="" coords="267,5,408,32"/>
+<area shape="rect" id="Node000002" href="$group__util1.html#ga718d1f1b5a07b4a0afee080ae1b18f2d" title="Appends an energy monitoring record to EEPROM." alt="" coords="5,5,219,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="251,21,219,21,219,16,251,16"/>
+</map>

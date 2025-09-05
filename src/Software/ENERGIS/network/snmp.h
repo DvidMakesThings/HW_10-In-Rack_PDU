@@ -5,9 +5,9 @@
 extern "C" {
 #endif
 
-#define DBG_PRINT(...)                                                                             \
+#define SNMP_PRINT(...)                                                                            \
     if (1)                                                                                         \
-        printf("\t[DEBUG] " __VA_ARGS__);
+        printf("[INFO] " __VA_ARGS__);
 
 // SNMP Debug Message (dump) Enable
 #define _SNMP_DEBUG_

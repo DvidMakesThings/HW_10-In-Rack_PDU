@@ -22,41 +22,40 @@ the USB-C version of ENERGIS with USB PD Source functionality: [PDNode-600 Pro](
 | **Prototyping and Hardware Testing** | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
 | **Implementing Rev2.0**              | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
 | **Implementing Relay Board Rev2.1**  | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Initial Firmware Development**     | ![In Progress](https://img.shields.io/badge/status-in%20progress-yellow) |
-| **Final PCB Revision**               | ![In Progress](https://img.shields.io/badge/status-PCB%20Design%20ready,%20ordering%20when%20SW%20is%20ready-yellow) |
+| **Initial Firmware Development**     | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **Final PCB Revision**               | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
 | **Enclosure Testing & Ventilation**  | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
 | **Power Monitoring**                 | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
 | **Production Optimization**          | ![Planned](https://img.shields.io/badge/status-planned-blue) |
 
 ### Changelog:
-#### Rev1.0:
+#### Rev0.1.0:
 - Initial desing
 
-#### Rev2.0:
+#### Rev0.2.0:
 - Correct all hardware related bugs
-- Display-Board Rev2.0: 
+- Display-Board Rev0.2.0: 
     - Buttons too close to each-other. Manual control is uncomfortable 
     - MCP23S17 seems like unreachable, invertory shortage everywhere. Change to MCP23017
-- Controller-Board Rev2.0: 
+- Controller-Board Rev0.2.0: 
     - W5500 crystal wiring bug. 
     - v1.0 connectors replaced to smaller FFC ones
-- Relay-Board Rev2.0: 
+- Relay-Board Rev0.2.0: 
     - Add HLW8032 for power monitoring
     - Replace Flyback converter to a cheaper - ready made AC-DC converter unit
 
-#### Rev2.1:
-- Relay-Board Rev2.1: 
+#### Rev0.2.1:
+- Relay-Board Rev0.2.1: 
     - Capacitive dropper does not have enough power to supply 8xHLW8032 - Non-Isolated  buck converter implemented
-- Display-Board Rev2.1:
+- Display-Board Rev0.2.1:
     - Planned revision without the LCD. This is the main size issue, going to do a version where the setup fits in 1U size. 
     Currently for debug purposes 1.5U is perfectly fine
 
 #### ENERGIS 1.0.0 Final revision
 - Relay-Board and Controller Board is now combined: Main Board
-- Added FT232 to separate CDC/UART
-- Added 2:1 USB MUX
 - Added enable functionality to the PSU
 - Added high precision LDO to supply the MCU
+- Additional fan is possible, but the temperature doesn't go above 36°C
 
 ## Firmware Development Phases
 | Phase                                | Status   |
@@ -72,11 +71,11 @@ the USB-C version of ENERGIS with USB PD Source functionality: [PDNode-600 Pro](
 | **System Startup Script**            | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
 | **Multicore processing and RTOS**    | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
 | **Pushbutton control**               | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **HLW8032 Power Monitor Dirver**     | ![Not Started](https://img.shields.io/badge/status-not%20started-red) |
-| **Make Everything work together**    | ![In Progress](https://img.shields.io/badge/status-in%20progress-yellow) |
-| **HTML Server Implementation**       | ![In Progress](https://img.shields.io/badge/status-in%20progress-yellow) |
-| **Software debugging**               | ![In Progress](https://img.shields.io/badge/status-in%20progress-yellow) |
-| **Ethernet based firmware update**   | ![Planned](https://img.shields.io/badge/status-planned-blue) |
+| **HLW8032 Power Monitor Dirver**     | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **Make Everything work together**    | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **HTML Server Implementation**       | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **Software debugging**               | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **Ethernet based firmware update**   | ![Not Possible](https://img.shields.io/badge/status-not%20possible-red) |
 
 
 ![PDU 3D View](images/ENERGIS_1.0.0/Assembled-in-case_1.0.0_3D_1.png)
@@ -121,8 +120,6 @@ the USB-C version of ENERGIS with USB PD Source functionality: [PDNode-600 Pro](
 ## Hardware Stackup
 
 ![Main Board 3D View](images/ENERGIS_1.0.0/ENERGIS_Rack-PDU_1.0.0-1.png)
-![Display Board 3D View](images/ENERGIS_1.0.0/Display-Board_Rack-PDU_3.0-2.png)
-
 
 ## JLC06161H-3313 (Finished Thickness: ~1.54 mm ±10 %) (6 layers – standard settings)
 - **Total Layers:** 6  

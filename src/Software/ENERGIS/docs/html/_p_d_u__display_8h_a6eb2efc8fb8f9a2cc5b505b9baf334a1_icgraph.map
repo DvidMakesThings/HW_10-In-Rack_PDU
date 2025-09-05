@@ -1,0 +1,17 @@
+<map id="PDU_Display_UpdateSelection" name="PDU_Display_UpdateSelection">
+<area shape="rect" id="Node000001" title="Updates the selection indicator (*) in the menu." alt="" coords="719,56,923,83"/>
+<area shape="rect" id="Node000002" href="$group__driver1.html#ga534563cee21f5728b958d0177c0b2fe3" title="Move selection down (wrap 0→7) and refresh display if present." alt="" coords="570,5,671,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="750,54,671,34,672,29,751,49"/>
+<area shape="rect" id="Node000004" href="$group__driver1.html#ga71b68eb02e1df1dada387c9fbb7bbb37" title="Initialize button GPIO interrupts and synchronize UI selection." alt="" coords="275,81,395,108"/>
+<area shape="poly" id="edge8_Node000001_Node000004" title=" " alt="" coords="738,89,671,97,523,103,396,100,396,95,522,98,671,92,737,83"/>
+<area shape="rect" id="Node000007" href="$group__driver1.html#ga2dc72c9906c44cd43871b5ce0ad6845d" title="Move selection up (wrap 7→0) and refresh display if present." alt="" coords="578,56,662,83"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="703,72,663,72,663,67,703,67"/>
+<area shape="rect" id="Node000003" href="$group__driver1.html#ga60c16d2b5323dc486ad6208a244ed7ae" title="Unified GPIO interrupt handler for PLUS, MINUS, and SET buttons." alt="" coords="443,56,522,83"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="568,41,522,58,520,53,566,36"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="428,81,396,87,395,82,428,76"/>
+<area shape="rect" id="Node000005" href="$group__main03.html#gafe3a0b770057ac7103be4185e393395f" title="Initializes Core 0." alt="" coords="150,81,227,108"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="259,97,228,97,228,92,259,92"/>
+<area shape="rect" id="Node000006" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,81,102,108"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="134,97,102,97,102,92,134,92"/>
+<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="563,72,522,72,522,67,563,67"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="mcp_display_set_direction" name="mcp_display_set_direction">
+<area shape="rect" id="Node000001" title="Sets the direction of a specific MCP23017 pin." alt="" coords="212,5,387,32"/>
+<area shape="rect" id="Node000002" href="$group__driver6.html#ga0f044ade72bf35d0f080db7ecb4d114c" title="Configure pin direction on both MCP23017 chips." alt="" coords="5,5,164,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,21,164,21,164,16,196,16"/>
+</map>

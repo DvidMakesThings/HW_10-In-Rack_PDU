@@ -1,0 +1,10 @@
+<map id="getsockopt" name="getsockopt">
+<area shape="rect" id="Node000001" title="get socket options" alt="" coords="5,31,91,57"/>
+<area shape="rect" id="Node000002" href="$group__net3.html#ga321fbcdaf88299f5c4022314376e4e74" title="Get Sn_RX_RSR register." alt="" coords="139,5,256,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,34,123,29,124,34,91,39"/>
+<area shape="rect" id="Node000004" href="$group__net3.html#gadd5918adebaa3744ddc01a76c84a894a" title="Get Sn_TX_FSR register." alt="" coords="141,56,254,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="91,49,126,54,125,60,91,54"/>
+<area shape="rect" id="Node000003" href="$group__net3.html#ga674a6dc857166809ddc71ea8d40d56b8" title="It reads 1 byte value from a register." alt="" coords="304,31,428,57"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="257,25,289,30,289,35,256,30"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="254,58,288,53,289,58,255,63"/>
+</map>

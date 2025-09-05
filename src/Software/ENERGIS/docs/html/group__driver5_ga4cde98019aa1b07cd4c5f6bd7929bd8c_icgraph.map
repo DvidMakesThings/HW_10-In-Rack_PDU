@@ -1,0 +1,145 @@
+<map id="i2c_rd" name="i2c_rd">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1269,731,1326,757"/>
+<area shape="rect" id="Node000002" href="$group__driver5.html#gad23a5248f3f3fc671c373a437e16e985" title="Initializes the relay board&#39;s MCP23017." alt="" coords="1103,680,1221,707"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1254,731,1199,710,1201,705,1256,726"/>
+<area shape="rect" id="Node000005" href="$group__driver5.html#gab5dab0ee57bf9b5391fbf6b96be35677" title="Reads the digital value from a specific MCP23017 pin." alt="" coords="666,376,817,403"/>
+<area shape="poly" id="edge90_Node000001_Node000005" title=" " alt="" coords="1281,718,1249,658,1199,582,1169,542,1134,504,1095,470,1054,441,996,415,933,399,872,391,817,389,817,384,873,386,934,394,997,410,1056,436,1099,466,1138,500,1173,539,1204,579,1254,655,1286,715"/>
+<area shape="rect" id="Node000029" href="$group__driver5.html#ga0fd18363fa5f18fddf814181b0a4c892" title="Reads a value from a specified MCP23017 register (guarded)." alt="" coords="892,731,1043,757"/>
+<area shape="poly" id="edge91_Node000001_Node000029" title=" " alt="" coords="1254,747,1044,747,1044,741,1254,741"/>
+<area shape="rect" id="Node000030" href="$group__driver5.html#ga39af0b095f233b2e5f7cddb401bd4f85" title="Re&#45;sync software shadows from hardware OLAT (optional utility)." alt="" coords="897,781,1038,824"/>
+<area shape="poly" id="edge92_Node000001_Node000030" title=" " alt="" coords="1254,754,1038,793,1037,788,1253,749"/>
+<area shape="rect" id="Node000032" href="$group__driver5.html#ga9c72d2272fc0f47e7444780804185ce1" title="Sets the direction of a specific MCP23017 pin." alt="" coords="880,848,1055,875"/>
+<area shape="poly" id="edge93_Node000001_Node000032" title=" " alt="" coords="1261,768,1222,786,1119,823,1026,850,1025,845,1118,818,1220,782,1259,763"/>
+<area shape="rect" id="Node000003" href="$group__main03.html#gafe3a0b770057ac7103be4185e393395f" title="Initializes Core 0." alt="" coords="460,579,537,605"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1092,679,1055,671,905,645,757,625,537,599,538,593,758,619,906,640,1055,665,1093,673"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="1151,666,1138,627,1118,581,1090,533,1053,493,1010,468,944,444,803,406,805,401,946,439,1012,464,1057,489,1094,530,1123,578,1143,625,1156,664"/>
+<area shape="poly" id="edge37_Node000002_Node000029" title=" " alt="" coords="1094,714,1022,733,1021,727,1092,709"/>
+<area shape="poly" id="edge38_Node000002_Node000030" title=" " alt="" coords="1134,719,1098,746,1056,772,1032,783,1030,778,1054,767,1095,741,1131,714"/>
+<area shape="poly" id="edge40_Node000002_Node000032" title=" " alt="" coords="1150,722,1113,781,1087,812,1057,838,1035,850,1032,845,1053,834,1083,808,1109,778,1145,719"/>
+<area shape="rect" id="Node000034" href="$group__driver5.html#gabab90d2661d617d3ea609d7a3a5a9042" title="Atomically set/clear a group of bits on a given port from a mask." alt="" coords="883,503,1052,529"/>
+<area shape="poly" id="edge42_Node000002_Node000034" title=" " alt="" coords="1141,669,1103,620,1053,569,1025,548,997,532,999,528,1028,544,1057,565,1107,616,1145,665"/>
+<area shape="rect" id="Node000036" href="$group__driver5.html#ga1f2aea8f1cb5fb271e2b68ab119fa503" title="Writes a digital value to a specific MCP23017 pin. Uses shadowed whole&#45;port writes under a mutex to a..." alt="" coords="891,680,1044,707"/>
+<area shape="poly" id="edge44_Node000002_Node000036" title=" " alt="" coords="1088,696,1044,696,1044,691,1088,691"/>
+<area shape="rect" id="Node000057" href="$group__driver5.html#ga125dff7e60af78727ec7d4377c472499" title="Writes a value to a specified MCP23017 register (guarded)." alt="" coords="890,579,1044,605"/>
+<area shape="poly" id="edge87_Node000002_Node000057" title=" " alt="" coords="1129,673,1054,626,1011,608,1013,603,1056,622,1132,668"/>
+<area shape="rect" id="Node000004" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="23,781,119,808"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="476,619,420,670,384,698,346,721,287,747,226,767,120,790,119,785,225,762,286,742,344,716,381,693,417,666,472,615"/>
+<area shape="rect" id="Node000006" href="$group__driver6.html#ga65d23685098ebf6b4f8bca89409a90ab" title="Compute full&#45;chip asymmetry mask (1 bits where relay!=display)." alt="" coords="404,325,592,352"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="658,375,565,355,566,350,659,370"/>
+<area shape="rect" id="Node000027" href="$group__driver6.html#ga889bb68e8929772801ed4cf4836a801d" title="Write both MCPs for one pin only if needed, and report asymmetry." alt="" coords="443,477,553,504"/>
+<area shape="poly" id="edge21_Node000005_Node000027" title=" " alt="" coords="672,410,652,417,582,449,525,479,522,474,580,444,650,412,670,405"/>
+<area shape="rect" id="Node000028" href="$group__driver6.html#gace05145c93133aa7e479bec6c0613677" title="Write both MCPs for one pin only if needed, and report asymmetry, with logging." alt="" coords="415,376,581,403"/>
+<area shape="poly" id="edge22_Node000005_Node000028" title=" " alt="" coords="651,392,582,392,582,387,651,387"/>
+<area shape="rect" id="Node000007" href="$group__driver1.html#ga81a3ea6eb9a8a16aa49da9543e4f3bd4" title="Execute SET short&#45;press action: toggle the selected relay." alt="" coords="203,309,327,336"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="388,334,327,330,328,324,389,328"/>
+<area shape="rect" id="Node000010" href="$group__webui1.html#ga204196bd085f7a778067392b56920c59" title="Handles the HTTP request for the control page. Uses set_relay_state_tag() for idempotent writes + log..." alt="" coords="187,360,342,387"/>
+<area shape="poly" id="edge7_Node000006_Node000010" title=" " alt="" coords="390,357,344,364,343,359,389,352"/>
+<area shape="rect" id="Node000013" href="$group__uart.html#gaba75c17603725c8ac0d758f31229b240" title="Handle UART SET_CH command. Uses set_relay_state_tag(&quot;UART&quot;, ...) to log who wrote." alt="" coords="198,664,332,707"/>
+<area shape="poly" id="edge8_Node000006_Node000013" title=" " alt="" coords="397,363,395,366,371,401,362,435,363,470,369,505,375,541,377,578,369,615,347,654,334,666,331,662,343,650,364,613,371,577,370,541,363,506,358,470,357,434,366,398,391,362,394,360"/>
+<area shape="rect" id="Node000016" href="$group__driver6.html#gae49e94d74eefe80449e590bf8798fb17" title="Periodic asymmetry guardian for the two MCP23017s." alt="" coords="185,613,345,640"/>
+<area shape="poly" id="edge10_Node000006_Node000016" title=" " alt="" coords="397,363,395,366,375,394,367,423,367,452,371,481,375,511,375,542,367,572,347,603,332,615,329,611,343,600,362,570,370,541,369,512,365,482,361,452,361,422,370,392,391,362,394,360"/>
+<area shape="rect" id="Node000017" href="$group__snmp2.html#gab580ecbc111f7cd62a6221c8c3cb2097" title="Set the state of all outlets (relays) OFF when val == 1." alt="" coords="227,411,303,437"/>
+<area shape="poly" id="edge11_Node000006_Node000017" title=" " alt="" coords="411,360,394,366,370,383,346,401,305,417,303,412,344,396,367,379,392,362,409,355"/>
+<area shape="rect" id="Node000018" href="$group__snmp2.html#ga02b1776dfb345252500b75e80306e42e" title="Turn all outlets on when val != 0." alt="" coords="227,461,303,488"/>
+<area shape="poly" id="edge12_Node000006_Node000018" title=" " alt="" coords="401,362,395,366,378,386,371,407,364,429,347,451,326,464,304,471,303,466,324,459,343,447,359,427,366,405,373,383,391,362,398,357"/>
+<area shape="rect" id="Node000019" href="$group__snmp2.html#gade035c518f601160052fdb2b9a9e07d8" title="Set the state of the outlet (relay) based on the input value." alt="" coords="203,512,326,539"/>
+<area shape="poly" id="edge13_Node000006_Node000019" title=" " alt="" coords="399,362,395,366,381,382,374,398,371,432,368,467,361,484,347,502,329,514,326,510,343,498,356,482,363,465,366,431,369,396,377,379,391,362,396,358"/>
+<area shape="rect" id="Node000020" href="$group__snmp2.html#gaaf4b3c8e88f82cff6c131736426720d2" title="Set the state of outlet 2 (relay) based on the input value." alt="" coords="203,563,326,589"/>
+<area shape="poly" id="edge14_Node000006_Node000020" title=" " alt="" coords="398,363,395,366,378,388,371,410,369,433,371,456,373,480,371,504,364,528,347,553,328,566,325,562,343,549,359,526,366,503,367,480,366,457,364,433,365,409,373,386,391,362,394,359"/>
+<area shape="rect" id="Node000021" href="$group__snmp2.html#gaba61710e5dc590d5c862562112d59338" title="Set the state of outlet 3 (relay) based on the input value." alt="" coords="203,5,326,32"/>
+<area shape="poly" id="edge15_Node000006_Node000021" title=" " alt="" coords="488,311,471,256,442,184,400,110,373,76,343,46,325,35,328,30,347,42,377,72,404,107,447,182,476,254,493,310"/>
+<area shape="rect" id="Node000022" href="$group__snmp2.html#gaf0d2f8746f0e3ef405ff4c684888a34b" title="Set the state of outlet 4 (relay) based on the input value." alt="" coords="203,56,326,83"/>
+<area shape="poly" id="edge16_Node000006_Node000022" title=" " alt="" coords="484,311,465,265,434,207,394,148,370,121,343,97,324,85,327,81,347,93,374,117,398,144,439,204,469,262,489,309"/>
+<area shape="rect" id="Node000023" href="$group__snmp2.html#ga06d40e363a3333a7e10223aaa792eef0" title="Set the state of outlet 5 (relay) based on the input value." alt="" coords="203,107,326,133"/>
+<area shape="poly" id="edge17_Node000006_Node000023" title=" " alt="" coords="481,314,458,276,427,232,389,186,343,148,322,136,325,132,347,143,392,183,432,228,463,273,485,311"/>
+<area shape="rect" id="Node000024" href="$group__snmp2.html#ga085a305fa41615e4791de5e3884226af" title="Set the state of outlet 6 (relay) based on the input value." alt="" coords="203,157,326,184"/>
+<area shape="poly" id="edge18_Node000006_Node000024" title=" " alt="" coords="474,315,419,256,383,225,344,198,319,187,322,182,346,194,386,221,422,253,478,311"/>
+<area shape="rect" id="Node000025" href="$group__snmp2.html#gac79033b7ad83d07369d0e2b5f4d49b9d" title="Set the state of outlet 7 (relay) based on the input value." alt="" coords="203,208,326,235"/>
+<area shape="poly" id="edge19_Node000006_Node000025" title=" " alt="" coords="464,319,409,284,344,249,315,238,317,233,346,244,411,279,466,314"/>
+<area shape="rect" id="Node000026" href="$group__snmp2.html#gabee06a703d75e5a63c2bde983c5fab2f" title="Set the state of outlet 8 (relay) based on the input value." alt="" coords="203,259,326,285"/>
+<area shape="poly" id="edge20_Node000006_Node000026" title=" " alt="" coords="433,323,314,289,315,283,435,318"/>
+<area shape="rect" id="Node000014" href="$group__uart.html#gaf78d8689607ba97d44d30e4e3fc56533" title="Parse and execute a received UART command string." alt="" coords="5,1136,137,1163"/>
+<area shape="poly" id="edge9_Node000013_Node000014" title=" " alt="" coords="243,721,215,768,187,821,149,914,117,1006,78,1137,73,1135,112,1004,144,912,182,819,210,765,238,718"/>
+<area shape="poly" id="edge23_Node000028_Node000007" title=" " alt="" coords="421,374,392,367,344,351,309,339,311,334,346,345,394,361,422,369"/>
+<area shape="poly" id="edge24_Node000028_Node000010" title=" " alt="" coords="400,385,343,381,343,376,400,380"/>
+<area shape="poly" id="edge25_Node000028_Node000013" title=" " alt="" coords="457,413,424,436,395,467,382,492,376,516,375,561,372,606,364,629,347,654,334,666,330,662,343,650,359,627,367,605,369,561,370,515,377,490,391,464,420,432,454,408"/>
+<area shape="poly" id="edge26_Node000028_Node000016" title=" " alt="" coords="458,413,425,437,395,467,384,485,378,503,375,536,369,569,361,586,347,603,330,615,327,611,343,599,356,583,364,568,369,536,373,501,379,483,391,464,421,433,455,409"/>
+<area shape="poly" id="edge27_Node000028_Node000017" title=" " alt="" coords="400,407,304,421,303,416,400,401"/>
+<area shape="poly" id="edge28_Node000028_Node000018" title=" " alt="" coords="450,412,346,452,304,466,303,461,344,447,448,407"/>
+<area shape="poly" id="edge29_Node000028_Node000019" title=" " alt="" coords="467,414,346,502,319,514,317,509,344,498,464,410"/>
+<area shape="poly" id="edge30_Node000028_Node000020" title=" " alt="" coords="461,413,427,437,395,467,380,490,373,511,365,532,347,553,328,564,325,560,343,549,360,529,368,509,376,487,391,464,424,433,458,409"/>
+<area shape="poly" id="edge31_Node000028_Node000021" title=" " alt="" coords="400,374,391,366,375,346,364,325,355,285,357,245,365,205,373,165,375,125,367,86,358,66,343,46,325,32,329,28,347,42,362,63,372,84,381,125,378,166,370,206,362,245,360,284,369,323,380,343,395,362,403,370"/>
+<area shape="poly" id="edge32_Node000028_Node000022" title=" " alt="" coords="400,374,391,366,368,332,359,298,360,264,365,230,371,196,372,163,364,130,343,96,325,83,328,79,347,93,369,128,377,163,376,197,370,231,365,264,364,297,373,330,395,362,403,370"/>
+<area shape="poly" id="edge33_Node000028_Node000023" title=" " alt="" coords="400,373,391,366,371,338,363,311,362,283,365,255,369,228,368,201,361,174,343,147,325,134,329,130,347,143,366,172,374,200,374,228,371,256,368,283,368,310,376,336,395,362,403,369"/>
+<area shape="poly" id="edge34_Node000028_Node000024" title=" " alt="" coords="400,373,391,366,375,345,367,323,366,281,365,239,358,218,343,198,326,185,329,181,347,194,363,216,370,238,371,281,372,322,379,342,395,362,403,369"/>
+<area shape="poly" id="edge35_Node000028_Node000025" title=" " alt="" coords="400,372,391,366,378,351,371,336,366,306,361,277,355,263,343,249,325,237,328,232,347,245,359,260,366,275,371,305,376,335,383,348,395,362,403,368"/>
+<area shape="poly" id="edge36_Node000028_Node000026" title=" " alt="" coords="400,371,391,366,375,350,366,332,358,315,343,299,323,288,326,284,347,295,363,312,371,330,379,346,395,362,403,367"/>
+<area shape="rect" id="Node000031" href="$group__driver6.html#ga7f5d7a9f6239ad2bdd32a6c5bbb2396d" title="Resynchronize both MCP23017 shadow latches from hardware OLAT registers." alt="" coords="651,1085,832,1112"/>
+<area shape="poly" id="edge39_Node000030_Node000031" title=" " alt="" coords="886,833,882,838,863,868,856,897,856,926,860,956,863,985,863,1015,854,1045,834,1075,819,1087,815,1083,830,1072,849,1043,858,1014,858,985,854,956,851,927,851,896,858,866,878,834,882,829"/>
+<area shape="rect" id="Node000033" href="$group__driver6.html#ga0f044ade72bf35d0f080db7ecb4d114c" title="Configure pin direction on both MCP23017 chips." alt="" coords="662,1136,821,1163"/>
+<area shape="poly" id="edge41_Node000032_Node000033" title=" " alt="" coords="962,891,947,941,921,1005,884,1070,860,1100,833,1126,814,1138,812,1133,830,1122,857,1096,880,1067,917,1002,942,939,957,889"/>
+<area shape="rect" id="Node000035" href="$group__driver6.html#ga881bcc923a6be895363969bbff79dc1e" title="Atomically write a masked group of bits on both MCP23017 chips." alt="" coords="666,427,817,453"/>
+<area shape="poly" id="edge43_Node000034_Node000035" title=" " alt="" coords="916,499,831,468,793,456,795,451,833,463,918,494"/>
+<area shape="poly" id="edge45_Node000036_Node000003" title=" " alt="" coords="875,700,823,698,765,693,707,682,650,664,635,655,625,645,616,636,602,626,569,612,537,603,538,598,571,607,605,622,619,632,629,642,638,651,652,659,708,676,766,687,823,693,875,695"/>
+<area shape="rect" id="Node000037" href="$group__main03.html#ga4f6be798db44b5ed4b9b12eeb705f6e9" title="Initializes Core 1." alt="" coords="226,832,304,859"/>
+<area shape="poly" id="edge46_Node000036_Node000037" title=" " alt="" coords="888,713,304,840,303,835,887,708"/>
+<area shape="rect" id="Node000038" href="$group__driver6.html#gaea03923bde53674db77e1e4428b0e912" title="Write a digital value to a pin on both MCP23017 chips." alt="" coords="673,528,810,555"/>
+<area shape="poly" id="edge48_Node000036_Node000038" title=" " alt="" coords="932,674,761,557,764,553,935,669"/>
+<area shape="rect" id="Node000039" href="$group__util2.html#gae73b9c33649b5f5f7388f1b4fe42d32d" title="Sets the error state on the display." alt="" coords="708,1035,775,1061"/>
+<area shape="poly" id="edge51_Node000036_Node000039" title=" " alt="" coords="886,717,882,720,870,738,854,770,815,864,750,1035,745,1033,810,862,849,768,865,735,878,717,882,713"/>
+<area shape="poly" id="edge47_Node000037_Node000004" title=" " alt="" coords="210,834,119,810,120,805,212,829"/>
+<area shape="poly" id="edge49_Node000038_Node000027" title=" " alt="" coords="658,527,553,505,554,500,659,522"/>
+<area shape="poly" id="edge50_Node000038_Node000028" title=" " alt="" coords="660,524,650,518,634,506,624,494,601,467,558,433,519,405,522,401,562,429,605,463,628,491,638,502,653,514,663,519"/>
+<area shape="poly" id="edge54_Node000039_Node000003" title=" " alt="" coords="730,1020,667,799,630,686,614,647,601,626,587,615,571,607,536,598,538,592,573,602,590,610,605,622,619,644,635,684,672,798,735,1019"/>
+<area shape="poly" id="edge52_Node000039_Node000004" title=" " alt="" coords="725,1022,706,987,678,945,643,905,602,872,541,840,475,818,407,802,340,793,215,787,120,792,120,787,215,782,340,787,408,797,477,813,543,836,605,867,647,901,682,942,710,984,730,1019"/>
+<area shape="poly" id="edge61_Node000039_Node000013" title=" " alt="" coords="735,1019,724,957,701,876,684,835,662,794,635,758,602,727,571,708,537,694,502,684,466,678,395,674,332,678,332,672,395,669,466,673,503,679,539,689,573,704,605,723,639,755,666,792,689,832,706,874,729,956,740,1019"/>
+<area shape="poly" id="edge81_Node000039_Node000014" title=" " alt="" coords="693,1054,671,1062,653,1075,639,1094,630,1113,623,1152,626,1191,635,1230,643,1269,645,1307,634,1344,622,1362,605,1379,571,1402,535,1416,497,1421,458,1419,418,1410,378,1395,301,1354,229,1302,166,1248,83,1165,86,1161,169,1244,232,1298,304,1349,381,1390,420,1404,458,1413,496,1416,533,1411,568,1398,602,1375,618,1359,629,1342,639,1306,638,1269,630,1231,621,1191,618,1151,625,1111,635,1091,649,1071,669,1057,692,1049"/>
+<area shape="poly" id="edge80_Node000039_Node000016" title=" " alt="" coords="736,1020,728,949,707,857,690,808,667,762,638,719,602,682,573,663,542,647,475,628,407,620,345,621,345,615,407,615,476,623,544,642,576,658,605,678,642,715,671,759,695,806,712,855,733,948,741,1019"/>
+<area shape="poly" id="edge55_Node000039_Node000037" title=" " alt="" coords="718,1024,669,971,637,944,602,921,564,903,523,888,440,867,364,855,304,850,304,844,364,850,441,862,524,883,566,898,605,916,640,939,673,967,722,1020"/>
+<area shape="rect" id="Node000040" href="$group__driver1.html#ga6d0167c68ada9e8d950bd5e4968b401b" title="Execute SET long&#45;press action: clear the error LED." alt="" coords="438,1557,558,1584"/>
+<area shape="poly" id="edge53_Node000039_Node000040" title=" " alt="" coords="693,1054,671,1061,653,1075,632,1105,619,1134,611,1164,609,1193,616,1251,631,1310,646,1368,653,1427,650,1457,642,1487,627,1517,605,1547,584,1563,559,1571,558,1566,582,1558,601,1543,623,1514,637,1485,645,1456,648,1427,641,1369,626,1311,611,1252,604,1193,606,1163,614,1133,628,1102,649,1071,669,1057,692,1049"/>
+<area shape="rect" id="Node000042" href="$group__util1.html#ga997f3d6e141a711fa6f969fc16edc7ce" title="Reads and validates factory defaults stored in EEPROM. If any section is invalid, it restores the def..." alt="" coords="393,1608,603,1635"/>
+<area shape="poly" id="edge56_Node000039_Node000042" title=" " alt="" coords="693,1054,671,1061,653,1075,642,1094,634,1119,626,1181,626,1255,631,1335,635,1415,635,1490,627,1552,618,1578,605,1598,592,1609,588,1605,601,1594,613,1575,622,1551,630,1490,630,1416,625,1335,621,1255,620,1180,628,1117,637,1092,649,1072,669,1057,691,1049"/>
+<area shape="rect" id="Node000043" href="$group__util1.html#ga6dadd32bf70e8ea2569da7d4bbb02e0a" title="Writes factory default settings to EEPROM." alt="" coords="394,1237,603,1264"/>
+<area shape="poly" id="edge57_Node000039_Node000043" title=" " alt="" coords="693,1055,672,1063,653,1075,639,1093,632,1112,630,1150,628,1189,620,1208,605,1227,588,1239,585,1235,602,1223,616,1206,623,1188,625,1150,627,1111,634,1091,650,1071,669,1058,691,1050"/>
+<area shape="rect" id="Node000045" href="$group__uart.html#ga5ece76769b8fd390a2b6133fa234a706" title="Handle UART GET_CH command." alt="" coords="431,1440,565,1483"/>
+<area shape="poly" id="edge59_Node000039_Node000045" title=" " alt="" coords="694,1054,671,1062,653,1075,637,1097,626,1118,617,1160,619,1203,628,1245,637,1288,640,1332,632,1377,621,1400,605,1423,588,1439,567,1450,564,1445,585,1435,601,1420,616,1397,626,1375,635,1332,632,1289,623,1246,614,1203,612,1160,621,1116,633,1094,649,1071,669,1057,692,1049"/>
+<area shape="rect" id="Node000046" href="$group__uart.html#gaa0cfe9fea91a783744a3ef36f146da0a" title="Read and print HLW8032 sensor values for a specific channel." alt="" coords="422,1507,575,1533"/>
+<area shape="poly" id="edge62_Node000039_Node000046" title=" " alt="" coords="693,1054,671,1061,653,1075,634,1102,622,1128,615,1154,613,1180,618,1232,631,1284,644,1337,649,1389,646,1416,639,1443,625,1470,605,1496,592,1508,577,1515,574,1511,589,1503,601,1493,621,1467,634,1441,641,1415,644,1389,639,1338,626,1286,613,1233,607,1180,610,1153,617,1126,630,1099,649,1071,669,1057,692,1049"/>
+<area shape="rect" id="Node000047" href="$group__uart.html#ga900a7219fe90e05fa69922b219cd6cfd" title="Read and print HLW8032 sensor values for all channels." alt="" coords="436,1187,561,1213"/>
+<area shape="poly" id="edge64_Node000039_Node000047" title=" " alt="" coords="693,1057,672,1064,653,1075,636,1098,630,1121,623,1146,605,1170,585,1183,562,1192,560,1187,582,1179,602,1166,619,1143,625,1120,631,1095,650,1071,670,1059,692,1052"/>
+<area shape="rect" id="Node000048" href="$group__webui3.html#ga996c29d0b637d4303afe35bf140bb4cb" title="Initializes the HTTP server." alt="" coords="443,1288,553,1315"/>
+<area shape="poly" id="edge66_Node000039_Node000048" title=" " alt="" coords="693,1055,672,1062,653,1075,636,1100,629,1124,628,1149,630,1175,633,1201,632,1226,624,1252,605,1278,581,1294,554,1302,553,1297,579,1289,601,1274,619,1250,627,1226,628,1201,625,1175,623,1150,623,1124,631,1097,649,1071,669,1057,692,1050"/>
+<area shape="rect" id="Node000049" href="$group__util1.html#ga37c460b3ea58fd130cea86904b06f7b1" title="Loads user network configuration from EEPROM." alt="" coords="416,984,580,1011"/>
+<area shape="poly" id="edge67_Node000039_Node000049" title=" " alt="" coords="692,1041,565,1014,566,1009,693,1035"/>
+<area shape="rect" id="Node000051" href="$group__uart.html#ga0861a9960c0f8e70f10272158aa9c937" title="Set the DNS server address and reconfigure network." alt="" coords="231,1035,298,1061"/>
+<area shape="poly" id="edge82_Node000039_Node000051" title=" " alt="" coords="692,1051,299,1051,299,1045,692,1045"/>
+<area shape="rect" id="Node000052" href="$group__uart.html#ga7d7af9628af84c182e9978c253c5bf14" title="Set the gateway address and reconfigure network." alt="" coords="217,1085,312,1112"/>
+<area shape="poly" id="edge83_Node000039_Node000052" title=" " alt="" coords="693,1056,313,1096,313,1091,692,1050"/>
+<area shape="rect" id="Node000053" href="$group__uart.html#ga387b6d0d56433cf41937ae4721c0ddbf" title="Set the device IP address and reconfigure network." alt="" coords="237,933,293,960"/>
+<area shape="poly" id="edge84_Node000039_Node000053" title=" " alt="" coords="715,1026,666,984,635,965,602,951,560,940,516,933,429,930,351,935,294,944,293,939,351,930,429,924,517,928,561,934,604,945,638,960,669,980,719,1022"/>
+<area shape="rect" id="Node000054" href="$group__uart.html#ga63f75ffc96f9e37736f5d65e4c845616" title="Set full network configuration (IP, subnet, gateway, DNS)." alt="" coords="219,984,311,1011"/>
+<area shape="poly" id="edge85_Node000039_Node000054" title=" " alt="" coords="709,1028,661,998,632,985,603,975,564,967,524,963,444,965,371,975,312,987,311,982,370,970,443,960,524,958,565,962,604,969,634,980,663,993,712,1023"/>
+<area shape="rect" id="Node000055" href="$group__uart.html#ga7b9dad04ce3e7c959f434dfc503b22f4" title="Set the subnet mask and reconfigure network." alt="" coords="222,1136,308,1163"/>
+<area shape="poly" id="edge86_Node000039_Node000055" title=" " alt="" coords="694,1063,652,1076,604,1093,522,1112,441,1128,308,1147,307,1142,440,1122,521,1107,603,1088,650,1071,692,1058"/>
+<area shape="rect" id="Node000056" href="$group__util1.html#gada0abcfc99e366656030e908187d6d6d" title="Loads user preferences from EEPROM." alt="" coords="424,1339,572,1365"/>
+<area shape="poly" id="edge79_Node000039_Node000056" title=" " alt="" coords="694,1054,672,1062,653,1075,633,1106,625,1137,626,1169,631,1200,635,1232,636,1264,627,1297,605,1328,590,1340,573,1348,571,1343,588,1336,601,1325,622,1294,631,1264,630,1233,625,1201,620,1169,620,1137,628,1104,649,1071,669,1057,692,1049"/>
+<area shape="poly" id="edge58_Node000043_Node000014" title=" " alt="" coords="378,1240,282,1224,184,1200,138,1183,99,1166,101,1161,140,1179,185,1195,283,1218,379,1234"/>
+<area shape="poly" id="edge60_Node000045_Node000014" title=" " alt="" coords="416,1475,360,1476,299,1470,238,1454,209,1440,183,1423,153,1395,129,1361,110,1323,95,1285,78,1213,71,1163,76,1163,83,1212,100,1283,115,1321,133,1358,157,1391,186,1419,212,1436,240,1449,299,1464,360,1470,415,1469"/>
+<area shape="poly" id="edge63_Node000046_Node000014" title=" " alt="" coords="406,1534,351,1534,292,1527,234,1510,208,1497,183,1479,149,1444,122,1401,102,1355,88,1309,73,1222,70,1163,75,1163,79,1222,93,1307,107,1354,127,1399,153,1440,186,1475,210,1492,236,1505,293,1522,351,1529,406,1529"/>
+<area shape="poly" id="edge65_Node000047_Node000014" title=" " alt="" coords="420,1199,308,1192,184,1177,126,1166,127,1161,185,1172,309,1186,420,1194"/>
+<area shape="poly" id="edge68_Node000049_Node000037" title=" " alt="" coords="462,978,286,861,289,857,465,973"/>
+<area shape="poly" id="edge69_Node000049_Node000051" title=" " alt="" coords="419,1017,300,1043,298,1038,418,1012"/>
+<area shape="poly" id="edge71_Node000049_Node000052" title=" " alt="" coords="460,1021,407,1048,346,1076,314,1087,312,1082,344,1071,404,1043,458,1016"/>
+<area shape="poly" id="edge73_Node000049_Node000053" title=" " alt="" coords="418,983,293,955,294,950,419,977"/>
+<area shape="poly" id="edge75_Node000049_Node000054" title=" " alt="" coords="401,1000,311,1000,311,995,401,995"/>
+<area shape="poly" id="edge77_Node000049_Node000055" title=" " alt="" coords="475,1024,419,1075,384,1103,346,1126,309,1142,307,1137,344,1122,381,1098,416,1071,471,1020"/>
+<area shape="poly" id="edge70_Node000051_Node000014" title=" " alt="" coords="217,1063,186,1076,133,1107,91,1138,88,1133,130,1103,183,1071,215,1058"/>
+<area shape="poly" id="edge72_Node000052_Node000014" title=" " alt="" coords="203,1117,126,1138,124,1133,202,1112"/>
+<area shape="poly" id="edge74_Node000053_Node000014" title=" " alt="" coords="223,957,204,964,186,974,147,1014,116,1060,94,1103,80,1137,75,1134,89,1101,111,1057,143,1010,183,970,201,959,221,952"/>
+<area shape="poly" id="edge76_Node000054_Node000014" title=" " alt="" coords="205,1015,186,1025,153,1052,123,1083,83,1137,79,1134,119,1079,149,1048,183,1020,203,1010"/>
+<area shape="poly" id="edge78_Node000055_Node000014" title=" " alt="" coords="206,1152,137,1152,137,1147,206,1147"/>
+<area shape="poly" id="edge88_Node000057_Node000003" title=" " alt="" coords="875,595,537,595,537,589,875,589"/>
+<area shape="rect" id="Node000058" href="$group__driver6.html#gac00aa0678cb81d6bb6add9d0f8ab0de4" title="Write a value to a register on both MCP23017 chips." alt="" coords="673,477,810,504"/>
+<area shape="poly" id="edge89_Node000057_Node000058" title=" " alt="" coords="928,573,831,518,799,507,800,502,833,514,930,568"/>
+</map>

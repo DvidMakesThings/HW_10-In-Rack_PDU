@@ -1,4 +1,12 @@
 /**
+ * @file w5x00_gpio_irq.c
+ * @defgroup net4 4. W5x00 GPIO IRQ
+ * @ingroup network
+ * @brief GPIO interrupt handling for W5x00 Ethernet chips.
+ * @{
+ */
+
+/**
  * Copyright (c) 2022 WIZnet Co.,Ltd
  *
  * SPDX-License-Identifier: BSD-3-Clause
@@ -11,12 +19,12 @@
  */
 #include <stdio.h>
 
-#include "pico/stdlib.h"
 #include "hardware/gpio.h"
+#include "pico/stdlib.h"
 
-#include "wizchip_conf.h"
 #include "socket.h"
 #include "w5x00_gpio_irq.h"
+#include "wizchip_conf.h"
 
 /**
  * ----------------------------------------------------------------------------------------------------
@@ -31,8 +39,7 @@ static void (*callback_ptr)(void);
  * ----------------------------------------------------------------------------------------------------
  */
 /* GPIO */
-void wizchip_gpio_interrupt_initialize(uint8_t socket, void (*callback)(void))
-{
+void wizchip_gpio_interrupt_initialize(uint8_t socket, void (*callback)(void)) {
     uint16_t reg_val;
     int ret_val;
 
@@ -47,13 +54,12 @@ void wizchip_gpio_interrupt_initialize(uint8_t socket, void (*callback)(void))
     ret_val = ctlwizchip(CW_SET_INTRMASK, (void *)&reg_val);
 
     callback_ptr = callback;
-    gpio_set_irq_enabled_with_callback(PIN_INT, GPIO_IRQ_EDGE_FALL, true, &wizchip_gpio_interrupt_callback);
+    gpio_set_irq_enabled_with_callback(PIN_INT, GPIO_IRQ_EDGE_FALL, true,
+                                       &wizchip_gpio_interrupt_callback);
 }
 
-static void wizchip_gpio_interrupt_callback(uint gpio, uint32_t events)
-{
-    if (callback_ptr != NULL)
-    {
+static void wizchip_gpio_interrupt_callback(uint gpio, uint32_t events) {
+    if (callback_ptr != NULL) {
         callback_ptr();
     }
 }

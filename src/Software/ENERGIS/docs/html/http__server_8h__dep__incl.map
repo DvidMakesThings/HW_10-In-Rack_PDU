@@ -1,0 +1,7 @@
+<map id="ENERGIS/web_handlers/http_server.h" name="ENERGIS/web_handlers/http_server.h">
+<area shape="rect" id="Node000001" title="Header file for the HTTP server functionality." alt="" coords="115,5,282,48"/>
+<area shape="rect" id="Node000002" href="$_e_n_e_r_g_i_s__core1__task_8c.html" title=" " alt="" coords="5,96,192,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,60,124,97,120,93,162,56"/>
+<area shape="rect" id="Node000003" href="$http__server_8c.html" title=" " alt="" coords="215,96,382,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="235,56,277,93,273,97,231,60"/>
+</map>

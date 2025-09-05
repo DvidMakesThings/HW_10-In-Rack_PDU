@@ -42,7 +42,35 @@
         "ili9488_driver.h": "c",
         "hlw8032_cache.h": "c",
         "helper_functions.h": "c",
-        "random": "c"
+        "random": "c",
+        "mcp23017_display_driver.h": "c",
+        "mcp23017_relay_driver.h": "c",
+        "form_helpers.h": "c",
+        "config.h": "c",
+        "string.h": "c",
+        "stdio.h": "c",
+        "cat24c512_driver.h": "c",
+        "startup.h": "c",
+        "energis_startup.h": "c",
+        "eeprom_memorymap.h": "c",
+        "irq.h": "c",
+        "stdlib.h": "c",
+        "socket.h": "c",
+        "stdbool.h": "c",
+        "format": "c",
+        "status_handler.h": "c",
+        "ctype.h": "c",
+        "i2c.h": "c",
+        "string_view": "c",
+        "cstdint": "c",
+        "optional": "c",
+        "mcp23017_dual_driver.h": "c",
+        "uart.h": "c",
+        "control_handler.h": "c",
+        "button_driver.h": "c",
+        "pdu_display.h": "c",
+        "bootrom.h": "c",
+        "multicore.h": "c"
     },
     "editor.formatOnSave": true,
     "[c]": {
@@ -50,5 +78,12 @@
     },
     "[cpp]": {
         "editor.defaultFormatter": "ms-vscode.cpptools"
+    },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "[plaintext]": {
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.wordWrapColumn": 90
     }
 }

@@ -3,10 +3,10 @@
 <eagle version="9.2.1">
 <drawing>
 <settings>
-<setting alwaysvectorfont="yes"/>
+<setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.01" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mm"/>
+<grid distance="0.1" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="16" fill="1" visible="no" active="no"/>
@@ -4277,16 +4277,16 @@ by R. Vogg  15.March.2002</description>
 <attribute name="VALUE" x="19.465" y="26.115" size="1.016" layer="28" rot="MR90"/>
 <attribute name="VALUE" value="10K 1%" x="21.37" y="26.75" size="1.778" layer="28" rot="MR90" display="off"/>
 </element>
-<element name="TP1" library="ds_passive" package="TP" package3d_urn="urn:adsk.eagle:package:46683740/2" value="TP" x="6.71" y="29.62" smashed="yes" rot="MR180">
+<element name="3V3" library="ds_passive" package="TP" package3d_urn="urn:adsk.eagle:package:46683740/2" value="TP" x="6.71" y="29.62" smashed="yes" rot="MR180">
 <attribute name="NAME" x="8.96" y="29.58" size="1.016" layer="26" rot="MR180" align="center-left"/>
 </element>
-<element name="TP2" library="ds_passive" package="TP" package3d_urn="urn:adsk.eagle:package:46683740/2" value="TP" x="6.76" y="46" smashed="yes" rot="MR0">
+<element name="5V" library="ds_passive" package="TP" package3d_urn="urn:adsk.eagle:package:46683740/2" value="TP" x="6.76" y="46" smashed="yes" rot="MR0">
 <attribute name="NAME" x="8.72" y="46.04" size="1.016" layer="26" rot="MR180" align="center-left"/>
 </element>
-<element name="TP3" library="ds_passive" package="TP" package3d_urn="urn:adsk.eagle:package:46683740/2" value="TP" x="6.77" y="33.01" smashed="yes" rot="MR0">
+<element name="BL" library="ds_passive" package="TP" package3d_urn="urn:adsk.eagle:package:46683740/2" value="TP" x="6.77" y="33.01" smashed="yes" rot="MR0">
 <attribute name="NAME" x="8.94" y="32.47" size="1.016" layer="26" rot="MR180" align="center-left"/>
 </element>
-<element name="TP16" library="ds_passive" package="TP" package3d_urn="urn:adsk.eagle:package:46683740/2" value="TP" x="6.76" y="42.5" smashed="yes" rot="MR0">
+<element name="GND" library="ds_passive" package="TP" package3d_urn="urn:adsk.eagle:package:46683740/2" value="TP" x="6.76" y="42.5" smashed="yes" rot="MR0">
 <attribute name="NAME" x="8.69" y="42.99" size="1.016" layer="26" rot="MR180" align="center-left"/>
 </element>
 <element name="R13" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="10K 1%" x="106.7754" y="37.9208" smashed="yes" rot="R270">
@@ -4398,7 +4398,7 @@ by R. Vogg  15.March.2002</description>
 <attribute name="VALUE" x="30.711975" y="32.05184375" size="1.27" layer="28" rot="MR45"/>
 </element>
 <element name="DSP" library="ds_con" package="1X4" package3d_urn="urn:adsk.eagle:package:46684991/2" value="DNI" x="16.87" y="38.1" smashed="yes" rot="MR0">
-<attribute name="NAME" x="20.455" y="43.285" size="1.778" layer="26" rot="MR270"/>
+<attribute name="NAME" x="20.475" y="40.725" size="1.778" layer="26" rot="MR270"/>
 <attribute name="VALUE" x="18.775" y="30.48" size="1.778" layer="28" rot="MR0"/>
 </element>
 <element name="U$1" library="ds_silkscreen" package="DMT" value="" x="113.43" y="45.42" smashed="yes" rot="MR0"/>
@@ -4427,6 +4427,24 @@ by R. Vogg  15.March.2002</description>
 <attribute name="NAME" x="118.885309375" y="33.89218125" size="1.78033125" layer="25" rot="R180"/>
 <attribute name="VALUE" x="119.006490625" y="42.915390625" size="1.778459375" layer="27" rot="R180"/>
 </element>
+<element name="SDA0" library="ds_passive" package="TP" package3d_urn="urn:adsk.eagle:package:46683740/2" value="TP" x="19.84" y="43.06" smashed="yes" rot="MR180">
+<attribute name="NAME" x="21.11" y="43.06" size="1.016" layer="26" rot="MR180" align="center-left"/>
+</element>
+<element name="SCL0" library="ds_passive" package="TP" package3d_urn="urn:adsk.eagle:package:46683740/2" value="TP" x="19.84" y="45.04" smashed="yes" rot="MR180">
+<attribute name="NAME" x="21.11" y="45.04" size="1.016" layer="26" rot="MR180" align="center-left"/>
+</element>
+<element name="MOSI" library="ds_passive" package="TP" package3d_urn="urn:adsk.eagle:package:46683740/2" value="TP" x="52.47" y="28.24" smashed="yes" rot="MR90">
+<attribute name="NAME" x="52.47" y="29.51" size="1.016" layer="26" rot="MR90" align="center-left"/>
+</element>
+<element name="SCK" library="ds_passive" package="TP" package3d_urn="urn:adsk.eagle:package:46683740/2" value="TP" x="50.45" y="28.24" smashed="yes" rot="MR90">
+<attribute name="NAME" x="50.45" y="29.51" size="1.016" layer="26" rot="MR90" align="center-left"/>
+</element>
+<element name="MISO" library="ds_passive" package="TP" package3d_urn="urn:adsk.eagle:package:46683740/2" value="TP" x="54.39" y="28.24" smashed="yes" rot="MR90">
+<attribute name="NAME" x="54.39" y="29.51" size="1.016" layer="26" rot="MR90" align="center-left"/>
+</element>
+<element name="CS" library="ds_passive" package="TP" package3d_urn="urn:adsk.eagle:package:46683740/2" value="TP" x="48.53" y="28.24" smashed="yes" rot="MR90">
+<attribute name="NAME" x="48.53" y="29.51" size="1.016" layer="26" rot="MR90" align="center-left"/>
+</element>
 </elements>
 <signals>
 <signal name="+3V3">
@@ -4447,7 +4465,7 @@ by R. Vogg  15.March.2002</description>
 <contactref element="CON1" pad="40"/>
 <contactref element="IC1" pad="5"/>
 <contactref element="IC1" pad="11"/>
-<contactref element="TP1" pad="TP"/>
+<contactref element="3V3" pad="TP"/>
 <contactref element="R13" pad="1"/>
 <contactref element="CON2" pad="1"/>
 <contactref element="CON2" pad="2"/>
@@ -4625,7 +4643,7 @@ by R. Vogg  15.March.2002</description>
 <contactref element="IC1" pad="6"/>
 <contactref element="IC1" pad="PAD"/>
 <contactref element="R4" pad="2"/>
-<contactref element="TP16" pad="TP"/>
+<contactref element="GND" pad="TP"/>
 <contactref element="CON1" pad="19"/>
 <contactref element="CON1" pad="5"/>
 <contactref element="CON1" pad="16"/>
@@ -4844,6 +4862,13 @@ by R. Vogg  15.March.2002</description>
 <wire x1="50.222" y1="34.1147" x2="50.222" y2="35.158" width="0.254" layer="16"/>
 <wire x1="49.77" y1="31.88" x2="50.2009" y2="32.3109" width="0.254" layer="16"/>
 <wire x1="40.4582375" y1="31.661" x2="49.6458" y2="31.661" width="0.254" layer="1"/>
+<contactref element="CS" pad="TP"/>
+<wire x1="49.77" y1="31.5368" x2="49.77" y2="29.85" width="0.254" layer="1"/>
+<wire x1="48.76" y1="28.84" x2="48.54" y2="28.84" width="0.254" layer="1"/>
+<via x="48.54" y="28.84" extent="1-16" drill="0.35"/>
+<wire x1="48.54" y1="28.84" x2="48.53" y2="28.83" width="0.254" layer="16"/>
+<wire x1="48.53" y1="28.83" x2="48.53" y2="28.24" width="0.254" layer="16"/>
+<wire x1="49.77" y1="29.85" x2="48.76" y2="28.84" width="0.254" layer="1"/>
 </signal>
 <signal name="LCD_MOSI">
 <contactref element="CON1" pad="13"/>
@@ -4859,6 +4884,15 @@ by R. Vogg  15.March.2002</description>
 <wire x1="51.722" y1="33.92034375" x2="51.6567" y2="33.85504375" width="0.2032" layer="16"/>
 <wire x1="51.6567" y1="33.85504375" x2="51.6567" y2="33.0633" width="0.2032" layer="16"/>
 <wire x1="51.6567" y1="33.0633" x2="51.96" y2="32.76" width="0.2032" layer="16"/>
+<contactref element="MOSI" pad="TP"/>
+<wire x1="52.47" y1="28.24" x2="52.47" y2="28.83" width="0.254" layer="16"/>
+<wire x1="52.47" y1="28.83" x2="52.4" y2="28.9" width="0.254" layer="16"/>
+<via x="52.4" y="28.9" extent="1-16" drill="0.35"/>
+<wire x1="52.4" y1="28.9" x2="51.8" y2="29.5" width="0.254" layer="1"/>
+<wire x1="51.8" y1="31.6" x2="52" y2="31.8" width="0.254" layer="1"/>
+<wire x1="52" y1="31.8" x2="52" y2="32.72" width="0.254" layer="1"/>
+<wire x1="52" y1="32.72" x2="51.96" y2="32.76" width="0.254" layer="1"/>
+<wire x1="51.8" y1="29.5" x2="51.8" y2="31.6" width="0.254" layer="1"/>
 </signal>
 <signal name="MCP_LCD_RST">
 <contactref element="IC1" pad="14"/>
@@ -4994,6 +5028,13 @@ by R. Vogg  15.March.2002</description>
 <wire x1="52.1687" y1="33.5987" x2="39.7587" y2="33.5987" width="0.254" layer="1"/>
 <wire x1="33.820540625" y1="27.660540625" x2="33.820540625" y2="25.3985375" width="0.254" layer="1"/>
 <wire x1="39.7587" y1="33.5987" x2="33.820540625" y2="27.660540625" width="0.254" layer="1"/>
+<contactref element="MISO" pad="TP"/>
+<wire x1="52.2" y1="33.63" x2="52.9" y2="32.93" width="0.254" layer="1"/>
+<wire x1="52.9" y1="30.3" x2="54.4" y2="28.8" width="0.254" layer="1"/>
+<via x="54.4" y="28.8" extent="1-16" drill="0.35"/>
+<wire x1="54.4" y1="28.8" x2="54.4" y2="28.25" width="0.254" layer="16"/>
+<wire x1="54.4" y1="28.25" x2="54.39" y2="28.24" width="0.254" layer="16"/>
+<wire x1="52.9" y1="32.93" x2="52.9" y2="30.3" width="0.254" layer="1"/>
 </signal>
 <signal name="N$46">
 <contactref element="R10" pad="1"/>
@@ -5204,6 +5245,14 @@ by R. Vogg  15.March.2002</description>
 <wire x1="35.4087" y1="27.9287" x2="40.14" y2="32.66" width="0.254" layer="1"/>
 <wire x1="51.23" y1="32.56" x2="51.13" y2="32.66" width="0.254" layer="1"/>
 <wire x1="51.13" y1="32.66" x2="40.14" y2="32.66" width="0.254" layer="1"/>
+<contactref element="SCK" pad="TP"/>
+<wire x1="50.45" y1="28.24" x2="50.45" y2="28.75" width="0.254" layer="16"/>
+<wire x1="50.45" y1="28.75" x2="50.5" y2="28.8" width="0.254" layer="16"/>
+<via x="50.5" y="28.8" extent="1-16" drill="0.35"/>
+<wire x1="50.5" y1="28.8" x2="50.5" y2="30.6" width="0.254" layer="1"/>
+<wire x1="50.5" y1="30.6" x2="51.3" y2="31.4" width="0.254" layer="1"/>
+<wire x1="51.3" y1="31.4" x2="51.3" y2="32.49" width="0.254" layer="1"/>
+<wire x1="51.3" y1="32.49" x2="51.23" y2="32.56" width="0.254" layer="1"/>
 </signal>
 <signal name="N$5">
 <contactref element="R1" pad="2"/>
@@ -5285,7 +5334,7 @@ by R. Vogg  15.March.2002</description>
 </signal>
 <signal name="+5V">
 <contactref element="CON1" pad="33"/>
-<contactref element="TP2" pad="TP"/>
+<contactref element="5V" pad="TP"/>
 <contactref element="CON2" pad="3"/>
 <contactref element="CON2" pad="4"/>
 <wire x1="58.222" y1="35.158" x2="58.222" y2="36.018" width="0.3048" layer="16"/>
@@ -5296,11 +5345,11 @@ by R. Vogg  15.March.2002</description>
 <wire x1="31.21" y1="28.87" x2="32.58" y2="30.24" width="0.254" layer="1"/>
 <wire x1="32.58" y1="30.24" x2="32.59" y2="30.24" width="0.254" layer="1"/>
 <via x="32.59" y="30.24" extent="1-16" drill="0.35"/>
-<wire x1="32.59" y1="30.24" x2="52.04" y2="30.24" width="0.254" layer="16"/>
-<wire x1="52.04" y1="30.24" x2="52.58" y2="30.78" width="0.254" layer="16"/>
-<via x="52.58" y="30.78" extent="1-16" drill="0.35"/>
-<wire x1="52.58" y1="30.78" x2="56.92" y2="30.78" width="0.254" layer="1"/>
-<wire x1="56.92" y1="30.78" x2="58.02" y2="31.88" width="0.254" layer="1"/>
+<wire x1="32.59" y1="30.24" x2="53.94" y2="30.24" width="0.254" layer="16"/>
+<wire x1="53.94" y1="30.24" x2="54.58" y2="30.88" width="0.254" layer="16"/>
+<via x="54.58" y="30.88" extent="1-16" drill="0.35"/>
+<wire x1="54.58" y1="30.88" x2="57.02" y2="30.88" width="0.254" layer="1"/>
+<wire x1="57.02" y1="30.88" x2="58.02" y2="31.88" width="0.254" layer="1"/>
 <via x="58.02" y="31.88" extent="1-16" drill="0.35"/>
 <wire x1="58.02" y1="31.88" x2="58.222" y2="32.082" width="0.254" layer="16"/>
 <wire x1="58.222" y1="32.082" x2="58.222" y2="35.158" width="0.254" layer="16"/>
@@ -5348,6 +5397,12 @@ by R. Vogg  15.March.2002</description>
 <wire x1="57.15" y1="39.83" x2="59" y2="39.83" width="0.2032" layer="1"/>
 <wire x1="59" y1="39.83" x2="62.63" y2="43.46" width="0.2032" layer="1"/>
 <wire x1="62.63" y1="43.46" x2="74.47" y2="43.46" width="0.2032" layer="1"/>
+<contactref element="SDA0" pad="TP"/>
+<wire x1="18.85" y1="36.97" x2="16.87" y2="34.99" width="0.254" layer="16"/>
+<wire x1="16.87" y1="34.29" x2="16.87" y2="34.99" width="0.254" layer="16"/>
+<wire x1="19.48" y1="43.06" x2="19.84" y2="43.06" width="0.254" layer="16"/>
+<wire x1="18.85" y1="36.97" x2="18.85" y2="42.43" width="0.254" layer="16"/>
+<wire x1="18.85" y1="42.43" x2="19.48" y2="43.06" width="0.254" layer="16"/>
 </signal>
 <signal name="I2C0_SCL">
 <contactref element="IC1" pad="8"/>
@@ -5394,11 +5449,16 @@ by R. Vogg  15.March.2002</description>
 <wire x1="75.6" y1="32.5" x2="75.6" y2="33.056640625" width="0.2032" layer="16"/>
 <wire x1="75.6" y1="33.056640625" x2="76.5545125" y2="34.011153125" width="0.2032" layer="16"/>
 <wire x1="74.44" y1="32.19" x2="75.29" y2="32.19" width="0.2032" layer="16"/>
+<contactref element="SCL0" pad="TP"/>
+<wire x1="16.87" y1="36.83" x2="18.16" y2="38.12" width="0.254" layer="16"/>
+<wire x1="19.38" y1="45.04" x2="19.84" y2="45.04" width="0.254" layer="16"/>
+<wire x1="18.16" y1="38.12" x2="18.16" y2="43.82" width="0.254" layer="16"/>
+<wire x1="18.16" y1="43.82" x2="19.38" y2="45.04" width="0.254" layer="16"/>
 </signal>
 <signal name="LCD_BL">
 <contactref element="T1" pad="1"/>
 <contactref element="R4" pad="1"/>
-<contactref element="TP3" pad="TP"/>
+<contactref element="BL" pad="TP"/>
 <contactref element="CON2" pad="13"/>
 <wire x1="22.82" y1="25.75" x2="22.47" y2="26.1" width="0.254" layer="16"/>
 <wire x1="22.47" y1="26.1" x2="21.37" y2="26.1" width="0.254" layer="16"/>

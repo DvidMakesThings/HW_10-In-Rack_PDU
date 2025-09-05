@@ -1,0 +1,64 @@
+<map id="close" name="close">
+<area shape="rect" id="Node000001" title="Close a socket." alt="" coords="945,436,998,463"/>
+<area shape="rect" id="Node000002" href="$group__main03.html#ga4f6be798db44b5ed4b9b12eeb705f6e9" title="Initializes Core 1." alt="" coords="645,461,722,488"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="930,450,874,449,813,452,723,468,722,463,813,447,874,444,930,445"/>
+<area shape="rect" id="Node000004" href="$group__net1.html#ga0230efb936b222a0cbc7680e2c39c994" title="Try to disconnect a connection socket." alt="" coords="813,309,897,336"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="953,424,928,387,896,350,881,339,884,334,899,346,932,384,957,421"/>
+<area shape="rect" id="Node000005" href="$group__webui3.html#ga52702a4dcaff4540a9ddd10e4d5f4525" title="Processes incoming HTTP requests." alt="" coords="415,259,555,285"/>
+<area shape="poly" id="edge9_Node000001_Node000005" title=" " alt="" coords="963,421,955,391,942,357,922,325,896,300,870,288,835,279,744,270,644,268,555,271,555,265,644,263,744,265,836,274,872,283,899,295,927,322,947,355,960,389,968,420"/>
+<area shape="rect" id="Node000007" href="$group__webui3.html#ga996c29d0b637d4303afe35bf140bb4cb" title="Initializes the HTTP server." alt="" coords="629,563,739,589"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="954,476,930,504,899,528,859,546,817,560,740,574,739,569,816,554,857,541,896,523,926,500,950,473"/>
+<area shape="rect" id="Node000008" href="$group__net1.html#ga58ae959798d5d874ac5ea796da90db8c" title="Listen to a connection request from a client." alt="" coords="829,461,881,488"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="931,461,882,472,881,466,930,456"/>
+<area shape="rect" id="Node000009" href="$group__net1.html#ga4cfb66f7440a1dd9ac0ee0b933a38c59" title="Receive data from the connected peer." alt="" coords="832,360,878,387"/>
+<area shape="poly" id="edge14_Node000001_Node000009" title=" " alt="" coords="935,429,876,389,879,385,938,425"/>
+<area shape="rect" id="Node000011" href="$group__net1.html#gae580bd099f9bcbeca63a3145c0015e62" title="Receive datagram of UDP or MACRAW." alt="" coords="819,697,891,724"/>
+<area shape="poly" id="edge17_Node000001_Node000011" title=" " alt="" coords="965,478,940,559,900,653,870,698,865,695,895,651,935,557,960,477"/>
+<area shape="rect" id="Node000013" href="$group__net1.html#gacd77c3cc60e87d09a5714932506d7c4b" title="Send data to the connected peer in TCP socket." alt="" coords="830,132,880,159"/>
+<area shape="poly" id="edge20_Node000001_Node000013" title=" " alt="" coords="957,422,895,254,859,160,864,158,900,252,962,420"/>
+<area shape="rect" id="Node000018" href="$group__snmp__module.html#ga8a5d8ad5c6c10d2f74370649c4aa41e6" title=" " alt="" coords="627,512,741,539"/>
+<area shape="poly" id="edge30_Node000001_Node000018" title=" " alt="" coords="945,475,923,490,898,502,858,515,817,522,742,529,741,523,817,517,857,509,896,498,920,485,942,470"/>
+<area shape="rect" id="Node000021" href="$group__net1.html#ga8cc0a2074b3aae98a132c1ae3c51188f" title="Open a socket." alt="" coords="825,613,885,640"/>
+<area shape="poly" id="edge34_Node000001_Node000021" title=" " alt="" coords="963,479,938,535,920,567,899,596,879,615,876,611,895,593,916,564,933,533,958,477"/>
+<area shape="rect" id="Node000003" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,487,102,513"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="630,479,102,501,102,495,629,474"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="797,319,602,293,555,286,556,281,603,288,798,313"/>
+<area shape="rect" id="Node000006" href="$group__main02.html#gad25e95c5993e865b3f941472b7a328e0" title="Core 1 task for handling SNMP and HTTP server." alt="" coords="150,512,235,539"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="458,298,211,513,208,509,454,294"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="134,517,102,511,103,506,135,512"/>
+<area shape="poly" id="edge8_Node000007_Node000006" title=" " alt="" coords="613,579,461,573,371,565,283,553,235,542,236,537,283,548,372,560,461,568,613,573"/>
+<area shape="poly" id="edge11_Node000008_Node000002" title=" " alt="" coords="814,477,723,477,723,472,814,472"/>
+<area shape="poly" id="edge13_Node000008_Node000005" title=" " alt="" coords="813,466,685,428,601,401,566,374,535,342,493,287,497,284,539,339,569,370,604,396,687,423,815,461"/>
+<area shape="poly" id="edge12_Node000008_Node000007" title=" " alt="" coords="833,501,803,528,766,553,740,565,738,560,764,548,799,524,829,497"/>
+<area shape="rect" id="Node000010" href="$group__webui3.html#gac96a361786e5e3422fde6790cc3945a4" title="Reads a full HTTP request from the socket." alt="" coords="621,360,746,387"/>
+<area shape="poly" id="edge15_Node000009_Node000010" title=" " alt="" coords="816,376,747,376,747,371,816,371"/>
+<area shape="poly" id="edge16_Node000010_Node000005" title=" " alt="" coords="629,356,601,344,506,288,509,283,604,339,631,351"/>
+<area shape="rect" id="Node000012" href="$group__snmp__module.html#ga85191eecbdb50efa106d1d76339d68dd" title=" " alt="" coords="641,731,726,757"/>
+<area shape="poly" id="edge18_Node000011_Node000012" title=" " alt="" coords="804,723,728,738,727,733,803,718"/>
+<area shape="poly" id="edge19_Node000012_Node000006" title=" " alt="" coords="636,727,282,569,222,542,225,537,284,564,638,722"/>
+<area shape="poly" id="edge29_Node000013_Node000005" title=" " alt="" coords="816,151,717,166,660,179,604,198,548,229,504,260,501,256,545,224,602,194,658,174,716,161,815,146"/>
+<area shape="rect" id="Node000014" href="$group__webui1.html#ga204196bd085f7a778067392b56920c59" title="Handles the HTTP request for the control page. Uses set_relay_state_tag() for idempotent writes + log..." alt="" coords="606,208,762,235"/>
+<area shape="poly" id="edge21_Node000013_Node000014" title=" " alt="" coords="818,167,766,192,723,210,721,205,764,187,815,162"/>
+<area shape="rect" id="Node000015" href="$group__webui4.html#ga0fe4c530cf7754724a14147a82c71108" title="Handles the HTTP POST request for the settings page." alt="" coords="612,5,756,32"/>
+<area shape="poly" id="edge23_Node000013_Node000015" title=" " alt="" coords="835,121,804,82,764,46,741,35,744,30,766,42,808,79,839,118"/>
+<area shape="rect" id="Node000016" href="$group__webui4.html#gae50a830dd3536accfe480e0cefb7c4b1" title="Handles the HTTP request for the settings page." alt="" coords="603,56,765,83"/>
+<area shape="poly" id="edge25_Node000013_Node000016" title=" " alt="" coords="819,126,764,97,734,86,736,81,766,92,821,121"/>
+<area shape="rect" id="Node000017" href="$group__webui5.html#gabec26dab8e118ff845c2fde12dc885cf" title="Handles the HTTP request for the status page." alt="" coords="608,107,760,133"/>
+<area shape="poly" id="edge27_Node000013_Node000017" title=" " alt="" coords="815,142,760,134,761,129,815,137"/>
+<area shape="poly" id="edge22_Node000014_Node000005" title=" " alt="" coords="614,242,541,261,540,255,613,237"/>
+<area shape="poly" id="edge24_Node000015_Node000005" title=" " alt="" coords="610,42,604,46,580,71,559,99,525,160,504,218,492,259,487,258,499,216,520,158,554,96,576,67,601,42,606,38"/>
+<area shape="poly" id="edge26_Node000016_Node000005" title=" " alt="" coords="611,92,604,97,564,136,532,182,509,226,494,259,489,257,504,224,527,179,560,133,601,93,608,88"/>
+<area shape="poly" id="edge28_Node000017_Node000005" title=" " alt="" coords="626,142,604,154,571,180,541,209,498,260,494,257,537,206,568,176,601,150,623,138"/>
+<area shape="rect" id="Node000019" href="$group__snmp2.html#ga01e7036f2bce7c2647b681dcfe2b3731" title="Initialize the SNMP agent with the given manager and agent IP addresses." alt="" coords="443,512,527,539"/>
+<area shape="poly" id="edge31_Node000018_Node000019" title=" " alt="" coords="611,528,528,528,528,523,611,523"/>
+<area shape="rect" id="Node000020" href="$group__snmp__module.html#ga6515f727d7f9d2333eaeef21b062accb" title=" " alt="" coords="283,512,367,539"/>
+<area shape="poly" id="edge32_Node000019_Node000020" title=" " alt="" coords="427,528,368,528,368,523,427,523"/>
+<area shape="poly" id="edge33_Node000020_Node000006" title=" " alt="" coords="267,528,235,528,235,523,267,523"/>
+<area shape="poly" id="edge35_Node000021_Node000002" title=" " alt="" coords="839,601,809,550,788,524,763,502,744,491,722,484,724,479,746,486,767,498,792,521,813,547,844,598"/>
+<area shape="poly" id="edge37_Node000021_Node000005" title=" " alt="" coords="819,650,772,672,715,689,685,693,655,692,627,685,601,670,582,652,570,634,563,615,561,595,560,551,552,501,488,287,493,285,557,499,565,551,566,594,569,613,574,631,586,649,604,666,629,680,656,686,685,687,714,684,770,667,817,645"/>
+<area shape="poly" id="edge36_Node000021_Node000007" title=" " alt="" coords="809,616,731,592,732,587,811,611"/>
+<area shape="poly" id="edge39_Node000021_Node000012" title=" " alt="" coords="835,654,804,685,766,714,728,733,726,728,764,710,800,681,831,650"/>
+<area shape="poly" id="edge38_Node000021_Node000018" title=" " alt="" coords="829,604,799,578,764,553,738,542,740,537,766,548,803,573,833,600"/>
+<area shape="rect" id="Node000022" href="$group__net4.html#gae25d404142f448dd7832613a26afa687" title="Initialize w5x00 gpio interrupt callback function." alt="" coords="609,613,759,656"/>
+<area shape="poly" id="edge40_Node000021_Node000022" title=" " alt="" coords="810,631,760,634,759,628,809,626"/>
+</map>

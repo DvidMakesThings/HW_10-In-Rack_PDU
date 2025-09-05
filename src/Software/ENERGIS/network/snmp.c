@@ -1,3 +1,15 @@
+/**
+ * @file snmp.c
+ * @defgroup snmp SNMP
+ * @brief SNMP protocol stack for ENERGIS PDU.
+ * @{
+ *
+ * @defgroup snmp1 1. SNMP Core
+ * @ingroup snmp
+ * @brief Core SNMP protocol implementation (parsing, requests, traps).
+ * @{
+ */
+
 #include <ctype.h>
 #include <stdarg.h>
 #include <stdio.h>
@@ -96,7 +108,7 @@ uint32_t getSNMPTimeTick(void) {
  */
 void snmpd_init(uint8_t *managerIP, uint8_t *agentIP, uint8_t sn_agent, uint8_t sn_trap) {
 #ifdef _SNMP_DEBUG_
-    DBG_PRINT("- SNMP : Start SNMP Agent Daemon\r\n");
+    SNMP_PRINT("- SNMP : Start SNMP Agent Daemon\r\n");
 #endif
     SOCK_SNMP_AGENT = sn_agent;
     SOCK_SNMP_TRAP = sn_trap;

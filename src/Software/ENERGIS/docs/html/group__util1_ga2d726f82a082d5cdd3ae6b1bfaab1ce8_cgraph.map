@@ -1,0 +1,5 @@
+<map id="EEPROM_WriteEnergyMonitoring" name="EEPROM_WriteEnergyMonitoring">
+<area shape="rect" id="Node000001" title="Writes energy monitoring data to EEPROM." alt="" coords="5,5,223,32"/>
+<area shape="rect" id="Node000002" href="$group__driver2.html#ga32a5def129c38d7a4d232142105671c0" title="Writes a buffer of data to the EEPROM." alt="" coords="271,5,434,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="223,16,255,16,255,21,223,21"/>
+</map>

@@ -31,7 +31,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "core1_task.h"
+#include "ENERGIS_core1_task.h"
 
 // Wiznet IoLibrary headers
 #include "network/socket.h"
@@ -39,37 +39,86 @@
 #include "network/wizchip_conf.h"
 
 // Drivers & utilities
+#include "ENERGIS_startup.h"
 #include "PDU_display.h"
 #include "drivers/CAT24C512_driver.h"
 #include "drivers/HLW8032_driver.h"
 #include "drivers/ILI9488_driver.h"
 #include "drivers/MCP23017_display_driver.h"
+#include "drivers/MCP23017_dual_driver.h"
 #include "drivers/MCP23017_relay_driver.h"
-#include "startup.h"
 #include "utils/EEPROM_MemoryMap.h"
 #include "utils/helper_functions.h"
 #include "web_handlers/form_helpers.h"
 
+/********************************************************************************
+ *                          GLOBAL CONFIGURATIONS                               *
+ *                          CONFIGURABLE BY USER                                *
+ ********************************************************************************/
+
+/*********************** Define if the device has a screen **********************/
+#define HAS_SCREEN 0
+
+/********************** Button behavior for press durations *********************/
+// Button longpress duration thresholds
+#define LONGPRESS_DT 2500
+// Debounce time for button presses
+#define DEBOUNCE_MS 100u
+#define POST_GUARD_MS (DEBOUNCE_MS + 10u)
+/****************************** Guardian functions ******************************/
+// poll cadence
+#define DUAL_GUARD_INTERVAL_MS 50u
+// monitor A-port only (IO0..7). Change to 0xFFFF if all 16 needed
+#define DUAL_GUARD_MASK 0x00FFu
+// 1 = fix mismatches by writing both chips to relay's value
+#define DUAL_GUARD_AUTOHEAL 1
+
+/********************************************************************************
+ *                          GLOBAL CONFIGURATIONS                               *
+ *                       DO NOT TOUCH PART FROM HERE                            *
+ ********************************************************************************/
+
+// Default values (Factory settings)
+#define DEFAULT_SN "SN-369366060325"
+#define SWVERSION "1.0.0"
+#define DEFAULT_NAME "ENERGIS-1.0.0"
+#define DEFAULT_LOCATION "Location"
+
+// Debugging
 #define DEBUG 1
 #define DEBUG_PRINT(...)                                                                           \
     if (DEBUG)                                                                                     \
         printf("\t[DEBUG] " __VA_ARGS__);
+
 #define INFO 1
 #define INFO_PRINT(...)                                                                            \
     if (INFO)                                                                                      \
         printf("[INFO] " __VA_ARGS__);
+
 #define ERROR 1
 #define ERROR_PRINT(...)                                                                           \
     if (ERROR)                                                                                     \
         printf("[ERROR] " __VA_ARGS__);
+
 #define WARNING 1
 #define WARNING_PRINT(...)                                                                         \
     if (WARNING)                                                                                   \
         printf("[WARNING] " __VA_ARGS__);
+
 #define PLOT_EN 1
-#define PLOT(...)                                                                           \
-    if (PLOT_EN)                                                                                     \
+#define PLOT(...)                                                                                  \
+    if (PLOT_EN)                                                                                   \
         printf("\t[PLOT] " __VA_ARGS__);
+
+#define UART_IFACE 1
+#define ECHO(...)                                                                                  \
+    if (UART_IFACE)                                                                                \
+        printf("\t[ECHO] " __VA_ARGS__);
+
+#define NETLOG 1
+#define NETLOG_PRINT(...)                                                                          \
+    if (NETLOG)                                                                                    \
+        printf("[NETLOG] " __VA_ARGS__);
 
 // I2C Peripheral Assignments
 #define EEPROM_I2C i2c1           ///< Using I2C1 for EEPROM communication
@@ -77,44 +126,53 @@
 #define MCP23017_DISPLAY_I2C i2c0 ///< Using I2C1 for Display Board MCP23017
 
 // SPI Peripheral Assignments
-#define SPI_SPEED 62500000        // 62.5MHz
+#if HAS_SCREEN
+#define SPI_SPEED 62500000 // 62.5MHz
+#endif
+
 #define SPI_SPEED_W5500 40000000  // 10MHz
 #define ILI9488_SPI_INSTANCE spi1 ///< SPI1 for ILI9488 Display
 #define W5500_SPI_INSTANCE spi0   ///< SPI0 for W5500 Ethernet Modul
 
-// UART Peripheral Assignments
+/********************************************************************************
+ *                            UART CONFIGURATIONS                               *
+ ********************************************************************************/
+
 #define UART_ID uart1
 #define BAUD_RATE 115200
 #define UART_CMD_BUF_LEN 1024
+#define UART_MAX_LINES 4
 
-// HLW8032 UART Settings
+/********************************************************************************
+ *                       HLW8032 UART CONFIGURATIONS                            *
+ ********************************************************************************/
 #define HLW8032_UART_ID uart0
 #define HLW8032_BAUDRATE 4800
 #define HLW8032_FRAME_LENGTH 24
 #define NUM_CHANNELS 8
-#define POLL_INTERVAL_MS 5000u
+#define POLL_INTERVAL_MS 6000u
 
-// MCU Specific Defines
+/********************************************************************************
+ *                       MCU SPECIFIC DEFINES                                   *
+ ********************************************************************************/
 #define VREG_BASE 0x40064000
 #define VREG_VSEL_MASK 0x7
 
-// RP2040 GPIO Pin Assignments
+/********************************************************************************
+ *                        RP2040 GPIO PIN ASSIGNMENTS                           *
+ ********************************************************************************/
 #define UART0_RX 0
 #define UART0_TX 1
-
 #define I2C1_SDA 2
 #define I2C1_SCL 3
 #define I2C0_SDA 4
 #define I2C0_SCL 5
-
 #define LCD_DC 6
 #define LCD_BL 7
 #define LCD_MISO 8  // spi1 rx
 #define LCD_CS 9    // spi1 csn
-#define LCD_SCLK 10 // spi1sck
+#define LCD_SCLK 10 // spi1 sck
 #define LCD_MOSI 11 // spi1 tx
-#define LCD_RESET 22
-
 #define KEY_0 12
 #define KEY_1 13
 #define KEY_2 14
@@ -123,21 +181,34 @@
 #define BUT_MINUS KEY_1
 #define BUT_SET KEY_2
 #define BUT_PWR KEY_3
-
 #define W5500_MISO 16
 #define W5500_CS 17
 #define W5500_SCK 18
 #define W5500_MOSI 19
 #define W5500_RESET 20
 #define W5500_INT 21
-
+#define LCD_RESET 22
 #define MCP_REL_RST 23
 #define MCP_LCD_RST 24
-
+#define VREG_EN 25
 #define ADC_VUSB 26
+#define NC 27
+#define PROC_LED 28
 #define ADC_12V_MEA 29
 
-// MCP23017 on Relay Board (I2C1)
+/********************************************************************************
+ *                         ADC CHANNEL ASSIGNMENTS                              *
+ ********************************************************************************/
+#define ADC_VREF 3.00f
+#define ADC_MAX 4096.0f
+#define ADC_TOL 1.005f // +0.5% correction factor
+#define V_USB 0
+#define V_SUPPLY 3
+#define TEMP_SENSOR 4
+
+/********************************************************************************
+ *                       MCP23017 RELAY BOARD CONFIGURATIONS                    *
+ ********************************************************************************/
 #define MCP_RELAY_ADDR 0x20 // 0b0100000
 #define REL_0 0
 #define REL_1 1
@@ -152,7 +223,9 @@
 #define MUX_C 10
 #define MUX_EN 11
 
-// MCP23017 on Display Board (I2C0)
+/********************************************************************************
+ *                        MCP23017 DISPLAY BOARD CONFIGURATIONS                 *
+ ********************************************************************************/
 #define MCP_DISPLAY_ADDR 0x21 // 0b0100001
 #define OUT_1 0
 #define OUT_2 1
@@ -166,7 +239,9 @@
 #define ETH_LED 9
 #define PWR_LED 10
 
-// SN74HC151 (MUX for UART TX Channels)
+/********************************************************************************
+ *                        SN74HC151 (MUX for UART TX Channels)                  *
+ ********************************************************************************/
 #define TX_MUX_1 0
 #define TX_MUX_2 1
 #define TX_MUX_3 2
@@ -182,6 +257,9 @@
 #define MUX_ENABLE MUX_EN
 
 // HLW8032 UART Channels via Optocouplers
+/********************************************************************************
+ *                           HLW8032 UART CHANNELS                              *
+ ********************************************************************************/
 #define TX_CH1 0
 #define TX_CH2 1
 #define TX_CH3 2
@@ -191,6 +269,10 @@
 #define TX_CH7 6
 #define TX_CH8 7
 
+/********************************************************************************
+ *                         LCD REGISTERS AND CONFIGURATION                      *
+ ********************************************************************************/
+#if HAS_SCREEN
 // ILI9488 Command Set
 #define ILI9488_CMD_SLEEP_OUT 0x11
 #define ILI9488_CMD_DISPLAY_ON 0x29
@@ -225,38 +307,47 @@
 #define COLOR_HIGHLIGHT COLOR_BLUE
 #define COLOR_WARNING COLOR_YELLOW
 #define COLOR_ERROR COLOR_RED
+#endif
 
 // MCP23017 Registers
-#define MCP23017_IODIRA   0x00 // I/O Direction Register A
-#define MCP23017_IODIRB   0x01 // I/O Direction Register B
-#define MCP23017_IPOLA    0x02 // Input Polarity Register A
-#define MCP23017_IPOLB    0x03 // Input Polarity Register B
+/********************************************************************************
+ *                            MCP23017 REGISTERS                                *
+ ********************************************************************************/
+#define MCP23017_IODIRA 0x00   // I/O Direction Register A
+#define MCP23017_IODIRB 0x01   // I/O Direction Register B
+#define MCP23017_IPOLA 0x02    // Input Polarity Register A
+#define MCP23017_IPOLB 0x03    // Input Polarity Register B
 #define MCP23017_GPINTENA 0x04 // Interrupt-on-Change Control Register A
 #define MCP23017_GPINTENB 0x05 // Interrupt-on-Change Control Register B
-#define MCP23017_DEFVALA  0x06 // Default Compare Register A
-#define MCP23017_DEFVALB  0x07 // Default Compare Register B
-#define MCP23017_INTCONA  0x08 // Interrupt Control Register A
-#define MCP23017_INTCONB  0x09 // Interrupt Control Register B
-#define MCP23017_IOCON    0x0A // Configuration Register (Bank=0)
-#define MCP23017_IOCONB   0x0B // Configuration Register (Bank=1)
-#define MCP23017_GPPUA    0x0C // Pull-up Resistor Config Register A
-#define MCP23017_GPPUB    0x0D // Pull-up Resistor Config Register B
-#define MCP23017_INTFA    0x0E // Interrupt Flag Register A
-#define MCP23017_INTFB    0x0F // Interrupt Flag Register B
-#define MCP23017_INTCAPA  0x10 // Interrupt Captured Value Register A
-#define MCP23017_INTCAPB  0x11 // Interrupt Captured Value Register B
-#define MCP23017_GPIOA    0x12 // GPIO Register A
-#define MCP23017_GPIOB    0x13 // GPIO Register B
-#define MCP23017_OLATA    0x14 // Output Latch Register A
-#define MCP23017_OLATB    0x15 // Output Latch Register B
-
+#define MCP23017_DEFVALA 0x06  // Default Compare Register A
+#define MCP23017_DEFVALB 0x07  // Default Compare Register B
+#define MCP23017_INTCONA 0x08  // Interrupt Control Register A
+#define MCP23017_INTCONB 0x09  // Interrupt Control Register B
+#define MCP23017_IOCON 0x0A    // Configuration Register (Bank=0)
+#define MCP23017_IOCONB 0x0B   // Configuration Register (Bank=1)
+#define MCP23017_GPPUA 0x0C    // Pull-up Resistor Config Register A
+#define MCP23017_GPPUB 0x0D    // Pull-up Resistor Config Register B
+#define MCP23017_INTFA 0x0E    // Interrupt Flag Register A
+#define MCP23017_INTFB 0x0F    // Interrupt Flag Register B
+#define MCP23017_INTCAPA 0x10  // Interrupt Captured Value Register A
+#define MCP23017_INTCAPB 0x11  // Interrupt Captured Value Register B
+#define MCP23017_GPIOA 0x12    // GPIO Register A
+#define MCP23017_GPIOB 0x13    // GPIO Register B
+#define MCP23017_OLATA 0x14    // Output Latch Register A
+#define MCP23017_OLATB 0x15    // Output Latch Register B
 
 // EEPROM Configuration
+/********************************************************************************
+ *                           EEPROM CONFIGURATION                               *
+ ********************************************************************************/
 #define CAT24C512_I2C_ADDR 0x50 ///< 7-bit I2C address of the EEPROM
 #define EEPROM_SIZE 65536       ///< Total EEPROM size in bytes
 #define CAT24C512_PAGE_SIZE 128 ///< EEPROM page write limit
 
 // Stores the currently selected row
+/********************************************************************************
+ *                             GLOBAL VARIABLES                                 *
+ ********************************************************************************/
 extern volatile uint8_t selected_row;
 extern volatile bool bootsel_requested;
 extern volatile bool dump_eeprom_pending;

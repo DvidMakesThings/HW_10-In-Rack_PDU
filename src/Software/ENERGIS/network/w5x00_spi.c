@@ -3,6 +3,17 @@
  *
  * SPDX-License-Identifier: BSD-3-Clause
  */
+/**
+ * @file w5x00_spi.c
+ * @defgroup network Network
+ * @brief Network drivers and utilities for WIZnet Ethernet chips.
+ * @{
+ *
+ * @defgroup net5 5. W5x00 SPI
+ * @ingroup network
+ * @brief SPI driver for W5x00 Ethernet chips.
+ * @{
+ */
 
 /**
  * ----------------------------------------------------------------------------------------------------
@@ -271,6 +282,8 @@ void wizchip_check(void) {
 
         while (1)
             ;
+    } else {
+        printf("[INFO] W5500 version: 0x%02x\n", getVERSIONR());
     }
 #endif
 }
@@ -287,22 +300,22 @@ void print_network_information(wiz_NetInfo net_info) {
     ctlwizchip(CW_GET_ID, (void *)tmp_str);
 
     if (net_info.dhcp == NETINFO_DHCP) {
-        INFO_PRINT("=============================================\n");
-        INFO_PRINT(" %s network configuration : DHCP\n", (char *)tmp_str);
+        ECHO("=============================================\n");
+        ECHO(" %s network configuration : DHCP\n", (char *)tmp_str);
     } else {
-        INFO_PRINT("=============================================\n");
-        INFO_PRINT(" %s network configuration : static\n", (char *)tmp_str);
+        ECHO("=============================================\n");
+        ECHO(" %s network configuration : static\n", (char *)tmp_str);
     }
 
-    INFO_PRINT(" MAC         : %02X:%02X:%02X:%02X:%02X:%02X\n", net_info.mac[0], net_info.mac[1],
-               net_info.mac[2], net_info.mac[3], net_info.mac[4], net_info.mac[5]);
-    INFO_PRINT(" IP          : %d.%d.%d.%d\n", net_info.ip[0], net_info.ip[1], net_info.ip[2],
-               net_info.ip[3]);
-    INFO_PRINT(" Subnet Mask : %d.%d.%d.%d\n", net_info.sn[0], net_info.sn[1], net_info.sn[2],
-               net_info.sn[3]);
-    INFO_PRINT(" Gateway     : %d.%d.%d.%d\n", net_info.gw[0], net_info.gw[1], net_info.gw[2],
-               net_info.gw[3]);
-    INFO_PRINT(" DNS         : %d.%d.%d.%d\n", net_info.dns[0], net_info.dns[1], net_info.dns[2],
-               net_info.dns[3]);
-    INFO_PRINT("=============================================\n\n");
+    ECHO(" MAC         : %02X:%02X:%02X:%02X:%02X:%02X\n", net_info.mac[0], net_info.mac[1],
+         net_info.mac[2], net_info.mac[3], net_info.mac[4], net_info.mac[5]);
+    ECHO(" IP          : %d.%d.%d.%d\n", net_info.ip[0], net_info.ip[1], net_info.ip[2],
+         net_info.ip[3]);
+    ECHO(" Subnet Mask : %d.%d.%d.%d\n", net_info.sn[0], net_info.sn[1], net_info.sn[2],
+         net_info.sn[3]);
+    ECHO(" Gateway     : %d.%d.%d.%d\n", net_info.gw[0], net_info.gw[1], net_info.gw[2],
+         net_info.gw[3]);
+    ECHO(" DNS         : %d.%d.%d.%d\n", net_info.dns[0], net_info.dns[1], net_info.dns[2],
+         net_info.dns[3]);
+    ECHO("=============================================\n\n");
 }

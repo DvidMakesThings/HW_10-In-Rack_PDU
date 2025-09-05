@@ -1,0 +1,19 @@
+<map id="wizchip_getnetmode" name="wizchip_getnetmode">
+<area shape="rect" id="Node000001" title="Get the network mode such WOL, PPPoE, Ping Block, and etc." alt="" coords="863,31,1003,57"/>
+<area shape="rect" id="Node000002" href="$group__net6.html#ga315235b3215e09b1230f4fae093a26b3" title="Controls to network." alt="" coords="734,31,815,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="847,47,815,47,815,41,847,41"/>
+<area shape="rect" id="Node000003" href="$group__net5.html#gab6b4a1985b36acb8f6082fc3c88ffb1e" title="Initialize network." alt="" coords="540,5,661,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="718,39,661,30,662,25,719,33"/>
+<area shape="rect" id="Node000006" href="$group__net5.html#ga2d7cd9f0c929571801fc82ee4ab322c7" title="Print network information." alt="" coords="515,56,686,83"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="719,55,687,59,686,54,718,49"/>
+<area shape="rect" id="Node000004" href="$group__main03.html#ga4f6be798db44b5ed4b9b12eeb705f6e9" title="Initializes Core 1." alt="" coords="363,5,440,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="524,21,441,21,441,16,524,16"/>
+<area shape="rect" id="Node000005" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,31,102,57"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="348,25,103,43,102,38,347,20"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="530,54,440,31,441,26,531,49"/>
+<area shape="rect" id="Node000007" href="$group__uart.html#gaf78d8689607ba97d44d30e4e3fc56533" title="Parse and execute a received UART command string." alt="" coords="336,56,467,83"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="500,72,468,72,468,67,500,67"/>
+<area shape="rect" id="Node000008" href="$group__uart.html#ga6c04950ec7c317f61e910caa14e9e893" title="Main loop for reading and processing UART commands." alt="" coords="150,56,288,83"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="321,72,289,72,289,67,321,67"/>
+<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="134,59,101,54,102,49,135,54"/>
+</map>

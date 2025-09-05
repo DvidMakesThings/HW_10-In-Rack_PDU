@@ -1,0 +1,56 @@
+[
+  {
+    "label": "Device Serial",
+    "start": "0x0000",
+    "length": 16,
+    "type": "ascii",
+    "pattern": "SN-",
+    "trim_nul": true,
+    "regex": "SN-[0-9]{12}"            
+  },
+  {
+    "label": "FW Version",
+    "start": "0x0010",
+    "length": 16,
+    "type": "ascii",
+    "regex": "^1\\.0\\.0$",            
+    "trim_nul": true
+  },
+  {
+    "label": "Relay Defaults (8x bytes)",
+    "start": "0x0200",
+    "length": 8,
+    "type": "hex",
+    "expect": "00 00 00 00 00 00 00 00"  
+  },
+  {
+    "label": "Network Info (first 4 bytes)",
+    "start": "0x0300",
+    "length": 4,
+    "type": "hex",
+    "expect": "C0 A8 00 0B"              
+  },
+  {
+    "label": "Device Name",
+    "start": "0x2000",
+    "length": 32,
+    "type": "ascii",
+    "expect": "ENERGIS-1.0.0",           
+    "trim_nul": true
+  },
+  {
+    "label": "Device Location",
+    "start": "0x2020",
+    "length": 32,
+    "type": "ascii",
+    "expect": "Location",                
+    "trim_nul": true
+  },
+  {
+    "label": "Magic A55A Present",
+    "start": "0xFFF0",
+    "length": 16,
+    "type": "hex",
+    "contains": "5A A5"                  
+  }
+]

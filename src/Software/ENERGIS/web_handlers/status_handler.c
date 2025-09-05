@@ -1,7 +1,10 @@
 /**
  * @file status_handler.c
  * @author DvidMakesThings - David Sipos
+ * @defgroup webui5 5. Status Handler
+ * @ingroup webui
  * @brief Handler for building JSON for /api/status
+ * @{
  * @version 1.0
  * @date 2025-05-23
  *
@@ -25,35 +28,47 @@
  *    for Voltage/Current/Power. This decouples UI immediacy from measurement cadence.
  */
 void handle_status_request(uint8_t sock) {
-    INFO_PRINT(">> handle_status_request()\n");
+    NETLOG_PRINT(">> handle_status_request()\n");
 
     /* --- 1) Internal temperature (fast ADC) ----------------------------- */
-    DEBUG_PRINT("Selecting ADC input 4 for temp sensor\n");
+    NETLOG_PRINT("Selecting ADC input 4 for temp sensor\n");
     adc_select_input(4);
     uint16_t raw = adc_read();
-    DEBUG_PRINT("Raw ADC reading = %u\n", raw);
+    NETLOG_PRINT("Raw ADC reading = %u\n", raw);
 
     float v_die = raw * 3.0f / 4096.0f;
     float temp_c = 27.0f - (v_die - 0.706f) / 0.001721f;
-    PLOT("voltage1: %.2f\n", v_die);
-    PLOT("temperature1: %.2f\n", temp_c);
+    // PLOT("temp_sensor_voltage: %.2f\n", v_die);
+    PLOT("temp_sensor_temperature: %.2f\n", temp_c);
 
     /* --- 2) Unit preference -------------------------------------------- */
     userPrefInfo pref;
     if (EEPROM_ReadUserPrefsWithChecksum(&pref) != 0) {
-        DEBUG_PRINT("Failed to read prefs; defaulting to Celsius\n");
+        NETLOG_PRINT("User preferences are:  %s, %s, %u\n", pref.device_name, pref.location,
+                     pref.temp_unit);
+        NETLOG_PRINT("Failed to read prefs; defaulting to Celsius\n");
         pref.temp_unit = 0;
     }
-    DEBUG_PRINT("temp_unit pref = %u (0=C,1=F,2=K)\n", pref.temp_unit);
-
+    NETLOG_PRINT("temp_unit pref = %u (0=C,1=F,2=K)\n", pref.temp_unit);
+    DEBUG_PRINT("User preferences are:  %s, %s, %u\n", pref.device_name, pref.location,
+                pref.temp_unit);
     float temp_value;
     const char *unit_str;
     switch (pref.temp_unit) {
-        case 1: temp_value = temp_c * 9.0f / 5.0f + 32.0f; unit_str = "°F"; break;
-        case 2: temp_value = temp_c + 273.15f;             unit_str = "K";  break;
-        default: temp_value = temp_c;                      unit_str = "°C"; break;
+    case 1:
+        temp_value = temp_c * 9.0f / 5.0f + 32.0f;
+        unit_str = "°F";
+        break;
+    case 2:
+        temp_value = temp_c + 273.15f;
+        unit_str = "K";
+        break;
+    default:
+        temp_value = temp_c;
+        unit_str = "°C";
+        break;
     }
-    DEBUG_PRINT("Reporting temp_value = %.2f %s\n", temp_value, unit_str);
+    NETLOG_PRINT("Reporting temp_value = %.2f %s\n", temp_value, unit_str);
 
     /* --- 3) Build JSON: STATE = LIVE (instant sliders), MEAS = CACHED --- */
     char json[1024];
@@ -65,16 +80,13 @@ void handle_status_request(uint8_t sock) {
         bool state = mcp_relay_read_pin((uint8_t)i);
 
         /* Measurement values are non‑blocking cached snapshots */
-        float    V  = hlw8032_cached_voltage((uint8_t)i);
-        float    I  = hlw8032_cached_current((uint8_t)i);
-        float    P  = hlw8032_cached_power((uint8_t)i);
+        float V = hlw8032_cached_voltage((uint8_t)i);
+        float I = hlw8032_cached_current((uint8_t)i);
+        float P = hlw8032_cached_power((uint8_t)i);
         uint32_t up = hlw8032_cached_uptime((uint8_t)i);
 
         PLOT("voltage%d_Channel%d: %.2f\n", i + 1, i + 1, V);
-        PLOT("current%d_Channel%d: %.2f\n", i + 1, i + 1, I);
-        PLOT("power%d_Channel%d: %.2f\n", i + 1, i + 1, P);
-        PLOT("uptime%d_Channel%d: %u\n", i + 1, i + 1, up);
-        PLOT("state%d_Channel%d: %s\n", i + 1, i + 1, state ? "true" : "false");
+        // PLOT("current%d_Channel%d: %.2f\n", i + 1, i + 1, I);
 
         pos += snprintf(json + pos, sizeof(json) - pos,
                         "{ \"voltage\": %.2f, \"current\": %.2f, \"uptime\": %u, "
@@ -87,7 +99,7 @@ void handle_status_request(uint8_t sock) {
                     "\"temperatureUnit\": \"%s\", \"systemStatus\": \"%s\" }",
                     temp_value, unit_str, "OK");
 
-    DEBUG_PRINT("Built JSON payload (%d bytes)\n", pos);
+    NETLOG_PRINT("Built JSON payload (%d bytes)\n", pos);
 
     /* --- 4) Send HTTP response ----------------------------------------- */
     char header[128];
@@ -96,11 +108,15 @@ void handle_status_request(uint8_t sock) {
                            "Content-Type: application/json\r\n"
                            "Content-Length: %d\r\n"
                            "Access-Control-Allow-Origin: *\r\n"
-                           "\r\n", pos);
-    DEBUG_PRINT("Sending HTTP header (%d bytes)\n", hdr_len);
+                           "\r\n",
+                           pos);
+    NETLOG_PRINT("Sending HTTP header (%d bytes)\n", hdr_len);
     send(sock, (uint8_t *)header, hdr_len);
 
     send(sock, (uint8_t *)json, pos);
-    DEBUG_PRINT("Sent JSON body\n");
-    INFO_PRINT("<< handle_status_request() done\n");
+    NETLOG_PRINT("Sent JSON body\n");
+    NETLOG_PRINT("<< handle_status_request() done\n");
 }
+/**
+ * @}
+ */

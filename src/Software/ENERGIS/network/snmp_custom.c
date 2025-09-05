@@ -1,7 +1,10 @@
 /**
  * @file snmp_custom.c
  * @author DvidMakesThings - David Sipos
+ * @defgroup snmp2 2. SNMP Agent
+ * @ingroup snmp
  * @brief Custom SNMP agent implementation for ENERGIS PDU.
+ * @{
  * @version 1.0
  * @date 2025-05-17
  *
@@ -18,13 +21,33 @@
 #include <stdio.h>
 #include <string.h>
 
-// Bring in your running network configuration
+static float latest_temp_voltage = 0.0f;
+static float latest_temp_celsius = 0.0f;
+
+/**
+ * @brief Bring in your running network configuration
+ * @return Pointer to the network configuration structure.
+ */
 extern wiz_NetInfo g_net_info;
+
+/**
+ * @brief Read relay state for channel @p ch (0..7) into SNMP buffer.
+ * @param ch 0..7 channel index.
+ * @param buf Output buffer (4 bytes, SNMP INTEGER).
+ * @param len Output length (set to 4).
+ * @return None
+ */
+static inline void get_outlet_State_common(uint8_t ch, void *buf, uint8_t *len) {
+    int32_t v = mcp_relay_read_pin(ch) ? 1 : 0;
+    memcpy(buf, &v, 4);
+    *len = 4;
+}
 
 // Forward‐declare our new callbacks
 
 //------------------------------------------------------------------------------
 // the full table of OID support:
+
 dataEntryType snmpData[] = {
     // Standard system‐group stuff
     {8,
@@ -174,6 +197,23 @@ dataEntryType snmpData[] = {
      {""},
      get_allOn,
      set_allOn},
+    // Temperature monitoring under .1.3.6.1.4.1.19865.3.X.0
+    //    a) die sensor voltage:     .3.1.0
+    {11,
+     {0x2b, 0x06, 0x01, 0x04, 0x01, 0x81, 0x9b, 0x19, 0x03, 0x01, 0x00},
+     SNMPDTYPE_OCTET_STRING,
+     16,
+     {""},
+     get_tempSensorVoltage,
+     NULL},
+    //    b) die sensor temperature: .3.2.0
+    {11,
+     {0x2b, 0x06, 0x01, 0x04, 0x01, 0x81, 0x9b, 0x19, 0x03, 0x02, 0x00},
+     SNMPDTYPE_OCTET_STRING,
+     16,
+     {""},
+     get_tempSensorTemperature,
+     NULL},
 };
 
 const int32_t maxData = (sizeof(snmpData) / sizeof(dataEntryType));
@@ -214,6 +254,25 @@ void initial_Trap(uint8_t *managerIP, uint8_t *agentIP) {
 //------------------------------------------------------------------------------
 // Callbacks for the SNMP agent
 
+/**
+ * @brief SNMP callback: Return latest die temp sensor voltage as string
+ */
+void get_tempSensorVoltage(void *buf, uint8_t *len) {
+    adc_select_input(4);
+    uint16_t raw = adc_read();
+    latest_temp_voltage = raw * 3.0f / 4096.0f;
+    *len = snprintf((char *)buf, 16, "%.5f", latest_temp_voltage);
+}
+
+/**
+ * @brief SNMP callback: Return latest die temp sensor temperature as string
+ */
+void get_tempSensorTemperature(void *buf, uint8_t *len) {
+    adc_select_input(4);
+    uint16_t raw = adc_read();
+    latest_temp_celsius = 27.0f - (latest_temp_voltage - 0.706f) / 0.001721f;
+    *len = snprintf((char *)buf, 16, "%.3f", latest_temp_celsius);
+}
 /**
  * @brief Return contact information as an OCTET STRING.
  * @param buf Pointer to the buffer to store the contact information.
@@ -295,221 +354,267 @@ void get_networkDNS(void *ptr, uint8_t *len) {
  * @brief Get the state of the outlet (relay) as an integer.
  * @param buf Pointer to the buffer to store the state.
  * @param len Pointer to the length of the state.
+ * @return None
  */
-void get_outlet1_State(void *buf, uint8_t *len) {
-    int32_t v = mcp_relay_read_pin(0) ? 1 : 0;
-    memcpy(buf, &v, 4);
-    *len = 4;
-}
+void get_outlet1_State(void *buf, uint8_t *len) { get_outlet_State_common(0, buf, len); }
 
 /**
  * @brief Set the state of the outlet (relay) based on the input value.
  * @param val The desired state (0 or 1).
+ * @return None
  */
 void set_outlet1_State(int32_t val) {
-    bool curr = mcp_relay_read_pin(0), want = (val != 0);
-    if (curr != want)
-        PDU_Display_ToggleRelay(1);
+    uint8_t ab = 0, aa = 0;
+    (void)set_relay_state_with_tag(SNMP_HANDLER, 0, (uint8_t)(val != 0), &ab, &aa);
+    if (ab || aa) {
+        uint16_t mask = mcp_dual_asymmetry_mask();
+        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X)\r\n", aa ? "PERSISTING" : "DETECTED",
+                      (unsigned)mask);
+    }
 }
 
 /**
  * @brief Get the state of outlet 2 (relay) as an integer.
  * @param buf Pointer to the buffer to store the state.
  * @param len Pointer to the length of the state.
+ * @return None
  */
-void get_outlet2_State(void *buf, uint8_t *len) {
-    int32_t v = mcp_relay_read_pin(1) ? 1 : 0;
-    memcpy(buf, &v, 4);
-    *len = 4;
-}
+void get_outlet2_State(void *buf, uint8_t *len) { get_outlet_State_common(1, buf, len); }
 
 /**
  * @brief Set the state of outlet 2 (relay) based on the input value.
  * @param val The desired state (0 or 1).
+ * @return None
  */
 void set_outlet2_State(int32_t val) {
-    bool curr = mcp_relay_read_pin(1), want = (val != 0);
-    if (curr != want)
-        PDU_Display_ToggleRelay(2);
+    uint8_t ab = 0, aa = 0;
+    (void)set_relay_state_with_tag(SNMP_HANDLER, 1, (uint8_t)(val != 0), &ab, &aa);
+    if (ab || aa) {
+        uint16_t mask = mcp_dual_asymmetry_mask();
+        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X)\r\n", aa ? "PERSISTING" : "DETECTED",
+                      (unsigned)mask);
+    }
 }
 
 /**
  * @brief Get the state of outlet 3 (relay) as an integer.
  * @param buf Pointer to the buffer to store the state.
  * @param len Pointer to the length of the state.
+ * @return None
  */
-void get_outlet3_State(void *buf, uint8_t *len) {
-    int32_t v = mcp_relay_read_pin(2) ? 1 : 0;
-    memcpy(buf, &v, 4);
-    *len = 4;
-}
+void get_outlet3_State(void *buf, uint8_t *len) { get_outlet_State_common(2, buf, len); }
 
 /**
  * @brief Set the state of outlet 3 (relay) based on the input value.
  * @param val The desired state (0 or 1).
+ * @return None
  */
 void set_outlet3_State(int32_t val) {
-    bool curr = mcp_relay_read_pin(2), want = (val != 0);
-    if (curr != want)
-        PDU_Display_ToggleRelay(3);
+    uint8_t ab = 0, aa = 0;
+    (void)set_relay_state_with_tag(SNMP_HANDLER, 2, (uint8_t)(val != 0), &ab, &aa);
+    if (ab || aa) {
+        uint16_t mask = mcp_dual_asymmetry_mask();
+        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X)\r\n", aa ? "PERSISTING" : "DETECTED",
+                      (unsigned)mask);
+    }
 }
 
 /**
  * @brief Get the state of outlet 4 (relay) as an integer.
  * @param buf Pointer to the buffer to store the state.
  * @param len Pointer to the length of the state.
+ * @return None
  */
-void get_outlet4_State(void *buf, uint8_t *len) {
-    int32_t v = mcp_relay_read_pin(3) ? 1 : 0;
-    memcpy(buf, &v, 4);
-    *len = 4;
-}
+void get_outlet4_State(void *buf, uint8_t *len) { get_outlet_State_common(3, buf, len); }
 
 /**
  * @brief Set the state of outlet 4 (relay) based on the input value.
  * @param val The desired state (0 or 1).
+ * @return None
  */
 void set_outlet4_State(int32_t val) {
-    bool curr = mcp_relay_read_pin(3), want = (val != 0);
-    if (curr != want)
-        PDU_Display_ToggleRelay(4);
+    uint8_t ab = 0, aa = 0;
+    (void)set_relay_state_with_tag(SNMP_HANDLER, 3, (uint8_t)(val != 0), &ab, &aa);
+    if (ab || aa) {
+        uint16_t mask = mcp_dual_asymmetry_mask();
+        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X)\r\n", aa ? "PERSISTING" : "DETECTED",
+                      (unsigned)mask);
+    }
 }
 
 /**
  * @brief Get the state of outlet 5 (relay) as an integer.
  * @param buf Pointer to the buffer to store the state.
  * @param len Pointer to the length of the state.
+ * @return None
  */
-void get_outlet5_State(void *buf, uint8_t *len) {
-    int32_t v = mcp_relay_read_pin(4) ? 1 : 0;
-    memcpy(buf, &v, 4);
-    *len = 4;
-}
+void get_outlet5_State(void *buf, uint8_t *len) { get_outlet_State_common(4, buf, len); }
 
 /**
  * @brief Set the state of outlet 5 (relay) based on the input value.
  * @param val The desired state (0 or 1).
+ * @return None
  */
 void set_outlet5_State(int32_t val) {
-    bool curr = mcp_relay_read_pin(4), want = (val != 0);
-    if (curr != want)
-        PDU_Display_ToggleRelay(5);
+    uint8_t ab = 0, aa = 0;
+    (void)set_relay_state_with_tag(SNMP_HANDLER, 4, (uint8_t)(val != 0), &ab, &aa);
+    if (ab || aa) {
+        uint16_t mask = mcp_dual_asymmetry_mask();
+        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X)\r\n", aa ? "PERSISTING" : "DETECTED",
+                      (unsigned)mask);
+    }
 }
 
 /**
  * @brief Get the state of outlet 6 (relay) as an integer.
  * @param buf Pointer to the buffer to store the state.
  * @param len Pointer to the length of the state.
+ * @return None
  */
-void get_outlet6_State(void *buf, uint8_t *len) {
-    int32_t v = mcp_relay_read_pin(5) ? 1 : 0;
-    memcpy(buf, &v, 4);
-    *len = 4;
-}
+void get_outlet6_State(void *buf, uint8_t *len) { get_outlet_State_common(5, buf, len); }
 
 /**
  * @brief Set the state of outlet 6 (relay) based on the input value.
  * @param val The desired state (0 or 1).
+ * @return None
  */
 void set_outlet6_State(int32_t val) {
-    bool curr = mcp_relay_read_pin(5), want = (val != 0);
-    if (curr != want)
-        PDU_Display_ToggleRelay(6);
+    uint8_t ab = 0, aa = 0;
+    (void)set_relay_state_with_tag(SNMP_HANDLER, 5, (uint8_t)(val != 0), &ab, &aa);
+    if (ab || aa) {
+        uint16_t mask = mcp_dual_asymmetry_mask();
+        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X)\r\n", aa ? "PERSISTING" : "DETECTED",
+                      (unsigned)mask);
+    }
 }
 
 /**
  * @brief Get the state of outlet 7 (relay) as an integer.
  * @param buf Pointer to the buffer to store the state.
  * @param len Pointer to the length of the state.
+ * @return None
  */
-void get_outlet7_State(void *buf, uint8_t *len) {
-    int32_t v = mcp_relay_read_pin(6) ? 1 : 0;
-    memcpy(buf, &v, 4);
-    *len = 4;
-}
+void get_outlet7_State(void *buf, uint8_t *len) { get_outlet_State_common(6, buf, len); }
 
 /**
  * @brief Set the state of outlet 7 (relay) based on the input value.
  * @param val The desired state (0 or 1).
+ * @return None
  */
 void set_outlet7_State(int32_t val) {
-    bool curr = mcp_relay_read_pin(6), want = (val != 0);
-    if (curr != want)
-        PDU_Display_ToggleRelay(7);
+    uint8_t ab = 0, aa = 0;
+    (void)set_relay_state_with_tag(SNMP_HANDLER, 6, (uint8_t)(val != 0), &ab, &aa);
+    if (ab || aa) {
+        uint16_t mask = mcp_dual_asymmetry_mask();
+        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X)\r\n", aa ? "PERSISTING" : "DETECTED",
+                      (unsigned)mask);
+    }
 }
 
 /**
  * @brief Get the state of outlet 8 (relay) as an integer.
  * @param buf Pointer to the buffer to store the state.
  * @param len Pointer to the length of the state.
+ * @return None
  */
-void get_outlet8_State(void *buf, uint8_t *len) {
-    int32_t v = mcp_relay_read_pin(7) ? 1 : 0;
-    memcpy(buf, &v, 4);
-    *len = 4;
-}
+void get_outlet8_State(void *buf, uint8_t *len) { get_outlet_State_common(7, buf, len); }
 
 /**
  * @brief Set the state of outlet 8 (relay) based on the input value.
  * @param val The desired state (0 or 1).
+ * @return None
  */
 void set_outlet8_State(int32_t val) {
-    bool curr = mcp_relay_read_pin(7), want = (val != 0);
-    if (curr != want)
-        PDU_Display_ToggleRelay(8);
+    uint8_t ab = 0, aa = 0;
+    (void)set_relay_state_with_tag(SNMP_HANDLER, 7, (uint8_t)(val != 0), &ab, &aa);
+    if (ab || aa) {
+        uint16_t mask = mcp_dual_asymmetry_mask();
+        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X)\r\n", aa ? "PERSISTING" : "DETECTED",
+                      (unsigned)mask);
+    }
 }
 
 /**
- * @brief Get the state of all outlets (relays) as an integer.
- * @param buf Pointer to the buffer to store the state.
- * @param len Pointer to the length of the state.
- */
-void get_allOff(void *buf, uint8_t *len) {
-    int32_t v = 0;
-    memcpy(buf, &v, 4);
-    *len = 4;
-}
-
-/**
- * @brief Set the state of all outlets (relays) based on the input value.
- * @param val The desired state (0 or 1).
+ * @brief Set the state of all outlets (relays) OFF when @p val == 1.
+ * @param val The desired state (1 → turn all off).
+ * @return None
  */
 void set_allOff(int32_t val) {
     if (val == 1) {
-        for (uint8_t ch = 1; ch <= 8; ch++) {
-            if (mcp_relay_read_pin(ch - 1)) {
-                PDU_Display_ToggleRelay(ch);
-            }
+        int changed_total = 0;
+        uint8_t any_ab = 0, any_aa = 0;
+
+        for (uint8_t ch = 0; ch < 8; ch++) {
+            uint8_t ab = 0, aa = 0;
+            changed_total += set_relay_state_with_tag(SNMP_HANDLER, ch, 0u, &ab, &aa);
+            any_ab |= ab;
+            any_aa |= aa;
+        }
+
+        INFO_PRINT("SNMP allOff: changed=%d\r\n", changed_total);
+
+        if (any_ab || any_aa) {
+            uint16_t mask = mcp_dual_asymmetry_mask();
+            WARNING_PRINT("Dual asymmetry %s (mask=0x%04X)\r\n", any_aa ? "PERSISTING" : "DETECTED",
+                          (unsigned)mask);
         }
     }
 }
 
 /**
- * @brief Return 1 if *all* outlets are on, 0 otherwise.
- */
-void get_allOn(void *buf, uint8_t *len) {
-    int32_t v = 1;
-    // if any relay pin is low (0), not all on
-    for (uint8_t ch = 0; ch < 8; ch++) {
-        if (!mcp_relay_read_pin(ch)) {
-            v = 0;
-            break;
-        }
-    }
-    memcpy(buf, &v, sizeof(v));
-    *len = sizeof(v);
-}
-
-/**
- * @brief Turn *all* outlets on when val != 0.
+ * @brief Turn *all* outlets on when @p val != 0.
+ * @param val Non-zero → turn all on.
+ * @return None
  */
 void set_allOn(int32_t val) {
     if (val != 0) {
-        // loop channels 1–8, toggle on any that are off
+        int changed_total = 0;
+        uint8_t any_ab = 0, any_aa = 0;
+
         for (uint8_t ch = 0; ch < 8; ch++) {
-            if (!mcp_relay_read_pin(ch)) {
-                PDU_Display_ToggleRelay(ch + 1);
-            }
+            uint8_t ab = 0, aa = 0;
+            changed_total += set_relay_state_with_tag(SNMP_HANDLER, ch, 1u, &ab, &aa);
+            any_ab |= ab;
+            any_aa |= aa;
+        }
+
+        INFO_PRINT("SNMP allOn: changed=%d\r\n", changed_total);
+
+        if (any_ab || any_aa) {
+            uint16_t mask = mcp_dual_asymmetry_mask();
+            WARNING_PRINT("Dual asymmetry %s (mask=0x%04X)\r\n", any_aa ? "PERSISTING" : "DETECTED",
+                          (unsigned)mask);
         }
     }
 }
+
+/**
+ * @brief Read all 8 relay states and return as a bitmask.
+ *
+ * Bit mapping (LSB first):
+ *   bit 0 -> CH1, bit 1 -> CH2, ... bit 7 -> CH8 (1 = ON, 0 = OFF)
+ *
+ * @param buf Output buffer (SNMP INTEGER, 4 bytes). Lower byte holds the mask.
+ * @param len Output length (set to 4).
+ * @return void
+ */
+void get_allState(void *buf, uint8_t *len) {
+    uint32_t mask = 0;
+    for (uint8_t ch = 0; ch < 8; ++ch) {
+        if (mcp_relay_read_pin(ch))
+            mask |= (1u << ch);
+    }
+    memcpy(buf, &mask, sizeof(mask));
+    *len = sizeof(mask);
+}
+
+/* Make the two OIDs resolve to the same function address (GCC/Clang). */
+#if defined(__GNUC__)
+extern void get_allState(void *buf, uint8_t *len);
+extern void get_allOff(void *buf, uint8_t *len) __attribute__((alias("get_allState")));
+extern void get_allOn(void *buf, uint8_t *len) __attribute__((alias("get_allState")));
+#else
+/* Fallback: tiny wrappers (still correct; may not dedupe code as tightly). */
+void get_allOff(void *buf, uint8_t *len) { get_allState(buf, len); }
+void get_allOn(void *buf, uint8_t *len) { get_allState(buf, len); }
+#endif

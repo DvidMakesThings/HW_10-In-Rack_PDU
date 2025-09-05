@@ -1,0 +1,5 @@
+<map id="_select_down" name="_select_down">
+<area shape="rect" id="Node000001" title="Move selection down (wrap 0→7) and refresh display if present." alt="" coords="5,5,107,32"/>
+<area shape="rect" id="Node000002" href="$_p_d_u__display_8h.html#a6eb2efc8fb8f9a2cc5b505b9baf334a1" title="Updates the selection indicator (*) in the menu." alt="" coords="155,5,359,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,16,139,16,139,21,107,21"/>
+</map>
