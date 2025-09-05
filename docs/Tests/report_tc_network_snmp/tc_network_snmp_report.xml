@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ENERGIS UART Functional Test Suite" tests="23" failures="0" time="0.0">
+  <testcase classname="ENERGIS.UART" name="STEP 1 Walk enterprise subtree" time="0.0">
+  </testcase>
+  <testcase classname="ENERGIS.UART" name="STEP 2 Validate MIB-II system group" time="0.0">
+  </testcase>
+  <testcase classname="ENERGIS.UART" name="STEP 2.1 sysDescr matches expected" time="0.0">
+  </testcase>
+  <testcase classname="ENERGIS.UART" name="STEP 2.2 sysObjectID present" time="0.0">
+  </testcase>
+  <testcase classname="ENERGIS.UART" name="STEP 2.3 sysUpTime present" time="0.0">
+  </testcase>
+  <testcase classname="ENERGIS.UART" name="STEP 2.4 sysContact matches expected" time="0.0">
+  </testcase>
+  <testcase classname="ENERGIS.UART" name="STEP 2.5 sysName matches expected" time="0.0">
+  </testcase>
+  <testcase classname="ENERGIS.UART" name="STEP 2.6 sysLocation matches expected" time="0.0">
+  </testcase>
+  <testcase classname="ENERGIS.UART" name="STEP 2.7 sysServices matches expected" time="0.0">
+  </testcase>
+  <testcase classname="ENERGIS.UART" name="STEP 3 Validate long-length OIDs" time="0.0">
+  </testcase>
+  <testcase classname="ENERGIS.UART" name="STEP 3.1 19865.1.0 long-length string OK" time="0.0">
+  </testcase>
+  <testcase classname="ENERGIS.UART" name="STEP 3.2 19865.2.0 produces noSuchName (expected error)" time="0.0">
+  </testcase>
+  <testcase classname="ENERGIS.UART" name="STEP 4 Validate network configuration OIDs" time="0.0">
+  </testcase>
+  <testcase classname="ENERGIS.UART" name="STEP 4.1 Network IP equals baseline" time="0.0">
+  </testcase>
+  <testcase classname="ENERGIS.UART" name="STEP 4.2 Network SN equals expected" time="0.0">
+  </testcase>
+  <testcase classname="ENERGIS.UART" name="STEP 4.3 Network GW equals expected" time="0.0">
+  </testcase>
+  <testcase classname="ENERGIS.UART" name="STEP 4.4 Network DNS equals expected" time="0.0">
+  </testcase>
+  <testcase classname="ENERGIS.UART" name="STEP 5 Cycle all channels ON/OFF with SNMP verify" time="0.0">
+  </testcase>
+  <testcase classname="ENERGIS.UART" name="STEP 6 Cycle ALL ON / ALL OFF with SNMP verify" time="0.0">
+  </testcase>
+  <testcase classname="ENERGIS.UART" name="STEP 6.1 ALL ON trigger" time="0.0">
+  </testcase>
+  <testcase classname="ENERGIS.UART" name="STEP 6.2 Verify ALL ON via SNMP (1..8 == 1)" time="0.0">
+  </testcase>
+  <testcase classname="ENERGIS.UART" name="STEP 6.3 ALL ON trigger" time="0.0">
+  </testcase>
+  <testcase classname="ENERGIS.UART" name="STEP 6.4 Verify ALL OFF via SNMP (1..8 == 0)" time="0.0">
+  </testcase>
+</testsuite>
