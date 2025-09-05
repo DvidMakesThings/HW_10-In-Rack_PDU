@@ -12,6 +12,30 @@ board to handle switching and power management.
 Update 05.2025: Since lot of people said, it would be nice to have a Non-230V-Version, I started to develop
 the USB-C version of ENERGIS with USB PD Source functionality: [PDNode-600 Pro](https://github.com/DvidMakesThings/HW_PDNode-600-Pro)
 
+## Tests
+
+Automated hardware and firmware tests are now part of ENERGIS.  
+Reports are available on GitHub Pages:
+
+- [Serial Communication Test Report (HTML)](https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Tests/report_tc_serial_utfw/tc_serial_utfw_report.html)
+- [Network SNMP Test Report (HTML)](https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Tests/report_tc_network_snmp/tc_network_snmp_report.html)
+
+---
+
+## Web UI
+
+The ENERGIS now includes a lightweight embedded Web-UI for configuration and control.
+
+### All Channels On
+![Web-UI All On](images/ENERGIS_1.0.0/Web-UI/Webui_allOn.png)
+
+### All Channels Off
+![Web-UI All Off](images/ENERGIS_1.0.0/Web-UI/Webui_allOff.png)
+
+### Settings Page
+![Web-UI Settings](images/ENERGIS_1.0.0/Web-UI/Webui_settings.png)
+
+
 
 ## Hardware Development Phases
 | Phase                                | Status   |
