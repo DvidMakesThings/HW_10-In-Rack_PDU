@@ -165,7 +165,7 @@
     </div>
 
     <div class="section-header">
-        <h2>Test Reports</h2>
+        <h2>tests Reports</h2>
         <span id="updated" class="muted small"></span>
     </div>
     <div id="tests" class="grid" aria-live="polite">
@@ -213,7 +213,7 @@
             reports.sort(compareByDateDesc);
 
             if (!reports.length) {
-                container.innerHTML = '<div class="card muted">No reports found in <code>/Test/tests.json</code>.</div>';
+                container.innerHTML = '<div class="card muted">No reports found in <code>/tests/tests.json</code>.</div>';
                 return;
             }
 
@@ -242,7 +242,7 @@
                 li.innerHTML = `
                     <div class="row">
                         <div class="title">
-                            <a href="./Test/${esc(href)}" target="_blank" rel="noopener">${esc(title)}</a>
+                            <a href="./tests/${esc(href)}" target="_blank" rel="noopener">${esc(title)}</a>
                             ${size}
                         </div>
                         <div class="row">
@@ -259,14 +259,14 @@
         async function loadIndex() {
             const container = document.getElementById('tests');
             try {
-                const res = await fetch('./Test/tests.json', { cache: 'no-store' });
+                const res = await fetch('./tests/tests.json', { cache: 'no-store' });
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 const json = await res.json();
                 renderReports(json);
             } catch (e) {
                 container.innerHTML = `
                     <div class="card">
-                        <div class="error">Could not load <code>/Test/tests.json</code>.</div>
+                        <div class="error">Could not load <code>/tests/tests.json</code>.</div>
                         <div class="muted small" style="margin-top:.4rem">Ensure the file exists in your repository and is served by GitHub Pages.</div>
                     </div>
                 `;
