@@ -1,6 +1,6 @@
 # ENERGIS - The Managed PDU Project for 10-Inch Rack
 
-![Development Status](https://img.shields.io/badge/status-Firmware%20Writing%20and%20Debugging-yellow)
+![Development Status](https://img.shields.io/badge/status-Testing%20%26%20Debugging-yellowgreen)
 
 ## Overview
 
@@ -35,6 +35,14 @@ The ENERGIS now includes a lightweight embedded Web-UI for configuration and con
 ### Settings Page
 ![Web-UI Settings](images/ENERGIS_1.0.0/Web-UI/Webui_settings.png)
 
+## What Comes Next
+
+Development doesn’t stop here. Planned improvements include:
+- **Production optimization** → finalize assembly workflow and cost reduction.  
+- **Extended testing** → expand automated test coverage (I²C, SPI, long-term soak tests).  
+- **Community feedback** → incorporate suggestions and adapt design for wider use cases.  
+- **And even more more more debugging** → It survived the 24h test, but you can never test enough
+- **Enclosure manufacturing** → evaluate and contact sheet-metal manufacturers for a professional case. 3D printed PLA case is nice, but it's not very professional
 
 
 ## Hardware Development Phases
