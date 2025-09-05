@@ -1,0 +1,28 @@
+<map id="wizphy_reset" name="wizphy_reset">
+<area shape="rect" id="Node000001" title="Reset phy. Vailid only in W5500." alt="" coords="1056,58,1155,84"/>
+<area shape="rect" id="Node000002" href="$group__net6.html#ga0ff8fc15549599a1d08dc5ec378779d9" title="Controls to the WIZCHIP." alt="" coords="734,58,813,84"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1046,56,1008,48,935,42,861,48,814,60,813,54,861,43,935,36,1009,43,1047,51"/>
+<area shape="rect" id="Node000010" href="$group__net6.html#ga60359c86bf85ccd5ca8f6e7cafc849dc" title="Set the phy information for WIZCHIP without power mode." alt="" coords="868,58,1001,84"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="1041,74,1002,74,1002,68,1041,68"/>
+<area shape="rect" id="Node000011" href="$group__net6.html#ga64a4fd3427b5c5f43a3f35fb433cb06c" title="set the power mode of phy inside WIZCHIP. Refer to PHYCFGR in W5500, PHYSTATUS in W5200" alt="" coords="861,108,1008,135"/>
+<area shape="poly" id="edge14_Node000001_Node000011" title=" " alt="" coords="1044,92,983,110,981,105,1043,87"/>
+<area shape="rect" id="Node000003" href="$group__main03.html#ga4f6be798db44b5ed4b9b12eeb705f6e9" title="Initializes Core 1." alt="" coords="363,34,440,60"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="743,50,716,32,685,19,653,12,619,9,552,12,491,23,442,36,440,31,490,18,552,7,619,4,653,7,686,14,718,28,746,46"/>
+<area shape="rect" id="Node000005" href="$group__net5.html#ga2d7cd9f0c929571801fc82ee4ab322c7" title="Print network information." alt="" coords="515,146,686,172"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="746,97,719,117,687,136,658,147,656,143,684,131,716,113,743,92"/>
+<area shape="rect" id="Node000008" href="$group__net4.html#gae25d404142f448dd7832613a26afa687" title="Initialize w5x00 gpio interrupt callback function." alt="" coords="525,79,676,122"/>
+<area shape="poly" id="edge9_Node000002_Node000008" title=" " alt="" coords="719,83,677,90,676,85,718,78"/>
+<area shape="rect" id="Node000009" href="$group__net5.html#ga5e2c21b2be1db8825f7583cad9d9f3dc" title="Initialize WIZchip." alt="" coords="541,28,660,55"/>
+<area shape="poly" id="edge10_Node000002_Node000009" title=" " alt="" coords="718,64,660,54,661,49,719,59"/>
+<area shape="rect" id="Node000004" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,71,102,98"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="348,55,103,82,102,77,347,50"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="528,142,514,136,468,104,418,63,421,59,471,99,517,131,530,137"/>
+<area shape="rect" id="Node000006" href="$group__uart.html#gaf78d8689607ba97d44d30e4e3fc56533" title="Parse and execute a received UART command string." alt="" coords="336,112,467,139"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="502,145,467,139,468,134,503,140"/>
+<area shape="rect" id="Node000007" href="$group__uart.html#ga6c04950ec7c317f61e910caa14e9e893" title="Main loop for reading and processing UART commands." alt="" coords="150,96,288,123"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="321,121,288,118,289,113,321,116"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="134,99,101,94,102,89,135,94"/>
+<area shape="poly" id="edge11_Node000009_Node000003" title=" " alt="" coords="525,46,441,49,441,43,525,41"/>
+<area shape="poly" id="edge13_Node000010_Node000002" title=" " alt="" coords="852,74,813,74,813,68,852,68"/>
+<area shape="poly" id="edge15_Node000011_Node000002" title=" " alt="" coords="874,106,813,86,814,81,876,100"/>
+</map>

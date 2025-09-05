@@ -1,0 +1,11 @@
+<map id="wizchip_cs_deselect" name="wizchip_cs_deselect">
+<area shape="rect" id="Node000001" title="Default function to deselect chip." alt="" coords="648,5,790,32"/>
+<area shape="rect" id="Node000002" href="$group__net6.html#ga63208f3ad63e6290be0ed33705baa27e" title="Registers call back function for WIZCHIP select &amp; deselect." alt="" coords="442,5,600,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="632,21,600,21,600,16,632,16"/>
+<area shape="rect" id="Node000003" href="$group__net5.html#ga5e2c21b2be1db8825f7583cad9d9f3dc" title="Initialize WIZchip." alt="" coords="275,5,394,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="426,21,395,21,395,16,426,16"/>
+<area shape="rect" id="Node000004" href="$group__main03.html#ga4f6be798db44b5ed4b9b12eeb705f6e9" title="Initializes Core 1." alt="" coords="150,5,227,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="260,21,228,21,228,16,260,16"/>
+<area shape="rect" id="Node000005" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,5,102,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="134,21,102,21,102,16,134,16"/>
+</map>

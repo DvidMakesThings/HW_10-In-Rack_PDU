@@ -1,7 +1,14 @@
 /**
  * @file EEPROM_MemoryMap.c
  * @author DvidMakesThings - David Sipos
+ * @defgroup utils Utils
+ * @brief Utility modules for the Energis PDU.
+ * @{
+ *
+ * @defgroup util1 1. EEPROM Memory Map
+ * @ingroup utils
  * @brief Implementation of the EEPROM Memory Map functions.
+ * @{
  * @version 1.4
  * @date 2025-03-03
  *
@@ -14,16 +21,45 @@
 #include <stdio.h>
 #include <string.h>
 
-// Size of record: struct + 1‐byte CRC
+/**
+ * @brief User Preferences Record Size
+ * @return Size of user preferences record (struct + 1-byte CRC)
+ */
 #define USER_PREF_RECORD_SIZE (sizeof(userPrefInfo) + 1)
 
+/**
+ * @brief Calculates the CRC-8 checksum of the given data.
+ * @return CRC-8 checksum value.
+ */
 static uint8_t calculate_crc8(const uint8_t *data, size_t len);
 
 /**
- * @brief Factory defaults (only in this .c, not exposed as extern).
+ * @brief Default user preferences (only in this .c, not exposed as extern).
+ * @return Pointer to default user preferences.
  */
 static const userPrefInfo DEFAULT_USER_PREFS = {
-    .device_name = "ENERGIS", .location = "Server Room", .temp_unit = 0};
+    .device_name = DEFAULT_NAME, .location = DEFAULT_LOCATION, .temp_unit = 0};
+
+// ======================================================================
+//                          EEPROM FUNCTIONS
+// ======================================================================
+
+/**
+ * @brief Erases the entire EEPROM by writing 0xFF to all bytes.
+ * This is destructive and should only be used for debugging or full resets.
+ * @return 0 on success, -1 on error.
+ */
+int EEPROM_EraseAll(void) {
+    uint8_t blank[32];
+    memset(blank, 0xFF, sizeof(blank));
+
+    for (uint16_t addr = 0; addr < 0x8000; addr += sizeof(blank)) {
+        if (CAT24C512_WriteBuffer(addr, blank, sizeof(blank)) != 0) {
+            return -1;
+        }
+    }
+    return 0;
+}
 
 // ======================================================================
 //                     SYSTEM INFO & CALIBRATION
@@ -67,38 +103,45 @@ int EEPROM_ReadSystemInfo(uint8_t *data, size_t len) {
 int EEPROM_WriteFactoryDefaults(void) {
     int status = 0;
 
-    // Write default Serial Number
-    status |= EEPROM_WriteSystemInfo((const uint8_t *)DEFAULT_SN, strlen(DEFAULT_SN) + 1);
-    INFO_PRINT("Serial Number written to EEPROM.\n");
+    // Write default Serial Number and Software Version
+    char sys_info_buf[64];
+    size_t sn_len = strlen(DEFAULT_SN) + 1;
+    size_t swv_len = strlen(SWVERSION) + 1;
+    memset(sys_info_buf, 0, sizeof(sys_info_buf));
+    memcpy(sys_info_buf, DEFAULT_SN, sn_len);
+    memcpy(sys_info_buf + sn_len, SWVERSION, swv_len);
+    status |= EEPROM_WriteSystemInfo((const uint8_t *)sys_info_buf, sn_len + swv_len);
+    ECHO("Serial Number and SWVERSION written to EEPROM.\n");
 
     // Write default Relay Status (All OFF)
     status |= EEPROM_WriteUserOutput(DEFAULT_RELAY_STATUS, sizeof(DEFAULT_RELAY_STATUS));
-    INFO_PRINT("Relay Status written to EEPROM.\n");
+    ECHO("Relay Status written to EEPROM.\n");
 
     // Write default Network Configuration
     status |= EEPROM_WriteUserNetworkWithChecksum(&DEFAULT_NETWORK);
-    INFO_PRINT("Network Configuration written to EEPROM.\n");
+    ECHO("Network Configuration written to EEPROM.\n");
 
     // Write default Calibration Data
     status |= EEPROM_WriteSensorCalibration(DEFAULT_CALIB_DATA, sizeof(DEFAULT_CALIB_DATA));
-    INFO_PRINT("Sensor Calibration written to EEPROM.\n");
+    ECHO("Sensor Calibration written to EEPROM.\n");
 
     // Write default Energy Monitoring Data
     status |= EEPROM_WriteEnergyMonitoring(DEFAULT_ENERGY_DATA, sizeof(DEFAULT_ENERGY_DATA));
-    INFO_PRINT("Energy Monitoring Data written to EEPROM.\n");
+    ECHO("Energy Monitoring Data written to EEPROM.\n");
 
     // Write default Log Data
     status |= EEPROM_WriteEventLogs(DEFAULT_LOG_DATA, sizeof(DEFAULT_LOG_DATA));
-    INFO_PRINT("Event Logs written to EEPROM.\n");
+    ECHO("Event Logs written to EEPROM.\n");
 
     // Write default User Preferences
-    status |= EEPROM_WriteUserPreferences(DEFAULT_USER_PREF, sizeof(DEFAULT_USER_PREF));
-    INFO_PRINT("User Preferences written to EEPROM.\n");
+    status |= EEPROM_WriteDefaultNameLocation();
+    ECHO("User Preferences written to EEPROM.\n");
 
     if (status == 0) {
-        INFO_PRINT("EEPROM factory defaults written successfully.\n");
+        ECHO("EEPROM factory defaults written successfully.\n");
     } else {
-        INFO_PRINT("EEPROM factory defaults write encountered errors.\n");
+        setError(true);
+        ERROR_PRINT("EEPROM factory defaults write encountered errors.\n");
     }
     return status;
 }
@@ -115,6 +158,7 @@ int EEPROM_ReadFactoryDefaults(void) {
     char stored_sn[strlen(DEFAULT_SN) + 1];
     EEPROM_ReadSystemInfo((uint8_t *)stored_sn, strlen(DEFAULT_SN) + 1);
     if (memcmp(stored_sn, DEFAULT_SN, strlen(DEFAULT_SN)) != 0) {
+        setError(true);
         ERROR_PRINT("Invalid Serial Number detected in EEPROM.\n");
         needs_reset = 1;
     }
@@ -123,6 +167,7 @@ int EEPROM_ReadFactoryDefaults(void) {
     uint8_t stored_relay_status[sizeof(DEFAULT_RELAY_STATUS)];
     EEPROM_ReadUserOutput(stored_relay_status, sizeof(DEFAULT_RELAY_STATUS));
     if (memcmp(stored_relay_status, DEFAULT_RELAY_STATUS, sizeof(DEFAULT_RELAY_STATUS)) != 0) {
+        setError(true);
         ERROR_PRINT("Invalid Relay Status detected in EEPROM.\n");
         needs_reset = 1;
     }
@@ -131,6 +176,7 @@ int EEPROM_ReadFactoryDefaults(void) {
     networkInfo stored_network;
     EEPROM_ReadUserNetworkWithChecksum(&stored_network);
     if (memcmp(&stored_network, &DEFAULT_NETWORK, sizeof(networkInfo)) != 0) {
+        setError(true);
         ERROR_PRINT("Invalid Network Configuration detected in EEPROM.\n");
         needs_reset = 1;
     }
@@ -139,6 +185,7 @@ int EEPROM_ReadFactoryDefaults(void) {
     uint8_t stored_calib[sizeof(DEFAULT_CALIB_DATA)];
     EEPROM_ReadSensorCalibration(stored_calib, sizeof(DEFAULT_CALIB_DATA));
     if (memcmp(stored_calib, DEFAULT_CALIB_DATA, sizeof(DEFAULT_CALIB_DATA)) != 0) {
+        setError(true);
         ERROR_PRINT("Invalid Sensor Calibration detected in EEPROM.\n");
         needs_reset = 1;
     }
@@ -147,6 +194,7 @@ int EEPROM_ReadFactoryDefaults(void) {
     uint8_t stored_energy[sizeof(DEFAULT_ENERGY_DATA)];
     EEPROM_ReadEnergyMonitoring(stored_energy, sizeof(DEFAULT_ENERGY_DATA));
     if (memcmp(stored_energy, DEFAULT_ENERGY_DATA, sizeof(DEFAULT_ENERGY_DATA)) != 0) {
+        setError(true);
         ERROR_PRINT("Invalid Energy Monitoring Data detected in EEPROM.\n");
         needs_reset = 1;
     }
@@ -155,6 +203,7 @@ int EEPROM_ReadFactoryDefaults(void) {
     uint8_t stored_log[sizeof(DEFAULT_LOG_DATA)];
     EEPROM_ReadEventLogs(stored_log, sizeof(DEFAULT_LOG_DATA));
     if (memcmp(stored_log, DEFAULT_LOG_DATA, sizeof(DEFAULT_LOG_DATA)) != 0) {
+        setError(true);
         ERROR_PRINT("Invalid Event Logs detected in EEPROM.\n");
         needs_reset = 1;
     }
@@ -163,18 +212,9 @@ int EEPROM_ReadFactoryDefaults(void) {
     uint8_t stored_user_pref[sizeof(DEFAULT_USER_PREF)];
     EEPROM_ReadUserPreferences(stored_user_pref, sizeof(DEFAULT_USER_PREF));
     if (memcmp(stored_user_pref, DEFAULT_USER_PREF, sizeof(DEFAULT_USER_PREF)) != 0) {
+        setError(true);
         ERROR_PRINT("Invalid User Preferences detected in EEPROM.\n");
         needs_reset = 1;
-    }
-
-    // If any section is invalid, restore factory defaults
-    if (needs_reset) {
-        ERROR_PRINT("EEPROM factory defaults are corrupted. Restoring defaults.\n");
-        EEPROM_WriteFactoryDefaults();
-        DEBUG_PRINT("DEBUG: Factory defaults restored, re-reading EEPROM.\n");
-
-        // Re-run the function to confirm EEPROM is now correct
-        return EEPROM_ReadFactoryDefaults();
     }
 
     INFO_PRINT("EEPROM content is correct.\n\n");
@@ -540,38 +580,116 @@ int EEPROM_AppendEventLog(const uint8_t *entry) {
     return 0;
 }
 
-int EEPROM_WriteUserPrefsWithChecksum(const userPrefInfo *prefs) {
-    uint8_t buf[USER_PREF_RECORD_SIZE];
-    memcpy(buf, prefs, sizeof(userPrefInfo));
-    buf[sizeof(userPrefInfo)] = calculate_crc8(buf, sizeof(userPrefInfo));
-    return CAT24C512_WriteBuffer(EEPROM_USER_PREF_START, buf, USER_PREF_RECORD_SIZE);
+/**
+ * @brief Writes default device name and location directly from macros into EEPROM.
+ *        Writes full userPrefInfo struct layout and CRC to EEPROM_USER_PREF_START.
+ *
+ * @return 0 on success, -1 on error.
+ */
+int EEPROM_WriteDefaultNameLocation(void) {
+    /* Fixed layout: 32 name + 32 location + 1 temp_unit + 1 CRC = 66 bytes */
+    uint8_t buffer[66];
+    memset(buffer, 0x00, sizeof(buffer));
+
+    /* device_name at [0..31] */
+    strncpy((char *)&buffer[0], DEFAULT_NAME, 31);
+    buffer[31] = '\0';
+
+    /* location at [32..63] */
+    strncpy((char *)&buffer[32], DEFAULT_LOCATION, 31);
+    buffer[63] = '\0';
+
+    /* temp_unit at [64] */
+    buffer[64] = 0x00; /* Celsius */
+
+    /* CRC over first 65 bytes, stored at [65] */
+    buffer[65] = calculate_crc8(buffer, 65);
+
+    /* Some CAT24C512 drivers cap a single write to 64 bytes — split 64 + 2 */
+    int res = CAT24C512_WriteBuffer(EEPROM_USER_PREF_START, buffer, 64);
+    res |= CAT24C512_WriteBuffer(EEPROM_USER_PREF_START + 64, &buffer[64], 2);
+    return res;
 }
 
-int EEPROM_ReadUserPrefsWithChecksum(userPrefInfo *prefs) {
-    uint8_t buf[USER_PREF_RECORD_SIZE];
-    CAT24C512_ReadBuffer(EEPROM_USER_PREF_START, buf, USER_PREF_RECORD_SIZE);
-    if (calculate_crc8(buf, sizeof(userPrefInfo)) != buf[sizeof(userPrefInfo)])
+/**
+ * @brief Writes user preferences to EEPROM with CRC checksum.
+ * @param data Pointer to user preferences data.
+ * @param len Data length (must be <= EEPROM_USER_PREFS_SIZE).
+ * @return 0 on success, -1 on error.
+ */
+int EEPROM_WriteUserPrefsWithChecksum(const userPrefInfo *prefs) {
+    if (!prefs)
         return -1;
-    memcpy(prefs, buf, sizeof(userPrefInfo));
+
+    /* Build 65-byte payload, then append CRC, then write as 64 + 2 bytes */
+    uint8_t record[66];
+    memset(record, 0x00, sizeof(record));
+
+    /* Copy only the defined payload (32 + 32 + 1 = 65) */
+    memcpy(&record[0], prefs->device_name, 32);
+    memcpy(&record[32], prefs->location, 32);
+    record[64] = prefs->temp_unit;
+
+    record[65] = calculate_crc8(&record[0], 65);
+
+    int res = CAT24C512_WriteBuffer(EEPROM_USER_PREF_START, record, 64);
+    res |= CAT24C512_WriteBuffer(EEPROM_USER_PREF_START + 64, &record[64], 2);
+    return res;
+}
+
+/**
+ * @brief Reads user preferences from EEPROM.
+ * @param data Pointer to buffer to store user preferences data.
+ * @param len Data length (must be <= EEPROM_USER_PREFS_SIZE).
+ * @return 0 on success, -1 on error.
+ */
+int EEPROM_ReadUserPrefsWithChecksum(userPrefInfo *prefs) {
+    if (!prefs)
+        return -1;
+
+    uint8_t record[66];
+    CAT24C512_ReadBuffer(EEPROM_USER_PREF_START, record, 66);
+
+    /* Verify CRC over first 65 bytes */
+    if (calculate_crc8(&record[0], 65) != record[65])
+        return -1;
+
+    /* Deserialize payload → struct (enforce NUL termination) */
+    memcpy(prefs->device_name, &record[0], 32);
+    prefs->device_name[31] = '\0';
+    memcpy(prefs->location, &record[32], 32);
+    prefs->location[31] = '\0';
+    prefs->temp_unit = record[64];
+
     return 0;
 }
 
+/**
+ * @brief Loads user preferences from EEPROM.
+ * @return User preferences structure.
+ */
 userPrefInfo LoadUserPreferences(void) {
     userPrefInfo prefs;
     if (EEPROM_ReadUserPrefsWithChecksum(&prefs) == 0) {
         INFO_PRINT("Loaded user prefs\n");
     } else {
+        setError(true);
         ERROR_PRINT("No saved prefs, using defaults\n");
         prefs = DEFAULT_USER_PREFS;
     }
     return prefs;
 }
 
+/**
+ * @brief Loads user network configuration from EEPROM.
+ * @return User network configuration structure.
+ */
 networkInfo LoadUserNetworkConfig(void) {
     networkInfo net_info;
     if (EEPROM_ReadUserNetworkWithChecksum(&net_info) == 0) {
         INFO_PRINT("Loaded network config from EEPROM.\n");
     } else {
+        setError(true);
         ERROR_PRINT("EEPROM network config invalid. Using defaults.\n");
         net_info = DEFAULT_NETWORK;
     }

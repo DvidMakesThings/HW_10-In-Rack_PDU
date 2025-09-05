@@ -1,19 +1,21 @@
 /**
  * @file ILI9488_driver.c
  * @author DvidMakesThings - David Sipos
+ * @defgroup driver4 4. ILI9488 TFT LCD Driver
+ * @ingroup drivers
  * @brief Optimized ILI9488 TFT LCD Driver for 16-bit color (RGB565)
+ * @{
  * @version 1.4
  * @date 2025-03-03
  *
- * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
- * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
- *
- * @details
  * This file implements the driver for the ILI9488 TFT LCD display, supporting
  * hardware initialization, pixel and rectangle drawing, text rendering, DMA-based
  * fast graphics operations, backlight control, and BMP image display. The driver
  * is optimized for 16-bit color (RGB565) and uses DMA for high-speed data transfer
  * where possible. All functions are designed for use on the Raspberry Pi Pico platform.
+ *
+ * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
+ * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
  */
 
 #include "ILI9488_driver.h"
@@ -27,6 +29,7 @@
 #include <stdlib.h> // For abs()
 #include <string.h>
 
+#if HAS_SCREEN
 /**
  * @brief Writes a single byte to the ILI9488 display.
  *
@@ -441,3 +444,5 @@ void ILI9488_DrawBitmap(uint16_t x, uint16_t y, const char *filename) {
     gpio_put(LCD_CS, 1);
     fclose(file);
 }
+
+#endif

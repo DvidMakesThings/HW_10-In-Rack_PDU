@@ -1,0 +1,5 @@
+<map id="wiz_recv_data" name="wiz_recv_data">
+<area shape="rect" id="Node000001" title="It copies data to your buffer from internal RX memory." alt="" coords="5,5,111,32"/>
+<area shape="rect" id="Node000002" href="$group__net3.html#ga07f86e715351564afb11298ed7a79381" title="It reads sequence data from registers." alt="" coords="159,5,317,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,16,143,16,143,21,111,21"/>
+</map>

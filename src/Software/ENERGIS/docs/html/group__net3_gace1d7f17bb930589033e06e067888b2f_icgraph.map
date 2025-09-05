@@ -1,0 +1,37 @@
+<map id="WIZCHIP_WRITE_BUF" name="WIZCHIP_WRITE_BUF">
+<area shape="rect" id="Node000001" title="It writes sequence data to registers." alt="" coords="1079,208,1243,235"/>
+<area shape="rect" id="Node000002" href="$group__net3.html#gab3dd6071b87bea9afcedcb57e248a7d0" title="It copies data to internal TX memory." alt="" coords="922,208,1031,235"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1063,224,1031,224,1031,219,1063,219"/>
+<area shape="rect" id="Node000003" href="$group__net1.html#gacd77c3cc60e87d09a5714932506d7c4b" title="Send data to the connected peer in TCP socket." alt="" coords="820,132,869,159"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="937,202,868,161,870,157,940,197"/>
+<area shape="rect" id="Node000011" href="$group__net1.html#ga30fc77ba1005733b501994818bde12f8" title="Sends datagram to the peer with destination IP address and port number passed as parameter." alt="" coords="814,259,874,285"/>
+<area shape="poly" id="edge14_Node000002_Node000011" title=" " alt="" coords="926,243,876,263,874,258,924,238"/>
+<area shape="rect" id="Node000004" href="$group__webui1.html#ga204196bd085f7a778067392b56920c59" title="Handles the HTTP request for the control page. Uses set_relay_state_tag() for idempotent writes + log..." alt="" coords="607,5,762,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="825,121,799,86,764,53,731,35,733,30,768,49,803,82,829,118"/>
+<area shape="rect" id="Node000005" href="$group__webui3.html#ga52702a4dcaff4540a9ddd10e4d5f4525" title="Processes incoming HTTP requests." alt="" coords="416,132,556,159"/>
+<area shape="poly" id="edge13_Node000003_Node000005" title=" " alt="" coords="815,124,791,109,765,97,721,86,685,84,650,88,604,97,554,113,512,134,510,129,552,109,603,92,649,83,685,79,722,81,767,92,794,104,818,120"/>
+<area shape="rect" id="Node000008" href="$group__webui4.html#ga0fe4c530cf7754724a14147a82c71108" title="Handles the HTTP POST request for the settings page." alt="" coords="613,107,757,133"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="804,142,757,134,758,129,805,136"/>
+<area shape="rect" id="Node000009" href="$group__webui4.html#gae50a830dd3536accfe480e0cefb7c4b1" title="Handles the HTTP request for the settings page." alt="" coords="604,157,766,184"/>
+<area shape="poly" id="edge9_Node000003_Node000009" title=" " alt="" coords="804,154,767,160,766,155,804,149"/>
+<area shape="rect" id="Node000010" href="$group__webui5.html#gabec26dab8e118ff845c2fde12dc885cf" title="Handles the HTTP request for the status page." alt="" coords="609,208,761,235"/>
+<area shape="poly" id="edge11_Node000003_Node000010" title=" " alt="" coords="815,170,767,198,738,210,736,205,765,194,812,165"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="629,41,605,53,547,95,503,134,500,130,544,90,602,48,627,36"/>
+<area shape="rect" id="Node000006" href="$group__main02.html#gad25e95c5993e865b3f941472b7a328e0" title="Core 1 task for handling SNMP and HTTP server." alt="" coords="150,259,235,285"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="440,168,227,260,225,256,438,163"/>
+<area shape="rect" id="Node000007" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,259,102,285"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="134,275,102,275,102,269,134,269"/>
+<area shape="poly" id="edge8_Node000008_Node000005" title=" " alt="" coords="598,134,556,139,555,134,597,128"/>
+<area shape="poly" id="edge10_Node000009_Node000005" title=" " alt="" coords="588,161,556,157,556,152,588,156"/>
+<area shape="poly" id="edge12_Node000010_Node000005" title=" " alt="" coords="622,205,603,198,516,162,518,157,605,194,624,200"/>
+<area shape="rect" id="Node000012" href="$group__snmp__module.html#ga8a5d8ad5c6c10d2f74370649c4aa41e6" title=" " alt="" coords="628,259,742,285"/>
+<area shape="poly" id="edge15_Node000011_Node000012" title=" " alt="" coords="798,275,742,275,742,269,798,269"/>
+<area shape="rect" id="Node000015" href="$group__snmp__module.html#ga85191eecbdb50efa106d1d76339d68dd" title=" " alt="" coords="283,309,368,336"/>
+<area shape="poly" id="edge19_Node000011_Node000015" title=" " alt="" coords="800,291,767,300,654,316,543,324,369,327,369,321,543,319,654,311,765,295,798,286"/>
+<area shape="rect" id="Node000013" href="$group__snmp2.html#ga01e7036f2bce7c2647b681dcfe2b3731" title="Initialize the SNMP agent with the given manager and agent IP addresses." alt="" coords="444,259,528,285"/>
+<area shape="poly" id="edge16_Node000012_Node000013" title=" " alt="" coords="612,275,529,275,529,269,612,269"/>
+<area shape="rect" id="Node000014" href="$group__snmp__module.html#ga6515f727d7f9d2333eaeef21b062accb" title=" " alt="" coords="284,259,368,285"/>
+<area shape="poly" id="edge17_Node000013_Node000014" title=" " alt="" coords="428,275,368,275,368,269,428,269"/>
+<area shape="poly" id="edge18_Node000014_Node000006" title=" " alt="" coords="268,275,236,275,236,269,268,269"/>
+<area shape="poly" id="edge20_Node000015_Node000006" title=" " alt="" coords="273,306,229,288,231,283,275,301"/>
+</map>

@@ -26,7 +26,6 @@
 
 // ==== Function Prototypes ====
 
-
 /**
  * @brief Initializes the ILI9488 display.
  *

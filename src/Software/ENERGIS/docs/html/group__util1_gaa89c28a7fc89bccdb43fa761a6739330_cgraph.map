@@ -1,0 +1,5 @@
+<map id="write_event_log_pointer" name="write_event_log_pointer">
+<area shape="rect" id="Node000001" title="Updates the write pointer for event logs." alt="" coords="5,5,164,32"/>
+<area shape="rect" id="Node000002" href="$group__driver2.html#gaaec04a90cbe79c0c717ea448204e7283" title="Writes a byte to the EEPROM." alt="" coords="212,5,368,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="164,16,196,16,196,21,164,21"/>
+</map>

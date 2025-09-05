@@ -1,0 +1,7 @@
+<map id="EEPROM_WriteUserNetworkWithChecksum" name="EEPROM_WriteUserNetworkWithChecksum">
+<area shape="rect" id="Node000001" title="Writes user network settings with CRC&#45;8 checksum." alt="" coords="5,23,226,65"/>
+<area shape="rect" id="Node000002" href="$group__util1.html#gac234fd9aa26c0f3a24a54afa80ca8035" title="Calculates the CRC&#45;8 checksum of the given data." alt="" coords="303,5,408,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="226,30,287,23,288,28,226,35"/>
+<area shape="rect" id="Node000003" href="$group__driver2.html#ga32a5def129c38d7a4d232142105671c0" title="Writes a buffer of data to the EEPROM." alt="" coords="274,56,437,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="226,53,258,56,258,62,226,58"/>
+</map>

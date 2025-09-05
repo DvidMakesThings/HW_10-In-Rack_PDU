@@ -1,0 +1,67 @@
+<map id="handle_settings_post" name="handle_settings_post">
+<area shape="rect" id="Node000001" title="Handles the HTTP POST request for the settings page." alt="" coords="5,274,150,300"/>
+<area shape="rect" id="Node000002" href="$group__util1.html#ga3c1fef9aa93f898978387328a8a6e33d" title="Writes user network settings with CRC&#45;8 checksum." alt="" coords="198,23,418,66"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,273,93,234,117,181,150,124,172,98,196,76,201,72,204,76,199,80,176,102,155,128,121,183,98,236,85,274"/>
+<area shape="rect" id="Node000005" href="$group__util1.html#gaffd968de2dd26c2a571f3057dc72f2dc" title="Writes user preferences to EEPROM with CRC checksum." alt="" coords="207,90,409,132"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="92,271,196,184,259,139,262,143,199,188,96,275"/>
+<area shape="rect" id="Node000006" href="$group__webui2.html#gaeb4007c2c85c659d737d6fd89a270f5e" title="Extract key=value from URL‐encoded body (in‐place), returns NULL if missing." alt="" coords="253,299,363,326"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="151,292,237,302,237,307,150,298"/>
+<area shape="rect" id="Node000007" href="$group__util1.html#ga37c460b3ea58fd130cea86904b06f7b1" title="Loads user network configuration from EEPROM." alt="" coords="226,248,390,275"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="150,276,210,270,210,275,151,282"/>
+<area shape="rect" id="Node000018" href="$group__util1.html#gada0abcfc99e366656030e908187d6d6d" title="Loads user preferences from EEPROM." alt="" coords="234,198,382,224"/>
+<area shape="poly" id="edge24_Node000001_Node000018" title=" " alt="" coords="107,271,197,234,224,226,225,231,199,239,109,276"/>
+<area shape="rect" id="Node000020" href="$group__net1.html#gacd77c3cc60e87d09a5714932506d7c4b" title="Send data to the connected peer in TCP socket." alt="" coords="283,350,332,376"/>
+<area shape="poly" id="edge29_Node000001_Node000020" title=" " alt="" coords="109,299,199,335,269,353,267,358,197,340,107,303"/>
+<area shape="rect" id="Node000026" href="$group__webui2.html#ga493994a6707f3269e63a5006d8e409a1" title="Decode &#39;+&#39;→&#39; &#39; and &quot;%XX&quot;→char, in‐place." alt="" coords="269,400,346,427"/>
+<area shape="poly" id="edge35_Node000001_Node000026" title=" " alt="" coords="93,299,137,342,166,366,199,386,226,397,254,404,253,409,224,402,196,391,163,370,133,346,89,303"/>
+<area shape="rect" id="Node000028" href="$group__net6.html#gaf581fa9246e4a5621936c7b83d18a0fa" title="Set the network information for WIZCHIP." alt="" coords="243,451,372,478"/>
+<area shape="poly" id="edge37_Node000001_Node000028" title=" " alt="" coords="88,300,128,366,160,405,199,437,229,451,227,455,196,441,157,408,124,369,83,302"/>
+<area shape="rect" id="Node000003" href="$group__util1.html#gac234fd9aa26c0f3a24a54afa80ca8035" title="Calculates the CRC&#45;8 checksum of the given data." alt="" coords="765,119,870,146"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="394,20,460,9,534,3,612,7,651,14,688,25,721,40,751,61,797,105,793,109,748,65,718,45,686,30,650,19,612,12,534,9,460,14,395,25"/>
+<area shape="rect" id="Node000004" href="$group__driver2.html#ga32a5def129c38d7a4d232142105671c0" title="Writes a buffer of data to the EEPROM." alt="" coords="495,39,658,66"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="419,45,480,47,479,52,418,50"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="409,113,749,127,749,132,409,118"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="408,87,496,67,497,72,409,92"/>
+<area shape="rect" id="Node000008" href="$group__util1.html#gaef5b120a12ff3e275706067ea3cf7e46" title="Reads user network settings with CRC&#45;8 checksum verification." alt="" coords="466,207,687,250"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="390,249,450,241,451,247,391,254"/>
+<area shape="rect" id="Node000010" href="$group__util2.html#gae73b9c33649b5f5f7388f1b4fe42d32d" title="Sets the error state on the display." alt="" coords="543,274,610,300"/>
+<area shape="poly" id="edge12_Node000007_Node000010" title=" " alt="" coords="391,267,527,280,527,285,390,272"/>
+<area shape="poly" id="edge10_Node000008_Node000003" title=" " alt="" coords="657,204,686,193,710,179,734,163,764,150,766,155,737,168,713,183,689,197,659,209"/>
+<area shape="rect" id="Node000009" href="$group__driver2.html#ga32e8f6f7cd5d0fba27b004b8c2637ea4" title="Reads a buffer of data from the EEPROM." alt="" coords="735,178,900,204"/>
+<area shape="poly" id="edge11_Node000008_Node000009" title=" " alt="" coords="687,209,720,203,720,209,688,214"/>
+<area shape="rect" id="Node000011" href="$group__driver5.html#ga1f2aea8f1cb5fb271e2b68ab119fa503" title="Writes a digital value to a specific MCP23017 pin. Uses shadowed whole&#45;port writes under a mutex to a..." alt="" coords="741,274,894,300"/>
+<area shape="poly" id="edge13_Node000010_Node000011" title=" " alt="" coords="611,284,725,284,725,290,611,290"/>
+<area shape="rect" id="Node000012" href="$group__driver5.html#gad23a5248f3f3fc671c373a437e16e985" title="Initializes the relay board&#39;s MCP23017." alt="" coords="948,248,1066,275"/>
+<area shape="poly" id="edge14_Node000011_Node000012" title=" " alt="" coords="894,274,932,269,933,274,895,279"/>
+<area shape="rect" id="Node000015" href="$group__driver5.html#gaba4e8ca33cf356bc41af763ae4aa3310" title=" " alt="" coords="1157,299,1234,326"/>
+<area shape="poly" id="edge21_Node000011_Node000015" title=" " alt="" coords="895,290,1142,306,1142,312,895,295"/>
+<area shape="rect" id="Node000016" href="$group__driver5.html#ga713d78b9106bd7706abb1ed29d8fad27" title=" " alt="" coords="1150,350,1241,376"/>
+<area shape="poly" id="edge22_Node000011_Node000016" title=" " alt="" coords="888,298,1135,348,1134,354,887,304"/>
+<area shape="rect" id="Node000017" href="$group__driver5.html#ga51d31ad5757c79b0f72f1e785115efed" title=" " alt="" coords="1114,147,1277,174"/>
+<area shape="poly" id="edge23_Node000011_Node000017" title=" " alt="" coords="851,271,947,234,1130,176,1132,181,949,239,853,276"/>
+<area shape="rect" id="Node000013" href="$group__driver5.html#ga4cde98019aa1b07cd4c5f6bd7929bd8c" title=" " alt="" coords="1168,248,1224,275"/>
+<area shape="poly" id="edge15_Node000012_Node000013" title=" " alt="" coords="1067,259,1152,259,1152,264,1067,264"/>
+<area shape="rect" id="Node000014" href="$group__driver5.html#ga88ff03a249bfc75eaac4cab1d7955107" title=" " alt="" coords="1325,172,1385,199"/>
+<area shape="poly" id="edge16_Node000012_Node000014" title=" " alt="" coords="1065,245,1113,234,1310,192,1311,197,1115,239,1066,250"/>
+<area shape="poly" id="edge17_Node000012_Node000015" title=" " alt="" coords="1060,273,1143,296,1141,301,1059,278"/>
+<area shape="poly" id="edge18_Node000012_Node000016" title=" " alt="" coords="1026,273,1065,304,1115,335,1137,344,1134,349,1113,340,1062,309,1022,278"/>
+<area shape="poly" id="edge19_Node000012_Node000017" title=" " alt="" coords="1025,246,1065,218,1113,190,1140,178,1142,182,1115,195,1068,223,1028,250"/>
+<area shape="poly" id="edge20_Node000017_Node000014" title=" " alt="" coords="1278,171,1310,176,1309,181,1277,176"/>
+<area shape="poly" id="edge28_Node000018_Node000010" title=" " alt="" coords="382,222,419,234,443,247,467,259,528,276,527,281,465,264,441,251,417,239,380,228"/>
+<area shape="rect" id="Node000019" href="$group__util1.html#ga708039b6b7c8a2535429849aaf0bef39" title="Reads user preferences from EEPROM." alt="" coords="475,140,678,183"/>
+<area shape="poly" id="edge25_Node000018_Node000019" title=" " alt="" coords="381,195,459,181,460,186,382,200"/>
+<area shape="poly" id="edge26_Node000019_Node000003" title=" " alt="" coords="678,147,749,138,750,143,679,152"/>
+<area shape="poly" id="edge27_Node000019_Node000009" title=" " alt="" coords="679,171,720,177,720,182,678,177"/>
+<area shape="rect" id="Node000021" href="$group__net1.html#gaf7c8a46c623edfab31d9e09788394b2f" title="Close a socket." alt="" coords="550,324,603,351"/>
+<area shape="poly" id="edge30_Node000020_Node000021" title=" " alt="" coords="333,358,535,339,536,344,333,363"/>
+<area shape="rect" id="Node000022" href="$group__net3.html#gadd5918adebaa3744ddc01a76c84a894a" title="Get Sn_TX_FSR register." alt="" coords="520,375,633,402"/>
+<area shape="poly" id="edge31_Node000020_Node000022" title=" " alt="" coords="333,363,505,379,504,384,333,368"/>
+<area shape="rect" id="Node000024" href="$group__net3.html#gab3dd6071b87bea9afcedcb57e248a7d0" title="It copies data to internal TX memory." alt="" coords="522,426,631,452"/>
+<area shape="poly" id="edge33_Node000020_Node000024" title=" " alt="" coords="334,364,374,373,419,386,443,399,467,411,508,424,507,429,465,416,441,403,417,391,373,378,332,369"/>
+<area shape="rect" id="Node000023" href="$group__net3.html#ga674a6dc857166809ddc71ea8d40d56b8" title="It reads 1 byte value from a register." alt="" coords="755,375,880,402"/>
+<area shape="poly" id="edge32_Node000022_Node000023" title=" " alt="" coords="634,386,740,386,740,391,634,391"/>
+<area shape="rect" id="Node000025" href="$group__net3.html#gace1d7f17bb930589033e06e067888b2f" title="It writes sequence data to registers." alt="" coords="735,426,900,452"/>
+<area shape="poly" id="edge34_Node000024_Node000025" title=" " alt="" coords="631,436,720,436,720,442,631,442"/>
+<area shape="rect" id="Node000027" href="$group__webui2.html#gac58fba3086187a4058024eb333db525e" title="Converts a hexadecimal character to its integer value." alt="" coords="547,476,606,503"/>
+<area shape="poly" id="edge36_Node000026_Node000027" title=" " alt="" coords="348,417,419,437,443,449,467,462,532,480,531,485,465,467,441,454,417,442,346,423"/>
+</map>

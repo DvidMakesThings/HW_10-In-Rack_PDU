@@ -1,0 +1,5 @@
+<map id="wizphy_setphyconf" name="wizphy_setphyconf">
+<area shape="rect" id="Node000001" title="Set the phy information for WIZCHIP without power mode." alt="" coords="5,5,139,32"/>
+<area shape="rect" id="Node000002" href="$group__net6.html#ga46a76bce886968fef0c9ff15f8a104d5" title="Reset phy. Vailid only in W5500." alt="" coords="187,5,285,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,16,171,16,171,21,139,21"/>
+</map>

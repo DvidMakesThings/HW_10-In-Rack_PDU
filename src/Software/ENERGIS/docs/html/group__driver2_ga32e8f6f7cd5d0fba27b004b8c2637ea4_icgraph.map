@@ -1,0 +1,91 @@
+<map id="CAT24C512_ReadBuffer" name="CAT24C512_ReadBuffer">
+<area shape="rect" id="Node000001" title="Reads a buffer of data from the EEPROM." alt="" coords="1243,309,1408,336"/>
+<area shape="rect" id="Node000002" href="$group__driver2.html#gadde4a02bc72abe5f87ebb05fe3ad4865" title="Dumps the entire EEPROM contents into a buffer." alt="" coords="1018,5,1152,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1316,295,1303,243,1279,177,1243,110,1220,79,1194,53,1174,40,1151,31,1153,26,1176,35,1197,49,1224,76,1248,107,1284,175,1308,241,1321,293"/>
+<area shape="rect" id="Node000003" href="$group__driver2.html#ga19b1c0c84ad4c1ada5fbe742112c1586" title="Dumps the EEPROM contents in a formatted hex table." alt="" coords="988,595,1181,621"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1321,352,1307,403,1283,466,1247,530,1224,559,1197,585,1178,596,1175,592,1194,581,1220,556,1243,527,1278,464,1302,401,1316,351"/>
+<area shape="rect" id="Node000008" href="$group__main03.html#ga3f17389aaa2bcc06ed37b92d3859a94f" title="Checks if this is the first boot and writes factory defaults to EEPROM if so." alt="" coords="743,115,898,157"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1315,296,1302,249,1278,193,1242,139,1220,116,1194,97,1154,79,1110,70,1066,68,1021,72,937,92,869,117,867,112,935,87,1020,67,1066,63,1111,65,1155,74,1197,92,1223,112,1246,136,1282,191,1307,247,1321,294"/>
+<area shape="rect" id="Node000010" href="$group__util1.html#ga9fb1f24e48771317aaa7c8b6c02c9786" title="Reads energy monitoring data from EEPROM." alt="" coords="976,208,1194,235"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="1291,303,1246,275,1194,249,1159,238,1161,233,1196,244,1249,270,1294,298"/>
+<area shape="rect" id="Node000012" href="$group__util1.html#gad9c0aae90591df3b2bb552a2755ce7a9" title="Reads event log data from EEPROM." alt="" coords="995,259,1174,285"/>
+<area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="1243,308,1151,289,1152,283,1244,303"/>
+<area shape="rect" id="Node000013" href="$group__util1.html#ga7182e6e053685a9aac34eee5097a7416" title="Reads sensor calibration data from EEPROM." alt="" coords="974,309,1195,336"/>
+<area shape="poly" id="edge14_Node000001_Node000013" title=" " alt="" coords="1228,325,1195,325,1195,320,1228,320"/>
+<area shape="rect" id="Node000014" href="$group__util1.html#gab6868e2a26481771ef8ed81d4e909814" title="Reads system info from EEPROM." alt="" coords="992,477,1177,504"/>
+<area shape="poly" id="edge16_Node000001_Node000014" title=" " alt="" coords="1310,351,1264,410,1233,441,1197,468,1172,479,1169,474,1194,463,1229,437,1260,407,1306,347"/>
+<area shape="rect" id="Node000017" href="$group__util1.html#ga781ad4b6b12005f76e0742e107443083" title="Reads system info with CRC&#45;8 checksum verification." alt="" coords="979,360,1190,403"/>
+<area shape="poly" id="edge22_Node000001_Node000017" title=" " alt="" coords="1254,343,1176,362,1174,357,1252,338"/>
+<area shape="rect" id="Node000018" href="$group__util1.html#ga36caebd539c36be02e805af5d1278ed5" title="Reads user network settings from EEPROM." alt="" coords="988,427,1182,453"/>
+<area shape="poly" id="edge23_Node000001_Node000018" title=" " alt="" coords="1299,349,1253,384,1196,417,1164,429,1162,424,1194,412,1250,380,1296,344"/>
+<area shape="rect" id="Node000019" href="$group__util1.html#gaef5b120a12ff3e275706067ea3cf7e46" title="Reads user network settings with CRC&#45;8 checksum verification." alt="" coords="974,528,1195,571"/>
+<area shape="poly" id="edge24_Node000001_Node000019" title=" " alt="" coords="1315,351,1298,389,1272,434,1238,479,1197,518,1178,530,1175,525,1194,514,1234,476,1267,431,1293,387,1311,349"/>
+<area shape="rect" id="Node000031" href="$group__util1.html#ga25688db788c627b0458f2fd63711af25" title="Reads user output configuration from EEPROM." alt="" coords="992,107,1177,133"/>
+<area shape="poly" id="edge45_Node000001_Node000031" title=" " alt="" coords="1310,296,1291,262,1266,221,1233,181,1194,148,1171,136,1174,131,1197,143,1237,177,1270,218,1296,259,1314,294"/>
+<area shape="rect" id="Node000032" href="$group__util1.html#ga9f082445c1a6ae5112beee80a6074d97" title="Reads user preferences from EEPROM." alt="" coords="977,157,1192,184"/>
+<area shape="poly" id="edge47_Node000001_Node000032" title=" " alt="" coords="1303,298,1257,247,1227,220,1194,198,1167,187,1169,182,1197,194,1230,216,1261,243,1307,295"/>
+<area shape="rect" id="Node000033" href="$group__util1.html#ga708039b6b7c8a2535429849aaf0bef39" title="Reads user preferences from EEPROM." alt="" coords="983,667,1186,709"/>
+<area shape="poly" id="edge49_Node000001_Node000033" title=" " alt="" coords="1322,352,1309,410,1285,484,1248,564,1225,601,1197,635,1175,654,1150,669,1147,664,1172,650,1193,631,1220,598,1244,561,1280,482,1303,408,1317,351"/>
+<area shape="rect" id="Node000004" href="$group__uart.html#gafb05fba73a2e69a3b14e88a825c4725e" title="Dump the contents of EEPROM in formatted hex." alt="" coords="544,639,647,665"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="972,616,849,624,716,636,648,646,647,640,715,631,849,618,972,610"/>
+<area shape="rect" id="Node000005" href="$group__uart.html#gaf78d8689607ba97d44d30e4e3fc56533" title="Parse and execute a received UART command string." alt="" coords="340,461,471,488"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="569,629,474,527,426,491,429,486,477,523,573,625"/>
+<area shape="rect" id="Node000006" href="$group__uart.html#ga6c04950ec7c317f61e910caa14e9e893" title="Main loop for reading and processing UART commands." alt="" coords="150,461,288,488"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="324,477,288,477,288,472,324,472"/>
+<area shape="rect" id="Node000007" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,512,102,539"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="159,496,100,514,99,509,157,491"/>
+<area shape="rect" id="Node000009" href="$group__main03.html#gafe3a0b770057ac7103be4185e393395f" title="Initializes Core 0." alt="" coords="557,233,634,260"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="764,167,626,235,623,230,761,162"/>
+<area shape="poly" id="edge9_Node000009_Node000007" title=" " alt="" coords="543,268,365,341,257,393,151,452,106,484,71,514,68,510,103,479,148,447,254,388,363,336,541,263"/>
+<area shape="rect" id="Node000011" href="$group__util1.html#ga997f3d6e141a711fa6f969fc16edc7ce" title="Reads and validates factory defaults stored in EEPROM. If any section is invalid, it restores the def..." alt="" coords="716,247,926,273"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="974,240,917,249,916,243,973,235"/>
+<area shape="poly" id="edge13_Node000012_Node000011" title=" " alt="" coords="979,270,926,267,927,262,980,265"/>
+<area shape="poly" id="edge15_Node000013_Node000011" title=" " alt="" coords="1007,308,973,300,925,288,879,276,880,271,927,283,975,295,1008,303"/>
+<area shape="poly" id="edge17_Node000014_Node000011" title=" " alt="" coords="977,472,972,467,955,445,947,422,946,398,947,375,949,353,947,330,940,309,924,287,909,276,912,272,928,283,945,306,953,329,954,353,953,376,951,398,952,421,960,442,976,464,981,468"/>
+<area shape="rect" id="Node000015" href="$group__snmp2.html#gad472b7ac42103df5df24f5921d33252b" title="Read the device Serial Number from EEPROM and return as an OCTET STRING." alt="" coords="759,477,882,504"/>
+<area shape="poly" id="edge18_Node000014_Node000015" title=" " alt="" coords="977,493,883,493,883,488,977,488"/>
+<area shape="rect" id="Node000016" href="$group__uart.html#ga55bd70f5f06a48b23d64f53d30ad2c60" title="Print system information (core voltage, clocks, serial, firmware)." alt="" coords="779,297,863,324"/>
+<area shape="poly" id="edge19_Node000014_Node000016" title=" " alt="" coords="985,474,973,468,925,434,884,394,829,326,833,323,888,391,929,430,975,463,987,469"/>
+<area shape="poly" id="edge21_Node000016_Node000005" title=" " alt="" coords="763,302,710,296,649,295,585,304,554,312,525,325,504,338,485,355,453,393,430,432,415,462,410,460,425,429,449,390,481,351,501,334,522,320,552,307,584,298,648,290,710,291,764,297"/>
+<area shape="poly" id="edge20_Node000016_Node000009" title=" " alt="" coords="763,300,715,288,634,262,635,257,716,283,765,295"/>
+<area shape="poly" id="edge25_Node000019_Node000011" title=" " alt="" coords="974,520,972,518,952,488,944,458,944,429,948,400,952,371,952,343,944,315,924,287,909,276,913,272,928,283,948,313,957,342,957,371,953,400,950,429,950,458,957,486,976,514,978,516"/>
+<area shape="rect" id="Node000020" href="$group__webui4.html#gae50a830dd3536accfe480e0cefb7c4b1" title="Handles the HTTP request for the settings page." alt="" coords="740,645,902,672"/>
+<area shape="poly" id="edge26_Node000019_Node000020" title=" " alt="" coords="993,579,975,585,905,617,848,647,846,642,903,612,973,580,991,574"/>
+<area shape="rect" id="Node000023" href="$group__util1.html#ga37c460b3ea58fd130cea86904b06f7b1" title="Loads user network configuration from EEPROM." alt="" coords="739,532,903,559"/>
+<area shape="poly" id="edge30_Node000019_Node000023" title=" " alt="" coords="959,550,903,549,903,544,959,545"/>
+<area shape="rect" id="Node000021" href="$group__webui3.html#ga52702a4dcaff4540a9ddd10e4d5f4525" title="Processes incoming HTTP requests." alt="" coords="336,715,475,741"/>
+<area shape="poly" id="edge27_Node000020_Node000021" title=" " alt="" coords="730,680,717,686,703,697,694,709,685,721,669,730,620,744,569,749,520,748,476,744,476,739,520,743,569,744,619,739,667,726,681,717,690,706,699,693,714,682,728,675"/>
+<area shape="rect" id="Node000022" href="$group__main02.html#gad25e95c5993e865b3f941472b7a328e0" title="Core 1 task for handling SNMP and HTTP server." alt="" coords="176,651,262,677"/>
+<area shape="poly" id="edge28_Node000021_Node000022" title=" " alt="" coords="349,712,259,680,261,675,351,707"/>
+<area shape="poly" id="edge29_Node000022_Node000007" title=" " alt="" coords="188,642,69,541,73,537,192,638"/>
+<area shape="rect" id="Node000024" href="$group__main03.html#ga4f6be798db44b5ed4b9b12eeb705f6e9" title="Initializes Core 1." alt="" coords="367,537,444,564"/>
+<area shape="poly" id="edge31_Node000023_Node000024" title=" " alt="" coords="750,565,668,579,595,584,523,579,444,564,445,558,524,573,595,578,667,573,749,560"/>
+<area shape="rect" id="Node000025" href="$group__webui4.html#ga0fe4c530cf7754724a14147a82c71108" title="Handles the HTTP POST request for the settings page." alt="" coords="523,689,668,716"/>
+<area shape="poly" id="edge33_Node000023_Node000025" title=" " alt="" coords="793,571,717,635,695,659,669,680,645,691,643,686,666,675,691,655,714,631,790,567"/>
+<area shape="rect" id="Node000026" href="$group__uart.html#ga0861a9960c0f8e70f10272158aa9c937" title="Set the DNS server address and reconfigure network." alt="" coords="562,487,629,513"/>
+<area shape="poly" id="edge35_Node000023_Node000026" title=" " alt="" coords="735,531,629,509,630,504,736,526"/>
+<area shape="rect" id="Node000027" href="$group__uart.html#ga7d7af9628af84c182e9978c253c5bf14" title="Set the gateway address and reconfigure network." alt="" coords="548,537,643,564"/>
+<area shape="poly" id="edge37_Node000023_Node000027" title=" " alt="" coords="723,550,644,552,644,547,723,545"/>
+<area shape="rect" id="Node000028" href="$group__uart.html#ga387b6d0d56433cf41937ae4721c0ddbf" title="Set the device IP address and reconfigure network." alt="" coords="567,335,624,361"/>
+<area shape="poly" id="edge39_Node000023_Node000028" title=" " alt="" coords="724,526,714,518,699,500,692,482,688,446,686,410,679,393,666,375,646,362,623,354,625,349,648,357,670,371,684,390,691,409,694,445,697,480,704,497,718,514,728,522"/>
+<area shape="rect" id="Node000029" href="$group__uart.html#ga63f75ffc96f9e37736f5d65e4c845616" title="Set full network configuration (IP, subnet, gateway, DNS)." alt="" coords="549,385,642,412"/>
+<area shape="poly" id="edge41_Node000023_Node000029" title=" " alt="" coords="727,527,714,518,696,495,689,471,682,448,666,426,641,412,644,407,669,422,687,446,694,470,700,492,717,514,730,523"/>
+<area shape="rect" id="Node000030" href="$group__uart.html#ga7b9dad04ce3e7c959f434dfc503b22f4" title="Set the subnet mask and reconfigure network." alt="" coords="553,436,638,463"/>
+<area shape="poly" id="edge43_Node000023_Node000030" title=" " alt="" coords="738,529,714,518,699,508,690,497,680,487,666,477,638,464,640,459,669,472,684,483,693,494,703,504,717,514,741,524"/>
+<area shape="poly" id="edge32_Node000024_Node000007" title=" " alt="" coords="351,550,102,531,102,526,352,544"/>
+<area shape="poly" id="edge34_Node000025_Node000021" title=" " alt="" coords="508,717,476,721,475,716,507,712"/>
+<area shape="poly" id="edge36_Node000026_Node000005" title=" " alt="" coords="546,496,471,486,472,481,547,491"/>
+<area shape="poly" id="edge38_Node000027_Node000005" title=" " alt="" coords="539,534,522,528,436,491,438,486,524,523,540,529"/>
+<area shape="poly" id="edge40_Node000028_Node000005" title=" " alt="" coords="554,362,525,376,494,397,465,420,422,463,418,459,461,416,491,392,522,371,551,358"/>
+<area shape="poly" id="edge42_Node000029_Node000005" title=" " alt="" coords="540,420,524,426,438,463,436,458,522,422,539,415"/>
+<area shape="poly" id="edge44_Node000030_Node000005" title=" " alt="" coords="538,460,472,469,472,463,537,454"/>
+<area shape="poly" id="edge46_Node000031_Node000011" title=" " alt="" coords="992,141,975,148,933,171,895,199,838,248,834,244,891,195,931,167,973,143,990,136"/>
+<area shape="poly" id="edge48_Node000032_Node000011" title=" " alt="" coords="1002,191,975,199,908,224,852,249,850,244,906,219,973,193,1000,186"/>
+<area shape="poly" id="edge50_Node000033_Node000020" title=" " alt="" coords="967,678,902,670,903,665,968,672"/>
+<area shape="rect" id="Node000034" href="$group__webui5.html#gabec26dab8e118ff845c2fde12dc885cf" title="Handles the HTTP request for the status page." alt="" coords="745,772,897,799"/>
+<area shape="poly" id="edge51_Node000033_Node000034" title=" " alt="" coords="1012,718,861,774,859,769,1010,713"/>
+<area shape="rect" id="Node000035" href="$group__util1.html#gada0abcfc99e366656030e908187d6d6d" title="Loads user preferences from EEPROM." alt="" coords="747,696,894,723"/>
+<area shape="poly" id="edge53_Node000033_Node000035" title=" " alt="" coords="967,700,895,706,895,701,967,695"/>
+<area shape="poly" id="edge52_Node000034_Node000021" title=" " alt="" coords="729,791,630,788,523,775,476,761,435,744,437,739,478,756,524,769,630,783,730,786"/>
+<area shape="poly" id="edge54_Node000035_Node000025" title=" " alt="" coords="731,709,668,707,668,702,732,704"/>
+</map>

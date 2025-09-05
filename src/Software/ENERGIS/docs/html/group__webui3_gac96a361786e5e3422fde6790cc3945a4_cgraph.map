@@ -1,0 +1,20 @@
+<map id="read_http_request" name="read_http_request">
+<area shape="rect" id="Node000001" title="Reads a full HTTP request from the socket." alt="" coords="5,56,131,83"/>
+<area shape="rect" id="Node000002" href="$group__webui3.html#ga14822d79d89dda25ee57d00363140f83" title="Parse the Content&#45;Length header case&#45;insensitively." alt="" coords="179,31,341,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,58,163,54,163,59,132,64"/>
+<area shape="rect" id="Node000003" href="$group__net1.html#ga4cfb66f7440a1dd9ac0ee0b933a38c59" title="Receive data from the connected peer." alt="" coords="237,81,283,108"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="132,75,221,87,221,92,131,80"/>
+<area shape="rect" id="Node000004" href="$group__net1.html#gaf7c8a46c623edfab31d9e09788394b2f" title="Close a socket." alt="" coords="422,5,474,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="283,86,340,67,388,42,406,33,408,38,390,46,342,72,284,91"/>
+<area shape="rect" id="Node000005" href="$group__net3.html#ga321fbcdaf88299f5c4022314376e4e74" title="Get Sn_RX_RSR register." alt="" coords="389,56,506,83"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="283,89,373,77,374,82,284,94"/>
+<area shape="rect" id="Node000007" href="$group__net3.html#gadd5918adebaa3744ddc01a76c84a894a" title="Get Sn_TX_FSR register." alt="" coords="391,107,504,133"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="284,95,376,108,375,113,283,100"/>
+<area shape="rect" id="Node000008" href="$group__net3.html#ga98cbcd6c7ba3abf9ab28caa8261886b1" title="It copies data to your buffer from internal RX memory." alt="" coords="395,157,500,184"/>
+<area shape="poly" id="edge8_Node000003_Node000008" title=" " alt="" coords="285,101,399,148,397,153,282,106"/>
+<area shape="rect" id="Node000006" href="$group__net3.html#ga674a6dc857166809ddc71ea8d40d56b8" title="It reads 1 byte value from a register." alt="" coords="571,81,696,108"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="507,75,556,81,556,87,507,80"/>
+<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="505,110,556,103,556,108,505,115"/>
+<area shape="rect" id="Node000009" href="$group__net3.html#ga07f86e715351564afb11298ed7a79381" title="It reads sequence data from registers." alt="" coords="554,157,713,184"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="501,168,539,168,539,173,501,173"/>
+</map>

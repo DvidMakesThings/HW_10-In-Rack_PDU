@@ -27,6 +27,7 @@ extern const int32_t maxData;
 
 #define COMMUNITY "public\0"
 #define COMMUNITY_SIZE (strlen(COMMUNITY))
+#define SNMP_HANDLER "<SNMP Handler>"
 
 /**
  * @brief Initialize the SNMP table with default values.
@@ -45,7 +46,17 @@ void initTable();
 void initial_Trap(uint8_t *managerIP, uint8_t *agentIP);
 
 //------------------------------------------------------------------------------
-// Callbacks for the SNMP agen
+// Callbacks for the SNMP agent
+
+/**
+ * @brief SNMP callback: Return latest die temp sensor voltage as string
+ */
+void get_tempSensorVoltage(void *buf, uint8_t *len);
+
+/**
+ * @brief SNMP callback: Return latest die temp sensor temperature as string
+ */
+void get_tempSensorTemperature(void *buf, uint8_t *len);
 
 /**
  * @brief Get the IP address of the device.
@@ -197,26 +208,44 @@ void get_outlet8_State(void *buf, uint8_t *len);
 void set_outlet8_State(int32_t val);
 
 /**
- * @brief Get the state of all outlets (relays) as an integer.
- * @param buf Pointer to the buffer to store the state.
- * @param len Pointer to the length of the state.
- */
-void get_allOff(void *buf, uint8_t *len);
-
-/**
  * @brief Set the state of all outlets (relays) based on the input value.
  * @param val The desired state (0 or 1).
  */
 void set_allOff(int32_t val);
 
 /**
- * @brief Return 1 if *all* outlets are on, 0 otherwise.
- */
-void get_allOn(void *buf, uint8_t *len);
-
-/**
- * @brief Turn *all* outlets on when val != 0.
+ * @brief Set the state of all outlets (relays) based on the input value.
+ * @param val The desired state (0 or 1).
  */
 void set_allOn(int32_t val);
+
+/**
+ * @brief Read all 8 relay states and return as a bitmask.
+ *
+ * Bit mapping (LSB first):
+ *   bit0→CH1 … bit7→CH8. 1=ON, 0=OFF.
+ * Written as SNMP INTEGER (4 bytes); mask is in the low byte.
+ *
+ * @param buf Output buffer (>=4 bytes).
+ * @param len Output length (set to 4).
+ * @return void
+ */
+void get_allState(void *buf, uint8_t *len);
+
+/**
+ * @brief SNMP getter for “all off” OID. Returns the same bitmask as get_allState().
+ * @param buf Output buffer.
+ * @param len Output length.
+ * @return void
+ */
+void get_allOff(void *buf, uint8_t *len);
+
+/**
+ * @brief SNMP getter for “all on” OID. Returns the same bitmask as get_allState().
+ * @param buf Output buffer.
+ * @param len Output length.
+ * @return void
+ */
+void get_allOn(void *buf, uint8_t *len);
 
 #endif

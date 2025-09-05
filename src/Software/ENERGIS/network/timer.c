@@ -1,4 +1,12 @@
 /**
+ * @file timer.c
+ * @defgroup net2 2. Timer
+ * @ingroup network
+ * @brief Timer and delay utilities for WIZnet chips.
+ * @{
+ */
+
+/**
  * Copyright (c) 2021 WIZnet Co.,Ltd
  *
  * SPDX-License-Identifier: BSD-3-Clause
@@ -30,22 +38,16 @@ void (*callback_ptr)(void);
  * ----------------------------------------------------------------------------------------------------
  */
 /* Timer */
-void wizchip_1ms_timer_initialize(void (*callback)(void))
-{
+void wizchip_1ms_timer_initialize(void (*callback)(void)) {
     callback_ptr = callback;
     add_repeating_timer_us(-1000, wizchip_1ms_timer_callback, NULL, &g_timer);
 }
 
-bool wizchip_1ms_timer_callback(struct repeating_timer *t)
-{
-    if (callback_ptr != NULL)
-    {
+bool wizchip_1ms_timer_callback(struct repeating_timer *t) {
+    if (callback_ptr != NULL) {
         callback_ptr();
     }
 }
 
 /* Delay */
-void wizchip_delay_ms(uint32_t ms)
-{
-    sleep_ms(ms);
-}
+void wizchip_delay_ms(uint32_t ms) { sleep_ms(ms); }

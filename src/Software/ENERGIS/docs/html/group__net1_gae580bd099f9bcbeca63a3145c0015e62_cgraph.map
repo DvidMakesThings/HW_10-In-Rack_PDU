@@ -1,0 +1,15 @@
+<map id="recvfrom" name="recvfrom">
+<area shape="rect" id="Node000001" title="Receive datagram of UDP or MACRAW." alt="" coords="5,81,78,108"/>
+<area shape="rect" id="Node000002" href="$group__net1.html#gaf7c8a46c623edfab31d9e09788394b2f" title="Close a socket." alt="" coords="158,5,210,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="62,78,124,42,143,33,145,38,127,46,65,83"/>
+<area shape="rect" id="Node000003" href="$group__net3.html#ga321fbcdaf88299f5c4022314376e4e74" title="Get Sn_RX_RSR register." alt="" coords="126,56,243,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="78,86,110,80,111,85,79,91"/>
+<area shape="rect" id="Node000005" href="$group__net3.html#ga98cbcd6c7ba3abf9ab28caa8261886b1" title="It copies data to your buffer from internal RX memory." alt="" coords="132,107,237,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="79,98,117,105,116,111,78,104"/>
+<area shape="rect" id="Node000007" href="$group__net3.html#gaaaae8c46f0d8745e3f474c7b14feaad6" title="It discard the received data in RX memory." alt="" coords="127,157,242,184"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="65,106,127,143,137,148,134,153,124,148,62,111"/>
+<area shape="rect" id="Node000004" href="$group__net3.html#ga674a6dc857166809ddc71ea8d40d56b8" title="It reads 1 byte value from a register." alt="" coords="308,56,432,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="244,67,292,67,292,72,244,72"/>
+<area shape="rect" id="Node000006" href="$group__net3.html#ga07f86e715351564afb11298ed7a79381" title="It reads sequence data from registers." alt="" coords="291,107,449,133"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="238,117,275,117,275,123,238,123"/>
+</map>

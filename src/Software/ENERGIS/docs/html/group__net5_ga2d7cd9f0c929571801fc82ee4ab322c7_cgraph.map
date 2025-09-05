@@ -1,0 +1,46 @@
+<map id="print_network_information" name="print_network_information">
+<area shape="rect" id="Node000001" title="Print network information." alt="" coords="5,360,176,387"/>
+<area shape="rect" id="Node000002" href="$group__net6.html#ga315235b3215e09b1230f4fae093a26b3" title="Controls to network." alt="" coords="224,157,305,184"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="102,358,240,194,244,197,106,361"/>
+<area shape="rect" id="Node000009" href="$group__net6.html#ga0ff8fc15549599a1d08dc5ec378779d9" title="Controls to the WIZCHIP." alt="" coords="225,563,304,589"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="106,386,244,549,240,553,102,389"/>
+<area shape="rect" id="Node000003" href="$group__net6.html#ga769cf8bbf0e35981777977e37443c766" title="Get the network information for WIZCHIP." alt="" coords="373,5,502,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="269,156,299,101,322,69,351,42,359,37,362,41,355,46,326,73,303,104,274,158"/>
+<area shape="rect" id="Node000004" href="$group__net6.html#ga0313b6a7ced290f618912bf9de7791ab" title="Get the network mode such WOL, PPPoE, Ping Block, and etc." alt="" coords="368,56,508,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="276,155,308,124,352,92,364,86,366,91,354,97,312,128,280,159"/>
+<area shape="rect" id="Node000005" href="$group__net6.html#ga05f7ba1f50d0cb7a7db4207af9182644" title="Get retry time value(_RTR_) and retry count(_RCR_)." alt="" coords="371,107,504,133"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="304,156,375,135,376,141,306,161"/>
+<area shape="rect" id="Node000006" href="$group__net6.html#gaf581fa9246e4a5621936c7b83d18a0fa" title="Set the network information for WIZCHIP." alt="" coords="373,157,502,184"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="305,168,358,168,358,173,305,173"/>
+<area shape="rect" id="Node000007" href="$group__net6.html#gac4f457e87b5f9db2eccebb790a348e8c" title="Set the network mode such WOL, PPPoE, Ping Block, and etc." alt="" coords="368,208,508,235"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="306,180,376,201,375,206,304,185"/>
+<area shape="rect" id="Node000008" href="$group__net6.html#ga91ca4b3716c77ed5a6a32757c53f7a02" title="Set retry time value(_RTR_) and retry count(_RCR_)." alt="" coords="371,259,504,285"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="280,183,312,214,354,244,366,250,364,255,352,249,308,218,276,186"/>
+<area shape="rect" id="Node000010" href="$group__net6.html#ga41f91261077bc64e240d506923c29181" title="Clear Interrupt of WIZCHIP." alt="" coords="371,309,504,336"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="264,562,270,520,284,462,310,400,329,371,351,346,356,342,359,346,355,350,333,375,315,403,290,464,275,521,269,563"/>
+<area shape="rect" id="Node000011" href="$group__net6.html#gae5858fe7ca3d498e9fec4c3457a02e2e" title="Get Interrupt of WIZCHIP." alt="" coords="369,360,506,387"/>
+<area shape="poly" id="edge10_Node000009_Node000011" title=" " alt="" coords="266,561,275,528,291,484,316,437,351,397,357,392,360,397,355,401,321,440,296,486,280,530,271,563"/>
+<area shape="rect" id="Node000012" href="$group__net6.html#ga54ab95788a37781b24e2279022a8705b" title="Get Interrupt mask of WIZCHIP." alt="" coords="353,411,522,437"/>
+<area shape="poly" id="edge11_Node000009_Node000012" title=" " alt="" coords="269,561,299,506,322,474,351,447,359,442,362,447,355,451,326,478,303,509,274,564"/>
+<area shape="rect" id="Node000013" href="$group__net6.html#ga1bd1977c0db22c93e1841f8353dd919e" title="Initializes WIZCHIP with socket buffer size." alt="" coords="393,461,482,488"/>
+<area shape="poly" id="edge12_Node000009_Node000013" title=" " alt="" coords="278,560,311,533,352,504,378,492,380,496,354,509,314,537,282,564"/>
+<area shape="rect" id="Node000014" href="$group__net6.html#ga4033269f88b0e202837c4c56a1d8d437" title="Reset WIZCHIP by softly." alt="" coords="570,487,696,513"/>
+<area shape="poly" id="edge15_Node000009_Node000014" title=" " alt="" coords="304,561,352,548,458,526,555,509,555,514,459,531,354,553,305,566"/>
+<area shape="rect" id="Node000015" href="$group__net6.html#gafb30bdc1c5333b6bb67bdd20399b0f38" title="Mask or Unmask Interrupt of WIZCHIP." alt="" coords="353,563,522,589"/>
+<area shape="poly" id="edge14_Node000009_Node000015" title=" " alt="" coords="304,573,337,573,337,579,304,579"/>
+<area shape="rect" id="Node000016" href="$group__net6.html#ga4745d0ce5551dd24df8550d4e0602aec" title="Get phy configuration information." alt="" coords="371,613,504,640"/>
+<area shape="poly" id="edge16_Node000009_Node000016" title=" " alt="" coords="305,585,375,606,374,611,304,590"/>
+<area shape="rect" id="Node000017" href="$group__net6.html#ga4236dcf85dce5f74aa27236cd82fa902" title="get the link status of phy in WIZCHIP. No use in W5100" alt="" coords="374,664,502,691"/>
+<area shape="poly" id="edge17_Node000009_Node000017" title=" " alt="" coords="280,588,312,619,354,650,366,655,364,660,352,654,308,623,276,592"/>
+<area shape="rect" id="Node000018" href="$group__net6.html#ga337e51d795347c22d9b5a99a002c8c39" title="get the power mode of PHY in WIZCHIP. No use in W5100" alt="" coords="364,715,511,741"/>
+<area shape="poly" id="edge18_Node000009_Node000018" title=" " alt="" coords="274,588,303,643,326,674,355,701,362,705,359,710,351,705,322,678,299,646,269,591"/>
+<area shape="rect" id="Node000019" href="$group__net6.html#ga46a76bce886968fef0c9ff15f8a104d5" title="Reset phy. Vailid only in W5500." alt="" coords="584,816,682,843"/>
+<area shape="poly" id="edge19_Node000009_Node000019" title=" " alt="" coords="271,589,280,623,296,666,320,712,336,733,354,751,435,776,569,811,568,816,433,781,352,756,332,737,316,715,291,669,275,624,266,591"/>
+<area shape="rect" id="Node000020" href="$group__net6.html#ga60359c86bf85ccd5ca8f6e7cafc849dc" title="Set the phy information for WIZCHIP without power mode." alt="" coords="371,816,504,843"/>
+<area shape="poly" id="edge20_Node000009_Node000020" title=" " alt="" coords="270,589,277,629,292,684,317,743,334,771,355,795,369,806,366,811,351,799,330,774,312,746,286,686,272,630,265,590"/>
+<area shape="rect" id="Node000021" href="$group__net6.html#ga64a4fd3427b5c5f43a3f35fb433cb06c" title="set the power mode of phy inside WIZCHIP. Refer to PHYCFGR in W5500, PHYSTATUS in W5200" alt="" coords="364,867,511,893"/>
+<area shape="poly" id="edge22_Node000009_Node000021" title=" " alt="" coords="268,590,272,639,283,710,294,748,309,786,329,822,355,853,358,856,354,860,351,856,325,825,305,789,289,750,278,711,266,640,263,590"/>
+<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="483,478,555,487,555,493,482,483"/>
+<area shape="poly" id="edge21_Node000020_Node000019" title=" " alt="" coords="505,827,568,827,568,832,505,832"/>
+<area shape="poly" id="edge23_Node000021_Node000019" title=" " alt="" coords="491,863,568,843,569,848,493,869"/>
+</map>

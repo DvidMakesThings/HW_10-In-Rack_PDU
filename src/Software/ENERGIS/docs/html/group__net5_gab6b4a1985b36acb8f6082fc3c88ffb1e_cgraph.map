@@ -1,0 +1,17 @@
+<map id="network_initialize" name="network_initialize">
+<area shape="rect" id="Node000001" title="Initialize network." alt="" coords="5,132,127,159"/>
+<area shape="rect" id="Node000002" href="$group__net6.html#ga315235b3215e09b1230f4fae093a26b3" title="Controls to network." alt="" coords="175,132,256,159"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="127,143,159,143,159,148,127,148"/>
+<area shape="rect" id="Node000003" href="$group__net6.html#ga769cf8bbf0e35981777977e37443c766" title="Get the network information for WIZCHIP." alt="" coords="310,5,439,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="223,130,255,87,277,63,302,42,310,37,313,41,306,46,281,67,259,91,227,133"/>
+<area shape="rect" id="Node000004" href="$group__net6.html#ga0313b6a7ced290f618912bf9de7791ab" title="Get the network mode such WOL, PPPoE, Ping Block, and etc." alt="" coords="304,56,444,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="237,129,303,92,316,86,318,91,305,97,240,134"/>
+<area shape="rect" id="Node000005" href="$group__net6.html#ga05f7ba1f50d0cb7a7db4207af9182644" title="Get retry time value(_RTR_) and retry count(_RCR_)." alt="" coords="308,107,441,133"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="256,136,292,130,292,136,257,142"/>
+<area shape="rect" id="Node000006" href="$group__net6.html#gaf581fa9246e4a5621936c7b83d18a0fa" title="Set the network information for WIZCHIP." alt="" coords="310,157,439,184"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="257,149,295,155,294,161,256,154"/>
+<area shape="rect" id="Node000007" href="$group__net6.html#gac4f457e87b5f9db2eccebb790a348e8c" title="Set the network mode such WOL, PPPoE, Ping Block, and etc." alt="" coords="304,208,444,235"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="240,157,305,194,318,199,316,204,303,198,237,162"/>
+<area shape="rect" id="Node000008" href="$group__net6.html#ga91ca4b3716c77ed5a6a32757c53f7a02" title="Set retry time value(_RTR_) and retry count(_RCR_)." alt="" coords="308,259,441,285"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="227,158,259,200,281,224,306,245,313,249,310,254,302,249,277,228,255,204,223,161"/>
+</map>

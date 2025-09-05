@@ -12,8 +12,9 @@
 #ifndef FONT_8X12_H
 #define FONT_8X12_H
 
-// Font table for 8x12 ASCII characters (ASCII 32 to 126)
-// Each character is defined as an array of 12 bytes.
+/**
+ * @brief Font data for 8x12 pixel characters.
+ */
 const unsigned char font_8x12[95][12] = {
     // 32: " "
     {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},

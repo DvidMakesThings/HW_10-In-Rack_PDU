@@ -1,0 +1,5 @@
+<map id="wizchip_bus_readdata" name="wizchip_bus_readdata">
+<area shape="rect" id="Node000001" title="Default function to read in direct or indirect interface." alt="" coords="218,5,368,32"/>
+<area shape="rect" id="Node000002" href="$group__net6.html#ga67a82552d83baa52a8012ad37af1679a" title="Registers call back function for bus interface." alt="" coords="5,5,170,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="202,21,170,21,170,16,202,16"/>
+</map>

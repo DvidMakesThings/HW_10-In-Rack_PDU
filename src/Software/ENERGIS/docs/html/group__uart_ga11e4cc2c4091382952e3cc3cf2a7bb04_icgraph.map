@@ -1,0 +1,10 @@
+<map id="trim" name="trim">
+<area shape="rect" id="Node000001" title="Remove leading/trailing whitespace and non&#45;printable characters from a string." alt="" coords="515,31,559,57"/>
+<area shape="rect" id="Node000002" href="$group__uart.html#gaf78d8689607ba97d44d30e4e3fc56533" title="Parse and execute a received UART command string." alt="" coords="336,5,467,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="499,40,467,34,468,28,500,35"/>
+<area shape="rect" id="Node000003" href="$group__uart.html#ga6c04950ec7c317f61e910caa14e9e893" title="Main loop for reading and processing UART commands." alt="" coords="150,31,288,57"/>
+<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="500,47,288,47,288,41,500,41"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="321,32,289,37,288,32,320,27"/>
+<area shape="rect" id="Node000004" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,31,102,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="134,47,102,47,102,41,134,41"/>
+</map>

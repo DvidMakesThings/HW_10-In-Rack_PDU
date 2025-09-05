@@ -1,0 +1,22 @@
+<map id="wizchip_getinterrupt" name="wizchip_getinterrupt">
+<area shape="rect" id="Node000001" title="Get Interrupt of WIZCHIP." alt="" coords="861,60,998,87"/>
+<area shape="rect" id="Node000002" href="$group__net6.html#ga0ff8fc15549599a1d08dc5ec378779d9" title="Controls to the WIZCHIP." alt="" coords="734,60,813,87"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="845,76,814,76,814,71,845,71"/>
+<area shape="rect" id="Node000003" href="$group__main03.html#ga4f6be798db44b5ed4b9b12eeb705f6e9" title="Initializes Core 1." alt="" coords="363,48,440,75"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="743,53,716,35,685,21,638,11,601,8,564,13,516,21,471,34,432,50,430,45,469,29,515,16,563,7,601,3,639,5,687,16,718,30,746,48"/>
+<area shape="rect" id="Node000005" href="$group__net5.html#ga2d7cd9f0c929571801fc82ee4ab322c7" title="Print network information." alt="" coords="515,148,686,175"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="746,99,719,120,687,139,658,150,656,145,684,134,716,115,743,95"/>
+<area shape="rect" id="Node000008" href="$group__net4.html#gae25d404142f448dd7832613a26afa687" title="Initialize w5x00 gpio interrupt callback function." alt="" coords="525,81,676,124"/>
+<area shape="poly" id="edge9_Node000002_Node000008" title=" " alt="" coords="719,85,677,93,676,87,718,80"/>
+<area shape="rect" id="Node000009" href="$group__net5.html#ga5e2c21b2be1db8825f7583cad9d9f3dc" title="Initialize WIZchip." alt="" coords="541,31,660,57"/>
+<area shape="poly" id="edge10_Node000002_Node000009" title=" " alt="" coords="718,67,660,57,661,52,719,62"/>
+<area shape="rect" id="Node000004" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,91,102,117"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="348,71,103,101,102,96,347,65"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="529,145,514,139,461,108,419,78,422,73,464,103,517,134,531,140"/>
+<area shape="rect" id="Node000006" href="$group__uart.html#gaf78d8689607ba97d44d30e4e3fc56533" title="Parse and execute a received UART command string." alt="" coords="336,132,467,159"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="499,156,467,153,468,148,500,151"/>
+<area shape="rect" id="Node000007" href="$group__uart.html#ga6c04950ec7c317f61e910caa14e9e893" title="Main loop for reading and processing UART commands." alt="" coords="150,116,288,143"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="321,141,288,138,289,133,321,136"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="134,119,101,114,102,109,135,114"/>
+<area shape="poly" id="edge11_Node000009_Node000003" title=" " alt="" coords="525,53,441,61,441,56,525,48"/>
+</map>

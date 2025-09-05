@@ -1,0 +1,7 @@
+<map id="reg_wizchip_cris_cbfunc" name="reg_wizchip_cris_cbfunc">
+<area shape="rect" id="Node000001" title="Registers call back function for critical section of I/O functions such as WIZCHIP_READ,..." alt="" coords="5,31,170,57"/>
+<area shape="rect" id="Node000002" href="$group__net6.html#ga0670b3769d0093cff1d4539d0067c0f3" title="Default function to enable interrupt." alt="" coords="218,5,347,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,31,202,26,203,32,171,36"/>
+<area shape="rect" id="Node000003" href="$group__net6.html#ga558a7118b574e41fd9edb3de0bbbd4f0" title="Default function to disable interrupt." alt="" coords="222,56,343,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="171,52,207,57,206,62,170,57"/>
+</map>

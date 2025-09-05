@@ -1,0 +1,9 @@
+<map id="mcp_display_write_reg" name="mcp_display_write_reg">
+<area shape="rect" id="Node000001" title="Writes a value to a specified MCP23017 register (guarded)." alt="" coords="335,31,489,57"/>
+<area shape="rect" id="Node000002" href="$group__main03.html#gafe3a0b770057ac7103be4185e393395f" title="Initializes Core 0." alt="" coords="180,5,257,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="319,35,257,26,258,21,320,29"/>
+<area shape="rect" id="Node000004" href="$group__driver6.html#gac00aa0678cb81d6bb6add9d0f8ab0de4" title="Write a value to a register on both MCP23017 chips." alt="" coords="150,56,287,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="320,59,288,63,287,58,319,53"/>
+<area shape="rect" id="Node000003" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,5,102,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="164,21,102,21,102,16,164,16"/>
+</map>

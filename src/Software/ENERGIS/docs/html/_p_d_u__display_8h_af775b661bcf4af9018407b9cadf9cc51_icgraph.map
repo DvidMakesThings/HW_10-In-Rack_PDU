@@ -1,0 +1,8 @@
+<map id="PDU_Display_UpdateStatus" name="PDU_Display_UpdateStatus">
+<area shape="rect" id="Node000001" title="Updates the system status message." alt="" coords="275,5,463,32"/>
+<area shape="rect" id="Node000002" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,5,102,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="259,21,102,21,102,16,259,16"/>
+<area shape="rect" id="Node000003" href="$group__main03.html#gafe3a0b770057ac7103be4185e393395f" title="Initializes Core 0." alt="" coords="150,31,227,57"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="260,37,228,41,227,36,259,31"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="134,36,102,30,103,25,135,31"/>
+</map>

@@ -1,12 +1,14 @@
 /**
  * @file uart_command_handler.h
- * @author DvidMakesThings - David Sipos
- * @brief Header file for UART command handler over stdio (USB-CDC) for ENERGIS PDU.
- * @version 1.0
+ * @brief UART command handler for ENERGIS PDU (10-Inch Rack).
+ * @author David Sipos (DvidMakesThings)
  * @date 2025-03-03
  *
- * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
- * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
+ * Implements command parsing and execution over UART (USB-CDC).
+ * Provides network, system, and EEPROM control via textual commands.
+ *
+ * @copyright Copyright (c) 2025 David Sipos
+ * @version 1.0
  */
 
 #ifndef UART_COMMAND_HANDLER_H
@@ -19,94 +21,139 @@
 #include "pico/multicore.h"
 #include <string.h>
 
+#define UART_CMH_TAG "<UART Command Handler>"
+
 /**
- * @brief Buffer length for UART command input.
- * @param s The string to trim.
+ * @brief Main loop for reading and processing UART commands.
+ *
+ * Reads characters from UART, assembles lines, and executes commands.
  */
 void uart_command_loop(void);
 
 /**
- * @brief Trigger the BOOTSEL mode on the next reboot.
+ * @brief Set flag to enter BOOTSEL mode on next reboot.
  *
- * This function sets a flag to enter BOOTSEL mode on the next reboot.
+ * Triggers the bootloader for firmware update via BOOTSEL.
  */
 void bootsel_trigger(void);
 
 /**
- * @brief Reboot the system.
+ * @brief Immediately reboot the system.
  *
- * This function reboots the system immediately.
+ * Performs a software reset using the watchdog.
  */
 void reboot(void);
 
 /**
- * @brief Dump the EEPROM contents.
+ * @brief Print help information for available commands.
+ * @return None
+ */
+void printHelp(void);
+
+/**
+ * @brief Handle UART SET_CH command.
+ * @param trimmed The trimmed command string.
+ * Parses and executes the SET_CH command to control relay channels.
+ * @return None
+ */
+void handle_uart_set_ch_command(const char *trimmed);
+
+/**
+ * @brief Handle UART GET_CH command.
+ * @param trimmed The trimmed command string.
+ * Parses and executes the GET_CH command to read relay channel states.
+ * @return None
+ */
+void handle_uart_get_ch_command(const char *trimmed);
+
+/**
+ * @brief Dump the contents of EEPROM in formatted hex.
  *
- * This function dumps the entire EEPROM contents in a formatted hex table.
+ * Reads and prints all EEPROM data for inspection.
  */
 void dump_eeprom(void);
 
 /**
- * @brief Set the IP address.
+ * @brief Set the device IP address and reconfigure network.
  *
- * This function sets the IP address of the device.
- * @param ip The IP address to set.
- * @param cmd The command string for logging.
+ * Updates the IP address, saves to EEPROM, and applies to Wiznet chip.
+ *
+ * @param ip The new IP address (dotted-decimal string).
+ * @param cmd The full command string.
  */
 void set_ip(const char *ip, const char *cmd);
 
 /**
- * @brief Set the subnet mask of the device.
+ * @brief Set the subnet mask and reconfigure network.
  *
- * This function sets the subnet mask of the device and reconfigures the Wiznet chip.
- * @param mask The new subnet mask in dotted-decimal format.
- * @param cmd The command string containing the subnet mask.
+ * Updates the subnet mask, saves to EEPROM, and applies to Wiznet chip.
+ *
+ * @param mask The new subnet mask (dotted-decimal string).
+ * @param cmd The full command string.
  */
 void set_subnet(const char *mask, const char *cmd);
 
 /**
- * @brief Set the gateway address of the device.
- * This function sets the gateway address of the device and reconfigures the Wiznet chip.
- * @param gw The new gateway address in dotted-decimal format.
- * @param cmd The command string containing the gateway address.
+ * @brief Set the gateway address and reconfigure network.
+ *
+ * Updates the gateway, saves to EEPROM, and applies to Wiznet chip.
+ *
+ * @param gw The new gateway address (dotted-decimal string).
+ * @param cmd The full command string.
  */
 void set_gateway(const char *gw, const char *cmd);
 
 /**
- * @brief Set the DNS server address of the device.
- * This function sets the DNS server address of the device and reconfigures the Wiznet chip.
- * @param dns The new DNS server address in dotted-decimal format.
- * @param cmd The command string containing the DNS server address.
+ * @brief Set the DNS server address and reconfigure network.
+ *
+ * Updates the DNS address, saves to EEPROM, and applies to Wiznet chip.
+ *
+ * @param dns The new DNS address (dotted-decimal string).
+ * @param cmd The full command string.
  */
 void set_dns(const char *dns, const char *cmd);
 
 /**
- * @brief Set the network configuration of the device.
- * This function sets the network configuration including IP, subnet, gateway, and DNS.
- * @param full The full command string.
- * @param cmd The command string containing the network configuration.
+ * @brief Set full network configuration (IP, subnet, gateway, DNS).
+ *
+ * Updates all network parameters, saves to EEPROM, and applies to Wiznet chip.
+ *
+ * @param full_cmd The full command string with parameters.
+ * @param cmd The full command string.
  */
-void set_network(const char *full, const char *cmd);
+void set_network(const char *full_cmd, const char *cmd);
 
 /**
- * @brief Get system information.
+ * @brief Print system information (clock frequencies, voltage).
  *
- * This function retrieves and prints system information such as clock frequencies and voltage.
+ * Retrieves and displays system status for diagnostics.
  */
 void getSysInfo(void);
 
 /**
- * @brief Test and print values from HLW8032 channels.
- * This function reads the HLW8032 data for all channels and prints the results.
- * This function iterates through all 8 channels and prints the voltage, current, and power
- * readings.
+ * @brief Read and print HLW8032 sensor values for all channels.
+ *
+ * Iterates through all 8 HLW8032 channels and prints voltage, current, and power.
  */
-void test_hlw8032_readings(void);
+void hlw8032_readings(void);
 
 /**
- * @brief Test and print values from HLW8032 channels.
- * This function reads the HLW8032 data for a specific channel and prints the results.
+ * @brief Read and print HLW8032 sensor values for a specific channel.
+ *
+ * Reads voltage, current, and power for the given HLW8032 channel.
+ *
  * @param channel Channel index (1–8) to read from.
  */
-void test_hlw8032_read_channel(uint8_t channel);
+void hlw8032_read_channel(uint8_t channel);
+
+/**
+ * @brief Read and print the die temperature.
+ *
+ * Reads the die temperature from the ADC and prints it.
+ * Also converts the raw ADC value to a temperature in Celsius.
+ *
+ * @return None
+ */
+void read_dieTemp(void);
+
 #endif // UART_COMMAND_HANDLER_H

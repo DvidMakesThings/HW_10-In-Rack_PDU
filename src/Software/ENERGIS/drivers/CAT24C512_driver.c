@@ -1,10 +1,13 @@
 /**
  * @file CAT24C512_driver.c
  * @author DvidMakesThings - David Sipos
+ * @defgroup driver2 2. CAT24C512 EEPROM Driver
+ * @ingroup drivers
  * @brief Implementation of CAT24C512 I2C EEPROM Driver
+ * @{
  * @version 1.0
  * @date 2025-03-03
- * 
+ *
  * This file implements the driver for CAT24C512 EEPROM, a 512Kbit (64KB) I2C EEPROM.
  * The driver provides functions for initialization, reading and writing data, and
  * utility functions for debugging EEPROM contents.
@@ -23,7 +26,7 @@
 
 /**
  * @brief Initializes I2C1 for EEPROM communication.
- * 
+ *
  * This function configures the I2C1 interface with a 400 kHz clock frequency (Fast Mode)
  * for communication with the CAT24C512 EEPROM. It also sets up GPIO pins 2 and 3 as SDA and SCL
  * respectively, and enables pull-up resistors on these pins.
@@ -38,11 +41,11 @@ void CAT24C512_Init(void) {
 
 /**
  * @brief Writes a byte to the EEPROM.
- * 
+ *
  * This function writes a single byte to the specified address in the EEPROM.
  * It handles the 16-bit addressing required by the CAT24C512 and automatically
  * introduces a 5ms delay to allow the write cycle to complete.
- * 
+ *
  * @param addr 16-bit memory address (0x0000 - 0xFFFF).
  * @param data Byte to write to the specified address.
  * @return 0 if successful, -1 if the I2C write operation failed.
@@ -58,11 +61,11 @@ int CAT24C512_WriteByte(uint16_t addr, uint8_t data) {
 
 /**
  * @brief Reads a byte from the EEPROM.
- * 
+ *
  * This function reads a single byte from the specified address in the EEPROM.
  * It first sends the 16-bit address to the EEPROM followed by a repeated start
  * condition, then reads the byte from the device.
- * 
+ *
  * @param addr 16-bit memory address (0x0000 - 0xFFFF).
  * @return The byte read from the specified address.
  */
@@ -78,12 +81,12 @@ uint8_t CAT24C512_ReadByte(uint16_t addr) {
 
 /**
  * @brief Writes a buffer of data to the EEPROM.
- * 
+ *
  * This function writes a sequence of bytes to the EEPROM starting at the specified address.
  * It automatically handles page boundaries by breaking the write operation into multiple
  * chunks of CAT24C512_PAGE_SIZE (typically 128 bytes) or less. A 5ms delay is added after
  * each page write to allow the write cycle to complete.
- * 
+ *
  * @param addr 16-bit starting memory address (0x0000 - 0xFFFF).
  * @param data Pointer to the source data buffer.
  * @param len Number of bytes to write.
@@ -111,11 +114,11 @@ int CAT24C512_WriteBuffer(uint16_t addr, const uint8_t *data, uint16_t len) {
 
 /**
  * @brief Reads a buffer of data from the EEPROM.
- * 
+ *
  * This function reads a sequence of bytes from the EEPROM starting at the specified address.
  * It first sends the 16-bit address to the EEPROM followed by a repeated start condition,
  * then reads the requested number of bytes into the provided buffer.
- * 
+ *
  * @param addr 16-bit starting memory address (0x0000 - 0xFFFF).
  * @param buffer Pointer to the destination buffer where read data will be stored.
  * @param len Number of bytes to read (buffer must be at least this size).
@@ -129,10 +132,10 @@ void CAT24C512_ReadBuffer(uint16_t addr, uint8_t *buffer, uint32_t len) {
 
 /**
  * @brief Dumps the entire EEPROM contents into a buffer.
- * 
+ *
  * This function reads the entire 64KB of the EEPROM memory and stores it in the provided buffer.
  * This can be useful for backing up EEPROM contents or for debugging purposes.
- * 
+ *
  * @param buffer Pointer to a buffer of at least 65536 bytes (64KB) to store the EEPROM contents.
  *               The caller must ensure the buffer is large enough.
  */
@@ -142,18 +145,19 @@ void CAT24C512_Dump(uint8_t *buffer) {
 
 /**
  * @brief Dumps the EEPROM contents in a formatted hex table.
- * 
+ *
  * This function reads the entire EEPROM memory and outputs its contents as a formatted
  * hexadecimal table to the standard output (typically UART). The output is organized
  * as 16-byte rows with address headers and column headers for easier reading.
  * The output is delimited by "EE_DUMP_START" and "EE_DUMP_END" markers.
- * 
+ *
  * Output format example:
  * ```
  * EE_DUMP_START
- * Addr    00      01      02      03      04      05      06      07      08      09      0A      0B      0C      0D      0E      0F      
- * 0x0000  FF      FF      FF      FF      FF      FF      FF      FF      FF      FF      FF      FF      FF      FF      FF      FF      
- * 0x0010  FF      FF      FF      FF      FF      FF      FF      FF      FF      FF      FF      FF      FF      FF      FF      FF      
+ * Addr    00      01      02      03      04      05      06      07      08      09      0A 0B 0C
+ * 0D      0E      0F 0x0000  FF      FF      FF      FF      FF      FF      FF      FF      FF FF
+ * FF      FF      FF      FF      FF      FF 0x0010  FF      FF      FF      FF      FF      FF FF
+ * FF      FF      FF      FF      FF      FF      FF      FF      FF
  * ...
  * EE_DUMP_END
  * ```

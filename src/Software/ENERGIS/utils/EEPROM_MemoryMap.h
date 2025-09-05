@@ -129,10 +129,11 @@ typedef struct {
 /**
  * @brief Default values for EEPROM initialization.
  */
-#define DEFAULT_SN "SN-369366060325"
-
 static const uint8_t DEFAULT_RELAY_STATUS[8] = {0}; /**< All relays OFF */
 
+/**
+ * @brief Default network settings.
+ */
 static const networkInfo DEFAULT_NETWORK = {
     .ip = {192, 168, 0, 11},                     // IP Address
     .gw = {192, 168, 0, 1},                      // Gateway
@@ -142,6 +143,9 @@ static const networkInfo DEFAULT_NETWORK = {
     .dhcp = EEPROM_NETINFO_STATIC                // Static IP Mode
 };
 
+/**
+ * @brief Default calibration data.
+ */
 static const uint8_t DEFAULT_CALIB_DATA[64] = {0};  /**< Default calibration data */
 static const uint8_t DEFAULT_ENERGY_DATA[64] = {0}; /**< Default energy monitoring data */
 static const uint8_t DEFAULT_LOG_DATA[64] = {0};    /**< Default event log data */
@@ -151,36 +155,144 @@ static const uint8_t DEFAULT_USER_PREF[64] = {0};   /**< Default user preference
 //                      EEPROM READ/WRITE FUNCTIONS
 // ======================================================================
 
-/** @brief System Info */
+/**
+ * @brief Erases the entire EEPROM by writing 0xFF to all bytes.
+ * This is destructive and should only be used for debugging or full resets.
+ * @return 0 on success, -1 on error.
+ */
+int EEPROM_EraseAll(void);
+
+/**
+ * @brief Writes default device name and location directly from macros into EEPROM.
+ *        Writes full userPrefInfo struct layout and CRC to EEPROM_USER_PREF_START.
+ *
+ * @return 0 on success, -1 on error.
+ */
+int EEPROM_WriteDefaultNameLocation(void);
+
+/** @brief System Info
+ *  Stores system-related information such as serial number and software version.
+ *  @param data Pointer to system info data.
+ *  @param len Data length (must be <= EEPROM_SYS_INFO_SIZE).
+ *  @return 0 on success, -1 on error.
+ */
 int EEPROM_WriteSystemInfo(const uint8_t *data, size_t len);
+
+/**
+ * @brief Reads system info from EEPROM.
+ * @param data Pointer to buffer to store system info.
+ * @param len Data length (must be <= EEPROM_SYS_INFO_SIZE).
+ * @return 0 on success, -1 on error.
+ */
 int EEPROM_ReadSystemInfo(uint8_t *data, size_t len);
 
-/** @brief Factory Default Settings */
+/** @brief Factory Default Settings
+ *  This function resets all EEPROM sections to their default values.
+ *  @return 0 on success, -1 on error.
+ */
 int EEPROM_WriteFactoryDefaults(void);
+
+/**
+ * @brief Reads and validates factory defaults stored in EEPROM.
+ * If any section is invalid, it restores the defaults.
+ * @return 0 if all defaults are valid, -1 if defaults were restored.
+ */
 int EEPROM_ReadFactoryDefaults(void);
 
-/** @brief User Output Configuration */
+/**
+ * @brief Writes user output configuration to EEPROM.
+ * @param data Pointer to user output data.
+ * @param len Data length (must be <= EEPROM_USER_OUTPUT_SIZE).
+ * @return 0 on success, -1 on error.
+ */
 int EEPROM_WriteUserOutput(const uint8_t *data, size_t len);
+
+/**
+ * @brief Reads user output configuration from EEPROM.
+ * @param data Pointer to buffer to store user output data.
+ * @param len Data length (must be <= EEPROM_USER_OUTPUT_SIZE).
+ * @return 0 on success, -1 on error.
+ */
 int EEPROM_ReadUserOutput(uint8_t *data, size_t len);
 
-/** @brief User Network Settings */
+/**
+ * @brief Writes user network configuration to EEPROM.
+ * @param data Pointer to user network data.
+ * @param len Data length (must be <= EEPROM_USER_NETWORK_SIZE).
+ * @return 0 on success, -1 on error.
+ */
 int EEPROM_WriteUserNetwork(const uint8_t *data, size_t len);
+
+/**
+ * @brief Reads user network configuration from EEPROM.
+ * @param data Pointer to buffer to store user network data.
+ * @param len Data length (must be <= EEPROM_USER_NETWORK_SIZE).
+ * @return 0 on success, -1 on error.
+ */
 int EEPROM_ReadUserNetwork(uint8_t *data, size_t len);
 
-/** @brief Sensor Calibration */
+/**
+ * @brief Writes sensor calibration data to EEPROM.
+ * @param data Pointer to sensor calibration data.
+ * @param len Data length (must be <= EEPROM_SENSOR_CALIBRATION_SIZE).
+ * @return 0 on success, -1 on error.
+ */
 int EEPROM_WriteSensorCalibration(const uint8_t *data, size_t len);
+
+/**
+ * @brief Reads sensor calibration data from EEPROM.
+ * @param data Pointer to buffer to store sensor calibration data.
+ * @param len Data length (must be <= EEPROM_SENSOR_CALIBRATION_SIZE).
+ * @return 0 on success, -1 on error.
+ */
 int EEPROM_ReadSensorCalibration(uint8_t *data, size_t len);
 
-/** @brief Energy Monitoring Data */
+/**
+ * @brief Writes energy monitoring data to EEPROM.
+ * @param data Pointer to energy monitoring data.
+ * @param len Data length (must be <= EEPROM_ENERGY_MONITORING_SIZE).
+ * @return 0 on success, -1 on error.
+ */
 int EEPROM_WriteEnergyMonitoring(const uint8_t *data, size_t len);
+
+/**
+ * @brief Reads energy monitoring data from EEPROM.
+ * @param data Pointer to buffer to store energy monitoring data.
+ * @param len Data length (must be <= EEPROM_ENERGY_MONITORING_SIZE).
+ * @return 0 on success, -1 on error.
+ */
 int EEPROM_ReadEnergyMonitoring(uint8_t *data, size_t len);
 
-/** @brief Event Logs */
+/**
+ * @brief Writes event logs to EEPROM.
+ * @param data Pointer to event log data.
+ * @param len Data length (must be <= EEPROM_EVENT_LOG_SIZE).
+ * @return 0 on success, -1 on error.
+ */
 int EEPROM_WriteEventLogs(const uint8_t *data, size_t len);
+
+/**
+ * @brief Reads event logs from EEPROM.
+ * @param data Pointer to buffer to store event log data.
+ * @param len Data length (must be <= EEPROM_EVENT_LOG_SIZE).
+ * @return 0 on success, -1 on error.
+ */
 int EEPROM_ReadEventLogs(uint8_t *data, size_t len);
 
-/** @brief User Preferences */
+/**
+ * @brief Writes user preferences to EEPROM.
+ * @param data Pointer to user preferences data.
+ * @param len Data length (must be <= EEPROM_USER_PREFS_SIZE).
+ * @return 0 on success, -1 on error.
+ */
 int EEPROM_WriteUserPreferences(const uint8_t *data, size_t len);
+
+/**
+ * @brief Reads user preferences from EEPROM.
+ * @param data Pointer to buffer to store user preferences data.
+ * @param len Data length (must be <= EEPROM_USER_PREFS_SIZE).
+ * @return 0 on success, -1 on error.
+ */
 int EEPROM_ReadUserPreferences(uint8_t *data, size_t len);
 
 // ======================================================================

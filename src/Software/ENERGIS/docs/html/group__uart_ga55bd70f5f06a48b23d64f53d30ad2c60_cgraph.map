@@ -1,0 +1,7 @@
+<map id="getSysInfo" name="getSysInfo">
+<area shape="rect" id="Node000001" title="Print system information (core voltage, clocks, serial, firmware)." alt="" coords="5,5,90,32"/>
+<area shape="rect" id="Node000002" href="$group__util1.html#gab6868e2a26481771ef8ed81d4e909814" title="Reads system info from EEPROM." alt="" coords="138,5,322,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="90,16,122,16,122,21,90,21"/>
+<area shape="rect" id="Node000003" href="$group__driver2.html#ga32e8f6f7cd5d0fba27b004b8c2637ea4" title="Reads a buffer of data from the EEPROM." alt="" coords="370,5,534,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="322,16,354,16,354,21,322,21"/>
+</map>

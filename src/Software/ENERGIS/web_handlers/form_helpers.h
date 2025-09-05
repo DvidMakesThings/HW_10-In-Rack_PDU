@@ -1,5 +1,5 @@
 /**
- * @file control_handler.h
+ * @file form_helpers.h
  * @author DvidMakesThings - David Sipos
  * @brief Helper functions for handling form data in HTTP requests.
  * @version 1.0
@@ -12,6 +12,7 @@
 #ifndef FORM_HELPERS_H
 #define FORM_HELPERS_H
 
+#include <stdbool.h>
 #include <stddef.h>
 
 /**
@@ -23,7 +24,8 @@ char *get_form_value(const char *body, const char *key);
 
 /**
  * @brief Decode '+'→' ' and "%XX"→char, in‐place.
- * @param c The hexadecimal character.
+ * @param s The string to decode.
+ * @return None
  */
 void urldecode(char *s);
 

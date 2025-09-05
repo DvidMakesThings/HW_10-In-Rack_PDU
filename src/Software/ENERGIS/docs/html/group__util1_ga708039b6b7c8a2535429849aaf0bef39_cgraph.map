@@ -1,0 +1,7 @@
+<map id="EEPROM_ReadUserPrefsWithChecksum" name="EEPROM_ReadUserPrefsWithChecksum">
+<area shape="rect" id="Node000001" title="Reads user preferences from EEPROM." alt="" coords="5,23,209,65"/>
+<area shape="rect" id="Node000002" href="$group__util1.html#gac234fd9aa26c0f3a24a54afa80ca8035" title="Calculates the CRC&#45;8 checksum of the given data." alt="" coords="286,5,392,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="209,30,270,23,271,29,209,36"/>
+<area shape="rect" id="Node000003" href="$group__driver2.html#ga32e8f6f7cd5d0fba27b004b8c2637ea4" title="Reads a buffer of data from the EEPROM." alt="" coords="257,56,421,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="209,52,242,56,241,61,209,58"/>
+</map>

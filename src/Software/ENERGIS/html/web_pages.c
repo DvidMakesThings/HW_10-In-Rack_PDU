@@ -149,7 +149,7 @@ const char control_html[] =
     "href=\"programming_manual.html\">Programming Manual</a></li></ul></nav><main "
     "class=\"main-content\"><h2>Control</h2><p>Manage power channels and monitor real-time "
     "data.</p><form method=\"post\" action=\"/control\" "
-    "onsubmit=\"applyChanges(event)\"><table><tr><th>Chan</th><th>Switch</th><th>Voltage "
+    "onsubmit=\"applyChanges(event)\"><table><tr><th>Channel</th><th>Switch</th><th>Voltage "
     "(V)</th><th>Current (A)</th><th>Uptime (s)</th><th>Power "
     "(W)</th></tr><tr><td>1</td><td><label class=\"switch\"><input id=\"toggle-1\" "
     "type=\"checkbox\" name=\"channel1\" onclick=\"toggleChannel(1)\"><span "

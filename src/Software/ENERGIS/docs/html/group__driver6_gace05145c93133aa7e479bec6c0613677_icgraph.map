@@ -1,0 +1,49 @@
+<map id="set_relay_state_with_tag" name="set_relay_state_with_tag">
+<area shape="rect" id="Node000001" title="Write both MCPs for one pin only if needed, and report asymmetry, with logging." alt="" coords="900,351,1066,377"/>
+<area shape="rect" id="Node000002" href="$group__driver1.html#ga81a3ea6eb9a8a16aa49da9543e4f3bd4" title="Execute SET short&#45;press action: toggle the selected relay." alt="" coords="710,5,834,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="976,335,964,275,942,197,925,156,905,116,880,79,850,46,833,34,836,30,854,42,884,76,910,113,930,154,947,196,970,274,981,334"/>
+<area shape="rect" id="Node000007" href="$group__webui1.html#ga204196bd085f7a778067392b56920c59" title="Handles the HTTP request for the control page. Uses set_relay_state_tag() for idempotent writes + log..." alt="" coords="694,56,850,83"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="973,337,959,285,935,221,899,154,877,124,850,97,833,85,835,81,854,93,881,120,904,151,940,218,965,284,979,335"/>
+<area shape="rect" id="Node000010" href="$group__uart.html#gaba75c17603725c8ac0d758f31229b240" title="Handle UART SET_CH command. Uses set_relay_state_tag(&quot;UART&quot;, ...) to log who wrote." alt="" coords="705,107,839,149"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="968,337,950,299,924,253,891,205,850,163,834,152,837,148,854,159,895,202,929,250,955,297,973,335"/>
+<area shape="rect" id="Node000013" href="$group__driver6.html#gae49e94d74eefe80449e590bf8798fb17" title="Periodic asymmetry guardian for the two MCP23017s." alt="" coords="692,173,852,200"/>
+<area shape="poly" id="edge14_Node000001_Node000013" title=" " alt="" coords="964,339,918,276,886,243,851,214,828,203,831,198,853,210,890,239,922,273,968,336"/>
+<area shape="rect" id="Node000014" href="$group__snmp2.html#gab580ecbc111f7cd62a6221c8c3cb2097" title="Set the state of all outlets (relays) OFF when val == 1." alt="" coords="734,224,810,251"/>
+<area shape="poly" id="edge15_Node000001_Node000014" title=" " alt="" coords="955,342,908,303,851,265,809,249,811,244,853,260,911,299,958,338"/>
+<area shape="rect" id="Node000015" href="$group__snmp2.html#ga02b1776dfb345252500b75e80306e42e" title="Turn all outlets on when val != 0." alt="" coords="734,275,810,301"/>
+<area shape="poly" id="edge16_Node000001_Node000015" title=" " alt="" coords="933,347,851,316,810,302,811,297,853,311,935,342"/>
+<area shape="rect" id="Node000016" href="$group__snmp2.html#gade035c518f601160052fdb2b9a9e07d8" title="Set the state of the outlet (relay) based on the input value." alt="" coords="710,325,834,352"/>
+<area shape="poly" id="edge17_Node000001_Node000016" title=" " alt="" coords="884,355,833,349,834,343,885,350"/>
+<area shape="rect" id="Node000017" href="$group__snmp2.html#gaaf4b3c8e88f82cff6c131736426720d2" title="Set the state of outlet 2 (relay) based on the input value." alt="" coords="710,376,834,403"/>
+<area shape="poly" id="edge18_Node000001_Node000017" title=" " alt="" coords="885,378,834,385,833,379,884,373"/>
+<area shape="rect" id="Node000018" href="$group__snmp2.html#gaba61710e5dc590d5c862562112d59338" title="Set the state of outlet 3 (relay) based on the input value." alt="" coords="710,427,834,453"/>
+<area shape="poly" id="edge19_Node000001_Node000018" title=" " alt="" coords="935,386,853,417,819,429,817,423,851,412,933,381"/>
+<area shape="rect" id="Node000019" href="$group__snmp2.html#gaf0d2f8746f0e3ef405ff4c684888a34b" title="Set the state of outlet 4 (relay) based on the input value." alt="" coords="710,477,834,504"/>
+<area shape="poly" id="edge20_Node000001_Node000019" title=" " alt="" coords="958,390,911,429,853,468,827,479,824,474,851,463,908,425,955,386"/>
+<area shape="rect" id="Node000020" href="$group__snmp2.html#ga06d40e363a3333a7e10223aaa792eef0" title="Set the state of outlet 5 (relay) based on the input value." alt="" coords="710,528,834,555"/>
+<area shape="poly" id="edge21_Node000001_Node000020" title=" " alt="" coords="968,392,922,455,890,489,853,518,831,530,828,525,851,514,886,485,918,452,964,389"/>
+<area shape="rect" id="Node000021" href="$group__snmp2.html#ga085a305fa41615e4791de5e3884226af" title="Set the state of outlet 6 (relay) based on the input value." alt="" coords="710,579,834,605"/>
+<area shape="poly" id="edge22_Node000001_Node000021" title=" " alt="" coords="974,393,956,432,930,479,896,527,854,569,834,580,831,576,850,565,892,524,926,476,951,430,969,391"/>
+<area shape="rect" id="Node000022" href="$group__snmp2.html#gac79033b7ad83d07369d0e2b5f4d49b9d" title="Set the state of outlet 7 (relay) based on the input value." alt="" coords="710,629,834,656"/>
+<area shape="poly" id="edge23_Node000001_Node000022" title=" " alt="" coords="978,393,962,442,938,503,902,565,879,594,854,619,835,631,832,626,850,615,875,590,897,562,933,500,957,440,972,392"/>
+<area shape="rect" id="Node000023" href="$group__snmp2.html#gabee06a703d75e5a63c2bde983c5fab2f" title="Set the state of outlet 8 (relay) based on the input value." alt="" coords="710,680,834,707"/>
+<area shape="poly" id="edge24_Node000001_Node000023" title=" " alt="" coords="980,393,968,451,945,525,928,564,908,603,883,638,854,670,835,682,832,678,850,666,879,635,903,600,923,562,940,523,963,450,975,392"/>
+<area shape="rect" id="Node000003" href="$group__driver1.html#ga60c16d2b5323dc486ad6208a244ed7ae" title="Unified GPIO interrupt handler for PLUS, MINUS, and SET buttons." alt="" coords="535,5,613,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="694,21,614,21,614,16,694,16"/>
+<area shape="rect" id="Node000004" href="$group__driver1.html#ga71b68eb02e1df1dada387c9fbb7bbb37" title="Initialize button GPIO interrupts and synchronize UI selection." alt="" coords="336,5,456,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="519,21,457,21,457,16,519,16"/>
+<area shape="rect" id="Node000005" href="$group__main03.html#gafe3a0b770057ac7103be4185e393395f" title="Initializes Core 0." alt="" coords="180,5,258,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="321,21,258,21,258,16,321,16"/>
+<area shape="rect" id="Node000006" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,56,102,83"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="166,37,100,58,98,53,165,32"/>
+<area shape="rect" id="Node000008" href="$group__webui3.html#ga52702a4dcaff4540a9ddd10e4d5f4525" title="Processes incoming HTTP requests." alt="" coords="504,56,644,83"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="679,72,644,72,644,67,679,67"/>
+<area shape="rect" id="Node000009" href="$group__main02.html#gad25e95c5993e865b3f941472b7a328e0" title="Core 1 task for handling SNMP and HTTP server." alt="" coords="354,56,439,83"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="489,72,439,72,439,67,489,67"/>
+<area shape="poly" id="edge9_Node000009_Node000006" title=" " alt="" coords="338,72,102,72,102,67,338,67"/>
+<area shape="rect" id="Node000011" href="$group__uart.html#gaf78d8689607ba97d44d30e4e3fc56533" title="Parse and execute a received UART command string." alt="" coords="508,113,640,140"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="689,130,640,130,640,124,690,125"/>
+<area shape="rect" id="Node000012" href="$group__uart.html#ga6c04950ec7c317f61e910caa14e9e893" title="Main loop for reading and processing UART commands." alt="" coords="150,108,288,135"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="493,128,289,125,289,120,493,123"/>
+<area shape="poly" id="edge13_Node000012_Node000006" title=" " alt="" coords="159,105,98,86,99,81,161,100"/>
+</map>

@@ -1,7 +1,10 @@
 /**
  * @file form_helpers.c
  * @author DvidMakesThings - David Sipos
+ * @defgroup webui2 2. Form Helpers
+ * @ingroup webui
  * @brief Helper functions for handling form data in HTTP requests.
+ * @{
  * @version 1.0
  * @date 2025-05-23
  *
@@ -54,6 +57,7 @@ char *get_form_value(const char *body, const char *key) {
 /**
  * @brief Decode '+'→' ' and "%XX"→char, in‐place.
  * @param c The hexadecimal character.
+ * @return None
  */
 void urldecode(char *s) {
     char *dst = s, *src = s;
@@ -71,3 +75,6 @@ void urldecode(char *s) {
     }
     *dst = '\0';
 }
+/**
+ * @}
+ */

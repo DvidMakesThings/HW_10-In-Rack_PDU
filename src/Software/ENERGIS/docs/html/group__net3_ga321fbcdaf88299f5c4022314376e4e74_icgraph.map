@@ -1,0 +1,21 @@
+<map id="getSn_RX_RSR" name="getSn_RX_RSR">
+<area shape="rect" id="Node000001" title="Get Sn_RX_RSR register." alt="" coords="777,81,894,108"/>
+<area shape="rect" id="Node000002" href="$group__net1.html#ga631998ae17cbf099b0071f20c88ce5cf" title="get socket options" alt="" coords="644,5,729,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="793,76,713,35,716,30,795,71"/>
+<area shape="rect" id="Node000003" href="$group__net1.html#ga4cfb66f7440a1dd9ac0ee0b933a38c59" title="Receive data from the connected peer." alt="" coords="663,56,710,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="761,85,710,76,711,71,762,79"/>
+<area shape="rect" id="Node000008" href="$group__net1.html#gae580bd099f9bcbeca63a3145c0015e62" title="Receive datagram of UDP or MACRAW." alt="" coords="650,107,722,133"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="762,110,723,117,722,111,761,105"/>
+<area shape="rect" id="Node000009" href="$group__snmp__module.html#ga85191eecbdb50efa106d1d76339d68dd" title=" " alt="" coords="490,107,576,133"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="801,118,767,135,730,148,689,153,648,151,576,136,577,131,648,146,689,147,728,143,765,130,799,114"/>
+<area shape="rect" id="Node000004" href="$group__webui3.html#gac96a361786e5e3422fde6790cc3945a4" title="Reads a full HTTP request from the socket." alt="" coords="470,56,596,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="648,72,596,72,596,67,648,67"/>
+<area shape="rect" id="Node000005" href="$group__webui3.html#ga52702a4dcaff4540a9ddd10e4d5f4525" title="Processes incoming HTTP requests." alt="" coords="283,56,422,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="455,72,423,72,423,67,455,67"/>
+<area shape="rect" id="Node000006" href="$group__main02.html#gad25e95c5993e865b3f941472b7a328e0" title="Core 1 task for handling SNMP and HTTP server." alt="" coords="150,81,235,108"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="268,85,236,91,235,85,267,80"/>
+<area shape="rect" id="Node000007" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,81,102,108"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="134,97,102,97,102,92,134,92"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="634,123,576,123,576,117,634,117"/>
+<area shape="poly" id="edge9_Node000009_Node000006" title=" " alt="" coords="475,118,235,100,236,95,475,113"/>
+</map>

@@ -1,0 +1,27 @@
+<map id="socket" name="socket">
+<area shape="rect" id="Node000001" title="Open a socket." alt="" coords="827,132,887,159"/>
+<area shape="rect" id="Node000002" href="$group__main03.html#ga4f6be798db44b5ed4b9b12eeb705f6e9" title="Initializes Core 1." alt="" coords="487,5,564,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="835,122,809,95,778,72,723,49,664,34,610,26,564,22,565,17,610,21,665,29,724,44,780,67,813,91,839,118"/>
+<area shape="rect" id="Node000004" href="$group__webui3.html#ga996c29d0b637d4303afe35bf140bb4cb" title="Initializes the HTTP server." alt="" coords="470,56,581,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="823,126,778,104,727,90,675,81,581,73,582,67,675,76,728,85,780,99,825,121"/>
+<area shape="rect" id="Node000006" href="$group__webui3.html#ga52702a4dcaff4540a9ddd10e4d5f4525" title="Processes incoming HTTP requests." alt="" coords="283,107,422,133"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="811,146,423,126,423,121,812,140"/>
+<area shape="rect" id="Node000007" href="$group__snmp__module.html#ga8a5d8ad5c6c10d2f74370649c4aa41e6" title=" " alt="" coords="647,157,761,184"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="812,155,762,164,761,159,811,150"/>
+<area shape="rect" id="Node000010" href="$group__snmp__module.html#ga85191eecbdb50efa106d1d76339d68dd" title=" " alt="" coords="310,208,395,235"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="830,171,807,186,780,199,728,213,674,223,566,233,469,233,396,228,396,223,470,228,566,228,673,218,727,208,778,193,804,182,827,166"/>
+<area shape="rect" id="Node000011" href="$group__net4.html#gae25d404142f448dd7832613a26afa687" title="Initialize w5x00 gpio interrupt callback function." alt="" coords="629,259,779,301"/>
+<area shape="poly" id="edge14_Node000001_Node000011" title=" " alt="" coords="841,173,815,208,781,242,754,260,751,256,777,238,811,204,837,170"/>
+<area shape="rect" id="Node000003" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,56,102,83"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="472,27,103,67,102,62,471,22"/>
+<area shape="rect" id="Node000005" href="$group__main02.html#gad25e95c5993e865b3f941472b7a328e0" title="Core 1 task for handling SNMP and HTTP server." alt="" coords="150,107,235,133"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="455,76,373,84,284,97,236,109,235,104,282,92,372,79,455,71"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="139,103,91,86,93,81,140,98"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="267,123,235,123,235,117,267,117"/>
+<area shape="rect" id="Node000008" href="$group__snmp2.html#ga01e7036f2bce7c2647b681dcfe2b3731" title="Initialize the SNMP agent with the given manager and agent IP addresses." alt="" coords="483,157,568,184"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="631,173,568,173,568,168,631,168"/>
+<area shape="rect" id="Node000009" href="$group__snmp__module.html#ga6515f727d7f9d2333eaeef21b062accb" title=" " alt="" coords="310,157,395,184"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="468,173,395,173,395,168,468,168"/>
+<area shape="poly" id="edge11_Node000009_Node000005" title=" " alt="" coords="294,155,235,136,236,131,296,150"/>
+<area shape="poly" id="edge13_Node000010_Node000005" title=" " alt="" coords="294,205,282,198,238,166,205,135,208,132,241,162,284,194,297,200"/>
+</map>

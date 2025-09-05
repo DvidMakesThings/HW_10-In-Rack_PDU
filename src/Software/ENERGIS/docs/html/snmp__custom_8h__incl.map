@@ -1,0 +1,13 @@
+<map id="ENERGIS/network/snmp_custom.h" name="ENERGIS/network/snmp_custom.h">
+<area shape="rect" id="Node000001" title="Custom SNMP functions for the ENERGIS PDU project." alt="" coords="133,5,301,48"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,96,74,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,51,82,92,80,87,170,46"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="98,96,162,123"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="196,51,157,87,153,83,193,47"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="187,96,247,123"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="220,49,220,80,214,80,214,49"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="271,96,336,123"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="241,47,281,83,277,87,237,51"/>
+<area shape="rect" id="Node000006" href="$snmp_8h.html" title=" " alt="" coords="359,96,424,123"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="263,46,351,87,349,92,261,51"/>
+</map>

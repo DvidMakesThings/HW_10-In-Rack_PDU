@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['cached_5fcurrent_0',['cached_current',['../group__driver3.html#ga1d7a96191316d9fa9bdc443ec4543c7c',1,'HLW8032_driver.c']]],
+  ['cached_5fpower_1',['cached_power',['../group__driver3.html#ga910c659dfcdb6bf3d2b0250cf86bdcc0',1,'HLW8032_driver.c']]],
+  ['cached_5fstate_2',['cached_state',['../group__driver3.html#ga0575226af452d6c350688e398738bbb7',1,'HLW8032_driver.c']]],
+  ['cached_5fuptime_3',['cached_uptime',['../group__driver3.html#ga6edc82babd1a9ad7d9adbdf6a17e2ca7',1,'HLW8032_driver.c']]],
+  ['cached_5fvoltage_4',['cached_voltage',['../group__driver3.html#ga80aeccbfd233d006354952af7ff66665',1,'HLW8032_driver.c']]],
+  ['callback_5fptr_5',['callback_ptr',['../group__net2.html#ga9400d45dab840d35ae8a3bde26945a94',1,'callback_ptr:&#160;timer.c'],['../group__net4.html#ga9400d45dab840d35ae8a3bde26945a94',1,'callback_ptr:&#160;w5x00_gpio_irq.c']]],
+  ['channel_5flast_5fon_6',['channel_last_on',['../group__driver3.html#ga433a3ce956516f75006c888ead72e00d',1,'HLW8032_driver.c']]],
+  ['channel_5fuptime_7',['channel_uptime',['../group__driver3.html#ga790cd8552c0d4039453fb0afa09aba81',1,'HLW8032_driver.c']]],
+  ['clock_5fdiv_5fmajor_8',['clock_div_major',['../structwiznet__spi__config.html#af79a3fb63a05b27bf7811fcee4319dec',1,'wiznet_spi_config']]],
+  ['clock_5fdiv_5fminor_9',['clock_div_minor',['../structwiznet__spi__config.html#a63511a8753f59a86c7f1beacf75688b3',1,'wiznet_spi_config']]],
+  ['clock_5fpin_10',['clock_pin',['../structwiznet__spi__config.html#ad34aa087055f1a0bf13003f7e7b8584e',1,'wiznet_spi_config']]],
+  ['close_11',['close',['../structwiznet__spi__funcs.html#a3cab3db8ff49092d147b3eb27baa9203',1,'wiznet_spi_funcs']]],
+  ['control_5fhtml_12',['control_html',['../control__html_8h.html#ad882226f97c172525ecabab87380591e',1,'control_html:&#160;control.h'],['../control_8h.html#ad882226f97c172525ecabab87380591e',1,'control_html:&#160;control.h'],['../web__pages_8c.html#ad882226f97c172525ecabab87380591e',1,'control_html:&#160;web_pages.c']]],
+  ['cris_13',['CRIS',['../struct_____w_i_z_c_h_i_p.html#ae94e8a795064229659a267844aff02a6',1,'__WIZCHIP']]],
+  ['cs_14',['CS',['../struct_____w_i_z_c_h_i_p.html#a402f9b854611a764645391a1c83d1e5c',1,'__WIZCHIP']]],
+  ['cs_5fpin_15',['cs_pin',['../structwiznet__spi__config.html#a19d64f6d2588110f61dadfafb38d987e',1,'wiznet_spi_config']]],
+  ['curdata_16',['CurData',['../group__driver3.html#ga1c169957ef1dfebca639a0eafcf9ecb7',1,'HLW8032_driver.c']]],
+  ['curpar_17',['CurPar',['../group__driver3.html#gad1c36e17e4c59087ed7b441f725ca823',1,'HLW8032_driver.c']]]
+];
