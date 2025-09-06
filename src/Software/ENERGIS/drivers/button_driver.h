@@ -1,29 +1,20 @@
 /**
  * @file button_driver.h
- * @author DvidMakesThings - David Sipos
+ * @author
  * @brief Handles button inputs and actions for the Energis PDU.
- * @version 1.0
- * @date 2025-03-03
+ * @version 1.3
+ * @date 2025-09-06
  *
  * @details
  * Debounced, ISR-driven button handling for three buttons:
- *  - PLUS  : selection up (0→1→…→7→0)
- *  - MINUS : selection down (7→6→…→0→7)
- *  - SET   : short = toggle selected relay, long = clear error LED
+ *  - PLUS  : step selection (wrap) on debounced FALL. (Original behavior)
+ *  - MINUS : step selection (wrap) on debounced FALL. (Original behavior)
+ *  - SET   : short = toggle selected relay; long = clear error (fires at LONGPRESS_DT).
  *
- * This header exposes only configuration macros, public state, types,
- * and function prototypes. Implementation details live in button_driver.c.
- *
- * @note The following symbols are provided elsewhere in the project:
- *  - LONGPRESS_DT (ms), DEBOUNCE_MS (ms), HAS_SCREEN (bool/int)
- *  - GPIO ids: BUT_PLUS, BUT_MINUS, BUT_SET
- *  - Display/relay/logging APIs (PDU_Display_UpdateSelection, etc.)
- *
- * Long-press behavior:
- *  - The long-press action is triggered *as soon as* the button has been held
- *    for @c LONGPRESS_DT milliseconds (no need to wait for release).
- *  - After a long-press fires, releasing the button will NOT perform the
- *    short-press action.
+ * Added (non-breaking):
+ * - Selection window & blinking on a dedicated selection LED row:
+ *   opens on PLUS/MINUS, blinks at 500 ms, resets on interaction, times out at 10 s,
+ *   and turns the selection LEDs OFF. Implemented via internal repeating timer.
  */
 
 #ifndef BUTTON_DRIVER_H
@@ -31,6 +22,8 @@
 
 #include "../CONFIG.h"
 #include "../PDU_display.h"
+#include "drivers/MCP23017_dual_driver.h"
+#include "drivers/MCP23017_relay_driver.h"
 #include "hardware/gpio.h"
 #include "pico/stdlib.h"
 #include "pico/time.h"
@@ -95,9 +88,7 @@ extern volatile uint32_t last_press_time;
 /**
  * @brief Initialize button GPIO interrupts and synchronize UI selection.
  *
- * @details
- * - Registers @ref button_isr for PLUS, MINUS, and SET (both edges for all).
- * - Ensures @ref selected_row in [0,7] and updates the display if present.
+ * @details Starts an internal timer so selection blinking/timeout work without polling.
  */
 void button_driver_init(void);
 

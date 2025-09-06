@@ -167,14 +167,21 @@ bool core0_init(void) {
     INFO_PRINT("MCP23017 initializing...\n");
     mcp_display_init();
     mcp_relay_init();
+    mcp_selection_init();
     DEBUG_PRINT("MCP23017 OK\n");
 
     // Little showoff.
     mcp_display_write_reg(MCP23017_OLATA, 0xFF);
     mcp_display_write_reg(MCP23017_OLATB, 0xFF);
+    mcp_selection_write_reg(MCP23017_OLATA, 0xFF);
+    mcp_selection_write_reg(MCP23017_OLATB, 0xFF);
     sleep_ms(500);
     for (uint8_t i = 16; i > 0; i--) {
         mcp_display_write_pin(i - 1, 0);
+        sleep_ms(50);
+    }
+    for (uint8_t i = 0; i < 16; i++) {
+        mcp_selection_write_pin(i, 0);
         sleep_ms(50);
     }
     mcp_display_write_pin(PWR_LED, 1);

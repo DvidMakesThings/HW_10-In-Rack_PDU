@@ -42,6 +42,7 @@ add_executable(ENERGIS
     drivers/MCP23017_dual_driver.c
     drivers/MCP23017_display_driver.c
     drivers/MCP23017_relay_driver.c
+    drivers/MCP23017_selection_driver.c
     drivers/button_driver.c
     drivers/HLW8032_driver.c
     misc/uart_command_handler.c

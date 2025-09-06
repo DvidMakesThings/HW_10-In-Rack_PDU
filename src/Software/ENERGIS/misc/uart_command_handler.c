@@ -209,7 +209,7 @@ void printHelp() {
     printf("%-32s %s\r\n", "\tNETINFO", "Show network information");
     printf("%-32s %s\r\n", "\t------------ Output Functions ------------", "");
     printf("%-32s %s\r\n", "\tSET_CH <n|ALL> <ON|OFF>", "Set channel relay state");
-    printf("%-32s %s\r\n", "\tGET_CH <n>", "Get channel relay state");
+    printf("%-32s %s\r\n", "\tGET_CH <n|ALL>", "Get channel relay state");
     printf("%-32s %s\r\n", "\tREAD_HLW8032", "Read HLW8032 sensor data");
     printf("%-32s %s\r\n", "\tREAD_HLW8032 <ch>", "Read specific HLW8032 channel");
     printf("%-32s %s\r\n", "\t------------ Other Functions ------------", "");
@@ -283,17 +283,41 @@ void handle_uart_set_ch_command(const char *trimmed) {
  * @brief Handle UART GET_CH command.
  * @param trimmed The trimmed command string.
  * Parses and executes the GET_CH command to read relay channel states.
+ * Supported formats:
+ *    - GET_CH <n>     (1..8)
+ *    - GET_CH ALL     (prints all channels 1..8)
  * @return None
  */
 void handle_uart_get_ch_command(const char *trimmed) {
-    // Format: GET_CH <n>
-    int ch = atoi(trimmed + 7);
+    // Expect: "GET_CH " (7 chars), then argument
+    const char *args = trimmed + 7;
+    while (*args == ' ')
+        args++;
+
+    char arg[16] = {0};
+    if (sscanf(args, "%15s", arg) != 1) {
+        setError(true);
+        ERROR_PRINT("Usage: GET_CH <n|ALL>\r\n");
+        return;
+    }
+
+    if (strcmp(arg, "ALL") == 0) {
+        // Print all channel states 1..8
+        for (int ch = 1; ch <= 8; ch++) {
+            uint8_t state = mcp_relay_read_pin((uint8_t)(ch - 1));
+            ECHO("CH%d: %s\r\n", ch, state ? "ON" : "OFF");
+        }
+        return;
+    }
+
+    // Single channel path
+    int ch = atoi(arg);
     if (ch >= 1 && ch <= 8) {
         uint8_t state = mcp_relay_read_pin((uint8_t)(ch - 1));
         ECHO("CH%d: %s\r\n", ch, state ? "ON" : "OFF");
     } else {
         setError(true);
-        ERROR_PRINT("Invalid channel: %d\r\n", ch);
+        ERROR_PRINT("Invalid channel: %s\r\n", arg);
     }
 }
 
