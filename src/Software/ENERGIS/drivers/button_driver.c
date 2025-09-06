@@ -221,8 +221,8 @@ static void _set_short_action(void) {
     uint8_t ab = 0, aa = 0;
     uint8_t changed = set_relay_state_with_tag(BUTTON_TAG, (uint8_t)selected_row, want, &ab, &aa);
 
-    INFO_PRINT("Button SET short: row=%u want=%u changed=%u\r\n", (unsigned)selected_row,
-               (unsigned)want, (unsigned)changed);
+    printf("Button SET short: row=%u want=%u changed=%u\r\n", (unsigned)selected_row,
+           (unsigned)want, (unsigned)changed);
 
     if (ab || aa) {
         uint16_t mask = mcp_dual_asymmetry_mask();
@@ -278,7 +278,7 @@ static int64_t _set_long_alarm_cb(alarm_id_t id, void *user_data) {
  *
  * Rules for opening selection window & blinking:
  * - PLUS/MINUS: on first valid FALL when idle → open window only (no step). They have no long
- * press, so counted as short.
+ *   press, so counted as short.
  * - SET: open window ONLY if the press resolves as a SHORT (released before LONGPRESS_DT).
  *        A LONG press NEVER opens the window.
  */

@@ -82,44 +82,77 @@
 // Default values (Factory settings)
 #define DEFAULT_SN "SN-369366060325"
 #define SWVERSION "1.0.0"
+#define SW_REV 100 // 1.0.0 → numeric literal
 #define DEFAULT_NAME "ENERGIS-1.0.0"
 #define DEFAULT_LOCATION "Location"
 
-// Debugging
-#define DEBUG 1
-#define DEBUG_PRINT(...)                                                                           \
-    if (DEBUG)                                                                                     \
-        printf("\t[DEBUG] " __VA_ARGS__);
+/* log.h — single source of truth */
+#pragma once
 
+/* Allow -D overrides but make behavior compile-time */
+#ifndef DEBUG
+#define DEBUG 0
+#endif
+#ifndef INFO
 #define INFO 1
-#define INFO_PRINT(...)                                                                            \
-    if (INFO)                                                                                      \
-        printf("[INFO] " __VA_ARGS__);
-
+#endif
+#ifndef ERROR
 #define ERROR 1
-#define ERROR_PRINT(...)                                                                           \
-    if (ERROR)                                                                                     \
-        printf("[ERROR] " __VA_ARGS__);
-
+#endif
+#ifndef WARNING
 #define WARNING 1
-#define WARNING_PRINT(...)                                                                         \
-    if (WARNING)                                                                                   \
-        printf("[WARNING] " __VA_ARGS__);
-
+#endif
+#ifndef PLOT_EN
 #define PLOT_EN 1
-#define PLOT(...)                                                                                  \
-    if (PLOT_EN)                                                                                   \
-        printf("\t[PLOT] " __VA_ARGS__);
+#endif
+#ifndef NETLOG
+#define NETLOG 0
+#endif
+#ifndef UART_IFACE
+#define UART_IFACE 0
+#endif
 
-#define UART_IFACE 1
-#define ECHO(...)                                                                                  \
-    if (UART_IFACE)                                                                                \
-        printf("\t[ECHO] " __VA_ARGS__);
+#if DEBUG
+#define DEBUG_PRINT(...) printf("\t[DEBUG] " __VA_ARGS__)
+#else
+#define DEBUG_PRINT(...) ((void)0)
+#endif
 
-#define NETLOG 1
-#define NETLOG_PRINT(...)                                                                          \
-    if (NETLOG)                                                                                    \
-        printf("[NETLOG] " __VA_ARGS__);
+#if INFO
+#define INFO_PRINT(...) printf("[INFO] " __VA_ARGS__)
+#else
+#define INFO_PRINT(...) ((void)0)
+#endif
+
+#if ERROR
+#define ERROR_PRINT(...) printf("[ERROR] " __VA_ARGS__)
+#else
+#define ERROR_PRINT(...) ((void)0)
+#endif
+
+#if WARNING
+#define WARNING_PRINT(...) printf("[WARNING] " __VA_ARGS__)
+#else
+#define WARNING_PRINT(...) ((void)0)
+#endif
+
+#if PLOT_EN
+#define PLOT(...) printf("\t[PLOT] " __VA_ARGS__)
+#else
+#define PLOT(...) ((void)0)
+#endif
+
+#if NETLOG
+#define NETLOG_PRINT(...) printf("[NETLOG] " __VA_ARGS__)
+#else
+#define NETLOG_PRINT(...) ((void)0)
+#endif
+
+#if UART_IFACE
+#define ECHO(...) printf("\t[ECHO] " __VA_ARGS__)
+#else
+#define ECHO(...) ((void)0)
+#endif
 
 // I2C Peripheral Assignments
 #define EEPROM_I2C i2c1                             ///< Using I2C1 for EEPROM communication

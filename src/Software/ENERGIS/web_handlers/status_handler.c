@@ -15,6 +15,11 @@
 #include "status_handler.h"
 #include "CONFIG.h"
 
+#undef NETLOG
+#define NETLOG 0
+#undef PLOT_EN
+#define PLOT_EN 0
+
 /**
  * @brief Handles the HTTP request for the status page.
  * @param sock The socket number.
@@ -115,6 +120,7 @@ void handle_status_request(uint8_t sock) {
 
     send(sock, (uint8_t *)json, pos);
     NETLOG_PRINT("Sent JSON body\n");
+    INFO_PRINT("POS content: %s\n", json);
     NETLOG_PRINT("<< handle_status_request() done\n");
 }
 /**

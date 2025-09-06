@@ -70,7 +70,8 @@
         "button_driver.h": "c",
         "pdu_display.h": "c",
         "bootrom.h": "c",
-        "multicore.h": "c"
+        "multicore.h": "c",
+        "time.h": "c"
     },
     "editor.formatOnSave": true,
     "[c]": {
