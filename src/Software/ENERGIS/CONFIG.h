@@ -47,6 +47,7 @@
 #include "drivers/MCP23017_display_driver.h"
 #include "drivers/MCP23017_dual_driver.h"
 #include "drivers/MCP23017_relay_driver.h"
+#include "drivers/MCP23017_selection_driver.h"
 #include "utils/EEPROM_MemoryMap.h"
 #include "utils/helper_functions.h"
 #include "web_handlers/form_helpers.h"
@@ -121,16 +122,17 @@
         printf("[NETLOG] " __VA_ARGS__);
 
 // I2C Peripheral Assignments
-#define EEPROM_I2C i2c1           ///< Using I2C1 for EEPROM communication
-#define MCP23017_RELAY_I2C i2c1   ///< Using I2C0 for Relay Board MCP23017
-#define MCP23017_DISPLAY_I2C i2c0 ///< Using I2C1 for Display Board MCP23017
+#define EEPROM_I2C i2c1                             ///< Using I2C1 for EEPROM communication
+#define MCP23017_RELAY_I2C i2c1                     ///< Using I2C0 for Relay Board MCP23017
+#define MCP23017_DISPLAY_I2C i2c0                   ///< Using I2C1 for Display Board MCP23017
+#define MCP23017_SELECTION_I2C MCP23017_DISPLAY_I2C ///< Using I2C1 for Selection Row MCP23017
 
 // SPI Peripheral Assignments
 #if HAS_SCREEN
 #define SPI_SPEED 62500000 // 62.5MHz
 #endif
 
-#define SPI_SPEED_W5500 40000000  // 10MHz
+#define SPI_SPEED_W5500 40000000  // 40MHz
 #define ILI9488_SPI_INSTANCE spi1 ///< SPI1 for ILI9488 Display
 #define W5500_SPI_INSTANCE spi0   ///< SPI0 for W5500 Ethernet Modul
 
@@ -177,8 +179,8 @@
 #define KEY_1 13
 #define KEY_2 14
 #define KEY_3 15
-#define BUT_PLUS KEY_0
-#define BUT_MINUS KEY_1
+#define BUT_PLUS KEY_1
+#define BUT_MINUS KEY_0
 #define BUT_SET KEY_2
 #define BUT_PWR KEY_3
 #define W5500_MISO 16
@@ -238,6 +240,21 @@
 #define FAULT_LED 8
 #define ETH_LED 9
 #define PWR_LED 10
+
+/********************************************************************************
+ *                        MCP23017 SELECTION ROW CONFIGURATIONS                 *
+ ********************************************************************************/
+
+#define MCP_SELECTION_ADDR 0x23
+#define MCP_SEL_RST MCP_LCD_RST
+#define SEL_1 0
+#define SEL_2 1
+#define SEL_3 2
+#define SEL_4 3
+#define SEL_5 4
+#define SEL_6 5
+#define SEL_7 6
+#define SEL_8 7
 
 /********************************************************************************
  *                        SN74HC151 (MUX for UART TX Channels)                  *
