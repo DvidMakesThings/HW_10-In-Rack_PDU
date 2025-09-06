@@ -49,6 +49,19 @@ static bool cached_state[8];
 static uint8_t poll_channel = 0;
 
 /**
+ * @brief Determine if MUX A/B lines need to be inverted for upper channels
+ * @return true if inversion is needed, false otherwise
+ * @note This is required for hardware revision 1.0.0 due to faulty PCB routing.
+ */
+static inline bool _mux_invert_needed(void) {
+#if defined(SW_REV) && (SW_REV == 100)
+    return true;
+#else
+    return false;
+#endif
+}
+
+/**
  * @brief Select a channel on the multiplexer
  *
  * This function sets the multiplexer select pins to choose one of 8 channels.
@@ -57,13 +70,28 @@ static uint8_t poll_channel = 0;
  * @param ch Channel index (0-7) to select
  */
 static void mux_select(uint8_t ch) {
+    ch &= 0x07; // 0..7
+
+    uint8_t a = (ch >> 0) & 1;
+    uint8_t b = (ch >> 1) & 1;
+    uint8_t c = (ch >> 2) & 1;
+
+    /* HW rev 1.0.0: upper bank (4..7) has A/B inverted through routing.
+       Compensate only for that version. */
+    if (_mux_invert_needed() && c) {
+        a ^= 1;
+        b ^= 1;
+    }
+
+    /* Quiet the lines, then apply selection */
     mcp_relay_write_pin(MUX_SELECT_A, 0);
     mcp_relay_write_pin(MUX_SELECT_B, 0);
     mcp_relay_write_pin(MUX_SELECT_C, 0);
     sleep_us(500);
-    mcp_relay_write_pin(MUX_SELECT_A, (ch >> 0) & 1);
-    mcp_relay_write_pin(MUX_SELECT_B, (ch >> 1) & 1);
-    mcp_relay_write_pin(MUX_SELECT_C, (ch >> 2) & 1);
+
+    mcp_relay_write_pin(MUX_SELECT_A, a);
+    mcp_relay_write_pin(MUX_SELECT_B, b);
+    mcp_relay_write_pin(MUX_SELECT_C, c);
     sleep_us(500);
 }
 
@@ -128,8 +156,9 @@ void hlw8032_init(void) {
  * @brief Read power measurements from the specified channel
  *
  * This function reads and parses a measurement frame from the HLW8032 chip for a given channel.
- * It selects the appropriate multiplexer channel, flushes any stale data, and reads a fresh frame.
- * The raw values are parsed and converted to scaled voltage, current, and power measurements.
+ * It selects the appropriate multiplexer channel, flushes any stale data, and reads a fresh
+ * frame. The raw values are parsed and converted to scaled voltage, current, and power
+ * measurements.
  *
  * @param channel Channel index (0-7) to read from
  * @return true if a valid frame was read and parsed successfully, false otherwise
