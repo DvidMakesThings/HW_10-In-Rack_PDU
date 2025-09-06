@@ -110,9 +110,9 @@ Development doesn’t stop here. Planned improvements include:
 | **Ethernet based firmware update**   | ![Not Possible](https://img.shields.io/badge/status-not%20possible-red) |
 
 
-![PDU 3D View](images/ENERGIS_1.0.0/Assembled-in-case_1.0.0_3D_1.png)
+![PDU 3D View](images/ENERGIS_1.0.0/Assembled-in-case_1.0.0_3D_1.jpg)
 
-![PDU 3D View](images/ENERGIS_1.0.0/Assembled-in-case_1.0.0_3D_2.png)
+![PDU 3D View](images/ENERGIS_1.0.0/Assembled-in-case_1.0.0_3D_2.jpg)
 
 ## Features
 
@@ -151,7 +151,9 @@ Development doesn’t stop here. Planned improvements include:
 
 ## Hardware Stackup
 
-![Main Board 3D View](images/ENERGIS_1.0.0/ENERGIS_Rack-PDU_1.0.0-1.png)
+![Main Board 3D View](images/ENERGIS_1.0.0/ENERGIS_Rack-PDU_1.0.0-1.jpg)
+
+![Display Board 3D View](images/ENERGIS_1.0.0/Display-Board_Rack-PDU_3.0-1.jpg)
 
 ## JLC06161H-3313 (Finished Thickness: ~1.54 mm ±10 %) (6 layers – standard settings)
 - **Total Layers:** 6  
