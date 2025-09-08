@@ -194,12 +194,58 @@ The full schematics for each board are available:
 - **[Display Board Schematics](src/PDF/ENERGIS-1.0.0_displayBoard_schematics.pdf)**
 
 ## License
+### Software Components
+This project's software is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**.
+See the [Software License](LICENSE-AGPL) file for details.
 
-This project is licensed under the **GPL-3.0 License**. See the [LICENSE](LICENSE)
-file for details.
+#### What AGPL-3.0 means:
+
+- ✅ **You can** freely use, modify, and distribute this software
+- ✅ **You can** use this project for personal, educational, or internal purposes
+- ✅ **You can** contribute improvements back to this project
+
+- ⚠️ **You must** share any modifications you make if you distribute the software
+- ⚠️ **You must** release the source code if you run a modified version on a server that others interact with
+- ⚠️ **You must** keep all copyright notices intact
+
+- ❌ **You cannot** incorporate this code into proprietary software without sharing your source code
+- ❌ **You cannot** use this project in a commercial product without either complying with AGPL or obtaining a different license
+
+### Hardware Components
+Hardware designs, schematics, and related documentation are licensed under the **CERN Open Hardware License v2 - Strongly Reciprocal**.
+See the [Hardware License](LICENSE-CERN-OHL) file for details.
+
+#### What CERN-OHL-S-2.0 means:
+
+- ✅ **You can** study, modify, and distribute the hardware designs
+- ✅ **You can** manufacture and sell products based on these designs
+- ✅ **You can** create derivative works for personal or educational use
+
+- ⚠️ **You must** share any modifications under the same license terms
+- ⚠️ **You must** include the original license and copyright notices
+- ⚠️ **You must** document changes you make to the designs
+
+- ❌ **You cannot** patent hardware based on these designs
+- ❌ **You cannot** create closed-source derivatives of the hardware designs
+- ❌ **You cannot** use the designer's trademarks without permission
+
+### Commercial & Enterprise Use
+
+Dual licensing options are available for both software and hardware components for commercial and enterprise users who require different terms. Please contact me through any of the channels listed in the [Contact](#contact) section to discuss commercial licensing arrangements.
 
 ## Contact
 
 For questions or feedback:
 - **Email:** [dvidmakesthings@gmail.com](mailto:dvidmakesthings@gmail.com)
 - **GitHub:** [DvidMakesThings](https://github.com/DvidMakesThings)
+
+## Contributing
+
+Contributions are welcome! As this is an early-stage project, please reach out before 
+making substantial changes:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/concept`)
+3. Commit your changes (`git commit -m 'Add concept'`)
+4. Push to the branch (`git push origin feature/concept`)
+5. Open a Pull Request with a detailed description
