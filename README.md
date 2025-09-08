@@ -212,26 +212,32 @@ See the [Software License](LICENSE-AGPL) file for details.
 - ❌ **You cannot** use this project in a commercial product without either complying with AGPL or obtaining a different license
 
 ### Hardware Components
-Hardware designs, schematics, and related documentation are licensed under the **CERN Open Hardware License v2 - Strongly Reciprocal**.
-See the [Hardware License](LICENSE-CERN-OHL) file for details.
+Hardware designs, schematics, and related documentation are licensed under the **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0)**. See the [Software License](LICENSE-CC BY-NC-SA) file for details.
 
-#### What CERN-OHL-S-2.0 means:
+#### What CC BY-NC-SA 4.0 means:
 
 - ✅ **You can** study, modify, and distribute the hardware designs
-- ✅ **You can** manufacture and sell products based on these designs
-- ✅ **You can** create derivative works for personal or educational use
+- ✅ **You can** create derivative works for personal, educational, or non-commercial use
+- ✅ **You can** build this project for your own personal use
 
+- ⚠️ **You must** give appropriate credit and indicate if changes were made
 - ⚠️ **You must** share any modifications under the same license terms
 - ⚠️ **You must** include the original license and copyright notices
-- ⚠️ **You must** document changes you make to the designs
 
-- ❌ **You cannot** patent hardware based on these designs
-- ❌ **You cannot** create closed-source derivatives of the hardware designs
+- ❌ **You cannot** use the designs for commercial purposes without explicit permission
+- ❌ **You cannot** manufacture and sell products based on these designs without a commercial license
+- ❌ **You cannot** create closed-source derivatives for commercial purposes
 - ❌ **You cannot** use the designer's trademarks without permission
 
 ### Commercial & Enterprise Use
 
-Dual licensing options are available for both software and hardware components for commercial and enterprise users who require different terms. Please contact me through any of the channels listed in the [Contact](#contact) section to discuss commercial licensing arrangements.
+Commercial use of this project is prohibited without obtaining a separate commercial license. If you are interested in:
+
+- Manufacturing and selling products based on these designs
+- Incorporating these designs into commercial products
+- Any other commercial applications
+
+Please contact me through any of the channels listed in the [Contact](#contact) section to discuss commercial licensing arrangements. Commercial licenses are available with reasonable terms to support ongoing development.
 
 ## Contact
 
