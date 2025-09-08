@@ -212,7 +212,7 @@ See the [Software License](LICENSE-AGPL) file for details.
 - ❌ **You cannot** use this project in a commercial product without either complying with AGPL or obtaining a different license
 
 ### Hardware Components
-Hardware designs, schematics, and related documentation are licensed under the **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0)**. See the [Software License](LICENSE-CC BY-NC-SA) file for details.
+Hardware designs, schematics, and related documentation are licensed under the **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0)**. See the [Hardware License](LICENSE-CC-BY-NC-SA) file for details.
 
 #### What CC BY-NC-SA 4.0 means:
 
