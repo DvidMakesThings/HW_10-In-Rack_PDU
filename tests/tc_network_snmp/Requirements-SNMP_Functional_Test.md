@@ -1,4 +1,4 @@
-# ENERGIS SNMP Functional Test Suite
+# ENERGIS SNMP Functional Test
 
 ## Purpose
 To verify the correct operation of ENERGIS device SNMP commands, including system info,  
@@ -12,11 +12,10 @@ settings (with reboot and verification) and relay output control.
 It checks device responses against a pass-file for correctness and expected behavior.
 
 ## Notes
-1. Each steps that requires reset by the software shall have 10 secods timeout. The DUT  
+1. Each steps that requires reset by the software shall have 15 secods timeout. The DUT  
    shall open its ports inside the timeout period. The test script shall reconnect to  
    the DUT through serial port and wait for the SYSTEM READY string to continue the tests.
-2. PASS-Test values shall be stored in a separate JSON file
-3. Each test step must connect to the serial port within the timeout, and after the test  
+2. Each test step must connect to the serial port within the timeout, and after the test  
    is done, disconnect is needed.
 
 ## Test Steps

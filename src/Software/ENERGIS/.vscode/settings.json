@@ -71,7 +71,11 @@
         "pdu_display.h": "c",
         "bootrom.h": "c",
         "multicore.h": "c",
-        "time.h": "c"
+        "time.h": "c",
+        "gpio.h": "c",
+        "wizchip_conf.h": "c",
+        "w5x00_spi.h": "c",
+        "power_manager.h": "c"
     },
     "editor.formatOnSave": true,
     "[c]": {

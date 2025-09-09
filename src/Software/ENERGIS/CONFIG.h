@@ -109,7 +109,7 @@
 #define NETLOG 0
 #endif
 #ifndef UART_IFACE
-#define UART_IFACE 0
+#define UART_IFACE 1
 #endif
 
 #if DEBUG
