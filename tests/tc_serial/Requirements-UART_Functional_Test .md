@@ -1,4 +1,4 @@
-# ENERGIS UART Functional Test Suite
+# ENERGIS UART Functional Test 
 
 ## Purpose
 To verify the correct operation of ENERGIS device UART commands, including system info,  
@@ -12,11 +12,10 @@ verification), relay output control, and factory reset. It checks device respons
 against a pass-file for correctness and expected behavior.
 
 ## Notes
-1. Each steps that requires reset by the software shall have 5 secods timeout. The DUT  
+1. Each steps that requires reset by the software shall have 15 secods timeout. The DUT  
    shall open its serial port inside the timeout period. The test script shall reconnect to  
    the DUT through serial port and wait for the SYSTEM READY string to continue the tests.  
-2. PASS-Test values shall be stored in a separate JSON file  
-3. Each test step must connect to the serial port within the timeout, and after the test is done, disconnect is needed.  
+2. Each test step must connect to the serial port within the timeout, and after the test is done, disconnect is needed.  
 
 ## Test Steps
 1. Send HELP and verify the command list matches required tokens.  
