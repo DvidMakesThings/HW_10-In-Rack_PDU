@@ -44,6 +44,10 @@ Development doesn’t stop here. Planned improvements include:
 - **And even more more more debugging** → It survived the 24h test, but you can never test enough
 - **Enclosure manufacturing** → evaluate and contact sheet-metal manufacturers for a professional case. 3D printed PLA case is nice, but it's not very professional
 
+Planned features (the list will be appended as I find more development possibilities):
+- **Renamebable Channels** Currently channels are marked as 1, 2 ... 8. I'm planning to add some label functionality
+- **Offset Calibration** Channels have 0.75V-0.77V and 0.02-0.05A offset. Some off-state offset auto-zero function will be implemented
+
 
 ## Hardware Development Phases
 | Phase                                | Status   |
