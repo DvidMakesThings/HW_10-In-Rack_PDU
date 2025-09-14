@@ -254,8 +254,8 @@ void handle_uart_set_ch_command(const char *trimmed) {
 
         if (any_asym_before || any_asym_after) {
             uint16_t mask = mcp_dual_asymmetry_mask();
-            WARNING_PRINT("Dual asymmetry %s (mask=0x%04X)\r\n",
-                          any_asym_after ? "PERSISTING" : "DETECTED", (unsigned)mask);
+            WARNING_PRINT("Dual asymmetry %s (mask=0x%04X) by %s\r\n",
+                          any_asym_after ? "PERSISTING" : "DETECTED", (unsigned)mask, UART_CMH_TAG);
         }
         return;
     }
@@ -274,8 +274,8 @@ void handle_uart_set_ch_command(const char *trimmed) {
 
     if (ab || aa) {
         uint16_t mask = mcp_dual_asymmetry_mask();
-        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X)\r\n", aa ? "PERSISTING" : "DETECTED",
-                      (unsigned)mask);
+        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X) by %s\r\n", aa ? "PERSISTING" : "DETECTED",
+                      (unsigned)mask, UART_CMH_TAG);
     }
 }
 

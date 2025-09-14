@@ -66,6 +66,7 @@
 // Debounce time for button presses
 #define DEBOUNCE_MS 100u
 #define POST_GUARD_MS (DEBOUNCE_MS + 10u)
+#define BTN_LOG_ENABLE 1
 /****************************** Guardian functions ******************************/
 // poll cadence
 #define DUAL_GUARD_INTERVAL_MS 50u
@@ -103,7 +104,7 @@
 #define WARNING 1
 #endif
 #ifndef PLOT_EN
-#define PLOT_EN 1
+#define PLOT_EN 0
 #endif
 #ifndef NETLOG
 #define NETLOG 0
@@ -155,6 +156,7 @@
 #endif
 
 // I2C Peripheral Assignments
+#define I2C_SPEED 100000                            ///< 100 kHz standard mode
 #define EEPROM_I2C i2c1                             ///< Using I2C1 for EEPROM communication
 #define MCP23017_RELAY_I2C i2c1                     ///< Using I2C0 for Relay Board MCP23017
 #define MCP23017_DISPLAY_I2C i2c0                   ///< Using I2C1 for Display Board MCP23017

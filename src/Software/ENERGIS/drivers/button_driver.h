@@ -31,6 +31,46 @@
 /** @brief Log tag used when toggling via the SET button. */
 #define BUTTON_TAG "<Button Handler>"
 
+/* --------------------------------------------------------------------------
+ * Configuration
+ * -------------------------------------------------------------------------- */
+#ifndef SELECT_BLINK_MS
+#define SELECT_BLINK_MS 250u
+#endif
+
+#ifndef SELECT_WINDOW_MS
+#define SELECT_WINDOW_MS 10000u
+#endif
+
+#ifndef SELECT_TIMER_TICK_MS
+#define SELECT_TIMER_TICK_MS 50 /* internal timer cadence */
+#endif
+
+/* ----------------- ESD hardening knobs (conservative, behavior-neutral) --- */
+#ifndef ESD_READS_PER_EDGE
+#define ESD_READS_PER_EDGE 5u /* number of quick samples */
+#endif
+
+#ifndef ESD_INTER_SAMPLE_US
+#define ESD_INTER_SAMPLE_US 30u /* spacing between samples (~120–150us total) */
+#endif
+
+#ifndef ESD_REQUIRED_AGREE
+#define ESD_REQUIRED_AGREE 4u /* require >=4 of 5 to agree on level */
+#endif
+
+#ifndef ESD_MAX_EDGE_RATE_HZ
+#define ESD_MAX_EDGE_RATE_HZ 100u /* cap on valid edges per second (per button) */
+#endif
+
+/* ----------------------- Debug print control (deferred) -------------------- */
+#ifndef BTN_LOG_ENABLE
+#define BTN_LOG_ENABLE 1
+#endif
+#ifndef BTN_LOG_CAP
+#define BTN_LOG_CAP 64u /* ring size; keep small */
+#endif
+
 /**
  * @brief Post-action guard to absorb late contact bounces.
  *

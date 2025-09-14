@@ -695,3 +695,121 @@ networkInfo LoadUserNetworkConfig(void) {
     }
     return net_info;
 }
+
+// ======================================================================
+//                      CHANNEL LABELS – PER-CHANNEL API
+// ======================================================================
+
+/**
+ * @brief Channel label storage layout
+ *
+ * Fixed-size slots:
+ *   base = EEPROM_CH_LABEL_START (0x3000)
+ *   slot_size = EEPROM_CH_LABEL_SIZE / ENERGIS_NUM_CHANNELS (1536 bytes)
+ *   addr(channel) = base + (channel_index * slot_size)
+ *
+ * Notes:
+ *  - channel_index is 0-based (0..N-1).
+ *  - Each slot holds a null-terminated UTF-8 string.
+ *  - On write: bytes after the terminator are padded with 0x00.
+ *  - On read: guarantees a terminated string.
+ */
+#ifndef ENERGIS_NUM_CHANNELS
+#define ENERGIS_NUM_CHANNELS 8u
+#endif
+
+#define EEPROM_CH_LABEL_SLOT                                                                       \
+    (EEPROM_CH_LABEL_SIZE / ENERGIS_NUM_CHANNELS) /**< 1536 bytes per channel */
+
+/**
+ * @brief Compute EEPROM address of a channel's label slot.
+ * @param channel_index Zero-based channel index [0..ENERGIS_NUM_CHANNELS-1].
+ * @return 16-bit EEPROM address of slot start.
+ */
+static inline uint16_t _LabelSlotAddr(uint8_t channel_index) {
+    return (uint16_t)(EEPROM_CH_LABEL_START + (uint32_t)channel_index * EEPROM_CH_LABEL_SLOT);
+}
+
+/**
+ * @brief Write a single channel label.
+ * @param channel_index Zero-based channel index [0..ENERGIS_NUM_CHANNELS-1].
+ * @param label         Null-terminated UTF-8 string.
+ * @return 0 on success, -1 on invalid args or write failure.
+ */
+int EEPROM_WriteChannelLabel(uint8_t channel_index, const char *label) {
+    if (channel_index >= ENERGIS_NUM_CHANNELS || label == NULL)
+        return -1;
+
+    uint8_t buf[EEPROM_CH_LABEL_SLOT];
+    size_t maxcpy = EEPROM_CH_LABEL_SLOT - 1u;
+
+    /* Copy string */
+    size_t n = 0u;
+    for (; n < maxcpy && label[n] != '\0'; ++n)
+        buf[n] = (uint8_t)label[n];
+
+    buf[n++] = 0x00; /* terminator */
+    for (; n < EEPROM_CH_LABEL_SLOT; ++n)
+        buf[n] = 0x00;
+
+    return CAT24C512_WriteBuffer(_LabelSlotAddr(channel_index), buf, EEPROM_CH_LABEL_SLOT);
+}
+
+/**
+ * @brief Read a single channel label.
+ * @param channel_index Zero-based channel index [0..ENERGIS_NUM_CHANNELS-1].
+ * @param out           Output buffer to receive a null-terminated string.
+ * @param out_len       Size of @p out in bytes.
+ * @return 0 on success, -1 on invalid args.
+ *
+ * @note CAT24C512_ReadBuffer() returns void, so we don't compare its result.
+ *       We guarantee @p out is terminated.
+ */
+int EEPROM_ReadChannelLabel(uint8_t channel_index, char *out, size_t out_len) {
+    if (channel_index >= ENERGIS_NUM_CHANNELS || out == NULL || out_len == 0u)
+        return -1;
+
+    uint8_t buf[EEPROM_CH_LABEL_SLOT];
+
+    /* Read raw slot bytes into a temp buffer (no return value to check). */
+    CAT24C512_ReadBuffer(_LabelSlotAddr(channel_index), buf, EEPROM_CH_LABEL_SLOT);
+
+    /* Copy until terminator or buffer limit, then force termination. */
+    size_t i = 0u;
+    while (i + 1u < out_len && i < EEPROM_CH_LABEL_SLOT && buf[i] != 0x00) {
+        out[i] = (char)buf[i];
+        ++i;
+    }
+    out[i] = '\0';
+    return 0;
+}
+
+/**
+ * @brief Clear a single channel label (sets slot to 0x00).
+ * @param channel_index Zero-based channel index [0..ENERGIS_NUM_CHANNELS-1].
+ * @return 0 on success, -1 on error.
+ */
+int EEPROM_ClearChannelLabel(uint8_t channel_index) {
+    if (channel_index >= ENERGIS_NUM_CHANNELS)
+        return -1;
+
+    uint8_t zero[32];
+    memset(zero, 0x00, sizeof(zero));
+
+    for (uint16_t addr = 0; addr < EEPROM_CH_LABEL_SLOT; addr += sizeof(zero)) {
+        if (CAT24C512_WriteBuffer(_LabelSlotAddr(channel_index) + addr, zero, sizeof(zero)) != 0)
+            return -1;
+    }
+    return 0;
+}
+
+/**
+ * @brief Clear all channel labels (factory default).
+ * @return 0 on success, -1 on first error.
+ */
+int EEPROM_ClearAllChannelLabels(void) {
+    for (uint8_t ch = 0; ch < ENERGIS_NUM_CHANNELS; ++ch)
+        if (EEPROM_ClearChannelLabel(ch) != 0)
+            return -1;
+    return 0;
+}

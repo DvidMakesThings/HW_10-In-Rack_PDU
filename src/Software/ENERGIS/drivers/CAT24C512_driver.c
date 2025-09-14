@@ -32,7 +32,7 @@
  * respectively, and enables pull-up resistors on these pins.
  */
 void CAT24C512_Init(void) {
-    i2c_init(EEPROM_I2C, 400000);        // 400 kHz Fast Mode
+    i2c_init(EEPROM_I2C, I2C_SPEED);     // 400 kHz Fast Mode
     gpio_set_function(2, GPIO_FUNC_I2C); // SDA (adjust based on config)
     gpio_set_function(3, GPIO_FUNC_I2C); // SCL (adjust based on config)
     gpio_pull_up(2);

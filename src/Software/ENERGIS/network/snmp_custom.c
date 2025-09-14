@@ -368,8 +368,8 @@ void set_outlet1_State(int32_t val) {
     (void)set_relay_state_with_tag(SNMP_HANDLER, 0, (uint8_t)(val != 0), &ab, &aa);
     if (ab || aa) {
         uint16_t mask = mcp_dual_asymmetry_mask();
-        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X)\r\n", aa ? "PERSISTING" : "DETECTED",
-                      (unsigned)mask);
+        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X) by %s\r\n", aa ? "PERSISTING" : "DETECTED",
+                      (unsigned)mask, SNMP_HANDLER);
     }
 }
 
@@ -391,8 +391,8 @@ void set_outlet2_State(int32_t val) {
     (void)set_relay_state_with_tag(SNMP_HANDLER, 1, (uint8_t)(val != 0), &ab, &aa);
     if (ab || aa) {
         uint16_t mask = mcp_dual_asymmetry_mask();
-        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X)\r\n", aa ? "PERSISTING" : "DETECTED",
-                      (unsigned)mask);
+        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X) by %s\r\n", aa ? "PERSISTING" : "DETECTED",
+                      (unsigned)mask, SNMP_HANDLER);
     }
 }
 
@@ -414,8 +414,8 @@ void set_outlet3_State(int32_t val) {
     (void)set_relay_state_with_tag(SNMP_HANDLER, 2, (uint8_t)(val != 0), &ab, &aa);
     if (ab || aa) {
         uint16_t mask = mcp_dual_asymmetry_mask();
-        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X)\r\n", aa ? "PERSISTING" : "DETECTED",
-                      (unsigned)mask);
+        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X) by %s\r\n", aa ? "PERSISTING" : "DETECTED",
+                      (unsigned)mask, SNMP_HANDLER);
     }
 }
 
@@ -437,8 +437,8 @@ void set_outlet4_State(int32_t val) {
     (void)set_relay_state_with_tag(SNMP_HANDLER, 3, (uint8_t)(val != 0), &ab, &aa);
     if (ab || aa) {
         uint16_t mask = mcp_dual_asymmetry_mask();
-        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X)\r\n", aa ? "PERSISTING" : "DETECTED",
-                      (unsigned)mask);
+        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X) by %s\r\n", aa ? "PERSISTING" : "DETECTED",
+                      (unsigned)mask, SNMP_HANDLER);
     }
 }
 
@@ -460,8 +460,8 @@ void set_outlet5_State(int32_t val) {
     (void)set_relay_state_with_tag(SNMP_HANDLER, 4, (uint8_t)(val != 0), &ab, &aa);
     if (ab || aa) {
         uint16_t mask = mcp_dual_asymmetry_mask();
-        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X)\r\n", aa ? "PERSISTING" : "DETECTED",
-                      (unsigned)mask);
+        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X) by %s\r\n", aa ? "PERSISTING" : "DETECTED",
+                      (unsigned)mask, SNMP_HANDLER);
     }
 }
 
@@ -483,8 +483,8 @@ void set_outlet6_State(int32_t val) {
     (void)set_relay_state_with_tag(SNMP_HANDLER, 5, (uint8_t)(val != 0), &ab, &aa);
     if (ab || aa) {
         uint16_t mask = mcp_dual_asymmetry_mask();
-        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X)\r\n", aa ? "PERSISTING" : "DETECTED",
-                      (unsigned)mask);
+        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X) by %s\r\n", aa ? "PERSISTING" : "DETECTED",
+                      (unsigned)mask, SNMP_HANDLER);
     }
 }
 
@@ -506,8 +506,8 @@ void set_outlet7_State(int32_t val) {
     (void)set_relay_state_with_tag(SNMP_HANDLER, 6, (uint8_t)(val != 0), &ab, &aa);
     if (ab || aa) {
         uint16_t mask = mcp_dual_asymmetry_mask();
-        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X)\r\n", aa ? "PERSISTING" : "DETECTED",
-                      (unsigned)mask);
+        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X) by %s\r\n", aa ? "PERSISTING" : "DETECTED",
+                      (unsigned)mask, SNMP_HANDLER);
     }
 }
 
@@ -529,8 +529,8 @@ void set_outlet8_State(int32_t val) {
     (void)set_relay_state_with_tag(SNMP_HANDLER, 7, (uint8_t)(val != 0), &ab, &aa);
     if (ab || aa) {
         uint16_t mask = mcp_dual_asymmetry_mask();
-        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X)\r\n", aa ? "PERSISTING" : "DETECTED",
-                      (unsigned)mask);
+        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X) by %s\r\n", aa ? "PERSISTING" : "DETECTED",
+                      (unsigned)mask, SNMP_HANDLER);
     }
 }
 
@@ -555,8 +555,8 @@ void set_allOff(int32_t val) {
 
         if (any_ab || any_aa) {
             uint16_t mask = mcp_dual_asymmetry_mask();
-            WARNING_PRINT("Dual asymmetry %s (mask=0x%04X)\r\n", any_aa ? "PERSISTING" : "DETECTED",
-                          (unsigned)mask);
+            WARNING_PRINT("Dual asymmetry %s (mask=0x%04X) by %s\r\n",
+                          any_aa ? "PERSISTING" : "DETECTED", (unsigned)mask, SNMP_HANDLER);
         }
     }
 }
@@ -582,8 +582,8 @@ void set_allOn(int32_t val) {
 
         if (any_ab || any_aa) {
             uint16_t mask = mcp_dual_asymmetry_mask();
-            WARNING_PRINT("Dual asymmetry %s (mask=0x%04X)\r\n", any_aa ? "PERSISTING" : "DETECTED",
-                          (unsigned)mask);
+            WARNING_PRINT("Dual asymmetry %s (mask=0x%04X) by %s\r\n",
+                          any_aa ? "PERSISTING" : "DETECTED", (unsigned)mask, SNMP_HANDLER);
         }
     }
 }

@@ -73,8 +73,19 @@ void handle_control_request(uint8_t sock, char *body) {
 
     if (any_asym_before || any_asym_after) {
         uint16_t mask = mcp_dual_asymmetry_mask();
-        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X)\r\n",
-                      any_asym_after ? "PERSISTING" : "DETECTED", (unsigned)mask);
+        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X) by %s\r\n",
+                      any_asym_after ? "PERSISTING" : "DETECTED", (unsigned)mask,
+                      CONTROL_HANDLER_TAG);
+    }
+
+    /* Channel labels */
+    for (uint8_t ch = 0; ch < 8; ch++) {
+        char key[16];
+        snprintf(key, sizeof key, "label%u", (unsigned)(ch + 1));
+        char *val = get_form_value(body, key);
+        if (val) {
+            EEPROM_WriteChannelLabel(ch, val);
+        }
     }
 
     // Minimal, fast reply (your JS already handles this)

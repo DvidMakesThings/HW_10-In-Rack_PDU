@@ -1,0 +1,35 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2025.09.12 20:56:15 =~=~=~=~=~=~=~=~=~=~=~=
+[INFO] Core 0 initializing...
+	[ECHO] Device Serial : SN-369366060325
+	[ECHO] Firmware Ver  : 1.0.0
+	[ECHO] Core voltage  : 1.15 V (vsel = 1)
+	[ECHO] Clock Sources :
+	[ECHO] 	SYS: 200000000 Hz (200 MHz)
+	[ECHO] 	USB: 48000000 Hz (48 MHz)
+	[ECHO] 	PER: 48000000 Hz (48 MHz)
+	[ECHO] 	ADC: 48000000 Hz (48 MHz)
+[INFO] ADC initializing
+VREG register: 0x000010D1
+[INFO] I2C scanning...
+[INFO] EEPROM initializing...
+[INFO] MCP23017 initializing...
+[INFO] Headless mode, skipping display initialization
+[INFO] Initializing HLW8032...
+[INFO] Initializing buttons...
+[INFO] Loaded network config from EEPROM.
+[INFO] W5500 version: 0x04
+[INFO] W5500 PHY link is up
+	[ECHO] =============================================
+	[ECHO]  W5500 network configuration : static
+	[ECHO]  MAC         : 00:08:DC:BE:EF:91
+	[ECHO]  IP          : 192.168.0.11
+	[ECHO]  Subnet Mask : 255.255.255.0
+	[ECHO]  Gateway     : 192.168.0.1
+	[ECHO]  DNS         : 8.8.8.8
+	[ECHO] =============================================
+
+SYSTEM READY
+[INFO] - SNMP : Start SNMP Agent Daemon
+[INFO] HTTP server listening on port 80
+[INFO] - [1] UDP Socket for SNMP Agent, port [161]
+[INFO] SET_RELAY[1] t=21505296 us tag=<Control Handler> pin=6 val=1

@@ -15,11 +15,6 @@
 #include "status_handler.h"
 #include "CONFIG.h"
 
-#undef NETLOG
-#define NETLOG 0
-#undef PLOT_EN
-#define PLOT_EN 0
-
 /**
  * @brief Handles the HTTP request for the status page.
  * @param sock The socket number.
@@ -55,8 +50,8 @@ void handle_status_request(uint8_t sock) {
         pref.temp_unit = 0;
     }
     NETLOG_PRINT("temp_unit pref = %u (0=C,1=F,2=K)\n", pref.temp_unit);
-    DEBUG_PRINT("User preferences are:  %s, %s, %u\n", pref.device_name, pref.location,
-                pref.temp_unit);
+    NETLOG_PRINT("User preferences are:  %s, %s, %u\n", pref.device_name, pref.location,
+                 pref.temp_unit);
     float temp_value;
     const char *unit_str;
     switch (pref.temp_unit) {
@@ -120,7 +115,7 @@ void handle_status_request(uint8_t sock) {
 
     send(sock, (uint8_t *)json, pos);
     NETLOG_PRINT("Sent JSON body\n");
-    INFO_PRINT("POS content: %s\n", json);
+    NETLOG_PRINT("POS content: %s\n", json);
     NETLOG_PRINT("<< handle_status_request() done\n");
 }
 /**
