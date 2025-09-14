@@ -36,26 +36,23 @@ bool startup_init(void) {
     gpio_put(PROC_LED, 0); // Initially not set
 
     // ----- I2C Initialization -----
-    // I2C0 (for example, used by the relay board or EEPROM)
-    i2c_init(i2c0, 400000); // 400 kHz
+    // I2C0 (used by the DisplayBoard MCP23017)
+    i2c_init(i2c0, I2C_SPEED); // 100 kHz
     gpio_set_function(I2C0_SDA, GPIO_FUNC_I2C);
     gpio_set_function(I2C0_SCL, GPIO_FUNC_I2C);
 
-    // ----- MCP23017 Reset Pins -----
-    // For the relay board's MCP23017
-    gpio_init(MCP_REL_RST);
-    gpio_set_dir(MCP_REL_RST, GPIO_OUT);
-    gpio_put(MCP_REL_RST, 1); // Initially not in reset
-
-    // I2C1 (used by the display board's MCP23017, EEPROM, etc.)
-    i2c_init(i2c1, 400000); // 400 kHz
+    // I2C1 (used by the MainBoard MCP23017, EEPROM)
+    i2c_init(i2c1, I2C_SPEED); // 100 kHz
     gpio_set_function(I2C1_SDA, GPIO_FUNC_I2C);
     gpio_set_function(I2C1_SCL, GPIO_FUNC_I2C);
 
-    // For the display board's MCP23017
+    // ----- MCP23017 Reset Pins -----
+    gpio_init(MCP_REL_RST);
+    gpio_set_dir(MCP_REL_RST, GPIO_OUT);
+    gpio_put(MCP_REL_RST, 1);
     gpio_init(MCP_LCD_RST);
     gpio_set_dir(MCP_LCD_RST, GPIO_OUT);
-    gpio_put(MCP_LCD_RST, 1); // Initially not in reset
+    gpio_put(MCP_LCD_RST, 1);
 
 // ----- SPI Initialization -----
 // SPI for LCD (using ILI9488_SPI_INSTANCE, e.g. SPI1)
@@ -136,7 +133,7 @@ bool startup_init(void) {
  * Also initializes the PDU display and updates the status message.
  */
 bool core0_init(void) {
-    sleep_ms(2000); // Delay for debugging
+    sleep_ms(3000); // Delay for debugging
 
     INFO_PRINT("Core 0 initializing...\n");
 

@@ -1,0 +1,56 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2025.09.12 21:48:04 =~=~=~=~=~=~=~=~=~=~=~=
+[INFO] Core 0 initializing...
+	[ECHO] Device Serial : SN-369366060325
+	[ECHO] Firmware Ver  : 1.0.0
+	[ECHO] Core voltage  : 1.15 V (vsel = 1)
+	[ECHO] Clock Sources :
+	[ECHO] 	SYS: 200000000 Hz (200 MHz)
+	[ECHO] 	USB: 48000000 Hz (48 MHz)
+	[ECHO] 	PER: 48000000 Hz (48 MHz)
+	[ECHO] 	ADC: 48000000 Hz (48 MHz)
+[INFO] ADC initializing
+VREG register: 0x000010D1
+[INFO] I2C scanning...
+[INFO] EEPROM initializing...
+[INFO] MCP23017 initializing...
+[INFO] Headless mode, skipping display initialization
+[INFO] Initializing HLW8032...
+[INFO] Initializing buttons...
+[INFO] Loaded network config from EEPROM.
+[INFO] W5500 version: 0x04
+[INFO] W5500 PHY link is up
+	[ECHO] =============================================
+	[ECHO]  W5500 network configuration : static
+	[ECHO]  MAC         : 00:08:DC:BE:EF:91
+	[ECHO]  IP          : 192.168.0.11
+	[ECHO]  Subnet Mask : 255.255.255.0
+	[ECHO]  Gateway     : 192.168.0.1
+	[ECHO]  DNS         : 8.8.8.8
+	[ECHO] =============================================
+
+SYSTEM READY
+[INFO] - SNMP : Start SNMP Agent Daemon
+[INFO] HTTP server listening on port 80
+[INFO] - [1] UDP Socket for SNMP Agent, port [161]
+[INFO] SET_RELAY[1] t=18629962 us tag=<Control Handler> pin=6 val=1
+[ESD] MINUS FALL rejected @18635
+[INFO] MCP relay: mismatch recovered after 2 retries on port B
+[INFO] MCP relay: mismatch recovered after 1 retries on port B
+[INFO] SET_RELAY[2] t=41646290 us tag=<Control Handler> pin=0 val=0
+[INFO] SET_RELAY[3] t=41656795 us tag=<Control Handler> pin=6 val=0
+[WARNING] Dual asymmetry DETECTED (mask=0x0300) by <Control Handler>
+[ESD] MINUS FALL rejected @41652
+[INFO] SET_RELAY[4] t=47478669 us tag=<Control Handler> pin=6 val=1
+[INFO] MCP relay: GPIO EMI on port B exp=0x01 got=0x40
+[INFO] MCP relay: mismatch recovered after 1 retries on port B
+[INFO] MCP relay: GPIO EMI on port B exp=0x03 got=0x40
+[INFO] MCP relay: GPIO EMI on port B exp=0x07 got=0x40
+[INFO] MCP relay: GPIO EMI on port B exp=0x00 got=0x40
+[INFO] MCP relay: mismatch recovered after 1 retries on port B
+[INFO] MCP relay: GPIO EMI on port B exp=0x00 got=0x40
+[INFO] MCP relay: GPIO EMI on port B exp=0x01 got=0x01
+[INFO] MCP relay: GPIO EMI on port B exp=0x02 got=0x40
+[WARNING] MCP relay: ESD mismatch on port B exp=0x00 got=0x02
+[INFO] MCP relay: mismatch recovered after 1 retries on port B
+[INFO] SET_RELAY[5] t=960897431 us tag=<Control Handler> pin=6 val=0
+[WARNING] Dual asymmetry DETECTED (mask=0x0600) by <Control Handler>

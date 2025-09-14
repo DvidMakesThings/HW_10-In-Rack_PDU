@@ -87,9 +87,16 @@
 #define EEPROM_USER_PREF_SIZE 0x1000
 
 /**
+ * @brief Channel Labels (8192 bytes)
+ *        - Stores custom labels for each output channel.
+ */
+#define EEPROM_CH_LABEL_START 0x3000
+#define EEPROM_CH_LABEL_SIZE 0x3000
+
+/**
  * @brief Reserved for Future Expansion (remaining EEPROM space).
  */
-#define EEPROM_RESERVED_START 0x3000
+#define EEPROM_RESERVED_START 0x6000
 #define EEPROM_RESERVED_SIZE (EEPROM_SIZE - EEPROM_RESERVED_START)
 
 /** @brief Network Configuration Modes */
@@ -372,5 +379,42 @@ userPrefInfo LoadUserPreferences(void);
  * @return The networkInfo structure containing the stored network configuration.
  */
 networkInfo LoadUserNetworkConfig(void);
+
+// ======================================================================
+//                      CHANNEL LABELS – PER-CHANNEL API
+// ======================================================================
+
+/**
+ * @brief Write a single channel label.
+ * @param channel_index Zero-based channel index [0..ENERGIS_NUM_CHANNELS-1].
+ * @param label         Null-terminated UTF-8 string.
+ * @return 0 on success, -1 on invalid args or write failure.
+ */
+int EEPROM_WriteChannelLabel(uint8_t channel_index, const char *label);
+
+/**
+ * @brief Read a single channel label.
+ * @param channel_index Zero-based channel index [0..ENERGIS_NUM_CHANNELS-1].
+ * @param out           Output buffer to receive a null-terminated string.
+ * @param out_len       Size of @p out in bytes.
+ * @return 0 on success, -1 on invalid args.
+ *
+ * @note CAT24C512_ReadBuffer() returns void, so we don't compare its result.
+ *       We guarantee @p out is terminated.
+ */
+int EEPROM_ReadChannelLabel(uint8_t channel_index, char *out, size_t out_len);
+
+/**
+ * @brief Clear a single channel label (sets slot to 0x00).
+ * @param channel_index Zero-based channel index [0..ENERGIS_NUM_CHANNELS-1].
+ * @return 0 on success, -1 on error.
+ */
+int EEPROM_ClearChannelLabel(uint8_t channel_index);
+
+/**
+ * @brief Clear all channel labels (factory default).
+ * @return 0 on success, -1 on first error.
+ */
+int EEPROM_ClearAllChannelLabels(void);
 
 #endif // EEPROM_MEMORY_MAP_H
