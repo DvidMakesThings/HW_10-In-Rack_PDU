@@ -46,11 +46,25 @@
     </ul>
 
     <h2>Test Reports</h2>
-    <p>Generated test results and reports:</p>
-    <ul>
-        <li><a href="./Tests/report_tc_serial_utfw/tc_serial_utfw_report.html" target="_blank">Serial Communication Test Report (HTML)</a></li>
-        <li><a href="./Tests/report_tc_network_snmp/tc_network_snmp_report.html" target="_blank">Network Test Report (HTML)</a></li>
-    </ul>
+        <p>Explore detailed reports for each hardware and network test. Each entry describes what is being validated, making it easy to add new tests in the future.</p>
+        <p style="margin-bottom: 1rem; color: #bfc7d5; font-size: 0.97em;">
+            <strong>Note:</strong> All test scripts and their requirements are available in the <a href="https://github.com/DvidMakesThings/HW_10-In-Rack_PDU/tree/master/tests" target="_blank">GitHub repository</a>.<br>
+        These tests use my own custom Universal Test Framework (UTFW) for consistent and automated validation.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 1.2rem; margin-left: 1.5rem;">
+            <div style="background: #23262b; padding: 1rem; border-radius: 8px;">
+                <strong><a href="./Tests/report_tc_serial_utfw/tc_serial_utfw_report.html" target="_blank">Serial Communication Test Report</a></strong><br>
+                <span style="color: #bfc7d5; font-size: 0.97em;">Verifies UART communication between controller and peripheral devices, including data integrity, error handling, and protocol compliance.</span>
+            </div>
+            <div style="background: #23262b; padding: 1rem; border-radius: 8px;">
+                <strong><a href="./Tests/report_tc_network_snmp/tc_network_snmp_report.html" target="_blank">Network SNMP Test Report</a></strong><br>
+                <span style="color: #bfc7d5; font-size: 0.97em;">Tests SNMP protocol support, ensuring correct device monitoring, trap generation, and remote management capabilities.</span>
+            </div>
+            <div style="background: #23262b; padding: 1rem; border-radius: 8px;">
+                <strong><a href="./Tests/report_tc_network_eth/tc_network_eth_report.html" target="_blank">Ethernet Test Report</a></strong><br>
+                <span style="color: #bfc7d5; font-size: 0.97em;">Checks Ethernet connectivity, link stability, packet transmission, and error rates for reliable network operation.</span>
+            </div>
+        </div>
 </body>
 
 </html>
