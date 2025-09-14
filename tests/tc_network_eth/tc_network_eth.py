@@ -113,10 +113,10 @@ class tc_network_eth_test:
                     require_nonempty=True,
                     dump_subdir=DUMPS
                 ),
-                name="Reachability/HTTP sanity (minimal)"
+                name="Reachability/HTTP sanity"
             ),
 
-            # 2) Outlet control via HTTP form + SNMP verify (paced)
+            # 2) Outlet control via HTTP form + SNMP verify
             STE(
                 *[
                     action
@@ -160,10 +160,10 @@ class tc_network_eth_test:
                         ),
                     )
                 ],
-                name="Per-channel ON/OFF + SNMP verify (paced)"
+                name="Per-channel ON/OFF + SNMP verify"
             ),
 
-            # 3) ALL ON / ALL OFF — paced
+            # 3) ALL ON / ALL OFF 
             STE(
                 ETH.http_post_form_action(
                     name="HTTP ALL ON",
@@ -197,10 +197,10 @@ class tc_network_eth_test:
                     outlet_base_oid=hw.OUTLET_BASE_OID,
                     community=hw.SNMP_COMMUNITY
                 ),
-                name="ALL ON/OFF + SNMP verify (paced)"
+                name="ALL ON/OFF + SNMP verify"
             ),
 
-            # 4) Network configuration change -> TEMP_NEW_IP, then revert to baseline (reboot-aware)
+            # 4) Network configuration change -> TEMP_NEW_IP, then revert to baseline 
             STE(
                 # Change IP (device replies 204 then reboots)
                 ETH.http_post_form_action(
@@ -237,7 +237,7 @@ class tc_network_eth_test:
                     community=hw.SNMP_COMMUNITY
                 ),
 
-                # Revert to baseline (reboots again)
+                # Revert to baseline
                 ETH.http_post_form_action(
                     name="POST /settings (revert baseline)",
                     base_url=new_base,
@@ -271,10 +271,10 @@ class tc_network_eth_test:
                     expected=hw.BASELINE_IP,
                     community=hw.SNMP_COMMUNITY
                 ),
-                name="Network configuration change + revert (reboot-aware)"
+                name="Network configuration change + revert"
             ),
 
-            # 5) Error path → unknown path returns 200 (branded error page)
+            # 5) Error path → unknown path returns 200
             STE(
                 ETH.http_get_action(
                     name="GET unknown -> 200",
@@ -294,10 +294,10 @@ class tc_network_eth_test:
                     timeout=hw.HTTP_TIMEOUT,
                     dump_subdir=DUMPS
                 ),
-                name="Error path behavior (branded 200)"
+                name="Error path behavior"
             ),
 
-            # 6) Final safe state
+            # 6) Teardown to initial All-off state
             STE(
                 ETH.http_post_form_action(
                     name="Final ALL OFF",
@@ -315,7 +315,7 @@ class tc_network_eth_test:
                     outlet_base_oid=hw.OUTLET_BASE_OID,
                     community=hw.SNMP_COMMUNITY
                 ),
-                name="Finalize (safe state)"
+                name="Teardown to initial All-off state"
             ),
         ]
 

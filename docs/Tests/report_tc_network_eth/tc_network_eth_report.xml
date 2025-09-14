@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuite name="ENERGIS Functional Test " tests="60" failures="0" time="0.0">
-  <testcase classname="UTFW" name="STEP 1 Reachability/HTTP sanity (minimal)" time="0.0">
+  <testcase classname="UTFW" name="STEP 1 Reachability/HTTP sanity" time="0.0">
   </testcase>
   <testcase classname="UTFW" name="STEP 1.1 Ping baseline" time="0.0">
   </testcase>
@@ -14,7 +14,7 @@
   </testcase>
   <testcase classname="UTFW" name="STEP 1.6 GET /help.html" time="0.0">
   </testcase>
-  <testcase classname="UTFW" name="STEP 2 Per-channel ON/OFF + SNMP verify (paced)" time="0.0">
+  <testcase classname="UTFW" name="STEP 2 Per-channel ON/OFF + SNMP verify" time="0.0">
   </testcase>
   <testcase classname="UTFW" name="STEP 2.1 HTTP CH1=ON" time="0.0">
   </testcase>
@@ -80,7 +80,7 @@
   </testcase>
   <testcase classname="UTFW" name="STEP 2.32 SNMP verify CH8=0" time="0.0">
   </testcase>
-  <testcase classname="UTFW" name="STEP 3 ALL ON/OFF + SNMP verify (paced)" time="0.0">
+  <testcase classname="UTFW" name="STEP 3 ALL ON/OFF + SNMP verify" time="0.0">
   </testcase>
   <testcase classname="UTFW" name="STEP 3.1 HTTP ALL ON" time="0.0">
   </testcase>
@@ -90,7 +90,7 @@
   </testcase>
   <testcase classname="UTFW" name="STEP 3.4 SNMP verify all=OFF" time="0.0">
   </testcase>
-  <testcase classname="UTFW" name="STEP 4 Network configuration change + revert (reboot-aware)" time="0.0">
+  <testcase classname="UTFW" name="STEP 4 Network configuration change + revert" time="0.0">
   </testcase>
   <testcase classname="UTFW" name="STEP 4.1 POST /settings (IP=new)" time="0.0">
   </testcase>
@@ -108,13 +108,13 @@
   </testcase>
   <testcase classname="UTFW" name="STEP 4.8 SNMP NET IP=baseline" time="0.0">
   </testcase>
-  <testcase classname="UTFW" name="STEP 5 Error path behavior (branded 200)" time="0.0">
+  <testcase classname="UTFW" name="STEP 5 Error path behavior" time="0.0">
   </testcase>
   <testcase classname="UTFW" name="STEP 5.1 GET unknown -&gt; 200" time="0.0">
   </testcase>
   <testcase classname="UTFW" name="STEP 5.2 Unknown path Content-Type HTML" time="0.0">
   </testcase>
-  <testcase classname="UTFW" name="STEP 6 Finalize (safe state)" time="0.0">
+  <testcase classname="UTFW" name="STEP 6 Teardown to initial All-off state" time="0.0">
   </testcase>
   <testcase classname="UTFW" name="STEP 6.1 Final ALL OFF" time="0.0">
   </testcase>
