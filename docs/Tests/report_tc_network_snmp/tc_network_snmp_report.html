@@ -38,8 +38,7 @@
 <h1>ENERGIS Test Report</h1>
 <div class='meta'>
 Overall: <b class='chip pass'>PASS</b> &nbsp;
-Started: 2025-09-05 19:12:41 &nbsp;
-Finished: 2025-09-05 19:12:51 &nbsp;
+Started: 2025-09-15 13:58:04 &nbsp;
 </div>
 </header>
 <main>
@@ -55,7 +54,7 @@ Finished: 2025-09-05 19:12:51 &nbsp;
 <div>Hostname</div><div>DPC</div>
 <div>Os</div><div>Windows 11 (10.0.26100)</div>
 <div>Python</div><div>3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]</div>
-<div>Generated_at</div><div>2025-09-05 19:12:51</div>
+<div>Generated_at</div><div>2025-09-15 13:58:15</div>
 <div>Log_file</div><div>report_tc_network_snmp\tc_network_snmp_results.log</div>
 </div>
 </section>
@@ -68,27 +67,15 @@ Finished: 2025-09-05 19:12:51 &nbsp;
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 19:12:41</td><td>2025-09-05 19:12:41</td></tr>
+<tr><td>2025-09-15 13:58:04</td><td>2025-09-15 13:58:04</td></tr>
 </table>
 <details>
 <summary><div class='step-title'><div>Step Log</div><div class='status unknown'>DETAIL</div></div></summary>
 <div class='content'>
 <h4>Log</h4>
 <pre>
-[2025-09-05 19:12:41] [STEP 1] Walk enterprise subtree
-[2025-09-05 19:12:41] [SNMP] cmd=G:\_Development\SNMP\usr\bin\snmpwalk.EXE -v1 -c public -Ci -Cc 192.168.0.11 1.3.6.1.4.1.19865
-[2025-09-05 19:12:41] [SNMP] rc=0
-[2025-09-05 19:12:41] [SNMP OUT]
-SNMPv2-MIB::sysDescr.0 = STRING: ENERGIS 8 CHANNEL MANAGED PDU
-SNMPv2-MIB::sysObjectID.0 = OID: SNMPv2-MIB::sysObjectID.0
-DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: (560067) 1:33:20.67
-SNMPv2-MIB::sysContact.0 = STRING: dvidmakesthings@gmail.com
-SNMPv2-MIB::sysName.0 = STRING: SN-369366060325
-SNMPv2-MIB::sysLocation.0 = STRING: Wien
-SNMPv2-MIB::sysServices.0 = INTEGER: -5
-SNMPv2-SMI::enterprises.19865.1.0 = STRING: &quot;long-length OID Test #1&quot;
-
-[2025-09-05 19:12:41] [PASS] STEP 1 completed successfully
+[2025-09-15 13:58:04] [STEP 1] Walk enterprise subtree
+[2025-09-15 13:58:04] [PASS] STEP 1 completed successfully
 </pre>
 </div>
 </details>
@@ -101,7 +88,7 @@ SNMPv2-SMI::enterprises.19865.1.0 = STRING: &quot;long-length OID Test #1&quot;
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 19:12:41</td><td>2025-09-05 19:12:41</td></tr>
+<tr><td>2025-09-15 13:58:04</td><td>2025-09-15 13:58:05</td></tr>
 </table>
 <div class='substeps'>
 <h4>Substeps</h4>
@@ -112,18 +99,12 @@ SNMPv2-SMI::enterprises.19865.1.0 = STRING: &quot;long-length OID Test #1&quot;
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 19:12:41</td><td>2025-09-05 19:12:41</td></tr>
+<tr><td>2025-09-15 13:58:04</td><td>2025-09-15 13:58:05</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 19:12:41] [STEP 2.1] sysDescr matches expected
-[2025-09-05 19:12:41] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.1.0
-[2025-09-05 19:12:41] [SNMP] rc=0
-[2025-09-05 19:12:41] [SNMP OUT]
-SNMPv2-MIB::sysDescr.0 = STRING: ENERGIS 8 CHANNEL MANAGED PDU
-
-[2025-09-05 19:12:41] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.1.0 -&gt; &#x27;ENERGIS 8 CHANNEL MANAGED PDU&#x27; (v1/public)
-[2025-09-05 19:12:41] [PASS] STEP 2.1 completed successfully
+[2025-09-15 13:58:04] [STEP 2.1] sysDescr matches expected
+[2025-09-15 13:58:05] [PASS] STEP 2.1 completed successfully
 </pre>
 </div>
 </details>
@@ -134,18 +115,12 @@ SNMPv2-MIB::sysDescr.0 = STRING: ENERGIS 8 CHANNEL MANAGED PDU
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 19:12:41</td><td>2025-09-05 19:12:41</td></tr>
+<tr><td>2025-09-15 13:58:05</td><td>2025-09-15 13:58:05</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 19:12:41] [STEP 2.2] sysObjectID present
-[2025-09-05 19:12:41] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.2.0
-[2025-09-05 19:12:41] [SNMP] rc=0
-[2025-09-05 19:12:41] [SNMP OUT]
-SNMPv2-MIB::sysObjectID.0 = OID: SNMPv2-MIB::sysObjectID.0
-
-[2025-09-05 19:12:41] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.2.0 -&gt; &#x27;SNMPv2-MIB::sysObjectID.0&#x27; (v1/public)
-[2025-09-05 19:12:41] [PASS] STEP 2.2 completed successfully
+[2025-09-15 13:58:05] [STEP 2.2] sysObjectID present
+[2025-09-15 13:58:05] [PASS] STEP 2.2 completed successfully
 </pre>
 </div>
 </details>
@@ -156,18 +131,12 @@ SNMPv2-MIB::sysObjectID.0 = OID: SNMPv2-MIB::sysObjectID.0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 19:12:41</td><td>2025-09-05 19:12:41</td></tr>
+<tr><td>2025-09-15 13:58:05</td><td>2025-09-15 13:58:05</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 19:12:41] [STEP 2.3] sysUpTime present
-[2025-09-05 19:12:41] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.3.0
-[2025-09-05 19:12:41] [SNMP] rc=0
-[2025-09-05 19:12:41] [SNMP OUT]
-DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: (560157) 1:33:21.57
-
-[2025-09-05 19:12:41] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.3.0 -&gt; &#x27;(560157) 1:33:21.57&#x27; (v1/public)
-[2025-09-05 19:12:41] [PASS] STEP 2.3 completed successfully
+[2025-09-15 13:58:05] [STEP 2.3] sysUpTime present
+[2025-09-15 13:58:05] [PASS] STEP 2.3 completed successfully
 </pre>
 </div>
 </details>
@@ -178,18 +147,12 @@ DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: (560157) 1:33:21.57
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 19:12:41</td><td>2025-09-05 19:12:41</td></tr>
+<tr><td>2025-09-15 13:58:05</td><td>2025-09-15 13:58:05</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 19:12:41] [STEP 2.4] sysContact matches expected
-[2025-09-05 19:12:41] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.4.0
-[2025-09-05 19:12:41] [SNMP] rc=0
-[2025-09-05 19:12:41] [SNMP OUT]
-SNMPv2-MIB::sysContact.0 = STRING: dvidmakesthings@gmail.com
-
-[2025-09-05 19:12:41] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.4.0 -&gt; &#x27;dvidmakesthings@gmail.com&#x27; (v1/public)
-[2025-09-05 19:12:41] [PASS] STEP 2.4 completed successfully
+[2025-09-15 13:58:05] [STEP 2.4] sysContact matches expected
+[2025-09-15 13:58:05] [PASS] STEP 2.4 completed successfully
 </pre>
 </div>
 </details>
@@ -200,18 +163,12 @@ SNMPv2-MIB::sysContact.0 = STRING: dvidmakesthings@gmail.com
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 19:12:41</td><td>2025-09-05 19:12:41</td></tr>
+<tr><td>2025-09-15 13:58:05</td><td>2025-09-15 13:58:05</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 19:12:41] [STEP 2.5] sysName matches expected
-[2025-09-05 19:12:41] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.5.0
-[2025-09-05 19:12:41] [SNMP] rc=0
-[2025-09-05 19:12:41] [SNMP OUT]
-SNMPv2-MIB::sysName.0 = STRING: SN-369366060325
-
-[2025-09-05 19:12:41] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.5.0 -&gt; &#x27;SN-369366060325&#x27; (v1/public)
-[2025-09-05 19:12:41] [PASS] STEP 2.5 completed successfully
+[2025-09-15 13:58:05] [STEP 2.5] sysName matches expected
+[2025-09-15 13:58:05] [PASS] STEP 2.5 completed successfully
 </pre>
 </div>
 </details>
@@ -222,18 +179,12 @@ SNMPv2-MIB::sysName.0 = STRING: SN-369366060325
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 19:12:41</td><td>2025-09-05 19:12:41</td></tr>
+<tr><td>2025-09-15 13:58:05</td><td>2025-09-15 13:58:05</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 19:12:41] [STEP 2.6] sysLocation matches expected
-[2025-09-05 19:12:41] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.6.0
-[2025-09-05 19:12:41] [SNMP] rc=0
-[2025-09-05 19:12:41] [SNMP OUT]
-SNMPv2-MIB::sysLocation.0 = STRING: Wien
-
-[2025-09-05 19:12:41] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.6.0 -&gt; &#x27;Wien&#x27; (v1/public)
-[2025-09-05 19:12:41] [PASS] STEP 2.6 completed successfully
+[2025-09-15 13:58:05] [STEP 2.6] sysLocation matches expected
+[2025-09-15 13:58:05] [PASS] STEP 2.6 completed successfully
 </pre>
 </div>
 </details>
@@ -244,19 +195,12 @@ SNMPv2-MIB::sysLocation.0 = STRING: Wien
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 19:12:41</td><td>2025-09-05 19:12:41</td></tr>
+<tr><td>2025-09-15 13:58:05</td><td>2025-09-15 13:58:05</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 19:12:41] [STEP 2.7] sysServices matches expected
-[2025-09-05 19:12:41] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.7.0
-[2025-09-05 19:12:41] [SNMP] rc=0
-[2025-09-05 19:12:41] [SNMP OUT]
-SNMPv2-MIB::sysServices.0 = INTEGER: -5
-
-[2025-09-05 19:12:41] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.7.0 -&gt; &#x27;-5&#x27; (v1/public)
-[2025-09-05 19:12:41] [PASS] STEP 2.7 completed successfully
-[2025-09-05 19:12:41] [PASS] STEP 2 all sub-steps completed
+[2025-09-15 13:58:05] [STEP 2.7] sysServices matches expected
+[2025-09-15 13:58:05] [PASS] STEP 2.7 completed successfully
 </pre>
 </div>
 </details>
@@ -270,7 +214,7 @@ SNMPv2-MIB::sysServices.0 = INTEGER: -5
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 19:12:41</td><td>2025-09-05 19:12:41</td></tr>
+<tr><td>2025-09-15 13:58:05</td><td>2025-09-15 13:58:05</td></tr>
 </table>
 <div class='substeps'>
 <h4>Substeps</h4>
@@ -281,18 +225,12 @@ SNMPv2-MIB::sysServices.0 = INTEGER: -5
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 19:12:41</td><td>2025-09-05 19:12:41</td></tr>
+<tr><td>2025-09-15 13:58:05</td><td>2025-09-15 13:58:05</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 19:12:41] [STEP 3.1] 19865.1.0 long-length string OK
-[2025-09-05 19:12:41] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.1.0
-[2025-09-05 19:12:41] [SNMP] rc=0
-[2025-09-05 19:12:41] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.1.0 = STRING: &quot;long-length OID Test #1&quot;
-
-[2025-09-05 19:12:41] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.1.0 -&gt; &#x27;long-length OID Test #1&#x27; (v1/public)
-[2025-09-05 19:12:41] [PASS] STEP 3.1 completed successfully
+[2025-09-15 13:58:05] [STEP 3.1] 19865.1.0 long-length string OK
+[2025-09-15 13:58:05] [PASS] STEP 3.1 completed successfully
 </pre>
 </div>
 </details>
@@ -303,21 +241,12 @@ SNMPv2-SMI::enterprises.19865.1.0 = STRING: &quot;long-length OID Test #1&quot;
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 19:12:41</td><td>2025-09-05 19:12:41</td></tr>
+<tr><td>2025-09-15 13:58:05</td><td>2025-09-15 13:58:05</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 19:12:41] [STEP 3.2] 19865.2.0 produces noSuchName (expected error)
-[2025-09-05 19:12:41] [SNMP] cmd=G:\_Development\SNMP\usr\bin\snmpget.EXE -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.0
-[2025-09-05 19:12:41] [SNMP] rc=2
-[2025-09-05 19:12:41] [SNMP ERR]
-Error in packet
-Reason: (noSuchName) There is no such variable name in this MIB.
-Failed object: SNMPv2-SMI::enterprises.19865.2.0
-
-
-[2025-09-05 19:12:41] [PASS] STEP 3.2 completed successfully
-[2025-09-05 19:12:41] [PASS] STEP 3 all sub-steps completed
+[2025-09-15 13:58:05] [STEP 3.2] 19865.2.0 produces noSuchName (expected error)
+[2025-09-15 13:58:05] [PASS] STEP 3.2 completed successfully
 </pre>
 </div>
 </details>
@@ -331,7 +260,7 @@ Failed object: SNMPv2-SMI::enterprises.19865.2.0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 19:12:41</td><td>2025-09-05 19:12:41</td></tr>
+<tr><td>2025-09-15 13:58:05</td><td>2025-09-15 13:58:05</td></tr>
 </table>
 <div class='substeps'>
 <h4>Substeps</h4>
@@ -342,18 +271,12 @@ Failed object: SNMPv2-SMI::enterprises.19865.2.0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 19:12:41</td><td>2025-09-05 19:12:41</td></tr>
+<tr><td>2025-09-15 13:58:05</td><td>2025-09-15 13:58:05</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 19:12:41] [STEP 4.1] Network IP equals baseline
-[2025-09-05 19:12:41] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.4.1.0
-[2025-09-05 19:12:41] [SNMP] rc=0
-[2025-09-05 19:12:41] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.4.1.0 = STRING: &quot;192.168.0.11&quot;
-
-[2025-09-05 19:12:41] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.4.1.0 -&gt; &#x27;192.168.0.11&#x27; (v1/public)
-[2025-09-05 19:12:41] [PASS] STEP 4.1 completed successfully
+[2025-09-15 13:58:05] [STEP 4.1] Network IP equals baseline
+[2025-09-15 13:58:05] [PASS] STEP 4.1 completed successfully
 </pre>
 </div>
 </details>
@@ -364,18 +287,12 @@ SNMPv2-SMI::enterprises.19865.4.1.0 = STRING: &quot;192.168.0.11&quot;
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 19:12:41</td><td>2025-09-05 19:12:41</td></tr>
+<tr><td>2025-09-15 13:58:05</td><td>2025-09-15 13:58:05</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 19:12:41] [STEP 4.2] Network SN equals expected
-[2025-09-05 19:12:41] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.4.2.0
-[2025-09-05 19:12:41] [SNMP] rc=0
-[2025-09-05 19:12:41] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.4.2.0 = STRING: &quot;255.255.255.0&quot;
-
-[2025-09-05 19:12:41] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.4.2.0 -&gt; &#x27;255.255.255.0&#x27; (v1/public)
-[2025-09-05 19:12:41] [PASS] STEP 4.2 completed successfully
+[2025-09-15 13:58:05] [STEP 4.2] Network SN equals expected
+[2025-09-15 13:58:05] [PASS] STEP 4.2 completed successfully
 </pre>
 </div>
 </details>
@@ -386,18 +303,12 @@ SNMPv2-SMI::enterprises.19865.4.2.0 = STRING: &quot;255.255.255.0&quot;
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 19:12:41</td><td>2025-09-05 19:12:41</td></tr>
+<tr><td>2025-09-15 13:58:05</td><td>2025-09-15 13:58:05</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 19:12:41] [STEP 4.3] Network GW equals expected
-[2025-09-05 19:12:41] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.4.3.0
-[2025-09-05 19:12:41] [SNMP] rc=0
-[2025-09-05 19:12:41] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.4.3.0 = STRING: &quot;192.168.0.1&quot;
-
-[2025-09-05 19:12:41] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.4.3.0 -&gt; &#x27;192.168.0.1&#x27; (v1/public)
-[2025-09-05 19:12:41] [PASS] STEP 4.3 completed successfully
+[2025-09-15 13:58:05] [STEP 4.3] Network GW equals expected
+[2025-09-15 13:58:05] [PASS] STEP 4.3 completed successfully
 </pre>
 </div>
 </details>
@@ -408,19 +319,12 @@ SNMPv2-SMI::enterprises.19865.4.3.0 = STRING: &quot;192.168.0.1&quot;
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 19:12:41</td><td>2025-09-05 19:12:41</td></tr>
+<tr><td>2025-09-15 13:58:05</td><td>2025-09-15 13:58:05</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 19:12:41] [STEP 4.4] Network DNS equals expected
-[2025-09-05 19:12:41] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.4.4.0
-[2025-09-05 19:12:41] [SNMP] rc=0
-[2025-09-05 19:12:41] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.4.4.0 = STRING: &quot;8.8.8.8&quot;
-
-[2025-09-05 19:12:41] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.4.4.0 -&gt; &#x27;8.8.8.8&#x27; (v1/public)
-[2025-09-05 19:12:41] [PASS] STEP 4.4 completed successfully
-[2025-09-05 19:12:41] [PASS] STEP 4 all sub-steps completed
+[2025-09-15 13:58:05] [STEP 4.4] Network DNS equals expected
+[2025-09-15 13:58:05] [PASS] STEP 4.4 completed successfully
 </pre>
 </div>
 </details>
@@ -434,207 +338,15 @@ SNMPv2-SMI::enterprises.19865.4.4.0 = STRING: &quot;8.8.8.8&quot;
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 19:12:41</td><td>2025-09-05 19:12:50</td></tr>
+<tr><td>2025-09-15 13:58:05</td><td>2025-09-15 13:58:14</td></tr>
 </table>
 <details>
 <summary><div class='step-title'><div>Step Log</div><div class='status unknown'>DETAIL</div></div></summary>
 <div class='content'>
 <h4>Log</h4>
 <pre>
-[2025-09-05 19:12:41] [STEP 5] Cycle all channels ON/OFF with SNMP verify
-[2025-09-05 19:12:41] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 i 1
-[2025-09-05 19:12:41] [SNMP] rc=0
-[2025-09-05 19:12:41] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 1
-
-[2025-09-05 19:12:41] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 = 1 -&gt; OK (v1/public)
-[2025-09-05 19:12:42] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0
-[2025-09-05 19:12:42] [SNMP] rc=0
-[2025-09-05 19:12:42] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 1
-
-[2025-09-05 19:12:42] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 19:12:42] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 i 0
-[2025-09-05 19:12:42] [SNMP] rc=0
-[2025-09-05 19:12:42] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 0
-
-[2025-09-05 19:12:42] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 = 0 -&gt; OK (v1/public)
-[2025-09-05 19:12:43] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0
-[2025-09-05 19:12:43] [SNMP] rc=0
-[2025-09-05 19:12:43] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 0
-
-[2025-09-05 19:12:43] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 19:12:43] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 i 1
-[2025-09-05 19:12:43] [SNMP] rc=0
-[2025-09-05 19:12:43] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 1
-
-[2025-09-05 19:12:43] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 = 1 -&gt; OK (v1/public)
-[2025-09-05 19:12:43] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0
-[2025-09-05 19:12:43] [SNMP] rc=0
-[2025-09-05 19:12:43] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 1
-
-[2025-09-05 19:12:43] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 19:12:43] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 i 0
-[2025-09-05 19:12:43] [SNMP] rc=0
-[2025-09-05 19:12:43] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 0
-
-[2025-09-05 19:12:43] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 = 0 -&gt; OK (v1/public)
-[2025-09-05 19:12:44] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0
-[2025-09-05 19:12:44] [SNMP] rc=0
-[2025-09-05 19:12:44] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 0
-
-[2025-09-05 19:12:44] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 19:12:44] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 i 1
-[2025-09-05 19:12:44] [SNMP] rc=0
-[2025-09-05 19:12:44] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 1
-
-[2025-09-05 19:12:44] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 = 1 -&gt; OK (v1/public)
-[2025-09-05 19:12:44] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0
-[2025-09-05 19:12:44] [SNMP] rc=0
-[2025-09-05 19:12:44] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 1
-
-[2025-09-05 19:12:44] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 19:12:44] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 i 0
-[2025-09-05 19:12:44] [SNMP] rc=0
-[2025-09-05 19:12:44] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 0
-
-[2025-09-05 19:12:44] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 = 0 -&gt; OK (v1/public)
-[2025-09-05 19:12:45] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0
-[2025-09-05 19:12:45] [SNMP] rc=0
-[2025-09-05 19:12:45] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 0
-
-[2025-09-05 19:12:45] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 19:12:45] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 i 1
-[2025-09-05 19:12:45] [SNMP] rc=0
-[2025-09-05 19:12:45] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 1
-
-[2025-09-05 19:12:45] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 = 1 -&gt; OK (v1/public)
-[2025-09-05 19:12:45] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0
-[2025-09-05 19:12:45] [SNMP] rc=0
-[2025-09-05 19:12:45] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 1
-
-[2025-09-05 19:12:45] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 19:12:45] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 i 0
-[2025-09-05 19:12:45] [SNMP] rc=0
-[2025-09-05 19:12:45] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 0
-
-[2025-09-05 19:12:45] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 = 0 -&gt; OK (v1/public)
-[2025-09-05 19:12:46] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0
-[2025-09-05 19:12:46] [SNMP] rc=0
-[2025-09-05 19:12:46] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 0
-
-[2025-09-05 19:12:46] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 19:12:46] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 i 1
-[2025-09-05 19:12:46] [SNMP] rc=0
-[2025-09-05 19:12:46] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 1
-
-[2025-09-05 19:12:46] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 = 1 -&gt; OK (v1/public)
-[2025-09-05 19:12:46] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0
-[2025-09-05 19:12:46] [SNMP] rc=0
-[2025-09-05 19:12:46] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 1
-
-[2025-09-05 19:12:46] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 19:12:46] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 i 0
-[2025-09-05 19:12:46] [SNMP] rc=0
-[2025-09-05 19:12:46] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 0
-
-[2025-09-05 19:12:46] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 = 0 -&gt; OK (v1/public)
-[2025-09-05 19:12:47] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0
-[2025-09-05 19:12:47] [SNMP] rc=0
-[2025-09-05 19:12:47] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 0
-
-[2025-09-05 19:12:47] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 19:12:47] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 i 1
-[2025-09-05 19:12:47] [SNMP] rc=0
-[2025-09-05 19:12:47] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 1
-
-[2025-09-05 19:12:47] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 = 1 -&gt; OK (v1/public)
-[2025-09-05 19:12:48] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0
-[2025-09-05 19:12:48] [SNMP] rc=0
-[2025-09-05 19:12:48] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 1
-
-[2025-09-05 19:12:48] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 19:12:48] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 i 0
-[2025-09-05 19:12:48] [SNMP] rc=0
-[2025-09-05 19:12:48] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 0
-
-[2025-09-05 19:12:48] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 = 0 -&gt; OK (v1/public)
-[2025-09-05 19:12:48] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0
-[2025-09-05 19:12:48] [SNMP] rc=0
-[2025-09-05 19:12:48] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 0
-
-[2025-09-05 19:12:48] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 19:12:48] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 i 1
-[2025-09-05 19:12:48] [SNMP] rc=0
-[2025-09-05 19:12:48] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 1
-
-[2025-09-05 19:12:48] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 = 1 -&gt; OK (v1/public)
-[2025-09-05 19:12:49] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0
-[2025-09-05 19:12:49] [SNMP] rc=0
-[2025-09-05 19:12:49] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 1
-
-[2025-09-05 19:12:49] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 19:12:49] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 i 0
-[2025-09-05 19:12:49] [SNMP] rc=0
-[2025-09-05 19:12:49] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 0
-
-[2025-09-05 19:12:49] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 = 0 -&gt; OK (v1/public)
-[2025-09-05 19:12:49] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0
-[2025-09-05 19:12:49] [SNMP] rc=0
-[2025-09-05 19:12:49] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 0
-
-[2025-09-05 19:12:49] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 19:12:49] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 i 1
-[2025-09-05 19:12:49] [SNMP] rc=0
-[2025-09-05 19:12:49] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 1
-
-[2025-09-05 19:12:49] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 = 1 -&gt; OK (v1/public)
-[2025-09-05 19:12:50] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0
-[2025-09-05 19:12:50] [SNMP] rc=0
-[2025-09-05 19:12:50] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 1
-
-[2025-09-05 19:12:50] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 19:12:50] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 i 0
-[2025-09-05 19:12:50] [SNMP] rc=0
-[2025-09-05 19:12:50] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 0
-
-[2025-09-05 19:12:50] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 = 0 -&gt; OK (v1/public)
-[2025-09-05 19:12:50] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0
-[2025-09-05 19:12:50] [SNMP] rc=0
-[2025-09-05 19:12:50] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 0
-
-[2025-09-05 19:12:50] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 19:12:50] [PASS] STEP 5 completed successfully
+[2025-09-15 13:58:05] [STEP 5] Cycle all channels ON/OFF with SNMP verify
+[2025-09-15 13:58:14] [PASS] STEP 5 completed successfully
 </pre>
 </div>
 </details>
@@ -647,7 +359,7 @@ SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 19:12:50</td><td>2025-09-05 19:12:51</td></tr>
+<tr><td>2025-09-15 13:58:14</td><td>2025-09-15 13:58:15</td></tr>
 </table>
 <div class='substeps'>
 <h4>Substeps</h4>
@@ -658,18 +370,12 @@ SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 19:12:50</td><td>2025-09-05 19:12:50</td></tr>
+<tr><td>2025-09-15 13:58:14</td><td>2025-09-15 13:58:14</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 19:12:50] [STEP 6.1] ALL ON trigger
-[2025-09-05 19:12:50] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.10.0 i 1
-[2025-09-05 19:12:50] [SNMP] rc=0
-[2025-09-05 19:12:50] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.10.0 = INTEGER: 1
-
-[2025-09-05 19:12:50] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.10.0 = 1 -&gt; OK (v1/public)
-[2025-09-05 19:12:50] [PASS] STEP 6.1 completed successfully
+[2025-09-15 13:58:14] [STEP 6.1] ALL ON trigger
+[2025-09-15 13:58:14] [PASS] STEP 6.1 completed successfully
 </pre>
 </div>
 </details>
@@ -680,60 +386,12 @@ SNMPv2-SMI::enterprises.19865.2.10.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 19:12:50</td><td>2025-09-05 19:12:51</td></tr>
+<tr><td>2025-09-15 13:58:14</td><td>2025-09-15 13:58:14</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 19:12:50] [STEP 6.2] Verify ALL ON via SNMP (1..8 == 1)
-[2025-09-05 19:12:50] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0
-[2025-09-05 19:12:50] [SNMP] rc=0
-[2025-09-05 19:12:50] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 1
-
-[2025-09-05 19:12:50] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 19:12:50] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0
-[2025-09-05 19:12:50] [SNMP] rc=0
-[2025-09-05 19:12:50] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 1
-
-[2025-09-05 19:12:50] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 19:12:51] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0
-[2025-09-05 19:12:51] [SNMP] rc=0
-[2025-09-05 19:12:51] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 1
-
-[2025-09-05 19:12:51] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 19:12:51] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0
-[2025-09-05 19:12:51] [SNMP] rc=0
-[2025-09-05 19:12:51] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 1
-
-[2025-09-05 19:12:51] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 19:12:51] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0
-[2025-09-05 19:12:51] [SNMP] rc=0
-[2025-09-05 19:12:51] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 1
-
-[2025-09-05 19:12:51] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 19:12:51] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0
-[2025-09-05 19:12:51] [SNMP] rc=0
-[2025-09-05 19:12:51] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 1
-
-[2025-09-05 19:12:51] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 19:12:51] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0
-[2025-09-05 19:12:51] [SNMP] rc=0
-[2025-09-05 19:12:51] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 1
-
-[2025-09-05 19:12:51] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 19:12:51] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0
-[2025-09-05 19:12:51] [SNMP] rc=0
-[2025-09-05 19:12:51] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 1
-
-[2025-09-05 19:12:51] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 19:12:51] [PASS] STEP 6.2 completed successfully
+[2025-09-15 13:58:14] [STEP 6.2] Verify ALL ON via SNMP (1..8 == 1)
+[2025-09-15 13:58:14] [PASS] STEP 6.2 completed successfully
 </pre>
 </div>
 </details>
@@ -744,18 +402,12 @@ SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 19:12:51</td><td>2025-09-05 19:12:51</td></tr>
+<tr><td>2025-09-15 13:58:14</td><td>2025-09-15 13:58:15</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 19:12:51] [STEP 6.3] ALL ON trigger
-[2025-09-05 19:12:51] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.9.0 i 1
-[2025-09-05 19:12:51] [SNMP] rc=0
-[2025-09-05 19:12:51] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.9.0 = INTEGER: 1
-
-[2025-09-05 19:12:51] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.9.0 = 1 -&gt; OK (v1/public)
-[2025-09-05 19:12:51] [PASS] STEP 6.3 completed successfully
+[2025-09-15 13:58:14] [STEP 6.3] ALL ON trigger
+[2025-09-15 13:58:15] [PASS] STEP 6.3 completed successfully
 </pre>
 </div>
 </details>
@@ -766,62 +418,13 @@ SNMPv2-SMI::enterprises.19865.2.9.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 19:12:51</td><td>2025-09-05 19:12:51</td></tr>
+<tr><td>2025-09-15 13:58:15</td><td>2025-09-15 13:58:15</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 19:12:51] [STEP 6.4] Verify ALL OFF via SNMP (1..8 == 0)
-[2025-09-05 19:12:51] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0
-[2025-09-05 19:12:51] [SNMP] rc=0
-[2025-09-05 19:12:51] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 0
-
-[2025-09-05 19:12:51] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 19:12:51] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0
-[2025-09-05 19:12:51] [SNMP] rc=0
-[2025-09-05 19:12:51] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 0
-
-[2025-09-05 19:12:51] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 19:12:51] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0
-[2025-09-05 19:12:51] [SNMP] rc=0
-[2025-09-05 19:12:51] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 0
-
-[2025-09-05 19:12:51] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 19:12:51] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0
-[2025-09-05 19:12:51] [SNMP] rc=0
-[2025-09-05 19:12:51] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 0
-
-[2025-09-05 19:12:51] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 19:12:51] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0
-[2025-09-05 19:12:51] [SNMP] rc=0
-[2025-09-05 19:12:51] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 0
-
-[2025-09-05 19:12:51] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 19:12:51] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0
-[2025-09-05 19:12:51] [SNMP] rc=0
-[2025-09-05 19:12:51] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 0
-
-[2025-09-05 19:12:51] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 19:12:51] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0
-[2025-09-05 19:12:51] [SNMP] rc=0
-[2025-09-05 19:12:51] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 0
-
-[2025-09-05 19:12:51] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 19:12:51] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0
-[2025-09-05 19:12:51] [SNMP] rc=0
-[2025-09-05 19:12:51] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 0
-
-[2025-09-05 19:12:51] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 19:12:51] [PASS] STEP 6.4 completed successfully
-[2025-09-05 19:12:51] [PASS] STEP 6 all sub-steps completed
-[2025-09-05 19:12:51] ===== RESULT: PASS =====
+[2025-09-15 13:58:15] [STEP 6.4] Verify ALL OFF via SNMP (1..8 == 0)
+[2025-09-15 13:58:15] [PASS] STEP 6.4 completed successfully
+[2025-09-15 13:58:15] ===== tc_network_snmp: RESULT: PASS =====
 </pre>
 </div>
 </details>
