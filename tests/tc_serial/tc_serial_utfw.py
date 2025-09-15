@@ -9,8 +9,13 @@ import sys
 from pathlib import Path
 
 # Import UTFW framework
-from UTFW import STE, SNMP, Serial, Network, run_test_with_teardown
-from UTFW.utilities import get_hwconfig
+from UTFW.core import run_test_with_teardown
+from UTFW.core import get_hwconfig
+from UTFW.core import STE
+from UTFW.modules import snmp as SNMP
+from UTFW.modules import serial as UART
+from UTFW.modules import network
+
 
 class tc_serial_test:
     """Clean test class - init, setup with return, main"""
@@ -32,19 +37,19 @@ class tc_serial_test:
         for channel in range(1, 9):
             # --- Turn ON ---
             outlet_actions.extend([
-                Serial.send_command_uart(
+                UART.send_command_uart(
                     name=f"Set Channel {channel} to ON",
                     port=hw.SERIAL_PORT,
                     command=f"SET_CH {channel} ON",
                     baudrate=hw.BAUDRATE
                 ),
-                Serial.send_command_uart(
+                UART.send_command_uart(
                     name=f"Verify Channel {channel} is ON by Serial",
                     port=hw.SERIAL_PORT,
                     command=f"GET_CH {channel}",
                     baudrate=hw.BAUDRATE
                 ),
-                Serial.validate_tokens(
+                UART.validate_tokens(
                     name=f"Validate Serial reports CH{channel} ON",
                     response="",                 # uses last cached GET_CH response
                     tokens=["ON"]                # keep simple & tolerant
@@ -58,19 +63,19 @@ class tc_serial_test:
                     community=hw.SNMP_COMMUNITY
                 ),
                 # --- Turn OFF ---
-                Serial.send_command_uart(
+                UART.send_command_uart(
                     name=f"Set Channel {channel} to OFF",
                     port=hw.SERIAL_PORT,
                     command=f"SET_CH {channel} OFF",
                     baudrate=hw.BAUDRATE
                 ),
-                Serial.send_command_uart(
+                UART.send_command_uart(
                     name=f"Verify Channel {channel} is OFF by Serial",
                     port=hw.SERIAL_PORT,
                     command=f"GET_CH {channel}",
                     baudrate=hw.BAUDRATE
                 ),
-                Serial.validate_tokens(
+                UART.validate_tokens(
                     name=f"Validate Serial reports CH{channel} OFF",
                     response="",                 
                     tokens=["OFF"]
@@ -87,13 +92,13 @@ class tc_serial_test:
 
         test_all_outlets = STE(    
                 # --- ALL On ---
-                Serial.send_command_uart(
+                UART.send_command_uart(
                     name=f"Set All Channels to ON",
                     port=hw.SERIAL_PORT,
                     command=f"SET_CH ALL ON",
                     baudrate=hw.BAUDRATE
                 ),
-                Serial.get_all_channels(
+                UART.get_all_channels(
                     name=f"Read All Channels ON state by Serial",
                     port=hw.SERIAL_PORT,
                     baudrate=hw.BAUDRATE,
@@ -107,13 +112,13 @@ class tc_serial_test:
                     community=hw.SNMP_COMMUNITY
                 ),
                 # --- ALL Off ---
-                Serial.send_command_uart(
+                UART.send_command_uart(
                     name=f"Set All Channels to OFF",
                     port=hw.SERIAL_PORT,
                     command=f"SET_CH ALL OFF",
                     baudrate=hw.BAUDRATE
                 ),
-                Serial.get_all_channels(
+                UART.get_all_channels(
                     name=f"Read All Channels ON state by Serial",
                     port=hw.SERIAL_PORT,
                     baudrate=hw.BAUDRATE,
@@ -133,13 +138,13 @@ class tc_serial_test:
         return [
             # Step 1: HELP with sub-steps for each token
             STE(
-                Serial.send_command_uart(
+                UART.send_command_uart(
                     name="Send HELP command",
                     port=hw.SERIAL_PORT,
                     command=hw.HELP_CMD,
                     baudrate=hw.BAUDRATE
                 ),
-                Serial.validate_tokens(
+                UART.validate_tokens(
                     name="Validate HELP tokens present",
                     response="",     # if you cache the HELP response
                     tokens=hw.HELP_TOKENS
@@ -147,7 +152,7 @@ class tc_serial_test:
             ),
 
             # Step 2: Validate SYSINFO
-            Serial.test_sysinfo_complete(
+            UART.test_sysinfo_complete(
                 name="Send SYSINFO and validate all parameters",
                 port=hw.SERIAL_PORT,
                 validation={
@@ -164,51 +169,53 @@ class tc_serial_test:
             ),
 
             # Step 3: Network configuration - sub-steps
-            STE(Serial.set_network_parameter(
+            STE(UART.set_network_parameter(
                     name=f"Change Network parameter to {test_ip}, {test_subnet}, {test_gateway}, {test_dns}",
                     port=hw.SERIAL_PORT,
                     param="CONFIG_NETWORK",
                     value=f"{test_ip}${test_subnet}${test_gateway}${test_dns}",
-                    baudrate=hw.BAUDRATE
+                    baudrate=hw.BAUDRATE,
+                    reboot_timeout=20
                 ),
-                Serial.verify_network_change(
+                UART.verify_network_change(
                     name=f"Verify Network parameter change to {test_ip}",
                     port=hw.SERIAL_PORT,
                     param="IP",
                     expected_value=test_ip,
                     baudrate=hw.BAUDRATE
                 ),
-                Serial.verify_network_change(
+                UART.verify_network_change(
                     name=f"Verify Network parameter change to {test_gateway}",
                     port=hw.SERIAL_PORT,
                     param="Gateway",
                     expected_value=test_gateway,
                     baudrate=hw.BAUDRATE
                 ),
-                Serial.verify_network_change(
+                UART.verify_network_change(
                     name=f"Verify Network parameter change to {test_subnet}",
                     port=hw.SERIAL_PORT,
                     param="Subnet Mask",
                     expected_value=test_subnet,
                     baudrate=hw.BAUDRATE
                 ),
-                Serial.verify_network_change(
+                UART.verify_network_change(
                     name=f"Verify Network parameter change to {test_dns}",
                     port=hw.SERIAL_PORT,
                     param="DNS",
                     expected_value=test_dns,
                     baudrate=hw.BAUDRATE
                 ),
-                Network.ping_host(
+                network.ping_host(
                     name=f"Ping new IP {test_ip}",
                     ip=test_ip
                 ),
-                Serial.set_network_parameter(
+                UART.set_network_parameter(
                     name=f"Revert Network parameters to {hw.BASELINE_IP}, {hw.BASELINE_SUBNET}, {hw.BASELINE_GATEWAY}, {hw.BASELINE_DNS}",
                     port=hw.SERIAL_PORT,
                     param="CONFIG_NETWORK",
                     value=f"{hw.BASELINE_IP}${hw.BASELINE_SUBNET}${hw.BASELINE_GATEWAY}${hw.BASELINE_DNS}",
-                    baudrate=hw.BAUDRATE
+                    baudrate=hw.BAUDRATE,
+                    reboot_timeout=20
                 ),
                 name="Test Network configuration change via Serial",
             ),
@@ -222,18 +229,19 @@ class tc_serial_test:
             test_all_outlets,
 
             # Step 6: Factory reset - single action
-            Serial.factory_reset_complete(
+            UART.factory_reset_complete(
                 name="Reset to factory settings (RFS) and verify data",
                 port=hw.SERIAL_PORT,
                 baudrate=hw.BAUDRATE
             ),
 
             # Step 7: Parse EEPROM dump
-            Serial.analyze_eeprom_dump(
+            UART.analyze_eeprom_dump(
                 name="Create EEPROM dump and analyze EEPROM content",
                 port=hw.SERIAL_PORT,
                 baudrate=hw.BAUDRATE,
-                checks="eeprom_checks.json"
+                checks="eeprom_checks.json",
+                reports_dir=Path("report_tc_serial_utfw")
             )
         ]
 

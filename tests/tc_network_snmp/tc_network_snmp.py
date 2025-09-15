@@ -17,9 +17,11 @@ import sys
 import subprocess
 from pathlib import Path
 
-from UTFW import STE, SNMP, Serial, run_test_with_teardown, TestAction
-from UTFW.utilities import get_hwconfig
-
+from UTFW.core import run_test_with_teardown
+from UTFW.core import get_hwconfig
+from UTFW.core import STE
+from UTFW.modules import snmp as SNMP
+from UTFW.modules import serial
 
 class tc_network_snmp_test:
     """UTFW test suite for ENERGIS SNMP behavior."""
@@ -36,6 +38,7 @@ class tc_network_snmp_test:
 
         # Step 2: MIB-II system.* regex validations
         validate_MIB_II = STE(
+            # Step 2.1 - sysDescr
             SNMP.expect_oid_regex(
                 name="sysDescr matches expected",
                 ip=hw.BASELINE_IP,
@@ -43,6 +46,7 @@ class tc_network_snmp_test:
                 regex=hw.SYS_DESCR_EXPECTED,
                 community=hw.SNMP_COMMUNITY
             ),
+            # Step 2.2 - sysObjectID
             SNMP.expect_oid_regex(
                 name="sysObjectID present",
                 ip=hw.BASELINE_IP,
@@ -50,6 +54,7 @@ class tc_network_snmp_test:
                 regex=r".+",
                 community=hw.SNMP_COMMUNITY
             ),
+            # Step 2.3 - sysUpTime
             SNMP.expect_oid_regex(
                 name="sysUpTime present",
                 ip=hw.BASELINE_IP,
@@ -57,6 +62,7 @@ class tc_network_snmp_test:
                 regex=r".*\d+.*",
                 community=hw.SNMP_COMMUNITY
             ),
+            # Step 2.4 - sysContact
             SNMP.expect_oid_regex(
                 name="sysContact matches expected",
                 ip=hw.BASELINE_IP,
@@ -64,6 +70,7 @@ class tc_network_snmp_test:
                 regex=hw.SYS_CONTACT_EXPECTED,
                 community=hw.SNMP_COMMUNITY
             ),
+            # Step 2.5 - sysName
             SNMP.expect_oid_regex(
                 name="sysName matches expected",
                 ip=hw.BASELINE_IP,
@@ -71,6 +78,7 @@ class tc_network_snmp_test:
                 regex=hw.SYS_NAME_EXPECTED,
                 community=hw.SNMP_COMMUNITY
             ),
+            # Step 2.6 - sysLocation
             SNMP.expect_oid_regex(
                 name="sysLocation matches expected",
                 ip=hw.BASELINE_IP,
@@ -78,6 +86,7 @@ class tc_network_snmp_test:
                 regex=hw.SYS_LOCATION_EXPECTED,
                 community=hw.SNMP_COMMUNITY
             ),
+            # Step 2.7 - sysServices
             SNMP.expect_oid_regex(
                 name="sysServices matches expected",
                 ip=hw.BASELINE_IP,

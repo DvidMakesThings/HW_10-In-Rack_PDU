@@ -38,8 +38,7 @@
 <h1>ENERGIS Test Report</h1>
 <div class='meta'>
 Overall: <b class='chip pass'>PASS</b> &nbsp;
-Started: 2025-09-05 20:30:38 &nbsp;
-Finished: 2025-09-05 20:31:55 &nbsp;
+Started: 2025-09-15 13:44:48 &nbsp;
 </div>
 </header>
 <main>
@@ -55,7 +54,7 @@ Finished: 2025-09-05 20:31:55 &nbsp;
 <div>Hostname</div><div>DPC</div>
 <div>Os</div><div>Windows 11 (10.0.26100)</div>
 <div>Python</div><div>3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]</div>
-<div>Generated_at</div><div>2025-09-05 20:31:55</div>
+<div>Generated_at</div><div>2025-09-15 13:46:15</div>
 <div>Log_file</div><div>report_tc_serial_utfw\tc_serial_utfw_results.log</div>
 </div>
 </section>
@@ -68,7 +67,7 @@ Finished: 2025-09-05 20:31:55 &nbsp;
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:30:38</td><td>2025-09-05 20:30:38</td></tr>
+<tr><td>2025-09-15 13:44:48</td><td>2025-09-15 13:44:49</td></tr>
 </table>
 <div class='substeps'>
 <h4>Substeps</h4>
@@ -79,141 +78,12 @@ Finished: 2025-09-05 20:31:55 &nbsp;
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:30:38</td><td>2025-09-05 20:30:38</td></tr>
+<tr><td>2025-09-15 13:44:48</td><td>2025-09-15 13:44:49</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:30:38] [STEP 1.1] Send HELP command
-[2025-09-05 20:30:38] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:30:38] [TX] bytes=6
-[2025-09-05 20:30:38] HELP\r\n
-
-[2025-09-05 20:30:38] [TX_HEX]
-0000: 48 45 4C 50 0D 0A                                HELP..
-[2025-09-05 20:30:38] [RX] bytes=1468
-[2025-09-05 20:30:38] \t[ECHO] Received CMD: &quot;HELP&quot;\r\n
-\r\n
-Available commands:\r\n
-\tHELP                            Show this help message\r\n
-\tSYSINFO                         Show system information\r\n
-\tREBOOT                          Reboot the device\r\n
-\tBOOTSEL                         Reset the device into bootloader mode\r\n
-\t------------ Network Settings ------------ \r\n
-\tCONFIG_NETWORK &lt;ip$sn$gw$dns&gt;   Configure network settings\r\n
-\tSET_IP &lt;xxx.xxx.xxx.xxx&gt;        Set the device IP address\r\n
-\tSET_DNS &lt;x.x.x.x&gt;               Set the DNS server address\r\n
-\tSET_GW &lt;xxx.xxx.xxx.xxx&gt;        Set the gateway address\r\n
-\tSET_SN &lt;xxx.xxx.xxx.xxx&gt;        Set the subnet mask\r\n
-\tNETINFO                         Show network information\r\n
-\t------------ Output Functions ------------ \r\n
-\tSET_CH &lt;n|ALL&gt; &lt;ON|OFF&gt;         Set channel relay state\r\n
-\tGET_CH &lt;n|ALL&gt;                  Get channel relay state\r\n
-\tREAD_HLW8032                    Read HLW8032 sensor data\r\n
-\tREAD_HLW8032 &lt;ch&gt;               Read specific HLW8032 channel\r\n
-\t------------ Other Functions ------------ \r\n
-\tDUMP_EEPROM                     Create snapshot from the EEPROM\r\n
-\tCLR_ERR                         Clear errors\r\n
-\tGET_TEMP                        Get die temperature\r\n
-\tRFS                             Reset to factory settings\r\n
-\tBAADCAFE                        Erase entire EEPROM (all settings lost)\r\n
-\tGET_SUPPLY                      Get voltage from 12V supply sense line\r\n
-\tGET_USB                         Get voltage from USB supply sense line\r\n
-
-[2025-09-05 20:30:38] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 48 45 4C 50 22 0D 0A 0D 0A   CMD: &quot;HELP&quot;....
-0020: 41 76 61 69 6C 61 62 6C 65 20 63 6F 6D 6D 61 6E  Available comman
-0030: 64 73 3A 0D 0A 09 48 45 4C 50 20 20 20 20 20 20  ds:...HELP      
-0040: 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20                  
-0050: 20 20 20 20 20 20 53 68 6F 77 20 74 68 69 73 20        Show this 
-0060: 68 65 6C 70 20 6D 65 73 73 61 67 65 0D 0A 09 53  help message...S
-0070: 59 53 49 4E 46 4F 20 20 20 20 20 20 20 20 20 20  YSINFO          
-0080: 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 53                 S
-0090: 68 6F 77 20 73 79 73 74 65 6D 20 69 6E 66 6F 72  how system infor
-00A0: 6D 61 74 69 6F 6E 0D 0A 09 52 45 42 4F 4F 54 20  mation...REBOOT 
-00B0: 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20                  
-00C0: 20 20 20 20 20 20 20 20 20 52 65 62 6F 6F 74 20           Reboot 
-00D0: 74 68 65 20 64 65 76 69 63 65 0D 0A 09 42 4F 4F  the device...BOO
-00E0: 54 53 45 4C 20 20 20 20 20 20 20 20 20 20 20 20  TSEL            
-00F0: 20 20 20 20 20 20 20 20 20 20 20 20 20 52 65 73               Res
-0100: 65 74 20 74 68 65 20 64 65 76 69 63 65 20 69 6E  et the device in
-0110: 74 6F 20 62 6F 6F 74 6C 6F 61 64 65 72 20 6D 6F  to bootloader mo
-0120: 64 65 0D 0A 09 2D 2D 2D 2D 2D 2D 2D 2D 2D 2D 2D  de...-----------
-0130: 2D 20 4E 65 74 77 6F 72 6B 20 53 65 74 74 69 6E  - Network Settin
-0140: 67 73 20 2D 2D 2D 2D 2D 2D 2D 2D 2D 2D 2D 2D 20  gs ------------ 
-0150: 0D 0A 09 43 4F 4E 46 49 47 5F 4E 45 54 57 4F 52  ...CONFIG_NETWOR
-0160: 4B 20 3C 69 70 24 73 6E 24 67 77 24 64 6E 73 3E  K &lt;ip$sn$gw$dns&gt;
-0170: 20 20 20 43 6F 6E 66 69 67 75 72 65 20 6E 65 74     Configure net
-0180: 77 6F 72 6B 20 73 65 74 74 69 6E 67 73 0D 0A 09  work settings...
-0190: 53 45 54 5F 49 50 20 3C 78 78 78 2E 78 78 78 2E  SET_IP &lt;xxx.xxx.
-01A0: 78 78 78 2E 78 78 78 3E 20 20 20 20 20 20 20 20  xxx.xxx&gt;        
-01B0: 53 65 74 20 74 68 65 20 64 65 76 69 63 65 20 49  Set the device I
-01C0: 50 20 61 64 64 72 65 73 73 0D 0A 09 53 45 54 5F  P address...SET_
-01D0: 44 4E 53 20 3C 78 2E 78 2E 78 2E 78 3E 20 20 20  DNS &lt;x.x.x.x&gt;   
-01E0: 20 20 20 20 20 20 20 20 20 20 20 20 53 65 74 20              Set 
-01F0: 74 68 65 20 44 4E 53 20 73 65 72 76 65 72 20 61  the DNS server a
-0200: 64 64 72 65 73 73 0D 0A 09 53 45 54 5F 47 57 20  ddress...SET_GW 
-0210: 3C 78 78 78 2E 78 78 78 2E 78 78 78 2E 78 78 78  &lt;xxx.xxx.xxx.xxx
-0220: 3E 20 20 20 20 20 20 20 20 53 65 74 20 74 68 65  &gt;        Set the
-0230: 20 67 61 74 65 77 61 79 20 61 64 64 72 65 73 73   gateway address
-0240: 0D 0A 09 53 45 54 5F 53 4E 20 3C 78 78 78 2E 78  ...SET_SN &lt;xxx.x
-0250: 78 78 2E 78 78 78 2E 78 78 78 3E 20 20 20 20 20  xx.xxx.xxx&gt;     
-0260: 20 20 20 53 65 74 20 74 68 65 20 73 75 62 6E 65     Set the subne
-0270: 74 20 6D 61 73 6B 0D 0A 09 4E 45 54 49 4E 46 4F  t mask...NETINFO
-0280: 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20                  
-0290: 20 20 20 20 20 20 20 20 20 53 68 6F 77 20 6E 65           Show ne
-02A0: 74 77 6F 72 6B 20 69 6E 66 6F 72 6D 61 74 69 6F  twork informatio
-02B0: 6E 0D 0A 09 2D 2D 2D 2D 2D 2D 2D 2D 2D 2D 2D 2D  n...------------
-02C0: 20 4F 75 74 70 75 74 20 46 75 6E 63 74 69 6F 6E   Output Function
-02D0: 73 20 2D 2D 2D 2D 2D 2D 2D 2D 2D 2D 2D 2D 20 0D  s ------------ .
-02E0: 0A 09 53 45 54 5F 43 48 20 3C 6E 7C 41 4C 4C 3E  ..SET_CH &lt;n|ALL&gt;
-02F0: 20 3C 4F 4E 7C 4F 46 46 3E 20 20 20 20 20 20 20   &lt;ON|OFF&gt;       
-0300: 20 20 53 65 74 20 63 68 61 6E 6E 65 6C 20 72 65    Set channel re
-0310: 6C 61 79 20 73 74 61 74 65 0D 0A 09 47 45 54 5F  lay state...GET_
-0320: 43 48 20 3C 6E 7C 41 4C 4C 3E 20 20 20 20 20 20  CH &lt;n|ALL&gt;      
-0330: 20 20 20 20 20 20 20 20 20 20 20 20 47 65 74 20              Get 
-0340: 63 68 61 6E 6E 65 6C 20 72 65 6C 61 79 20 73 74  channel relay st
-0350: 61 74 65 0D 0A 09 52 45 41 44 5F 48 4C 57 38 30  ate...READ_HLW80
-0360: 33 32 20 20 20 20 20 20 20 20 20 20 20 20 20 20  32              
-0370: 20 20 20 20 20 20 52 65 61 64 20 48 4C 57 38 30        Read HLW80
-0380: 33 32 20 73 65 6E 73 6F 72 20 64 61 74 61 0D 0A  32 sensor data..
-0390: 09 52 45 41 44 5F 48 4C 57 38 30 33 32 20 3C 63  .READ_HLW8032 &lt;c
-03A0: 68 3E 20 20 20 20 20 20 20 20 20 20 20 20 20 20  h&gt;              
-03B0: 20 52 65 61 64 20 73 70 65 63 69 66 69 63 20 48   Read specific H
-03C0: 4C 57 38 30 33 32 20 63 68 61 6E 6E 65 6C 0D 0A  LW8032 channel..
-03D0: 09 2D 2D 2D 2D 2D 2D 2D 2D 2D 2D 2D 2D 20 4F 74  .------------ Ot
-03E0: 68 65 72 20 46 75 6E 63 74 69 6F 6E 73 20 2D 2D  her Functions --
-03F0: 2D 2D 2D 2D 2D 2D 2D 2D 2D 2D 20 0D 0A 09 44 55  ---------- ...DU
-0400: 4D 50 5F 45 45 50 52 4F 4D 20 20 20 20 20 20 20  MP_EEPROM       
-0410: 20 20 20 20 20 20 20 20 20 20 20 20 20 20 43 72                Cr
-0420: 65 61 74 65 20 73 6E 61 70 73 68 6F 74 20 66 72  eate snapshot fr
-0430: 6F 6D 20 74 68 65 20 45 45 50 52 4F 4D 0D 0A 09  om the EEPROM...
-0440: 43 4C 52 5F 45 52 52 20 20 20 20 20 20 20 20 20  CLR_ERR         
-0450: 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20                  
-0460: 43 6C 65 61 72 20 65 72 72 6F 72 73 0D 0A 09 47  Clear errors...G
-0470: 45 54 5F 54 45 4D 50 20 20 20 20 20 20 20 20 20  ET_TEMP         
-0480: 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 47                 G
-0490: 65 74 20 64 69 65 20 74 65 6D 70 65 72 61 74 75  et die temperatu
-04A0: 72 65 0D 0A 09 52 46 53 20 20 20 20 20 20 20 20  re...RFS        
-04B0: 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20                  
-04C0: 20 20 20 20 20 52 65 73 65 74 20 74 6F 20 66 61       Reset to fa
-04D0: 63 74 6F 72 79 20 73 65 74 74 69 6E 67 73 0D 0A  ctory settings..
-04E0: 09 42 41 41 44 43 41 46 45 20 20 20 20 20 20 20  .BAADCAFE       
-04F0: 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20                  
-0500: 20 45 72 61 73 65 20 65 6E 74 69 72 65 20 45 45   Erase entire EE
-0510: 50 52 4F 4D 20 28 61 6C 6C 20 73 65 74 74 69 6E  PROM (all settin
-0520: 67 73 20 6C 6F 73 74 29 0D 0A 09 47 45 54 5F 53  gs lost)...GET_S
-0530: 55 50 50 4C 59 20 20 20 20 20 20 20 20 20 20 20  UPPLY           
-0540: 20 20 20 20 20 20 20 20 20 20 20 47 65 74 20 76             Get v
-0550: 6F 6C 74 61 67 65 20 66 72 6F 6D 20 31 32 56 20  oltage from 12V 
-0560: 73 75 70 70 6C 79 20 73 65 6E 73 65 20 6C 69 6E  supply sense lin
-0570: 65 0D 0A 09 47 45 54 5F 55 53 42 20 20 20 20 20  e...GET_USB     
-0580: 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20                  
-0590: 20 20 20 20 47 65 74 20 76 6F 6C 74 61 67 65 20      Get voltage 
-05A0: 66 72 6F 6D 20 55 53 42 20 73 75 70 70 6C 79 20  from USB supply 
-05B0: 73 65 6E 73 65 20 6C 69 6E 65 0D 0A              sense line..
-[2025-09-05 20:30:38] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:30:38] [PASS] STEP 1.1 completed successfully
+[2025-09-15 13:44:48] [STEP 1.1] Send HELP command
+[2025-09-15 13:44:49] [PASS] STEP 1.1 completed successfully
 </pre>
 </div>
 </details>
@@ -224,13 +94,12 @@ Available commands:\r\n
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:30:38</td><td>2025-09-05 20:30:38</td></tr>
+<tr><td>2025-09-15 13:44:49</td><td>2025-09-15 13:44:49</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:30:38] [STEP 1.2] Validate HELP tokens present
-[2025-09-05 20:30:38] [PASS] STEP 1.2 completed successfully
-[2025-09-05 20:30:38] [PASS] STEP 1 all sub-steps completed
+[2025-09-15 13:44:49] [STEP 1.2] Validate HELP tokens present
+[2025-09-15 13:44:49] [PASS] STEP 1.2 completed successfully
 </pre>
 </div>
 </details>
@@ -244,57 +113,15 @@ Available commands:\r\n
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:30:38</td><td>2025-09-05 20:30:39</td></tr>
+<tr><td>2025-09-15 13:44:49</td><td>2025-09-15 13:44:50</td></tr>
 </table>
 <details>
 <summary><div class='step-title'><div>Step Log</div><div class='status unknown'>DETAIL</div></div></summary>
 <div class='content'>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:30:38] [STEP 2] Send SYSINFO and validate all parameters
-[2025-09-05 20:30:38] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:30:38] [TX] bytes=9
-[2025-09-05 20:30:38] SYSINFO\r\n
-
-[2025-09-05 20:30:38] [TX_HEX]
-0000: 53 59 53 49 4E 46 4F 0D 0A                       SYSINFO..
-[2025-09-05 20:30:39] [RX] bytes=348
-[2025-09-05 20:30:39] \t[ECHO] Received CMD: &quot;SYSINFO&quot;\r\n
-\t[ECHO] SYSTEM INFORMATION:\r\n
-\t[ECHO] Device Serial : SN-369366060325\r\n
-\t[ECHO] Firmware Ver  : 1.0.0\r\n
-\t[ECHO] Core voltage  : 1.15 V (vsel = 1)\r\n
-\t[ECHO] Clock Sources :\r\n
-\t[ECHO] \tSYS: 200000000 Hz (200 MHz)\r\n
-\t[ECHO] \tUSB: 48000000 Hz (48 MHz)\r\n
-\t[ECHO] \tPER: 48000000 Hz (48 MHz)\r\n
-\t[ECHO] \tADC: 48000000 Hz (48 MHz)\r\n
-
-[2025-09-05 20:30:39] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 53 59 53 49 4E 46 4F 22 0D   CMD: &quot;SYSINFO&quot;.
-0020: 0A 09 5B 45 43 48 4F 5D 20 53 59 53 54 45 4D 20  ..[ECHO] SYSTEM 
-0030: 49 4E 46 4F 52 4D 41 54 49 4F 4E 3A 0D 0A 09 5B  INFORMATION:...[
-0040: 45 43 48 4F 5D 20 44 65 76 69 63 65 20 53 65 72  ECHO] Device Ser
-0050: 69 61 6C 20 3A 20 53 4E 2D 33 36 39 33 36 36 30  ial : SN-3693660
-0060: 36 30 33 32 35 0D 0A 09 5B 45 43 48 4F 5D 20 46  60325...[ECHO] F
-0070: 69 72 6D 77 61 72 65 20 56 65 72 20 20 3A 20 31  irmware Ver  : 1
-0080: 2E 30 2E 30 0D 0A 09 5B 45 43 48 4F 5D 20 43 6F  .0.0...[ECHO] Co
-0090: 72 65 20 76 6F 6C 74 61 67 65 20 20 3A 20 31 2E  re voltage  : 1.
-00A0: 31 35 20 56 20 28 76 73 65 6C 20 3D 20 31 29 0D  15 V (vsel = 1).
-00B0: 0A 09 5B 45 43 48 4F 5D 20 43 6C 6F 63 6B 20 53  ..[ECHO] Clock S
-00C0: 6F 75 72 63 65 73 20 3A 0D 0A 09 5B 45 43 48 4F  ources :...[ECHO
-00D0: 5D 20 09 53 59 53 3A 20 32 30 30 30 30 30 30 30  ] .SYS: 20000000
-00E0: 30 20 48 7A 20 28 32 30 30 20 4D 48 7A 29 0D 0A  0 Hz (200 MHz)..
-00F0: 09 5B 45 43 48 4F 5D 20 09 55 53 42 3A 20 34 38  .[ECHO] .USB: 48
-0100: 30 30 30 30 30 30 20 48 7A 20 28 34 38 20 4D 48  000000 Hz (48 MH
-0110: 7A 29 0D 0A 09 5B 45 43 48 4F 5D 20 09 50 45 52  z)...[ECHO] .PER
-0120: 3A 20 34 38 30 30 30 30 30 30 20 48 7A 20 28 34  : 48000000 Hz (4
-0130: 38 20 4D 48 7A 29 0D 0A 09 5B 45 43 48 4F 5D 20  8 MHz)...[ECHO] 
-0140: 09 41 44 43 3A 20 34 38 30 30 30 30 30 30 20 48  .ADC: 48000000 H
-0150: 7A 20 28 34 38 20 4D 48 7A 29 0D 0A              z (48 MHz)..
-[2025-09-05 20:30:39] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:30:39] [PASS] STEP 2 completed successfully
+[2025-09-15 13:44:49] [STEP 2] Send SYSINFO and validate all parameters
+[2025-09-15 13:44:50] [PASS] STEP 2 completed successfully
 </pre>
 </div>
 </details>
@@ -307,7 +134,7 @@ Available commands:\r\n
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:30:39</td><td>2025-09-05 20:31:00</td></tr>
+<tr><td>2025-09-15 13:44:50</td><td>2025-09-15 13:45:11</td></tr>
 </table>
 <div class='substeps'>
 <h4>Substeps</h4>
@@ -318,215 +145,12 @@ Available commands:\r\n
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:30:39</td><td>2025-09-05 20:30:48</td></tr>
+<tr><td>2025-09-15 13:44:50</td><td>2025-09-15 13:44:59</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:30:39] [STEP 3.1] Change Network parameter to 192.168.0.72, 255.255.0.0, 10.10.10.1, 1.1.1.1
-[2025-09-05 20:30:39] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:30:39] [TX] bytes=60
-[2025-09-05 20:30:39] CONFIG_NETWORK 192.168.0.72$255.255.0.0$10.10.10.1$1.1.1.1\r\n
-
-[2025-09-05 20:30:39] [TX_HEX]
-0000: 43 4F 4E 46 49 47 5F 4E 45 54 57 4F 52 4B 20 31  CONFIG_NETWORK 1
-0010: 39 32 2E 31 36 38 2E 30 2E 37 32 24 32 35 35 2E  92.168.0.72$255.
-0020: 32 35 35 2E 30 2E 30 24 31 30 2E 31 30 2E 31 30  255.0.0$10.10.10
-0030: 2E 31 24 31 2E 31 2E 31 2E 31 0D 0A              .1$1.1.1.1..
-[2025-09-05 20:30:40] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:30:43] [RX] reconnect bytes=726
-[2025-09-05 20:30:43] [INFO] Core 0 initializing...\r\n
-\t[ECHO] Device Serial : SN-369366060325\r\n
-\t[ECHO] Firmware Ver  : 1.0.0\r\n
-\t[ECHO] Core voltage  : 1.15 V (vsel = 1)\r\n
-\t[ECHO] Clock Sources :\r\n
-\t[ECHO] \tSYS: 200000000 Hz (200 MHz)\r\n
-\t[ECHO] \tUSB: 48000000 Hz (48 MHz)\r\n
-\t[ECHO] \tPER: 48000000 Hz (48 MHz)\r\n
-\t[ECHO] \tADC: 48000000 Hz (48 MHz)\r\n
-[INFO] ADC initializing\r\n
-\t[DEBUG] ADC OK\r\n
-VREG register: 0x000010D1\r\n
-[INFO] I2C scanning...\r\n
-\t[DEBUG] Scanning I2C0...\r\n
-\t[DEBUG] Found device at address 0x21\r\n
-\t[DEBUG] Found device at address 0x23\r\n
-\t[DEBUG] Scanning I2C1...\r\n
-\t[DEBUG] Found device at address 0x20\r\n
-\t[DEBUG] Found device at address 0x50\r\n
-[INFO] EEPROM initializing...\r\n
-\t[DEBUG] EEPROM OK\r\n
-[INFO] MCP23017 initializing...\r\n
-\t[DEBUG] MCP23017 OK\r\n
-
-[2025-09-05 20:30:43] [RX_HEX]
-0000: 5B 49 4E 46 4F 5D 20 43 6F 72 65 20 30 20 69 6E  [INFO] Core 0 in
-0010: 69 74 69 61 6C 69 7A 69 6E 67 2E 2E 2E 0D 0A 09  itializing......
-0020: 5B 45 43 48 4F 5D 20 44 65 76 69 63 65 20 53 65  [ECHO] Device Se
-0030: 72 69 61 6C 20 3A 20 53 4E 2D 33 36 39 33 36 36  rial : SN-369366
-0040: 30 36 30 33 32 35 0D 0A 09 5B 45 43 48 4F 5D 20  060325...[ECHO] 
-0050: 46 69 72 6D 77 61 72 65 20 56 65 72 20 20 3A 20  Firmware Ver  : 
-0060: 31 2E 30 2E 30 0D 0A 09 5B 45 43 48 4F 5D 20 43  1.0.0...[ECHO] C
-0070: 6F 72 65 20 76 6F 6C 74 61 67 65 20 20 3A 20 31  ore voltage  : 1
-0080: 2E 31 35 20 56 20 28 76 73 65 6C 20 3D 20 31 29  .15 V (vsel = 1)
-0090: 0D 0A 09 5B 45 43 48 4F 5D 20 43 6C 6F 63 6B 20  ...[ECHO] Clock 
-00A0: 53 6F 75 72 63 65 73 20 3A 0D 0A 09 5B 45 43 48  Sources :...[ECH
-00B0: 4F 5D 20 09 53 59 53 3A 20 32 30 30 30 30 30 30  O] .SYS: 2000000
-00C0: 30 30 20 48 7A 20 28 32 30 30 20 4D 48 7A 29 0D  00 Hz (200 MHz).
-00D0: 0A 09 5B 45 43 48 4F 5D 20 09 55 53 42 3A 20 34  ..[ECHO] .USB: 4
-00E0: 38 30 30 30 30 30 30 20 48 7A 20 28 34 38 20 4D  8000000 Hz (48 M
-00F0: 48 7A 29 0D 0A 09 5B 45 43 48 4F 5D 20 09 50 45  Hz)...[ECHO] .PE
-0100: 52 3A 20 34 38 30 30 30 30 30 30 20 48 7A 20 28  R: 48000000 Hz (
-0110: 34 38 20 4D 48 7A 29 0D 0A 09 5B 45 43 48 4F 5D  48 MHz)...[ECHO]
-0120: 20 09 41 44 43 3A 20 34 38 30 30 30 30 30 30 20   .ADC: 48000000 
-0130: 48 7A 20 28 34 38 20 4D 48 7A 29 0D 0A 5B 49 4E  Hz (48 MHz)..[IN
-0140: 46 4F 5D 20 41 44 43 20 69 6E 69 74 69 61 6C 69  FO] ADC initiali
-0150: 7A 69 6E 67 0D 0A 09 5B 44 45 42 55 47 5D 20 41  zing...[DEBUG] A
-0160: 44 43 20 4F 4B 0D 0A 56 52 45 47 20 72 65 67 69  DC OK..VREG regi
-0170: 73 74 65 72 3A 20 30 78 30 30 30 30 31 30 44 31  ster: 0x000010D1
-0180: 0D 0A 5B 49 4E 46 4F 5D 20 49 32 43 20 73 63 61  ..[INFO] I2C sca
-0190: 6E 6E 69 6E 67 2E 2E 2E 0D 0A 09 5B 44 45 42 55  nning......[DEBU
-01A0: 47 5D 20 53 63 61 6E 6E 69 6E 67 20 49 32 43 30  G] Scanning I2C0
-01B0: 2E 2E 2E 0D 0A 09 5B 44 45 42 55 47 5D 20 46 6F  ......[DEBUG] Fo
-01C0: 75 6E 64 20 64 65 76 69 63 65 20 61 74 20 61 64  und device at ad
-01D0: 64 72 65 73 73 20 30 78 32 31 0D 0A 09 5B 44 45  dress 0x21...[DE
-01E0: 42 55 47 5D 20 46 6F 75 6E 64 20 64 65 76 69 63  BUG] Found devic
-01F0: 65 20 61 74 20 61 64 64 72 65 73 73 20 30 78 32  e at address 0x2
-0200: 33 0D 0A 09 5B 44 45 42 55 47 5D 20 53 63 61 6E  3...[DEBUG] Scan
-0210: 6E 69 6E 67 20 49 32 43 31 2E 2E 2E 0D 0A 09 5B  ning I2C1......[
-0220: 44 45 42 55 47 5D 20 46 6F 75 6E 64 20 64 65 76  DEBUG] Found dev
-0230: 69 63 65 20 61 74 20 61 64 64 72 65 73 73 20 30  ice at address 0
-0240: 78 32 30 0D 0A 09 5B 44 45 42 55 47 5D 20 46 6F  x20...[DEBUG] Fo
-0250: 75 6E 64 20 64 65 76 69 63 65 20 61 74 20 61 64  und device at ad
-0260: 64 72 65 73 73 20 30 78 35 30 0D 0A 5B 49 4E 46  dress 0x50..[INF
-0270: 4F 5D 20 45 45 50 52 4F 4D 20 69 6E 69 74 69 61  O] EEPROM initia
-0280: 6C 69 7A 69 6E 67 2E 2E 2E 0D 0A 09 5B 44 45 42  lizing......[DEB
-0290: 55 47 5D 20 45 45 50 52 4F 4D 20 4F 4B 0D 0A 5B  UG] EEPROM OK..[
-02A0: 49 4E 46 4F 5D 20 4D 43 50 32 33 30 31 37 20 69  INFO] MCP23017 i
-02B0: 6E 69 74 69 61 6C 69 7A 69 6E 67 2E 2E 2E 0D 0A  nitializing.....
-02C0: 09 5B 44 45 42 55 47 5D 20 4D 43 50 32 33 30 31  .[DEBUG] MCP2301
-02D0: 37 20 4F 4B 0D 0A                                7 OK..
-[2025-09-05 20:30:43] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:30:45] [RX] reconnect bytes=522
-[2025-09-05 20:30:45] [INFO] Headless mode, skipping display initialization\r\n
-[INFO] Initializing HLW8032...\r\n
-\t[DEBUG] HLW8032 OK\r\n
-[INFO] Initializing buttons...\r\n
-\t[DEBUG] Buttons initialized\r\n
-\t[DEBUG] Core 0 initialized.\r\n
-\r\n
-[INFO] Loaded network config from EEPROM.\r\n
-\t[DEBUG] Loaded network config: IP 192.168.0.72\r\n
-\t[DEBUG] Network config loaded, continuing...\r\n
-\r\n
-\t[DEBUG] Initialize W5500 Ethernet controller SPI\r\n
-\t[DEBUG] Initialize W5500 Ethernet controller CRIS\r\n
-\t[DEBUG] Set W5500 to RESET\r\n
-\t[DEBUG] Initialize W5500 Ethernet controller\r\n
-
-[2025-09-05 20:30:45] [RX_HEX]
-0000: 5B 49 4E 46 4F 5D 20 48 65 61 64 6C 65 73 73 20  [INFO] Headless 
-0010: 6D 6F 64 65 2C 20 73 6B 69 70 70 69 6E 67 20 64  mode, skipping d
-0020: 69 73 70 6C 61 79 20 69 6E 69 74 69 61 6C 69 7A  isplay initializ
-0030: 61 74 69 6F 6E 0D 0A 5B 49 4E 46 4F 5D 20 49 6E  ation..[INFO] In
-0040: 69 74 69 61 6C 69 7A 69 6E 67 20 48 4C 57 38 30  itializing HLW80
-0050: 33 32 2E 2E 2E 0D 0A 09 5B 44 45 42 55 47 5D 20  32......[DEBUG] 
-0060: 48 4C 57 38 30 33 32 20 4F 4B 0D 0A 5B 49 4E 46  HLW8032 OK..[INF
-0070: 4F 5D 20 49 6E 69 74 69 61 6C 69 7A 69 6E 67 20  O] Initializing 
-0080: 62 75 74 74 6F 6E 73 2E 2E 2E 0D 0A 09 5B 44 45  buttons......[DE
-0090: 42 55 47 5D 20 42 75 74 74 6F 6E 73 20 69 6E 69  BUG] Buttons ini
-00A0: 74 69 61 6C 69 7A 65 64 0D 0A 09 5B 44 45 42 55  tialized...[DEBU
-00B0: 47 5D 20 43 6F 72 65 20 30 20 69 6E 69 74 69 61  G] Core 0 initia
-00C0: 6C 69 7A 65 64 2E 0D 0A 0D 0A 5B 49 4E 46 4F 5D  lized.....[INFO]
-00D0: 20 4C 6F 61 64 65 64 20 6E 65 74 77 6F 72 6B 20   Loaded network 
-00E0: 63 6F 6E 66 69 67 20 66 72 6F 6D 20 45 45 50 52  config from EEPR
-00F0: 4F 4D 2E 0D 0A 09 5B 44 45 42 55 47 5D 20 4C 6F  OM....[DEBUG] Lo
-0100: 61 64 65 64 20 6E 65 74 77 6F 72 6B 20 63 6F 6E  aded network con
-0110: 66 69 67 3A 20 49 50 20 31 39 32 2E 31 36 38 2E  fig: IP 192.168.
-0120: 30 2E 37 32 0D 0A 09 5B 44 45 42 55 47 5D 20 4E  0.72...[DEBUG] N
-0130: 65 74 77 6F 72 6B 20 63 6F 6E 66 69 67 20 6C 6F  etwork config lo
-0140: 61 64 65 64 2C 20 63 6F 6E 74 69 6E 75 69 6E 67  aded, continuing
-0150: 2E 2E 2E 0D 0A 0D 0A 09 5B 44 45 42 55 47 5D 20  ........[DEBUG] 
-0160: 49 6E 69 74 69 61 6C 69 7A 65 20 57 35 35 30 30  Initialize W5500
-0170: 20 45 74 68 65 72 6E 65 74 20 63 6F 6E 74 72 6F   Ethernet contro
-0180: 6C 6C 65 72 20 53 50 49 0D 0A 09 5B 44 45 42 55  ller SPI...[DEBU
-0190: 47 5D 20 49 6E 69 74 69 61 6C 69 7A 65 20 57 35  G] Initialize W5
-01A0: 35 30 30 20 45 74 68 65 72 6E 65 74 20 63 6F 6E  500 Ethernet con
-01B0: 74 72 6F 6C 6C 65 72 20 43 52 49 53 0D 0A 09 5B  troller CRIS...[
-01C0: 44 45 42 55 47 5D 20 53 65 74 20 57 35 35 30 30  DEBUG] Set W5500
-01D0: 20 74 6F 20 52 45 53 45 54 0D 0A 09 5B 44 45 42   to RESET...[DEB
-01E0: 55 47 5D 20 49 6E 69 74 69 61 6C 69 7A 65 20 57  UG] Initialize W
-01F0: 35 35 30 30 20 45 74 68 65 72 6E 65 74 20 63 6F  5500 Ethernet co
-0200: 6E 74 72 6F 6C 6C 65 72 0D 0A                    ntroller..
-[2025-09-05 20:30:45] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:30:48] [RX] reconnect bytes=689
-[2025-09-05 20:30:48] \t[DEBUG] Check W5500 status\r\n
-[INFO] W5500 version: 0x04\r\n
-[INFO] W5500 PHY link is up\r\n
-\t[DEBUG] Initialize network\r\n
-\t[ECHO] =============================================\r\n
-\t[ECHO]  W5500 network configuration : static\r\n
-\t[ECHO]  MAC         : 00:08:DC:BE:EF:91\r\n
-\t[ECHO]  IP          : 192.168.0.72\r\n
-\t[ECHO]  Subnet Mask : 255.255.0.0\r\n
-\t[ECHO]  Gateway     : 10.10.10.1\r\n
-\t[ECHO]  DNS         : 1.1.1.1\r\n
-\t[ECHO] =============================================\r\n
-\r\n
-\t[DEBUG] Core 1 initialized.\r\n
-\r\n
-SYSTEM READY\r\n
-[INFO] - SNMP : Start SNMP Agent Daemon\r\n
-\t[DEBUG] SNMP agent ready on port 161, traps on 162\r\n
-[INFO] HTTP server listening on port 80\r\n
-[INFO] - [1] UDP Socket for SNMP Agent, port [161]\r\n
-
-[2025-09-05 20:30:48] [RX_HEX]
-0000: 09 5B 44 45 42 55 47 5D 20 43 68 65 63 6B 20 57  .[DEBUG] Check W
-0010: 35 35 30 30 20 73 74 61 74 75 73 0D 0A 5B 49 4E  5500 status..[IN
-0020: 46 4F 5D 20 57 35 35 30 30 20 76 65 72 73 69 6F  FO] W5500 versio
-0030: 6E 3A 20 30 78 30 34 0D 0A 5B 49 4E 46 4F 5D 20  n: 0x04..[INFO] 
-0040: 57 35 35 30 30 20 50 48 59 20 6C 69 6E 6B 20 69  W5500 PHY link i
-0050: 73 20 75 70 0D 0A 09 5B 44 45 42 55 47 5D 20 49  s up...[DEBUG] I
-0060: 6E 69 74 69 61 6C 69 7A 65 20 6E 65 74 77 6F 72  nitialize networ
-0070: 6B 0D 0A 09 5B 45 43 48 4F 5D 20 3D 3D 3D 3D 3D  k...[ECHO] =====
-0080: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-0090: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-00A0: 3D 3D 3D 3D 3D 3D 3D 3D 0D 0A 09 5B 45 43 48 4F  ========...[ECHO
-00B0: 5D 20 20 57 35 35 30 30 20 6E 65 74 77 6F 72 6B  ]  W5500 network
-00C0: 20 63 6F 6E 66 69 67 75 72 61 74 69 6F 6E 20 3A   configuration :
-00D0: 20 73 74 61 74 69 63 0D 0A 09 5B 45 43 48 4F 5D   static...[ECHO]
-00E0: 20 20 4D 41 43 20 20 20 20 20 20 20 20 20 3A 20    MAC         : 
-00F0: 30 30 3A 30 38 3A 44 43 3A 42 45 3A 45 46 3A 39  00:08:DC:BE:EF:9
-0100: 31 0D 0A 09 5B 45 43 48 4F 5D 20 20 49 50 20 20  1...[ECHO]  IP  
-0110: 20 20 20 20 20 20 20 20 3A 20 31 39 32 2E 31 36          : 192.16
-0120: 38 2E 30 2E 37 32 0D 0A 09 5B 45 43 48 4F 5D 20  8.0.72...[ECHO] 
-0130: 20 53 75 62 6E 65 74 20 4D 61 73 6B 20 3A 20 32   Subnet Mask : 2
-0140: 35 35 2E 32 35 35 2E 30 2E 30 0D 0A 09 5B 45 43  55.255.0.0...[EC
-0150: 48 4F 5D 20 20 47 61 74 65 77 61 79 20 20 20 20  HO]  Gateway    
-0160: 20 3A 20 31 30 2E 31 30 2E 31 30 2E 31 0D 0A 09   : 10.10.10.1...
-0170: 5B 45 43 48 4F 5D 20 20 44 4E 53 20 20 20 20 20  [ECHO]  DNS     
-0180: 20 20 20 20 3A 20 31 2E 31 2E 31 2E 31 0D 0A 09      : 1.1.1.1...
-0190: 5B 45 43 48 4F 5D 20 3D 3D 3D 3D 3D 3D 3D 3D 3D  [ECHO] =========
-01A0: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-01B0: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-01C0: 3D 3D 3D 3D 0D 0A 0D 0A 09 5B 44 45 42 55 47 5D  ====.....[DEBUG]
-01D0: 20 43 6F 72 65 20 31 20 69 6E 69 74 69 61 6C 69   Core 1 initiali
-01E0: 7A 65 64 2E 0D 0A 0D 0A 53 59 53 54 45 4D 20 52  zed.....SYSTEM R
-01F0: 45 41 44 59 0D 0A 5B 49 4E 46 4F 5D 20 2D 20 53  EADY..[INFO] - S
-0200: 4E 4D 50 20 3A 20 53 74 61 72 74 20 53 4E 4D 50  NMP : Start SNMP
-0210: 20 41 67 65 6E 74 20 44 61 65 6D 6F 6E 0D 0A 09   Agent Daemon...
-0220: 5B 44 45 42 55 47 5D 20 53 4E 4D 50 20 61 67 65  [DEBUG] SNMP age
-0230: 6E 74 20 72 65 61 64 79 20 6F 6E 20 70 6F 72 74  nt ready on port
-0240: 20 31 36 31 2C 20 74 72 61 70 73 20 6F 6E 20 31   161, traps on 1
-0250: 36 32 0D 0A 5B 49 4E 46 4F 5D 20 48 54 54 50 20  62..[INFO] HTTP 
-0260: 73 65 72 76 65 72 20 6C 69 73 74 65 6E 69 6E 67  server listening
-0270: 20 6F 6E 20 70 6F 72 74 20 38 30 0D 0A 5B 49 4E   on port 80..[IN
-0280: 46 4F 5D 20 2D 20 5B 31 5D 20 55 44 50 20 53 6F  FO] - [1] UDP So
-0290: 63 6B 65 74 20 66 6F 72 20 53 4E 4D 50 20 41 67  cket for SNMP Ag
-02A0: 65 6E 74 2C 20 70 6F 72 74 20 5B 31 36 31 5D 0D  ent, port [161].
-02B0: 0A                                               .
-[2025-09-05 20:30:48] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:30:48] [PASS] STEP 3.1 completed successfully
+[2025-09-15 13:44:50] [STEP 3.1] Change Network parameter to 192.168.0.72, 255.255.0.0, 10.10.10.1, 1.1.1.1
+[2025-09-15 13:44:59] [PASS] STEP 3.1 completed successfully
 </pre>
 </div>
 </details>
@@ -537,59 +161,12 @@ SYSTEM READY\r\n
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:30:48</td><td>2025-09-05 20:30:48</td></tr>
+<tr><td>2025-09-15 13:44:59</td><td>2025-09-15 13:45:00</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:30:48] [STEP 3.2] Verify Network parameter change to 192.168.0.72
-[2025-09-05 20:30:48] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:30:48] [TX] bytes=9
-[2025-09-05 20:30:48] NETINFO\r\n
-
-[2025-09-05 20:30:48] [TX_HEX]
-0000: 4E 45 54 49 4E 46 4F 0D 0A                       NETINFO..
-[2025-09-05 20:30:48] [RX] bytes=404
-[2025-09-05 20:30:48] \t[ECHO] Received CMD: &quot;NETINFO&quot;\r\n
-\t[ECHO] NETWORK INFORMATION:\r\n
-\t[ECHO] =============================================\r\n
-\t[ECHO]  W5500 network configuration : static\r\n
-\t[ECHO]  MAC         : 00:08:DC:BE:EF:91\r\n
-\t[ECHO]  IP          : 192.168.0.72\r\n
-\t[ECHO]  Subnet Mask : 255.255.0.0\r\n
-\t[ECHO]  Gateway     : 10.10.10.1\r\n
-\t[ECHO]  DNS         : 1.1.1.1\r\n
-\t[ECHO] =============================================\r\n
-\r\n
-
-[2025-09-05 20:30:48] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 4E 45 54 49 4E 46 4F 22 0D   CMD: &quot;NETINFO&quot;.
-0020: 0A 09 5B 45 43 48 4F 5D 20 4E 45 54 57 4F 52 4B  ..[ECHO] NETWORK
-0030: 20 49 4E 46 4F 52 4D 41 54 49 4F 4E 3A 0D 0A 09   INFORMATION:...
-0040: 5B 45 43 48 4F 5D 20 3D 3D 3D 3D 3D 3D 3D 3D 3D  [ECHO] =========
-0050: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-0060: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-0070: 3D 3D 3D 3D 0D 0A 09 5B 45 43 48 4F 5D 20 20 57  ====...[ECHO]  W
-0080: 35 35 30 30 20 6E 65 74 77 6F 72 6B 20 63 6F 6E  5500 network con
-0090: 66 69 67 75 72 61 74 69 6F 6E 20 3A 20 73 74 61  figuration : sta
-00A0: 74 69 63 0D 0A 09 5B 45 43 48 4F 5D 20 20 4D 41  tic...[ECHO]  MA
-00B0: 43 20 20 20 20 20 20 20 20 20 3A 20 30 30 3A 30  C         : 00:0
-00C0: 38 3A 44 43 3A 42 45 3A 45 46 3A 39 31 0D 0A 09  8:DC:BE:EF:91...
-00D0: 5B 45 43 48 4F 5D 20 20 49 50 20 20 20 20 20 20  [ECHO]  IP      
-00E0: 20 20 20 20 3A 20 31 39 32 2E 31 36 38 2E 30 2E      : 192.168.0.
-00F0: 37 32 0D 0A 09 5B 45 43 48 4F 5D 20 20 53 75 62  72...[ECHO]  Sub
-0100: 6E 65 74 20 4D 61 73 6B 20 3A 20 32 35 35 2E 32  net Mask : 255.2
-0110: 35 35 2E 30 2E 30 0D 0A 09 5B 45 43 48 4F 5D 20  55.0.0...[ECHO] 
-0120: 20 47 61 74 65 77 61 79 20 20 20 20 20 3A 20 31   Gateway     : 1
-0130: 30 2E 31 30 2E 31 30 2E 31 0D 0A 09 5B 45 43 48  0.10.10.1...[ECH
-0140: 4F 5D 20 20 44 4E 53 20 20 20 20 20 20 20 20 20  O]  DNS         
-0150: 3A 20 31 2E 31 2E 31 2E 31 0D 0A 09 5B 45 43 48  : 1.1.1.1...[ECH
-0160: 4F 5D 20 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  O] =============
-0170: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-0180: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-0190: 0D 0A 0D 0A                                      ....
-[2025-09-05 20:30:48] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:30:48] [PASS] STEP 3.2 completed successfully
+[2025-09-15 13:44:59] [STEP 3.2] Verify Network parameter change to 192.168.0.72
+[2025-09-15 13:45:00] [PASS] STEP 3.2 completed successfully
 </pre>
 </div>
 </details>
@@ -600,59 +177,12 @@ SYSTEM READY\r\n
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:30:48</td><td>2025-09-05 20:30:49</td></tr>
+<tr><td>2025-09-15 13:45:00</td><td>2025-09-15 13:45:01</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:30:48] [STEP 3.3] Verify Network parameter change to 10.10.10.1
-[2025-09-05 20:30:49] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:30:49] [TX] bytes=9
-[2025-09-05 20:30:49] NETINFO\r\n
-
-[2025-09-05 20:30:49] [TX_HEX]
-0000: 4E 45 54 49 4E 46 4F 0D 0A                       NETINFO..
-[2025-09-05 20:30:49] [RX] bytes=404
-[2025-09-05 20:30:49] \t[ECHO] Received CMD: &quot;NETINFO&quot;\r\n
-\t[ECHO] NETWORK INFORMATION:\r\n
-\t[ECHO] =============================================\r\n
-\t[ECHO]  W5500 network configuration : static\r\n
-\t[ECHO]  MAC         : 00:08:DC:BE:EF:91\r\n
-\t[ECHO]  IP          : 192.168.0.72\r\n
-\t[ECHO]  Subnet Mask : 255.255.0.0\r\n
-\t[ECHO]  Gateway     : 10.10.10.1\r\n
-\t[ECHO]  DNS         : 1.1.1.1\r\n
-\t[ECHO] =============================================\r\n
-\r\n
-
-[2025-09-05 20:30:49] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 4E 45 54 49 4E 46 4F 22 0D   CMD: &quot;NETINFO&quot;.
-0020: 0A 09 5B 45 43 48 4F 5D 20 4E 45 54 57 4F 52 4B  ..[ECHO] NETWORK
-0030: 20 49 4E 46 4F 52 4D 41 54 49 4F 4E 3A 0D 0A 09   INFORMATION:...
-0040: 5B 45 43 48 4F 5D 20 3D 3D 3D 3D 3D 3D 3D 3D 3D  [ECHO] =========
-0050: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-0060: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-0070: 3D 3D 3D 3D 0D 0A 09 5B 45 43 48 4F 5D 20 20 57  ====...[ECHO]  W
-0080: 35 35 30 30 20 6E 65 74 77 6F 72 6B 20 63 6F 6E  5500 network con
-0090: 66 69 67 75 72 61 74 69 6F 6E 20 3A 20 73 74 61  figuration : sta
-00A0: 74 69 63 0D 0A 09 5B 45 43 48 4F 5D 20 20 4D 41  tic...[ECHO]  MA
-00B0: 43 20 20 20 20 20 20 20 20 20 3A 20 30 30 3A 30  C         : 00:0
-00C0: 38 3A 44 43 3A 42 45 3A 45 46 3A 39 31 0D 0A 09  8:DC:BE:EF:91...
-00D0: 5B 45 43 48 4F 5D 20 20 49 50 20 20 20 20 20 20  [ECHO]  IP      
-00E0: 20 20 20 20 3A 20 31 39 32 2E 31 36 38 2E 30 2E      : 192.168.0.
-00F0: 37 32 0D 0A 09 5B 45 43 48 4F 5D 20 20 53 75 62  72...[ECHO]  Sub
-0100: 6E 65 74 20 4D 61 73 6B 20 3A 20 32 35 35 2E 32  net Mask : 255.2
-0110: 35 35 2E 30 2E 30 0D 0A 09 5B 45 43 48 4F 5D 20  55.0.0...[ECHO] 
-0120: 20 47 61 74 65 77 61 79 20 20 20 20 20 3A 20 31   Gateway     : 1
-0130: 30 2E 31 30 2E 31 30 2E 31 0D 0A 09 5B 45 43 48  0.10.10.1...[ECH
-0140: 4F 5D 20 20 44 4E 53 20 20 20 20 20 20 20 20 20  O]  DNS         
-0150: 3A 20 31 2E 31 2E 31 2E 31 0D 0A 09 5B 45 43 48  : 1.1.1.1...[ECH
-0160: 4F 5D 20 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  O] =============
-0170: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-0180: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-0190: 0D 0A 0D 0A                                      ....
-[2025-09-05 20:30:49] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:30:49] [PASS] STEP 3.3 completed successfully
+[2025-09-15 13:45:00] [STEP 3.3] Verify Network parameter change to 10.10.10.1
+[2025-09-15 13:45:01] [PASS] STEP 3.3 completed successfully
 </pre>
 </div>
 </details>
@@ -663,59 +193,12 @@ SYSTEM READY\r\n
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:30:49</td><td>2025-09-05 20:30:50</td></tr>
+<tr><td>2025-09-15 13:45:01</td><td>2025-09-15 13:45:02</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:30:49] [STEP 3.4] Verify Network parameter change to 255.255.0.0
-[2025-09-05 20:30:49] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:30:49] [TX] bytes=9
-[2025-09-05 20:30:49] NETINFO\r\n
-
-[2025-09-05 20:30:49] [TX_HEX]
-0000: 4E 45 54 49 4E 46 4F 0D 0A                       NETINFO..
-[2025-09-05 20:30:50] [RX] bytes=404
-[2025-09-05 20:30:50] \t[ECHO] Received CMD: &quot;NETINFO&quot;\r\n
-\t[ECHO] NETWORK INFORMATION:\r\n
-\t[ECHO] =============================================\r\n
-\t[ECHO]  W5500 network configuration : static\r\n
-\t[ECHO]  MAC         : 00:08:DC:BE:EF:91\r\n
-\t[ECHO]  IP          : 192.168.0.72\r\n
-\t[ECHO]  Subnet Mask : 255.255.0.0\r\n
-\t[ECHO]  Gateway     : 10.10.10.1\r\n
-\t[ECHO]  DNS         : 1.1.1.1\r\n
-\t[ECHO] =============================================\r\n
-\r\n
-
-[2025-09-05 20:30:50] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 4E 45 54 49 4E 46 4F 22 0D   CMD: &quot;NETINFO&quot;.
-0020: 0A 09 5B 45 43 48 4F 5D 20 4E 45 54 57 4F 52 4B  ..[ECHO] NETWORK
-0030: 20 49 4E 46 4F 52 4D 41 54 49 4F 4E 3A 0D 0A 09   INFORMATION:...
-0040: 5B 45 43 48 4F 5D 20 3D 3D 3D 3D 3D 3D 3D 3D 3D  [ECHO] =========
-0050: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-0060: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-0070: 3D 3D 3D 3D 0D 0A 09 5B 45 43 48 4F 5D 20 20 57  ====...[ECHO]  W
-0080: 35 35 30 30 20 6E 65 74 77 6F 72 6B 20 63 6F 6E  5500 network con
-0090: 66 69 67 75 72 61 74 69 6F 6E 20 3A 20 73 74 61  figuration : sta
-00A0: 74 69 63 0D 0A 09 5B 45 43 48 4F 5D 20 20 4D 41  tic...[ECHO]  MA
-00B0: 43 20 20 20 20 20 20 20 20 20 3A 20 30 30 3A 30  C         : 00:0
-00C0: 38 3A 44 43 3A 42 45 3A 45 46 3A 39 31 0D 0A 09  8:DC:BE:EF:91...
-00D0: 5B 45 43 48 4F 5D 20 20 49 50 20 20 20 20 20 20  [ECHO]  IP      
-00E0: 20 20 20 20 3A 20 31 39 32 2E 31 36 38 2E 30 2E      : 192.168.0.
-00F0: 37 32 0D 0A 09 5B 45 43 48 4F 5D 20 20 53 75 62  72...[ECHO]  Sub
-0100: 6E 65 74 20 4D 61 73 6B 20 3A 20 32 35 35 2E 32  net Mask : 255.2
-0110: 35 35 2E 30 2E 30 0D 0A 09 5B 45 43 48 4F 5D 20  55.0.0...[ECHO] 
-0120: 20 47 61 74 65 77 61 79 20 20 20 20 20 3A 20 31   Gateway     : 1
-0130: 30 2E 31 30 2E 31 30 2E 31 0D 0A 09 5B 45 43 48  0.10.10.1...[ECH
-0140: 4F 5D 20 20 44 4E 53 20 20 20 20 20 20 20 20 20  O]  DNS         
-0150: 3A 20 31 2E 31 2E 31 2E 31 0D 0A 09 5B 45 43 48  : 1.1.1.1...[ECH
-0160: 4F 5D 20 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  O] =============
-0170: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-0180: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-0190: 0D 0A 0D 0A                                      ....
-[2025-09-05 20:30:50] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:30:50] [PASS] STEP 3.4 completed successfully
+[2025-09-15 13:45:01] [STEP 3.4] Verify Network parameter change to 255.255.0.0
+[2025-09-15 13:45:02] [PASS] STEP 3.4 completed successfully
 </pre>
 </div>
 </details>
@@ -726,59 +209,12 @@ SYSTEM READY\r\n
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:30:50</td><td>2025-09-05 20:30:51</td></tr>
+<tr><td>2025-09-15 13:45:02</td><td>2025-09-15 13:45:02</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:30:50] [STEP 3.5] Verify Network parameter change to 1.1.1.1
-[2025-09-05 20:30:50] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:30:50] [TX] bytes=9
-[2025-09-05 20:30:50] NETINFO\r\n
-
-[2025-09-05 20:30:50] [TX_HEX]
-0000: 4E 45 54 49 4E 46 4F 0D 0A                       NETINFO..
-[2025-09-05 20:30:51] [RX] bytes=404
-[2025-09-05 20:30:51] \t[ECHO] Received CMD: &quot;NETINFO&quot;\r\n
-\t[ECHO] NETWORK INFORMATION:\r\n
-\t[ECHO] =============================================\r\n
-\t[ECHO]  W5500 network configuration : static\r\n
-\t[ECHO]  MAC         : 00:08:DC:BE:EF:91\r\n
-\t[ECHO]  IP          : 192.168.0.72\r\n
-\t[ECHO]  Subnet Mask : 255.255.0.0\r\n
-\t[ECHO]  Gateway     : 10.10.10.1\r\n
-\t[ECHO]  DNS         : 1.1.1.1\r\n
-\t[ECHO] =============================================\r\n
-\r\n
-
-[2025-09-05 20:30:51] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 4E 45 54 49 4E 46 4F 22 0D   CMD: &quot;NETINFO&quot;.
-0020: 0A 09 5B 45 43 48 4F 5D 20 4E 45 54 57 4F 52 4B  ..[ECHO] NETWORK
-0030: 20 49 4E 46 4F 52 4D 41 54 49 4F 4E 3A 0D 0A 09   INFORMATION:...
-0040: 5B 45 43 48 4F 5D 20 3D 3D 3D 3D 3D 3D 3D 3D 3D  [ECHO] =========
-0050: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-0060: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-0070: 3D 3D 3D 3D 0D 0A 09 5B 45 43 48 4F 5D 20 20 57  ====...[ECHO]  W
-0080: 35 35 30 30 20 6E 65 74 77 6F 72 6B 20 63 6F 6E  5500 network con
-0090: 66 69 67 75 72 61 74 69 6F 6E 20 3A 20 73 74 61  figuration : sta
-00A0: 74 69 63 0D 0A 09 5B 45 43 48 4F 5D 20 20 4D 41  tic...[ECHO]  MA
-00B0: 43 20 20 20 20 20 20 20 20 20 3A 20 30 30 3A 30  C         : 00:0
-00C0: 38 3A 44 43 3A 42 45 3A 45 46 3A 39 31 0D 0A 09  8:DC:BE:EF:91...
-00D0: 5B 45 43 48 4F 5D 20 20 49 50 20 20 20 20 20 20  [ECHO]  IP      
-00E0: 20 20 20 20 3A 20 31 39 32 2E 31 36 38 2E 30 2E      : 192.168.0.
-00F0: 37 32 0D 0A 09 5B 45 43 48 4F 5D 20 20 53 75 62  72...[ECHO]  Sub
-0100: 6E 65 74 20 4D 61 73 6B 20 3A 20 32 35 35 2E 32  net Mask : 255.2
-0110: 35 35 2E 30 2E 30 0D 0A 09 5B 45 43 48 4F 5D 20  55.0.0...[ECHO] 
-0120: 20 47 61 74 65 77 61 79 20 20 20 20 20 3A 20 31   Gateway     : 1
-0130: 30 2E 31 30 2E 31 30 2E 31 0D 0A 09 5B 45 43 48  0.10.10.1...[ECH
-0140: 4F 5D 20 20 44 4E 53 20 20 20 20 20 20 20 20 20  O]  DNS         
-0150: 3A 20 31 2E 31 2E 31 2E 31 0D 0A 09 5B 45 43 48  : 1.1.1.1...[ECH
-0160: 4F 5D 20 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  O] =============
-0170: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-0180: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-0190: 0D 0A 0D 0A                                      ....
-[2025-09-05 20:30:51] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:30:51] [PASS] STEP 3.5 completed successfully
+[2025-09-15 13:45:02] [STEP 3.5] Verify Network parameter change to 1.1.1.1
+[2025-09-15 13:45:02] [PASS] STEP 3.5 completed successfully
 </pre>
 </div>
 </details>
@@ -789,12 +225,12 @@ SYSTEM READY\r\n
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:30:51</td><td>2025-09-05 20:30:51</td></tr>
+<tr><td>2025-09-15 13:45:02</td><td>2025-09-15 13:45:02</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:30:51] [STEP 3.6] Ping new IP 192.168.0.72
-[2025-09-05 20:30:51] [PASS] STEP 3.6 completed successfully
+[2025-09-15 13:45:02] [STEP 3.6] Ping new IP 192.168.0.72
+[2025-09-15 13:45:02] [PASS] STEP 3.6 completed successfully
 </pre>
 </div>
 </details>
@@ -805,216 +241,12 @@ SYSTEM READY\r\n
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:30:51</td><td>2025-09-05 20:31:00</td></tr>
+<tr><td>2025-09-15 13:45:02</td><td>2025-09-15 13:45:11</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:30:51] [STEP 3.7] Revert Network parameters to 192.168.0.11, 255.255.255.0, 192.168.0.1, 8.8.8.8
-[2025-09-05 20:30:51] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:30:51] [TX] bytes=63
-[2025-09-05 20:30:51] CONFIG_NETWORK 192.168.0.11$255.255.255.0$192.168.0.1$8.8.8.8\r\n
-
-[2025-09-05 20:30:51] [TX_HEX]
-0000: 43 4F 4E 46 49 47 5F 4E 45 54 57 4F 52 4B 20 31  CONFIG_NETWORK 1
-0010: 39 32 2E 31 36 38 2E 30 2E 31 31 24 32 35 35 2E  92.168.0.11$255.
-0020: 32 35 35 2E 32 35 35 2E 30 24 31 39 32 2E 31 36  255.255.0$192.16
-0030: 38 2E 30 2E 31 24 38 2E 38 2E 38 2E 38 0D 0A     8.0.1$8.8.8.8..
-[2025-09-05 20:30:52] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:30:55] [RX] reconnect bytes=726
-[2025-09-05 20:30:55] [INFO] Core 0 initializing...\r\n
-\t[ECHO] Device Serial : SN-369366060325\r\n
-\t[ECHO] Firmware Ver  : 1.0.0\r\n
-\t[ECHO] Core voltage  : 1.15 V (vsel = 1)\r\n
-\t[ECHO] Clock Sources :\r\n
-\t[ECHO] \tSYS: 200000000 Hz (200 MHz)\r\n
-\t[ECHO] \tUSB: 48000000 Hz (48 MHz)\r\n
-\t[ECHO] \tPER: 48000000 Hz (48 MHz)\r\n
-\t[ECHO] \tADC: 48000000 Hz (48 MHz)\r\n
-[INFO] ADC initializing\r\n
-\t[DEBUG] ADC OK\r\n
-VREG register: 0x000010D1\r\n
-[INFO] I2C scanning...\r\n
-\t[DEBUG] Scanning I2C0...\r\n
-\t[DEBUG] Found device at address 0x21\r\n
-\t[DEBUG] Found device at address 0x23\r\n
-\t[DEBUG] Scanning I2C1...\r\n
-\t[DEBUG] Found device at address 0x20\r\n
-\t[DEBUG] Found device at address 0x50\r\n
-[INFO] EEPROM initializing...\r\n
-\t[DEBUG] EEPROM OK\r\n
-[INFO] MCP23017 initializing...\r\n
-\t[DEBUG] MCP23017 OK\r\n
-
-[2025-09-05 20:30:55] [RX_HEX]
-0000: 5B 49 4E 46 4F 5D 20 43 6F 72 65 20 30 20 69 6E  [INFO] Core 0 in
-0010: 69 74 69 61 6C 69 7A 69 6E 67 2E 2E 2E 0D 0A 09  itializing......
-0020: 5B 45 43 48 4F 5D 20 44 65 76 69 63 65 20 53 65  [ECHO] Device Se
-0030: 72 69 61 6C 20 3A 20 53 4E 2D 33 36 39 33 36 36  rial : SN-369366
-0040: 30 36 30 33 32 35 0D 0A 09 5B 45 43 48 4F 5D 20  060325...[ECHO] 
-0050: 46 69 72 6D 77 61 72 65 20 56 65 72 20 20 3A 20  Firmware Ver  : 
-0060: 31 2E 30 2E 30 0D 0A 09 5B 45 43 48 4F 5D 20 43  1.0.0...[ECHO] C
-0070: 6F 72 65 20 76 6F 6C 74 61 67 65 20 20 3A 20 31  ore voltage  : 1
-0080: 2E 31 35 20 56 20 28 76 73 65 6C 20 3D 20 31 29  .15 V (vsel = 1)
-0090: 0D 0A 09 5B 45 43 48 4F 5D 20 43 6C 6F 63 6B 20  ...[ECHO] Clock 
-00A0: 53 6F 75 72 63 65 73 20 3A 0D 0A 09 5B 45 43 48  Sources :...[ECH
-00B0: 4F 5D 20 09 53 59 53 3A 20 32 30 30 30 30 30 30  O] .SYS: 2000000
-00C0: 30 30 20 48 7A 20 28 32 30 30 20 4D 48 7A 29 0D  00 Hz (200 MHz).
-00D0: 0A 09 5B 45 43 48 4F 5D 20 09 55 53 42 3A 20 34  ..[ECHO] .USB: 4
-00E0: 38 30 30 30 30 30 30 20 48 7A 20 28 34 38 20 4D  8000000 Hz (48 M
-00F0: 48 7A 29 0D 0A 09 5B 45 43 48 4F 5D 20 09 50 45  Hz)...[ECHO] .PE
-0100: 52 3A 20 34 38 30 30 30 30 30 30 20 48 7A 20 28  R: 48000000 Hz (
-0110: 34 38 20 4D 48 7A 29 0D 0A 09 5B 45 43 48 4F 5D  48 MHz)...[ECHO]
-0120: 20 09 41 44 43 3A 20 34 38 30 30 30 30 30 30 20   .ADC: 48000000 
-0130: 48 7A 20 28 34 38 20 4D 48 7A 29 0D 0A 5B 49 4E  Hz (48 MHz)..[IN
-0140: 46 4F 5D 20 41 44 43 20 69 6E 69 74 69 61 6C 69  FO] ADC initiali
-0150: 7A 69 6E 67 0D 0A 09 5B 44 45 42 55 47 5D 20 41  zing...[DEBUG] A
-0160: 44 43 20 4F 4B 0D 0A 56 52 45 47 20 72 65 67 69  DC OK..VREG regi
-0170: 73 74 65 72 3A 20 30 78 30 30 30 30 31 30 44 31  ster: 0x000010D1
-0180: 0D 0A 5B 49 4E 46 4F 5D 20 49 32 43 20 73 63 61  ..[INFO] I2C sca
-0190: 6E 6E 69 6E 67 2E 2E 2E 0D 0A 09 5B 44 45 42 55  nning......[DEBU
-01A0: 47 5D 20 53 63 61 6E 6E 69 6E 67 20 49 32 43 30  G] Scanning I2C0
-01B0: 2E 2E 2E 0D 0A 09 5B 44 45 42 55 47 5D 20 46 6F  ......[DEBUG] Fo
-01C0: 75 6E 64 20 64 65 76 69 63 65 20 61 74 20 61 64  und device at ad
-01D0: 64 72 65 73 73 20 30 78 32 31 0D 0A 09 5B 44 45  dress 0x21...[DE
-01E0: 42 55 47 5D 20 46 6F 75 6E 64 20 64 65 76 69 63  BUG] Found devic
-01F0: 65 20 61 74 20 61 64 64 72 65 73 73 20 30 78 32  e at address 0x2
-0200: 33 0D 0A 09 5B 44 45 42 55 47 5D 20 53 63 61 6E  3...[DEBUG] Scan
-0210: 6E 69 6E 67 20 49 32 43 31 2E 2E 2E 0D 0A 09 5B  ning I2C1......[
-0220: 44 45 42 55 47 5D 20 46 6F 75 6E 64 20 64 65 76  DEBUG] Found dev
-0230: 69 63 65 20 61 74 20 61 64 64 72 65 73 73 20 30  ice at address 0
-0240: 78 32 30 0D 0A 09 5B 44 45 42 55 47 5D 20 46 6F  x20...[DEBUG] Fo
-0250: 75 6E 64 20 64 65 76 69 63 65 20 61 74 20 61 64  und device at ad
-0260: 64 72 65 73 73 20 30 78 35 30 0D 0A 5B 49 4E 46  dress 0x50..[INF
-0270: 4F 5D 20 45 45 50 52 4F 4D 20 69 6E 69 74 69 61  O] EEPROM initia
-0280: 6C 69 7A 69 6E 67 2E 2E 2E 0D 0A 09 5B 44 45 42  lizing......[DEB
-0290: 55 47 5D 20 45 45 50 52 4F 4D 20 4F 4B 0D 0A 5B  UG] EEPROM OK..[
-02A0: 49 4E 46 4F 5D 20 4D 43 50 32 33 30 31 37 20 69  INFO] MCP23017 i
-02B0: 6E 69 74 69 61 6C 69 7A 69 6E 67 2E 2E 2E 0D 0A  nitializing.....
-02C0: 09 5B 44 45 42 55 47 5D 20 4D 43 50 32 33 30 31  .[DEBUG] MCP2301
-02D0: 37 20 4F 4B 0D 0A                                7 OK..
-[2025-09-05 20:30:55] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:30:57] [RX] reconnect bytes=522
-[2025-09-05 20:30:57] [INFO] Headless mode, skipping display initialization\r\n
-[INFO] Initializing HLW8032...\r\n
-\t[DEBUG] HLW8032 OK\r\n
-[INFO] Initializing buttons...\r\n
-\t[DEBUG] Buttons initialized\r\n
-\t[DEBUG] Core 0 initialized.\r\n
-\r\n
-[INFO] Loaded network config from EEPROM.\r\n
-\t[DEBUG] Loaded network config: IP 192.168.0.11\r\n
-\t[DEBUG] Network config loaded, continuing...\r\n
-\r\n
-\t[DEBUG] Initialize W5500 Ethernet controller SPI\r\n
-\t[DEBUG] Initialize W5500 Ethernet controller CRIS\r\n
-\t[DEBUG] Set W5500 to RESET\r\n
-\t[DEBUG] Initialize W5500 Ethernet controller\r\n
-
-[2025-09-05 20:30:57] [RX_HEX]
-0000: 5B 49 4E 46 4F 5D 20 48 65 61 64 6C 65 73 73 20  [INFO] Headless 
-0010: 6D 6F 64 65 2C 20 73 6B 69 70 70 69 6E 67 20 64  mode, skipping d
-0020: 69 73 70 6C 61 79 20 69 6E 69 74 69 61 6C 69 7A  isplay initializ
-0030: 61 74 69 6F 6E 0D 0A 5B 49 4E 46 4F 5D 20 49 6E  ation..[INFO] In
-0040: 69 74 69 61 6C 69 7A 69 6E 67 20 48 4C 57 38 30  itializing HLW80
-0050: 33 32 2E 2E 2E 0D 0A 09 5B 44 45 42 55 47 5D 20  32......[DEBUG] 
-0060: 48 4C 57 38 30 33 32 20 4F 4B 0D 0A 5B 49 4E 46  HLW8032 OK..[INF
-0070: 4F 5D 20 49 6E 69 74 69 61 6C 69 7A 69 6E 67 20  O] Initializing 
-0080: 62 75 74 74 6F 6E 73 2E 2E 2E 0D 0A 09 5B 44 45  buttons......[DE
-0090: 42 55 47 5D 20 42 75 74 74 6F 6E 73 20 69 6E 69  BUG] Buttons ini
-00A0: 74 69 61 6C 69 7A 65 64 0D 0A 09 5B 44 45 42 55  tialized...[DEBU
-00B0: 47 5D 20 43 6F 72 65 20 30 20 69 6E 69 74 69 61  G] Core 0 initia
-00C0: 6C 69 7A 65 64 2E 0D 0A 0D 0A 5B 49 4E 46 4F 5D  lized.....[INFO]
-00D0: 20 4C 6F 61 64 65 64 20 6E 65 74 77 6F 72 6B 20   Loaded network 
-00E0: 63 6F 6E 66 69 67 20 66 72 6F 6D 20 45 45 50 52  config from EEPR
-00F0: 4F 4D 2E 0D 0A 09 5B 44 45 42 55 47 5D 20 4C 6F  OM....[DEBUG] Lo
-0100: 61 64 65 64 20 6E 65 74 77 6F 72 6B 20 63 6F 6E  aded network con
-0110: 66 69 67 3A 20 49 50 20 31 39 32 2E 31 36 38 2E  fig: IP 192.168.
-0120: 30 2E 31 31 0D 0A 09 5B 44 45 42 55 47 5D 20 4E  0.11...[DEBUG] N
-0130: 65 74 77 6F 72 6B 20 63 6F 6E 66 69 67 20 6C 6F  etwork config lo
-0140: 61 64 65 64 2C 20 63 6F 6E 74 69 6E 75 69 6E 67  aded, continuing
-0150: 2E 2E 2E 0D 0A 0D 0A 09 5B 44 45 42 55 47 5D 20  ........[DEBUG] 
-0160: 49 6E 69 74 69 61 6C 69 7A 65 20 57 35 35 30 30  Initialize W5500
-0170: 20 45 74 68 65 72 6E 65 74 20 63 6F 6E 74 72 6F   Ethernet contro
-0180: 6C 6C 65 72 20 53 50 49 0D 0A 09 5B 44 45 42 55  ller SPI...[DEBU
-0190: 47 5D 20 49 6E 69 74 69 61 6C 69 7A 65 20 57 35  G] Initialize W5
-01A0: 35 30 30 20 45 74 68 65 72 6E 65 74 20 63 6F 6E  500 Ethernet con
-01B0: 74 72 6F 6C 6C 65 72 20 43 52 49 53 0D 0A 09 5B  troller CRIS...[
-01C0: 44 45 42 55 47 5D 20 53 65 74 20 57 35 35 30 30  DEBUG] Set W5500
-01D0: 20 74 6F 20 52 45 53 45 54 0D 0A 09 5B 44 45 42   to RESET...[DEB
-01E0: 55 47 5D 20 49 6E 69 74 69 61 6C 69 7A 65 20 57  UG] Initialize W
-01F0: 35 35 30 30 20 45 74 68 65 72 6E 65 74 20 63 6F  5500 Ethernet co
-0200: 6E 74 72 6F 6C 6C 65 72 0D 0A                    ntroller..
-[2025-09-05 20:30:57] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:00] [RX] reconnect bytes=692
-[2025-09-05 20:31:00] \t[DEBUG] Check W5500 status\r\n
-[INFO] W5500 version: 0x04\r\n
-[INFO] W5500 PHY link is up\r\n
-\t[DEBUG] Initialize network\r\n
-\t[ECHO] =============================================\r\n
-\t[ECHO]  W5500 network configuration : static\r\n
-\t[ECHO]  MAC         : 00:08:DC:BE:EF:91\r\n
-\t[ECHO]  IP          : 192.168.0.11\r\n
-\t[ECHO]  Subnet Mask : 255.255.255.0\r\n
-\t[ECHO]  Gateway     : 192.168.0.1\r\n
-\t[ECHO]  DNS         : 8.8.8.8\r\n
-\t[ECHO] =============================================\r\n
-\r\n
-\t[DEBUG] Core 1 initialized.\r\n
-\r\n
-SYSTEM READY\r\n
-[INFO] - SNMP : Start SNMP Agent Daemon\r\n
-\t[DEBUG] SNMP agent ready on port 161, traps on 162\r\n
-[INFO] HTTP server listening on port 80\r\n
-[INFO] - [1] UDP Socket for SNMP Agent, port [161]\r\n
-
-[2025-09-05 20:31:00] [RX_HEX]
-0000: 09 5B 44 45 42 55 47 5D 20 43 68 65 63 6B 20 57  .[DEBUG] Check W
-0010: 35 35 30 30 20 73 74 61 74 75 73 0D 0A 5B 49 4E  5500 status..[IN
-0020: 46 4F 5D 20 57 35 35 30 30 20 76 65 72 73 69 6F  FO] W5500 versio
-0030: 6E 3A 20 30 78 30 34 0D 0A 5B 49 4E 46 4F 5D 20  n: 0x04..[INFO] 
-0040: 57 35 35 30 30 20 50 48 59 20 6C 69 6E 6B 20 69  W5500 PHY link i
-0050: 73 20 75 70 0D 0A 09 5B 44 45 42 55 47 5D 20 49  s up...[DEBUG] I
-0060: 6E 69 74 69 61 6C 69 7A 65 20 6E 65 74 77 6F 72  nitialize networ
-0070: 6B 0D 0A 09 5B 45 43 48 4F 5D 20 3D 3D 3D 3D 3D  k...[ECHO] =====
-0080: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-0090: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-00A0: 3D 3D 3D 3D 3D 3D 3D 3D 0D 0A 09 5B 45 43 48 4F  ========...[ECHO
-00B0: 5D 20 20 57 35 35 30 30 20 6E 65 74 77 6F 72 6B  ]  W5500 network
-00C0: 20 63 6F 6E 66 69 67 75 72 61 74 69 6F 6E 20 3A   configuration :
-00D0: 20 73 74 61 74 69 63 0D 0A 09 5B 45 43 48 4F 5D   static...[ECHO]
-00E0: 20 20 4D 41 43 20 20 20 20 20 20 20 20 20 3A 20    MAC         : 
-00F0: 30 30 3A 30 38 3A 44 43 3A 42 45 3A 45 46 3A 39  00:08:DC:BE:EF:9
-0100: 31 0D 0A 09 5B 45 43 48 4F 5D 20 20 49 50 20 20  1...[ECHO]  IP  
-0110: 20 20 20 20 20 20 20 20 3A 20 31 39 32 2E 31 36          : 192.16
-0120: 38 2E 30 2E 31 31 0D 0A 09 5B 45 43 48 4F 5D 20  8.0.11...[ECHO] 
-0130: 20 53 75 62 6E 65 74 20 4D 61 73 6B 20 3A 20 32   Subnet Mask : 2
-0140: 35 35 2E 32 35 35 2E 32 35 35 2E 30 0D 0A 09 5B  55.255.255.0...[
-0150: 45 43 48 4F 5D 20 20 47 61 74 65 77 61 79 20 20  ECHO]  Gateway  
-0160: 20 20 20 3A 20 31 39 32 2E 31 36 38 2E 30 2E 31     : 192.168.0.1
-0170: 0D 0A 09 5B 45 43 48 4F 5D 20 20 44 4E 53 20 20  ...[ECHO]  DNS  
-0180: 20 20 20 20 20 20 20 3A 20 38 2E 38 2E 38 2E 38         : 8.8.8.8
-0190: 0D 0A 09 5B 45 43 48 4F 5D 20 3D 3D 3D 3D 3D 3D  ...[ECHO] ======
-01A0: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-01B0: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-01C0: 3D 3D 3D 3D 3D 3D 3D 0D 0A 0D 0A 09 5B 44 45 42  =======.....[DEB
-01D0: 55 47 5D 20 43 6F 72 65 20 31 20 69 6E 69 74 69  UG] Core 1 initi
-01E0: 61 6C 69 7A 65 64 2E 0D 0A 0D 0A 53 59 53 54 45  alized.....SYSTE
-01F0: 4D 20 52 45 41 44 59 0D 0A 5B 49 4E 46 4F 5D 20  M READY..[INFO] 
-0200: 2D 20 53 4E 4D 50 20 3A 20 53 74 61 72 74 20 53  - SNMP : Start S
-0210: 4E 4D 50 20 41 67 65 6E 74 20 44 61 65 6D 6F 6E  NMP Agent Daemon
-0220: 0D 0A 09 5B 44 45 42 55 47 5D 20 53 4E 4D 50 20  ...[DEBUG] SNMP 
-0230: 61 67 65 6E 74 20 72 65 61 64 79 20 6F 6E 20 70  agent ready on p
-0240: 6F 72 74 20 31 36 31 2C 20 74 72 61 70 73 20 6F  ort 161, traps o
-0250: 6E 20 31 36 32 0D 0A 5B 49 4E 46 4F 5D 20 48 54  n 162..[INFO] HT
-0260: 54 50 20 73 65 72 76 65 72 20 6C 69 73 74 65 6E  TP server listen
-0270: 69 6E 67 20 6F 6E 20 70 6F 72 74 20 38 30 0D 0A  ing on port 80..
-0280: 5B 49 4E 46 4F 5D 20 2D 20 5B 31 5D 20 55 44 50  [INFO] - [1] UDP
-0290: 20 53 6F 63 6B 65 74 20 66 6F 72 20 53 4E 4D 50   Socket for SNMP
-02A0: 20 41 67 65 6E 74 2C 20 70 6F 72 74 20 5B 31 36   Agent, port [16
-02B0: 31 5D 0D 0A                                      1]..
-[2025-09-05 20:31:00] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:00] [PASS] STEP 3.7 completed successfully
-[2025-09-05 20:31:00] [PASS] STEP 3 all sub-steps completed
+[2025-09-15 13:45:02] [STEP 3.7] Revert Network parameters to 192.168.0.11, 255.255.255.0, 192.168.0.1, 8.8.8.8
+[2025-09-15 13:45:11] [PASS] STEP 3.7 completed successfully
 </pre>
 </div>
 </details>
@@ -1028,7 +260,7 @@ SYSTEM READY\r\n
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:00</td><td>2025-09-05 20:31:29</td></tr>
+<tr><td>2025-09-15 13:45:11</td><td>2025-09-15 13:45:42</td></tr>
 </table>
 <div class='substeps'>
 <h4>Substeps</h4>
@@ -1039,34 +271,12 @@ SYSTEM READY\r\n
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:00</td><td>2025-09-05 20:31:00</td></tr>
+<tr><td>2025-09-15 13:45:11</td><td>2025-09-15 13:45:12</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:00] [STEP 4.1] Set Channel 1 to ON
-[2025-09-05 20:31:00] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:00] [TX] bytes=13
-[2025-09-05 20:31:00] SET_CH 1 ON\r\n
-
-[2025-09-05 20:31:00] [TX_HEX]
-0000: 53 45 54 5F 43 48 20 31 20 4F 4E 0D 0A           SET_CH 1 ON..
-[2025-09-05 20:31:00] [RX] bytes=140
-[2025-09-05 20:31:00] \t[ECHO] Received CMD: &quot;SET_CH 1 ON&quot;\r\n
-[INFO] SET_RELAY[1] t=8294065 us tag=&lt;UART Command Handler&gt; pin=0 val=1\r\n
-\t[ECHO] OK: Channel 1 set ON\r\n
-
-[2025-09-05 20:31:00] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 31 20   CMD: &quot;SET_CH 1 
-0020: 4F 4E 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54 5F  ON&quot;..[INFO] SET_
-0030: 52 45 4C 41 59 5B 31 5D 20 74 3D 38 32 39 34 30  RELAY[1] t=82940
-0040: 36 35 20 75 73 20 74 61 67 3D 3C 55 41 52 54 20  65 us tag=&lt;UART 
-0050: 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65 72 3E  Command Handler&gt;
-0060: 20 70 69 6E 3D 30 20 76 61 6C 3D 31 0D 0A 09 5B   pin=0 val=1...[
-0070: 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61 6E 6E 65  ECHO] OK: Channe
-0080: 6C 20 31 20 73 65 74 20 4F 4E 0D 0A              l 1 set ON..
-[2025-09-05 20:31:00] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:00] [PASS] STEP 4.1 completed successfully
+[2025-09-15 13:45:11] [STEP 4.1] Set Channel 1 to ON
+[2025-09-15 13:45:12] [PASS] STEP 4.1 completed successfully
 </pre>
 </div>
 </details>
@@ -1077,28 +287,12 @@ SYSTEM READY\r\n
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:00</td><td>2025-09-05 20:31:01</td></tr>
+<tr><td>2025-09-15 13:45:12</td><td>2025-09-15 13:45:13</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:00] [STEP 4.2] Verify Channel 1 is ON by Serial
-[2025-09-05 20:31:01] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:01] [TX] bytes=10
-[2025-09-05 20:31:01] GET_CH 1\r\n
-
-[2025-09-05 20:31:01] [TX_HEX]
-0000: 47 45 54 5F 43 48 20 31 0D 0A                    GET_CH 1..
-[2025-09-05 20:31:01] [RX] bytes=51
-[2025-09-05 20:31:01] \t[ECHO] Received CMD: &quot;GET_CH 1&quot;\r\n
-\t[ECHO] CH1: ON\r\n
-
-[2025-09-05 20:31:01] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 47 45 54 5F 43 48 20 31 22   CMD: &quot;GET_CH 1&quot;
-0020: 0D 0A 09 5B 45 43 48 4F 5D 20 43 48 31 3A 20 4F  ...[ECHO] CH1: O
-0030: 4E 0D 0A                                         N..
-[2025-09-05 20:31:01] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:01] [PASS] STEP 4.2 completed successfully
+[2025-09-15 13:45:12] [STEP 4.2] Verify Channel 1 is ON by Serial
+[2025-09-15 13:45:13] [PASS] STEP 4.2 completed successfully
 </pre>
 </div>
 </details>
@@ -1109,12 +303,12 @@ SYSTEM READY\r\n
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:01</td><td>2025-09-05 20:31:01</td></tr>
+<tr><td>2025-09-15 13:45:13</td><td>2025-09-15 13:45:13</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:01] [STEP 4.3] Validate Serial reports CH1 ON
-[2025-09-05 20:31:01] [PASS] STEP 4.3 completed successfully
+[2025-09-15 13:45:13] [STEP 4.3] Validate Serial reports CH1 ON
+[2025-09-15 13:45:13] [PASS] STEP 4.3 completed successfully
 </pre>
 </div>
 </details>
@@ -1125,18 +319,12 @@ SYSTEM READY\r\n
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:01</td><td>2025-09-05 20:31:01</td></tr>
+<tr><td>2025-09-15 13:45:13</td><td>2025-09-15 13:45:13</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:01] [STEP 4.4] Verify CH1 ON via SNMP
-[2025-09-05 20:31:01] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0
-[2025-09-05 20:31:01] [SNMP] rc=0
-[2025-09-05 20:31:01] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 1
-
-[2025-09-05 20:31:01] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 20:31:01] [PASS] STEP 4.4 completed successfully
+[2025-09-15 13:45:13] [STEP 4.4] Verify CH1 ON via SNMP
+[2025-09-15 13:45:13] [PASS] STEP 4.4 completed successfully
 </pre>
 </div>
 </details>
@@ -1147,34 +335,12 @@ SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:01</td><td>2025-09-05 20:31:02</td></tr>
+<tr><td>2025-09-15 13:45:13</td><td>2025-09-15 13:45:14</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:01] [STEP 4.5] Set Channel 1 to OFF
-[2025-09-05 20:31:01] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:01] [TX] bytes=14
-[2025-09-05 20:31:01] SET_CH 1 OFF\r\n
-
-[2025-09-05 20:31:01] [TX_HEX]
-0000: 53 45 54 5F 43 48 20 31 20 4F 46 46 0D 0A        SET_CH 1 OFF..
-[2025-09-05 20:31:02] [RX] bytes=143
-[2025-09-05 20:31:02] \t[ECHO] Received CMD: &quot;SET_CH 1 OFF&quot;\r\n
-[INFO] SET_RELAY[2] t=10122217 us tag=&lt;UART Command Handler&gt; pin=0 val=0\r\n
-\t[ECHO] OK: Channel 1 set OFF\r\n
-
-[2025-09-05 20:31:02] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 31 20   CMD: &quot;SET_CH 1 
-0020: 4F 46 46 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54  OFF&quot;..[INFO] SET
-0030: 5F 52 45 4C 41 59 5B 32 5D 20 74 3D 31 30 31 32  _RELAY[2] t=1012
-0040: 32 32 31 37 20 75 73 20 74 61 67 3D 3C 55 41 52  2217 us tag=&lt;UAR
-0050: 54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65  T Command Handle
-0060: 72 3E 20 70 69 6E 3D 30 20 76 61 6C 3D 30 0D 0A  r&gt; pin=0 val=0..
-0070: 09 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61 6E  .[ECHO] OK: Chan
-0080: 6E 65 6C 20 31 20 73 65 74 20 4F 46 46 0D 0A     nel 1 set OFF..
-[2025-09-05 20:31:02] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:02] [PASS] STEP 4.5 completed successfully
+[2025-09-15 13:45:13] [STEP 4.5] Set Channel 1 to OFF
+[2025-09-15 13:45:14] [PASS] STEP 4.5 completed successfully
 </pre>
 </div>
 </details>
@@ -1185,28 +351,12 @@ SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:02</td><td>2025-09-05 20:31:03</td></tr>
+<tr><td>2025-09-15 13:45:14</td><td>2025-09-15 13:45:15</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:02] [STEP 4.6] Verify Channel 1 is OFF by Serial
-[2025-09-05 20:31:02] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:02] [TX] bytes=10
-[2025-09-05 20:31:02] GET_CH 1\r\n
-
-[2025-09-05 20:31:02] [TX_HEX]
-0000: 47 45 54 5F 43 48 20 31 0D 0A                    GET_CH 1..
-[2025-09-05 20:31:03] [RX] bytes=52
-[2025-09-05 20:31:03] \t[ECHO] Received CMD: &quot;GET_CH 1&quot;\r\n
-\t[ECHO] CH1: OFF\r\n
-
-[2025-09-05 20:31:03] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 47 45 54 5F 43 48 20 31 22   CMD: &quot;GET_CH 1&quot;
-0020: 0D 0A 09 5B 45 43 48 4F 5D 20 43 48 31 3A 20 4F  ...[ECHO] CH1: O
-0030: 46 46 0D 0A                                      FF..
-[2025-09-05 20:31:03] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:03] [PASS] STEP 4.6 completed successfully
+[2025-09-15 13:45:14] [STEP 4.6] Verify Channel 1 is OFF by Serial
+[2025-09-15 13:45:15] [PASS] STEP 4.6 completed successfully
 </pre>
 </div>
 </details>
@@ -1217,12 +367,12 @@ SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:03</td><td>2025-09-05 20:31:03</td></tr>
+<tr><td>2025-09-15 13:45:15</td><td>2025-09-15 13:45:15</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:03] [STEP 4.7] Validate Serial reports CH1 OFF
-[2025-09-05 20:31:03] [PASS] STEP 4.7 completed successfully
+[2025-09-15 13:45:15] [STEP 4.7] Validate Serial reports CH1 OFF
+[2025-09-15 13:45:15] [PASS] STEP 4.7 completed successfully
 </pre>
 </div>
 </details>
@@ -1233,18 +383,12 @@ SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:03</td><td>2025-09-05 20:31:03</td></tr>
+<tr><td>2025-09-15 13:45:15</td><td>2025-09-15 13:45:15</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:03] [STEP 4.8] Verify CH1 OFF via SNMP
-[2025-09-05 20:31:03] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0
-[2025-09-05 20:31:03] [SNMP] rc=0
-[2025-09-05 20:31:03] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 0
-
-[2025-09-05 20:31:03] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 20:31:03] [PASS] STEP 4.8 completed successfully
+[2025-09-15 13:45:15] [STEP 4.8] Verify CH1 OFF via SNMP
+[2025-09-15 13:45:15] [PASS] STEP 4.8 completed successfully
 </pre>
 </div>
 </details>
@@ -1255,34 +399,12 @@ SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:03</td><td>2025-09-05 20:31:04</td></tr>
+<tr><td>2025-09-15 13:45:15</td><td>2025-09-15 13:45:16</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:03] [STEP 4.9] Set Channel 2 to ON
-[2025-09-05 20:31:03] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:03] [TX] bytes=13
-[2025-09-05 20:31:03] SET_CH 2 ON\r\n
-
-[2025-09-05 20:31:03] [TX_HEX]
-0000: 53 45 54 5F 43 48 20 32 20 4F 4E 0D 0A           SET_CH 2 ON..
-[2025-09-05 20:31:04] [RX] bytes=141
-[2025-09-05 20:31:04] \t[ECHO] Received CMD: &quot;SET_CH 2 ON&quot;\r\n
-[INFO] SET_RELAY[3] t=11950411 us tag=&lt;UART Command Handler&gt; pin=1 val=1\r\n
-\t[ECHO] OK: Channel 2 set ON\r\n
-
-[2025-09-05 20:31:04] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 32 20   CMD: &quot;SET_CH 2 
-0020: 4F 4E 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54 5F  ON&quot;..[INFO] SET_
-0030: 52 45 4C 41 59 5B 33 5D 20 74 3D 31 31 39 35 30  RELAY[3] t=11950
-0040: 34 31 31 20 75 73 20 74 61 67 3D 3C 55 41 52 54  411 us tag=&lt;UART
-0050: 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65 72   Command Handler
-0060: 3E 20 70 69 6E 3D 31 20 76 61 6C 3D 31 0D 0A 09  &gt; pin=1 val=1...
-0070: 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61 6E 6E  [ECHO] OK: Chann
-0080: 65 6C 20 32 20 73 65 74 20 4F 4E 0D 0A           el 2 set ON..
-[2025-09-05 20:31:04] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:04] [PASS] STEP 4.9 completed successfully
+[2025-09-15 13:45:15] [STEP 4.9] Set Channel 2 to ON
+[2025-09-15 13:45:16] [PASS] STEP 4.9 completed successfully
 </pre>
 </div>
 </details>
@@ -1293,28 +415,12 @@ SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:04</td><td>2025-09-05 20:31:05</td></tr>
+<tr><td>2025-09-15 13:45:16</td><td>2025-09-15 13:45:17</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:04] [STEP 4.10] Verify Channel 2 is ON by Serial
-[2025-09-05 20:31:04] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:04] [TX] bytes=10
-[2025-09-05 20:31:04] GET_CH 2\r\n
-
-[2025-09-05 20:31:04] [TX_HEX]
-0000: 47 45 54 5F 43 48 20 32 0D 0A                    GET_CH 2..
-[2025-09-05 20:31:05] [RX] bytes=51
-[2025-09-05 20:31:05] \t[ECHO] Received CMD: &quot;GET_CH 2&quot;\r\n
-\t[ECHO] CH2: ON\r\n
-
-[2025-09-05 20:31:05] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 47 45 54 5F 43 48 20 32 22   CMD: &quot;GET_CH 2&quot;
-0020: 0D 0A 09 5B 45 43 48 4F 5D 20 43 48 32 3A 20 4F  ...[ECHO] CH2: O
-0030: 4E 0D 0A                                         N..
-[2025-09-05 20:31:05] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:05] [PASS] STEP 4.10 completed successfully
+[2025-09-15 13:45:16] [STEP 4.10] Verify Channel 2 is ON by Serial
+[2025-09-15 13:45:17] [PASS] STEP 4.10 completed successfully
 </pre>
 </div>
 </details>
@@ -1325,12 +431,12 @@ SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:05</td><td>2025-09-05 20:31:05</td></tr>
+<tr><td>2025-09-15 13:45:17</td><td>2025-09-15 13:45:17</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:05] [STEP 4.11] Validate Serial reports CH2 ON
-[2025-09-05 20:31:05] [PASS] STEP 4.11 completed successfully
+[2025-09-15 13:45:17] [STEP 4.11] Validate Serial reports CH2 ON
+[2025-09-15 13:45:17] [PASS] STEP 4.11 completed successfully
 </pre>
 </div>
 </details>
@@ -1341,18 +447,12 @@ SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:05</td><td>2025-09-05 20:31:05</td></tr>
+<tr><td>2025-09-15 13:45:17</td><td>2025-09-15 13:45:17</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:05] [STEP 4.12] Verify CH2 ON via SNMP
-[2025-09-05 20:31:05] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0
-[2025-09-05 20:31:05] [SNMP] rc=0
-[2025-09-05 20:31:05] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 1
-
-[2025-09-05 20:31:05] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 20:31:05] [PASS] STEP 4.12 completed successfully
+[2025-09-15 13:45:17] [STEP 4.12] Verify CH2 ON via SNMP
+[2025-09-15 13:45:17] [PASS] STEP 4.12 completed successfully
 </pre>
 </div>
 </details>
@@ -1363,34 +463,12 @@ SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:05</td><td>2025-09-05 20:31:06</td></tr>
+<tr><td>2025-09-15 13:45:17</td><td>2025-09-15 13:45:18</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:05] [STEP 4.13] Set Channel 2 to OFF
-[2025-09-05 20:31:05] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:05] [TX] bytes=14
-[2025-09-05 20:31:05] SET_CH 2 OFF\r\n
-
-[2025-09-05 20:31:05] [TX_HEX]
-0000: 53 45 54 5F 43 48 20 32 20 4F 46 46 0D 0A        SET_CH 2 OFF..
-[2025-09-05 20:31:06] [RX] bytes=143
-[2025-09-05 20:31:06] \t[ECHO] Received CMD: &quot;SET_CH 2 OFF&quot;\r\n
-[INFO] SET_RELAY[4] t=13778555 us tag=&lt;UART Command Handler&gt; pin=1 val=0\r\n
-\t[ECHO] OK: Channel 2 set OFF\r\n
-
-[2025-09-05 20:31:06] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 32 20   CMD: &quot;SET_CH 2 
-0020: 4F 46 46 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54  OFF&quot;..[INFO] SET
-0030: 5F 52 45 4C 41 59 5B 34 5D 20 74 3D 31 33 37 37  _RELAY[4] t=1377
-0040: 38 35 35 35 20 75 73 20 74 61 67 3D 3C 55 41 52  8555 us tag=&lt;UAR
-0050: 54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65  T Command Handle
-0060: 72 3E 20 70 69 6E 3D 31 20 76 61 6C 3D 30 0D 0A  r&gt; pin=1 val=0..
-0070: 09 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61 6E  .[ECHO] OK: Chan
-0080: 6E 65 6C 20 32 20 73 65 74 20 4F 46 46 0D 0A     nel 2 set OFF..
-[2025-09-05 20:31:06] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:06] [PASS] STEP 4.13 completed successfully
+[2025-09-15 13:45:17] [STEP 4.13] Set Channel 2 to OFF
+[2025-09-15 13:45:18] [PASS] STEP 4.13 completed successfully
 </pre>
 </div>
 </details>
@@ -1401,28 +479,12 @@ SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:06</td><td>2025-09-05 20:31:07</td></tr>
+<tr><td>2025-09-15 13:45:18</td><td>2025-09-15 13:45:19</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:06] [STEP 4.14] Verify Channel 2 is OFF by Serial
-[2025-09-05 20:31:06] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:06] [TX] bytes=10
-[2025-09-05 20:31:06] GET_CH 2\r\n
-
-[2025-09-05 20:31:06] [TX_HEX]
-0000: 47 45 54 5F 43 48 20 32 0D 0A                    GET_CH 2..
-[2025-09-05 20:31:07] [RX] bytes=52
-[2025-09-05 20:31:07] \t[ECHO] Received CMD: &quot;GET_CH 2&quot;\r\n
-\t[ECHO] CH2: OFF\r\n
-
-[2025-09-05 20:31:07] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 47 45 54 5F 43 48 20 32 22   CMD: &quot;GET_CH 2&quot;
-0020: 0D 0A 09 5B 45 43 48 4F 5D 20 43 48 32 3A 20 4F  ...[ECHO] CH2: O
-0030: 46 46 0D 0A                                      FF..
-[2025-09-05 20:31:07] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:07] [PASS] STEP 4.14 completed successfully
+[2025-09-15 13:45:18] [STEP 4.14] Verify Channel 2 is OFF by Serial
+[2025-09-15 13:45:19] [PASS] STEP 4.14 completed successfully
 </pre>
 </div>
 </details>
@@ -1433,12 +495,12 @@ SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:07</td><td>2025-09-05 20:31:07</td></tr>
+<tr><td>2025-09-15 13:45:19</td><td>2025-09-15 13:45:19</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:07] [STEP 4.15] Validate Serial reports CH2 OFF
-[2025-09-05 20:31:07] [PASS] STEP 4.15 completed successfully
+[2025-09-15 13:45:19] [STEP 4.15] Validate Serial reports CH2 OFF
+[2025-09-15 13:45:19] [PASS] STEP 4.15 completed successfully
 </pre>
 </div>
 </details>
@@ -1449,18 +511,12 @@ SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:07</td><td>2025-09-05 20:31:07</td></tr>
+<tr><td>2025-09-15 13:45:19</td><td>2025-09-15 13:45:19</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:07] [STEP 4.16] Verify CH2 OFF via SNMP
-[2025-09-05 20:31:07] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0
-[2025-09-05 20:31:07] [SNMP] rc=0
-[2025-09-05 20:31:07] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 0
-
-[2025-09-05 20:31:07] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 20:31:07] [PASS] STEP 4.16 completed successfully
+[2025-09-15 13:45:19] [STEP 4.16] Verify CH2 OFF via SNMP
+[2025-09-15 13:45:19] [PASS] STEP 4.16 completed successfully
 </pre>
 </div>
 </details>
@@ -1471,34 +527,12 @@ SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:07</td><td>2025-09-05 20:31:08</td></tr>
+<tr><td>2025-09-15 13:45:19</td><td>2025-09-15 13:45:20</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:07] [STEP 4.17] Set Channel 3 to ON
-[2025-09-05 20:31:07] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:07] [TX] bytes=13
-[2025-09-05 20:31:07] SET_CH 3 ON\r\n
-
-[2025-09-05 20:31:07] [TX_HEX]
-0000: 53 45 54 5F 43 48 20 33 20 4F 4E 0D 0A           SET_CH 3 ON..
-[2025-09-05 20:31:08] [RX] bytes=141
-[2025-09-05 20:31:08] \t[ECHO] Received CMD: &quot;SET_CH 3 ON&quot;\r\n
-[INFO] SET_RELAY[5] t=15606659 us tag=&lt;UART Command Handler&gt; pin=2 val=1\r\n
-\t[ECHO] OK: Channel 3 set ON\r\n
-
-[2025-09-05 20:31:08] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 33 20   CMD: &quot;SET_CH 3 
-0020: 4F 4E 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54 5F  ON&quot;..[INFO] SET_
-0030: 52 45 4C 41 59 5B 35 5D 20 74 3D 31 35 36 30 36  RELAY[5] t=15606
-0040: 36 35 39 20 75 73 20 74 61 67 3D 3C 55 41 52 54  659 us tag=&lt;UART
-0050: 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65 72   Command Handler
-0060: 3E 20 70 69 6E 3D 32 20 76 61 6C 3D 31 0D 0A 09  &gt; pin=2 val=1...
-0070: 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61 6E 6E  [ECHO] OK: Chann
-0080: 65 6C 20 33 20 73 65 74 20 4F 4E 0D 0A           el 3 set ON..
-[2025-09-05 20:31:08] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:08] [PASS] STEP 4.17 completed successfully
+[2025-09-15 13:45:19] [STEP 4.17] Set Channel 3 to ON
+[2025-09-15 13:45:20] [PASS] STEP 4.17 completed successfully
 </pre>
 </div>
 </details>
@@ -1509,28 +543,12 @@ SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:08</td><td>2025-09-05 20:31:09</td></tr>
+<tr><td>2025-09-15 13:45:20</td><td>2025-09-15 13:45:21</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:08] [STEP 4.18] Verify Channel 3 is ON by Serial
-[2025-09-05 20:31:08] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:08] [TX] bytes=10
-[2025-09-05 20:31:08] GET_CH 3\r\n
-
-[2025-09-05 20:31:08] [TX_HEX]
-0000: 47 45 54 5F 43 48 20 33 0D 0A                    GET_CH 3..
-[2025-09-05 20:31:09] [RX] bytes=51
-[2025-09-05 20:31:09] \t[ECHO] Received CMD: &quot;GET_CH 3&quot;\r\n
-\t[ECHO] CH3: ON\r\n
-
-[2025-09-05 20:31:09] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 47 45 54 5F 43 48 20 33 22   CMD: &quot;GET_CH 3&quot;
-0020: 0D 0A 09 5B 45 43 48 4F 5D 20 43 48 33 3A 20 4F  ...[ECHO] CH3: O
-0030: 4E 0D 0A                                         N..
-[2025-09-05 20:31:09] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:09] [PASS] STEP 4.18 completed successfully
+[2025-09-15 13:45:20] [STEP 4.18] Verify Channel 3 is ON by Serial
+[2025-09-15 13:45:21] [PASS] STEP 4.18 completed successfully
 </pre>
 </div>
 </details>
@@ -1541,12 +559,12 @@ SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:09</td><td>2025-09-05 20:31:09</td></tr>
+<tr><td>2025-09-15 13:45:21</td><td>2025-09-15 13:45:21</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:09] [STEP 4.19] Validate Serial reports CH3 ON
-[2025-09-05 20:31:09] [PASS] STEP 4.19 completed successfully
+[2025-09-15 13:45:21] [STEP 4.19] Validate Serial reports CH3 ON
+[2025-09-15 13:45:21] [PASS] STEP 4.19 completed successfully
 </pre>
 </div>
 </details>
@@ -1557,18 +575,12 @@ SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:09</td><td>2025-09-05 20:31:09</td></tr>
+<tr><td>2025-09-15 13:45:21</td><td>2025-09-15 13:45:21</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:09] [STEP 4.20] Verify CH3 ON via SNMP
-[2025-09-05 20:31:09] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0
-[2025-09-05 20:31:09] [SNMP] rc=0
-[2025-09-05 20:31:09] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 1
-
-[2025-09-05 20:31:09] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 20:31:09] [PASS] STEP 4.20 completed successfully
+[2025-09-15 13:45:21] [STEP 4.20] Verify CH3 ON via SNMP
+[2025-09-15 13:45:21] [PASS] STEP 4.20 completed successfully
 </pre>
 </div>
 </details>
@@ -1579,34 +591,12 @@ SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:09</td><td>2025-09-05 20:31:10</td></tr>
+<tr><td>2025-09-15 13:45:21</td><td>2025-09-15 13:45:22</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:09] [STEP 4.21] Set Channel 3 to OFF
-[2025-09-05 20:31:09] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:09] [TX] bytes=14
-[2025-09-05 20:31:09] SET_CH 3 OFF\r\n
-
-[2025-09-05 20:31:09] [TX_HEX]
-0000: 53 45 54 5F 43 48 20 33 20 4F 46 46 0D 0A        SET_CH 3 OFF..
-[2025-09-05 20:31:10] [RX] bytes=143
-[2025-09-05 20:31:10] \t[ECHO] Received CMD: &quot;SET_CH 3 OFF&quot;\r\n
-[INFO] SET_RELAY[6] t=17434765 us tag=&lt;UART Command Handler&gt; pin=2 val=0\r\n
-\t[ECHO] OK: Channel 3 set OFF\r\n
-
-[2025-09-05 20:31:10] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 33 20   CMD: &quot;SET_CH 3 
-0020: 4F 46 46 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54  OFF&quot;..[INFO] SET
-0030: 5F 52 45 4C 41 59 5B 36 5D 20 74 3D 31 37 34 33  _RELAY[6] t=1743
-0040: 34 37 36 35 20 75 73 20 74 61 67 3D 3C 55 41 52  4765 us tag=&lt;UAR
-0050: 54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65  T Command Handle
-0060: 72 3E 20 70 69 6E 3D 32 20 76 61 6C 3D 30 0D 0A  r&gt; pin=2 val=0..
-0070: 09 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61 6E  .[ECHO] OK: Chan
-0080: 6E 65 6C 20 33 20 73 65 74 20 4F 46 46 0D 0A     nel 3 set OFF..
-[2025-09-05 20:31:10] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:10] [PASS] STEP 4.21 completed successfully
+[2025-09-15 13:45:21] [STEP 4.21] Set Channel 3 to OFF
+[2025-09-15 13:45:22] [PASS] STEP 4.21 completed successfully
 </pre>
 </div>
 </details>
@@ -1617,28 +607,12 @@ SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:10</td><td>2025-09-05 20:31:10</td></tr>
+<tr><td>2025-09-15 13:45:22</td><td>2025-09-15 13:45:23</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:10] [STEP 4.22] Verify Channel 3 is OFF by Serial
-[2025-09-05 20:31:10] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:10] [TX] bytes=10
-[2025-09-05 20:31:10] GET_CH 3\r\n
-
-[2025-09-05 20:31:10] [TX_HEX]
-0000: 47 45 54 5F 43 48 20 33 0D 0A                    GET_CH 3..
-[2025-09-05 20:31:10] [RX] bytes=52
-[2025-09-05 20:31:10] \t[ECHO] Received CMD: &quot;GET_CH 3&quot;\r\n
-\t[ECHO] CH3: OFF\r\n
-
-[2025-09-05 20:31:10] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 47 45 54 5F 43 48 20 33 22   CMD: &quot;GET_CH 3&quot;
-0020: 0D 0A 09 5B 45 43 48 4F 5D 20 43 48 33 3A 20 4F  ...[ECHO] CH3: O
-0030: 46 46 0D 0A                                      FF..
-[2025-09-05 20:31:10] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:10] [PASS] STEP 4.22 completed successfully
+[2025-09-15 13:45:22] [STEP 4.22] Verify Channel 3 is OFF by Serial
+[2025-09-15 13:45:23] [PASS] STEP 4.22 completed successfully
 </pre>
 </div>
 </details>
@@ -1649,12 +623,12 @@ SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:10</td><td>2025-09-05 20:31:10</td></tr>
+<tr><td>2025-09-15 13:45:23</td><td>2025-09-15 13:45:23</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:10] [STEP 4.23] Validate Serial reports CH3 OFF
-[2025-09-05 20:31:10] [PASS] STEP 4.23 completed successfully
+[2025-09-15 13:45:23] [STEP 4.23] Validate Serial reports CH3 OFF
+[2025-09-15 13:45:23] [PASS] STEP 4.23 completed successfully
 </pre>
 </div>
 </details>
@@ -1665,18 +639,12 @@ SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:10</td><td>2025-09-05 20:31:11</td></tr>
+<tr><td>2025-09-15 13:45:23</td><td>2025-09-15 13:45:23</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:10] [STEP 4.24] Verify CH3 OFF via SNMP
-[2025-09-05 20:31:11] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0
-[2025-09-05 20:31:11] [SNMP] rc=0
-[2025-09-05 20:31:11] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 0
-
-[2025-09-05 20:31:11] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 20:31:11] [PASS] STEP 4.24 completed successfully
+[2025-09-15 13:45:23] [STEP 4.24] Verify CH3 OFF via SNMP
+[2025-09-15 13:45:23] [PASS] STEP 4.24 completed successfully
 </pre>
 </div>
 </details>
@@ -1687,34 +655,12 @@ SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:11</td><td>2025-09-05 20:31:11</td></tr>
+<tr><td>2025-09-15 13:45:23</td><td>2025-09-15 13:45:24</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:11] [STEP 4.25] Set Channel 4 to ON
-[2025-09-05 20:31:11] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:11] [TX] bytes=13
-[2025-09-05 20:31:11] SET_CH 4 ON\r\n
-
-[2025-09-05 20:31:11] [TX_HEX]
-0000: 53 45 54 5F 43 48 20 34 20 4F 4E 0D 0A           SET_CH 4 ON..
-[2025-09-05 20:31:11] [RX] bytes=141
-[2025-09-05 20:31:11] \t[ECHO] Received CMD: &quot;SET_CH 4 ON&quot;\r\n
-[INFO] SET_RELAY[7] t=19262907 us tag=&lt;UART Command Handler&gt; pin=3 val=1\r\n
-\t[ECHO] OK: Channel 4 set ON\r\n
-
-[2025-09-05 20:31:11] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 34 20   CMD: &quot;SET_CH 4 
-0020: 4F 4E 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54 5F  ON&quot;..[INFO] SET_
-0030: 52 45 4C 41 59 5B 37 5D 20 74 3D 31 39 32 36 32  RELAY[7] t=19262
-0040: 39 30 37 20 75 73 20 74 61 67 3D 3C 55 41 52 54  907 us tag=&lt;UART
-0050: 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65 72   Command Handler
-0060: 3E 20 70 69 6E 3D 33 20 76 61 6C 3D 31 0D 0A 09  &gt; pin=3 val=1...
-0070: 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61 6E 6E  [ECHO] OK: Chann
-0080: 65 6C 20 34 20 73 65 74 20 4F 4E 0D 0A           el 4 set ON..
-[2025-09-05 20:31:11] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:11] [PASS] STEP 4.25 completed successfully
+[2025-09-15 13:45:23] [STEP 4.25] Set Channel 4 to ON
+[2025-09-15 13:45:24] [PASS] STEP 4.25 completed successfully
 </pre>
 </div>
 </details>
@@ -1725,28 +671,12 @@ SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:11</td><td>2025-09-05 20:31:12</td></tr>
+<tr><td>2025-09-15 13:45:24</td><td>2025-09-15 13:45:25</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:11] [STEP 4.26] Verify Channel 4 is ON by Serial
-[2025-09-05 20:31:12] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:12] [TX] bytes=10
-[2025-09-05 20:31:12] GET_CH 4\r\n
-
-[2025-09-05 20:31:12] [TX_HEX]
-0000: 47 45 54 5F 43 48 20 34 0D 0A                    GET_CH 4..
-[2025-09-05 20:31:12] [RX] bytes=51
-[2025-09-05 20:31:12] \t[ECHO] Received CMD: &quot;GET_CH 4&quot;\r\n
-\t[ECHO] CH4: ON\r\n
-
-[2025-09-05 20:31:12] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 47 45 54 5F 43 48 20 34 22   CMD: &quot;GET_CH 4&quot;
-0020: 0D 0A 09 5B 45 43 48 4F 5D 20 43 48 34 3A 20 4F  ...[ECHO] CH4: O
-0030: 4E 0D 0A                                         N..
-[2025-09-05 20:31:12] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:12] [PASS] STEP 4.26 completed successfully
+[2025-09-15 13:45:24] [STEP 4.26] Verify Channel 4 is ON by Serial
+[2025-09-15 13:45:25] [PASS] STEP 4.26 completed successfully
 </pre>
 </div>
 </details>
@@ -1757,12 +687,12 @@ SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:12</td><td>2025-09-05 20:31:12</td></tr>
+<tr><td>2025-09-15 13:45:25</td><td>2025-09-15 13:45:25</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:12] [STEP 4.27] Validate Serial reports CH4 ON
-[2025-09-05 20:31:12] [PASS] STEP 4.27 completed successfully
+[2025-09-15 13:45:25] [STEP 4.27] Validate Serial reports CH4 ON
+[2025-09-15 13:45:25] [PASS] STEP 4.27 completed successfully
 </pre>
 </div>
 </details>
@@ -1773,18 +703,12 @@ SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:12</td><td>2025-09-05 20:31:12</td></tr>
+<tr><td>2025-09-15 13:45:25</td><td>2025-09-15 13:45:25</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:12] [STEP 4.28] Verify CH4 ON via SNMP
-[2025-09-05 20:31:12] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0
-[2025-09-05 20:31:12] [SNMP] rc=0
-[2025-09-05 20:31:12] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 1
-
-[2025-09-05 20:31:12] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 20:31:12] [PASS] STEP 4.28 completed successfully
+[2025-09-15 13:45:25] [STEP 4.28] Verify CH4 ON via SNMP
+[2025-09-15 13:45:25] [PASS] STEP 4.28 completed successfully
 </pre>
 </div>
 </details>
@@ -1795,34 +719,12 @@ SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:12</td><td>2025-09-05 20:31:13</td></tr>
+<tr><td>2025-09-15 13:45:25</td><td>2025-09-15 13:45:26</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:12] [STEP 4.29] Set Channel 4 to OFF
-[2025-09-05 20:31:12] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:12] [TX] bytes=14
-[2025-09-05 20:31:12] SET_CH 4 OFF\r\n
-
-[2025-09-05 20:31:12] [TX_HEX]
-0000: 53 45 54 5F 43 48 20 34 20 4F 46 46 0D 0A        SET_CH 4 OFF..
-[2025-09-05 20:31:13] [RX] bytes=143
-[2025-09-05 20:31:13] \t[ECHO] Received CMD: &quot;SET_CH 4 OFF&quot;\r\n
-[INFO] SET_RELAY[8] t=21091050 us tag=&lt;UART Command Handler&gt; pin=3 val=0\r\n
-\t[ECHO] OK: Channel 4 set OFF\r\n
-
-[2025-09-05 20:31:13] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 34 20   CMD: &quot;SET_CH 4 
-0020: 4F 46 46 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54  OFF&quot;..[INFO] SET
-0030: 5F 52 45 4C 41 59 5B 38 5D 20 74 3D 32 31 30 39  _RELAY[8] t=2109
-0040: 31 30 35 30 20 75 73 20 74 61 67 3D 3C 55 41 52  1050 us tag=&lt;UAR
-0050: 54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65  T Command Handle
-0060: 72 3E 20 70 69 6E 3D 33 20 76 61 6C 3D 30 0D 0A  r&gt; pin=3 val=0..
-0070: 09 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61 6E  .[ECHO] OK: Chan
-0080: 6E 65 6C 20 34 20 73 65 74 20 4F 46 46 0D 0A     nel 4 set OFF..
-[2025-09-05 20:31:13] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:13] [PASS] STEP 4.29 completed successfully
+[2025-09-15 13:45:25] [STEP 4.29] Set Channel 4 to OFF
+[2025-09-15 13:45:26] [PASS] STEP 4.29 completed successfully
 </pre>
 </div>
 </details>
@@ -1833,28 +735,12 @@ SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:13</td><td>2025-09-05 20:31:14</td></tr>
+<tr><td>2025-09-15 13:45:26</td><td>2025-09-15 13:45:27</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:13] [STEP 4.30] Verify Channel 4 is OFF by Serial
-[2025-09-05 20:31:13] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:13] [TX] bytes=10
-[2025-09-05 20:31:13] GET_CH 4\r\n
-
-[2025-09-05 20:31:13] [TX_HEX]
-0000: 47 45 54 5F 43 48 20 34 0D 0A                    GET_CH 4..
-[2025-09-05 20:31:14] [RX] bytes=52
-[2025-09-05 20:31:14] \t[ECHO] Received CMD: &quot;GET_CH 4&quot;\r\n
-\t[ECHO] CH4: OFF\r\n
-
-[2025-09-05 20:31:14] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 47 45 54 5F 43 48 20 34 22   CMD: &quot;GET_CH 4&quot;
-0020: 0D 0A 09 5B 45 43 48 4F 5D 20 43 48 34 3A 20 4F  ...[ECHO] CH4: O
-0030: 46 46 0D 0A                                      FF..
-[2025-09-05 20:31:14] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:14] [PASS] STEP 4.30 completed successfully
+[2025-09-15 13:45:26] [STEP 4.30] Verify Channel 4 is OFF by Serial
+[2025-09-15 13:45:27] [PASS] STEP 4.30 completed successfully
 </pre>
 </div>
 </details>
@@ -1865,12 +751,12 @@ SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:14</td><td>2025-09-05 20:31:14</td></tr>
+<tr><td>2025-09-15 13:45:27</td><td>2025-09-15 13:45:27</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:14] [STEP 4.31] Validate Serial reports CH4 OFF
-[2025-09-05 20:31:14] [PASS] STEP 4.31 completed successfully
+[2025-09-15 13:45:27] [STEP 4.31] Validate Serial reports CH4 OFF
+[2025-09-15 13:45:27] [PASS] STEP 4.31 completed successfully
 </pre>
 </div>
 </details>
@@ -1881,18 +767,12 @@ SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:14</td><td>2025-09-05 20:31:14</td></tr>
+<tr><td>2025-09-15 13:45:27</td><td>2025-09-15 13:45:27</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:14] [STEP 4.32] Verify CH4 OFF via SNMP
-[2025-09-05 20:31:14] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0
-[2025-09-05 20:31:14] [SNMP] rc=0
-[2025-09-05 20:31:14] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 0
-
-[2025-09-05 20:31:14] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 20:31:14] [PASS] STEP 4.32 completed successfully
+[2025-09-15 13:45:27] [STEP 4.32] Verify CH4 OFF via SNMP
+[2025-09-15 13:45:27] [PASS] STEP 4.32 completed successfully
 </pre>
 </div>
 </details>
@@ -1903,34 +783,12 @@ SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:14</td><td>2025-09-05 20:31:15</td></tr>
+<tr><td>2025-09-15 13:45:27</td><td>2025-09-15 13:45:28</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:14] [STEP 4.33] Set Channel 5 to ON
-[2025-09-05 20:31:14] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:14] [TX] bytes=13
-[2025-09-05 20:31:14] SET_CH 5 ON\r\n
-
-[2025-09-05 20:31:14] [TX_HEX]
-0000: 53 45 54 5F 43 48 20 35 20 4F 4E 0D 0A           SET_CH 5 ON..
-[2025-09-05 20:31:15] [RX] bytes=141
-[2025-09-05 20:31:15] \t[ECHO] Received CMD: &quot;SET_CH 5 ON&quot;\r\n
-[INFO] SET_RELAY[9] t=22919130 us tag=&lt;UART Command Handler&gt; pin=4 val=1\r\n
-\t[ECHO] OK: Channel 5 set ON\r\n
-
-[2025-09-05 20:31:15] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 35 20   CMD: &quot;SET_CH 5 
-0020: 4F 4E 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54 5F  ON&quot;..[INFO] SET_
-0030: 52 45 4C 41 59 5B 39 5D 20 74 3D 32 32 39 31 39  RELAY[9] t=22919
-0040: 31 33 30 20 75 73 20 74 61 67 3D 3C 55 41 52 54  130 us tag=&lt;UART
-0050: 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65 72   Command Handler
-0060: 3E 20 70 69 6E 3D 34 20 76 61 6C 3D 31 0D 0A 09  &gt; pin=4 val=1...
-0070: 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61 6E 6E  [ECHO] OK: Chann
-0080: 65 6C 20 35 20 73 65 74 20 4F 4E 0D 0A           el 5 set ON..
-[2025-09-05 20:31:15] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:15] [PASS] STEP 4.33 completed successfully
+[2025-09-15 13:45:27] [STEP 4.33] Set Channel 5 to ON
+[2025-09-15 13:45:28] [PASS] STEP 4.33 completed successfully
 </pre>
 </div>
 </details>
@@ -1941,28 +799,12 @@ SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:15</td><td>2025-09-05 20:31:16</td></tr>
+<tr><td>2025-09-15 13:45:28</td><td>2025-09-15 13:45:28</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:15] [STEP 4.34] Verify Channel 5 is ON by Serial
-[2025-09-05 20:31:15] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:15] [TX] bytes=10
-[2025-09-05 20:31:15] GET_CH 5\r\n
-
-[2025-09-05 20:31:15] [TX_HEX]
-0000: 47 45 54 5F 43 48 20 35 0D 0A                    GET_CH 5..
-[2025-09-05 20:31:16] [RX] bytes=51
-[2025-09-05 20:31:16] \t[ECHO] Received CMD: &quot;GET_CH 5&quot;\r\n
-\t[ECHO] CH5: ON\r\n
-
-[2025-09-05 20:31:16] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 47 45 54 5F 43 48 20 35 22   CMD: &quot;GET_CH 5&quot;
-0020: 0D 0A 09 5B 45 43 48 4F 5D 20 43 48 35 3A 20 4F  ...[ECHO] CH5: O
-0030: 4E 0D 0A                                         N..
-[2025-09-05 20:31:16] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:16] [PASS] STEP 4.34 completed successfully
+[2025-09-15 13:45:28] [STEP 4.34] Verify Channel 5 is ON by Serial
+[2025-09-15 13:45:28] [PASS] STEP 4.34 completed successfully
 </pre>
 </div>
 </details>
@@ -1973,12 +815,12 @@ SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:16</td><td>2025-09-05 20:31:16</td></tr>
+<tr><td>2025-09-15 13:45:28</td><td>2025-09-15 13:45:28</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:16] [STEP 4.35] Validate Serial reports CH5 ON
-[2025-09-05 20:31:16] [PASS] STEP 4.35 completed successfully
+[2025-09-15 13:45:28] [STEP 4.35] Validate Serial reports CH5 ON
+[2025-09-15 13:45:28] [PASS] STEP 4.35 completed successfully
 </pre>
 </div>
 </details>
@@ -1989,18 +831,12 @@ SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:16</td><td>2025-09-05 20:31:16</td></tr>
+<tr><td>2025-09-15 13:45:28</td><td>2025-09-15 13:45:29</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:16] [STEP 4.36] Verify CH5 ON via SNMP
-[2025-09-05 20:31:16] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0
-[2025-09-05 20:31:16] [SNMP] rc=0
-[2025-09-05 20:31:16] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 1
-
-[2025-09-05 20:31:16] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 20:31:16] [PASS] STEP 4.36 completed successfully
+[2025-09-15 13:45:28] [STEP 4.36] Verify CH5 ON via SNMP
+[2025-09-15 13:45:29] [PASS] STEP 4.36 completed successfully
 </pre>
 </div>
 </details>
@@ -2011,34 +847,12 @@ SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:16</td><td>2025-09-05 20:31:17</td></tr>
+<tr><td>2025-09-15 13:45:29</td><td>2025-09-15 13:45:29</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:16] [STEP 4.37] Set Channel 5 to OFF
-[2025-09-05 20:31:16] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:16] [TX] bytes=14
-[2025-09-05 20:31:16] SET_CH 5 OFF\r\n
-
-[2025-09-05 20:31:16] [TX_HEX]
-0000: 53 45 54 5F 43 48 20 35 20 4F 46 46 0D 0A        SET_CH 5 OFF..
-[2025-09-05 20:31:17] [RX] bytes=144
-[2025-09-05 20:31:17] \t[ECHO] Received CMD: &quot;SET_CH 5 OFF&quot;\r\n
-[INFO] SET_RELAY[10] t=24747259 us tag=&lt;UART Command Handler&gt; pin=4 val=0\r\n
-\t[ECHO] OK: Channel 5 set OFF\r\n
-
-[2025-09-05 20:31:17] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 35 20   CMD: &quot;SET_CH 5 
-0020: 4F 46 46 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54  OFF&quot;..[INFO] SET
-0030: 5F 52 45 4C 41 59 5B 31 30 5D 20 74 3D 32 34 37  _RELAY[10] t=247
-0040: 34 37 32 35 39 20 75 73 20 74 61 67 3D 3C 55 41  47259 us tag=&lt;UA
-0050: 52 54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C  RT Command Handl
-0060: 65 72 3E 20 70 69 6E 3D 34 20 76 61 6C 3D 30 0D  er&gt; pin=4 val=0.
-0070: 0A 09 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61  ..[ECHO] OK: Cha
-0080: 6E 6E 65 6C 20 35 20 73 65 74 20 4F 46 46 0D 0A  nnel 5 set OFF..
-[2025-09-05 20:31:17] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:17] [PASS] STEP 4.37 completed successfully
+[2025-09-15 13:45:29] [STEP 4.37] Set Channel 5 to OFF
+[2025-09-15 13:45:29] [PASS] STEP 4.37 completed successfully
 </pre>
 </div>
 </details>
@@ -2049,28 +863,12 @@ SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:17</td><td>2025-09-05 20:31:18</td></tr>
+<tr><td>2025-09-15 13:45:29</td><td>2025-09-15 13:45:30</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:17] [STEP 4.38] Verify Channel 5 is OFF by Serial
-[2025-09-05 20:31:17] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:17] [TX] bytes=10
-[2025-09-05 20:31:17] GET_CH 5\r\n
-
-[2025-09-05 20:31:17] [TX_HEX]
-0000: 47 45 54 5F 43 48 20 35 0D 0A                    GET_CH 5..
-[2025-09-05 20:31:18] [RX] bytes=52
-[2025-09-05 20:31:18] \t[ECHO] Received CMD: &quot;GET_CH 5&quot;\r\n
-\t[ECHO] CH5: OFF\r\n
-
-[2025-09-05 20:31:18] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 47 45 54 5F 43 48 20 35 22   CMD: &quot;GET_CH 5&quot;
-0020: 0D 0A 09 5B 45 43 48 4F 5D 20 43 48 35 3A 20 4F  ...[ECHO] CH5: O
-0030: 46 46 0D 0A                                      FF..
-[2025-09-05 20:31:18] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:18] [PASS] STEP 4.38 completed successfully
+[2025-09-15 13:45:29] [STEP 4.38] Verify Channel 5 is OFF by Serial
+[2025-09-15 13:45:30] [PASS] STEP 4.38 completed successfully
 </pre>
 </div>
 </details>
@@ -2081,12 +879,12 @@ SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:18</td><td>2025-09-05 20:31:18</td></tr>
+<tr><td>2025-09-15 13:45:30</td><td>2025-09-15 13:45:30</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:18] [STEP 4.39] Validate Serial reports CH5 OFF
-[2025-09-05 20:31:18] [PASS] STEP 4.39 completed successfully
+[2025-09-15 13:45:30] [STEP 4.39] Validate Serial reports CH5 OFF
+[2025-09-15 13:45:30] [PASS] STEP 4.39 completed successfully
 </pre>
 </div>
 </details>
@@ -2097,18 +895,12 @@ SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:18</td><td>2025-09-05 20:31:18</td></tr>
+<tr><td>2025-09-15 13:45:30</td><td>2025-09-15 13:45:30</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:18] [STEP 4.40] Verify CH5 OFF via SNMP
-[2025-09-05 20:31:18] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0
-[2025-09-05 20:31:18] [SNMP] rc=0
-[2025-09-05 20:31:18] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 0
-
-[2025-09-05 20:31:18] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 20:31:18] [PASS] STEP 4.40 completed successfully
+[2025-09-15 13:45:30] [STEP 4.40] Verify CH5 OFF via SNMP
+[2025-09-15 13:45:30] [PASS] STEP 4.40 completed successfully
 </pre>
 </div>
 </details>
@@ -2119,34 +911,12 @@ SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:18</td><td>2025-09-05 20:31:19</td></tr>
+<tr><td>2025-09-15 13:45:30</td><td>2025-09-15 13:45:31</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:18] [STEP 4.41] Set Channel 6 to ON
-[2025-09-05 20:31:18] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:18] [TX] bytes=13
-[2025-09-05 20:31:18] SET_CH 6 ON\r\n
-
-[2025-09-05 20:31:18] [TX_HEX]
-0000: 53 45 54 5F 43 48 20 36 20 4F 4E 0D 0A           SET_CH 6 ON..
-[2025-09-05 20:31:19] [RX] bytes=142
-[2025-09-05 20:31:19] \t[ECHO] Received CMD: &quot;SET_CH 6 ON&quot;\r\n
-[INFO] SET_RELAY[11] t=26575382 us tag=&lt;UART Command Handler&gt; pin=5 val=1\r\n
-\t[ECHO] OK: Channel 6 set ON\r\n
-
-[2025-09-05 20:31:19] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 36 20   CMD: &quot;SET_CH 6 
-0020: 4F 4E 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54 5F  ON&quot;..[INFO] SET_
-0030: 52 45 4C 41 59 5B 31 31 5D 20 74 3D 32 36 35 37  RELAY[11] t=2657
-0040: 35 33 38 32 20 75 73 20 74 61 67 3D 3C 55 41 52  5382 us tag=&lt;UAR
-0050: 54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65  T Command Handle
-0060: 72 3E 20 70 69 6E 3D 35 20 76 61 6C 3D 31 0D 0A  r&gt; pin=5 val=1..
-0070: 09 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61 6E  .[ECHO] OK: Chan
-0080: 6E 65 6C 20 36 20 73 65 74 20 4F 4E 0D 0A        nel 6 set ON..
-[2025-09-05 20:31:19] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:19] [PASS] STEP 4.41 completed successfully
+[2025-09-15 13:45:30] [STEP 4.41] Set Channel 6 to ON
+[2025-09-15 13:45:31] [PASS] STEP 4.41 completed successfully
 </pre>
 </div>
 </details>
@@ -2157,28 +927,12 @@ SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:19</td><td>2025-09-05 20:31:20</td></tr>
+<tr><td>2025-09-15 13:45:31</td><td>2025-09-15 13:45:32</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:19] [STEP 4.42] Verify Channel 6 is ON by Serial
-[2025-09-05 20:31:19] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:19] [TX] bytes=10
-[2025-09-05 20:31:19] GET_CH 6\r\n
-
-[2025-09-05 20:31:19] [TX_HEX]
-0000: 47 45 54 5F 43 48 20 36 0D 0A                    GET_CH 6..
-[2025-09-05 20:31:20] [RX] bytes=51
-[2025-09-05 20:31:20] \t[ECHO] Received CMD: &quot;GET_CH 6&quot;\r\n
-\t[ECHO] CH6: ON\r\n
-
-[2025-09-05 20:31:20] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 47 45 54 5F 43 48 20 36 22   CMD: &quot;GET_CH 6&quot;
-0020: 0D 0A 09 5B 45 43 48 4F 5D 20 43 48 36 3A 20 4F  ...[ECHO] CH6: O
-0030: 4E 0D 0A                                         N..
-[2025-09-05 20:31:20] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:20] [PASS] STEP 4.42 completed successfully
+[2025-09-15 13:45:31] [STEP 4.42] Verify Channel 6 is ON by Serial
+[2025-09-15 13:45:32] [PASS] STEP 4.42 completed successfully
 </pre>
 </div>
 </details>
@@ -2189,12 +943,12 @@ SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:20</td><td>2025-09-05 20:31:20</td></tr>
+<tr><td>2025-09-15 13:45:32</td><td>2025-09-15 13:45:32</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:20] [STEP 4.43] Validate Serial reports CH6 ON
-[2025-09-05 20:31:20] [PASS] STEP 4.43 completed successfully
+[2025-09-15 13:45:32] [STEP 4.43] Validate Serial reports CH6 ON
+[2025-09-15 13:45:32] [PASS] STEP 4.43 completed successfully
 </pre>
 </div>
 </details>
@@ -2205,18 +959,12 @@ SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:20</td><td>2025-09-05 20:31:20</td></tr>
+<tr><td>2025-09-15 13:45:32</td><td>2025-09-15 13:45:32</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:20] [STEP 4.44] Verify CH6 ON via SNMP
-[2025-09-05 20:31:20] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0
-[2025-09-05 20:31:20] [SNMP] rc=0
-[2025-09-05 20:31:20] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 1
-
-[2025-09-05 20:31:20] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 20:31:20] [PASS] STEP 4.44 completed successfully
+[2025-09-15 13:45:32] [STEP 4.44] Verify CH6 ON via SNMP
+[2025-09-15 13:45:32] [PASS] STEP 4.44 completed successfully
 </pre>
 </div>
 </details>
@@ -2227,34 +975,12 @@ SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:20</td><td>2025-09-05 20:31:21</td></tr>
+<tr><td>2025-09-15 13:45:32</td><td>2025-09-15 13:45:33</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:20] [STEP 4.45] Set Channel 6 to OFF
-[2025-09-05 20:31:20] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:20] [TX] bytes=14
-[2025-09-05 20:31:20] SET_CH 6 OFF\r\n
-
-[2025-09-05 20:31:20] [TX_HEX]
-0000: 53 45 54 5F 43 48 20 36 20 4F 46 46 0D 0A        SET_CH 6 OFF..
-[2025-09-05 20:31:21] [RX] bytes=144
-[2025-09-05 20:31:21] \t[ECHO] Received CMD: &quot;SET_CH 6 OFF&quot;\r\n
-[INFO] SET_RELAY[12] t=28403581 us tag=&lt;UART Command Handler&gt; pin=5 val=0\r\n
-\t[ECHO] OK: Channel 6 set OFF\r\n
-
-[2025-09-05 20:31:21] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 36 20   CMD: &quot;SET_CH 6 
-0020: 4F 46 46 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54  OFF&quot;..[INFO] SET
-0030: 5F 52 45 4C 41 59 5B 31 32 5D 20 74 3D 32 38 34  _RELAY[12] t=284
-0040: 30 33 35 38 31 20 75 73 20 74 61 67 3D 3C 55 41  03581 us tag=&lt;UA
-0050: 52 54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C  RT Command Handl
-0060: 65 72 3E 20 70 69 6E 3D 35 20 76 61 6C 3D 30 0D  er&gt; pin=5 val=0.
-0070: 0A 09 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61  ..[ECHO] OK: Cha
-0080: 6E 6E 65 6C 20 36 20 73 65 74 20 4F 46 46 0D 0A  nnel 6 set OFF..
-[2025-09-05 20:31:21] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:21] [PASS] STEP 4.45 completed successfully
+[2025-09-15 13:45:32] [STEP 4.45] Set Channel 6 to OFF
+[2025-09-15 13:45:33] [PASS] STEP 4.45 completed successfully
 </pre>
 </div>
 </details>
@@ -2265,28 +991,12 @@ SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:21</td><td>2025-09-05 20:31:21</td></tr>
+<tr><td>2025-09-15 13:45:33</td><td>2025-09-15 13:45:34</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:21] [STEP 4.46] Verify Channel 6 is OFF by Serial
-[2025-09-05 20:31:21] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:21] [TX] bytes=10
-[2025-09-05 20:31:21] GET_CH 6\r\n
-
-[2025-09-05 20:31:21] [TX_HEX]
-0000: 47 45 54 5F 43 48 20 36 0D 0A                    GET_CH 6..
-[2025-09-05 20:31:21] [RX] bytes=52
-[2025-09-05 20:31:21] \t[ECHO] Received CMD: &quot;GET_CH 6&quot;\r\n
-\t[ECHO] CH6: OFF\r\n
-
-[2025-09-05 20:31:21] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 47 45 54 5F 43 48 20 36 22   CMD: &quot;GET_CH 6&quot;
-0020: 0D 0A 09 5B 45 43 48 4F 5D 20 43 48 36 3A 20 4F  ...[ECHO] CH6: O
-0030: 46 46 0D 0A                                      FF..
-[2025-09-05 20:31:21] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:21] [PASS] STEP 4.46 completed successfully
+[2025-09-15 13:45:33] [STEP 4.46] Verify Channel 6 is OFF by Serial
+[2025-09-15 13:45:34] [PASS] STEP 4.46 completed successfully
 </pre>
 </div>
 </details>
@@ -2297,12 +1007,12 @@ SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:21</td><td>2025-09-05 20:31:21</td></tr>
+<tr><td>2025-09-15 13:45:34</td><td>2025-09-15 13:45:34</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:21] [STEP 4.47] Validate Serial reports CH6 OFF
-[2025-09-05 20:31:21] [PASS] STEP 4.47 completed successfully
+[2025-09-15 13:45:34] [STEP 4.47] Validate Serial reports CH6 OFF
+[2025-09-15 13:45:34] [PASS] STEP 4.47 completed successfully
 </pre>
 </div>
 </details>
@@ -2313,18 +1023,12 @@ SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:21</td><td>2025-09-05 20:31:21</td></tr>
+<tr><td>2025-09-15 13:45:34</td><td>2025-09-15 13:45:34</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:21] [STEP 4.48] Verify CH6 OFF via SNMP
-[2025-09-05 20:31:21] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0
-[2025-09-05 20:31:21] [SNMP] rc=0
-[2025-09-05 20:31:21] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 0
-
-[2025-09-05 20:31:21] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 20:31:21] [PASS] STEP 4.48 completed successfully
+[2025-09-15 13:45:34] [STEP 4.48] Verify CH6 OFF via SNMP
+[2025-09-15 13:45:34] [PASS] STEP 4.48 completed successfully
 </pre>
 </div>
 </details>
@@ -2335,34 +1039,12 @@ SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:21</td><td>2025-09-05 20:31:22</td></tr>
+<tr><td>2025-09-15 13:45:34</td><td>2025-09-15 13:45:35</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:21] [STEP 4.49] Set Channel 7 to ON
-[2025-09-05 20:31:22] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:22] [TX] bytes=13
-[2025-09-05 20:31:22] SET_CH 7 ON\r\n
-
-[2025-09-05 20:31:22] [TX_HEX]
-0000: 53 45 54 5F 43 48 20 37 20 4F 4E 0D 0A           SET_CH 7 ON..
-[2025-09-05 20:31:22] [RX] bytes=142
-[2025-09-05 20:31:22] \t[ECHO] Received CMD: &quot;SET_CH 7 ON&quot;\r\n
-[INFO] SET_RELAY[13] t=30231729 us tag=&lt;UART Command Handler&gt; pin=6 val=1\r\n
-\t[ECHO] OK: Channel 7 set ON\r\n
-
-[2025-09-05 20:31:22] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 37 20   CMD: &quot;SET_CH 7 
-0020: 4F 4E 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54 5F  ON&quot;..[INFO] SET_
-0030: 52 45 4C 41 59 5B 31 33 5D 20 74 3D 33 30 32 33  RELAY[13] t=3023
-0040: 31 37 32 39 20 75 73 20 74 61 67 3D 3C 55 41 52  1729 us tag=&lt;UAR
-0050: 54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65  T Command Handle
-0060: 72 3E 20 70 69 6E 3D 36 20 76 61 6C 3D 31 0D 0A  r&gt; pin=6 val=1..
-0070: 09 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61 6E  .[ECHO] OK: Chan
-0080: 6E 65 6C 20 37 20 73 65 74 20 4F 4E 0D 0A        nel 7 set ON..
-[2025-09-05 20:31:22] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:22] [PASS] STEP 4.49 completed successfully
+[2025-09-15 13:45:34] [STEP 4.49] Set Channel 7 to ON
+[2025-09-15 13:45:35] [PASS] STEP 4.49 completed successfully
 </pre>
 </div>
 </details>
@@ -2373,28 +1055,12 @@ SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:22</td><td>2025-09-05 20:31:23</td></tr>
+<tr><td>2025-09-15 13:45:35</td><td>2025-09-15 13:45:36</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:22] [STEP 4.50] Verify Channel 7 is ON by Serial
-[2025-09-05 20:31:22] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:22] [TX] bytes=10
-[2025-09-05 20:31:22] GET_CH 7\r\n
-
-[2025-09-05 20:31:22] [TX_HEX]
-0000: 47 45 54 5F 43 48 20 37 0D 0A                    GET_CH 7..
-[2025-09-05 20:31:23] [RX] bytes=51
-[2025-09-05 20:31:23] \t[ECHO] Received CMD: &quot;GET_CH 7&quot;\r\n
-\t[ECHO] CH7: ON\r\n
-
-[2025-09-05 20:31:23] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 47 45 54 5F 43 48 20 37 22   CMD: &quot;GET_CH 7&quot;
-0020: 0D 0A 09 5B 45 43 48 4F 5D 20 43 48 37 3A 20 4F  ...[ECHO] CH7: O
-0030: 4E 0D 0A                                         N..
-[2025-09-05 20:31:23] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:23] [PASS] STEP 4.50 completed successfully
+[2025-09-15 13:45:35] [STEP 4.50] Verify Channel 7 is ON by Serial
+[2025-09-15 13:45:36] [PASS] STEP 4.50 completed successfully
 </pre>
 </div>
 </details>
@@ -2405,12 +1071,12 @@ SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:23</td><td>2025-09-05 20:31:23</td></tr>
+<tr><td>2025-09-15 13:45:36</td><td>2025-09-15 13:45:36</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:23] [STEP 4.51] Validate Serial reports CH7 ON
-[2025-09-05 20:31:23] [PASS] STEP 4.51 completed successfully
+[2025-09-15 13:45:36] [STEP 4.51] Validate Serial reports CH7 ON
+[2025-09-15 13:45:36] [PASS] STEP 4.51 completed successfully
 </pre>
 </div>
 </details>
@@ -2421,18 +1087,12 @@ SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:23</td><td>2025-09-05 20:31:23</td></tr>
+<tr><td>2025-09-15 13:45:36</td><td>2025-09-15 13:45:36</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:23] [STEP 4.52] Verify CH7 ON via SNMP
-[2025-09-05 20:31:23] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0
-[2025-09-05 20:31:23] [SNMP] rc=0
-[2025-09-05 20:31:23] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 1
-
-[2025-09-05 20:31:23] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 20:31:23] [PASS] STEP 4.52 completed successfully
+[2025-09-15 13:45:36] [STEP 4.52] Verify CH7 ON via SNMP
+[2025-09-15 13:45:36] [PASS] STEP 4.52 completed successfully
 </pre>
 </div>
 </details>
@@ -2443,34 +1103,12 @@ SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:23</td><td>2025-09-05 20:31:24</td></tr>
+<tr><td>2025-09-15 13:45:36</td><td>2025-09-15 13:45:37</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:23] [STEP 4.53] Set Channel 7 to OFF
-[2025-09-05 20:31:23] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:23] [TX] bytes=14
-[2025-09-05 20:31:23] SET_CH 7 OFF\r\n
-
-[2025-09-05 20:31:23] [TX_HEX]
-0000: 53 45 54 5F 43 48 20 37 20 4F 46 46 0D 0A        SET_CH 7 OFF..
-[2025-09-05 20:31:24] [RX] bytes=144
-[2025-09-05 20:31:24] \t[ECHO] Received CMD: &quot;SET_CH 7 OFF&quot;\r\n
-[INFO] SET_RELAY[14] t=32059880 us tag=&lt;UART Command Handler&gt; pin=6 val=0\r\n
-\t[ECHO] OK: Channel 7 set OFF\r\n
-
-[2025-09-05 20:31:24] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 37 20   CMD: &quot;SET_CH 7 
-0020: 4F 46 46 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54  OFF&quot;..[INFO] SET
-0030: 5F 52 45 4C 41 59 5B 31 34 5D 20 74 3D 33 32 30  _RELAY[14] t=320
-0040: 35 39 38 38 30 20 75 73 20 74 61 67 3D 3C 55 41  59880 us tag=&lt;UA
-0050: 52 54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C  RT Command Handl
-0060: 65 72 3E 20 70 69 6E 3D 36 20 76 61 6C 3D 30 0D  er&gt; pin=6 val=0.
-0070: 0A 09 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61  ..[ECHO] OK: Cha
-0080: 6E 6E 65 6C 20 37 20 73 65 74 20 4F 46 46 0D 0A  nnel 7 set OFF..
-[2025-09-05 20:31:24] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:24] [PASS] STEP 4.53 completed successfully
+[2025-09-15 13:45:36] [STEP 4.53] Set Channel 7 to OFF
+[2025-09-15 13:45:37] [PASS] STEP 4.53 completed successfully
 </pre>
 </div>
 </details>
@@ -2481,28 +1119,12 @@ SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:24</td><td>2025-09-05 20:31:25</td></tr>
+<tr><td>2025-09-15 13:45:37</td><td>2025-09-15 13:45:38</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:24] [STEP 4.54] Verify Channel 7 is OFF by Serial
-[2025-09-05 20:31:24] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:24] [TX] bytes=10
-[2025-09-05 20:31:24] GET_CH 7\r\n
-
-[2025-09-05 20:31:24] [TX_HEX]
-0000: 47 45 54 5F 43 48 20 37 0D 0A                    GET_CH 7..
-[2025-09-05 20:31:25] [RX] bytes=52
-[2025-09-05 20:31:25] \t[ECHO] Received CMD: &quot;GET_CH 7&quot;\r\n
-\t[ECHO] CH7: OFF\r\n
-
-[2025-09-05 20:31:25] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 47 45 54 5F 43 48 20 37 22   CMD: &quot;GET_CH 7&quot;
-0020: 0D 0A 09 5B 45 43 48 4F 5D 20 43 48 37 3A 20 4F  ...[ECHO] CH7: O
-0030: 46 46 0D 0A                                      FF..
-[2025-09-05 20:31:25] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:25] [PASS] STEP 4.54 completed successfully
+[2025-09-15 13:45:37] [STEP 4.54] Verify Channel 7 is OFF by Serial
+[2025-09-15 13:45:38] [PASS] STEP 4.54 completed successfully
 </pre>
 </div>
 </details>
@@ -2513,12 +1135,12 @@ SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:25</td><td>2025-09-05 20:31:25</td></tr>
+<tr><td>2025-09-15 13:45:38</td><td>2025-09-15 13:45:38</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:25] [STEP 4.55] Validate Serial reports CH7 OFF
-[2025-09-05 20:31:25] [PASS] STEP 4.55 completed successfully
+[2025-09-15 13:45:38] [STEP 4.55] Validate Serial reports CH7 OFF
+[2025-09-15 13:45:38] [PASS] STEP 4.55 completed successfully
 </pre>
 </div>
 </details>
@@ -2529,18 +1151,12 @@ SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:25</td><td>2025-09-05 20:31:25</td></tr>
+<tr><td>2025-09-15 13:45:38</td><td>2025-09-15 13:45:38</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:25] [STEP 4.56] Verify CH7 OFF via SNMP
-[2025-09-05 20:31:25] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0
-[2025-09-05 20:31:25] [SNMP] rc=0
-[2025-09-05 20:31:25] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 0
-
-[2025-09-05 20:31:25] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 20:31:25] [PASS] STEP 4.56 completed successfully
+[2025-09-15 13:45:38] [STEP 4.56] Verify CH7 OFF via SNMP
+[2025-09-15 13:45:38] [PASS] STEP 4.56 completed successfully
 </pre>
 </div>
 </details>
@@ -2551,34 +1167,12 @@ SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:25</td><td>2025-09-05 20:31:26</td></tr>
+<tr><td>2025-09-15 13:45:38</td><td>2025-09-15 13:45:39</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:25] [STEP 4.57] Set Channel 8 to ON
-[2025-09-05 20:31:25] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:25] [TX] bytes=13
-[2025-09-05 20:31:25] SET_CH 8 ON\r\n
-
-[2025-09-05 20:31:25] [TX_HEX]
-0000: 53 45 54 5F 43 48 20 38 20 4F 4E 0D 0A           SET_CH 8 ON..
-[2025-09-05 20:31:26] [RX] bytes=142
-[2025-09-05 20:31:26] \t[ECHO] Received CMD: &quot;SET_CH 8 ON&quot;\r\n
-[INFO] SET_RELAY[15] t=33888018 us tag=&lt;UART Command Handler&gt; pin=7 val=1\r\n
-\t[ECHO] OK: Channel 8 set ON\r\n
-
-[2025-09-05 20:31:26] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 38 20   CMD: &quot;SET_CH 8 
-0020: 4F 4E 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54 5F  ON&quot;..[INFO] SET_
-0030: 52 45 4C 41 59 5B 31 35 5D 20 74 3D 33 33 38 38  RELAY[15] t=3388
-0040: 38 30 31 38 20 75 73 20 74 61 67 3D 3C 55 41 52  8018 us tag=&lt;UAR
-0050: 54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65  T Command Handle
-0060: 72 3E 20 70 69 6E 3D 37 20 76 61 6C 3D 31 0D 0A  r&gt; pin=7 val=1..
-0070: 09 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61 6E  .[ECHO] OK: Chan
-0080: 6E 65 6C 20 38 20 73 65 74 20 4F 4E 0D 0A        nel 8 set ON..
-[2025-09-05 20:31:26] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:26] [PASS] STEP 4.57 completed successfully
+[2025-09-15 13:45:38] [STEP 4.57] Set Channel 8 to ON
+[2025-09-15 13:45:39] [PASS] STEP 4.57 completed successfully
 </pre>
 </div>
 </details>
@@ -2589,28 +1183,12 @@ SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:26</td><td>2025-09-05 20:31:27</td></tr>
+<tr><td>2025-09-15 13:45:39</td><td>2025-09-15 13:45:40</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:26] [STEP 4.58] Verify Channel 8 is ON by Serial
-[2025-09-05 20:31:26] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:26] [TX] bytes=10
-[2025-09-05 20:31:26] GET_CH 8\r\n
-
-[2025-09-05 20:31:26] [TX_HEX]
-0000: 47 45 54 5F 43 48 20 38 0D 0A                    GET_CH 8..
-[2025-09-05 20:31:27] [RX] bytes=51
-[2025-09-05 20:31:27] \t[ECHO] Received CMD: &quot;GET_CH 8&quot;\r\n
-\t[ECHO] CH8: ON\r\n
-
-[2025-09-05 20:31:27] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 47 45 54 5F 43 48 20 38 22   CMD: &quot;GET_CH 8&quot;
-0020: 0D 0A 09 5B 45 43 48 4F 5D 20 43 48 38 3A 20 4F  ...[ECHO] CH8: O
-0030: 4E 0D 0A                                         N..
-[2025-09-05 20:31:27] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:27] [PASS] STEP 4.58 completed successfully
+[2025-09-15 13:45:39] [STEP 4.58] Verify Channel 8 is ON by Serial
+[2025-09-15 13:45:40] [PASS] STEP 4.58 completed successfully
 </pre>
 </div>
 </details>
@@ -2621,12 +1199,12 @@ SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:27</td><td>2025-09-05 20:31:27</td></tr>
+<tr><td>2025-09-15 13:45:40</td><td>2025-09-15 13:45:40</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:27] [STEP 4.59] Validate Serial reports CH8 ON
-[2025-09-05 20:31:27] [PASS] STEP 4.59 completed successfully
+[2025-09-15 13:45:40] [STEP 4.59] Validate Serial reports CH8 ON
+[2025-09-15 13:45:40] [PASS] STEP 4.59 completed successfully
 </pre>
 </div>
 </details>
@@ -2637,18 +1215,12 @@ SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:27</td><td>2025-09-05 20:31:27</td></tr>
+<tr><td>2025-09-15 13:45:40</td><td>2025-09-15 13:45:40</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:27] [STEP 4.60] Verify CH8 ON via SNMP
-[2025-09-05 20:31:27] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0
-[2025-09-05 20:31:27] [SNMP] rc=0
-[2025-09-05 20:31:27] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 1
-
-[2025-09-05 20:31:27] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 20:31:27] [PASS] STEP 4.60 completed successfully
+[2025-09-15 13:45:40] [STEP 4.60] Verify CH8 ON via SNMP
+[2025-09-15 13:45:40] [PASS] STEP 4.60 completed successfully
 </pre>
 </div>
 </details>
@@ -2659,34 +1231,12 @@ SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:27</td><td>2025-09-05 20:31:28</td></tr>
+<tr><td>2025-09-15 13:45:40</td><td>2025-09-15 13:45:41</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:27] [STEP 4.61] Set Channel 8 to OFF
-[2025-09-05 20:31:27] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:27] [TX] bytes=14
-[2025-09-05 20:31:27] SET_CH 8 OFF\r\n
-
-[2025-09-05 20:31:27] [TX_HEX]
-0000: 53 45 54 5F 43 48 20 38 20 4F 46 46 0D 0A        SET_CH 8 OFF..
-[2025-09-05 20:31:28] [RX] bytes=144
-[2025-09-05 20:31:28] \t[ECHO] Received CMD: &quot;SET_CH 8 OFF&quot;\r\n
-[INFO] SET_RELAY[16] t=35716156 us tag=&lt;UART Command Handler&gt; pin=7 val=0\r\n
-\t[ECHO] OK: Channel 8 set OFF\r\n
-
-[2025-09-05 20:31:28] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 38 20   CMD: &quot;SET_CH 8 
-0020: 4F 46 46 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54  OFF&quot;..[INFO] SET
-0030: 5F 52 45 4C 41 59 5B 31 36 5D 20 74 3D 33 35 37  _RELAY[16] t=357
-0040: 31 36 31 35 36 20 75 73 20 74 61 67 3D 3C 55 41  16156 us tag=&lt;UA
-0050: 52 54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C  RT Command Handl
-0060: 65 72 3E 20 70 69 6E 3D 37 20 76 61 6C 3D 30 0D  er&gt; pin=7 val=0.
-0070: 0A 09 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61  ..[ECHO] OK: Cha
-0080: 6E 6E 65 6C 20 38 20 73 65 74 20 4F 46 46 0D 0A  nnel 8 set OFF..
-[2025-09-05 20:31:28] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:28] [PASS] STEP 4.61 completed successfully
+[2025-09-15 13:45:40] [STEP 4.61] Set Channel 8 to OFF
+[2025-09-15 13:45:41] [PASS] STEP 4.61 completed successfully
 </pre>
 </div>
 </details>
@@ -2697,28 +1247,12 @@ SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:28</td><td>2025-09-05 20:31:29</td></tr>
+<tr><td>2025-09-15 13:45:41</td><td>2025-09-15 13:45:42</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:28] [STEP 4.62] Verify Channel 8 is OFF by Serial
-[2025-09-05 20:31:28] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:28] [TX] bytes=10
-[2025-09-05 20:31:28] GET_CH 8\r\n
-
-[2025-09-05 20:31:28] [TX_HEX]
-0000: 47 45 54 5F 43 48 20 38 0D 0A                    GET_CH 8..
-[2025-09-05 20:31:29] [RX] bytes=52
-[2025-09-05 20:31:29] \t[ECHO] Received CMD: &quot;GET_CH 8&quot;\r\n
-\t[ECHO] CH8: OFF\r\n
-
-[2025-09-05 20:31:29] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 47 45 54 5F 43 48 20 38 22   CMD: &quot;GET_CH 8&quot;
-0020: 0D 0A 09 5B 45 43 48 4F 5D 20 43 48 38 3A 20 4F  ...[ECHO] CH8: O
-0030: 46 46 0D 0A                                      FF..
-[2025-09-05 20:31:29] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:29] [PASS] STEP 4.62 completed successfully
+[2025-09-15 13:45:41] [STEP 4.62] Verify Channel 8 is OFF by Serial
+[2025-09-15 13:45:42] [PASS] STEP 4.62 completed successfully
 </pre>
 </div>
 </details>
@@ -2729,12 +1263,12 @@ SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:29</td><td>2025-09-05 20:31:29</td></tr>
+<tr><td>2025-09-15 13:45:42</td><td>2025-09-15 13:45:42</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:29] [STEP 4.63] Validate Serial reports CH8 OFF
-[2025-09-05 20:31:29] [PASS] STEP 4.63 completed successfully
+[2025-09-15 13:45:42] [STEP 4.63] Validate Serial reports CH8 OFF
+[2025-09-15 13:45:42] [PASS] STEP 4.63 completed successfully
 </pre>
 </div>
 </details>
@@ -2745,19 +1279,12 @@ SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:29</td><td>2025-09-05 20:31:29</td></tr>
+<tr><td>2025-09-15 13:45:42</td><td>2025-09-15 13:45:42</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:29] [STEP 4.64] Verify CH8 OFF via SNMP
-[2025-09-05 20:31:29] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0
-[2025-09-05 20:31:29] [SNMP] rc=0
-[2025-09-05 20:31:29] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 0
-
-[2025-09-05 20:31:29] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 20:31:29] [PASS] STEP 4.64 completed successfully
-[2025-09-05 20:31:29] [PASS] STEP 4 all sub-steps completed
+[2025-09-15 13:45:42] [STEP 4.64] Verify CH8 OFF via SNMP
+[2025-09-15 13:45:42] [PASS] STEP 4.64 completed successfully
 </pre>
 </div>
 </details>
@@ -2771,7 +1298,7 @@ SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:29</td><td>2025-09-05 20:31:33</td></tr>
+<tr><td>2025-09-15 13:45:42</td><td>2025-09-15 13:45:46</td></tr>
 </table>
 <div class='substeps'>
 <h4>Substeps</h4>
@@ -2782,75 +1309,12 @@ SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:29</td><td>2025-09-05 20:31:30</td></tr>
+<tr><td>2025-09-15 13:45:42</td><td>2025-09-15 13:45:43</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:29] [STEP 5.1] Set All Channels to ON
-[2025-09-05 20:31:29] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:29] [TX] bytes=15
-[2025-09-05 20:31:29] SET_CH ALL ON\r\n
-
-[2025-09-05 20:31:29] [TX_HEX]
-0000: 53 45 54 5F 43 48 20 41 4C 4C 20 4F 4E 0D 0A     SET_CH ALL ON..
-[2025-09-05 20:31:30] [RX] bytes=684
-[2025-09-05 20:31:30] \t[ECHO] Received CMD: &quot;SET_CH ALL ON&quot;\r\n
-[INFO] SET_RELAY[17] t=37544296 us tag=&lt;UART Command Handler&gt; pin=0 val=1\r\n
-[INFO] SET_RELAY[18] t=37545084 us tag=&lt;UART Command Handler&gt; pin=1 val=1\r\n
-[INFO] SET_RELAY[19] t=37545831 us tag=&lt;UART Command Handler&gt; pin=2 val=1\r\n
-[INFO] SET_RELAY[20] t=37546544 us tag=&lt;UART Command Handler&gt; pin=3 val=1\r\n
-[INFO] SET_RELAY[21] t=37547252 us tag=&lt;UART Command Handler&gt; pin=4 val=1\r\n
-[INFO] SET_RELAY[22] t=37547975 us tag=&lt;UART Command Handler&gt; pin=5 val=1\r\n
-[INFO] SET_RELAY[23] t=37548675 us tag=&lt;UART Command Handler&gt; pin=6 val=1\r\n
-[INFO] SET_RELAY[24] t=37549383 us tag=&lt;UART Command Handler&gt; pin=7 val=1\r\n
-\t[ECHO] OK: All channels set ON (changed=8)\r\n
-
-[2025-09-05 20:31:30] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 41 4C   CMD: &quot;SET_CH AL
-0020: 4C 20 4F 4E 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45  L ON&quot;..[INFO] SE
-0030: 54 5F 52 45 4C 41 59 5B 31 37 5D 20 74 3D 33 37  T_RELAY[17] t=37
-0040: 35 34 34 32 39 36 20 75 73 20 74 61 67 3D 3C 55  544296 us tag=&lt;U
-0050: 41 52 54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64  ART Command Hand
-0060: 6C 65 72 3E 20 70 69 6E 3D 30 20 76 61 6C 3D 31  ler&gt; pin=0 val=1
-0070: 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54 5F 52 45 4C  ..[INFO] SET_REL
-0080: 41 59 5B 31 38 5D 20 74 3D 33 37 35 34 35 30 38  AY[18] t=3754508
-0090: 34 20 75 73 20 74 61 67 3D 3C 55 41 52 54 20 43  4 us tag=&lt;UART C
-00A0: 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65 72 3E 20  ommand Handler&gt; 
-00B0: 70 69 6E 3D 31 20 76 61 6C 3D 31 0D 0A 5B 49 4E  pin=1 val=1..[IN
-00C0: 46 4F 5D 20 53 45 54 5F 52 45 4C 41 59 5B 31 39  FO] SET_RELAY[19
-00D0: 5D 20 74 3D 33 37 35 34 35 38 33 31 20 75 73 20  ] t=37545831 us 
-00E0: 74 61 67 3D 3C 55 41 52 54 20 43 6F 6D 6D 61 6E  tag=&lt;UART Comman
-00F0: 64 20 48 61 6E 64 6C 65 72 3E 20 70 69 6E 3D 32  d Handler&gt; pin=2
-0100: 20 76 61 6C 3D 31 0D 0A 5B 49 4E 46 4F 5D 20 53   val=1..[INFO] S
-0110: 45 54 5F 52 45 4C 41 59 5B 32 30 5D 20 74 3D 33  ET_RELAY[20] t=3
-0120: 37 35 34 36 35 34 34 20 75 73 20 74 61 67 3D 3C  7546544 us tag=&lt;
-0130: 55 41 52 54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E  UART Command Han
-0140: 64 6C 65 72 3E 20 70 69 6E 3D 33 20 76 61 6C 3D  dler&gt; pin=3 val=
-0150: 31 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54 5F 52 45  1..[INFO] SET_RE
-0160: 4C 41 59 5B 32 31 5D 20 74 3D 33 37 35 34 37 32  LAY[21] t=375472
-0170: 35 32 20 75 73 20 74 61 67 3D 3C 55 41 52 54 20  52 us tag=&lt;UART 
-0180: 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65 72 3E  Command Handler&gt;
-0190: 20 70 69 6E 3D 34 20 76 61 6C 3D 31 0D 0A 5B 49   pin=4 val=1..[I
-01A0: 4E 46 4F 5D 20 53 45 54 5F 52 45 4C 41 59 5B 32  NFO] SET_RELAY[2
-01B0: 32 5D 20 74 3D 33 37 35 34 37 39 37 35 20 75 73  2] t=37547975 us
-01C0: 20 74 61 67 3D 3C 55 41 52 54 20 43 6F 6D 6D 61   tag=&lt;UART Comma
-01D0: 6E 64 20 48 61 6E 64 6C 65 72 3E 20 70 69 6E 3D  nd Handler&gt; pin=
-01E0: 35 20 76 61 6C 3D 31 0D 0A 5B 49 4E 46 4F 5D 20  5 val=1..[INFO] 
-01F0: 53 45 54 5F 52 45 4C 41 59 5B 32 33 5D 20 74 3D  SET_RELAY[23] t=
-0200: 33 37 35 34 38 36 37 35 20 75 73 20 74 61 67 3D  37548675 us tag=
-0210: 3C 55 41 52 54 20 43 6F 6D 6D 61 6E 64 20 48 61  &lt;UART Command Ha
-0220: 6E 64 6C 65 72 3E 20 70 69 6E 3D 36 20 76 61 6C  ndler&gt; pin=6 val
-0230: 3D 31 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54 5F 52  =1..[INFO] SET_R
-0240: 45 4C 41 59 5B 32 34 5D 20 74 3D 33 37 35 34 39  ELAY[24] t=37549
-0250: 33 38 33 20 75 73 20 74 61 67 3D 3C 55 41 52 54  383 us tag=&lt;UART
-0260: 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65 72   Command Handler
-0270: 3E 20 70 69 6E 3D 37 20 76 61 6C 3D 31 0D 0A 09  &gt; pin=7 val=1...
-0280: 5B 45 43 48 4F 5D 20 4F 4B 3A 20 41 6C 6C 20 63  [ECHO] OK: All c
-0290: 68 61 6E 6E 65 6C 73 20 73 65 74 20 4F 4E 20 28  hannels set ON (
-02A0: 63 68 61 6E 67 65 64 3D 38 29 0D 0A              changed=8)..
-[2025-09-05 20:31:30] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:30] [PASS] STEP 5.1 completed successfully
+[2025-09-15 13:45:42] [STEP 5.1] Set All Channels to ON
+[2025-09-15 13:45:43] [PASS] STEP 5.1 completed successfully
 </pre>
 </div>
 </details>
@@ -2861,42 +1325,12 @@ SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:30</td><td>2025-09-05 20:31:31</td></tr>
+<tr><td>2025-09-15 13:45:43</td><td>2025-09-15 13:45:44</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:30] [STEP 5.2] Read All Channels ON state by Serial
-[2025-09-05 20:31:30] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:30] [TX] bytes=12
-[2025-09-05 20:31:30] GET_CH ALL\r\n
-
-[2025-09-05 20:31:30] [TX_HEX]
-0000: 47 45 54 5F 43 48 20 41 4C 4C 0D 0A              GET_CH ALL..
-[2025-09-05 20:31:31] [RX] bytes=172
-[2025-09-05 20:31:31] \t[ECHO] Received CMD: &quot;GET_CH ALL&quot;\r\n
-\t[ECHO] CH1: ON\r\n
-\t[ECHO] CH2: ON\r\n
-\t[ECHO] CH3: ON\r\n
-\t[ECHO] CH4: ON\r\n
-\t[ECHO] CH5: ON\r\n
-\t[ECHO] CH6: ON\r\n
-\t[ECHO] CH7: ON\r\n
-\t[ECHO] CH8: ON\r\n
-
-[2025-09-05 20:31:31] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 47 45 54 5F 43 48 20 41 4C   CMD: &quot;GET_CH AL
-0020: 4C 22 0D 0A 09 5B 45 43 48 4F 5D 20 43 48 31 3A  L&quot;...[ECHO] CH1:
-0030: 20 4F 4E 0D 0A 09 5B 45 43 48 4F 5D 20 43 48 32   ON...[ECHO] CH2
-0040: 3A 20 4F 4E 0D 0A 09 5B 45 43 48 4F 5D 20 43 48  : ON...[ECHO] CH
-0050: 33 3A 20 4F 4E 0D 0A 09 5B 45 43 48 4F 5D 20 43  3: ON...[ECHO] C
-0060: 48 34 3A 20 4F 4E 0D 0A 09 5B 45 43 48 4F 5D 20  H4: ON...[ECHO] 
-0070: 43 48 35 3A 20 4F 4E 0D 0A 09 5B 45 43 48 4F 5D  CH5: ON...[ECHO]
-0080: 20 43 48 36 3A 20 4F 4E 0D 0A 09 5B 45 43 48 4F   CH6: ON...[ECHO
-0090: 5D 20 43 48 37 3A 20 4F 4E 0D 0A 09 5B 45 43 48  ] CH7: ON...[ECH
-00A0: 4F 5D 20 43 48 38 3A 20 4F 4E 0D 0A              O] CH8: ON..
-[2025-09-05 20:31:31] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:31] [PASS] STEP 5.2 completed successfully
+[2025-09-15 13:45:43] [STEP 5.2] Read All Channels ON state by Serial
+[2025-09-15 13:45:44] [PASS] STEP 5.2 completed successfully
 </pre>
 </div>
 </details>
@@ -2907,60 +1341,12 @@ SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:31</td><td>2025-09-05 20:31:31</td></tr>
+<tr><td>2025-09-15 13:45:44</td><td>2025-09-15 13:45:44</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:31] [STEP 5.3] Verify ALL ON via SNMP (1..8 == 1)
-[2025-09-05 20:31:31] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0
-[2025-09-05 20:31:31] [SNMP] rc=0
-[2025-09-05 20:31:31] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 1
-
-[2025-09-05 20:31:31] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 20:31:31] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0
-[2025-09-05 20:31:31] [SNMP] rc=0
-[2025-09-05 20:31:31] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 1
-
-[2025-09-05 20:31:31] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 20:31:31] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0
-[2025-09-05 20:31:31] [SNMP] rc=0
-[2025-09-05 20:31:31] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 1
-
-[2025-09-05 20:31:31] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 20:31:31] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0
-[2025-09-05 20:31:31] [SNMP] rc=0
-[2025-09-05 20:31:31] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 1
-
-[2025-09-05 20:31:31] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 20:31:31] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0
-[2025-09-05 20:31:31] [SNMP] rc=0
-[2025-09-05 20:31:31] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 1
-
-[2025-09-05 20:31:31] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 20:31:31] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0
-[2025-09-05 20:31:31] [SNMP] rc=0
-[2025-09-05 20:31:31] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 1
-
-[2025-09-05 20:31:31] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 20:31:31] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0
-[2025-09-05 20:31:31] [SNMP] rc=0
-[2025-09-05 20:31:31] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 1
-
-[2025-09-05 20:31:31] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 20:31:31] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0
-[2025-09-05 20:31:31] [SNMP] rc=0
-[2025-09-05 20:31:31] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 1
-
-[2025-09-05 20:31:31] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-05 20:31:31] [PASS] STEP 5.3 completed successfully
+[2025-09-15 13:45:44] [STEP 5.3] Verify ALL ON via SNMP (1..8 == 1)
+[2025-09-15 13:45:44] [PASS] STEP 5.3 completed successfully
 </pre>
 </div>
 </details>
@@ -2971,75 +1357,12 @@ SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:31</td><td>2025-09-05 20:31:32</td></tr>
+<tr><td>2025-09-15 13:45:44</td><td>2025-09-15 13:45:45</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:31] [STEP 5.4] Set All Channels to OFF
-[2025-09-05 20:31:31] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:31] [TX] bytes=16
-[2025-09-05 20:31:31] SET_CH ALL OFF\r\n
-
-[2025-09-05 20:31:31] [TX_HEX]
-0000: 53 45 54 5F 43 48 20 41 4C 4C 20 4F 46 46 0D 0A  SET_CH ALL OFF..
-[2025-09-05 20:31:32] [RX] bytes=686
-[2025-09-05 20:31:32] \t[ECHO] Received CMD: &quot;SET_CH ALL OFF&quot;\r\n
-[INFO] SET_RELAY[25] t=39378512 us tag=&lt;UART Command Handler&gt; pin=0 val=0\r\n
-[INFO] SET_RELAY[26] t=39379334 us tag=&lt;UART Command Handler&gt; pin=1 val=0\r\n
-[INFO] SET_RELAY[27] t=39380077 us tag=&lt;UART Command Handler&gt; pin=2 val=0\r\n
-[INFO] SET_RELAY[28] t=39380789 us tag=&lt;UART Command Handler&gt; pin=3 val=0\r\n
-[INFO] SET_RELAY[29] t=39381502 us tag=&lt;UART Command Handler&gt; pin=4 val=0\r\n
-[INFO] SET_RELAY[30] t=39382231 us tag=&lt;UART Command Handler&gt; pin=5 val=0\r\n
-[INFO] SET_RELAY[31] t=39382945 us tag=&lt;UART Command Handler&gt; pin=6 val=0\r\n
-[INFO] SET_RELAY[32] t=39383663 us tag=&lt;UART Command Handler&gt; pin=7 val=0\r\n
-\t[ECHO] OK: All channels set OFF (changed=8)\r\n
-
-[2025-09-05 20:31:32] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 41 4C   CMD: &quot;SET_CH AL
-0020: 4C 20 4F 46 46 22 0D 0A 5B 49 4E 46 4F 5D 20 53  L OFF&quot;..[INFO] S
-0030: 45 54 5F 52 45 4C 41 59 5B 32 35 5D 20 74 3D 33  ET_RELAY[25] t=3
-0040: 39 33 37 38 35 31 32 20 75 73 20 74 61 67 3D 3C  9378512 us tag=&lt;
-0050: 55 41 52 54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E  UART Command Han
-0060: 64 6C 65 72 3E 20 70 69 6E 3D 30 20 76 61 6C 3D  dler&gt; pin=0 val=
-0070: 30 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54 5F 52 45  0..[INFO] SET_RE
-0080: 4C 41 59 5B 32 36 5D 20 74 3D 33 39 33 37 39 33  LAY[26] t=393793
-0090: 33 34 20 75 73 20 74 61 67 3D 3C 55 41 52 54 20  34 us tag=&lt;UART 
-00A0: 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65 72 3E  Command Handler&gt;
-00B0: 20 70 69 6E 3D 31 20 76 61 6C 3D 30 0D 0A 5B 49   pin=1 val=0..[I
-00C0: 4E 46 4F 5D 20 53 45 54 5F 52 45 4C 41 59 5B 32  NFO] SET_RELAY[2
-00D0: 37 5D 20 74 3D 33 39 33 38 30 30 37 37 20 75 73  7] t=39380077 us
-00E0: 20 74 61 67 3D 3C 55 41 52 54 20 43 6F 6D 6D 61   tag=&lt;UART Comma
-00F0: 6E 64 20 48 61 6E 64 6C 65 72 3E 20 70 69 6E 3D  nd Handler&gt; pin=
-0100: 32 20 76 61 6C 3D 30 0D 0A 5B 49 4E 46 4F 5D 20  2 val=0..[INFO] 
-0110: 53 45 54 5F 52 45 4C 41 59 5B 32 38 5D 20 74 3D  SET_RELAY[28] t=
-0120: 33 39 33 38 30 37 38 39 20 75 73 20 74 61 67 3D  39380789 us tag=
-0130: 3C 55 41 52 54 20 43 6F 6D 6D 61 6E 64 20 48 61  &lt;UART Command Ha
-0140: 6E 64 6C 65 72 3E 20 70 69 6E 3D 33 20 76 61 6C  ndler&gt; pin=3 val
-0150: 3D 30 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54 5F 52  =0..[INFO] SET_R
-0160: 45 4C 41 59 5B 32 39 5D 20 74 3D 33 39 33 38 31  ELAY[29] t=39381
-0170: 35 30 32 20 75 73 20 74 61 67 3D 3C 55 41 52 54  502 us tag=&lt;UART
-0180: 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65 72   Command Handler
-0190: 3E 20 70 69 6E 3D 34 20 76 61 6C 3D 30 0D 0A 5B  &gt; pin=4 val=0..[
-01A0: 49 4E 46 4F 5D 20 53 45 54 5F 52 45 4C 41 59 5B  INFO] SET_RELAY[
-01B0: 33 30 5D 20 74 3D 33 39 33 38 32 32 33 31 20 75  30] t=39382231 u
-01C0: 73 20 74 61 67 3D 3C 55 41 52 54 20 43 6F 6D 6D  s tag=&lt;UART Comm
-01D0: 61 6E 64 20 48 61 6E 64 6C 65 72 3E 20 70 69 6E  and Handler&gt; pin
-01E0: 3D 35 20 76 61 6C 3D 30 0D 0A 5B 49 4E 46 4F 5D  =5 val=0..[INFO]
-01F0: 20 53 45 54 5F 52 45 4C 41 59 5B 33 31 5D 20 74   SET_RELAY[31] t
-0200: 3D 33 39 33 38 32 39 34 35 20 75 73 20 74 61 67  =39382945 us tag
-0210: 3D 3C 55 41 52 54 20 43 6F 6D 6D 61 6E 64 20 48  =&lt;UART Command H
-0220: 61 6E 64 6C 65 72 3E 20 70 69 6E 3D 36 20 76 61  andler&gt; pin=6 va
-0230: 6C 3D 30 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54 5F  l=0..[INFO] SET_
-0240: 52 45 4C 41 59 5B 33 32 5D 20 74 3D 33 39 33 38  RELAY[32] t=3938
-0250: 33 36 36 33 20 75 73 20 74 61 67 3D 3C 55 41 52  3663 us tag=&lt;UAR
-0260: 54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65  T Command Handle
-0270: 72 3E 20 70 69 6E 3D 37 20 76 61 6C 3D 30 0D 0A  r&gt; pin=7 val=0..
-0280: 09 5B 45 43 48 4F 5D 20 4F 4B 3A 20 41 6C 6C 20  .[ECHO] OK: All 
-0290: 63 68 61 6E 6E 65 6C 73 20 73 65 74 20 4F 46 46  channels set OFF
-02A0: 20 28 63 68 61 6E 67 65 64 3D 38 29 0D 0A         (changed=8)..
-[2025-09-05 20:31:32] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:32] [PASS] STEP 5.4 completed successfully
+[2025-09-15 13:45:44] [STEP 5.4] Set All Channels to OFF
+[2025-09-15 13:45:45] [PASS] STEP 5.4 completed successfully
 </pre>
 </div>
 </details>
@@ -3050,43 +1373,12 @@ SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:32</td><td>2025-09-05 20:31:32</td></tr>
+<tr><td>2025-09-15 13:45:45</td><td>2025-09-15 13:45:46</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:32] [STEP 5.5] Read All Channels ON state by Serial
-[2025-09-05 20:31:32] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:32] [TX] bytes=12
-[2025-09-05 20:31:32] GET_CH ALL\r\n
-
-[2025-09-05 20:31:32] [TX_HEX]
-0000: 47 45 54 5F 43 48 20 41 4C 4C 0D 0A              GET_CH ALL..
-[2025-09-05 20:31:32] [RX] bytes=180
-[2025-09-05 20:31:32] \t[ECHO] Received CMD: &quot;GET_CH ALL&quot;\r\n
-\t[ECHO] CH1: OFF\r\n
-\t[ECHO] CH2: OFF\r\n
-\t[ECHO] CH3: OFF\r\n
-\t[ECHO] CH4: OFF\r\n
-\t[ECHO] CH5: OFF\r\n
-\t[ECHO] CH6: OFF\r\n
-\t[ECHO] CH7: OFF\r\n
-\t[ECHO] CH8: OFF\r\n
-
-[2025-09-05 20:31:32] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 47 45 54 5F 43 48 20 41 4C   CMD: &quot;GET_CH AL
-0020: 4C 22 0D 0A 09 5B 45 43 48 4F 5D 20 43 48 31 3A  L&quot;...[ECHO] CH1:
-0030: 20 4F 46 46 0D 0A 09 5B 45 43 48 4F 5D 20 43 48   OFF...[ECHO] CH
-0040: 32 3A 20 4F 46 46 0D 0A 09 5B 45 43 48 4F 5D 20  2: OFF...[ECHO] 
-0050: 43 48 33 3A 20 4F 46 46 0D 0A 09 5B 45 43 48 4F  CH3: OFF...[ECHO
-0060: 5D 20 43 48 34 3A 20 4F 46 46 0D 0A 09 5B 45 43  ] CH4: OFF...[EC
-0070: 48 4F 5D 20 43 48 35 3A 20 4F 46 46 0D 0A 09 5B  HO] CH5: OFF...[
-0080: 45 43 48 4F 5D 20 43 48 36 3A 20 4F 46 46 0D 0A  ECHO] CH6: OFF..
-0090: 09 5B 45 43 48 4F 5D 20 43 48 37 3A 20 4F 46 46  .[ECHO] CH7: OFF
-00A0: 0D 0A 09 5B 45 43 48 4F 5D 20 43 48 38 3A 20 4F  ...[ECHO] CH8: O
-00B0: 46 46 0D 0A                                      FF..
-[2025-09-05 20:31:32] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:32] [PASS] STEP 5.5 completed successfully
+[2025-09-15 13:45:45] [STEP 5.5] Read All Channels ON state by Serial
+[2025-09-15 13:45:46] [PASS] STEP 5.5 completed successfully
 </pre>
 </div>
 </details>
@@ -3097,61 +1389,12 @@ SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:32</td><td>2025-09-05 20:31:33</td></tr>
+<tr><td>2025-09-15 13:45:46</td><td>2025-09-15 13:45:46</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:32] [STEP 5.6] Verify ALL OFF via SNMP (1..8 == 0)
-[2025-09-05 20:31:32] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0
-[2025-09-05 20:31:32] [SNMP] rc=0
-[2025-09-05 20:31:32] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 0
-
-[2025-09-05 20:31:32] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 20:31:32] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0
-[2025-09-05 20:31:32] [SNMP] rc=0
-[2025-09-05 20:31:32] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 0
-
-[2025-09-05 20:31:32] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 20:31:33] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0
-[2025-09-05 20:31:33] [SNMP] rc=0
-[2025-09-05 20:31:33] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 0
-
-[2025-09-05 20:31:33] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 20:31:33] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0
-[2025-09-05 20:31:33] [SNMP] rc=0
-[2025-09-05 20:31:33] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 0
-
-[2025-09-05 20:31:33] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 20:31:33] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0
-[2025-09-05 20:31:33] [SNMP] rc=0
-[2025-09-05 20:31:33] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 0
-
-[2025-09-05 20:31:33] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 20:31:33] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0
-[2025-09-05 20:31:33] [SNMP] rc=0
-[2025-09-05 20:31:33] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 0
-
-[2025-09-05 20:31:33] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 20:31:33] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0
-[2025-09-05 20:31:33] [SNMP] rc=0
-[2025-09-05 20:31:33] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 0
-
-[2025-09-05 20:31:33] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 20:31:33] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0
-[2025-09-05 20:31:33] [SNMP] rc=0
-[2025-09-05 20:31:33] [SNMP OUT]
-SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 0
-
-[2025-09-05 20:31:33] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-05 20:31:33] [PASS] STEP 5.6 completed successfully
-[2025-09-05 20:31:33] [PASS] STEP 5 all sub-steps completed
+[2025-09-15 13:45:46] [STEP 5.6] Verify ALL OFF via SNMP (1..8 == 0)
+[2025-09-15 13:45:46] [PASS] STEP 5.6 completed successfully
 </pre>
 </div>
 </details>
@@ -3165,257 +1408,15 @@ SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:33</td><td>2025-09-05 20:31:42</td></tr>
+<tr><td>2025-09-15 13:45:46</td><td>2025-09-15 13:45:56</td></tr>
 </table>
 <details>
 <summary><div class='step-title'><div>Step Log</div><div class='status unknown'>DETAIL</div></div></summary>
 <div class='content'>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:33] [STEP 6] Reset to factory settings (RFS) and verify data
-[2025-09-05 20:31:33] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:33] [TX] bytes=5
-[2025-09-05 20:31:33] RFS\r\n
-
-[2025-09-05 20:31:33] [TX_HEX]
-0000: 52 46 53 0D 0A                                   RFS..
-[2025-09-05 20:31:33] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:36] [RX] reconnect bytes=726
-[2025-09-05 20:31:36] [INFO] Core 0 initializing...\r\n
-\t[ECHO] Device Serial : SN-369366060325\r\n
-\t[ECHO] Firmware Ver  : 1.0.0\r\n
-\t[ECHO] Core voltage  : 1.15 V (vsel = 1)\r\n
-\t[ECHO] Clock Sources :\r\n
-\t[ECHO] \tSYS: 200000000 Hz (200 MHz)\r\n
-\t[ECHO] \tUSB: 48000000 Hz (48 MHz)\r\n
-\t[ECHO] \tPER: 48000000 Hz (48 MHz)\r\n
-\t[ECHO] \tADC: 48000000 Hz (48 MHz)\r\n
-[INFO] ADC initializing\r\n
-\t[DEBUG] ADC OK\r\n
-VREG register: 0x000010D1\r\n
-[INFO] I2C scanning...\r\n
-\t[DEBUG] Scanning I2C0...\r\n
-\t[DEBUG] Found device at address 0x21\r\n
-\t[DEBUG] Found device at address 0x23\r\n
-\t[DEBUG] Scanning I2C1...\r\n
-\t[DEBUG] Found device at address 0x20\r\n
-\t[DEBUG] Found device at address 0x50\r\n
-[INFO] EEPROM initializing...\r\n
-\t[DEBUG] EEPROM OK\r\n
-[INFO] MCP23017 initializing...\r\n
-\t[DEBUG] MCP23017 OK\r\n
-
-[2025-09-05 20:31:36] [RX_HEX]
-0000: 5B 49 4E 46 4F 5D 20 43 6F 72 65 20 30 20 69 6E  [INFO] Core 0 in
-0010: 69 74 69 61 6C 69 7A 69 6E 67 2E 2E 2E 0D 0A 09  itializing......
-0020: 5B 45 43 48 4F 5D 20 44 65 76 69 63 65 20 53 65  [ECHO] Device Se
-0030: 72 69 61 6C 20 3A 20 53 4E 2D 33 36 39 33 36 36  rial : SN-369366
-0040: 30 36 30 33 32 35 0D 0A 09 5B 45 43 48 4F 5D 20  060325...[ECHO] 
-0050: 46 69 72 6D 77 61 72 65 20 56 65 72 20 20 3A 20  Firmware Ver  : 
-0060: 31 2E 30 2E 30 0D 0A 09 5B 45 43 48 4F 5D 20 43  1.0.0...[ECHO] C
-0070: 6F 72 65 20 76 6F 6C 74 61 67 65 20 20 3A 20 31  ore voltage  : 1
-0080: 2E 31 35 20 56 20 28 76 73 65 6C 20 3D 20 31 29  .15 V (vsel = 1)
-0090: 0D 0A 09 5B 45 43 48 4F 5D 20 43 6C 6F 63 6B 20  ...[ECHO] Clock 
-00A0: 53 6F 75 72 63 65 73 20 3A 0D 0A 09 5B 45 43 48  Sources :...[ECH
-00B0: 4F 5D 20 09 53 59 53 3A 20 32 30 30 30 30 30 30  O] .SYS: 2000000
-00C0: 30 30 20 48 7A 20 28 32 30 30 20 4D 48 7A 29 0D  00 Hz (200 MHz).
-00D0: 0A 09 5B 45 43 48 4F 5D 20 09 55 53 42 3A 20 34  ..[ECHO] .USB: 4
-00E0: 38 30 30 30 30 30 30 20 48 7A 20 28 34 38 20 4D  8000000 Hz (48 M
-00F0: 48 7A 29 0D 0A 09 5B 45 43 48 4F 5D 20 09 50 45  Hz)...[ECHO] .PE
-0100: 52 3A 20 34 38 30 30 30 30 30 30 20 48 7A 20 28  R: 48000000 Hz (
-0110: 34 38 20 4D 48 7A 29 0D 0A 09 5B 45 43 48 4F 5D  48 MHz)...[ECHO]
-0120: 20 09 41 44 43 3A 20 34 38 30 30 30 30 30 30 20   .ADC: 48000000 
-0130: 48 7A 20 28 34 38 20 4D 48 7A 29 0D 0A 5B 49 4E  Hz (48 MHz)..[IN
-0140: 46 4F 5D 20 41 44 43 20 69 6E 69 74 69 61 6C 69  FO] ADC initiali
-0150: 7A 69 6E 67 0D 0A 09 5B 44 45 42 55 47 5D 20 41  zing...[DEBUG] A
-0160: 44 43 20 4F 4B 0D 0A 56 52 45 47 20 72 65 67 69  DC OK..VREG regi
-0170: 73 74 65 72 3A 20 30 78 30 30 30 30 31 30 44 31  ster: 0x000010D1
-0180: 0D 0A 5B 49 4E 46 4F 5D 20 49 32 43 20 73 63 61  ..[INFO] I2C sca
-0190: 6E 6E 69 6E 67 2E 2E 2E 0D 0A 09 5B 44 45 42 55  nning......[DEBU
-01A0: 47 5D 20 53 63 61 6E 6E 69 6E 67 20 49 32 43 30  G] Scanning I2C0
-01B0: 2E 2E 2E 0D 0A 09 5B 44 45 42 55 47 5D 20 46 6F  ......[DEBUG] Fo
-01C0: 75 6E 64 20 64 65 76 69 63 65 20 61 74 20 61 64  und device at ad
-01D0: 64 72 65 73 73 20 30 78 32 31 0D 0A 09 5B 44 45  dress 0x21...[DE
-01E0: 42 55 47 5D 20 46 6F 75 6E 64 20 64 65 76 69 63  BUG] Found devic
-01F0: 65 20 61 74 20 61 64 64 72 65 73 73 20 30 78 32  e at address 0x2
-0200: 33 0D 0A 09 5B 44 45 42 55 47 5D 20 53 63 61 6E  3...[DEBUG] Scan
-0210: 6E 69 6E 67 20 49 32 43 31 2E 2E 2E 0D 0A 09 5B  ning I2C1......[
-0220: 44 45 42 55 47 5D 20 46 6F 75 6E 64 20 64 65 76  DEBUG] Found dev
-0230: 69 63 65 20 61 74 20 61 64 64 72 65 73 73 20 30  ice at address 0
-0240: 78 32 30 0D 0A 09 5B 44 45 42 55 47 5D 20 46 6F  x20...[DEBUG] Fo
-0250: 75 6E 64 20 64 65 76 69 63 65 20 61 74 20 61 64  und device at ad
-0260: 64 72 65 73 73 20 30 78 35 30 0D 0A 5B 49 4E 46  dress 0x50..[INF
-0270: 4F 5D 20 45 45 50 52 4F 4D 20 69 6E 69 74 69 61  O] EEPROM initia
-0280: 6C 69 7A 69 6E 67 2E 2E 2E 0D 0A 09 5B 44 45 42  lizing......[DEB
-0290: 55 47 5D 20 45 45 50 52 4F 4D 20 4F 4B 0D 0A 5B  UG] EEPROM OK..[
-02A0: 49 4E 46 4F 5D 20 4D 43 50 32 33 30 31 37 20 69  INFO] MCP23017 i
-02B0: 6E 69 74 69 61 6C 69 7A 69 6E 67 2E 2E 2E 0D 0A  nitializing.....
-02C0: 09 5B 44 45 42 55 47 5D 20 4D 43 50 32 33 30 31  .[DEBUG] MCP2301
-02D0: 37 20 4F 4B 0D 0A                                7 OK..
-[2025-09-05 20:31:36] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:39] [RX] reconnect bytes=522
-[2025-09-05 20:31:39] [INFO] Headless mode, skipping display initialization\r\n
-[INFO] Initializing HLW8032...\r\n
-\t[DEBUG] HLW8032 OK\r\n
-[INFO] Initializing buttons...\r\n
-\t[DEBUG] Buttons initialized\r\n
-\t[DEBUG] Core 0 initialized.\r\n
-\r\n
-[INFO] Loaded network config from EEPROM.\r\n
-\t[DEBUG] Loaded network config: IP 192.168.0.11\r\n
-\t[DEBUG] Network config loaded, continuing...\r\n
-\r\n
-\t[DEBUG] Initialize W5500 Ethernet controller SPI\r\n
-\t[DEBUG] Initialize W5500 Ethernet controller CRIS\r\n
-\t[DEBUG] Set W5500 to RESET\r\n
-\t[DEBUG] Initialize W5500 Ethernet controller\r\n
-
-[2025-09-05 20:31:39] [RX_HEX]
-0000: 5B 49 4E 46 4F 5D 20 48 65 61 64 6C 65 73 73 20  [INFO] Headless 
-0010: 6D 6F 64 65 2C 20 73 6B 69 70 70 69 6E 67 20 64  mode, skipping d
-0020: 69 73 70 6C 61 79 20 69 6E 69 74 69 61 6C 69 7A  isplay initializ
-0030: 61 74 69 6F 6E 0D 0A 5B 49 4E 46 4F 5D 20 49 6E  ation..[INFO] In
-0040: 69 74 69 61 6C 69 7A 69 6E 67 20 48 4C 57 38 30  itializing HLW80
-0050: 33 32 2E 2E 2E 0D 0A 09 5B 44 45 42 55 47 5D 20  32......[DEBUG] 
-0060: 48 4C 57 38 30 33 32 20 4F 4B 0D 0A 5B 49 4E 46  HLW8032 OK..[INF
-0070: 4F 5D 20 49 6E 69 74 69 61 6C 69 7A 69 6E 67 20  O] Initializing 
-0080: 62 75 74 74 6F 6E 73 2E 2E 2E 0D 0A 09 5B 44 45  buttons......[DE
-0090: 42 55 47 5D 20 42 75 74 74 6F 6E 73 20 69 6E 69  BUG] Buttons ini
-00A0: 74 69 61 6C 69 7A 65 64 0D 0A 09 5B 44 45 42 55  tialized...[DEBU
-00B0: 47 5D 20 43 6F 72 65 20 30 20 69 6E 69 74 69 61  G] Core 0 initia
-00C0: 6C 69 7A 65 64 2E 0D 0A 0D 0A 5B 49 4E 46 4F 5D  lized.....[INFO]
-00D0: 20 4C 6F 61 64 65 64 20 6E 65 74 77 6F 72 6B 20   Loaded network 
-00E0: 63 6F 6E 66 69 67 20 66 72 6F 6D 20 45 45 50 52  config from EEPR
-00F0: 4F 4D 2E 0D 0A 09 5B 44 45 42 55 47 5D 20 4C 6F  OM....[DEBUG] Lo
-0100: 61 64 65 64 20 6E 65 74 77 6F 72 6B 20 63 6F 6E  aded network con
-0110: 66 69 67 3A 20 49 50 20 31 39 32 2E 31 36 38 2E  fig: IP 192.168.
-0120: 30 2E 31 31 0D 0A 09 5B 44 45 42 55 47 5D 20 4E  0.11...[DEBUG] N
-0130: 65 74 77 6F 72 6B 20 63 6F 6E 66 69 67 20 6C 6F  etwork config lo
-0140: 61 64 65 64 2C 20 63 6F 6E 74 69 6E 75 69 6E 67  aded, continuing
-0150: 2E 2E 2E 0D 0A 0D 0A 09 5B 44 45 42 55 47 5D 20  ........[DEBUG] 
-0160: 49 6E 69 74 69 61 6C 69 7A 65 20 57 35 35 30 30  Initialize W5500
-0170: 20 45 74 68 65 72 6E 65 74 20 63 6F 6E 74 72 6F   Ethernet contro
-0180: 6C 6C 65 72 20 53 50 49 0D 0A 09 5B 44 45 42 55  ller SPI...[DEBU
-0190: 47 5D 20 49 6E 69 74 69 61 6C 69 7A 65 20 57 35  G] Initialize W5
-01A0: 35 30 30 20 45 74 68 65 72 6E 65 74 20 63 6F 6E  500 Ethernet con
-01B0: 74 72 6F 6C 6C 65 72 20 43 52 49 53 0D 0A 09 5B  troller CRIS...[
-01C0: 44 45 42 55 47 5D 20 53 65 74 20 57 35 35 30 30  DEBUG] Set W5500
-01D0: 20 74 6F 20 52 45 53 45 54 0D 0A 09 5B 44 45 42   to RESET...[DEB
-01E0: 55 47 5D 20 49 6E 69 74 69 61 6C 69 7A 65 20 57  UG] Initialize W
-01F0: 35 35 30 30 20 45 74 68 65 72 6E 65 74 20 63 6F  5500 Ethernet co
-0200: 6E 74 72 6F 6C 6C 65 72 0D 0A                    ntroller..
-[2025-09-05 20:31:39] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:41] [RX] reconnect bytes=692
-[2025-09-05 20:31:41] \t[DEBUG] Check W5500 status\r\n
-[INFO] W5500 version: 0x04\r\n
-[INFO] W5500 PHY link is up\r\n
-\t[DEBUG] Initialize network\r\n
-\t[ECHO] =============================================\r\n
-\t[ECHO]  W5500 network configuration : static\r\n
-\t[ECHO]  MAC         : 00:08:DC:BE:EF:91\r\n
-\t[ECHO]  IP          : 192.168.0.11\r\n
-\t[ECHO]  Subnet Mask : 255.255.255.0\r\n
-\t[ECHO]  Gateway     : 192.168.0.1\r\n
-\t[ECHO]  DNS         : 8.8.8.8\r\n
-\t[ECHO] =============================================\r\n
-\r\n
-\t[DEBUG] Core 1 initialized.\r\n
-\r\n
-SYSTEM READY\r\n
-[INFO] - SNMP : Start SNMP Agent Daemon\r\n
-\t[DEBUG] SNMP agent ready on port 161, traps on 162\r\n
-[INFO] HTTP server listening on port 80\r\n
-[INFO] - [1] UDP Socket for SNMP Agent, port [161]\r\n
-
-[2025-09-05 20:31:41] [RX_HEX]
-0000: 09 5B 44 45 42 55 47 5D 20 43 68 65 63 6B 20 57  .[DEBUG] Check W
-0010: 35 35 30 30 20 73 74 61 74 75 73 0D 0A 5B 49 4E  5500 status..[IN
-0020: 46 4F 5D 20 57 35 35 30 30 20 76 65 72 73 69 6F  FO] W5500 versio
-0030: 6E 3A 20 30 78 30 34 0D 0A 5B 49 4E 46 4F 5D 20  n: 0x04..[INFO] 
-0040: 57 35 35 30 30 20 50 48 59 20 6C 69 6E 6B 20 69  W5500 PHY link i
-0050: 73 20 75 70 0D 0A 09 5B 44 45 42 55 47 5D 20 49  s up...[DEBUG] I
-0060: 6E 69 74 69 61 6C 69 7A 65 20 6E 65 74 77 6F 72  nitialize networ
-0070: 6B 0D 0A 09 5B 45 43 48 4F 5D 20 3D 3D 3D 3D 3D  k...[ECHO] =====
-0080: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-0090: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-00A0: 3D 3D 3D 3D 3D 3D 3D 3D 0D 0A 09 5B 45 43 48 4F  ========...[ECHO
-00B0: 5D 20 20 57 35 35 30 30 20 6E 65 74 77 6F 72 6B  ]  W5500 network
-00C0: 20 63 6F 6E 66 69 67 75 72 61 74 69 6F 6E 20 3A   configuration :
-00D0: 20 73 74 61 74 69 63 0D 0A 09 5B 45 43 48 4F 5D   static...[ECHO]
-00E0: 20 20 4D 41 43 20 20 20 20 20 20 20 20 20 3A 20    MAC         : 
-00F0: 30 30 3A 30 38 3A 44 43 3A 42 45 3A 45 46 3A 39  00:08:DC:BE:EF:9
-0100: 31 0D 0A 09 5B 45 43 48 4F 5D 20 20 49 50 20 20  1...[ECHO]  IP  
-0110: 20 20 20 20 20 20 20 20 3A 20 31 39 32 2E 31 36          : 192.16
-0120: 38 2E 30 2E 31 31 0D 0A 09 5B 45 43 48 4F 5D 20  8.0.11...[ECHO] 
-0130: 20 53 75 62 6E 65 74 20 4D 61 73 6B 20 3A 20 32   Subnet Mask : 2
-0140: 35 35 2E 32 35 35 2E 32 35 35 2E 30 0D 0A 09 5B  55.255.255.0...[
-0150: 45 43 48 4F 5D 20 20 47 61 74 65 77 61 79 20 20  ECHO]  Gateway  
-0160: 20 20 20 3A 20 31 39 32 2E 31 36 38 2E 30 2E 31     : 192.168.0.1
-0170: 0D 0A 09 5B 45 43 48 4F 5D 20 20 44 4E 53 20 20  ...[ECHO]  DNS  
-0180: 20 20 20 20 20 20 20 3A 20 38 2E 38 2E 38 2E 38         : 8.8.8.8
-0190: 0D 0A 09 5B 45 43 48 4F 5D 20 3D 3D 3D 3D 3D 3D  ...[ECHO] ======
-01A0: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-01B0: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
-01C0: 3D 3D 3D 3D 3D 3D 3D 0D 0A 0D 0A 09 5B 44 45 42  =======.....[DEB
-01D0: 55 47 5D 20 43 6F 72 65 20 31 20 69 6E 69 74 69  UG] Core 1 initi
-01E0: 61 6C 69 7A 65 64 2E 0D 0A 0D 0A 53 59 53 54 45  alized.....SYSTE
-01F0: 4D 20 52 45 41 44 59 0D 0A 5B 49 4E 46 4F 5D 20  M READY..[INFO] 
-0200: 2D 20 53 4E 4D 50 20 3A 20 53 74 61 72 74 20 53  - SNMP : Start S
-0210: 4E 4D 50 20 41 67 65 6E 74 20 44 61 65 6D 6F 6E  NMP Agent Daemon
-0220: 0D 0A 09 5B 44 45 42 55 47 5D 20 53 4E 4D 50 20  ...[DEBUG] SNMP 
-0230: 61 67 65 6E 74 20 72 65 61 64 79 20 6F 6E 20 70  agent ready on p
-0240: 6F 72 74 20 31 36 31 2C 20 74 72 61 70 73 20 6F  ort 161, traps o
-0250: 6E 20 31 36 32 0D 0A 5B 49 4E 46 4F 5D 20 48 54  n 162..[INFO] HT
-0260: 54 50 20 73 65 72 76 65 72 20 6C 69 73 74 65 6E  TP server listen
-0270: 69 6E 67 20 6F 6E 20 70 6F 72 74 20 38 30 0D 0A  ing on port 80..
-0280: 5B 49 4E 46 4F 5D 20 2D 20 5B 31 5D 20 55 44 50  [INFO] - [1] UDP
-0290: 20 53 6F 63 6B 65 74 20 66 6F 72 20 53 4E 4D 50   Socket for SNMP
-02A0: 20 41 67 65 6E 74 2C 20 70 6F 72 74 20 5B 31 36   Agent, port [16
-02B0: 31 5D 0D 0A                                      1]..
-[2025-09-05 20:31:41] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:41] [SERIAL OPEN] port=COM11 baud=115200
-[2025-09-05 20:31:41] [TX] bytes=9
-[2025-09-05 20:31:41] SYSINFO\r\n
-
-[2025-09-05 20:31:41] [TX_HEX]
-0000: 53 59 53 49 4E 46 4F 0D 0A                       SYSINFO..
-[2025-09-05 20:31:42] [RX] bytes=348
-[2025-09-05 20:31:42] \t[ECHO] Received CMD: &quot;SYSINFO&quot;\r\n
-\t[ECHO] SYSTEM INFORMATION:\r\n
-\t[ECHO] Device Serial : SN-369366060325\r\n
-\t[ECHO] Firmware Ver  : 1.0.0\r\n
-\t[ECHO] Core voltage  : 1.15 V (vsel = 1)\r\n
-\t[ECHO] Clock Sources :\r\n
-\t[ECHO] \tSYS: 200000000 Hz (200 MHz)\r\n
-\t[ECHO] \tUSB: 48000000 Hz (48 MHz)\r\n
-\t[ECHO] \tPER: 48000000 Hz (48 MHz)\r\n
-\t[ECHO] \tADC: 48000000 Hz (48 MHz)\r\n
-
-[2025-09-05 20:31:42] [RX_HEX]
-0000: 09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64  .[ECHO] Received
-0010: 20 43 4D 44 3A 20 22 53 59 53 49 4E 46 4F 22 0D   CMD: &quot;SYSINFO&quot;.
-0020: 0A 09 5B 45 43 48 4F 5D 20 53 59 53 54 45 4D 20  ..[ECHO] SYSTEM 
-0030: 49 4E 46 4F 52 4D 41 54 49 4F 4E 3A 0D 0A 09 5B  INFORMATION:...[
-0040: 45 43 48 4F 5D 20 44 65 76 69 63 65 20 53 65 72  ECHO] Device Ser
-0050: 69 61 6C 20 3A 20 53 4E 2D 33 36 39 33 36 36 30  ial : SN-3693660
-0060: 36 30 33 32 35 0D 0A 09 5B 45 43 48 4F 5D 20 46  60325...[ECHO] F
-0070: 69 72 6D 77 61 72 65 20 56 65 72 20 20 3A 20 31  irmware Ver  : 1
-0080: 2E 30 2E 30 0D 0A 09 5B 45 43 48 4F 5D 20 43 6F  .0.0...[ECHO] Co
-0090: 72 65 20 76 6F 6C 74 61 67 65 20 20 3A 20 31 2E  re voltage  : 1.
-00A0: 31 35 20 56 20 28 76 73 65 6C 20 3D 20 31 29 0D  15 V (vsel = 1).
-00B0: 0A 09 5B 45 43 48 4F 5D 20 43 6C 6F 63 6B 20 53  ..[ECHO] Clock S
-00C0: 6F 75 72 63 65 73 20 3A 0D 0A 09 5B 45 43 48 4F  ources :...[ECHO
-00D0: 5D 20 09 53 59 53 3A 20 32 30 30 30 30 30 30 30  ] .SYS: 20000000
-00E0: 30 20 48 7A 20 28 32 30 30 20 4D 48 7A 29 0D 0A  0 Hz (200 MHz)..
-00F0: 09 5B 45 43 48 4F 5D 20 09 55 53 42 3A 20 34 38  .[ECHO] .USB: 48
-0100: 30 30 30 30 30 30 20 48 7A 20 28 34 38 20 4D 48  000000 Hz (48 MH
-0110: 7A 29 0D 0A 09 5B 45 43 48 4F 5D 20 09 50 45 52  z)...[ECHO] .PER
-0120: 3A 20 34 38 30 30 30 30 30 30 20 48 7A 20 28 34  : 48000000 Hz (4
-0130: 38 20 4D 48 7A 29 0D 0A 09 5B 45 43 48 4F 5D 20  8 MHz)...[ECHO] 
-0140: 09 41 44 43 3A 20 34 38 30 30 30 30 30 30 20 48  .ADC: 48000000 H
-0150: 7A 20 28 34 38 20 4D 48 7A 29 0D 0A              z (48 MHz)..
-[2025-09-05 20:31:42] [SERIAL CLOSE] port=COM11
-[2025-09-05 20:31:42] [PASS] STEP 6 completed successfully
+[2025-09-15 13:45:46] [STEP 6] Reset to factory settings (RFS) and verify data
+[2025-09-15 13:45:56] [PASS] STEP 6 completed successfully
 </pre>
 </div>
 </details>
@@ -3428,16 +1429,16 @@ SYSTEM READY\r\n
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-05 20:31:42</td><td>2025-09-05 20:31:55</td></tr>
+<tr><td>2025-09-15 13:45:56</td><td>2025-09-15 13:46:15</td></tr>
 </table>
 <details>
 <summary><div class='step-title'><div>Step Log</div><div class='status unknown'>DETAIL</div></div></summary>
 <div class='content'>
 <h4>Log</h4>
 <pre>
-[2025-09-05 20:31:42] [STEP 7] Create EEPROM dump and analyze EEPROM content
-[2025-09-05 20:31:55] [PASS] STEP 7 completed successfully
-[2025-09-05 20:31:55] ===== RESULT: PASS =====
+[2025-09-15 13:45:56] [STEP 7] Create EEPROM dump and analyze EEPROM content
+[2025-09-15 13:46:15] [PASS] STEP 7 completed successfully
+[2025-09-15 13:46:15] ===== tc_serial_utfw: RESULT: PASS =====
 </pre>
 </div>
 </details>
