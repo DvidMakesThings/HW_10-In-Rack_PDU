@@ -1,0 +1,13 @@
+URL: http://192.168.0.11:80/help.html
+METHOD: GET
+STATUS: 200
+
+=== HEADERS ===
+Content-Type: text/html
+Content-Length: 1715
+Access-Control-Allow-Origin: *
+Cache-Control: no-cache
+Connection: close
+
+=== BODY ===
+<!DOCTYPE html><html><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ENERGIS PDU - Help</title><style>* { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; } body { background-color: #1a1d23; color: #e4e4e4; } a { text-decoration: none; color: #aaa; } a:hover { color: #fff; } .topbar { width: 100%; height: 50px; background-color: #242731; display: flex; align-items: center; padding: 0 20px; } .topbar h1 { font-size: 1.2rem; color: #fff; } .container { display: flex; width: 100%; height: calc(100vh - 50px); } .sidebar { width: 220px; background-color: #2e323c; padding: 20px 0; } .sidebar ul { list-style: none; } .sidebar ul li { padding: 10px 20px; } .sidebar ul li:hover { background-color: #3b404d; } .main-content { flex: 1; padding: 20px; overflow-y: auto; } h2 { margin-bottom: 0.5rem; } p { margin: 0.5rem 0; } ul { margin-left: 20px; }</style></head><body><div class="topbar"><h1>ENERGIS PDU</h1></div><div class="container"><div class="sidebar"><ul><li><a href="control.html">Control</a></li><li><a href="settings.html">Settings</a></li><li><a href="help.html">Help</a></li><li><a href="user_manual.html">User Manual</a></li><li><a href="programming_manual.html">Programming Manual</a></li></ul></div><div class="main-content"><h2>Help</h2><p>Welcome to the ENERGIS PDU Help page.</p><p>For detailed instructions, see:</p><ul><li><a href="user_manual.html">User Manual</a></li><li><a href="programming_manual.html">Programming &amp; Interfacing Manual</a></li></ul><p>Use the Control page to toggle channels and monitor power. Use the Settings page to configure network, device, and time.</p></div></div></body></html>

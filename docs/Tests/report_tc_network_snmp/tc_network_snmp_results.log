@@ -1,44 +1,436 @@
-[2025-09-15 13:58:04] ===== tc_network_snmp: START =====
-[2025-09-15 13:58:04] [STEP 1] Walk enterprise subtree
-[2025-09-15 13:58:04] [PASS] STEP 1 completed successfully
-[2025-09-15 13:58:04] [STEP 2] Validate MIB-II system group
-[2025-09-15 13:58:04] [STEP 2.1] sysDescr matches expected
-[2025-09-15 13:58:05] [PASS] STEP 2.1 completed successfully
-[2025-09-15 13:58:05] [STEP 2.2] sysObjectID present
-[2025-09-15 13:58:05] [PASS] STEP 2.2 completed successfully
-[2025-09-15 13:58:05] [STEP 2.3] sysUpTime present
-[2025-09-15 13:58:05] [PASS] STEP 2.3 completed successfully
-[2025-09-15 13:58:05] [STEP 2.4] sysContact matches expected
-[2025-09-15 13:58:05] [PASS] STEP 2.4 completed successfully
-[2025-09-15 13:58:05] [STEP 2.5] sysName matches expected
-[2025-09-15 13:58:05] [PASS] STEP 2.5 completed successfully
-[2025-09-15 13:58:05] [STEP 2.6] sysLocation matches expected
-[2025-09-15 13:58:05] [PASS] STEP 2.6 completed successfully
-[2025-09-15 13:58:05] [STEP 2.7] sysServices matches expected
-[2025-09-15 13:58:05] [PASS] STEP 2.7 completed successfully
-[2025-09-15 13:58:05] [STEP 3] Validate long-length OIDs
-[2025-09-15 13:58:05] [STEP 3.1] 19865.1.0 long-length string OK
-[2025-09-15 13:58:05] [PASS] STEP 3.1 completed successfully
-[2025-09-15 13:58:05] [STEP 3.2] 19865.2.0 produces noSuchName (expected error)
-[2025-09-15 13:58:05] [PASS] STEP 3.2 completed successfully
-[2025-09-15 13:58:05] [STEP 4] Validate network configuration OIDs
-[2025-09-15 13:58:05] [STEP 4.1] Network IP equals baseline
-[2025-09-15 13:58:05] [PASS] STEP 4.1 completed successfully
-[2025-09-15 13:58:05] [STEP 4.2] Network SN equals expected
-[2025-09-15 13:58:05] [PASS] STEP 4.2 completed successfully
-[2025-09-15 13:58:05] [STEP 4.3] Network GW equals expected
-[2025-09-15 13:58:05] [PASS] STEP 4.3 completed successfully
-[2025-09-15 13:58:05] [STEP 4.4] Network DNS equals expected
-[2025-09-15 13:58:05] [PASS] STEP 4.4 completed successfully
-[2025-09-15 13:58:05] [STEP 5] Cycle all channels ON/OFF with SNMP verify
-[2025-09-15 13:58:14] [PASS] STEP 5 completed successfully
-[2025-09-15 13:58:14] [STEP 6] Cycle ALL ON / ALL OFF with SNMP verify
-[2025-09-15 13:58:14] [STEP 6.1] ALL ON trigger
-[2025-09-15 13:58:14] [PASS] STEP 6.1 completed successfully
-[2025-09-15 13:58:14] [STEP 6.2] Verify ALL ON via SNMP (1..8 == 1)
-[2025-09-15 13:58:14] [PASS] STEP 6.2 completed successfully
-[2025-09-15 13:58:14] [STEP 6.3] ALL ON trigger
-[2025-09-15 13:58:15] [PASS] STEP 6.3 completed successfully
-[2025-09-15 13:58:15] [STEP 6.4] Verify ALL OFF via SNMP (1..8 == 0)
-[2025-09-15 13:58:15] [PASS] STEP 6.4 completed successfully
-[2025-09-15 13:58:15] ===== tc_network_snmp: RESULT: PASS =====
+[2025-09-18 00:02:58] ===== tc_network_snmp: START =====
+[2025-09-18 00:02:58] [STEP 1] Walk enterprise subtree
+[2025-09-18 00:02:58] [SNMP] cmd=G:\_Development\SNMP\usr\bin\snmpwalk.EXE -v1 -c public -Ci -Cc 192.168.0.11 1.3.6.1.4.1.19865
+[2025-09-18 00:02:58] [SNMP] rc=0
+[2025-09-18 00:02:58] [SNMP OUT]
+SNMPv2-MIB::sysDescr.0 = STRING: ENERGIS 8 CHANNEL MANAGED PDU
+SNMPv2-MIB::sysObjectID.0 = OID: SNMPv2-MIB::sysObjectID.0
+DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: (81002) 0:13:30.02
+SNMPv2-MIB::sysContact.0 = STRING: dvidmakesthings@gmail.com
+SNMPv2-MIB::sysName.0 = STRING: SN-369366060325
+SNMPv2-MIB::sysLocation.0 = STRING: Wien
+SNMPv2-MIB::sysServices.0 = INTEGER: -5
+SNMPv2-SMI::enterprises.19865.1.0 = STRING: "long-length OID Test #1"
+
+[2025-09-18 00:02:58] [PASS] STEP 1 completed successfully
+[2025-09-18 00:02:58] [STEP 2] Validate MIB-II system group
+[2025-09-18 00:02:58] [STEP 2.1] sysDescr matches expected
+[2025-09-18 00:02:58] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.1.0
+[2025-09-18 00:02:58] [SNMP] rc=0
+[2025-09-18 00:02:58] [SNMP OUT]
+SNMPv2-MIB::sysDescr.0 = STRING: ENERGIS 8 CHANNEL MANAGED PDU
+
+[2025-09-18 00:02:58] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.1.0 -> 'ENERGIS 8 CHANNEL MANAGED PDU' (v1/public)
+[2025-09-18 00:02:58] [PASS] STEP 2.1 completed successfully
+[2025-09-18 00:02:58] [STEP 2.2] sysObjectID present
+[2025-09-18 00:02:58] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.2.0
+[2025-09-18 00:02:58] [SNMP] rc=0
+[2025-09-18 00:02:58] [SNMP OUT]
+SNMPv2-MIB::sysObjectID.0 = OID: SNMPv2-MIB::sysObjectID.0
+
+[2025-09-18 00:02:58] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.2.0 -> 'SNMPv2-MIB::sysObjectID.0' (v1/public)
+[2025-09-18 00:02:58] [PASS] STEP 2.2 completed successfully
+[2025-09-18 00:02:58] [STEP 2.3] sysUpTime present
+[2025-09-18 00:02:59] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.3.0
+[2025-09-18 00:02:59] [SNMP] rc=0
+[2025-09-18 00:02:59] [SNMP OUT]
+DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: (81095) 0:13:30.95
+
+[2025-09-18 00:02:59] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.3.0 -> '(81095) 0:13:30.95' (v1/public)
+[2025-09-18 00:02:59] [PASS] STEP 2.3 completed successfully
+[2025-09-18 00:02:59] [STEP 2.4] sysContact matches expected
+[2025-09-18 00:02:59] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.4.0
+[2025-09-18 00:02:59] [SNMP] rc=0
+[2025-09-18 00:02:59] [SNMP OUT]
+SNMPv2-MIB::sysContact.0 = STRING: dvidmakesthings@gmail.com
+
+[2025-09-18 00:02:59] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.4.0 -> 'dvidmakesthings@gmail.com' (v1/public)
+[2025-09-18 00:02:59] [PASS] STEP 2.4 completed successfully
+[2025-09-18 00:02:59] [STEP 2.5] sysName matches expected
+[2025-09-18 00:02:59] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.5.0
+[2025-09-18 00:02:59] [SNMP] rc=0
+[2025-09-18 00:02:59] [SNMP OUT]
+SNMPv2-MIB::sysName.0 = STRING: SN-369366060325
+
+[2025-09-18 00:02:59] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.5.0 -> 'SN-369366060325' (v1/public)
+[2025-09-18 00:02:59] [PASS] STEP 2.5 completed successfully
+[2025-09-18 00:02:59] [STEP 2.6] sysLocation matches expected
+[2025-09-18 00:02:59] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.6.0
+[2025-09-18 00:02:59] [SNMP] rc=0
+[2025-09-18 00:02:59] [SNMP OUT]
+SNMPv2-MIB::sysLocation.0 = STRING: Wien
+
+[2025-09-18 00:02:59] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.6.0 -> 'Wien' (v1/public)
+[2025-09-18 00:02:59] [PASS] STEP 2.6 completed successfully
+[2025-09-18 00:02:59] [STEP 2.7] sysServices matches expected
+[2025-09-18 00:02:59] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.7.0
+[2025-09-18 00:02:59] [SNMP] rc=0
+[2025-09-18 00:02:59] [SNMP OUT]
+SNMPv2-MIB::sysServices.0 = INTEGER: -5
+
+[2025-09-18 00:02:59] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.7.0 -> '-5' (v1/public)
+[2025-09-18 00:02:59] [PASS] STEP 2.7 completed successfully
+[2025-09-18 00:02:59] [STEP 3] Validate long-length OIDs
+[2025-09-18 00:02:59] [STEP 3.1] 19865.1.0 long-length string OK
+[2025-09-18 00:02:59] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.1.0
+[2025-09-18 00:02:59] [SNMP] rc=0
+[2025-09-18 00:02:59] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.1.0 = STRING: "long-length OID Test #1"
+
+[2025-09-18 00:02:59] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.1.0 -> 'long-length OID Test #1' (v1/public)
+[2025-09-18 00:02:59] [PASS] STEP 3.1 completed successfully
+[2025-09-18 00:02:59] [STEP 3.2] 19865.2.0 produces noSuchName (expected error)
+[2025-09-18 00:02:59] [SNMP] cmd=G:\_Development\SNMP\usr\bin\snmpget.EXE -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.0
+[2025-09-18 00:02:59] [SNMP] rc=2
+[2025-09-18 00:02:59] [SNMP ERR]
+Error in packet
+Reason: (noSuchName) There is no such variable name in this MIB.
+Failed object: SNMPv2-SMI::enterprises.19865.2.0
+
+
+[2025-09-18 00:02:59] [PASS] STEP 3.2 completed successfully
+[2025-09-18 00:02:59] [STEP 4] Validate network configuration OIDs
+[2025-09-18 00:02:59] [STEP 4.1] Network IP equals baseline
+[2025-09-18 00:02:59] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.4.1.0
+[2025-09-18 00:02:59] [SNMP] rc=0
+[2025-09-18 00:02:59] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.4.1.0 = STRING: "192.168.0.11"
+
+[2025-09-18 00:02:59] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.4.1.0 -> '192.168.0.11' (v1/public)
+[2025-09-18 00:02:59] [PASS] STEP 4.1 completed successfully
+[2025-09-18 00:02:59] [STEP 4.2] Network SN equals expected
+[2025-09-18 00:02:59] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.4.2.0
+[2025-09-18 00:02:59] [SNMP] rc=0
+[2025-09-18 00:02:59] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.4.2.0 = STRING: "255.255.255.0"
+
+[2025-09-18 00:02:59] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.4.2.0 -> '255.255.255.0' (v1/public)
+[2025-09-18 00:02:59] [PASS] STEP 4.2 completed successfully
+[2025-09-18 00:02:59] [STEP 4.3] Network GW equals expected
+[2025-09-18 00:02:59] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.4.3.0
+[2025-09-18 00:02:59] [SNMP] rc=0
+[2025-09-18 00:02:59] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.4.3.0 = STRING: "192.168.0.1"
+
+[2025-09-18 00:02:59] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.4.3.0 -> '192.168.0.1' (v1/public)
+[2025-09-18 00:02:59] [PASS] STEP 4.3 completed successfully
+[2025-09-18 00:02:59] [STEP 4.4] Network DNS equals expected
+[2025-09-18 00:02:59] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.4.4.0
+[2025-09-18 00:02:59] [SNMP] rc=0
+[2025-09-18 00:02:59] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.4.4.0 = STRING: "8.8.8.8"
+
+[2025-09-18 00:02:59] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.4.4.0 -> '8.8.8.8' (v1/public)
+[2025-09-18 00:02:59] [PASS] STEP 4.4 completed successfully
+[2025-09-18 00:02:59] [STEP 5] Cycle all channels ON/OFF with SNMP verify
+[2025-09-18 00:02:59] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 i 1
+[2025-09-18 00:02:59] [SNMP] rc=0
+[2025-09-18 00:02:59] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 1
+
+[2025-09-18 00:02:59] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 = 1 -> OK (v1/public)
+[2025-09-18 00:02:59] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0
+[2025-09-18 00:02:59] [SNMP] rc=0
+[2025-09-18 00:02:59] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 1
+
+[2025-09-18 00:02:59] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 -> '1' (v1/public)
+[2025-09-18 00:02:59] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 i 0
+[2025-09-18 00:02:59] [SNMP] rc=0
+[2025-09-18 00:02:59] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 0
+
+[2025-09-18 00:02:59] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 = 0 -> OK (v1/public)
+[2025-09-18 00:03:00] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0
+[2025-09-18 00:03:00] [SNMP] rc=0
+[2025-09-18 00:03:00] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 0
+
+[2025-09-18 00:03:00] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 -> '0' (v1/public)
+[2025-09-18 00:03:00] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 i 1
+[2025-09-18 00:03:00] [SNMP] rc=0
+[2025-09-18 00:03:00] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 1
+
+[2025-09-18 00:03:00] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 = 1 -> OK (v1/public)
+[2025-09-18 00:03:01] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0
+[2025-09-18 00:03:01] [SNMP] rc=0
+[2025-09-18 00:03:01] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 1
+
+[2025-09-18 00:03:01] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 -> '1' (v1/public)
+[2025-09-18 00:03:01] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 i 0
+[2025-09-18 00:03:01] [SNMP] rc=0
+[2025-09-18 00:03:01] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 0
+
+[2025-09-18 00:03:01] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 = 0 -> OK (v1/public)
+[2025-09-18 00:03:01] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0
+[2025-09-18 00:03:01] [SNMP] rc=0
+[2025-09-18 00:03:01] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 0
+
+[2025-09-18 00:03:01] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 -> '0' (v1/public)
+[2025-09-18 00:03:01] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 i 1
+[2025-09-18 00:03:01] [SNMP] rc=0
+[2025-09-18 00:03:01] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 1
+
+[2025-09-18 00:03:01] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 = 1 -> OK (v1/public)
+[2025-09-18 00:03:02] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0
+[2025-09-18 00:03:02] [SNMP] rc=0
+[2025-09-18 00:03:02] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 1
+
+[2025-09-18 00:03:02] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 -> '1' (v1/public)
+[2025-09-18 00:03:02] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 i 0
+[2025-09-18 00:03:02] [SNMP] rc=0
+[2025-09-18 00:03:02] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 0
+
+[2025-09-18 00:03:02] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 = 0 -> OK (v1/public)
+[2025-09-18 00:03:02] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0
+[2025-09-18 00:03:02] [SNMP] rc=0
+[2025-09-18 00:03:02] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 0
+
+[2025-09-18 00:03:02] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 -> '0' (v1/public)
+[2025-09-18 00:03:02] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 i 1
+[2025-09-18 00:03:02] [SNMP] rc=0
+[2025-09-18 00:03:02] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 1
+
+[2025-09-18 00:03:02] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 = 1 -> OK (v1/public)
+[2025-09-18 00:03:03] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0
+[2025-09-18 00:03:03] [SNMP] rc=0
+[2025-09-18 00:03:03] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 1
+
+[2025-09-18 00:03:03] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 -> '1' (v1/public)
+[2025-09-18 00:03:03] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 i 0
+[2025-09-18 00:03:03] [SNMP] rc=0
+[2025-09-18 00:03:03] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 0
+
+[2025-09-18 00:03:03] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 = 0 -> OK (v1/public)
+[2025-09-18 00:03:03] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0
+[2025-09-18 00:03:03] [SNMP] rc=0
+[2025-09-18 00:03:03] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 0
+
+[2025-09-18 00:03:03] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 -> '0' (v1/public)
+[2025-09-18 00:03:03] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 i 1
+[2025-09-18 00:03:03] [SNMP] rc=0
+[2025-09-18 00:03:03] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 1
+
+[2025-09-18 00:03:03] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 = 1 -> OK (v1/public)
+[2025-09-18 00:03:04] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0
+[2025-09-18 00:03:04] [SNMP] rc=0
+[2025-09-18 00:03:04] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 1
+
+[2025-09-18 00:03:04] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 -> '1' (v1/public)
+[2025-09-18 00:03:04] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 i 0
+[2025-09-18 00:03:04] [SNMP] rc=0
+[2025-09-18 00:03:04] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 0
+
+[2025-09-18 00:03:04] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 = 0 -> OK (v1/public)
+[2025-09-18 00:03:05] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0
+[2025-09-18 00:03:05] [SNMP] rc=0
+[2025-09-18 00:03:05] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 0
+
+[2025-09-18 00:03:05] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 -> '0' (v1/public)
+[2025-09-18 00:03:05] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 i 1
+[2025-09-18 00:03:05] [SNMP] rc=0
+[2025-09-18 00:03:05] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 1
+
+[2025-09-18 00:03:05] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 = 1 -> OK (v1/public)
+[2025-09-18 00:03:05] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0
+[2025-09-18 00:03:05] [SNMP] rc=0
+[2025-09-18 00:03:05] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 1
+
+[2025-09-18 00:03:05] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 -> '1' (v1/public)
+[2025-09-18 00:03:05] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 i 0
+[2025-09-18 00:03:05] [SNMP] rc=0
+[2025-09-18 00:03:05] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 0
+
+[2025-09-18 00:03:05] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 = 0 -> OK (v1/public)
+[2025-09-18 00:03:06] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0
+[2025-09-18 00:03:06] [SNMP] rc=0
+[2025-09-18 00:03:06] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 0
+
+[2025-09-18 00:03:06] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 -> '0' (v1/public)
+[2025-09-18 00:03:06] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 i 1
+[2025-09-18 00:03:06] [SNMP] rc=0
+[2025-09-18 00:03:06] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 1
+
+[2025-09-18 00:03:06] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 = 1 -> OK (v1/public)
+[2025-09-18 00:03:06] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0
+[2025-09-18 00:03:06] [SNMP] rc=0
+[2025-09-18 00:03:06] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 1
+
+[2025-09-18 00:03:06] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 -> '1' (v1/public)
+[2025-09-18 00:03:06] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 i 0
+[2025-09-18 00:03:06] [SNMP] rc=0
+[2025-09-18 00:03:06] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 0
+
+[2025-09-18 00:03:06] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 = 0 -> OK (v1/public)
+[2025-09-18 00:03:07] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0
+[2025-09-18 00:03:07] [SNMP] rc=0
+[2025-09-18 00:03:07] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 0
+
+[2025-09-18 00:03:07] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 -> '0' (v1/public)
+[2025-09-18 00:03:07] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 i 1
+[2025-09-18 00:03:07] [SNMP] rc=0
+[2025-09-18 00:03:07] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 1
+
+[2025-09-18 00:03:07] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 = 1 -> OK (v1/public)
+[2025-09-18 00:03:07] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0
+[2025-09-18 00:03:07] [SNMP] rc=0
+[2025-09-18 00:03:07] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 1
+
+[2025-09-18 00:03:07] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 -> '1' (v1/public)
+[2025-09-18 00:03:07] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 i 0
+[2025-09-18 00:03:07] [SNMP] rc=0
+[2025-09-18 00:03:07] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 0
+
+[2025-09-18 00:03:07] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 = 0 -> OK (v1/public)
+[2025-09-18 00:03:08] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0
+[2025-09-18 00:03:08] [SNMP] rc=0
+[2025-09-18 00:03:08] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 0
+
+[2025-09-18 00:03:08] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 -> '0' (v1/public)
+[2025-09-18 00:03:08] [PASS] STEP 5 completed successfully
+[2025-09-18 00:03:08] [STEP 6] Cycle ALL ON / ALL OFF with SNMP verify
+[2025-09-18 00:03:08] [STEP 6.1] ALL ON trigger
+[2025-09-18 00:03:08] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.10.0 i 1
+[2025-09-18 00:03:08] [SNMP] rc=0
+[2025-09-18 00:03:08] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.10.0 = INTEGER: 1
+
+[2025-09-18 00:03:08] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.10.0 = 1 -> OK (v1/public)
+[2025-09-18 00:03:08] [PASS] STEP 6.1 completed successfully
+[2025-09-18 00:03:08] [STEP 6.2] Verify ALL ON via SNMP (1..8 == 1)
+[2025-09-18 00:03:08] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0
+[2025-09-18 00:03:08] [SNMP] rc=0
+[2025-09-18 00:03:08] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 1
+
+[2025-09-18 00:03:08] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 -> '1' (v1/public)
+[2025-09-18 00:03:08] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0
+[2025-09-18 00:03:08] [SNMP] rc=0
+[2025-09-18 00:03:08] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 1
+
+[2025-09-18 00:03:08] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 -> '1' (v1/public)
+[2025-09-18 00:03:08] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0
+[2025-09-18 00:03:08] [SNMP] rc=0
+[2025-09-18 00:03:08] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 1
+
+[2025-09-18 00:03:08] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 -> '1' (v1/public)
+[2025-09-18 00:03:08] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0
+[2025-09-18 00:03:08] [SNMP] rc=0
+[2025-09-18 00:03:08] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 1
+
+[2025-09-18 00:03:08] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 -> '1' (v1/public)
+[2025-09-18 00:03:08] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0
+[2025-09-18 00:03:08] [SNMP] rc=0
+[2025-09-18 00:03:08] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 1
+
+[2025-09-18 00:03:08] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 -> '1' (v1/public)
+[2025-09-18 00:03:08] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0
+[2025-09-18 00:03:08] [SNMP] rc=0
+[2025-09-18 00:03:08] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 1
+
+[2025-09-18 00:03:08] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 -> '1' (v1/public)
+[2025-09-18 00:03:08] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0
+[2025-09-18 00:03:08] [SNMP] rc=0
+[2025-09-18 00:03:08] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 1
+
+[2025-09-18 00:03:08] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 -> '1' (v1/public)
+[2025-09-18 00:03:08] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0
+[2025-09-18 00:03:08] [SNMP] rc=0
+[2025-09-18 00:03:08] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 1
+
+[2025-09-18 00:03:08] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 -> '1' (v1/public)
+[2025-09-18 00:03:08] [PASS] STEP 6.2 completed successfully
+[2025-09-18 00:03:08] [STEP 6.3] ALL ON trigger
+[2025-09-18 00:03:08] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.9.0 i 1
+[2025-09-18 00:03:08] [SNMP] rc=0
+[2025-09-18 00:03:08] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.9.0 = INTEGER: 1
+
+[2025-09-18 00:03:08] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.9.0 = 1 -> OK (v1/public)
+[2025-09-18 00:03:08] [PASS] STEP 6.3 completed successfully
+[2025-09-18 00:03:08] [STEP 6.4] Verify ALL OFF via SNMP (1..8 == 0)
+[2025-09-18 00:03:08] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0
+[2025-09-18 00:03:08] [SNMP] rc=0
+[2025-09-18 00:03:08] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 0
+
+[2025-09-18 00:03:08] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 -> '0' (v1/public)
+[2025-09-18 00:03:08] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0
+[2025-09-18 00:03:08] [SNMP] rc=0
+[2025-09-18 00:03:08] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 0
+
+[2025-09-18 00:03:08] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 -> '0' (v1/public)
+[2025-09-18 00:03:09] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0
+[2025-09-18 00:03:09] [SNMP] rc=0
+[2025-09-18 00:03:09] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 0
+
+[2025-09-18 00:03:09] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 -> '0' (v1/public)
+[2025-09-18 00:03:09] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0
+[2025-09-18 00:03:09] [SNMP] rc=0
+[2025-09-18 00:03:09] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 0
+
+[2025-09-18 00:03:09] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 -> '0' (v1/public)
+[2025-09-18 00:03:09] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0
+[2025-09-18 00:03:09] [SNMP] rc=0
+[2025-09-18 00:03:09] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 0
+
+[2025-09-18 00:03:09] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 -> '0' (v1/public)
+[2025-09-18 00:03:09] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0
+[2025-09-18 00:03:09] [SNMP] rc=0
+[2025-09-18 00:03:09] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 0
+
+[2025-09-18 00:03:09] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 -> '0' (v1/public)
+[2025-09-18 00:03:09] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0
+[2025-09-18 00:03:09] [SNMP] rc=0
+[2025-09-18 00:03:09] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 0
+
+[2025-09-18 00:03:09] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 -> '0' (v1/public)
+[2025-09-18 00:03:09] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0
+[2025-09-18 00:03:09] [SNMP] rc=0
+[2025-09-18 00:03:09] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 0
+
+[2025-09-18 00:03:09] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 -> '0' (v1/public)
+[2025-09-18 00:03:09] [PASS] STEP 6.4 completed successfully
+[2025-09-18 00:03:09] ===== tc_network_snmp: RESULT: PASS =====
