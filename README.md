@@ -1,17 +1,17 @@
 # ENERGIS - The Managed PDU Project for 10-Inch Rack
 
 <div align="center">
-  <br></br>
-  
-  <table bgcolor="white">
-    <tr>
-      <td align="center">
-        <a href="https://www.nextpcb.com/">
-          <img src="images/Sponsorship/nextpcb_rgb.png" alt="NextPCB Logo" width="300"/>
-        </a>
-      </td>
-    </tr>
-  </table>
+  <br>
+  <a href="https://www.nextpcb.com/">
+    <picture>
+      <!-- Dark mode image -->
+      <source media="(prefers-color-scheme: dark)" srcset="images/Sponsorship/nextpcb_rgb_bgw.png">
+      <!-- Light mode image -->
+      <source media="(prefers-color-scheme: light)" srcset="images/Sponsorship/nextpcb_rgb.png">
+      <!-- Fallback image -->
+      <img src="images/Sponsorship/nextpcb_rgb_bgw.png" alt="NextPCB Logo" width="300">
+    </picture>
+  </a>
   
   <h3>PCBs manufactured by <a href="https://www.nextpcb.com/">NextPCB</a></h3>
   <p><em>Supporter and sponsor of the ENERGIS project</em></p>
