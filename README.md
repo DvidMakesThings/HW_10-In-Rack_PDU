@@ -3,9 +3,7 @@
 <div align="center">
   <br></br>
   <a href="https://www.nextpcb.com/">
-    <div style="background-color: #ffffff; padding: 10px; border-radius: 10px; display: inline-block;">
-      <img src="images/Sponsorship/nextpcb_rgb_bgw.jpg" alt="NextPCB Logo" width="300"/>
-    </div>
+    <img src="images/Sponsorship/nextpcb_rgb.png" alt="NextPCB Logo" width="300" />
   </a>
   
   <h3>PCBs manufactured by <a href="https://www.nextpcb.com/" style="color:#ff3e3e;">NextPCB</a></h3>
