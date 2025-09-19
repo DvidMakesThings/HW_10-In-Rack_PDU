@@ -1,8 +1,26 @@
 # ENERGIS - The Managed PDU Project for 10-Inch Rack
 
-![Development Status](https://img.shields.io/badge/status-Testing%20%26%20Debugging-yellowgreen)
+<div align="center">
+  <table>
+    <tr>
+      <td align="center" style="border: none !important;">
+        <div style="background: linear-gradient(45deg, #493964ff, #21429cff, #0f3460); padding: 20px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
+          <a href="https://www.nextpcb.com/">
+            <img src="images/Sponsorship/NextPC.svg" alt="NextPCB Logo" width="280" style="filter: drop-shadow(0 5px 5px rgba(0,0,0,0.2));"/>
+          </a>
+          <br/><br/>
+          <h3 style="color: #ffeef1ff; margin: 0; font-size: 22px;">PCBs manufactured by <a href="https://www.nextpcb.com/" style="color: #e94560; text-decoration: none;">NextPCB</a></h3>
+          <p style="color: #f1f1f1; margin: 10px 0 0 0;">Supporter and sponsor of the ENERGIS project.</p>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
 
 ## Overview
+![Development Status](https://img.shields.io/badge/status-Testing%20%26%20Debugging-yellowgreen)
+[![Manufactured by NextPCB](https://img.shields.io/badge/PCB%20Manufacturer-NextPCB-blue)](https://www.nextpcb.com/)
 
 The **10-Inch Rack PDU (Power Distribution Unit)** is a modular power
 management system designed for efficient control and monitoring of power in a
