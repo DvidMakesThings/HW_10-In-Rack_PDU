@@ -13,7 +13,6 @@
 
 ## Overview
 ![Development Status](https://img.shields.io/badge/status-Testing%20%26%20Debugging-yellowgreen)
-[![Manufactured by NextPCB](https://img.shields.io/badge/PCB%20Manufacturer-NextPCB-blue)](https://www.nextpcb.com/)
 
 The **10-Inch Rack PDU (Power Distribution Unit)** is a modular power
 management system designed for efficient control and monitoring of power in a
