@@ -6,9 +6,8 @@
     <img src="images/Sponsorship/NextPC.svg" alt="NextPCB Logo" width="300"/>
   </a>
   
-  <h3>PCBs manufactured by <a href="https://www.nextpcb.com/">NextPCB</a></h3>
+  <h3>PCBs manufactured by <a href="https://www.nextpcb.com/" style="color:#ff3e3e;">NextPCB</a></h3>
   <p><em>Supporter and sponsor of the ENERGIS project</em></p>
-  
 </div>
 
 
