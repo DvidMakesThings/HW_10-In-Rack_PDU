@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ENERGIS Functional Test " tests="14" failures="0" time="0.0">
+  <testcase classname="UTFW" name="STEP 1 Send reboot command via UART" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2 Start capturing settings page" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.1 Capture PCAP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.2 Access the settings page" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3 Start capturing control page" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.1 Capture PCAP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.2 Access the control page" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4 Multi-action step with 6 sub-steps" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.1 Validate IP address" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.2 Validate Gateway address" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.3 Validate Subnet mask" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.4 Validate DNS address" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.5 Settings: Device Name present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.6 Settings: Device Name present" time="0.0">
+  </testcase>
+</testsuite>
