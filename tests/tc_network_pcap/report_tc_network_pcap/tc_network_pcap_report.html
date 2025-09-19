@@ -1,0 +1,564 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<title>ENERGIS Test Report - PASS</title>
+<style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;background:#0f1216;color:#e7eaf0;margin:0}
+    header{padding:20px;background:#151a21;border-bottom:1px solid #2a2f37}
+    h1{margin:0;font-size:20px}
+    .meta{font-size:12px;color:#a6adbb;margin-top:6px}
+    .summary{display:flex;gap:16px;flex-wrap:wrap;margin:16px 0}
+    .chip{padding:8px 12px;border-radius:20px;border:1px solid #2a2f37;background:#151a21}
+    .chip.pass{border-color:#1e7f45;color:#d7ffe6;background:#0e2017}
+    .chip.fail{border-color:#a23b3b;color:#ffe1e1;background:#210e0e}
+    .chip.unknown{border-color:#6b7280;color:#e7eaf0;background:#1b2028}
+    main{padding:20px}
+    details{border:1px solid #2a2f37;border-radius:12px;margin-bottom:12px;overflow:hidden}
+    summary{padding:12px 14px;background:#151a21;cursor:pointer;font-weight:600}
+    .content{padding:12px 14px;background:#11161b}
+    .step-title{display:flex;justify-content:space-between;align-items:center}
+    .status{padding:3px 8px;border-radius:12px;border:1px solid #2a2f37;font-size:12px}
+    .status.pass{border-color:#1e7f45;color:#d7ffe6;background:#0e2017}
+    .status.fail{border-color:#a23b3b;color:#ffe1e1;background:#210e0e}
+    .status.unknown{border-color:#6b7280;background:#1b2028}
+    pre{background:#0b0f14;border:1px solid #2a2f37;border-radius:8px;padding:10px;overflow:auto}
+    table{width:100%;border-collapse:collapse;margin-top:8px}
+    th,td{border-bottom:1px solid #1f2530;padding:8px 6px;text-align:left;font-size:13px}
+    th{color:#a6adbb;font-weight:600;background:#131820}
+    .kv{display:grid;grid-template-columns:180px 1fr;gap:8px}
+    a{color:#9ad0ff;text-decoration:none}
+    a:hover{text-decoration:underline}
+    .img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:10px}
+    .img-grid figure{margin:0;padding:8px;background:#0b0f14;border:1px solid #2a2f37;border-radius:8px}
+    .img-grid img{max-width:100%;height:auto;display:block;border-radius:6px}
+    .img-grid figcaption{font-size:12px;color:#a6adbb;margin-top:6px}
+    .substeps{margin-top:10px}
+    .substeps details{margin-bottom:8px}
+    </style></head><body>
+<header>
+<h1>ENERGIS Test Report</h1>
+<div class='meta'>
+Overall: <b class='chip pass'>PASS</b> &nbsp;
+Started: 2025-09-19 01:03:05 &nbsp;
+</div>
+</header>
+<main>
+<section class='summary'>
+<div class='chip pass'>Passed steps: 4</div>
+<div class='chip fail'>Failed steps: 0</div>
+<div class='chip unknown'>Unknown steps: 0</div>
+<div class='chip'>Total steps: 4</div>
+</section>
+<section>
+<h3>Environment</h3>
+<div class='kv'>
+<div>Hostname</div><div>DPC</div>
+<div>Os</div><div>Windows 11 (10.0.26100)</div>
+<div>Python</div><div>3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]</div>
+<div>Generated_at</div><div>2025-09-19 01:03:26</div>
+<div>Log_file</div><div>report_tc_network_pcap\tc_network_pcap_results.log</div>
+</div>
+</section>
+<section>
+<h3>Steps</h3>
+<details>
+<summary>
+<div class='step-title'><div>STEP 1 Send reboot command via UART</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-09-19 01:03:05</td><td>2025-09-19 01:03:14</td></tr>
+</table>
+<details>
+<summary><div class='step-title'><div>Step Log</div><div class='status unknown'>DETAIL</div></div></summary>
+<div class='content'>
+<h4>Log</h4>
+<pre>
+[2025-09-19 01:03:05] [STEP 1] Send reboot command via UART
+[2025-09-19 01:03:05] [SERIAL OPEN] port=COM11 baud=115200
+[2025-09-19 01:03:05] [TX] bytes=8
+[2025-09-19 01:03:05] REBOOT\r\n
+
+[2025-09-19 01:03:05] [TX_HEX]
+0000: 52 45 42 4F 4F 54 0D 0A                          REBOOT..
+[2025-09-19 01:03:05] [SERIAL CLOSE] port=COM11
+[2025-09-19 01:03:14] [RX] reconnect bytes=1075
+[2025-09-19 01:03:14] [INFO] Core 0 initializing...\r\n
+\t[ECHO] Device Serial : SN-369366060325\r\n
+\t[ECHO] Firmware Ver  : 1.0.0\r\n
+\t[ECHO] Core voltage  : 1.15 V (vsel = 1)\r\n
+\t[ECHO] Clock Sources :\r\n
+\t[ECHO] \tSYS: 200000000 Hz (200 MHz)\r\n
+\t[ECHO] \tUSB: 48000000 Hz (48 MHz)\r\n
+\t[ECHO] \tPER: 48000000 Hz (48 MHz)\r\n
+\t[ECHO] \tADC: 48000000 Hz (48 MHz)\r\n
+[INFO] ADC initializing\r\n
+VREG register: 0x000010D1\r\n
+[INFO] I2C scanning...\r\n
+[INFO] EEPROM initializing...\r\n
+[INFO] MCP23017 initializing...\r\n
+[INFO] Headless mode, skipping display initialization\r\n
+[INFO] Initializing HLW8032...\r\n
+[INFO] Initializing buttons...\r\n
+[INFO] Loaded network config from EEPROM.\r\n
+[INFO] W5500 version: 0x04\r\n
+[INFO] W5500 PHY link is up\r\n
+\t[ECHO] =============================================\r\n
+\t[ECHO]  W5500 network configuration : static\r\n
+\t[ECHO]  MAC         : 00:08:DC:BE:EF:91\r\n
+\t[ECHO]  IP          : 192.168.0.11\r\n
+\t[ECHO]  Subnet Mask : 255.255.255.0\r\n
+\t[ECHO]  Gateway     : 192.168.0.1\r\n
+\t[ECHO]  DNS         : 8.8.8.8\r\n
+\t[ECHO] =============================================\r\n
+\r\n
+SYSTEM READY\r\n
+[INFO] - SNMP : Start SNMP Agent Daemon\r\n
+
+[2025-09-19 01:03:14] [RX_HEX]
+0000: 5B 49 4E 46 4F 5D 20 43 6F 72 65 20 30 20 69 6E  [INFO] Core 0 in
+0010: 69 74 69 61 6C 69 7A 69 6E 67 2E 2E 2E 0D 0A 09  itializing......
+0020: 5B 45 43 48 4F 5D 20 44 65 76 69 63 65 20 53 65  [ECHO] Device Se
+0030: 72 69 61 6C 20 3A 20 53 4E 2D 33 36 39 33 36 36  rial : SN-369366
+0040: 30 36 30 33 32 35 0D 0A 09 5B 45 43 48 4F 5D 20  060325...[ECHO] 
+0050: 46 69 72 6D 77 61 72 65 20 56 65 72 20 20 3A 20  Firmware Ver  : 
+0060: 31 2E 30 2E 30 0D 0A 09 5B 45 43 48 4F 5D 20 43  1.0.0...[ECHO] C
+0070: 6F 72 65 20 76 6F 6C 74 61 67 65 20 20 3A 20 31  ore voltage  : 1
+0080: 2E 31 35 20 56 20 28 76 73 65 6C 20 3D 20 31 29  .15 V (vsel = 1)
+0090: 0D 0A 09 5B 45 43 48 4F 5D 20 43 6C 6F 63 6B 20  ...[ECHO] Clock 
+00A0: 53 6F 75 72 63 65 73 20 3A 0D 0A 09 5B 45 43 48  Sources :...[ECH
+00B0: 4F 5D 20 09 53 59 53 3A 20 32 30 30 30 30 30 30  O] .SYS: 2000000
+00C0: 30 30 20 48 7A 20 28 32 30 30 20 4D 48 7A 29 0D  00 Hz (200 MHz).
+00D0: 0A 09 5B 45 43 48 4F 5D 20 09 55 53 42 3A 20 34  ..[ECHO] .USB: 4
+00E0: 38 30 30 30 30 30 30 20 48 7A 20 28 34 38 20 4D  8000000 Hz (48 M
+00F0: 48 7A 29 0D 0A 09 5B 45 43 48 4F 5D 20 09 50 45  Hz)...[ECHO] .PE
+0100: 52 3A 20 34 38 30 30 30 30 30 30 20 48 7A 20 28  R: 48000000 Hz (
+0110: 34 38 20 4D 48 7A 29 0D 0A 09 5B 45 43 48 4F 5D  48 MHz)...[ECHO]
+0120: 20 09 41 44 43 3A 20 34 38 30 30 30 30 30 30 20   .ADC: 48000000 
+0130: 48 7A 20 28 34 38 20 4D 48 7A 29 0D 0A 5B 49 4E  Hz (48 MHz)..[IN
+0140: 46 4F 5D 20 41 44 43 20 69 6E 69 74 69 61 6C 69  FO] ADC initiali
+0150: 7A 69 6E 67 0D 0A 56 52 45 47 20 72 65 67 69 73  zing..VREG regis
+0160: 74 65 72 3A 20 30 78 30 30 30 30 31 30 44 31 0D  ter: 0x000010D1.
+0170: 0A 5B 49 4E 46 4F 5D 20 49 32 43 20 73 63 61 6E  .[INFO] I2C scan
+0180: 6E 69 6E 67 2E 2E 2E 0D 0A 5B 49 4E 46 4F 5D 20  ning.....[INFO] 
+0190: 45 45 50 52 4F 4D 20 69 6E 69 74 69 61 6C 69 7A  EEPROM initializ
+01A0: 69 6E 67 2E 2E 2E 0D 0A 5B 49 4E 46 4F 5D 20 4D  ing.....[INFO] M
+01B0: 43 50 32 33 30 31 37 20 69 6E 69 74 69 61 6C 69  CP23017 initiali
+01C0: 7A 69 6E 67 2E 2E 2E 0D 0A 5B 49 4E 46 4F 5D 20  zing.....[INFO] 
+01D0: 48 65 61 64 6C 65 73 73 20 6D 6F 64 65 2C 20 73  Headless mode, s
+01E0: 6B 69 70 70 69 6E 67 20 64 69 73 70 6C 61 79 20  kipping display 
+01F0: 69 6E 69 74 69 61 6C 69 7A 61 74 69 6F 6E 0D 0A  initialization..
+0200: 5B 49 4E 46 4F 5D 20 49 6E 69 74 69 61 6C 69 7A  [INFO] Initializ
+0210: 69 6E 67 20 48 4C 57 38 30 33 32 2E 2E 2E 0D 0A  ing HLW8032.....
+0220: 5B 49 4E 46 4F 5D 20 49 6E 69 74 69 61 6C 69 7A  [INFO] Initializ
+0230: 69 6E 67 20 62 75 74 74 6F 6E 73 2E 2E 2E 0D 0A  ing buttons.....
+0240: 5B 49 4E 46 4F 5D 20 4C 6F 61 64 65 64 20 6E 65  [INFO] Loaded ne
+0250: 74 77 6F 72 6B 20 63 6F 6E 66 69 67 20 66 72 6F  twork config fro
+0260: 6D 20 45 45 50 52 4F 4D 2E 0D 0A 5B 49 4E 46 4F  m EEPROM...[INFO
+0270: 5D 20 57 35 35 30 30 20 76 65 72 73 69 6F 6E 3A  ] W5500 version:
+0280: 20 30 78 30 34 0D 0A 5B 49 4E 46 4F 5D 20 57 35   0x04..[INFO] W5
+0290: 35 30 30 20 50 48 59 20 6C 69 6E 6B 20 69 73 20  500 PHY link is 
+02A0: 75 70 0D 0A 09 5B 45 43 48 4F 5D 20 3D 3D 3D 3D  up...[ECHO] ====
+02B0: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
+02C0: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
+02D0: 3D 3D 3D 3D 3D 3D 3D 3D 3D 0D 0A 09 5B 45 43 48  =========...[ECH
+02E0: 4F 5D 20 20 57 35 35 30 30 20 6E 65 74 77 6F 72  O]  W5500 networ
+02F0: 6B 20 63 6F 6E 66 69 67 75 72 61 74 69 6F 6E 20  k configuration 
+0300: 3A 20 73 74 61 74 69 63 0D 0A 09 5B 45 43 48 4F  : static...[ECHO
+0310: 5D 20 20 4D 41 43 20 20 20 20 20 20 20 20 20 3A  ]  MAC         :
+0320: 20 30 30 3A 30 38 3A 44 43 3A 42 45 3A 45 46 3A   00:08:DC:BE:EF:
+0330: 39 31 0D 0A 09 5B 45 43 48 4F 5D 20 20 49 50 20  91...[ECHO]  IP 
+0340: 20 20 20 20 20 20 20 20 20 3A 20 31 39 32 2E 31           : 192.1
+0350: 36 38 2E 30 2E 31 31 0D 0A 09 5B 45 43 48 4F 5D  68.0.11...[ECHO]
+0360: 20 20 53 75 62 6E 65 74 20 4D 61 73 6B 20 3A 20    Subnet Mask : 
+0370: 32 35 35 2E 32 35 35 2E 32 35 35 2E 30 0D 0A 09  255.255.255.0...
+0380: 5B 45 43 48 4F 5D 20 20 47 61 74 65 77 61 79 20  [ECHO]  Gateway 
+0390: 20 20 20 20 3A 20 31 39 32 2E 31 36 38 2E 30 2E      : 192.168.0.
+03A0: 31 0D 0A 09 5B 45 43 48 4F 5D 20 20 44 4E 53 20  1...[ECHO]  DNS 
+03B0: 20 20 20 20 20 20 20 20 3A 20 38 2E 38 2E 38 2E          : 8.8.8.
+03C0: 38 0D 0A 09 5B 45 43 48 4F 5D 20 3D 3D 3D 3D 3D  8...[ECHO] =====
+03D0: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
+03E0: 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D  ================
+03F0: 3D 3D 3D 3D 3D 3D 3D 3D 0D 0A 0D 0A 53 59 53 54  ========....SYST
+0400: 45 4D 20 52 45 41 44 59 0D 0A 5B 49 4E 46 4F 5D  EM READY..[INFO]
+0410: 20 2D 20 53 4E 4D 50 20 3A 20 53 74 61 72 74 20   - SNMP : Start 
+0420: 53 4E 4D 50 20 41 67 65 6E 74 20 44 61 65 6D 6F  SNMP Agent Daemo
+0430: 6E 0D 0A                                         n..
+[2025-09-19 01:03:14] [SERIAL CLOSE] port=COM11
+[2025-09-19 01:03:14] [PASS] STEP 1 completed successfully
+</pre>
+</div>
+</details>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 2 Start capturing settings page</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-09-19 01:03:14</td><td>2025-09-19 01:03:19</td></tr>
+</table>
+<div class='substeps'>
+<h4>Substeps</h4>
+<details>
+<summary>
+<div class='step-title'><div>STEP 2.1 Capture PCAP</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-09-19 01:03:14</td><td>2025-09-19 01:03:15</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-09-19 01:03:14] [STEP 2.1] Capture PCAP
+[2025-09-19 01:03:14] [INFO] [PCAP-CAPTURE] tag=SNTS9R dumpcap -D:
+1. \Device\NPF_{07C319A1-9E58-4318-9A9F-4EAF55051779} (Local Area Connection* 8)
+2. \Device\NPF_{A1BCACFC-2218-46E8-A4CE-D4FC8BC56A6A} (Local Area Connection* 7)
+3. \Device\NPF_{D98A5C30-FC9B-4015-8593-8FA9DE063566} (Local Area Connection* 6)
+4. \Device\NPF_{CED0C9EE-D3D8-4AF6-A642-236D14517B9D} (Bluetooth Network Connection)
+5. \Device\NPF_{50788C95-4726-4446-BEF9-1BDAD79385DF} (Wi-Fi)
+6. \Device\NPF_{F7EF8ACA-533A-4582-A44C-AA6FD3B30B80} (Local Area Connection* 10)
+7. \Device\NPF_{D62A827E-C7BA-46D2-ACE5-772C43BD80F7} (Local Area Connection* 9)
+8. \Device\NPF_{1342939B-DAE3-4B54-A305-87408E83C962} (Ethernet 2)
+9. \Device\NPF_{8FBED501-71F5-4B70-96B8-C2464A93CE8E} (Ethernet)
+10. \Device\NPF_{7CB6D269-0786-7E57-C13F-6CDFFF02FB02} (Eddie)
+11. \Device\NPF_Loopback (Adapter for loopback traffic capture)
+[2025-09-19 01:03:14] [INFO] [PCAP-CAPTURE] tag=SNTS9R resolved interface &#x27;Ethernet&#x27; -&gt; &#x27;9&#x27;
+[2025-09-19 01:03:14] [INFO] [PCAP-CAPTURE] tag=SNTS9R tool=dumpcap exe=C:\Program Files\Wireshark\dumpcap.exe
+[2025-09-19 01:03:14] [INFO] [PCAP-CAPTURE] tag=SNTS9R interface=&#x27;Ethernet&#x27; promiscuous=False snaplen=1518 duration_s=5 packet_count=None file_format=pcap ring_files=None ring_megabytes=None
+[2025-09-19 01:03:14] [INFO] [PCAP-CAPTURE] tag=SNTS9R bpf=&#x27;host 192.168.0.11&#x27;
+[2025-09-19 01:03:14] [INFO] [PCAP-CAPTURE] tag=SNTS9R output_path=report_tc_network_pcap\capture_settings.pcap
+[2025-09-19 01:03:14] [INFO] [PCAP-CAPTURE] tag=SNTS9R cwd=G:\_GitHub\HW_10-In-Rack_PDU\tests\tc_network_pcap
+[2025-09-19 01:03:14] [INFO] [PCAP-CAPTURE] tag=SNTS9R argv=&quot;C:\Program Files\Wireshark\dumpcap.exe&quot; -i 9 -F pcap -w report_tc_network_pcap\capture_settings.pcap -p -s 1518 -a duration:5 -f &quot;host 192.168.0.11&quot;
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 2.2 Access the settings page</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-09-19 01:03:15</td><td>2025-09-19 01:03:19</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-09-19 01:03:15] [STEP 2.2] Access the settings page
+[2025-09-19 01:03:15] [INFO] [HTTP GET] http://192.168.0.11:80/settings.html timeout=5.0s headers=none data_len=0
+[2025-09-19 01:03:15] [PASS] STEP 2.2 completed successfully
+[2025-09-19 01:03:19] [INFO] [PCAP-CAPTURE] tag=SNTS9R exit_code=0 elapsed_s=5.280 timed_stop=False
+[2025-09-19 01:03:19] [INFO] [PCAP-CAPTURE STDERR]
+Capturing on &#x27;Ethernet&#x27;
+File: report_tc_network_pcap\capture_settings.pcap
+
+Packets: 1 
+Packets: 4 
+Packets: 5 
+Packets: 16 
+Packets captured: 16
+Packets received/dropped on interface &#x27;Ethernet&#x27;: 16/0 (pcap:0/dumpcap:0/flushed:0/ps_ifdrop:0) (100.0%)
+[2025-09-19 01:03:19] [INFO] [PCAP-CAPTURE] tag=SNTS9R output_size=4745 bytes
+[2025-09-19 01:03:19] [PASS] STEP 2.1 completed successfully
+</pre>
+</div>
+</details>
+</div>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 3 Start capturing control page</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-09-19 01:03:19</td><td>2025-09-19 01:03:24</td></tr>
+</table>
+<div class='substeps'>
+<h4>Substeps</h4>
+<details>
+<summary>
+<div class='step-title'><div>STEP 3.1 Capture PCAP</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-09-19 01:03:19</td><td>2025-09-19 01:03:20</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-09-19 01:03:19] [STEP 3.1] Capture PCAP
+[2025-09-19 01:03:19] [INFO] [PCAP-CAPTURE] tag=13MSRN dumpcap -D:
+1. \Device\NPF_{07C319A1-9E58-4318-9A9F-4EAF55051779} (Local Area Connection* 8)
+2. \Device\NPF_{A1BCACFC-2218-46E8-A4CE-D4FC8BC56A6A} (Local Area Connection* 7)
+3. \Device\NPF_{D98A5C30-FC9B-4015-8593-8FA9DE063566} (Local Area Connection* 6)
+4. \Device\NPF_{CED0C9EE-D3D8-4AF6-A642-236D14517B9D} (Bluetooth Network Connection)
+5. \Device\NPF_{50788C95-4726-4446-BEF9-1BDAD79385DF} (Wi-Fi)
+6. \Device\NPF_{F7EF8ACA-533A-4582-A44C-AA6FD3B30B80} (Local Area Connection* 10)
+7. \Device\NPF_{D62A827E-C7BA-46D2-ACE5-772C43BD80F7} (Local Area Connection* 9)
+8. \Device\NPF_{1342939B-DAE3-4B54-A305-87408E83C962} (Ethernet 2)
+9. \Device\NPF_{8FBED501-71F5-4B70-96B8-C2464A93CE8E} (Ethernet)
+10. \Device\NPF_{7CB6D269-0786-7E57-C13F-6CDFFF02FB02} (Eddie)
+11. \Device\NPF_Loopback (Adapter for loopback traffic capture)
+[2025-09-19 01:03:19] [INFO] [PCAP-CAPTURE] tag=13MSRN resolved interface &#x27;Ethernet&#x27; -&gt; &#x27;9&#x27;
+[2025-09-19 01:03:19] [INFO] [PCAP-CAPTURE] tag=13MSRN tool=dumpcap exe=C:\Program Files\Wireshark\dumpcap.exe
+[2025-09-19 01:03:19] [INFO] [PCAP-CAPTURE] tag=13MSRN interface=&#x27;Ethernet&#x27; promiscuous=False snaplen=0 duration_s=5 packet_count=None file_format=pcap ring_files=None ring_megabytes=None
+[2025-09-19 01:03:19] [INFO] [PCAP-CAPTURE] tag=13MSRN bpf=&#x27;host 192.168.0.11&#x27;
+[2025-09-19 01:03:19] [INFO] [PCAP-CAPTURE] tag=13MSRN output_path=report_tc_network_pcap\capture_control.pcap
+[2025-09-19 01:03:19] [INFO] [PCAP-CAPTURE] tag=13MSRN cwd=G:\_GitHub\HW_10-In-Rack_PDU\tests\tc_network_pcap
+[2025-09-19 01:03:19] [INFO] [PCAP-CAPTURE] tag=13MSRN argv=&quot;C:\Program Files\Wireshark\dumpcap.exe&quot; -i 9 -F pcap -w report_tc_network_pcap\capture_control.pcap -p -s 0 -a duration:5 -f &quot;host 192.168.0.11&quot;
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 3.2 Access the control page</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-09-19 01:03:20</td><td>2025-09-19 01:03:24</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-09-19 01:03:20] [STEP 3.2] Access the control page
+[2025-09-19 01:03:20] [INFO] [HTTP GET] http://192.168.0.11:80/control.html timeout=5.0s headers=none data_len=0
+[2025-09-19 01:03:20] [PASS] STEP 3.2 completed successfully
+[2025-09-19 01:03:24] [INFO] [PCAP-CAPTURE] tag=13MSRN exit_code=0 elapsed_s=5.215 timed_stop=False
+[2025-09-19 01:03:24] [INFO] [PCAP-CAPTURE STDERR]
+Capturing on &#x27;Ethernet&#x27;
+File: report_tc_network_pcap\capture_control.pcap
+
+Packets: 1 
+Packets: 16 
+Packets captured: 16
+Packets received/dropped on interface &#x27;Ethernet&#x27;: 16/0 (pcap:0/dumpcap:0/flushed:0/ps_ifdrop:0) (100.0%)
+[2025-09-19 01:03:24] [INFO] [PCAP-CAPTURE] tag=13MSRN output_size=8295 bytes
+[2025-09-19 01:03:24] [PASS] STEP 3.1 completed successfully
+</pre>
+</div>
+</details>
+</div>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 4 Multi-action step with 6 sub-steps</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-09-19 01:03:24</td><td>2025-09-19 01:03:26</td></tr>
+</table>
+<div class='substeps'>
+<h4>Substeps</h4>
+<details>
+<summary>
+<div class='step-title'><div>STEP 4.1 Validate IP address</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-09-19 01:03:24</td><td>2025-09-19 01:03:25</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-09-19 01:03:24] [STEP 4.1] Validate IP address
+[2025-09-19 01:03:24] [INFO] [PCAP-EXPECT] checkFrames start path=report_tc_network_pcap\capture_settings.pcap filter=http.response and ip.addr==192.168.0.11 ordered=False expect_count=None n_expected=1
+[2025-09-19 01:03:24] [INFO] [PCAP-READ] path=report_tc_network_pcap\capture_settings.pcap filter=http.response and ip.addr==192.168.0.11
+[2025-09-19 01:03:24] [INFO] [PCAP-CHECK] tshark fields start filter=http.response and ip.addr==192.168.0.11
+[2025-09-19 01:03:25] [TSHARK-FIELDS] cmd=tshark -r report_tc_network_pcap\capture_settings.pcap -o tcp.desegment_tcp_streams:TRUE -o http.desegment_body:TRUE -T fields -E header=n -E separator=	 -E occurrence=f -e frame.number -e frame.len -e frame.time_epoch -e eth.src -e eth.dst -e vlan.id -e vlan.priority -e http.file_data -e tcp.reassembled.data -e tcp.payload -e data.data -Y &quot;http.response and ip.addr==192.168.0.11&quot;
+[2025-09-19 01:03:25] [TSHARK-FIELDS] rc=0
+[2025-09-19 01:03:25] [TSHARK-FIELDS OUT]
+12	421	1758236595.288713000	00:08:dc:be:ef:91	10:ff:e0:03:49:ac			3c21444f43545950452068746d6c3e3c68746d6c3e3c686561643e3c6d65746120636861727365743d225554462d38223e3c6d657461206e616d653d2276696577706f72742220636f6e74656e743d2277696474683d6465766963652d77696474682c696e697469616c2d7363616c653d312e30223e3c7469746c653e454e455247495320504455202d2053657474696e67733c2f7469746c653e3c7374796c653e2a7b6d617267696e3a303b70616464696e673a303b626f782d73697a696e673a626f726465722d626f783b666f6e742d66616d696c793a73616e732d73657269667d626f64797b6261636b67726f756e643a233161316432333b636f6c6f723a236534653465347d617b636f6c6f723a236161613b746578742d6465636f726174696f6e3a6e6f6e657d613a686f7665727b636f6c6f723a236666667d2e746f706261727b77696474683a3130303b6865696768743a353070783b6261636b67726f756e643a233234323733313b646973706c61793a666c65783b616c69676e2d6974656d733a63656e7465723b70616464696e673a3020323070787d2e746f706261722068317b666f6e742d73697a653a312e3272656d3b636f6c6f723a236666667d2e636f6e7461696e65727b646973706c61793a666c65783b77696474683a3130303b6865696768743a63616c63283130307668202d2035307078297d2e736964656261727b77696474683a32323070783b6261636b67726f756e643a233265333233633b70616464696e673a3230707820307d2e7369646562617220756c7b6c6973742d7374796c653a6e6f6e657d2e7369646562617220756c206c697b70616464696e673a3130707820323070787d2e7369646562617220756c206c693a686f7665727b6261636b67726f756e643a233362343034647d2e6d61696e2d636f6e74656e747b666c65783a313b70616464696e673a323070783b6f766572666c6f772d793a6175746f7d68327b6d617267696e2d626f74746f6d3a2e3572656d7d68727b626f726465723a6e6f6e653b626f726465722d746f703a31707820736f6c696420233333333b6d617267696e3a3172656d20307d2e666f726d2d67726f75707b646973706c61793a666c65783b616c69676e2d6974656d733a63656e7465723b6d617267696e2d626f74746f6d3a2e373572656d7d2e666f726d2d67726f7570206c6162656c7b77696474683a31363070783b6d617267696e2d72696768743a313070787d2e666f726d2d67726f757020696e7075745b747970653d746578745d2c2e666f726d2d67726f757020696e7075745b747970653d726164696f5d7b70616464696e673a3870783b626f726465723a6e6f6e653b626f726465722d7261646975733a3470787d2e666f726d2d67726f757020696e7075745b747970653d746578745d7b666c65783a313b6d61782d77696474683a32303070783b6d617267696e2d72696768743a313070787d2e62746e7b6261636b67726f756e643a233366613766663b626f726465723a6e6f6e653b70616464696e673a3130707820313670783b636f6c6f723a236666663b637572736f723a706f696e7465723b626f726465722d7261646975733a3470783b666f6e742d73697a653a2e3972656d7d2e62746e3a686f7665727b6261636b67726f756e643a233166386165337d2e6d616e75616c737b6d617267696e2d746f703a3272656d7d3c2f7374796c653e3c2f686561643e3c626f64793e3c64697620636c6173733d22746f70626172223e3c68313e454e4552474953205044553c2f68313e3c2f6469763e3c64697620636c6173733d22636f6e7461696e6572223e3c6e617620636c6173733d2273696465626172223e3c756c3e3c6c693e3c6120687265663d22636f6e74726f6c2e68746d6c223e436f6e74726f6c3c2f613e3c2f6c693e3c6c693e3c6120687265663d2273657474696e67732e68746d6c223e53657474696e67733c2f613e3c2f6c693e3c6c693e3c6120687265663d2268656c702e68746d6c223e48656c703c2f613e3c2f6c693e3c6c693e3c6120687265663d22757365725f6d616e75616c2e68746d6c223e55736572204d616e75616c3c2f613e3c2f6c693e3c6c693e3c6120687265663d2270726f6772616d6d696e675f6d616e75616c2e68746d6c223e50726f6772616d6d696e67204d616e75616c3c2f613e3c2f6c693e3c2f756c3e3c2f6e61763e3c6d61696e20636c6173733d226d61696e2d636f6e74656e74223e3c68323e53657474696e67733c2f68323e3c666f726d206d6574686f643d22706f73742220616374696f6e3d222f73657474696e6773223e3c68333e4e6574776f726b2053657474696e67733c2f68333e3c68723e3c64697620636c6173733d22666f726d2d67726f7570223e3c6c6162656c20666f723d226970223e495020416464726573733a3c2f6c6162656c3e3c696e70757420747970653d2274657874222069643d22697022206e616d653d226970222076616c75653d223139322e3136382e302e3131223e3c2f6469763e3c64697620636c6173733d22666f726d2d67726f7570223e3c6c6162656c20666f723d2267617465776179223e44656661756c7420476174657761793a3c2f6c6162656c3e3c696e70757420747970653d2274657874222069643d226761746577617922206e616d653d2267617465776179... [truncated 10084 chars]
+[2025-09-19 01:03:25] [TSHARK-VLAN] cmd=tshark -r report_tc_network_pcap\capture_settings.pcap -T fields -E header=n -E separator=	 -E occurrence=a -e vlan.id -e vlan.priority -Y &quot;http.response and ip.addr==192.168.0.11&quot;
+[2025-09-19 01:03:25] [TSHARK-VLAN] rc=0
+[2025-09-19 01:03:25] [TSHARK-VLAN OUT]
+	
+
+[2025-09-19 01:03:25] [INFO] [PCAP-READ] parsed=1
+[2025-09-19 01:03:25] [INFO] [PCAP-READ] fnum=12 len=421 t=1758236595288712960ns src=00:08:dc:be:ef:91 dst=10:ff:e0:03:49:ac vlan=[]
+[2025-09-19 01:03:25] [INFO] [PCAP-EXPECT] unordered match exp#1 ok {&#x27;payload_patterns&#x27;: [{&#x27;contains_ascii&#x27;: &#x27;192.168.0.11&#x27;}]}
+[2025-09-19 01:03:25] [INFO] [PCAP-EXPECT] validated 1 expected frame(s) (unordered) in report_tc_network_pcap\capture_settings.pcap
+[2025-09-19 01:03:25] [PASS] STEP 4.1 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 4.2 Validate Gateway address</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-09-19 01:03:25</td><td>2025-09-19 01:03:25</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-09-19 01:03:25] [STEP 4.2] Validate Gateway address
+[2025-09-19 01:03:25] [INFO] [PCAP-EXPECT] checkFrames start path=report_tc_network_pcap\capture_settings.pcap filter=http.response and ip.addr==192.168.0.11 ordered=False expect_count=None n_expected=1
+[2025-09-19 01:03:25] [INFO] [PCAP-READ] path=report_tc_network_pcap\capture_settings.pcap filter=http.response and ip.addr==192.168.0.11
+[2025-09-19 01:03:25] [INFO] [PCAP-CHECK] tshark fields start filter=http.response and ip.addr==192.168.0.11
+[2025-09-19 01:03:25] [TSHARK-FIELDS] cmd=tshark -r report_tc_network_pcap\capture_settings.pcap -o tcp.desegment_tcp_streams:TRUE -o http.desegment_body:TRUE -T fields -E header=n -E separator=	 -E occurrence=f -e frame.number -e frame.len -e frame.time_epoch -e eth.src -e eth.dst -e vlan.id -e vlan.priority -e http.file_data -e tcp.reassembled.data -e tcp.payload -e data.data -Y &quot;http.response and ip.addr==192.168.0.11&quot;
+[2025-09-19 01:03:25] [TSHARK-FIELDS] rc=0
+[2025-09-19 01:03:25] [TSHARK-FIELDS OUT]
+12	421	1758236595.288713000	00:08:dc:be:ef:91	10:ff:e0:03:49:ac			3c21444f43545950452068746d6c3e3c68746d6c3e3c686561643e3c6d65746120636861727365743d225554462d38223e3c6d657461206e616d653d2276696577706f72742220636f6e74656e743d2277696474683d6465766963652d77696474682c696e697469616c2d7363616c653d312e30223e3c7469746c653e454e455247495320504455202d2053657474696e67733c2f7469746c653e3c7374796c653e2a7b6d617267696e3a303b70616464696e673a303b626f782d73697a696e673a626f726465722d626f783b666f6e742d66616d696c793a73616e732d73657269667d626f64797b6261636b67726f756e643a233161316432333b636f6c6f723a236534653465347d617b636f6c6f723a236161613b746578742d6465636f726174696f6e3a6e6f6e657d613a686f7665727b636f6c6f723a236666667d2e746f706261727b77696474683a3130303b6865696768743a353070783b6261636b67726f756e643a233234323733313b646973706c61793a666c65783b616c69676e2d6974656d733a63656e7465723b70616464696e673a3020323070787d2e746f706261722068317b666f6e742d73697a653a312e3272656d3b636f6c6f723a236666667d2e636f6e7461696e65727b646973706c61793a666c65783b77696474683a3130303b6865696768743a63616c63283130307668202d2035307078297d2e736964656261727b77696474683a32323070783b6261636b67726f756e643a233265333233633b70616464696e673a3230707820307d2e7369646562617220756c7b6c6973742d7374796c653a6e6f6e657d2e7369646562617220756c206c697b70616464696e673a3130707820323070787d2e7369646562617220756c206c693a686f7665727b6261636b67726f756e643a233362343034647d2e6d61696e2d636f6e74656e747b666c65783a313b70616464696e673a323070783b6f766572666c6f772d793a6175746f7d68327b6d617267696e2d626f74746f6d3a2e3572656d7d68727b626f726465723a6e6f6e653b626f726465722d746f703a31707820736f6c696420233333333b6d617267696e3a3172656d20307d2e666f726d2d67726f75707b646973706c61793a666c65783b616c69676e2d6974656d733a63656e7465723b6d617267696e2d626f74746f6d3a2e373572656d7d2e666f726d2d67726f7570206c6162656c7b77696474683a31363070783b6d617267696e2d72696768743a313070787d2e666f726d2d67726f757020696e7075745b747970653d746578745d2c2e666f726d2d67726f757020696e7075745b747970653d726164696f5d7b70616464696e673a3870783b626f726465723a6e6f6e653b626f726465722d7261646975733a3470787d2e666f726d2d67726f757020696e7075745b747970653d746578745d7b666c65783a313b6d61782d77696474683a32303070783b6d617267696e2d72696768743a313070787d2e62746e7b6261636b67726f756e643a233366613766663b626f726465723a6e6f6e653b70616464696e673a3130707820313670783b636f6c6f723a236666663b637572736f723a706f696e7465723b626f726465722d7261646975733a3470783b666f6e742d73697a653a2e3972656d7d2e62746e3a686f7665727b6261636b67726f756e643a233166386165337d2e6d616e75616c737b6d617267696e2d746f703a3272656d7d3c2f7374796c653e3c2f686561643e3c626f64793e3c64697620636c6173733d22746f70626172223e3c68313e454e4552474953205044553c2f68313e3c2f6469763e3c64697620636c6173733d22636f6e7461696e6572223e3c6e617620636c6173733d2273696465626172223e3c756c3e3c6c693e3c6120687265663d22636f6e74726f6c2e68746d6c223e436f6e74726f6c3c2f613e3c2f6c693e3c6c693e3c6120687265663d2273657474696e67732e68746d6c223e53657474696e67733c2f613e3c2f6c693e3c6c693e3c6120687265663d2268656c702e68746d6c223e48656c703c2f613e3c2f6c693e3c6c693e3c6120687265663d22757365725f6d616e75616c2e68746d6c223e55736572204d616e75616c3c2f613e3c2f6c693e3c6c693e3c6120687265663d2270726f6772616d6d696e675f6d616e75616c2e68746d6c223e50726f6772616d6d696e67204d616e75616c3c2f613e3c2f6c693e3c2f756c3e3c2f6e61763e3c6d61696e20636c6173733d226d61696e2d636f6e74656e74223e3c68323e53657474696e67733c2f68323e3c666f726d206d6574686f643d22706f73742220616374696f6e3d222f73657474696e6773223e3c68333e4e6574776f726b2053657474696e67733c2f68333e3c68723e3c64697620636c6173733d22666f726d2d67726f7570223e3c6c6162656c20666f723d226970223e495020416464726573733a3c2f6c6162656c3e3c696e70757420747970653d2274657874222069643d22697022206e616d653d226970222076616c75653d223139322e3136382e302e3131223e3c2f6469763e3c64697620636c6173733d22666f726d2d67726f7570223e3c6c6162656c20666f723d2267617465776179223e44656661756c7420476174657761793a3c2f6c6162656c3e3c696e70757420747970653d2274657874222069643d226761746577617922206e616d653d2267617465776179... [truncated 10084 chars]
+[2025-09-19 01:03:25] [TSHARK-VLAN] cmd=tshark -r report_tc_network_pcap\capture_settings.pcap -T fields -E header=n -E separator=	 -E occurrence=a -e vlan.id -e vlan.priority -Y &quot;http.response and ip.addr==192.168.0.11&quot;
+[2025-09-19 01:03:25] [TSHARK-VLAN] rc=0
+[2025-09-19 01:03:25] [TSHARK-VLAN OUT]
+	
+
+[2025-09-19 01:03:25] [INFO] [PCAP-READ] parsed=1
+[2025-09-19 01:03:25] [INFO] [PCAP-READ] fnum=12 len=421 t=1758236595288712960ns src=00:08:dc:be:ef:91 dst=10:ff:e0:03:49:ac vlan=[]
+[2025-09-19 01:03:25] [INFO] [PCAP-EXPECT] unordered match exp#1 ok {&#x27;payload_patterns&#x27;: [{&#x27;contains_ascii&#x27;: &#x27;192.168.0.1&#x27;}]}
+[2025-09-19 01:03:25] [INFO] [PCAP-EXPECT] validated 1 expected frame(s) (unordered) in report_tc_network_pcap\capture_settings.pcap
+[2025-09-19 01:03:25] [PASS] STEP 4.2 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 4.3 Validate Subnet mask</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-09-19 01:03:25</td><td>2025-09-19 01:03:25</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-09-19 01:03:25] [STEP 4.3] Validate Subnet mask
+[2025-09-19 01:03:25] [INFO] [PCAP-EXPECT] checkFrames start path=report_tc_network_pcap\capture_settings.pcap filter=http.response and ip.addr==192.168.0.11 ordered=False expect_count=None n_expected=1
+[2025-09-19 01:03:25] [INFO] [PCAP-READ] path=report_tc_network_pcap\capture_settings.pcap filter=http.response and ip.addr==192.168.0.11
+[2025-09-19 01:03:25] [INFO] [PCAP-CHECK] tshark fields start filter=http.response and ip.addr==192.168.0.11
+[2025-09-19 01:03:25] [TSHARK-FIELDS] cmd=tshark -r report_tc_network_pcap\capture_settings.pcap -o tcp.desegment_tcp_streams:TRUE -o http.desegment_body:TRUE -T fields -E header=n -E separator=	 -E occurrence=f -e frame.number -e frame.len -e frame.time_epoch -e eth.src -e eth.dst -e vlan.id -e vlan.priority -e http.file_data -e tcp.reassembled.data -e tcp.payload -e data.data -Y &quot;http.response and ip.addr==192.168.0.11&quot;
+[2025-09-19 01:03:25] [TSHARK-FIELDS] rc=0
+[2025-09-19 01:03:25] [TSHARK-FIELDS OUT]
+12	421	1758236595.288713000	00:08:dc:be:ef:91	10:ff:e0:03:49:ac			3c21444f43545950452068746d6c3e3c68746d6c3e3c686561643e3c6d65746120636861727365743d225554462d38223e3c6d657461206e616d653d2276696577706f72742220636f6e74656e743d2277696474683d6465766963652d77696474682c696e697469616c2d7363616c653d312e30223e3c7469746c653e454e455247495320504455202d2053657474696e67733c2f7469746c653e3c7374796c653e2a7b6d617267696e3a303b70616464696e673a303b626f782d73697a696e673a626f726465722d626f783b666f6e742d66616d696c793a73616e732d73657269667d626f64797b6261636b67726f756e643a233161316432333b636f6c6f723a236534653465347d617b636f6c6f723a236161613b746578742d6465636f726174696f6e3a6e6f6e657d613a686f7665727b636f6c6f723a236666667d2e746f706261727b77696474683a3130303b6865696768743a353070783b6261636b67726f756e643a233234323733313b646973706c61793a666c65783b616c69676e2d6974656d733a63656e7465723b70616464696e673a3020323070787d2e746f706261722068317b666f6e742d73697a653a312e3272656d3b636f6c6f723a236666667d2e636f6e7461696e65727b646973706c61793a666c65783b77696474683a3130303b6865696768743a63616c63283130307668202d2035307078297d2e736964656261727b77696474683a32323070783b6261636b67726f756e643a233265333233633b70616464696e673a3230707820307d2e7369646562617220756c7b6c6973742d7374796c653a6e6f6e657d2e7369646562617220756c206c697b70616464696e673a3130707820323070787d2e7369646562617220756c206c693a686f7665727b6261636b67726f756e643a233362343034647d2e6d61696e2d636f6e74656e747b666c65783a313b70616464696e673a323070783b6f766572666c6f772d793a6175746f7d68327b6d617267696e2d626f74746f6d3a2e3572656d7d68727b626f726465723a6e6f6e653b626f726465722d746f703a31707820736f6c696420233333333b6d617267696e3a3172656d20307d2e666f726d2d67726f75707b646973706c61793a666c65783b616c69676e2d6974656d733a63656e7465723b6d617267696e2d626f74746f6d3a2e373572656d7d2e666f726d2d67726f7570206c6162656c7b77696474683a31363070783b6d617267696e2d72696768743a313070787d2e666f726d2d67726f757020696e7075745b747970653d746578745d2c2e666f726d2d67726f757020696e7075745b747970653d726164696f5d7b70616464696e673a3870783b626f726465723a6e6f6e653b626f726465722d7261646975733a3470787d2e666f726d2d67726f757020696e7075745b747970653d746578745d7b666c65783a313b6d61782d77696474683a32303070783b6d617267696e2d72696768743a313070787d2e62746e7b6261636b67726f756e643a233366613766663b626f726465723a6e6f6e653b70616464696e673a3130707820313670783b636f6c6f723a236666663b637572736f723a706f696e7465723b626f726465722d7261646975733a3470783b666f6e742d73697a653a2e3972656d7d2e62746e3a686f7665727b6261636b67726f756e643a233166386165337d2e6d616e75616c737b6d617267696e2d746f703a3272656d7d3c2f7374796c653e3c2f686561643e3c626f64793e3c64697620636c6173733d22746f70626172223e3c68313e454e4552474953205044553c2f68313e3c2f6469763e3c64697620636c6173733d22636f6e7461696e6572223e3c6e617620636c6173733d2273696465626172223e3c756c3e3c6c693e3c6120687265663d22636f6e74726f6c2e68746d6c223e436f6e74726f6c3c2f613e3c2f6c693e3c6c693e3c6120687265663d2273657474696e67732e68746d6c223e53657474696e67733c2f613e3c2f6c693e3c6c693e3c6120687265663d2268656c702e68746d6c223e48656c703c2f613e3c2f6c693e3c6c693e3c6120687265663d22757365725f6d616e75616c2e68746d6c223e55736572204d616e75616c3c2f613e3c2f6c693e3c6c693e3c6120687265663d2270726f6772616d6d696e675f6d616e75616c2e68746d6c223e50726f6772616d6d696e67204d616e75616c3c2f613e3c2f6c693e3c2f756c3e3c2f6e61763e3c6d61696e20636c6173733d226d61696e2d636f6e74656e74223e3c68323e53657474696e67733c2f68323e3c666f726d206d6574686f643d22706f73742220616374696f6e3d222f73657474696e6773223e3c68333e4e6574776f726b2053657474696e67733c2f68333e3c68723e3c64697620636c6173733d22666f726d2d67726f7570223e3c6c6162656c20666f723d226970223e495020416464726573733a3c2f6c6162656c3e3c696e70757420747970653d2274657874222069643d22697022206e616d653d226970222076616c75653d223139322e3136382e302e3131223e3c2f6469763e3c64697620636c6173733d22666f726d2d67726f7570223e3c6c6162656c20666f723d2267617465776179223e44656661756c7420476174657761793a3c2f6c6162656c3e3c696e70757420747970653d2274657874222069643d226761746577617922206e616d653d2267617465776179... [truncated 10084 chars]
+[2025-09-19 01:03:25] [TSHARK-VLAN] cmd=tshark -r report_tc_network_pcap\capture_settings.pcap -T fields -E header=n -E separator=	 -E occurrence=a -e vlan.id -e vlan.priority -Y &quot;http.response and ip.addr==192.168.0.11&quot;
+[2025-09-19 01:03:25] [TSHARK-VLAN] rc=0
+[2025-09-19 01:03:25] [TSHARK-VLAN OUT]
+	
+
+[2025-09-19 01:03:25] [INFO] [PCAP-READ] parsed=1
+[2025-09-19 01:03:25] [INFO] [PCAP-READ] fnum=12 len=421 t=1758236595288712960ns src=00:08:dc:be:ef:91 dst=10:ff:e0:03:49:ac vlan=[]
+[2025-09-19 01:03:25] [INFO] [PCAP-EXPECT] unordered match exp#1 ok {&#x27;payload_patterns&#x27;: [{&#x27;contains_ascii&#x27;: &#x27;255.255.255.0&#x27;}]}
+[2025-09-19 01:03:25] [INFO] [PCAP-EXPECT] validated 1 expected frame(s) (unordered) in report_tc_network_pcap\capture_settings.pcap
+[2025-09-19 01:03:25] [PASS] STEP 4.3 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 4.4 Validate DNS address</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-09-19 01:03:25</td><td>2025-09-19 01:03:26</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-09-19 01:03:25] [STEP 4.4] Validate DNS address
+[2025-09-19 01:03:25] [INFO] [PCAP-EXPECT] checkFrames start path=report_tc_network_pcap\capture_settings.pcap filter=http.response and ip.addr==192.168.0.11 ordered=False expect_count=None n_expected=1
+[2025-09-19 01:03:25] [INFO] [PCAP-READ] path=report_tc_network_pcap\capture_settings.pcap filter=http.response and ip.addr==192.168.0.11
+[2025-09-19 01:03:25] [INFO] [PCAP-CHECK] tshark fields start filter=http.response and ip.addr==192.168.0.11
+[2025-09-19 01:03:25] [TSHARK-FIELDS] cmd=tshark -r report_tc_network_pcap\capture_settings.pcap -o tcp.desegment_tcp_streams:TRUE -o http.desegment_body:TRUE -T fields -E header=n -E separator=	 -E occurrence=f -e frame.number -e frame.len -e frame.time_epoch -e eth.src -e eth.dst -e vlan.id -e vlan.priority -e http.file_data -e tcp.reassembled.data -e tcp.payload -e data.data -Y &quot;http.response and ip.addr==192.168.0.11&quot;
+[2025-09-19 01:03:25] [TSHARK-FIELDS] rc=0
+[2025-09-19 01:03:25] [TSHARK-FIELDS OUT]
+12	421	1758236595.288713000	00:08:dc:be:ef:91	10:ff:e0:03:49:ac			3c21444f43545950452068746d6c3e3c68746d6c3e3c686561643e3c6d65746120636861727365743d225554462d38223e3c6d657461206e616d653d2276696577706f72742220636f6e74656e743d2277696474683d6465766963652d77696474682c696e697469616c2d7363616c653d312e30223e3c7469746c653e454e455247495320504455202d2053657474696e67733c2f7469746c653e3c7374796c653e2a7b6d617267696e3a303b70616464696e673a303b626f782d73697a696e673a626f726465722d626f783b666f6e742d66616d696c793a73616e732d73657269667d626f64797b6261636b67726f756e643a233161316432333b636f6c6f723a236534653465347d617b636f6c6f723a236161613b746578742d6465636f726174696f6e3a6e6f6e657d613a686f7665727b636f6c6f723a236666667d2e746f706261727b77696474683a3130303b6865696768743a353070783b6261636b67726f756e643a233234323733313b646973706c61793a666c65783b616c69676e2d6974656d733a63656e7465723b70616464696e673a3020323070787d2e746f706261722068317b666f6e742d73697a653a312e3272656d3b636f6c6f723a236666667d2e636f6e7461696e65727b646973706c61793a666c65783b77696474683a3130303b6865696768743a63616c63283130307668202d2035307078297d2e736964656261727b77696474683a32323070783b6261636b67726f756e643a233265333233633b70616464696e673a3230707820307d2e7369646562617220756c7b6c6973742d7374796c653a6e6f6e657d2e7369646562617220756c206c697b70616464696e673a3130707820323070787d2e7369646562617220756c206c693a686f7665727b6261636b67726f756e643a233362343034647d2e6d61696e2d636f6e74656e747b666c65783a313b70616464696e673a323070783b6f766572666c6f772d793a6175746f7d68327b6d617267696e2d626f74746f6d3a2e3572656d7d68727b626f726465723a6e6f6e653b626f726465722d746f703a31707820736f6c696420233333333b6d617267696e3a3172656d20307d2e666f726d2d67726f75707b646973706c61793a666c65783b616c69676e2d6974656d733a63656e7465723b6d617267696e2d626f74746f6d3a2e373572656d7d2e666f726d2d67726f7570206c6162656c7b77696474683a31363070783b6d617267696e2d72696768743a313070787d2e666f726d2d67726f757020696e7075745b747970653d746578745d2c2e666f726d2d67726f757020696e7075745b747970653d726164696f5d7b70616464696e673a3870783b626f726465723a6e6f6e653b626f726465722d7261646975733a3470787d2e666f726d2d67726f757020696e7075745b747970653d746578745d7b666c65783a313b6d61782d77696474683a32303070783b6d617267696e2d72696768743a313070787d2e62746e7b6261636b67726f756e643a233366613766663b626f726465723a6e6f6e653b70616464696e673a3130707820313670783b636f6c6f723a236666663b637572736f723a706f696e7465723b626f726465722d7261646975733a3470783b666f6e742d73697a653a2e3972656d7d2e62746e3a686f7665727b6261636b67726f756e643a233166386165337d2e6d616e75616c737b6d617267696e2d746f703a3272656d7d3c2f7374796c653e3c2f686561643e3c626f64793e3c64697620636c6173733d22746f70626172223e3c68313e454e4552474953205044553c2f68313e3c2f6469763e3c64697620636c6173733d22636f6e7461696e6572223e3c6e617620636c6173733d2273696465626172223e3c756c3e3c6c693e3c6120687265663d22636f6e74726f6c2e68746d6c223e436f6e74726f6c3c2f613e3c2f6c693e3c6c693e3c6120687265663d2273657474696e67732e68746d6c223e53657474696e67733c2f613e3c2f6c693e3c6c693e3c6120687265663d2268656c702e68746d6c223e48656c703c2f613e3c2f6c693e3c6c693e3c6120687265663d22757365725f6d616e75616c2e68746d6c223e55736572204d616e75616c3c2f613e3c2f6c693e3c6c693e3c6120687265663d2270726f6772616d6d696e675f6d616e75616c2e68746d6c223e50726f6772616d6d696e67204d616e75616c3c2f613e3c2f6c693e3c2f756c3e3c2f6e61763e3c6d61696e20636c6173733d226d61696e2d636f6e74656e74223e3c68323e53657474696e67733c2f68323e3c666f726d206d6574686f643d22706f73742220616374696f6e3d222f73657474696e6773223e3c68333e4e6574776f726b2053657474696e67733c2f68333e3c68723e3c64697620636c6173733d22666f726d2d67726f7570223e3c6c6162656c20666f723d226970223e495020416464726573733a3c2f6c6162656c3e3c696e70757420747970653d2274657874222069643d22697022206e616d653d226970222076616c75653d223139322e3136382e302e3131223e3c2f6469763e3c64697620636c6173733d22666f726d2d67726f7570223e3c6c6162656c20666f723d2267617465776179223e44656661756c7420476174657761793a3c2f6c6162656c3e3c696e70757420747970653d2274657874222069643d226761746577617922206e616d653d2267617465776179... [truncated 10084 chars]
+[2025-09-19 01:03:26] [TSHARK-VLAN] cmd=tshark -r report_tc_network_pcap\capture_settings.pcap -T fields -E header=n -E separator=	 -E occurrence=a -e vlan.id -e vlan.priority -Y &quot;http.response and ip.addr==192.168.0.11&quot;
+[2025-09-19 01:03:26] [TSHARK-VLAN] rc=0
+[2025-09-19 01:03:26] [TSHARK-VLAN OUT]
+	
+
+[2025-09-19 01:03:26] [INFO] [PCAP-READ] parsed=1
+[2025-09-19 01:03:26] [INFO] [PCAP-READ] fnum=12 len=421 t=1758236595288712960ns src=00:08:dc:be:ef:91 dst=10:ff:e0:03:49:ac vlan=[]
+[2025-09-19 01:03:26] [INFO] [PCAP-EXPECT] unordered match exp#1 ok {&#x27;payload_patterns&#x27;: [{&#x27;contains_ascii&#x27;: &#x27;8.8.8.8&#x27;}]}
+[2025-09-19 01:03:26] [INFO] [PCAP-EXPECT] validated 1 expected frame(s) (unordered) in report_tc_network_pcap\capture_settings.pcap
+[2025-09-19 01:03:26] [PASS] STEP 4.4 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 4.5 Settings: Device Name present</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-09-19 01:03:26</td><td>2025-09-19 01:03:26</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-09-19 01:03:26] [STEP 4.5] Settings: Device Name present
+[2025-09-19 01:03:26] [INFO] [PCAP-EXPECT] checkFrames start path=report_tc_network_pcap\capture_settings.pcap filter=http.response and ip.addr==192.168.0.11 ordered=False expect_count=None n_expected=1
+[2025-09-19 01:03:26] [INFO] [PCAP-READ] path=report_tc_network_pcap\capture_settings.pcap filter=http.response and ip.addr==192.168.0.11
+[2025-09-19 01:03:26] [INFO] [PCAP-CHECK] tshark fields start filter=http.response and ip.addr==192.168.0.11
+[2025-09-19 01:03:26] [TSHARK-FIELDS] cmd=tshark -r report_tc_network_pcap\capture_settings.pcap -o tcp.desegment_tcp_streams:TRUE -o http.desegment_body:TRUE -T fields -E header=n -E separator=	 -E occurrence=f -e frame.number -e frame.len -e frame.time_epoch -e eth.src -e eth.dst -e vlan.id -e vlan.priority -e http.file_data -e tcp.reassembled.data -e tcp.payload -e data.data -Y &quot;http.response and ip.addr==192.168.0.11&quot;
+[2025-09-19 01:03:26] [TSHARK-FIELDS] rc=0
+[2025-09-19 01:03:26] [TSHARK-FIELDS OUT]
+12	421	1758236595.288713000	00:08:dc:be:ef:91	10:ff:e0:03:49:ac			3c21444f43545950452068746d6c3e3c68746d6c3e3c686561643e3c6d65746120636861727365743d225554462d38223e3c6d657461206e616d653d2276696577706f72742220636f6e74656e743d2277696474683d6465766963652d77696474682c696e697469616c2d7363616c653d312e30223e3c7469746c653e454e455247495320504455202d2053657474696e67733c2f7469746c653e3c7374796c653e2a7b6d617267696e3a303b70616464696e673a303b626f782d73697a696e673a626f726465722d626f783b666f6e742d66616d696c793a73616e732d73657269667d626f64797b6261636b67726f756e643a233161316432333b636f6c6f723a236534653465347d617b636f6c6f723a236161613b746578742d6465636f726174696f6e3a6e6f6e657d613a686f7665727b636f6c6f723a236666667d2e746f706261727b77696474683a3130303b6865696768743a353070783b6261636b67726f756e643a233234323733313b646973706c61793a666c65783b616c69676e2d6974656d733a63656e7465723b70616464696e673a3020323070787d2e746f706261722068317b666f6e742d73697a653a312e3272656d3b636f6c6f723a236666667d2e636f6e7461696e65727b646973706c61793a666c65783b77696474683a3130303b6865696768743a63616c63283130307668202d2035307078297d2e736964656261727b77696474683a32323070783b6261636b67726f756e643a233265333233633b70616464696e673a3230707820307d2e7369646562617220756c7b6c6973742d7374796c653a6e6f6e657d2e7369646562617220756c206c697b70616464696e673a3130707820323070787d2e7369646562617220756c206c693a686f7665727b6261636b67726f756e643a233362343034647d2e6d61696e2d636f6e74656e747b666c65783a313b70616464696e673a323070783b6f766572666c6f772d793a6175746f7d68327b6d617267696e2d626f74746f6d3a2e3572656d7d68727b626f726465723a6e6f6e653b626f726465722d746f703a31707820736f6c696420233333333b6d617267696e3a3172656d20307d2e666f726d2d67726f75707b646973706c61793a666c65783b616c69676e2d6974656d733a63656e7465723b6d617267696e2d626f74746f6d3a2e373572656d7d2e666f726d2d67726f7570206c6162656c7b77696474683a31363070783b6d617267696e2d72696768743a313070787d2e666f726d2d67726f757020696e7075745b747970653d746578745d2c2e666f726d2d67726f757020696e7075745b747970653d726164696f5d7b70616464696e673a3870783b626f726465723a6e6f6e653b626f726465722d7261646975733a3470787d2e666f726d2d67726f757020696e7075745b747970653d746578745d7b666c65783a313b6d61782d77696474683a32303070783b6d617267696e2d72696768743a313070787d2e62746e7b6261636b67726f756e643a233366613766663b626f726465723a6e6f6e653b70616464696e673a3130707820313670783b636f6c6f723a236666663b637572736f723a706f696e7465723b626f726465722d7261646975733a3470783b666f6e742d73697a653a2e3972656d7d2e62746e3a686f7665727b6261636b67726f756e643a233166386165337d2e6d616e75616c737b6d617267696e2d746f703a3272656d7d3c2f7374796c653e3c2f686561643e3c626f64793e3c64697620636c6173733d22746f70626172223e3c68313e454e4552474953205044553c2f68313e3c2f6469763e3c64697620636c6173733d22636f6e7461696e6572223e3c6e617620636c6173733d2273696465626172223e3c756c3e3c6c693e3c6120687265663d22636f6e74726f6c2e68746d6c223e436f6e74726f6c3c2f613e3c2f6c693e3c6c693e3c6120687265663d2273657474696e67732e68746d6c223e53657474696e67733c2f613e3c2f6c693e3c6c693e3c6120687265663d2268656c702e68746d6c223e48656c703c2f613e3c2f6c693e3c6c693e3c6120687265663d22757365725f6d616e75616c2e68746d6c223e55736572204d616e75616c3c2f613e3c2f6c693e3c6c693e3c6120687265663d2270726f6772616d6d696e675f6d616e75616c2e68746d6c223e50726f6772616d6d696e67204d616e75616c3c2f613e3c2f6c693e3c2f756c3e3c2f6e61763e3c6d61696e20636c6173733d226d61696e2d636f6e74656e74223e3c68323e53657474696e67733c2f68323e3c666f726d206d6574686f643d22706f73742220616374696f6e3d222f73657474696e6773223e3c68333e4e6574776f726b2053657474696e67733c2f68333e3c68723e3c64697620636c6173733d22666f726d2d67726f7570223e3c6c6162656c20666f723d226970223e495020416464726573733a3c2f6c6162656c3e3c696e70757420747970653d2274657874222069643d22697022206e616d653d226970222076616c75653d223139322e3136382e302e3131223e3c2f6469763e3c64697620636c6173733d22666f726d2d67726f7570223e3c6c6162656c20666f723d2267617465776179223e44656661756c7420476174657761793a3c2f6c6162656c3e3c696e70757420747970653d2274657874222069643d226761746577617922206e616d653d2267617465776179... [truncated 10084 chars]
+[2025-09-19 01:03:26] [TSHARK-VLAN] cmd=tshark -r report_tc_network_pcap\capture_settings.pcap -T fields -E header=n -E separator=	 -E occurrence=a -e vlan.id -e vlan.priority -Y &quot;http.response and ip.addr==192.168.0.11&quot;
+[2025-09-19 01:03:26] [TSHARK-VLAN] rc=0
+[2025-09-19 01:03:26] [TSHARK-VLAN OUT]
+	
+
+[2025-09-19 01:03:26] [INFO] [PCAP-READ] parsed=1
+[2025-09-19 01:03:26] [INFO] [PCAP-READ] fnum=12 len=421 t=1758236595288712960ns src=00:08:dc:be:ef:91 dst=10:ff:e0:03:49:ac vlan=[]
+[2025-09-19 01:03:26] [INFO] [PCAP-EXPECT] unordered match exp#1 ok {&#x27;payload_patterns&#x27;: [{&#x27;contains_ascii&#x27;: &#x27;ENERGIS-1.0.0&#x27;}]}
+[2025-09-19 01:03:26] [INFO] [PCAP-EXPECT] validated 1 expected frame(s) (unordered) in report_tc_network_pcap\capture_settings.pcap
+[2025-09-19 01:03:26] [PASS] STEP 4.5 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 4.6 Settings: Device Name present</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-09-19 01:03:26</td><td>2025-09-19 01:03:26</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-09-19 01:03:26] [STEP 4.6] Settings: Device Name present
+[2025-09-19 01:03:26] [INFO] [PCAP-EXPECT] checkFrames start path=report_tc_network_pcap\capture_settings.pcap filter=http.response and ip.addr==192.168.0.11 ordered=False expect_count=None n_expected=1
+[2025-09-19 01:03:26] [INFO] [PCAP-READ] path=report_tc_network_pcap\capture_settings.pcap filter=http.response and ip.addr==192.168.0.11
+[2025-09-19 01:03:26] [INFO] [PCAP-CHECK] tshark fields start filter=http.response and ip.addr==192.168.0.11
+[2025-09-19 01:03:26] [TSHARK-FIELDS] cmd=tshark -r report_tc_network_pcap\capture_settings.pcap -o tcp.desegment_tcp_streams:TRUE -o http.desegment_body:TRUE -T fields -E header=n -E separator=	 -E occurrence=f -e frame.number -e frame.len -e frame.time_epoch -e eth.src -e eth.dst -e vlan.id -e vlan.priority -e http.file_data -e tcp.reassembled.data -e tcp.payload -e data.data -Y &quot;http.response and ip.addr==192.168.0.11&quot;
+[2025-09-19 01:03:26] [TSHARK-FIELDS] rc=0
+[2025-09-19 01:03:26] [TSHARK-FIELDS OUT]
+12	421	1758236595.288713000	00:08:dc:be:ef:91	10:ff:e0:03:49:ac			3c21444f43545950452068746d6c3e3c68746d6c3e3c686561643e3c6d65746120636861727365743d225554462d38223e3c6d657461206e616d653d2276696577706f72742220636f6e74656e743d2277696474683d6465766963652d77696474682c696e697469616c2d7363616c653d312e30223e3c7469746c653e454e455247495320504455202d2053657474696e67733c2f7469746c653e3c7374796c653e2a7b6d617267696e3a303b70616464696e673a303b626f782d73697a696e673a626f726465722d626f783b666f6e742d66616d696c793a73616e732d73657269667d626f64797b6261636b67726f756e643a233161316432333b636f6c6f723a236534653465347d617b636f6c6f723a236161613b746578742d6465636f726174696f6e3a6e6f6e657d613a686f7665727b636f6c6f723a236666667d2e746f706261727b77696474683a3130303b6865696768743a353070783b6261636b67726f756e643a233234323733313b646973706c61793a666c65783b616c69676e2d6974656d733a63656e7465723b70616464696e673a3020323070787d2e746f706261722068317b666f6e742d73697a653a312e3272656d3b636f6c6f723a236666667d2e636f6e7461696e65727b646973706c61793a666c65783b77696474683a3130303b6865696768743a63616c63283130307668202d2035307078297d2e736964656261727b77696474683a32323070783b6261636b67726f756e643a233265333233633b70616464696e673a3230707820307d2e7369646562617220756c7b6c6973742d7374796c653a6e6f6e657d2e7369646562617220756c206c697b70616464696e673a3130707820323070787d2e7369646562617220756c206c693a686f7665727b6261636b67726f756e643a233362343034647d2e6d61696e2d636f6e74656e747b666c65783a313b70616464696e673a323070783b6f766572666c6f772d793a6175746f7d68327b6d617267696e2d626f74746f6d3a2e3572656d7d68727b626f726465723a6e6f6e653b626f726465722d746f703a31707820736f6c696420233333333b6d617267696e3a3172656d20307d2e666f726d2d67726f75707b646973706c61793a666c65783b616c69676e2d6974656d733a63656e7465723b6d617267696e2d626f74746f6d3a2e373572656d7d2e666f726d2d67726f7570206c6162656c7b77696474683a31363070783b6d617267696e2d72696768743a313070787d2e666f726d2d67726f757020696e7075745b747970653d746578745d2c2e666f726d2d67726f757020696e7075745b747970653d726164696f5d7b70616464696e673a3870783b626f726465723a6e6f6e653b626f726465722d7261646975733a3470787d2e666f726d2d67726f757020696e7075745b747970653d746578745d7b666c65783a313b6d61782d77696474683a32303070783b6d617267696e2d72696768743a313070787d2e62746e7b6261636b67726f756e643a233366613766663b626f726465723a6e6f6e653b70616464696e673a3130707820313670783b636f6c6f723a236666663b637572736f723a706f696e7465723b626f726465722d7261646975733a3470783b666f6e742d73697a653a2e3972656d7d2e62746e3a686f7665727b6261636b67726f756e643a233166386165337d2e6d616e75616c737b6d617267696e2d746f703a3272656d7d3c2f7374796c653e3c2f686561643e3c626f64793e3c64697620636c6173733d22746f70626172223e3c68313e454e4552474953205044553c2f68313e3c2f6469763e3c64697620636c6173733d22636f6e7461696e6572223e3c6e617620636c6173733d2273696465626172223e3c756c3e3c6c693e3c6120687265663d22636f6e74726f6c2e68746d6c223e436f6e74726f6c3c2f613e3c2f6c693e3c6c693e3c6120687265663d2273657474696e67732e68746d6c223e53657474696e67733c2f613e3c2f6c693e3c6c693e3c6120687265663d2268656c702e68746d6c223e48656c703c2f613e3c2f6c693e3c6c693e3c6120687265663d22757365725f6d616e75616c2e68746d6c223e55736572204d616e75616c3c2f613e3c2f6c693e3c6c693e3c6120687265663d2270726f6772616d6d696e675f6d616e75616c2e68746d6c223e50726f6772616d6d696e67204d616e75616c3c2f613e3c2f6c693e3c2f756c3e3c2f6e61763e3c6d61696e20636c6173733d226d61696e2d636f6e74656e74223e3c68323e53657474696e67733c2f68323e3c666f726d206d6574686f643d22706f73742220616374696f6e3d222f73657474696e6773223e3c68333e4e6574776f726b2053657474696e67733c2f68333e3c68723e3c64697620636c6173733d22666f726d2d67726f7570223e3c6c6162656c20666f723d226970223e495020416464726573733a3c2f6c6162656c3e3c696e70757420747970653d2274657874222069643d22697022206e616d653d226970222076616c75653d223139322e3136382e302e3131223e3c2f6469763e3c64697620636c6173733d22666f726d2d67726f7570223e3c6c6162656c20666f723d2267617465776179223e44656661756c7420476174657761793a3c2f6c6162656c3e3c696e70757420747970653d2274657874222069643d226761746577617922206e616d653d2267617465776179... [truncated 10084 chars]
+[2025-09-19 01:03:26] [TSHARK-VLAN] cmd=tshark -r report_tc_network_pcap\capture_settings.pcap -T fields -E header=n -E separator=	 -E occurrence=a -e vlan.id -e vlan.priority -Y &quot;http.response and ip.addr==192.168.0.11&quot;
+[2025-09-19 01:03:26] [TSHARK-VLAN] rc=0
+[2025-09-19 01:03:26] [TSHARK-VLAN OUT]
+	
+
+[2025-09-19 01:03:26] [INFO] [PCAP-READ] parsed=1
+[2025-09-19 01:03:26] [INFO] [PCAP-READ] fnum=12 len=421 t=1758236595288712960ns src=00:08:dc:be:ef:91 dst=10:ff:e0:03:49:ac vlan=[]
+[2025-09-19 01:03:26] [INFO] [PCAP-EXPECT] unordered match exp#1 ok {&#x27;payload_patterns&#x27;: [{&#x27;contains_ascii&#x27;: &#x27;Location&#x27;}]}
+[2025-09-19 01:03:26] [INFO] [PCAP-EXPECT] validated 1 expected frame(s) (unordered) in report_tc_network_pcap\capture_settings.pcap
+[2025-09-19 01:03:26] [PASS] STEP 4.6 completed successfully
+[2025-09-19 01:03:26] ===== tc_network_pcap: RESULT: PASS =====
+</pre>
+</div>
+</details>
+</div>
+</div>
+</details>
+</section>
+<section>
+<h3>Images & Artifacts</h3>
+<div class='img-grid'>
+<figure><a href='capture_control.pcap' target='_blank' class='file-link'>📄 capture_control.pcap</a><figcaption>capture_control.pcap</figcaption></figure>
+<figure><a href='capture_settings.pcap' target='_blank' class='file-link'>📄 capture_settings.pcap</a><figcaption>capture_settings.pcap</figcaption></figure>
+</div>
+</section>
+</main>
+</body></html>
