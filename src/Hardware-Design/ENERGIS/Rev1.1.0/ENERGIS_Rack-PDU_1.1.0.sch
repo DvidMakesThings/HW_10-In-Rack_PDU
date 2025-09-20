@@ -8,34 +8,34 @@
 </settings>
 <grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
-<layer number="1" name="Top" color="4" fill="1" visible="yes" active="no"/>
-<layer number="2" name="Route2" color="25" fill="1" visible="yes" active="no"/>
-<layer number="3" name="Route3" color="36" fill="1" visible="yes" active="no"/>
-<layer number="4" name="Route4" color="18" fill="1" visible="yes" active="no"/>
-<layer number="5" name="Route5" color="19" fill="1" visible="yes" active="no"/>
-<layer number="6" name="Route6" color="25" fill="1" visible="yes" active="no"/>
-<layer number="7" name="Route7" color="26" fill="1" visible="yes" active="no"/>
-<layer number="8" name="Route8" color="27" fill="1" visible="yes" active="no"/>
-<layer number="9" name="Route9" color="28" fill="1" visible="yes" active="no"/>
-<layer number="10" name="Route10" color="29" fill="1" visible="yes" active="no"/>
-<layer number="11" name="Route11" color="30" fill="1" visible="yes" active="no"/>
-<layer number="12" name="Route12" color="20" fill="1" visible="yes" active="no"/>
-<layer number="13" name="Route13" color="21" fill="1" visible="yes" active="no"/>
-<layer number="14" name="Route14" color="22" fill="1" visible="yes" active="no"/>
-<layer number="15" name="Route15" color="25" fill="1" visible="yes" active="no"/>
-<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="no"/>
-<layer number="17" name="Pads" color="2" fill="1" visible="yes" active="no"/>
-<layer number="18" name="Vias" color="2" fill="1" visible="yes" active="no"/>
-<layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="no"/>
-<layer number="20" name="Dimension" color="24" fill="1" visible="yes" active="no"/>
-<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="no"/>
-<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="no"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="no"/>
-<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="no"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="no"/>
-<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="no"/>
-<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="no"/>
-<layer number="28" name="bValues" color="7" fill="1" visible="yes" active="no"/>
+<layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
+<layer number="2" name="Route2" color="25" fill="1" visible="no" active="no"/>
+<layer number="3" name="Route3" color="36" fill="1" visible="no" active="no"/>
+<layer number="4" name="Route4" color="18" fill="1" visible="no" active="no"/>
+<layer number="5" name="Route5" color="19" fill="1" visible="no" active="no"/>
+<layer number="6" name="Route6" color="25" fill="1" visible="no" active="no"/>
+<layer number="7" name="Route7" color="26" fill="1" visible="no" active="no"/>
+<layer number="8" name="Route8" color="27" fill="1" visible="no" active="no"/>
+<layer number="9" name="Route9" color="28" fill="1" visible="no" active="no"/>
+<layer number="10" name="Route10" color="29" fill="1" visible="no" active="no"/>
+<layer number="11" name="Route11" color="30" fill="1" visible="no" active="no"/>
+<layer number="12" name="Route12" color="20" fill="1" visible="no" active="no"/>
+<layer number="13" name="Route13" color="21" fill="1" visible="no" active="no"/>
+<layer number="14" name="Route14" color="22" fill="1" visible="no" active="no"/>
+<layer number="15" name="Route15" color="25" fill="1" visible="no" active="no"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="no" active="no"/>
+<layer number="17" name="Pads" color="2" fill="1" visible="no" active="no"/>
+<layer number="18" name="Vias" color="2" fill="1" visible="no" active="no"/>
+<layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="no"/>
+<layer number="20" name="Dimension" color="24" fill="1" visible="no" active="no"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="no" active="no"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="no" active="no"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="no"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="no"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="no" active="no"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="no" active="no"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="no" active="no"/>
+<layer number="28" name="bValues" color="7" fill="1" visible="no" active="no"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="no"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="no"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="no"/>
@@ -44,8 +44,8 @@
 <layer number="34" name="bFinish" color="6" fill="6" visible="no" active="no"/>
 <layer number="35" name="tGlue" color="7" fill="4" visible="no" active="no"/>
 <layer number="36" name="bGlue" color="7" fill="5" visible="no" active="no"/>
-<layer number="37" name="tTest" color="7" fill="1" visible="yes" active="no"/>
-<layer number="38" name="bTest" color="7" fill="1" visible="yes" active="no"/>
+<layer number="37" name="tTest" color="7" fill="1" visible="no" active="no"/>
+<layer number="38" name="bTest" color="7" fill="1" visible="no" active="no"/>
 <layer number="39" name="tKeepout" color="4" fill="11" visible="no" active="no"/>
 <layer number="40" name="bKeepout" color="1" fill="11" visible="no" active="no"/>
 <layer number="41" name="tRestrict" color="4" fill="10" visible="no" active="no"/>
@@ -53,21 +53,21 @@
 <layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="no"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="no"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="no" active="no"/>
-<layer number="46" name="Milling" color="3" fill="1" visible="yes" active="no"/>
-<layer number="47" name="Measures" color="7" fill="1" visible="yes" active="no"/>
-<layer number="48" name="Document" color="7" fill="1" visible="yes" active="no"/>
-<layer number="49" name="Reference" color="7" fill="1" visible="yes" active="no"/>
-<layer number="50" name="dxf" color="7" fill="1" visible="yes" active="no"/>
-<layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="no"/>
-<layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="no"/>
-<layer number="53" name="tGND_GNDA" color="7" fill="9" visible="yes" active="no"/>
-<layer number="54" name="bGND_GNDA" color="1" fill="9" visible="yes" active="no"/>
-<layer number="56" name="wert" color="7" fill="1" visible="yes" active="no"/>
-<layer number="57" name="tCAD" color="7" fill="1" visible="yes" active="no"/>
-<layer number="58" name="bCAD" color="7" fill="1" visible="yes" active="no"/>
-<layer number="59" name="tCarbon" color="7" fill="1" visible="yes" active="no"/>
-<layer number="60" name="bCarbon" color="7" fill="1" visible="yes" active="no"/>
-<layer number="61" name="stand" color="7" fill="1" visible="yes" active="no"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="no" active="no"/>
+<layer number="47" name="Measures" color="7" fill="1" visible="no" active="no"/>
+<layer number="48" name="Document" color="7" fill="1" visible="no" active="no"/>
+<layer number="49" name="Reference" color="7" fill="1" visible="no" active="no"/>
+<layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
+<layer number="51" name="tDocu" color="7" fill="1" visible="no" active="no"/>
+<layer number="52" name="bDocu" color="7" fill="1" visible="no" active="no"/>
+<layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
+<layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
+<layer number="56" name="wert" color="7" fill="1" visible="no" active="no"/>
+<layer number="57" name="tCAD" color="7" fill="1" visible="no" active="no"/>
+<layer number="58" name="bCAD" color="7" fill="1" visible="no" active="no"/>
+<layer number="59" name="tCarbon" color="7" fill="1" visible="no" active="no"/>
+<layer number="60" name="bCarbon" color="7" fill="1" visible="no" active="no"/>
+<layer number="61" name="stand" color="7" fill="1" visible="no" active="no"/>
 <layer number="88" name="SimResults" color="9" fill="1" visible="yes" active="yes"/>
 <layer number="89" name="SimProbes" color="9" fill="1" visible="yes" active="yes"/>
 <layer number="90" name="Modules" color="5" fill="1" visible="yes" active="yes"/>
@@ -3020,7 +3020,7 @@ The MP2315 is a high frequency synchronous rectified step-down switch mode conve
 </device>
 </devices>
 </deviceset>
-<deviceset name="MP150" urn="urn:adsk.eagle:component:48298513/1" prefix="IC" uservalue="yes">
+<deviceset name="MP150" urn="urn:adsk.eagle:component:48298513/1" locally_modified="yes" prefix="IC" uservalue="yes">
 <description>Offline Primary-Side Regulator For Low Power Applications</description>
 <gates>
 <gate name="G$1" symbol="MP150" x="0" y="0"/>
@@ -3039,7 +3039,9 @@ The MP2315 is a high frequency synchronous rectified step-down switch mode conve
 </package3dinstances>
 <technologies>
 <technology name="">
-<attribute name="MP150" value="MP150GJ" constant="no"/>
+<attribute name="DATASHEET" value="https://www.monolithicpower.com/en/documentview/productdocument/index/version/2/document_type/Datasheet/lang/en/sku/MP150/?srsltid=AfmBOoplx7hy2Cvv8LOqm9ztSqwNdeKyUTl1ppEoWxRINSTM2xWwZtEa" constant="no"/>
+<attribute name="DESCRIPTION" value="Offline Primary-Side Regulator For Low Power Applications " constant="no"/>
+<attribute name="VALUE" value="MP150GJ" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -7728,6 +7730,93 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
+<deviceset name="3.3K-1%" urn="urn:adsk.eagle:component:49287452/1" prefix="R" uservalue="yes">
+<gates>
+<gate name="G$1" symbol="R" x="0" y="0"/>
+</gates>
+<devices>
+<device name="0402" package="0402">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683744/3"/>
+</package3dinstances>
+<technologies>
+<technology name="">
+<attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 3.3kΩ 0402 Chip Resistor - Surface Mount ROHS"/>
+<attribute name="LCSC_PART" value="C25890" constant="no"/>
+<attribute name="VALUE" value="3.3K 1%" constant="no"/>
+</technology>
+</technologies>
+</device>
+<device name="0603" package="0603">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683743/2"/>
+</package3dinstances>
+<technologies>
+<technology name="">
+<attribute name="DESCRIPTION" value="100mW Thick Film Resistors 75V ±100ppm/℃ ±1% 3.3kΩ 0603 Chip Resistor - Surface Mount ROHS" constant="no"/>
+<attribute name="LCSC_PART" value="C22978" constant="no"/>
+<attribute name="VALUE" value="3.3K 1%" constant="no"/>
+</technology>
+</technologies>
+</device>
+<device name="0805" package="0805">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683742/2"/>
+</package3dinstances>
+<technologies>
+<technology name="">
+<attribute name="DESCRIPTION" value="125mW Thick Film Resistors 150V ±100ppm/℃ ±1% 3.3kΩ 0805 Chip Resistor - Surface Mount ROHS" constant="no"/>
+<attribute name="LCSC_PART" value="C26010" constant="no"/>
+<attribute name="VALUE" value="3.3K 1%" constant="no"/>
+</technology>
+</technologies>
+</device>
+<device name="1206" package="1206">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46683745/2"/>
+</package3dinstances>
+<technologies>
+<technology name="">
+<attribute name="DESCRIPTION" value="250mW Thick Film Resistors 200V ±100ppm/℃ ±1% 3.3kΩ 1206 Chip Resistor - Surface Mount ROHS" constant="no"/>
+<attribute name="LCSC_PART" value="C26032" constant="no"/>
+<attribute name="VALUE" value="3.3K 1%" constant="no"/>
+</technology>
+</technologies>
+</device>
+<device name="0201" package="0201">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403529/4"/>
+</package3dinstances>
+<technologies>
+<technology name="">
+<attribute name="DESCRIPTION" value="50mW Thick Film Resistors 25V ±1% ±200ppm/℃ 3.3kΩ 0201 Chip Resistor - Surface Mount ROHS" constant="no"/>
+<attribute name="LCSC_PART" value="C270350" constant="no"/>
+<attribute name="VALUE" value="3.3K 1%" constant="no"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
 </devicesets>
 </library>
 <library name="ds_capacitors">
@@ -10509,14 +10598,14 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <variantdefs>
 </variantdefs>
 <classes>
-<class number="0" name="50R_SE" width="0.2" drill="0.2">
-<clearance class="0" value="0.1778"/>
+<class number="0" name="50R_SE" width="0.147575" drill="0.2">
+<clearance class="0" value="0.1627875"/>
 </class>
-<class number="1" name="100R_DIFFPAIR" width="0.1209" drill="0.15">
-<clearance class="1" value="0.1905"/>
+<class number="1" name="100R_DIFFPAIR" width="0.117603125" drill="0.2">
+<clearance class="1" value="0.190246875"/>
 </class>
-<class number="2" name="90R_DIFFPAIR" width="0.1549" drill="0.15">
-<clearance class="2" value="0.1905"/>
+<class number="2" name="90R_DIFFPAIR" width="0.14884375" drill="0.2">
+<clearance class="2" value="0.17770625"/>
 </class>
 <class number="3" name="AC_MEA" width="0.4064" drill="0.35">
 <clearance class="3" value="0.2032"/>
@@ -10585,11 +10674,11 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="C11" library="ds_capacitors" deviceset="33PF-50V" device="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="33pF 50V"/>
 <part name="GND17" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="P+11" library="ds_passive" deviceset="+5V" device=""/>
-<part name="5VDC" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
-<part name="SW" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
-<part name="5VFB" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
-<part name="GND" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
-<part name="GND-5" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
+<part name="5VDC" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="SW" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="5VFB" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="GND" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="GND-5" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
 <part name="R3" library="ds_resistor" deviceset="100K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="100K 1%"/>
 <part name="P+9" library="ds_passive" deviceset="+12V" device=""/>
 <part name="C1" library="ds_capacitors" deviceset="22UF-25V" device="-1206" package3d_urn="urn:adsk.eagle:package:46766482/3" value="22uF 25V"/>
@@ -10615,10 +10704,10 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="GND14" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="C12" library="ds_capacitors" deviceset="33PF-50V" device="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="33pF 50V"/>
 <part name="GND18" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
-<part name="3VDC" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
-<part name="SW3" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
-<part name="3VFB" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
-<part name="GND-3" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
+<part name="3VDC" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="SW3" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="3VFB" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="GND-3" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
 <part name="R5" library="ds_resistor" deviceset="100K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="100K 1%"/>
 <part name="P+10" library="ds_passive" deviceset="+12V" device=""/>
 <part name="+3V31" library="ds_passive" deviceset="+3V3" device=""/>
@@ -10859,12 +10948,12 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="GND33" library="ds_passive" deviceset="GND" device=""/>
 <part name="R16" library="ds_resistor" deviceset="1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="1K 1%"/>
 <part name="GND34" library="ds_passive" deviceset="GND" device=""/>
-<part name="DVDD" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
+<part name="DVDD" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
 <part name="REF1" library="ds_ic_vreg" deviceset="LM4040BXX" device="" package3d_urn="urn:adsk.eagle:package:46684430/3" value="LM4040B30FTA"/>
 <part name="GND35" library="ds_passive" deviceset="GND" device=""/>
 <part name="R109" library="ds_resistor" deviceset="4.7K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="4.7K 1%"/>
-<part name="IOVDD" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
-<part name="VREF" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
+<part name="IOVDD" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="VREF" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
 <part name="IC17" library="ds_ic_opa" deviceset="MCP6001RT" device="" package3d_urn="urn:adsk.eagle:package:25419215/3" value="MCP6001RT-I/OT"/>
 <part name="GND36" library="ds_passive" deviceset="GND" device=""/>
 <part name="C60" library="ds_capacitors" deviceset="1UF-25V" device="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="1uF 25V"/>
@@ -10875,7 +10964,7 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="GND39" library="ds_passive" deviceset="GND" device=""/>
 <part name="C63" library="ds_capacitors" deviceset="100NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="100nF 25V"/>
 <part name="GND40" library="ds_passive" deviceset="GND" device=""/>
-<part name="AVDD" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
+<part name="AVDD" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
 <part name="IC18" library="ds_ic_memory" deviceset="W25Q128JV" device="P" package3d_urn="urn:adsk.eagle:package:45369668/2" value="W25Q128JVPIQ"/>
 <part name="R111" library="ds_passive" deviceset="R" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="DNI"/>
 <part name="GND41" library="ds_passive" deviceset="GND" device=""/>
@@ -10893,7 +10982,7 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="R125" library="ds_resistor" deviceset="5.1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="5.1K 1%"/>
 <part name="GND47" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="GND48" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
-<part name="VBUS" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
+<part name="VBUS" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
 <part name="C67" library="ds_capacitors" deviceset="100NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="100nF 25V"/>
 <part name="C68" library="ds_capacitors" deviceset="100NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="100nF 25V"/>
 <part name="C69" library="ds_capacitors" deviceset="100NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="100nF 25V"/>
@@ -10924,7 +11013,6 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="VBUS3" library="ds_passive" deviceset="VBUS" device=""/>
 <part name="+1V1" library="ds_passive" deviceset="+1V1" device=""/>
 <part name="+1V2" library="ds_passive" deviceset="+1V1" device=""/>
-<part name="R130" library="ds_resistor" deviceset="3.3K-1%_ARRAY" device="0603X4-1206" package3d_urn="urn:adsk.eagle:package:49287421/2" value="3.3K 1%"/>
 <part name="RGTG" library="ds_con" deviceset="CON-1X4" device="" package3d_urn="urn:adsk.eagle:package:46684991/2"/>
 <part name="GND65" library="ds_passive" deviceset="GND" device=""/>
 <part name="R131" library="ds_resistor" deviceset="1M-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="1M 1%"/>
@@ -11164,14 +11252,14 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="SCL0" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
 <part name="SDA1" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
 <part name="SCL1" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="MISO0" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
-<part name="CS0" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
-<part name="SCLK0" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
-<part name="MOSI0" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
-<part name="MISO1" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
-<part name="CS1" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
-<part name="SCLK1" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
-<part name="MOSI1" library="ds_passive" deviceset="TP" device="" package3d_urn="urn:adsk.eagle:package:46683740/2"/>
+<part name="MI" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="CS" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="SC" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="MO" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="MISO1" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="CS1" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="SCLK1" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="MOSI1" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
 <part name="REL0" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
 <part name="REL2" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
 <part name="REL4" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
@@ -11201,6 +11289,13 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="ADC12" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
 <part name="FRAME11" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A3L-LOC" device=""/>
 <part name="FRAME1" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A3L-LOC" device=""/>
+<part name="R130" library="ds_resistor" deviceset="3.3K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="3.3K 1%"/>
+<part name="R166" library="ds_resistor" deviceset="3.3K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="3.3K 1%"/>
+<part name="R167" library="ds_resistor" deviceset="3.3K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="3.3K 1%"/>
+<part name="R168" library="ds_resistor" deviceset="3.3K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="3.3K 1%"/>
+<part name="+3V3_MCU14" library="ds_passive" deviceset="+3V3_MCU" device=""/>
+<part name="+3V3_MCU15" library="ds_passive" deviceset="+3V3_MCU" device=""/>
+<part name="+3V3_MCU16" library="ds_passive" deviceset="+3V3_MCU" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -11292,10 +11387,6 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <instance part="+1V2" gate="G$1" x="193.04" y="40.64" smashed="yes">
 <attribute name="VALUE" x="193.04" y="45.72" size="1.778" layer="96" align="top-center"/>
 </instance>
-<instance part="R130" gate="G$1" x="205.74" y="190.5" smashed="yes">
-<attribute name="NAME" x="200.66" y="196.8246" size="1.778" layer="95"/>
-<attribute name="VALUE" x="200.66" y="180.594" size="1.778" layer="96"/>
-</instance>
 <instance part="GND58" gate="1" x="101.6" y="175.26" smashed="yes" rot="MR0">
 <attribute name="VALUE" x="101.6" y="172.72" size="1.778" layer="96" rot="MR0" align="top-center"/>
 </instance>
@@ -11321,8 +11412,8 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <instance part="+3V3_MCU3" gate="G$1" x="134.62" y="172.72" smashed="yes">
 <attribute name="VALUE" x="134.62" y="177.8" size="1.778" layer="96" align="top-center"/>
 </instance>
-<instance part="+3V3_MCU6" gate="G$1" x="218.44" y="200.66" smashed="yes">
-<attribute name="VALUE" x="218.44" y="205.74" size="1.778" layer="96" align="top-center"/>
+<instance part="+3V3_MCU6" gate="G$1" x="190.5" y="208.28" smashed="yes">
+<attribute name="VALUE" x="193.04" y="210.82" size="1.778" layer="96" align="top-center"/>
 </instance>
 <instance part="+3V3_MCU7" gate="G$1" x="111.76" y="38.1" smashed="yes">
 <attribute name="VALUE" x="111.76" y="43.18" size="1.778" layer="96" align="top-center"/>
@@ -11367,16 +11458,16 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <instance part="SCL1" gate="G$1" x="322.58" y="198.12" smashed="yes">
 <attribute name="NAME" x="323.85" y="198.12" size="1.778" layer="95" align="center-left"/>
 </instance>
-<instance part="MISO0" gate="G$1" x="271.78" y="162.56" smashed="yes">
+<instance part="MI" gate="G$1" x="271.78" y="162.56" smashed="yes">
 <attribute name="NAME" x="273.05" y="162.56" size="1.778" layer="95" align="center-left"/>
 </instance>
-<instance part="CS0" gate="G$1" x="271.78" y="160.02" smashed="yes">
+<instance part="CS" gate="G$1" x="271.78" y="160.02" smashed="yes">
 <attribute name="NAME" x="273.05" y="160.02" size="1.778" layer="95" align="center-left"/>
 </instance>
-<instance part="SCLK0" gate="G$1" x="271.78" y="144.78" smashed="yes">
+<instance part="SC" gate="G$1" x="271.78" y="144.78" smashed="yes">
 <attribute name="NAME" x="273.05" y="144.78" size="1.778" layer="95" align="center-left"/>
 </instance>
-<instance part="MOSI0" gate="G$1" x="271.78" y="142.24" smashed="yes">
+<instance part="MO" gate="G$1" x="271.78" y="142.24" smashed="yes">
 <attribute name="NAME" x="273.05" y="142.24" size="1.778" layer="95" align="center-left"/>
 </instance>
 <instance part="MISO1" gate="G$1" x="271.78" y="116.84" smashed="yes">
@@ -11404,6 +11495,27 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 </instance>
 <instance part="GND93" gate="1" x="307.34" y="182.88" smashed="yes" rot="MR0">
 <attribute name="VALUE" x="307.34" y="180.34" size="1.778" layer="96" rot="MR0" align="top-center"/>
+</instance>
+<instance part="R130" gate="G$1" x="190.5" y="198.12" smashed="yes">
+<attribute name="NAME" x="188.595" y="199.1614" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="188.595" y="196.342" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="R166" gate="G$1" x="195.58" y="198.12" smashed="yes">
+<attribute name="NAME" x="197.485" y="194.5386" size="1.778" layer="95"/>
+<attribute name="VALUE" x="197.485" y="192.278" size="1.778" layer="96"/>
+</instance>
+<instance part="R167" gate="G$1" x="210.82" y="198.12" smashed="yes">
+<attribute name="NAME" x="208.915" y="204.2414" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="208.915" y="201.422" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="R168" gate="G$1" x="215.9" y="198.12" smashed="yes">
+<attribute name="NAME" x="217.805" y="197.0786" size="1.778" layer="95"/>
+<attribute name="VALUE" x="217.805" y="194.818" size="1.778" layer="96"/>
+</instance>
+<instance part="+3V3_MCU14" gate="G$1" x="195.58" y="208.28" smashed="yes"/>
+<instance part="+3V3_MCU15" gate="G$1" x="210.82" y="208.28" smashed="yes"/>
+<instance part="+3V3_MCU16" gate="G$1" x="215.9" y="208.28" smashed="yes">
+<attribute name="VALUE" x="213.36" y="210.82" size="1.778" layer="96" align="top-center"/>
 </instance>
 </instances>
 <busses>
@@ -11717,14 +11829,12 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <net name="I2C0_SDA" class="0">
 <segment>
 <pinref part="IC15" gate="G$1" pin="GPIO4"/>
-<wire x1="185.42" y1="170.18" x2="190.5" y2="170.18" width="0.1524" layer="91"/>
+<wire x1="185.42" y1="170.18" x2="195.58" y2="170.18" width="0.1524" layer="91"/>
 <label x="251.46" y="170.18" size="1.27" layer="95" xref="yes"/>
-<pinref part="R130" gate="G$1" pin="2"/>
-<wire x1="190.5" y1="170.18" x2="233.68" y2="170.18" width="0.1524" layer="91"/>
+<wire x1="195.58" y1="170.18" x2="233.68" y2="170.18" width="0.1524" layer="91"/>
 <wire x1="233.68" y1="170.18" x2="251.46" y2="170.18" width="0.1524" layer="91"/>
-<wire x1="198.12" y1="190.5" x2="190.5" y2="190.5" width="0.1524" layer="91"/>
-<wire x1="190.5" y1="190.5" x2="190.5" y2="170.18" width="0.1524" layer="91"/>
-<junction x="190.5" y="170.18"/>
+<wire x1="195.58" y1="193.04" x2="195.58" y2="170.18" width="0.1524" layer="91"/>
+<junction x="195.58" y="170.18"/>
 <pinref part="SDA0" gate="G$1" pin="P$1"/>
 <wire x1="317.5" y1="208.28" x2="289.56" y2="208.28" width="0.1524" layer="91"/>
 <wire x1="289.56" y1="208.28" x2="233.68" y2="208.28" width="0.1524" layer="91"/>
@@ -11733,19 +11843,18 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <pinref part="D17" gate="G$1" pin="2"/>
 <wire x1="289.56" y1="193.04" x2="289.56" y2="208.28" width="0.1524" layer="91"/>
 <junction x="289.56" y="208.28"/>
+<pinref part="R166" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="I2C0_SCL" class="0">
 <segment>
 <pinref part="IC15" gate="G$1" pin="GPIO5"/>
-<wire x1="185.42" y1="167.64" x2="187.96" y2="167.64" width="0.1524" layer="91"/>
+<wire x1="185.42" y1="167.64" x2="190.5" y2="167.64" width="0.1524" layer="91"/>
 <label x="251.46" y="167.64" size="1.27" layer="95" xref="yes"/>
-<pinref part="R130" gate="G$1" pin="1"/>
-<wire x1="187.96" y1="167.64" x2="236.22" y2="167.64" width="0.1524" layer="91"/>
+<wire x1="190.5" y1="167.64" x2="236.22" y2="167.64" width="0.1524" layer="91"/>
 <wire x1="236.22" y1="167.64" x2="251.46" y2="167.64" width="0.1524" layer="91"/>
-<wire x1="198.12" y1="193.04" x2="187.96" y2="193.04" width="0.1524" layer="91"/>
-<wire x1="187.96" y1="193.04" x2="187.96" y2="167.64" width="0.1524" layer="91"/>
-<junction x="187.96" y="167.64"/>
+<wire x1="190.5" y1="193.04" x2="190.5" y2="167.64" width="0.1524" layer="91"/>
+<junction x="190.5" y="167.64"/>
 <pinref part="SCL0" gate="G$1" pin="P$1"/>
 <wire x1="317.5" y1="205.74" x2="294.64" y2="205.74" width="0.1524" layer="91"/>
 <wire x1="294.64" y1="205.74" x2="236.22" y2="205.74" width="0.1524" layer="91"/>
@@ -11754,48 +11863,47 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <pinref part="D17" gate="G$1" pin="1"/>
 <wire x1="294.64" y1="193.04" x2="294.64" y2="205.74" width="0.1524" layer="91"/>
 <junction x="294.64" y="205.74"/>
+<pinref part="R130" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="I2C1_SDA" class="0">
 <segment>
 <pinref part="IC15" gate="G$1" pin="GPIO2"/>
-<wire x1="185.42" y1="175.26" x2="195.58" y2="175.26" width="0.1524" layer="91"/>
+<wire x1="185.42" y1="175.26" x2="215.9" y2="175.26" width="0.1524" layer="91"/>
 <label x="251.46" y="175.26" size="1.27" layer="95" xref="yes"/>
-<pinref part="R130" gate="G$1" pin="4"/>
-<wire x1="195.58" y1="175.26" x2="238.76" y2="175.26" width="0.1524" layer="91"/>
+<wire x1="215.9" y1="175.26" x2="238.76" y2="175.26" width="0.1524" layer="91"/>
 <wire x1="238.76" y1="175.26" x2="251.46" y2="175.26" width="0.1524" layer="91"/>
-<wire x1="198.12" y1="185.42" x2="195.58" y2="185.42" width="0.1524" layer="91"/>
-<wire x1="195.58" y1="185.42" x2="195.58" y2="175.26" width="0.1524" layer="91"/>
-<junction x="195.58" y="175.26"/>
+<wire x1="215.9" y1="193.04" x2="215.9" y2="175.26" width="0.1524" layer="91"/>
+<junction x="215.9" y="175.26"/>
 <pinref part="SDA1" gate="G$1" pin="P$1"/>
-<wire x1="317.5" y1="200.66" x2="304.8" y2="200.66" width="0.1524" layer="91"/>
-<wire x1="304.8" y1="200.66" x2="238.76" y2="200.66" width="0.1524" layer="91"/>
+<wire x1="317.5" y1="200.66" x2="309.88" y2="200.66" width="0.1524" layer="91"/>
+<wire x1="309.88" y1="200.66" x2="238.76" y2="200.66" width="0.1524" layer="91"/>
 <wire x1="238.76" y1="200.66" x2="238.76" y2="175.26" width="0.1524" layer="91"/>
 <junction x="238.76" y="175.26"/>
-<pinref part="D18" gate="G$1" pin="2"/>
-<wire x1="304.8" y1="193.04" x2="304.8" y2="200.66" width="0.1524" layer="91"/>
-<junction x="304.8" y="200.66"/>
+<pinref part="D18" gate="G$1" pin="1"/>
+<wire x1="309.88" y1="193.04" x2="309.88" y2="200.66" width="0.1524" layer="91"/>
+<junction x="309.88" y="200.66"/>
+<pinref part="R168" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="I2C1_SCL" class="0">
 <segment>
 <pinref part="IC15" gate="G$1" pin="GPIO3"/>
-<wire x1="185.42" y1="172.72" x2="193.04" y2="172.72" width="0.1524" layer="91"/>
+<wire x1="185.42" y1="172.72" x2="210.82" y2="172.72" width="0.1524" layer="91"/>
 <label x="251.46" y="172.72" size="1.27" layer="95" xref="yes"/>
-<pinref part="R130" gate="G$1" pin="3"/>
-<wire x1="193.04" y1="172.72" x2="241.3" y2="172.72" width="0.1524" layer="91"/>
+<wire x1="210.82" y1="172.72" x2="241.3" y2="172.72" width="0.1524" layer="91"/>
 <wire x1="241.3" y1="172.72" x2="251.46" y2="172.72" width="0.1524" layer="91"/>
-<wire x1="198.12" y1="187.96" x2="193.04" y2="187.96" width="0.1524" layer="91"/>
-<wire x1="193.04" y1="187.96" x2="193.04" y2="172.72" width="0.1524" layer="91"/>
-<junction x="193.04" y="172.72"/>
+<wire x1="210.82" y1="193.04" x2="210.82" y2="172.72" width="0.1524" layer="91"/>
+<junction x="210.82" y="172.72"/>
 <pinref part="SCL1" gate="G$1" pin="P$1"/>
-<wire x1="317.5" y1="198.12" x2="309.88" y2="198.12" width="0.1524" layer="91"/>
-<wire x1="309.88" y1="198.12" x2="241.3" y2="198.12" width="0.1524" layer="91"/>
+<wire x1="317.5" y1="198.12" x2="304.8" y2="198.12" width="0.1524" layer="91"/>
+<wire x1="304.8" y1="198.12" x2="241.3" y2="198.12" width="0.1524" layer="91"/>
 <wire x1="241.3" y1="198.12" x2="241.3" y2="172.72" width="0.1524" layer="91"/>
 <junction x="241.3" y="172.72"/>
-<pinref part="D18" gate="G$1" pin="1"/>
-<wire x1="309.88" y1="193.04" x2="309.88" y2="198.12" width="0.1524" layer="91"/>
-<junction x="309.88" y="198.12"/>
+<pinref part="D18" gate="G$1" pin="2"/>
+<wire x1="304.8" y1="193.04" x2="304.8" y2="198.12" width="0.1524" layer="91"/>
+<junction x="304.8" y="198.12"/>
+<pinref part="R167" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="LCD_CS" class="0">
@@ -11803,7 +11911,7 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <pinref part="IC15" gate="G$1" pin="GPIO9"/>
 <wire x1="185.42" y1="154.94" x2="248.92" y2="154.94" width="0.1524" layer="91"/>
 <label x="251.46" y="154.94" size="1.27" layer="95" xref="yes"/>
-<pinref part="CS0" gate="G$1" pin="P$1"/>
+<pinref part="CS" gate="G$1" pin="P$1"/>
 <wire x1="248.92" y1="154.94" x2="251.46" y2="154.94" width="0.1524" layer="91"/>
 <wire x1="266.7" y1="160.02" x2="248.92" y2="160.02" width="0.1524" layer="91"/>
 <wire x1="248.92" y1="160.02" x2="248.92" y2="154.94" width="0.1524" layer="91"/>
@@ -11815,7 +11923,7 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <pinref part="IC15" gate="G$1" pin="GPIO10"/>
 <wire x1="185.42" y1="152.4" x2="248.92" y2="152.4" width="0.1524" layer="91"/>
 <label x="251.46" y="152.4" size="1.27" layer="95" xref="yes"/>
-<pinref part="SCLK0" gate="G$1" pin="P$1"/>
+<pinref part="SC" gate="G$1" pin="P$1"/>
 <wire x1="248.92" y1="152.4" x2="251.46" y2="152.4" width="0.1524" layer="91"/>
 <wire x1="266.7" y1="144.78" x2="248.92" y2="144.78" width="0.1524" layer="91"/>
 <wire x1="248.92" y1="144.78" x2="248.92" y2="152.4" width="0.1524" layer="91"/>
@@ -11827,7 +11935,7 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <pinref part="IC15" gate="G$1" pin="GPIO8"/>
 <wire x1="185.42" y1="157.48" x2="246.38" y2="157.48" width="0.1524" layer="91"/>
 <label x="251.46" y="157.48" size="1.27" layer="95" xref="yes"/>
-<pinref part="MISO0" gate="G$1" pin="P$1"/>
+<pinref part="MI" gate="G$1" pin="P$1"/>
 <wire x1="246.38" y1="157.48" x2="251.46" y2="157.48" width="0.1524" layer="91"/>
 <wire x1="266.7" y1="162.56" x2="246.38" y2="162.56" width="0.1524" layer="91"/>
 <wire x1="246.38" y1="162.56" x2="246.38" y2="157.48" width="0.1524" layer="91"/>
@@ -11839,7 +11947,7 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <pinref part="IC15" gate="G$1" pin="GPIO11"/>
 <wire x1="185.42" y1="149.86" x2="246.38" y2="149.86" width="0.1524" layer="91"/>
 <label x="251.46" y="149.86" size="1.27" layer="95" xref="yes"/>
-<pinref part="MOSI0" gate="G$1" pin="P$1"/>
+<pinref part="MO" gate="G$1" pin="P$1"/>
 <wire x1="246.38" y1="149.86" x2="251.46" y2="149.86" width="0.1524" layer="91"/>
 <wire x1="266.7" y1="142.24" x2="246.38" y2="142.24" width="0.1524" layer="91"/>
 <wire x1="246.38" y1="142.24" x2="246.38" y2="149.86" width="0.1524" layer="91"/>
@@ -11957,24 +12065,6 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <pinref part="+3V3_MCU3" gate="G$1" pin="+3V3_MCU"/>
 </segment>
 <segment>
-<pinref part="R130" gate="G$1" pin="5"/>
-<wire x1="213.36" y1="185.42" x2="218.44" y2="185.42" width="0.1524" layer="91"/>
-<wire x1="218.44" y1="185.42" x2="218.44" y2="187.96" width="0.1524" layer="91"/>
-<pinref part="R130" gate="G$1" pin="8"/>
-<wire x1="218.44" y1="187.96" x2="218.44" y2="190.5" width="0.1524" layer="91"/>
-<wire x1="218.44" y1="190.5" x2="218.44" y2="193.04" width="0.1524" layer="91"/>
-<wire x1="218.44" y1="193.04" x2="218.44" y2="198.12" width="0.1524" layer="91"/>
-<wire x1="213.36" y1="193.04" x2="218.44" y2="193.04" width="0.1524" layer="91"/>
-<junction x="218.44" y="193.04"/>
-<pinref part="R130" gate="G$1" pin="7"/>
-<wire x1="213.36" y1="190.5" x2="218.44" y2="190.5" width="0.1524" layer="91"/>
-<junction x="218.44" y="190.5"/>
-<pinref part="R130" gate="G$1" pin="6"/>
-<wire x1="213.36" y1="187.96" x2="218.44" y2="187.96" width="0.1524" layer="91"/>
-<junction x="218.44" y="187.96"/>
-<pinref part="+3V3_MCU6" gate="G$1" pin="+3V3_MCU"/>
-</segment>
-<segment>
 <pinref part="C67" gate="G$1" pin="1"/>
 <wire x1="111.76" y1="33.02" x2="111.76" y2="35.56" width="0.1524" layer="91"/>
 <pinref part="C68" gate="G$1" pin="1"/>
@@ -12006,6 +12096,26 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <wire x1="182.88" y1="35.56" x2="182.88" y2="33.02" width="0.1524" layer="91"/>
 <junction x="172.72" y="35.56"/>
 <pinref part="+3V3_MCU7" gate="G$1" pin="+3V3_MCU"/>
+</segment>
+<segment>
+<pinref part="R130" gate="G$1" pin="1"/>
+<pinref part="+3V3_MCU6" gate="G$1" pin="+3V3_MCU"/>
+<wire x1="190.5" y1="205.74" x2="190.5" y2="203.2" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="R166" gate="G$1" pin="1"/>
+<pinref part="+3V3_MCU14" gate="G$1" pin="+3V3_MCU"/>
+<wire x1="195.58" y1="205.74" x2="195.58" y2="203.2" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="R167" gate="G$1" pin="1"/>
+<pinref part="+3V3_MCU15" gate="G$1" pin="+3V3_MCU"/>
+<wire x1="210.82" y1="205.74" x2="210.82" y2="203.2" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="R168" gate="G$1" pin="1"/>
+<pinref part="+3V3_MCU16" gate="G$1" pin="+3V3_MCU"/>
+<wire x1="215.9" y1="205.74" x2="215.9" y2="203.2" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="RP_DP_N" class="2">
