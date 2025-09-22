@@ -1,8 +1,18 @@
 # ENERGIS - The Managed PDU Project for 10-Inch Rack
 
-![Development Status](https://img.shields.io/badge/status-Testing%20%26%20Debugging-yellowgreen)
+<div align="center">
+  <br></br>
+  <a href="https://www.nextpcb.com/">
+    <img src="images/Sponsorship/nextpcb_rgb.png" alt="NextPCB Logo" width="300" />
+  </a>
+  
+  <h3>PCBs manufactured by <a href="https://www.nextpcb.com/" style="color:#ff3e3e;">NextPCB</a></h3>
+  <p><em>Supporter and sponsor of the ENERGIS project</em></p>
+</div>
+
 
 ## Overview
+![Development Status](https://img.shields.io/badge/status-Testing%20%26%20Debugging-yellowgreen)
 
 The **10-Inch Rack PDU (Power Distribution Unit)** is a modular power
 management system designed for efficient control and monitoring of power in a
@@ -152,7 +162,6 @@ Planned features (the list will be appended as I find more development possibili
 
 - **Relay Driver:** ULN2803 Darlington Array
 - **Driving Current:** 33mA per relay
-- **Current Limit Resistor:** Configured for 35mA max per relay coil
 
 ## Hardware Stackup
 
@@ -196,8 +205,8 @@ Planned features (the list will be appended as I find more development possibili
 
 The full schematics for each board are available:
 
-- **[Main Board Schematics](src/PDF/ENERGIS-1.0.0_mainBoard_schematics.pdf)**
-- **[Display Board Schematics](src/PDF/ENERGIS-1.0.0_displayBoard_schematics.pdf)**
+- **[Main Board Schematics](src/PDF/ENERGIS-1.1.0_mainBoard_schematics.pdf)**
+- **[Display Board Schematics](src/PDF/ENERGIS-1.1.0_displayBoard_schematics.pdf)**
 
 ## License
 ### Software Components
