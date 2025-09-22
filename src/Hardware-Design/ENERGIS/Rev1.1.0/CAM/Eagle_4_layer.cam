@@ -1,10 +1,10 @@
 {
     "author": {
-        "email": "support@jlcpcb.com",
-        "name": "JLCPCB"
+        "email": "s.dvid@hotmail.com",
+        "name": "David Sipos"
     },
     "description": {
-        "EN": "<b>JLCPCB 2-Layer CAM job</b><p>\n\nFor Eagle 8.6.0 to 9.6.2<p>\n\nTop Copper:      pcbname.GTL<br>\nTop Solder Mask: pcbname.GTS<br>\nTop Silkscreen:  pcbname.GTO<br>\nTop Paste:       pcbname.GTP<p>\n\nBottom Copper:      pcbname.GBL<br>\nBottom Solder Mask: pcbname.GBS<br>\nBottom Silkscreen:  pcbname.GBO<br>\nBottom Paste:       pcbname.GBP<p>\n\nProfile: pcbname.GKO (Dimension (20) and Milling (46) layers are used)<p>\nDrill Layer: pcbname.XLN (Both plated and non-plated holes are merged in this file)<p>\n\nPlease refer to <a href=\"https://support.jlcpcb.com/article/43-how-to-export-eagle-pcb-to-gerber-files\">How to Generate Gerber and Drill Files from Eagle</a> for more information.<p>\n\nEmail: support@jlcpcb.com<p>\nLast updated: 2020/11/18"
+        "EN": "<b>4-Layer CAM job</b><p>\n\nFor EAGLE 8.6.0 to 9.6.2<p>\n\nTop Copper:            pcbname_copper_l1.GTL<br>\nInner Copper Layer 1:  pcbname_copper_l2.G1<br>\nInner Copper Layer 2:  pcbname_copper_l3.G2<br>\nBottom Copper:         pcbname_copper_l6.GBL<p>\n\nDrill File: pcbname_drill.XLN (Both plated and non-plated holes are merged into this file)<p>\n\nSilkscreen Bottom: pcbname_Legend_Bot.GBO<br>\nSilkscreen Top:    pcbname_Legend_Top.GTO<br>\nPaste Bottom:      pcbname_Paste_Bot.GBP<br>\nPaste Top:         pcbname_Paste_Top.GTP<p>\n\nBoard Outline: pcbname_Profile_NP.GKO (Includes Dimension (20) and Milling (46) layers)<p>\n\nSoldermask Bottom: pcbname_Soldermask_Bot.GBS<br>\nSoldermask Top:    pcbname_Soldermask_Top.GTS<p>\n\nLast updated: 2025/09/22"
     },
     "output_type": "zip",
     "outputs": [
@@ -22,12 +22,12 @@
                         "PTH": true,
                         "VIA": true
                     },
-                    "filename_format": "%N.XLN",
+                    "filename_format": "%N_drill.XLN",
                     "layers": {
                         "from": 1,
                         "to": 16
                     },
-                    "name": "Excellon",
+                    "name": "Drill File",
                     "type": "excellon"
                 }
             ]
@@ -47,7 +47,7 @@
                         "file_function": "Profile",
                         "plating": "non-plated"
                     },
-                    "filename_format": "%N.GKO",
+                    "filename_format": "%N_%FF.GKO",
                     "layers": [
                         46,
                         20
@@ -65,7 +65,7 @@
                         "layer_details": "mixed",
                         "layer_type": "top"
                     },
-                    "filename_format": "%N.GTL",
+                    "filename_format": "%N_%FF.GTL",
                     "layers": [
                         1,
                         18,
@@ -76,14 +76,66 @@
                     "type": "gerber_layer"
                 },
                 {
+                    "advanced_options": {
+                        "mirror": false,
+                        "offset_x": 0,
+                        "offset_y": 0,
+                        "rotate": false,
+                        "upside_down": false
+                    },
                     "board_outline": false,
                     "config": {
                         "file_function": "Copper",
                         "layer": 2,
                         "layer_details": "mixed",
+                        "layer_type": "Inner"
+                    },
+                    "filename_format": "%N_%FF.G1",
+                    "layers": [
+                        2,
+                        17,
+                        18
+                    ],
+                    "milling": false,
+                    "name": "Inner Copper Layer 1",
+                    "polarity": "positive",
+                    "type": "gerber_layer"
+                },
+                {
+                    "advanced_options": {
+                        "mirror": false,
+                        "offset_x": 0,
+                        "offset_y": 0,
+                        "rotate": false,
+                        "upside_down": false
+                    },
+                    "board_outline": false,
+                    "config": {
+                        "file_function": "Copper",
+                        "layer": 3,
+                        "layer_details": "mixed",
+                        "layer_type": "Inner"
+                    },
+                    "filename_format": "%N_%FF.G2",
+                    "layers": [
+                        17,
+                        18,
+                        15
+                    ],
+                    "milling": false,
+                    "name": "Inner Copper Layer 2",
+                    "polarity": "positive",
+                    "type": "gerber_layer"
+                },
+                {
+                    "board_outline": false,
+                    "config": {
+                        "file_function": "Copper",
+                        "layer": 6,
+                        "layer_details": "mixed",
                         "layer_type": "bottom"
                     },
-                    "filename_format": "%N.GBL",
+                    "filename_format": "%N_%FF.GBL",
                     "layers": [
                         16,
                         17,
@@ -100,7 +152,7 @@
                         "index": 1,
                         "layer_type": "top"
                     },
-                    "filename_format": "%N.GTS",
+                    "filename_format": "%N_%FF.GTS",
                     "layers": [
                         29
                     ],
@@ -115,7 +167,7 @@
                         "index": 1,
                         "layer_type": "bottom"
                     },
-                    "filename_format": "%N.GBS",
+                    "filename_format": "%N_%FF.GBS",
                     "layers": [
                         30
                     ],
@@ -129,7 +181,7 @@
                         "file_function": "Paste",
                         "layer_type": "top"
                     },
-                    "filename_format": "%N.GTP",
+                    "filename_format": "%N_%FF.GTP",
                     "layers": [
                         31
                     ],
@@ -144,7 +196,7 @@
                         "file_function": "Paste",
                         "layer_type": "bottom"
                     },
-                    "filename_format": "%N.GBP",
+                    "filename_format": "%N_%FF.GBP",
                     "layers": [
                         32
                     ],
@@ -154,13 +206,13 @@
                     "type": "gerber_layer"
                 },
                 {
-                    "board_outline": false,
+                    "board_outline": true,
                     "config": {
                         "file_function": "Legend",
                         "index": 1,
                         "layer_type": "top"
                     },
-                    "filename_format": "%N.GTO",
+                    "filename_format": "%N_%FF.GTO",
                     "layers": [
                         21,
                         25,
@@ -172,13 +224,13 @@
                     "type": "gerber_layer"
                 },
                 {
-                    "board_outline": false,
+                    "board_outline": true,
                     "config": {
                         "file_function": "Legend",
                         "index": 1,
                         "layer_type": "bottom"
                     },
-                    "filename_format": "%N.GBO",
+                    "filename_format": "%N_%FF.GBO",
                     "layers": [
                         22,
                         26,
@@ -199,7 +251,7 @@
             ]
         }
     ],
-    "timestamp": "2020-11-12T14:32:05",
+    "timestamp": "2025-09-22T22:50:58",
     "type": "EAGLE CAM job",
     "units": "metric",
     "version": "9.2.0"
