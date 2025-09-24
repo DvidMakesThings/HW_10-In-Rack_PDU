@@ -4,7 +4,7 @@
         "name": "David Sipos"
     },
     "description": {
-        "EN": "<b>4-Layer CAM job</b><p>\n\nFor EAGLE 8.6.0 to 9.6.2<p>\n\nTop Copper:            pcbname_copper_l1.GTL<br>\nInner Copper Layer 1:  pcbname_copper_l2.G1<br>\nInner Copper Layer 2:  pcbname_copper_l3.G2<br>\nBottom Copper:         pcbname_copper_l6.GBL<p>\n\nDrill File: pcbname_drill.XLN (Both plated and non-plated holes are merged into this file)<p>\n\nSilkscreen Bottom: pcbname_Legend_Bot.GBO<br>\nSilkscreen Top:    pcbname_Legend_Top.GTO<br>\nPaste Bottom:      pcbname_Paste_Bot.GBP<br>\nPaste Top:         pcbname_Paste_Top.GTP<p>\n\nBoard Outline: pcbname_Profile_NP.GKO (Includes Dimension (20) and Milling (46) layers)<p>\n\nSoldermask Bottom: pcbname_Soldermask_Bot.GBS<br>\nSoldermask Top:    pcbname_Soldermask_Top.GTS<p>\n\nLast updated: 2025/09/22"
+        "EN": "<b>4-Layer CAM job</b><p>\n\nFor EAGLE 8.6.0 to 9.6.2<p>\n\nTop Copper:            pcbname_copper_l1.GTL<br>\nInner Copper Layer 1:  pcbname_copper_l2.G1<br>\nInner Copper Layer 2:  pcbname_copper_l3.G2<br>\nBottom Copper:         pcbname_copper_l4.GBL<p>\n\nDrill File: pcbname_drill.XLN (Both plated and non-plated holes are merged into this file)<p>\n\nSilkscreen Bottom: pcbname_Legend_Bot.GBO<br>\nSilkscreen Top:    pcbname_Legend_Top.GTO<br>\nPaste Bottom:      pcbname_Paste_Bot.GBP<br>\nPaste Top:         pcbname_Paste_Top.GTP<p>\n\nBoard Outline: pcbname_Profile_NP.GKO (Includes Dimension (20) and Milling (46) layers)<p>\n\nSoldermask Bottom: pcbname_Soldermask_Bot.GBS<br>\nSoldermask Top:    pcbname_Soldermask_Top.GTS<p>\n\nLast updated: 2025/09/22\n\n<br></br>\n<br></br>\n<b>Made by:</b> <ul>@DvidMakesThings <br>https://github.com/DvidMakesThings</ul></br>"
     },
     "output_type": "zip",
     "outputs": [
@@ -131,7 +131,7 @@
                     "board_outline": false,
                     "config": {
                         "file_function": "Copper",
-                        "layer": 6,
+                        "layer": 4,
                         "layer_details": "mixed",
                         "layer_type": "bottom"
                     },
@@ -251,7 +251,7 @@
             ]
         }
     ],
-    "timestamp": "2025-09-22T22:50:58",
+    "timestamp": "2025-09-23T20:18:31",
     "type": "EAGLE CAM job",
     "units": "metric",
     "version": "9.2.0"
