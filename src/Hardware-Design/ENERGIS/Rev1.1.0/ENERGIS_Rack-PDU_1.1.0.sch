@@ -1066,7 +1066,10 @@ DIN A3, landscape with location and doc. field</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:46683740/2"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="ROHS" value="YES" constant="no"/>
+<attribute name="VALUE" value="TESTPOINT" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="-ROUND" package="TP-ROUND">
@@ -1074,7 +1077,10 @@ DIN A3, landscape with location and doc. field</description>
 <connect gate="G$1" pin="P$1" pad="TP"/>
 </connects>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="ROHS" value="YES" constant="no"/>
+<attribute name="VALUE" value="TESTPOINT" constant="no"/>
+</technology>
 </technologies>
 </device>
 </devices>
@@ -1162,7 +1168,7 @@ DIN A3, landscape with location and doc. field</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="G2RL-1A-E_DC12" urn="urn:adsk.eagle:component:46756718/3" prefix="K">
+<deviceset name="G2RL-1A-E_DC12" urn="urn:adsk.eagle:component:46756718/3" locally_modified="yes" prefix="K">
 <description>12V 16A One Normally Open: 1A (SPST-NO) DIP,12.5x28.8mm Power Relays ROHS</description>
 <gates>
 <gate name="A" symbol="RELAY_G2R-1A-E_AC12" x="0" y="0"/>
@@ -1183,7 +1189,11 @@ DIN A3, landscape with location and doc. field</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="12V 16A One Normally Open: 1A (SPST-NO) DIP,12.5x28.8mm Power Relays ROHS " constant="no"/>
+<attribute name="HQ_PART" value="" constant="no"/>
 <attribute name="LCSC_PART" value="C1564126" constant="no"/>
+<attribute name="MANUFACTURER" value="Omron" constant="no"/>
+<attribute name="MPN" value="G2RL-1A-E DC12" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="G2RL-1A-E DC12 " constant="no"/>
 </technology>
 </technologies>
@@ -1220,14 +1230,18 @@ DIN A3, landscape with location and doc. field</description>
 <technology name="">
 <attribute name="DATASHEET" value="https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3u.pdf" constant="no"/>
 <attribute name="DESCRIPTION" value="2.5mm 1.6mm Round Button 50mA Standing paste 3mm SPST 153gf 12V SMD,2.5x3mm Tactile Switches ROHS " constant="no"/>
+<attribute name="HQ_PART" value="SW0036094 " constant="no"/>
 <attribute name="LCSC_PART" value="C231329" constant="no"/>
+<attribute name="MANUFACTURER" value="Omron" constant="no"/>
+<attribute name="MPN" value="B3U-1000P" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="B3U-1000P " constant="no"/>
 </technology>
 </technologies>
 </device>
 </devices>
 </deviceset>
-<deviceset name="CRYSTAL-3225" urn="urn:adsk.eagle:component:49287378/1" prefix="X" uservalue="yes">
+<deviceset name="CRYSTAL-3225" urn="urn:adsk.eagle:component:49287378/1" locally_modified="yes" prefix="X" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="CRYSTAL-4PIN" x="0" y="0"/>
 </gates>
@@ -1244,7 +1258,11 @@ DIN A3, landscape with location and doc. field</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="12MHz Surface Mount Crystal 20pF ±10ppm ±20ppm SMD3225-4P Crystals ROHS " constant="no"/>
+<attribute name="HQ_PART" value="CR208634843" constant="no"/>
 <attribute name="LCSC_PART" value="C20625731" constant="no"/>
+<attribute name="MANUFACTURER" value="Abracon" constant="no"/>
+<attribute name="MPN" value="ABM8-272-T3 " constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="ABM8-272-T3 12MHz" constant="no"/>
 </technology>
 </technologies>
@@ -1278,7 +1296,11 @@ DIN A3, landscape with location and doc. field</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="25MHz Surface Mount Crystal 12pF ±10ppm ±20ppm SMD3225-4P Crystals ROHS " constant="no"/>
+<attribute name="HQ_PART" value="CR0250343" constant="no"/>
 <attribute name="LCSC_PART" value="C9006" constant="no"/>
+<attribute name="MANUFACTURER" value="Epson" constant="no"/>
+<attribute name="MPN" value="X1E000021013900" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="25MHz" constant="no"/>
 </technology>
 </technologies>
@@ -2247,7 +2269,10 @@ DIN A3, landscape with location and doc. field</description>
 <technology name="">
 <attribute name="DATASHEET" value="https://www.sycelectronica.com.ar/semiconductores/ULN2803-SMD.pdf?srsltid=AfmBOophiuKj-Ssp-X9zHCj-smbNohAULqg7ZzMWt7RSG8XB10-82Tty" constant="no"/>
 <attribute name="DESCRIPTION" value="SOP-18-300mil Darlington Transistor Arrays ROHS " constant="no"/>
+<attribute name="HQ_PART" value="ZHLM0322921" constant="no"/>
 <attribute name="LCSC_PART" value="C845537" constant="no"/>
+<attribute name="MANUFACTURER" value="UMW" constant="no"/>
+<attribute name="MPN" value="ULN2803A" constant="no"/>
 <attribute name="VALUE" value="ULN2803AFWG" constant="no"/>
 </technology>
 </technologies>
@@ -2332,7 +2357,11 @@ DIN A3, landscape with location and doc. field</description>
 <technology name="">
 <attribute name="DATASHEET" value="https://ww1.microchip.com/downloads/en/devicedoc/20001952c.pdf" constant="no"/>
 <attribute name="DESCRIPTION" value="1.7MHz I2C QFN-28-EP(6x6) I/O Expanders ROHS " constant="no"/>
+<attribute name="HQ_PART" value="IC0080215" constant="no"/>
 <attribute name="LCSC_PART" value="C629439" constant="no"/>
+<attribute name="MANUFACTURER" value="MICROCHIP" constant="no"/>
+<attribute name="MPN" value="MCP23017-E/ML" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="MCP23017T-E/ML " constant="no"/>
 </technology>
 </technologies>
@@ -2363,7 +2392,11 @@ DIN A3, landscape with location and doc. field</description>
 <technology name="">
 <attribute name="DATASHEET" value="https://w2.electrodragon.com/Chip-cn-dat/HLW-dat/HLW8032-dat/HLW8032.pdf" constant="no"/>
 <attribute name="DESCRIPTION" value="SOP-8 Energy Metering ROHS " constant="no"/>
+<attribute name="HQ_PART" value="MD0751024" constant="no"/>
 <attribute name="LCSC_PART" value="C128023" constant="no"/>
+<attribute name="MANUFACTURER" value="Hiliwei Tech" constant="no"/>
+<attribute name="MPN" value="HLW8032" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="HLW8032" constant="no"/>
 </technology>
 </technologies>
@@ -2403,7 +2436,11 @@ Phototransistor Optocoupler</description>
 <technology name="">
 <attribute name="DATASHEET" value="https://docs.broadcom.com/doc/AV02-0752EN" constant="no"/>
 <attribute name="DESCRIPTION" value="80V 50mA 400mV@2.4mA,8mA 4 6V 1.2V DC SOP-16-4.4mm Transistor, Photovoltaic Output Optoisolators ROHS " constant="no"/>
+<attribute name="HQ_PART" value="IS0001505" constant="no"/>
 <attribute name="LCSC_PART" value="C188681" constant="no"/>
+<attribute name="MANUFACTURER" value="Broadcom" constant="no"/>
+<attribute name="MPN" value="ACPL-247-500E" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="ACPL-247-500E " constant="no"/>
 </technology>
 </technologies>
@@ -3079,8 +3116,12 @@ The MP2315 is a high frequency synchronous rectified step-down switch mode conve
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="3V ±0.2% 15mA Fixed SOT-23 Voltage Reference ROHS " constant="no"/>
+<attribute name="HQ_PART" value="IC0022950" constant="no"/>
 <attribute name="LCSC_PART" value="C460604" constant="no"/>
-<attribute name="VALUE" value="LM4040B30FTA" constant="no"/>
+<attribute name="MANUFACTURER" value="DIODES" constant="no"/>
+<attribute name="MPN" value="LM4040C30FTA " constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
+<attribute name="VALUE" value="LM4040x30" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -3176,7 +3217,7 @@ MAX3223-MAX3243.pdf</description>
 </package3d>
 </packages3d>
 <symbols>
-<symbol name="SN74HC151PWR">
+<symbol name="SN74HC151PWR" urn="urn:adsk.eagle:symbol:49052100/1">
 <pin name="D0" x="-12.7" y="7.62" length="middle"/>
 <pin name="D1" x="-12.7" y="5.08" length="middle"/>
 <pin name="D2" x="-12.7" y="2.54" length="middle"/>
@@ -3202,7 +3243,7 @@ MAX3223-MAX3243.pdf</description>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="SN74HC151PWR" prefix="IC">
+<deviceset name="74AC151" urn="urn:adsk.eagle:component:49052134/1" locally_modified="yes" prefix="IC">
 <description>8-Line To 1-Line Data Selectors/Multiplexers</description>
 <gates>
 <gate name="A" symbol="SN74HC151PWR" x="0" y="0"/>
@@ -3233,9 +3274,13 @@ MAX3223-MAX3243.pdf</description>
 <technologies>
 <technology name="">
 <attribute name="DATASHEET" value="https://www.ti.com/lit/ds/symlink/sn74hc151.pdf?ts=1749408396579&amp;ref_url=https%253A%252F%252Fwww.google.com%252F" constant="no"/>
-<attribute name="DESCRIPTION" value="7.8mA 2V~6V 7.8mA TSSOP-16 Signal Switches, Multiplexers, Decoders ROHS " constant="no"/>
-<attribute name="LCSC_PART" value="C2653837" constant="no"/>
-<attribute name="VALUE" value="SN74HC151PWR" constant="no"/>
+<attribute name="DESCRIPTION" value="24mA 4.5V~5.5V 24mA SOIC-16 Signal Switches, Multiplexers, Decoders ROHS " constant="no"/>
+<attribute name="HQ_PART" value="IC0244620" constant="no"/>
+<attribute name="LCSC_PART" value="C2674746" constant="no"/>
+<attribute name="MANUFACTURER" value="Nexperia" constant="no"/>
+<attribute name="MPN" value="74HC151PW-Q100,118 " constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
+<attribute name="VALUE" value="CD74ACT151M96" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -4502,8 +4547,13 @@ MAX3223-MAX3243.pdf</description>
 </package3dinstances>
 <technologies>
 <technology name="">
+<attribute name="DATASHEET" value="https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf" constant="no"/>
 <attribute name="DESCRIPTION" value="133MHz LQFN-56(7x7) Microcontrollers (MCU/MPU/SOC) ROHS" constant="no"/>
+<attribute name="HQ_PART" value="ZHLM0164739" constant="no"/>
 <attribute name="LCSC_PART" value="C2040" constant="no"/>
+<attribute name="MANUFACTURER" value="Raspberry Pi " constant="no"/>
+<attribute name="MPN" value="RP2040" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="RP2040" constant="no"/>
 </technology>
 </technologies>
@@ -4591,7 +4641,10 @@ MAX3223-MAX3243.pdf</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="Single 1pA 0.6V/us 1MHz SOT-23-5 Operational Amplifier ROHS " constant="no"/>
+<attribute name="HQ_PART" value="IC0119727" constant="no"/>
 <attribute name="LCSC_PART" value="C154973" constant="no"/>
+<attribute name="MANUFACTURER" value="MICROCHIP" constant="no"/>
+<attribute name="MPN" value="MCP6001RT-I/OT " constant="no"/>
 <attribute name="VALUE" value="MCP6001RT-I/OT" constant="no"/>
 </technology>
 </technologies>
@@ -4802,7 +4855,7 @@ MAX3223-MAX3243.pdf</description>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="CAT24C256" urn="urn:adsk.eagle:component:48272633/2" prefix="IC" uservalue="yes">
+<deviceset name="CAT24C256" urn="urn:adsk.eagle:component:48272633/2" locally_modified="yes" prefix="IC" uservalue="yes">
 <description>The CAT24C256 is a EEPROM Serial 256−Kb I2C, internally
 organized as 32,768 words of 8 bits each.
 It features a 64−byte page write buffer and supports the Standard
@@ -4835,14 +4888,18 @@ for high reliability applications.</description>
 <technology name="">
 <attribute name="DATASHEET" value="https://www.onsemi.com/download/data-sheet/pdf/cat24c256-d.pdf" constant="no"/>
 <attribute name="DESCRIPTION" value="256Kbit I2C UDFN-8(2x3) EEPROM ROHS " constant="no"/>
+<attribute name="HQ_PART" value="IC0066897" constant="no"/>
 <attribute name="LCSC_PART" value="C233771" constant="no"/>
+<attribute name="MANUFACTURER" value="ON" constant="no"/>
+<attribute name="MPN" value="CAT24C256HU4IGT3" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="CAT24C256HU4IGT3" constant="no"/>
 </technology>
 </technologies>
 </device>
 </devices>
 </deviceset>
-<deviceset name="W25Q128JV" urn="urn:adsk.eagle:component:48272636/2" prefix="IC" uservalue="yes">
+<deviceset name="W25Q128JV" urn="urn:adsk.eagle:component:48272636/2" locally_modified="yes" prefix="IC" uservalue="yes">
 <description>3V 128M-BIT
 SERIAL FLASH MEMORY WITH
 DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
@@ -4868,7 +4925,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technology name="">
 <attribute name="DATASHEET" value="https://www.nikom.biz/pdf/A089014.pdf?srsltid=AfmBOopZgx1G_qpdWEIfoO5Ne0YuvaGR9ub92ZA1x90R1kz9P6rrUXmf" constant="no"/>
 <attribute name="DESCRIPTION" value="128Mbit WSON-8-EP(5x6) NOR FLASH ROHS " constant="no"/>
+<attribute name="HQ_PART" value="IC0150933" constant="no"/>
 <attribute name="LCSC_PART" value="C190862" constant="no"/>
+<attribute name="MANUFACTURER" value="Winbond" constant="no"/>
+<attribute name="MPN" value="W25Q128JVPIQ" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="W25Q128JVPIQ" constant="no"/>
 </technology>
 </technologies>
@@ -5459,7 +5520,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="1K-1%" urn="urn:adsk.eagle:component:49287454/1" prefix="R" uservalue="yes">
+<deviceset name="1K-1%" urn="urn:adsk.eagle:component:49287454/1" locally_modified="yes" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -5475,7 +5536,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 1kΩ 0402 Chip Resistor - Surface Mount ROHS"/>
+<attribute name="HQ_PART" value="RE0188047" constant="no"/>
 <attribute name="LCSC_PART" value="C11702" constant="no"/>
+<attribute name="MANUFACTURER" value="Uniohm" constant="no"/>
+<attribute name="MPN" value="0402WGF1001TCE" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="1K 1%" constant="no"/>
 </technology>
 </technologies>
@@ -5491,7 +5556,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="100mW Thick Film Resistors 75V ±100ppm/℃ ±1% 1kΩ 0603 Chip Resistor - Surface Mount ROHS" constant="no"/>
+<attribute name="HQ_PART" value="RE0023893" constant="no"/>
 <attribute name="LCSC_PART" value="C21190" constant="no"/>
+<attribute name="MANUFACTURER" value="Yageo" constant="no"/>
+<attribute name="MPN" value="RC0603FR-071KL" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="1K 1%" constant="no"/>
 </technology>
 </technologies>
@@ -5507,7 +5576,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="125mW Thick Film Resistors 150V ±100ppm/℃ ±1% 1kΩ 0805 Chip Resistor - Surface Mount ROHS" constant="no"/>
+<attribute name="HQ_PART" value="RE0203459" constant="no"/>
 <attribute name="LCSC_PART" value="C17513" constant="no"/>
+<attribute name="MANUFACTURER" value="FH" constant="no"/>
+<attribute name="MPN" value="RS-05K1001FT" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="1K 1%" constant="no"/>
 </technology>
 </technologies>
@@ -5523,7 +5596,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="250mW Thick Film Resistors 200V ±1% 1kΩ 1206 Chip Resistor - Surface Mount ROHS" constant="no"/>
+<attribute name="HQ_PART" value="RE0203531" constant="no"/>
 <attribute name="LCSC_PART" value="C4410" constant="no"/>
+<attribute name="MANUFACTURER" value="FH" constant="no"/>
+<attribute name="MPN" value="RS-06K1001FT " constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="1K 1%" constant="no"/>
 </technology>
 </technologies>
@@ -5539,14 +5616,18 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="50mW Thick Film Resistors 25V ±1% ±200ppm/℃ 1kΩ 0201  Chip Resistor - Surface Mount ROHS" constant="no"/>
+<attribute name="HQ_PART" value="RE0015967" constant="no"/>
 <attribute name="LCSC_PART" value="C270365" constant="no"/>
+<attribute name="MANUFACTURER" value="Yageo" constant="no"/>
+<attribute name="MPN" value="RC0201FR-071KL " constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="1K 1%" constant="no"/>
 </technology>
 </technologies>
 </device>
 </devices>
 </deviceset>
-<deviceset name="27R-1%" urn="urn:adsk.eagle:component:49287450/1" prefix="R" uservalue="yes">
+<deviceset name="27R-1%" urn="urn:adsk.eagle:component:49287450/1" locally_modified="yes" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -5562,7 +5643,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="50mW Thick Film Resistors 25V ±1% ±200ppm/℃ 27Ω 0201 Chip Resistor - Surface Mount ROHS" constant="no"/>
+<attribute name="HQ_PART" value="RE0209327 " constant="no"/>
 <attribute name="LCSC_PART" value="C473051" constant="no"/>
+<attribute name="MANUFACTURER" value="FH" constant="no"/>
+<attribute name="MPN" value="RC-01W27R0FT " constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="27R 1%" constant="no"/>
 </technology>
 </technologies>
@@ -5649,7 +5734,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="10K-1%" urn="urn:adsk.eagle:component:49287453/1" prefix="R" uservalue="yes">
+<deviceset name="10K-1%" urn="urn:adsk.eagle:component:49287453/1" locally_modified="yes" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -5665,7 +5750,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 10kΩ 0402 Chip Resistor - Surface Mount ROHS"/>
+<attribute name="HQ_PART" value="RE0207399" constant="no"/>
 <attribute name="LCSC_PART" value="C25744" constant="no"/>
+<attribute name="MANUFACTURER" value="ROHM" constant="no"/>
+<attribute name="MPN" value="MCR01MZPF1002" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="10K 1%" constant="no"/>
 </technology>
 </technologies>
@@ -5736,7 +5825,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="4.7K-1%" urn="urn:adsk.eagle:component:49287447/1" prefix="R" uservalue="yes">
+<deviceset name="4.7K-1%" urn="urn:adsk.eagle:component:49287447/1" locally_modified="yes" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -5752,7 +5841,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="50mW Thick Film Resistors 25V ±1% ±200ppm/℃ 4.7kΩ 0201 Chip Resistor - Surface Mount ROHS" constant="no"/>
+<attribute name="HQ_PART" value="RE0208670" constant="no"/>
 <attribute name="LCSC_PART" value="C270346" constant="no"/>
+<attribute name="MANUFACTURER" value="RALEC" constant="no"/>
+<attribute name="MPN" value="RTT014701FTH" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="4.7K 1%" constant="no"/>
 </technology>
 </technologies>
@@ -6361,7 +6454,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="10R-1%" urn="urn:adsk.eagle:component:49287461/1" prefix="R" uservalue="yes">
+<deviceset name="10R-1%" urn="urn:adsk.eagle:component:49287461/1" locally_modified="yes" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -6377,7 +6470,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="50mW Thick Film Resistors 25V ±1% ±200ppm/℃ 10Ω 0201 Chip Resistor - Surface Mount ROHS" constant="no"/>
+<attribute name="HQ_PART" value="RE0210247" constant="no"/>
 <attribute name="LCSC_PART" value="C270817" constant="no"/>
+<attribute name="MANUFACTURER" value="Yageo" constant="no"/>
+<attribute name="MPN" value="AF0201FR-0710RL " constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="10R 1%" constant="no"/>
 </technology>
 </technologies>
@@ -7366,7 +7463,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="0.002R-1%" urn="urn:adsk.eagle:component:49287477/1" prefix="R" uservalue="yes">
+<deviceset name="0.002R-1%" urn="urn:adsk.eagle:component:49287477/1" locally_modified="yes" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -7398,7 +7495,10 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="1W ±1% ±275ppm/℃ 2mΩ 1206 Chip Resistor - Surface Mount ROHS" constant="no"/>
+<attribute name="HQ_PART" value="RE0461545" constant="no"/>
 <attribute name="LCSC_PART" value="C844294" constant="no"/>
+<attribute name="MANUFACTURER" value="Yageo" constant="no"/>
+<attribute name="MPN" value="PA1206FRM470R002L" constant="no"/>
 <attribute name="VALUE" value="0.002R 1%" constant="no"/>
 </technology>
 </technologies>
@@ -7414,14 +7514,17 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="3W ±100ppm/℃ ±1% 2mΩ 2512 Chip Resistor - Surface Mount ROHS" constant="no"/>
+<attribute name="HQ_PART" value="RE0716514" constant="no"/>
 <attribute name="LCSC_PART" value="C728320" constant="no"/>
+<attribute name="MANUFACTURER" value="Viking" constant="no"/>
+<attribute name="MPN" value="LR12FTDSR002" constant="no"/>
 <attribute name="VALUE" value="0.002R 1%" constant="no"/>
 </technology>
 </technologies>
 </device>
 </devices>
 </deviceset>
-<deviceset name="470K-1%" urn="urn:adsk.eagle:component:49287476/1" prefix="R" uservalue="yes">
+<deviceset name="470K-1%" urn="urn:adsk.eagle:component:49287476/1" locally_modified="yes" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -7485,7 +7588,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="125mW Thick Film Resistors 150V ±100ppm/℃ ±1% 470kΩ 0805 Chip Resistor - Surface Mount ROHS" constant="no"/>
+<attribute name="HQ_PART" value="RE0205756" constant="no"/>
 <attribute name="LCSC_PART" value="C17709" constant="no"/>
+<attribute name="MANUFACTURER" value="Panasonic" constant="no"/>
+<attribute name="MPN" value="ERJ6ENF4703V" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="470K 1%" constant="no"/>
 </technology>
 </technologies>
@@ -7508,7 +7615,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="0R" urn="urn:adsk.eagle:component:49287455/1" prefix="R" uservalue="yes">
+<deviceset name="0R" urn="urn:adsk.eagle:component:49287455/1" locally_modified="yes" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -7524,7 +7631,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±800ppm/℃ ±1% 0Ω 0402 Chip Resistor - Surface Mount ROHS"/>
+<attribute name="HQ_PART" value="RE0250181" constant="no"/>
 <attribute name="LCSC_PART" value="C17168" constant="no"/>
+<attribute name="MANUFACTURER" value="YAGEO" constant="no"/>
+<attribute name="MPN" value="RC0402JR-130RL" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="0R 1%" constant="no"/>
 </technology>
 </technologies>
@@ -7540,7 +7651,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="100mW Thick Film Resistors 75V ±1% 0Ω 0603 Chip Resistor - Surface Mount ROHS" constant="no"/>
+<attribute name="HQ_PART" value="RE0206924" constant="no"/>
 <attribute name="LCSC_PART" value="C21189" constant="no"/>
+<attribute name="MANUFACTURER" value="KOA" constant="no"/>
+<attribute name="MPN" value="RK73Z1JTTD" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="0R 1%" constant="no"/>
 </technology>
 </technologies>
@@ -7556,7 +7671,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="125mW Thick Film Resistors 150V ±800ppm/℃ ±1% 0Ω 0805 Chip Resistor - Surface Mount ROHS" constant="no"/>
+<attribute name="HQ_PART" value="RE0013023" constant="no"/>
 <attribute name="LCSC_PART" value="C17477" constant="no"/>
+<attribute name="MANUFACTURER" value="Vishay" constant="no"/>
+<attribute name="MPN" value="CRCW08050000Z0EA" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="0R 1%" constant="no"/>
 </technology>
 </technologies>
@@ -7572,7 +7691,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="250mW Thick Film Resistors ±100ppm/℃ ±1% 30.9kΩ 1206 Chip Resistor - Surface Mount ROHS" constant="no"/>
+<attribute name="HQ_PART" value="RE0209081" constant="no"/>
 <attribute name="LCSC_PART" value="C205296" constant="no"/>
+<attribute name="MANUFACTURER" value="RALEC" constant="no"/>
+<attribute name="MPN" value="RTT06000JTP" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="0R 1%" constant="no"/>
 </technology>
 </technologies>
@@ -7588,7 +7711,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="1W Thick Film Resistors 200V ±5% ±800ppm/℃ 0Ω 2512 Chip Resistor - Surface Mount ROHS" constant="no"/>
+<attribute name="HQ_PART" value="RE0460225" constant="no"/>
 <attribute name="LCSC_PART" value="C25469" constant="no"/>
+<attribute name="MANUFACTURER" value="KOA" constant="no"/>
+<attribute name="MPN" value="RK73ZW3ATTE" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="0R 1%" constant="no"/>
 </technology>
 </technologies>
@@ -7604,14 +7731,18 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="50mW Thick Film Resistors 25V ±1% 0Ω 0201 Chip Resistor - Surface Mount ROHS" constant="no"/>
+<attribute name="HA_PART" value="RE0015349" constant="no"/>
 <attribute name="LCSC_PART" value="C106227" constant="no"/>
+<attribute name="MANUFACTURER" value="Yageo" constant="no"/>
+<attribute name="MPN" value="RC0201FR-070RL" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="0R 1%" constant="no"/>
 </technology>
 </technologies>
 </device>
 </devices>
 </deviceset>
-<deviceset name="3.3K-1%_ARRAY" urn="urn:adsk.eagle:component:49287431/1" locally_modified="yes" prefix="RN" uservalue="yes">
+<deviceset name="3.3K-1%_ARRAY" urn="urn:adsk.eagle:component:49287431/2" prefix="RN" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="742C083103JP" x="0" y="0"/>
 </gates>
@@ -7640,7 +7771,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="1K-1%_ARRAY" urn="urn:adsk.eagle:component:49287482/1" locally_modified="yes" prefix="RN" uservalue="yes">
+<deviceset name="1K-1%_ARRAY" urn="urn:adsk.eagle:component:49287482/2" locally_modified="yes" prefix="RN" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="742C083103JP" x="0" y="0"/>
 </gates>
@@ -7662,14 +7793,18 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="4 ±1% 1kΩ 62.5mW ±200ppm/℃ 0603x4 Resistor Networks, Arrays ROHS " constant="no"/>
+<attribute name="HQ_PART" value="RE0022532" constant="no"/>
 <attribute name="LCSC_PART" value="C110021" constant="no"/>
+<attribute name="MANUFACTURER" value="Yageo" constant="no"/>
+<attribute name="MPN" value="YC164-JR-071KL " constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="1K 1%" constant="no"/>
 </technology>
 </technologies>
 </device>
 </devices>
 </deviceset>
-<deviceset name="10K-1%_ARRAY" urn="urn:adsk.eagle:component:49287432/1" locally_modified="yes" prefix="RN" uservalue="yes">
+<deviceset name="10K-1%_ARRAY" urn="urn:adsk.eagle:component:49287432/2" locally_modified="yes" prefix="RN" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="742C083103JP" x="0" y="0"/>
 </gates>
@@ -7691,14 +7826,18 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="4 ±1% 10kΩ 62.5mW ±200ppm/℃ 0603x4 Resistor Networks, Arrays ROHS " constant="no"/>
+<attribute name="HQ_PART" value="RE0094682" constant="no"/>
 <attribute name="LCSC_PART" value="C110924" constant="no"/>
+<attribute name="MANUFACTURER" value="Yageo" constant="no"/>
+<attribute name="MPN" value="YC164-FR-0710KL " constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="10K 1%" constant="no"/>
 </technology>
 </technologies>
 </device>
 </devices>
 </deviceset>
-<deviceset name="100K-1%_ARRAY" urn="urn:adsk.eagle:component:49287429/1" locally_modified="yes" prefix="RN" uservalue="yes">
+<deviceset name="100K-1%_ARRAY" urn="urn:adsk.eagle:component:49287429/2" locally_modified="yes" prefix="RN" uservalue="yes">
 <gates>
 <gate name="A" symbol="RN" x="0" y="12.7"/>
 <gate name="B" symbol="RN" x="0" y="5.08"/>
@@ -7723,14 +7862,18 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="4 ±1% 100kΩ 62.5mW ±200ppm/℃ 0603x4 Resistor Networks, Arrays ROHS " constant="no"/>
+<attribute name="HQ_PART" value="RE0094681" constant="no"/>
 <attribute name="LCSC_PART" value="C110374" constant="no"/>
+<attribute name="MANUFACTURER" value="Yageo" constant="no"/>
+<attribute name="MPN" value="YC164-FR-07100KL " constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="100K 1%" constant="no"/>
 </technology>
 </technologies>
 </device>
 </devices>
 </deviceset>
-<deviceset name="3.3K-1%" urn="urn:adsk.eagle:component:49287452/1" prefix="R" uservalue="yes">
+<deviceset name="3.3K-1%" urn="urn:adsk.eagle:component:49287452/1" locally_modified="yes" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -7746,7 +7889,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 3.3kΩ 0402 Chip Resistor - Surface Mount ROHS"/>
+<attribute name="HQ_PART" value="RE0189064" constant="no"/>
 <attribute name="LCSC_PART" value="C25890" constant="no"/>
+<attribute name="MANUFACTURER" value="Uniohm" constant="no"/>
+<attribute name="MPN" value="0402WGF3301TCE" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="3.3K 1%" constant="no"/>
 </technology>
 </technologies>
@@ -8099,7 +8246,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="50V 15pF C0G ±5% 0201 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" constant="no"/>
+<attribute name="HQ_PART" value="CA0136888" constant="no"/>
 <attribute name="LCSC_PART" value="C22374851" constant="no"/>
+<attribute name="MANUFACTURER" value="Yageo" constant="no"/>
+<attribute name="MPN" value="CC0201JRNPO9BN150" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="15pF 50V" constant="no"/>
 </technology>
 </technologies>
@@ -8257,7 +8408,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="25V 100nF X5R ±10% 0201 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" constant="no"/>
+<attribute name="HQ_PART" value="CA0183221" constant="no"/>
 <attribute name="LCSC_PART" value="C76939" constant="no"/>
+<attribute name="MANUFACTURER" value="Samsung" constant="no"/>
+<attribute name="MPN" value="CL03A104MP3NNNC" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="100nF 25V" constant="no"/>
 </technology>
 </technologies>
@@ -8272,8 +8427,12 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 </package3dinstances>
 <technologies>
 <technology name="">
-<attribute name="DESCRIPTION" value="25V 100nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" constant="no"/>
+<attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" constant="no"/>
+<attribute name="HQ_PART" value="CA0137105" constant="no"/>
 <attribute name="LCSC_PART" value="C56392" constant="no"/>
+<attribute name="MANUFACTURER" value="Yageo" constant="no"/>
+<attribute name="MPN" value="CC0402KRX5R8BB104" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="100nF 25V" constant="no"/>
 </technology>
 </technologies>
@@ -8383,7 +8542,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="16V 1uF X5R ±20% 0201 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" constant="no"/>
+<attribute name="HQ_PART" value="CA0176810" constant="no"/>
 <attribute name="LCSC_PART" value="C307385" constant="no"/>
+<attribute name="MANUFACTURER" value="WALSIN" constant="no"/>
+<attribute name="MPN" value="0402X105K160CT" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="1uF 16V" constant="no"/>
 </technology>
 </technologies>
@@ -8470,7 +8633,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="25V 1uF X5R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" constant="no"/>
+<attribute name="HQ_PART" value="CA0175588" constant="no"/>
 <attribute name="LCSC_PART" value="C52923" constant="no"/>
+<attribute name="MANUFACTURER" value="TDK" constant="no"/>
+<attribute name="MPN" value="C1005X5R1E105KT000E" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="1uF 25V" constant="no"/>
 </technology>
 </technologies>
@@ -8683,7 +8850,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="25V 1nF X7R ±10% 0201 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" constant="no"/>
+<attribute name="HQ_PART" value="CA0136821" constant="no"/>
 <attribute name="LCSC_PART" value="C7694325V" constant="no"/>
+<attribute name="MANUFACTURER" value="Samsung" constant="no"/>
+<attribute name="MPN" value="CL03B102KA3NNNC" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="1nF 25V" constant="no"/>
 </technology>
 </technologies>
@@ -9235,7 +9406,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="50V 33nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" constant="no"/>
+<attribute name="HQ_PART" value="UN0000063" constant="no"/>
 <attribute name="LCSC_PART" value="C107150" constant="no"/>
+<attribute name="MANUFACTURER" value="FH" constant="no"/>
+<attribute name="MPN" value="0805B333K500NT" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="33nF 50V" constant="no"/>
 </technology>
 </technologies>
@@ -9665,7 +9840,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="20mA 810mcd Colorless and transparent Individual diode 515nm~535nm -20℃~+85℃ Positive Stick Emerald 120° 70mW 3.3V 0603 LED Indication - Discrete ROHS" constant="no"/>
+<attribute name="HQ_PART" value="PH0010430" constant="no"/>
 <attribute name="LCSC_PART" value="C965804" constant="no"/>
+<attribute name="MANUFACTURER" value="Wurth" constant="no"/>
+<attribute name="MPN" value="150060GS75000" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="Green" constant="no"/>
 </technology>
 </technologies>
@@ -9752,7 +9931,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="20mA 240mcd Colorless and transparent -20℃~+85℃ Positive Stick 455nm~475nm Blue 120° 70mW 3.3V 0603 LED Indication - Discrete ROHS" constant="no"/>
+<attribute name="HQ_PART" value="PH0093698" constant="no"/>
 <attribute name="LCSC_PART" value="C965807" constant="no"/>
+<attribute name="MANUFACTURER" value="NATIONSTAR" constant="no"/>
+<attribute name="MPN" value="FC-1608BK-465G5 " constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="Blue" constant="no"/>
 </technology>
 </technologies>
@@ -9768,7 +9951,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="20mA 260mcd Colorless transparent lens -20℃~+85℃ Positive Stick 460nm~475nm Blue 120° 70mW 3.2V 0805 LED Indication - Discrete ROHS" constant="no"/>
+<attribute name="HQ_PART" value="PH0095697" constant="no"/>
 <attribute name="LCSC_PART" value="C965817" constant="no"/>
+<attribute name="MANUFACTURER" value="XINGLIGHT" constant="no"/>
+<attribute name="MPN" value="XL-2012UBC-A " constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="Blue" constant="no"/>
 </technology>
 </technologies>
@@ -10359,7 +10546,11 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technology name="">
 <attribute name="DATASHEET" value="https://www.onsemi.com/download/data-sheet/pdf/mbra340t3-d.pdf" constant="no"/>
 <attribute name="DESCRIPTION" value="40V 450mV@3A 3A SMA(DO-214AC) Schottky Diodes ROHS " constant="no"/>
+<attribute name="HQ_PART" value="DS0002158" constant="no"/>
 <attribute name="LCSC_PART" value="C26178" constant="no"/>
+<attribute name="MANUFACTURER" value="ON" constant="no"/>
+<attribute name="MPN" value="MBRA340T3G" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="MBRA340T3G" constant="no"/>
 </technology>
 </technologies>
@@ -10383,7 +10574,11 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <technology name="">
 <attribute name="DATASHEET" value="https://semtech.my.salesforce.com/sfc/p/#E0000000JelG/a/440000001Lzx/0M5l0VFdFhBLS7TSRfd1I2V77GSkvtksC9b.1bnFtjQ" constant="no"/>
 <attribute name="DESCRIPTION" value="-40℃~+105℃@(Tj) 1.2pF 100nA 15A@8/20us 2 20V 300W 5V 6V ESD IEC 61000-4-2 SOT-523 ESD and Surge Protection (TVS/ESD) ROHS " constant="no"/>
+<attribute name="HQ_PART" value="PD0007296" constant="no"/>
 <attribute name="LCSC_PART" value="C841193" constant="no"/>
+<attribute name="MANUFACTURER" value="SEMTECH" constant="no"/>
+<attribute name="MPN" value="RCLAMP0582BQTCT" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="RCLAMP0582BQTCT" constant="no"/>
 </technology>
 </technologies>
@@ -10654,7 +10849,7 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="GND15" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND16" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND19" library="ds_passive" deviceset="GND" device=""/>
-<part name="12VDC" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="12VDC" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
 <part name="IC1" library="ds_ic_vreg" deviceset="MP2315" device="TSOT23-8" package3d_urn="urn:adsk.eagle:package:29335450/2" value="MP2315GJ-Z "/>
 <part name="C3" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
 <part name="C6" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
@@ -10674,11 +10869,11 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="C11" library="ds_capacitors" deviceset="33PF-50V" device="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="33pF 50V"/>
 <part name="GND17" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="P+11" library="ds_passive" deviceset="+5V" device=""/>
-<part name="5VDC" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="SW" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="5VFB" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="GND" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="GND-5" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="5VDC" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="SW" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="5VFB" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="GND" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="GND-5" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
 <part name="R3" library="ds_resistor" deviceset="100K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="100K 1%"/>
 <part name="P+9" library="ds_passive" deviceset="+12V" device=""/>
 <part name="C1" library="ds_capacitors" deviceset="22UF-25V" device="-1206" package3d_urn="urn:adsk.eagle:package:46766482/3" value="22uF 25V"/>
@@ -10704,10 +10899,10 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="GND14" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="C12" library="ds_capacitors" deviceset="33PF-50V" device="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="33pF 50V"/>
 <part name="GND18" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
-<part name="3VDC" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="SW3" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="3VFB" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="GND-3" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="3VDC" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="SW3" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="3VFB" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="GND-3" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
 <part name="R5" library="ds_resistor" deviceset="100K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="100K 1%"/>
 <part name="P+10" library="ds_passive" deviceset="+12V" device=""/>
 <part name="+3V31" library="ds_passive" deviceset="+3V3" device=""/>
@@ -10876,7 +11071,7 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="R63" library="ds_resistor" deviceset="1K-1%_ARRAY" device="0603X4-1206" package3d_urn="urn:adsk.eagle:package:49287421/2" value="1K 1%"/>
 <part name="R64" library="ds_resistor" deviceset="1K-1%_ARRAY" device="0603X4-1206" package3d_urn="urn:adsk.eagle:package:49287421/2" value="1K 1%"/>
 <part name="GND25" library="ds_passive" deviceset="GND" device=""/>
-<part name="IC9" library="ds_ic_logic" deviceset="SN74HC151PWR" device="" package3d_urn="urn:adsk.eagle:package:16485/2" value="SN74HC151PWR"/>
+<part name="IC9" library="ds_ic_logic" deviceset="74AC151" device="" package3d_urn="urn:adsk.eagle:package:16485/2" value="CD74ACT151M96"/>
 <part name="+3V1" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="C33" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
 <part name="C34" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
@@ -10908,10 +11103,10 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="AGND5" library="ds_passive" deviceset="AGND" device=""/>
 <part name="R96" library="ds_resistor" deviceset="10K-1%" device="0805" package3d_urn="urn:adsk.eagle:package:46683742/2" value="10K 1%"/>
 <part name="AGND21" library="ds_passive" deviceset="AGND" device=""/>
-<part name="FB1" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="5V-NI1" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="VCC" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="L-REC1" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="FB1" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="5V-NI1" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="VCC" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="L-REC1" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
 <part name="C46" library="ds_capacitors" deviceset="2.2UF-50V" device="0603" package3d_urn="urn:adsk.eagle:package:46766484/3" value="2.2uF 50V"/>
 <part name="R105" library="ds_resistor" deviceset="4.99K-1%" device="0603" package3d_urn="urn:adsk.eagle:package:46683743/2" value="4.99K 1%"/>
 <part name="D12" library="ds_diode" deviceset="1N4007" device="" package3d_urn="urn:adsk.eagle:package:12146531/2" value="1N4007"/>
@@ -10932,10 +11127,10 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="AGND25" library="ds_passive" deviceset="AGND" device=""/>
 <part name="R108" library="ds_resistor" deviceset="10K-1%" device="0805" package3d_urn="urn:adsk.eagle:package:46683742/2" value="10K 1%"/>
 <part name="AGND41" library="ds_passive" deviceset="AGND" device=""/>
-<part name="FB2" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="5V-NI2" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="VCC2" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="L-REC2" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="FB2" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="5V-NI2" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="VCC2" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="L-REC2" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
 <part name="J7" library="jumper" library_urn="urn:adsk.eagle:library:252" deviceset="SJ" device="" package3d_urn="urn:adsk.eagle:package:15471/1" value="JP"/>
 <part name="AC/DC2" library="ds_trafo" deviceset="IRM_10_12" device="-2" package3d_urn="urn:adsk.eagle:package:47260462/2" value="IRM-10-15 "/>
 <part name="GND31" library="ds_passive" deviceset="GND" device=""/>
@@ -10948,12 +11143,12 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="GND33" library="ds_passive" deviceset="GND" device=""/>
 <part name="R16" library="ds_resistor" deviceset="1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="1K 1%"/>
 <part name="GND34" library="ds_passive" deviceset="GND" device=""/>
-<part name="DVDD" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="REF1" library="ds_ic_vreg" deviceset="LM4040BXX" device="" package3d_urn="urn:adsk.eagle:package:46684430/3" value="LM4040B30FTA"/>
+<part name="DVDD" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="REF1" library="ds_ic_vreg" deviceset="LM4040BXX" device="" package3d_urn="urn:adsk.eagle:package:46684430/3" value="LM4040x30"/>
 <part name="GND35" library="ds_passive" deviceset="GND" device=""/>
 <part name="R109" library="ds_resistor" deviceset="4.7K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="4.7K 1%"/>
-<part name="IOVDD" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="VREF" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="IOVDD" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="VREF" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
 <part name="IC17" library="ds_ic_opa" deviceset="MCP6001RT" device="" package3d_urn="urn:adsk.eagle:package:25419215/3" value="MCP6001RT-I/OT"/>
 <part name="GND36" library="ds_passive" deviceset="GND" device=""/>
 <part name="C60" library="ds_capacitors" deviceset="1UF-25V" device="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="1uF 25V"/>
@@ -10964,7 +11159,7 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="GND39" library="ds_passive" deviceset="GND" device=""/>
 <part name="C63" library="ds_capacitors" deviceset="100NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="100nF 25V"/>
 <part name="GND40" library="ds_passive" deviceset="GND" device=""/>
-<part name="AVDD" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="AVDD" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
 <part name="IC18" library="ds_ic_memory" deviceset="W25Q128JV" device="P" package3d_urn="urn:adsk.eagle:package:45369668/2" value="W25Q128JVPIQ"/>
 <part name="R111" library="ds_passive" deviceset="R" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="DNI"/>
 <part name="GND41" library="ds_passive" deviceset="GND" device=""/>
@@ -10982,7 +11177,7 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="R125" library="ds_resistor" deviceset="5.1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="5.1K 1%"/>
 <part name="GND47" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="GND48" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
-<part name="VBUS" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="VBUS" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
 <part name="C67" library="ds_capacitors" deviceset="100NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="100nF 25V"/>
 <part name="C68" library="ds_capacitors" deviceset="100NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="100nF 25V"/>
 <part name="C69" library="ds_capacitors" deviceset="100NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="100nF 25V"/>
@@ -11246,28 +11441,28 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="DP2" library="ds_passive" deviceset="DIFPAIR" device="" value=" 90R"/>
 <part name="DP3" library="ds_passive" deviceset="DIFPAIR" device="" value=" 90R"/>
 <part name="FRAME8" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A3L-LOC" device=""/>
-<part name="RX0" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="RX1" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="SDA0" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="SCL0" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="SDA1" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="SCL1" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="MI" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="CS" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="SC" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="MO" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="MISO1" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="CS1" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="SCLK1" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="MOSI1" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="REL0" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="REL2" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="REL4" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="REL6" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="REL1" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="REL3" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="REL5" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="REL7" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="RX0" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="RX1" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="SDA0" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="SCL0" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="SDA1" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="SCL1" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="MI" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="CS" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="SC" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="MO" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="MISO1" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="CS1" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="SCLK1" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="MOSI1" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="REL0" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="REL2" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="REL4" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="REL6" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="REL1" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="REL3" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="REL5" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="REL7" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
 <part name="P+18" library="ds_passive" deviceset="+12V" device=""/>
 <part name="T1" library="ds_active" deviceset="BSS138" device="" package3d_urn="urn:adsk.eagle:package:46684430/3"/>
 <part name="GND43" library="ds_passive" deviceset="GND" device=""/>
@@ -11286,7 +11481,7 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="FRAME9" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A3L-LOC" device=""/>
 <part name="FRAME10" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A3L-LOC" device=""/>
 <part name="P+19" library="ds_passive" deviceset="+12V" device=""/>
-<part name="ADC12" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="ADC12" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
 <part name="FRAME11" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A3L-LOC" device=""/>
 <part name="FRAME1" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A3L-LOC" device=""/>
 <part name="R130" library="ds_resistor" deviceset="3.3K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="3.3K 1%"/>
@@ -12239,8 +12434,8 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <instance part="AVDD" gate="G$1" x="284.48" y="190.5" smashed="yes">
 <attribute name="NAME" x="285.75" y="190.5" size="1.778" layer="95" align="center-left"/>
 </instance>
-<instance part="+3V3_MCU8" gate="G$1" x="226.06" y="185.42" smashed="yes">
-<attribute name="VALUE" x="226.06" y="190.5" size="1.778" layer="96" align="top-center"/>
+<instance part="+3V3_MCU8" gate="G$1" x="226.06" y="190.5" smashed="yes">
+<attribute name="VALUE" x="226.06" y="195.58" size="1.778" layer="96" align="top-center"/>
 </instance>
 <instance part="C102" gate="G$1" x="307.34" y="165.1" smashed="yes">
 <attribute name="NAME" x="308.864" y="166.751" size="1.778" layer="95"/>
@@ -12485,7 +12680,7 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <segment>
 <pinref part="R109" gate="G$1" pin="2"/>
 <pinref part="+3V3_MCU8" gate="G$1" pin="+3V3_MCU"/>
-<wire x1="226.06" y1="185.42" x2="226.06" y2="182.88" width="0.1524" layer="91"/>
+<wire x1="226.06" y1="185.42" x2="226.06" y2="187.96" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="R152" gate="G$1" pin="1"/>

@@ -1,0 +1,115 @@
+/*
+ ROHS Compliance Checker
+ DvidMakesThings
+ https://github.com/DvidMakesThings
+*/
+
+// top-level storage (same pattern as your exporter)
+string refs[];
+string mpns[];
+string mfrs[];
+string rohs_vals[];
+string verdicts[];
+
+// small helper: fetch attribute value (raw)
+string get_attr(UL_ELEMENT E, string key) {
+    string v = "";
+    E.attributes(A) {
+        if (A.name == key) v = A.value;
+    }
+    return v;
+}
+
+if (board) board(B) {
+    string outdir = dlgDirectory("Export report to", filedir(B.name));
+    if (outdir == "") exit(0);
+
+    string base  = outdir + "/" + strsub(filename(B.name), 0, strlen(filename(B.name)) - 4);
+    string fname = base + "_rohs_report.md";
+
+    int count = 0;
+    int compliant = 0;
+
+    // collect populated parts
+    B.elements(E) if (E.populate) {
+        string mpn  = get_attr(E, "MPN");
+        string mfr  = get_attr(E, "MANUFACTURER");
+        string rohs = get_attr(E, "ROHS");
+        string rohs_u = strupr(rohs);
+
+        refs[count]      = E.name;
+        mpns[count]      = (mpn != "") ? mpn : "-";
+        mfrs[count]      = (mfr != "") ? mfr : "-";
+
+        string v = "FAIL";
+        string rv = (rohs != "") ? rohs : "MISSING";
+
+        // DNI handling
+        if (strupr(E.value) == "DNI") {
+            v = "Not mounted";
+            rv = "-";
+        } else {
+            if (rohs == "") v = "MISSING";
+            else if (rohs_u == "YES") { v = "PASS"; compliant++; }
+        }
+
+        rohs_vals[count] = rv;
+        verdicts[count]  = v;
+
+        count++;
+    }
+
+    int all_ok = (count > 0) && (compliant == count);
+
+    // write Markdown certificate
+    output(fname) {
+        printf("# ROHS Compliance Certificate\n\n");
+		
+        printf("## Evaluated design\n\n");
+		
+        printf("**Design File**: `%s`\n", filename(B.name));
+        printf("\n");
+        printf("**Evaluation Date**: %s\n", t2string(time()));
+        printf("\n");
+        printf("**Total Components Evaluated**: %d\n", count);
+        printf("\n");
+        printf("**Compliant Components**: %d\n\n", compliant);
+
+        printf("---\n\n");
+
+        printf("## Evaluation Criteria\n\n");
+		printf("<p align=\"justify\">\n");
+		printf("Each populated component is checked for the <code>ROHS</code> attribute. Accepted value is <code>YES</code>. ");
+		printf("Any component with a missing <code>ROHS</code> attribute or a value other than <code>YES</code> is considered non-compliant for this report. ");
+		printf("Components marked as <code>DNI</code> are excluded and listed as Not mounted.\n");
+		printf("</p>\n\n");
+
+        printf("---\n\n");
+		
+        printf("## Final Statement\n\n");
+		if (all_ok) {
+			printf("Based on the attributes present in the EAGLE board file at the time of export, this design is considered:\n\n");
+			printf("<div align=\"center\"><h1>RoHS COMPLIANT</h1></div>\n");
+		} else {
+			printf("Based on the attributes present in the EAGLE board file at the time of export, this design is considered:\n\n");
+			printf("<div align=\"center\"><h1>NOT RoHS COMPLIANT</h1></div>\n");
+		}
+
+        printf("\nThis certificate reflects only metadata embedded in the project and does not replace manufacturer documentation.\n");
+
+        printf("| Ref | MPN | Manufacturer | ROHS Compliant | Result |\n");
+        printf("|-----|-----|--------------|----------------|--------|\n");
+        for (int i = 0; i < count; i++) {
+            printf("| %s | %s | %s | %s | %s |\n",
+                refs[i], mpns[i], mfrs[i], rohs_vals[i], verdicts[i]);
+        }
+
+        printf("\n---\n\n");
+    }
+
+    dlgMessageBox("ROHS Compliance report written to:\n" + fname, "Done");
+
+} else {
+    dlgMessageBox("Run this ULP from a Board", "Error");
+    exit(0);
+}

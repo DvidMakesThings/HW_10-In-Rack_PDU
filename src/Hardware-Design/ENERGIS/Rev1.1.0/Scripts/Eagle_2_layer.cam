@@ -4,7 +4,7 @@
         "name": "David Sipos"
     },
     "description": {
-        "EN": "<b>6-Layer CAM job</b><p>\n\nFor EAGLE 8.6.0 to 9.6.2<p>\n\nTop Copper:            pcbname_copper_l1.GTL<br>\nInner Copper Layer 1:  pcbname_copper_l2.G1<br>\nInner Copper Layer 2:  pcbname_copper_l3.G2<br>\nInner Copper Layer 3:  pcbname_copper_l4.G3<br>\nInner Copper Layer 4:  pcbname_copper_l5.G4<br>\nBottom Copper:         pcbname_copper_l6.GBL<p>\n\nDrill File: pcbname_drill.XLN (Both plated and non-plated holes are merged into this file)<p>\n\nSilkscreen Bottom: pcbname_Legend_Bot.GBO<br>\nSilkscreen Top:    pcbname_Legend_Top.GTO<br>\nPaste Bottom:      pcbname_Paste_Bot.GBP<br>\nPaste Top:         pcbname_Paste_Top.GTP<p>\n\nBoard Outline: pcbname_Profile_NP.GKO (Includes Dimension (20) and Milling (46) layers)<p>\n\nSoldermask Bottom: pcbname_Soldermask_Bot.GBS<br>\nSoldermask Top:    pcbname_Soldermask_Top.GTS<p>\n\nLast updated: 2025/09/22"
+        "EN": "<b>4-Layer CAM job</b><p>\n\nFor EAGLE 8.6.0 to 9.6.2<p>\n\nTop Copper:            pcbname_copper_l1.GTL<br>\nBottom Copper:         pcbname_copper_l2.GBL<p>\n\nDrill File: pcbname_drill.XLN (Both plated and non-plated holes are merged into this file)<p>\n\nSilkscreen Bottom: pcbname_Legend_Bot.GBO<br>\nSilkscreen Top:    pcbname_Legend_Top.GTO<br>\nPaste Bottom:      pcbname_Paste_Bot.GBP<br>\nPaste Top:         pcbname_Paste_Top.GTP<p>\n\nBoard Outline: pcbname_Profile_NP.GKO (Includes Dimension (20) and Milling (46) layers)<p>\n\nSoldermask Bottom: pcbname_Soldermask_Bot.GBS<br>\nSoldermask Top:    pcbname_Soldermask_Top.GTS<p>\n\nLast updated: 2025/09/23\n\n<br></br>\n<br></br>\n<b>Made by:</b> <ul>@DvidMakesThings <br>https://github.com/DvidMakesThings</ul></br>"
     },
     "output_type": "zip",
     "outputs": [
@@ -76,114 +76,10 @@
                     "type": "gerber_layer"
                 },
                 {
-                    "advanced_options": {
-                        "mirror": false,
-                        "offset_x": 0,
-                        "offset_y": 0,
-                        "rotate": false,
-                        "upside_down": false
-                    },
                     "board_outline": false,
                     "config": {
                         "file_function": "Copper",
                         "layer": 2,
-                        "layer_details": "mixed",
-                        "layer_type": "Inner"
-                    },
-                    "filename_format": "%N_%FF.G1",
-                    "layers": [
-                        2,
-                        17,
-                        18
-                    ],
-                    "milling": false,
-                    "name": "Inner Copper Layer 1",
-                    "polarity": "positive",
-                    "type": "gerber_layer"
-                },
-                {
-                    "advanced_options": {
-                        "mirror": false,
-                        "offset_x": 0,
-                        "offset_y": 0,
-                        "rotate": false,
-                        "upside_down": false
-                    },
-                    "board_outline": false,
-                    "config": {
-                        "file_function": "Copper",
-                        "layer": 3,
-                        "layer_details": "mixed",
-                        "layer_type": "Inner"
-                    },
-                    "filename_format": "%N_%FF.G2",
-                    "layers": [
-                        17,
-                        18,
-                        3
-                    ],
-                    "milling": false,
-                    "name": "Inner Copper Layer 2",
-                    "polarity": "positive",
-                    "type": "gerber_layer"
-                },
-                {
-                    "advanced_options": {
-                        "mirror": false,
-                        "offset_x": 0,
-                        "offset_y": 0,
-                        "rotate": false,
-                        "upside_down": false
-                    },
-                    "board_outline": false,
-                    "config": {
-                        "file_function": "Copper",
-                        "layer": 4,
-                        "layer_details": "mixed",
-                        "layer_type": "Inner"
-                    },
-                    "filename_format": "%N_%FF.G3",
-                    "layers": [
-                        17,
-                        18,
-                        14
-                    ],
-                    "milling": false,
-                    "name": "Inner Copper Layer 3",
-                    "polarity": "positive",
-                    "type": "gerber_layer"
-                },
-                {
-                    "advanced_options": {
-                        "mirror": false,
-                        "offset_x": 0,
-                        "offset_y": 0,
-                        "rotate": false,
-                        "upside_down": false
-                    },
-                    "board_outline": false,
-                    "config": {
-                        "file_function": "Copper",
-                        "layer": 5,
-                        "layer_details": "mixed",
-                        "layer_type": "Inner"
-                    },
-                    "filename_format": "%N_%FF.G4",
-                    "layers": [
-                        17,
-                        18,
-                        15
-                    ],
-                    "milling": false,
-                    "name": "Inner Copper Layer 4",
-                    "polarity": "positive",
-                    "type": "gerber_layer"
-                },
-                {
-                    "board_outline": false,
-                    "config": {
-                        "file_function": "Copper",
-                        "layer": 6,
                         "layer_details": "mixed",
                         "layer_type": "bottom"
                     },
@@ -303,7 +199,7 @@
             ]
         }
     ],
-    "timestamp": "2025-09-22T22:50:24",
+    "timestamp": "2025-09-23T20:18:07",
     "type": "EAGLE CAM job",
     "units": "metric",
     "version": "9.2.0"

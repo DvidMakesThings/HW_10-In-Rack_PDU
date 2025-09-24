@@ -180,26 +180,26 @@ Planned features (the list will be appended as I find more development possibili
 | Layer     | Description        | Material                | Thickness (mm) |
 |-----------|-------------------|-------------------------|----------------|
 | L1        | Signal (Top)      | Outer Copper 1 oz       | 0.0350         |
-| Prepreg   | 3313 RC57 %, 4.2 mil | -                    | 0.0994         |
-| L2        | Ground Plane      | Inner Copper 0.5 oz     | 0.0152         |
-| Core      | 0.55 mm H (no Cu) | -                       | 0.5500         |
-| L3        | Power Plane       | Inner Copper 0.5 oz     | 0.0152         |
-| Prepreg   | 2116 RC54 %, 4.9 mil | -                    | 0.1088         |
-| L4        | Signal            | Inner Copper 0.5 oz     | 0.0152         |
-| Core      | 0.55 mm H (no Cu) | -                       | 0.5500         |
-| L5        | Ground Plane      | Inner Copper 0.5 oz     | 0.0152         |
-| Prepreg   | 3313 RC57 %, 4.2 mil | -                    | 0.0994         |
+| Prepreg   | 3313 RC57 %, 4.2 mil | -                    | 0.1250         |
+| L2        | Ground Plane      | Inner Copper 0.5 oz     | 0.0175         |
+| Core      | 0.55 mm H (with Cu) | -                       | 0.5590         |
+| L3        | Power Plane       | Inner Copper 0.5 oz     | 0.0175         |
+| Prepreg   | 2116 RC54 %, 4.9 mil | -                    | 0.1030         |
+| L4        | Signal            | Inner Copper 0.5 oz     | 0.0175         |
+| Core      | 0.55 mm H (with Cu) | -                       | 0.5590         |
+| L5        | Ground Plane      | Inner Copper 0.5 oz     | 0.0175         |
+| Prepreg   | 3313 RC57 %, 4.2 mil | -                    | 0.1250         |
 | L6        | Signal (Bottom)   | Outer Copper 1 oz       | 0.0350         |
 | **Total** |                   |                         | **1.5384 mm**  |
 
 | Impedance (Ω) | Type                       | Signal | Top Ref | Bottom Ref | Trace Width (mm) | Trace Spacing (mm) |
 | ------------- | -------------------------- | ------ | ------- | ---------- | ---------------- | ------------------ |
-| 50            | Coplanar Single Ended      | L1     | /       | L2         | 0.2000           | /                  |
-| 90            | Coplanar Differential Pair | L1     | /       | L2         | 0.1549           | 0.1905             |
-| 100           | Coplanar Differential Pair | L1     | /       | L2         | 0.1209           | 0.1905             |
-| 100           | Coplanar Differential Pair | L6     | L5      | /          | 0.1209           | 0.1905             |
-| 90            | Coplanar Differential Pair | L6     | L5      | /          | 0.1549           | 0.1905             |
-| 50            | Coplanar Single Ended      | L6     | L5      | /          | 0.2000           | /                  |
+| 50            | Coplanar Single Ended      | L2     | L1      | L3         | 0.1476           | /                  |
+| 90            | Coplanar Differential Pair | L2     | L1      | L3         | 0.1488           | 0.1877             |
+| 100           | Coplanar Differential Pair | L2     | L1      | L3         | 0.1176           | 0.1902             |
+| 100           | Coplanar Differential Pair | L5     | L4      | L6         | 0.1161           | 0.1918             |
+| 90            | Coplanar Differential Pair | L5     | L4      | L6         | 0.1468           | 0.1895             |
+| 50            | Coplanar Single Ended      | L5     | L4      | L6         | 0.1453           | /                  |
 
 ## Schematics
 
