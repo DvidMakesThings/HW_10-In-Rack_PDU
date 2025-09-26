@@ -3,7 +3,7 @@
 <eagle version="9.2.1">
 <drawing>
 <settings>
-<setting alwaysvectorfont="yes"/>
+<setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.01" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mm"/>
@@ -19531,7 +19531,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <approved hash="3,14,2b8c8a4c8b022ac2"/>
 <approved hash="3,14,b61537d53635b7f5"/>
 <approved hash="3,14,b1cb900be02ac1ea"/>
-<approved hash="21,19,0c9f0e9d0f1d0d1f"/>
 <approved hash="23,1,8d4f567957b88c8e"/>
 <approved hash="23,14,785fb89fb89e785e"/>
 <approved hash="5,1,ffa2f35fc4d6c913"/>
@@ -19803,6 +19802,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <approved hash="19,16,08890ffd20052771"/>
 <approved hash="5,16,b7645cc518600c3a"/>
 <approved hash="19,1,e3fdedfb23772d71"/>
+<approved hash="21,19,441e461c461c441e"/>
+<approved hash="23,1,6d56414b0b22f879"/>
 </errors>
 </board>
 </drawing>
