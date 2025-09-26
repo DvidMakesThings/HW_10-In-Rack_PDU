@@ -24,23 +24,6 @@ string replace_commas(string s) {
     return s;
 }
 
-string xml_escape(string s) {
-    string out = s;
-    while (strstr(out, "&") >= 0) {
-        sprintf(out, "%s%s%s", strsub(out,0,strstr(out,"&")), "&amp;", strsub(out,strstr(out,"&")+1));
-    }
-    while (strstr(out, "<") >= 0) {
-        sprintf(out, "%s%s%s", strsub(out,0,strstr(out,"<")), "&lt;", strsub(out,strstr(out,"<")+1));
-    }
-    while (strstr(out, ">") >= 0) {
-        sprintf(out, "%s%s%s", strsub(out,0,strstr(out,">")), "&gt;", strsub(out,strstr(out,">")+1));
-    }
-    while (strstr(out, "\"") >= 0) {
-        sprintf(out, "%s%s%s", strsub(out,0,strstr(out,"\"")), "&quot;", strsub(out,strstr(out,"\"")+1));
-    }
-    return out;
-}
-
 if (board) board(B) {
     int skip_empty = 1;   // set to 0 if you want parts with blank values
     string outdir = dlgDirectory("Export files to", filedir(B.name));
@@ -75,45 +58,45 @@ if (board) board(B) {
     //
     // 1) CPL
     //
-	output(cpl_file) {
-		printf("### Module positions export ###\n");
-		printf("### Printed by EAGLE ULP ###\n");
-		printf("### Unit = mm, Angle = deg.\n");
-		printf("# Ref,Val,Package,PosX,PosY,Rot,Side\n");
+    output(cpl_file) {
+        printf("### Module positions export ###\n");
+        printf("### Printed by EAGLE ULP ###\n");
+        printf("### Unit = mm, Angle = deg.\n");
+        printf("# Ref,Val,Package,PosX,PosY,Rot,Side\n");
 
-		for (int i = 0; i < count; i++) {
-			UL_ELEMENT E = selected_elements[i];
-			int side = selected_side[i];
-			if (skip_empty && E.value == "") continue;
+        for (int i = 0; i < count; i++) {
+            UL_ELEMENT E = selected_elements[i];
+            int side = selected_side[i];
+            if (skip_empty && E.value == "") continue;
 
-			int angle = E.angle;
-			E.attributes(A) {
-				if (A.name == "NEXTPCB_ROT" || A.name == "NEXTPCB_ROTATION")
-					angle += strtol(A.value);
-			}
-			if (side == 1)
-				angle = (360 - angle + 180) % 360;
-			real ang = angle;
+            int angle = E.angle;
+            E.attributes(A) {
+                if (A.name == "NEXTPCB_ROT" || A.name == "NEXTPCB_ROTATION")
+                    angle += strtol(A.value);
+            }
+            if (side == 1)
+                angle = (360 - angle + 180) % 360;
+            real ang = angle;
 
-			string side_s = (side == 0) ? "top" : "bottom";
+            string side_s = (side == 0) ? "top" : "bottom";
 
-			printf("%s,%s,%s,%.4f,%.4f,%.4f,%s\n",
-				   E.name,
-				   replace_commas(E.value),
-				   replace_commas(E.package.name),
-				   u2mm(E.x),
-				   u2mm(E.y),
-				   ang,
-				   side_s);
-		}
-	}
-
+            printf("%s,%s,%s,%.4f,%.4f,%.4f,%s\n",
+                   E.name,
+                   replace_commas(E.value),
+                   replace_commas(E.package.name),
+                   u2mm(E.x),
+                   u2mm(E.y),
+                   ang,
+                   side_s);
+        }
+    }
 
     //
     // 2) BOM 
     //
     output(bom_file) {
-        printf("Manufacturer Part Number,Quantity,Manufacturer(Optional),Package(Optional)\n");
+        // Header line
+        printf("Designator;Quantity;Manufacturer Part Number;Manufacturer;Package/Footprint;Description;Procurement Type;Customer Note\n");
 
         int            indexes[];
         numeric string values[];
@@ -128,6 +111,10 @@ if (board) board(B) {
         string curr_pkg     = "";
         string curr_mpn     = "";
         string curr_mfr     = "";
+        string curr_desc    = "";
+        string curr_proc    = "";
+        string curr_note    = "";
+        string designators  = "";
         int    qty          = 0;
         int    notstarting  = 0;
 
@@ -136,51 +123,70 @@ if (board) board(B) {
             if (skip_empty && E.value == "") continue;
 
             string mpn = "";
+            string mfr = "";
+            string desc = "";
+            string proc = "";
+            string note = "";
+
             E.attributes(A) {
                 if (A.name == "HQ_PART") mpn = replace_commas(A.value);
                 if (mpn == "" && A.name == "MPN") mpn = replace_commas(A.value);
-            }
-
-            string mfr = "";
-            E.attributes(A) {
                 if (A.name == "MANUFACTURER") mfr = replace_commas(A.value);
+                if (A.name == "DESCRIPTION") desc = replace_commas(A.value);
+                if (A.name == "PROCUREMENT") proc = replace_commas(A.value);
+                if (A.name == "CUSTOMER_NOTE") note = replace_commas(A.value);
             }
 
             if (notstarting
              && (E.value        != curr_val
               || E.package.name != curr_pkg
               || mpn            != curr_mpn
-              || mfr            != curr_mfr)) {
+              || mfr            != curr_mfr
+              || desc           != curr_desc
+              || proc           != curr_proc
+              || note           != curr_note)) {
 
-                printf("%s,%d,%s,%s\n",
-                    curr_mpn,
-                    qty,
-                    curr_mfr,
-                    curr_pkg
-                );
+                // flush
+                printf("%s;", designators);
+                printf("%d;", qty);
+                printf("%s;", curr_mpn);
+                printf("%s;", curr_mfr);
+                printf("%s;", curr_pkg);
+                printf("%s;", curr_desc);
+                printf("%s;", curr_proc);
+                printf("%s\n", curr_note);
 
+                designators = "";
                 qty = 0;
             }
 
             notstarting = 1;
-            curr_val = replace_commas(E.value);
-            curr_pkg = replace_commas(E.package.name);
-            curr_mpn = mpn;
-            curr_mfr = mfr;
+            if (designators != "") designators += ",";
+            designators += E.name;
+
+            curr_val  = replace_commas(E.value);
+            curr_pkg  = replace_commas(E.package.name);
+            curr_mpn  = mpn;
+            curr_mfr  = mfr;
+            curr_desc = desc;
+            curr_proc = proc;
+            curr_note = note;
+
             qty++;
         }
 
         // last line
         if (curr_val != "") {
-            printf("%s,%d,%s,%s\n",
-                curr_mpn,
-                qty,
-                curr_mfr,
-                curr_pkg
-            );
+            printf("%s;", designators);
+            printf("%d;", qty);
+            printf("%s;", curr_mpn);
+            printf("%s;", curr_mfr);
+            printf("%s;", curr_pkg);
+            printf("%s;", curr_desc);
+            printf("%s;", curr_proc);
+            printf("%s\n", curr_note);
         }
     }
-
 
     dlgMessageBox(
         "Export complete:\n" +
