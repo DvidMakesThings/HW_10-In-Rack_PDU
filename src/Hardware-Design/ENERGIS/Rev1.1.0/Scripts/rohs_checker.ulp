@@ -29,6 +29,8 @@ if (board) board(B) {
 
     int count = 0;
     int compliant = 0;
+    int not_mounted = 0;        // DNI parts
+    int evaluated = 0;          // parts actually checked (excludes DNI)
 
     // collect populated parts
     B.elements(E) if (E.populate) {
@@ -37,18 +39,20 @@ if (board) board(B) {
         string rohs = get_attr(E, "ROHS");
         string rohs_u = strupr(rohs);
 
-        refs[count]      = E.name;
-        mpns[count]      = (mpn != "") ? mpn : "-";
-        mfrs[count]      = (mfr != "") ? mfr : "-";
+        refs[count] = E.name;
+        mpns[count] = (mpn != "") ? mpn : "-";
+        mfrs[count] = (mfr != "") ? mfr : "-";
 
-        string v = "FAIL";
+        string v  = "FAIL";
         string rv = (rohs != "") ? rohs : "MISSING";
 
-        // DNI handling
+        // DNI handling: exclude from compliance check
         if (strupr(E.value) == "DNI") {
-            v = "Not mounted";
+            v  = "Not mounted";
             rv = "-";
+            not_mounted++;
         } else {
+            evaluated++;
             if (rohs == "") v = "MISSING";
             else if (rohs_u == "YES") { v = "PASS"; compliant++; }
         }
@@ -59,41 +63,44 @@ if (board) board(B) {
         count++;
     }
 
-    int all_ok = (count > 0) && (compliant == count);
+    // PASS if all evaluated (non-DNI) parts are compliant
+    int all_ok = (compliant == evaluated);
 
     // write Markdown certificate
     output(fname) {
         printf("# ROHS Compliance Certificate\n\n");
-		
+
         printf("## Evaluated design\n\n");
-		
+
         printf("**Design File**: `%s`\n", filename(B.name));
         printf("\n");
         printf("**Evaluation Date**: %s\n", t2string(time()));
         printf("\n");
-        printf("**Total Components Evaluated**: %d\n", count);
+        printf("**Total Components (placed)**: %d\n", count);
+        printf("\n");
+        printf("**Evaluated (excluding Not mounted)**: %d\n", evaluated);
         printf("\n");
         printf("**Compliant Components**: %d\n\n", compliant);
 
         printf("---\n\n");
 
         printf("## Evaluation Criteria\n\n");
-		printf("<p align=\"justify\">\n");
-		printf("Each populated component is checked for the <code>ROHS</code> attribute. Accepted value is <code>YES</code>. ");
-		printf("Any component with a missing <code>ROHS</code> attribute or a value other than <code>YES</code> is considered non-compliant for this report. ");
-		printf("Components marked as <code>DNI</code> are excluded and listed as Not mounted.\n");
-		printf("</p>\n\n");
+        printf("<p align=\"justify\">\n");
+        printf("Each populated component is checked for the <code>ROHS</code> attribute. Accepted value is <code>YES</code>. ");
+        printf("Any component with a missing <code>ROHS</code> attribute or a value other than <code>YES</code> is considered non-compliant for this report. ");
+        printf("Components marked as <code>DNI</code> are excluded and listed as Not mounted.\n");
+        printf("</p>\n\n");
 
         printf("---\n\n");
-		
+
         printf("## Final Statement\n\n");
-		if (all_ok) {
-			printf("Based on the attributes present in the EAGLE board file at the time of export, this design is considered:\n\n");
-			printf("<div align=\"center\"><h1>RoHS COMPLIANT</h1></div>\n");
-		} else {
-			printf("Based on the attributes present in the EAGLE board file at the time of export, this design is considered:\n\n");
-			printf("<div align=\"center\"><h1>NOT RoHS COMPLIANT</h1></div>\n");
-		}
+        if (all_ok) {
+            printf("Based on the attributes present in the EAGLE board file at the time of export, this design is considered:\n\n");
+            printf("<div align=\"center\"><h1>RoHS COMPLIANT</h1></div>\n");
+        } else {
+            printf("Based on the attributes present in the EAGLE board file at the time of export, this design is considered:\n\n");
+            printf("<div align=\"center\"><h1>NOT RoHS COMPLIANT</h1></div>\n");
+        }
 
         printf("\nThis certificate reflects only metadata embedded in the project and does not replace manufacturer documentation.\n");
 
