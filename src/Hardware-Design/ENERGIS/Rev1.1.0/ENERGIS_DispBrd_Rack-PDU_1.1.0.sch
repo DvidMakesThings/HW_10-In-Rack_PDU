@@ -968,7 +968,10 @@ DIN A3, landscape with location and doc. field</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:46683740/2"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="ROHS" value="YES" constant="no"/>
+<attribute name="VALUE" value="TESTPOINT" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="-ROUND" package="TP-ROUND">
@@ -976,7 +979,10 @@ DIN A3, landscape with location and doc. field</description>
 <connect gate="G$1" pin="P$1" pad="TP"/>
 </connects>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="ROHS" value="YES" constant="no"/>
+<attribute name="VALUE" value="TESTPOINT" constant="no"/>
+</technology>
 </technologies>
 </device>
 </devices>
@@ -1025,7 +1031,11 @@ DIN A3, landscape with location and doc. field</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="6mm 4.3mm Round Button 50mA Standing paste 6mm SPST 12V SMD,6x6mm Tactile Switches ROHS " constant="no"/>
+<attribute name="HQ_PART" value="SW0049370" constant="no"/>
 <attribute name="LCSC_PART" value="C455108" constant="no"/>
+<attribute name="MANUFACTURER" value="USAKRO" constant="no"/>
+<attribute name="MPN" value="UK-B0228G43-SP25 " constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="TS-1002S-04326C " constant="no"/>
 </technology>
 </technologies>
@@ -1391,7 +1401,11 @@ DIN A3, landscape with location and doc. field</description>
 <technology name="">
 <attribute name="DATASHEET" value="https://ww1.microchip.com/downloads/en/devicedoc/20001952c.pdf" constant="no"/>
 <attribute name="DESCRIPTION" value="1.7MHz I2C QFN-28-EP(6x6) I/O Expanders ROHS " constant="no"/>
+<attribute name="HQ_PART" value="IC0080215" constant="no"/>
 <attribute name="LCSC_PART" value="C629439" constant="no"/>
+<attribute name="MANUFACTURER" value="MICROCHIP" constant="no"/>
+<attribute name="MPN" value="MCP23017-E/ML" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="MCP23017T-E/ML " constant="no"/>
 </technology>
 </technologies>
@@ -1418,116 +1432,6 @@ DIN A3, landscape with location and doc. field</description>
 </gates>
 <devices>
 <device name="">
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
-<library name="transistor-fet" urn="urn:adsk.eagle:library:396">
-<description>&lt;b&gt;Field Effect Transistors&lt;/b&gt;&lt;p&gt;
-&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;&lt;p&gt;
-&lt;p&gt;
-Symbols changed according to IEC617&lt;p&gt; 
-All types, packages and assignment to symbols and pins checked&lt;p&gt;
-Package outlines partly checked&lt;p&gt;
-&lt;p&gt;
-JFET = junction FET&lt;p&gt;
-IGBT-x = insulated gate bipolar transistor&lt;p&gt;
-x=N: NPN; x=P: PNP&lt;p&gt;
-IGFET-mc-nnn; (IGFET=insulated gate field effect transistor)&lt;P&gt;
-m=D: depletion mode (Verdr&amp;auml;ngungstyp)&lt;p&gt;
-m=E: enhancement mode (Anreicherungstyp)&lt;p&gt;
-c: N=N-channel; P=P-Channel&lt;p&gt;
-GDSB: gate, drain, source, bulk&lt;p&gt;
-&lt;p&gt;
-by R. Vogg  15.March.2002</description>
-<packages>
-<package name="SOT23" urn="urn:adsk.eagle:footprint:28476/1">
-<description>&lt;b&gt;SOT-23&lt;/b&gt;</description>
-<wire x1="1.4224" y1="0.6604" x2="1.4224" y2="-0.6604" width="0.1524" layer="51"/>
-<wire x1="1.4224" y1="-0.6604" x2="-1.4224" y2="-0.6604" width="0.1524" layer="51"/>
-<wire x1="-1.4224" y1="-0.6604" x2="-1.4224" y2="0.6604" width="0.1524" layer="51"/>
-<wire x1="-1.4224" y1="0.6604" x2="1.4224" y2="0.6604" width="0.1524" layer="51"/>
-<wire x1="-1.4224" y1="-0.1854" x2="-1.4224" y2="0.6604" width="0.1524" layer="21"/>
-<wire x1="-1.4224" y1="0.6604" x2="-0.6576" y2="0.6604" width="0.1524" layer="21"/>
-<wire x1="1.4224" y1="0.6604" x2="1.4224" y2="-0.1854" width="0.1524" layer="21"/>
-<wire x1="0.6326" y1="0.6604" x2="1.4224" y2="0.6604" width="0.1524" layer="21"/>
-<smd name="3" x="0" y="1.1" dx="1" dy="1.4" layer="1"/>
-<smd name="2" x="0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
-<smd name="1" x="-0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
-<text x="-1.905" y="1.905" size="1.27" layer="25">&gt;NAME</text>
-<text x="-1.905" y="-3.175" size="1.27" layer="27">&gt;VALUE</text>
-<rectangle x1="-0.2286" y1="0.7112" x2="0.2286" y2="1.2954" layer="51"/>
-<rectangle x1="0.7112" y1="-1.2954" x2="1.1684" y2="-0.7112" layer="51"/>
-<rectangle x1="-1.1684" y1="-1.2954" x2="-0.7112" y2="-0.7112" layer="51"/>
-</package>
-</packages>
-<packages3d>
-<package3d name="SOT23" urn="urn:adsk.eagle:package:28534/2" type="model">
-<description>SOT-23</description>
-<packageinstances>
-<packageinstance name="SOT23"/>
-</packageinstances>
-</package3d>
-</packages3d>
-<symbols>
-<symbol name="N-MOSFET">
-<wire x1="0.762" y1="0.762" x2="0.762" y2="0" width="0.254" layer="94"/>
-<wire x1="0.762" y1="0" x2="0.762" y2="-0.762" width="0.254" layer="94"/>
-<wire x1="0.762" y1="3.175" x2="0.762" y2="2.54" width="0.254" layer="94"/>
-<wire x1="0.762" y1="2.54" x2="0.762" y2="1.905" width="0.254" layer="94"/>
-<wire x1="0.762" y1="0" x2="2.54" y2="0" width="0.1524" layer="94"/>
-<wire x1="2.54" y1="0" x2="2.54" y2="-2.54" width="0.1524" layer="94"/>
-<wire x1="0.762" y1="-1.905" x2="0.762" y2="-2.54" width="0.254" layer="94"/>
-<wire x1="0.762" y1="-2.54" x2="0.762" y2="-3.175" width="0.254" layer="94"/>
-<wire x1="0" y1="2.54" x2="0" y2="-2.54" width="0.254" layer="94"/>
-<wire x1="2.54" y1="-2.54" x2="0.762" y2="-2.54" width="0.1524" layer="94"/>
-<wire x1="3.81" y1="2.54" x2="3.81" y2="0.508" width="0.1524" layer="94"/>
-<wire x1="3.81" y1="0.508" x2="3.81" y2="-2.54" width="0.1524" layer="94"/>
-<wire x1="2.54" y1="-2.54" x2="3.81" y2="-2.54" width="0.1524" layer="94"/>
-<wire x1="0.762" y1="2.54" x2="3.81" y2="2.54" width="0.1524" layer="94"/>
-<wire x1="4.572" y1="0.762" x2="4.318" y2="0.508" width="0.1524" layer="94"/>
-<wire x1="4.318" y1="0.508" x2="3.81" y2="0.508" width="0.1524" layer="94"/>
-<wire x1="3.81" y1="0.508" x2="3.302" y2="0.508" width="0.1524" layer="94"/>
-<wire x1="3.302" y1="0.508" x2="3.048" y2="0.254" width="0.1524" layer="94"/>
-<circle x="2.54" y="-2.54" radius="0.3592" width="0" layer="94"/>
-<circle x="2.54" y="2.54" radius="0.3592" width="0" layer="94"/>
-<text x="-11.43" y="0" size="1.778" layer="96">&gt;VALUE</text>
-<text x="-11.43" y="2.54" size="1.778" layer="95">&gt;NAME</text>
-<pin name="S" x="2.54" y="-5.08" visible="off" length="short" direction="pas" rot="R90"/>
-<pin name="G" x="-2.54" y="-2.54" visible="off" length="short" direction="pas"/>
-<pin name="D" x="2.54" y="5.08" visible="off" length="short" direction="pas" rot="R270"/>
-<polygon width="0.1524" layer="94">
-<vertex x="3.81" y="0.508"/>
-<vertex x="3.302" y="-0.254"/>
-<vertex x="4.318" y="-0.254"/>
-</polygon>
-<polygon width="0.1524" layer="94">
-<vertex x="1.016" y="0"/>
-<vertex x="2.032" y="0.762"/>
-<vertex x="2.032" y="-0.762"/>
-</polygon>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="BSS138" prefix="T">
-<description>N-Channel Logic Level Enhancement Mode Field Effect Transistor</description>
-<gates>
-<gate name="G$1" symbol="N-MOSFET" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="SOT23">
-<connects>
-<connect gate="G$1" pin="D" pad="3"/>
-<connect gate="G$1" pin="G" pad="1"/>
-<connect gate="G$1" pin="S" pad="2"/>
-</connects>
-<package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:28534/2"/>
-</package3dinstances>
 <technologies>
 <technology name=""/>
 </technologies>
@@ -1672,7 +1576,7 @@ by R. Vogg  15.March.2002</description>
 <text x="-11.43" y="2.54" size="1.016" layer="21">1</text>
 <text x="11.43" y="2.54" size="1.016" layer="21">40</text>
 </package>
-<package name="FPC20" urn="urn:adsk.eagle:footprint:47082458/3" locally_modified="yes">
+<package name="FPC20" urn="urn:adsk.eagle:footprint:47082458/4">
 <circle x="-4.602" y="-0.062" radius="0.1" width="0.2" layer="21"/>
 <wire x1="-8.002" y1="1.038" x2="-8.002" y2="-0.962" width="0.1" layer="51"/>
 <wire x1="-8.002" y1="-0.962" x2="8.398" y2="-0.962" width="0.1" layer="51"/>
@@ -1778,7 +1682,7 @@ by R. Vogg  15.March.2002</description>
 <packageinstance name="FPC40"/>
 </packageinstances>
 </package3d>
-<package3d name="FPC20" urn="urn:adsk.eagle:package:47082459/4" locally_modified="yes" type="model">
+<package3d name="FPC20" urn="urn:adsk.eagle:package:47082459/5" type="model">
 <packageinstances>
 <packageinstance name="FPC20"/>
 </packageinstances>
@@ -2011,7 +1915,7 @@ by R. Vogg  15.March.2002</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="AFC11-S20ICC-00" urn="urn:adsk.eagle:component:47082460/4" locally_modified="yes" prefix="CON">
+<deviceset name="AFC11-S20ICC-00" urn="urn:adsk.eagle:component:47082460/5" prefix="CON">
 <description>Drawer Type 20P Single-sided contact points/Vertical Standing paste 0.5mm SMD,P=0.5mm FFC, FPC (Flat Flexible) Connector Assemblies ROHS</description>
 <gates>
 <gate name="G$1" symbol="FPC20" x="0" y="0"/>
@@ -2045,12 +1949,16 @@ by R. Vogg  15.March.2002</description>
 <connect gate="G$1" pin="Z4" pad="Z5"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:47082459/4"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47082459/5"/>
 </package3dinstances>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="Drawer Type 20P Single-sided contact points/Vertical Standing paste 0.5mm SMD,P=0.5mm FFC, FPC (Flat Flexible) Connector Assemblies ROHS " constant="no"/>
+<attribute name="HQ_PART" value="CO0889517" constant="no"/>
 <attribute name="LCSC_PART" value="C11073" constant="no"/>
+<attribute name="MANUFACTURER" value="JS" constant="no"/>
+<attribute name="MPN" value="AFC11-S20ICA-00" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="AFC11-S20ICC-00 " constant="no"/>
 </technology>
 </technologies>
@@ -2281,7 +2189,11 @@ by R. Vogg  15.March.2002</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="10mA Colorless transparent lens -40℃~+85℃ 598nm~608nm Orange 120° 40mW 0805 LED Indication - Discrete ROHS" constant="no"/>
+<attribute name="HQ_PART" value="PH0093712" constant="no"/>
 <attribute name="LCSC_PART" value="C434437" constant="no"/>
+<attribute name="MANUFACTURER" value="NATIONSTAR" constant="no"/>
+<attribute name="MPN" value="FC-2012YOXK(5)-600H08" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="Orange" constant="no"/>
 </technology>
 </technologies>
@@ -2352,7 +2264,11 @@ by R. Vogg  15.March.2002</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="20mA 810mcd Colorless and transparent Individual diode 515nm~535nm -20℃~+85℃ Positive Stick Emerald 120° 70mW 3.3V 0603 LED Indication - Discrete ROHS" constant="no"/>
+<attribute name="HQ_PART" value="PH0010430" constant="no"/>
 <attribute name="LCSC_PART" value="C965804" constant="no"/>
+<attribute name="MANUFACTURER" value="Wurth" constant="no"/>
+<attribute name="MPN" value="150060GS75000" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="Green" constant="no"/>
 </technology>
 </technologies>
@@ -2368,7 +2284,11 @@ by R. Vogg  15.March.2002</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="Emerald 0805 LED Indication - Discrete ROHS" constant="no"/>
+<attribute name="HQ_PART" value="PH0094653" constant="no"/>
 <attribute name="LCSC_PART" value="C2297" constant="no"/>
+<attribute name="MANUFACTURER" value="MEIHUA" constant="no"/>
+<attribute name="MPN" value="MHT170UGCT" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="Green" constant="no"/>
 </technology>
 </technologies>
@@ -2400,7 +2320,11 @@ by R. Vogg  15.March.2002</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="-20℃~+80℃ 20mA 30° 3mm Round Lens 600nm~610nm 610nm 72mW Amber Water Clear Plugin,D=3mm LED Indication - Discrete ROHS " constant="no"/>
+<attribute name="HQ_PART" value="PH0094890" constant="no"/>
 <attribute name="LCSC_PART" value="C414645" constant="no"/>
+<attribute name="MANUFACTURER" value="MEIHUA" constant="no"/>
+<attribute name="MPN" value="MHL3014UGTD" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="GREEN" constant="no"/>
 </technology>
 </technologies>
@@ -2503,7 +2427,11 @@ by R. Vogg  15.March.2002</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="-20℃~+80℃ 20mA 30° 3mm Round Lens Red Water Clear Plugin,D=3mm LED Indication - Discrete ROHS " constant="no"/>
+<attribute name="HQ_PART" value="PH0094690" constant="no"/>
 <attribute name="LCSC_PART" value="C330752" constant="no"/>
+<attribute name="MANUFACTURER" value="MEIHUA" constant="no"/>
+<attribute name="MPN" value="MHL3014SRTS" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="RED" constant="no"/>
 </technology>
 </technologies>
@@ -2542,7 +2470,11 @@ by R. Vogg  15.March.2002</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="20mA 240mcd Colorless and transparent -20℃~+85℃ Positive Stick 455nm~475nm Blue 120° 70mW 3.3V 0603 LED Indication - Discrete ROHS" constant="no"/>
+<attribute name="HQ_PART" value="PH0093698" constant="no"/>
 <attribute name="LCSC_PART" value="C965807" constant="no"/>
+<attribute name="MANUFACTURER" value="NATIONSTAR" constant="no"/>
+<attribute name="MPN" value="FC-1608BK-465G5 " constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="Blue" constant="no"/>
 </technology>
 </technologies>
@@ -2558,7 +2490,11 @@ by R. Vogg  15.March.2002</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="20mA 260mcd Colorless transparent lens -20℃~+85℃ Positive Stick 460nm~475nm Blue 120° 70mW 3.2V 0805 LED Indication - Discrete ROHS" constant="no"/>
+<attribute name="HQ_PART" value="PH0095697" constant="no"/>
 <attribute name="LCSC_PART" value="C965817" constant="no"/>
+<attribute name="MANUFACTURER" value="XINGLIGHT" constant="no"/>
+<attribute name="MPN" value="XL-2012UBC-A " constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="Blue" constant="no"/>
 </technology>
 </technologies>
@@ -2590,7 +2526,11 @@ by R. Vogg  15.March.2002</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="3mm Round Lens Blue Plugin,D=3mm LED Indication - Discrete ROHS" constant="no"/>
+<attribute name="HQ_PART" value="PH0094706" constant="no"/>
 <attribute name="LCSC_PART" value="C86881" constant="no"/>
+<attribute name="MANUFACTURER" value="MEIHUA" constant="no"/>
+<attribute name="MPN" value="MHL3014UBTD" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="BLUE" constant="no"/>
 </technology>
 </technologies>
@@ -2792,7 +2732,7 @@ by R. Vogg  15.March.2002</description>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="1K-1%_ARRAY" urn="urn:adsk.eagle:component:49287482/1" locally_modified="yes" prefix="RN" uservalue="yes">
+<deviceset name="1K-1%_ARRAY" urn="urn:adsk.eagle:component:49287482/2" locally_modified="yes" prefix="RN" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="742C083103JP" x="0" y="0"/>
 </gates>
@@ -2814,14 +2754,18 @@ by R. Vogg  15.March.2002</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="4 ±1% 1kΩ 62.5mW ±200ppm/℃ 0603x4 Resistor Networks, Arrays ROHS " constant="no"/>
+<attribute name="HQ_PART" value="RE0022532" constant="no"/>
 <attribute name="LCSC_PART" value="C110021" constant="no"/>
+<attribute name="MANUFACTURER" value="Yageo" constant="no"/>
+<attribute name="MPN" value="YC164-JR-071KL " constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="1K 1%" constant="no"/>
 </technology>
 </technologies>
 </device>
 </devices>
 </deviceset>
-<deviceset name="33K-1%" urn="urn:adsk.eagle:component:49287471/1" prefix="R" uservalue="yes">
+<deviceset name="33K-1%" urn="urn:adsk.eagle:component:49287471/1" locally_modified="yes" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -2853,7 +2797,11 @@ by R. Vogg  15.March.2002</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 33kΩ 0402 Chip Resistor - Surface Mount ROHS"/>
+<attribute name="HQ_PART" value="RE0321838" constant="no"/>
 <attribute name="LCSC_PART" value="C25779" constant="no"/>
+<attribute name="MANUFACTURER" value="RALEC" constant="no"/>
+<attribute name="MPN" value="RTT023302FTH" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="33K 1%" constant="no"/>
 </technology>
 </technologies>
@@ -2908,7 +2856,7 @@ by R. Vogg  15.March.2002</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="10K-1%" urn="urn:adsk.eagle:component:49287453/1" prefix="R" uservalue="yes">
+<deviceset name="10K-1%" urn="urn:adsk.eagle:component:49287453/1" locally_modified="yes" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -2924,7 +2872,11 @@ by R. Vogg  15.March.2002</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 10kΩ 0402 Chip Resistor - Surface Mount ROHS"/>
+<attribute name="HQ_PART" value="RE0207399" constant="no"/>
 <attribute name="LCSC_PART" value="C25744" constant="no"/>
+<attribute name="MANUFACTURER" value="ROHM" constant="no"/>
+<attribute name="MPN" value="MCR01MZPF1002" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="10K 1%" constant="no"/>
 </technology>
 </technologies>
@@ -2956,7 +2908,11 @@ by R. Vogg  15.March.2002</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="125mW Thick Film Resistors 150V ±100ppm/℃ ±1% 10kΩ 0805 Chip Resistor - Surface Mount ROHS" constant="no"/>
+<attribute name="HQ_PART" value="RE0207376" constant="no"/>
 <attribute name="LCSC_PART" value="C17414" constant="no"/>
+<attribute name="MANUFACTURER" value="RALEC" constant="no"/>
+<attribute name="MPN" value="RTT051002FTP" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="10K 1%" constant="no"/>
 </technology>
 </technologies>
@@ -2988,14 +2944,18 @@ by R. Vogg  15.March.2002</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="50mW Thick Film Resistors 25V ±1% ±200ppm/℃ 10kΩ 0201 Chip Resistor - Surface Mount ROHS" constant="no"/>
+<attribute name="HQ_PART" value="RE0208620" constant="no"/>
 <attribute name="LCSC_PART" value="C473048" constant="no"/>
+<attribute name="MANUFACTURER" value="FH" constant="no"/>
+<attribute name="MPN" value="RC-01W1002FT" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="10K 1%" constant="no"/>
 </technology>
 </technologies>
 </device>
 </devices>
 </deviceset>
-<deviceset name="1K-1%" urn="urn:adsk.eagle:component:49287454/1" prefix="R" uservalue="yes">
+<deviceset name="1K-1%" urn="urn:adsk.eagle:component:49287454/1" locally_modified="yes" prefix="R" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="R" x="0" y="0"/>
 </gates>
@@ -3011,7 +2971,11 @@ by R. Vogg  15.March.2002</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 1kΩ 0402 Chip Resistor - Surface Mount ROHS"/>
+<attribute name="HQ_PART" value="RE0188047" constant="no"/>
 <attribute name="LCSC_PART" value="C11702" constant="no"/>
+<attribute name="MANUFACTURER" value="Uniohm" constant="no"/>
+<attribute name="MPN" value="0402WGF1001TCE" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="1K 1%" constant="no"/>
 </technology>
 </technologies>
@@ -3027,7 +2991,11 @@ by R. Vogg  15.March.2002</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="100mW Thick Film Resistors 75V ±100ppm/℃ ±1% 1kΩ 0603 Chip Resistor - Surface Mount ROHS" constant="no"/>
+<attribute name="HQ_PART" value="RE0023893" constant="no"/>
 <attribute name="LCSC_PART" value="C21190" constant="no"/>
+<attribute name="MANUFACTURER" value="Yageo" constant="no"/>
+<attribute name="MPN" value="RC0603FR-071KL" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="1K 1%" constant="no"/>
 </technology>
 </technologies>
@@ -3043,7 +3011,11 @@ by R. Vogg  15.March.2002</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="125mW Thick Film Resistors 150V ±100ppm/℃ ±1% 1kΩ 0805 Chip Resistor - Surface Mount ROHS" constant="no"/>
+<attribute name="HQ_PART" value="RE0203459" constant="no"/>
 <attribute name="LCSC_PART" value="C17513" constant="no"/>
+<attribute name="MANUFACTURER" value="FH" constant="no"/>
+<attribute name="MPN" value="RS-05K1001FT" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="1K 1%" constant="no"/>
 </technology>
 </technologies>
@@ -3059,7 +3031,11 @@ by R. Vogg  15.March.2002</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="250mW Thick Film Resistors 200V ±1% 1kΩ 1206 Chip Resistor - Surface Mount ROHS" constant="no"/>
+<attribute name="HQ_PART" value="RE0203531" constant="no"/>
 <attribute name="LCSC_PART" value="C4410" constant="no"/>
+<attribute name="MANUFACTURER" value="FH" constant="no"/>
+<attribute name="MPN" value="RS-06K1001FT " constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="1K 1%" constant="no"/>
 </technology>
 </technologies>
@@ -3075,7 +3051,11 @@ by R. Vogg  15.March.2002</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="50mW Thick Film Resistors 25V ±1% ±200ppm/℃ 1kΩ 0201  Chip Resistor - Surface Mount ROHS" constant="no"/>
+<attribute name="HQ_PART" value="RE0015967" constant="no"/>
 <attribute name="LCSC_PART" value="C270365" constant="no"/>
+<attribute name="MANUFACTURER" value="Yageo" constant="no"/>
+<attribute name="MPN" value="RC0201FR-071KL " constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="1K 1%" constant="no"/>
 </technology>
 </technologies>
@@ -3142,6 +3122,20 @@ by R. Vogg  15.March.2002</description>
 <rectangle x1="-1.6891" y1="-0.8763" x2="-0.9525" y2="0.8763" layer="51"/>
 <rectangle x1="0.9525" y1="-0.8763" x2="1.6891" y2="0.8763" layer="51"/>
 </package>
+<package name="0201" urn="urn:adsk.eagle:footprint:47403527/2">
+<description>&lt;b&gt;Chip RESISTOR, 0201 EIA (0603 Metric)&lt;/b&gt;</description>
+<wire x1="-0.6" y1="0.315" x2="0.6" y2="0.315" width="0.0508" layer="39"/>
+<wire x1="0.6" y1="0.315" x2="0.6" y2="-0.315" width="0.0508" layer="39"/>
+<wire x1="0.6" y1="-0.315" x2="-0.6" y2="-0.315" width="0.0508" layer="39"/>
+<wire x1="-0.6" y1="-0.315" x2="-0.6" y2="0.315" width="0.0508" layer="39"/>
+<smd name="1" x="-0.275" y="0" dx="0.34" dy="0.35" layer="1"/>
+<smd name="2" x="0.275" y="0" dx="0.34" dy="0.35" layer="1"/>
+<text x="-0.635" y="0.635" size="1.27" layer="25">&gt;NAME</text>
+<text x="-0.635" y="-1.905" size="1.27" layer="27">&gt;VALUE</text>
+<rectangle x1="-0.3" y1="-0.15" x2="-0.15" y2="0.15" layer="51"/>
+<rectangle x1="0.15" y1="-0.15" x2="0.3" y2="0.15" layer="51"/>
+<rectangle x1="-0.15" y1="-0.15" x2="0.15" y2="0.15" layer="21"/>
+</package>
 </packages>
 <packages3d>
 <package3d name="C0402" urn="urn:adsk.eagle:package:46766485/3" locally_modified="yes" type="model">
@@ -3164,6 +3158,12 @@ by R. Vogg  15.March.2002</description>
 <packageinstance name="1206"/>
 </packageinstances>
 </package3d>
+<package3d name="0201" urn="urn:adsk.eagle:package:47403530/3" type="model">
+<description>&lt;b&gt;Chip RESISTOR, 0201 EIA (0603 Metric)&lt;/b&gt;</description>
+<packageinstances>
+<packageinstance name="0201"/>
+</packageinstances>
+</package3d>
 </packages3d>
 <symbols>
 <symbol name="C" urn="urn:adsk.eagle:symbol:48944440/1">
@@ -3178,11 +3178,31 @@ by R. Vogg  15.March.2002</description>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="100NF-50V" urn="urn:adsk.eagle:component:48944475/1" locally_modified="yes" prefix="C" uservalue="yes">
+<deviceset name="100NF-25V" urn="urn:adsk.eagle:component:48944476/1" locally_modified="yes" prefix="C" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="C" x="0" y="0"/>
 </gates>
 <devices>
+<device name="-0201" package="0201">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:47403530/3"/>
+</package3dinstances>
+<technologies>
+<technology name="">
+<attribute name="DESCRIPTION" value="25V 100nF X5R ±10% 0201 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" constant="no"/>
+<attribute name="HQ_PART" value="CA0183221" constant="no"/>
+<attribute name="LCSC_PART" value="C76939" constant="no"/>
+<attribute name="MANUFACTURER" value="Samsung" constant="no"/>
+<attribute name="MPN" value="CL03A104MP3NNNC" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
+<attribute name="VALUE" value="100nF 25V" constant="no"/>
+</technology>
+</technologies>
+</device>
 <device name="-0402" package="0402">
 <connects>
 <connect gate="G$1" pin="1" pad="1"/>
@@ -3193,9 +3213,13 @@ by R. Vogg  15.March.2002</description>
 </package3dinstances>
 <technologies>
 <technology name="">
-<attribute name="DESCRIPTION" value="50V 100nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" constant="no"/>
-<attribute name="LCSC_PART" value="C307331" constant="no"/>
-<attribute name="VALUE" value="100nF 50V" constant="no"/>
+<attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" constant="no"/>
+<attribute name="HQ_PART" value="CA0137105" constant="no"/>
+<attribute name="LCSC_PART" value="C56392" constant="no"/>
+<attribute name="MANUFACTURER" value="Yageo" constant="no"/>
+<attribute name="MPN" value="CC0402KRX5R8BB104" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
+<attribute name="VALUE" value="100nF 25V" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -3209,9 +3233,9 @@ by R. Vogg  15.March.2002</description>
 </package3dinstances>
 <technologies>
 <technology name="">
-<attribute name="DESCRIPTION" value="50V 100nF X7R ±10% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" constant="no"/>
-<attribute name="LCSC_PART" value="C14663" constant="no"/>
-<attribute name="VALUE" value="100nF 50V" constant="no"/>
+<attribute name="DESCRIPTION" value="25V 100nF X7R ±10% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" constant="no"/>
+<attribute name="LCSC_PART" value="C1590" constant="no"/>
+<attribute name="VALUE" value="100nF 25V" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -3225,9 +3249,9 @@ by R. Vogg  15.March.2002</description>
 </package3dinstances>
 <technologies>
 <technology name="">
-<attribute name="DESCRIPTION" value="50V 100nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" constant="no"/>
-<attribute name="LCSC_PART" value="C49678" constant="no"/>
-<attribute name="VALUE" value="100nF 50V" constant="no"/>
+<attribute name="DESCRIPTION" value="25V 100nF X7R ±10% 0805 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" constant="no"/>
+<attribute name="LCSC_PART" value="C5120075" constant="no"/>
+<attribute name="VALUE" value="100nF 25V" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -3241,9 +3265,9 @@ by R. Vogg  15.March.2002</description>
 </package3dinstances>
 <technologies>
 <technology name="">
-<attribute name="DESCRIPTION" value="50V 100nF X7R ±10% 1206 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" constant="no"/>
-<attribute name="LCSC_PART" value="C24497" constant="no"/>
-<attribute name="VALUE" value="100nF 50V" constant="no"/>
+<attribute name="DESCRIPTION" value="25V 100nF X7R ±10% 1206 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" constant="no"/>
+<attribute name="LCSC_PART" value="1206" constant="no"/>
+<attribute name="VALUE" value="100nF 25V" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -3477,26 +3501,26 @@ by R. Vogg  15.March.2002</description>
 <text x="-2.54" y="1.524" size="1.32" layer="25" ratio="10">&gt;NAME</text>
 <text x="-2.54" y="-2.54" size="1.2" layer="27" ratio="10">&gt;VALUE</text>
 </package>
-<package name="SOT-523">
-<wire x1="-0.65" y1="1.46" x2="-0.65" y2="-1.46" width="0.127" layer="51"/>
-<wire x1="-0.65" y1="-1.46" x2="0.65" y2="-1.46" width="0.127" layer="51"/>
-<wire x1="0.65" y1="-1.46" x2="0.65" y2="1.46" width="0.127" layer="51"/>
-<wire x1="0.65" y1="1.46" x2="-0.65" y2="1.46" width="0.127" layer="51"/>
-<wire x1="-0.035" y1="-1.46" x2="0.65" y2="-1.46" width="0.127" layer="21"/>
-<wire x1="0.65" y1="0.615" x2="0.65" y2="1.46" width="0.127" layer="21"/>
-<wire x1="0.65" y1="-1.46" x2="0.65" y2="-0.615" width="0.127" layer="21"/>
-<wire x1="0.65" y1="1.46" x2="-0.035" y2="1.46" width="0.127" layer="21"/>
-<wire x1="-1.925" y1="1.71" x2="-1.925" y2="-1.71" width="0.05" layer="39"/>
-<wire x1="-1.925" y1="-1.71" x2="1.925" y2="-1.71" width="0.05" layer="39"/>
-<wire x1="1.925" y1="-1.71" x2="1.925" y2="1.71" width="0.05" layer="39"/>
-<wire x1="1.925" y1="1.71" x2="-1.925" y2="1.71" width="0.05" layer="39"/>
+<package name="SC75" urn="urn:adsk.eagle:footprint:49873925/2">
 <circle x="-2.246" y="0.95" radius="0.1" width="0.2" layer="21"/>
 <circle x="-2.246" y="0.95" radius="0.1" width="0.2" layer="51"/>
 <text x="-3.068" y="2.627" size="1.27" layer="25">&gt;NAME</text>
 <text x="-2.941" y="-2.627" size="1.27" layer="27" align="top-left">&gt;VALUE</text>
-<smd name="1" x="-1.015" y="0.95" dx="1.32" dy="0.59" layer="1" roundness="25"/>
-<smd name="2" x="-1.015" y="-0.95" dx="1.32" dy="0.59" layer="1" roundness="25"/>
-<smd name="3" x="1.015" y="0" dx="1.32" dy="0.59" layer="1" roundness="25"/>
+<wire x1="-0.4" y1="0.8" x2="0.4" y2="0.8" width="0.127" layer="51"/>
+<wire x1="0.4" y1="0.8" x2="0.4" y2="-0.8" width="0.127" layer="51"/>
+<wire x1="0.4" y1="-0.8" x2="-0.4" y2="-0.8" width="0.127" layer="51"/>
+<wire x1="-0.4" y1="-0.8" x2="-0.4" y2="0.8" width="0.127" layer="51"/>
+<wire x1="0.095" y1="0.8" x2="0.4" y2="0.8" width="0.127" layer="21"/>
+<wire x1="0.4" y1="0.8" x2="0.4" y2="0.47" width="0.127" layer="21"/>
+<wire x1="0.4" y1="-0.8" x2="0.4" y2="-0.47" width="0.127" layer="21"/>
+<wire x1="0.4" y1="-0.8" x2="0.095" y2="-0.8" width="0.127" layer="21"/>
+<wire x1="-1.465" y1="1.05" x2="-1.465" y2="-1.05" width="0.05" layer="39"/>
+<wire x1="-1.465" y1="-1.05" x2="1.465" y2="-1.05" width="0.05" layer="39"/>
+<wire x1="1.465" y1="-1.05" x2="1.465" y2="1.05" width="0.05" layer="39"/>
+<wire x1="1.465" y1="1.05" x2="-1.465" y2="1.05" width="0.05" layer="39"/>
+<smd name="1" x="-0.72" y="0.5" dx="0.99" dy="0.3" layer="1" roundness="25"/>
+<smd name="2" x="-0.72" y="-0.5" dx="0.99" dy="0.3" layer="1" roundness="25"/>
+<smd name="3" x="0.72" y="0" dx="0.99" dy="0.3" layer="1" roundness="25"/>
 </package>
 </packages>
 <packages3d>
@@ -3506,9 +3530,14 @@ by R. Vogg  15.March.2002</description>
 <packageinstance name="SOD-123"/>
 </packageinstances>
 </package3d>
+<package3d name="SC75" urn="urn:adsk.eagle:package:49873936/3" type="model">
+<packageinstances>
+<packageinstance name="SC75"/>
+</packageinstances>
+</package3d>
 </packages3d>
 <symbols>
-<symbol name="D-TVS">
+<symbol name="D-TVS" urn="urn:adsk.eagle:symbol:49873928/1">
 <wire x1="1.27" y1="-1.27" x2="0" y2="1.27" width="0.254" layer="94"/>
 <wire x1="0" y1="1.27" x2="-1.27" y2="-1.27" width="0.254" layer="94"/>
 <wire x1="-1.27" y1="-1.27" x2="0" y2="-1.27" width="0.254" layer="94"/>
@@ -3523,7 +3552,7 @@ by R. Vogg  15.March.2002</description>
 <pin name="A" x="0" y="-2.54" visible="off" length="point" direction="pas" rot="R90"/>
 <pin name="C" x="0" y="2.54" visible="off" length="point" direction="pas" rot="R270"/>
 </symbol>
-<symbol name="D-TVS-DUAL">
+<symbol name="D-TVS-DUAL" urn="urn:adsk.eagle:symbol:49873927/1">
 <wire x1="3.81" y1="-1.27" x2="2.54" y2="1.27" width="0.254" layer="94"/>
 <wire x1="2.54" y1="1.27" x2="1.27" y2="-1.27" width="0.254" layer="94"/>
 <wire x1="1.27" y1="-1.27" x2="2.54" y2="-1.27" width="0.254" layer="94"/>
@@ -3531,8 +3560,6 @@ by R. Vogg  15.March.2002</description>
 <wire x1="1.27" y1="1.397" x2="3.81" y2="1.397" width="0.254" layer="94"/>
 <wire x1="3.81" y1="1.397" x2="4.318" y2="0.762" width="0.254" layer="94"/>
 <wire x1="1.27" y1="1.397" x2="0.762" y2="1.778" width="0.254" layer="94"/>
-<text x="5.6896" y="0.3556" size="1.778" layer="95">&gt;NAME</text>
-<text x="5.6896" y="-1.9558" size="1.778" layer="96">&gt;VALUE</text>
 <wire x1="-1.27" y1="-1.27" x2="-2.54" y2="1.27" width="0.254" layer="94"/>
 <wire x1="-2.54" y1="1.27" x2="-3.81" y2="-1.27" width="0.254" layer="94"/>
 <wire x1="-3.81" y1="-1.27" x2="-2.54" y2="-1.27" width="0.254" layer="94"/>
@@ -3540,9 +3567,6 @@ by R. Vogg  15.March.2002</description>
 <wire x1="-3.81" y1="1.397" x2="-1.27" y2="1.397" width="0.254" layer="94"/>
 <wire x1="-1.27" y1="1.397" x2="-0.762" y2="0.762" width="0.254" layer="94"/>
 <wire x1="-3.81" y1="1.397" x2="-4.318" y2="1.778" width="0.254" layer="94"/>
-<pin name="1" x="2.54" y="2.54" visible="off" length="point" rot="R270"/>
-<pin name="3" x="0" y="-2.54" visible="off" length="point" rot="R90"/>
-<pin name="2" x="-2.54" y="2.54" visible="off" length="point" rot="R270"/>
 <wire x1="-2.54" y1="1.27" x2="-2.54" y2="2.54" width="0.1524" layer="94"/>
 <wire x1="2.54" y1="1.27" x2="2.54" y2="2.54" width="0.1524" layer="94"/>
 <wire x1="-2.54" y1="-1.27" x2="-2.54" y2="-1.905" width="0.1524" layer="94"/>
@@ -3550,10 +3574,15 @@ by R. Vogg  15.March.2002</description>
 <wire x1="0" y1="-1.905" x2="2.54" y2="-1.905" width="0.1524" layer="94"/>
 <wire x1="2.54" y1="-1.905" x2="2.54" y2="-1.27" width="0.1524" layer="94"/>
 <wire x1="0" y1="-1.905" x2="0" y2="-2.54" width="0.1524" layer="94"/>
+<text x="5.6896" y="0.3556" size="1.778" layer="95">&gt;NAME</text>
+<text x="5.6896" y="-1.9558" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="1" x="2.54" y="2.54" visible="off" length="point" rot="R270"/>
+<pin name="3" x="0" y="-2.54" visible="off" length="point" rot="R90"/>
+<pin name="2" x="-2.54" y="2.54" visible="off" length="point" rot="R270"/>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="PTVS3V3S1UR,115" prefix="D">
+<deviceset name="PTVS3V3S1UR,115" urn="urn:adsk.eagle:component:49873941/1" prefix="D">
 <description>400 W unidirectional Transient Voltage Suppressor (TVS) in a SOD123W small and flat
 lead low-profile Surface-Mounted Device (SMD) plastic package, designed for transient
 overvoltage protection.</description>
@@ -3573,31 +3602,41 @@ overvoltage protection.</description>
 <technology name="">
 <attribute name="DATASHEET" value="https://assets.nexperia.com/documents/data-sheet/PTVSXS1UR_SER.pdf" constant="no"/>
 <attribute name="DESCRIPTION" value="3.3V 350W@10/1000us 43.8A@10/1000us 5.6V 5uA 8V IEC 61000-4-2 TVS Unidirectional SOD-123W ESD and Surge Protection (TVS/ESD) ROHS " constant="no"/>
+<attribute name="HQ_PART" value="CP0009318" constant="no"/>
 <attribute name="LCSC_PART" value="C183521" constant="no"/>
+<attribute name="MANUFACTURER" value="Nexperia" constant="no"/>
+<attribute name="MPN" value="PTVS3V3S1UR,115 " constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="PTVS3V3S1UR,115 " constant="no"/>
 </technology>
 </technologies>
 </device>
 </devices>
 </deviceset>
-<deviceset name="RCLAMP0582BQTCT" prefix="D">
+<deviceset name="RCLAMP0582BQTCT" urn="urn:adsk.eagle:component:49873940/2" locally_modified="yes" prefix="D">
 <description>The RailClamp0582BQ is a 5V, dual-line, low-capacitance automotive-grade RailClamp transient voltage suppressor (TVS) optimized for safeguarding high-speed data ports, such as Ethernet and USB, from electrostatic discharge (ESD) threats. 
 The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal protection device for safeguarding automotive-based data lines from harsh ESD spikes.</description>
 <gates>
 <gate name="G$1" symbol="D-TVS-DUAL" x="0" y="0"/>
 </gates>
 <devices>
-<device name="" package="SOT-523">
+<device name="-" package="SC75">
 <connects>
 <connect gate="G$1" pin="1" pad="1"/>
 <connect gate="G$1" pin="2" pad="2"/>
 <connect gate="G$1" pin="3" pad="3"/>
 </connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:49873936/3"/>
+</package3dinstances>
 <technologies>
 <technology name="">
 <attribute name="DATASHEET" value="https://semtech.my.salesforce.com/sfc/p/#E0000000JelG/a/440000001Lzx/0M5l0VFdFhBLS7TSRfd1I2V77GSkvtksC9b.1bnFtjQ" constant="no"/>
-<attribute name="DESCRIPTION" value="-40℃~+105℃@(Tj) 1.2pF 100nA 15A@8/20us 2 20V 300W 5V 6V ESD IEC 61000-4-2 SOT-523 ESD and Surge Protection (TVS/ESD) ROHS " constant="no"/>
+<attribute name="HQ_PART" value="PD0007296" constant="no"/>
 <attribute name="LCSC_PART" value="C841193" constant="no"/>
+<attribute name="MANUFACTURER" value="SEMTECH" constant="no"/>
+<attribute name="MPN" value="RCLAMP0582BQTCT" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="RCLAMP0582BQTCT" constant="no"/>
 </technology>
 </technologies>
@@ -3928,6 +3967,95 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 </deviceset>
 </devicesets>
 </library>
+<library name="ds_active">
+<packages>
+<package name="SOT23" urn="urn:adsk.eagle:footprint:46684397/1">
+<wire x1="1.4224" y1="0.6604" x2="1.4224" y2="-0.6604" width="0.1524" layer="51"/>
+<wire x1="1.4224" y1="-0.6604" x2="-1.4224" y2="-0.6604" width="0.1524" layer="51"/>
+<wire x1="-1.4224" y1="-0.6604" x2="-1.4224" y2="0.6604" width="0.1524" layer="51"/>
+<wire x1="-1.4224" y1="0.6604" x2="1.4224" y2="0.6604" width="0.1524" layer="51"/>
+<smd name="3" x="0" y="1.1" dx="1" dy="1.4" layer="1"/>
+<smd name="2" x="0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
+<smd name="1" x="-0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
+<text x="-1.905" y="1.905" size="1.27" layer="25">&gt;NAME</text>
+<text x="-1.905" y="-3.175" size="1.27" layer="27">&gt;VALUE</text>
+<rectangle x1="-0.2286" y1="0.7112" x2="0.2286" y2="1.2954" layer="51"/>
+<rectangle x1="0.7112" y1="-1.2954" x2="1.1684" y2="-0.7112" layer="51"/>
+<rectangle x1="-1.1684" y1="-1.2954" x2="-0.7112" y2="-0.7112" layer="51"/>
+</package>
+</packages>
+<packages3d>
+<package3d name="SOT23" urn="urn:adsk.eagle:package:46684430/3" type="model">
+<packageinstances>
+<packageinstance name="SOT23"/>
+</packageinstances>
+</package3d>
+</packages3d>
+<symbols>
+<symbol name="N-MOSFET" urn="urn:adsk.eagle:symbol:47392602/1">
+<wire x1="-1.778" y1="0.762" x2="-1.778" y2="0" width="0.254" layer="94"/>
+<wire x1="-1.778" y1="0" x2="-1.778" y2="-0.762" width="0.254" layer="94"/>
+<wire x1="-1.778" y1="3.175" x2="-1.778" y2="2.54" width="0.254" layer="94"/>
+<wire x1="-1.778" y1="2.54" x2="-1.778" y2="1.905" width="0.254" layer="94"/>
+<wire x1="-1.778" y1="0" x2="0" y2="0" width="0.1524" layer="94"/>
+<wire x1="0" y1="0" x2="0" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="-1.778" y1="-1.905" x2="-1.778" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="-1.778" y1="-2.54" x2="-1.778" y2="-3.175" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="2.54" x2="-2.54" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="0" y1="-2.54" x2="-1.778" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="-1.778" y1="2.54" x2="1.016" y2="2.54" width="0.1524" layer="94"/>
+<wire x1="1.016" y1="2.54" x2="1.016" y2="0.508" width="0.1524" layer="94"/>
+<wire x1="1.016" y1="0.508" x2="1.016" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="1.016" y1="-2.54" x2="0" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="1.016" y1="0.508" x2="0.508" y2="0.508" width="0.1524" layer="94"/>
+<wire x1="1.016" y1="0.508" x2="1.524" y2="0.508" width="0.1524" layer="94"/>
+<text x="2.54" y="-1.27" size="1.778" layer="96">&gt;VALUE</text>
+<text x="2.54" y="1.27" size="1.778" layer="95">&gt;NAME</text>
+<pin name="S" x="0" y="-5.08" visible="off" length="short" direction="pas" rot="R90"/>
+<pin name="G" x="-5.08" y="-2.54" visible="off" length="short" direction="pas"/>
+<pin name="D" x="0" y="5.08" visible="off" length="short" direction="pas" rot="R270"/>
+<polygon width="0.1524" layer="94">
+<vertex x="-0.635" y="-0.761996875"/>
+<vertex x="-0.635" y="0.761996875"/>
+<vertex x="-1.587496875" y="0"/>
+</polygon>
+<polygon width="0.1524" layer="94">
+<vertex x="1.016" y="0.508"/>
+<vertex x="0.508" y="-0.254"/>
+<vertex x="1.524" y="-0.254"/>
+</polygon>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="BSS138" urn="urn:adsk.eagle:component:47392606/1" locally_modified="yes" prefix="T" uservalue="yes">
+<gates>
+<gate name="1" symbol="N-MOSFET" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="SOT23">
+<connects>
+<connect gate="1" pin="D" pad="3"/>
+<connect gate="1" pin="G" pad="1"/>
+<connect gate="1" pin="S" pad="2"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46684430/3"/>
+</package3dinstances>
+<technologies>
+<technology name="">
+<attribute name="DESCRIPTION" value="50V 230mA 3.4Ω@10V,220mA 230mW 1.5V@250uA N Channel SOT-23-3 MOSFETs ROHS " constant="no"/>
+<attribute name="HQ_PART" value="DS0190318" constant="no"/>
+<attribute name="MANUFACTURER" value="HUASHUO" constant="no"/>
+<attribute name="MPN" value="BSS138" constant="no"/>
+<attribute name="ROHS" value="YES" constant="no"/>
+<attribute name="VALUE" value="BSS138" constant="no"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 <attribute name="VERSION" value="1.1.0"/>
@@ -3951,25 +4079,25 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="+3V37" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="P+3" library="ds_passive" deviceset="+5V" device=""/>
 <part name="R5" library="ds_resistor" deviceset="33K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="33K 1%"/>
-<part name="C7" library="ds_capacitors" deviceset="100NF-50V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 50V"/>
+<part name="C7" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
 <part name="GND13" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND17" library="ds_passive" deviceset="GND" device=""/>
 <part name="+3V310" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="R6" library="ds_resistor" deviceset="33K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="33K 1%"/>
-<part name="C8" library="ds_capacitors" deviceset="100NF-50V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 50V"/>
+<part name="C8" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
 <part name="GND14" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND18" library="ds_passive" deviceset="GND" device=""/>
 <part name="+3V311" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="R12" library="ds_resistor" deviceset="33K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="33K 1%"/>
-<part name="C9" library="ds_capacitors" deviceset="100NF-50V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 50V"/>
+<part name="C9" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
 <part name="GND19" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND22" library="ds_passive" deviceset="GND" device=""/>
 <part name="+3V312" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="NC6" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="NC" device=""/>
 <part name="+3V38" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="+3V39" library="ds_passive" deviceset="+3V3" device=""/>
-<part name="C5" library="ds_capacitors" deviceset="100NF-50V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 50V"/>
-<part name="C6" library="ds_capacitors" deviceset="100NF-50V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 50V"/>
+<part name="C5" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
+<part name="C6" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
 <part name="GND12" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND11" library="ds_passive" deviceset="GND" device=""/>
 <part name="CH1" library="ds_LED" deviceset="LED-GREEN" device="LED-0805" package3d_urn="urn:adsk.eagle:package:49260836/1" value="Green"/>
@@ -4001,7 +4129,7 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="+3V34" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="GND6" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND5" library="ds_passive" deviceset="GND" device=""/>
-<part name="T1" library="transistor-fet" library_urn="urn:adsk.eagle:library:396" deviceset="BSS138" device="" package3d_urn="urn:adsk.eagle:package:28534/2"/>
+<part name="T1" library="ds_active" deviceset="BSS138" device="" package3d_urn="urn:adsk.eagle:package:46684430/3" value="DNI"/>
 <part name="R1" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="DNI"/>
 <part name="R2" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="DNI"/>
 <part name="R3" library="ds_passive" deviceset="R" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="DNI"/>
@@ -4017,27 +4145,27 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="IC1" library="ds_ic_peripherals" deviceset="MCP23017" device="-E/ML" package3d_urn="urn:adsk.eagle:package:46683895/2" value="MCP23017T-E/ML "/>
 <part name="NC7" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="NC" device=""/>
 <part name="NC5" library="ds_passive" deviceset="NC" device=""/>
-<part name="R4" library="ds_resistor" deviceset="10K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="10K 1%"/>
+<part name="R4" library="ds_resistor" deviceset="10K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="DNI"/>
 <part name="GND7" library="ds_passive" deviceset="GND" device=""/>
 <part name="NC8" library="ds_passive" deviceset="NC" device=""/>
-<part name="3V3" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="5V" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="BL" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="GND" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="3V3" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="5V" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="BL" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="GND" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
 <part name="+3V36" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="P+2" library="ds_passive" deviceset="+5V" device=""/>
 <part name="GND10" library="ds_passive" deviceset="GND" device=""/>
 <part name="R13" library="ds_resistor" deviceset="33K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="33K 1%"/>
-<part name="C10" library="ds_capacitors" deviceset="100NF-50V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 50V"/>
+<part name="C10" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
 <part name="GND24" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND26" library="ds_passive" deviceset="GND" device=""/>
 <part name="+3V1" library="ds_passive" deviceset="+3V3" device=""/>
-<part name="CON2" library="ds_con" deviceset="AFC11-S20ICC-00" device="" package3d_urn="urn:adsk.eagle:package:47082459/4" value="AFC11-S20ICC-00 "/>
+<part name="CON2" library="ds_con" deviceset="AFC11-S20ICC-00" device="" package3d_urn="urn:adsk.eagle:package:47082459/5" value="AFC11-S20ICC-00 "/>
 <part name="NC13" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="NC" device=""/>
 <part name="+3V2" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="+3V3" library="ds_passive" deviceset="+3V3" device=""/>
-<part name="C11" library="ds_capacitors" deviceset="100NF-50V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 50V"/>
-<part name="C12" library="ds_capacitors" deviceset="100NF-50V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 50V"/>
+<part name="C11" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
+<part name="C12" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
 <part name="GND27" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND28" library="ds_passive" deviceset="GND" device=""/>
 <part name="SEL1" library="ds_LED" deviceset="LED-ORANGE" device="LED-0805" package3d_urn="urn:adsk.eagle:package:49260836/1" value="Orange"/>
@@ -4068,12 +4196,12 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="&gt;" library="ds_passive" deviceset="SWITCH" device="6X6-SHORT" package3d_urn="urn:adsk.eagle:package:49287357/2" value="TS-1002S-04326C "/>
 <part name="O" library="ds_passive" deviceset="SWITCH" device="6X6-SHORT" package3d_urn="urn:adsk.eagle:package:49287357/2" value="TS-1002S-04326C "/>
 <part name="PWR" library="ds_passive" deviceset="SWITCH" device="6X6-SHORT" package3d_urn="urn:adsk.eagle:package:49287357/2" value="TS-1002S-04326C "/>
-<part name="SDA0" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="SCL0" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="MOSI" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="SCK" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="MISO" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
-<part name="CS" library="ds_passive" deviceset="TP" device="-ROUND" value="TP-ROUND"/>
+<part name="SDA0" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="SCL0" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="MOSI" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="SCK" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="MISO" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="CS" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
 <part name="R16" library="ds_resistor" deviceset="10K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="10K 1%"/>
 <part name="R17" library="ds_resistor" deviceset="10K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="10K 1%"/>
 <part name="R18" library="ds_resistor" deviceset="10K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="10K 1%"/>
@@ -4086,13 +4214,13 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="GND16" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND21" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND25" library="ds_passive" deviceset="GND" device=""/>
-<part name="D5" library="ds_diode" deviceset="RCLAMP0582BQTCT" device="" value="RCLAMP0582BQTCT"/>
+<part name="D5" library="ds_diode" deviceset="RCLAMP0582BQTCT" device="-" package3d_urn="urn:adsk.eagle:package:49873936/3" value="RCLAMP0582BQTCT"/>
 <part name="GND31" library="ds_passive" deviceset="GND" device=""/>
 <part name="FRAME2" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A3L-LOC" device=""/>
 <part name="FRAME3" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A3L-LOC" device=""/>
-<part name="H1" library="holes" library_urn="urn:adsk.eagle:library:237" deviceset="MOUNT-PAD-ROUND" device="3.2" package3d_urn="urn:adsk.eagle:package:14282/1"/>
-<part name="H2" library="holes" library_urn="urn:adsk.eagle:library:237" deviceset="MOUNT-PAD-ROUND" device="3.2" package3d_urn="urn:adsk.eagle:package:14282/1"/>
-<part name="H3" library="holes" library_urn="urn:adsk.eagle:library:237" deviceset="MOUNT-PAD-ROUND" device="3.2" package3d_urn="urn:adsk.eagle:package:14282/1"/>
+<part name="H1" library="holes" library_urn="urn:adsk.eagle:library:237" deviceset="MOUNT-PAD-ROUND" device="3.2" package3d_urn="urn:adsk.eagle:package:14282/1" value="DNI"/>
+<part name="H2" library="holes" library_urn="urn:adsk.eagle:library:237" deviceset="MOUNT-PAD-ROUND" device="3.2" package3d_urn="urn:adsk.eagle:package:14282/1" value="DNI"/>
+<part name="H3" library="holes" library_urn="urn:adsk.eagle:library:237" deviceset="MOUNT-PAD-ROUND" device="3.2" package3d_urn="urn:adsk.eagle:package:14282/1" value="DNI"/>
 <part name="GND32" library="ds_passive" deviceset="GND" device=""/>
 </parts>
 <sheets>
@@ -4814,6 +4942,8 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <text x="254" y="187.96" size="6.4516" layer="94">BOARD CONNECTOR</text>
 <text x="152.4" y="208.28" size="6.4516" layer="94">I2C DISPLAY</text>
 <text x="152.4" y="111.76" size="6.4516" layer="94">TESTPOINTS</text>
+<text x="106.68" y="86.36" size="1.778" layer="96">BSS138</text>
+<text x="93.98" y="78.74" size="1.778" layer="96" rot="R180">10K</text>
 </plain>
 <instances>
 <instance part="FRAME2" gate="G$1" x="0" y="0" smashed="yes">
@@ -4864,9 +4994,9 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <instance part="GND5" gate="1" x="76.2" y="22.86" smashed="yes" rot="MR0">
 <attribute name="VALUE" x="76.2" y="20.32" size="1.778" layer="96" rot="MR0" align="top-center"/>
 </instance>
-<instance part="T1" gate="G$1" x="101.6" y="91.44" smashed="yes">
-<attribute name="VALUE" x="90.17" y="91.44" size="1.778" layer="96"/>
-<attribute name="NAME" x="90.17" y="93.98" size="1.778" layer="95"/>
+<instance part="T1" gate="1" x="104.14" y="91.44" smashed="yes">
+<attribute name="VALUE" x="92.71" y="91.44" size="1.778" layer="96"/>
+<attribute name="NAME" x="92.71" y="93.98" size="1.778" layer="95"/>
 </instance>
 <instance part="R1" gate="G$1" x="78.74" y="104.14" smashed="yes" rot="MR90">
 <attribute name="NAME" x="75.057" y="102.0826" size="1.778" layer="95" rot="MR0"/>
@@ -5087,7 +5217,7 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <pinref part="GND5" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="T1" gate="G$1" pin="S"/>
+<pinref part="T1" gate="1" pin="S"/>
 <wire x1="104.14" y1="86.36" x2="104.14" y2="73.66" width="0.1524" layer="91"/>
 <pinref part="GND8" gate="1" pin="GND"/>
 </segment>
@@ -5392,16 +5522,16 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <wire x1="99.06" y1="99.06" x2="99.06" y2="101.6" width="0.1524" layer="91"/>
 <wire x1="99.06" y1="104.14" x2="99.06" y2="101.6" width="0.1524" layer="91"/>
 <junction x="99.06" y="101.6"/>
-<pinref part="T1" gate="G$1" pin="D"/>
+<pinref part="T1" gate="1" pin="D"/>
 <wire x1="99.06" y1="101.6" x2="104.14" y2="101.6" width="0.1524" layer="91"/>
 <wire x1="104.14" y1="101.6" x2="104.14" y2="96.52" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="LCD_BL" class="0">
 <segment>
-<pinref part="T1" gate="G$1" pin="G"/>
-<wire x1="99.06" y1="88.9" x2="96.52" y2="88.9" width="0.1524" layer="91"/>
+<pinref part="T1" gate="1" pin="G"/>
 <label x="91.44" y="88.9" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="99.06" y1="88.9" x2="96.52" y2="88.9" width="0.1524" layer="91"/>
 <pinref part="R4" gate="G$1" pin="1"/>
 <wire x1="96.52" y1="88.9" x2="91.44" y2="88.9" width="0.1524" layer="91"/>
 <wire x1="96.52" y1="86.36" x2="96.52" y2="88.9" width="0.1524" layer="91"/>
