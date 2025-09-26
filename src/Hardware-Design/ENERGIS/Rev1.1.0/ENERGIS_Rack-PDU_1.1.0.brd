@@ -9536,7 +9536,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="RGTG" library="ds_con" package="1X4" package3d_urn="urn:adsk.eagle:package:46684991/2" value="DNI" x="182.2014" y="21.994" smashed="yes" rot="R90">
 <attribute name="NAME" x="176.6256" y="22.3894" size="1.27" layer="25" rot="R180"/>
-<attribute name="VALUE" x="368.8914" y="-50.8532" size="1.778" layer="27" rot="R90"/>
 </element>
 <element name="R131" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="1M 1%" x="169.2278" y="4.7474" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 1MΩ 0402 Chip Resistor - Surface Mount ROHS" x="169.2278" y="4.7474" size="1.778" layer="27" rot="R90" display="off"/>
