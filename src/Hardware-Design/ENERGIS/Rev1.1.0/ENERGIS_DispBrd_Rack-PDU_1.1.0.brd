@@ -3,7 +3,7 @@
 <eagle version="9.2.1">
 <drawing>
 <settings>
-<setting alwaysvectorfont="no"/>
+<setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.01" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
@@ -195,7 +195,7 @@
 <layer number="255" name="routoute" color="7" fill="1" visible="no" active="yes"/>
 </layers>
 <board>
-<fusionsync huburn="a.YnVzaW5lc3M6aG90bWFpbDE2OTAxNA" projecturn="a.YnVzaW5lc3M6aG90bWFpbDE2OTAxNCMyMDI1MDEwNTg1Mzg3MDcwMQ" f3durn="urn:adsk.wipprod:dm.lineage:Sf7yv0PfTFa9JuULIF-31A" pcbguid="52328e33-abcb-4195-9cab-78ca4787ddc7" lastpulledtime="" lastsyncedchangeguid="09c84417-42b0-5432-bbca-8a3217fe2a13"/>
+<fusionsync huburn="a.YnVzaW5lc3M6aG90bWFpbDE2OTAxNA" projecturn="a.YnVzaW5lc3M6aG90bWFpbDE2OTAxNCMyMDI1MDEwNTg1Mzg3MDcwMQ" f3durn="urn:adsk.wipprod:dm.lineage:QVHLmt7yRaGPcq_WRC3u5g" pcbguid="c686414f-74fa-4ef3-911a-88f8a5884d6c" lastpulledtime="" lastsyncedchangeguid="aaa3a18e-c589-102c-f585-91823a6e1b52"/>
 <plain>
 <text x="94.6374" y="25.3975" size="1.4224" layer="22" font="vector" ratio="12" rot="MR0">github.com/DvidMakesThings/HW_10-In-Rack_PDU</text>
 <wire x1="7" y1="52" x2="125" y2="52" width="0.0762" layer="20"/>
@@ -2388,54 +2388,6 @@
 </package3d>
 </packages3d>
 </library>
-<library name="transistor-fet" urn="urn:adsk.eagle:library:396">
-<description>&lt;b&gt;Field Effect Transistors&lt;/b&gt;&lt;p&gt;
-&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;&lt;p&gt;
-&lt;p&gt;
-Symbols changed according to IEC617&lt;p&gt; 
-All types, packages and assignment to symbols and pins checked&lt;p&gt;
-Package outlines partly checked&lt;p&gt;
-&lt;p&gt;
-JFET = junction FET&lt;p&gt;
-IGBT-x = insulated gate bipolar transistor&lt;p&gt;
-x=N: NPN; x=P: PNP&lt;p&gt;
-IGFET-mc-nnn; (IGFET=insulated gate field effect transistor)&lt;P&gt;
-m=D: depletion mode (Verdr&amp;auml;ngungstyp)&lt;p&gt;
-m=E: enhancement mode (Anreicherungstyp)&lt;p&gt;
-c: N=N-channel; P=P-Channel&lt;p&gt;
-GDSB: gate, drain, source, bulk&lt;p&gt;
-&lt;p&gt;
-by R. Vogg  15.March.2002</description>
-<packages>
-<package name="SOT23" urn="urn:adsk.eagle:footprint:28476/1">
-<description>&lt;b&gt;SOT-23&lt;/b&gt;</description>
-<wire x1="1.4224" y1="0.6604" x2="1.4224" y2="-0.6604" width="0.1524" layer="51"/>
-<wire x1="1.4224" y1="-0.6604" x2="-1.4224" y2="-0.6604" width="0.1524" layer="51"/>
-<wire x1="-1.4224" y1="-0.6604" x2="-1.4224" y2="0.6604" width="0.1524" layer="51"/>
-<wire x1="-1.4224" y1="0.6604" x2="1.4224" y2="0.6604" width="0.1524" layer="51"/>
-<wire x1="-1.4224" y1="-0.1854" x2="-1.4224" y2="0.6604" width="0.1524" layer="21"/>
-<wire x1="-1.4224" y1="0.6604" x2="-0.6576" y2="0.6604" width="0.1524" layer="21"/>
-<wire x1="1.4224" y1="0.6604" x2="1.4224" y2="-0.1854" width="0.1524" layer="21"/>
-<wire x1="0.6326" y1="0.6604" x2="1.4224" y2="0.6604" width="0.1524" layer="21"/>
-<smd name="3" x="0" y="1.1" dx="1" dy="1.4" layer="1"/>
-<smd name="2" x="0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
-<smd name="1" x="-0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
-<text x="-1.905" y="1.905" size="1.27" layer="25">&gt;NAME</text>
-<text x="-1.905" y="-3.175" size="1.27" layer="27">&gt;VALUE</text>
-<rectangle x1="-0.2286" y1="0.7112" x2="0.2286" y2="1.2954" layer="51"/>
-<rectangle x1="0.7112" y1="-1.2954" x2="1.1684" y2="-0.7112" layer="51"/>
-<rectangle x1="-1.1684" y1="-1.2954" x2="-0.7112" y2="-0.7112" layer="51"/>
-</package>
-</packages>
-<packages3d>
-<package3d name="SOT23" urn="urn:adsk.eagle:package:28534/2" type="model">
-<description>SOT-23</description>
-<packageinstances>
-<packageinstance name="SOT23"/>
-</packageinstances>
-</package3d>
-</packages3d>
-</library>
 <library name="ds_con">
 <packages>
 <package name="FPC40_3.5TFT" urn="urn:adsk.eagle:footprint:47082498/1">
@@ -2507,7 +2459,7 @@ by R. Vogg  15.March.2002</description>
 <text x="24.3814625" y="11.940540625" size="1.016" layer="21" rot="R270">1</text>
 <text x="24.3814625" y="-10.919459375" size="1.016" layer="21" rot="R270">40</text>
 </package>
-<package name="FPC20" urn="urn:adsk.eagle:footprint:47082458/3" locally_modified="yes">
+<package name="FPC20" urn="urn:adsk.eagle:footprint:47082458/4">
 <circle x="-4.602" y="-0.062" radius="0.1" width="0.2" layer="21"/>
 <wire x1="-8.002" y1="1.038" x2="-8.002" y2="-0.962" width="0.1" layer="51"/>
 <wire x1="-8.002" y1="-0.962" x2="8.398" y2="-0.962" width="0.1" layer="51"/>
@@ -2608,7 +2560,7 @@ by R. Vogg  15.March.2002</description>
 <packageinstance name="FPC40_3.5TFT"/>
 </packageinstances>
 </package3d>
-<package3d name="FPC20" urn="urn:adsk.eagle:package:47082459/4" locally_modified="yes" type="model">
+<package3d name="FPC20" urn="urn:adsk.eagle:package:47082459/5" type="model">
 <packageinstances>
 <packageinstance name="FPC20"/>
 </packageinstances>
@@ -4357,26 +4309,26 @@ by R. Vogg  15.March.2002</description>
 <text x="-2.54" y="1.524" size="1.32" layer="25" ratio="10">&gt;NAME</text>
 <text x="-2.54" y="-2.54" size="1.2" layer="27" ratio="10">&gt;VALUE</text>
 </package>
-<package name="SOT-523">
-<wire x1="-0.65" y1="1.46" x2="-0.65" y2="-1.46" width="0.127" layer="51"/>
-<wire x1="-0.65" y1="-1.46" x2="0.65" y2="-1.46" width="0.127" layer="51"/>
-<wire x1="0.65" y1="-1.46" x2="0.65" y2="1.46" width="0.127" layer="51"/>
-<wire x1="0.65" y1="1.46" x2="-0.65" y2="1.46" width="0.127" layer="51"/>
-<wire x1="-0.035" y1="-1.46" x2="0.65" y2="-1.46" width="0.127" layer="21"/>
-<wire x1="0.65" y1="0.615" x2="0.65" y2="1.46" width="0.127" layer="21"/>
-<wire x1="0.65" y1="-1.46" x2="0.65" y2="-0.615" width="0.127" layer="21"/>
-<wire x1="0.65" y1="1.46" x2="-0.035" y2="1.46" width="0.127" layer="21"/>
-<wire x1="-1.925" y1="1.71" x2="-1.925" y2="-1.71" width="0.05" layer="39"/>
-<wire x1="-1.925" y1="-1.71" x2="1.925" y2="-1.71" width="0.05" layer="39"/>
-<wire x1="1.925" y1="-1.71" x2="1.925" y2="1.71" width="0.05" layer="39"/>
-<wire x1="1.925" y1="1.71" x2="-1.925" y2="1.71" width="0.05" layer="39"/>
+<package name="SC75" urn="urn:adsk.eagle:footprint:49873925/2">
 <circle x="-2.246" y="0.95" radius="0.1" width="0.2" layer="21"/>
 <circle x="-2.246" y="0.95" radius="0.1" width="0.2" layer="51"/>
 <text x="-3.068" y="2.627" size="1.27" layer="25">&gt;NAME</text>
 <text x="-2.941" y="-2.627" size="1.27" layer="27" align="top-left">&gt;VALUE</text>
-<smd name="1" x="-1.015" y="0.95" dx="1.32" dy="0.59" layer="1" roundness="25"/>
-<smd name="2" x="-1.015" y="-0.95" dx="1.32" dy="0.59" layer="1" roundness="25"/>
-<smd name="3" x="1.015" y="0" dx="1.32" dy="0.59" layer="1" roundness="25"/>
+<wire x1="-0.4" y1="0.8" x2="0.4" y2="0.8" width="0.127" layer="51"/>
+<wire x1="0.4" y1="0.8" x2="0.4" y2="-0.8" width="0.127" layer="51"/>
+<wire x1="0.4" y1="-0.8" x2="-0.4" y2="-0.8" width="0.127" layer="51"/>
+<wire x1="-0.4" y1="-0.8" x2="-0.4" y2="0.8" width="0.127" layer="51"/>
+<wire x1="0.095" y1="0.8" x2="0.4" y2="0.8" width="0.127" layer="21"/>
+<wire x1="0.4" y1="0.8" x2="0.4" y2="0.47" width="0.127" layer="21"/>
+<wire x1="0.4" y1="-0.8" x2="0.4" y2="-0.47" width="0.127" layer="21"/>
+<wire x1="0.4" y1="-0.8" x2="0.095" y2="-0.8" width="0.127" layer="21"/>
+<wire x1="-1.465" y1="1.05" x2="-1.465" y2="-1.05" width="0.05" layer="39"/>
+<wire x1="-1.465" y1="-1.05" x2="1.465" y2="-1.05" width="0.05" layer="39"/>
+<wire x1="1.465" y1="-1.05" x2="1.465" y2="1.05" width="0.05" layer="39"/>
+<wire x1="1.465" y1="1.05" x2="-1.465" y2="1.05" width="0.05" layer="39"/>
+<smd name="1" x="-0.72" y="0.5" dx="0.99" dy="0.3" layer="1" roundness="25"/>
+<smd name="2" x="-0.72" y="-0.5" dx="0.99" dy="0.3" layer="1" roundness="25"/>
+<smd name="3" x="0.72" y="0" dx="0.99" dy="0.3" layer="1" roundness="25"/>
 </package>
 </packages>
 <packages3d>
@@ -4384,6 +4336,11 @@ by R. Vogg  15.March.2002</description>
 <description>Diode, Small Outline Diode (SOD); 2.69 mm L X 1.60 mm W X 1.35 mm H body&lt;p&gt;&lt;i&gt;PCB Libraries Packages&lt;/i&gt;</description>
 <packageinstances>
 <packageinstance name="SOD-123"/>
+</packageinstances>
+</package3d>
+<package3d name="SC75" urn="urn:adsk.eagle:package:49873936/3" type="model">
+<packageinstances>
+<packageinstance name="SC75"/>
 </packageinstances>
 </package3d>
 </packages3d>
@@ -5584,6 +5541,31 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </package3d>
 </packages3d>
 </library>
+<library name="ds_active">
+<packages>
+<package name="SOT23" urn="urn:adsk.eagle:footprint:46684397/1">
+<wire x1="1.4224" y1="0.6604" x2="1.4224" y2="-0.6604" width="0.1524" layer="51"/>
+<wire x1="1.4224" y1="-0.6604" x2="-1.4224" y2="-0.6604" width="0.1524" layer="51"/>
+<wire x1="-1.4224" y1="-0.6604" x2="-1.4224" y2="0.6604" width="0.1524" layer="51"/>
+<wire x1="-1.4224" y1="0.6604" x2="1.4224" y2="0.6604" width="0.1524" layer="51"/>
+<smd name="3" x="0" y="1.1" dx="1" dy="1.4" layer="1"/>
+<smd name="2" x="0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
+<smd name="1" x="-0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
+<text x="-1.905" y="1.905" size="1.27" layer="25">&gt;NAME</text>
+<text x="-1.905" y="-3.175" size="1.27" layer="27">&gt;VALUE</text>
+<rectangle x1="-0.2286" y1="0.7112" x2="0.2286" y2="1.2954" layer="51"/>
+<rectangle x1="0.7112" y1="-1.2954" x2="1.1684" y2="-0.7112" layer="51"/>
+<rectangle x1="-1.1684" y1="-1.2954" x2="-0.7112" y2="-0.7112" layer="51"/>
+</package>
+</packages>
+<packages3d>
+<package3d name="SOT23" urn="urn:adsk.eagle:package:46684430/3" type="model">
+<packageinstances>
+<packageinstance name="SOT23"/>
+</packageinstances>
+</package3d>
+</packages3d>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -5785,161 +5767,257 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="R5" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="33K 1%" x="23.446" y="35.904" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 33kΩ 0402 Chip Resistor - Surface Mount ROHS" x="23.446" y="35.904" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="HQ_PART" value="RE0321838" x="23.446" y="35.904" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="LCSC_PART" value="C25779" x="23.446" y="35.904" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MANUFACTURER" value="RALEC" x="23.446" y="35.904" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MPN" value="RTT023302FTH" x="23.446" y="35.904" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="22.467" y="36.119" size="1.016" layer="25" rot="R180"/>
+<attribute name="ROHS" value="YES" x="23.446" y="35.904" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" value="33K 1%" x="25.351" y="35.269" size="1.016" layer="27" rot="R90"/>
 <attribute name="VALUE" value="10K 1%" x="23.446" y="35.904" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
-<element name="C7" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 50V" x="23.486" y="39.476" smashed="yes" rot="R90">
-<attribute name="DESCRIPTION" value="50V 100nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="23.486" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="LCSC_PART" value="C307331" x="23.486" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
+<element name="C7" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="23.486" y="39.476" smashed="yes" rot="R90">
+<attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="23.486" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="HQ_PART" value="CA0137105" x="23.486" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="LCSC_PART" value="C56392" x="23.486" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MANUFACTURER" value="Yageo" x="23.486" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MPN" value="CC0402KRX5R8BB104" x="23.486" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="22.667" y="39.591" size="1.016" layer="25" rot="R180"/>
-<attribute name="VALUE" x="25.391" y="38.841" size="1.016" layer="27" rot="R90"/>
+<attribute name="ROHS" value="YES" x="23.486" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" value="100nF 25V" x="25.391" y="38.841" size="1.016" layer="27" rot="R90"/>
 <attribute name="VALUE" value="100nF 50V" x="23.486" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
 <element name="R6" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="33K 1%" x="62.684" y="35.246" smashed="yes">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 33kΩ 0402 Chip Resistor - Surface Mount ROHS" x="62.684" y="35.246" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="RE0321838" x="62.684" y="35.246" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C25779" x="62.684" y="35.246" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="RALEC" x="62.684" y="35.246" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="RTT023302FTH" x="62.684" y="35.246" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="61.159" y="35.565" size="1.016" layer="25" rot="R180"/>
+<attribute name="ROHS" value="YES" x="62.684" y="35.246" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="33K 1%" x="62.049" y="33.341" size="1.016" layer="27"/>
 <attribute name="VALUE" value="10K 1%" x="62.684" y="35.246" size="1.778" layer="27" display="off"/>
 </element>
-<element name="C8" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 50V" x="63.414" y="39.496" smashed="yes" rot="R90">
-<attribute name="DESCRIPTION" value="50V 100nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="63.414" y="39.496" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="LCSC_PART" value="C307331" x="63.414" y="39.496" size="1.778" layer="27" rot="R90" display="off"/>
+<element name="C8" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="63.414" y="39.496" smashed="yes" rot="R90">
+<attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="63.414" y="39.496" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="HQ_PART" value="CA0137105" x="63.414" y="39.496" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="LCSC_PART" value="C56392" x="63.414" y="39.496" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MANUFACTURER" value="Yageo" x="63.414" y="39.496" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MPN" value="CC0402KRX5R8BB104" x="63.414" y="39.496" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="62.447" y="39.625" size="1.016" layer="25" rot="R180"/>
-<attribute name="VALUE" x="65.319" y="38.861" size="1.016" layer="27" rot="R90"/>
+<attribute name="ROHS" value="YES" x="63.414" y="39.496" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" value="100nF 25V" x="65.319" y="38.861" size="1.016" layer="27" rot="R90"/>
 <attribute name="VALUE" value="100nF 50V" x="63.414" y="39.496" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
 <element name="R12" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="33K 1%" x="43.34" y="35.904" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 33kΩ 0402 Chip Resistor - Surface Mount ROHS" x="43.34" y="35.904" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="HQ_PART" value="RE0321838" x="43.34" y="35.904" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="LCSC_PART" value="C25779" x="43.34" y="35.904" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MANUFACTURER" value="RALEC" x="43.34" y="35.904" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MPN" value="RTT023302FTH" x="43.34" y="35.904" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="42.539" y="36.391" size="1.016" layer="25" rot="R180"/>
+<attribute name="ROHS" value="YES" x="43.34" y="35.904" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" value="33K 1%" x="45.245" y="35.269" size="1.016" layer="27" rot="R90"/>
 <attribute name="VALUE" value="10K 1%" x="43.34" y="35.904" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
-<element name="C9" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 50V" x="43.346" y="39.476" smashed="yes" rot="R90">
-<attribute name="DESCRIPTION" value="50V 100nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="43.346" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="LCSC_PART" value="C307331" x="43.346" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
+<element name="C9" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="43.346" y="39.476" smashed="yes" rot="R90">
+<attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="43.346" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="HQ_PART" value="CA0137105" x="43.346" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="LCSC_PART" value="C56392" x="43.346" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MANUFACTURER" value="Yageo" x="43.346" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MPN" value="CC0402KRX5R8BB104" x="43.346" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="42.313" y="39.597" size="1.016" layer="25" rot="R180"/>
-<attribute name="VALUE" x="45.251" y="38.841" size="1.016" layer="27" rot="R90"/>
+<attribute name="ROHS" value="YES" x="43.346" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" value="100nF 25V" x="45.251" y="38.841" size="1.016" layer="27" rot="R90"/>
 <attribute name="VALUE" value="100nF 50V" x="43.346" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
-<element name="C5" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 50V" x="73.596134375" y="34.751025" smashed="yes" rot="MR45">
-<attribute name="DESCRIPTION" value="50V 100nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="73.596134375" y="34.751025" size="1.778" layer="28" rot="MR45" display="off"/>
-<attribute name="LCSC_PART" value="C307331" x="73.596134375" y="34.751025" size="1.778" layer="28" rot="MR45" display="off"/>
+<element name="C5" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="73.596134375" y="34.751025" smashed="yes" rot="MR45">
+<attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="73.596134375" y="34.751025" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="HQ_PART" value="CA0137105" x="73.596134375" y="34.751025" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="LCSC_PART" value="C56392" x="73.596134375" y="34.751025" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="MANUFACTURER" value="Yageo" x="73.596134375" y="34.751025" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="MPN" value="CC0402KRX5R8BB104" x="73.596134375" y="34.751025" size="1.778" layer="28" rot="MR45" display="off"/>
 <attribute name="NAME" x="72.2757375" y="33.454975" size="1.016" layer="26" rot="MR45"/>
-<attribute name="VALUE" x="72.698109375" y="32.954971875" size="1.016" layer="28" rot="MR45"/>
+<attribute name="ROHS" value="YES" x="73.596134375" y="34.751025" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="VALUE" value="100nF 25V" x="72.698109375" y="32.954971875" size="1.016" layer="28" rot="MR45"/>
 <attribute name="VALUE" value="100nF 50V" x="73.596134375" y="34.751025" size="1.778" layer="28" rot="MR45" display="off"/>
 </element>
-<element name="C6" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 50V" x="79.96115625" y="33.505375" smashed="yes" rot="MR315">
-<attribute name="DESCRIPTION" value="50V 100nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="79.96115625" y="33.505375" size="1.778" layer="28" rot="MR315" display="off"/>
-<attribute name="LCSC_PART" value="C307331" x="79.96115625" y="33.505375" size="1.778" layer="28" rot="MR315" display="off"/>
+<element name="C6" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="79.96115625" y="33.505375" smashed="yes" rot="MR315">
+<attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="79.96115625" y="33.505375" size="1.778" layer="28" rot="MR315" display="off"/>
+<attribute name="HQ_PART" value="CA0137105" x="79.96115625" y="33.505375" size="1.778" layer="28" rot="MR315" display="off"/>
+<attribute name="LCSC_PART" value="C56392" x="79.96115625" y="33.505375" size="1.778" layer="28" rot="MR315" display="off"/>
+<attribute name="MANUFACTURER" value="Yageo" x="79.96115625" y="33.505375" size="1.778" layer="28" rot="MR315" display="off"/>
+<attribute name="MPN" value="CC0402KRX5R8BB104" x="79.96115625" y="33.505375" size="1.778" layer="28" rot="MR315" display="off"/>
 <attribute name="NAME" x="81.101946875" y="31.871821875" size="1.016" layer="26" rot="MR315"/>
-<attribute name="VALUE" x="81.757209375" y="32.607346875" size="1.016" layer="28" rot="MR315"/>
+<attribute name="ROHS" value="YES" x="79.96115625" y="33.505375" size="1.778" layer="28" rot="MR315" display="off"/>
+<attribute name="VALUE" value="100nF 25V" x="81.757209375" y="32.607346875" size="1.016" layer="28" rot="MR315"/>
 <attribute name="VALUE" value="100nF 50V" x="79.96115625" y="33.505375" size="1.778" layer="28" rot="MR315" display="off"/>
 </element>
 <element name="CH1" library="ds_LED" package="LED-0805" package3d_urn="urn:adsk.eagle:package:49260836/1" value="Green" x="8.652" y="50.706" smashed="yes">
 <attribute name="DESCRIPTION" value="Emerald 0805 LED Indication - Discrete ROHS" x="8.652" y="50.706" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="PH0094653" x="8.652" y="50.706" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C2297" x="8.652" y="50.706" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="MEIHUA" x="8.652" y="50.706" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="MHT170UGCT" x="8.652" y="50.706" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="10.586" y="50.018" size="1.27" layer="25"/>
+<attribute name="ROHS" value="YES" x="8.652" y="50.706" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="Green" x="11.192" y="49.436" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="CH2" library="ds_LED" package="LED-0805" package3d_urn="urn:adsk.eagle:package:49260836/1" value="Green" x="18.798" y="50.694" smashed="yes">
 <attribute name="DESCRIPTION" value="Emerald 0805 LED Indication - Discrete ROHS" x="18.798" y="50.694" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="PH0094653" x="18.798" y="50.694" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C2297" x="18.798" y="50.694" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="MEIHUA" x="18.798" y="50.694" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="MHT170UGCT" x="18.798" y="50.694" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="20.514" y="49.972" size="1.27" layer="25"/>
+<attribute name="ROHS" value="YES" x="18.798" y="50.694" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="Green" x="21.338" y="49.424" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="CH3" library="ds_LED" package="LED-0805" package3d_urn="urn:adsk.eagle:package:49260836/1" value="Green" x="28.928" y="50.694" smashed="yes">
 <attribute name="DESCRIPTION" value="Emerald 0805 LED Indication - Discrete ROHS" x="28.928" y="50.694" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="PH0094653" x="28.928" y="50.694" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C2297" x="28.928" y="50.694" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="MEIHUA" x="28.928" y="50.694" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="MHT170UGCT" x="28.928" y="50.694" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="30.784" y="50.022" size="1.27" layer="25"/>
+<attribute name="ROHS" value="YES" x="28.928" y="50.694" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="Green" x="31.468" y="49.424" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="CH4" library="ds_LED" package="LED-0805" package3d_urn="urn:adsk.eagle:package:49260836/1" value="Green" x="39.018" y="50.694" smashed="yes">
 <attribute name="DESCRIPTION" value="Emerald 0805 LED Indication - Discrete ROHS" x="39.018" y="50.694" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="PH0094653" x="39.018" y="50.694" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C2297" x="39.018" y="50.694" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="MEIHUA" x="39.018" y="50.694" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="MHT170UGCT" x="39.018" y="50.694" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="40.884" y="50.122" size="1.27" layer="25"/>
+<attribute name="ROHS" value="YES" x="39.018" y="50.694" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="Green" x="41.558" y="49.424" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="CH5" library="ds_LED" package="LED-0805" package3d_urn="urn:adsk.eagle:package:49260836/1" value="Green" x="49.158" y="50.714" smashed="yes">
 <attribute name="DESCRIPTION" value="Emerald 0805 LED Indication - Discrete ROHS" x="49.158" y="50.714" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="PH0094653" x="49.158" y="50.714" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C2297" x="49.158" y="50.714" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="MEIHUA" x="49.158" y="50.714" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="MHT170UGCT" x="49.158" y="50.714" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="51.004" y="50.052" size="1.27" layer="25"/>
+<attribute name="ROHS" value="YES" x="49.158" y="50.714" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="Green" x="51.698" y="49.444" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="CH6" library="ds_LED" package="LED-0805" package3d_urn="urn:adsk.eagle:package:49260836/1" value="Green" x="59.318" y="50.694" smashed="yes">
 <attribute name="DESCRIPTION" value="Emerald 0805 LED Indication - Discrete ROHS" x="59.318" y="50.694" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="PH0094653" x="59.318" y="50.694" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C2297" x="59.318" y="50.694" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="MEIHUA" x="59.318" y="50.694" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="MHT170UGCT" x="59.318" y="50.694" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="61.104" y="50.102" size="1.27" layer="25"/>
+<attribute name="ROHS" value="YES" x="59.318" y="50.694" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="Green" x="61.858" y="49.424" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="CH7" library="ds_LED" package="LED-0805" package3d_urn="urn:adsk.eagle:package:49260836/1" value="Green" x="69.438" y="50.684" smashed="yes">
 <attribute name="DESCRIPTION" value="Emerald 0805 LED Indication - Discrete ROHS" x="69.438" y="50.684" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="PH0094653" x="69.438" y="50.684" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C2297" x="69.438" y="50.684" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="MEIHUA" x="69.438" y="50.684" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="MHT170UGCT" x="69.438" y="50.684" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="71.234" y="49.972" size="1.27" layer="25"/>
+<attribute name="ROHS" value="YES" x="69.438" y="50.684" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="Green" x="71.978" y="49.414" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="CH8" library="ds_LED" package="LED-0805" package3d_urn="urn:adsk.eagle:package:49260836/1" value="Green" x="79.518" y="50.684" smashed="yes">
 <attribute name="DESCRIPTION" value="Emerald 0805 LED Indication - Discrete ROHS" x="79.518" y="50.684" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="PH0094653" x="79.518" y="50.684" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C2297" x="79.518" y="50.684" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="MEIHUA" x="79.518" y="50.684" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="MHT170UGCT" x="79.518" y="50.684" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="81.484" y="50.132" size="1.27" layer="25"/>
+<attribute name="ROHS" value="YES" x="79.518" y="50.684" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="Green" x="82.058" y="49.414" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="R8" library="ds_resistor" package="_0603X4-1206" package3d_urn="urn:adsk.eagle:package:49287421/2" value="1K 1%" x="73.436171875" y="41.929696875" smashed="yes" rot="MR315">
 <attribute name="DESCRIPTION" value="4 ±1% 1kΩ 62.5mW ±200ppm/℃ 0603x4 Resistor Networks, Arrays ROHS " x="73.436171875" y="41.929696875" size="1.778" layer="28" rot="MR315" display="off"/>
+<attribute name="HQ_PART" value="RE0022532" x="73.436171875" y="41.929696875" size="1.778" layer="28" rot="MR315" display="off"/>
 <attribute name="LCSC_PART" value="C110021" x="73.436171875" y="41.929696875" size="1.778" layer="28" rot="MR315" display="off"/>
+<attribute name="MANUFACTURER" value="Yageo" x="73.436171875" y="41.929696875" size="1.778" layer="28" rot="MR315" display="off"/>
+<attribute name="MPN" value="YC164-JR-071KL " x="73.436171875" y="41.929696875" size="1.778" layer="28" rot="MR315" display="off"/>
 <attribute name="NAME" x="72.28345625" y="44.40998125" size="1.016" layer="26" rot="MR315"/>
+<attribute name="ROHS" value="YES" x="73.436171875" y="41.929696875" size="1.778" layer="28" rot="MR315" display="off"/>
 <attribute name="VALUE" x="76.380565625" y="41.494671875" size="0.66234375" layer="28" rot="MR315"/>
 <attribute name="VALUE" value="1K 1%" x="73.436171875" y="41.929696875" size="1.778" layer="28" rot="MR315" display="off"/>
 </element>
 <element name="R9" library="ds_resistor" package="_0603X4-1206" package3d_urn="urn:adsk.eagle:package:49287421/2" value="1K 1%" x="80.03353125" y="42.8014125" smashed="yes" rot="MR45">
 <attribute name="DESCRIPTION" value="4 ±1% 1kΩ 62.5mW ±200ppm/℃ 0603x4 Resistor Networks, Arrays ROHS " x="80.03353125" y="42.8014125" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="HQ_PART" value="RE0022532" x="80.03353125" y="42.8014125" size="1.778" layer="28" rot="MR45" display="off"/>
 <attribute name="LCSC_PART" value="C110021" x="80.03353125" y="42.8014125" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="MANUFACTURER" value="Yageo" x="80.03353125" y="42.8014125" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="MPN" value="YC164-JR-071KL " x="80.03353125" y="42.8014125" size="1.778" layer="28" rot="MR45" display="off"/>
 <attribute name="NAME" x="82.5138125" y="43.954128125" size="1.016" layer="26" rot="MR45"/>
+<attribute name="ROHS" value="YES" x="80.03353125" y="42.8014125" size="1.778" layer="28" rot="MR45" display="off"/>
 <attribute name="VALUE" x="79.59850625" y="39.85701875" size="0.66234375" layer="28" rot="MR45"/>
 <attribute name="VALUE" value="1K 1%" x="80.03353125" y="42.8014125" size="1.778" layer="28" rot="MR45" display="off"/>
 </element>
 <element name="R10" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="1K 1%" x="95.6" y="38.76" smashed="yes">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 1kΩ 0402 Chip Resistor - Surface Mount ROHS" x="95.6" y="38.76" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="RE0188047" x="95.6" y="38.76" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C11702" x="95.6" y="38.76" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="Uniohm" x="95.6" y="38.76" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="0402WGF1001TCE" x="95.6" y="38.76" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="97.165" y="38.295" size="1.016" layer="25"/>
+<attribute name="ROHS" value="YES" x="95.6" y="38.76" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="94.965" y="36.855" size="1.016" layer="27"/>
 <attribute name="VALUE" value="1K 1%" x="95.6" y="38.76" size="1.778" layer="27" display="off"/>
 </element>
 <element name="R11" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="1K 1%" x="95.62" y="46.75" smashed="yes">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 1kΩ 0402 Chip Resistor - Surface Mount ROHS" x="95.62" y="46.75" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="RE0188047" x="95.62" y="46.75" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C11702" x="95.62" y="46.75" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="Uniohm" x="95.62" y="46.75" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="0402WGF1001TCE" x="95.62" y="46.75" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="96.985" y="46.285" size="1.016" layer="25"/>
+<attribute name="ROHS" value="YES" x="95.62" y="46.75" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="94.985" y="44.845" size="1.016" layer="27"/>
 <attribute name="VALUE" value="1K 1%" x="95.62" y="46.75" size="1.778" layer="27" display="off"/>
 </element>
 <element name="R7" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="1K 1%" x="95.74" y="31.04" smashed="yes">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 1kΩ 0402 Chip Resistor - Surface Mount ROHS" x="95.74" y="31.04" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="RE0188047" x="95.74" y="31.04" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C11702" x="95.74" y="31.04" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="Uniohm" x="95.74" y="31.04" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="0402WGF1001TCE" x="95.74" y="31.04" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="97.305" y="30.575" size="1.016" layer="25"/>
+<attribute name="ROHS" value="YES" x="95.74" y="31.04" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="95.105" y="29.135" size="1.016" layer="27"/>
 <attribute name="VALUE" value="1K 1%" x="95.74" y="31.04" size="1.778" layer="27" display="off"/>
 </element>
 <element name="LED3" library="ds_LED" package="LED3MM" package3d_urn="urn:adsk.eagle:package:49260829/2" value="RED" x="96.25" y="49.75" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="-20℃~+80℃ 20mA 30° 3mm Round Lens Red Water Clear Plugin,D=3mm LED Indication - Discrete ROHS " x="96.25" y="49.75" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="HQ_PART" value="PH0094690" x="96.25" y="49.75" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="LCSC_PART" value="C330752" x="96.25" y="49.75" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MANUFACTURER" value="MEIHUA" x="96.25" y="49.75" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MPN" value="MHL3014SRTS" x="96.25" y="49.75" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="98.74" y="50.34" size="1.016" layer="25"/>
+<attribute name="ROHS" value="YES" x="96.25" y="49.75" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" value="RED" x="96.25" y="49.75" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="97.901" y="51.655" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
 <element name="LED2" library="ds_LED" package="LED3MM" package3d_urn="urn:adsk.eagle:package:49260829/2" value="BLUE" x="96.29" y="41.68" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="3mm Round Lens Blue Plugin,D=3mm LED Indication - Discrete ROHS" x="96.29" y="41.68" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="HQ_PART" value="PH0094706" x="96.29" y="41.68" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="LCSC_PART" value="C86881" x="96.29" y="41.68" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MANUFACTURER" value="MEIHUA" x="96.29" y="41.68" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MPN" value="MHL3014UBTD" x="96.29" y="41.68" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="98.54" y="42.39" size="1.016" layer="25"/>
+<attribute name="ROHS" value="YES" x="96.29" y="41.68" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" value="BLUE" x="96.29" y="41.68" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="97.941" y="43.585" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
 <element name="LED1" library="ds_LED" package="LED3MM" package3d_urn="urn:adsk.eagle:package:49260829/2" value="GREEN" x="96.39" y="34.08" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="-20℃~+80℃ 20mA 30° 3mm Round Lens 600nm~610nm 610nm 72mW Amber Water Clear Plugin,D=3mm LED Indication - Discrete ROHS " x="96.39" y="34.08" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="HQ_PART" value="PH0094890" x="96.39" y="34.08" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="LCSC_PART" value="C414645" x="96.39" y="34.08" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MANUFACTURER" value="MEIHUA" x="96.39" y="34.08" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MPN" value="MHL3014UGTD" x="96.39" y="34.08" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="98.64" y="34.79" size="1.016" layer="25"/>
+<attribute name="ROHS" value="YES" x="96.39" y="34.08" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" value="GREEN" x="97.66" y="36.62" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="C3" library="ds_passive" package="C0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="DNI" x="36.15" y="28.56" smashed="yes" rot="MR90">
@@ -5948,8 +6026,15 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <element name="C4" library="ds_passive" package="C0402" package3d_urn="urn:adsk.eagle:package:46766485/2" value="DNI" x="37.28" y="28.56" smashed="yes" rot="MR90">
 <attribute name="NAME" x="36.845" y="30.125" size="1.016" layer="26" rot="MR90"/>
 </element>
-<element name="T1" library="transistor-fet" library_urn="urn:adsk.eagle:library:396" package="SOT23" package3d_urn="urn:adsk.eagle:package:28534/2" value="BSS138" x="27.35" y="30.7" smashed="yes" rot="MR0">
+<element name="T1" library="ds_active" package="SOT23" package3d_urn="urn:adsk.eagle:package:46684430/3" value="DNI" x="27.35" y="30.7" smashed="yes" rot="MR0">
+<attribute name="DESCRIPTION" value="50V 230mA 3.4Ω@10V,220mA 230mW 1.5V@250uA N Channel SOT-23-3 MOSFETs ROHS " x="27.35" y="30.7" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="HQ_PART" value="DS0190318" x="27.35" y="30.7" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="MANUFACTURER" value="HUASHUO" x="27.35" y="30.7" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="MPN" value="BSS138" x="27.35" y="30.7" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="NAME" x="26.095" y="34.235" size="1.016" layer="26" rot="MR180"/>
+<attribute name="ROHS" value="YES" x="27.35" y="30.7" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="VALUE" x="29.255" y="27.525" size="1.27" layer="28" rot="MR0"/>
+<attribute name="VALUE" value="BSS138" x="27.35" y="30.7" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
 <element name="R1" library="ds_passive" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="DNI" x="25.04" y="30.52" smashed="yes" rot="MR270">
 <attribute name="NAME" x="24.735" y="32.415" size="1.016" layer="26" rot="MR90"/>
@@ -5966,132 +6051,212 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <element name="IC1" library="ds_ic_peripherals" package="QFN28[6X6]ML" package3d_urn="urn:adsk.eagle:package:46683895/2" value="MCP23017T-E/ML " x="77.286446875" y="37.500809375" smashed="yes" rot="MR45">
 <attribute name="DATASHEET" value="https://ww1.microchip.com/downloads/en/devicedoc/20001952c.pdf" x="77.286446875" y="37.500809375" size="1.778" layer="28" rot="MR45" display="off"/>
 <attribute name="DESCRIPTION" value="1.7MHz I2C QFN-28-EP(6x6) I/O Expanders ROHS " x="77.286446875" y="37.500809375" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="HQ_PART" value="IC0080215" x="77.286446875" y="37.500809375" size="1.778" layer="28" rot="MR45" display="off"/>
 <attribute name="LCSC_PART" value="C629439" x="77.286446875" y="37.500809375" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="MANUFACTURER" value="MICROCHIP" x="77.286446875" y="37.500809375" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="MPN" value="MCP23017-E/ML" x="77.286446875" y="37.500809375" size="1.778" layer="28" rot="MR45" display="off"/>
 <attribute name="NAME" x="81.784471875" y="39.1755125" size="1.016" layer="26" rot="MR45"/>
+<attribute name="ROHS" value="YES" x="77.286446875" y="37.500809375" size="1.778" layer="28" rot="MR45" display="off"/>
 <attribute name="VALUE" value="MCP23017T-E/ML " x="77.286446875" y="37.500809375" size="1.778" layer="28" rot="MR45" display="off"/>
 <attribute name="VALUE" x="76.388421875" y="32.112653125" size="1.27" layer="28" rot="MR45"/>
 </element>
-<element name="R4" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="10K 1%" x="29.64" y="30.61" smashed="yes" rot="MR90">
+<element name="R4" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="DNI" x="29.64" y="30.61" smashed="yes" rot="MR90">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 10kΩ 0402 Chip Resistor - Surface Mount ROHS" x="29.64" y="30.61" size="1.778" layer="28" rot="MR90" display="off"/>
+<attribute name="HQ_PART" value="RE0207399" x="29.64" y="30.61" size="1.778" layer="28" rot="MR90" display="off"/>
 <attribute name="LCSC_PART" value="C25744" x="29.64" y="30.61" size="1.778" layer="28" rot="MR90" display="off"/>
+<attribute name="MANUFACTURER" value="ROHM" x="29.64" y="30.61" size="1.778" layer="28" rot="MR90" display="off"/>
+<attribute name="MPN" value="MCR01MZPF1002" x="29.64" y="30.61" size="1.778" layer="28" rot="MR90" display="off"/>
 <attribute name="NAME" x="28.805" y="31.445" size="1.016" layer="26" rot="MR270"/>
+<attribute name="ROHS" value="YES" x="29.64" y="30.61" size="1.778" layer="28" rot="MR90" display="off"/>
 <attribute name="VALUE" x="27.735" y="29.975" size="1.016" layer="28" rot="MR90"/>
 <attribute name="VALUE" value="10K 1%" x="29.64" y="30.61" size="1.778" layer="28" rot="MR90" display="off"/>
 </element>
-<element name="3V3" library="ds_passive" package="TP-ROUND" value="TP-ROUND" x="6.71" y="29.62" smashed="yes" rot="MR180">
+<element name="3V3" library="ds_passive" package="TP-ROUND" value="DNI" x="6.71" y="29.62" smashed="yes" rot="MR180">
 <attribute name="NAME" x="8.96" y="29.58" size="1.016" layer="26" rot="MR180" align="center-left"/>
+<attribute name="ROHS" value="YES" x="6.71" y="29.62" size="1.778" layer="28" rot="MR180" display="off"/>
+<attribute name="VALUE" value="TESTPOINT" x="6.71" y="29.62" size="1.778" layer="28" rot="MR180" display="off"/>
 </element>
-<element name="5V" library="ds_passive" package="TP-ROUND" value="TP-ROUND" x="6.76" y="46" smashed="yes" rot="MR0">
+<element name="5V" library="ds_passive" package="TP-ROUND" value="DNI" x="6.76" y="46" smashed="yes" rot="MR0">
 <attribute name="NAME" x="8.72" y="46.04" size="1.016" layer="26" rot="MR180" align="center-left"/>
+<attribute name="ROHS" value="YES" x="6.76" y="46" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="VALUE" value="TESTPOINT" x="6.76" y="46" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="BL" library="ds_passive" package="TP-ROUND" value="TP-ROUND" x="6.77" y="32.21" smashed="yes" rot="MR0">
+<element name="BL" library="ds_passive" package="TP-ROUND" value="DNI" x="6.77" y="32.21" smashed="yes" rot="MR0">
 <attribute name="NAME" x="8.94" y="31.67" size="1.016" layer="26" rot="MR180" align="center-left"/>
+<attribute name="ROHS" value="YES" x="6.77" y="32.21" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="VALUE" value="TESTPOINT" x="6.77" y="32.21" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="GND" library="ds_passive" package="TP-ROUND" value="TP-ROUND" x="6.76" y="43.1" smashed="yes" rot="MR0">
+<element name="GND" library="ds_passive" package="TP-ROUND" value="DNI" x="6.76" y="43.1" smashed="yes" rot="MR0">
 <attribute name="NAME" x="8.69" y="43.59" size="1.016" layer="26" rot="MR180" align="center-left"/>
+<attribute name="ROHS" value="YES" x="6.76" y="43.1" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="VALUE" value="TESTPOINT" x="6.76" y="43.1" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
 <element name="R13" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="33K 1%" x="106.6754" y="39.3208" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 33kΩ 0402 Chip Resistor - Surface Mount ROHS" x="106.6754" y="39.3208" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="HQ_PART" value="RE0321838" x="106.6754" y="39.3208" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C25779" x="106.6754" y="39.3208" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MANUFACTURER" value="RALEC" x="106.6754" y="39.3208" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MPN" value="RTT023302FTH" x="106.6754" y="39.3208" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="105.8746" y="39.2118" size="1.016" layer="25" rot="R180"/>
+<attribute name="ROHS" value="YES" x="106.6754" y="39.3208" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" value="33K 1%" x="104.7704" y="39.9558" size="1.016" layer="27" rot="R270"/>
 <attribute name="VALUE" value="10K 1%" x="106.6754" y="39.3208" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="C10" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 50V" x="106.6754" y="35.268" smashed="yes" rot="R270">
-<attribute name="DESCRIPTION" value="50V 100nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="106.6754" y="35.268" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="LCSC_PART" value="C307331" x="106.6754" y="35.268" size="1.778" layer="27" rot="R270" display="off"/>
+<element name="C10" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="106.6754" y="35.268" smashed="yes" rot="R270">
+<attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="106.6754" y="35.268" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="HQ_PART" value="CA0137105" x="106.6754" y="35.268" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="LCSC_PART" value="C56392" x="106.6754" y="35.268" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MANUFACTURER" value="Yageo" x="106.6754" y="35.268" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MPN" value="CC0402KRX5R8BB104" x="106.6754" y="35.268" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="105.7888" y="35.5788" size="1.016" layer="25" rot="R180"/>
-<attribute name="VALUE" x="104.7704" y="35.903" size="1.016" layer="27" rot="R270"/>
+<attribute name="ROHS" value="YES" x="106.6754" y="35.268" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" value="100nF 25V" x="104.7704" y="35.903" size="1.016" layer="27" rot="R270"/>
 <attribute name="VALUE" value="100nF 50V" x="106.6754" y="35.268" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="CON2" library="ds_con" package="FPC20" package3d_urn="urn:adsk.eagle:package:47082459/4" value="AFC11-S20ICC-00 " x="54.67" y="36.52" smashed="yes" rot="MR0">
+<element name="CON2" library="ds_con" package="FPC20" package3d_urn="urn:adsk.eagle:package:47082459/5" value="AFC11-S20ICC-00 " x="54.67" y="36.52" smashed="yes" rot="MR0">
 <attribute name="DESCRIPTION" value="Drawer Type 20P Single-sided contact points/Vertical Standing paste 0.5mm SMD,P=0.5mm FFC, FPC (Flat Flexible) Connector Assemblies ROHS " x="54.67" y="36.52" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="HQ_PART" value="CO0889517" x="54.67" y="36.52" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="LCSC_PART" value="C11073" x="54.67" y="36.52" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="MANUFACTURER" value="JS" x="54.67" y="36.52" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="MPN" value="AFC11-S20ICA-00" x="54.67" y="36.52" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="NAME" x="64.096" y="41.857" size="1.016" layer="26" rot="MR180" align="bottom-right"/>
+<attribute name="ROHS" value="YES" x="54.67" y="36.52" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="VALUE" value="AFC11-S20ICC-00 " x="54.67" y="36.52" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="VALUE" x="51.39" y="32.414" size="1.016" layer="28" rot="MR0" align="bottom-right"/>
 </element>
-<element name="C11" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 50V" x="34.330709375" y="33.510709375" smashed="yes" rot="MR315">
-<attribute name="DESCRIPTION" value="50V 100nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="34.330709375" y="33.510709375" size="1.778" layer="28" rot="MR315" display="off"/>
-<attribute name="LCSC_PART" value="C307331" x="34.330709375" y="33.510709375" size="1.778" layer="28" rot="MR315" display="off"/>
+<element name="C11" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="34.330709375" y="33.510709375" smashed="yes" rot="MR315">
+<attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="34.330709375" y="33.510709375" size="1.778" layer="28" rot="MR315" display="off"/>
+<attribute name="HQ_PART" value="CA0137105" x="34.330709375" y="33.510709375" size="1.778" layer="28" rot="MR315" display="off"/>
+<attribute name="LCSC_PART" value="C56392" x="34.330709375" y="33.510709375" size="1.778" layer="28" rot="MR315" display="off"/>
+<attribute name="MANUFACTURER" value="Yageo" x="34.330709375" y="33.510709375" size="1.778" layer="28" rot="MR315" display="off"/>
+<attribute name="MPN" value="CC0402KRX5R8BB104" x="34.330709375" y="33.510709375" size="1.778" layer="28" rot="MR315" display="off"/>
 <attribute name="NAME" x="35.282790625" y="31.838025" size="1.016" layer="26" rot="MR315"/>
-<attribute name="VALUE" x="36.1267625" y="32.61268125" size="1.016" layer="28" rot="MR315"/>
+<attribute name="ROHS" value="YES" x="34.330709375" y="33.510709375" size="1.778" layer="28" rot="MR315" display="off"/>
+<attribute name="VALUE" value="100nF 25V" x="36.1267625" y="32.61268125" size="1.016" layer="28" rot="MR315"/>
 <attribute name="VALUE" value="100nF 50V" x="34.330709375" y="33.510709375" size="1.778" layer="28" rot="MR315" display="off"/>
 </element>
-<element name="C12" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 50V" x="27.980709375" y="34.710709375" smashed="yes" rot="MR45">
-<attribute name="DESCRIPTION" value="50V 100nF X7R ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="27.980709375" y="34.710709375" size="1.778" layer="28" rot="MR45" display="off"/>
-<attribute name="LCSC_PART" value="C307331" x="27.980709375" y="34.710709375" size="1.778" layer="28" rot="MR45" display="off"/>
+<element name="C12" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="27.980709375" y="34.710709375" smashed="yes" rot="MR45">
+<attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="27.980709375" y="34.710709375" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="HQ_PART" value="CA0137105" x="27.980709375" y="34.710709375" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="LCSC_PART" value="C56392" x="27.980709375" y="34.710709375" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="MANUFACTURER" value="Yageo" x="27.980709375" y="34.710709375" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="MPN" value="CC0402KRX5R8BB104" x="27.980709375" y="34.710709375" size="1.778" layer="28" rot="MR45" display="off"/>
 <attribute name="NAME" x="26.335840625" y="35.61218125" size="1.016" layer="26" rot="MR45"/>
-<attribute name="VALUE" x="27.082684375" y="32.91465625" size="1.016" layer="28" rot="MR45"/>
+<attribute name="ROHS" value="YES" x="27.980709375" y="34.710709375" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="VALUE" value="100nF 25V" x="27.082684375" y="32.91465625" size="1.016" layer="28" rot="MR45"/>
 <attribute name="VALUE" value="100nF 50V" x="27.980709375" y="34.710709375" size="1.778" layer="28" rot="MR45" display="off"/>
 </element>
 <element name="SEL1" library="ds_LED" package="LED-0805" package3d_urn="urn:adsk.eagle:package:49260836/1" value="Orange" x="8.67" y="48.4" smashed="yes">
 <attribute name="DESCRIPTION" value="10mA Colorless transparent lens -40℃~+85℃ 598nm~608nm Orange 120° 40mW 0805 LED Indication - Discrete ROHS" x="8.67" y="48.4" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="PH0093712" x="8.67" y="48.4" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C434437" x="8.67" y="48.4" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="NATIONSTAR" x="8.67" y="48.4" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="FC-2012YOXK(5)-600H08" x="8.67" y="48.4" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="10.54" y="47.78" size="1.27" layer="25"/>
+<attribute name="ROHS" value="YES" x="8.67" y="48.4" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="Orange" x="4.21" y="58.13" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="SEL2" library="ds_LED" package="LED-0805" package3d_urn="urn:adsk.eagle:package:49260836/1" value="Orange" x="18.8" y="48.5" smashed="yes">
 <attribute name="DESCRIPTION" value="10mA Colorless transparent lens -40℃~+85℃ 598nm~608nm Orange 120° 40mW 0805 LED Indication - Discrete ROHS" x="18.8" y="48.5" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="PH0093712" x="18.8" y="48.5" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C434437" x="18.8" y="48.5" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="NATIONSTAR" x="18.8" y="48.5" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="FC-2012YOXK(5)-600H08" x="18.8" y="48.5" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="20.54" y="47.86" size="1.27" layer="25"/>
+<attribute name="ROHS" value="YES" x="18.8" y="48.5" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="Orange" x="2.34" y="58.23" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="SEL3" library="ds_LED" package="LED-0805" package3d_urn="urn:adsk.eagle:package:49260836/1" value="Orange" x="28.92" y="48.5" smashed="yes">
 <attribute name="DESCRIPTION" value="10mA Colorless transparent lens -40℃~+85℃ 598nm~608nm Orange 120° 40mW 0805 LED Indication - Discrete ROHS" x="28.92" y="48.5" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="PH0093712" x="28.92" y="48.5" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C434437" x="28.92" y="48.5" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="NATIONSTAR" x="28.92" y="48.5" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="FC-2012YOXK(5)-600H08" x="28.92" y="48.5" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="30.74" y="48.11" size="1.27" layer="25"/>
+<attribute name="ROHS" value="YES" x="28.92" y="48.5" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="Orange" x="0.46" y="58.23" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="SEL4" library="ds_LED" package="LED-0805" package3d_urn="urn:adsk.eagle:package:49260836/1" value="Orange" x="39" y="48.5" smashed="yes">
 <attribute name="DESCRIPTION" value="10mA Colorless transparent lens -40℃~+85℃ 598nm~608nm Orange 120° 40mW 0805 LED Indication - Discrete ROHS" x="39" y="48.5" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="PH0093712" x="39" y="48.5" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C434437" x="39" y="48.5" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="NATIONSTAR" x="39" y="48.5" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="FC-2012YOXK(5)-600H08" x="39" y="48.5" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="40.92" y="47.98" size="1.27" layer="25"/>
+<attribute name="ROHS" value="YES" x="39" y="48.5" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="Orange" x="-1.46" y="58.23" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="SEL5" library="ds_LED" package="LED-0805" package3d_urn="urn:adsk.eagle:package:49260836/1" value="Orange" x="49.17" y="48.49" smashed="yes">
 <attribute name="DESCRIPTION" value="10mA Colorless transparent lens -40℃~+85℃ 598nm~608nm Orange 120° 40mW 0805 LED Indication - Discrete ROHS" x="49.17" y="48.49" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="PH0093712" x="49.17" y="48.49" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C434437" x="49.17" y="48.49" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="NATIONSTAR" x="49.17" y="48.49" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="FC-2012YOXK(5)-600H08" x="49.17" y="48.49" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="50.97" y="47.92" size="1.27" layer="25"/>
+<attribute name="ROHS" value="YES" x="49.17" y="48.49" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="Orange" x="-3.29" y="58.22" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="SEL6" library="ds_LED" package="LED-0805" package3d_urn="urn:adsk.eagle:package:49260836/1" value="Orange" x="59.33" y="48.49" smashed="yes">
 <attribute name="DESCRIPTION" value="10mA Colorless transparent lens -40℃~+85℃ 598nm~608nm Orange 120° 40mW 0805 LED Indication - Discrete ROHS" x="59.33" y="48.49" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="PH0093712" x="59.33" y="48.49" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C434437" x="59.33" y="48.49" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="NATIONSTAR" x="59.33" y="48.49" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="FC-2012YOXK(5)-600H08" x="59.33" y="48.49" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="61.1" y="47.96" size="1.27" layer="25"/>
+<attribute name="ROHS" value="YES" x="59.33" y="48.49" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="Orange" x="-5.13" y="58.22" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="SEL7" library="ds_LED" package="LED-0805" package3d_urn="urn:adsk.eagle:package:49260836/1" value="Orange" x="69.39" y="48.47" smashed="yes">
 <attribute name="DESCRIPTION" value="10mA Colorless transparent lens -40℃~+85℃ 598nm~608nm Orange 120° 40mW 0805 LED Indication - Discrete ROHS" x="69.39" y="48.47" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="PH0093712" x="69.39" y="48.47" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C434437" x="69.39" y="48.47" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="NATIONSTAR" x="69.39" y="48.47" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="FC-2012YOXK(5)-600H08" x="69.39" y="48.47" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="71.14" y="47.93" size="1.27" layer="25"/>
+<attribute name="ROHS" value="YES" x="69.39" y="48.47" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="Orange" x="22.93" y="65.2" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="SEL8" library="ds_LED" package="LED-0805" package3d_urn="urn:adsk.eagle:package:49260836/1" value="Orange" x="79.49" y="48.47" smashed="yes">
 <attribute name="DESCRIPTION" value="10mA Colorless transparent lens -40℃~+85℃ 598nm~608nm Orange 120° 40mW 0805 LED Indication - Discrete ROHS" x="79.49" y="48.47" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="PH0093712" x="79.49" y="48.47" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C434437" x="79.49" y="48.47" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="NATIONSTAR" x="79.49" y="48.47" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="FC-2012YOXK(5)-600H08" x="79.49" y="48.47" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="81.5" y="47.83" size="1.27" layer="25"/>
+<attribute name="ROHS" value="YES" x="79.49" y="48.47" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="Orange" x="21.03" y="65.2" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="R14" library="ds_resistor" package="_0603X4-1206" package3d_urn="urn:adsk.eagle:package:49287421/2" value="1K 1%" x="28.02020625" y="42.335353125" smashed="yes" rot="MR315">
 <attribute name="DESCRIPTION" value="4 ±1% 1kΩ 62.5mW ±200ppm/℃ 0603x4 Resistor Networks, Arrays ROHS " x="28.02020625" y="42.335353125" size="1.778" layer="28" rot="MR315" display="off"/>
+<attribute name="HQ_PART" value="RE0022532" x="28.02020625" y="42.335353125" size="1.778" layer="28" rot="MR315" display="off"/>
 <attribute name="LCSC_PART" value="C110021" x="28.02020625" y="42.335353125" size="1.778" layer="28" rot="MR315" display="off"/>
+<attribute name="MANUFACTURER" value="Yageo" x="28.02020625" y="42.335353125" size="1.778" layer="28" rot="MR315" display="off"/>
+<attribute name="MPN" value="YC164-JR-071KL " x="28.02020625" y="42.335353125" size="1.778" layer="28" rot="MR315" display="off"/>
 <attribute name="NAME" x="25.9854" y="41.8119625" size="1.016" layer="26" rot="MR225"/>
+<attribute name="ROHS" value="YES" x="28.02020625" y="42.335353125" size="1.778" layer="28" rot="MR315" display="off"/>
 <attribute name="VALUE" x="30.9646" y="41.900328125" size="0.66234375" layer="28" rot="MR315"/>
 <attribute name="VALUE" value="1K 1%" x="28.02020625" y="42.335353125" size="1.778" layer="28" rot="MR315" display="off"/>
 </element>
 <element name="R15" library="ds_resistor" package="_0603X4-1206" package3d_urn="urn:adsk.eagle:package:49287421/2" value="1K 1%" x="33.906065625" y="43.291921875" smashed="yes" rot="MR45">
 <attribute name="DESCRIPTION" value="4 ±1% 1kΩ 62.5mW ±200ppm/℃ 0603x4 Resistor Networks, Arrays ROHS " x="33.906065625" y="43.291921875" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="HQ_PART" value="RE0022532" x="33.906065625" y="43.291921875" size="1.778" layer="28" rot="MR45" display="off"/>
 <attribute name="LCSC_PART" value="C110021" x="33.906065625" y="43.291921875" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="MANUFACTURER" value="Yageo" x="33.906065625" y="43.291921875" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="MPN" value="YC164-JR-071KL " x="33.906065625" y="43.291921875" size="1.778" layer="28" rot="MR45" display="off"/>
 <attribute name="NAME" x="36.89699375" y="41.868975" size="1.016" layer="26" rot="MR315"/>
+<attribute name="ROHS" value="YES" x="33.906065625" y="43.291921875" size="1.778" layer="28" rot="MR45" display="off"/>
 <attribute name="VALUE" x="33.471040625" y="40.347528125" size="0.66234375" layer="28" rot="MR45"/>
 <attribute name="VALUE" value="1K 1%" x="33.906065625" y="43.291921875" size="1.778" layer="28" rot="MR45" display="off"/>
 </element>
 <element name="IC2" library="ds_ic_peripherals" package="QFN28[6X6]ML" package3d_urn="urn:adsk.eagle:package:46683895/2" value="MCP23017T-E/ML " x="31.61" y="37.44" smashed="yes" rot="MR45">
 <attribute name="DATASHEET" value="https://ww1.microchip.com/downloads/en/devicedoc/20001952c.pdf" x="31.61" y="37.44" size="1.778" layer="28" rot="MR45" display="off"/>
 <attribute name="DESCRIPTION" value="1.7MHz I2C QFN-28-EP(6x6) I/O Expanders ROHS " x="31.61" y="37.44" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="HQ_PART" value="IC0080215" x="31.61" y="37.44" size="1.778" layer="28" rot="MR45" display="off"/>
 <attribute name="LCSC_PART" value="C629439" x="31.61" y="37.44" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="MANUFACTURER" value="MICROCHIP" x="31.61" y="37.44" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="MPN" value="MCP23017-E/ML" x="31.61" y="37.44" size="1.778" layer="28" rot="MR45" display="off"/>
 <attribute name="NAME" x="35.58946875" y="41.181221875" size="1.27" layer="26" rot="MR225"/>
+<attribute name="ROHS" value="YES" x="31.61" y="37.44" size="1.778" layer="28" rot="MR45" display="off"/>
 <attribute name="VALUE" value="MCP23017T-E/ML " x="31.61" y="37.44" size="1.778" layer="28" rot="MR45" display="off"/>
 <attribute name="VALUE" x="30.711975" y="32.05184375" size="1.27" layer="28" rot="MR45"/>
 </element>
@@ -6099,117 +6264,180 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="NAME" x="20.475" y="40.725" size="1.778" layer="26" rot="MR270"/>
 <attribute name="VALUE" x="18.775" y="30.48" size="1.778" layer="28" rot="MR0"/>
 </element>
-<element name="U$1" library="ds_silkscreen" package="DMT" value="" x="111.8298" y="45.6867" smashed="yes" rot="MR0"/>
-<element name="U$5" library="ds_silkscreen" package="DMT" value="" x="106.7715" y="46.3847" smashed="yes"/>
+<element name="U$1" library="ds_silkscreen" package="DMT" value="DNI" x="111.8298" y="45.6867" smashed="yes" rot="MR0"/>
+<element name="U$5" library="ds_silkscreen" package="DMT" value="DNI" x="106.7715" y="46.3847" smashed="yes"/>
 <element name="&lt;" library="ds_passive" package="PUSHBUTTON-6X6" package3d_urn="urn:adsk.eagle:package:49287357/2" value="TS-1002S-04326C " x="29.85" y="37.69" smashed="yes">
 <attribute name="DESCRIPTION" value="6mm 4.3mm Round Button 50mA Standing paste 6mm SPST 12V SMD,6x6mm Tactile Switches ROHS " x="29.85" y="37.69" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="SW0049370" x="29.85" y="37.69" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C455108" x="29.85" y="37.69" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="USAKRO" x="29.85" y="37.69" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="UK-B0228G43-SP25 " x="29.85" y="37.69" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="24.254690625" y="41.37781875" size="1.78033125" layer="25"/>
+<attribute name="ROHS" value="YES" x="29.85" y="37.69" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="24.133509375" y="32.354609375" size="1.778459375" layer="27"/>
 </element>
 <element name="&gt;" library="ds_passive" package="PUSHBUTTON-6X6" package3d_urn="urn:adsk.eagle:package:49287357/2" value="TS-1002S-04326C " x="70.03" y="37.91" smashed="yes">
 <attribute name="DESCRIPTION" value="6mm 4.3mm Round Button 50mA Standing paste 6mm SPST 12V SMD,6x6mm Tactile Switches ROHS " x="70.03" y="37.91" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="SW0049370" x="70.03" y="37.91" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C455108" x="70.03" y="37.91" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="USAKRO" x="70.03" y="37.91" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="UK-B0228G43-SP25 " x="70.03" y="37.91" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="64.434690625" y="41.59781875" size="1.78033125" layer="25"/>
+<attribute name="ROHS" value="YES" x="70.03" y="37.91" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="64.313509375" y="32.574609375" size="1.778459375" layer="27"/>
 </element>
 <element name="O" library="ds_passive" package="PUSHBUTTON-6X6" package3d_urn="urn:adsk.eagle:package:49287357/2" value="TS-1002S-04326C " x="49.87" y="37.88" smashed="yes">
 <attribute name="DESCRIPTION" value="6mm 4.3mm Round Button 50mA Standing paste 6mm SPST 12V SMD,6x6mm Tactile Switches ROHS " x="49.87" y="37.88" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="SW0049370" x="49.87" y="37.88" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C455108" x="49.87" y="37.88" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="USAKRO" x="49.87" y="37.88" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="UK-B0228G43-SP25 " x="49.87" y="37.88" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="44.274690625" y="41.56781875" size="1.78033125" layer="25"/>
+<attribute name="ROHS" value="YES" x="49.87" y="37.88" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="44.153509375" y="32.544609375" size="1.778459375" layer="27"/>
 </element>
 <element name="PWR" library="ds_passive" package="PUSHBUTTON-6X6" package3d_urn="urn:adsk.eagle:package:49287357/2" value="TS-1002S-04326C " x="113.29" y="37.58" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="6mm 4.3mm Round Button 50mA Standing paste 6mm SPST 12V SMD,6x6mm Tactile Switches ROHS " x="113.29" y="37.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="HQ_PART" value="SW0049370" x="113.29" y="37.58" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LCSC_PART" value="C455108" x="113.29" y="37.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MANUFACTURER" value="USAKRO" x="113.29" y="37.58" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MPN" value="UK-B0228G43-SP25 " x="113.29" y="37.58" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="116.385309375" y="33.79218125" size="1.78033125" layer="25" rot="R180"/>
+<attribute name="ROHS" value="YES" x="113.29" y="37.58" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="119.006490625" y="42.915390625" size="1.778459375" layer="27" rot="R180"/>
 </element>
-<element name="SDA0" library="ds_passive" package="TP-ROUND" value="TP-ROUND" x="14.06" y="33.56" smashed="yes" rot="MR270">
+<element name="SDA0" library="ds_passive" package="TP-ROUND" value="DNI" x="14.06" y="33.56" smashed="yes" rot="MR270">
 <attribute name="NAME" x="14.06" y="32.29" size="1.016" layer="26" rot="MR270" align="center-left"/>
+<attribute name="ROHS" value="YES" x="14.06" y="33.56" size="1.778" layer="28" rot="MR270" display="off"/>
+<attribute name="VALUE" value="TESTPOINT" x="14.06" y="33.56" size="1.778" layer="28" rot="MR270" display="off"/>
 </element>
-<element name="SCL0" library="ds_passive" package="TP-ROUND" value="TP-ROUND" x="13.96" y="36.04" smashed="yes" rot="MR90">
+<element name="SCL0" library="ds_passive" package="TP-ROUND" value="DNI" x="13.96" y="36.04" smashed="yes" rot="MR90">
 <attribute name="NAME" x="13.96" y="37.31" size="1.016" layer="26" rot="MR90" align="center-left"/>
+<attribute name="ROHS" value="YES" x="13.96" y="36.04" size="1.778" layer="28" rot="MR90" display="off"/>
+<attribute name="VALUE" value="TESTPOINT" x="13.96" y="36.04" size="1.778" layer="28" rot="MR90" display="off"/>
 </element>
-<element name="MOSI" library="ds_passive" package="TP-ROUND" value="TP-ROUND" x="52.47" y="28.24" smashed="yes" rot="MR90">
+<element name="MOSI" library="ds_passive" package="TP-ROUND" value="DNI" x="52.47" y="28.24" smashed="yes" rot="MR90">
 <attribute name="NAME" x="52.47" y="29.51" size="1.016" layer="26" rot="MR90" align="center-left"/>
+<attribute name="ROHS" value="YES" x="52.47" y="28.24" size="1.778" layer="28" rot="MR90" display="off"/>
+<attribute name="VALUE" value="TESTPOINT" x="52.47" y="28.24" size="1.778" layer="28" rot="MR90" display="off"/>
 </element>
-<element name="SCK" library="ds_passive" package="TP-ROUND" value="TP-ROUND" x="50.05" y="28.24" smashed="yes" rot="MR90">
+<element name="SCK" library="ds_passive" package="TP-ROUND" value="DNI" x="50.05" y="28.24" smashed="yes" rot="MR90">
 <attribute name="NAME" x="50.05" y="29.51" size="1.016" layer="26" rot="MR90" align="center-left"/>
+<attribute name="ROHS" value="YES" x="50.05" y="28.24" size="1.778" layer="28" rot="MR90" display="off"/>
+<attribute name="VALUE" value="TESTPOINT" x="50.05" y="28.24" size="1.778" layer="28" rot="MR90" display="off"/>
 </element>
-<element name="MISO" library="ds_passive" package="TP-ROUND" value="TP-ROUND" x="54.79" y="28.24" smashed="yes" rot="MR90">
+<element name="MISO" library="ds_passive" package="TP-ROUND" value="DNI" x="54.79" y="28.24" smashed="yes" rot="MR90">
 <attribute name="NAME" x="54.79" y="29.51" size="1.016" layer="26" rot="MR90" align="center-left"/>
+<attribute name="ROHS" value="YES" x="54.79" y="28.24" size="1.778" layer="28" rot="MR90" display="off"/>
+<attribute name="VALUE" value="TESTPOINT" x="54.79" y="28.24" size="1.778" layer="28" rot="MR90" display="off"/>
 </element>
-<element name="CS" library="ds_passive" package="TP-ROUND" value="TP-ROUND" x="47.73" y="28.24" smashed="yes" rot="MR90">
+<element name="CS" library="ds_passive" package="TP-ROUND" value="DNI" x="47.73" y="28.24" smashed="yes" rot="MR90">
 <attribute name="NAME" x="47.73" y="29.51" size="1.016" layer="26" rot="MR90" align="center-left"/>
+<attribute name="ROHS" value="YES" x="47.73" y="28.24" size="1.778" layer="28" rot="MR90" display="off"/>
+<attribute name="VALUE" value="TESTPOINT" x="47.73" y="28.24" size="1.778" layer="28" rot="MR90" display="off"/>
 </element>
 <element name="R16" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="10K 1%" x="24.2" y="37.7" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 10kΩ 0402 Chip Resistor - Surface Mount ROHS" x="24.2" y="37.7" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="HQ_PART" value="RE0207399" x="24.2" y="37.7" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LCSC_PART" value="C25744" x="24.2" y="37.7" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MANUFACTURER" value="ROHM" x="24.2" y="37.7" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MPN" value="MCR01MZPF1002" x="24.2" y="37.7" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="22.535" y="38.065" size="1.016" layer="25" rot="R180"/>
+<attribute name="ROHS" value="YES" x="24.2" y="37.7" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="24.835" y="39.605" size="1.016" layer="27" rot="R180"/>
 </element>
 <element name="R17" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="10K 1%" x="64.2" y="37.7" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 10kΩ 0402 Chip Resistor - Surface Mount ROHS" x="64.2" y="37.7" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="HQ_PART" value="RE0207399" x="64.2" y="37.7" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LCSC_PART" value="C25744" x="64.2" y="37.7" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MANUFACTURER" value="ROHM" x="64.2" y="37.7" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MPN" value="MCR01MZPF1002" x="64.2" y="37.7" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="62.635" y="37.865" size="1.016" layer="25" rot="R180"/>
+<attribute name="ROHS" value="YES" x="64.2" y="37.7" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="64.835" y="39.605" size="1.016" layer="27" rot="R180"/>
 </element>
 <element name="R18" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="10K 1%" x="44" y="37.7" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 10kΩ 0402 Chip Resistor - Surface Mount ROHS" x="44" y="37.7" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="HQ_PART" value="RE0207399" x="44" y="37.7" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LCSC_PART" value="C25744" x="44" y="37.7" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MANUFACTURER" value="ROHM" x="44" y="37.7" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MPN" value="MCR01MZPF1002" x="44" y="37.7" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="42.535" y="38.165" size="1.016" layer="25" rot="R180"/>
+<attribute name="ROHS" value="YES" x="44" y="37.7" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="44.635" y="39.605" size="1.016" layer="27" rot="R180"/>
 </element>
 <element name="R19" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="10K 1%" x="108" y="37.4" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 10kΩ 0402 Chip Resistor - Surface Mount ROHS" x="108" y="37.4" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="HQ_PART" value="RE0207399" x="108" y="37.4" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LCSC_PART" value="C25744" x="108" y="37.4" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MANUFACTURER" value="ROHM" x="108" y="37.4" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MPN" value="MCR01MZPF1002" x="108" y="37.4" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="105.835" y="37.665" size="1.016" layer="25" rot="R180"/>
+<attribute name="ROHS" value="YES" x="108" y="37.4" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="108.635" y="39.305" size="1.016" layer="27" rot="R180"/>
 </element>
 <element name="D1" library="ds_diode" package="SOD-123" package3d_urn="urn:adsk.eagle:package:10898395/2" value="PTVS3V3S1UR,115 " x="66.6" y="33.4" smashed="yes">
 <attribute name="DATASHEET" value="https://assets.nexperia.com/documents/data-sheet/PTVSXS1UR_SER.pdf" x="66.6" y="33.4" size="1.778" layer="27" display="off"/>
 <attribute name="DESCRIPTION" value="3.3V 350W@10/1000us 43.8A@10/1000us 5.6V 5uA 8V IEC 61000-4-2 TVS Unidirectional SOD-123W ESD and Surge Protection (TVS/ESD) ROHS " x="66.6" y="33.4" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="CP0009318" x="66.6" y="33.4" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C183521" x="66.6" y="33.4" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="Nexperia" x="66.6" y="33.4" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="PTVS3V3S1UR,115 " x="66.6" y="33.4" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="64.96" y="30.924" size="1.32" layer="25" ratio="10"/>
+<attribute name="ROHS" value="YES" x="66.6" y="33.4" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="64.06" y="30.86" size="1.2" layer="27" ratio="10"/>
 </element>
 <element name="D2" library="ds_diode" package="SOD-123" package3d_urn="urn:adsk.eagle:package:10898395/2" value="PTVS3V3S1UR,115 " x="36.8" y="37.6" smashed="yes" rot="R90">
 <attribute name="DATASHEET" value="https://assets.nexperia.com/documents/data-sheet/PTVSXS1UR_SER.pdf" x="36.8" y="37.6" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="DESCRIPTION" value="3.3V 350W@10/1000us 43.8A@10/1000us 5.6V 5uA 8V IEC 61000-4-2 TVS Unidirectional SOD-123W ESD and Surge Protection (TVS/ESD) ROHS " x="36.8" y="37.6" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="HQ_PART" value="CP0009318" x="36.8" y="37.6" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="LCSC_PART" value="C183521" x="36.8" y="37.6" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MANUFACTURER" value="Nexperia" x="36.8" y="37.6" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MPN" value="PTVS3V3S1UR,115 " x="36.8" y="37.6" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="36.06" y="33.524" size="1.32" layer="25" ratio="10"/>
+<attribute name="ROHS" value="YES" x="36.8" y="37.6" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="39.34" y="35.06" size="1.2" layer="27" ratio="10" rot="R90"/>
 </element>
 <element name="D3" library="ds_diode" package="SOD-123" package3d_urn="urn:adsk.eagle:package:10898395/2" value="PTVS3V3S1UR,115 " x="56.9" y="36.6" smashed="yes" rot="R90">
 <attribute name="DATASHEET" value="https://assets.nexperia.com/documents/data-sheet/PTVSXS1UR_SER.pdf" x="56.9" y="36.6" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="DESCRIPTION" value="3.3V 350W@10/1000us 43.8A@10/1000us 5.6V 5uA 8V IEC 61000-4-2 TVS Unidirectional SOD-123W ESD and Surge Protection (TVS/ESD) ROHS " x="56.9" y="36.6" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="HQ_PART" value="CP0009318" x="56.9" y="36.6" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="LCSC_PART" value="C183521" x="56.9" y="36.6" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MANUFACTURER" value="Nexperia" x="56.9" y="36.6" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MPN" value="PTVS3V3S1UR,115 " x="56.9" y="36.6" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="55.96" y="32.524" size="1.32" layer="25" ratio="10"/>
+<attribute name="ROHS" value="YES" x="56.9" y="36.6" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="59.44" y="34.06" size="1.2" layer="27" ratio="10" rot="R90"/>
 </element>
 <element name="D4" library="ds_diode" package="SOD-123" package3d_urn="urn:adsk.eagle:package:10898395/2" value="PTVS3V3S1UR,115 " x="120.6" y="37.4" smashed="yes" rot="R270">
 <attribute name="DATASHEET" value="https://assets.nexperia.com/documents/data-sheet/PTVSXS1UR_SER.pdf" x="120.6" y="37.4" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="DESCRIPTION" value="3.3V 350W@10/1000us 43.8A@10/1000us 5.6V 5uA 8V IEC 61000-4-2 TVS Unidirectional SOD-123W ESD and Surge Protection (TVS/ESD) ROHS " x="120.6" y="37.4" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="HQ_PART" value="CP0009318" x="120.6" y="37.4" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C183521" x="120.6" y="37.4" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MANUFACTURER" value="Nexperia" x="120.6" y="37.4" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MPN" value="PTVS3V3S1UR,115 " x="120.6" y="37.4" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="122.124" y="39.94" size="1.32" layer="25" ratio="10" rot="R270"/>
+<attribute name="ROHS" value="YES" x="120.6" y="37.4" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="118.06" y="39.94" size="1.2" layer="27" ratio="10" rot="R270"/>
 </element>
-<element name="D5" library="ds_diode" package="SOT-523" value="RCLAMP0582BQTCT" x="56.4" y="43.4" smashed="yes" rot="R90">
+<element name="D5" library="ds_diode" package="SC75" package3d_urn="urn:adsk.eagle:package:49873936/3" value="RCLAMP0582BQTCT" x="56.4" y="43.4" smashed="yes" rot="R90">
 <attribute name="DATASHEET" value="https://semtech.my.salesforce.com/sfc/p/#E0000000JelG/a/440000001Lzx/0M5l0VFdFhBLS7TSRfd1I2V77GSkvtksC9b.1bnFtjQ" x="56.4" y="43.4" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="DESCRIPTION" value="-40℃~+105℃@(Tj) 1.2pF 100nA 15A@8/20us 2 20V 300W 5V 6V ESD IEC 61000-4-2 SOT-523 ESD and Surge Protection (TVS/ESD) ROHS " x="56.4" y="43.4" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="HQ_PART" value="PD0007296" x="56.4" y="43.4" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="LCSC_PART" value="C841193" x="56.4" y="43.4" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MANUFACTURER" value="SEMTECH" x="56.4" y="43.4" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MPN" value="RCLAMP0582BQTCT" x="56.4" y="43.4" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="53.773" y="40.332" size="1.27" layer="25" rot="R90"/>
+<attribute name="ROHS" value="YES" x="56.4" y="43.4" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="59.027" y="40.459" size="1.27" layer="27" rot="R90" align="top-left"/>
 </element>
-<element name="U$6" library="ds_silkscreen" package="NEXTPCB_SMALL" value="" x="106.0577" y="25.781" smashed="yes"/>
-<element name="U$7" library="ds_silkscreen" package="NEXTPCB_SMALL" value="" x="108.3691" y="27.4701" smashed="yes" rot="MR0"/>
-<element name="U$8" library="logo" library_urn="urn:adsk.eagle:library:264" package="CE-4MM" value="" x="85.6107" y="40.4942" smashed="yes"/>
-<element name="U$9" library="SparkFun-Aesthetics" library_urn="urn:adsk.eagle:library:507" package="ROHS_LOGO_0.18_IN" package3d_urn="urn:adsk.eagle:package:41384599/3" value="" x="86.4108" y="33.1823" smashed="yes"/>
-<element name="U$10" library="SparkFun-Aesthetics" library_urn="urn:adsk.eagle:library:507" package="NO_PB_LOGO_0.120" package3d_urn="urn:adsk.eagle:package:41384598/3" value="" x="87.0331" y="47.4726" smashed="yes"/>
-<element name="H1" library="holes" library_urn="urn:adsk.eagle:library:237" package="3,2-PAD" package3d_urn="urn:adsk.eagle:package:14282/1" value="MOUNT-PAD-ROUND3.2" x="8.8011" y="37.6936" smashed="yes"/>
-<element name="H2" library="holes" library_urn="urn:adsk.eagle:library:237" package="3,2-PAD" package3d_urn="urn:adsk.eagle:package:14282/1" value="MOUNT-PAD-ROUND3.2" x="123.0376" y="47.0281" smashed="yes"/>
-<element name="H3" library="holes" library_urn="urn:adsk.eagle:library:237" package="3,2-PAD" package3d_urn="urn:adsk.eagle:package:14282/1" value="MOUNT-PAD-ROUND3.2" x="123.2154" y="28.7147" smashed="yes"/>
+<element name="U$6" library="ds_silkscreen" package="NEXTPCB_SMALL" value="DNI" x="106.0577" y="25.781" smashed="yes"/>
+<element name="U$7" library="ds_silkscreen" package="NEXTPCB_SMALL" value="DNI" x="108.3691" y="27.4701" smashed="yes" rot="MR0"/>
+<element name="U$8" library="logo" library_urn="urn:adsk.eagle:library:264" package="CE-4MM" value="DNI" x="85.6107" y="40.4942" smashed="yes"/>
+<element name="U$9" library="SparkFun-Aesthetics" library_urn="urn:adsk.eagle:library:507" package="ROHS_LOGO_0.18_IN" package3d_urn="urn:adsk.eagle:package:41384599/3" value="DNI" x="86.4108" y="33.1823" smashed="yes"/>
+<element name="U$10" library="SparkFun-Aesthetics" library_urn="urn:adsk.eagle:library:507" package="NO_PB_LOGO_0.120" package3d_urn="urn:adsk.eagle:package:41384598/3" value="DNI" x="87.0331" y="47.4726" smashed="yes"/>
+<element name="H1" library="holes" library_urn="urn:adsk.eagle:library:237" package="3,2-PAD" package3d_urn="urn:adsk.eagle:package:14282/1" value="DNI" x="8.8011" y="37.6936" smashed="yes"/>
+<element name="H2" library="holes" library_urn="urn:adsk.eagle:library:237" package="3,2-PAD" package3d_urn="urn:adsk.eagle:package:14282/1" value="DNI" x="123.0376" y="47.0281" smashed="yes"/>
+<element name="H3" library="holes" library_urn="urn:adsk.eagle:library:237" package="3,2-PAD" package3d_urn="urn:adsk.eagle:package:14282/1" value="DNI" x="123.2154" y="28.7147" smashed="yes"/>
 </elements>
 <signals>
 <signal name="+3V3">
@@ -6545,14 +6773,13 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="54.42" y1="40.12" x2="54.42" y2="41.28" width="0.17348125" layer="1"/>
 <wire x1="54.42" y1="41.28" x2="54.4" y2="41.3" width="0.17348125" layer="1"/>
 <via x="54.4" y="41.3" extent="1-16" drill="0.35"/>
-<wire x1="56.4" y1="44.415" x2="56.385" y2="44.4" width="0.17348125" layer="1"/>
-<wire x1="56.385" y1="44.4" x2="55.7" y2="44.4" width="0.17348125" layer="1"/>
+<wire x1="56.4" y1="44.12" x2="56.385" y2="44.4" width="0.17348125" layer="1"/>
 <via x="55.7" y="44.4" extent="1-16" drill="0.35"/>
-<wire x1="56.4" y1="44.415" x2="57.205" y2="44.415" width="0.17348125" layer="1"/>
 <wire x1="57.205" y1="44.415" x2="57.21" y2="44.41" width="0.17348125" layer="1"/>
 <via x="57.21" y="44.41" extent="1-16" drill="0.35"/>
-<wire x1="56.4" y1="44.415" x2="56.4" y2="45.6" width="0.17348125" layer="1"/>
+<wire x1="56.4" y1="44.12" x2="56.4" y2="44.38" width="0.17348125" layer="1"/>
 <via x="56.4" y="45.6" extent="1-16" drill="0.35"/>
+<wire x1="56.4" y1="44.38" x2="56.4" y2="45.6" width="0.17348125" layer="1"/>
 <wire x1="45.32" y1="40.12" x2="45.3" y2="40.14" width="0.17348125" layer="1"/>
 <wire x1="45.3" y1="40.14" x2="45.3" y2="41.5" width="0.17348125" layer="1"/>
 <via x="45.3" y="41.5" extent="1-16" drill="0.35"/>
@@ -6885,6 +7112,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <via x="108" y="48" extent="1-16" drill="0.35"/>
 <via x="111" y="48" extent="1-16" drill="0.35"/>
 <via x="114" y="48" extent="1-16" drill="0.35"/>
+<wire x1="55.7" y1="44.4" x2="56.38" y2="44.4" width="0.17348125" layer="1"/>
+<wire x1="56.38" y1="44.4" x2="56.4" y2="44.38" width="0.17348125" layer="1"/>
+<wire x1="57.21" y1="44.41" x2="56.43" y2="44.41" width="0.17348125" layer="1"/>
+<wire x1="56.43" y1="44.41" x2="56.4" y2="44.38" width="0.17348125" layer="1"/>
 </signal>
 <signal name="LCD_CS">
 <contactref element="CON1" pad="9"/>
@@ -7488,8 +7719,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <contactref element="DSP" pad="4"/>
 <contactref element="SDA0" pad="TP"/>
 <contactref element="D5" pad="2"/>
-<wire x1="57.35" y1="42.385" x2="57.35" y2="41.65" width="0.17348125" layer="1"/>
-<wire x1="57.35" y1="41.65" x2="56.9" y2="41.2" width="0.17348125" layer="1"/>
 <via x="56.9" y="41.2" extent="1-16" drill="0.35"/>
 <wire x1="56.722" y1="37.958" x2="56.722" y2="39.122" width="0.17348125" layer="16"/>
 <wire x1="56.722" y1="39.122" x2="57" y2="39.4" width="0.17348125" layer="16"/>
@@ -7523,6 +7752,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="24.369275" y1="39.21398125" x2="27.45384375" y2="36.1294125" width="0.17348125" layer="2"/>
 <wire x1="19.04" y1="37.9" x2="20.35398125" y2="39.21398125" width="0.17348125" layer="2"/>
 <wire x1="16.36" y1="37.9" x2="19.04" y2="37.9" width="0.17348125" layer="2"/>
+<wire x1="56.9" y1="42.68" x2="56.9" y2="41.2" width="0.17348125" layer="1"/>
 </signal>
 <signal name="I2C0_SCL">
 <contactref element="IC1" pad="8"/>
@@ -7531,8 +7761,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <contactref element="DSP" pad="3"/>
 <contactref element="SCL0" pad="TP"/>
 <contactref element="D5" pad="1"/>
-<wire x1="55.45" y1="42.385" x2="55.45" y2="41.55" width="0.17348125" layer="1"/>
-<wire x1="55.45" y1="41.55" x2="55.8" y2="41.2" width="0.17348125" layer="1"/>
 <via x="55.8" y="41.2" extent="1-16" drill="0.35"/>
 <wire x1="56.222" y1="35.158" x2="56.222" y2="36.642" width="0.17348125" layer="16"/>
 <wire x1="56.222" y1="36.642" x2="56.27" y2="36.69" width="0.17348125" layer="16"/>
@@ -7546,8 +7774,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="55.8" y1="42.04" x2="55.06398125" y2="42.77601875" width="0.17348125" layer="2"/>
 <wire x1="55.06398125" y1="42.77601875" x2="41.53076875" y2="42.77601875" width="0.17348125" layer="2"/>
 <wire x1="41.53076875" y1="42.77601875" x2="31.75475" y2="33" width="0.17348125" layer="2"/>
-<wire x1="30.04" y1="33" x2="30.11" y2="33" width="0.17348125" layer="2"/>
-<wire x1="30.11" y1="33" x2="31.75475" y2="33" width="0.17348125" layer="2"/>
+<wire x1="30.04" y1="33" x2="31.75475" y2="33" width="0.17348125" layer="2"/>
 <wire x1="55.8" y1="41.2" x2="55.8" y2="39.88325625" width="0.17348125" layer="2"/>
 <wire x1="55.8" y1="39.88325625" x2="56.25384375" y2="39.4294125" width="0.17348125" layer="2"/>
 <wire x1="56.25384375" y1="36.67384375" x2="56.26601875" y2="36.68601875" width="0.17348125" layer="2"/>
@@ -7575,17 +7802,18 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="26.34615625" y1="35.6705875" x2="27.9629" y2="34.05384375" width="0.17348125" layer="2"/>
 <wire x1="27.9629" y1="34.05384375" x2="28.0294125" y2="34.05384375" width="0.17348125" layer="2"/>
 <wire x1="23.18" y1="38.85" x2="26.34615625" y2="35.68384375" width="0.17348125" layer="2"/>
+<wire x1="55.9" y1="42.68" x2="55.9" y2="41.3" width="0.17348125" layer="1"/>
+<wire x1="55.9" y1="41.3" x2="55.8" y2="41.2" width="0.17348125" layer="1"/>
 </signal>
 <signal name="LCD_BL">
 <contactref element="T1" pad="1"/>
-<contactref element="R4" pad="1"/>
 <contactref element="BL" pad="TP"/>
 <contactref element="CON2" pad="13"/>
 <wire x1="28.3" y1="29.6" x2="28.3" y2="28.44" width="0.254" layer="16"/>
 <wire x1="28.3" y1="28.44" x2="28.36" y2="28.38" width="0.254" layer="16"/>
 <via x="28.36" y="28.38" extent="1-16" drill="0.35"/>
-<wire x1="29.64" y1="29.96" x2="28.66" y2="29.96" width="0.254" layer="16"/>
-<wire x1="28.66" y1="29.96" x2="28.3" y2="29.6" width="0.254" layer="16"/>
+<wire x1="28.66" y1="29.96" x2="28.455" y2="29.755" width="0.254" layer="16"/>
+<wire x1="28.455" y1="29.755" x2="28.3" y2="29.6" width="0.254" layer="16"/>
 <wire x1="53.222" y1="35.158" x2="53.222" y2="33.418" width="0.17348125" layer="16"/>
 <wire x1="53.222" y1="33.418" x2="53.36" y2="33.28" width="0.17348125" layer="16"/>
 <via x="53.36" y="33.28" extent="1-16" drill="0.35"/>
@@ -7612,6 +7840,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="25.27398125" y1="32.97601875" x2="28.36" y2="29.89" width="0.17348125" layer="2"/>
 <wire x1="6.87" y1="32.51" x2="6.87" y2="32.31" width="0.3048" layer="16"/>
 <wire x1="6.87" y1="32.31" x2="6.77" y2="32.21" width="0.3048" layer="16"/>
+<contactref element="R4" pad="1"/>
+<wire x1="29.64" y1="29.96" x2="28.66" y2="29.96" width="0.2032" layer="16"/>
 </signal>
 <signal name="N$8">
 <contactref element="R14" pad="D1"/>

@@ -3,7 +3,7 @@
 <eagle version="9.2.1">
 <drawing>
 <settings>
-<setting alwaysvectorfont="no"/>
+<setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.01" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mm"/>
@@ -195,6 +195,7 @@
 <layer number="255" name="routoute" color="7" fill="1" visible="no" active="yes"/>
 </layers>
 <board>
+<fusionsync huburn="a.YnVzaW5lc3M6aG90bWFpbDE2OTAxNA" projecturn="a.YnVzaW5lc3M6aG90bWFpbDE2OTAxNCMyMDI1MDEwNTg1Mzg3MDcwMQ" f3durn="urn:adsk.wipprod:dm.lineage:fGyIE_J3Q9qUFVA1ZAnVog" pcbguid="12d066af-f6be-4e47-8986-f1587ab32e97" lastpulledtime="" lastsyncedchangeguid=""/>
 <plain>
 <text x="11.478" y="5.862" size="1.4224" layer="26" font="vector" ratio="13" rot="MR0" align="bottom-right">github.com/DvidMakesThings/HW_10-In-Rack_PDU
 David Sipos @2025</text>
@@ -1731,7 +1732,7 @@ MAX3223-MAX3243.pdf</description>
 <text x="-1.905" y="5.715" size="1.778" layer="25">&gt;NAME</text>
 <text x="-1.905" y="-7.62" size="1.778" layer="27">&gt;VALUE</text>
 </package>
-<package name="FPC20" urn="urn:adsk.eagle:footprint:47082458/3" locally_modified="yes">
+<package name="FPC20" urn="urn:adsk.eagle:footprint:47082458/4">
 <circle x="-4.602" y="-0.062" radius="0.1" width="0.2" layer="21"/>
 <wire x1="-8.002" y1="1.038" x2="-8.002" y2="-0.962" width="0.1" layer="51"/>
 <wire x1="-8.002" y1="-0.962" x2="8.398" y2="-0.962" width="0.1" layer="51"/>
@@ -1791,7 +1792,7 @@ MAX3223-MAX3243.pdf</description>
 <vertex x="-4.318" y="-3.556"/>
 </polygon>
 </package>
-<package name="J1B1211CCD" urn="urn:adsk.eagle:footprint:48944380/1" locally_modified="yes">
+<package name="J1B1211CCD" urn="urn:adsk.eagle:footprint:48944380/2">
 <wire x1="-8" y1="10.6" x2="-8" y2="-10.75" width="0.127" layer="21"/>
 <wire x1="-8" y1="-10.75" x2="8" y2="-10.75" width="0.127" layer="21"/>
 <wire x1="8" y1="-10.75" x2="8" y2="10.6" width="0.127" layer="21"/>
@@ -1992,12 +1993,11 @@ MAX3223-MAX3243.pdf</description>
 <vertex x="4.388" y="-0.585" curve="-90"/>
 </polygon>
 </package>
-<package name="B2B-XH-A">
+<package name="B2B-XH-A" urn="urn:adsk.eagle:footprint:49873869/1">
 <wire x1="3.7" y1="2.875" x2="3.7" y2="-2.875" width="0.127" layer="51"/>
 <wire x1="3.7" y1="-2.875" x2="-3.7" y2="-2.875" width="0.127" layer="51"/>
 <wire x1="-3.7" y1="-2.875" x2="-3.7" y2="2.875" width="0.127" layer="51"/>
 <wire x1="-3.7" y1="2.875" x2="3.7" y2="2.875" width="0.127" layer="51"/>
-<circle x="4.44" y="-0.525" radius="0.1" width="0.2" layer="51"/>
 <wire x1="3.7" y1="2.875" x2="3.7" y2="-2.875" width="0.127" layer="21"/>
 <wire x1="3.7" y1="-2.875" x2="-3.7" y2="-2.875" width="0.127" layer="21"/>
 <wire x1="-3.7" y1="-2.875" x2="-3.7" y2="2.875" width="0.127" layer="21"/>
@@ -2006,6 +2006,7 @@ MAX3223-MAX3243.pdf</description>
 <wire x1="-3.95" y1="-3.125" x2="3.95" y2="-3.125" width="0.05" layer="39"/>
 <wire x1="3.95" y1="-3.125" x2="3.95" y2="3.125" width="0.05" layer="39"/>
 <wire x1="3.95" y1="3.125" x2="-3.95" y2="3.125" width="0.05" layer="39"/>
+<circle x="4.44" y="-0.525" radius="0.1" width="0.2" layer="51"/>
 <circle x="4.44" y="-0.525" radius="0.1" width="0.2" layer="21"/>
 <text x="-3.95" y="4.125" size="1.27" layer="25">&gt;NAME</text>
 <text x="-3.95" y="-4.125" size="1.27" layer="27" align="top-left">&gt;VALUE</text>
@@ -2019,7 +2020,7 @@ MAX3223-MAX3243.pdf</description>
 <packageinstance name="1X4"/>
 </packageinstances>
 </package3d>
-<package3d name="FPC20" urn="urn:adsk.eagle:package:47082459/4" locally_modified="yes" type="model">
+<package3d name="FPC20" urn="urn:adsk.eagle:package:47082459/5" type="model">
 <packageinstances>
 <packageinstance name="FPC20"/>
 </packageinstances>
@@ -2029,9 +2030,14 @@ MAX3223-MAX3243.pdf</description>
 <packageinstance name="USB-C"/>
 </packageinstances>
 </package3d>
-<package3d name="J1B1211CCD" urn="urn:adsk.eagle:package:48944391/2" locally_modified="yes" type="model">
+<package3d name="J1B1211CCD" urn="urn:adsk.eagle:package:48944391/3" type="model">
 <packageinstances>
 <packageinstance name="J1B1211CCD"/>
+</packageinstances>
+</package3d>
+<package3d name="B2B-XH-A" urn="urn:adsk.eagle:package:49873870/2" type="model">
+<packageinstances>
+<packageinstance name="B2B-XH-A"/>
 </packageinstances>
 </package3d>
 </packages3d>
@@ -6595,7 +6601,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </library>
 <library name="ds_diode">
 <packages>
-<package name="SMA/DO-214AC" urn="urn:adsk.eagle:footprint:12146523/1" locally_modified="yes">
+<package name="SMA/DO-214AC" urn="urn:adsk.eagle:footprint:49873935/1">
 <description>&lt;b&gt;WE-TVSP Power TVS Diode
 &lt;br&gt;&lt;br&gt;&lt;/b&gt;DO-214AC  Bidirectional</description>
 <smd name="C" x="-2.1" y="0" dx="2.3" dy="1.7" layer="1"/>
@@ -6610,6 +6616,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="-2.22" y1="-1.435" x2="2.22" y2="-1.435" width="0.2" layer="21"/>
 <wire x1="-2.22" y1="-1.2" x2="-2.22" y2="-1.435" width="0.2" layer="21"/>
 <wire x1="2.22" y1="-1.2" x2="2.22" y2="-1.435" width="0.2" layer="21"/>
+<wire x1="-0.8128" y1="-1.3462" x2="-0.8128" y2="1.397" width="0.254" layer="21"/>
+<wire x1="-0.8128" y1="1.397" x2="-1.0414" y2="1.397" width="0.254" layer="21"/>
+<wire x1="-1.0414" y1="1.397" x2="-1.0414" y2="-1.3716" width="0.254" layer="21"/>
+<wire x1="-1.0414" y1="-1.3716" x2="-0.9906" y2="-1.3716" width="0.254" layer="21"/>
 <text x="0" y="2.14" size="1.016" layer="25" align="bottom-center">&gt;NAME</text>
 <text x="-2.71" y="-3.01" size="1.016" layer="27">&gt;VALUE</text>
 <polygon width="0.1" layer="39">
@@ -6618,39 +6628,40 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <vertex x="3.5" y="-1.635"/>
 <vertex x="-3.5" y="-1.635"/>
 </polygon>
-<wire x1="-0.8128" y1="-1.3462" x2="-0.8128" y2="1.397" width="0.254" layer="21"/>
-<wire x1="-0.8128" y1="1.397" x2="-1.0414" y2="1.397" width="0.254" layer="21"/>
-<wire x1="-1.0414" y1="1.397" x2="-1.0414" y2="-1.3716" width="0.254" layer="21"/>
-<wire x1="-1.0414" y1="-1.3716" x2="-0.9906" y2="-1.3716" width="0.254" layer="21"/>
 </package>
-<package name="SOT-523">
-<wire x1="-0.65" y1="1.46" x2="-0.65" y2="-1.46" width="0.127" layer="51"/>
-<wire x1="-0.65" y1="-1.46" x2="0.65" y2="-1.46" width="0.127" layer="51"/>
-<wire x1="0.65" y1="-1.46" x2="0.65" y2="1.46" width="0.127" layer="51"/>
-<wire x1="0.65" y1="1.46" x2="-0.65" y2="1.46" width="0.127" layer="51"/>
-<wire x1="-0.035" y1="-1.46" x2="0.65" y2="-1.46" width="0.127" layer="21"/>
-<wire x1="0.65" y1="0.615" x2="0.65" y2="1.46" width="0.127" layer="21"/>
-<wire x1="0.65" y1="-1.46" x2="0.65" y2="-0.615" width="0.127" layer="21"/>
-<wire x1="0.65" y1="1.46" x2="-0.035" y2="1.46" width="0.127" layer="21"/>
-<wire x1="-1.925" y1="1.71" x2="-1.925" y2="-1.71" width="0.05" layer="39"/>
-<wire x1="-1.925" y1="-1.71" x2="1.925" y2="-1.71" width="0.05" layer="39"/>
-<wire x1="1.925" y1="-1.71" x2="1.925" y2="1.71" width="0.05" layer="39"/>
-<wire x1="1.925" y1="1.71" x2="-1.925" y2="1.71" width="0.05" layer="39"/>
+<package name="SC75" urn="urn:adsk.eagle:footprint:49873925/2">
 <circle x="-2.246" y="0.95" radius="0.1" width="0.2" layer="21"/>
 <circle x="-2.246" y="0.95" radius="0.1" width="0.2" layer="51"/>
 <text x="-3.068" y="2.627" size="1.27" layer="25">&gt;NAME</text>
 <text x="-2.941" y="-2.627" size="1.27" layer="27" align="top-left">&gt;VALUE</text>
-<smd name="1" x="-1.015" y="0.95" dx="1.32" dy="0.59" layer="1" roundness="25"/>
-<smd name="2" x="-1.015" y="-0.95" dx="1.32" dy="0.59" layer="1" roundness="25"/>
-<smd name="3" x="1.015" y="0" dx="1.32" dy="0.59" layer="1" roundness="25"/>
+<wire x1="-0.4" y1="0.8" x2="0.4" y2="0.8" width="0.127" layer="51"/>
+<wire x1="0.4" y1="0.8" x2="0.4" y2="-0.8" width="0.127" layer="51"/>
+<wire x1="0.4" y1="-0.8" x2="-0.4" y2="-0.8" width="0.127" layer="51"/>
+<wire x1="-0.4" y1="-0.8" x2="-0.4" y2="0.8" width="0.127" layer="51"/>
+<wire x1="0.095" y1="0.8" x2="0.4" y2="0.8" width="0.127" layer="21"/>
+<wire x1="0.4" y1="0.8" x2="0.4" y2="0.47" width="0.127" layer="21"/>
+<wire x1="0.4" y1="-0.8" x2="0.4" y2="-0.47" width="0.127" layer="21"/>
+<wire x1="0.4" y1="-0.8" x2="0.095" y2="-0.8" width="0.127" layer="21"/>
+<wire x1="-1.465" y1="1.05" x2="-1.465" y2="-1.05" width="0.05" layer="39"/>
+<wire x1="-1.465" y1="-1.05" x2="1.465" y2="-1.05" width="0.05" layer="39"/>
+<wire x1="1.465" y1="-1.05" x2="1.465" y2="1.05" width="0.05" layer="39"/>
+<wire x1="1.465" y1="1.05" x2="-1.465" y2="1.05" width="0.05" layer="39"/>
+<smd name="1" x="-0.72" y="0.5" dx="0.99" dy="0.3" layer="1" roundness="25"/>
+<smd name="2" x="-0.72" y="-0.5" dx="0.99" dy="0.3" layer="1" roundness="25"/>
+<smd name="3" x="0.72" y="0" dx="0.99" dy="0.3" layer="1" roundness="25"/>
 </package>
 </packages>
 <packages3d>
-<package3d name="WE-TVSP_DO-214AC_BIDIRECTIONAL" urn="urn:adsk.eagle:package:12146531/2" locally_modified="yes" type="model">
+<package3d name="WE-TVSP_DO-214AC_BIDIRECTIONAL" urn="urn:adsk.eagle:package:49873939/1" type="model">
 <description>&lt;b&gt;WE-TVSP Power TVS Diode
 &lt;br&gt;&lt;br&gt;&lt;/b&gt;DO-214AC  Bidirectional</description>
 <packageinstances>
 <packageinstance name="SMA/DO-214AC"/>
+</packageinstances>
+</package3d>
+<package3d name="SC75" urn="urn:adsk.eagle:package:49873936/3" type="model">
+<packageinstances>
+<packageinstance name="SC75"/>
 </packageinstances>
 </package3d>
 </packages3d>
@@ -7053,7 +7064,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="IRM_10_12" x="91.4676" y="30.6386" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="68.3676" y="17.9586" size="1.27" layer="27" align="top-left"/>
 </element>
-<element name="D16" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:12146531/2" value="SMAJ15A" x="121.7876" y="19.8186" smashed="yes">
+<element name="D16" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:49873939/1" value="SMAJ15A" x="121.7876" y="19.8186" smashed="yes">
 <attribute name="DATASHEET" value="https://www.littelfuse.com/assetdocs/littelfuse_tvs_diode_smbj_datasheet.pdf?assetguid=09a6ae9a-73cb-4ac4-acac-e6dab92ab953" x="121.7876" y="19.8186" size="1.778" layer="27" display="off"/>
 <attribute name="DESCRIPTION" value="16.4A 24.4V 16.7V 15V SMA(DO-214AC) ESD and Surge Protection (TVS/ESD) ROHS " x="121.7876" y="19.8186" size="1.778" layer="27" display="off"/>
 <attribute name="HQ_PART" value="PD0003270" x="121.7876" y="19.8186" size="1.778" layer="27" display="off"/>
@@ -8661,7 +8672,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="4.99K 1%" x="29.7822" y="36.5136" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="30.4172" y="38.4186" size="1.016" layer="27" rot="R180"/>
 </element>
-<element name="D10" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:12146531/2" value="1N4007" x="26.8962" y="44.804" smashed="yes">
+<element name="D10" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:49873939/1" value="1N4007" x="26.8962" y="44.804" smashed="yes">
 <attribute name="DATASHEET" value="https://www.sycelectronica.com.ar/semiconductores/1N4007-SMD.pdf?srsltid=AfmBOorCHiPwFTsNfQbBfqAoh5UjZ4nVNdjXugiEGIgvQSRi56Ew2-9Q" x="26.8962" y="44.804" size="1.778" layer="27" display="off"/>
 <attribute name="DESCRIPTION" value="1A Independent Type 1kV 1.1V@1A SMA(DO-214AC) Diodes - General Purpose ROHS " x="26.8962" y="44.804" size="1.778" layer="27" display="off"/>
 <attribute name="HQ_PART" value="UN0002522" x="26.8962" y="44.804" size="1.778" layer="27" display="off"/>
@@ -8854,7 +8865,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="1nF 50V" x="28.8822" y="39.1136" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="26.9772" y="39.7486" size="1.016" layer="27" rot="R270"/>
 </element>
-<element name="D9" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:12146531/2" value="1N4007" x="32.6822" y="27.3136" smashed="yes" rot="R270">
+<element name="D9" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:49873939/1" value="1N4007" x="32.6822" y="27.3136" smashed="yes" rot="R270">
 <attribute name="DATASHEET" value="https://www.sycelectronica.com.ar/semiconductores/1N4007-SMD.pdf?srsltid=AfmBOorCHiPwFTsNfQbBfqAoh5UjZ4nVNdjXugiEGIgvQSRi56Ew2-9Q" x="32.6822" y="27.3136" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="DESCRIPTION" value="1A Independent Type 1kV 1.1V@1A SMA(DO-214AC) Diodes - General Purpose ROHS " x="32.6822" y="27.3136" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="HQ_PART" value="UN0002522" x="32.6822" y="27.3136" size="1.778" layer="27" rot="R270" display="off"/>
@@ -8875,7 +8886,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="220nF 50V" x="32.5822" y="38.0136" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="30.0422" y="38.6486" size="1.016" layer="27" rot="R270"/>
 </element>
-<element name="D11" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:12146531/2" value="US1J-E3/61T " x="18.8822" y="33.3136" smashed="yes" rot="R180">
+<element name="D11" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:49873939/1" value="US1J-E3/61T " x="18.8822" y="33.3136" smashed="yes" rot="R180">
 <attribute name="DATASHEET" value="https://www.vishay.com/docs/88768/us1_test_dcicons.pdf" x="18.8822" y="33.3136" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="DESCRIPTION" value="1.7V@1A 1A 600V SMA(DO-214AC) Fast Recovery / High Efficiency Diodes ROHS " x="18.8822" y="33.3136" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="HQ_PART" value="DS0007395" x="18.8822" y="33.3136" size="1.778" layer="27" rot="R180" display="off"/>
@@ -8962,7 +8973,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="4.99K 1%" x="52.1768" y="36.5292" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="52.8118" y="38.4342" size="1.016" layer="27" rot="R180"/>
 </element>
-<element name="D12" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:12146531/2" value="1N4007" x="48.2766" y="44.9148" smashed="yes">
+<element name="D12" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:49873939/1" value="1N4007" x="48.2766" y="44.9148" smashed="yes">
 <attribute name="DATASHEET" value="https://www.sycelectronica.com.ar/semiconductores/1N4007-SMD.pdf?srsltid=AfmBOorCHiPwFTsNfQbBfqAoh5UjZ4nVNdjXugiEGIgvQSRi56Ew2-9Q" x="48.2766" y="44.9148" size="1.778" layer="27" display="off"/>
 <attribute name="DESCRIPTION" value="1A Independent Type 1kV 1.1V@1A SMA(DO-214AC) Diodes - General Purpose ROHS " x="48.2766" y="44.9148" size="1.778" layer="27" display="off"/>
 <attribute name="HQ_PART" value="UN0002522" x="48.2766" y="44.9148" size="1.778" layer="27" display="off"/>
@@ -9019,7 +9030,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="1nF 50V" x="51.3768" y="39.3292" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="49.4718" y="39.9642" size="1.016" layer="27" rot="R270"/>
 </element>
-<element name="D13" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:12146531/2" value="1N4007" x="55.0768" y="26.9292" smashed="yes" rot="R270">
+<element name="D13" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:49873939/1" value="1N4007" x="55.0768" y="26.9292" smashed="yes" rot="R270">
 <attribute name="DATASHEET" value="https://www.sycelectronica.com.ar/semiconductores/1N4007-SMD.pdf?srsltid=AfmBOorCHiPwFTsNfQbBfqAoh5UjZ4nVNdjXugiEGIgvQSRi56Ew2-9Q" x="55.0768" y="26.9292" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="DESCRIPTION" value="1A Independent Type 1kV 1.1V@1A SMA(DO-214AC) Diodes - General Purpose ROHS " x="55.0768" y="26.9292" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="HQ_PART" value="UN0002522" x="55.0768" y="26.9292" size="1.778" layer="27" rot="R270" display="off"/>
@@ -9040,7 +9051,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="220nF 50V" x="55.0482" y="37.4434" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="52.5082" y="38.0784" size="1.016" layer="27" rot="R270"/>
 </element>
-<element name="D14" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:12146531/2" value="US1J-E3/61T " x="40.5768" y="33.7292" smashed="yes" rot="R180">
+<element name="D14" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:49873939/1" value="US1J-E3/61T " x="40.5768" y="33.7292" smashed="yes" rot="R180">
 <attribute name="DATASHEET" value="https://www.vishay.com/docs/88768/us1_test_dcicons.pdf" x="40.5768" y="33.7292" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="DESCRIPTION" value="1.7V@1A 1A 600V SMA(DO-214AC) Fast Recovery / High Efficiency Diodes ROHS " x="40.5768" y="33.7292" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="HQ_PART" value="DS0007395" x="40.5768" y="33.7292" size="1.778" layer="27" rot="R180" display="off"/>
@@ -10064,7 +10075,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" x="16.0536" y="62.9202" size="1.27" layer="27" ratio="6" rot="SR270"/>
 <attribute name="VALUE" value="G2RL-1A-E DC12 " x="24.9182" y="71.4038" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="D1" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:12146531/2" value="MBRA340T3G" x="33.9822" y="57.4714" smashed="yes" rot="R90">
+<element name="D1" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:49873939/1" value="MBRA340T3G" x="33.9822" y="57.4714" smashed="yes" rot="R90">
 <attribute name="DATASHEET" value="https://www.onsemi.com/download/data-sheet/pdf/mbra340t3-d.pdf" x="33.9822" y="57.4714" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="DESCRIPTION" value="40V 450mV@3A 3A SMA(DO-214AC) Schottky Diodes ROHS " x="33.9822" y="57.4714" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="HQ_PART" value="DS0002158" x="33.9822" y="57.4714" size="1.778" layer="27" rot="R90" display="off"/>
@@ -10086,7 +10097,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" x="39.6802" y="63.2202" size="1.27" layer="27" ratio="6" rot="SR270"/>
 <attribute name="VALUE" value="G2RL-1A-E DC12 " x="48.5448" y="71.7038" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="D2" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:12146531/2" value="MBRA340T3G" x="57.6922" y="57.523" smashed="yes" rot="R90">
+<element name="D2" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:49873939/1" value="MBRA340T3G" x="57.6922" y="57.523" smashed="yes" rot="R90">
 <attribute name="DATASHEET" value="https://www.onsemi.com/download/data-sheet/pdf/mbra340t3-d.pdf" x="57.6922" y="57.523" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="DESCRIPTION" value="40V 450mV@3A 3A SMA(DO-214AC) Schottky Diodes ROHS " x="57.6922" y="57.523" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="HQ_PART" value="DS0002158" x="57.6922" y="57.523" size="1.778" layer="27" rot="R90" display="off"/>
@@ -10108,7 +10119,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" x="63.3068" y="63.3202" size="1.27" layer="27" ratio="6" rot="SR270"/>
 <attribute name="VALUE" value="G2RL-1A-E DC12 " x="72.1714" y="71.8038" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="D3" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:12146531/2" value="MBRA340T3G" x="81.2922" y="57.0368" smashed="yes" rot="R90">
+<element name="D3" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:49873939/1" value="MBRA340T3G" x="81.2922" y="57.0368" smashed="yes" rot="R90">
 <attribute name="DATASHEET" value="https://www.onsemi.com/download/data-sheet/pdf/mbra340t3-d.pdf" x="81.2922" y="57.0368" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="DESCRIPTION" value="40V 450mV@3A 3A SMA(DO-214AC) Schottky Diodes ROHS " x="81.2922" y="57.0368" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="HQ_PART" value="DS0002158" x="81.2922" y="57.0368" size="1.778" layer="27" rot="R90" display="off"/>
@@ -10130,7 +10141,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" x="87.3334" y="63.1202" size="1.27" layer="27" ratio="6" rot="SR270"/>
 <attribute name="VALUE" value="G2RL-1A-E DC12 " x="96.198" y="71.6038" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="D4" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:12146531/2" value="MBRA340T3G" x="105.2822" y="56.8706" smashed="yes" rot="R90">
+<element name="D4" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:49873939/1" value="MBRA340T3G" x="105.2822" y="56.8706" smashed="yes" rot="R90">
 <attribute name="DATASHEET" value="https://www.onsemi.com/download/data-sheet/pdf/mbra340t3-d.pdf" x="105.2822" y="56.8706" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="DESCRIPTION" value="40V 450mV@3A 3A SMA(DO-214AC) Schottky Diodes ROHS " x="105.2822" y="56.8706" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="HQ_PART" value="DS0002158" x="105.2822" y="56.8706" size="1.778" layer="27" rot="R90" display="off"/>
@@ -10152,7 +10163,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" x="111.1536" y="62.6678" size="1.27" layer="27" ratio="6" rot="SR270"/>
 <attribute name="VALUE" value="G2RL-1A-E DC12 " x="120.0182" y="71.1514" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="D5" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:12146531/2" value="MBRA340T3G" x="129.0622" y="57.0944" smashed="yes" rot="R90">
+<element name="D5" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:49873939/1" value="MBRA340T3G" x="129.0622" y="57.0944" smashed="yes" rot="R90">
 <attribute name="DATASHEET" value="https://www.onsemi.com/download/data-sheet/pdf/mbra340t3-d.pdf" x="129.0622" y="57.0944" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="DESCRIPTION" value="40V 450mV@3A 3A SMA(DO-214AC) Schottky Diodes ROHS " x="129.0622" y="57.0944" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="HQ_PART" value="DS0002158" x="129.0622" y="57.0944" size="1.778" layer="27" rot="R90" display="off"/>
@@ -10174,7 +10185,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" x="135.5802" y="63.0678" size="1.27" layer="27" ratio="6" rot="SR270"/>
 <attribute name="VALUE" value="G2RL-1A-E DC12 " x="144.4448" y="71.5514" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="D6" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:12146531/2" value="MBRA340T3G" x="153.0022" y="56.5882" smashed="yes" rot="R90">
+<element name="D6" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:49873939/1" value="MBRA340T3G" x="153.0022" y="56.5882" smashed="yes" rot="R90">
 <attribute name="DATASHEET" value="https://www.onsemi.com/download/data-sheet/pdf/mbra340t3-d.pdf" x="153.0022" y="56.5882" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="DESCRIPTION" value="40V 450mV@3A 3A SMA(DO-214AC) Schottky Diodes ROHS " x="153.0022" y="56.5882" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="HQ_PART" value="DS0002158" x="153.0022" y="56.5882" size="1.778" layer="27" rot="R90" display="off"/>
@@ -10196,7 +10207,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" x="160.2068" y="62.8678" size="1.27" layer="27" ratio="6" rot="SR270"/>
 <attribute name="VALUE" value="G2RL-1A-E DC12 " x="169.0714" y="71.3514" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="D7" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:12146531/2" value="MBRA340T3G" x="177.9308" y="58.0814" smashed="yes" rot="R90">
+<element name="D7" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:49873939/1" value="MBRA340T3G" x="177.9308" y="58.0814" smashed="yes" rot="R90">
 <attribute name="DATASHEET" value="https://www.onsemi.com/download/data-sheet/pdf/mbra340t3-d.pdf" x="177.9308" y="58.0814" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="DESCRIPTION" value="40V 450mV@3A 3A SMA(DO-214AC) Schottky Diodes ROHS " x="177.9308" y="58.0814" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="HQ_PART" value="DS0002158" x="177.9308" y="58.0814" size="1.778" layer="27" rot="R90" display="off"/>
@@ -10218,7 +10229,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" x="184.9334" y="62.5678" size="1.27" layer="27" ratio="6" rot="SR270"/>
 <attribute name="VALUE" value="G2RL-1A-E DC12 " x="193.798" y="71.0514" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="D8" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:12146531/2" value="MBRA340T3G" x="202.8308" y="57.7352" smashed="yes" rot="R90">
+<element name="D8" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:49873939/1" value="MBRA340T3G" x="202.8308" y="57.7352" smashed="yes" rot="R90">
 <attribute name="DATASHEET" value="https://www.onsemi.com/download/data-sheet/pdf/mbra340t3-d.pdf" x="202.8308" y="57.7352" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="DESCRIPTION" value="40V 450mV@3A 3A SMA(DO-214AC) Schottky Diodes ROHS " x="202.8308" y="57.7352" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="HQ_PART" value="DS0002158" x="202.8308" y="57.7352" size="1.778" layer="27" rot="R90" display="off"/>
@@ -10253,7 +10264,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="100nF 25V" x="153.03019375" y="10.34684375" size="1.778" layer="27" rot="R225" display="off"/>
 <attribute name="VALUE" x="152.132165625" y="12.14289375" size="1.27" layer="27" rot="R225"/>
 </element>
-<element name="D15" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:12146531/2" value="SS12" x="119.01" y="9.67" smashed="yes" rot="R180">
+<element name="D15" library="ds_diode" package="SMA/DO-214AC" package3d_urn="urn:adsk.eagle:package:49873939/1" value="SS12" x="119.01" y="9.67" smashed="yes" rot="R180">
 <attribute name="DATASHEET" value="https://www.vishay.com/docs/88746/ss12.pdf" x="119.01" y="9.67" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="DESCRIPTION" value="20V Independent Type 450mV@1A 1A SMA(DO-214AC) Schottky Diodes ROHS " x="119.01" y="9.67" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="HQ_PART" value="DS0145075" x="119.01" y="9.67" size="1.778" layer="27" rot="R180" display="off"/>
@@ -10264,7 +10275,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="ROHS" value="YES" x="119.01" y="9.67" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" value="SS12" x="121.804" y="12.718" size="1.2" layer="27" ratio="10" rot="R180"/>
 </element>
-<element name="DSP" library="ds_con" package="FPC20" package3d_urn="urn:adsk.eagle:package:47082459/4" value="AFC11-S20ICC-00 " x="136.69" y="3.8" smashed="yes" rot="R180">
+<element name="DSP" library="ds_con" package="FPC20" package3d_urn="urn:adsk.eagle:package:47082459/5" value="AFC11-S20ICC-00 " x="136.69" y="3.8" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="Drawer Type 20P Single-sided contact points/Vertical Standing paste 0.5mm SMD,P=0.5mm FFC, FPC (Flat Flexible) Connector Assemblies ROHS " x="136.69" y="3.8" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="HQ_PART" value="CO0889517" x="136.69" y="3.8" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LCSC_PART" value="C11073" x="136.69" y="3.8" size="1.778" layer="27" rot="R180" display="off"/>
@@ -10708,7 +10719,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="ROHS" value="YES" x="166.760621875" y="4.73535625" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="168.665621875" y="4.10035625" size="1.016" layer="27" rot="R90"/>
 </element>
-<element name="ETH1" library="ds_con" package="J1B1211CCD" package3d_urn="urn:adsk.eagle:package:48944391/2" value="J1B1211CCD" x="191.48" y="4.92" smashed="yes">
+<element name="ETH1" library="ds_con" package="J1B1211CCD" package3d_urn="urn:adsk.eagle:package:48944391/3" value="J1B1211CCD" x="191.48" y="4.92" smashed="yes">
 <attribute name="DATASHEET" value="file:///C:/Users/sdvid/Downloads/j1b1211ccd.pdf" x="191.48" y="4.92" size="1.778" layer="27" display="off"/>
 <attribute name="DESCRIPTION" value="RJ45Receptacle 1 Shielded Bend insert cat5 Gold Phosphor Bronze WithLED -40℃~+85℃ Plugin Ethernet Connectors / Modular Connectors (RJ45 RJ11) ROHS " x="191.48" y="4.92" size="1.778" layer="27" display="off"/>
 <attribute name="HQ_PART" value="UN0002907" x="191.48" y="4.92" size="1.778" layer="27" display="off"/>
@@ -10862,7 +10873,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="NAME" x="129.085" y="20.885" size="0.8128" layer="25"/>
 <attribute name="VALUE" x="127.755" y="19.315" size="1.27" layer="27"/>
 </element>
-<element name="FAN" library="ds_con" package="B2B-XH-A" value="" x="130.32" y="38.41" smashed="yes">
+<element name="FAN" library="ds_con" package="B2B-XH-A" package3d_urn="urn:adsk.eagle:package:49873870/2" value="" x="130.32" y="38.41" smashed="yes">
 <attribute name="DESCRIPTION" value="Wire to Board Connectors 2Pin Male 2.50mm " x="130.32" y="38.41" size="1.778" layer="27" display="off"/>
 <attribute name="HQ_PART" value="CO65818632" x="130.32" y="38.41" size="1.778" layer="27" display="off"/>
 <attribute name="MANUFACTURER" value="HXH" x="130.32" y="38.41" size="1.778" layer="27" display="off"/>
@@ -10891,9 +10902,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="ROHS" value="YES" x="140.84" y="38.98" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="147.064390625" y="35.899609375" size="0.66234375" layer="27" rot="R180"/>
 </element>
-<element name="D17" library="ds_diode" package="SOT-523" value="RCLAMP0582BQTCT" x="144.51" y="12.39" smashed="yes">
+<element name="D17" library="ds_diode" package="SC75" package3d_urn="urn:adsk.eagle:package:49873936/3" value="RCLAMP0582BQTCT" x="144.51" y="12.39" smashed="yes">
 <attribute name="DATASHEET" value="https://semtech.my.salesforce.com/sfc/p/#E0000000JelG/a/440000001Lzx/0M5l0VFdFhBLS7TSRfd1I2V77GSkvtksC9b.1bnFtjQ" x="144.51" y="12.39" size="1.778" layer="27" display="off"/>
-<attribute name="DESCRIPTION" value="-40℃~+105℃@(Tj) 1.2pF 100nA 15A@8/20us 2 20V 300W 5V 6V ESD IEC 61000-4-2 SOT-523 ESD and Surge Protection (TVS/ESD) ROHS " x="144.51" y="12.39" size="1.778" layer="27" display="off"/>
 <attribute name="HQ_PART" value="PD0007296" x="144.51" y="12.39" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C841193" x="144.51" y="12.39" size="1.778" layer="27" display="off"/>
 <attribute name="MANUFACTURER" value="SEMTECH" x="144.51" y="12.39" size="1.778" layer="27" display="off"/>
@@ -10902,9 +10912,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="ROHS" value="YES" x="144.51" y="12.39" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="141.569" y="9.763" size="1.27" layer="27" align="top-left"/>
 </element>
-<element name="D18" library="ds_diode" package="SOT-523" value="RCLAMP0582BQTCT" x="154.28786875" y="33.49899375" smashed="yes" rot="R45">
+<element name="D18" library="ds_diode" package="SC75" package3d_urn="urn:adsk.eagle:package:49873936/3" value="RCLAMP0582BQTCT" x="154.28786875" y="33.49899375" smashed="yes" rot="R45">
 <attribute name="DATASHEET" value="https://semtech.my.salesforce.com/sfc/p/#E0000000JelG/a/440000001Lzx/0M5l0VFdFhBLS7TSRfd1I2V77GSkvtksC9b.1bnFtjQ" x="154.28786875" y="33.49899375" size="1.778" layer="27" rot="R45" display="off"/>
-<attribute name="DESCRIPTION" value="-40℃~+105℃@(Tj) 1.2pF 100nA 15A@8/20us 2 20V 300W 5V 6V ESD IEC 61000-4-2 SOT-523 ESD and Surge Protection (TVS/ESD) ROHS " x="154.28786875" y="33.49899375" size="1.778" layer="27" rot="R45" display="off"/>
 <attribute name="HQ_PART" value="PD0007296" x="154.28786875" y="33.49899375" size="1.778" layer="27" rot="R45" display="off"/>
 <attribute name="LCSC_PART" value="C841193" x="154.28786875" y="33.49899375" size="1.778" layer="27" rot="R45" display="off"/>
 <attribute name="MANUFACTURER" value="SEMTECH" x="154.28786875" y="33.49899375" size="1.778" layer="27" rot="R45" display="off"/>
@@ -12557,15 +12566,17 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="195.923878125" y1="18.17550625" x2="195.923878125" y2="19.093878125" width="0.2" layer="1"/>
 <wire x1="195.923878125" y1="19.093878125" x2="195.93" y2="19.1" width="0.2" layer="1"/>
 <via x="195.93" y="19.1" extent="1-16" drill="0.2"/>
-<wire x1="145.525" y1="12.39" x2="144.46" y2="12.39" width="0.1524" layer="1"/>
-<via x="144.46" y="12.39" extent="1-16" drill="0.2"/>
-<wire x1="145.525" y1="12.39" x2="146.459775" y2="12.39" width="0.1524" layer="1"/>
-<wire x1="146.459775" y1="12.39" x2="146.56" y2="12.289775" width="0.1524" layer="1"/>
-<via x="146.56" y="12.289775" extent="1-16" drill="0.2"/>
-<wire x1="145.525" y1="12.39" x2="145.525" y2="11.705" width="0.1524" layer="1"/>
-<wire x1="145.525" y1="11.705" x2="145.53" y2="11.7" width="0.1524" layer="1"/>
-<via x="145.53" y="11.7" extent="1-16" drill="0.2"/>
-<wire x1="145.525" y1="12.39" x2="145.53" y2="12.395" width="0.1524" layer="1"/>
+<wire x1="145.2" y1="12.97" x2="145.210365625" y2="12.959634375" width="0.1524" layer="1"/>
+<wire x1="145.210365625" y1="12.959634375" x2="145.210365625" y2="12.39" width="0.1524" layer="1"/>
+<via x="145.2" y="12.97" extent="1-16" drill="0.2"/>
+<wire x1="145.210365625" y1="12.39" x2="145.23" y2="12.39" width="0.1524" layer="1"/>
+<wire x1="145.23" y1="12.39" x2="146.140225" y2="12.39" width="0.1524" layer="1"/>
+<wire x1="146.140225" y1="12.39" x2="146.16" y2="12.409775" width="0.1524" layer="1"/>
+<via x="146.16" y="12.409775" extent="1-16" drill="0.2"/>
+<wire x1="145.210365625" y1="12.39" x2="145.2" y2="12.389715625" width="0.1524" layer="1"/>
+<wire x1="145.2" y1="11.74" x2="145.2" y2="12.389715625" width="0.1524" layer="1"/>
+<via x="145.2" y="11.74" extent="1-16" drill="0.2"/>
+<wire x1="145.23" y1="12.39" x2="145.53" y2="12.395" width="0.1524" layer="1"/>
 <wire x1="85.0312" y1="11.9922" x2="85.0312" y2="11.2212" width="0.1524" layer="1"/>
 <wire x1="85.0312" y1="11.2212" x2="85" y2="11.19" width="0.1524" layer="1"/>
 <via x="85" y="11.19" extent="1-16" drill="0.2"/>
@@ -12693,13 +12704,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="95.8312" y1="2.9202" x2="97.0398" y2="2.9202" width="0.2" layer="1"/>
 <wire x1="97.0398" y1="2.9202" x2="97.1" y2="2.86" width="0.2" layer="1"/>
 <via x="97.1" y="2.86" extent="1-16" drill="0.2"/>
-<wire x1="155.00558125" y1="34.21670625" x2="154.92329375" y2="34.21670625" width="0.2" layer="1"/>
-<wire x1="154.92329375" y1="34.21670625" x2="154.47" y2="34.67" width="0.2" layer="1"/>
+<wire x1="154.92329375" y1="34.21670625" x2="154.796984375" y2="34.008109375" width="0.2" layer="1"/>
 <via x="154.47" y="34.67" extent="1-16" drill="0.2"/>
-<wire x1="155.00558125" y1="34.21670625" x2="155.758875" y2="34.97" width="0.2" layer="1"/>
 <wire x1="155.758875" y1="34.97" x2="155.76" y2="34.97" width="0.2" layer="1"/>
 <via x="155.76" y="34.97" extent="1-16" drill="0.2"/>
-<wire x1="155.00558125" y1="34.21670625" x2="155.4822875" y2="33.74" width="0.2" layer="1"/>
 <wire x1="155.4822875" y1="33.74" x2="155.49" y2="33.74" width="0.2" layer="1"/>
 <via x="155.49" y="33.74" extent="1-16" drill="0.2"/>
 <via x="147.451425" y="30.952646875" extent="1-16" drill="0.2"/>
@@ -13228,6 +13236,12 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <via x="196.3" y="19.89" extent="1-16" drill="0.2"/>
 <via x="196.29" y="22.07" extent="1-16" drill="0.2"/>
 <via x="196.27" y="24.09" extent="1-16" drill="0.2"/>
+<wire x1="154.47" y1="34.67" x2="154.92329375" y2="34.21670625" width="0.2032" layer="1"/>
+<wire x1="154.92329375" y1="34.21670625" x2="155.025" y2="34.115" width="0.2032" layer="1"/>
+<wire x1="155.025" y1="34.115" x2="155.4" y2="33.74" width="0.2032" layer="1"/>
+<wire x1="155.4" y1="33.74" x2="155.4822875" y2="33.74" width="0.2032" layer="1"/>
+<wire x1="155.76" y1="34.97" x2="155.025" y2="34.235" width="0.2032" layer="1"/>
+<wire x1="155.025" y1="34.235" x2="155.025" y2="34.115" width="0.2032" layer="1"/>
 </signal>
 <signal name="+3V3">
 <contactref element="IC4" pad="5"/>
@@ -17068,8 +17082,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="155.45975" y1="15.97975" x2="155.45975" y2="16.5360625" width="0.14884375" layer="15"/>
 <wire x1="155.45975" y1="16.5360625" x2="154.187559375" y2="17.808253125" width="0.14884375" layer="15"/>
 <wire x1="154.187559375" y1="17.808253125" x2="154.187559375" y2="17.818253125" width="0.14884375" layer="15"/>
-<wire x1="143.495" y1="11.44" x2="141.53" y2="11.44" width="0.254" layer="1"/>
-<wire x1="141.53" y1="11.44" x2="141.32" y2="11.23" width="0.254" layer="1"/>
+<wire x1="141.53" y1="11.44" x2="141.345" y2="11.255" width="0.254" layer="1"/>
+<wire x1="141.345" y1="11.255" x2="141.32" y2="11.23" width="0.254" layer="1"/>
 <wire x1="139.64" y1="11.19" x2="139.64" y2="11.07" width="0.1524" layer="15"/>
 <wire x1="139.64" y1="11.07" x2="139.98" y2="10.73" width="0.1524" layer="15"/>
 <via x="139.98" y="10.73" extent="1-16" drill="0.2"/>
@@ -17079,6 +17093,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="139.89" y1="8.45" x2="140.17" y2="8.73" width="0.2" layer="1"/>
 <wire x1="140.17" y1="8.73" x2="140.17" y2="10.54" width="0.2" layer="1"/>
 <wire x1="140.17" y1="10.54" x2="139.98" y2="10.73" width="0.2" layer="1"/>
+<wire x1="143.79" y1="11.89" x2="141.98" y2="11.89" width="0.2032" layer="1"/>
+<wire x1="141.98" y1="11.89" x2="141.345" y2="11.255" width="0.2032" layer="1"/>
 </signal>
 <signal name="I2C0_SCL">
 <contactref element="SCL0" pad="TP"/>
@@ -17100,7 +17116,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="139.26" y1="11.41" x2="138.24" y2="10.39" width="0.14884375" layer="15"/>
 <wire x1="138.24" y1="10.39" x2="138.24" y2="6.31" width="0.14884375" layer="15"/>
 <wire x1="152.8643375" y1="15.54770625" x2="151.09663125" y2="13.78" width="0.14884375" layer="15"/>
-<wire x1="143.495" y1="13.34" x2="141.47" y2="13.34" width="0.254" layer="1"/>
 <wire x1="141.47" y1="13.34" x2="141.325" y2="13.485" width="0.254" layer="1"/>
 <wire x1="141.325" y1="13.485" x2="141.31" y2="13.5" width="0.254" layer="1"/>
 <wire x1="139.26" y1="11.41" x2="139.07871875" y2="11.59128125" width="0.1524" layer="15"/>
@@ -17110,6 +17125,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="140.47371875" y1="13.485" x2="141.325" y2="13.485" width="0.1524" layer="1"/>
 <wire x1="137.58" y1="8.46" x2="137.58" y2="6.97" width="0.2" layer="1"/>
 <wire x1="137.58" y1="6.97" x2="138.24" y2="6.31" width="0.2" layer="1"/>
+<wire x1="143.79" y1="12.89" x2="141.92" y2="12.89" width="0.2032" layer="1"/>
+<wire x1="141.92" y1="12.89" x2="141.47" y2="13.34" width="0.2032" layer="1"/>
 </signal>
 <signal name="I2C1_SDA">
 <contactref element="IC19" pad="5"/>
@@ -17121,8 +17138,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <contactref element="D18" pad="1"/>
 <contactref element="R168" pad="2"/>
 <via x="154.85" y="28.46" extent="1-16" drill="0.2"/>
-<wire x1="152.898403125" y1="33.45303125" x2="152.3" y2="32.854628125" width="0.2032" layer="1"/>
-<wire x1="152.3" y1="32.854628125" x2="152.3" y2="32" width="0.2032" layer="1"/>
 <wire x1="154.85" y1="28.46" x2="152.3" y2="31.01" width="0.2032" layer="15"/>
 <wire x1="152.3" y1="31.01" x2="152.3" y2="32" width="0.2032" layer="15"/>
 <contactref element="IC15" pad="4"/>
@@ -17147,6 +17162,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="154.56163125" y1="20.69" x2="154.54163125" y2="20.71" width="0.14884375" layer="15"/>
 <wire x1="155.38" y1="21.65" x2="155.38" y2="21.05" width="0.15" layer="1"/>
 <wire x1="155.38" y1="21.05" x2="155.02" y2="20.69" width="0.15" layer="1"/>
+<wire x1="153.425196875" y1="33.343428125" x2="152.3" y2="32.21823125" width="0.2032" layer="1"/>
+<wire x1="152.3" y1="32.21823125" x2="152.3" y2="32" width="0.2032" layer="1"/>
 </signal>
 <signal name="I2C1_SCL">
 <contactref element="IC19" pad="6"/>
@@ -17158,8 +17175,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <contactref element="D18" pad="2"/>
 <contactref element="R167" pad="2"/>
 <via x="156.85" y="30.08" extent="1-16" drill="0.2"/>
-<wire x1="154.24190625" y1="32.109528125" x2="153.632378125" y2="31.5" width="0.2032" layer="1"/>
-<wire x1="153.632378125" y1="31.5" x2="152.9" y2="31.5" width="0.2032" layer="1"/>
 <wire x1="152.9" y1="31.5" x2="152.9" y2="31.1" width="0.2032" layer="15"/>
 <wire x1="152.9" y1="31.1" x2="154.2" y2="29.8" width="0.2032" layer="15"/>
 <wire x1="154.2" y1="29.8" x2="155.26" y2="29.8" width="0.2032" layer="15"/>
@@ -17188,6 +17203,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="154.22" y1="20.16" x2="154.23" y2="20.15" width="0.14884375" layer="15"/>
 <wire x1="153.26" y1="21.64" x2="153.26" y2="20.82" width="0.15" layer="1"/>
 <wire x1="153.26" y1="20.82" x2="153.92" y2="20.16" width="0.15" layer="1"/>
+<wire x1="154.132303125" y1="32.636321875" x2="152.99598125" y2="31.5" width="0.2032" layer="1"/>
+<wire x1="152.99598125" y1="31.5" x2="152.9" y2="31.5" width="0.2032" layer="1"/>
 </signal>
 <signal name="LCD_CS">
 <contactref element="R149" pad="C2"/>
@@ -19798,6 +19815,11 @@ which will not be processed correctly with this version.
 Since Version 8.2, EAGLE supports online libraries. The ids
 of those online libraries will not be understood (or retained)
 with this version.
+</note>
+<note version="8.3" severity="warning">
+Since Version 8.3, EAGLE supports Fusion synchronisation.
+This feature will not be available in this version and saving
+the document will break the link to the Fusion PCB feature.
 </note>
 <note version="8.3" severity="warning">
 Since Version 8.3, EAGLE supports URNs for individual library

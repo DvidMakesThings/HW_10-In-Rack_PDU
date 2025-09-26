@@ -12,53 +12,19 @@
 
 
 ## Overview
-![Development Status](https://img.shields.io/badge/status-Testing%20%26%20Debugging-yellowgreen)
+![Firmware Development Status](https://img.shields.io/badge/status-Testing%20%26%20Debugging-yellowgreen)
 
-The **10-Inch Rack PDU (Power Distribution Unit)** is a modular power
-management system designed for efficient control and monitoring of power in a
-rack-mounted environment. The project includes a Main Board and a display
-board to handle switching and power management.
+![Sheetmetal enclosure ordered](https://img.shields.io/badge/status-Sheetmetal%20enclosure%20ordered-yellowgreen)
+
+![PDU 3D View](images/ENERGIS_1.0.0/Assembled-in-case_1.0.0_3D_3.PNG)
+
+The **10-Inch Rack PDU (Power Distribution Unit)** is a modular power management system designed for efficient control and monitoring of power in a
+rack-mounted environment. The project includes a Main Board and a display board to handle switching and power management.
 
 Update 05.2025: Since lot of people said, it would be nice to have a Non-230V-Version, I started to develop
 the USB-C version of ENERGIS with USB PD Source functionality: [PDNode-600 Pro](https://github.com/DvidMakesThings/HW_PDNode-600-Pro)
 
-## Tests
-
-Automated hardware and firmware tests are now part of ENERGIS.  
-Reports are available on GitHub Pages:
-
-- [Serial Communication Test Report (HTML)](https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Tests/report_tc_serial_utfw/tc_serial_utfw_report.html)
-- [Network SNMP Test Report (HTML)](https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Tests/report_tc_network_snmp/tc_network_snmp_report.html)
-- [Ethernet Test Report (HTML)](https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Tests/report_tc_network_eth/tc_network_eth_report.html)
-
----
-
-## Web UI
-
-The ENERGIS now includes a lightweight embedded Web-UI for configuration and control.
-
-### All Channels On
-![Web-UI All On](images/ENERGIS_1.0.0/Web-UI/Webui_allOn.png)
-
-### All Channels Off
-![Web-UI All Off](images/ENERGIS_1.0.0/Web-UI/Webui_allOff.png)
-
-### Settings Page
-![Web-UI Settings](images/ENERGIS_1.0.0/Web-UI/Webui_settings.png)
-
-## What Comes Next
-
-Development doesn’t stop here. Planned improvements include:
-- **Production optimization** → finalize assembly workflow and cost reduction.  
-- **Extended testing** → expand automated test coverage (I²C, SPI, long-term soak tests).  
-- **Community feedback** → incorporate suggestions and adapt design for wider use cases.  
-- **And even more more more debugging** → It survived the 24h test, but you can never test enough
-- **Enclosure manufacturing** → evaluate and contact sheet-metal manufacturers for a professional case. 3D printed PLA case is nice, but it's not very professional
-
-Planned features (the list will be appended as I find more development possibilities):
-- **Renamebable Channels** Currently channels are marked as 1, 2 ... 8. I'm planning to add some label functionality
-- **Offset Calibration** Channels have 0.75V-0.77V and 0.02-0.05A offset. Some off-state offset auto-zero function will be implemented
-
+## Progress and news
 
 ## Hardware Development Phases
 | Phase                                | Status   |
@@ -74,6 +40,169 @@ Planned features (the list will be appended as I find more development possibili
 | **Enclosure Testing & Ventilation**  | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
 | **Power Monitoring**                 | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
 | **Production Optimization**          | ![Planned](https://img.shields.io/badge/status-planned-blue) |
+
+## Firmware Development Phases
+| Phase                                | Status   |
+| ------------------------------------ | -------- |
+| **CONFIG file for HW description**   | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **ILI4988 TFT LCD Driver**           | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **MCP23017 Display-Board Driver**    | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **MCP23017 Relay-Board Driver**      | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **W5500 Ethernet Driver**            | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **CAT24C512 512K EEPROM Driver**     | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **Version Control and EEPROM Data**  | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **Display Functions**                | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **System Startup Script**            | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **Multicore processing and RTOS**    | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **Pushbutton control**               | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **HLW8032 Power Monitor Dirver**     | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **Make Everything work together**    | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **HTML Server Implementation**       | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **Software debugging**               | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
+| **Ethernet based firmware update**   | ![Not Possible](https://img.shields.io/badge/status-not%20possible-red) |
+
+Development doesn’t stop here. Planned improvements include:
+- **Production optimization** → finalize assembly workflow and cost reduction.  
+- **Extended testing** → expand automated test coverage (I²C, SPI, long-term soak tests).  
+- **Community feedback** → incorporate suggestions and adapt design for wider use cases.  
+- **And even more more more debugging** → It survived the 24h test, but you can never test enough
+- **Enclosure manufacturing** → evaluate and contact sheet-metal manufacturers for a professional case. 3D printed PLA case is nice, but it's not very professional
+
+Planned features (the list will be appended as I find more development possibilities):
+- **Renamebable Channels** Currently channels are marked as 1, 2 ... 8. I'm planning to add some label functionality
+- **Offset Calibration** Channels have 0.75V-0.77V and 0.02-0.05A offset. Some off-state offset auto-zero function will be implemented
+
+---
+
+## Specifications
+
+### Electrical Characteristics
+
+- **Input:** 230V AC, 15A max
+- **Output:**   230V AC, 15A/Active Channels - Amps per Channel
+- **Internal Power Supply:** 12V, 1.5A SMPS
+- **Derived Internal Voltages:** 5V and 3.3V regulated from 12V
+
+### Relay Output Ratings
+
+- **Common AC Trace Handling:** 16A max
+- **Per-Relay Trace Rating:** 16A max
+- **Relay Contact Rating:** 16A max
+
+### Control & Driving Circuit
+
+- **Relay Driver:** ULN2803 Darlington Array
+- **Driving Current:** 33mA per relay
+
+---
+
+## Features
+
+- **Main Board:** Handles Ethernet communication, power conversion, and system logic. Manages AC switching with 8x 230V relays and safety
+  isolation.
+- **Display Board:** Headless mode, possible manual control with push buttons and real-time LED feedback
+- **Ethernet Connectivity:** Uses the W5500 SPI-based Ethernet chip for remote
+  control and monitoring via SNMPv1 and/or Web-UI
+- **Power Measurement:** AC voltage and current sensing for monitoring.
+- **Sheetmetal Enclosure:** Designed for 10-inch rack mounting with front and rear access.
+
+--- 
+
+## Schematics
+
+The full schematics for each board are available:
+
+- **[Main Board Schematics](src/PDF/ENERGIS-1.1.0_mainBoard_schematics.pdf)**
+- **[Display Board Schematics](src/PDF/ENERGIS-1.1.0_displayBoard_schematics.pdf)**
+
+---
+
+## Hardware Stackup
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="images/ENERGIS_1.0.0/ENERGIS-3D-Rack-PDU_1.1.0_TOP.png" alt="Main Board 3D Top View" style="width: 100%; min-width: 200px; border-radius: 6px;">
+      <br><b>Main Board Top</b>
+    </td>
+    <td align="center">
+      <img src="images/ENERGIS_1.0.0/ENERGIS-3D-Rack-PDU_1.1.0_BOT.png" alt="Main Board 3D Bottom View" style="width: 100%; min-width: 200px; border-radius: 6px;">
+      <br><b>Main Board Bottom</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="images/ENERGIS_1.0.0/ENERGIS-3D-DispBrd-Rack-PDU_1.1.0_TOP.png" alt="Display Board 3D Top View" style="width: 100%; min-width: 200px; border-radius: 6px;">
+      <br><b>Display Board Top</b>
+    </td>
+    <td align="center">
+      <img src="images/ENERGIS_1.0.0/ENERGIS-3D-DispBrd-Rack-PDU_1.1.0_BOT.png" alt="Display Board 3D Bottom View" style="width: 100%; min-width: 200px; border-radius: 6px;">
+      <br><b>Display Board Bottom</b>
+    </td>
+  </tr>
+</table>
+
+
+## Enclosure
+
+The **Energis** PDU enclosure is built from **Aluminum 5052 sheet metal** with a thickness of **1.5 mm**, ensuring both durability and lightweight construction. It follows a **10-inch rack form factor (1U height)** with custom mounting brackets and integrated cutouts for AC input, Ethernet, USB-C, status LEDs, and IEC outlets.
+
+Key specifications:
+* **Material:** Aluminum 5052, 1.5 mm
+* **Finish:** Powder coat (matte black, process black)
+* **Threads & tapped holes:** Yes (no inserts, no welding)
+* **Marking:** Laser engraved front panel labeling
+* **Design:** Precision CNC cut and bent sheet metal, matte black powder-coated for protection and aesthetics
+
+<br></br>
+<div style="display: flex; gap: 24px; justify-content: center; align-items: flex-start; margin-bottom: 24px;">
+  <img src="images/ENERGIS_1.0.0/Assembled-in-case_1.0.0_3D_1.PNG" alt="PDU 3D View 1" style="max-width: 48%; border-radius: 6px; padding: 8px; background: #fafbfc;">
+  <img src="images/ENERGIS_1.0.0/Assembled-in-case_1.0.0_3D_2.PNG" alt="PDU 3D View 2" style="max-width: 48%; border-radius: 6px; padding: 8px; background: #fafbfc;">
+</div>
+
+<br></br>
+Mounting options:
+* **Desktop use** without brackets  
+* **10-inch rack mounting** with brackets  
+* Even **19-inch rack integration** with extender brackets  
+
+<div style="display: flex; gap: 24px; justify-content: center; align-items: flex-start; margin-bottom: 24px;">
+  <img src="images/ENERGIS_1.0.0/Energis_Enclosure-5.png" alt="PDU 3D View 1" style="max-width: 48%; border-radius: 6px; padding: 8px; background: #fafbfc;">
+  <img src="images/ENERGIS_1.0.0/Energis_Enclosure-6.png" alt="PDU 3D View 2" style="max-width: 48%; border-radius: 6px; padding: 8px; background: #fafbfc;">
+</div>
+
+---
+
+## Web UI
+
+The ENERGIS now includes a lightweight embedded Web-UI for configuration and control.
+
+### All Channels On
+![Web-UI All On](images/ENERGIS_1.0.0/Web-UI/Webui_allOn.png)
+
+<div style="display: flex; gap: 24px; align-items: flex-start; margin-bottom: 24px;">
+  <div style="flex: 1; text-align: center;">
+    <h4 style="margin-bottom: 8px;">All Channels Off</h4>
+    <img src="images/ENERGIS_1.0.0/Web-UI/Webui_allOff.png" alt="Web-UI All Off" style="max-width: 100%; border-radius: 6px; padding: 8px; background: #fafbfc;">
+  </div>
+  <div style="flex: 1; text-align: center;">
+    <h4 style="margin-bottom: 8px;">Settings Page</h4>
+    <img src="images/ENERGIS_1.0.0/Web-UI/Webui_settings.png" alt="Web-UI Settings" style="max-width: 100%; border-radius: 6px; padding: 8px; background: #fafbfc;">
+  </div>
+</div>
+
+---
+
+## Tests
+
+Automated hardware and firmware tests are now part of ENERGIS.  
+Reports are available on GitHub Pages:
+
+- [Serial Communication Test Report (HTML)](https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Tests/report_tc_serial_utfw/tc_serial_utfw_report.html)
+- [Network SNMP Test Report (HTML)](https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Tests/report_tc_network_snmp/tc_network_snmp_report.html)
+- [Ethernet Test Report (HTML)](https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Tests/report_tc_network_eth/tc_network_eth_report.html)
+
+---
 
 ### Changelog:
 #### Rev0.1.0:
@@ -98,115 +227,17 @@ Planned features (the list will be appended as I find more development possibili
     - Planned revision without the LCD. This is the main size issue, going to do a version where the setup fits in 1U size. 
     Currently for debug purposes 1.5U is perfectly fine
 
-#### ENERGIS 1.0.0 Final revision
+#### ENERGIS 1.0.0 
 - Relay-Board and Controller Board is now combined: Main Board
 - Added enable functionality to the PSU
 - Added high precision LDO to supply the MCU
 - Additional fan is possible, but the temperature doesn't go above 36°C
 
-## Firmware Development Phases
-| Phase                                | Status   |
-| ------------------------------------ | -------- |
-| **CONFIG file for HW description**   | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **ILI4988 TFT LCD Driver**           | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **MCP23017 Display-Board Driver**    | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **MCP23017 Relay-Board Driver**      | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **W5500 Ethernet Driver**            | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **CAT24C512 512K EEPROM Driver**     | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Version Control and EEPROM Data**  | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Display Functions**                | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **System Startup Script**            | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Multicore processing and RTOS**    | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Pushbutton control**               | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **HLW8032 Power Monitor Dirver**     | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Make Everything work together**    | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **HTML Server Implementation**       | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Software debugging**               | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Ethernet based firmware update**   | ![Not Possible](https://img.shields.io/badge/status-not%20possible-red) |
-
-
-![PDU 3D View](images/ENERGIS_1.0.0/Assembled-in-case_1.0.0_3D_1.jpg)
-
-![PDU 3D View](images/ENERGIS_1.0.0/Assembled-in-case_1.0.0_3D_2.jpg)
-
-## Features
-
-- **Main Board:** Handles Ethernet communication, power conversion, and
-  system logic. Manages AC switching with 8x 230V relays and safety
-  isolation.
-- **Display Board:** 
-  - 1U version: Headless mode, possible manual control with push buttons and real-time LED feedback
-  - 1.5U version: Provides user interaction with TFT display and push buttons.
-- **Ethernet Connectivity:** Uses the W5500 SPI-based Ethernet chip for remote
-  control and monitoring via SNMPv1 and/or Web-UI
-- **Power Measurement:** AC voltage and current sensing for monitoring.
-- **3D Printed Enclosure:** Designed for 10-inch rack mounting with front and rear access.
-
-## Specifications
-
-### Electrical Characteristics
-
-- **Input:** 230V AC, 15A max
-- **Output:**   230V AC, 15A/Active Channels - Amps per Channel
-- **Internal Power Supply:** 12V, 1.5A SMPS
-- **Derived Voltages:** 5V and 3.3V regulated from 12V
-- **Relay Supply:** 12V dedicated for relay operation
-
-### Relay Output Ratings
-
-- **Common AC Trace Handling:** 15A max
-- **Per-Relay Trace Rating:** 16A max
-- **Relay Contact Rating:** 16A max
-
-### Control & Driving Circuit
-
-- **Relay Driver:** ULN2803 Darlington Array
-- **Driving Current:** 33mA per relay
-
-## Hardware Stackup
-
-![Main Board 3D View](images/ENERGIS_1.0.0/ENERGIS_Rack-PDU_1.0.0-1.jpg)
-
-![Display Board 3D View](images/ENERGIS_1.0.0/Display-Board_Rack-PDU_3.0-1.jpg)
-
-## JLC06161H-3313 (Finished Thickness: ~1.54 mm ±10 %) (6 layers – standard settings)
-- **Total Layers:** 6  
-- **Finished Thickness:** ~1.54 mm (±10 %)  
-- **Outer Copper Weight:** 1 oz  
-- **Inner Copper Weight:** 0.5 oz  
-- **Prepreg & Core Materials:** FR4 (JLC06161H-3313)  
-
-### Layer Stackup: 
-| Layer     | Description        | Material                | Thickness (mm) |
-|-----------|-------------------|-------------------------|----------------|
-| L1        | Signal (Top)      | Outer Copper 1 oz       | 0.0350         |
-| Prepreg   | 3313 RC57 %, 4.2 mil | -                    | 0.1250         |
-| L2        | Ground Plane      | Inner Copper 0.5 oz     | 0.0175         |
-| Core      | 0.55 mm H (with Cu) | -                       | 0.5590         |
-| L3        | Power Plane       | Inner Copper 0.5 oz     | 0.0175         |
-| Prepreg   | 2116 RC54 %, 4.9 mil | -                    | 0.1030         |
-| L4        | Signal            | Inner Copper 0.5 oz     | 0.0175         |
-| Core      | 0.55 mm H (with Cu) | -                       | 0.5590         |
-| L5        | Ground Plane      | Inner Copper 0.5 oz     | 0.0175         |
-| Prepreg   | 3313 RC57 %, 4.2 mil | -                    | 0.1250         |
-| L6        | Signal (Bottom)   | Outer Copper 1 oz       | 0.0350         |
-| **Total** |                   |                         | **1.5384 mm**  |
-
-| Impedance (Ω) | Type                       | Signal | Top Ref | Bottom Ref | Trace Width (mm) | Trace Spacing (mm) |
-| ------------- | -------------------------- | ------ | ------- | ---------- | ---------------- | ------------------ |
-| 50            | Coplanar Single Ended      | L2     | L1      | L3         | 0.1476           | /                  |
-| 90            | Coplanar Differential Pair | L2     | L1      | L3         | 0.1488           | 0.1877             |
-| 100           | Coplanar Differential Pair | L2     | L1      | L3         | 0.1176           | 0.1902             |
-| 100           | Coplanar Differential Pair | L5     | L4      | L6         | 0.1161           | 0.1918             |
-| 90            | Coplanar Differential Pair | L5     | L4      | L6         | 0.1468           | 0.1895             |
-| 50            | Coplanar Single Ended      | L5     | L4      | L6         | 0.1453           | /                  |
-
-## Schematics
-
-The full schematics for each board are available:
-
-- **[Main Board Schematics](src/PDF/ENERGIS-1.1.0_mainBoard_schematics.pdf)**
-- **[Display Board Schematics](src/PDF/ENERGIS-1.1.0_displayBoard_schematics.pdf)**
+#### ENERGIS 1.1.0 Final revision
+- Special thanks for NextPCB for the sponsorship
+- Redesigned PCBs: 6-layer Mainboard and 4-layer Displayboard
+- Signal layers moved to inner layers - EMC protection
+- Stronger ESD protection
 
 ## License
 ### Software Components
