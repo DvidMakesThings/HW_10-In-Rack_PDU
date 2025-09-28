@@ -2971,10 +2971,10 @@ DIN A3, landscape with location and doc. field</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 1kΩ 0402 Chip Resistor - Surface Mount ROHS"/>
-<attribute name="HQ_PART" value="RE0188047" constant="no"/>
+<attribute name="HQ_PART" value="RE0208724" constant="no"/>
 <attribute name="LCSC_PART" value="C11702" constant="no"/>
-<attribute name="MANUFACTURER" value="Uniohm" constant="no"/>
-<attribute name="MPN" value="0402WGF1001TCE" constant="no"/>
+<attribute name="MANUFACTURER" value="FH" constant="no"/>
+<attribute name="MPN" value="RC-02K1001FT" constant="no"/>
 <attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="1K 1%" constant="no"/>
 </technology>
@@ -3214,10 +3214,10 @@ DIN A3, landscape with location and doc. field</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" constant="no"/>
-<attribute name="HQ_PART" value="CA0137105" constant="no"/>
+<attribute name="HQ_PART" value="CA0176807" constant="no"/>
 <attribute name="LCSC_PART" value="C56392" constant="no"/>
-<attribute name="MANUFACTURER" value="Yageo" constant="no"/>
-<attribute name="MPN" value="CC0402KRX5R8BB104" constant="no"/>
+<attribute name="MANUFACTURER" value="Walsin" constant="no"/>
+<attribute name="MPN" value="0402X104K250CT" constant="no"/>
 <attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="100nF 25V" constant="no"/>
 </technology>

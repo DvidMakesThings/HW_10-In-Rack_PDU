@@ -32,12 +32,10 @@ if (board) board(B) {
     // collect every populated element, detect its side
     int count = 0;
     B.elements(E) if (E.populate) {
-        // record the part
         selected_elements[count] = E;
 
         // default to Top
         int side = 0;
-        // scan all pads—if any pad is SMD on Bottom, mark Bottom
         E.package.contacts(C) {
             if (C.smd && C.smd.layer == layer_id_map[1]) {
                 side = 1;
@@ -99,18 +97,22 @@ if (board) board(B) {
         printf("Designator;Quantity;Manufacturer Part Number;Manufacturer;Package/Footprint;Description;Procurement Type;Customer Note\n");
 
         int            indexes[];
-        numeric string values[];
+        numeric string keys[];   // HQ_PART or MPN as key
 
         for (int i = 0; i < count; i++) {
+            string mpn = "";
+            selected_elements[i].attributes(A) {
+                if (A.name == "HQ_PART") mpn = replace_commas(A.value);
+                if (mpn == "" && A.name == "MPN") mpn = replace_commas(A.value);
+            }
+            keys[i] = mpn;
             indexes[i] = i;
-            values[i]  = selected_elements[i].value;
         }
-        sort(count, indexes, values);
+        sort(count, indexes, keys);
 
-        string curr_val     = "";
-        string curr_pkg     = "";
         string curr_mpn     = "";
         string curr_mfr     = "";
+        string curr_pkg     = "";
         string curr_desc    = "";
         string curr_proc    = "";
         string curr_note    = "";
@@ -137,15 +139,14 @@ if (board) board(B) {
                 if (A.name == "CUSTOMER_NOTE") note = replace_commas(A.value);
             }
 
-            if (notstarting
-             && (E.value        != curr_val
-              || E.package.name != curr_pkg
-              || mpn            != curr_mpn
-              || mfr            != curr_mfr
-              || desc           != curr_desc
-              || proc           != curr_proc
-              || note           != curr_note)) {
+            // If value is DNI → force Procurement Type = DNP
+            string val_u = strupr(E.value);
+            if (val_u == "DNI") {
+                proc = "DNP";
+            }
 
+            // Group only by MPN
+            if (notstarting && (mpn != curr_mpn)) {
                 // flush
                 printf("%s;", designators);
                 printf("%d;", qty);
@@ -164,10 +165,9 @@ if (board) board(B) {
             if (designators != "") designators += ",";
             designators += E.name;
 
-            curr_val  = replace_commas(E.value);
-            curr_pkg  = replace_commas(E.package.name);
             curr_mpn  = mpn;
             curr_mfr  = mfr;
+            curr_pkg  = replace_commas(E.package.name);
             curr_desc = desc;
             curr_proc = proc;
             curr_note = note;
@@ -176,7 +176,7 @@ if (board) board(B) {
         }
 
         // last line
-        if (curr_val != "") {
+        if (curr_mpn != "") {
             printf("%s;", designators);
             printf("%d;", qty);
             printf("%s;", curr_mpn);

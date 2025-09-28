@@ -5778,10 +5778,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="C7" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="23.486" y="39.476" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="23.486" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="HQ_PART" value="CA0137105" x="23.486" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="HQ_PART" value="CA0176807" x="23.486" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="23.486" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MANUFACTURER" value="Yageo" x="23.486" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MPN" value="CC0402KRX5R8BB104" x="23.486" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MANUFACTURER" value="Walsin" x="23.486" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MPN" value="0402X104K250CT" x="23.486" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="22.667" y="39.591" size="1.016" layer="25" rot="R180"/>
 <attribute name="ROHS" value="YES" x="23.486" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" value="100nF 25V" x="25.391" y="38.841" size="1.016" layer="27" rot="R90"/>
@@ -5800,10 +5800,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="C8" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="63.414" y="39.496" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="63.414" y="39.496" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="HQ_PART" value="CA0137105" x="63.414" y="39.496" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="HQ_PART" value="CA0176807" x="63.414" y="39.496" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="63.414" y="39.496" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MANUFACTURER" value="Yageo" x="63.414" y="39.496" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MPN" value="CC0402KRX5R8BB104" x="63.414" y="39.496" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MANUFACTURER" value="Walsin" x="63.414" y="39.496" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MPN" value="0402X104K250CT" x="63.414" y="39.496" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="62.447" y="39.625" size="1.016" layer="25" rot="R180"/>
 <attribute name="ROHS" value="YES" x="63.414" y="39.496" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" value="100nF 25V" x="65.319" y="38.861" size="1.016" layer="27" rot="R90"/>
@@ -5822,10 +5822,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="C9" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="43.346" y="39.476" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="43.346" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="HQ_PART" value="CA0137105" x="43.346" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="HQ_PART" value="CA0176807" x="43.346" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="43.346" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MANUFACTURER" value="Yageo" x="43.346" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MPN" value="CC0402KRX5R8BB104" x="43.346" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MANUFACTURER" value="Walsin" x="43.346" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MPN" value="0402X104K250CT" x="43.346" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="42.313" y="39.597" size="1.016" layer="25" rot="R180"/>
 <attribute name="ROHS" value="YES" x="43.346" y="39.476" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" value="100nF 25V" x="45.251" y="38.841" size="1.016" layer="27" rot="R90"/>
@@ -5833,10 +5833,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="C5" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="73.596134375" y="34.751025" smashed="yes" rot="MR45">
 <attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="73.596134375" y="34.751025" size="1.778" layer="28" rot="MR45" display="off"/>
-<attribute name="HQ_PART" value="CA0137105" x="73.596134375" y="34.751025" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="HQ_PART" value="CA0176807" x="73.596134375" y="34.751025" size="1.778" layer="28" rot="MR45" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="73.596134375" y="34.751025" size="1.778" layer="28" rot="MR45" display="off"/>
-<attribute name="MANUFACTURER" value="Yageo" x="73.596134375" y="34.751025" size="1.778" layer="28" rot="MR45" display="off"/>
-<attribute name="MPN" value="CC0402KRX5R8BB104" x="73.596134375" y="34.751025" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="MANUFACTURER" value="Walsin" x="73.596134375" y="34.751025" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="MPN" value="0402X104K250CT" x="73.596134375" y="34.751025" size="1.778" layer="28" rot="MR45" display="off"/>
 <attribute name="NAME" x="72.2757375" y="33.454975" size="1.016" layer="26" rot="MR45"/>
 <attribute name="ROHS" value="YES" x="73.596134375" y="34.751025" size="1.778" layer="28" rot="MR45" display="off"/>
 <attribute name="VALUE" value="100nF 25V" x="72.698109375" y="32.954971875" size="1.016" layer="28" rot="MR45"/>
@@ -5844,10 +5844,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="C6" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="79.96115625" y="33.505375" smashed="yes" rot="MR315">
 <attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="79.96115625" y="33.505375" size="1.778" layer="28" rot="MR315" display="off"/>
-<attribute name="HQ_PART" value="CA0137105" x="79.96115625" y="33.505375" size="1.778" layer="28" rot="MR315" display="off"/>
+<attribute name="HQ_PART" value="CA0176807" x="79.96115625" y="33.505375" size="1.778" layer="28" rot="MR315" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="79.96115625" y="33.505375" size="1.778" layer="28" rot="MR315" display="off"/>
-<attribute name="MANUFACTURER" value="Yageo" x="79.96115625" y="33.505375" size="1.778" layer="28" rot="MR315" display="off"/>
-<attribute name="MPN" value="CC0402KRX5R8BB104" x="79.96115625" y="33.505375" size="1.778" layer="28" rot="MR315" display="off"/>
+<attribute name="MANUFACTURER" value="Walsin" x="79.96115625" y="33.505375" size="1.778" layer="28" rot="MR315" display="off"/>
+<attribute name="MPN" value="0402X104K250CT" x="79.96115625" y="33.505375" size="1.778" layer="28" rot="MR315" display="off"/>
 <attribute name="NAME" x="81.101946875" y="31.871821875" size="1.016" layer="26" rot="MR315"/>
 <attribute name="ROHS" value="YES" x="79.96115625" y="33.505375" size="1.778" layer="28" rot="MR315" display="off"/>
 <attribute name="VALUE" value="100nF 25V" x="81.757209375" y="32.607346875" size="1.016" layer="28" rot="MR315"/>
@@ -5957,10 +5957,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="R10" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="1K 1%" x="95.6" y="38.76" smashed="yes">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 1kΩ 0402 Chip Resistor - Surface Mount ROHS" x="95.6" y="38.76" size="1.778" layer="27" display="off"/>
-<attribute name="HQ_PART" value="RE0188047" x="95.6" y="38.76" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="RE0208724" x="95.6" y="38.76" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C11702" x="95.6" y="38.76" size="1.778" layer="27" display="off"/>
-<attribute name="MANUFACTURER" value="Uniohm" x="95.6" y="38.76" size="1.778" layer="27" display="off"/>
-<attribute name="MPN" value="0402WGF1001TCE" x="95.6" y="38.76" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="FH" x="95.6" y="38.76" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="RC-02K1001FT" x="95.6" y="38.76" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="97.165" y="38.295" size="1.016" layer="25"/>
 <attribute name="ROHS" value="YES" x="95.6" y="38.76" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="94.965" y="36.855" size="1.016" layer="27"/>
@@ -5968,10 +5968,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="R11" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="1K 1%" x="95.62" y="46.75" smashed="yes">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 1kΩ 0402 Chip Resistor - Surface Mount ROHS" x="95.62" y="46.75" size="1.778" layer="27" display="off"/>
-<attribute name="HQ_PART" value="RE0188047" x="95.62" y="46.75" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="RE0208724" x="95.62" y="46.75" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C11702" x="95.62" y="46.75" size="1.778" layer="27" display="off"/>
-<attribute name="MANUFACTURER" value="Uniohm" x="95.62" y="46.75" size="1.778" layer="27" display="off"/>
-<attribute name="MPN" value="0402WGF1001TCE" x="95.62" y="46.75" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="FH" x="95.62" y="46.75" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="RC-02K1001FT" x="95.62" y="46.75" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="96.985" y="46.285" size="1.016" layer="25"/>
 <attribute name="ROHS" value="YES" x="95.62" y="46.75" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="94.985" y="44.845" size="1.016" layer="27"/>
@@ -5979,10 +5979,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="R7" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="1K 1%" x="95.74" y="31.04" smashed="yes">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 1kΩ 0402 Chip Resistor - Surface Mount ROHS" x="95.74" y="31.04" size="1.778" layer="27" display="off"/>
-<attribute name="HQ_PART" value="RE0188047" x="95.74" y="31.04" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="RE0208724" x="95.74" y="31.04" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C11702" x="95.74" y="31.04" size="1.778" layer="27" display="off"/>
-<attribute name="MANUFACTURER" value="Uniohm" x="95.74" y="31.04" size="1.778" layer="27" display="off"/>
-<attribute name="MPN" value="0402WGF1001TCE" x="95.74" y="31.04" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="FH" x="95.74" y="31.04" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="RC-02K1001FT" x="95.74" y="31.04" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="97.305" y="30.575" size="1.016" layer="25"/>
 <attribute name="ROHS" value="YES" x="95.74" y="31.04" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="95.105" y="29.135" size="1.016" layer="27"/>
@@ -6104,10 +6104,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="C10" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="106.6754" y="35.268" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="106.6754" y="35.268" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="HQ_PART" value="CA0137105" x="106.6754" y="35.268" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="HQ_PART" value="CA0176807" x="106.6754" y="35.268" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="106.6754" y="35.268" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="MANUFACTURER" value="Yageo" x="106.6754" y="35.268" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="MPN" value="CC0402KRX5R8BB104" x="106.6754" y="35.268" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MANUFACTURER" value="Walsin" x="106.6754" y="35.268" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MPN" value="0402X104K250CT" x="106.6754" y="35.268" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="105.7888" y="35.5788" size="1.016" layer="25" rot="R180"/>
 <attribute name="ROHS" value="YES" x="106.6754" y="35.268" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" value="100nF 25V" x="104.7704" y="35.903" size="1.016" layer="27" rot="R270"/>
@@ -6126,10 +6126,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="C11" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="34.330709375" y="33.510709375" smashed="yes" rot="MR315">
 <attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="34.330709375" y="33.510709375" size="1.778" layer="28" rot="MR315" display="off"/>
-<attribute name="HQ_PART" value="CA0137105" x="34.330709375" y="33.510709375" size="1.778" layer="28" rot="MR315" display="off"/>
+<attribute name="HQ_PART" value="CA0176807" x="34.330709375" y="33.510709375" size="1.778" layer="28" rot="MR315" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="34.330709375" y="33.510709375" size="1.778" layer="28" rot="MR315" display="off"/>
-<attribute name="MANUFACTURER" value="Yageo" x="34.330709375" y="33.510709375" size="1.778" layer="28" rot="MR315" display="off"/>
-<attribute name="MPN" value="CC0402KRX5R8BB104" x="34.330709375" y="33.510709375" size="1.778" layer="28" rot="MR315" display="off"/>
+<attribute name="MANUFACTURER" value="Walsin" x="34.330709375" y="33.510709375" size="1.778" layer="28" rot="MR315" display="off"/>
+<attribute name="MPN" value="0402X104K250CT" x="34.330709375" y="33.510709375" size="1.778" layer="28" rot="MR315" display="off"/>
 <attribute name="NAME" x="35.282790625" y="31.838025" size="1.016" layer="26" rot="MR315"/>
 <attribute name="ROHS" value="YES" x="34.330709375" y="33.510709375" size="1.778" layer="28" rot="MR315" display="off"/>
 <attribute name="VALUE" value="100nF 25V" x="36.1267625" y="32.61268125" size="1.016" layer="28" rot="MR315"/>
@@ -6137,10 +6137,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="C12" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="27.980709375" y="34.710709375" smashed="yes" rot="MR45">
 <attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="27.980709375" y="34.710709375" size="1.778" layer="28" rot="MR45" display="off"/>
-<attribute name="HQ_PART" value="CA0137105" x="27.980709375" y="34.710709375" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="HQ_PART" value="CA0176807" x="27.980709375" y="34.710709375" size="1.778" layer="28" rot="MR45" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="27.980709375" y="34.710709375" size="1.778" layer="28" rot="MR45" display="off"/>
-<attribute name="MANUFACTURER" value="Yageo" x="27.980709375" y="34.710709375" size="1.778" layer="28" rot="MR45" display="off"/>
-<attribute name="MPN" value="CC0402KRX5R8BB104" x="27.980709375" y="34.710709375" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="MANUFACTURER" value="Walsin" x="27.980709375" y="34.710709375" size="1.778" layer="28" rot="MR45" display="off"/>
+<attribute name="MPN" value="0402X104K250CT" x="27.980709375" y="34.710709375" size="1.778" layer="28" rot="MR45" display="off"/>
 <attribute name="NAME" x="26.335840625" y="35.61218125" size="1.016" layer="26" rot="MR45"/>
 <attribute name="ROHS" value="YES" x="27.980709375" y="34.710709375" size="1.778" layer="28" rot="MR45" display="off"/>
 <attribute name="VALUE" value="100nF 25V" x="27.082684375" y="32.91465625" size="1.016" layer="28" rot="MR45"/>
