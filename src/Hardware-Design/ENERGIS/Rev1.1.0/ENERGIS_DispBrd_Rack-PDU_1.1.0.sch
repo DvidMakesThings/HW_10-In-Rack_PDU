@@ -981,7 +981,7 @@ DIN A3, landscape with location and doc. field</description>
 <technologies>
 <technology name="">
 <attribute name="ROHS" value="YES" constant="no"/>
-<attribute name="VALUE" value="TESTPOINT" constant="no"/>
+<attribute name="VALUE" value="DNI" constant="no"/>
 </technology>
 </technologies>
 </device>
