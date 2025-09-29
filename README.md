@@ -156,8 +156,8 @@ Key specifications:
 
 <br></br>
 <div style="display: flex; gap: 24px; justify-content: center; align-items: flex-start; margin-bottom: 24px;">
-  <img src="images/ENERGIS_1.0.0/Assembled-in-case_1.0.0_3D_1.PNG" alt="PDU 3D View 1" style="max-width: 48%; border-radius: 6px; padding: 8px; background: #fafbfc;">
-  <img src="images/ENERGIS_1.0.0/Assembled-in-case_1.0.0_3D_2.PNG" alt="PDU 3D View 2" style="max-width: 48%; border-radius: 6px; padding: 8px; background: #fafbfc;">
+  <img src="images/ENERGIS_1.0.0/Assembled-in-case_1.0.0_3D_1.png" alt="PDU 3D View 1" style="max-width: 48%; border-radius: 6px; padding: 8px; background: #fafbfc;">
+  <img src="images/ENERGIS_1.0.0/Assembled-in-case_1.0.0_3D_2.png" alt="PDU 3D View 2" style="max-width: 48%; border-radius: 6px; padding: 8px; background: #fafbfc;">
 </div>
 
 <br></br>
