@@ -769,7 +769,7 @@ DIN A3, landscape with location and doc. field</description>
 <technologies>
 <technology name="">
 <attribute name="ROHS" value="YES" constant="no"/>
-<attribute name="VALUE" value="TESTPOINT" constant="no"/>
+<attribute name="VALUE" value="DNI" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -929,12 +929,12 @@ DIN A3, landscape with location and doc. field</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="12MHz Surface Mount Crystal 20pF ±10ppm ±20ppm SMD3225-4P Crystals ROHS " constant="no"/>
-<attribute name="HQ_PART" value="CR208634843" constant="no"/>
+<attribute name="HQ_PART" value="CR0250194" constant="no"/>
 <attribute name="LCSC_PART" value="C20625731" constant="no"/>
-<attribute name="MANUFACTURER" value="Abracon" constant="no"/>
-<attribute name="MPN" value="ABM8-272-T3 " constant="no"/>
+<attribute name="MANUFACTURER" value="TKD" constant="no"/>
+<attribute name="MPN" value="SX32Y012000B91T" constant="no"/>
 <attribute name="ROHS" value="YES" constant="no"/>
-<attribute name="VALUE" value="ABM8-272-T3 12MHz" constant="no"/>
+<attribute name="VALUE" value="12MHz" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -5309,10 +5309,10 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 1kΩ 0402 Chip Resistor - Surface Mount ROHS"/>
-<attribute name="HQ_PART" value="RE0188047" constant="no"/>
+<attribute name="HQ_PART" value="RE0208724" constant="no"/>
 <attribute name="LCSC_PART" value="C11702" constant="no"/>
-<attribute name="MANUFACTURER" value="Uniohm" constant="no"/>
-<attribute name="MPN" value="0402WGF1001TCE" constant="no"/>
+<attribute name="MANUFACTURER" value="FH" constant="no"/>
+<attribute name="MPN" value="RC-02K1001FT" constant="no"/>
 <attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="1K 1%" constant="no"/>
 </technology>
@@ -8476,10 +8476,10 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <technologies>
 <technology name="">
 <attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" constant="no"/>
-<attribute name="HQ_PART" value="CA0137105" constant="no"/>
+<attribute name="HQ_PART" value="CA0176807" constant="no"/>
 <attribute name="LCSC_PART" value="C56392" constant="no"/>
-<attribute name="MANUFACTURER" value="Yageo" constant="no"/>
-<attribute name="MPN" value="CC0402KRX5R8BB104" constant="no"/>
+<attribute name="MANUFACTURER" value="Walsin" constant="no"/>
+<attribute name="MPN" value="0402X104K250CT" constant="no"/>
 <attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="100nF 25V" constant="no"/>
 </technology>
@@ -10881,6 +10881,213 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 </deviceset>
 </devicesets>
 </library>
+<library name="Wurth_Connectors_WR-FSH" urn="urn:adsk.eagle:library:14787550">
+<description>&lt;BR&gt;Wurth Elektronik - Connectors - Fuseholder - WR-FSH &lt;br&gt;&lt;Hr&gt;
+
+&lt;BR&gt;
+&lt;TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0&gt;
+&lt;TR&gt;   
+&lt;TD BGCOLOR="#cccccc" ALIGN=CENTER&gt;&lt;FONT FACE=ARIAL SIZE=3&gt;&lt;BR&gt;&lt;br&gt;
+      &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp;&lt;BR&gt;
+       &lt;BR&gt;
+       &lt;BR&gt;
+       &lt;BR&gt;&lt;BR&gt;&lt;/FONT&gt;
+    &lt;/TD&gt;
+&lt;TD BGCOLOR="#cccccc" ALIGN=CENTER&gt;&lt;FONT FACE=ARIAL SIZE=3&gt;&lt;br&gt;
+      -----&lt;BR&gt;
+      -----&lt;BR&gt;
+      -----&lt;BR&gt;
+      -----&lt;BR&gt;
+      -----&lt;BR&gt;&lt;BR&gt;&lt;/FONT&gt;
+    &lt;/TD&gt;
+    &lt;TD BGCOLOR="#cccccc" ALIGN=CENTER&gt; &lt;FONT FACE=ARIAL SIZE=3&gt;&lt;br&gt;
+      ---------------------------&lt;BR&gt;
+&lt;B&gt;&lt;I&gt;&lt;span style='font-size:26pt;
+  color:#FF6600;'&gt;WE &lt;/span&gt;&lt;/i&gt;&lt;/b&gt;
+&lt;BR&gt;
+      ---------------------------&lt;BR&gt;&lt;b&gt;Würth Elektronik&lt;/b&gt;&lt;/FONT&gt;
+    &lt;/TD&gt;
+    &lt;TD BGCOLOR="#cccccc" ALIGN=CENTER&gt;&lt;FONT FACE=ARIAL SIZE=3&gt;&lt;br&gt;
+      ---------O---&lt;BR&gt;
+      ----O--------&lt;BR&gt;
+      ---------O---&lt;BR&gt;
+      ----O--------&lt;BR&gt;
+      ---------O---&lt;BR&gt;&lt;BR&gt;&lt;/FONT&gt;
+    &lt;/TD&gt;
+   
+&lt;TD BGCOLOR="#cccccc" ALIGN=CENTER&gt;&lt;FONT FACE=ARIAL SIZE=3&gt;&lt;BR&gt;
+      &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp;&lt;BR&gt;
+       &lt;BR&gt;
+       &lt;BR&gt;
+       &lt;BR&gt;
+       &lt;BR&gt;&lt;BR&gt;&lt;/FONT&gt;
+    &lt;/TD&gt;
+  &lt;/TR&gt;
+
+  &lt;TR&gt;
+    &lt;TD COLSPAN=7&gt;&amp;nbsp;
+    &lt;/TD&gt;
+  &lt;/TR&gt;
+  
+&lt;/TABLE&gt;
+&lt;B&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;More than you expect&lt;BR&gt;&lt;BR&gt;&lt;BR&gt;&lt;/B&gt;
+
+&lt;HR&gt;&lt;BR&gt;
+&lt;b&gt;Würth Elektronik eiSos GmbH &amp; Co. KG&lt;/b&gt;&lt;br&gt;
+EMC &amp; Inductive Solutions&lt;br&gt;
+
+Max-Eyth-Str.1&lt;br&gt;
+D-74638 Waldenburg&lt;br&gt;
+&lt;br&gt;
+Tel: +49 (0)7942-945-0&lt;br&gt;
+Fax:+49 (0)7942-945-5000&lt;br&gt;
+&lt;br&gt;
+&lt;a href="http://www.we-online.com/web/en/electronic_components/produkte_pb/bauteilebibliotheken/eagle_4.php"&gt;www.we-online.com/eagle&lt;/a&gt;&lt;br&gt;
+&lt;a href="mailto:libraries@we-online.com"&gt;libraries@we-online.com&lt;/a&gt; &lt;BR&gt;&lt;BR&gt;
+&lt;br&gt;&lt;HR&gt;&lt;BR&gt;
+Neither Autodesk nor Würth Elektronik eiSos does warrant that this library is error-free or &lt;br&gt;
+that it meets your specific requirements.&lt;br&gt;&lt;BR&gt;
+Please contact us for more information.&lt;br&gt;
+&lt;HR&gt;
+&lt;br&gt;Eagle Version 9, Library Revision 2020a, 2020-09-08&lt;br&gt;
+&lt;HR&gt;
+Copyright: Würth Elektronik</description>
+<packages>
+<package name="696101000002" urn="urn:adsk.eagle:footprint:14787564/1" library_version="3">
+<description>&lt;b&gt;WR-FSH Fuseholder THT Blocks PCB Clip Cover
+&lt;br&gt;
+&lt;br&gt;&lt;/b&gt;Mates with 696120004001</description>
+<pad name="1" x="-11.3" y="0" drill="1.5"/>
+<pad name="2" x="11.3" y="0" drill="1.5"/>
+<wire x1="-11" y1="-4.5" x2="-11" y2="4.5" width="0.1" layer="51"/>
+<wire x1="-11" y1="4.5" x2="11" y2="4.5" width="0.1" layer="51"/>
+<wire x1="11" y1="4.5" x2="11" y2="-4.5" width="0.1" layer="51"/>
+<wire x1="11" y1="-4.5" x2="-11" y2="-4.5" width="0.1" layer="51"/>
+<wire x1="-11.1" y1="1.5" x2="-11.1" y2="4.6" width="0.2" layer="21"/>
+<wire x1="-11.1" y1="4.6" x2="11.1" y2="4.6" width="0.2" layer="21"/>
+<wire x1="11.1" y1="4.6" x2="11.1" y2="1.5" width="0.2" layer="21"/>
+<wire x1="11.1" y1="-1.5" x2="11.1" y2="-4.6" width="0.2" layer="21"/>
+<wire x1="11.1" y1="-4.6" x2="-11.1" y2="-4.6" width="0.2" layer="21"/>
+<wire x1="-11.1" y1="-4.6" x2="-11.1" y2="-1.5" width="0.2" layer="21"/>
+<text x="-3.65" y="-6.478" size="1.27" layer="27">&gt;VALUE</text>
+<text x="0" y="5.5" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<polygon width="0.1" layer="39">
+<vertex x="12.7" y="4.8"/>
+<vertex x="12.7" y="-4.8"/>
+<vertex x="-12.7" y="-4.8"/>
+<vertex x="-12.7" y="4.8"/>
+</polygon>
+</package>
+</packages>
+<packages3d>
+<package3d name="696101000002" urn="urn:adsk.eagle:package:14787579/2" type="model" library_version="3">
+<description>&lt;b&gt;WR-FSH Fuseholder THT Blocks PCB Clip Cover
+&lt;br&gt;
+&lt;br&gt;&lt;/b&gt;Mates with 696120004001</description>
+<packageinstances>
+<packageinstance name="696101000002"/>
+</packageinstances>
+</package3d>
+</packages3d>
+<symbols>
+<symbol name="WR-FSH" urn="urn:adsk.eagle:symbol:14787565/1" library_version="3">
+<pin name="1" x="-7.62" y="0" visible="off" length="short" direction="pas"/>
+<pin name="2" x="7.62" y="0" visible="off" length="short" direction="pas" rot="R180"/>
+<text x="0" y="2.54" size="1.778" layer="95" align="bottom-center">&gt;NAME</text>
+<text x="-5.08" y="-3.81" size="1.778" layer="96">&gt;VALUE</text>
+<wire x1="-5.08" y1="-1.27" x2="-3.81" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="5.08" y1="1.27" x2="3.81" y2="1.27" width="0.254" layer="94"/>
+<wire x1="-5.08" y1="1.27" x2="-5.08" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="5.08" y1="-1.27" x2="5.08" y2="1.27" width="0.254" layer="94"/>
+<wire x1="-3.81" y1="1.27" x2="-3.81" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="-3.81" y1="1.27" x2="-5.08" y2="1.27" width="0.254" layer="94"/>
+<wire x1="-3.81" y1="-1.27" x2="3.81" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="3.81" y1="1.27" x2="3.81" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="3.81" y1="1.27" x2="-3.81" y2="1.27" width="0.254" layer="94"/>
+<wire x1="3.81" y1="-1.27" x2="5.08" y2="-1.27" width="0.254" layer="94"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="696101000002" urn="urn:adsk.eagle:component:14787593/3" prefix="J" library_version="3">
+<description>&lt;b&gt;WR-FSH Fuseholder THT Blocks PCB Clip Cover
+&lt;br&gt;
+&lt;br&gt;
+MATERIAL PROPERTIES 
+&lt;br&gt;&lt;br&gt;
+&lt;/b&gt;Insulator Material PPO (PPE+PS) 
+&lt;br&gt;Insulator Flammability Rating UL94 V-1 
+&lt;br&gt;Insulator Color Beige 
+&lt;br&gt;Contact Material Copper Alloy 
+&lt;br&gt;Contact Plating Tin over Nickel 
+&lt;br&gt;Contact Type Stamped 
+&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;GENERAL INFORMATION  
+&lt;br&gt;&lt;br&gt;
+&lt;/b&gt;Operating Temperature -30 up to +120 °C 
+&lt;br&gt;Compliance RoHS 
+&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;ELECTRICAL PROPERTIES 
+&lt;br&gt;&lt;br&gt;
+&lt;/b&gt;IR UL 18 A 
+&lt;br&gt;IR VDE 6.3 A 
+&lt;br&gt;Working Voltage [UL] 250 V (AC) 
+&lt;br&gt;Working Voltage [VDE] 250 V (AC) 
+&lt;br&gt;Withstanding Voltage [UL] 1500 V (AC) 
+&lt;br&gt;Withstanding Voltage [VDE] 1500 V (AC) 
+&lt;br&gt;Contact Resistance 10 mΩ 
+&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;MECHANICAL PROPERTIES 
+&lt;br&gt;&lt;br&gt;
+&lt;/b&gt;Protection Class I &amp; II 
+&lt;br&gt;Fuse Size 5x20 mm 
+&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;CERTIFICATION 
+&lt;br&gt;&lt;br&gt;
+&lt;/b&gt;cULus Approval E157417 
+&lt;br&gt;VDE Approval 129300 
+&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;PACKAGING PROPERTIES 
+&lt;br&gt;&lt;br&gt;
+&lt;/b&gt;Packaging Box 
+
+&lt;p&gt;&lt;a href="https://katalog.we-online.com/media/images/v2/o33101v209%20Family_WR-FSH_696101000002.jpg"&gt;
+&lt;img src="https://katalog.we-online.com/media/images/v2/o33101v209%20Family_WR-FSH_696101000002.jpg" width="320"&gt;&lt;/a&gt;&lt;p&gt;
+Details see: &lt;a href="https://katalog.we-online.com/en/em/FSH_THT_PCB_CLIP_COVER_696101000002"&gt;https://katalog.we-online.com/en/em/FSH_THT_PCB_CLIP_COVER_696101000002&lt;/a&gt;&lt;p&gt;
+
+Updated by Ella Wu 2019-10-25&lt;br&gt;
+2019 (C) Wurth Elektronik</description>
+<gates>
+<gate name="G$1" symbol="WR-FSH" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="696101000002">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:14787579/2"/>
+</package3dinstances>
+<technologies>
+<technology name="">
+<attribute name="DATASHEET-URL" value="https://www.we-online.com/catalog/datasheet/696101000002.pdf"/>
+<attribute name="IR-UL" value="18A"/>
+<attribute name="IR-VDE" value="6.3A"/>
+<attribute name="MATES" value="696120004001"/>
+<attribute name="PART-NUMBER" value="696101000002"/>
+<attribute name="VALUE" value="696101000002"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 <attribute name="VERSION" value="1.1.0"/>
@@ -10944,7 +11151,7 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="GND15" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND16" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND19" library="ds_passive" deviceset="GND" device=""/>
-<part name="12VDC" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="12VDC" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
 <part name="IC1" library="ds_ic_vreg" deviceset="MP2315" device="TSOT23-8" package3d_urn="urn:adsk.eagle:package:29335450/2" value="MP2315GJ-Z "/>
 <part name="C3" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
 <part name="C6" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
@@ -10964,11 +11171,11 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="C11" library="ds_capacitors" deviceset="33PF-50V" device="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="33pF 50V"/>
 <part name="GND17" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="P+11" library="ds_passive" deviceset="+5V" device=""/>
-<part name="5VDC" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="SW" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="5VFB" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="GND" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="GND-5" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="5VDC" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="SW" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="5VFB" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="GND" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="GND-5" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
 <part name="R3" library="ds_resistor" deviceset="100K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="100K 1%"/>
 <part name="P+9" library="ds_passive" deviceset="+12V" device=""/>
 <part name="C1" library="ds_capacitors" deviceset="22UF-25V" device="-1206" package3d_urn="urn:adsk.eagle:package:46766482/3" value="22uF 25V"/>
@@ -10994,10 +11201,10 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="GND14" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="C12" library="ds_capacitors" deviceset="33PF-50V" device="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="33pF 50V"/>
 <part name="GND18" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
-<part name="3VDC" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="SW3" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="3VFB" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="GND-3" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="3VDC" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="SW3" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="3VFB" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="GND-3" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
 <part name="R5" library="ds_resistor" deviceset="100K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="100K 1%"/>
 <part name="P+10" library="ds_passive" deviceset="+12V" device=""/>
 <part name="+3V31" library="ds_passive" deviceset="+3V3" device=""/>
@@ -11198,10 +11405,10 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="AGND5" library="ds_passive" deviceset="AGND" device=""/>
 <part name="R96" library="ds_resistor" deviceset="10K-1%" device="0805" package3d_urn="urn:adsk.eagle:package:46683742/2" value="10K 1%"/>
 <part name="AGND21" library="ds_passive" deviceset="AGND" device=""/>
-<part name="FB1" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="5V-NI1" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="VCC" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="L-REC1" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="FB1" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="5V-NI1" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="VCC" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="L-REC1" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
 <part name="C46" library="ds_capacitors" deviceset="2.2UF-50V" device="0603" package3d_urn="urn:adsk.eagle:package:46766484/3" value="2.2uF 50V"/>
 <part name="R105" library="ds_resistor" deviceset="4.99K-1%" device="0603" package3d_urn="urn:adsk.eagle:package:46683743/2" value="4.99K 1%"/>
 <part name="D12" library="ds_diode" deviceset="1N4007" device="" package3d_urn="urn:adsk.eagle:package:49873939/1" value="1N4007"/>
@@ -11222,10 +11429,10 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="AGND25" library="ds_passive" deviceset="AGND" device=""/>
 <part name="R108" library="ds_resistor" deviceset="10K-1%" device="0805" package3d_urn="urn:adsk.eagle:package:46683742/2" value="10K 1%"/>
 <part name="AGND41" library="ds_passive" deviceset="AGND" device=""/>
-<part name="FB2" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="5V-NI2" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="VCC2" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="L-REC2" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="FB2" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="5V-NI2" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="VCC2" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="L-REC2" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
 <part name="J7" library="jumper" library_urn="urn:adsk.eagle:library:252" deviceset="SJ" device="" package3d_urn="urn:adsk.eagle:package:15471/1" value="DNI"/>
 <part name="AC/DC2" library="ds_trafo" deviceset="IRM_10_12" device="-2" package3d_urn="urn:adsk.eagle:package:47260462/2" value="DNI"/>
 <part name="GND31" library="ds_passive" deviceset="GND" device=""/>
@@ -11238,12 +11445,12 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="GND33" library="ds_passive" deviceset="GND" device=""/>
 <part name="R16" library="ds_resistor" deviceset="1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="1K 1%"/>
 <part name="GND34" library="ds_passive" deviceset="GND" device=""/>
-<part name="DVDD" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="DVDD" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
 <part name="REF1" library="ds_ic_vreg" deviceset="LM4040BXX" device="" package3d_urn="urn:adsk.eagle:package:46684430/3" value="LM4040x30"/>
 <part name="GND35" library="ds_passive" deviceset="GND" device=""/>
 <part name="R109" library="ds_resistor" deviceset="4.7K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="4.7K 1%"/>
-<part name="IOVDD" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="VREF" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="IOVDD" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="VREF" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
 <part name="IC17" library="ds_ic_opa" deviceset="MCP6001RT" device="" package3d_urn="urn:adsk.eagle:package:25419215/3" value="MCP6001RT-I/OT"/>
 <part name="GND36" library="ds_passive" deviceset="GND" device=""/>
 <part name="C60" library="ds_capacitors" deviceset="1UF-25V" device="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="1uF 25V"/>
@@ -11254,7 +11461,7 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="GND39" library="ds_passive" deviceset="GND" device=""/>
 <part name="C63" library="ds_capacitors" deviceset="100NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="100nF 25V"/>
 <part name="GND40" library="ds_passive" deviceset="GND" device=""/>
-<part name="AVDD" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="AVDD" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
 <part name="IC18" library="ds_ic_memory" deviceset="W25Q128JV" device="P" package3d_urn="urn:adsk.eagle:package:45369668/2" value="W25Q128JVPIQ"/>
 <part name="R111" library="ds_passive" deviceset="R" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="DNI"/>
 <part name="GND41" library="ds_passive" deviceset="GND" device=""/>
@@ -11272,7 +11479,7 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="R125" library="ds_resistor" deviceset="5.1K-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="5.1K 1%"/>
 <part name="GND47" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
 <part name="GND48" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
-<part name="VBUS" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="VBUS" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
 <part name="C67" library="ds_capacitors" deviceset="100NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="100nF 25V"/>
 <part name="C68" library="ds_capacitors" deviceset="100NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="100nF 25V"/>
 <part name="C69" library="ds_capacitors" deviceset="100NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="100nF 25V"/>
@@ -11393,28 +11600,28 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="R149" library="ds_resistor" deviceset="3.3K-1%_ARRAY" device="0603X4-1206" package3d_urn="urn:adsk.eagle:package:49287421/2" value="3.3K 1%"/>
 <part name="NC43" library="ds_passive" deviceset="NC" device=""/>
 <part name="+3V29" library="ds_passive" deviceset="+3V3" device=""/>
-<part name="K1" library="ds_passive" deviceset="G2RL-1A-E_DC12" device="" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E DC12 "/>
+<part name="K1" library="ds_passive" deviceset="G2RL-1A-E_DC12" device="" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E_DC12"/>
 <part name="D1" library="ds_diode" deviceset="MBRA340T3G" device="" package3d_urn="urn:adsk.eagle:package:49873939/1" value="MBRA340T3G"/>
 <part name="P+1" library="ds_passive" deviceset="+12V" device=""/>
-<part name="K2" library="ds_passive" deviceset="G2RL-1A-E_DC12" device="" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E DC12 "/>
+<part name="K2" library="ds_passive" deviceset="G2RL-1A-E_DC12" device="" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E_DC12"/>
 <part name="D2" library="ds_diode" deviceset="MBRA340T3G" device="" package3d_urn="urn:adsk.eagle:package:49873939/1" value="MBRA340T3G"/>
 <part name="P+2" library="ds_passive" deviceset="+12V" device=""/>
-<part name="K3" library="ds_passive" deviceset="G2RL-1A-E_DC12" device="" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E DC12 "/>
+<part name="K3" library="ds_passive" deviceset="G2RL-1A-E_DC12" device="" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E_DC12"/>
 <part name="D3" library="ds_diode" deviceset="MBRA340T3G" device="" package3d_urn="urn:adsk.eagle:package:49873939/1" value="MBRA340T3G"/>
 <part name="P+3" library="ds_passive" deviceset="+12V" device=""/>
-<part name="K4" library="ds_passive" deviceset="G2RL-1A-E_DC12" device="" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E DC12 "/>
+<part name="K4" library="ds_passive" deviceset="G2RL-1A-E_DC12" device="" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E_DC12"/>
 <part name="D4" library="ds_diode" deviceset="MBRA340T3G" device="" package3d_urn="urn:adsk.eagle:package:49873939/1" value="MBRA340T3G"/>
 <part name="P+4" library="ds_passive" deviceset="+12V" device=""/>
-<part name="K5" library="ds_passive" deviceset="G2RL-1A-E_DC12" device="" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E DC12 "/>
+<part name="K5" library="ds_passive" deviceset="G2RL-1A-E_DC12" device="" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E_DC12"/>
 <part name="D5" library="ds_diode" deviceset="MBRA340T3G" device="" package3d_urn="urn:adsk.eagle:package:49873939/1" value="MBRA340T3G"/>
 <part name="P+5" library="ds_passive" deviceset="+12V" device=""/>
-<part name="K6" library="ds_passive" deviceset="G2RL-1A-E_DC12" device="" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E DC12 "/>
+<part name="K6" library="ds_passive" deviceset="G2RL-1A-E_DC12" device="" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E_DC12"/>
 <part name="D6" library="ds_diode" deviceset="MBRA340T3G" device="" package3d_urn="urn:adsk.eagle:package:49873939/1" value="MBRA340T3G"/>
 <part name="P+6" library="ds_passive" deviceset="+12V" device=""/>
-<part name="K7" library="ds_passive" deviceset="G2RL-1A-E_DC12" device="" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E DC12 "/>
+<part name="K7" library="ds_passive" deviceset="G2RL-1A-E_DC12" device="" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E_DC12"/>
 <part name="D7" library="ds_diode" deviceset="MBRA340T3G" device="" package3d_urn="urn:adsk.eagle:package:49873939/1" value="MBRA340T3G"/>
 <part name="P+7" library="ds_passive" deviceset="+12V" device=""/>
-<part name="K8" library="ds_passive" deviceset="G2RL-1A-E_DC12" device="" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E DC12 "/>
+<part name="K8" library="ds_passive" deviceset="G2RL-1A-E_DC12" device="" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E_DC12"/>
 <part name="D8" library="ds_diode" deviceset="MBRA340T3G" device="" package3d_urn="urn:adsk.eagle:package:49873939/1" value="MBRA340T3G"/>
 <part name="P+8" library="ds_passive" deviceset="+12V" device=""/>
 <part name="FRAME6" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A3L-LOC" device=""/>
@@ -11484,7 +11691,7 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="J2" library="jumper" library_urn="urn:adsk.eagle:library:252" deviceset="SJ" device="" package3d_urn="urn:adsk.eagle:package:15471/1" value="DNI"/>
 <part name="AGND1" library="ds_passive" deviceset="AGND" device=""/>
 <part name="AGND43" library="ds_passive" deviceset="AGND" device=""/>
-<part name="X1" library="ds_passive" deviceset="CRYSTAL-3225" device="X322512MSB4SI" package3d_urn="urn:adsk.eagle:package:13029090/4" value="ABM8-272-T3 12MHz"/>
+<part name="X1" library="ds_passive" deviceset="CRYSTAL-3225" device="X322512MSB4SI" package3d_urn="urn:adsk.eagle:package:13029090/4" value="12MHz"/>
 <part name="GND86" library="ds_passive" deviceset="GND" device=""/>
 <part name="R15" library="ds_resistor" deviceset="27R-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="27R 1%"/>
 <part name="R160" library="ds_resistor" deviceset="27R-1%" device="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="27R 1%"/>
@@ -11536,28 +11743,28 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="DP2" library="ds_passive" deviceset="DIFPAIR" device="" value=" 90R"/>
 <part name="DP3" library="ds_passive" deviceset="DIFPAIR" device="" value=" 90R"/>
 <part name="FRAME8" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A3L-LOC" device=""/>
-<part name="RX0" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="RX1" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="SDA0" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="SCL0" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="SDA1" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="SCL1" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="MI" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="CS" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="SC" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="MO" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="MISO1" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="CS1" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="SCLK1" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="MOSI1" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="REL0" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="REL2" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="REL4" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="REL6" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="REL1" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="REL3" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="REL5" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
-<part name="REL7" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="RX0" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="RX1" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="SDA0" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="SCL0" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="SDA1" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="SCL1" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="MI" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="CS" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="SC" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="MO" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="MISO1" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="CS1" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="SCLK1" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="MOSI1" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="REL0" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="REL2" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="REL4" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="REL6" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="REL1" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="REL3" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="REL5" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="REL7" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
 <part name="P+18" library="ds_passive" deviceset="+12V" device=""/>
 <part name="T1" library="ds_active" deviceset="BSS138" device="" package3d_urn="urn:adsk.eagle:package:46684430/3" value="BSS138"/>
 <part name="GND43" library="ds_passive" deviceset="GND" device=""/>
@@ -11576,7 +11783,7 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="FRAME9" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A3L-LOC" device=""/>
 <part name="FRAME10" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A3L-LOC" device=""/>
 <part name="P+19" library="ds_passive" deviceset="+12V" device=""/>
-<part name="ADC12" library="ds_passive" deviceset="TP" device="-ROUND" value="TESTPOINT"/>
+<part name="ADC12" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
 <part name="FRAME11" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A3L-LOC" device=""/>
 <part name="FRAME1" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="A3L-LOC" device=""/>
 <part name="R130" library="ds_resistor" deviceset="3.3K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="3.3K 1%"/>
@@ -11586,6 +11793,7 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="+3V3_MCU14" library="ds_passive" deviceset="+3V3_MCU" device=""/>
 <part name="+3V3_MCU15" library="ds_passive" deviceset="+3V3_MCU" device=""/>
 <part name="+3V3_MCU16" library="ds_passive" deviceset="+3V3_MCU" device=""/>
+<part name="J1" library="Wurth_Connectors_WR-FSH" library_urn="urn:adsk.eagle:library:14787550" deviceset="696101000002" device="" package3d_urn="urn:adsk.eagle:package:14787579/2" value="DNI"/>
 </parts>
 <sheets>
 <sheet>
@@ -15536,6 +15744,10 @@ and built-in EMI/EMC compliance are provided by the module. </text>
 <instance part="ADC12" gate="G$1" x="284.48" y="-160.02" smashed="yes" rot="R180">
 <attribute name="NAME" x="283.21" y="-160.02" size="1.778" layer="95" rot="R180" align="center-left"/>
 </instance>
+<instance part="J1" gate="G$1" x="233.68" y="-165.1" smashed="yes">
+<attribute name="NAME" x="233.68" y="-162.56" size="1.778" layer="95" align="bottom-center"/>
+<attribute name="VALUE" x="228.6" y="-168.91" size="1.778" layer="96"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -15566,9 +15778,9 @@ and built-in EMI/EMC compliance are provided by the module. </text>
 <pinref part="R106" gate="G$1" pin="1"/>
 </segment>
 <segment>
-<wire x1="223.52" y1="-165.1" x2="231.14" y2="-165.1" width="0.1524" layer="91"/>
-<label x="231.14" y="-165.1" size="1.27" layer="95" xref="yes"/>
-<pinref part="AC_L" gate="G$1" pin="MOUNT"/>
+<pinref part="J1" gate="G$1" pin="2"/>
+<wire x1="241.3" y1="-165.1" x2="243.84" y2="-165.1" width="0.1524" layer="91"/>
+<label x="243.84" y="-165.1" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="+12V" class="0">
@@ -15747,8 +15959,8 @@ and built-in EMI/EMC compliance are provided by the module. </text>
 </segment>
 <segment>
 <pinref part="AC_N" gate="G$1" pin="MOUNT"/>
-<wire x1="223.52" y1="-175.26" x2="231.14" y2="-175.26" width="0.1524" layer="91"/>
-<label x="231.14" y="-175.26" size="1.27" layer="95" xref="yes"/>
+<wire x1="223.52" y1="-175.26" x2="243.84" y2="-175.26" width="0.1524" layer="91"/>
+<label x="243.84" y="-175.26" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="+12V_MEA" class="0">
@@ -16045,6 +16257,13 @@ and built-in EMI/EMC compliance are provided by the module. </text>
 <pinref part="R150" gate="G$1" pin="2"/>
 <pinref part="P12ON" gate="G$1" pin="A"/>
 <wire x1="271.78" y1="-165.1" x2="271.78" y2="-157.48" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="AC_L_F" class="0">
+<segment>
+<pinref part="AC_L" gate="G$1" pin="MOUNT"/>
+<pinref part="J1" gate="G$1" pin="1"/>
+<wire x1="226.06" y1="-165.1" x2="223.52" y2="-165.1" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

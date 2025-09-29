@@ -3,7 +3,7 @@
 <eagle version="9.2.1">
 <drawing>
 <settings>
-<setting alwaysvectorfont="no"/>
+<setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.01" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mm"/>
@@ -37,7 +37,7 @@
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
-<layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
+<layer number="30" name="bStop" color="7" fill="6" visible="yes" active="yes"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
 <layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
 <layer number="33" name="tFinish" color="6" fill="3" visible="no" active="yes"/>
@@ -199,7 +199,7 @@
 <plain>
 <text x="11.478" y="5.862" size="1.4224" layer="26" font="vector" ratio="13" rot="MR0" align="bottom-right">github.com/DvidMakesThings/HW_10-In-Rack_PDU
 David Sipos @2025</text>
-<text x="6.1302" y="46.666" size="1.778" layer="21">AC IN</text>
+<text x="1.2702" y="93.626" size="1.778" layer="21">AC IN</text>
 <text x="105.751" y="63.993" size="2.1844" layer="22" font="vector" ratio="14" rot="MR0">DO NOT TOUCH</text>
 <text x="29.207" y="100.9248" size="1.778" layer="21" ratio="11" rot="R270">OUT1</text>
 <text x="52.907" y="101.0248" size="1.778" layer="21" ratio="11" rot="R270">OUT2</text>
@@ -209,7 +209,7 @@ David Sipos @2025</text>
 <text x="148.707" y="100.6248" size="1.778" layer="21" ratio="11" rot="R270">OUT6</text>
 <text x="173.7908" y="100.6574" size="1.778" layer="21" ratio="11" rot="R270">OUT7</text>
 <text x="197.9908" y="100.3574" size="1.778" layer="21" ratio="11" rot="R270">OUT8</text>
-<text x="3.7968" y="60.1366" size="2.1844" layer="21" font="vector" ratio="14" rot="R90">DO NOT TOUCH</text>
+<text x="4.1768" y="49.8766" size="2.1844" layer="21" font="vector" ratio="14" rot="R90">DO NOT TOUCH</text>
 <wire x1="210" y1="2.232059375" x2="210" y2="101.767940625" width="0" layer="20"/>
 <wire x1="210" y1="101.767940625" x2="205.767940625" y2="106" width="0" layer="20" curve="90"/>
 <wire x1="205.767940625" y1="106" x2="4.232059375" y2="106" width="0" layer="20"/>
@@ -767,8 +767,15 @@ Used 0.8128 mm (32 mil) clearance on polygon pours</text>
 <rectangle x1="28.5812" y1="8.5475" x2="29.1412" y2="8.6275" layer="25"/>
 <rectangle x1="28.7412" y1="8.6275" x2="29.1412" y2="8.7075" layer="25"/>
 <rectangle x1="28.8212" y1="8.7075" x2="29.2212" y2="8.7875" layer="25"/>
-<text x="4.6576" y="56.8452" size="2.1844" layer="25">L</text>
-<text x="11.7912" y="56.8452" size="2.1844" layer="25">N</text>
+<text x="0.8676" y="83.8852" size="2.1844" layer="25">L</text>
+<text x="0.8012" y="80.7352" size="2.1844" layer="25">N</text>
+<wire x1="4.76" y1="89.16" x2="4.76" y2="85.52" width="2.54" layer="30"/>
+<wire x1="4.76" y1="85.52" x2="11.23" y2="79.05" width="2.54" layer="30"/>
+<wire x1="11.23" y1="79.05" x2="11.23" y2="71.45" width="2.54" layer="30"/>
+<wire x1="11.1" y1="47.4" x2="15.73" y2="52.03" width="2.54" layer="30"/>
+<wire x1="15.73" y1="52.03" x2="29.4" y2="52.03" width="2.54" layer="30"/>
+<wire x1="21.27" y1="78.7" x2="197.32" y2="78.7" width="2.54" layer="30"/>
+<wire x1="197.32" y1="78.7" x2="197.55" y2="78.47" width="2.54" layer="30"/>
 </plain>
 <libraries>
 <library name="ds_passive">
@@ -6691,6 +6698,115 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </package3d>
 </packages3d>
 </library>
+<library name="Wurth_Connectors_WR-FSH" urn="urn:adsk.eagle:library:14787550">
+<description>&lt;BR&gt;Wurth Elektronik - Connectors - Fuseholder - WR-FSH &lt;br&gt;&lt;Hr&gt;
+
+&lt;BR&gt;
+&lt;TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0&gt;
+&lt;TR&gt;   
+&lt;TD BGCOLOR="#cccccc" ALIGN=CENTER&gt;&lt;FONT FACE=ARIAL SIZE=3&gt;&lt;BR&gt;&lt;br&gt;
+      &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp;&lt;BR&gt;
+       &lt;BR&gt;
+       &lt;BR&gt;
+       &lt;BR&gt;&lt;BR&gt;&lt;/FONT&gt;
+    &lt;/TD&gt;
+&lt;TD BGCOLOR="#cccccc" ALIGN=CENTER&gt;&lt;FONT FACE=ARIAL SIZE=3&gt;&lt;br&gt;
+      -----&lt;BR&gt;
+      -----&lt;BR&gt;
+      -----&lt;BR&gt;
+      -----&lt;BR&gt;
+      -----&lt;BR&gt;&lt;BR&gt;&lt;/FONT&gt;
+    &lt;/TD&gt;
+    &lt;TD BGCOLOR="#cccccc" ALIGN=CENTER&gt; &lt;FONT FACE=ARIAL SIZE=3&gt;&lt;br&gt;
+      ---------------------------&lt;BR&gt;
+&lt;B&gt;&lt;I&gt;&lt;span style='font-size:26pt;
+  color:#FF6600;'&gt;WE &lt;/span&gt;&lt;/i&gt;&lt;/b&gt;
+&lt;BR&gt;
+      ---------------------------&lt;BR&gt;&lt;b&gt;Würth Elektronik&lt;/b&gt;&lt;/FONT&gt;
+    &lt;/TD&gt;
+    &lt;TD BGCOLOR="#cccccc" ALIGN=CENTER&gt;&lt;FONT FACE=ARIAL SIZE=3&gt;&lt;br&gt;
+      ---------O---&lt;BR&gt;
+      ----O--------&lt;BR&gt;
+      ---------O---&lt;BR&gt;
+      ----O--------&lt;BR&gt;
+      ---------O---&lt;BR&gt;&lt;BR&gt;&lt;/FONT&gt;
+    &lt;/TD&gt;
+   
+&lt;TD BGCOLOR="#cccccc" ALIGN=CENTER&gt;&lt;FONT FACE=ARIAL SIZE=3&gt;&lt;BR&gt;
+      &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp;&lt;BR&gt;
+       &lt;BR&gt;
+       &lt;BR&gt;
+       &lt;BR&gt;
+       &lt;BR&gt;&lt;BR&gt;&lt;/FONT&gt;
+    &lt;/TD&gt;
+  &lt;/TR&gt;
+
+  &lt;TR&gt;
+    &lt;TD COLSPAN=7&gt;&amp;nbsp;
+    &lt;/TD&gt;
+  &lt;/TR&gt;
+  
+&lt;/TABLE&gt;
+&lt;B&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;More than you expect&lt;BR&gt;&lt;BR&gt;&lt;BR&gt;&lt;/B&gt;
+
+&lt;HR&gt;&lt;BR&gt;
+&lt;b&gt;Würth Elektronik eiSos GmbH &amp; Co. KG&lt;/b&gt;&lt;br&gt;
+EMC &amp; Inductive Solutions&lt;br&gt;
+
+Max-Eyth-Str.1&lt;br&gt;
+D-74638 Waldenburg&lt;br&gt;
+&lt;br&gt;
+Tel: +49 (0)7942-945-0&lt;br&gt;
+Fax:+49 (0)7942-945-5000&lt;br&gt;
+&lt;br&gt;
+&lt;a href="http://www.we-online.com/web/en/electronic_components/produkte_pb/bauteilebibliotheken/eagle_4.php"&gt;www.we-online.com/eagle&lt;/a&gt;&lt;br&gt;
+&lt;a href="mailto:libraries@we-online.com"&gt;libraries@we-online.com&lt;/a&gt; &lt;BR&gt;&lt;BR&gt;
+&lt;br&gt;&lt;HR&gt;&lt;BR&gt;
+Neither Autodesk nor Würth Elektronik eiSos does warrant that this library is error-free or &lt;br&gt;
+that it meets your specific requirements.&lt;br&gt;&lt;BR&gt;
+Please contact us for more information.&lt;br&gt;
+&lt;HR&gt;
+&lt;br&gt;Eagle Version 9, Library Revision 2020a, 2020-09-08&lt;br&gt;
+&lt;HR&gt;
+Copyright: Würth Elektronik</description>
+<packages>
+<package name="696101000002" urn="urn:adsk.eagle:footprint:14787564/1" library_version="3">
+<description>&lt;b&gt;WR-FSH Fuseholder THT Blocks PCB Clip Cover
+&lt;br&gt;
+&lt;br&gt;&lt;/b&gt;Mates with 696120004001</description>
+<pad name="1" x="-11.3" y="0" drill="1.5"/>
+<pad name="2" x="11.3" y="0" drill="1.5"/>
+<wire x1="-11" y1="-4.5" x2="-11" y2="4.5" width="0.1" layer="51"/>
+<wire x1="-11" y1="4.5" x2="11" y2="4.5" width="0.1" layer="51"/>
+<wire x1="11" y1="4.5" x2="11" y2="-4.5" width="0.1" layer="51"/>
+<wire x1="11" y1="-4.5" x2="-11" y2="-4.5" width="0.1" layer="51"/>
+<wire x1="-11.1" y1="1.5" x2="-11.1" y2="4.6" width="0.2" layer="21"/>
+<wire x1="-11.1" y1="4.6" x2="11.1" y2="4.6" width="0.2" layer="21"/>
+<wire x1="11.1" y1="4.6" x2="11.1" y2="1.5" width="0.2" layer="21"/>
+<wire x1="11.1" y1="-1.5" x2="11.1" y2="-4.6" width="0.2" layer="21"/>
+<wire x1="11.1" y1="-4.6" x2="-11.1" y2="-4.6" width="0.2" layer="21"/>
+<wire x1="-11.1" y1="-4.6" x2="-11.1" y2="-1.5" width="0.2" layer="21"/>
+<text x="-3.65" y="-6.478" size="1.27" layer="27">&gt;VALUE</text>
+<text x="0" y="5.5" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<polygon width="0.1" layer="39">
+<vertex x="12.7" y="4.8"/>
+<vertex x="12.7" y="-4.8"/>
+<vertex x="-12.7" y="-4.8"/>
+<vertex x="-12.7" y="4.8"/>
+</polygon>
+</package>
+</packages>
+<packages3d>
+<package3d name="696101000002" urn="urn:adsk.eagle:package:14787579/2" type="model" library_version="3">
+<description>&lt;b&gt;WR-FSH Fuseholder THT Blocks PCB Clip Cover
+&lt;br&gt;
+&lt;br&gt;&lt;/b&gt;Mates with 696120004001</description>
+<packageinstances>
+<packageinstance name="696101000002"/>
+</packageinstances>
+</package3d>
+</packages3d>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -7017,13 +7133,13 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" x="205.5276" y="46.6736" size="1.016" layer="27" rot="R270"/>
 </element>
 <element name="U$1" library="logo" library_urn="urn:adsk.eagle:library:264" package="ESD_10.00" value="DNI" x="102.6042" y="68.4166" smashed="yes" rot="MR0"/>
-<element name="U$2" library="logo" library_urn="urn:adsk.eagle:library:264" package="ESD_10.00" value="DNI" x="6.2368" y="59.6036" smashed="yes"/>
+<element name="U$2" library="logo" library_urn="urn:adsk.eagle:library:264" package="ESD_10.00" value="DNI" x="58.0068" y="5.9736" smashed="yes"/>
 <element name="C19" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="152.129090625" y="26.356403125" smashed="yes" rot="R315">
 <attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="152.129090625" y="26.356403125" size="1.778" layer="27" rot="R315" display="off"/>
-<attribute name="HQ_PART" value="CA0137105" x="152.129090625" y="26.356403125" size="1.778" layer="27" rot="R315" display="off"/>
+<attribute name="HQ_PART" value="CA0176807" x="152.129090625" y="26.356403125" size="1.778" layer="27" rot="R315" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="152.129090625" y="26.356403125" size="1.778" layer="27" rot="R315" display="off"/>
-<attribute name="MANUFACTURER" value="Yageo" x="152.129090625" y="26.356403125" size="1.778" layer="27" rot="R315" display="off"/>
-<attribute name="MPN" value="CC0402KRX5R8BB104" x="152.129090625" y="26.356403125" size="1.778" layer="27" rot="R315" display="off"/>
+<attribute name="MANUFACTURER" value="Walsin" x="152.129090625" y="26.356403125" size="1.778" layer="27" rot="R315" display="off"/>
+<attribute name="MPN" value="0402X104K250CT" x="152.129090625" y="26.356403125" size="1.778" layer="27" rot="R315" display="off"/>
 <attribute name="NAME" x="150.448328125" y="25.9767125" size="0.8128" layer="25" rot="R315"/>
 <attribute name="ROHS" value="YES" x="152.129090625" y="26.356403125" size="1.778" layer="27" rot="R315" display="off"/>
 <attribute name="VALUE" value="100nF 25V" x="152.129090625" y="26.356403125" size="1.778" layer="27" rot="R315" display="off"/>
@@ -7031,10 +7147,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="C20" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="152.94761875" y="27.14493125" smashed="yes" rot="R315">
 <attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="152.94761875" y="27.14493125" size="1.778" layer="27" rot="R315" display="off"/>
-<attribute name="HQ_PART" value="CA0137105" x="152.94761875" y="27.14493125" size="1.778" layer="27" rot="R315" display="off"/>
+<attribute name="HQ_PART" value="CA0176807" x="152.94761875" y="27.14493125" size="1.778" layer="27" rot="R315" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="152.94761875" y="27.14493125" size="1.778" layer="27" rot="R315" display="off"/>
-<attribute name="MANUFACTURER" value="Yageo" x="152.94761875" y="27.14493125" size="1.778" layer="27" rot="R315" display="off"/>
-<attribute name="MPN" value="CC0402KRX5R8BB104" x="152.94761875" y="27.14493125" size="1.778" layer="27" rot="R315" display="off"/>
+<attribute name="MANUFACTURER" value="Walsin" x="152.94761875" y="27.14493125" size="1.778" layer="27" rot="R315" display="off"/>
+<attribute name="MPN" value="0402X104K250CT" x="152.94761875" y="27.14493125" size="1.778" layer="27" rot="R315" display="off"/>
 <attribute name="NAME" x="152.9133375" y="28.618278125" size="0.8128" layer="25" rot="R45"/>
 <attribute name="ROHS" value="YES" x="152.94761875" y="27.14493125" size="1.778" layer="27" rot="R315" display="off"/>
 <attribute name="VALUE" value="100nF 25V" x="152.94761875" y="27.14493125" size="1.778" layer="27" rot="R315" display="off"/>
@@ -7109,10 +7225,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="100uF 25V" x="120.6324" y="25.5614" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="121.8324" y="30.4614" size="1.016" layer="27" rot="R180" align="bottom-center"/>
 </element>
-<element name="12VDC" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="128.3886" y="19.3924" smashed="yes">
+<element name="12VDC" library="ds_passive" package="TP-ROUND" value="DNI" x="128.3886" y="19.3924" smashed="yes">
 <attribute name="NAME" x="130.0986" y="19.6624" size="0.8128" layer="25" align="center-left"/>
 <attribute name="ROHS" value="YES" x="128.3886" y="19.3924" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="128.3886" y="19.3924" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" value="DNI" x="128.3886" y="19.3924" size="1.778" layer="27" display="off"/>
 </element>
 <element name="IC1" library="ds_ic_vreg" package="SOT65P280X110-8N" package3d_urn="urn:adsk.eagle:package:29335450/2" value="MP2315GJ-Z " x="104.3576" y="10.2496" smashed="yes" rot="R90">
 <attribute name="DATASHEET" value="https://www.monolithicpower.com/en/documentview/productdocument/index/version/2/document_type/Datasheet/lang/EN/sku/MP2315S?srsltid=AfmBOoqbTpEIx6KSoiWl4ZUQnKkVQGj573Ur79inB-ZmXjzR-CZxOYOr" x="104.3576" y="10.2496" size="1.778" layer="27" rot="R90" display="off"/>
@@ -7128,10 +7244,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="C3" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="104.6576" y="7.4496" smashed="yes">
 <attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="104.6576" y="7.4496" size="1.778" layer="27" display="off"/>
-<attribute name="HQ_PART" value="CA0137105" x="104.6576" y="7.4496" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="CA0176807" x="104.6576" y="7.4496" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="104.6576" y="7.4496" size="1.778" layer="27" display="off"/>
-<attribute name="MANUFACTURER" value="Yageo" x="104.6576" y="7.4496" size="1.778" layer="27" display="off"/>
-<attribute name="MPN" value="CC0402KRX5R8BB104" x="104.6576" y="7.4496" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="Walsin" x="104.6576" y="7.4496" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="0402X104K250CT" x="104.6576" y="7.4496" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="107.3226" y="7.0146" size="0.8128" layer="25" rot="R90"/>
 <attribute name="ROHS" value="YES" x="104.6576" y="7.4496" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="100nF 25V" x="104.6576" y="7.4496" size="1.778" layer="27" display="off"/>
@@ -7139,10 +7255,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="C6" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="104.5576" y="14.3496" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="104.5576" y="14.3496" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="HQ_PART" value="CA0137105" x="104.5576" y="14.3496" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="HQ_PART" value="CA0176807" x="104.5576" y="14.3496" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="104.5576" y="14.3496" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MANUFACTURER" value="Yageo" x="104.5576" y="14.3496" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MPN" value="CC0402KRX5R8BB104" x="104.5576" y="14.3496" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MANUFACTURER" value="Walsin" x="104.5576" y="14.3496" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MPN" value="0402X104K250CT" x="104.5576" y="14.3496" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="104.7426" y="15.8746" size="0.8128" layer="25" rot="R90"/>
 <attribute name="ROHS" value="YES" x="104.5576" y="14.3496" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" value="100nF 25V" x="104.5576" y="14.3496" size="1.778" layer="27" rot="R90" display="off"/>
@@ -7172,10 +7288,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="C8" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="109.1576" y="14.0496" smashed="yes">
 <attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="109.1576" y="14.0496" size="1.778" layer="27" display="off"/>
-<attribute name="HQ_PART" value="CA0137105" x="109.1576" y="14.0496" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="CA0176807" x="109.1576" y="14.0496" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="109.1576" y="14.0496" size="1.778" layer="27" display="off"/>
-<attribute name="MANUFACTURER" value="Yageo" x="109.1576" y="14.0496" size="1.778" layer="27" display="off"/>
-<attribute name="MPN" value="CC0402KRX5R8BB104" x="109.1576" y="14.0496" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="Walsin" x="109.1576" y="14.0496" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="0402X104K250CT" x="109.1576" y="14.0496" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="110.5226" y="13.6146" size="0.8128" layer="25"/>
 <attribute name="ROHS" value="YES" x="109.1576" y="14.0496" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="100nF 25V" x="109.1576" y="14.0496" size="1.778" layer="27" display="off"/>
@@ -7235,30 +7351,30 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="33pF 50V" x="100.9576" y="15.3496" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="99.0526" y="15.9846" size="1.016" layer="27" rot="R270"/>
 </element>
-<element name="5VDC" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="116.9096" y="3.3224" smashed="yes" rot="R180">
+<element name="5VDC" library="ds_passive" package="TP-ROUND" value="DNI" x="116.9096" y="3.3224" smashed="yes" rot="R180">
 <attribute name="NAME" x="116.0796" y="1.8924" size="0.8128" layer="25" rot="R180" align="center-left"/>
 <attribute name="ROHS" value="YES" x="116.9096" y="3.3224" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="116.9096" y="3.3224" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" value="DNI" x="116.9096" y="3.3224" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="SW" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="109.6596" y="15.9924" smashed="yes" rot="R180">
+<element name="SW" library="ds_passive" package="TP-ROUND" value="DNI" x="109.6596" y="15.9924" smashed="yes" rot="R180">
 <attribute name="NAME" x="110.8104" y="15.3076" size="0.8128" layer="25" align="center-left"/>
 <attribute name="ROHS" value="YES" x="109.6596" y="15.9924" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="109.6596" y="15.9924" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" value="DNI" x="109.6596" y="15.9924" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="5VFB" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="98.7876" y="13.6796" smashed="yes" rot="R270">
+<element name="5VFB" library="ds_passive" package="TP-ROUND" value="DNI" x="98.7876" y="13.6796" smashed="yes" rot="R270">
 <attribute name="NAME" x="98.9776" y="15.1396" size="0.8128" layer="25" rot="R90" align="center-left"/>
 <attribute name="ROHS" value="YES" x="98.7876" y="13.6796" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="98.7876" y="13.6796" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" value="DNI" x="98.7876" y="13.6796" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="GND" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="128.3386" y="17.1324" smashed="yes" rot="R180">
+<element name="GND" library="ds_passive" package="TP-ROUND" value="DNI" x="128.3386" y="17.1324" smashed="yes" rot="R180">
 <attribute name="NAME" x="130.0886" y="18.5924" size="0.8128" layer="25" align="center-left"/>
 <attribute name="ROHS" value="YES" x="128.3386" y="17.1324" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="128.3386" y="17.1324" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" value="DNI" x="128.3386" y="17.1324" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="GND-5" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="121.4576" y="3.2496" smashed="yes">
+<element name="GND-5" library="ds_passive" package="TP-ROUND" value="DNI" x="121.4576" y="3.2496" smashed="yes">
 <attribute name="NAME" x="122.4124" y="1.8504" size="0.8128" layer="25" align="center-left"/>
 <attribute name="ROHS" value="YES" x="121.4576" y="3.2496" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="121.4576" y="3.2496" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" value="DNI" x="121.4576" y="3.2496" size="1.778" layer="27" display="off"/>
 </element>
 <element name="R3" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="100K 1%" x="100.0576" y="8.8496" smashed="yes">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 100kΩ 0402 Chip Resistor - Surface Mount ROHS" x="100.0576" y="8.8496" size="1.778" layer="27" display="off"/>
@@ -7318,10 +7434,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="C4" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="88.7312" y="7.4422" smashed="yes">
 <attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="88.7312" y="7.4422" size="1.778" layer="27" display="off"/>
-<attribute name="HQ_PART" value="CA0137105" x="88.7312" y="7.4422" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="CA0176807" x="88.7312" y="7.4422" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="88.7312" y="7.4422" size="1.778" layer="27" display="off"/>
-<attribute name="MANUFACTURER" value="Yageo" x="88.7312" y="7.4422" size="1.778" layer="27" display="off"/>
-<attribute name="MPN" value="CC0402KRX5R8BB104" x="88.7312" y="7.4422" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="Walsin" x="88.7312" y="7.4422" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="0402X104K250CT" x="88.7312" y="7.4422" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="90.3172" y="7.0038" size="0.8128" layer="25"/>
 <attribute name="ROHS" value="YES" x="88.7312" y="7.4422" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="100nF 25V" x="88.7312" y="7.4422" size="1.778" layer="27" display="off"/>
@@ -7340,10 +7456,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="C7" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="88.6312" y="14.3422" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="88.6312" y="14.3422" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="HQ_PART" value="CA0137105" x="88.6312" y="14.3422" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="HQ_PART" value="CA0176807" x="88.6312" y="14.3422" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="88.6312" y="14.3422" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MANUFACTURER" value="Yageo" x="88.6312" y="14.3422" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MPN" value="CC0402KRX5R8BB104" x="88.6312" y="14.3422" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MANUFACTURER" value="Walsin" x="88.6312" y="14.3422" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MPN" value="0402X104K250CT" x="88.6312" y="14.3422" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="90.1062" y="13.7072" size="0.8128" layer="25" rot="R90"/>
 <attribute name="ROHS" value="YES" x="88.6312" y="14.3422" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" value="100nF 25V" x="88.6312" y="14.3422" size="1.778" layer="27" rot="R90" display="off"/>
@@ -7373,10 +7489,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="C9" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="93.2312" y="14.0422" smashed="yes">
 <attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="93.2312" y="14.0422" size="1.778" layer="27" display="off"/>
-<attribute name="HQ_PART" value="CA0137105" x="93.2312" y="14.0422" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="CA0176807" x="93.2312" y="14.0422" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="93.2312" y="14.0422" size="1.778" layer="27" display="off"/>
-<attribute name="MANUFACTURER" value="Yageo" x="93.2312" y="14.0422" size="1.778" layer="27" display="off"/>
-<attribute name="MPN" value="CC0402KRX5R8BB104" x="93.2312" y="14.0422" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="Walsin" x="93.2312" y="14.0422" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="0402X104K250CT" x="93.2312" y="14.0422" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="95.3962" y="13.6472" size="0.8128" layer="25"/>
 <attribute name="ROHS" value="YES" x="93.2312" y="14.0422" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="100nF 25V" x="93.2312" y="14.0422" size="1.778" layer="27" display="off"/>
@@ -7436,25 +7552,25 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="33pF 50V" x="85.0312" y="15.7422" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="83.1262" y="16.3772" size="1.016" layer="27" rot="R270"/>
 </element>
-<element name="3VDC" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="81.7872" y="2.2168" smashed="yes" rot="R90">
+<element name="3VDC" library="ds_passive" package="TP-ROUND" value="DNI" x="81.7872" y="2.2168" smashed="yes" rot="R90">
 <attribute name="NAME" x="82.9868" y="1.2128" size="0.8128" layer="25" align="center-left"/>
 <attribute name="ROHS" value="YES" x="81.7872" y="2.2168" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="81.7872" y="2.2168" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" value="DNI" x="81.7872" y="2.2168" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
-<element name="SW3" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="93.8312" y="15.8422" smashed="yes" rot="R180">
+<element name="SW3" library="ds_passive" package="TP-ROUND" value="DNI" x="93.8312" y="15.8422" smashed="yes" rot="R180">
 <attribute name="NAME" x="95.1488" y="15.7678" size="0.8128" layer="25" align="center-left"/>
 <attribute name="ROHS" value="YES" x="93.8312" y="15.8422" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="93.8312" y="15.8422" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" value="DNI" x="93.8312" y="15.8422" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="3VFB" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="89.5088" y="17.4378" smashed="yes" rot="R90">
+<element name="3VFB" library="ds_passive" package="TP-ROUND" value="DNI" x="89.5088" y="17.4378" smashed="yes" rot="R90">
 <attribute name="NAME" x="90.8422" y="18.0988" size="0.8128" layer="25" align="center-left"/>
 <attribute name="ROHS" value="YES" x="89.5088" y="17.4378" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="89.5088" y="17.4378" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" value="DNI" x="89.5088" y="17.4378" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
-<element name="GND-3" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="87.9688" y="2.2578" smashed="yes">
+<element name="GND-3" library="ds_passive" package="TP-ROUND" value="DNI" x="87.9688" y="2.2578" smashed="yes">
 <attribute name="NAME" x="89.1388" y="1.1578" size="0.8128" layer="25" align="center-left"/>
 <attribute name="ROHS" value="YES" x="87.9688" y="2.2578" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="87.9688" y="2.2578" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" value="DNI" x="87.9688" y="2.2578" size="1.778" layer="27" display="off"/>
 </element>
 <element name="R5" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="100K 1%" x="84.1312" y="8.9422" smashed="yes">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 100kΩ 0402 Chip Resistor - Surface Mount ROHS" x="84.1312" y="8.9422" size="1.778" layer="27" display="off"/>
@@ -7606,7 +7722,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="LCSC_PART" value="C17709" x="11.9952" y="75.517" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MANUFACTURER" value="Panasonic" x="11.9952" y="75.517" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MPN" value="ERJ6ENF4703V" x="11.9952" y="75.517" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="9.9952" y="75.847" size="1.016" layer="25" rot="R180"/>
+<attribute name="NAME" x="9.8852" y="73.947" size="1.016" layer="25" rot="R180"/>
 <attribute name="ROHS" value="YES" x="11.9952" y="75.517" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" value="470K 1%" x="11.9952" y="75.517" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="12.6302" y="78.057" size="1.016" layer="27" rot="R180"/>
@@ -7617,7 +7733,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="LCSC_PART" value="C17513" x="12.0252" y="77.767" size="1.778" layer="27" display="off"/>
 <attribute name="MANUFACTURER" value="FH" x="12.0252" y="77.767" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="RS-05K1001FT" x="12.0252" y="77.767" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="10.0448" y="78.293" size="1.016" layer="25" rot="R180"/>
+<attribute name="NAME" x="9.9348" y="75.123" size="1.016" layer="25" rot="R180"/>
 <attribute name="ROHS" value="YES" x="12.0252" y="77.767" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="1K 1%" x="12.0252" y="77.767" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="11.3902" y="75.227" size="1.016" layer="27"/>
@@ -7628,7 +7744,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="LCSC_PART" value="C107150" x="12.0008" y="79.897" size="1.778" layer="27" display="off"/>
 <attribute name="MANUFACTURER" value="FH" x="12.0008" y="79.897" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="0805B333K500NT" x="12.0008" y="79.897" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="9.9692" y="80.233" size="1.016" layer="25" rot="R180"/>
+<attribute name="NAME" x="9.9292" y="81.053" size="1.016" layer="25" rot="R180"/>
 <attribute name="ROHS" value="YES" x="12.0008" y="79.897" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="33nF 50V" x="12.0008" y="79.897" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="11.3658" y="77.357" size="1.016" layer="27"/>
@@ -8740,10 +8856,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="C33" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="174.6664" y="31.5262" smashed="yes">
 <attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="174.6664" y="31.5262" size="1.778" layer="27" display="off"/>
-<attribute name="HQ_PART" value="CA0137105" x="174.6664" y="31.5262" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="CA0176807" x="174.6664" y="31.5262" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="174.6664" y="31.5262" size="1.778" layer="27" display="off"/>
-<attribute name="MANUFACTURER" value="Yageo" x="174.6664" y="31.5262" size="1.778" layer="27" display="off"/>
-<attribute name="MPN" value="CC0402KRX5R8BB104" x="174.6664" y="31.5262" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="Walsin" x="174.6664" y="31.5262" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="0402X104K250CT" x="174.6664" y="31.5262" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="173.5814" y="30.0612" size="0.8128" layer="25"/>
 <attribute name="ROHS" value="YES" x="174.6664" y="31.5262" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="100nF 25V" x="174.6664" y="31.5262" size="1.778" layer="27" display="off"/>
@@ -8751,10 +8867,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="C34" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="174.6664" y="32.6262" smashed="yes">
 <attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="174.6664" y="32.6262" size="1.778" layer="27" display="off"/>
-<attribute name="HQ_PART" value="CA0137105" x="174.6664" y="32.6262" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="CA0176807" x="174.6664" y="32.6262" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="174.6664" y="32.6262" size="1.778" layer="27" display="off"/>
-<attribute name="MANUFACTURER" value="Yageo" x="174.6664" y="32.6262" size="1.778" layer="27" display="off"/>
-<attribute name="MPN" value="CC0402KRX5R8BB104" x="174.6664" y="32.6262" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="Walsin" x="174.6664" y="32.6262" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="0402X104K250CT" x="174.6664" y="32.6262" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="173.8414" y="33.4312" size="0.8128" layer="25"/>
 <attribute name="ROHS" value="YES" x="174.6664" y="32.6262" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="100nF 25V" x="174.6664" y="32.6262" size="1.778" layer="27" display="off"/>
@@ -8933,25 +9049,25 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="10K 1%" x="15.1822" y="29.8136" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="14.5472" y="27.2736" size="1.016" layer="27"/>
 </element>
-<element name="FB1" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="29.6822" y="33.5136" smashed="yes">
+<element name="FB1" library="ds_passive" package="TP-ROUND" value="DNI" x="29.6822" y="33.5136" smashed="yes">
 <attribute name="NAME" x="31.0604" y="33.558" size="1.27" layer="25" align="center-left"/>
 <attribute name="ROHS" value="YES" x="29.6822" y="33.5136" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="29.6822" y="33.5136" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" value="DNI" x="29.6822" y="33.5136" size="1.778" layer="27" display="off"/>
 </element>
-<element name="5V-NI1" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="23.9864" y="22.1822" smashed="yes">
+<element name="5V-NI1" library="ds_passive" package="TP-ROUND" value="DNI" x="23.9864" y="22.1822" smashed="yes">
 <attribute name="NAME" x="25.8182" y="22.158" size="1.27" layer="25" align="center-left"/>
 <attribute name="ROHS" value="YES" x="23.9864" y="22.1822" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="23.9864" y="22.1822" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" value="DNI" x="23.9864" y="22.1822" size="1.778" layer="27" display="off"/>
 </element>
-<element name="VCC" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="27.1822" y="33.0136" smashed="yes" rot="R90">
+<element name="VCC" library="ds_passive" package="TP-ROUND" value="DNI" x="27.1822" y="33.0136" smashed="yes" rot="R90">
 <attribute name="NAME" x="26.1626" y="33.0292" size="1.27" layer="25" rot="R180" align="center-left"/>
 <attribute name="ROHS" value="YES" x="27.1822" y="33.0136" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="27.1822" y="33.0136" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" value="DNI" x="27.1822" y="33.0136" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
-<element name="L-REC1" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="22.463" y="47.8606" smashed="yes" rot="R180">
-<attribute name="NAME" x="20.632" y="47.2028" size="1.27" layer="25" rot="R180" align="center-left"/>
-<attribute name="ROHS" value="YES" x="22.463" y="47.8606" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="22.463" y="47.8606" size="1.778" layer="27" rot="R180" display="off"/>
+<element name="L-REC1" library="ds_passive" package="TP-ROUND" value="DNI" x="24.483" y="41.5106" smashed="yes" rot="R180">
+<attribute name="NAME" x="25.668" y="41.8672" size="1.27" layer="25" align="center-left"/>
+<attribute name="ROHS" value="YES" x="24.483" y="41.5106" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" value="DNI" x="24.483" y="41.5106" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
 <element name="C46" library="ds_capacitors" package="0603" package3d_urn="urn:adsk.eagle:package:46766484/3" value="2.2uF 50V" x="48.4768" y="35.2292" smashed="yes">
 <attribute name="DESCRIPTION" value="50V 2.2uF X5R ±10% 0603 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="48.4768" y="35.2292" size="1.778" layer="27" display="off"/>
@@ -9098,25 +9214,25 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="10K 1%" x="37.4768" y="28.9292" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="36.8418" y="26.3892" size="1.016" layer="27"/>
 </element>
-<element name="FB2" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="52.0768" y="33.4292" smashed="yes">
+<element name="FB2" library="ds_passive" package="TP-ROUND" value="DNI" x="52.0768" y="33.4292" smashed="yes">
 <attribute name="NAME" x="53.6684" y="33.454" size="1.27" layer="25" align="center-left"/>
 <attribute name="ROHS" value="YES" x="52.0768" y="33.4292" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="52.0768" y="33.4292" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" value="DNI" x="52.0768" y="33.4292" size="1.778" layer="27" display="off"/>
 </element>
-<element name="5V-NI2" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="49.4292" y="20.3232" smashed="yes" rot="R180">
+<element name="5V-NI2" library="ds_passive" package="TP-ROUND" value="DNI" x="49.4292" y="20.3232" smashed="yes" rot="R180">
 <attribute name="NAME" x="46.4712" y="22.0382" size="1.27" layer="25" align="center-left"/>
 <attribute name="ROHS" value="YES" x="49.4292" y="20.3232" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="49.4292" y="20.3232" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" value="DNI" x="49.4292" y="20.3232" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="VCC2" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="49.3768" y="33.0292" smashed="yes" rot="R270">
+<element name="VCC2" library="ds_passive" package="TP-ROUND" value="DNI" x="49.3768" y="33.0292" smashed="yes" rot="R270">
 <attribute name="NAME" x="48.2518" y="33.0902" size="1.27" layer="25" rot="R180" align="center-left"/>
 <attribute name="ROHS" value="YES" x="49.3768" y="33.0292" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="49.3768" y="33.0292" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" value="DNI" x="49.3768" y="33.0292" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="L-REC2" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="44.51" y="47.9476" smashed="yes" rot="R180">
+<element name="L-REC2" library="ds_passive" package="TP-ROUND" value="DNI" x="44.51" y="47.9476" smashed="yes" rot="R180">
 <attribute name="NAME" x="42.9742" y="47.9364" size="1.27" layer="25" rot="R180" align="center-left"/>
 <attribute name="ROHS" value="YES" x="44.51" y="47.9476" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="44.51" y="47.9476" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" value="DNI" x="44.51" y="47.9476" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
 <element name="J7" library="jumper" library_urn="urn:adsk.eagle:library:252" package="SJ" package3d_urn="urn:adsk.eagle:package:15471/1" value="DNI" x="39.7568" y="13.8992" smashed="yes" rot="R270">
 <attribute name="NAME" x="41.3706" y="13.771" size="1.27" layer="25" ratio="10" rot="R270"/>
@@ -9184,10 +9300,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" x="150.6948125" y="10.4003375" size="1.27" layer="27" rot="R315"/>
 <attribute name="VALUE" value="1K 1%" x="152.4908625" y="11.2983625" size="1.778" layer="27" rot="R315" display="off"/>
 </element>
-<element name="DVDD" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="165.9034" y="16.2132" smashed="yes">
+<element name="DVDD" library="ds_passive" package="TP-ROUND" value="DNI" x="165.9034" y="16.2132" smashed="yes">
 <attribute name="NAME" x="167.3774" y="16.4294" size="1.016" layer="25" align="center-left"/>
 <attribute name="ROHS" value="YES" x="165.9034" y="16.2132" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="165.9034" y="16.2132" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" value="DNI" x="165.9034" y="16.2132" size="1.778" layer="27" display="off"/>
 </element>
 <element name="REF1" library="ds_ic_vreg" package="SOT23" package3d_urn="urn:adsk.eagle:package:46684430/3" value="LM4040x30" x="136.9718" y="15.7638" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="3V ±0.2% 15mA Fixed SOT-23 Voltage Reference ROHS " x="136.9718" y="15.7638" size="1.778" layer="27" rot="R180" display="off"/>
@@ -9211,15 +9327,15 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="4.7K 1%" x="139.4566" y="16.0022" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="138.8216" y="14.0972" size="1.27" layer="27"/>
 </element>
-<element name="IOVDD" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="163.5068" y="5.6858" smashed="yes" rot="R90">
+<element name="IOVDD" library="ds_passive" package="TP-ROUND" value="DNI" x="163.5068" y="5.6858" smashed="yes" rot="R90">
 <attribute name="NAME" x="162.1258" y="5.785" size="1.016" layer="25" rot="R180" align="center-left"/>
 <attribute name="ROHS" value="YES" x="163.5068" y="5.6858" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="163.5068" y="5.6858" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" value="DNI" x="163.5068" y="5.6858" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
-<element name="VREF" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="141.7784" y="16.3312" smashed="yes">
+<element name="VREF" library="ds_passive" package="TP-ROUND" value="DNI" x="141.7784" y="16.3312" smashed="yes">
 <attribute name="NAME" x="142.8642" y="17.1138" size="1.016" layer="25" align="center-left"/>
 <attribute name="ROHS" value="YES" x="141.7784" y="16.3312" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="141.7784" y="16.3312" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" value="DNI" x="141.7784" y="16.3312" size="1.778" layer="27" display="off"/>
 </element>
 <element name="IC17" library="ds_ic_opa" package="SOT23-5" package3d_urn="urn:adsk.eagle:package:25419215/3" value="MCP6001RT-I/OT" x="140.7674" y="19.2632" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="Single 1pA 0.6V/us 1MHz SOT-23-5 Operational Amplifier ROHS " x="140.7674" y="19.2632" size="1.778" layer="27" rot="R270" display="off"/>
@@ -9273,10 +9389,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" x="140.2178" y="19.0824" size="1.27" layer="27" rot="R90"/>
 <attribute name="VALUE" value="100nF 25V" x="138.3128" y="19.7174" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
-<element name="AVDD" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="140.7534" y="22.1388" smashed="yes" rot="R180">
+<element name="AVDD" library="ds_passive" package="TP-ROUND" value="DNI" x="140.7534" y="22.1388" smashed="yes" rot="R180">
 <attribute name="NAME" x="139.2632" y="22.2754" size="1.016" layer="25" rot="R180" align="center-left"/>
 <attribute name="ROHS" value="YES" x="140.7534" y="22.1388" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="140.7534" y="22.1388" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" value="DNI" x="140.7534" y="22.1388" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
 <element name="IC18" library="ds_ic_memory" package="SON127P600X500X75-8N" package3d_urn="urn:adsk.eagle:package:45369668/2" value="W25Q128JVPIQ" x="163.4522" y="23.1268" smashed="yes">
 <attribute name="DATASHEET" value="https://www.nikom.biz/pdf/A089014.pdf?srsltid=AfmBOopZgx1G_qpdWEIfoO5Ne0YuvaGR9ub92ZA1x90R1kz9P6rrUXmf" x="163.4522" y="23.1268" size="1.778" layer="27" display="off"/>
@@ -9293,10 +9409,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <element name="R111" library="ds_passive" package="R0201" package3d_urn="urn:adsk.eagle:package:47403529/3" value="DNI" x="158.9198" y="25.62" smashed="yes" rot="R90"/>
 <element name="R112" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="1K 1%" x="178.5222" y="29.9998" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 1kΩ 0402 Chip Resistor - Surface Mount ROHS" x="178.5222" y="29.9998" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="HQ_PART" value="RE0188047" x="178.5222" y="29.9998" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="HQ_PART" value="RE0208724" x="178.5222" y="29.9998" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LCSC_PART" value="C11702" x="178.5222" y="29.9998" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MANUFACTURER" value="Uniohm" x="178.5222" y="29.9998" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MPN" value="0402WGF1001TCE" x="178.5222" y="29.9998" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MANUFACTURER" value="FH" x="178.5222" y="29.9998" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MPN" value="RC-02K1001FT" x="178.5222" y="29.9998" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="179.8386" y="31.4566" size="0.8128" layer="25" rot="R180"/>
 <attribute name="ROHS" value="YES" x="178.5222" y="29.9998" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" value="1K 1%" x="178.5222" y="29.9998" size="1.778" layer="27" rot="R180" display="off"/>
@@ -9337,10 +9453,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="C66" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="171.7822" y="11.6528" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="171.7822" y="11.6528" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="HQ_PART" value="CA0137105" x="171.7822" y="11.6528" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="HQ_PART" value="CA0176807" x="171.7822" y="11.6528" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="171.7822" y="11.6528" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MANUFACTURER" value="Yageo" x="171.7822" y="11.6528" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MPN" value="CC0402KRX5R8BB104" x="171.7822" y="11.6528" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MANUFACTURER" value="Walsin" x="171.7822" y="11.6528" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MPN" value="0402X104K250CT" x="171.7822" y="11.6528" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="170.8814" y="12.3862" size="0.8128" layer="25"/>
 <attribute name="ROHS" value="YES" x="171.7822" y="11.6528" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" value="100nF 25V" x="171.7822" y="11.6528" size="1.778" layer="27" rot="R180" display="off"/>
@@ -9367,10 +9483,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="5.1K 1%" x="173.9778" y="5.3154" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="175.8828" y="4.6804" size="1.27" layer="27" rot="R90"/>
 </element>
-<element name="VBUS" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="168.0814" y="13.3588" smashed="yes" rot="R180">
+<element name="VBUS" library="ds_passive" package="TP-ROUND" value="DNI" x="168.0814" y="13.3588" smashed="yes" rot="R180">
 <attribute name="NAME" x="167.6152" y="14.9848" size="1.016" layer="25" align="center-left"/>
 <attribute name="ROHS" value="YES" x="168.0814" y="13.3588" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="168.0814" y="13.3588" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" value="DNI" x="168.0814" y="13.3588" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
 <element name="C67" library="ds_capacitors" package="0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="100nF 25V" x="167.998" y="25.0472" smashed="yes">
 <attribute name="DESCRIPTION" value="25V 100nF X5R ±10% 0201 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="167.998" y="25.0472" size="1.778" layer="27" display="off"/>
@@ -9696,10 +9812,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="C79" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V" x="195.923878125" y="17.52550625" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="25V 100nF ±10% 0402 Multilayer Ceramic Capacitors MLCC - SMD/SMT ROHS" x="195.923878125" y="17.52550625" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="HQ_PART" value="CA0137105" x="195.923878125" y="17.52550625" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="HQ_PART" value="CA0176807" x="195.923878125" y="17.52550625" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="LCSC_PART" value="C56392" x="195.923878125" y="17.52550625" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MANUFACTURER" value="Yageo" x="195.923878125" y="17.52550625" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MPN" value="CC0402KRX5R8BB104" x="195.923878125" y="17.52550625" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MANUFACTURER" value="Walsin" x="195.923878125" y="17.52550625" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MPN" value="0402X104K250CT" x="195.923878125" y="17.52550625" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="194.516078125" y="18.548709375" size="0.8128" layer="25" rot="R270"/>
 <attribute name="ROHS" value="YES" x="195.923878125" y="17.52550625" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" value="100nF 25V" x="195.923878125" y="17.52550625" size="1.778" layer="27" rot="R90" display="off"/>
@@ -10065,7 +10181,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="3.3K 1%" x="125.0276" y="10.1948" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="122.637990625" y="11.969190625" size="0.66234375" layer="27" rot="R270"/>
 </element>
-<element name="K1" library="ds_passive" package="RELAY_G2RL-1A-E_DC5_OMR" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E DC12 " x="24.9182" y="71.4038" smashed="yes" rot="R180">
+<element name="K1" library="ds_passive" package="RELAY_G2RL-1A-E_DC5_OMR" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E_DC12" x="24.9182" y="71.4038" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="12V 16A One Normally Open: 1A (SPST-NO) DIP,12.5x28.8mm Power Relays ROHS " x="24.9182" y="71.4038" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="HQ_PART" value="" x="24.9182" y="71.4038" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LCSC_PART" value="C1564126" x="24.9182" y="71.4038" size="1.778" layer="27" rot="R180" display="off"/>
@@ -10087,7 +10203,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="MBRA340T3G" x="33.9822" y="57.4714" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="36.9922" y="54.7614" size="1.016" layer="27" rot="R90"/>
 </element>
-<element name="K2" library="ds_passive" package="RELAY_G2RL-1A-E_DC5_OMR" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E DC12 " x="48.5448" y="71.7038" smashed="yes" rot="R180">
+<element name="K2" library="ds_passive" package="RELAY_G2RL-1A-E_DC5_OMR" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E_DC12" x="48.5448" y="71.7038" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="12V 16A One Normally Open: 1A (SPST-NO) DIP,12.5x28.8mm Power Relays ROHS " x="48.5448" y="71.7038" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="HQ_PART" value="" x="48.5448" y="71.7038" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LCSC_PART" value="C1564126" x="48.5448" y="71.7038" size="1.778" layer="27" rot="R180" display="off"/>
@@ -10109,7 +10225,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="MBRA340T3G" x="57.6922" y="57.523" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="60.7022" y="54.813" size="1.016" layer="27" rot="R90"/>
 </element>
-<element name="K3" library="ds_passive" package="RELAY_G2RL-1A-E_DC5_OMR" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E DC12 " x="72.1714" y="71.8038" smashed="yes" rot="R180">
+<element name="K3" library="ds_passive" package="RELAY_G2RL-1A-E_DC5_OMR" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E_DC12" x="72.1714" y="71.8038" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="12V 16A One Normally Open: 1A (SPST-NO) DIP,12.5x28.8mm Power Relays ROHS " x="72.1714" y="71.8038" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="HQ_PART" value="" x="72.1714" y="71.8038" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LCSC_PART" value="C1564126" x="72.1714" y="71.8038" size="1.778" layer="27" rot="R180" display="off"/>
@@ -10131,7 +10247,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="MBRA340T3G" x="81.2922" y="57.0368" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="84.3022" y="54.3268" size="1.016" layer="27" rot="R90"/>
 </element>
-<element name="K4" library="ds_passive" package="RELAY_G2RL-1A-E_DC5_OMR" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E DC12 " x="96.198" y="71.6038" smashed="yes" rot="R180">
+<element name="K4" library="ds_passive" package="RELAY_G2RL-1A-E_DC5_OMR" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E_DC12" x="96.198" y="71.6038" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="12V 16A One Normally Open: 1A (SPST-NO) DIP,12.5x28.8mm Power Relays ROHS " x="96.198" y="71.6038" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="HQ_PART" value="" x="96.198" y="71.6038" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LCSC_PART" value="C1564126" x="96.198" y="71.6038" size="1.778" layer="27" rot="R180" display="off"/>
@@ -10153,7 +10269,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="MBRA340T3G" x="105.2822" y="56.8706" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="108.2922" y="54.1606" size="1.016" layer="27" rot="R90"/>
 </element>
-<element name="K5" library="ds_passive" package="RELAY_G2RL-1A-E_DC5_OMR" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E DC12 " x="120.0182" y="71.1514" smashed="yes" rot="R180">
+<element name="K5" library="ds_passive" package="RELAY_G2RL-1A-E_DC5_OMR" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E_DC12" x="120.0182" y="71.1514" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="12V 16A One Normally Open: 1A (SPST-NO) DIP,12.5x28.8mm Power Relays ROHS " x="120.0182" y="71.1514" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="HQ_PART" value="" x="120.0182" y="71.1514" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LCSC_PART" value="C1564126" x="120.0182" y="71.1514" size="1.778" layer="27" rot="R180" display="off"/>
@@ -10175,7 +10291,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="MBRA340T3G" x="129.0622" y="57.0944" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="132.0722" y="54.3844" size="1.016" layer="27" rot="R90"/>
 </element>
-<element name="K6" library="ds_passive" package="RELAY_G2RL-1A-E_DC5_OMR" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E DC12 " x="144.4448" y="71.5514" smashed="yes" rot="R180">
+<element name="K6" library="ds_passive" package="RELAY_G2RL-1A-E_DC5_OMR" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E_DC12" x="144.4448" y="71.5514" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="12V 16A One Normally Open: 1A (SPST-NO) DIP,12.5x28.8mm Power Relays ROHS " x="144.4448" y="71.5514" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="HQ_PART" value="" x="144.4448" y="71.5514" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LCSC_PART" value="C1564126" x="144.4448" y="71.5514" size="1.778" layer="27" rot="R180" display="off"/>
@@ -10197,7 +10313,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="MBRA340T3G" x="153.0022" y="56.5882" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="156.0122" y="53.8782" size="1.016" layer="27" rot="R90"/>
 </element>
-<element name="K7" library="ds_passive" package="RELAY_G2RL-1A-E_DC5_OMR" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E DC12 " x="169.0714" y="71.3514" smashed="yes" rot="R180">
+<element name="K7" library="ds_passive" package="RELAY_G2RL-1A-E_DC5_OMR" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E_DC12" x="169.0714" y="71.3514" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="12V 16A One Normally Open: 1A (SPST-NO) DIP,12.5x28.8mm Power Relays ROHS " x="169.0714" y="71.3514" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="HQ_PART" value="" x="169.0714" y="71.3514" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LCSC_PART" value="C1564126" x="169.0714" y="71.3514" size="1.778" layer="27" rot="R180" display="off"/>
@@ -10219,7 +10335,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="MBRA340T3G" x="177.9308" y="58.0814" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="180.9408" y="55.3714" size="1.016" layer="27" rot="R90"/>
 </element>
-<element name="K8" library="ds_passive" package="RELAY_G2RL-1A-E_DC5_OMR" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E DC12 " x="193.798" y="71.0514" smashed="yes" rot="R180">
+<element name="K8" library="ds_passive" package="RELAY_G2RL-1A-E_DC5_OMR" package3d_urn="urn:adsk.eagle:package:46756717/2" value="G2RL-1A-E_DC12" x="193.798" y="71.0514" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="12V 16A One Normally Open: 1A (SPST-NO) DIP,12.5x28.8mm Power Relays ROHS " x="193.798" y="71.0514" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="HQ_PART" value="" x="193.798" y="71.0514" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LCSC_PART" value="C1564126" x="193.798" y="71.0514" size="1.778" layer="27" rot="R180" display="off"/>
@@ -10287,10 +10403,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="R151" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="1K 1%" x="164.48" y="36.36" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 1kΩ 0402 Chip Resistor - Surface Mount ROHS" x="164.48" y="36.36" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="HQ_PART" value="RE0188047" x="164.48" y="36.36" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="HQ_PART" value="RE0208724" x="164.48" y="36.36" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LCSC_PART" value="C11702" x="164.48" y="36.36" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MANUFACTURER" value="Uniohm" x="164.48" y="36.36" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MPN" value="0402WGF1001TCE" x="164.48" y="36.36" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MANUFACTURER" value="FH" x="164.48" y="36.36" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MPN" value="RC-02K1001FT" x="164.48" y="36.36" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="163.205" y="36.655" size="0.8128" layer="25" rot="R180"/>
 <attribute name="ROHS" value="YES" x="164.48" y="36.36" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" value="1K 1%" x="165.115" y="31.925" size="1.016" layer="27" rot="R180"/>
@@ -10321,8 +10437,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <element name="N_OUT7" library="holes" library_urn="urn:adsk.eagle:library:237" package="2,8-PAD" package3d_urn="urn:adsk.eagle:package:14281/1" value="DNI" x="168.86" y="98.3" smashed="yes" rot="R90"/>
 <element name="L_OUT8" library="holes" library_urn="urn:adsk.eagle:library:237" package="2,8-PAD" package3d_urn="urn:adsk.eagle:package:14281/1" value="DNI" x="193.43" y="89.47" smashed="yes" rot="R90"/>
 <element name="N_OUT8" library="holes" library_urn="urn:adsk.eagle:library:237" package="2,8-PAD" package3d_urn="urn:adsk.eagle:package:14281/1" value="DNI" x="193.27" y="98.32" smashed="yes" rot="R90"/>
-<element name="AC_L" library="holes" library_urn="urn:adsk.eagle:library:237" package="3,0-PAD" package3d_urn="urn:adsk.eagle:package:14280/1" value="DNI" x="14.88" y="52.48" smashed="yes"/>
-<element name="AC_N" library="holes" library_urn="urn:adsk.eagle:library:237" package="3,0-PAD" package3d_urn="urn:adsk.eagle:package:14280/1" value="DNI" x="4.51" y="52.47" smashed="yes"/>
+<element name="AC_L" library="holes" library_urn="urn:adsk.eagle:library:237" package="3,0-PAD" package3d_urn="urn:adsk.eagle:package:14280/1" value="DNI" x="4.85" y="89.31" smashed="yes"/>
+<element name="AC_N" library="holes" library_urn="urn:adsk.eagle:library:237" package="3,0-PAD" package3d_urn="urn:adsk.eagle:package:14280/1" value="DNI" x="4.86" y="77.28" smashed="yes"/>
 <element name="U$4" library="holes" library_urn="urn:adsk.eagle:library:237" package="3,2" package3d_urn="urn:adsk.eagle:package:14275/1" value="DNI" x="4.7714" y="101.2612" smashed="yes"/>
 <element name="R57" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="0R 1%" x="164.5" y="37.56" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±800ppm/℃ ±1% 0Ω 0402 Chip Resistor - Surface Mount ROHS" x="164.5" y="37.56" size="1.778" layer="27" rot="R180" display="off"/>
@@ -10502,15 +10618,15 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="NAME" x="34.4706" y="13.9114" size="1.27" layer="25" ratio="10" rot="R270"/>
 <attribute name="VALUE" x="37.1" y="13.4999" size="0.02" layer="27" rot="R270"/>
 </element>
-<element name="X1" library="ds_passive" package="WE-XTAL_CFPX-180" package3d_urn="urn:adsk.eagle:package:13029090/4" value="ABM8-272-T3 12MHz" x="150.027278125" y="9.68585625" smashed="yes" rot="R315">
+<element name="X1" library="ds_passive" package="WE-XTAL_CFPX-180" package3d_urn="urn:adsk.eagle:package:13029090/4" value="12MHz" x="150.027278125" y="9.68585625" smashed="yes" rot="R315">
 <attribute name="DESCRIPTION" value="12MHz Surface Mount Crystal 20pF ±10ppm ±20ppm SMD3225-4P Crystals ROHS " x="150.027278125" y="9.68585625" size="1.778" layer="27" rot="R315" display="off"/>
-<attribute name="HQ_PART" value="CR208634843" x="150.027278125" y="9.68585625" size="1.778" layer="27" rot="R315" display="off"/>
+<attribute name="HQ_PART" value="CR0250194" x="150.027278125" y="9.68585625" size="1.778" layer="27" rot="R315" display="off"/>
 <attribute name="LCSC_PART" value="C20625731" x="150.027278125" y="9.68585625" size="1.778" layer="27" rot="R315" display="off"/>
-<attribute name="MANUFACTURER" value="Abracon" x="150.027278125" y="9.68585625" size="1.778" layer="27" rot="R315" display="off"/>
-<attribute name="MPN" value="ABM8-272-T3 " x="150.027278125" y="9.68585625" size="1.778" layer="27" rot="R315" display="off"/>
+<attribute name="MANUFACTURER" value="TKD" x="150.027278125" y="9.68585625" size="1.778" layer="27" rot="R315" display="off"/>
+<attribute name="MPN" value="SX32Y012000B91T" x="150.027278125" y="9.68585625" size="1.778" layer="27" rot="R315" display="off"/>
 <attribute name="NAME" x="147.947596875" y="9.081909375" size="1.27" layer="25" rot="R135" align="bottom-center"/>
 <attribute name="ROHS" value="YES" x="150.027278125" y="9.68585625" size="1.778" layer="27" rot="R315" display="off"/>
-<attribute name="VALUE" value="ABM8-272-T3 12MHz" x="145.07753125" y="9.544434375" size="1.27" layer="27" rot="R315"/>
+<attribute name="VALUE" value="12MHz" x="145.07753125" y="9.544434375" size="1.27" layer="27" rot="R315"/>
 </element>
 <element name="R15" library="ds_resistor" package="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="27R 1%" x="162.686565625" y="18.01899375" smashed="yes" rot="R225">
 <attribute name="DESCRIPTION" value="50mW Thick Film Resistors 25V ±1% ±200ppm/℃ 27Ω 0201 Chip Resistor - Surface Mount ROHS" x="162.686565625" y="18.01899375" size="1.778" layer="27" rot="R225" display="off"/>
@@ -10574,10 +10690,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="R122" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="1K 1%" x="181.713" y="34.3548" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 1kΩ 0402 Chip Resistor - Surface Mount ROHS" x="181.713" y="34.3548" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="HQ_PART" value="RE0188047" x="181.713" y="34.3548" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="HQ_PART" value="RE0208724" x="181.713" y="34.3548" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C11702" x="181.713" y="34.3548" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="MANUFACTURER" value="Uniohm" x="181.713" y="34.3548" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="MPN" value="0402WGF1001TCE" x="181.713" y="34.3548" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MANUFACTURER" value="FH" x="181.713" y="34.3548" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MPN" value="RC-02K1001FT" x="181.713" y="34.3548" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="182.6528" y="35.6502" size="0.8128" layer="25" rot="R270"/>
 <attribute name="ROHS" value="YES" x="181.713" y="34.3548" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" value="1K 1%" x="179.808" y="34.9898" size="1.016" layer="27" rot="R270"/>
@@ -10604,10 +10720,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="R123" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="1K 1%" x="81.6124" y="5.7278" smashed="yes" rot="R180">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 1kΩ 0402 Chip Resistor - Surface Mount ROHS" x="81.6124" y="5.7278" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="HQ_PART" value="RE0188047" x="81.6124" y="5.7278" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="HQ_PART" value="RE0208724" x="81.6124" y="5.7278" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LCSC_PART" value="C11702" x="81.6124" y="5.7278" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MANUFACTURER" value="Uniohm" x="81.6124" y="5.7278" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MPN" value="0402WGF1001TCE" x="81.6124" y="5.7278" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MANUFACTURER" value="FH" x="81.6124" y="5.7278" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MPN" value="RC-02K1001FT" x="81.6124" y="5.7278" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="82.8474" y="4.8928" size="0.8128" layer="25" rot="R180"/>
 <attribute name="ROHS" value="YES" x="81.6124" y="5.7278" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" value="1K 1%" x="82.2474" y="7.6328" size="1.016" layer="27" rot="R180"/>
@@ -10711,10 +10827,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="R163" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="1K 1%" x="166.760621875" y="4.73535625" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 1kΩ 0402 Chip Resistor - Surface Mount ROHS" x="166.760621875" y="4.73535625" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="HQ_PART" value="RE0188047" x="166.760621875" y="4.73535625" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="HQ_PART" value="RE0208724" x="166.760621875" y="4.73535625" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="LCSC_PART" value="C11702" x="166.760621875" y="4.73535625" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MANUFACTURER" value="Uniohm" x="166.760621875" y="4.73535625" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MPN" value="0402WGF1001TCE" x="166.760621875" y="4.73535625" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MANUFACTURER" value="FH" x="166.760621875" y="4.73535625" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MPN" value="RC-02K1001FT" x="166.760621875" y="4.73535625" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="167.2549125" y="6.039696875" size="0.8128" layer="25" rot="R90"/>
 <attribute name="ROHS" value="YES" x="166.760621875" y="4.73535625" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="168.665621875" y="4.10035625" size="1.016" layer="27" rot="R90"/>
@@ -10740,115 +10856,115 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="ROHS" value="YES" x="175.15" y="0.41" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="177.72" y="-4.39" size="0.762" layer="27" align="center"/>
 </element>
-<element name="RX0" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="158.64" y="39.75" smashed="yes">
+<element name="RX0" library="ds_passive" package="TP-ROUND" value="DNI" x="158.64" y="39.75" smashed="yes">
 <attribute name="NAME" x="157.19" y="39.69" size="1.016" layer="25" rot="R180" align="center-left"/>
 <attribute name="ROHS" value="YES" x="158.64" y="39.75" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="158.64" y="39.75" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" value="DNI" x="158.64" y="39.75" size="1.778" layer="27" display="off"/>
 </element>
-<element name="RX1" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="158.72" y="37.08" smashed="yes">
+<element name="RX1" library="ds_passive" package="TP-ROUND" value="DNI" x="158.72" y="37.08" smashed="yes">
 <attribute name="NAME" x="157.11" y="37.02" size="1.016" layer="25" rot="R180" align="center-left"/>
 <attribute name="ROHS" value="YES" x="158.72" y="37.08" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="158.72" y="37.08" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" value="DNI" x="158.72" y="37.08" size="1.778" layer="27" display="off"/>
 </element>
-<element name="SDA0" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="141.32" y="11.23" smashed="yes">
+<element name="SDA0" library="ds_passive" package="TP-ROUND" value="DNI" x="141.32" y="11.23" smashed="yes">
 <attribute name="NAME" x="142.35" y="9.86" size="1.016" layer="25" align="center-left"/>
 <attribute name="ROHS" value="YES" x="141.32" y="11.23" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="141.32" y="11.23" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" value="DNI" x="141.32" y="11.23" size="1.778" layer="27" display="off"/>
 </element>
-<element name="SCL0" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="141.31" y="13.5" smashed="yes">
+<element name="SCL0" library="ds_passive" package="TP-ROUND" value="DNI" x="141.31" y="13.5" smashed="yes">
 <attribute name="NAME" x="142.32" y="14.77" size="1.016" layer="25" align="center-left"/>
 <attribute name="ROHS" value="YES" x="141.31" y="13.5" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="141.31" y="13.5" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" value="DNI" x="141.31" y="13.5" size="1.778" layer="27" display="off"/>
 </element>
-<element name="SDA1" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="154.85" y="28.46" smashed="yes">
+<element name="SDA1" library="ds_passive" package="TP-ROUND" value="DNI" x="154.85" y="28.46" smashed="yes">
 <attribute name="NAME" x="156.1" y="28.33" size="1.016" layer="25" align="center-left"/>
 <attribute name="ROHS" value="YES" x="154.85" y="28.46" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="154.85" y="28.46" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" value="DNI" x="154.85" y="28.46" size="1.778" layer="27" display="off"/>
 </element>
-<element name="SCL1" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="156.85" y="30.08" smashed="yes">
+<element name="SCL1" library="ds_passive" package="TP-ROUND" value="DNI" x="156.85" y="30.08" smashed="yes">
 <attribute name="NAME" x="158.12" y="30.08" size="1.016" layer="25" align="center-left"/>
 <attribute name="ROHS" value="YES" x="156.85" y="30.08" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="156.85" y="30.08" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" value="DNI" x="156.85" y="30.08" size="1.778" layer="27" display="off"/>
 </element>
-<element name="MI" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="135.11" y="9.97" smashed="yes" rot="R90">
+<element name="MI" library="ds_passive" package="TP-ROUND" value="DNI" x="135.11" y="9.97" smashed="yes" rot="R90">
 <attribute name="NAME" x="135.15" y="11.25" size="1.016" layer="25" rot="R90" align="center-left"/>
 <attribute name="ROHS" value="YES" x="135.11" y="9.97" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="135.11" y="9.97" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" value="DNI" x="135.11" y="9.97" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
-<element name="CS" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="127.89" y="10.07" smashed="yes" rot="R90">
+<element name="CS" library="ds_passive" package="TP-ROUND" value="DNI" x="127.89" y="10.07" smashed="yes" rot="R90">
 <attribute name="NAME" x="127.91" y="11.34" size="1.016" layer="25" rot="R90" align="center-left"/>
 <attribute name="ROHS" value="YES" x="127.89" y="10.07" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="127.89" y="10.07" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" value="DNI" x="127.89" y="10.07" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
-<element name="SC" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="130.27" y="10.07" smashed="yes" rot="R90">
+<element name="SC" library="ds_passive" package="TP-ROUND" value="DNI" x="130.27" y="10.07" smashed="yes" rot="R90">
 <attribute name="NAME" x="130.34" y="11.27" size="1.016" layer="25" rot="R90" align="center-left"/>
 <attribute name="ROHS" value="YES" x="130.27" y="10.07" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="130.27" y="10.07" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" value="DNI" x="130.27" y="10.07" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
-<element name="MO" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="132.65" y="10.07" smashed="yes" rot="R90">
+<element name="MO" library="ds_passive" package="TP-ROUND" value="DNI" x="132.65" y="10.07" smashed="yes" rot="R90">
 <attribute name="NAME" x="132.74" y="11.21" size="1.016" layer="25" rot="R90" align="center-left"/>
 <attribute name="ROHS" value="YES" x="132.65" y="10.07" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="132.65" y="10.07" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" value="DNI" x="132.65" y="10.07" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
-<element name="MISO1" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="203.71" y="38.58" smashed="yes">
+<element name="MISO1" library="ds_passive" package="TP-ROUND" value="DNI" x="203.71" y="38.58" smashed="yes">
 <attribute name="NAME" x="204.98" y="38.48" size="1.016" layer="25" align="center-left"/>
 <attribute name="ROHS" value="YES" x="203.71" y="38.58" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="203.71" y="38.58" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" value="DNI" x="203.71" y="38.58" size="1.778" layer="27" display="off"/>
 </element>
-<element name="CS1" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="203.71" y="34" smashed="yes">
+<element name="CS1" library="ds_passive" package="TP-ROUND" value="DNI" x="203.71" y="34" smashed="yes">
 <attribute name="NAME" x="204.98" y="34" size="1.016" layer="25" align="center-left"/>
 <attribute name="ROHS" value="YES" x="203.71" y="34" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="203.71" y="34" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" value="DNI" x="203.71" y="34" size="1.778" layer="27" display="off"/>
 </element>
-<element name="SCLK1" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="203.71" y="40.87" smashed="yes">
+<element name="SCLK1" library="ds_passive" package="TP-ROUND" value="DNI" x="203.71" y="40.87" smashed="yes">
 <attribute name="NAME" x="204.98" y="40.77" size="1.016" layer="25" align="center-left"/>
 <attribute name="ROHS" value="YES" x="203.71" y="40.87" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="203.71" y="40.87" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" value="DNI" x="203.71" y="40.87" size="1.778" layer="27" display="off"/>
 </element>
-<element name="MOSI1" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="203.71" y="36.29" smashed="yes">
+<element name="MOSI1" library="ds_passive" package="TP-ROUND" value="DNI" x="203.71" y="36.29" smashed="yes">
 <attribute name="NAME" x="204.98" y="36.29" size="1.016" layer="25" align="center-left"/>
 <attribute name="ROHS" value="YES" x="203.71" y="36.29" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="203.71" y="36.29" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" value="DNI" x="203.71" y="36.29" size="1.778" layer="27" display="off"/>
 </element>
-<element name="REL0" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="152.58" y="36.4" smashed="yes" rot="R270">
+<element name="REL0" library="ds_passive" package="TP-ROUND" value="DNI" x="152.58" y="36.4" smashed="yes" rot="R270">
 <attribute name="NAME" x="153.19" y="37.96" size="1.016" layer="25" rot="R90" align="center-left"/>
 <attribute name="ROHS" value="YES" x="152.58" y="36.4" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="152.58" y="36.4" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" value="DNI" x="152.58" y="36.4" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="REL2" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="148.31" y="36.4" smashed="yes" rot="R270">
+<element name="REL2" library="ds_passive" package="TP-ROUND" value="DNI" x="148.31" y="36.4" smashed="yes" rot="R270">
 <attribute name="NAME" x="146.82" y="37.96" size="1.016" layer="25" rot="R90" align="center-left"/>
 <attribute name="ROHS" value="YES" x="148.31" y="36.4" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="148.31" y="36.4" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" value="DNI" x="148.31" y="36.4" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="REL4" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="144.08" y="36.4" smashed="yes" rot="R90">
+<element name="REL4" library="ds_passive" package="TP-ROUND" value="DNI" x="144.08" y="36.4" smashed="yes" rot="R90">
 <attribute name="NAME" x="144.51" y="37.92" size="1.016" layer="25" rot="R90" align="center-left"/>
 <attribute name="ROHS" value="YES" x="144.08" y="36.4" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="144.08" y="36.4" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" value="DNI" x="144.08" y="36.4" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
-<element name="REL6" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="139.89" y="36.4" smashed="yes" rot="R270">
+<element name="REL6" library="ds_passive" package="TP-ROUND" value="DNI" x="139.89" y="36.4" smashed="yes" rot="R270">
 <attribute name="NAME" x="138.16" y="37.86" size="1.016" layer="25" rot="R90" align="center-left"/>
 <attribute name="ROHS" value="YES" x="139.89" y="36.4" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="139.89" y="36.4" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" value="DNI" x="139.89" y="36.4" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="REL1" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="150.44" y="36.4" smashed="yes" rot="R270">
+<element name="REL1" library="ds_passive" package="TP-ROUND" value="DNI" x="150.44" y="36.4" smashed="yes" rot="R270">
 <attribute name="NAME" x="151.96" y="37.98" size="1.016" layer="25" rot="R90" align="center-left"/>
 <attribute name="ROHS" value="YES" x="150.44" y="36.4" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="150.44" y="36.4" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" value="DNI" x="150.44" y="36.4" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="REL3" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="146.21" y="36.4" smashed="yes" rot="R270">
+<element name="REL3" library="ds_passive" package="TP-ROUND" value="DNI" x="146.21" y="36.4" smashed="yes" rot="R270">
 <attribute name="NAME" x="145.64" y="37.98" size="1.016" layer="25" rot="R90" align="center-left"/>
 <attribute name="ROHS" value="YES" x="146.21" y="36.4" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="146.21" y="36.4" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" value="DNI" x="146.21" y="36.4" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="REL5" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="141.99" y="36.4" smashed="yes" rot="R270">
+<element name="REL5" library="ds_passive" package="TP-ROUND" value="DNI" x="141.99" y="36.4" smashed="yes" rot="R270">
 <attribute name="NAME" x="143.28" y="38.02" size="1.016" layer="25" rot="R90" align="center-left"/>
 <attribute name="ROHS" value="YES" x="141.99" y="36.4" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="141.99" y="36.4" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" value="DNI" x="141.99" y="36.4" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="REL7" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="137.79" y="36.4" smashed="yes" rot="R270">
+<element name="REL7" library="ds_passive" package="TP-ROUND" value="DNI" x="137.79" y="36.4" smashed="yes" rot="R270">
 <attribute name="NAME" x="136.93" y="37.84" size="1.016" layer="25" rot="R90" align="center-left"/>
 <attribute name="ROHS" value="YES" x="137.79" y="36.4" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="137.79" y="36.4" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" value="DNI" x="137.79" y="36.4" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
 <element name="T1" library="ds_active" package="SOT23" package3d_urn="urn:adsk.eagle:package:46684430/3" value="BSS138" x="128.33" y="23.7" smashed="yes">
 <attribute name="DESCRIPTION" value="50V 230mA 3.4Ω@10V,220mA 230mW 1.5V@250uA N Channel SOT-23-3 MOSFETs ROHS " x="128.33" y="23.7" size="1.778" layer="27" display="off"/>
@@ -10922,10 +11038,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="ROHS" value="YES" x="154.28786875" y="33.49899375" size="1.778" layer="27" rot="R45" display="off"/>
 <attribute name="VALUE" x="154.0658375" y="29.561821875" size="1.27" layer="27" rot="R45" align="top-left"/>
 </element>
-<element name="ADC12" library="ds_passive" package="TP-ROUND" value="TESTPOINT" x="121.99" y="15.88" smashed="yes" rot="R180">
+<element name="ADC12" library="ds_passive" package="TP-ROUND" value="DNI" x="121.99" y="15.88" smashed="yes" rot="R180">
 <attribute name="NAME" x="122.92" y="14.18" size="1.016" layer="25" rot="R180" align="center-left"/>
 <attribute name="ROHS" value="YES" x="121.99" y="15.88" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="VALUE" value="TESTPOINT" x="121.99" y="15.88" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" value="DNI" x="121.99" y="15.88" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
 <element name="R130" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="3.3K 1%" x="137.58" y="9.11" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 3.3kΩ 0402 Chip Resistor - Surface Mount ROHS" x="137.58" y="9.11" size="1.778" layer="27" rot="R270" display="off"/>
@@ -10973,6 +11089,15 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <element name="U$13" library="SparkFun-Aesthetics" library_urn="urn:adsk.eagle:library:507" package="NO_PB_LOGO_0.120" package3d_urn="urn:adsk.eagle:package:41384598/3" value="DNI" x="56.5" y="25.1" smashed="yes" rot="MR0"/>
 <element name="U$14" library="SparkFun-Aesthetics" library_urn="urn:adsk.eagle:library:507" package="ROHS_LOGO_0.18_IN" package3d_urn="urn:adsk.eagle:package:41384599/3" value="DNI" x="56.7" y="18.6" smashed="yes" rot="MR0"/>
 <element name="U$15" library="ds_silkscreen" package="SMOKE" value="DNI" x="138.8872" y="19.304" smashed="yes" rot="MR0"/>
+<element name="J1" library="Wurth_Connectors_WR-FSH" library_urn="urn:adsk.eagle:library:14787550" package="696101000002" package3d_urn="urn:adsk.eagle:package:14787579/2" value="DNI" x="11.15" y="58.85" smashed="yes" rot="R270">
+<attribute name="DATASHEET-URL" value="https://www.we-online.com/catalog/datasheet/696101000002.pdf" x="11.15" y="58.85" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="IR-UL" value="18A" x="11.15" y="58.85" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="IR-VDE" value="6.3A" x="11.15" y="58.85" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MATES" value="696120004001" x="11.15" y="58.85" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="NAME" x="16.92" y="54.04" size="1.27" layer="25" rot="R270" align="bottom-center"/>
+<attribute name="PART-NUMBER" value="696101000002" x="11.15" y="58.85" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" x="4.672" y="62.5" size="1.27" layer="27" rot="R270"/>
+</element>
 </elements>
 <signals>
 <signal name="RELAY_1">
@@ -10985,10 +11110,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="68.7" y1="49.7" x2="65.4" y2="53" width="0.6096" layer="1"/>
 <wire x1="65.4" y1="53" x2="38.9" y2="53" width="0.6096" layer="1"/>
 <wire x1="38.9" y1="53" x2="37.7" y2="54.2" width="0.6096" layer="1"/>
-<via x="37.7" y="54.2" extent="1-16" drill="0.2"/>
+<via x="37.7" y="54.2" extent="1-16" drill="0.4"/>
 <wire x1="37.7" y1="54.2" x2="37.4" y2="54.5" width="0.6096" layer="3"/>
 <wire x1="37.4" y1="54.5" x2="37.4" y2="58.5" width="0.6096" layer="3"/>
-<via x="37.4" y="58.5" extent="1-16" drill="0.2"/>
+<via x="37.4" y="58.5" extent="1-16" drill="0.4"/>
 <wire x1="37.4" y1="58.5" x2="36.4286" y2="59.4714" width="0.6096" layer="1"/>
 <wire x1="36.4286" y1="59.4714" x2="33.9822" y2="59.5714" width="0.6096" layer="1"/>
 <wire x1="127.687" y1="49.7" x2="68.7" y2="49.7" width="0.6096" layer="1"/>
@@ -11080,7 +11205,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="44.7348" y1="56.2" x2="47.4624" y2="56.2" width="1.016" layer="1"/>
 <wire x1="144.2248" y1="58.7752" x2="144.2248" y2="59.4248" width="1.016" layer="1"/>
 <wire x1="160.4" y1="65" x2="166.3" y2="65" width="1.016" layer="1"/>
-<via x="166.3" y="65" extent="1-16" drill="0.2"/>
+<via x="166.3" y="65" extent="1-16" drill="0.4"/>
 <wire x1="166.3" y1="65" x2="166.3" y2="59.6138" width="1.016" layer="3"/>
 <wire x1="166.3" y1="59.6138" x2="165.2614" y2="58.5752" width="1.016" layer="3"/>
 <wire x1="144.2248" y1="59.4248" x2="145.8" y2="61" width="1.016" layer="1"/>
@@ -11211,26 +11336,25 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <contactref element="K6" pad="3"/>
 <contactref element="K5" pad="3"/>
 <contactref element="K5" pad="6"/>
-<contactref element="AC_L" pad="B3,0"/>
-<polygon width="0.4064" layer="16" isolate="0.8128" thermals="no">
-<vertex x="11" y="48"/>
-<vertex x="11" y="80.5"/>
+<polygon width="0.4064" layer="16" isolate="0.8128" thermals="no" rank="2">
+<vertex x="8.75" y="45.84"/>
+<vertex x="8.75" y="80.5"/>
 <vertex x="200.5" y="80.5"/>
 <vertex x="200.5" y="48"/>
 <vertex x="195" y="48"/>
 <vertex x="195" y="51"/>
 <vertex x="158" y="51"/>
-<vertex x="158" y="48"/>
+<vertex x="158" y="45.84"/>
 </polygon>
-<polygon width="0.4064" layer="15" isolate="0.8128" thermals="no">
-<vertex x="11" y="48"/>
-<vertex x="11" y="80.5"/>
+<polygon width="0.4064" layer="15" isolate="0.8128" thermals="no" rank="2">
+<vertex x="8.95" y="46.01"/>
+<vertex x="8.95" y="80.5"/>
 <vertex x="200.5" y="80.5"/>
 <vertex x="200.5" y="48"/>
 <vertex x="195" y="48"/>
 <vertex x="195" y="51"/>
 <vertex x="158" y="51"/>
-<vertex x="158" y="48"/>
+<vertex x="158" y="46.01"/>
 </polygon>
 <via x="20" y="76" extent="1-16" drill="0.4"/>
 <via x="22" y="76" extent="1-16" drill="0.4"/>
@@ -11407,15 +11531,15 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <via x="26" y="51" extent="1-16" drill="0.4"/>
 <via x="30" y="53" extent="1-16" drill="0.4"/>
 <via x="30" y="51" extent="1-16" drill="0.4"/>
-<via x="12" y="58" extent="1-16" drill="0.4"/>
-<via x="14" y="58" extent="1-16" drill="0.4"/>
-<via x="16" y="58" extent="1-16" drill="0.4"/>
-<via x="13" y="60" extent="1-16" drill="0.4"/>
-<via x="15" y="60" extent="1-16" drill="0.4"/>
-<via x="12" y="62" extent="1-16" drill="0.4"/>
-<via x="14" y="62" extent="1-16" drill="0.4"/>
-<via x="16" y="62" extent="1-16" drill="0.4"/>
-<via x="17" y="60" extent="1-16" drill="0.4"/>
+<via x="16.55" y="53.15" extent="1-16" drill="0.4"/>
+<via x="16.55" y="55.15" extent="1-16" drill="0.4"/>
+<via x="16.55" y="57.15" extent="1-16" drill="0.4"/>
+<via x="14.55" y="54.15" extent="1-16" drill="0.4"/>
+<via x="14.55" y="56.15" extent="1-16" drill="0.4"/>
+<via x="12.55" y="53.15" extent="1-16" drill="0.4"/>
+<via x="12.55" y="55.15" extent="1-16" drill="0.4"/>
+<via x="12.55" y="57.15" extent="1-16" drill="0.4"/>
+<via x="14.55" y="58.15" extent="1-16" drill="0.4"/>
 <via x="31.5" y="51.5" extent="1-16" drill="0.4"/>
 <via x="33" y="51.5" extent="1-16" drill="0.4"/>
 <via x="34.5" y="51.5" extent="1-16" drill="0.4"/>
@@ -11437,8 +11561,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="65.7376" y1="50.2624" x2="65.5" y2="50.5" width="2.54" layer="16"/>
 <wire x1="65.5" y1="50.5" x2="75.3" y2="50.5" width="2.54" layer="16"/>
 <wire x1="75.3" y1="50.5" x2="75.4499875" y2="50.3500125" width="2.54" layer="16"/>
-<wire x1="65.5" y1="50.5" x2="16.86" y2="50.5" width="2.54" layer="16"/>
-<wire x1="16.86" y1="50.5" x2="14.88" y2="52.48" width="2.54" layer="16"/>
+<contactref element="J1" pad="2"/>
+<wire x1="14.1" y1="50.5" x2="11.15" y2="47.55" width="2.54" layer="16"/>
+<wire x1="65.5" y1="50.5" x2="14.1" y2="50.5" width="2.54" layer="16"/>
 </signal>
 <signal name="OUT_1">
 <contactref element="K1" pad="4"/>
@@ -11744,10 +11869,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="69.6" y1="50.9" x2="64.1" y2="56.4" width="0.6096" layer="1"/>
 <wire x1="57.6922" y1="59.623" x2="61.023" y2="59.523" width="0.6096" layer="1"/>
 <wire x1="61.023" y1="59.523" x2="63.5" y2="62" width="0.6096" layer="1"/>
-<via x="63.5" y="62" extent="1-16" drill="0.2"/>
+<via x="63.5" y="62" extent="1-16" drill="0.4"/>
 <wire x1="63.5" y1="62" x2="64.1" y2="61.4" width="0.6096" layer="3"/>
 <wire x1="64.1" y1="61.4" x2="64.1" y2="56.4" width="0.6096" layer="3"/>
-<via x="64.1" y="56.4" extent="1-16" drill="0.2"/>
+<via x="64.1" y="56.4" extent="1-16" drill="0.4"/>
 </signal>
 <signal name="RELAY_3">
 <contactref element="R22" pad="2"/>
@@ -11818,10 +11943,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <contactref element="R17" pad="2"/>
 <contactref element="K8" pad="1"/>
 <contactref element="D8" pad="A"/>
-<via x="163.4" y="60.1" extent="1-16" drill="0.2"/>
+<via x="163.4" y="60.1" extent="1-16" drill="0.4"/>
 <wire x1="163.4" y1="60.1" x2="163.7" y2="60.4" width="1.016" layer="3"/>
 <wire x1="163.7" y1="60.4" x2="163.7" y2="63.3" width="1.016" layer="3"/>
-<via x="163.7" y="63.3" extent="1-16" drill="0.2"/>
+<via x="163.7" y="63.3" extent="1-16" drill="0.4"/>
 <wire x1="163.7" y1="63.3" x2="197.4" y2="63.3" width="1.016" layer="1"/>
 <wire x1="197.4" y1="63.3" x2="199.266" y2="63.3" width="1.016" layer="1"/>
 <wire x1="199.266" y1="63.3" x2="202.8308" y2="59.8352" width="1.016" layer="1"/>
@@ -14312,7 +14437,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <contactref element="AC/DC2" pad="AC/N"/>
 <wire x1="36.6824" y1="89.2062" x2="36.5762" y2="89.1" width="0.4064" layer="1"/>
 <wire x1="34.7" y1="89.1" x2="36.5762" y2="89.1" width="0.4064" layer="1"/>
-<via x="34.7" y="89.1" extent="1-16" drill="0.35"/>
+<via x="34.7" y="89.1" extent="1-16" drill="0.4"/>
 <polygon width="0.4064" layer="14" isolate="0.8128" thermals="no" rank="5">
 <vertex x="-1.2" y="9.57"/>
 <vertex x="-1.2" y="107.3"/>
@@ -14350,8 +14475,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <vertex x="31.5" y="81.5"/>
 <vertex x="31.5" y="94"/>
 <vertex x="18.5" y="94"/>
-<vertex x="18.5" y="81.809975"/>
-<vertex x="9.36" y="81.809975"/>
+<vertex x="18.5" y="80.829975"/>
+<vertex x="9.379715625" y="80.829975"/>
 <vertex x="10" y="50"/>
 <vertex x="57" y="50"/>
 <vertex x="57" y="38"/>
@@ -14360,9 +14485,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <vertex x="9.87" y="5" curve="90"/>
 <vertex x="5.3" y="9.57"/>
 </polygon>
-<via x="16.95" y="87.45" extent="1-16" drill="0.35"/>
-<via x="13.4" y="82.2" extent="1-16" drill="0.35"/>
-<via x="36.9998" y="81.7398" extent="1-16" drill="0.35"/>
+<via x="16.95" y="87.45" extent="1-16" drill="0.4"/>
+<via x="13.4" y="82.2" extent="1-16" drill="0.4"/>
+<via x="36.9998" y="81.7398" extent="1-16" drill="0.4"/>
 <contactref element="AC_N" pad="B3,0"/>
 <contactref element="R33" pad="1"/>
 <contactref element="R35" pad="2"/>
@@ -14426,10 +14551,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <vertex x="31.5" y="81.5"/>
 <vertex x="31.5" y="94"/>
 <vertex x="18.5" y="94"/>
-<vertex x="18.5" y="82"/>
-<vertex x="9.36" y="81.809975"/>
-<vertex x="10" y="81"/>
-<vertex x="10" y="50"/>
+<vertex x="18.5" y="80.996053125"/>
+<vertex x="9.52" y="80.809353125"/>
+<vertex x="9.52" y="50"/>
 <vertex x="57" y="50"/>
 <vertex x="57" y="38"/>
 <vertex x="69" y="38"/>
@@ -14437,13 +14561,13 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <vertex x="9.86" y="5.02" curve="90"/>
 <vertex x="5.31" y="9.57"/>
 </polygon>
-<via x="132" y="100.4" extent="1-16" drill="0.35"/>
-<via x="157.21" y="100.55" extent="1-16" drill="0.35"/>
-<via x="108" y="100.4" extent="1-16" drill="0.35"/>
-<via x="84.5" y="100.4" extent="1-16" drill="0.35"/>
-<via x="60" y="100.4" extent="1-16" drill="0.35"/>
-<via x="36.5" y="100.4" extent="1-16" drill="0.35"/>
-<via x="13" y="100" extent="1-16" drill="0.35"/>
+<via x="132" y="100.4" extent="1-16" drill="0.4"/>
+<via x="157.21" y="100.55" extent="1-16" drill="0.4"/>
+<via x="108" y="100.4" extent="1-16" drill="0.4"/>
+<via x="84.5" y="100.4" extent="1-16" drill="0.4"/>
+<via x="60" y="100.4" extent="1-16" drill="0.4"/>
+<via x="36.5" y="100.4" extent="1-16" drill="0.4"/>
+<via x="13" y="100" extent="1-16" drill="0.4"/>
 <wire x1="36.677" y1="95.3348" x2="36.677" y2="97.9052" width="0.4064" layer="1"/>
 <wire x1="36.677" y1="97.9052" x2="35.941" y2="98.6412" width="0.4064" layer="1"/>
 <wire x1="60.377" y1="95.4348" x2="60.377" y2="98.0552" width="0.4064" layer="1"/>
@@ -14460,83 +14584,83 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="157.2892" y1="98.073" x2="157.2892" y2="95.3626" width="0.4064" layer="1"/>
 <wire x1="157.2992" y1="95.3526" x2="157.2892" y2="95.3626" width="0.4064" layer="1"/>
 <wire x1="157.2892" y1="98.073" x2="156.8032" y2="98.559" width="0.4064" layer="1"/>
-<via x="157.21" y="99.05" extent="1-16" drill="0.35"/>
-<via x="157.21" y="97.55" extent="1-16" drill="0.35"/>
-<via x="157.21" y="96.05" extent="1-16" drill="0.35"/>
-<via x="155.71" y="96.05" extent="1-16" drill="0.35"/>
-<via x="155.71" y="97.55" extent="1-16" drill="0.35"/>
-<via x="155.71" y="99.05" extent="1-16" drill="0.35"/>
-<via x="155.71" y="100.55" extent="1-16" drill="0.35"/>
-<via x="154.21" y="100.55" extent="1-16" drill="0.35"/>
-<via x="154.21" y="99.05" extent="1-16" drill="0.35"/>
-<via x="154.21" y="97.55" extent="1-16" drill="0.35"/>
-<via x="154.21" y="96.05" extent="1-16" drill="0.35"/>
-<via x="130.5" y="100.4" extent="1-16" drill="0.35"/>
-<via x="129" y="100.4" extent="1-16" drill="0.35"/>
-<via x="129" y="98.9" extent="1-16" drill="0.35"/>
-<via x="129" y="97.4" extent="1-16" drill="0.35"/>
-<via x="129" y="95.9" extent="1-16" drill="0.35"/>
-<via x="130.5" y="95.9" extent="1-16" drill="0.35"/>
-<via x="130.5" y="97.4" extent="1-16" drill="0.35"/>
-<via x="130.5" y="98.9" extent="1-16" drill="0.35"/>
-<via x="132" y="98.9" extent="1-16" drill="0.35"/>
-<via x="132" y="97.4" extent="1-16" drill="0.35"/>
-<via x="132" y="95.9" extent="1-16" drill="0.35"/>
-<via x="106.5" y="100.4" extent="1-16" drill="0.35"/>
-<via x="105" y="100.4" extent="1-16" drill="0.35"/>
-<via x="105" y="98.9" extent="1-16" drill="0.35"/>
-<via x="105" y="97.4" extent="1-16" drill="0.35"/>
-<via x="105" y="95.9" extent="1-16" drill="0.35"/>
-<via x="106.5" y="95.9" extent="1-16" drill="0.35"/>
-<via x="108" y="95.9" extent="1-16" drill="0.35"/>
-<via x="106.5" y="97.4" extent="1-16" drill="0.35"/>
-<via x="108" y="97.4" extent="1-16" drill="0.35"/>
-<via x="106.5" y="98.9" extent="1-16" drill="0.35"/>
-<via x="108" y="98.9" extent="1-16" drill="0.35"/>
-<via x="84.5" y="98.9" extent="1-16" drill="0.35"/>
-<via x="84.5" y="97.4" extent="1-16" drill="0.35"/>
-<via x="84.5" y="95.9" extent="1-16" drill="0.35"/>
-<via x="83" y="95.9" extent="1-16" drill="0.35"/>
-<via x="81.5" y="95.9" extent="1-16" drill="0.35"/>
-<via x="81.5" y="97.4" extent="1-16" drill="0.35"/>
-<via x="81.5" y="98.9" extent="1-16" drill="0.35"/>
-<via x="81.5" y="100.4" extent="1-16" drill="0.35"/>
-<via x="83" y="100.4" extent="1-16" drill="0.35"/>
-<via x="83" y="98.9" extent="1-16" drill="0.35"/>
-<via x="83" y="97.4" extent="1-16" drill="0.35"/>
-<via x="58.5" y="100.4" extent="1-16" drill="0.35"/>
-<via x="57" y="100.4" extent="1-16" drill="0.35"/>
-<via x="57" y="98.9" extent="1-16" drill="0.35"/>
-<via x="57" y="97.4" extent="1-16" drill="0.35"/>
-<via x="57" y="95.9" extent="1-16" drill="0.35"/>
-<via x="58.5" y="95.9" extent="1-16" drill="0.35"/>
-<via x="60" y="95.9" extent="1-16" drill="0.35"/>
-<via x="58.5" y="97.4" extent="1-16" drill="0.35"/>
-<via x="60" y="97.4" extent="1-16" drill="0.35"/>
-<via x="58.5" y="98.9" extent="1-16" drill="0.35"/>
-<via x="60" y="98.9" extent="1-16" drill="0.35"/>
-<via x="35" y="100.4" extent="1-16" drill="0.35"/>
-<via x="33.5" y="100.4" extent="1-16" drill="0.35"/>
-<via x="33.5" y="98.9" extent="1-16" drill="0.35"/>
-<via x="33.5" y="97.4" extent="1-16" drill="0.35"/>
-<via x="33.5" y="95.9" extent="1-16" drill="0.35"/>
-<via x="35" y="95.9" extent="1-16" drill="0.35"/>
-<via x="35" y="97.4" extent="1-16" drill="0.35"/>
-<via x="35" y="98.9" extent="1-16" drill="0.35"/>
-<via x="36.5" y="98.9" extent="1-16" drill="0.35"/>
-<via x="36.5" y="97.4" extent="1-16" drill="0.35"/>
-<via x="36.5" y="95.9" extent="1-16" drill="0.35"/>
-<via x="11.5" y="100" extent="1-16" drill="0.35"/>
-<via x="10" y="100" extent="1-16" drill="0.35"/>
-<via x="10" y="98.5" extent="1-16" drill="0.35"/>
-<via x="10" y="97" extent="1-16" drill="0.35"/>
-<via x="10" y="95.5" extent="1-16" drill="0.35"/>
-<via x="11.5" y="95.5" extent="1-16" drill="0.35"/>
-<via x="11.5" y="97" extent="1-16" drill="0.35"/>
-<via x="11.5" y="98.5" extent="1-16" drill="0.35"/>
-<via x="13" y="98.5" extent="1-16" drill="0.35"/>
-<via x="13" y="97" extent="1-16" drill="0.35"/>
-<via x="13" y="95.5" extent="1-16" drill="0.35"/>
+<via x="157.21" y="99.05" extent="1-16" drill="0.4"/>
+<via x="157.21" y="97.55" extent="1-16" drill="0.4"/>
+<via x="157.21" y="96.05" extent="1-16" drill="0.4"/>
+<via x="155.71" y="96.05" extent="1-16" drill="0.4"/>
+<via x="155.71" y="97.55" extent="1-16" drill="0.4"/>
+<via x="155.71" y="99.05" extent="1-16" drill="0.4"/>
+<via x="155.71" y="100.55" extent="1-16" drill="0.4"/>
+<via x="154.21" y="100.55" extent="1-16" drill="0.4"/>
+<via x="154.21" y="99.05" extent="1-16" drill="0.4"/>
+<via x="154.21" y="97.55" extent="1-16" drill="0.4"/>
+<via x="154.21" y="96.05" extent="1-16" drill="0.4"/>
+<via x="130.5" y="100.4" extent="1-16" drill="0.4"/>
+<via x="129" y="100.4" extent="1-16" drill="0.4"/>
+<via x="129" y="98.9" extent="1-16" drill="0.4"/>
+<via x="129" y="97.4" extent="1-16" drill="0.4"/>
+<via x="129" y="95.9" extent="1-16" drill="0.4"/>
+<via x="130.5" y="95.9" extent="1-16" drill="0.4"/>
+<via x="130.5" y="97.4" extent="1-16" drill="0.4"/>
+<via x="130.5" y="98.9" extent="1-16" drill="0.4"/>
+<via x="132" y="98.9" extent="1-16" drill="0.4"/>
+<via x="132" y="97.4" extent="1-16" drill="0.4"/>
+<via x="132" y="95.9" extent="1-16" drill="0.4"/>
+<via x="106.5" y="100.4" extent="1-16" drill="0.4"/>
+<via x="105" y="100.4" extent="1-16" drill="0.4"/>
+<via x="105" y="98.9" extent="1-16" drill="0.4"/>
+<via x="105" y="97.4" extent="1-16" drill="0.4"/>
+<via x="105" y="95.9" extent="1-16" drill="0.4"/>
+<via x="106.5" y="95.9" extent="1-16" drill="0.4"/>
+<via x="108" y="95.9" extent="1-16" drill="0.4"/>
+<via x="106.5" y="97.4" extent="1-16" drill="0.4"/>
+<via x="108" y="97.4" extent="1-16" drill="0.4"/>
+<via x="106.5" y="98.9" extent="1-16" drill="0.4"/>
+<via x="108" y="98.9" extent="1-16" drill="0.4"/>
+<via x="84.5" y="98.9" extent="1-16" drill="0.4"/>
+<via x="84.5" y="97.4" extent="1-16" drill="0.4"/>
+<via x="84.5" y="95.9" extent="1-16" drill="0.4"/>
+<via x="83" y="95.9" extent="1-16" drill="0.4"/>
+<via x="81.5" y="95.9" extent="1-16" drill="0.4"/>
+<via x="81.5" y="97.4" extent="1-16" drill="0.4"/>
+<via x="81.5" y="98.9" extent="1-16" drill="0.4"/>
+<via x="81.5" y="100.4" extent="1-16" drill="0.4"/>
+<via x="83" y="100.4" extent="1-16" drill="0.4"/>
+<via x="83" y="98.9" extent="1-16" drill="0.4"/>
+<via x="83" y="97.4" extent="1-16" drill="0.4"/>
+<via x="58.5" y="100.4" extent="1-16" drill="0.4"/>
+<via x="57" y="100.4" extent="1-16" drill="0.4"/>
+<via x="57" y="98.9" extent="1-16" drill="0.4"/>
+<via x="57" y="97.4" extent="1-16" drill="0.4"/>
+<via x="57" y="95.9" extent="1-16" drill="0.4"/>
+<via x="58.5" y="95.9" extent="1-16" drill="0.4"/>
+<via x="60" y="95.9" extent="1-16" drill="0.4"/>
+<via x="58.5" y="97.4" extent="1-16" drill="0.4"/>
+<via x="60" y="97.4" extent="1-16" drill="0.4"/>
+<via x="58.5" y="98.9" extent="1-16" drill="0.4"/>
+<via x="60" y="98.9" extent="1-16" drill="0.4"/>
+<via x="35" y="100.4" extent="1-16" drill="0.4"/>
+<via x="33.5" y="100.4" extent="1-16" drill="0.4"/>
+<via x="33.5" y="98.9" extent="1-16" drill="0.4"/>
+<via x="33.5" y="97.4" extent="1-16" drill="0.4"/>
+<via x="33.5" y="95.9" extent="1-16" drill="0.4"/>
+<via x="35" y="95.9" extent="1-16" drill="0.4"/>
+<via x="35" y="97.4" extent="1-16" drill="0.4"/>
+<via x="35" y="98.9" extent="1-16" drill="0.4"/>
+<via x="36.5" y="98.9" extent="1-16" drill="0.4"/>
+<via x="36.5" y="97.4" extent="1-16" drill="0.4"/>
+<via x="36.5" y="95.9" extent="1-16" drill="0.4"/>
+<via x="11.5" y="100" extent="1-16" drill="0.4"/>
+<via x="10" y="100" extent="1-16" drill="0.4"/>
+<via x="10" y="98.5" extent="1-16" drill="0.4"/>
+<via x="10" y="97" extent="1-16" drill="0.4"/>
+<via x="10" y="95.5" extent="1-16" drill="0.4"/>
+<via x="11.5" y="95.5" extent="1-16" drill="0.4"/>
+<via x="11.5" y="97" extent="1-16" drill="0.4"/>
+<via x="11.5" y="98.5" extent="1-16" drill="0.4"/>
+<via x="13" y="98.5" extent="1-16" drill="0.4"/>
+<via x="13" y="97" extent="1-16" drill="0.4"/>
+<via x="13" y="95.5" extent="1-16" drill="0.4"/>
 <polygon width="0.4064" layer="2" isolate="0.8128" thermals="no" rank="5">
 <vertex x="-2.3" y="9.57"/>
 <vertex x="-2.3" y="107.3"/>
@@ -14574,8 +14698,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <vertex x="31.5" y="81.5"/>
 <vertex x="31.5" y="94"/>
 <vertex x="18.5" y="94"/>
-<vertex x="18.5" y="82"/>
-<vertex x="9.36" y="81.809975"/>
+<vertex x="18.5" y="80.90126875"/>
+<vertex x="9.382096875" y="80.711703125"/>
 <vertex x="10" y="50"/>
 <vertex x="57" y="50"/>
 <vertex x="57" y="38"/>
@@ -14686,74 +14810,74 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="186.1338" y1="89.024" x2="186.1338" y2="87.4338" width="0.4064" layer="1"/>
 <wire x1="186.1338" y1="87.4338" x2="186.09" y2="87.39" width="0.4064" layer="1"/>
 <via x="186.09" y="87.39" extent="1-16" drill="0.4"/>
-<via x="182.21" y="100.25" extent="1-16" drill="0.35"/>
-<via x="180.71" y="100.25" extent="1-16" drill="0.35"/>
-<via x="179.21" y="100.25" extent="1-16" drill="0.35"/>
-<via x="179.21" y="98.75" extent="1-16" drill="0.35"/>
-<via x="179.21" y="97.25" extent="1-16" drill="0.35"/>
-<via x="179.21" y="95.75" extent="1-16" drill="0.35"/>
-<via x="180.71" y="95.75" extent="1-16" drill="0.35"/>
-<via x="180.71" y="97.25" extent="1-16" drill="0.35"/>
-<via x="180.71" y="98.75" extent="1-16" drill="0.35"/>
-<via x="182.21" y="98.75" extent="1-16" drill="0.35"/>
-<via x="182.21" y="97.25" extent="1-16" drill="0.35"/>
-<via x="182.21" y="95.75" extent="1-16" drill="0.35"/>
-<via x="177.71" y="100.25" extent="1-16" drill="0.35"/>
-<via x="176.21" y="100.25" extent="1-16" drill="0.35"/>
-<via x="176.21" y="98.75" extent="1-16" drill="0.35"/>
-<via x="176.21" y="97.25" extent="1-16" drill="0.35"/>
-<via x="176.21" y="95.75" extent="1-16" drill="0.35"/>
-<via x="177.71" y="95.75" extent="1-16" drill="0.35"/>
-<via x="177.71" y="97.25" extent="1-16" drill="0.35"/>
-<via x="177.71" y="98.75" extent="1-16" drill="0.35"/>
-<via x="152.71" y="100.55" extent="1-16" drill="0.35"/>
-<via x="151.21" y="100.55" extent="1-16" drill="0.35"/>
-<via x="151.21" y="99.05" extent="1-16" drill="0.35"/>
-<via x="151.21" y="97.55" extent="1-16" drill="0.35"/>
-<via x="151.21" y="96.05" extent="1-16" drill="0.35"/>
-<via x="152.71" y="96.05" extent="1-16" drill="0.35"/>
-<via x="152.71" y="97.55" extent="1-16" drill="0.35"/>
-<via x="152.71" y="99.05" extent="1-16" drill="0.35"/>
-<via x="127.61" y="100.35" extent="1-16" drill="0.35"/>
-<via x="126.11" y="100.35" extent="1-16" drill="0.35"/>
-<via x="126.11" y="98.85" extent="1-16" drill="0.35"/>
-<via x="126.11" y="97.35" extent="1-16" drill="0.35"/>
-<via x="126.11" y="95.85" extent="1-16" drill="0.35"/>
-<via x="127.61" y="95.85" extent="1-16" drill="0.35"/>
-<via x="127.61" y="97.35" extent="1-16" drill="0.35"/>
-<via x="127.61" y="98.85" extent="1-16" drill="0.35"/>
-<via x="79.91" y="100.35" extent="1-16" drill="0.35"/>
-<via x="78.41" y="100.35" extent="1-16" drill="0.35"/>
-<via x="78.41" y="98.85" extent="1-16" drill="0.35"/>
-<via x="78.41" y="97.35" extent="1-16" drill="0.35"/>
-<via x="78.41" y="95.85" extent="1-16" drill="0.35"/>
-<via x="79.91" y="95.85" extent="1-16" drill="0.35"/>
-<via x="79.91" y="97.35" extent="1-16" drill="0.35"/>
-<via x="79.91" y="98.85" extent="1-16" drill="0.35"/>
-<via x="55.51" y="100.35" extent="1-16" drill="0.35"/>
-<via x="54.01" y="100.35" extent="1-16" drill="0.35"/>
-<via x="54.01" y="98.85" extent="1-16" drill="0.35"/>
-<via x="54.01" y="97.35" extent="1-16" drill="0.35"/>
-<via x="54.01" y="95.85" extent="1-16" drill="0.35"/>
-<via x="55.51" y="95.85" extent="1-16" drill="0.35"/>
-<via x="55.51" y="97.35" extent="1-16" drill="0.35"/>
-<via x="55.51" y="98.85" extent="1-16" drill="0.35"/>
-<via x="32.11" y="100.35" extent="1-16" drill="0.35"/>
-<via x="30.61" y="100.35" extent="1-16" drill="0.35"/>
-<via x="30.61" y="98.85" extent="1-16" drill="0.35"/>
-<via x="30.61" y="97.35" extent="1-16" drill="0.35"/>
-<via x="30.61" y="95.85" extent="1-16" drill="0.35"/>
-<via x="32.11" y="95.85" extent="1-16" drill="0.35"/>
-<via x="32.11" y="97.35" extent="1-16" drill="0.35"/>
-<via x="32.11" y="98.85" extent="1-16" drill="0.35"/>
-<via x="9.95" y="103.01" extent="1-16" drill="0.35"/>
-<via x="9.95" y="101.51" extent="1-16" drill="0.35"/>
-<via x="11.45" y="101.51" extent="1-16" drill="0.35"/>
-<via x="12.95" y="101.51" extent="1-16" drill="0.35"/>
-<via x="14.45" y="101.51" extent="1-16" drill="0.35"/>
-<via x="14.45" y="103.01" extent="1-16" drill="0.35"/>
-<via x="12.95" y="103.01" extent="1-16" drill="0.35"/>
-<via x="11.45" y="103.01" extent="1-16" drill="0.35"/>
+<via x="182.21" y="100.25" extent="1-16" drill="0.4"/>
+<via x="180.71" y="100.25" extent="1-16" drill="0.4"/>
+<via x="179.21" y="100.25" extent="1-16" drill="0.4"/>
+<via x="179.21" y="98.75" extent="1-16" drill="0.4"/>
+<via x="179.21" y="97.25" extent="1-16" drill="0.4"/>
+<via x="179.21" y="95.75" extent="1-16" drill="0.4"/>
+<via x="180.71" y="95.75" extent="1-16" drill="0.4"/>
+<via x="180.71" y="97.25" extent="1-16" drill="0.4"/>
+<via x="180.71" y="98.75" extent="1-16" drill="0.4"/>
+<via x="182.21" y="98.75" extent="1-16" drill="0.4"/>
+<via x="182.21" y="97.25" extent="1-16" drill="0.4"/>
+<via x="182.21" y="95.75" extent="1-16" drill="0.4"/>
+<via x="177.71" y="100.25" extent="1-16" drill="0.4"/>
+<via x="176.21" y="100.25" extent="1-16" drill="0.4"/>
+<via x="176.21" y="98.75" extent="1-16" drill="0.4"/>
+<via x="176.21" y="97.25" extent="1-16" drill="0.4"/>
+<via x="176.21" y="95.75" extent="1-16" drill="0.4"/>
+<via x="177.71" y="95.75" extent="1-16" drill="0.4"/>
+<via x="177.71" y="97.25" extent="1-16" drill="0.4"/>
+<via x="177.71" y="98.75" extent="1-16" drill="0.4"/>
+<via x="152.71" y="100.55" extent="1-16" drill="0.4"/>
+<via x="151.21" y="100.55" extent="1-16" drill="0.4"/>
+<via x="151.21" y="99.05" extent="1-16" drill="0.4"/>
+<via x="151.21" y="97.55" extent="1-16" drill="0.4"/>
+<via x="151.21" y="96.05" extent="1-16" drill="0.4"/>
+<via x="152.71" y="96.05" extent="1-16" drill="0.4"/>
+<via x="152.71" y="97.55" extent="1-16" drill="0.4"/>
+<via x="152.71" y="99.05" extent="1-16" drill="0.4"/>
+<via x="127.61" y="100.35" extent="1-16" drill="0.4"/>
+<via x="126.11" y="100.35" extent="1-16" drill="0.4"/>
+<via x="126.11" y="98.85" extent="1-16" drill="0.4"/>
+<via x="126.11" y="97.35" extent="1-16" drill="0.4"/>
+<via x="126.11" y="95.85" extent="1-16" drill="0.4"/>
+<via x="127.61" y="95.85" extent="1-16" drill="0.4"/>
+<via x="127.61" y="97.35" extent="1-16" drill="0.4"/>
+<via x="127.61" y="98.85" extent="1-16" drill="0.4"/>
+<via x="79.91" y="100.35" extent="1-16" drill="0.4"/>
+<via x="78.41" y="100.35" extent="1-16" drill="0.4"/>
+<via x="78.41" y="98.85" extent="1-16" drill="0.4"/>
+<via x="78.41" y="97.35" extent="1-16" drill="0.4"/>
+<via x="78.41" y="95.85" extent="1-16" drill="0.4"/>
+<via x="79.91" y="95.85" extent="1-16" drill="0.4"/>
+<via x="79.91" y="97.35" extent="1-16" drill="0.4"/>
+<via x="79.91" y="98.85" extent="1-16" drill="0.4"/>
+<via x="55.51" y="100.35" extent="1-16" drill="0.4"/>
+<via x="54.01" y="100.35" extent="1-16" drill="0.4"/>
+<via x="54.01" y="98.85" extent="1-16" drill="0.4"/>
+<via x="54.01" y="97.35" extent="1-16" drill="0.4"/>
+<via x="54.01" y="95.85" extent="1-16" drill="0.4"/>
+<via x="55.51" y="95.85" extent="1-16" drill="0.4"/>
+<via x="55.51" y="97.35" extent="1-16" drill="0.4"/>
+<via x="55.51" y="98.85" extent="1-16" drill="0.4"/>
+<via x="32.11" y="100.35" extent="1-16" drill="0.4"/>
+<via x="30.61" y="100.35" extent="1-16" drill="0.4"/>
+<via x="30.61" y="98.85" extent="1-16" drill="0.4"/>
+<via x="30.61" y="97.35" extent="1-16" drill="0.4"/>
+<via x="30.61" y="95.85" extent="1-16" drill="0.4"/>
+<via x="32.11" y="95.85" extent="1-16" drill="0.4"/>
+<via x="32.11" y="97.35" extent="1-16" drill="0.4"/>
+<via x="32.11" y="98.85" extent="1-16" drill="0.4"/>
+<via x="9.95" y="103.01" extent="1-16" drill="0.4"/>
+<via x="9.95" y="101.51" extent="1-16" drill="0.4"/>
+<via x="11.45" y="101.51" extent="1-16" drill="0.4"/>
+<via x="12.95" y="101.51" extent="1-16" drill="0.4"/>
+<via x="14.45" y="101.51" extent="1-16" drill="0.4"/>
+<via x="14.45" y="103.01" extent="1-16" drill="0.4"/>
+<via x="12.95" y="103.01" extent="1-16" drill="0.4"/>
+<via x="11.45" y="103.01" extent="1-16" drill="0.4"/>
 <wire x1="65.7376" y1="22.6386" x2="65.7376" y2="32.1286" width="2.54" layer="1"/>
 <wire x1="71.3776" y1="33.4086" x2="72.2176" y2="33.4086" width="2.54" layer="1"/>
 <wire x1="71.3776" y1="33.4086" x2="71.2276" y2="33.5586" width="2.54" layer="1"/>
@@ -14762,8 +14886,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="65.7376" y1="22.6386" x2="65.7376" y2="15.7376" width="2.54" layer="1"/>
 <wire x1="65.7376" y1="15.7376" x2="57" y2="7" width="2.54" layer="1"/>
 <wire x1="57" y1="7" x2="16.6" y2="7" width="2.54" layer="1"/>
-<wire x1="4.51" y1="19.09" x2="4.51" y2="52.47" width="2.54" layer="1"/>
-<wire x1="16.6" y1="7" x2="4.51" y2="19.09" width="2.54" layer="1"/>
+<wire x1="2.94" y1="75.36" x2="4.86" y2="77.28" width="2.54" layer="1"/>
+<wire x1="2.94" y1="75.36" x2="2.94" y2="20.66" width="2.54" layer="1"/>
+<wire x1="16.6" y1="7" x2="2.94" y2="20.66" width="2.54" layer="1"/>
 <contactref element="C106" pad="2"/>
 <contactref element="C109" pad="2"/>
 <contactref element="C108" pad="2"/>
@@ -14774,28 +14899,28 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <contactref element="C111" pad="2"/>
 <wire x1="167.1" y1="51.875" x2="167.1" y2="53.5" width="0.254" layer="1"/>
 <wire x1="167.1" y1="53.5" x2="167.4" y2="53.8" width="0.254" layer="1"/>
-<via x="167.4" y="53.8" extent="1-16" drill="0.2"/>
+<via x="167.4" y="53.8" extent="1-16" drill="0.4"/>
 <wire x1="169.7" y1="51.875" x2="169.7" y2="53.3" width="0.254" layer="1"/>
 <wire x1="169.7" y1="53.3" x2="169.9" y2="53.5" width="0.254" layer="1"/>
-<via x="169.9" y="53.5" extent="1-16" drill="0.2"/>
+<via x="169.9" y="53.5" extent="1-16" drill="0.4"/>
 <wire x1="172.2" y1="51.875" x2="172.725" y2="51.875" width="0.254" layer="1"/>
 <wire x1="172.725" y1="51.875" x2="173.1" y2="51.5" width="0.254" layer="1"/>
-<via x="173.1" y="51.5" extent="1-16" drill="0.2"/>
+<via x="173.1" y="51.5" extent="1-16" drill="0.4"/>
 <wire x1="164.6" y1="51.875" x2="164.6" y2="52.6" width="0.254" layer="1"/>
 <wire x1="164.6" y1="52.6" x2="164.7" y2="52.7" width="0.254" layer="1"/>
-<via x="164.7" y="52.7" extent="1-16" drill="0.2"/>
+<via x="164.7" y="52.7" extent="1-16" drill="0.4"/>
 <wire x1="187.6" y1="51.875" x2="187.625" y2="51.9" width="0.254" layer="1"/>
 <wire x1="187.625" y1="51.9" x2="188.4" y2="51.9" width="0.254" layer="1"/>
-<via x="188.4" y="51.9" extent="1-16" drill="0.2"/>
+<via x="188.4" y="51.9" extent="1-16" drill="0.4"/>
 <wire x1="185.2" y1="51.875" x2="185.2" y2="53.8" width="0.254" layer="1"/>
 <wire x1="185.2" y1="53.8" x2="185.3" y2="53.9" width="0.254" layer="1"/>
-<via x="185.3" y="53.9" extent="1-16" drill="0.2"/>
+<via x="185.3" y="53.9" extent="1-16" drill="0.4"/>
 <wire x1="182.5" y1="51.775" x2="182.5" y2="53.4" width="0.254" layer="1"/>
 <wire x1="182.5" y1="53.4" x2="182.8" y2="53.7" width="0.254" layer="1"/>
-<via x="182.8" y="53.7" extent="1-16" drill="0.2"/>
+<via x="182.8" y="53.7" extent="1-16" drill="0.4"/>
 <wire x1="180" y1="51.775" x2="180" y2="53.8" width="0.254" layer="1"/>
 <wire x1="180" y1="53.8" x2="180.2" y2="54" width="0.254" layer="1"/>
-<via x="180.2" y="54" extent="1-16" drill="0.2"/>
+<via x="180.2" y="54" extent="1-16" drill="0.4"/>
 <polygon width="0.6096" layer="1" isolate="0.8128" thermals="no">
 <vertex x="211" y="84"/>
 <vertex x="211" y="53.5"/>
@@ -14918,108 +15043,108 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <vertex x="200" y="56"/>
 <vertex x="200" y="84"/>
 </polygon>
-<via x="83.5" y="73" extent="1-16" drill="0.35"/>
-<via x="83.5" y="71" extent="1-16" drill="0.35"/>
-<via x="83.5" y="69" extent="1-16" drill="0.35"/>
-<via x="80" y="73" extent="1-16" drill="0.35"/>
-<via x="80" y="71" extent="1-16" drill="0.35"/>
-<via x="80" y="69" extent="1-16" drill="0.35"/>
-<via x="60" y="73" extent="1-16" drill="0.35"/>
-<via x="60" y="71" extent="1-16" drill="0.35"/>
-<via x="60" y="69" extent="1-16" drill="0.35"/>
-<via x="56.5" y="69" extent="1-16" drill="0.35"/>
-<via x="56.5" y="71" extent="1-16" drill="0.35"/>
-<via x="56.5" y="73" extent="1-16" drill="0.35"/>
-<via x="104" y="69" extent="1-16" drill="0.35"/>
-<via x="104" y="71" extent="1-16" drill="0.35"/>
-<via x="104" y="73" extent="1-16" drill="0.35"/>
-<via x="108" y="73" extent="1-16" drill="0.35"/>
-<via x="108" y="71" extent="1-16" drill="0.35"/>
-<via x="108" y="69" extent="1-16" drill="0.35"/>
-<via x="112" y="73" extent="1-16" drill="0.35"/>
-<via x="112" y="71" extent="1-16" drill="0.35"/>
-<via x="112" y="69" extent="1-16" drill="0.35"/>
-<via x="87.5" y="73" extent="1-16" drill="0.35"/>
-<via x="87.5" y="71" extent="1-16" drill="0.35"/>
-<via x="87.5" y="69" extent="1-16" drill="0.35"/>
-<via x="63.5" y="73" extent="1-16" drill="0.35"/>
-<via x="63.5" y="71" extent="1-16" drill="0.35"/>
-<via x="63.5" y="69" extent="1-16" drill="0.35"/>
-<via x="36.5" y="73" extent="1-16" drill="0.35"/>
-<via x="36.5" y="71" extent="1-16" drill="0.35"/>
-<via x="36.5" y="69" extent="1-16" drill="0.35"/>
-<via x="32.5" y="69" extent="1-16" drill="0.35"/>
-<via x="32.5" y="71" extent="1-16" drill="0.35"/>
-<via x="32.5" y="73" extent="1-16" drill="0.35"/>
-<via x="40.5" y="73" extent="1-16" drill="0.35"/>
-<via x="40.5" y="71" extent="1-16" drill="0.35"/>
-<via x="40.5" y="69" extent="1-16" drill="0.35"/>
-<via x="10" y="71.5" extent="1-16" drill="0.35"/>
-<via x="10" y="69.5" extent="1-16" drill="0.35"/>
-<via x="10" y="67.5" extent="1-16" drill="0.35"/>
-<via x="8" y="68.5" extent="1-16" drill="0.35"/>
-<via x="8" y="70.5" extent="1-16" drill="0.35"/>
-<via x="6.5" y="71.5" extent="1-16" drill="0.35"/>
-<via x="6.5" y="69.5" extent="1-16" drill="0.35"/>
-<via x="6.5" y="67.5" extent="1-16" drill="0.35"/>
-<via x="5" y="70.5" extent="1-16" drill="0.35"/>
-<via x="5" y="68.5" extent="1-16" drill="0.35"/>
-<via x="3.5" y="67.5" extent="1-16" drill="0.35"/>
-<via x="3.5" y="69.5" extent="1-16" drill="0.35"/>
-<via x="3.5" y="71.5" extent="1-16" drill="0.35"/>
-<via x="128" y="73" extent="1-16" drill="0.35"/>
-<via x="128" y="71" extent="1-16" drill="0.35"/>
-<via x="128" y="69" extent="1-16" drill="0.35"/>
-<via x="132" y="69" extent="1-16" drill="0.35"/>
-<via x="132" y="71" extent="1-16" drill="0.35"/>
-<via x="132" y="73" extent="1-16" drill="0.35"/>
-<via x="136" y="73" extent="1-16" drill="0.35"/>
-<via x="136" y="71" extent="1-16" drill="0.35"/>
-<via x="152.5" y="73.5" extent="1-16" drill="0.35"/>
-<via x="152.5" y="71.5" extent="1-16" drill="0.35"/>
-<via x="152.5" y="69.5" extent="1-16" drill="0.35"/>
-<via x="156.5" y="73.5" extent="1-16" drill="0.35"/>
-<via x="156.5" y="71.5" extent="1-16" drill="0.35"/>
-<via x="156.5" y="69.5" extent="1-16" drill="0.35"/>
-<via x="161" y="73.5" extent="1-16" drill="0.35"/>
-<via x="161" y="71.5" extent="1-16" drill="0.35"/>
-<via x="161" y="69.5" extent="1-16" drill="0.35"/>
-<via x="180.5" y="72.5" extent="1-16" drill="0.35"/>
-<via x="180.5" y="70.5" extent="1-16" drill="0.35"/>
-<via x="180.5" y="68.5" extent="1-16" drill="0.35"/>
-<via x="185" y="72.5" extent="1-16" drill="0.35"/>
-<via x="185" y="70.5" extent="1-16" drill="0.35"/>
-<via x="185" y="68.5" extent="1-16" drill="0.35"/>
-<via x="203" y="72.5" extent="1-16" drill="0.35"/>
-<via x="203" y="70.5" extent="1-16" drill="0.35"/>
-<via x="203" y="68.5" extent="1-16" drill="0.35"/>
-<via x="206" y="68.5" extent="1-16" drill="0.35"/>
-<via x="206" y="70.5" extent="1-16" drill="0.35"/>
-<via x="206" y="72.5" extent="1-16" drill="0.35"/>
-<via x="13.1" y="26.1" extent="1-16" drill="0.35"/>
-<via x="13.1" y="24.3" extent="1-16" drill="0.35"/>
-<via x="13.1" y="21.9" extent="1-16" drill="0.35"/>
-<via x="13.1" y="19.9" extent="1-16" drill="0.35"/>
-<via x="24.7" y="16.7" extent="1-16" drill="0.35"/>
-<via x="27.3" y="16.7" extent="1-16" drill="0.35"/>
-<via x="29.7" y="16.7" extent="1-16" drill="0.35"/>
-<via x="35.3" y="24.1" extent="1-16" drill="0.35"/>
-<via x="35.3" y="21.7" extent="1-16" drill="0.35"/>
-<via x="38.5" y="31.1" extent="1-16" drill="0.35"/>
-<via x="37.9" y="36.1" extent="1-16" drill="0.35"/>
-<via x="37.5" y="42.1" extent="1-16" drill="0.35"/>
-<via x="37.5" y="39.3" extent="1-16" drill="0.35"/>
-<via x="16.1" y="42.1" extent="1-16" drill="0.35"/>
-<via x="16.1" y="38.9" extent="1-16" drill="0.35"/>
-<via x="37.3" y="25.5" extent="1-16" drill="0.35"/>
-<via x="103.61" y="100.35" extent="1-16" drill="0.35"/>
-<via x="102.11" y="100.35" extent="1-16" drill="0.35"/>
-<via x="102.11" y="98.85" extent="1-16" drill="0.35"/>
-<via x="102.11" y="97.35" extent="1-16" drill="0.35"/>
-<via x="102.11" y="95.85" extent="1-16" drill="0.35"/>
-<via x="103.61" y="95.85" extent="1-16" drill="0.35"/>
-<via x="103.61" y="97.35" extent="1-16" drill="0.35"/>
-<via x="103.61" y="98.85" extent="1-16" drill="0.35"/>
+<via x="83.5" y="73" extent="1-16" drill="0.4"/>
+<via x="83.5" y="71" extent="1-16" drill="0.4"/>
+<via x="83.5" y="69" extent="1-16" drill="0.4"/>
+<via x="80" y="73" extent="1-16" drill="0.4"/>
+<via x="80" y="71" extent="1-16" drill="0.4"/>
+<via x="80" y="69" extent="1-16" drill="0.4"/>
+<via x="60" y="73" extent="1-16" drill="0.4"/>
+<via x="60" y="71" extent="1-16" drill="0.4"/>
+<via x="60" y="69" extent="1-16" drill="0.4"/>
+<via x="56.5" y="69" extent="1-16" drill="0.4"/>
+<via x="56.5" y="71" extent="1-16" drill="0.4"/>
+<via x="56.5" y="73" extent="1-16" drill="0.4"/>
+<via x="104" y="69" extent="1-16" drill="0.4"/>
+<via x="104" y="71" extent="1-16" drill="0.4"/>
+<via x="104" y="73" extent="1-16" drill="0.4"/>
+<via x="108" y="73" extent="1-16" drill="0.4"/>
+<via x="108" y="71" extent="1-16" drill="0.4"/>
+<via x="108" y="69" extent="1-16" drill="0.4"/>
+<via x="112" y="73" extent="1-16" drill="0.4"/>
+<via x="112" y="71" extent="1-16" drill="0.4"/>
+<via x="112" y="69" extent="1-16" drill="0.4"/>
+<via x="87.5" y="73" extent="1-16" drill="0.4"/>
+<via x="87.5" y="71" extent="1-16" drill="0.4"/>
+<via x="87.5" y="69" extent="1-16" drill="0.4"/>
+<via x="63.5" y="73" extent="1-16" drill="0.4"/>
+<via x="63.5" y="71" extent="1-16" drill="0.4"/>
+<via x="63.5" y="69" extent="1-16" drill="0.4"/>
+<via x="36.5" y="73" extent="1-16" drill="0.4"/>
+<via x="36.5" y="71" extent="1-16" drill="0.4"/>
+<via x="36.5" y="69" extent="1-16" drill="0.4"/>
+<via x="32.5" y="69" extent="1-16" drill="0.4"/>
+<via x="32.5" y="71" extent="1-16" drill="0.4"/>
+<via x="32.5" y="73" extent="1-16" drill="0.4"/>
+<via x="40.5" y="73" extent="1-16" drill="0.4"/>
+<via x="40.5" y="71" extent="1-16" drill="0.4"/>
+<via x="40.5" y="69" extent="1-16" drill="0.4"/>
+<via x="4.01" y="51.6" extent="1-16" drill="0.4"/>
+<via x="6.96" y="51.52" extent="1-16" drill="0.4"/>
+<via x="5.58" y="50.16" extent="1-16" drill="0.4"/>
+<via x="7.08" y="53.86" extent="1-16" drill="0.4"/>
+<via x="7.08" y="55.86" extent="1-16" drill="0.4"/>
+<via x="5.58" y="56.86" extent="1-16" drill="0.4"/>
+<via x="5.58" y="54.86" extent="1-16" drill="0.4"/>
+<via x="5.58" y="52.86" extent="1-16" drill="0.4"/>
+<via x="4.08" y="55.86" extent="1-16" drill="0.4"/>
+<via x="4.08" y="53.86" extent="1-16" drill="0.4"/>
+<via x="2.58" y="52.86" extent="1-16" drill="0.4"/>
+<via x="2.58" y="54.86" extent="1-16" drill="0.4"/>
+<via x="2.58" y="56.86" extent="1-16" drill="0.4"/>
+<via x="128" y="73" extent="1-16" drill="0.4"/>
+<via x="128" y="71" extent="1-16" drill="0.4"/>
+<via x="128" y="69" extent="1-16" drill="0.4"/>
+<via x="132" y="69" extent="1-16" drill="0.4"/>
+<via x="132" y="71" extent="1-16" drill="0.4"/>
+<via x="132" y="73" extent="1-16" drill="0.4"/>
+<via x="136" y="73" extent="1-16" drill="0.4"/>
+<via x="136" y="71" extent="1-16" drill="0.4"/>
+<via x="152.5" y="73.5" extent="1-16" drill="0.4"/>
+<via x="152.5" y="71.5" extent="1-16" drill="0.4"/>
+<via x="152.5" y="69.5" extent="1-16" drill="0.4"/>
+<via x="156.5" y="73.5" extent="1-16" drill="0.4"/>
+<via x="156.5" y="71.5" extent="1-16" drill="0.4"/>
+<via x="156.5" y="69.5" extent="1-16" drill="0.4"/>
+<via x="161" y="73.5" extent="1-16" drill="0.4"/>
+<via x="161" y="71.5" extent="1-16" drill="0.4"/>
+<via x="161" y="69.5" extent="1-16" drill="0.4"/>
+<via x="180.5" y="72.5" extent="1-16" drill="0.4"/>
+<via x="180.5" y="70.5" extent="1-16" drill="0.4"/>
+<via x="180.5" y="68.5" extent="1-16" drill="0.4"/>
+<via x="185" y="72.5" extent="1-16" drill="0.4"/>
+<via x="185" y="70.5" extent="1-16" drill="0.4"/>
+<via x="185" y="68.5" extent="1-16" drill="0.4"/>
+<via x="203" y="72.5" extent="1-16" drill="0.4"/>
+<via x="203" y="70.5" extent="1-16" drill="0.4"/>
+<via x="203" y="68.5" extent="1-16" drill="0.4"/>
+<via x="206" y="68.5" extent="1-16" drill="0.4"/>
+<via x="206" y="70.5" extent="1-16" drill="0.4"/>
+<via x="206" y="72.5" extent="1-16" drill="0.4"/>
+<via x="13.1" y="26.1" extent="1-16" drill="0.4"/>
+<via x="13.1" y="24.3" extent="1-16" drill="0.4"/>
+<via x="13.1" y="21.9" extent="1-16" drill="0.4"/>
+<via x="13.1" y="19.9" extent="1-16" drill="0.4"/>
+<via x="24.7" y="16.7" extent="1-16" drill="0.4"/>
+<via x="27.3" y="16.7" extent="1-16" drill="0.4"/>
+<via x="29.7" y="16.7" extent="1-16" drill="0.4"/>
+<via x="35.3" y="24.1" extent="1-16" drill="0.4"/>
+<via x="35.3" y="21.7" extent="1-16" drill="0.4"/>
+<via x="38.5" y="31.1" extent="1-16" drill="0.4"/>
+<via x="37.9" y="36.1" extent="1-16" drill="0.4"/>
+<via x="37.5" y="42.1" extent="1-16" drill="0.4"/>
+<via x="37.5" y="39.3" extent="1-16" drill="0.4"/>
+<via x="16.1" y="42.1" extent="1-16" drill="0.4"/>
+<via x="16.1" y="38.9" extent="1-16" drill="0.4"/>
+<via x="37.3" y="25.5" extent="1-16" drill="0.4"/>
+<via x="103.61" y="100.35" extent="1-16" drill="0.4"/>
+<via x="102.11" y="100.35" extent="1-16" drill="0.4"/>
+<via x="102.11" y="98.85" extent="1-16" drill="0.4"/>
+<via x="102.11" y="97.35" extent="1-16" drill="0.4"/>
+<via x="102.11" y="95.85" extent="1-16" drill="0.4"/>
+<via x="103.61" y="95.85" extent="1-16" drill="0.4"/>
+<via x="103.61" y="97.35" extent="1-16" drill="0.4"/>
+<via x="103.61" y="98.85" extent="1-16" drill="0.4"/>
 <wire x1="107.591" y1="98.5412" x2="108" y2="98.5412" width="0.254" layer="1"/>
 <wire x1="108" y1="98.5412" x2="108" y2="98.9" width="0.254" layer="1"/>
 <wire x1="181.5432" y1="98.409" x2="182.21" y2="98.409" width="0.254" layer="1"/>
@@ -15078,7 +15203,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="160" y1="59.9" x2="160" y2="55.1" width="0.3048" layer="3"/>
 <wire x1="160" y1="55.1" x2="162.4" y2="52.7" width="0.3048" layer="3"/>
 <wire x1="162.4" y1="52.7" x2="163" y2="52.7" width="0.3048" layer="3"/>
-<via x="163" y="52.7" extent="1-16" drill="0.2"/>
+<via x="163" y="52.7" extent="1-16" drill="0.4"/>
 <wire x1="163.9" y1="51.875" x2="163.825" y2="51.875" width="0.3048" layer="1"/>
 <wire x1="163.825" y1="51.875" x2="163" y2="52.7" width="0.3048" layer="1"/>
 <wire x1="21.2" y1="63.4" x2="156.5" y2="63.4" width="0.3048" layer="3"/>
@@ -15376,7 +15501,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <contactref element="R154" pad="1"/>
 <wire x1="166.4" y1="51.875" x2="166.4" y2="52.5" width="0.3048" layer="1"/>
 <wire x1="166.4" y1="52.5" x2="166.2" y2="52.7" width="0.3048" layer="1"/>
-<via x="166.2" y="52.7" extent="1-16" drill="0.2"/>
+<via x="166.2" y="52.7" extent="1-16" drill="0.4"/>
 <wire x1="38.15" y1="83.21" x2="38.9" y2="82.46" width="0.3048" layer="3"/>
 <wire x1="38.9" y1="64.9" x2="39.7174" y2="64.0826" width="0.3048" layer="3"/>
 <wire x1="156.9999" y1="64.0826" x2="160.6826" y2="60.3999" width="0.3048" layer="3"/>
@@ -15396,7 +15521,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <contactref element="R153" pad="1"/>
 <wire x1="169" y1="51.875" x2="169" y2="52.3" width="0.3048" layer="1"/>
 <wire x1="169" y1="52.3" x2="168.7" y2="52.6" width="0.3048" layer="1"/>
-<via x="168.7" y="52.6" extent="1-16" drill="0.2"/>
+<via x="168.7" y="52.6" extent="1-16" drill="0.4"/>
 <wire x1="61.77" y1="83.37" x2="61.77" y2="65.43" width="0.3048" layer="3"/>
 <wire x1="61.77" y1="65.43" x2="62.4" y2="64.8" width="0.3048" layer="3"/>
 <wire x1="161.4" y1="55.8" x2="162.5" y2="54.7" width="0.3048" layer="3"/>
@@ -15415,7 +15540,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <contactref element="R59" pad="1"/>
 <wire x1="171.5" y1="51.875" x2="171.5" y2="52.31643125" width="0.3048" layer="1"/>
 <wire x1="171.5" y1="52.31643125" x2="171.27123125" y2="52.5452" width="0.3048" layer="1"/>
-<via x="171.27123125" y="52.5452" extent="1-16" drill="0.2"/>
+<via x="171.27123125" y="52.5452" extent="1-16" drill="0.4"/>
 <wire x1="171.27123125" y1="52.5452" x2="171.27123125" y2="53.5452" width="0.3048" layer="3"/>
 <wire x1="171.27123125" y1="53.5452" x2="169.41643125" y2="55.4" width="0.3048" layer="3"/>
 <wire x1="162.8" y1="55.4" x2="162.1" y2="56.1" width="0.3048" layer="3"/>
@@ -15439,7 +15564,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <contactref element="R159" pad="1"/>
 <wire x1="179.3" y1="51.775" x2="179.3" y2="52.5" width="0.3048" layer="1"/>
 <wire x1="179.3" y1="52.5" x2="179.2" y2="52.6" width="0.3048" layer="1"/>
-<via x="179.2" y="52.6" extent="1-16" drill="0.2"/>
+<via x="179.2" y="52.6" extent="1-16" drill="0.4"/>
 <wire x1="179.2" y1="62.8" x2="179.2" y2="52.6" width="0.3048" layer="3"/>
 <wire x1="175.8" y1="66.2" x2="179.2" y2="62.8" width="0.3048" layer="3"/>
 </signal>
@@ -15451,7 +15576,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <contactref element="R158" pad="1"/>
 <wire x1="181.8" y1="51.775" x2="181.8" y2="52.4" width="0.3048" layer="1"/>
 <wire x1="181.8" y1="52.4" x2="181.6" y2="52.6" width="0.3048" layer="1"/>
-<via x="181.6" y="52.6" extent="1-16" drill="0.2"/>
+<via x="181.6" y="52.6" extent="1-16" drill="0.4"/>
 <wire x1="181.6" y1="52.6" x2="181.6" y2="56.4" width="0.3048" layer="3"/>
 <wire x1="181.6" y1="56.4" x2="180" y2="58" width="0.3048" layer="3"/>
 <wire x1="180" y1="58" x2="180" y2="63.1" width="0.3048" layer="3"/>
@@ -15469,7 +15594,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <contactref element="R157" pad="1"/>
 <wire x1="184.5" y1="51.875" x2="184.5" y2="52.4" width="0.3048" layer="1"/>
 <wire x1="184.5" y1="52.4" x2="184.3" y2="52.6" width="0.3048" layer="1"/>
-<via x="184.3" y="52.6" extent="1-16" drill="0.2"/>
+<via x="184.3" y="52.6" extent="1-16" drill="0.4"/>
 <wire x1="157.94" y1="83.24" x2="158.9" y2="82.28" width="0.3048" layer="3"/>
 <wire x1="158.9" y1="82.28" x2="158.9" y2="68.9" width="0.3048" layer="3"/>
 <wire x1="158.9" y1="68.9" x2="160.1" y2="67.7" width="0.3048" layer="3"/>
@@ -15487,7 +15612,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <contactref element="R156" pad="1"/>
 <wire x1="186.9" y1="51.875" x2="186.9" y2="52.4452" width="0.3048" layer="1"/>
 <wire x1="186.9" y1="52.4452" x2="186.8" y2="52.5452" width="0.3048" layer="1"/>
-<via x="186.8" y="52.5452" extent="1-16" drill="0.2"/>
+<via x="186.8" y="52.5452" extent="1-16" drill="0.4"/>
 <wire x1="186.8" y1="52.5452" x2="186.8" y2="53.7" width="0.3048" layer="3"/>
 <wire x1="186.8" y1="53.7" x2="181.6" y2="58.9" width="0.3048" layer="3"/>
 <wire x1="181.6" y1="63.7" x2="178" y2="67.3" width="0.3048" layer="3"/>
@@ -15996,9 +16121,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <contactref element="C35" pad="1"/>
 <contactref element="L-REC1" pad="TP"/>
 <contactref element="IC13" pad="5"/>
-<wire x1="22.463" y1="47.8606" x2="24.1594" y2="47.8606" width="1.27" layer="1"/>
-<wire x1="24.8962" y1="47.1238" x2="24.7962" y2="44.804" width="1.27" layer="1"/>
-<wire x1="24.1594" y1="47.8606" x2="24.8962" y2="47.1238" width="1.27" layer="1"/>
+<wire x1="24.7962" y1="44.804" x2="24.833" y2="44.7672" width="1.27" layer="1"/>
+<wire x1="24.833" y1="44.7672" x2="24.833" y2="41.8606" width="1.27" layer="1"/>
+<wire x1="24.833" y1="41.8606" x2="24.483" y2="41.5106" width="1.27" layer="1"/>
 <wire x1="24.5822" y1="37.1636" x2="18.9264" y2="37.1636" width="0.508" layer="1"/>
 <wire x1="18.9264" y1="37.1636" x2="18.34" y2="37.75" width="0.508" layer="1"/>
 <wire x1="18.34" y1="37.75" x2="18.34" y2="38.3726" width="0.508" layer="1"/>
@@ -16272,15 +16397,15 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="154.7" y1="49.4" x2="176.9" y2="49.4" width="1.27" layer="3"/>
 <wire x1="176.9" y1="49.4" x2="192.7" y2="49.4" width="1.27" layer="3"/>
 <wire x1="192.7" y1="49.4" x2="192.8" y2="49.3" width="1.27" layer="3"/>
-<via x="192.8" y="49.3" extent="1-16" drill="0.2"/>
+<via x="192.8" y="49.3" extent="1-16" drill="0.4"/>
 <wire x1="176.8518" y1="53.1488" x2="176.9" y2="53.1006" width="0.508" layer="1"/>
 <wire x1="176.9" y1="53.1006" x2="176.9" y2="49.4" width="0.508" layer="1"/>
-<via x="176.9" y="49.4" extent="1-16" drill="0.2"/>
+<via x="176.9" y="49.4" extent="1-16" drill="0.4"/>
 <wire x1="192.7518" y1="53.3488" x2="192.7518" y2="49.3482" width="0.508" layer="1"/>
 <wire x1="192.7518" y1="49.3482" x2="192.8" y2="49.3" width="0.508" layer="1"/>
 <wire x1="10.563" y1="85.6298" x2="10.563" y2="86.663" width="0.508" layer="1"/>
 <wire x1="10.563" y1="86.663" x2="10.7" y2="86.8" width="0.508" layer="1"/>
-<via x="10.7" y="86.8" extent="1-16" drill="0.2"/>
+<via x="10.7" y="86.8" extent="1-16" drill="0.4"/>
 <wire x1="10.7" y1="86.8" x2="10.7" y2="82.5" width="0.508" layer="3"/>
 <wire x1="10.7" y1="82.5" x2="14.8" y2="78.4" width="0.508" layer="3"/>
 <wire x1="14.8" y1="78.4" x2="14.8" y2="68" width="0.508" layer="3"/>
@@ -16292,75 +16417,75 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="61.5" y1="62.2" x2="62.3" y2="61.4" width="0.508" layer="3"/>
 <wire x1="34.603" y1="85.7498" x2="34.603" y2="86.797" width="0.508" layer="1"/>
 <wire x1="34.603" y1="86.797" x2="34.5" y2="86.9" width="0.508" layer="1"/>
-<via x="34.5" y="86.9" extent="1-16" drill="0.2"/>
+<via x="34.5" y="86.9" extent="1-16" drill="0.4"/>
 <wire x1="34.5" y1="86.9" x2="34.5" y2="64.6" width="0.508" layer="3"/>
 <wire x1="34.5" y1="64.6" x2="34.8" y2="64.3" width="0.508" layer="3"/>
-<via x="34.8" y="64.3" extent="1-16" drill="0.2"/>
+<via x="34.8" y="64.3" extent="1-16" drill="0.4"/>
 <wire x1="58.373" y1="85.8998" x2="58.2" y2="86.0728" width="0.508" layer="1"/>
 <wire x1="58.2" y1="86.0728" x2="58.2" y2="87" width="0.508" layer="1"/>
-<via x="58.2" y="87" extent="1-16" drill="0.2"/>
+<via x="58.2" y="87" extent="1-16" drill="0.4"/>
 <wire x1="58.2" y1="87" x2="58.2" y2="65.1" width="0.508" layer="3"/>
-<via x="58.2" y="65.1" extent="1-16" drill="0.2"/>
+<via x="58.2" y="65.1" extent="1-16" drill="0.4"/>
 <wire x1="81.743" y1="85.9198" x2="81.5" y2="86.1628" width="0.508" layer="1"/>
 <wire x1="81.5" y1="86.1628" x2="81.5" y2="86.9" width="0.508" layer="1"/>
-<via x="81.5" y="86.9" extent="1-16" drill="0.2"/>
+<via x="81.5" y="86.9" extent="1-16" drill="0.4"/>
 <wire x1="81.5" y1="86.9" x2="81.5" y2="66" width="0.508" layer="3"/>
 <wire x1="81.5" y1="66" x2="81.6" y2="65.9" width="0.508" layer="3"/>
 <wire x1="105.803" y1="85.6398" x2="105.7" y2="85.7428" width="0.508" layer="1"/>
 <wire x1="105.7" y1="85.7428" x2="105.7" y2="86.7" width="0.508" layer="1"/>
-<via x="105.7" y="86.7" extent="1-16" drill="0.2"/>
+<via x="105.7" y="86.7" extent="1-16" drill="0.4"/>
 <wire x1="105.7" y1="86.7" x2="105.7" y2="66.6" width="0.508" layer="3"/>
 <wire x1="129.853" y1="85.5298" x2="129.7" y2="85.6828" width="0.508" layer="1"/>
 <wire x1="129.7" y1="85.6828" x2="129.7" y2="86.6" width="0.508" layer="1"/>
-<via x="129.7" y="86.6" extent="1-16" drill="0.2"/>
+<via x="129.7" y="86.6" extent="1-16" drill="0.4"/>
 <wire x1="129.7" y1="86.6" x2="129.7" y2="67.3" width="0.508" layer="3"/>
 <wire x1="154.5052" y1="85.6476" x2="154.4" y2="85.7528" width="0.508" layer="1"/>
 <wire x1="154.4" y1="85.7528" x2="154.4" y2="86.8" width="0.508" layer="1"/>
-<via x="154.4" y="86.8" extent="1-16" drill="0.2"/>
+<via x="154.4" y="86.8" extent="1-16" drill="0.4"/>
 <wire x1="154.4" y1="86.8" x2="154.4" y2="68.1" width="0.508" layer="3"/>
 <wire x1="179.1352" y1="85.5676" x2="178.9" y2="85.8028" width="0.508" layer="1"/>
 <wire x1="178.9" y1="85.8028" x2="178.9" y2="86.9" width="0.508" layer="1"/>
-<via x="178.9" y="86.9" extent="1-16" drill="0.2"/>
+<via x="178.9" y="86.9" extent="1-16" drill="0.4"/>
 <wire x1="178.9" y1="86.9" x2="178.9" y2="83.7" width="0.508" layer="3"/>
 <wire x1="176.8" y1="81.6" x2="176.8" y2="68.8" width="0.508" layer="3"/>
-<via x="176.8" y="68.8" extent="1-16" drill="0.2"/>
+<via x="176.8" y="68.8" extent="1-16" drill="0.4"/>
 <wire x1="178.9" y1="83.7" x2="176.8" y2="81.6" width="0.508" layer="3"/>
 <wire x1="154.4" y1="68.1" x2="154.3" y2="68" width="0.508" layer="3"/>
-<via x="154.3" y="68" extent="1-16" drill="0.2"/>
-<via x="129.7" y="67.3" extent="1-16" drill="0.2"/>
+<via x="154.3" y="68" extent="1-16" drill="0.4"/>
+<via x="129.7" y="67.3" extent="1-16" drill="0.4"/>
 <wire x1="105.7" y1="66.6" x2="105.6" y2="66.5" width="0.508" layer="3"/>
-<via x="105.6" y="66.5" extent="1-16" drill="0.2"/>
-<via x="81.6" y="65.9" extent="1-16" drill="0.2"/>
+<via x="105.6" y="66.5" extent="1-16" drill="0.4"/>
+<via x="81.6" y="65.9" extent="1-16" drill="0.4"/>
 <wire x1="34.8" y1="64.3" x2="35" y2="64.1" width="0.508" layer="1"/>
 <wire x1="35" y1="64.1" x2="35" y2="62.2" width="0.508" layer="1"/>
-<via x="35" y="62.2" extent="1-16" drill="0.2"/>
+<via x="35" y="62.2" extent="1-16" drill="0.4"/>
 <wire x1="58.2" y1="65.1" x2="58.4" y2="64.9" width="0.508" layer="1"/>
 <wire x1="58.4" y1="64.9" x2="58.4" y2="62.2" width="0.508" layer="1"/>
-<via x="58.4" y="62.2" extent="1-16" drill="0.2"/>
+<via x="58.4" y="62.2" extent="1-16" drill="0.4"/>
 <wire x1="81.6" y1="65.9" x2="81.6" y2="63.3" width="0.508" layer="1"/>
 <wire x1="81.6" y1="63.3" x2="82.3" y2="62.6" width="0.508" layer="1"/>
-<via x="82.3" y="62.6" extent="1-16" drill="0.2"/>
+<via x="82.3" y="62.6" extent="1-16" drill="0.4"/>
 <wire x1="82.3" y1="62.6" x2="83" y2="61.9" width="0.508" layer="3"/>
 <wire x1="83" y1="61.9" x2="83" y2="49.4" width="0.508" layer="3"/>
 <wire x1="105.6" y1="66.5" x2="106.8" y2="65.3" width="0.508" layer="1"/>
 <wire x1="106.8" y1="65.3" x2="106.8" y2="62.4" width="0.508" layer="1"/>
-<via x="106.8" y="62.4" extent="1-16" drill="0.2"/>
+<via x="106.8" y="62.4" extent="1-16" drill="0.4"/>
 <wire x1="106.8" y1="62.4" x2="106.8" y2="49.5" width="0.508" layer="3"/>
 <wire x1="106.8" y1="49.5" x2="106.9" y2="49.4" width="0.508" layer="3"/>
 <wire x1="129.7" y1="67.3" x2="129.7" y2="62.7" width="0.508" layer="1"/>
 <wire x1="129.7" y1="62.7" x2="129.9" y2="62.5" width="0.508" layer="1"/>
-<via x="129.9" y="62.5" extent="1-16" drill="0.2"/>
+<via x="129.9" y="62.5" extent="1-16" drill="0.4"/>
 <wire x1="129.9" y1="62.5" x2="130.6" y2="61.8" width="0.508" layer="3"/>
 <wire x1="130.6" y1="61.8" x2="130.6" y2="49.4" width="0.508" layer="3"/>
 <wire x1="154.3" y1="68" x2="154.5" y2="67.8" width="0.508" layer="1"/>
 <wire x1="154.5" y1="67.8" x2="154.5" y2="62.5" width="0.508" layer="1"/>
-<via x="154.5" y="62.5" extent="1-16" drill="0.2"/>
+<via x="154.5" y="62.5" extent="1-16" drill="0.4"/>
 <wire x1="154.5" y1="62.5" x2="154.5" y2="49.6" width="0.508" layer="3"/>
 <wire x1="154.5" y1="49.6" x2="154.7" y2="49.4" width="0.508" layer="3"/>
 <wire x1="176.8" y1="68.8" x2="176.8" y2="66" width="0.508" layer="1"/>
 <wire x1="176.8" y1="66" x2="176" y2="65.2" width="0.508" layer="1"/>
 <wire x1="176" y1="65.2" x2="174.9" y2="65.2" width="0.508" layer="1"/>
-<via x="174.9" y="65.2" extent="1-16" drill="0.2"/>
+<via x="174.9" y="65.2" extent="1-16" drill="0.4"/>
 <wire x1="174.9" y1="65.2" x2="176.9" y2="63.2" width="0.508" layer="3"/>
 <wire x1="176.9" y1="63.2" x2="176.9" y2="49.4" width="0.508" layer="3"/>
 </signal>
@@ -18373,22 +18498,22 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <vertex x="28.07" y="94.71"/>
 <vertex x="28.07" y="101.93"/>
 </polygon>
-<via x="20.9" y="100" extent="1-16" drill="0.35"/>
-<via x="19.4" y="100" extent="1-16" drill="0.35"/>
-<via x="17.9" y="100" extent="1-16" drill="0.35"/>
-<via x="17.9" y="98.5" extent="1-16" drill="0.35"/>
-<via x="17.9" y="97" extent="1-16" drill="0.35"/>
-<via x="17.9" y="95.5" extent="1-16" drill="0.35"/>
-<via x="19.4" y="95.5" extent="1-16" drill="0.35"/>
-<via x="19.4" y="97" extent="1-16" drill="0.35"/>
-<via x="19.4" y="98.5" extent="1-16" drill="0.35"/>
-<via x="20.9" y="98.5" extent="1-16" drill="0.35"/>
-<via x="20.9" y="97" extent="1-16" drill="0.35"/>
-<via x="20.9" y="95.5" extent="1-16" drill="0.35"/>
-<via x="16.4" y="100" extent="1-16" drill="0.35"/>
-<via x="16.4" y="98.5" extent="1-16" drill="0.35"/>
-<via x="16.4" y="97" extent="1-16" drill="0.35"/>
-<via x="16.4" y="95.5" extent="1-16" drill="0.35"/>
+<via x="20.9" y="100" extent="1-16" drill="0.4"/>
+<via x="19.4" y="100" extent="1-16" drill="0.4"/>
+<via x="17.9" y="100" extent="1-16" drill="0.4"/>
+<via x="17.9" y="98.5" extent="1-16" drill="0.4"/>
+<via x="17.9" y="97" extent="1-16" drill="0.4"/>
+<via x="17.9" y="95.5" extent="1-16" drill="0.4"/>
+<via x="19.4" y="95.5" extent="1-16" drill="0.4"/>
+<via x="19.4" y="97" extent="1-16" drill="0.4"/>
+<via x="19.4" y="98.5" extent="1-16" drill="0.4"/>
+<via x="20.9" y="98.5" extent="1-16" drill="0.4"/>
+<via x="20.9" y="97" extent="1-16" drill="0.4"/>
+<via x="20.9" y="95.5" extent="1-16" drill="0.4"/>
+<via x="16.4" y="100" extent="1-16" drill="0.4"/>
+<via x="16.4" y="98.5" extent="1-16" drill="0.4"/>
+<via x="16.4" y="97" extent="1-16" drill="0.4"/>
+<via x="16.4" y="95.5" extent="1-16" drill="0.4"/>
 <polygon width="0.4064" layer="16" isolate="0.8128" thermals="no">
 <vertex x="15.82" y="101.93"/>
 <vertex x="15.82" y="94.71"/>
@@ -18437,24 +18562,24 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <vertex x="51.69" y="94.7"/>
 <vertex x="51.69" y="101.93"/>
 </polygon>
-<via x="44.5" y="100.5" extent="1-16" drill="0.35"/>
+<via x="44.5" y="100.5" extent="1-16" drill="0.4"/>
 <wire x1="40.437" y1="95.3348" x2="40.437" y2="97.9052" width="0.4064" layer="1"/>
 <wire x1="40.437" y1="97.9052" x2="41.173" y2="98.6412" width="0.4064" layer="1"/>
-<via x="44.5" y="99" extent="1-16" drill="0.35"/>
-<via x="44.5" y="97.5" extent="1-16" drill="0.35"/>
-<via x="44.5" y="96" extent="1-16" drill="0.35"/>
-<via x="43" y="96" extent="1-16" drill="0.35"/>
-<via x="43" y="97.5" extent="1-16" drill="0.35"/>
-<via x="43" y="99" extent="1-16" drill="0.35"/>
-<via x="43" y="100.5" extent="1-16" drill="0.35"/>
-<via x="41.5" y="100.5" extent="1-16" drill="0.35"/>
-<via x="40" y="100.5" extent="1-16" drill="0.35"/>
-<via x="40" y="99" extent="1-16" drill="0.35"/>
-<via x="40" y="97.5" extent="1-16" drill="0.35"/>
-<via x="40" y="96" extent="1-16" drill="0.35"/>
-<via x="41.5" y="96" extent="1-16" drill="0.35"/>
-<via x="41.5" y="97.5" extent="1-16" drill="0.35"/>
-<via x="41.5" y="99" extent="1-16" drill="0.35"/>
+<via x="44.5" y="99" extent="1-16" drill="0.4"/>
+<via x="44.5" y="97.5" extent="1-16" drill="0.4"/>
+<via x="44.5" y="96" extent="1-16" drill="0.4"/>
+<via x="43" y="96" extent="1-16" drill="0.4"/>
+<via x="43" y="97.5" extent="1-16" drill="0.4"/>
+<via x="43" y="99" extent="1-16" drill="0.4"/>
+<via x="43" y="100.5" extent="1-16" drill="0.4"/>
+<via x="41.5" y="100.5" extent="1-16" drill="0.4"/>
+<via x="40" y="100.5" extent="1-16" drill="0.4"/>
+<via x="40" y="99" extent="1-16" drill="0.4"/>
+<via x="40" y="97.5" extent="1-16" drill="0.4"/>
+<via x="40" y="96" extent="1-16" drill="0.4"/>
+<via x="41.5" y="96" extent="1-16" drill="0.4"/>
+<via x="41.5" y="97.5" extent="1-16" drill="0.4"/>
+<via x="41.5" y="99" extent="1-16" drill="0.4"/>
 <polygon width="0.4064" layer="16" isolate="0.8128" thermals="no">
 <vertex x="39.44" y="101.93"/>
 <vertex x="39.44" y="94.7"/>
@@ -18485,24 +18610,24 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <vertex x="75.22" y="94.73"/>
 <vertex x="75.22" y="101.92"/>
 </polygon>
-<via x="67.9" y="100.5" extent="1-16" drill="0.35"/>
+<via x="67.9" y="100.5" extent="1-16" drill="0.4"/>
 <wire x1="64.137" y1="95.4348" x2="64.137" y2="97.9552" width="0.4064" layer="1"/>
 <wire x1="64.137" y1="97.9552" x2="64.923" y2="98.7412" width="0.4064" layer="1"/>
-<via x="67.9" y="99" extent="1-16" drill="0.35"/>
-<via x="67.9" y="97.5" extent="1-16" drill="0.35"/>
-<via x="67.9" y="96" extent="1-16" drill="0.35"/>
-<via x="66.4" y="96" extent="1-16" drill="0.35"/>
-<via x="66.4" y="97.5" extent="1-16" drill="0.35"/>
-<via x="66.4" y="99" extent="1-16" drill="0.35"/>
-<via x="66.4" y="100.5" extent="1-16" drill="0.35"/>
-<via x="64.9" y="100.5" extent="1-16" drill="0.35"/>
-<via x="64.9" y="99" extent="1-16" drill="0.35"/>
-<via x="64.9" y="97.5" extent="1-16" drill="0.35"/>
-<via x="64.9" y="96" extent="1-16" drill="0.35"/>
-<via x="63.4" y="100.5" extent="1-16" drill="0.35"/>
-<via x="63.4" y="99" extent="1-16" drill="0.35"/>
-<via x="63.4" y="97.5" extent="1-16" drill="0.35"/>
-<via x="63.4" y="96" extent="1-16" drill="0.35"/>
+<via x="67.9" y="99" extent="1-16" drill="0.4"/>
+<via x="67.9" y="97.5" extent="1-16" drill="0.4"/>
+<via x="67.9" y="96" extent="1-16" drill="0.4"/>
+<via x="66.4" y="96" extent="1-16" drill="0.4"/>
+<via x="66.4" y="97.5" extent="1-16" drill="0.4"/>
+<via x="66.4" y="99" extent="1-16" drill="0.4"/>
+<via x="66.4" y="100.5" extent="1-16" drill="0.4"/>
+<via x="64.9" y="100.5" extent="1-16" drill="0.4"/>
+<via x="64.9" y="99" extent="1-16" drill="0.4"/>
+<via x="64.9" y="97.5" extent="1-16" drill="0.4"/>
+<via x="64.9" y="96" extent="1-16" drill="0.4"/>
+<via x="63.4" y="100.5" extent="1-16" drill="0.4"/>
+<via x="63.4" y="99" extent="1-16" drill="0.4"/>
+<via x="63.4" y="97.5" extent="1-16" drill="0.4"/>
+<via x="63.4" y="96" extent="1-16" drill="0.4"/>
 <polygon width="0.4064" layer="16" isolate="0.8128" thermals="no">
 <vertex x="62.97" y="101.92"/>
 <vertex x="62.97" y="94.73"/>
@@ -18533,24 +18658,24 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <vertex x="100.2" y="94.75"/>
 <vertex x="100.2" y="101.92"/>
 </polygon>
-<via x="92" y="100.5" extent="1-16" drill="0.35"/>
+<via x="92" y="100.5" extent="1-16" drill="0.4"/>
 <wire x1="88.437" y1="95.2348" x2="88.437" y2="98.0552" width="0.4064" layer="1"/>
 <wire x1="88.437" y1="98.0552" x2="89.073" y2="98.6912" width="0.4064" layer="1"/>
-<via x="92" y="99" extent="1-16" drill="0.35"/>
-<via x="92" y="97.5" extent="1-16" drill="0.35"/>
-<via x="92" y="96" extent="1-16" drill="0.35"/>
-<via x="90.5" y="96" extent="1-16" drill="0.35"/>
-<via x="89" y="96" extent="1-16" drill="0.35"/>
-<via x="89" y="97.5" extent="1-16" drill="0.35"/>
-<via x="89" y="99" extent="1-16" drill="0.35"/>
-<via x="89" y="100.5" extent="1-16" drill="0.35"/>
-<via x="90.5" y="100.5" extent="1-16" drill="0.35"/>
-<via x="90.5" y="99" extent="1-16" drill="0.35"/>
-<via x="90.5" y="97.5" extent="1-16" drill="0.35"/>
-<via x="87.5" y="100.5" extent="1-16" drill="0.35"/>
-<via x="87.5" y="99" extent="1-16" drill="0.35"/>
-<via x="87.5" y="97.5" extent="1-16" drill="0.35"/>
-<via x="87.5" y="96" extent="1-16" drill="0.35"/>
+<via x="92" y="99" extent="1-16" drill="0.4"/>
+<via x="92" y="97.5" extent="1-16" drill="0.4"/>
+<via x="92" y="96" extent="1-16" drill="0.4"/>
+<via x="90.5" y="96" extent="1-16" drill="0.4"/>
+<via x="89" y="96" extent="1-16" drill="0.4"/>
+<via x="89" y="97.5" extent="1-16" drill="0.4"/>
+<via x="89" y="99" extent="1-16" drill="0.4"/>
+<via x="89" y="100.5" extent="1-16" drill="0.4"/>
+<via x="90.5" y="100.5" extent="1-16" drill="0.4"/>
+<via x="90.5" y="99" extent="1-16" drill="0.4"/>
+<via x="90.5" y="97.5" extent="1-16" drill="0.4"/>
+<via x="87.5" y="100.5" extent="1-16" drill="0.4"/>
+<via x="87.5" y="99" extent="1-16" drill="0.4"/>
+<via x="87.5" y="97.5" extent="1-16" drill="0.4"/>
+<via x="87.5" y="96" extent="1-16" drill="0.4"/>
 <polygon width="0.4064" layer="16" isolate="0.8128" thermals="no">
 <vertex x="87.43" y="101.92"/>
 <vertex x="87.43" y="94.75"/>
@@ -18581,24 +18706,24 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <vertex x="123.52" y="94.75"/>
 <vertex x="123.52" y="101.84"/>
 </polygon>
-<via x="116" y="100.5" extent="1-16" drill="0.35"/>
+<via x="116" y="100.5" extent="1-16" drill="0.4"/>
 <wire x1="112.237" y1="95.3348" x2="112.237" y2="97.9552" width="0.4064" layer="1"/>
 <wire x1="112.237" y1="97.9552" x2="112.823" y2="98.5412" width="0.4064" layer="1"/>
-<via x="114.5" y="100.5" extent="1-16" drill="0.35"/>
-<via x="113" y="100.5" extent="1-16" drill="0.35"/>
-<via x="113" y="99" extent="1-16" drill="0.35"/>
-<via x="113" y="97.5" extent="1-16" drill="0.35"/>
-<via x="113" y="96" extent="1-16" drill="0.35"/>
-<via x="114.5" y="96" extent="1-16" drill="0.35"/>
-<via x="116" y="96" extent="1-16" drill="0.35"/>
-<via x="116" y="97.5" extent="1-16" drill="0.35"/>
-<via x="116" y="99" extent="1-16" drill="0.35"/>
-<via x="114.5" y="99" extent="1-16" drill="0.35"/>
-<via x="114.5" y="97.5" extent="1-16" drill="0.35"/>
-<via x="111.5" y="100.5" extent="1-16" drill="0.35"/>
-<via x="111.5" y="99" extent="1-16" drill="0.35"/>
-<via x="111.5" y="97.5" extent="1-16" drill="0.35"/>
-<via x="111.5" y="96" extent="1-16" drill="0.35"/>
+<via x="114.5" y="100.5" extent="1-16" drill="0.4"/>
+<via x="113" y="100.5" extent="1-16" drill="0.4"/>
+<via x="113" y="99" extent="1-16" drill="0.4"/>
+<via x="113" y="97.5" extent="1-16" drill="0.4"/>
+<via x="113" y="96" extent="1-16" drill="0.4"/>
+<via x="114.5" y="96" extent="1-16" drill="0.4"/>
+<via x="116" y="96" extent="1-16" drill="0.4"/>
+<via x="116" y="97.5" extent="1-16" drill="0.4"/>
+<via x="116" y="99" extent="1-16" drill="0.4"/>
+<via x="114.5" y="99" extent="1-16" drill="0.4"/>
+<via x="114.5" y="97.5" extent="1-16" drill="0.4"/>
+<via x="111.5" y="100.5" extent="1-16" drill="0.4"/>
+<via x="111.5" y="99" extent="1-16" drill="0.4"/>
+<via x="111.5" y="97.5" extent="1-16" drill="0.4"/>
+<via x="111.5" y="96" extent="1-16" drill="0.4"/>
 <polygon width="0.4064" layer="16" isolate="0.8128" thermals="no">
 <vertex x="111.27" y="101.84"/>
 <vertex x="111.27" y="94.75"/>
@@ -18629,24 +18754,24 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <vertex x="148.07" y="94.72"/>
 <vertex x="148.07" y="101.89"/>
 </polygon>
-<via x="140.1" y="100.5" extent="1-16" drill="0.35"/>
+<via x="140.1" y="100.5" extent="1-16" drill="0.4"/>
 <wire x1="136.537" y1="95.4348" x2="136.537" y2="98.1052" width="0.4064" layer="1"/>
 <wire x1="136.537" y1="98.1052" x2="137.073" y2="98.6412" width="0.4064" layer="1"/>
-<via x="140.1" y="99" extent="1-16" drill="0.35"/>
-<via x="140.1" y="97.5" extent="1-16" drill="0.35"/>
-<via x="140.1" y="96" extent="1-16" drill="0.35"/>
-<via x="138.6" y="96" extent="1-16" drill="0.35"/>
-<via x="137.1" y="96" extent="1-16" drill="0.35"/>
-<via x="138.6" y="97.5" extent="1-16" drill="0.35"/>
-<via x="137.1" y="97.5" extent="1-16" drill="0.35"/>
-<via x="138.6" y="99" extent="1-16" drill="0.35"/>
-<via x="137.1" y="99" extent="1-16" drill="0.35"/>
-<via x="138.6" y="100.5" extent="1-16" drill="0.35"/>
-<via x="137.1" y="100.5" extent="1-16" drill="0.35"/>
-<via x="135.6" y="100.5" extent="1-16" drill="0.35"/>
-<via x="135.6" y="99" extent="1-16" drill="0.35"/>
-<via x="135.6" y="97.5" extent="1-16" drill="0.35"/>
-<via x="135.6" y="96" extent="1-16" drill="0.35"/>
+<via x="140.1" y="99" extent="1-16" drill="0.4"/>
+<via x="140.1" y="97.5" extent="1-16" drill="0.4"/>
+<via x="140.1" y="96" extent="1-16" drill="0.4"/>
+<via x="138.6" y="96" extent="1-16" drill="0.4"/>
+<via x="137.1" y="96" extent="1-16" drill="0.4"/>
+<via x="138.6" y="97.5" extent="1-16" drill="0.4"/>
+<via x="137.1" y="97.5" extent="1-16" drill="0.4"/>
+<via x="138.6" y="99" extent="1-16" drill="0.4"/>
+<via x="137.1" y="99" extent="1-16" drill="0.4"/>
+<via x="138.6" y="100.5" extent="1-16" drill="0.4"/>
+<via x="137.1" y="100.5" extent="1-16" drill="0.4"/>
+<via x="135.6" y="100.5" extent="1-16" drill="0.4"/>
+<via x="135.6" y="99" extent="1-16" drill="0.4"/>
+<via x="135.6" y="97.5" extent="1-16" drill="0.4"/>
+<via x="135.6" y="96" extent="1-16" drill="0.4"/>
 <polygon width="0.4064" layer="16" isolate="0.8128" thermals="no">
 <vertex x="135.42" y="101.89"/>
 <vertex x="135.42" y="94.72"/>
@@ -18677,24 +18802,24 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <vertex x="172.48" y="94.73"/>
 <vertex x="172.48" y="101.89"/>
 </polygon>
-<via x="165.2" y="100.5" extent="1-16" drill="0.35"/>
+<via x="165.2" y="100.5" extent="1-16" drill="0.4"/>
 <wire x1="161.3392" y1="95.3526" x2="161.3392" y2="97.863" width="0.4064" layer="1"/>
 <wire x1="161.3392" y1="97.863" x2="162.0352" y2="98.559" width="0.4064" layer="1"/>
-<via x="165.2" y="99" extent="1-16" drill="0.35"/>
-<via x="165.2" y="97.5" extent="1-16" drill="0.35"/>
-<via x="165.2" y="96" extent="1-16" drill="0.35"/>
-<via x="163.7" y="96" extent="1-16" drill="0.35"/>
-<via x="162.2" y="96" extent="1-16" drill="0.35"/>
-<via x="162.2" y="97.5" extent="1-16" drill="0.35"/>
-<via x="162.2" y="99" extent="1-16" drill="0.35"/>
-<via x="162.2" y="100.5" extent="1-16" drill="0.35"/>
-<via x="163.7" y="100.5" extent="1-16" drill="0.35"/>
-<via x="163.7" y="99" extent="1-16" drill="0.35"/>
-<via x="163.7" y="97.5" extent="1-16" drill="0.35"/>
-<via x="160.7" y="100.5" extent="1-16" drill="0.35"/>
-<via x="160.7" y="99" extent="1-16" drill="0.35"/>
-<via x="160.7" y="97.5" extent="1-16" drill="0.35"/>
-<via x="160.7" y="96" extent="1-16" drill="0.35"/>
+<via x="165.2" y="99" extent="1-16" drill="0.4"/>
+<via x="165.2" y="97.5" extent="1-16" drill="0.4"/>
+<via x="165.2" y="96" extent="1-16" drill="0.4"/>
+<via x="163.7" y="96" extent="1-16" drill="0.4"/>
+<via x="162.2" y="96" extent="1-16" drill="0.4"/>
+<via x="162.2" y="97.5" extent="1-16" drill="0.4"/>
+<via x="162.2" y="99" extent="1-16" drill="0.4"/>
+<via x="162.2" y="100.5" extent="1-16" drill="0.4"/>
+<via x="163.7" y="100.5" extent="1-16" drill="0.4"/>
+<via x="163.7" y="99" extent="1-16" drill="0.4"/>
+<via x="163.7" y="97.5" extent="1-16" drill="0.4"/>
+<via x="160.7" y="100.5" extent="1-16" drill="0.4"/>
+<via x="160.7" y="99" extent="1-16" drill="0.4"/>
+<via x="160.7" y="97.5" extent="1-16" drill="0.4"/>
+<via x="160.7" y="96" extent="1-16" drill="0.4"/>
 <polygon width="0.4064" layer="16" isolate="0.8128" thermals="no">
 <vertex x="160.23" y="101.89"/>
 <vertex x="160.23" y="94.73"/>
@@ -18725,22 +18850,22 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <vertex x="196.89" y="94.71"/>
 <vertex x="196.89" y="101.87"/>
 </polygon>
-<via x="189.25" y="100.25" extent="1-16" drill="0.35"/>
-<via x="189.25" y="98.75" extent="1-16" drill="0.35"/>
-<via x="189.25" y="97.25" extent="1-16" drill="0.35"/>
-<via x="189.25" y="95.75" extent="1-16" drill="0.35"/>
-<via x="187.75" y="100.25" extent="1-16" drill="0.35"/>
-<via x="186.25" y="100.25" extent="1-16" drill="0.35"/>
-<via x="186.25" y="98.75" extent="1-16" drill="0.35"/>
-<via x="187.75" y="98.75" extent="1-16" drill="0.35"/>
-<via x="187.75" y="97.25" extent="1-16" drill="0.35"/>
-<via x="186.25" y="97.25" extent="1-16" drill="0.35"/>
-<via x="186.25" y="95.75" extent="1-16" drill="0.35"/>
-<via x="187.75" y="95.75" extent="1-16" drill="0.35"/>
-<via x="184.75" y="100.25" extent="1-16" drill="0.35"/>
-<via x="184.75" y="98.75" extent="1-16" drill="0.35"/>
-<via x="184.75" y="97.25" extent="1-16" drill="0.35"/>
-<via x="184.75" y="95.75" extent="1-16" drill="0.35"/>
+<via x="189.25" y="100.25" extent="1-16" drill="0.4"/>
+<via x="189.25" y="98.75" extent="1-16" drill="0.4"/>
+<via x="189.25" y="97.25" extent="1-16" drill="0.4"/>
+<via x="189.25" y="95.75" extent="1-16" drill="0.4"/>
+<via x="187.75" y="100.25" extent="1-16" drill="0.4"/>
+<via x="186.25" y="100.25" extent="1-16" drill="0.4"/>
+<via x="186.25" y="98.75" extent="1-16" drill="0.4"/>
+<via x="187.75" y="98.75" extent="1-16" drill="0.4"/>
+<via x="187.75" y="97.25" extent="1-16" drill="0.4"/>
+<via x="186.25" y="97.25" extent="1-16" drill="0.4"/>
+<via x="186.25" y="95.75" extent="1-16" drill="0.4"/>
+<via x="187.75" y="95.75" extent="1-16" drill="0.4"/>
+<via x="184.75" y="100.25" extent="1-16" drill="0.4"/>
+<via x="184.75" y="98.75" extent="1-16" drill="0.4"/>
+<via x="184.75" y="97.25" extent="1-16" drill="0.4"/>
+<via x="184.75" y="95.75" extent="1-16" drill="0.4"/>
 <polygon width="0.4064" layer="16" isolate="0.8128" thermals="no">
 <vertex x="184.24" y="101.87"/>
 <vertex x="184.24" y="94.71"/>
@@ -19473,6 +19598,33 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="128.115" y1="21.22" x2="127.43" y2="21.22" width="0.15" layer="1"/>
 <wire x1="127.43" y1="21.22" x2="127.39" y2="21.26" width="0.15" layer="1"/>
 </signal>
+<signal name="AC_L_F">
+<contactref element="AC_L" pad="B3,0"/>
+<contactref element="J1" pad="1"/>
+<wire x1="4.85" y1="89.31" x2="4.85" y2="86.33" width="2.54" layer="16"/>
+<wire x1="11.15" y1="80.03" x2="11.15" y2="70.15" width="2.54" layer="16"/>
+<wire x1="4.85" y1="86.33" x2="11.15" y2="80.03" width="2.54" layer="16"/>
+<polygon width="0.6096" layer="15" isolate="0.8128">
+<vertex x="0.57" y="93.88"/>
+<vertex x="0.57" y="63.42"/>
+<vertex x="4.59" y="59.4"/>
+<vertex x="13.6" y="59.4"/>
+<vertex x="17.89" y="63.69"/>
+<vertex x="17.89" y="89.59"/>
+<vertex x="12.56" y="94.92"/>
+<vertex x="1.61" y="94.92"/>
+</polygon>
+<polygon width="0.6096" layer="16" isolate="0.8128">
+<vertex x="0.53" y="93.88"/>
+<vertex x="0.53" y="63.42"/>
+<vertex x="4.58" y="59.37"/>
+<vertex x="13.56" y="59.37"/>
+<vertex x="17.85" y="63.66"/>
+<vertex x="17.85" y="89.59"/>
+<vertex x="12.52" y="94.92"/>
+<vertex x="1.57" y="94.92"/>
+</polygon>
+</signal>
 </signals>
 <mfgpreviewcolors>
 <mfgpreviewcolor name="soldermaskcolor" color="0xC8005500"/>
@@ -19533,112 +19685,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <approved hash="3,14,b1cb900be02ac1ea"/>
 <approved hash="23,1,8d4f567957b88c8e"/>
 <approved hash="23,14,785fb89fb89e785e"/>
-<approved hash="5,1,ffa2f35fc4d6c913"/>
-<approved hash="5,1,d5955d77994adb78"/>
-<approved hash="5,1,382233f104b00833"/>
-<approved hash="5,1,3e84336f030e0fd5"/>
-<approved hash="5,1,e9338d5c8da5d0cb"/>
-<approved hash="5,1,021349e5c9947ba6"/>
-<approved hash="5,1,a23a4a411881755f"/>
-<approved hash="5,1,df8c4db5bd8a23ff"/>
-<approved hash="5,1,e021750a855f1c0c"/>
-<approved hash="5,1,750fbadf8c2c1539"/>
-<approved hash="5,1,388846f9e24cfebf"/>
-<approved hash="5,1,24c650710a545de4"/>
-<approved hash="5,1,b1e26228217f0bdc"/>
-<approved hash="5,1,b7645cc518600c3a"/>
-<approved hash="5,1,03eee4d9a82eb282"/>
-<approved hash="5,1,0394d9cc949db424"/>
-<approved hash="5,1,fb9665b5af96d539"/>
-<approved hash="5,1,1ce8500f2a58a87e"/>
-<approved hash="5,1,fa3cf6f3c07ecbfd"/>
 <approved hash="5,1,d623d0ac51d05797"/>
-<approved hash="5,1,dc2bf5b36b1fba34"/>
-<approved hash="5,1,e3fef2bd6b138599"/>
-<approved hash="5,16,dc2bf5b36b1fba34"/>
-<approved hash="5,16,e3fef2bd6b138599"/>
-<approved hash="5,16,a1d054189776ec18"/>
-<approved hash="5,16,382233f104b00833"/>
-<approved hash="5,16,3e84336f030e0fd5"/>
-<approved hash="5,16,ffa2f35fc4d6c913"/>
-<approved hash="5,16,48efab0f34932706"/>
-<approved hash="5,16,fa3cf6f3c07ecbfd"/>
-<approved hash="5,16,df8c4db5bd8a23ff"/>
-<approved hash="5,16,e021750a855f1c0c"/>
-<approved hash="5,16,8e917cde67aa8b95"/>
-<approved hash="5,16,cdcff22f649ba314"/>
-<approved hash="5,16,c41afcbd6b1faa61"/>
-<approved hash="5,16,fca9fe3b6bef92ce"/>
-<approved hash="5,16,03eee4d9a82eb282"/>
-<approved hash="5,16,0394d9cc949db424"/>
-<approved hash="5,16,f86588a2ac78d6ef"/>
-<approved hash="5,16,1b14227f8df5f314"/>
-<approved hash="5,16,b1e26228217f0bdc"/>
-<approved hash="19,1,23304815ebefd920"/>
-<approved hash="19,1,4b729b1d5ace184a"/>
-<approved hash="19,1,019004d9e521e068"/>
-<approved hash="19,1,00d801f3e00be120"/>
-<approved hash="19,1,1b0afb4f0684e6dd"/>
-<approved hash="19,1,830ddb53c277a828"/>
 <approved hash="19,1,2286744b25e6b62b"/>
 <approved hash="19,1,ea26e9e25b6e58aa"/>
-<approved hash="19,1,b2b01e529f05346e"/>
-<approved hash="19,1,30728b8333b84604"/>
-<approved hash="19,1,1736144da5b5a6ce"/>
-<approved hash="19,1,128513c9fdb7f970"/>
-<approved hash="19,1,c02e5b51b653c159"/>
-<approved hash="19,1,3dc829744b656dac"/>
-<approved hash="19,1,cd2c5839d1781463"/>
-<approved hash="19,1,8151913498c34ecb"/>
-<approved hash="19,1,3622bb10978fa131"/>
-<approved hash="19,1,b051bba5180b455d"/>
-<approved hash="19,1,104613b9a241a1be"/>
-<approved hash="19,1,f7a705e9ff590e1f"/>
-<approved hash="19,1,896b89b8f140f193"/>
-<approved hash="19,1,8e8b8980f178f673"/>
-<approved hash="19,1,cfb03af6c05a31cc"/>
-<approved hash="19,1,db9cda48cab0cb64"/>
-<approved hash="19,1,dd4609a2080a36e6"/>
-<approved hash="19,1,9df3d0afa67a1a52"/>
-<approved hash="19,1,9883edb29a891c2c"/>
-<approved hash="19,1,3b754a683a908c18"/>
-<approved hash="19,1,dd5cde78ce80cda4"/>
-<approved hash="19,1,5c4adcd23b747bf8"/>
-<approved hash="19,1,de582aa7b25243a5"/>
-<approved hash="19,1,dce8ec1f5c452818"/>
-<approved hash="19,1,88888fe3961b9170"/>
-<approved hash="19,1,8ff08ce5951d9608"/>
-<approved hash="19,1,e24314bc8e4f79f8"/>
-<approved hash="19,1,ab03576e0b39ce61"/>
-<approved hash="19,1,df42acc4657a72f0"/>
-<approved hash="19,1,87068ee9fef7f630"/>
-<approved hash="19,1,78d879f7ea0feb20"/>
-<approved hash="19,1,79907cddef25ea68"/>
-<approved hash="19,1,3b21d74ca8bf6f94"/>
-<approved hash="19,1,82c08d1ff831f2be"/>
-<approved hash="19,1,a0e0b51aa559a408"/>
-<approved hash="19,1,c58fd954068f8300"/>
-<approved hash="19,1,8d07b7bcf1e98f57"/>
-<approved hash="19,1,98d899f03e083f20"/>
-<approved hash="19,1,99909cda3b223e68"/>
-<approved hash="19,1,e03cca7ccef0acb1"/>
-<approved hash="19,1,d487f5b8ec3cc2db"/>
-<approved hash="19,1,310e7281ea9ff680"/>
-<approved hash="19,1,c0d9c1f7000f0121"/>
-<approved hash="19,1,a98d66f452c63646"/>
-<approved hash="19,1,c191c4dd05250069"/>
-<approved hash="19,1,8f1dc9b80639b963"/>
-<approved hash="19,1,e1e4e8e29f70909a"/>
-<approved hash="19,1,8ff18cfd23052009"/>
-<approved hash="19,1,d9f941a2c42a386f"/>
-<approved hash="19,1,e712eb8c9a1a911c"/>
-<approved hash="19,1,00d901fce004e121"/>
-<approved hash="19,1,019104d6e52ee069"/>
-<approved hash="19,1,8e9dfd29dbbab802"/>
-<approved hash="19,1,283dc484f2d55e6a"/>
-<approved hash="19,1,088e0ff9d601d176"/>
-<approved hash="19,1,0ff60cffd507d60e"/>
-<approved hash="19,1,280d1718963c2b2e"/>
 <approved hash="19,1,aa2da9ed536150a1"/>
 <approved hash="19,1,220523650de90c89"/>
 <approved hash="19,1,affaa1f913751d76"/>
@@ -19674,17 +19723,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <approved hash="19,1,ab23a8e34b6f48af"/>
 <approved hash="19,1,562555e4db68d8a9"/>
 <approved hash="19,1,6a1d69dcd350d091"/>
-<approved hash="19,1,6020010ad8e85431"/>
-<approved hash="19,1,8e3b8d237e62b97b"/>
-<approved hash="19,1,88398bcb18331bc1"/>
-<approved hash="19,1,c8d9c9f70a0f0b21"/>
-<approved hash="19,1,2f42ecc07d7e82f1"/>
-<approved hash="19,1,c991ccdd0f250a69"/>
 <approved hash="19,1,e009e4a6092a0d85"/>
 <approved hash="19,1,273b203e0fb208b7"/>
-<approved hash="19,1,9898b6f12dc58c53"/>
-<approved hash="19,1,24ef22c41d975bba"/>
-<approved hash="19,1,88898ffb20032771"/>
 <approved hash="19,1,77bf75bdbb81b983"/>
 <approved hash="19,1,6fba6dbae386e186"/>
 <approved hash="19,1,a52fa46c76507713"/>
@@ -19694,116 +19734,233 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <approved hash="19,1,aa7fa97c7b407843"/>
 <approved hash="19,1,ea63e962935e905f"/>
 <approved hash="19,1,27ba25bc8b808986"/>
-<approved hash="19,1,d85b20b3a8467c9b"/>
-<approved hash="19,1,20eed9f6cbcbf672"/>
-<approved hash="19,1,54b1a4c8cad5d752"/>
-<approved hash="19,1,c39dc2400ab80b65"/>
-<approved hash="19,1,17640238cecf9dce"/>
-<approved hash="19,1,1142dda43004cae3"/>
-<approved hash="19,1,c55dc6700e880da5"/>
-<approved hash="19,1,e26aee2ee14dec71"/>
-<approved hash="19,1,e1c8ece4e797e913"/>
 <approved hash="19,1,ee7bee6520e920f7"/>
-<approved hash="19,1,1d4bd4b334079dff"/>
-<approved hash="19,1,fad5f48d056f3d32"/>
-<approved hash="19,1,0ff00cfdd505d608"/>
-<approved hash="19,1,97e2b473ed38aeaf"/>
-<approved hash="19,1,08880ffbd603d170"/>
-<approved hash="19,1,01220bd820762dbc"/>
-<approved hash="19,1,05d40d1025be2e32"/>
 <approved hash="19,1,e67ae66708eb08f6"/>
 <approved hash="19,1,ea79ea6658ea58f5"/>
-<approved hash="19,1,0ff10cfb23032009"/>
-<approved hash="19,1,790e13b415e6b359"/>
-<approved hash="19,1,a874be10c66b2c8e"/>
-<approved hash="19,1,07d71bad7b804a14"/>
-<approved hash="19,1,ad0287fdf8962b9a"/>
-<approved hash="19,1,08890ffd20052771"/>
-<approved hash="19,1,7f425be9e0d98f79"/>
-<approved hash="19,1,5a3e20a697619c67"/>
 <approved hash="19,1,2a792a6610ea10f5"/>
 <approved hash="19,1,d67ad66758eb58f6"/>
 <approved hash="19,1,ea7bea6608ea08f7"/>
 <approved hash="19,1,6e3b6f3ae1b6e0b7"/>
-<approved hash="19,16,5c55ca4fc4e2ef5a"/>
-<approved hash="19,16,0ff00cfdd505d608"/>
-<approved hash="19,16,5c879219c8c969a8"/>
-<approved hash="19,16,08880ffbd603d170"/>
-<approved hash="19,16,01220bd820762dbc"/>
-<approved hash="19,16,05d40d1025be2e32"/>
-<approved hash="19,16,88898ffb20032771"/>
-<approved hash="19,16,c8d9c9f70a0f0b21"/>
-<approved hash="19,16,ab95a5c3b4ed1f42"/>
-<approved hash="19,16,c991ccdd0f250a69"/>
-<approved hash="19,16,019004d9e521e068"/>
-<approved hash="19,16,00d801f3e00be120"/>
-<approved hash="19,16,edc09af588b30477"/>
-<approved hash="19,16,55e1b6610ea85928"/>
-<approved hash="19,16,e1e4e8e29f70909a"/>
-<approved hash="19,16,8ff18cfd23052009"/>
-<approved hash="19,16,48fc901450a7d341"/>
-<approved hash="19,16,e712eb8c9a1a911c"/>
-<approved hash="19,16,0ff10cfb23032009"/>
-<approved hash="19,16,688658b9bc2423e3"/>
-<approved hash="19,16,088e0ff9d601d176"/>
-<approved hash="19,16,0ff60cffd507d60e"/>
-<approved hash="19,16,8b91579122be2346"/>
-<approved hash="19,16,87068ee9fef7f630"/>
-<approved hash="19,16,78d879f7ea0feb20"/>
-<approved hash="19,16,79907cddef25ea68"/>
-<approved hash="19,16,cdc9ddb6d01c1dc1"/>
-<approved hash="19,16,82c08d1ff831f2be"/>
-<approved hash="19,16,644ac100e2595b11"/>
-<approved hash="19,16,f7a705e9ff590e1f"/>
-<approved hash="19,16,896b89b8f140f193"/>
-<approved hash="19,16,bfd7649ecf29ce5a"/>
-<approved hash="19,16,8e8b8980f178f673"/>
-<approved hash="19,16,cfb03af6c05a31cc"/>
-<approved hash="19,16,fdaf1fa9652666da"/>
-<approved hash="19,16,98d899f03e083f20"/>
-<approved hash="19,16,99909cda3b223e68"/>
-<approved hash="19,16,9492d02038a595e8"/>
-<approved hash="19,16,8909842517dd1af1"/>
-<approved hash="19,16,88398bcb18331bc1"/>
-<approved hash="19,16,d2181cd4fc8039ea"/>
-<approved hash="19,16,11761c57adafa08e"/>
-<approved hash="19,16,8151e5b4ec434ecb"/>
-<approved hash="19,16,1df501206ed7c982"/>
-<approved hash="19,16,b005175876737a73"/>
-<approved hash="19,16,104613b9a241a1be"/>
-<approved hash="19,16,00d901fce004e121"/>
-<approved hash="19,16,019104d6e52ee069"/>
-<approved hash="19,16,bfe0ef8cdbbabbd8"/>
-<approved hash="19,16,bb8fb6d1adfccf5a"/>
-<approved hash="19,16,de582aa7b25243a5"/>
-<approved hash="19,16,a75e5a4539dbc99d"/>
-<approved hash="19,16,88888fe3961b9170"/>
-<approved hash="19,16,8ff08ce5951d9608"/>
-<approved hash="19,16,e24314bc8e4f79f8"/>
-<approved hash="19,16,c39dc2400ab80b65"/>
-<approved hash="19,16,b148b78c8826bc50"/>
-<approved hash="19,16,8aebe66a6b9ca1e4"/>
-<approved hash="19,16,c55dc6700e880da5"/>
-<approved hash="19,16,e26aee2ee14dec71"/>
-<approved hash="19,16,e1c8ece4e797e913"/>
-<approved hash="19,16,db9cda48cab0cb64"/>
-<approved hash="19,16,62edf2923d64d7e3"/>
-<approved hash="19,16,9df3d0afa67a1a52"/>
-<approved hash="19,16,9883edb29a891c2c"/>
-<approved hash="19,16,5bff85864c613179"/>
-<approved hash="19,16,dd5cde78ce80cda4"/>
-<approved hash="19,16,c0d9c1f7000f0121"/>
-<approved hash="19,16,5b5303f8ea648ace"/>
-<approved hash="19,16,c191c4dd05250069"/>
-<approved hash="19,16,b3b7e9bd86207dd6"/>
-<approved hash="19,16,a874be10c66b2c8e"/>
-<approved hash="19,16,76d6b972ee9c41b0"/>
-<approved hash="19,16,ad0287fdf8962b9a"/>
-<approved hash="19,16,08890ffd20052771"/>
-<approved hash="5,16,b7645cc518600c3a"/>
 <approved hash="19,1,e3fdedfb23772d71"/>
 <approved hash="21,19,441e461c461c441e"/>
 <approved hash="23,1,6d56414b0b22f879"/>
+<approved hash="5,1,f60bf9427d4989d1"/>
+<approved hash="5,1,ebaa48fd266dc738"/>
+<approved hash="5,1,08289887668df8ca"/>
+<approved hash="5,1,377fa1b65e62c717"/>
+<approved hash="5,1,4f99ff91fd0e7342"/>
+<approved hash="5,1,7c937ca6af99af8c"/>
+<approved hash="5,1,70e37e76a199a384"/>
+<approved hash="5,1,729b7cf4a1bfa18c"/>
+<approved hash="5,1,bd66d5bfe9b28895"/>
+<approved hash="5,1,5c8cb7897fa06216"/>
+<approved hash="5,1,5a8489264671620e"/>
+<approved hash="5,1,c586ba29f1ac737e"/>
+<approved hash="5,1,5c22962c98a83422"/>
+<approved hash="5,1,7aea6e15edf701bb"/>
+<approved hash="5,1,be7dc015df529236"/>
+<approved hash="5,1,7a8850a8d25201a3"/>
+<approved hash="5,1,58c1cd3490f3edfe"/>
+<approved hash="5,1,2458b188c828a99b"/>
+<approved hash="5,1,20428c35f32dad33"/>
+<approved hash="5,16,2f4c38a907795e11"/>
+<approved hash="5,16,7ca98fa20cd701b3"/>
+<approved hash="5,16,7e65b2103f050dc3"/>
+<approved hash="5,16,7c87894f05a20fbb"/>
+<approved hash="5,16,5c8cb7897fa06216"/>
+<approved hash="5,16,5a8489264671620e"/>
+<approved hash="5,16,c468eb8bf1f272a4"/>
+<approved hash="5,16,7aea6e15edf701bb"/>
+<approved hash="5,16,be2bc04fdfa3f88d"/>
+<approved hash="5,16,7a8850a8d25201a3"/>
+<approved hash="5,16,08289887668df8ca"/>
+<approved hash="5,16,377fa1b65e62c717"/>
+<approved hash="5,16,c6b9ac61c2e5a00a"/>
+<approved hash="5,16,38cf98f03b585137"/>
+<approved hash="5,16,ecf2e0645e6b4c26"/>
+<approved hash="5,16,2458b188c828a99b"/>
+<approved hash="5,16,20428c35f32dad33"/>
+<approved hash="19,1,cf5cdf2ec985ce47"/>
+<approved hash="19,1,50d857643b483cf4"/>
+<approved hash="19,1,72ca779b51472207"/>
+<approved hash="19,1,062fc429d0b3bd21"/>
+<approved hash="19,1,eb9945c798160cc0"/>
+<approved hash="19,1,51890644eb3938a2"/>
+<approved hash="19,1,e53ac7c91d10c9f8"/>
+<approved hash="19,1,b32e1a7018a6c9fa"/>
+<approved hash="19,1,48c849bc1d901ce4"/>
+<approved hash="19,1,4dd84df019dc19f4"/>
+<approved hash="19,1,e558fb9e2207c840"/>
+<approved hash="19,1,6ed760f1977b9f0f"/>
+<approved hash="19,1,31513777df5bd97d"/>
+<approved hash="19,1,7b4fac29196b6dad"/>
+<approved hash="19,1,887b9b8884c047a8"/>
+<approved hash="19,1,6aef677b95019b27"/>
+<approved hash="19,1,377134b7dc9bdf5d"/>
+<approved hash="19,1,c662ce0ac4b2c0a0"/>
+<approved hash="19,1,d155d7709f5c9979"/>
+<approved hash="19,1,c4ecca9ec586c23e"/>
+<approved hash="19,1,d775d4b09c9c9f59"/>
+<approved hash="19,1,b4bcc2d53592e84a"/>
+<approved hash="19,1,8d7542a096303ff4"/>
+<approved hash="19,1,edddedf499d899f1"/>
+<approved hash="19,1,e8cde9b89d949ce1"/>
+<approved hash="19,1,b35d747a56741aba"/>
+<approved hash="19,1,0e71322107858d94"/>
+<approved hash="19,1,e828a7d13360930e"/>
+<approved hash="19,1,54b95e68da4e0893"/>
+<approved hash="19,1,d855d801282d2879"/>
+<approved hash="19,1,428144a8d80da62a"/>
+<approved hash="19,1,c06cfc515eccd441"/>
+<approved hash="19,1,dcbad669c23fe0e0"/>
+<approved hash="19,1,fbf7e1f2bac8714c"/>
+<approved hash="19,1,582658701c5c1c0a"/>
+<approved hash="19,1,caf2ccd9d00ce629"/>
+<approved hash="19,1,3bc5808ccefc876a"/>
+<approved hash="19,1,53d112386bd925c1"/>
+<approved hash="19,1,8e4614fcb972af75"/>
+<approved hash="19,1,b9b0a2ea348aa021"/>
+<approved hash="19,1,694cc704bc5ad5dc"/>
+<approved hash="19,1,b75ad96309ff742c"/>
+<approved hash="19,1,ddd8ddf2c5dec5f4"/>
+<approved hash="19,1,091906b60a03c1bd"/>
+<approved hash="19,1,d8c8d9bec192c0e4"/>
+<approved hash="19,1,b3605c0dccceb9f8"/>
+<approved hash="19,1,000ec5ed0c1d55cd"/>
+<approved hash="19,1,8e6709298b55b2b4"/>
+<approved hash="19,1,921de7ad12fa730a"/>
+<approved hash="19,1,fd58c2b9e46f5303"/>
+<approved hash="19,1,fd3afef0db6a52bb"/>
+<approved hash="19,1,cdd8cdfc19d019f4"/>
+<approved hash="19,1,6ca93617f599a724"/>
+<approved hash="19,1,c8c8c9b01d9c1ce4"/>
+<approved hash="19,1,7b6f69ababc7fab8"/>
+<approved hash="19,1,4fc90e4346dc475c"/>
+<approved hash="19,1,6cff828ee61a1dd3"/>
+<approved hash="19,1,50db57793b553cf7"/>
+<approved hash="19,1,57db576d3b413bf7"/>
+<approved hash="19,1,5184bf5fdac126aa"/>
+<approved hash="19,1,8f4a353387a3992f"/>
+<approved hash="19,1,403e3094edac6b76"/>
+<approved hash="19,1,63fdea83b26c7b1e"/>
+<approved hash="19,1,0dda0df4add8adf6"/>
+<approved hash="19,1,08ca09b8a994a8e6"/>
+<approved hash="19,1,6dc3775ee9d87f57"/>
+<approved hash="19,1,d980e7ace173a14e"/>
+<approved hash="19,1,f98515ec4f51b560"/>
+<approved hash="19,1,10ee1643466f40c2"/>
+<approved hash="19,1,405b128c720861d2"/>
+<approved hash="19,1,10ae168b46a74082"/>
+<approved hash="19,1,c310291973048fa5"/>
+<approved hash="19,1,4e3da69dcd0cd9e9"/>
+<approved hash="19,1,faa9f1b5ba204317"/>
+<approved hash="19,1,c464f063beae7c80"/>
+<approved hash="19,1,d8dddf612f4d28f1"/>
+<approved hash="19,1,560e09c3c8c32432"/>
+<approved hash="19,1,a07fd985253d2d2f"/>
+<approved hash="19,1,dfdddf752f592ff1"/>
+<approved hash="19,1,88476ecce1410700"/>
+<approved hash="19,1,6ed7c8464bf80d20"/>
+<approved hash="19,1,6d23e08a96395b80"/>
+<approved hash="19,1,50de57603b4c3cf2"/>
+<approved hash="19,1,57de57743b583bf2"/>
+<approved hash="19,1,4bfee0c3d409cec4"/>
+<approved hash="19,1,d753c754391f25c8"/>
+<approved hash="19,1,0dc6375a51dd4f57"/>
+<approved hash="19,1,2ddf2df555d955f3"/>
+<approved hash="19,1,594c1cd10d35cafe"/>
+<approved hash="19,1,d585c4663e95220e"/>
+<approved hash="19,1,28cf29b9519550e3"/>
+<approved hash="19,1,3064357e7176f5a3"/>
+<approved hash="19,1,5b28564641e3baee"/>
+<approved hash="19,1,d41653bfff0ca4b3"/>
+<approved hash="19,1,d8d8df602f4c28f4"/>
+<approved hash="19,1,5e406d437d80be96"/>
+<approved hash="19,1,dfd8df742f582ff4"/>
+<approved hash="19,1,14312e8939d9f0ef"/>
+<approved hash="19,1,ca92da5eccfdcc89"/>
+<approved hash="19,1,4297e257c2c297f8"/>
+<approved hash="19,1,63f20176d63f94b5"/>
+<approved hash="19,1,57d857703b5c3bf4"/>
+<approved hash="19,16,e53ac7c91d10c9f8"/>
+<approved hash="19,16,b75b2b5bb6d9a934"/>
+<approved hash="19,16,48c849bc1d901ce4"/>
+<approved hash="19,16,4dd84df019dc19f4"/>
+<approved hash="19,16,e558fb9e2207c840"/>
+<approved hash="19,16,906e46eb2073e30c"/>
+<approved hash="19,16,d855d801282d2879"/>
+<approved hash="19,16,b93911156894a4b6"/>
+<approved hash="19,16,da5ecc9d14231adb"/>
+<approved hash="19,16,73d74154e2fadaf4"/>
+<approved hash="19,16,d7ddd646ae540038"/>
+<approved hash="19,16,57d857703b5c3bf4"/>
+<approved hash="19,16,cf5cdf2ec985ce47"/>
+<approved hash="19,16,50d857643b483cf4"/>
+<approved hash="19,16,d753c754391f25c8"/>
+<approved hash="19,16,db40551efe0d11b9"/>
+<approved hash="19,16,2ddf2df555d955f3"/>
+<approved hash="19,16,34f046caf0a0fba9"/>
+<approved hash="19,16,d585c4663e95220e"/>
+<approved hash="19,16,28cf29b9519550e3"/>
+<approved hash="19,16,ddd8ddf2c5dec5f4"/>
+<approved hash="19,16,90ddc7807f28259d"/>
+<approved hash="19,16,d8c8d9bec192c0e4"/>
+<approved hash="19,16,934fccfee22517ab"/>
+<approved hash="19,16,3552661ddcb5c4ab"/>
+<approved hash="19,16,6b05dde8a0028565"/>
+<approved hash="19,16,fbf79572ce48714c"/>
+<approved hash="19,16,582658701c5c1c0a"/>
+<approved hash="19,16,4422aa0c438d8dad"/>
+<approved hash="19,16,0c1e20c25b4a671a"/>
+<approved hash="19,16,c662ce0ac4b2c0a0"/>
+<approved hash="19,16,d155d7709f5c9979"/>
+<approved hash="19,16,c4ecca9ec586c23e"/>
+<approved hash="19,16,d775d4b09c9c9f59"/>
+<approved hash="19,16,de37980d1aab6541"/>
+<approved hash="19,16,483c306c9f0757be"/>
+<approved hash="19,16,0dda0df4add8adf6"/>
+<approved hash="19,16,08ca09b8a994a8e6"/>
+<approved hash="19,16,b344474c705ad5bc"/>
+<approved hash="19,16,faa9f1b5ba204317"/>
+<approved hash="19,16,c464f063beae7c80"/>
+<approved hash="19,16,d8dddf612f4d28f1"/>
+<approved hash="19,16,9497805da47d76f1"/>
+<approved hash="19,16,6bf2c162f4ab9e37"/>
+<approved hash="19,16,dfdddf752f592ff1"/>
+<approved hash="19,16,6ed760f1977b9f0f"/>
+<approved hash="19,16,31513777df5bd97d"/>
+<approved hash="19,16,817048f573f6eef0"/>
+<approved hash="19,16,e55de5eac9af15f8"/>
+<approved hash="19,16,6aef677b95019b27"/>
+<approved hash="19,16,377134b7dc9bdf5d"/>
+<approved hash="19,16,edddedf499d899f1"/>
+<approved hash="19,16,e8cde9b89d949ce1"/>
+<approved hash="19,16,ce52efea6b8e1a27"/>
+<approved hash="19,16,fd58c2b9e46f5303"/>
+<approved hash="19,16,fd3afef0db6a52bb"/>
+<approved hash="19,16,cdd8cdfc19d019f4"/>
+<approved hash="19,16,307f375bd6cd4207"/>
+<approved hash="19,16,c8c8c9b01d9c1ce4"/>
+<approved hash="19,16,a6eec4ffd307dedd"/>
+<approved hash="19,16,305ffc5b844047aa"/>
+<approved hash="19,16,6cff828ee61a1dd3"/>
+<approved hash="19,16,50db57793b553cf7"/>
+<approved hash="19,16,57db576d3b413bf7"/>
+<approved hash="19,16,5184bf5fdac126aa"/>
+<approved hash="19,16,74e4e885cf22dcab"/>
+<approved hash="19,16,50de57603b4c3cf2"/>
+<approved hash="19,16,57de57743b583bf2"/>
+<approved hash="19,16,f98515ec4f51b560"/>
+<approved hash="19,16,10ee1643466f40c2"/>
+<approved hash="19,16,b7e80bd21d865db3"/>
+<approved hash="19,16,10ae168b46a74082"/>
+<approved hash="19,16,c310291973048fa5"/>
+<approved hash="19,16,ccd3012a90d2b62b"/>
+<approved hash="19,16,5b28564641e3baee"/>
+<approved hash="19,16,3fd3f981a527f69b"/>
+<approved hash="19,16,d8d8df602f4c28f4"/>
+<approved hash="19,16,5e406d437d80be96"/>
+<approved hash="19,16,dfd8df742f582ff4"/>
 </errors>
 </board>
 </drawing>
