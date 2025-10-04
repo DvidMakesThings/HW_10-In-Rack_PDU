@@ -54,6 +54,10 @@ add_executable(ENERGIS
     network/socket.c
     network/snmp.c
     network/snmp_custom.c
+    network/snmp_networkCtrl.c
+    network/snmp_outletCtrl.c
+    network/snmp_powerMon.c
+    network/snmp_voltageMon.c
     web_handlers/http_server.c
     web_handlers/control_handler.c
     web_handlers/settings_handler.c

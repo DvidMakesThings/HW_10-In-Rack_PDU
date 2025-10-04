@@ -197,8 +197,10 @@ void http_server_process(void) {
             if (strncmp(http_buf, "GET /api/status", 15) == 0) {
                 handle_status_request(http_sock);
 
-            } else if (strncmp(http_buf, "GET /api/settings", 17) == 0 ||
-                       strncmp(http_buf, "GET /settings.html", 18) == 0) {
+            } else if (strncmp(http_buf, "GET /api/settings", 17) == 0) {
+                handle_settings_api(http_sock);
+
+            } else if (strncmp(http_buf, "GET /settings.html", 18) == 0) {
                 handle_settings_request(http_sock);
 
             } else if (strncmp(http_buf, "POST /settings", 14) == 0) {

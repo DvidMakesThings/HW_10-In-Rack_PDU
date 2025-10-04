@@ -120,6 +120,86 @@ void handle_settings_request(uint8_t sock) {
 }
 
 /**
+ * @brief Handles the HTTP request for the settings API (returns JSON).
+ * @param sock The socket number.
+ * @note This function is called when JavaScript requests settings data.
+ */
+void handle_settings_api(uint8_t sock) {
+    NETLOG_PRINT(">> handle_settings_api()\n");
+
+    // --- 1) Load network from EEPROM --------------------------------------
+    networkInfo net;
+    EEPROM_ReadUserNetworkWithChecksum(&net);
+
+    // --- 2) Load prefs from EEPROM ----------------------------------------
+    userPrefInfo pref;
+    EEPROM_ReadUserPrefsWithChecksum(&pref);
+
+    // --- 3) Read the internal temp ----------------------------------------
+    adc_select_input(4);
+    int raw = adc_read();
+    const float VREF = 3.00f;
+    float voltage = (raw * VREF) / (1 << 12);
+    float temp_c = 27.0f - (voltage - 0.706f) / 0.001721f;
+
+    // --- 4) Convert to user's unit ----------------------------------------
+    float temp_out;
+    const char *unit_suffix;
+    switch (pref.temp_unit) {
+    case 1: // Fahrenheit
+        temp_out = temp_c * 9.0f / 5.0f + 32.0f;
+        unit_suffix = "fahrenheit";
+        break;
+    case 2: // Kelvin
+        temp_out = temp_c + 273.15f;
+        unit_suffix = "kelvin";
+        break;
+    default: // Celsius
+        temp_out = temp_c;
+        unit_suffix = "celsius";
+    }
+
+    // --- 5) Build JSON response -------------------------------------------
+    char json[1024];
+    int len =
+        snprintf(json, sizeof(json),
+                 "{"
+                 "\"ip\":\"%u.%u.%u.%u\","
+                 "\"gateway\":\"%u.%u.%u.%u\","
+                 "\"subnet\":\"%u.%u.%u.%u\","
+                 "\"dns\":\"%u.%u.%u.%u\","
+                 "\"device_name\":\"%s\","
+                 "\"location\":\"%s\","
+                 "\"temp_unit\":\"%s\","
+                 "\"temperature\":%.2f,"
+                 "\"timezone\":\"\","
+                 "\"time\":\"00:00:00\","
+                 "\"autologout\":5"
+                 "}",
+                 net.ip[0], net.ip[1], net.ip[2], net.ip[3], net.gw[0], net.gw[1], net.gw[2],
+                 net.gw[3], net.sn[0], net.sn[1], net.sn[2], net.sn[3], net.dns[0], net.dns[1],
+                 net.dns[2], net.dns[3], pref.device_name, pref.location, unit_suffix, temp_out);
+
+    NETLOG_PRINT("JSON response len=%d\n", len);
+
+    // --- 6) Send HTTP headers + JSON --------------------------------------
+    char hdr[128];
+    int hlen = snprintf(hdr, sizeof(hdr),
+                        "HTTP/1.1 200 OK\r\n"
+                        "Content-Type: application/json\r\n"
+                        "Content-Length: %d\r\n"
+                        "Access-Control-Allow-Origin: *\r\n"
+                        "Cache-Control: no-cache\r\n"
+                        "Connection: close\r\n"
+                        "\r\n",
+                        len);
+    send(sock, (uint8_t *)hdr, hlen);
+    send(sock, (uint8_t *)json, len);
+
+    NETLOG_PRINT("<< handle_settings_api() done\n");
+}
+
+/**
  * @brief Handles the HTTP POST request for the settings page.
  * @param sock The socket number.
  * @param body The body of the POST request.
