@@ -13,208 +13,144 @@
  */
 
 #include "snmp_custom.h"
-#include "CONFIG.h" // UART_CMD_BUF_LEN, etc.
-#include "drivers/CAT24C512_driver.h"
-#include "network/wizchip_conf.h" // wiz_NetInfo
-#include "snmp.h"
-#include <ctype.h>
-#include <stdio.h>
-#include <string.h>
-
-static float latest_temp_voltage = 0.0f;
-static float latest_temp_celsius = 0.0f;
-
-/**
- * @brief Bring in your running network configuration
- * @return Pointer to the network configuration structure.
- */
-extern wiz_NetInfo g_net_info;
-
-/**
- * @brief Read relay state for channel @p ch (0..7) into SNMP buffer.
- * @param ch 0..7 channel index.
- * @param buf Output buffer (4 bytes, SNMP INTEGER).
- * @param len Output length (set to 4).
- * @return None
- */
-static inline void get_outlet_State_common(uint8_t ch, void *buf, uint8_t *len) {
-    int32_t v = mcp_relay_read_pin(ch) ? 1 : 0;
-    memcpy(buf, &v, 4);
-    *len = 4;
-}
-
-// Forward‐declare our new callbacks
 
 //------------------------------------------------------------------------------
 // the full table of OID support:
+#define SNMP_MAX_OID_LEN 16
 
+
+// clang-format off
 dataEntryType snmpData[] = {
     // Standard system‐group stuff
-    {8,
-     {0x2b, 6, 1, 2, 1, 1, 1, 0},
-     SNMPDTYPE_OCTET_STRING,
-     29,
-     {"ENERGIS 8 CHANNEL MANAGED PDU"},
-     NULL,
-     NULL},
-    {8,
-     {0x2b, 6, 1, 2, 1, 1, 2, 0},
-     SNMPDTYPE_OBJ_ID,
-     8,
-     {"\x2b\x06\x01\x02\x01\x01\x02\x00"},
-     NULL,
-     NULL},
-    {8, {0x2b, 6, 1, 2, 1, 1, 3, 0}, SNMPDTYPE_TIME_TICKS, 0, {""}, currentUptime, NULL},
-    {8, {0x2b, 6, 1, 2, 1, 1, 4, 0}, SNMPDTYPE_OCTET_STRING, 64, {""}, get_sysContact, NULL},
-    {8, {0x2b, 6, 1, 2, 1, 1, 5, 0}, SNMPDTYPE_OCTET_STRING, 15, {""}, get_serialNumber, NULL},
-    {8, {0x2b, 6, 1, 2, 1, 1, 6, 0}, SNMPDTYPE_OCTET_STRING, 4, {"Wien"}, NULL, NULL},
-    {8, {0x2b, 6, 1, 2, 1, 1, 7, 0}, SNMPDTYPE_INTEGER, 4, {""}, NULL, NULL},
+    {8,  {0x2b, 6, 1, 2, 1, 1, 1, 0}, SNMPDTYPE_OCTET_STRING, 29,   {"ENERGIS 8 CHANNEL MANAGED PDU"}, NULL, NULL},
+    {8,  {0x2b, 6, 1, 2, 1, 1, 2, 0}, SNMPDTYPE_OBJ_ID, 8,          {"\x2b\x06\x01\x02\x01\x01\x02\x00"}, NULL, NULL},
+    {8,  {0x2b, 6, 1, 2, 1, 1, 3, 0}, SNMPDTYPE_TIME_TICKS, 0,      {""}, currentUptime, NULL},
+    {8,  {0x2b, 6, 1, 2, 1, 1, 4, 0}, SNMPDTYPE_OCTET_STRING, 64,   {""}, get_sysContact, NULL},
+    {8,  {0x2b, 6, 1, 2, 1, 1, 5, 0}, SNMPDTYPE_OCTET_STRING, 15,   {""}, get_serialNumber, NULL},
+    {8,  {0x2b, 6, 1, 2, 1, 1, 6, 0}, SNMPDTYPE_OCTET_STRING, 4,    {"Wien"}, NULL, NULL},
+    {8,  {0x2b, 6, 1, 2, 1, 1, 7, 0}, SNMPDTYPE_INTEGER, 4,         {""}, NULL, NULL},
 
     // “long-length” tests
-    {10,
-     {0x2b, 0x06, 0x01, 0x04, 0x01, 0x81, 0x9b, 0x19, 0x01, 0x00},
-     SNMPDTYPE_OCTET_STRING,
-     30,
-     {"long-length OID Test #1"},
-     NULL,
-     NULL},
-    {10,
-     {0x2b, 0x06, 0x01, 0x04, 0x01, 0x81, 0xad, 0x42, 0x01, 0x00},
-     SNMPDTYPE_OCTET_STRING,
-     35,
-     {"long-length OID Test #2"},
-     NULL,
-     NULL},
-    {10,
-     {0x2b, 0x06, 0x01, 0x04, 0x01, 0x81, 0xad, 0x42, 0x02, 0x00},
-     SNMPDTYPE_OBJ_ID,
-     10,
-     {"\x2b\x06\x01\x04\x01\x81\xad\x42\x02\x00"},
-     NULL,
-     NULL},
+    {10, {0x2b, 0x06, 0x01, 0x04, 0x01, 0x81, 0x9b, 0x19, 0x01, 0x00}, SNMPDTYPE_OCTET_STRING, 30,  {"long-length OID Test #1"}, NULL, NULL},
+    {10, {0x2b, 0x06, 0x01, 0x04, 0x01, 0x81, 0xad, 0x42, 0x01, 0x00}, SNMPDTYPE_OCTET_STRING, 35,  {"long-length OID Test #2"}, NULL, NULL},
+    {10, {0x2b, 0x06, 0x01, 0x04, 0x01, 0x81, 0xad, 0x42, 0x02, 0x00}, SNMPDTYPE_OBJ_ID, 10,        {"\x2b\x06\x01\x04\x01\x81\xad\x42\x02\x00"}, NULL, NULL},
 
     // Network configuration under .1.3.6.1.4.1.19865.4.X.0
     //    a) ip address:  .4.1.0
-    {11,
-     {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x04, 0x01, 0x00},
-     SNMPDTYPE_OCTET_STRING,
-     16,
-     {""},
-     get_networkIP,
-     NULL},
+    {11, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x04, 0x01, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_networkIP, NULL},
     //    b) subnet mask: .4.2.0
-    {11,
-     {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x04, 0x02, 0x00},
-     SNMPDTYPE_OCTET_STRING,
-     16,
-     {""},
-     get_networkMask,
-     NULL},
+    {11, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x04, 0x02, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_networkMask, NULL},
     //    c) gateway:     .4.3.0
-    {11,
-     {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x04, 0x03, 0x00},
-     SNMPDTYPE_OCTET_STRING,
-     16,
-     {""},
-     get_networkGateway,
-     NULL},
+    {11, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x04, 0x03, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_networkGateway, NULL},
     //    d) DNS server:  .4.4.0
-    {11,
-     {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x04, 0x04, 0x00},
-     SNMPDTYPE_OCTET_STRING,
-     16,
-     {""},
-     get_networkDNS,
-     NULL},
+    {11, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x04, 0x04, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_networkDNS, NULL},
 
-    {11,
-     {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x02, 0x01, 0x00},
-     SNMPDTYPE_INTEGER,
-     4,
-     {""},
-     get_outlet1_State,
-     set_outlet1_State},
-    {11,
-     {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x02, 0x02, 0x00},
-     SNMPDTYPE_INTEGER,
-     4,
-     {""},
-     get_outlet2_State,
-     set_outlet2_State},
-    {11,
-     {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x02, 0x03, 0x00},
-     SNMPDTYPE_INTEGER,
-     4,
-     {""},
-     get_outlet3_State,
-     set_outlet3_State},
-    {11,
-     {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x02, 0x04, 0x00},
-     SNMPDTYPE_INTEGER,
-     4,
-     {""},
-     get_outlet4_State,
-     set_outlet4_State},
-    {11,
-     {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x02, 0x05, 0x00},
-     SNMPDTYPE_INTEGER,
-     4,
-     {""},
-     get_outlet5_State,
-     set_outlet5_State},
-    {11,
-     {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x02, 0x06, 0x00},
-     SNMPDTYPE_INTEGER,
-     4,
-     {""},
-     get_outlet6_State,
-     set_outlet6_State},
-    {11,
-     {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x02, 0x07, 0x00},
-     SNMPDTYPE_INTEGER,
-     4,
-     {""},
-     get_outlet7_State,
-     set_outlet7_State},
-    {11,
-     {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x02, 0x08, 0x00},
-     SNMPDTYPE_INTEGER,
-     4,
-     {""},
-     get_outlet8_State,
-     set_outlet8_State},
-    {11,
-     {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x02, 0x09, 0x00},
-     SNMPDTYPE_INTEGER,
-     4,
-     {""},
-     get_allOff,
-     set_allOff},
-    {11,
-     {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x02, 0x0A, 0x00},
-     SNMPDTYPE_INTEGER,
-     4,
-     {""},
-     get_allOn,
-     set_allOn},
-    // Temperature monitoring under .1.3.6.1.4.1.19865.3.X.0
+    // Outlet state control
+    {11, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x02, 0x01, 0x00}, SNMPDTYPE_INTEGER, 4, {""}, get_outlet1_State, set_outlet1_State},
+    {11, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x02, 0x02, 0x00}, SNMPDTYPE_INTEGER, 4, {""}, get_outlet2_State, set_outlet2_State},
+    {11, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x02, 0x03, 0x00}, SNMPDTYPE_INTEGER, 4, {""}, get_outlet3_State, set_outlet3_State},
+    {11, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x02, 0x04, 0x00}, SNMPDTYPE_INTEGER, 4, {""}, get_outlet4_State, set_outlet4_State},
+    {11, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x02, 0x05, 0x00}, SNMPDTYPE_INTEGER, 4, {""}, get_outlet5_State, set_outlet5_State},
+    {11, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x02, 0x06, 0x00}, SNMPDTYPE_INTEGER, 4, {""}, get_outlet6_State, set_outlet6_State},
+    {11, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x02, 0x07, 0x00}, SNMPDTYPE_INTEGER, 4, {""}, get_outlet7_State, set_outlet7_State},
+    {11, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x02, 0x08, 0x00}, SNMPDTYPE_INTEGER, 4, {""}, get_outlet8_State, set_outlet8_State},
+    {11, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x02, 0x09, 0x00}, SNMPDTYPE_INTEGER, 4, {""}, get_allOff, set_allOff},
+    {11, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x02, 0x0A, 0x00}, SNMPDTYPE_INTEGER, 4, {""}, get_allOn, set_allOn},
+
+    // ADC + Voltage monitoring under .1.3.6.1.4.1.19865.3.X.0
     //    a) die sensor voltage:     .3.1.0
-    {11,
-     {0x2b, 0x06, 0x01, 0x04, 0x01, 0x81, 0x9b, 0x19, 0x03, 0x01, 0x00},
-     SNMPDTYPE_OCTET_STRING,
-     16,
-     {""},
-     get_tempSensorVoltage,
-     NULL},
+    {11, {0x2b, 0x06, 0x01, 0x04, 0x01, 0x81, 0x9b, 0x19, 0x03, 0x01, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_tempSensorVoltage, NULL},
     //    b) die sensor temperature: .3.2.0
-    {11,
-     {0x2b, 0x06, 0x01, 0x04, 0x01, 0x81, 0x9b, 0x19, 0x03, 0x02, 0x00},
-     SNMPDTYPE_OCTET_STRING,
-     16,
-     {""},
-     get_tempSensorTemperature,
-     NULL},
+    {11, {0x2b, 0x06, 0x01, 0x04, 0x01, 0x81, 0x9b, 0x19, 0x03, 0x02, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_tempSensorTemperature, NULL},
+    //    c) 12V PSU voltage: .3.3.0
+    {11, {0x2b, 0x06, 0x01, 0x04, 0x01, 0x81, 0x9b, 0x19, 0x03, 0x03, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_VSUPPLY, NULL},
+    //    d) 5V USB voltage: .3.4.0
+    {11, {0x2b, 0x06, 0x01, 0x04, 0x01, 0x81, 0x9b, 0x19, 0x03, 0x04, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_VUSB, NULL},
+    //    e) 12V PSU divider voltage: .3.5.0
+    {11, {0x2b, 0x06, 0x01, 0x04, 0x01, 0x81, 0x9b, 0x19, 0x03, 0x05, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_VSUPPLY_divider, NULL},
+    //    f) 5V USB divider voltage: .3.6.0
+    {11, {0x2b, 0x06, 0x01, 0x04, 0x01, 0x81, 0x9b, 0x19, 0x03, 0x06, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_VUSB_divider, NULL},
+    //    g) Core VREG target voltage: .3.7.0
+    {11, {0x2b, 0x06, 0x01, 0x04, 0x01, 0x81, 0x9b, 0x19, 0x03, 0x07, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_coreVREG, NULL},
+    //    h) Core VREG status flags:  .3.8.0
+    {11, {0x2b, 0x06, 0x01, 0x04, 0x01, 0x81, 0x9b, 0x19, 0x03, 0x08, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_coreVREG_status, NULL},
+    //    i) Bandgap reference (const): .3.9.0
+    {11, {0x2b, 0x06, 0x01, 0x04, 0x01, 0x81, 0x9b, 0x19, 0x03, 0x09, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_bandgapRef, NULL},
+    //    j) USB PHY rail (const): .3.10.0
+    {11, {0x2b, 0x06, 0x01, 0x04, 0x01, 0x81, 0x9b, 0x19, 0x03, 0x0A, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_usbPHYrail, NULL},
+    //    k) IO rail nominal (const): .3.11.0
+    {11, {0x2b, 0x06, 0x01, 0x04, 0x01, 0x81, 0x9b, 0x19, 0x03, 0x0B, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_ioRail, NULL},
+
+    // Power monitoring under .1.3.6.1.4.1.19865.5.<ch>.<metric>.0
+    // Metrics: 1=Voltage, 2=Current, 3=Power, 4=PowerFactor, 5=kWh, 6=Uptime
+
+    // ================= Channel 1 =================
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x01, 0x01, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_0_MEAS_VOLTAGE, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x01, 0x02, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_0_MEAS_CURRENT, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x01, 0x03, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_0_MEAS_WATT, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x01, 0x04, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_0_MEAS_PF, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x01, 0x05, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_0_MEAS_KWH, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x01, 0x06, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_0_MEAS_UPTIME, NULL},
+
+    // ================= Channel 2 =================
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x02, 0x01, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_1_MEAS_VOLTAGE, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x02, 0x02, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_1_MEAS_CURRENT, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x02, 0x03, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_1_MEAS_WATT, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x02, 0x04, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_1_MEAS_PF, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x02, 0x05, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_1_MEAS_KWH, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x02, 0x06, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_1_MEAS_UPTIME, NULL},
+
+    // ================= Channel 3 =================
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x03, 0x01, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_2_MEAS_VOLTAGE, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x03, 0x02, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_2_MEAS_CURRENT, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x03, 0x03, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_2_MEAS_WATT, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x03, 0x04, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_2_MEAS_PF, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x03, 0x05, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_2_MEAS_KWH, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x03, 0x06, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_2_MEAS_UPTIME, NULL},
+
+    // ================= Channel 4 =================
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x04, 0x01, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_3_MEAS_VOLTAGE, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x04, 0x02, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_3_MEAS_CURRENT, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x04, 0x03, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_3_MEAS_WATT, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x04, 0x04, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_3_MEAS_PF, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x04, 0x05, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_3_MEAS_KWH, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x04, 0x06, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_3_MEAS_UPTIME, NULL},
+
+    // ================= Channel 5 =================
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x05, 0x01, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_4_MEAS_VOLTAGE, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x05, 0x02, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_4_MEAS_CURRENT, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x05, 0x03, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_4_MEAS_WATT, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x05, 0x04, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_4_MEAS_PF, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x05, 0x05, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_4_MEAS_KWH, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x05, 0x06, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_4_MEAS_UPTIME, NULL},
+
+    // ================= Channel 6 =================
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x06, 0x01, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_5_MEAS_VOLTAGE, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x06, 0x02, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_5_MEAS_CURRENT, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x06, 0x03, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_5_MEAS_WATT, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x06, 0x04, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_5_MEAS_PF, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x06, 0x05, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_5_MEAS_KWH, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x06, 0x06, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_5_MEAS_UPTIME, NULL},
+
+    // ================= Channel 7 =================
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x07, 0x01, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_6_MEAS_VOLTAGE, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x07, 0x02, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_6_MEAS_CURRENT, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x07, 0x03, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_6_MEAS_WATT, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x07, 0x04, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_6_MEAS_PF, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x07, 0x05, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_6_MEAS_KWH, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x07, 0x06, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_6_MEAS_UPTIME, NULL},
+
+    // ================= Channel 8 =================
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x08, 0x01, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_7_MEAS_VOLTAGE, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x08, 0x02, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_7_MEAS_CURRENT, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x08, 0x03, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_7_MEAS_WATT, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x08, 0x04, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_7_MEAS_PF, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x08, 0x05, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_7_MEAS_KWH, NULL},
+    {12, {0x2b, 6, 1, 4, 1, 0x81, 0x9b, 0x19, 0x05, 0x08, 0x06, 0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_power_7_MEAS_UPTIME, NULL},
+
 };
+
+// clang-format on
 
 const int32_t maxData = (sizeof(snmpData) / sizeof(dataEntryType));
 
@@ -251,28 +187,10 @@ void initial_Trap(uint8_t *managerIP, uint8_t *agentIP) {
     }
 }
 
-//------------------------------------------------------------------------------
-// Callbacks for the SNMP agent
+// ####################################################################################
+//  Callbacks for the SNMP agent
+// ####################################################################################
 
-/**
- * @brief SNMP callback: Return latest die temp sensor voltage as string
- */
-void get_tempSensorVoltage(void *buf, uint8_t *len) {
-    adc_select_input(4);
-    uint16_t raw = adc_read();
-    latest_temp_voltage = raw * 3.0f / 4096.0f;
-    *len = snprintf((char *)buf, 16, "%.5f", latest_temp_voltage);
-}
-
-/**
- * @brief SNMP callback: Return latest die temp sensor temperature as string
- */
-void get_tempSensorTemperature(void *buf, uint8_t *len) {
-    adc_select_input(4);
-    uint16_t raw = adc_read();
-    latest_temp_celsius = 27.0f - (latest_temp_voltage - 0.706f) / 0.001721f;
-    *len = snprintf((char *)buf, 16, "%.3f", latest_temp_celsius);
-}
 /**
  * @brief Return contact information as an OCTET STRING.
  * @param buf Pointer to the buffer to store the contact information.
@@ -298,323 +216,3 @@ void get_serialNumber(void *buf, uint8_t *len) {
     *len = strlen(sn);
     memcpy(buf, sn, *len);
 }
-
-//------------------------------------------------------------------------------
-// Network callbacks: format each 4‐byte field into a dotted‐decimal string
-
-/**
- * @brief Get the IP address of the device.
- * @param ptr Pointer to the buffer to store the IP address.
- * @param len Pointer to the length of the IP address.
- */
-void get_networkIP(void *ptr, uint8_t *len) {
-    char *dst = (char *)ptr;
-    *len = snprintf(dst, 16, "%u.%u.%u.%u", g_net_info.ip[0], g_net_info.ip[1], g_net_info.ip[2],
-                    g_net_info.ip[3]);
-}
-
-/**
- * @brief Get the subnet mask of the device.
- * @param ptr Pointer to the buffer to store the subnet mask.
- * @param len Pointer to the length of the subnet mask.
- */
-void get_networkMask(void *ptr, uint8_t *len) {
-    char *dst = (char *)ptr;
-    *len = snprintf(dst, 16, "%u.%u.%u.%u", g_net_info.sn[0], g_net_info.sn[1], g_net_info.sn[2],
-                    g_net_info.sn[3]);
-}
-
-/**
- * @brief Get the gateway address of the device.
- * @param ptr Pointer to the buffer to store the gateway address.
- * @param len Pointer to the length of the gateway address.
- */
-void get_networkGateway(void *ptr, uint8_t *len) {
-    char *dst = (char *)ptr;
-    *len = snprintf(dst, 16, "%u.%u.%u.%u", g_net_info.gw[0], g_net_info.gw[1], g_net_info.gw[2],
-                    g_net_info.gw[3]);
-}
-
-/**
- * @brief Get the DNS server address of the device.
- * @param ptr Pointer to the buffer to store the DNS server address.
- * @param len Pointer to the length of the DNS server address.
- */
-void get_networkDNS(void *ptr, uint8_t *len) {
-    char *dst = (char *)ptr;
-    *len = snprintf(dst, 16, "%u.%u.%u.%u", g_net_info.dns[0], g_net_info.dns[1], g_net_info.dns[2],
-                    g_net_info.dns[3]);
-}
-
-//------------------------------------------------------------------------------
-// Outlet control callbacks: read the state of the relay and set it
-//    (also update the display board LED state)
-
-/**
- * @brief Get the state of the outlet (relay) as an integer.
- * @param buf Pointer to the buffer to store the state.
- * @param len Pointer to the length of the state.
- * @return None
- */
-void get_outlet1_State(void *buf, uint8_t *len) { get_outlet_State_common(0, buf, len); }
-
-/**
- * @brief Set the state of the outlet (relay) based on the input value.
- * @param val The desired state (0 or 1).
- * @return None
- */
-void set_outlet1_State(int32_t val) {
-    uint8_t ab = 0, aa = 0;
-    (void)set_relay_state_with_tag(SNMP_HANDLER, 0, (uint8_t)(val != 0), &ab, &aa);
-    if (ab || aa) {
-        uint16_t mask = mcp_dual_asymmetry_mask();
-        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X) by %s\r\n", aa ? "PERSISTING" : "DETECTED",
-                      (unsigned)mask, SNMP_HANDLER);
-    }
-}
-
-/**
- * @brief Get the state of outlet 2 (relay) as an integer.
- * @param buf Pointer to the buffer to store the state.
- * @param len Pointer to the length of the state.
- * @return None
- */
-void get_outlet2_State(void *buf, uint8_t *len) { get_outlet_State_common(1, buf, len); }
-
-/**
- * @brief Set the state of outlet 2 (relay) based on the input value.
- * @param val The desired state (0 or 1).
- * @return None
- */
-void set_outlet2_State(int32_t val) {
-    uint8_t ab = 0, aa = 0;
-    (void)set_relay_state_with_tag(SNMP_HANDLER, 1, (uint8_t)(val != 0), &ab, &aa);
-    if (ab || aa) {
-        uint16_t mask = mcp_dual_asymmetry_mask();
-        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X) by %s\r\n", aa ? "PERSISTING" : "DETECTED",
-                      (unsigned)mask, SNMP_HANDLER);
-    }
-}
-
-/**
- * @brief Get the state of outlet 3 (relay) as an integer.
- * @param buf Pointer to the buffer to store the state.
- * @param len Pointer to the length of the state.
- * @return None
- */
-void get_outlet3_State(void *buf, uint8_t *len) { get_outlet_State_common(2, buf, len); }
-
-/**
- * @brief Set the state of outlet 3 (relay) based on the input value.
- * @param val The desired state (0 or 1).
- * @return None
- */
-void set_outlet3_State(int32_t val) {
-    uint8_t ab = 0, aa = 0;
-    (void)set_relay_state_with_tag(SNMP_HANDLER, 2, (uint8_t)(val != 0), &ab, &aa);
-    if (ab || aa) {
-        uint16_t mask = mcp_dual_asymmetry_mask();
-        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X) by %s\r\n", aa ? "PERSISTING" : "DETECTED",
-                      (unsigned)mask, SNMP_HANDLER);
-    }
-}
-
-/**
- * @brief Get the state of outlet 4 (relay) as an integer.
- * @param buf Pointer to the buffer to store the state.
- * @param len Pointer to the length of the state.
- * @return None
- */
-void get_outlet4_State(void *buf, uint8_t *len) { get_outlet_State_common(3, buf, len); }
-
-/**
- * @brief Set the state of outlet 4 (relay) based on the input value.
- * @param val The desired state (0 or 1).
- * @return None
- */
-void set_outlet4_State(int32_t val) {
-    uint8_t ab = 0, aa = 0;
-    (void)set_relay_state_with_tag(SNMP_HANDLER, 3, (uint8_t)(val != 0), &ab, &aa);
-    if (ab || aa) {
-        uint16_t mask = mcp_dual_asymmetry_mask();
-        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X) by %s\r\n", aa ? "PERSISTING" : "DETECTED",
-                      (unsigned)mask, SNMP_HANDLER);
-    }
-}
-
-/**
- * @brief Get the state of outlet 5 (relay) as an integer.
- * @param buf Pointer to the buffer to store the state.
- * @param len Pointer to the length of the state.
- * @return None
- */
-void get_outlet5_State(void *buf, uint8_t *len) { get_outlet_State_common(4, buf, len); }
-
-/**
- * @brief Set the state of outlet 5 (relay) based on the input value.
- * @param val The desired state (0 or 1).
- * @return None
- */
-void set_outlet5_State(int32_t val) {
-    uint8_t ab = 0, aa = 0;
-    (void)set_relay_state_with_tag(SNMP_HANDLER, 4, (uint8_t)(val != 0), &ab, &aa);
-    if (ab || aa) {
-        uint16_t mask = mcp_dual_asymmetry_mask();
-        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X) by %s\r\n", aa ? "PERSISTING" : "DETECTED",
-                      (unsigned)mask, SNMP_HANDLER);
-    }
-}
-
-/**
- * @brief Get the state of outlet 6 (relay) as an integer.
- * @param buf Pointer to the buffer to store the state.
- * @param len Pointer to the length of the state.
- * @return None
- */
-void get_outlet6_State(void *buf, uint8_t *len) { get_outlet_State_common(5, buf, len); }
-
-/**
- * @brief Set the state of outlet 6 (relay) based on the input value.
- * @param val The desired state (0 or 1).
- * @return None
- */
-void set_outlet6_State(int32_t val) {
-    uint8_t ab = 0, aa = 0;
-    (void)set_relay_state_with_tag(SNMP_HANDLER, 5, (uint8_t)(val != 0), &ab, &aa);
-    if (ab || aa) {
-        uint16_t mask = mcp_dual_asymmetry_mask();
-        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X) by %s\r\n", aa ? "PERSISTING" : "DETECTED",
-                      (unsigned)mask, SNMP_HANDLER);
-    }
-}
-
-/**
- * @brief Get the state of outlet 7 (relay) as an integer.
- * @param buf Pointer to the buffer to store the state.
- * @param len Pointer to the length of the state.
- * @return None
- */
-void get_outlet7_State(void *buf, uint8_t *len) { get_outlet_State_common(6, buf, len); }
-
-/**
- * @brief Set the state of outlet 7 (relay) based on the input value.
- * @param val The desired state (0 or 1).
- * @return None
- */
-void set_outlet7_State(int32_t val) {
-    uint8_t ab = 0, aa = 0;
-    (void)set_relay_state_with_tag(SNMP_HANDLER, 6, (uint8_t)(val != 0), &ab, &aa);
-    if (ab || aa) {
-        uint16_t mask = mcp_dual_asymmetry_mask();
-        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X) by %s\r\n", aa ? "PERSISTING" : "DETECTED",
-                      (unsigned)mask, SNMP_HANDLER);
-    }
-}
-
-/**
- * @brief Get the state of outlet 8 (relay) as an integer.
- * @param buf Pointer to the buffer to store the state.
- * @param len Pointer to the length of the state.
- * @return None
- */
-void get_outlet8_State(void *buf, uint8_t *len) { get_outlet_State_common(7, buf, len); }
-
-/**
- * @brief Set the state of outlet 8 (relay) based on the input value.
- * @param val The desired state (0 or 1).
- * @return None
- */
-void set_outlet8_State(int32_t val) {
-    uint8_t ab = 0, aa = 0;
-    (void)set_relay_state_with_tag(SNMP_HANDLER, 7, (uint8_t)(val != 0), &ab, &aa);
-    if (ab || aa) {
-        uint16_t mask = mcp_dual_asymmetry_mask();
-        WARNING_PRINT("Dual asymmetry %s (mask=0x%04X) by %s\r\n", aa ? "PERSISTING" : "DETECTED",
-                      (unsigned)mask, SNMP_HANDLER);
-    }
-}
-
-/**
- * @brief Set the state of all outlets (relays) OFF when @p val == 1.
- * @param val The desired state (1 → turn all off).
- * @return None
- */
-void set_allOff(int32_t val) {
-    if (val == 1) {
-        int changed_total = 0;
-        uint8_t any_ab = 0, any_aa = 0;
-
-        for (uint8_t ch = 0; ch < 8; ch++) {
-            uint8_t ab = 0, aa = 0;
-            changed_total += set_relay_state_with_tag(SNMP_HANDLER, ch, 0u, &ab, &aa);
-            any_ab |= ab;
-            any_aa |= aa;
-        }
-
-        INFO_PRINT("SNMP allOff: changed=%d\r\n", changed_total);
-
-        if (any_ab || any_aa) {
-            uint16_t mask = mcp_dual_asymmetry_mask();
-            WARNING_PRINT("Dual asymmetry %s (mask=0x%04X) by %s\r\n",
-                          any_aa ? "PERSISTING" : "DETECTED", (unsigned)mask, SNMP_HANDLER);
-        }
-    }
-}
-
-/**
- * @brief Turn *all* outlets on when @p val != 0.
- * @param val Non-zero → turn all on.
- * @return None
- */
-void set_allOn(int32_t val) {
-    if (val != 0) {
-        int changed_total = 0;
-        uint8_t any_ab = 0, any_aa = 0;
-
-        for (uint8_t ch = 0; ch < 8; ch++) {
-            uint8_t ab = 0, aa = 0;
-            changed_total += set_relay_state_with_tag(SNMP_HANDLER, ch, 1u, &ab, &aa);
-            any_ab |= ab;
-            any_aa |= aa;
-        }
-
-        INFO_PRINT("SNMP allOn: changed=%d\r\n", changed_total);
-
-        if (any_ab || any_aa) {
-            uint16_t mask = mcp_dual_asymmetry_mask();
-            WARNING_PRINT("Dual asymmetry %s (mask=0x%04X) by %s\r\n",
-                          any_aa ? "PERSISTING" : "DETECTED", (unsigned)mask, SNMP_HANDLER);
-        }
-    }
-}
-
-/**
- * @brief Read all 8 relay states and return as a bitmask.
- *
- * Bit mapping (LSB first):
- *   bit 0 -> CH1, bit 1 -> CH2, ... bit 7 -> CH8 (1 = ON, 0 = OFF)
- *
- * @param buf Output buffer (SNMP INTEGER, 4 bytes). Lower byte holds the mask.
- * @param len Output length (set to 4).
- * @return void
- */
-void get_allState(void *buf, uint8_t *len) {
-    uint32_t mask = 0;
-    for (uint8_t ch = 0; ch < 8; ++ch) {
-        if (mcp_relay_read_pin(ch))
-            mask |= (1u << ch);
-    }
-    memcpy(buf, &mask, sizeof(mask));
-    *len = sizeof(mask);
-}
-
-/* Make the two OIDs resolve to the same function address (GCC/Clang). */
-#if defined(__GNUC__)
-extern void get_allState(void *buf, uint8_t *len);
-extern void get_allOff(void *buf, uint8_t *len) __attribute__((alias("get_allState")));
-extern void get_allOn(void *buf, uint8_t *len) __attribute__((alias("get_allState")));
-#else
-/* Fallback: tiny wrappers (still correct; may not dedupe code as tightly). */
-void get_allOff(void *buf, uint8_t *len) { get_allState(buf, len); }
-void get_allOn(void *buf, uint8_t *len) { get_allState(buf, len); }
-#endif

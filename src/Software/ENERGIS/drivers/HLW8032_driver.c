@@ -166,7 +166,7 @@ void hlw8032_init(void) {
 bool hlw8032_read(uint8_t channel) {
     // 1) select the channel on your MUX
     mux_select(channel);
-    sleep_ms(55);
+    sleep_ms(10);
 
     // 2) flush any garbage
     while (uart_is_readable(HLW8032_UART_ID))

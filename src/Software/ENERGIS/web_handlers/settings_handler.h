@@ -16,11 +16,18 @@
 #include <stdint.h>
 
 /**
- * @brief Handles the HTTP request for the settings page.
+ * @brief Handles the HTTP request for the settings page (HTML).
  * @param sock The socket number.
  * @note This function is called when the user interacts with the settings page.
  */
 void handle_settings_request(uint8_t sock);
+
+/**
+ * @brief Handles the HTTP request for the settings API (JSON).
+ * @param sock The socket number.
+ * @note This function is called when JavaScript requests settings data.
+ */
+void handle_settings_api(uint8_t sock);
 
 /**
  * @brief Handles the HTTP request for the settings page.
