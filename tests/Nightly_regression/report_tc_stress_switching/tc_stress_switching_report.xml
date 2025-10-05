@@ -1,0 +1,2495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ENERGIS Functional Test" tests="1246" failures="0" skipped="0" time="0.0" session_id="b64f4cdb">
+  <testcase classname="UTFW" name="PRE-STEP 1 Reboot device via UART" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1 Rapid SNMP switching test - 15 cycles per channel" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.1 Cycle 1 - CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.2 Cycle 1 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.3 Cycle 1 - CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.4 Cycle 1 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.5 Cycle 1 - CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.6 Cycle 1 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.7 Cycle 1 - CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.8 Cycle 1 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.9 Cycle 1 - CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.10 Cycle 1 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.11 Cycle 1 - CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.12 Cycle 1 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.13 Cycle 1 - CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.14 Cycle 1 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.15 Cycle 1 - CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.16 Cycle 1 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.17 Cycle 1 - CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.18 Cycle 1 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.19 Cycle 1 - CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.20 Cycle 1 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.21 Cycle 1 - CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.22 Cycle 1 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.23 Cycle 1 - CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.24 Cycle 1 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.25 Cycle 1 - CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.26 Cycle 1 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.27 Cycle 1 - CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.28 Cycle 1 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.29 Cycle 1 - CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.30 Cycle 1 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.31 Cycle 1 - CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.32 Cycle 1 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.33 Cycle 2 - CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.34 Cycle 2 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.35 Cycle 2 - CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.36 Cycle 2 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.37 Cycle 2 - CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.38 Cycle 2 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.39 Cycle 2 - CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.40 Cycle 2 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.41 Cycle 2 - CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.42 Cycle 2 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.43 Cycle 2 - CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.44 Cycle 2 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.45 Cycle 2 - CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.46 Cycle 2 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.47 Cycle 2 - CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.48 Cycle 2 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.49 Cycle 2 - CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.50 Cycle 2 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.51 Cycle 2 - CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.52 Cycle 2 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.53 Cycle 2 - CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.54 Cycle 2 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.55 Cycle 2 - CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.56 Cycle 2 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.57 Cycle 2 - CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.58 Cycle 2 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.59 Cycle 2 - CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.60 Cycle 2 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.61 Cycle 2 - CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.62 Cycle 2 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.63 Cycle 2 - CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.64 Cycle 2 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.65 Cycle 3 - CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.66 Cycle 3 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.67 Cycle 3 - CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.68 Cycle 3 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.69 Cycle 3 - CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.70 Cycle 3 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.71 Cycle 3 - CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.72 Cycle 3 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.73 Cycle 3 - CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.74 Cycle 3 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.75 Cycle 3 - CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.76 Cycle 3 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.77 Cycle 3 - CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.78 Cycle 3 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.79 Cycle 3 - CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.80 Cycle 3 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.81 Cycle 3 - CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.82 Cycle 3 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.83 Cycle 3 - CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.84 Cycle 3 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.85 Cycle 3 - CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.86 Cycle 3 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.87 Cycle 3 - CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.88 Cycle 3 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.89 Cycle 3 - CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.90 Cycle 3 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.91 Cycle 3 - CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.92 Cycle 3 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.93 Cycle 3 - CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.94 Cycle 3 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.95 Cycle 3 - CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.96 Cycle 3 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.97 Cycle 4 - CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.98 Cycle 4 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.99 Cycle 4 - CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.100 Cycle 4 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.101 Cycle 4 - CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.102 Cycle 4 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.103 Cycle 4 - CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.104 Cycle 4 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.105 Cycle 4 - CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.106 Cycle 4 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.107 Cycle 4 - CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.108 Cycle 4 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.109 Cycle 4 - CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.110 Cycle 4 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.111 Cycle 4 - CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.112 Cycle 4 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.113 Cycle 4 - CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.114 Cycle 4 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.115 Cycle 4 - CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.116 Cycle 4 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.117 Cycle 4 - CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.118 Cycle 4 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.119 Cycle 4 - CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.120 Cycle 4 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.121 Cycle 4 - CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.122 Cycle 4 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.123 Cycle 4 - CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.124 Cycle 4 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.125 Cycle 4 - CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.126 Cycle 4 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.127 Cycle 4 - CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.128 Cycle 4 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.129 Cycle 5 - CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.130 Cycle 5 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.131 Cycle 5 - CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.132 Cycle 5 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.133 Cycle 5 - CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.134 Cycle 5 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.135 Cycle 5 - CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.136 Cycle 5 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.137 Cycle 5 - CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.138 Cycle 5 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.139 Cycle 5 - CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.140 Cycle 5 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.141 Cycle 5 - CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.142 Cycle 5 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.143 Cycle 5 - CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.144 Cycle 5 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.145 Cycle 5 - CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.146 Cycle 5 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.147 Cycle 5 - CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.148 Cycle 5 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.149 Cycle 5 - CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.150 Cycle 5 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.151 Cycle 5 - CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.152 Cycle 5 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.153 Cycle 5 - CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.154 Cycle 5 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.155 Cycle 5 - CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.156 Cycle 5 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.157 Cycle 5 - CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.158 Cycle 5 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.159 Cycle 5 - CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.160 Cycle 5 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.161 Cycle 6 - CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.162 Cycle 6 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.163 Cycle 6 - CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.164 Cycle 6 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.165 Cycle 6 - CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.166 Cycle 6 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.167 Cycle 6 - CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.168 Cycle 6 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.169 Cycle 6 - CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.170 Cycle 6 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.171 Cycle 6 - CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.172 Cycle 6 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.173 Cycle 6 - CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.174 Cycle 6 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.175 Cycle 6 - CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.176 Cycle 6 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.177 Cycle 6 - CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.178 Cycle 6 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.179 Cycle 6 - CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.180 Cycle 6 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.181 Cycle 6 - CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.182 Cycle 6 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.183 Cycle 6 - CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.184 Cycle 6 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.185 Cycle 6 - CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.186 Cycle 6 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.187 Cycle 6 - CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.188 Cycle 6 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.189 Cycle 6 - CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.190 Cycle 6 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.191 Cycle 6 - CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.192 Cycle 6 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.193 Cycle 7 - CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.194 Cycle 7 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.195 Cycle 7 - CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.196 Cycle 7 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.197 Cycle 7 - CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.198 Cycle 7 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.199 Cycle 7 - CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.200 Cycle 7 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.201 Cycle 7 - CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.202 Cycle 7 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.203 Cycle 7 - CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.204 Cycle 7 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.205 Cycle 7 - CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.206 Cycle 7 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.207 Cycle 7 - CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.208 Cycle 7 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.209 Cycle 7 - CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.210 Cycle 7 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.211 Cycle 7 - CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.212 Cycle 7 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.213 Cycle 7 - CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.214 Cycle 7 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.215 Cycle 7 - CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.216 Cycle 7 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.217 Cycle 7 - CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.218 Cycle 7 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.219 Cycle 7 - CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.220 Cycle 7 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.221 Cycle 7 - CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.222 Cycle 7 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.223 Cycle 7 - CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.224 Cycle 7 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.225 Cycle 8 - CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.226 Cycle 8 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.227 Cycle 8 - CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.228 Cycle 8 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.229 Cycle 8 - CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.230 Cycle 8 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.231 Cycle 8 - CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.232 Cycle 8 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.233 Cycle 8 - CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.234 Cycle 8 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.235 Cycle 8 - CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.236 Cycle 8 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.237 Cycle 8 - CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.238 Cycle 8 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.239 Cycle 8 - CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.240 Cycle 8 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.241 Cycle 8 - CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.242 Cycle 8 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.243 Cycle 8 - CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.244 Cycle 8 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.245 Cycle 8 - CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.246 Cycle 8 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.247 Cycle 8 - CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.248 Cycle 8 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.249 Cycle 8 - CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.250 Cycle 8 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.251 Cycle 8 - CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.252 Cycle 8 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.253 Cycle 8 - CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.254 Cycle 8 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.255 Cycle 8 - CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.256 Cycle 8 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.257 Cycle 9 - CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.258 Cycle 9 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.259 Cycle 9 - CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.260 Cycle 9 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.261 Cycle 9 - CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.262 Cycle 9 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.263 Cycle 9 - CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.264 Cycle 9 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.265 Cycle 9 - CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.266 Cycle 9 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.267 Cycle 9 - CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.268 Cycle 9 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.269 Cycle 9 - CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.270 Cycle 9 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.271 Cycle 9 - CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.272 Cycle 9 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.273 Cycle 9 - CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.274 Cycle 9 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.275 Cycle 9 - CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.276 Cycle 9 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.277 Cycle 9 - CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.278 Cycle 9 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.279 Cycle 9 - CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.280 Cycle 9 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.281 Cycle 9 - CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.282 Cycle 9 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.283 Cycle 9 - CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.284 Cycle 9 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.285 Cycle 9 - CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.286 Cycle 9 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.287 Cycle 9 - CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.288 Cycle 9 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.289 Cycle 10 - CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.290 Cycle 10 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.291 Cycle 10 - CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.292 Cycle 10 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.293 Cycle 10 - CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.294 Cycle 10 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.295 Cycle 10 - CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.296 Cycle 10 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.297 Cycle 10 - CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.298 Cycle 10 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.299 Cycle 10 - CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.300 Cycle 10 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.301 Cycle 10 - CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.302 Cycle 10 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.303 Cycle 10 - CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.304 Cycle 10 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.305 Cycle 10 - CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.306 Cycle 10 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.307 Cycle 10 - CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.308 Cycle 10 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.309 Cycle 10 - CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.310 Cycle 10 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.311 Cycle 10 - CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.312 Cycle 10 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.313 Cycle 10 - CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.314 Cycle 10 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.315 Cycle 10 - CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.316 Cycle 10 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.317 Cycle 10 - CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.318 Cycle 10 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.319 Cycle 10 - CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.320 Cycle 10 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.321 Cycle 11 - CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.322 Cycle 11 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.323 Cycle 11 - CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.324 Cycle 11 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.325 Cycle 11 - CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.326 Cycle 11 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.327 Cycle 11 - CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.328 Cycle 11 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.329 Cycle 11 - CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.330 Cycle 11 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.331 Cycle 11 - CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.332 Cycle 11 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.333 Cycle 11 - CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.334 Cycle 11 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.335 Cycle 11 - CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.336 Cycle 11 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.337 Cycle 11 - CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.338 Cycle 11 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.339 Cycle 11 - CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.340 Cycle 11 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.341 Cycle 11 - CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.342 Cycle 11 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.343 Cycle 11 - CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.344 Cycle 11 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.345 Cycle 11 - CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.346 Cycle 11 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.347 Cycle 11 - CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.348 Cycle 11 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.349 Cycle 11 - CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.350 Cycle 11 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.351 Cycle 11 - CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.352 Cycle 11 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.353 Cycle 12 - CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.354 Cycle 12 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.355 Cycle 12 - CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.356 Cycle 12 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.357 Cycle 12 - CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.358 Cycle 12 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.359 Cycle 12 - CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.360 Cycle 12 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.361 Cycle 12 - CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.362 Cycle 12 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.363 Cycle 12 - CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.364 Cycle 12 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.365 Cycle 12 - CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.366 Cycle 12 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.367 Cycle 12 - CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.368 Cycle 12 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.369 Cycle 12 - CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.370 Cycle 12 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.371 Cycle 12 - CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.372 Cycle 12 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.373 Cycle 12 - CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.374 Cycle 12 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.375 Cycle 12 - CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.376 Cycle 12 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.377 Cycle 12 - CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.378 Cycle 12 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.379 Cycle 12 - CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.380 Cycle 12 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.381 Cycle 12 - CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.382 Cycle 12 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.383 Cycle 12 - CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.384 Cycle 12 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.385 Cycle 13 - CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.386 Cycle 13 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.387 Cycle 13 - CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.388 Cycle 13 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.389 Cycle 13 - CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.390 Cycle 13 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.391 Cycle 13 - CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.392 Cycle 13 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.393 Cycle 13 - CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.394 Cycle 13 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.395 Cycle 13 - CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.396 Cycle 13 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.397 Cycle 13 - CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.398 Cycle 13 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.399 Cycle 13 - CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.400 Cycle 13 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.401 Cycle 13 - CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.402 Cycle 13 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.403 Cycle 13 - CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.404 Cycle 13 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.405 Cycle 13 - CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.406 Cycle 13 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.407 Cycle 13 - CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.408 Cycle 13 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.409 Cycle 13 - CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.410 Cycle 13 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.411 Cycle 13 - CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.412 Cycle 13 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.413 Cycle 13 - CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.414 Cycle 13 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.415 Cycle 13 - CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.416 Cycle 13 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.417 Cycle 14 - CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.418 Cycle 14 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.419 Cycle 14 - CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.420 Cycle 14 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.421 Cycle 14 - CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.422 Cycle 14 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.423 Cycle 14 - CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.424 Cycle 14 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.425 Cycle 14 - CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.426 Cycle 14 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.427 Cycle 14 - CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.428 Cycle 14 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.429 Cycle 14 - CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.430 Cycle 14 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.431 Cycle 14 - CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.432 Cycle 14 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.433 Cycle 14 - CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.434 Cycle 14 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.435 Cycle 14 - CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.436 Cycle 14 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.437 Cycle 14 - CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.438 Cycle 14 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.439 Cycle 14 - CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.440 Cycle 14 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.441 Cycle 14 - CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.442 Cycle 14 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.443 Cycle 14 - CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.444 Cycle 14 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.445 Cycle 14 - CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.446 Cycle 14 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.447 Cycle 14 - CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.448 Cycle 14 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.449 Cycle 15 - CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.450 Cycle 15 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.451 Cycle 15 - CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.452 Cycle 15 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.453 Cycle 15 - CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.454 Cycle 15 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.455 Cycle 15 - CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.456 Cycle 15 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.457 Cycle 15 - CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.458 Cycle 15 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.459 Cycle 15 - CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.460 Cycle 15 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.461 Cycle 15 - CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.462 Cycle 15 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.463 Cycle 15 - CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.464 Cycle 15 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.465 Cycle 15 - CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.466 Cycle 15 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.467 Cycle 15 - CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.468 Cycle 15 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.469 Cycle 15 - CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.470 Cycle 15 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.471 Cycle 15 - CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.472 Cycle 15 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.473 Cycle 15 - CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.474 Cycle 15 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.475 Cycle 15 - CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.476 Cycle 15 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.477 Cycle 15 - CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.478 Cycle 15 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.479 Cycle 15 - CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.480 Cycle 15 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2 Simultaneous all-channel SNMP switching - 15 cycles" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.1 Cycle 1 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.2 Cycle 1 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.3 Cycle 1 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.4 Cycle 1 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.5 Cycle 1 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.6 Cycle 1 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.7 Cycle 1 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.8 Cycle 1 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.9 Cycle 1 - Verify all ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.10 Cycle 1 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.11 Cycle 1 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.12 Cycle 1 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.13 Cycle 1 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.14 Cycle 1 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.15 Cycle 1 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.16 Cycle 1 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.17 Cycle 1 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.18 Cycle 1 - Verify all OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.19 Cycle 2 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.20 Cycle 2 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.21 Cycle 2 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.22 Cycle 2 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.23 Cycle 2 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.24 Cycle 2 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.25 Cycle 2 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.26 Cycle 2 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.27 Cycle 2 - Verify all ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.28 Cycle 2 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.29 Cycle 2 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.30 Cycle 2 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.31 Cycle 2 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.32 Cycle 2 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.33 Cycle 2 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.34 Cycle 2 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.35 Cycle 2 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.36 Cycle 2 - Verify all OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.37 Cycle 3 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.38 Cycle 3 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.39 Cycle 3 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.40 Cycle 3 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.41 Cycle 3 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.42 Cycle 3 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.43 Cycle 3 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.44 Cycle 3 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.45 Cycle 3 - Verify all ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.46 Cycle 3 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.47 Cycle 3 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.48 Cycle 3 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.49 Cycle 3 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.50 Cycle 3 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.51 Cycle 3 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.52 Cycle 3 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.53 Cycle 3 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.54 Cycle 3 - Verify all OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.55 Cycle 4 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.56 Cycle 4 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.57 Cycle 4 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.58 Cycle 4 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.59 Cycle 4 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.60 Cycle 4 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.61 Cycle 4 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.62 Cycle 4 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.63 Cycle 4 - Verify all ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.64 Cycle 4 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.65 Cycle 4 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.66 Cycle 4 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.67 Cycle 4 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.68 Cycle 4 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.69 Cycle 4 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.70 Cycle 4 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.71 Cycle 4 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.72 Cycle 4 - Verify all OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.73 Cycle 5 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.74 Cycle 5 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.75 Cycle 5 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.76 Cycle 5 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.77 Cycle 5 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.78 Cycle 5 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.79 Cycle 5 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.80 Cycle 5 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.81 Cycle 5 - Verify all ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.82 Cycle 5 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.83 Cycle 5 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.84 Cycle 5 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.85 Cycle 5 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.86 Cycle 5 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.87 Cycle 5 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.88 Cycle 5 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.89 Cycle 5 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.90 Cycle 5 - Verify all OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.91 Cycle 6 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.92 Cycle 6 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.93 Cycle 6 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.94 Cycle 6 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.95 Cycle 6 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.96 Cycle 6 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.97 Cycle 6 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.98 Cycle 6 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.99 Cycle 6 - Verify all ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.100 Cycle 6 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.101 Cycle 6 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.102 Cycle 6 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.103 Cycle 6 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.104 Cycle 6 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.105 Cycle 6 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.106 Cycle 6 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.107 Cycle 6 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.108 Cycle 6 - Verify all OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.109 Cycle 7 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.110 Cycle 7 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.111 Cycle 7 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.112 Cycle 7 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.113 Cycle 7 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.114 Cycle 7 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.115 Cycle 7 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.116 Cycle 7 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.117 Cycle 7 - Verify all ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.118 Cycle 7 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.119 Cycle 7 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.120 Cycle 7 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.121 Cycle 7 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.122 Cycle 7 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.123 Cycle 7 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.124 Cycle 7 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.125 Cycle 7 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.126 Cycle 7 - Verify all OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.127 Cycle 8 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.128 Cycle 8 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.129 Cycle 8 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.130 Cycle 8 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.131 Cycle 8 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.132 Cycle 8 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.133 Cycle 8 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.134 Cycle 8 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.135 Cycle 8 - Verify all ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.136 Cycle 8 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.137 Cycle 8 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.138 Cycle 8 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.139 Cycle 8 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.140 Cycle 8 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.141 Cycle 8 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.142 Cycle 8 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.143 Cycle 8 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.144 Cycle 8 - Verify all OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.145 Cycle 9 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.146 Cycle 9 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.147 Cycle 9 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.148 Cycle 9 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.149 Cycle 9 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.150 Cycle 9 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.151 Cycle 9 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.152 Cycle 9 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.153 Cycle 9 - Verify all ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.154 Cycle 9 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.155 Cycle 9 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.156 Cycle 9 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.157 Cycle 9 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.158 Cycle 9 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.159 Cycle 9 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.160 Cycle 9 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.161 Cycle 9 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.162 Cycle 9 - Verify all OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.163 Cycle 10 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.164 Cycle 10 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.165 Cycle 10 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.166 Cycle 10 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.167 Cycle 10 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.168 Cycle 10 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.169 Cycle 10 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.170 Cycle 10 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.171 Cycle 10 - Verify all ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.172 Cycle 10 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.173 Cycle 10 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.174 Cycle 10 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.175 Cycle 10 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.176 Cycle 10 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.177 Cycle 10 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.178 Cycle 10 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.179 Cycle 10 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.180 Cycle 10 - Verify all OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.181 Cycle 11 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.182 Cycle 11 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.183 Cycle 11 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.184 Cycle 11 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.185 Cycle 11 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.186 Cycle 11 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.187 Cycle 11 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.188 Cycle 11 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.189 Cycle 11 - Verify all ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.190 Cycle 11 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.191 Cycle 11 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.192 Cycle 11 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.193 Cycle 11 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.194 Cycle 11 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.195 Cycle 11 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.196 Cycle 11 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.197 Cycle 11 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.198 Cycle 11 - Verify all OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.199 Cycle 12 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.200 Cycle 12 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.201 Cycle 12 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.202 Cycle 12 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.203 Cycle 12 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.204 Cycle 12 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.205 Cycle 12 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.206 Cycle 12 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.207 Cycle 12 - Verify all ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.208 Cycle 12 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.209 Cycle 12 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.210 Cycle 12 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.211 Cycle 12 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.212 Cycle 12 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.213 Cycle 12 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.214 Cycle 12 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.215 Cycle 12 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.216 Cycle 12 - Verify all OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.217 Cycle 13 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.218 Cycle 13 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.219 Cycle 13 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.220 Cycle 13 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.221 Cycle 13 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.222 Cycle 13 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.223 Cycle 13 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.224 Cycle 13 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.225 Cycle 13 - Verify all ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.226 Cycle 13 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.227 Cycle 13 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.228 Cycle 13 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.229 Cycle 13 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.230 Cycle 13 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.231 Cycle 13 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.232 Cycle 13 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.233 Cycle 13 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.234 Cycle 13 - Verify all OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.235 Cycle 14 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.236 Cycle 14 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.237 Cycle 14 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.238 Cycle 14 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.239 Cycle 14 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.240 Cycle 14 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.241 Cycle 14 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.242 Cycle 14 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.243 Cycle 14 - Verify all ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.244 Cycle 14 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.245 Cycle 14 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.246 Cycle 14 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.247 Cycle 14 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.248 Cycle 14 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.249 Cycle 14 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.250 Cycle 14 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.251 Cycle 14 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.252 Cycle 14 - Verify all OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.253 Cycle 15 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.254 Cycle 15 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.255 Cycle 15 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.256 Cycle 15 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.257 Cycle 15 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.258 Cycle 15 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.259 Cycle 15 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.260 Cycle 15 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.261 Cycle 15 - Verify all ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.262 Cycle 15 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.263 Cycle 15 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.264 Cycle 15 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.265 Cycle 15 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.266 Cycle 15 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.267 Cycle 15 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.268 Cycle 15 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.269 Cycle 15 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.270 Cycle 15 - Verify all OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3 Alternating pattern SNMP stress test - 15 cycles" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.1 Cycle 1 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.2 Cycle 1 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.3 Cycle 1 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.4 Cycle 1 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.5 Cycle 1 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.6 Cycle 1 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.7 Cycle 1 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.8 Cycle 1 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.9 Cycle 1 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.10 Cycle 1 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.11 Cycle 1 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.12 Cycle 1 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.13 Cycle 1 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.14 Cycle 1 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.15 Cycle 1 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.16 Cycle 1 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.17 Cycle 1 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.18 Cycle 1 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.19 Cycle 1 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.20 Cycle 1 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.21 Cycle 1 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.22 Cycle 1 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.23 Cycle 1 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.24 Cycle 1 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.25 Cycle 1 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.26 Cycle 1 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.27 Cycle 1 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.28 Cycle 1 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.29 Cycle 1 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.30 Cycle 1 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.31 Cycle 1 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.32 Cycle 1 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.33 Cycle 2 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.34 Cycle 2 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.35 Cycle 2 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.36 Cycle 2 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.37 Cycle 2 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.38 Cycle 2 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.39 Cycle 2 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.40 Cycle 2 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.41 Cycle 2 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.42 Cycle 2 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.43 Cycle 2 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.44 Cycle 2 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.45 Cycle 2 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.46 Cycle 2 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.47 Cycle 2 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.48 Cycle 2 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.49 Cycle 2 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.50 Cycle 2 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.51 Cycle 2 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.52 Cycle 2 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.53 Cycle 2 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.54 Cycle 2 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.55 Cycle 2 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.56 Cycle 2 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.57 Cycle 2 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.58 Cycle 2 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.59 Cycle 2 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.60 Cycle 2 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.61 Cycle 2 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.62 Cycle 2 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.63 Cycle 2 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.64 Cycle 2 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.65 Cycle 3 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.66 Cycle 3 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.67 Cycle 3 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.68 Cycle 3 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.69 Cycle 3 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.70 Cycle 3 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.71 Cycle 3 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.72 Cycle 3 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.73 Cycle 3 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.74 Cycle 3 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.75 Cycle 3 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.76 Cycle 3 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.77 Cycle 3 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.78 Cycle 3 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.79 Cycle 3 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.80 Cycle 3 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.81 Cycle 3 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.82 Cycle 3 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.83 Cycle 3 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.84 Cycle 3 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.85 Cycle 3 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.86 Cycle 3 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.87 Cycle 3 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.88 Cycle 3 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.89 Cycle 3 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.90 Cycle 3 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.91 Cycle 3 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.92 Cycle 3 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.93 Cycle 3 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.94 Cycle 3 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.95 Cycle 3 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.96 Cycle 3 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.97 Cycle 4 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.98 Cycle 4 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.99 Cycle 4 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.100 Cycle 4 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.101 Cycle 4 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.102 Cycle 4 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.103 Cycle 4 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.104 Cycle 4 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.105 Cycle 4 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.106 Cycle 4 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.107 Cycle 4 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.108 Cycle 4 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.109 Cycle 4 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.110 Cycle 4 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.111 Cycle 4 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.112 Cycle 4 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.113 Cycle 4 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.114 Cycle 4 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.115 Cycle 4 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.116 Cycle 4 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.117 Cycle 4 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.118 Cycle 4 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.119 Cycle 4 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.120 Cycle 4 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.121 Cycle 4 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.122 Cycle 4 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.123 Cycle 4 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.124 Cycle 4 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.125 Cycle 4 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.126 Cycle 4 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.127 Cycle 4 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.128 Cycle 4 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.129 Cycle 5 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.130 Cycle 5 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.131 Cycle 5 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.132 Cycle 5 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.133 Cycle 5 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.134 Cycle 5 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.135 Cycle 5 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.136 Cycle 5 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.137 Cycle 5 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.138 Cycle 5 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.139 Cycle 5 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.140 Cycle 5 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.141 Cycle 5 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.142 Cycle 5 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.143 Cycle 5 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.144 Cycle 5 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.145 Cycle 5 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.146 Cycle 5 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.147 Cycle 5 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.148 Cycle 5 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.149 Cycle 5 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.150 Cycle 5 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.151 Cycle 5 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.152 Cycle 5 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.153 Cycle 5 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.154 Cycle 5 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.155 Cycle 5 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.156 Cycle 5 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.157 Cycle 5 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.158 Cycle 5 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.159 Cycle 5 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.160 Cycle 5 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.161 Cycle 6 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.162 Cycle 6 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.163 Cycle 6 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.164 Cycle 6 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.165 Cycle 6 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.166 Cycle 6 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.167 Cycle 6 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.168 Cycle 6 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.169 Cycle 6 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.170 Cycle 6 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.171 Cycle 6 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.172 Cycle 6 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.173 Cycle 6 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.174 Cycle 6 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.175 Cycle 6 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.176 Cycle 6 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.177 Cycle 6 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.178 Cycle 6 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.179 Cycle 6 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.180 Cycle 6 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.181 Cycle 6 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.182 Cycle 6 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.183 Cycle 6 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.184 Cycle 6 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.185 Cycle 6 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.186 Cycle 6 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.187 Cycle 6 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.188 Cycle 6 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.189 Cycle 6 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.190 Cycle 6 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.191 Cycle 6 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.192 Cycle 6 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.193 Cycle 7 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.194 Cycle 7 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.195 Cycle 7 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.196 Cycle 7 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.197 Cycle 7 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.198 Cycle 7 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.199 Cycle 7 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.200 Cycle 7 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.201 Cycle 7 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.202 Cycle 7 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.203 Cycle 7 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.204 Cycle 7 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.205 Cycle 7 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.206 Cycle 7 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.207 Cycle 7 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.208 Cycle 7 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.209 Cycle 7 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.210 Cycle 7 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.211 Cycle 7 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.212 Cycle 7 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.213 Cycle 7 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.214 Cycle 7 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.215 Cycle 7 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.216 Cycle 7 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.217 Cycle 7 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.218 Cycle 7 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.219 Cycle 7 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.220 Cycle 7 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.221 Cycle 7 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.222 Cycle 7 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.223 Cycle 7 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.224 Cycle 7 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.225 Cycle 8 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.226 Cycle 8 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.227 Cycle 8 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.228 Cycle 8 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.229 Cycle 8 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.230 Cycle 8 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.231 Cycle 8 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.232 Cycle 8 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.233 Cycle 8 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.234 Cycle 8 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.235 Cycle 8 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.236 Cycle 8 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.237 Cycle 8 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.238 Cycle 8 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.239 Cycle 8 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.240 Cycle 8 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.241 Cycle 8 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.242 Cycle 8 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.243 Cycle 8 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.244 Cycle 8 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.245 Cycle 8 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.246 Cycle 8 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.247 Cycle 8 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.248 Cycle 8 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.249 Cycle 8 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.250 Cycle 8 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.251 Cycle 8 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.252 Cycle 8 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.253 Cycle 8 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.254 Cycle 8 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.255 Cycle 8 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.256 Cycle 8 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.257 Cycle 9 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.258 Cycle 9 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.259 Cycle 9 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.260 Cycle 9 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.261 Cycle 9 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.262 Cycle 9 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.263 Cycle 9 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.264 Cycle 9 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.265 Cycle 9 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.266 Cycle 9 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.267 Cycle 9 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.268 Cycle 9 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.269 Cycle 9 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.270 Cycle 9 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.271 Cycle 9 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.272 Cycle 9 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.273 Cycle 9 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.274 Cycle 9 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.275 Cycle 9 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.276 Cycle 9 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.277 Cycle 9 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.278 Cycle 9 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.279 Cycle 9 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.280 Cycle 9 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.281 Cycle 9 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.282 Cycle 9 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.283 Cycle 9 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.284 Cycle 9 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.285 Cycle 9 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.286 Cycle 9 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.287 Cycle 9 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.288 Cycle 9 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.289 Cycle 10 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.290 Cycle 10 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.291 Cycle 10 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.292 Cycle 10 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.293 Cycle 10 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.294 Cycle 10 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.295 Cycle 10 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.296 Cycle 10 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.297 Cycle 10 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.298 Cycle 10 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.299 Cycle 10 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.300 Cycle 10 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.301 Cycle 10 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.302 Cycle 10 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.303 Cycle 10 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.304 Cycle 10 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.305 Cycle 10 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.306 Cycle 10 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.307 Cycle 10 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.308 Cycle 10 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.309 Cycle 10 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.310 Cycle 10 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.311 Cycle 10 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.312 Cycle 10 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.313 Cycle 10 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.314 Cycle 10 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.315 Cycle 10 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.316 Cycle 10 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.317 Cycle 10 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.318 Cycle 10 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.319 Cycle 10 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.320 Cycle 10 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.321 Cycle 11 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.322 Cycle 11 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.323 Cycle 11 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.324 Cycle 11 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.325 Cycle 11 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.326 Cycle 11 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.327 Cycle 11 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.328 Cycle 11 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.329 Cycle 11 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.330 Cycle 11 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.331 Cycle 11 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.332 Cycle 11 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.333 Cycle 11 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.334 Cycle 11 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.335 Cycle 11 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.336 Cycle 11 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.337 Cycle 11 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.338 Cycle 11 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.339 Cycle 11 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.340 Cycle 11 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.341 Cycle 11 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.342 Cycle 11 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.343 Cycle 11 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.344 Cycle 11 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.345 Cycle 11 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.346 Cycle 11 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.347 Cycle 11 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.348 Cycle 11 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.349 Cycle 11 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.350 Cycle 11 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.351 Cycle 11 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.352 Cycle 11 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.353 Cycle 12 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.354 Cycle 12 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.355 Cycle 12 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.356 Cycle 12 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.357 Cycle 12 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.358 Cycle 12 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.359 Cycle 12 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.360 Cycle 12 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.361 Cycle 12 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.362 Cycle 12 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.363 Cycle 12 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.364 Cycle 12 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.365 Cycle 12 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.366 Cycle 12 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.367 Cycle 12 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.368 Cycle 12 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.369 Cycle 12 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.370 Cycle 12 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.371 Cycle 12 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.372 Cycle 12 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.373 Cycle 12 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.374 Cycle 12 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.375 Cycle 12 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.376 Cycle 12 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.377 Cycle 12 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.378 Cycle 12 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.379 Cycle 12 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.380 Cycle 12 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.381 Cycle 12 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.382 Cycle 12 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.383 Cycle 12 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.384 Cycle 12 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.385 Cycle 13 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.386 Cycle 13 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.387 Cycle 13 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.388 Cycle 13 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.389 Cycle 13 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.390 Cycle 13 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.391 Cycle 13 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.392 Cycle 13 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.393 Cycle 13 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.394 Cycle 13 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.395 Cycle 13 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.396 Cycle 13 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.397 Cycle 13 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.398 Cycle 13 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.399 Cycle 13 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.400 Cycle 13 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.401 Cycle 13 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.402 Cycle 13 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.403 Cycle 13 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.404 Cycle 13 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.405 Cycle 13 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.406 Cycle 13 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.407 Cycle 13 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.408 Cycle 13 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.409 Cycle 13 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.410 Cycle 13 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.411 Cycle 13 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.412 Cycle 13 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.413 Cycle 13 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.414 Cycle 13 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.415 Cycle 13 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.416 Cycle 13 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.417 Cycle 14 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.418 Cycle 14 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.419 Cycle 14 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.420 Cycle 14 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.421 Cycle 14 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.422 Cycle 14 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.423 Cycle 14 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.424 Cycle 14 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.425 Cycle 14 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.426 Cycle 14 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.427 Cycle 14 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.428 Cycle 14 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.429 Cycle 14 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.430 Cycle 14 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.431 Cycle 14 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.432 Cycle 14 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.433 Cycle 14 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.434 Cycle 14 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.435 Cycle 14 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.436 Cycle 14 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.437 Cycle 14 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.438 Cycle 14 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.439 Cycle 14 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.440 Cycle 14 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.441 Cycle 14 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.442 Cycle 14 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.443 Cycle 14 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.444 Cycle 14 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.445 Cycle 14 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.446 Cycle 14 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.447 Cycle 14 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.448 Cycle 14 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.449 Cycle 15 - Set CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.450 Cycle 15 - Set CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.451 Cycle 15 - Set CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.452 Cycle 15 - Set CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.453 Cycle 15 - Set CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.454 Cycle 15 - Set CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.455 Cycle 15 - Set CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.456 Cycle 15 - Set CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.457 Cycle 15 - Verify CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.458 Cycle 15 - Verify CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.459 Cycle 15 - Verify CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.460 Cycle 15 - Verify CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.461 Cycle 15 - Verify CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.462 Cycle 15 - Verify CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.463 Cycle 15 - Verify CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.464 Cycle 15 - Verify CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.465 Cycle 15 - Set CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.466 Cycle 15 - Set CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.467 Cycle 15 - Set CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.468 Cycle 15 - Set CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.469 Cycle 15 - Set CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.470 Cycle 15 - Set CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.471 Cycle 15 - Set CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.472 Cycle 15 - Set CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.473 Cycle 15 - Verify CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.474 Cycle 15 - Verify CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.475 Cycle 15 - Verify CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.476 Cycle 15 - Verify CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.477 Cycle 15 - Verify CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.478 Cycle 15 - Verify CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.479 Cycle 15 - Verify CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.480 Cycle 15 - Verify CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4 Final state verification after stress test" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.1 Set CH1 OFF after stress test" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.2 Set CH2 OFF after stress test" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.3 Set CH3 OFF after stress test" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.4 Set CH4 OFF after stress test" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.5 Set CH5 OFF after stress test" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.6 Set CH6 OFF after stress test" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.7 Set CH7 OFF after stress test" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.8 Set CH8 OFF after stress test" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.9 Final SNMP verification - all OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="TEARDOWN 1 Ensure all outputs OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="TEARDOWN 2 Final verify all outputs OFF" time="0.0">
+  </testcase>
+</testsuite>

@@ -20,6 +20,12 @@
     .status.pass{border-color:#1e7f45;color:#d7ffe6;background:#0e2017}
     .status.fail{border-color:#a23b3b;color:#ffe1e1;background:#210e0e}
     .status.unknown{border-color:#6b7280;background:#1b2028}
+    details.pre-step{border-left:4px solid #6366f1}
+    details.pre-step summary{background:#1a1c2e}
+    details.post-step{border-left:4px solid #22c55e}
+    details.post-step summary{background:#152419}
+    details.teardown{border-left:4px solid#f59e0b}
+    details.teardown summary{background:#2a1f0e}
     pre{background:#0b0f14;border:1px solid #2a2f37;border-radius:8px;padding:10px;overflow:auto}
     table{width:100%;border-collapse:collapse;margin-top:8px}
     th,td{border-bottom:1px solid #1f2530;padding:8px 6px;text-align:left;font-size:13px}
@@ -38,28 +44,244 @@
 <h1>ENERGIS Test Report</h1>
 <div class='meta'>
 Overall: <b class='chip pass'>PASS</b> &nbsp;
-Started: 2025-09-18 00:02:58 &nbsp;
+Started: 2025-10-05 22:54:14 &nbsp;
+Session ID: 2ae1b9a5 &nbsp;
 </div>
 </header>
 <main>
 <section class='summary'>
-<div class='chip pass'>Passed steps: 6</div>
-<div class='chip fail'>Failed steps: 0</div>
-<div class='chip unknown'>Unknown steps: 0</div>
-<div class='chip'>Total steps: 6</div>
+<div class='chip pass'>Passed: 11</div>
+<div class='chip fail'>Failed: 0</div>
+<div class='chip unknown'>Unknown: 0</div>
+<div class='chip'>Total: 11</div>
 </section>
 <section>
 <h3>Environment</h3>
 <div class='kv'>
+<div>Test Session ID</div><div><code>2ae1b9a5</code></div>
 <div>Hostname</div><div>DPC</div>
 <div>Os</div><div>Windows 11 (10.0.26100)</div>
-<div>Python</div><div>3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]</div>
-<div>Generated_at</div><div>2025-09-18 00:03:09</div>
-<div>Log_file</div><div>report_tc_network_snmp\tc_network_snmp_results.log</div>
+<div>Python</div><div>3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]</div>
+<div>Generated_at</div><div>2025-10-05 22:54:53</div>
+<div>Log_file</div><div>G:\_GitHub\HW_10-In-Rack_PDU\tests\tc_network_snmp\report_tc_network_snmp\tc_network_snmp_results.log</div>
 </div>
 </section>
 <section>
 <h3>Steps</h3>
+<details class='pre-step'>
+<summary>
+<div class='step-title'><div>PRE-STEP 1 Reboot device via UART</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:14</td><td>2025-10-05 22:54:23</td></tr>
+</table>
+<details>
+<summary><div class='step-title'><div>Step Log</div><div class='status unknown'>DETAIL</div></div></summary>
+<div class='content'>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:14] [PRE-STEP 1] Reboot device via UART
+[2025-10-05 22:54:14] [INFO] [SERIAL] send_command() called
+[2025-10-05 22:54:14] [INFO] [SERIAL]   port=COM11, command=&#x27;REBOOT&#x27;, baudrate=115200, timeout=2.0s
+[2025-10-05 22:54:14] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 22:54:14] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 22:54:14] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 22:54:14] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 22:54:14] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 22:54:14] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 22:54:14] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 22:54:14] [INFO] [SERIAL TX] Sending command: &#x27;REBOOT&#x27;
+[2025-10-05 22:54:14] [INFO] [SERIAL TX] Payload length: 8 bytes (including CR+LF)
+[2025-10-05 22:54:14] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 22:54:14] [INFO]   0000  52 45 42 4F 4F 54 0D 0A                           |REBOOT..|
+[2025-10-05 22:54:14] [INFO] [SERIAL TX] Wrote 8 bytes to port
+[2025-10-05 22:54:14] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 22:54:14] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 22:54:15] [INFO] [SERIAL RX] Chunk #1: received 32 bytes (elapsed: 0.379s, total: 32 bytes)
+[2025-10-05 22:54:15] [ERROR] [SERIAL ERROR] Exception during send_command:
+[2025-10-05 22:54:15] [ERROR] [SERIAL ERROR]   Type: SerialException
+[2025-10-05 22:54:15] [ERROR] [SERIAL ERROR]   Message: ClearCommError failed (PermissionError(13, &#x27;The device does not recognize the command.&#x27;, None, 22))
+[2025-10-05 22:54:15] [ERROR] [SERIAL ERROR]   Port: COM11, Command: &#x27;REBOOT&#x27;
+[2025-10-05 22:54:15] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 22:54:15] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 22:54:15] [INFO] [SERIAL] wait_for_reboot_and_ready() called
+[2025-10-05 22:54:15] [INFO] [SERIAL]   port=COM11, ready_token=&#x27;SYSTEM READY&#x27;, baudrate=115200, timeout=15.0s
+[2025-10-05 22:54:15] [INFO] [SERIAL] Waiting 200ms for device to start rebooting...
+[2025-10-05 22:54:15] [INFO] [SERIAL] Connection attempt #1 (remaining timeout: 14.8s)
+[2025-10-05 22:54:15] [INFO] [SERIAL] Connection attempt #1 failed: SerialException: could not open port &#x27;COM11&#x27;: FileNotFoundError(2, &#x27;The system cannot find the file specified.&#x27;, None, 2)
+[2025-10-05 22:54:15] [INFO] [SERIAL] Waiting 200ms before next attempt...
+[2025-10-05 22:54:15] [INFO] [SERIAL] Connection attempt #2 (remaining timeout: 14.6s)
+[2025-10-05 22:54:15] [INFO] [SERIAL] Connection attempt #2 failed: SerialException: could not open port &#x27;COM11&#x27;: FileNotFoundError(2, &#x27;The system cannot find the file specified.&#x27;, None, 2)
+[2025-10-05 22:54:15] [INFO] [SERIAL] Waiting 200ms before next attempt...
+[2025-10-05 22:54:15] [INFO] [SERIAL] Connection attempt #3 (remaining timeout: 14.4s)
+[2025-10-05 22:54:15] [INFO] [SERIAL] Connection attempt #3 failed: SerialException: could not open port &#x27;COM11&#x27;: FileNotFoundError(2, &#x27;The system cannot find the file specified.&#x27;, None, 2)
+[2025-10-05 22:54:15] [INFO] [SERIAL] Waiting 200ms before next attempt...
+[2025-10-05 22:54:15] [INFO] [SERIAL] Connection attempt #4 (remaining timeout: 14.2s)
+[2025-10-05 22:54:15] [INFO] [SERIAL] Connection attempt #4 failed: SerialException: could not open port &#x27;COM11&#x27;: FileNotFoundError(2, &#x27;The system cannot find the file specified.&#x27;, None, 2)
+[2025-10-05 22:54:15] [INFO] [SERIAL] Waiting 200ms before next attempt...
+[2025-10-05 22:54:16] [INFO] [SERIAL] Connection attempt #5 (remaining timeout: 14.0s)
+[2025-10-05 22:54:16] [INFO] [SERIAL] Connection attempt #5 failed: SerialException: could not open port &#x27;COM11&#x27;: FileNotFoundError(2, &#x27;The system cannot find the file specified.&#x27;, None, 2)
+[2025-10-05 22:54:16] [INFO] [SERIAL] Waiting 200ms before next attempt...
+[2025-10-05 22:54:16] [INFO] [SERIAL] Connection attempt #6 (remaining timeout: 13.8s)
+[2025-10-05 22:54:16] [INFO] [SERIAL] Connection attempt #6 failed: SerialException: could not open port &#x27;COM11&#x27;: FileNotFoundError(2, &#x27;The system cannot find the file specified.&#x27;, None, 2)
+[2025-10-05 22:54:16] [INFO] [SERIAL] Waiting 200ms before next attempt...
+[2025-10-05 22:54:16] [INFO] [SERIAL] Connection attempt #7 (remaining timeout: 13.6s)
+[2025-10-05 22:54:16] [INFO] [SERIAL] Connected to port COM11 on attempt #7
+[2025-10-05 22:54:16] [INFO] [SERIAL RX] Monitoring for ready token: &#x27;SYSTEM READY&#x27;
+[2025-10-05 22:54:19] [INFO] [SERIAL RX] Chunk #1: 393 bytes
+[2025-10-05 22:54:19] [INFO] [SERIAL RX] Content: [INFO] Core 0 initializing...&lt;CR&gt;&lt;LF&gt;
+	[ECHO] Device Serial : SN-369366060325&lt;CR&gt;&lt;LF&gt;
+	[ECHO] Firmware Ver  : 1.0.0&lt;CR&gt;&lt;LF&gt;
+	[ECHO] Core voltage  : 1.15 V (vsel = 1)&lt;CR&gt;&lt;LF&gt;
+	[ECHO] Clock Sources :&lt;CR&gt;&lt;LF&gt;
+	[ECHO] 	SYS: 200000000 Hz (200 MHz)&lt;CR&gt;&lt;LF&gt;
+	[ECHO] 	USB: 48000000 Hz (48 MHz)&lt;CR&gt;&lt;LF&gt;
+	[ECHO] 	PER: 48000000 Hz (48 MHz)&lt;CR&gt;&lt;LF&gt;
+	[ECHO] 	ADC: 48000000 Hz (48 MHz)&lt;CR&gt;&lt;LF&gt;
+[INFO] ADC initializing&lt;CR&gt;&lt;LF&gt;
+VREG register: 0x000010D1&lt;CR&gt;&lt;LF&gt;
+[INFO] I2C scanning...&lt;CR&gt;&lt;LF&gt;
+
+[2025-10-05 22:54:19] [INFO] [SERIAL RX] Chunk #2: 64 bytes
+[2025-10-05 22:54:19] [INFO] [SERIAL RX] Content: [INFO] EEPROM initializing...&lt;CR&gt;&lt;LF&gt;
+[INFO] MCP23017 initializing...&lt;CR&gt;&lt;LF&gt;
+
+[2025-10-05 22:54:21] [INFO] [SERIAL RX] Chunk #3: 162 bytes
+[2025-10-05 22:54:21] [INFO] [SERIAL RX] Content: [INFO] Headless mode, skipping display initialization&lt;CR&gt;&lt;LF&gt;
+[INFO] Initializing HLW8032...&lt;CR&gt;&lt;LF&gt;
+[INFO] Initializing buttons...&lt;CR&gt;&lt;LF&gt;
+[INFO] Loaded network config from EEPROM.&lt;CR&gt;&lt;LF&gt;
+
+[2025-10-05 22:54:23] [INFO] [SERIAL RX] Chunk #4: 456 bytes
+[2025-10-05 22:54:23] [INFO] [SERIAL RX] Content: [INFO] W5500 version: 0x04&lt;CR&gt;&lt;LF&gt;
+[INFO] W5500 PHY link is up&lt;CR&gt;&lt;LF&gt;
+	[ECHO] =============================================&lt;CR&gt;&lt;LF&gt;
+	[ECHO]  W5500 network configuration : static&lt;CR&gt;&lt;LF&gt;
+	[ECHO]  MAC         : 00:08:DC:BE:EF:91&lt;CR&gt;&lt;LF&gt;
+	[ECHO]  IP          : 192.168.0.11&lt;CR&gt;&lt;LF&gt;
+	[ECHO]  Subnet Mask : 255.255.255.0&lt;CR&gt;&lt;LF&gt;
+	[ECHO]  Gateway     : 192.168.0.1&lt;CR&gt;&lt;LF&gt;
+	[ECHO]  DNS         : 8.8.8.8&lt;CR&gt;&lt;LF&gt;
+	[ECHO] =============================================&lt;CR&gt;&lt;LF&gt;
+&lt;CR&gt;&lt;LF&gt;
+SYSTEM READY&lt;CR&gt;&lt;LF&gt;
+[INFO] - SNMP : Start SNMP Agent Daemon&lt;CR&gt;&lt;LF&gt;
+
+[2025-10-05 22:54:23] [INFO] [SERIAL] Ready token &#x27;SYSTEM READY&#x27; detected!
+[2025-10-05 22:54:23] [INFO] [SERIAL RX] Total response: 1075 bytes in 4 chunks
+[2025-10-05 22:54:23] [INFO] [SERIAL RX] Elapsed time: 8.302s
+[2025-10-05 22:54:23] [INFO] [SERIAL RX] Full response:
+[2025-10-05 22:54:23] [INFO] [INFO] Core 0 initializing...\r\n
+	[ECHO] Device Serial : SN-369366060325\r\n
+	[ECHO] Firmware Ver  : 1.0.0\r\n
+	[ECHO] Core voltage  : 1.15 V (vsel = 1)\r\n
+	[ECHO] Clock Sources :\r\n
+	[ECHO] 	SYS: 200000000 Hz (200 MHz)\r\n
+	[ECHO] 	USB: 48000000 Hz (48 MHz)\r\n
+	[ECHO] 	PER: 48000000 Hz (48 MHz)\r\n
+	[ECHO] 	ADC: 48000000 Hz (48 MHz)\r\n
+[INFO] ADC initializing\r\n
+VREG register: 0x000010D1\r\n
+[INFO] I2C scanning...\r\n
+[INFO] EEPROM initializing...\r\n
+[INFO] MCP23017 initializing...\r\n
+[INFO] Headless mode, skipping display initialization\r\n
+[INFO] Initializing HLW8032...\r\n
+[INFO] Initializing buttons...\r\n
+[INFO] Loaded network config from EEPROM.\r\n
+[INFO] W5500 version: 0x04\r\n
+[INFO] W5500 PHY link is up\r\n
+	[ECHO] =============================================\r\n
+	[ECHO]  W5500 network configuration : static\r\n
+	[ECHO]  MAC         : 00:08:DC:BE:EF:91\r\n
+	[ECHO]  IP          : 192.168.0.11\r\n
+	[ECHO]  Subnet Mask : 255.255.255.0\r\n
+	[ECHO]  Gateway     : 192.168.0.1\r\n
+	[ECHO]  DNS         : 8.8.8.8\r\n
+	[ECHO] =============================================\r\n
+\r\n
+SYSTEM READY\r\n
+[INFO] - SNMP : Start SNMP Agent Daemon\r\n
+
+[2025-10-05 22:54:23] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 22:54:23] [INFO]   0000  5B 49 4E 46 4F 5D 20 43 6F 72 65 20 30 20 69 6E   |[INFO] Core 0 in|
+  0010  69 74 69 61 6C 69 7A 69 6E 67 2E 2E 2E 0D 0A 09   |itializing......|
+  0020  5B 45 43 48 4F 5D 20 44 65 76 69 63 65 20 53 65   |[ECHO] Device Se|
+  0030  72 69 61 6C 20 3A 20 53 4E 2D 33 36 39 33 36 36   |rial : SN-369366|
+  0040  30 36 30 33 32 35 0D 0A 09 5B 45 43 48 4F 5D 20   |060325...[ECHO] |
+  0050  46 69 72 6D 77 61 72 65 20 56 65 72 20 20 3A 20   |Firmware Ver  : |
+  0060  31 2E 30 2E 30 0D 0A 09 5B 45 43 48 4F 5D 20 43   |1.0.0...[ECHO] C|
+  0070  6F 72 65 20 76 6F 6C 74 61 67 65 20 20 3A 20 31   |ore voltage  : 1|
+  0080  2E 31 35 20 56 20 28 76 73 65 6C 20 3D 20 31 29   |.15 V (vsel = 1)|
+  0090  0D 0A 09 5B 45 43 48 4F 5D 20 43 6C 6F 63 6B 20   |...[ECHO] Clock |
+  00A0  53 6F 75 72 63 65 73 20 3A 0D 0A 09 5B 45 43 48   |Sources :...[ECH|
+  00B0  4F 5D 20 09 53 59 53 3A 20 32 30 30 30 30 30 30   |O] .SYS: 2000000|
+  00C0  30 30 20 48 7A 20 28 32 30 30 20 4D 48 7A 29 0D   |00 Hz (200 MHz).|
+  00D0  0A 09 5B 45 43 48 4F 5D 20 09 55 53 42 3A 20 34   |..[ECHO] .USB: 4|
+  00E0  38 30 30 30 30 30 30 20 48 7A 20 28 34 38 20 4D   |8000000 Hz (48 M|
+  00F0  48 7A 29 0D 0A 09 5B 45 43 48 4F 5D 20 09 50 45   |Hz)...[ECHO] .PE|
+  0100  52 3A 20 34 38 30 30 30 30 30 30 20 48 7A 20 28   |R: 48000000 Hz (|
+  0110  34 38 20 4D 48 7A 29 0D 0A 09 5B 45 43 48 4F 5D   |48 MHz)...[ECHO]|
+  0120  20 09 41 44 43 3A 20 34 38 30 30 30 30 30 30 20   | .ADC: 48000000 |
+  0130  48 7A 20 28 34 38 20 4D 48 7A 29 0D 0A 5B 49 4E   |Hz (48 MHz)..[IN|
+  0140  46 4F 5D 20 41 44 43 20 69 6E 69 74 69 61 6C 69   |FO] ADC initiali|
+  0150  7A 69 6E 67 0D 0A 56 52 45 47 20 72 65 67 69 73   |zing..VREG regis|
+  0160  74 65 72 3A 20 30 78 30 30 30 30 31 30 44 31 0D   |ter: 0x000010D1.|
+  0170  0A 5B 49 4E 46 4F 5D 20 49 32 43 20 73 63 61 6E   |.[INFO] I2C scan|
+  0180  6E 69 6E 67 2E 2E 2E 0D 0A 5B 49 4E 46 4F 5D 20   |ning.....[INFO] |
+  0190  45 45 50 52 4F 4D 20 69 6E 69 74 69 61 6C 69 7A   |EEPROM initializ|
+  01A0  69 6E 67 2E 2E 2E 0D 0A 5B 49 4E 46 4F 5D 20 4D   |ing.....[INFO] M|
+  01B0  43 50 32 33 30 31 37 20 69 6E 69 74 69 61 6C 69   |CP23017 initiali|
+  01C0  7A 69 6E 67 2E 2E 2E 0D 0A 5B 49 4E 46 4F 5D 20   |zing.....[INFO] |
+  01D0  48 65 61 64 6C 65 73 73 20 6D 6F 64 65 2C 20 73   |Headless mode, s|
+  01E0  6B 69 70 70 69 6E 67 20 64 69 73 70 6C 61 79 20   |kipping display |
+  01F0  69 6E 69 74 69 61 6C 69 7A 61 74 69 6F 6E 0D 0A   |initialization..|
+  0200  5B 49 4E 46 4F 5D 20 49 6E 69 74 69 61 6C 69 7A   |[INFO] Initializ|
+  0210  69 6E 67 20 48 4C 57 38 30 33 32 2E 2E 2E 0D 0A   |ing HLW8032.....|
+  0220  5B 49 4E 46 4F 5D 20 49 6E 69 74 69 61 6C 69 7A   |[INFO] Initializ|
+  0230  69 6E 67 20 62 75 74 74 6F 6E 73 2E 2E 2E 0D 0A   |ing buttons.....|
+  0240  5B 49 4E 46 4F 5D 20 4C 6F 61 64 65 64 20 6E 65   |[INFO] Loaded ne|
+  0250  74 77 6F 72 6B 20 63 6F 6E 66 69 67 20 66 72 6F   |twork config fro|
+  0260  6D 20 45 45 50 52 4F 4D 2E 0D 0A 5B 49 4E 46 4F   |m EEPROM...[INFO|
+  0270  5D 20 57 35 35 30 30 20 76 65 72 73 69 6F 6E 3A   |] W5500 version:|
+  0280  20 30 78 30 34 0D 0A 5B 49 4E 46 4F 5D 20 57 35   | 0x04..[INFO] W5|
+  0290  35 30 30 20 50 48 59 20 6C 69 6E 6B 20 69 73 20   |500 PHY link is |
+  02A0  75 70 0D 0A 09 5B 45 43 48 4F 5D 20 3D 3D 3D 3D   |up...[ECHO] ====|
+  02B0  3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D   |================|
+  02C0  3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D   |================|
+  02D0  3D 3D 3D 3D 3D 3D 3D 3D 3D 0D 0A 09 5B 45 43 48   |=========...[ECH|
+  02E0  4F 5D 20 20 57 35 35 30 30 20 6E 65 74 77 6F 72   |O]  W5500 networ|
+  02F0  6B 20 63 6F 6E 66 69 67 75 72 61 74 69 6F 6E 20   |k configuration |
+  0300  3A 20 73 74 61 74 69 63 0D 0A 09 5B 45 43 48 4F   |: static...[ECHO|
+  0310  5D 20 20 4D 41 43 20 20 20 20 20 20 20 20 20 3A   |]  MAC         :|
+  0320  20 30 30 3A 30 38 3A 44 43 3A 42 45 3A 45 46 3A   | 00:08:DC:BE:EF:|
+  0330  39 31 0D 0A 09 5B 45 43 48 4F 5D 20 20 49 50 20   |91...[ECHO]  IP |
+  0340  20 20 20 20 20 20 20 20 20 3A 20 31 39 32 2E 31   |         : 192.1|
+  0350  36 38 2E 30 2E 31 31 0D 0A 09 5B 45 43 48 4F 5D   |68.0.11...[ECHO]|
+  0360  20 20 53 75 62 6E 65 74 20 4D 61 73 6B 20 3A 20   |  Subnet Mask : |
+  0370  32 35 35 2E 32 35 35 2E 32 35 35 2E 30 0D 0A 09   |255.255.255.0...|
+  0380  5B 45 43 48 4F 5D 20 20 47 61 74 65 77 61 79 20   |[ECHO]  Gateway |
+  0390  20 20 20 20 3A 20 31 39 32 2E 31 36 38 2E 30 2E   |    : 192.168.0.|
+  03A0  31 0D 0A 09 5B 45 43 48 4F 5D 20 20 44 4E 53 20   |1...[ECHO]  DNS |
+  03B0  20 20 20 20 20 20 20 20 3A 20 38 2E 38 2E 38 2E   |        : 8.8.8.|
+  03C0  38 0D 0A 09 5B 45 43 48 4F 5D 20 3D 3D 3D 3D 3D   |8...[ECHO] =====|
+  03D0  3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D   |================|
+  03E0  3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D   |================|
+  03F0  3D 3D 3D 3D 3D 3D 3D 3D 0D 0A 0D 0A 53 59 53 54   |========....SYST|
+  0400  45 4D 20 52 45 41 44 59 0D 0A 5B 49 4E 46 4F 5D   |EM READY..[INFO]|
+  0410  20 2D 20 53 4E 4D 50 20 3A 20 53 74 61 72 74 20   | - SNMP : Start |
+  0420  53 4E 4D 50 20 41 67 65 6E 74 20 44 61 65 6D 6F   |SNMP Agent Daemo|
+  0430  6E 0D 0A                                          |n..|
+[2025-10-05 22:54:23] [INFO] [SERIAL] Device ready! Returning True
+[2025-10-05 22:54:23] [INFO] [SERIAL] Closed port COM11
+[2025-10-05 22:54:23] [PASS] PRE-STEP 1 completed successfully
+</pre>
+</div>
+</details>
+</div>
+</details>
 <details>
 <summary>
 <div class='step-title'><div>STEP 1 Walk enterprise subtree</div><div class='status pass'>PASS</div></div>
@@ -67,27 +289,27 @@ Started: 2025-09-18 00:02:58 &nbsp;
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-18 00:02:58</td><td>2025-09-18 00:02:58</td></tr>
+<tr><td>2025-10-05 22:54:23</td><td>2025-10-05 22:54:24</td></tr>
 </table>
 <details>
 <summary><div class='step-title'><div>Step Log</div><div class='status unknown'>DETAIL</div></div></summary>
 <div class='content'>
 <h4>Log</h4>
 <pre>
-[2025-09-18 00:02:58] [STEP 1] Walk enterprise subtree
-[2025-09-18 00:02:58] [SNMP] cmd=G:\_Development\SNMP\usr\bin\snmpwalk.EXE -v1 -c public -Ci -Cc 192.168.0.11 1.3.6.1.4.1.19865
-[2025-09-18 00:02:58] [SNMP] rc=0
-[2025-09-18 00:02:58] [SNMP OUT]
+[2025-10-05 22:54:23] [STEP 1] Walk enterprise subtree
+[2025-10-05 22:54:24] [INFO] [SNMP] cmd=G:\_Development\SNMP\usr\bin\snmpwalk.EXE -v1 -c public -Ci -Cc 192.168.0.11 1.3.6.1.4.1.19865
+[2025-10-05 22:54:24] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP OUT]
 SNMPv2-MIB::sysDescr.0 = STRING: ENERGIS 8 CHANNEL MANAGED PDU
 SNMPv2-MIB::sysObjectID.0 = OID: SNMPv2-MIB::sysObjectID.0
-DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: (81002) 0:13:30.02
+DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: (860) 0:00:08.60
 SNMPv2-MIB::sysContact.0 = STRING: dvidmakesthings@gmail.com
 SNMPv2-MIB::sysName.0 = STRING: SN-369366060325
 SNMPv2-MIB::sysLocation.0 = STRING: Wien
 SNMPv2-MIB::sysServices.0 = INTEGER: -5
 SNMPv2-SMI::enterprises.19865.1.0 = STRING: &quot;long-length OID Test #1&quot;
 
-[2025-09-18 00:02:58] [PASS] STEP 1 completed successfully
+[2025-10-05 22:54:24] [PASS] STEP 1 completed successfully
 </pre>
 </div>
 </details>
@@ -100,7 +322,7 @@ SNMPv2-SMI::enterprises.19865.1.0 = STRING: &quot;long-length OID Test #1&quot;
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-18 00:02:58</td><td>2025-09-18 00:02:59</td></tr>
+<tr><td>2025-10-05 22:54:24</td><td>2025-10-05 22:54:24</td></tr>
 </table>
 <div class='substeps'>
 <h4>Substeps</h4>
@@ -111,18 +333,23 @@ SNMPv2-SMI::enterprises.19865.1.0 = STRING: &quot;long-length OID Test #1&quot;
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-18 00:02:58</td><td>2025-09-18 00:02:58</td></tr>
+<tr><td>2025-10-05 22:54:24</td><td>2025-10-05 22:54:24</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-18 00:02:58] [STEP 2.1] sysDescr matches expected
-[2025-09-18 00:02:58] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.1.0
-[2025-09-18 00:02:58] [SNMP] rc=0
-[2025-09-18 00:02:58] [SNMP OUT]
+[2025-10-05 22:54:24] [STEP 2.1] sysDescr matches expected
+[2025-10-05 22:54:24] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:24] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.2.1.1.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:24] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.1.0
+[2025-10-05 22:54:24] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP OUT]
 SNMPv2-MIB::sysDescr.0 = STRING: ENERGIS 8 CHANNEL MANAGED PDU
 
-[2025-09-18 00:02:58] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.1.0 -&gt; &#x27;ENERGIS 8 CHANNEL MANAGED PDU&#x27; (v1/public)
-[2025-09-18 00:02:58] [PASS] STEP 2.1 completed successfully
+[2025-10-05 22:54:24] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP] _parse_snmp_value() called, output length: 63 chars
+[2025-10-05 22:54:24] [INFO] [SNMP] Parsed value: &#x27;ENERGIS 8 CHANNEL MANAGED PDU&#x27;
+[2025-10-05 22:54:24] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.1.0 -&gt; &#x27;ENERGIS 8 CHANNEL MANAGED PDU&#x27; (v1/public)
+[2025-10-05 22:54:24] [PASS] STEP 2.1 completed successfully
 </pre>
 </div>
 </details>
@@ -133,18 +360,23 @@ SNMPv2-MIB::sysDescr.0 = STRING: ENERGIS 8 CHANNEL MANAGED PDU
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-18 00:02:58</td><td>2025-09-18 00:02:58</td></tr>
+<tr><td>2025-10-05 22:54:24</td><td>2025-10-05 22:54:24</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-18 00:02:58] [STEP 2.2] sysObjectID present
-[2025-09-18 00:02:58] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.2.0
-[2025-09-18 00:02:58] [SNMP] rc=0
-[2025-09-18 00:02:58] [SNMP OUT]
+[2025-10-05 22:54:24] [STEP 2.2] sysObjectID present
+[2025-10-05 22:54:24] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:24] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.2.1.1.2.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:24] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.2.0
+[2025-10-05 22:54:24] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP OUT]
 SNMPv2-MIB::sysObjectID.0 = OID: SNMPv2-MIB::sysObjectID.0
 
-[2025-09-18 00:02:58] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.2.0 -&gt; &#x27;SNMPv2-MIB::sysObjectID.0&#x27; (v1/public)
-[2025-09-18 00:02:58] [PASS] STEP 2.2 completed successfully
+[2025-10-05 22:54:24] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP] _parse_snmp_value() called, output length: 59 chars
+[2025-10-05 22:54:24] [INFO] [SNMP] Parsed value: &#x27;SNMPv2-MIB::sysObjectID.0&#x27;
+[2025-10-05 22:54:24] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.2.0 -&gt; &#x27;SNMPv2-MIB::sysObjectID.0&#x27; (v1/public)
+[2025-10-05 22:54:24] [PASS] STEP 2.2 completed successfully
 </pre>
 </div>
 </details>
@@ -155,18 +387,23 @@ SNMPv2-MIB::sysObjectID.0 = OID: SNMPv2-MIB::sysObjectID.0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-18 00:02:58</td><td>2025-09-18 00:02:59</td></tr>
+<tr><td>2025-10-05 22:54:24</td><td>2025-10-05 22:54:24</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-18 00:02:58] [STEP 2.3] sysUpTime present
-[2025-09-18 00:02:59] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.3.0
-[2025-09-18 00:02:59] [SNMP] rc=0
-[2025-09-18 00:02:59] [SNMP OUT]
-DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: (81095) 0:13:30.95
+[2025-10-05 22:54:24] [STEP 2.3] sysUpTime present
+[2025-10-05 22:54:24] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:24] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.2.1.1.3.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:24] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.3.0
+[2025-10-05 22:54:24] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP OUT]
+DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: (952) 0:00:09.52
 
-[2025-09-18 00:02:59] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.3.0 -&gt; &#x27;(81095) 0:13:30.95&#x27; (v1/public)
-[2025-09-18 00:02:59] [PASS] STEP 2.3 completed successfully
+[2025-10-05 22:54:24] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP] _parse_snmp_value() called, output length: 66 chars
+[2025-10-05 22:54:24] [INFO] [SNMP] Parsed value: &#x27;(952) 0:00:09.52&#x27;
+[2025-10-05 22:54:24] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.3.0 -&gt; &#x27;(952) 0:00:09.52&#x27; (v1/public)
+[2025-10-05 22:54:24] [PASS] STEP 2.3 completed successfully
 </pre>
 </div>
 </details>
@@ -177,18 +414,23 @@ DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: (81095) 0:13:30.95
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-18 00:02:59</td><td>2025-09-18 00:02:59</td></tr>
+<tr><td>2025-10-05 22:54:24</td><td>2025-10-05 22:54:24</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-18 00:02:59] [STEP 2.4] sysContact matches expected
-[2025-09-18 00:02:59] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.4.0
-[2025-09-18 00:02:59] [SNMP] rc=0
-[2025-09-18 00:02:59] [SNMP OUT]
+[2025-10-05 22:54:24] [STEP 2.4] sysContact matches expected
+[2025-10-05 22:54:24] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:24] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.2.1.1.4.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:24] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.4.0
+[2025-10-05 22:54:24] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP OUT]
 SNMPv2-MIB::sysContact.0 = STRING: dvidmakesthings@gmail.com
 
-[2025-09-18 00:02:59] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.4.0 -&gt; &#x27;dvidmakesthings@gmail.com&#x27; (v1/public)
-[2025-09-18 00:02:59] [PASS] STEP 2.4 completed successfully
+[2025-10-05 22:54:24] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP] _parse_snmp_value() called, output length: 61 chars
+[2025-10-05 22:54:24] [INFO] [SNMP] Parsed value: &#x27;dvidmakesthings@gmail.com&#x27;
+[2025-10-05 22:54:24] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.4.0 -&gt; &#x27;dvidmakesthings@gmail.com&#x27; (v1/public)
+[2025-10-05 22:54:24] [PASS] STEP 2.4 completed successfully
 </pre>
 </div>
 </details>
@@ -199,18 +441,23 @@ SNMPv2-MIB::sysContact.0 = STRING: dvidmakesthings@gmail.com
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-18 00:02:59</td><td>2025-09-18 00:02:59</td></tr>
+<tr><td>2025-10-05 22:54:24</td><td>2025-10-05 22:54:24</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-18 00:02:59] [STEP 2.5] sysName matches expected
-[2025-09-18 00:02:59] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.5.0
-[2025-09-18 00:02:59] [SNMP] rc=0
-[2025-09-18 00:02:59] [SNMP OUT]
+[2025-10-05 22:54:24] [STEP 2.5] sysName matches expected
+[2025-10-05 22:54:24] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:24] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.2.1.1.5.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:24] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.5.0
+[2025-10-05 22:54:24] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP OUT]
 SNMPv2-MIB::sysName.0 = STRING: SN-369366060325
 
-[2025-09-18 00:02:59] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.5.0 -&gt; &#x27;SN-369366060325&#x27; (v1/public)
-[2025-09-18 00:02:59] [PASS] STEP 2.5 completed successfully
+[2025-10-05 22:54:24] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP] _parse_snmp_value() called, output length: 48 chars
+[2025-10-05 22:54:24] [INFO] [SNMP] Parsed value: &#x27;SN-369366060325&#x27;
+[2025-10-05 22:54:24] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.5.0 -&gt; &#x27;SN-369366060325&#x27; (v1/public)
+[2025-10-05 22:54:24] [PASS] STEP 2.5 completed successfully
 </pre>
 </div>
 </details>
@@ -221,18 +468,23 @@ SNMPv2-MIB::sysName.0 = STRING: SN-369366060325
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-18 00:02:59</td><td>2025-09-18 00:02:59</td></tr>
+<tr><td>2025-10-05 22:54:24</td><td>2025-10-05 22:54:24</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-18 00:02:59] [STEP 2.6] sysLocation matches expected
-[2025-09-18 00:02:59] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.6.0
-[2025-09-18 00:02:59] [SNMP] rc=0
-[2025-09-18 00:02:59] [SNMP OUT]
+[2025-10-05 22:54:24] [STEP 2.6] sysLocation matches expected
+[2025-10-05 22:54:24] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:24] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.2.1.1.6.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:24] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.6.0
+[2025-10-05 22:54:24] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP OUT]
 SNMPv2-MIB::sysLocation.0 = STRING: Wien
 
-[2025-09-18 00:02:59] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.6.0 -&gt; &#x27;Wien&#x27; (v1/public)
-[2025-09-18 00:02:59] [PASS] STEP 2.6 completed successfully
+[2025-10-05 22:54:24] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP] _parse_snmp_value() called, output length: 41 chars
+[2025-10-05 22:54:24] [INFO] [SNMP] Parsed value: &#x27;Wien&#x27;
+[2025-10-05 22:54:24] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.6.0 -&gt; &#x27;Wien&#x27; (v1/public)
+[2025-10-05 22:54:24] [PASS] STEP 2.6 completed successfully
 </pre>
 </div>
 </details>
@@ -243,18 +495,23 @@ SNMPv2-MIB::sysLocation.0 = STRING: Wien
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-18 00:02:59</td><td>2025-09-18 00:02:59</td></tr>
+<tr><td>2025-10-05 22:54:24</td><td>2025-10-05 22:54:24</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-18 00:02:59] [STEP 2.7] sysServices matches expected
-[2025-09-18 00:02:59] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.7.0
-[2025-09-18 00:02:59] [SNMP] rc=0
-[2025-09-18 00:02:59] [SNMP OUT]
+[2025-10-05 22:54:24] [STEP 2.7] sysServices matches expected
+[2025-10-05 22:54:24] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:24] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.2.1.1.7.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:24] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.2.1.1.7.0
+[2025-10-05 22:54:24] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP OUT]
 SNMPv2-MIB::sysServices.0 = INTEGER: -5
 
-[2025-09-18 00:02:59] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.7.0 -&gt; &#x27;-5&#x27; (v1/public)
-[2025-09-18 00:02:59] [PASS] STEP 2.7 completed successfully
+[2025-10-05 22:54:24] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP] _parse_snmp_value() called, output length: 40 chars
+[2025-10-05 22:54:24] [INFO] [SNMP] Parsed value: &#x27;-5&#x27;
+[2025-10-05 22:54:24] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.2.1.1.7.0 -&gt; &#x27;-5&#x27; (v1/public)
+[2025-10-05 22:54:24] [PASS] STEP 2.7 completed successfully
 </pre>
 </div>
 </details>
@@ -268,7 +525,7 @@ SNMPv2-MIB::sysServices.0 = INTEGER: -5
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-18 00:02:59</td><td>2025-09-18 00:02:59</td></tr>
+<tr><td>2025-10-05 22:54:24</td><td>2025-10-05 22:54:24</td></tr>
 </table>
 <div class='substeps'>
 <h4>Substeps</h4>
@@ -279,18 +536,23 @@ SNMPv2-MIB::sysServices.0 = INTEGER: -5
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-18 00:02:59</td><td>2025-09-18 00:02:59</td></tr>
+<tr><td>2025-10-05 22:54:24</td><td>2025-10-05 22:54:24</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-18 00:02:59] [STEP 3.1] 19865.1.0 long-length string OK
-[2025-09-18 00:02:59] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.1.0
-[2025-09-18 00:02:59] [SNMP] rc=0
-[2025-09-18 00:02:59] [SNMP OUT]
+[2025-10-05 22:54:24] [STEP 3.1] 19865.1.0 long-length string OK
+[2025-10-05 22:54:24] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:24] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:24] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.1.0
+[2025-10-05 22:54:24] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.1.0 = STRING: &quot;long-length OID Test #1&quot;
 
-[2025-09-18 00:02:59] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.1.0 -&gt; &#x27;long-length OID Test #1&#x27; (v1/public)
-[2025-09-18 00:02:59] [PASS] STEP 3.1 completed successfully
+[2025-10-05 22:54:24] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP] _parse_snmp_value() called, output length: 70 chars
+[2025-10-05 22:54:24] [INFO] [SNMP] Parsed value: &#x27;long-length OID Test #1&#x27;
+[2025-10-05 22:54:24] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.1.0 -&gt; &#x27;long-length OID Test #1&#x27; (v1/public)
+[2025-10-05 22:54:24] [PASS] STEP 3.1 completed successfully
 </pre>
 </div>
 </details>
@@ -301,20 +563,20 @@ SNMPv2-SMI::enterprises.19865.1.0 = STRING: &quot;long-length OID Test #1&quot;
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-18 00:02:59</td><td>2025-09-18 00:02:59</td></tr>
+<tr><td>2025-10-05 22:54:24</td><td>2025-10-05 22:54:24</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-18 00:02:59] [STEP 3.2] 19865.2.0 produces noSuchName (expected error)
-[2025-09-18 00:02:59] [SNMP] cmd=G:\_Development\SNMP\usr\bin\snmpget.EXE -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.0
-[2025-09-18 00:02:59] [SNMP] rc=2
-[2025-09-18 00:02:59] [SNMP ERR]
+[2025-10-05 22:54:24] [STEP 3.2] 19865.2.0 produces noSuchName (expected error)
+[2025-10-05 22:54:24] [INFO] [SNMP] cmd=G:\_Development\SNMP\usr\bin\snmpget.EXE -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.0
+[2025-10-05 22:54:24] [INFO] [SNMP] rc=2
+[2025-10-05 22:54:24] [INFO] [SNMP ERR]
 Error in packet
 Reason: (noSuchName) There is no such variable name in this MIB.
 Failed object: SNMPv2-SMI::enterprises.19865.2.0
 
 
-[2025-09-18 00:02:59] [PASS] STEP 3.2 completed successfully
+[2025-10-05 22:54:24] [PASS] STEP 3.2 completed successfully
 </pre>
 </div>
 </details>
@@ -328,7 +590,7 @@ Failed object: SNMPv2-SMI::enterprises.19865.2.0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-18 00:02:59</td><td>2025-09-18 00:02:59</td></tr>
+<tr><td>2025-10-05 22:54:24</td><td>2025-10-05 22:54:24</td></tr>
 </table>
 <div class='substeps'>
 <h4>Substeps</h4>
@@ -339,18 +601,23 @@ Failed object: SNMPv2-SMI::enterprises.19865.2.0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-18 00:02:59</td><td>2025-09-18 00:02:59</td></tr>
+<tr><td>2025-10-05 22:54:24</td><td>2025-10-05 22:54:24</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-18 00:02:59] [STEP 4.1] Network IP equals baseline
-[2025-09-18 00:02:59] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.4.1.0
-[2025-09-18 00:02:59] [SNMP] rc=0
-[2025-09-18 00:02:59] [SNMP OUT]
+[2025-10-05 22:54:24] [STEP 4.1] Network IP equals baseline
+[2025-10-05 22:54:24] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:24] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.4.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:24] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.4.1.0
+[2025-10-05 22:54:24] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.4.1.0 = STRING: &quot;192.168.0.11&quot;
 
-[2025-09-18 00:02:59] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.4.1.0 -&gt; &#x27;192.168.0.11&#x27; (v1/public)
-[2025-09-18 00:02:59] [PASS] STEP 4.1 completed successfully
+[2025-10-05 22:54:24] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP] _parse_snmp_value() called, output length: 61 chars
+[2025-10-05 22:54:24] [INFO] [SNMP] Parsed value: &#x27;192.168.0.11&#x27;
+[2025-10-05 22:54:24] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.4.1.0 -&gt; &#x27;192.168.0.11&#x27; (v1/public)
+[2025-10-05 22:54:24] [PASS] STEP 4.1 completed successfully
 </pre>
 </div>
 </details>
@@ -361,18 +628,23 @@ SNMPv2-SMI::enterprises.19865.4.1.0 = STRING: &quot;192.168.0.11&quot;
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-18 00:02:59</td><td>2025-09-18 00:02:59</td></tr>
+<tr><td>2025-10-05 22:54:24</td><td>2025-10-05 22:54:24</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-18 00:02:59] [STEP 4.2] Network SN equals expected
-[2025-09-18 00:02:59] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.4.2.0
-[2025-09-18 00:02:59] [SNMP] rc=0
-[2025-09-18 00:02:59] [SNMP OUT]
+[2025-10-05 22:54:24] [STEP 4.2] Network SN equals expected
+[2025-10-05 22:54:24] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:24] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.4.2.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:24] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.4.2.0
+[2025-10-05 22:54:24] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.4.2.0 = STRING: &quot;255.255.255.0&quot;
 
-[2025-09-18 00:02:59] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.4.2.0 -&gt; &#x27;255.255.255.0&#x27; (v1/public)
-[2025-09-18 00:02:59] [PASS] STEP 4.2 completed successfully
+[2025-10-05 22:54:24] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP] _parse_snmp_value() called, output length: 62 chars
+[2025-10-05 22:54:24] [INFO] [SNMP] Parsed value: &#x27;255.255.255.0&#x27;
+[2025-10-05 22:54:24] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.4.2.0 -&gt; &#x27;255.255.255.0&#x27; (v1/public)
+[2025-10-05 22:54:24] [PASS] STEP 4.2 completed successfully
 </pre>
 </div>
 </details>
@@ -383,18 +655,23 @@ SNMPv2-SMI::enterprises.19865.4.2.0 = STRING: &quot;255.255.255.0&quot;
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-18 00:02:59</td><td>2025-09-18 00:02:59</td></tr>
+<tr><td>2025-10-05 22:54:24</td><td>2025-10-05 22:54:24</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-18 00:02:59] [STEP 4.3] Network GW equals expected
-[2025-09-18 00:02:59] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.4.3.0
-[2025-09-18 00:02:59] [SNMP] rc=0
-[2025-09-18 00:02:59] [SNMP OUT]
+[2025-10-05 22:54:24] [STEP 4.3] Network GW equals expected
+[2025-10-05 22:54:24] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:24] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.4.3.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:24] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.4.3.0
+[2025-10-05 22:54:24] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.4.3.0 = STRING: &quot;192.168.0.1&quot;
 
-[2025-09-18 00:02:59] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.4.3.0 -&gt; &#x27;192.168.0.1&#x27; (v1/public)
-[2025-09-18 00:02:59] [PASS] STEP 4.3 completed successfully
+[2025-10-05 22:54:24] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP] _parse_snmp_value() called, output length: 60 chars
+[2025-10-05 22:54:24] [INFO] [SNMP] Parsed value: &#x27;192.168.0.1&#x27;
+[2025-10-05 22:54:24] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.4.3.0 -&gt; &#x27;192.168.0.1&#x27; (v1/public)
+[2025-10-05 22:54:24] [PASS] STEP 4.3 completed successfully
 </pre>
 </div>
 </details>
@@ -405,18 +682,23 @@ SNMPv2-SMI::enterprises.19865.4.3.0 = STRING: &quot;192.168.0.1&quot;
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-18 00:02:59</td><td>2025-09-18 00:02:59</td></tr>
+<tr><td>2025-10-05 22:54:24</td><td>2025-10-05 22:54:24</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-18 00:02:59] [STEP 4.4] Network DNS equals expected
-[2025-09-18 00:02:59] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.4.4.0
-[2025-09-18 00:02:59] [SNMP] rc=0
-[2025-09-18 00:02:59] [SNMP OUT]
+[2025-10-05 22:54:24] [STEP 4.4] Network DNS equals expected
+[2025-10-05 22:54:24] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:24] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.4.4.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:24] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.4.4.0
+[2025-10-05 22:54:24] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.4.4.0 = STRING: &quot;8.8.8.8&quot;
 
-[2025-09-18 00:02:59] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.4.4.0 -&gt; &#x27;8.8.8.8&#x27; (v1/public)
-[2025-09-18 00:02:59] [PASS] STEP 4.4 completed successfully
+[2025-10-05 22:54:24] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP] _parse_snmp_value() called, output length: 56 chars
+[2025-10-05 22:54:24] [INFO] [SNMP] Parsed value: &#x27;8.8.8.8&#x27;
+[2025-10-05 22:54:24] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.4.4.0 -&gt; &#x27;8.8.8.8&#x27; (v1/public)
+[2025-10-05 22:54:24] [PASS] STEP 4.4 completed successfully
 </pre>
 </div>
 </details>
@@ -430,207 +712,335 @@ SNMPv2-SMI::enterprises.19865.4.4.0 = STRING: &quot;8.8.8.8&quot;
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-18 00:02:59</td><td>2025-09-18 00:03:08</td></tr>
+<tr><td>2025-10-05 22:54:24</td><td>2025-10-05 22:54:34</td></tr>
 </table>
 <details>
 <summary><div class='step-title'><div>Step Log</div><div class='status unknown'>DETAIL</div></div></summary>
 <div class='content'>
 <h4>Log</h4>
 <pre>
-[2025-09-18 00:02:59] [STEP 5] Cycle all channels ON/OFF with SNMP verify
-[2025-09-18 00:02:59] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 i 1
-[2025-09-18 00:02:59] [SNMP] rc=0
-[2025-09-18 00:02:59] [SNMP OUT]
+[2025-10-05 22:54:24] [STEP 5] Cycle all channels ON/OFF with SNMP verify
+[2025-10-05 22:54:24] [INFO] [SNMP] set_integer() called
+[2025-10-05 22:54:24] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.1.0, Value: 1, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:24] [INFO] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 i 1
+[2025-10-05 22:54:24] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:24] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 1
 
-[2025-09-18 00:02:59] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 = 1 -&gt; OK (v1/public)
-[2025-09-18 00:02:59] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0
-[2025-09-18 00:02:59] [SNMP] rc=0
-[2025-09-18 00:02:59] [SNMP OUT]
+[2025-10-05 22:54:24] [INFO] [SNMP] snmpset returned: rc=0, success=True
+[2025-10-05 22:54:24] [INFO] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 = 1 -&gt; OK (v1/public)
+[2025-10-05 22:54:25] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:25] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:25] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0
+[2025-10-05 22:54:25] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:25] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 1
 
-[2025-09-18 00:02:59] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-18 00:02:59] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 i 0
-[2025-09-18 00:02:59] [SNMP] rc=0
-[2025-09-18 00:02:59] [SNMP OUT]
+[2025-10-05 22:54:25] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:25] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:25] [INFO] [SNMP] Parsed value: &#x27;1&#x27;
+[2025-10-05 22:54:25] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 -&gt; &#x27;1&#x27; (v1/public)
+[2025-10-05 22:54:25] [INFO] [SNMP] set_integer() called
+[2025-10-05 22:54:25] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.1.0, Value: 0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:25] [INFO] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 i 0
+[2025-10-05 22:54:25] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:25] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 0
 
-[2025-09-18 00:02:59] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 = 0 -&gt; OK (v1/public)
-[2025-09-18 00:03:00] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0
-[2025-09-18 00:03:00] [SNMP] rc=0
-[2025-09-18 00:03:00] [SNMP OUT]
+[2025-10-05 22:54:25] [INFO] [SNMP] snmpset returned: rc=0, success=True
+[2025-10-05 22:54:25] [INFO] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 = 0 -&gt; OK (v1/public)
+[2025-10-05 22:54:26] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:26] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:26] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0
+[2025-10-05 22:54:26] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:26] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 0
 
-[2025-09-18 00:03:00] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-18 00:03:00] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 i 1
-[2025-09-18 00:03:00] [SNMP] rc=0
-[2025-09-18 00:03:00] [SNMP OUT]
+[2025-10-05 22:54:26] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:26] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:26] [INFO] [SNMP] Parsed value: &#x27;0&#x27;
+[2025-10-05 22:54:26] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 -&gt; &#x27;0&#x27; (v1/public)
+[2025-10-05 22:54:26] [INFO] [SNMP] set_integer() called
+[2025-10-05 22:54:26] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.2.0, Value: 1, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:26] [INFO] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 i 1
+[2025-10-05 22:54:26] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:26] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 1
 
-[2025-09-18 00:03:00] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 = 1 -&gt; OK (v1/public)
-[2025-09-18 00:03:01] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0
-[2025-09-18 00:03:01] [SNMP] rc=0
-[2025-09-18 00:03:01] [SNMP OUT]
+[2025-10-05 22:54:26] [INFO] [SNMP] snmpset returned: rc=0, success=True
+[2025-10-05 22:54:26] [INFO] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 = 1 -&gt; OK (v1/public)
+[2025-10-05 22:54:26] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:26] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.2.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:26] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0
+[2025-10-05 22:54:26] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:26] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 1
 
-[2025-09-18 00:03:01] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-18 00:03:01] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 i 0
-[2025-09-18 00:03:01] [SNMP] rc=0
-[2025-09-18 00:03:01] [SNMP OUT]
+[2025-10-05 22:54:26] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:26] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:26] [INFO] [SNMP] Parsed value: &#x27;1&#x27;
+[2025-10-05 22:54:26] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 -&gt; &#x27;1&#x27; (v1/public)
+[2025-10-05 22:54:26] [INFO] [SNMP] set_integer() called
+[2025-10-05 22:54:26] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.2.0, Value: 0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:26] [INFO] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 i 0
+[2025-10-05 22:54:26] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:26] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 0
 
-[2025-09-18 00:03:01] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 = 0 -&gt; OK (v1/public)
-[2025-09-18 00:03:01] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0
-[2025-09-18 00:03:01] [SNMP] rc=0
-[2025-09-18 00:03:01] [SNMP OUT]
+[2025-10-05 22:54:26] [INFO] [SNMP] snmpset returned: rc=0, success=True
+[2025-10-05 22:54:26] [INFO] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 = 0 -&gt; OK (v1/public)
+[2025-10-05 22:54:27] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:27] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.2.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:27] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0
+[2025-10-05 22:54:27] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:27] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 0
 
-[2025-09-18 00:03:01] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-18 00:03:01] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 i 1
-[2025-09-18 00:03:01] [SNMP] rc=0
-[2025-09-18 00:03:01] [SNMP OUT]
+[2025-10-05 22:54:27] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:27] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:27] [INFO] [SNMP] Parsed value: &#x27;0&#x27;
+[2025-10-05 22:54:27] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 -&gt; &#x27;0&#x27; (v1/public)
+[2025-10-05 22:54:27] [INFO] [SNMP] set_integer() called
+[2025-10-05 22:54:27] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.3.0, Value: 1, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:27] [INFO] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 i 1
+[2025-10-05 22:54:27] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:27] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 1
 
-[2025-09-18 00:03:01] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 = 1 -&gt; OK (v1/public)
-[2025-09-18 00:03:02] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0
-[2025-09-18 00:03:02] [SNMP] rc=0
-[2025-09-18 00:03:02] [SNMP OUT]
+[2025-10-05 22:54:27] [INFO] [SNMP] snmpset returned: rc=0, success=True
+[2025-10-05 22:54:27] [INFO] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 = 1 -&gt; OK (v1/public)
+[2025-10-05 22:54:27] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:27] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.3.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:27] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0
+[2025-10-05 22:54:27] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:27] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 1
 
-[2025-09-18 00:03:02] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-18 00:03:02] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 i 0
-[2025-09-18 00:03:02] [SNMP] rc=0
-[2025-09-18 00:03:02] [SNMP OUT]
+[2025-10-05 22:54:27] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:27] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:27] [INFO] [SNMP] Parsed value: &#x27;1&#x27;
+[2025-10-05 22:54:27] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 -&gt; &#x27;1&#x27; (v1/public)
+[2025-10-05 22:54:27] [INFO] [SNMP] set_integer() called
+[2025-10-05 22:54:27] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.3.0, Value: 0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:27] [INFO] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 i 0
+[2025-10-05 22:54:27] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:27] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 0
 
-[2025-09-18 00:03:02] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 = 0 -&gt; OK (v1/public)
-[2025-09-18 00:03:02] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0
-[2025-09-18 00:03:02] [SNMP] rc=0
-[2025-09-18 00:03:02] [SNMP OUT]
+[2025-10-05 22:54:27] [INFO] [SNMP] snmpset returned: rc=0, success=True
+[2025-10-05 22:54:27] [INFO] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 = 0 -&gt; OK (v1/public)
+[2025-10-05 22:54:28] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:28] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.3.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:28] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0
+[2025-10-05 22:54:28] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:28] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 0
 
-[2025-09-18 00:03:02] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-18 00:03:02] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 i 1
-[2025-09-18 00:03:02] [SNMP] rc=0
-[2025-09-18 00:03:02] [SNMP OUT]
+[2025-10-05 22:54:28] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:28] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:28] [INFO] [SNMP] Parsed value: &#x27;0&#x27;
+[2025-10-05 22:54:28] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 -&gt; &#x27;0&#x27; (v1/public)
+[2025-10-05 22:54:28] [INFO] [SNMP] set_integer() called
+[2025-10-05 22:54:28] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.4.0, Value: 1, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:28] [INFO] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 i 1
+[2025-10-05 22:54:28] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:28] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 1
 
-[2025-09-18 00:03:02] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 = 1 -&gt; OK (v1/public)
-[2025-09-18 00:03:03] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0
-[2025-09-18 00:03:03] [SNMP] rc=0
-[2025-09-18 00:03:03] [SNMP OUT]
+[2025-10-05 22:54:28] [INFO] [SNMP] snmpset returned: rc=0, success=True
+[2025-10-05 22:54:28] [INFO] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 = 1 -&gt; OK (v1/public)
+[2025-10-05 22:54:28] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:28] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.4.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:28] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0
+[2025-10-05 22:54:28] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:28] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 1
 
-[2025-09-18 00:03:03] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-18 00:03:03] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 i 0
-[2025-09-18 00:03:03] [SNMP] rc=0
-[2025-09-18 00:03:03] [SNMP OUT]
+[2025-10-05 22:54:28] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:28] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:28] [INFO] [SNMP] Parsed value: &#x27;1&#x27;
+[2025-10-05 22:54:28] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 -&gt; &#x27;1&#x27; (v1/public)
+[2025-10-05 22:54:28] [INFO] [SNMP] set_integer() called
+[2025-10-05 22:54:28] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.4.0, Value: 0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:29] [INFO] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 i 0
+[2025-10-05 22:54:29] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:29] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 0
 
-[2025-09-18 00:03:03] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 = 0 -&gt; OK (v1/public)
-[2025-09-18 00:03:03] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0
-[2025-09-18 00:03:03] [SNMP] rc=0
-[2025-09-18 00:03:03] [SNMP OUT]
+[2025-10-05 22:54:29] [INFO] [SNMP] snmpset returned: rc=0, success=True
+[2025-10-05 22:54:29] [INFO] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 = 0 -&gt; OK (v1/public)
+[2025-10-05 22:54:29] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:29] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.4.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:29] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0
+[2025-10-05 22:54:29] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:29] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 0
 
-[2025-09-18 00:03:03] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-18 00:03:03] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 i 1
-[2025-09-18 00:03:03] [SNMP] rc=0
-[2025-09-18 00:03:03] [SNMP OUT]
+[2025-10-05 22:54:29] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:29] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:29] [INFO] [SNMP] Parsed value: &#x27;0&#x27;
+[2025-10-05 22:54:29] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 -&gt; &#x27;0&#x27; (v1/public)
+[2025-10-05 22:54:29] [INFO] [SNMP] set_integer() called
+[2025-10-05 22:54:29] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.5.0, Value: 1, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:29] [INFO] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 i 1
+[2025-10-05 22:54:29] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:29] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 1
 
-[2025-09-18 00:03:03] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 = 1 -&gt; OK (v1/public)
-[2025-09-18 00:03:04] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0
-[2025-09-18 00:03:04] [SNMP] rc=0
-[2025-09-18 00:03:04] [SNMP OUT]
+[2025-10-05 22:54:29] [INFO] [SNMP] snmpset returned: rc=0, success=True
+[2025-10-05 22:54:29] [INFO] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 = 1 -&gt; OK (v1/public)
+[2025-10-05 22:54:30] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:30] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.5.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:30] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0
+[2025-10-05 22:54:30] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:30] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 1
 
-[2025-09-18 00:03:04] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-18 00:03:04] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 i 0
-[2025-09-18 00:03:04] [SNMP] rc=0
-[2025-09-18 00:03:04] [SNMP OUT]
+[2025-10-05 22:54:30] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:30] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:30] [INFO] [SNMP] Parsed value: &#x27;1&#x27;
+[2025-10-05 22:54:30] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 -&gt; &#x27;1&#x27; (v1/public)
+[2025-10-05 22:54:30] [INFO] [SNMP] set_integer() called
+[2025-10-05 22:54:30] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.5.0, Value: 0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:30] [INFO] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 i 0
+[2025-10-05 22:54:30] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:30] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 0
 
-[2025-09-18 00:03:04] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 = 0 -&gt; OK (v1/public)
-[2025-09-18 00:03:05] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0
-[2025-09-18 00:03:05] [SNMP] rc=0
-[2025-09-18 00:03:05] [SNMP OUT]
+[2025-10-05 22:54:30] [INFO] [SNMP] snmpset returned: rc=0, success=True
+[2025-10-05 22:54:30] [INFO] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 = 0 -&gt; OK (v1/public)
+[2025-10-05 22:54:30] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:30] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.5.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:30] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0
+[2025-10-05 22:54:30] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:30] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 0
 
-[2025-09-18 00:03:05] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-18 00:03:05] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 i 1
-[2025-09-18 00:03:05] [SNMP] rc=0
-[2025-09-18 00:03:05] [SNMP OUT]
+[2025-10-05 22:54:30] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:30] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:30] [INFO] [SNMP] Parsed value: &#x27;0&#x27;
+[2025-10-05 22:54:30] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 -&gt; &#x27;0&#x27; (v1/public)
+[2025-10-05 22:54:30] [INFO] [SNMP] set_integer() called
+[2025-10-05 22:54:30] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.6.0, Value: 1, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:30] [INFO] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 i 1
+[2025-10-05 22:54:30] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:30] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 1
 
-[2025-09-18 00:03:05] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 = 1 -&gt; OK (v1/public)
-[2025-09-18 00:03:05] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0
-[2025-09-18 00:03:05] [SNMP] rc=0
-[2025-09-18 00:03:05] [SNMP OUT]
+[2025-10-05 22:54:30] [INFO] [SNMP] snmpset returned: rc=0, success=True
+[2025-10-05 22:54:30] [INFO] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 = 1 -&gt; OK (v1/public)
+[2025-10-05 22:54:31] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:31] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.6.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:31] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0
+[2025-10-05 22:54:31] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:31] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 1
 
-[2025-09-18 00:03:05] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-18 00:03:05] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 i 0
-[2025-09-18 00:03:05] [SNMP] rc=0
-[2025-09-18 00:03:05] [SNMP OUT]
+[2025-10-05 22:54:31] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:31] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:31] [INFO] [SNMP] Parsed value: &#x27;1&#x27;
+[2025-10-05 22:54:31] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 -&gt; &#x27;1&#x27; (v1/public)
+[2025-10-05 22:54:31] [INFO] [SNMP] set_integer() called
+[2025-10-05 22:54:31] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.6.0, Value: 0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:31] [INFO] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 i 0
+[2025-10-05 22:54:31] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:31] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 0
 
-[2025-09-18 00:03:05] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 = 0 -&gt; OK (v1/public)
-[2025-09-18 00:03:06] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0
-[2025-09-18 00:03:06] [SNMP] rc=0
-[2025-09-18 00:03:06] [SNMP OUT]
+[2025-10-05 22:54:31] [INFO] [SNMP] snmpset returned: rc=0, success=True
+[2025-10-05 22:54:31] [INFO] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 = 0 -&gt; OK (v1/public)
+[2025-10-05 22:54:31] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:31] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.6.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:31] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0
+[2025-10-05 22:54:31] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:31] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 0
 
-[2025-09-18 00:03:06] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-18 00:03:06] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 i 1
-[2025-09-18 00:03:06] [SNMP] rc=0
-[2025-09-18 00:03:06] [SNMP OUT]
+[2025-10-05 22:54:31] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:31] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:31] [INFO] [SNMP] Parsed value: &#x27;0&#x27;
+[2025-10-05 22:54:31] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 -&gt; &#x27;0&#x27; (v1/public)
+[2025-10-05 22:54:31] [INFO] [SNMP] set_integer() called
+[2025-10-05 22:54:31] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.7.0, Value: 1, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:31] [INFO] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 i 1
+[2025-10-05 22:54:31] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:31] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 1
 
-[2025-09-18 00:03:06] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 = 1 -&gt; OK (v1/public)
-[2025-09-18 00:03:06] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0
-[2025-09-18 00:03:06] [SNMP] rc=0
-[2025-09-18 00:03:06] [SNMP OUT]
+[2025-10-05 22:54:31] [INFO] [SNMP] snmpset returned: rc=0, success=True
+[2025-10-05 22:54:31] [INFO] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 = 1 -&gt; OK (v1/public)
+[2025-10-05 22:54:32] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:32] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.7.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:32] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0
+[2025-10-05 22:54:32] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:32] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 1
 
-[2025-09-18 00:03:06] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-18 00:03:06] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 i 0
-[2025-09-18 00:03:06] [SNMP] rc=0
-[2025-09-18 00:03:06] [SNMP OUT]
+[2025-10-05 22:54:32] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:32] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:32] [INFO] [SNMP] Parsed value: &#x27;1&#x27;
+[2025-10-05 22:54:32] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 -&gt; &#x27;1&#x27; (v1/public)
+[2025-10-05 22:54:32] [INFO] [SNMP] set_integer() called
+[2025-10-05 22:54:32] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.7.0, Value: 0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:32] [INFO] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 i 0
+[2025-10-05 22:54:32] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:32] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 0
 
-[2025-09-18 00:03:06] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 = 0 -&gt; OK (v1/public)
-[2025-09-18 00:03:07] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0
-[2025-09-18 00:03:07] [SNMP] rc=0
-[2025-09-18 00:03:07] [SNMP OUT]
+[2025-10-05 22:54:32] [INFO] [SNMP] snmpset returned: rc=0, success=True
+[2025-10-05 22:54:32] [INFO] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 = 0 -&gt; OK (v1/public)
+[2025-10-05 22:54:32] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:32] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.7.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:32] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0
+[2025-10-05 22:54:32] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:32] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 0
 
-[2025-09-18 00:03:07] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-18 00:03:07] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 i 1
-[2025-09-18 00:03:07] [SNMP] rc=0
-[2025-09-18 00:03:07] [SNMP OUT]
+[2025-10-05 22:54:32] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:32] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:32] [INFO] [SNMP] Parsed value: &#x27;0&#x27;
+[2025-10-05 22:54:32] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 -&gt; &#x27;0&#x27; (v1/public)
+[2025-10-05 22:54:32] [INFO] [SNMP] set_integer() called
+[2025-10-05 22:54:32] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.8.0, Value: 1, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:33] [INFO] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 i 1
+[2025-10-05 22:54:33] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:33] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 1
 
-[2025-09-18 00:03:07] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 = 1 -&gt; OK (v1/public)
-[2025-09-18 00:03:07] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0
-[2025-09-18 00:03:07] [SNMP] rc=0
-[2025-09-18 00:03:07] [SNMP OUT]
+[2025-10-05 22:54:33] [INFO] [SNMP] snmpset returned: rc=0, success=True
+[2025-10-05 22:54:33] [INFO] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 = 1 -&gt; OK (v1/public)
+[2025-10-05 22:54:33] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:33] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.8.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:33] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0
+[2025-10-05 22:54:33] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:33] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 1
 
-[2025-09-18 00:03:07] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-18 00:03:07] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 i 0
-[2025-09-18 00:03:07] [SNMP] rc=0
-[2025-09-18 00:03:07] [SNMP OUT]
+[2025-10-05 22:54:33] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:33] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:33] [INFO] [SNMP] Parsed value: &#x27;1&#x27;
+[2025-10-05 22:54:33] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 -&gt; &#x27;1&#x27; (v1/public)
+[2025-10-05 22:54:33] [INFO] [SNMP] set_integer() called
+[2025-10-05 22:54:33] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.8.0, Value: 0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:33] [INFO] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 i 0
+[2025-10-05 22:54:33] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:33] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 0
 
-[2025-09-18 00:03:07] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 = 0 -&gt; OK (v1/public)
-[2025-09-18 00:03:08] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0
-[2025-09-18 00:03:08] [SNMP] rc=0
-[2025-09-18 00:03:08] [SNMP OUT]
+[2025-10-05 22:54:33] [INFO] [SNMP] snmpset returned: rc=0, success=True
+[2025-10-05 22:54:33] [INFO] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 = 0 -&gt; OK (v1/public)
+[2025-10-05 22:54:34] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:34] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.8.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:34] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0
+[2025-10-05 22:54:34] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 0
 
-[2025-09-18 00:03:08] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-18 00:03:08] [PASS] STEP 5 completed successfully
+[2025-10-05 22:54:34] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:34] [INFO] [SNMP] Parsed value: &#x27;0&#x27;
+[2025-10-05 22:54:34] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 -&gt; &#x27;0&#x27; (v1/public)
+[2025-10-05 22:54:34] [PASS] STEP 5 completed successfully
 </pre>
 </div>
 </details>
@@ -643,7 +1053,7 @@ SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-18 00:03:08</td><td>2025-09-18 00:03:09</td></tr>
+<tr><td>2025-10-05 22:54:34</td><td>2025-10-05 22:54:34</td></tr>
 </table>
 <div class='substeps'>
 <h4>Substeps</h4>
@@ -654,18 +1064,24 @@ SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 0
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-18 00:03:08</td><td>2025-09-18 00:03:08</td></tr>
+<tr><td>2025-10-05 22:54:34</td><td>2025-10-05 22:54:34</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-18 00:03:08] [STEP 6.1] ALL ON trigger
-[2025-09-18 00:03:08] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.10.0 i 1
-[2025-09-18 00:03:08] [SNMP] rc=0
-[2025-09-18 00:03:08] [SNMP OUT]
+[2025-10-05 22:54:34] [STEP 6.1] ALL ON trigger
+[2025-10-05 22:54:34] [INFO] [SNMP] Executing set_all_outlets: state=ON
+[2025-10-05 22:54:34] [INFO] [SNMP] Using trigger OID: 1.3.6.1.4.1.19865.2.10.0
+[2025-10-05 22:54:34] [INFO] [SNMP] set_integer() called
+[2025-10-05 22:54:34] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.10.0, Value: 1, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:34] [INFO] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.10.0 i 1
+[2025-10-05 22:54:34] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.10.0 = INTEGER: 1
 
-[2025-09-18 00:03:08] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.10.0 = 1 -&gt; OK (v1/public)
-[2025-09-18 00:03:08] [PASS] STEP 6.1 completed successfully
+[2025-10-05 22:54:34] [INFO] [SNMP] snmpset returned: rc=0, success=True
+[2025-10-05 22:54:34] [INFO] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.10.0 = 1 -&gt; OK (v1/public)
+[2025-10-05 22:54:34] [INFO] [SNMP] Successfully set ALL outlets ON
+[2025-10-05 22:54:34] [PASS] STEP 6.1 completed successfully
 </pre>
 </div>
 </details>
@@ -676,60 +1092,118 @@ SNMPv2-SMI::enterprises.19865.2.10.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-18 00:03:08</td><td>2025-09-18 00:03:08</td></tr>
+<tr><td>2025-10-05 22:54:34</td><td>2025-10-05 22:54:34</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-18 00:03:08] [STEP 6.2] Verify ALL ON via SNMP (1..8 == 1)
-[2025-09-18 00:03:08] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0
-[2025-09-18 00:03:08] [SNMP] rc=0
-[2025-09-18 00:03:08] [SNMP OUT]
+[2025-10-05 22:54:34] [STEP 6.2] Verify ALL ON via SNMP (1..8 == 1)
+[2025-10-05 22:54:34] [INFO] [SNMP] Executing verify_all_outlets: expected_state=ON
+[2025-10-05 22:54:34] [INFO] [SNMP] Checking channel 1...
+[2025-10-05 22:54:34] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:34] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:34] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0
+[2025-10-05 22:54:34] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 1
 
-[2025-09-18 00:03:08] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-18 00:03:08] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0
-[2025-09-18 00:03:08] [SNMP] rc=0
-[2025-09-18 00:03:08] [SNMP OUT]
+[2025-10-05 22:54:34] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:34] [INFO] [SNMP] Parsed value: &#x27;1&#x27;
+[2025-10-05 22:54:34] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 -&gt; &#x27;1&#x27; (v1/public)
+[2025-10-05 22:54:34] [INFO] [SNMP] CH1 state: ON
+[2025-10-05 22:54:34] [INFO] [SNMP] Checking channel 2...
+[2025-10-05 22:54:34] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:34] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.2.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:34] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0
+[2025-10-05 22:54:34] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 1
 
-[2025-09-18 00:03:08] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-18 00:03:08] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0
-[2025-09-18 00:03:08] [SNMP] rc=0
-[2025-09-18 00:03:08] [SNMP OUT]
+[2025-10-05 22:54:34] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:34] [INFO] [SNMP] Parsed value: &#x27;1&#x27;
+[2025-10-05 22:54:34] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 -&gt; &#x27;1&#x27; (v1/public)
+[2025-10-05 22:54:34] [INFO] [SNMP] CH2 state: ON
+[2025-10-05 22:54:34] [INFO] [SNMP] Checking channel 3...
+[2025-10-05 22:54:34] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:34] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.3.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:34] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0
+[2025-10-05 22:54:34] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 1
 
-[2025-09-18 00:03:08] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-18 00:03:08] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0
-[2025-09-18 00:03:08] [SNMP] rc=0
-[2025-09-18 00:03:08] [SNMP OUT]
+[2025-10-05 22:54:34] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:34] [INFO] [SNMP] Parsed value: &#x27;1&#x27;
+[2025-10-05 22:54:34] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 -&gt; &#x27;1&#x27; (v1/public)
+[2025-10-05 22:54:34] [INFO] [SNMP] CH3 state: ON
+[2025-10-05 22:54:34] [INFO] [SNMP] Checking channel 4...
+[2025-10-05 22:54:34] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:34] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.4.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:34] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0
+[2025-10-05 22:54:34] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 1
 
-[2025-09-18 00:03:08] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-18 00:03:08] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0
-[2025-09-18 00:03:08] [SNMP] rc=0
-[2025-09-18 00:03:08] [SNMP OUT]
+[2025-10-05 22:54:34] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:34] [INFO] [SNMP] Parsed value: &#x27;1&#x27;
+[2025-10-05 22:54:34] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 -&gt; &#x27;1&#x27; (v1/public)
+[2025-10-05 22:54:34] [INFO] [SNMP] CH4 state: ON
+[2025-10-05 22:54:34] [INFO] [SNMP] Checking channel 5...
+[2025-10-05 22:54:34] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:34] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.5.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:34] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0
+[2025-10-05 22:54:34] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 1
 
-[2025-09-18 00:03:08] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-18 00:03:08] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0
-[2025-09-18 00:03:08] [SNMP] rc=0
-[2025-09-18 00:03:08] [SNMP OUT]
+[2025-10-05 22:54:34] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:34] [INFO] [SNMP] Parsed value: &#x27;1&#x27;
+[2025-10-05 22:54:34] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 -&gt; &#x27;1&#x27; (v1/public)
+[2025-10-05 22:54:34] [INFO] [SNMP] CH5 state: ON
+[2025-10-05 22:54:34] [INFO] [SNMP] Checking channel 6...
+[2025-10-05 22:54:34] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:34] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.6.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:34] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0
+[2025-10-05 22:54:34] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 1
 
-[2025-09-18 00:03:08] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-18 00:03:08] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0
-[2025-09-18 00:03:08] [SNMP] rc=0
-[2025-09-18 00:03:08] [SNMP OUT]
+[2025-10-05 22:54:34] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:34] [INFO] [SNMP] Parsed value: &#x27;1&#x27;
+[2025-10-05 22:54:34] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 -&gt; &#x27;1&#x27; (v1/public)
+[2025-10-05 22:54:34] [INFO] [SNMP] CH6 state: ON
+[2025-10-05 22:54:34] [INFO] [SNMP] Checking channel 7...
+[2025-10-05 22:54:34] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:34] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.7.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:34] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0
+[2025-10-05 22:54:34] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 1
 
-[2025-09-18 00:03:08] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-18 00:03:08] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0
-[2025-09-18 00:03:08] [SNMP] rc=0
-[2025-09-18 00:03:08] [SNMP OUT]
+[2025-10-05 22:54:34] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:34] [INFO] [SNMP] Parsed value: &#x27;1&#x27;
+[2025-10-05 22:54:34] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 -&gt; &#x27;1&#x27; (v1/public)
+[2025-10-05 22:54:34] [INFO] [SNMP] CH7 state: ON
+[2025-10-05 22:54:34] [INFO] [SNMP] Checking channel 8...
+[2025-10-05 22:54:34] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:34] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.8.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:34] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0
+[2025-10-05 22:54:34] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 1
 
-[2025-09-18 00:03:08] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 -&gt; &#x27;1&#x27; (v1/public)
-[2025-09-18 00:03:08] [PASS] STEP 6.2 completed successfully
+[2025-10-05 22:54:34] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:34] [INFO] [SNMP] Parsed value: &#x27;1&#x27;
+[2025-10-05 22:54:34] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 -&gt; &#x27;1&#x27; (v1/public)
+[2025-10-05 22:54:34] [INFO] [SNMP] CH8 state: ON
+[2025-10-05 22:54:34] [INFO] [SNMP] All 8 channels verified: ON
+[2025-10-05 22:54:34] [PASS] STEP 6.2 completed successfully
 </pre>
 </div>
 </details>
@@ -740,18 +1214,24 @@ SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-18 00:03:08</td><td>2025-09-18 00:03:08</td></tr>
+<tr><td>2025-10-05 22:54:34</td><td>2025-10-05 22:54:34</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-18 00:03:08] [STEP 6.3] ALL ON trigger
-[2025-09-18 00:03:08] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.9.0 i 1
-[2025-09-18 00:03:08] [SNMP] rc=0
-[2025-09-18 00:03:08] [SNMP OUT]
+[2025-10-05 22:54:34] [STEP 6.3] ALL ON trigger
+[2025-10-05 22:54:34] [INFO] [SNMP] Executing set_all_outlets: state=OFF
+[2025-10-05 22:54:34] [INFO] [SNMP] Using trigger OID: 1.3.6.1.4.1.19865.2.9.0
+[2025-10-05 22:54:34] [INFO] [SNMP] set_integer() called
+[2025-10-05 22:54:34] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.9.0, Value: 1, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:34] [INFO] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.9.0 i 1
+[2025-10-05 22:54:34] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.9.0 = INTEGER: 1
 
-[2025-09-18 00:03:08] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.9.0 = 1 -&gt; OK (v1/public)
-[2025-09-18 00:03:08] [PASS] STEP 6.3 completed successfully
+[2025-10-05 22:54:34] [INFO] [SNMP] snmpset returned: rc=0, success=True
+[2025-10-05 22:54:34] [INFO] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.9.0 = 1 -&gt; OK (v1/public)
+[2025-10-05 22:54:34] [INFO] [SNMP] Successfully set ALL outlets OFF
+[2025-10-05 22:54:34] [PASS] STEP 6.3 completed successfully
 </pre>
 </div>
 </details>
@@ -762,65 +1242,1313 @@ SNMPv2-SMI::enterprises.19865.2.9.0 = INTEGER: 1
 <div class='content'>
 <table>
 <tr><th>Started</th><th>Finished</th></tr>
-<tr><td>2025-09-18 00:03:08</td><td>2025-09-18 00:03:09</td></tr>
+<tr><td>2025-10-05 22:54:34</td><td>2025-10-05 22:54:34</td></tr>
 </table>
 <h4>Log</h4>
 <pre>
-[2025-09-18 00:03:08] [STEP 6.4] Verify ALL OFF via SNMP (1..8 == 0)
-[2025-09-18 00:03:08] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0
-[2025-09-18 00:03:08] [SNMP] rc=0
-[2025-09-18 00:03:08] [SNMP OUT]
+[2025-10-05 22:54:34] [STEP 6.4] Verify ALL OFF via SNMP (1..8 == 0)
+[2025-10-05 22:54:34] [INFO] [SNMP] Executing verify_all_outlets: expected_state=OFF
+[2025-10-05 22:54:34] [INFO] [SNMP] Checking channel 1...
+[2025-10-05 22:54:34] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:34] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:34] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0
+[2025-10-05 22:54:34] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 0
 
-[2025-09-18 00:03:08] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-18 00:03:08] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0
-[2025-09-18 00:03:08] [SNMP] rc=0
-[2025-09-18 00:03:08] [SNMP OUT]
+[2025-10-05 22:54:34] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:34] [INFO] [SNMP] Parsed value: &#x27;0&#x27;
+[2025-10-05 22:54:34] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 -&gt; &#x27;0&#x27; (v1/public)
+[2025-10-05 22:54:34] [INFO] [SNMP] CH1 state: OFF
+[2025-10-05 22:54:34] [INFO] [SNMP] Checking channel 2...
+[2025-10-05 22:54:34] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:34] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.2.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:34] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0
+[2025-10-05 22:54:34] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 0
 
-[2025-09-18 00:03:08] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-18 00:03:09] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0
-[2025-09-18 00:03:09] [SNMP] rc=0
-[2025-09-18 00:03:09] [SNMP OUT]
+[2025-10-05 22:54:34] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:34] [INFO] [SNMP] Parsed value: &#x27;0&#x27;
+[2025-10-05 22:54:34] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 -&gt; &#x27;0&#x27; (v1/public)
+[2025-10-05 22:54:34] [INFO] [SNMP] CH2 state: OFF
+[2025-10-05 22:54:34] [INFO] [SNMP] Checking channel 3...
+[2025-10-05 22:54:34] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:34] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.3.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:34] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0
+[2025-10-05 22:54:34] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 0
 
-[2025-09-18 00:03:09] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-18 00:03:09] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0
-[2025-09-18 00:03:09] [SNMP] rc=0
-[2025-09-18 00:03:09] [SNMP OUT]
+[2025-10-05 22:54:34] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:34] [INFO] [SNMP] Parsed value: &#x27;0&#x27;
+[2025-10-05 22:54:34] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 -&gt; &#x27;0&#x27; (v1/public)
+[2025-10-05 22:54:34] [INFO] [SNMP] CH3 state: OFF
+[2025-10-05 22:54:34] [INFO] [SNMP] Checking channel 4...
+[2025-10-05 22:54:34] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:34] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.4.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:34] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0
+[2025-10-05 22:54:34] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 0
 
-[2025-09-18 00:03:09] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-18 00:03:09] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0
-[2025-09-18 00:03:09] [SNMP] rc=0
-[2025-09-18 00:03:09] [SNMP OUT]
+[2025-10-05 22:54:34] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:34] [INFO] [SNMP] Parsed value: &#x27;0&#x27;
+[2025-10-05 22:54:34] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 -&gt; &#x27;0&#x27; (v1/public)
+[2025-10-05 22:54:34] [INFO] [SNMP] CH4 state: OFF
+[2025-10-05 22:54:34] [INFO] [SNMP] Checking channel 5...
+[2025-10-05 22:54:34] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:34] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.5.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:34] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0
+[2025-10-05 22:54:34] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 0
 
-[2025-09-18 00:03:09] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-18 00:03:09] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0
-[2025-09-18 00:03:09] [SNMP] rc=0
-[2025-09-18 00:03:09] [SNMP OUT]
+[2025-10-05 22:54:34] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:34] [INFO] [SNMP] Parsed value: &#x27;0&#x27;
+[2025-10-05 22:54:34] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 -&gt; &#x27;0&#x27; (v1/public)
+[2025-10-05 22:54:34] [INFO] [SNMP] CH5 state: OFF
+[2025-10-05 22:54:34] [INFO] [SNMP] Checking channel 6...
+[2025-10-05 22:54:34] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:34] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.6.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:34] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0
+[2025-10-05 22:54:34] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 0
 
-[2025-09-18 00:03:09] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-18 00:03:09] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0
-[2025-09-18 00:03:09] [SNMP] rc=0
-[2025-09-18 00:03:09] [SNMP OUT]
+[2025-10-05 22:54:34] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:34] [INFO] [SNMP] Parsed value: &#x27;0&#x27;
+[2025-10-05 22:54:34] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 -&gt; &#x27;0&#x27; (v1/public)
+[2025-10-05 22:54:34] [INFO] [SNMP] CH6 state: OFF
+[2025-10-05 22:54:34] [INFO] [SNMP] Checking channel 7...
+[2025-10-05 22:54:34] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:34] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.7.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:34] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0
+[2025-10-05 22:54:34] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 0
 
-[2025-09-18 00:03:09] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-18 00:03:09] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0
-[2025-09-18 00:03:09] [SNMP] rc=0
-[2025-09-18 00:03:09] [SNMP OUT]
+[2025-10-05 22:54:34] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:34] [INFO] [SNMP] Parsed value: &#x27;0&#x27;
+[2025-10-05 22:54:34] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 -&gt; &#x27;0&#x27; (v1/public)
+[2025-10-05 22:54:34] [INFO] [SNMP] CH7 state: OFF
+[2025-10-05 22:54:34] [INFO] [SNMP] Checking channel 8...
+[2025-10-05 22:54:34] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:34] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.8.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:34] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0
+[2025-10-05 22:54:34] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP OUT]
 SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 0
 
-[2025-09-18 00:03:09] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 -&gt; &#x27;0&#x27; (v1/public)
-[2025-09-18 00:03:09] [PASS] STEP 6.4 completed successfully
-[2025-09-18 00:03:09] ===== tc_network_snmp: RESULT: PASS =====
+[2025-10-05 22:54:34] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:34] [INFO] [SNMP] Parsed value: &#x27;0&#x27;
+[2025-10-05 22:54:34] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 -&gt; &#x27;0&#x27; (v1/public)
+[2025-10-05 22:54:34] [INFO] [SNMP] CH8 state: OFF
+[2025-10-05 22:54:34] [INFO] [SNMP] All 8 channels verified: OFF
+[2025-10-05 22:54:34] [PASS] STEP 6.4 completed successfully
 </pre>
 </div>
 </details>
 </div>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 7 HLW8032 Power Monitoring - Outlets OFF</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:34</td><td>2025-10-05 22:54:43</td></tr>
+</table>
+<div class='substeps'>
+<h4>Substeps</h4>
+<details>
+<summary>
+<div class='step-title'><div>STEP 7.1 Ensure all outlets OFF</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:34</td><td>2025-10-05 22:54:34</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:34] [STEP 7.1] Ensure all outlets OFF
+[2025-10-05 22:54:34] [INFO] [SNMP] Executing set_all_outlets: state=OFF
+[2025-10-05 22:54:34] [INFO] [SNMP] Using trigger OID: 1.3.6.1.4.1.19865.2.9.0
+[2025-10-05 22:54:34] [INFO] [SNMP] set_integer() called
+[2025-10-05 22:54:34] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.9.0, Value: 1, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:34] [INFO] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.9.0 i 1
+[2025-10-05 22:54:34] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:34] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.9.0 = INTEGER: 1
+
+[2025-10-05 22:54:34] [INFO] [SNMP] snmpset returned: rc=0, success=True
+[2025-10-05 22:54:34] [INFO] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.9.0 = 1 -&gt; OK (v1/public)
+[2025-10-05 22:54:34] [INFO] [SNMP] Successfully set ALL outlets OFF
+[2025-10-05 22:54:34] [PASS] STEP 7.1 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 7.2 Wait 8s for all HLW8032 to be updated</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:34</td><td>2025-10-05 22:54:42</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:34] [STEP 7.2] Wait 8s for all HLW8032 to be updated
+[2025-10-05 22:54:34] [INFO] Starting NOP wait for 8000ms
+[2025-10-05 22:54:35] [INFO] NOP waiting... 1.0s elapsed
+[2025-10-05 22:54:36] [INFO] NOP waiting... 2.0s elapsed
+[2025-10-05 22:54:37] [INFO] NOP waiting... 3.0s elapsed
+[2025-10-05 22:54:38] [INFO] NOP waiting... 4.0s elapsed
+[2025-10-05 22:54:39] [INFO] NOP waiting... 5.0s elapsed
+[2025-10-05 22:54:40] [INFO] NOP waiting... 6.0s elapsed
+[2025-10-05 22:54:41] [INFO] NOP waiting... 7.0s elapsed
+[2025-10-05 22:54:42] [INFO] NOP wait complete. Actual duration: 8000.56ms
+[2025-10-05 22:54:42] [PASS] STEP 7.2 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 7.3 Ch1 Voltage OFF</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:42</td><td>2025-10-05 22:54:42</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:42] [STEP 7.3] Ch1 Voltage OFF
+[2025-10-05 22:54:42] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:42] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.1.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:42] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.1.1.0
+[2025-10-05 22:54:42] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:42] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.1.1.0 = STRING: &quot;0.06&quot;
+
+[2025-10-05 22:54:42] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:42] [INFO] [SNMP] _parse_snmp_value() called, output length: 55 chars
+[2025-10-05 22:54:42] [INFO] [SNMP] Parsed value: &#x27;0.06&#x27;
+[2025-10-05 22:54:42] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.1.1.0 -&gt; &#x27;0.06&#x27; (v1/public)
+[2025-10-05 22:54:42] [INFO] [SNMP] Ch1 Voltage OFF: 0.06 (range: 0.0-2.0)
+[2025-10-05 22:54:42] [PASS] STEP 7.3 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 7.4 Ch1 Current OFF</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:42</td><td>2025-10-05 22:54:42</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:42] [STEP 7.4] Ch1 Current OFF
+[2025-10-05 22:54:42] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:42] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.1.2.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:42] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.1.2.0
+[2025-10-05 22:54:42] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:42] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.1.2.0 = STRING: &quot;0.063&quot;
+
+[2025-10-05 22:54:42] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:42] [INFO] [SNMP] _parse_snmp_value() called, output length: 56 chars
+[2025-10-05 22:54:42] [INFO] [SNMP] Parsed value: &#x27;0.063&#x27;
+[2025-10-05 22:54:42] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.1.2.0 -&gt; &#x27;0.063&#x27; (v1/public)
+[2025-10-05 22:54:42] [INFO] [SNMP] Ch1 Current OFF: 0.063 (range: 0.0-0.1)
+[2025-10-05 22:54:42] [PASS] STEP 7.4 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 7.5 Ch2 Voltage OFF</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:42</td><td>2025-10-05 22:54:42</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:42] [STEP 7.5] Ch2 Voltage OFF
+[2025-10-05 22:54:42] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:42] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.2.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:42] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.2.1.0
+[2025-10-05 22:54:42] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:42] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.2.1.0 = STRING: &quot;0.07&quot;
+
+[2025-10-05 22:54:42] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:42] [INFO] [SNMP] _parse_snmp_value() called, output length: 55 chars
+[2025-10-05 22:54:42] [INFO] [SNMP] Parsed value: &#x27;0.07&#x27;
+[2025-10-05 22:54:42] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.2.1.0 -&gt; &#x27;0.07&#x27; (v1/public)
+[2025-10-05 22:54:42] [INFO] [SNMP] Ch2 Voltage OFF: 0.07 (range: 0.0-2.0)
+[2025-10-05 22:54:42] [PASS] STEP 7.5 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 7.6 Ch2 Current OFF</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:42</td><td>2025-10-05 22:54:42</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:42] [STEP 7.6] Ch2 Current OFF
+[2025-10-05 22:54:42] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:42] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.2.2.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:42] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.2.2.0
+[2025-10-05 22:54:42] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:42] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.2.2.0 = STRING: &quot;0.034&quot;
+
+[2025-10-05 22:54:42] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:42] [INFO] [SNMP] _parse_snmp_value() called, output length: 56 chars
+[2025-10-05 22:54:42] [INFO] [SNMP] Parsed value: &#x27;0.034&#x27;
+[2025-10-05 22:54:42] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.2.2.0 -&gt; &#x27;0.034&#x27; (v1/public)
+[2025-10-05 22:54:42] [INFO] [SNMP] Ch2 Current OFF: 0.034 (range: 0.0-0.1)
+[2025-10-05 22:54:42] [PASS] STEP 7.6 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 7.7 Ch3 Voltage OFF</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:42</td><td>2025-10-05 22:54:43</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:42] [STEP 7.7] Ch3 Voltage OFF
+[2025-10-05 22:54:42] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:42] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.3.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:43] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.3.1.0
+[2025-10-05 22:54:43] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:43] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.3.1.0 = STRING: &quot;0.06&quot;
+
+[2025-10-05 22:54:43] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:43] [INFO] [SNMP] _parse_snmp_value() called, output length: 55 chars
+[2025-10-05 22:54:43] [INFO] [SNMP] Parsed value: &#x27;0.06&#x27;
+[2025-10-05 22:54:43] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.3.1.0 -&gt; &#x27;0.06&#x27; (v1/public)
+[2025-10-05 22:54:43] [INFO] [SNMP] Ch3 Voltage OFF: 0.06 (range: 0.0-2.0)
+[2025-10-05 22:54:43] [PASS] STEP 7.7 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 7.8 Ch3 Current OFF</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:43</td><td>2025-10-05 22:54:43</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:43] [STEP 7.8] Ch3 Current OFF
+[2025-10-05 22:54:43] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:43] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.3.2.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:43] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.3.2.0
+[2025-10-05 22:54:43] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:43] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.3.2.0 = STRING: &quot;0.074&quot;
+
+[2025-10-05 22:54:43] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:43] [INFO] [SNMP] _parse_snmp_value() called, output length: 56 chars
+[2025-10-05 22:54:43] [INFO] [SNMP] Parsed value: &#x27;0.074&#x27;
+[2025-10-05 22:54:43] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.3.2.0 -&gt; &#x27;0.074&#x27; (v1/public)
+[2025-10-05 22:54:43] [INFO] [SNMP] Ch3 Current OFF: 0.074 (range: 0.0-0.1)
+[2025-10-05 22:54:43] [PASS] STEP 7.8 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 7.9 Ch4 Voltage OFF</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:43</td><td>2025-10-05 22:54:43</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:43] [STEP 7.9] Ch4 Voltage OFF
+[2025-10-05 22:54:43] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:43] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.4.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:43] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.4.1.0
+[2025-10-05 22:54:43] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:43] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.4.1.0 = STRING: &quot;0.07&quot;
+
+[2025-10-05 22:54:43] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:43] [INFO] [SNMP] _parse_snmp_value() called, output length: 55 chars
+[2025-10-05 22:54:43] [INFO] [SNMP] Parsed value: &#x27;0.07&#x27;
+[2025-10-05 22:54:43] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.4.1.0 -&gt; &#x27;0.07&#x27; (v1/public)
+[2025-10-05 22:54:43] [INFO] [SNMP] Ch4 Voltage OFF: 0.07 (range: 0.0-2.0)
+[2025-10-05 22:54:43] [PASS] STEP 7.9 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 7.10 Ch4 Current OFF</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:43</td><td>2025-10-05 22:54:43</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:43] [STEP 7.10] Ch4 Current OFF
+[2025-10-05 22:54:43] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:43] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.4.2.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:43] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.4.2.0
+[2025-10-05 22:54:43] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:43] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.4.2.0 = STRING: &quot;0.035&quot;
+
+[2025-10-05 22:54:43] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:43] [INFO] [SNMP] _parse_snmp_value() called, output length: 56 chars
+[2025-10-05 22:54:43] [INFO] [SNMP] Parsed value: &#x27;0.035&#x27;
+[2025-10-05 22:54:43] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.4.2.0 -&gt; &#x27;0.035&#x27; (v1/public)
+[2025-10-05 22:54:43] [INFO] [SNMP] Ch4 Current OFF: 0.035 (range: 0.0-0.1)
+[2025-10-05 22:54:43] [PASS] STEP 7.10 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 7.11 Ch5 Voltage OFF</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:43</td><td>2025-10-05 22:54:43</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:43] [STEP 7.11] Ch5 Voltage OFF
+[2025-10-05 22:54:43] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:43] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.5.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:43] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.5.1.0
+[2025-10-05 22:54:43] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:43] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.5.1.0 = STRING: &quot;0.07&quot;
+
+[2025-10-05 22:54:43] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:43] [INFO] [SNMP] _parse_snmp_value() called, output length: 55 chars
+[2025-10-05 22:54:43] [INFO] [SNMP] Parsed value: &#x27;0.07&#x27;
+[2025-10-05 22:54:43] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.5.1.0 -&gt; &#x27;0.07&#x27; (v1/public)
+[2025-10-05 22:54:43] [INFO] [SNMP] Ch5 Voltage OFF: 0.07 (range: 0.0-2.0)
+[2025-10-05 22:54:43] [PASS] STEP 7.11 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 7.12 Ch5 Current OFF</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:43</td><td>2025-10-05 22:54:43</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:43] [STEP 7.12] Ch5 Current OFF
+[2025-10-05 22:54:43] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:43] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.5.2.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:43] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.5.2.0
+[2025-10-05 22:54:43] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:43] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.5.2.0 = STRING: &quot;0.045&quot;
+
+[2025-10-05 22:54:43] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:43] [INFO] [SNMP] _parse_snmp_value() called, output length: 56 chars
+[2025-10-05 22:54:43] [INFO] [SNMP] Parsed value: &#x27;0.045&#x27;
+[2025-10-05 22:54:43] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.5.2.0 -&gt; &#x27;0.045&#x27; (v1/public)
+[2025-10-05 22:54:43] [INFO] [SNMP] Ch5 Current OFF: 0.045 (range: 0.0-0.1)
+[2025-10-05 22:54:43] [PASS] STEP 7.12 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 7.13 Ch6 Voltage OFF</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:43</td><td>2025-10-05 22:54:43</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:43] [STEP 7.13] Ch6 Voltage OFF
+[2025-10-05 22:54:43] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:43] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.6.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:43] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.6.1.0
+[2025-10-05 22:54:43] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:43] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.6.1.0 = STRING: &quot;0.05&quot;
+
+[2025-10-05 22:54:43] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:43] [INFO] [SNMP] _parse_snmp_value() called, output length: 55 chars
+[2025-10-05 22:54:43] [INFO] [SNMP] Parsed value: &#x27;0.05&#x27;
+[2025-10-05 22:54:43] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.6.1.0 -&gt; &#x27;0.05&#x27; (v1/public)
+[2025-10-05 22:54:43] [INFO] [SNMP] Ch6 Voltage OFF: 0.05 (range: 0.0-2.0)
+[2025-10-05 22:54:43] [PASS] STEP 7.13 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 7.14 Ch6 Current OFF</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:43</td><td>2025-10-05 22:54:43</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:43] [STEP 7.14] Ch6 Current OFF
+[2025-10-05 22:54:43] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:43] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.6.2.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:43] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.6.2.0
+[2025-10-05 22:54:43] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:43] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.6.2.0 = STRING: &quot;0.038&quot;
+
+[2025-10-05 22:54:43] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:43] [INFO] [SNMP] _parse_snmp_value() called, output length: 56 chars
+[2025-10-05 22:54:43] [INFO] [SNMP] Parsed value: &#x27;0.038&#x27;
+[2025-10-05 22:54:43] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.6.2.0 -&gt; &#x27;0.038&#x27; (v1/public)
+[2025-10-05 22:54:43] [INFO] [SNMP] Ch6 Current OFF: 0.038 (range: 0.0-0.1)
+[2025-10-05 22:54:43] [PASS] STEP 7.14 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 7.15 Ch7 Voltage OFF</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:43</td><td>2025-10-05 22:54:43</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:43] [STEP 7.15] Ch7 Voltage OFF
+[2025-10-05 22:54:43] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:43] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.7.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:43] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.7.1.0
+[2025-10-05 22:54:43] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:43] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.7.1.0 = STRING: &quot;0.09&quot;
+
+[2025-10-05 22:54:43] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:43] [INFO] [SNMP] _parse_snmp_value() called, output length: 55 chars
+[2025-10-05 22:54:43] [INFO] [SNMP] Parsed value: &#x27;0.09&#x27;
+[2025-10-05 22:54:43] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.7.1.0 -&gt; &#x27;0.09&#x27; (v1/public)
+[2025-10-05 22:54:43] [INFO] [SNMP] Ch7 Voltage OFF: 0.09 (range: 0.0-2.0)
+[2025-10-05 22:54:43] [PASS] STEP 7.15 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 7.16 Ch7 Current OFF</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:43</td><td>2025-10-05 22:54:43</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:43] [STEP 7.16] Ch7 Current OFF
+[2025-10-05 22:54:43] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:43] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.7.2.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:43] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.7.2.0
+[2025-10-05 22:54:43] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:43] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.7.2.0 = STRING: &quot;0.038&quot;
+
+[2025-10-05 22:54:43] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:43] [INFO] [SNMP] _parse_snmp_value() called, output length: 56 chars
+[2025-10-05 22:54:43] [INFO] [SNMP] Parsed value: &#x27;0.038&#x27;
+[2025-10-05 22:54:43] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.7.2.0 -&gt; &#x27;0.038&#x27; (v1/public)
+[2025-10-05 22:54:43] [INFO] [SNMP] Ch7 Current OFF: 0.038 (range: 0.0-0.1)
+[2025-10-05 22:54:43] [PASS] STEP 7.16 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 7.17 Ch8 Voltage OFF</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:43</td><td>2025-10-05 22:54:43</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:43] [STEP 7.17] Ch8 Voltage OFF
+[2025-10-05 22:54:43] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:43] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.8.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:43] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.8.1.0
+[2025-10-05 22:54:43] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:43] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.8.1.0 = STRING: &quot;0.09&quot;
+
+[2025-10-05 22:54:43] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:43] [INFO] [SNMP] _parse_snmp_value() called, output length: 55 chars
+[2025-10-05 22:54:43] [INFO] [SNMP] Parsed value: &#x27;0.09&#x27;
+[2025-10-05 22:54:43] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.8.1.0 -&gt; &#x27;0.09&#x27; (v1/public)
+[2025-10-05 22:54:43] [INFO] [SNMP] Ch8 Voltage OFF: 0.09 (range: 0.0-2.0)
+[2025-10-05 22:54:43] [PASS] STEP 7.17 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 7.18 Ch8 Current OFF</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:43</td><td>2025-10-05 22:54:43</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:43] [STEP 7.18] Ch8 Current OFF
+[2025-10-05 22:54:43] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:43] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.8.2.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:43] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.8.2.0
+[2025-10-05 22:54:43] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:43] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.8.2.0 = STRING: &quot;0.065&quot;
+
+[2025-10-05 22:54:43] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:43] [INFO] [SNMP] _parse_snmp_value() called, output length: 56 chars
+[2025-10-05 22:54:43] [INFO] [SNMP] Parsed value: &#x27;0.065&#x27;
+[2025-10-05 22:54:43] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.8.2.0 -&gt; &#x27;0.065&#x27; (v1/public)
+[2025-10-05 22:54:43] [INFO] [SNMP] Ch8 Current OFF: 0.065 (range: 0.0-0.1)
+[2025-10-05 22:54:43] [PASS] STEP 7.18 completed successfully
+</pre>
+</div>
+</details>
+</div>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 8 HLW8032 Power Monitoring - Outlets ON</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:43</td><td>2025-10-05 22:54:51</td></tr>
+</table>
+<div class='substeps'>
+<h4>Substeps</h4>
+<details>
+<summary>
+<div class='step-title'><div>STEP 8.1 Turn all outlets ON</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:43</td><td>2025-10-05 22:54:43</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:43] [STEP 8.1] Turn all outlets ON
+[2025-10-05 22:54:43] [INFO] [SNMP] Executing set_all_outlets: state=ON
+[2025-10-05 22:54:43] [INFO] [SNMP] Using trigger OID: 1.3.6.1.4.1.19865.2.10.0
+[2025-10-05 22:54:43] [INFO] [SNMP] set_integer() called
+[2025-10-05 22:54:43] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.10.0, Value: 1, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:43] [INFO] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.10.0 i 1
+[2025-10-05 22:54:43] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:43] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.10.0 = INTEGER: 1
+
+[2025-10-05 22:54:43] [INFO] [SNMP] snmpset returned: rc=0, success=True
+[2025-10-05 22:54:43] [INFO] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.10.0 = 1 -&gt; OK (v1/public)
+[2025-10-05 22:54:43] [INFO] [SNMP] Successfully set ALL outlets ON
+[2025-10-05 22:54:43] [PASS] STEP 8.1 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 8.2 Wait 8s for all HLW8032 to be updated</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:43</td><td>2025-10-05 22:54:51</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:43] [STEP 8.2] Wait 8s for all HLW8032 to be updated
+[2025-10-05 22:54:43] [INFO] Starting NOP wait for 8000ms
+[2025-10-05 22:54:44] [INFO] NOP waiting... 1.0s elapsed
+[2025-10-05 22:54:45] [INFO] NOP waiting... 2.0s elapsed
+[2025-10-05 22:54:46] [INFO] NOP waiting... 3.0s elapsed
+[2025-10-05 22:54:47] [INFO] NOP waiting... 4.0s elapsed
+[2025-10-05 22:54:48] [INFO] NOP waiting... 5.0s elapsed
+[2025-10-05 22:54:49] [INFO] NOP waiting... 6.0s elapsed
+[2025-10-05 22:54:50] [INFO] NOP waiting... 7.0s elapsed
+[2025-10-05 22:54:51] [INFO] NOP wait complete. Actual duration: 8000.67ms
+[2025-10-05 22:54:51] [PASS] STEP 8.2 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 8.3 Ch1 Voltage ON</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:51</td><td>2025-10-05 22:54:51</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:51] [STEP 8.3] Ch1 Voltage ON
+[2025-10-05 22:54:51] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:51] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.1.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:51] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.1.1.0
+[2025-10-05 22:54:51] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.1.1.0 = STRING: &quot;233.57&quot;
+
+[2025-10-05 22:54:51] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP] _parse_snmp_value() called, output length: 57 chars
+[2025-10-05 22:54:51] [INFO] [SNMP] Parsed value: &#x27;233.57&#x27;
+[2025-10-05 22:54:51] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.1.1.0 -&gt; &#x27;233.57&#x27; (v1/public)
+[2025-10-05 22:54:51] [INFO] [SNMP] Ch1 Voltage ON: 233.57 (range: 220.0-240.0)
+[2025-10-05 22:54:51] [PASS] STEP 8.3 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 8.4 Ch1 Current ON</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:51</td><td>2025-10-05 22:54:51</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:51] [STEP 8.4] Ch1 Current ON
+[2025-10-05 22:54:51] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:51] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.1.2.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:51] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.1.2.0
+[2025-10-05 22:54:51] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.1.2.0 = STRING: &quot;0.050&quot;
+
+[2025-10-05 22:54:51] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP] _parse_snmp_value() called, output length: 56 chars
+[2025-10-05 22:54:51] [INFO] [SNMP] Parsed value: &#x27;0.050&#x27;
+[2025-10-05 22:54:51] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.1.2.0 -&gt; &#x27;0.050&#x27; (v1/public)
+[2025-10-05 22:54:51] [INFO] [SNMP] Ch1 Current ON: 0.05 (range: 0.0-0.1)
+[2025-10-05 22:54:51] [PASS] STEP 8.4 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 8.5 Ch2 Voltage ON</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:51</td><td>2025-10-05 22:54:51</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:51] [STEP 8.5] Ch2 Voltage ON
+[2025-10-05 22:54:51] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:51] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.2.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:51] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.2.1.0
+[2025-10-05 22:54:51] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.2.1.0 = STRING: &quot;233.75&quot;
+
+[2025-10-05 22:54:51] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP] _parse_snmp_value() called, output length: 57 chars
+[2025-10-05 22:54:51] [INFO] [SNMP] Parsed value: &#x27;233.75&#x27;
+[2025-10-05 22:54:51] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.2.1.0 -&gt; &#x27;233.75&#x27; (v1/public)
+[2025-10-05 22:54:51] [INFO] [SNMP] Ch2 Voltage ON: 233.75 (range: 220.0-240.0)
+[2025-10-05 22:54:51] [PASS] STEP 8.5 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 8.6 Ch2 Current ON</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:51</td><td>2025-10-05 22:54:51</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:51] [STEP 8.6] Ch2 Current ON
+[2025-10-05 22:54:51] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:51] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.2.2.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:51] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.2.2.0
+[2025-10-05 22:54:51] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.2.2.0 = STRING: &quot;0.066&quot;
+
+[2025-10-05 22:54:51] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP] _parse_snmp_value() called, output length: 56 chars
+[2025-10-05 22:54:51] [INFO] [SNMP] Parsed value: &#x27;0.066&#x27;
+[2025-10-05 22:54:51] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.2.2.0 -&gt; &#x27;0.066&#x27; (v1/public)
+[2025-10-05 22:54:51] [INFO] [SNMP] Ch2 Current ON: 0.066 (range: 0.0-0.1)
+[2025-10-05 22:54:51] [PASS] STEP 8.6 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 8.7 Ch3 Voltage ON</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:51</td><td>2025-10-05 22:54:51</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:51] [STEP 8.7] Ch3 Voltage ON
+[2025-10-05 22:54:51] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:51] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.3.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:51] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.3.1.0
+[2025-10-05 22:54:51] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.3.1.0 = STRING: &quot;232.73&quot;
+
+[2025-10-05 22:54:51] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP] _parse_snmp_value() called, output length: 57 chars
+[2025-10-05 22:54:51] [INFO] [SNMP] Parsed value: &#x27;232.73&#x27;
+[2025-10-05 22:54:51] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.3.1.0 -&gt; &#x27;232.73&#x27; (v1/public)
+[2025-10-05 22:54:51] [INFO] [SNMP] Ch3 Voltage ON: 232.73 (range: 220.0-240.0)
+[2025-10-05 22:54:51] [PASS] STEP 8.7 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 8.8 Ch3 Current ON</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:51</td><td>2025-10-05 22:54:51</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:51] [STEP 8.8] Ch3 Current ON
+[2025-10-05 22:54:51] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:51] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.3.2.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:51] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.3.2.0
+[2025-10-05 22:54:51] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.3.2.0 = STRING: &quot;0.073&quot;
+
+[2025-10-05 22:54:51] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP] _parse_snmp_value() called, output length: 56 chars
+[2025-10-05 22:54:51] [INFO] [SNMP] Parsed value: &#x27;0.073&#x27;
+[2025-10-05 22:54:51] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.3.2.0 -&gt; &#x27;0.073&#x27; (v1/public)
+[2025-10-05 22:54:51] [INFO] [SNMP] Ch3 Current ON: 0.073 (range: 0.0-0.1)
+[2025-10-05 22:54:51] [PASS] STEP 8.8 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 8.9 Ch4 Voltage ON</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:51</td><td>2025-10-05 22:54:51</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:51] [STEP 8.9] Ch4 Voltage ON
+[2025-10-05 22:54:51] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:51] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.4.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:51] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.4.1.0
+[2025-10-05 22:54:51] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.4.1.0 = STRING: &quot;231.23&quot;
+
+[2025-10-05 22:54:51] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP] _parse_snmp_value() called, output length: 57 chars
+[2025-10-05 22:54:51] [INFO] [SNMP] Parsed value: &#x27;231.23&#x27;
+[2025-10-05 22:54:51] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.4.1.0 -&gt; &#x27;231.23&#x27; (v1/public)
+[2025-10-05 22:54:51] [INFO] [SNMP] Ch4 Voltage ON: 231.23 (range: 220.0-240.0)
+[2025-10-05 22:54:51] [PASS] STEP 8.9 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 8.10 Ch4 Current ON</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:51</td><td>2025-10-05 22:54:51</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:51] [STEP 8.10] Ch4 Current ON
+[2025-10-05 22:54:51] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:51] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.4.2.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:51] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.4.2.0
+[2025-10-05 22:54:51] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.4.2.0 = STRING: &quot;0.078&quot;
+
+[2025-10-05 22:54:51] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP] _parse_snmp_value() called, output length: 56 chars
+[2025-10-05 22:54:51] [INFO] [SNMP] Parsed value: &#x27;0.078&#x27;
+[2025-10-05 22:54:51] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.4.2.0 -&gt; &#x27;0.078&#x27; (v1/public)
+[2025-10-05 22:54:51] [INFO] [SNMP] Ch4 Current ON: 0.078 (range: 0.0-0.1)
+[2025-10-05 22:54:51] [PASS] STEP 8.10 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 8.11 Ch5 Voltage ON</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:51</td><td>2025-10-05 22:54:51</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:51] [STEP 8.11] Ch5 Voltage ON
+[2025-10-05 22:54:51] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:51] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.5.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:51] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.5.1.0
+[2025-10-05 22:54:51] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.5.1.0 = STRING: &quot;231.44&quot;
+
+[2025-10-05 22:54:51] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP] _parse_snmp_value() called, output length: 57 chars
+[2025-10-05 22:54:51] [INFO] [SNMP] Parsed value: &#x27;231.44&#x27;
+[2025-10-05 22:54:51] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.5.1.0 -&gt; &#x27;231.44&#x27; (v1/public)
+[2025-10-05 22:54:51] [INFO] [SNMP] Ch5 Voltage ON: 231.44 (range: 220.0-240.0)
+[2025-10-05 22:54:51] [PASS] STEP 8.11 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 8.12 Ch5 Current ON</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:51</td><td>2025-10-05 22:54:51</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:51] [STEP 8.12] Ch5 Current ON
+[2025-10-05 22:54:51] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:51] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.5.2.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:51] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.5.2.0
+[2025-10-05 22:54:51] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.5.2.0 = STRING: &quot;0.070&quot;
+
+[2025-10-05 22:54:51] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP] _parse_snmp_value() called, output length: 56 chars
+[2025-10-05 22:54:51] [INFO] [SNMP] Parsed value: &#x27;0.070&#x27;
+[2025-10-05 22:54:51] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.5.2.0 -&gt; &#x27;0.070&#x27; (v1/public)
+[2025-10-05 22:54:51] [INFO] [SNMP] Ch5 Current ON: 0.07 (range: 0.0-0.1)
+[2025-10-05 22:54:51] [PASS] STEP 8.12 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 8.13 Ch6 Voltage ON</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:51</td><td>2025-10-05 22:54:51</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:51] [STEP 8.13] Ch6 Voltage ON
+[2025-10-05 22:54:51] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:51] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.6.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:51] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.6.1.0
+[2025-10-05 22:54:51] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.6.1.0 = STRING: &quot;231.13&quot;
+
+[2025-10-05 22:54:51] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP] _parse_snmp_value() called, output length: 57 chars
+[2025-10-05 22:54:51] [INFO] [SNMP] Parsed value: &#x27;231.13&#x27;
+[2025-10-05 22:54:51] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.6.1.0 -&gt; &#x27;231.13&#x27; (v1/public)
+[2025-10-05 22:54:51] [INFO] [SNMP] Ch6 Voltage ON: 231.13 (range: 220.0-240.0)
+[2025-10-05 22:54:51] [PASS] STEP 8.13 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 8.14 Ch6 Current ON</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:51</td><td>2025-10-05 22:54:51</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:51] [STEP 8.14] Ch6 Current ON
+[2025-10-05 22:54:51] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:51] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.6.2.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:51] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.6.2.0
+[2025-10-05 22:54:51] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.6.2.0 = STRING: &quot;0.074&quot;
+
+[2025-10-05 22:54:51] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP] _parse_snmp_value() called, output length: 56 chars
+[2025-10-05 22:54:51] [INFO] [SNMP] Parsed value: &#x27;0.074&#x27;
+[2025-10-05 22:54:51] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.6.2.0 -&gt; &#x27;0.074&#x27; (v1/public)
+[2025-10-05 22:54:51] [INFO] [SNMP] Ch6 Current ON: 0.074 (range: 0.0-0.1)
+[2025-10-05 22:54:51] [PASS] STEP 8.14 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 8.15 Ch7 Voltage ON</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:51</td><td>2025-10-05 22:54:51</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:51] [STEP 8.15] Ch7 Voltage ON
+[2025-10-05 22:54:51] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:51] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.7.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:51] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.7.1.0
+[2025-10-05 22:54:51] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.7.1.0 = STRING: &quot;232.75&quot;
+
+[2025-10-05 22:54:51] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP] _parse_snmp_value() called, output length: 57 chars
+[2025-10-05 22:54:51] [INFO] [SNMP] Parsed value: &#x27;232.75&#x27;
+[2025-10-05 22:54:51] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.7.1.0 -&gt; &#x27;232.75&#x27; (v1/public)
+[2025-10-05 22:54:51] [INFO] [SNMP] Ch7 Voltage ON: 232.75 (range: 220.0-240.0)
+[2025-10-05 22:54:51] [PASS] STEP 8.15 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 8.16 Ch7 Current ON</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:51</td><td>2025-10-05 22:54:51</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:51] [STEP 8.16] Ch7 Current ON
+[2025-10-05 22:54:51] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:51] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.7.2.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:51] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.7.2.0
+[2025-10-05 22:54:51] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.7.2.0 = STRING: &quot;0.066&quot;
+
+[2025-10-05 22:54:51] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP] _parse_snmp_value() called, output length: 56 chars
+[2025-10-05 22:54:51] [INFO] [SNMP] Parsed value: &#x27;0.066&#x27;
+[2025-10-05 22:54:51] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.7.2.0 -&gt; &#x27;0.066&#x27; (v1/public)
+[2025-10-05 22:54:51] [INFO] [SNMP] Ch7 Current ON: 0.066 (range: 0.0-0.1)
+[2025-10-05 22:54:51] [PASS] STEP 8.16 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 8.17 Ch8 Voltage ON</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:51</td><td>2025-10-05 22:54:51</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:51] [STEP 8.17] Ch8 Voltage ON
+[2025-10-05 22:54:51] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:51] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.8.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:51] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.8.1.0
+[2025-10-05 22:54:51] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.8.1.0 = STRING: &quot;232.60&quot;
+
+[2025-10-05 22:54:51] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP] _parse_snmp_value() called, output length: 57 chars
+[2025-10-05 22:54:51] [INFO] [SNMP] Parsed value: &#x27;232.60&#x27;
+[2025-10-05 22:54:51] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.8.1.0 -&gt; &#x27;232.60&#x27; (v1/public)
+[2025-10-05 22:54:51] [INFO] [SNMP] Ch8 Voltage ON: 232.6 (range: 220.0-240.0)
+[2025-10-05 22:54:51] [PASS] STEP 8.17 completed successfully
+</pre>
+</div>
+</details>
+<details>
+<summary>
+<div class='step-title'><div>STEP 8.18 Ch8 Current ON</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:51</td><td>2025-10-05 22:54:51</td></tr>
+</table>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:51] [STEP 8.18] Ch8 Current ON
+[2025-10-05 22:54:51] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:51] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.5.8.2.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:51] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.5.8.2.0
+[2025-10-05 22:54:51] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.5.8.2.0 = STRING: &quot;0.041&quot;
+
+[2025-10-05 22:54:51] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:51] [INFO] [SNMP] _parse_snmp_value() called, output length: 56 chars
+[2025-10-05 22:54:51] [INFO] [SNMP] Parsed value: &#x27;0.041&#x27;
+[2025-10-05 22:54:51] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.5.8.2.0 -&gt; &#x27;0.041&#x27; (v1/public)
+[2025-10-05 22:54:51] [INFO] [SNMP] Ch8 Current ON: 0.041 (range: 0.0-0.1)
+[2025-10-05 22:54:51] [PASS] STEP 8.18 completed successfully
+</pre>
+</div>
+</details>
+</div>
+</div>
+</details>
+<details class='teardown'>
+<summary>
+<div class='step-title'><div>TEARDOWN 1 Ensure all outputs OFF</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:51</td><td>2025-10-05 22:54:52</td></tr>
+</table>
+<details>
+<summary><div class='step-title'><div>Step Log</div><div class='status unknown'>DETAIL</div></div></summary>
+<div class='content'>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:51] [TEARDOWN 1] Ensure all outputs OFF
+[2025-10-05 22:54:51] [INFO] [SNMP] Executing set_all_outlets: state=OFF
+[2025-10-05 22:54:51] [INFO] [SNMP] Using trigger OID: 1.3.6.1.4.1.19865.2.9.0
+[2025-10-05 22:54:51] [INFO] [SNMP] set_integer() called
+[2025-10-05 22:54:51] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.9.0, Value: 1, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:52] [INFO] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.9.0 i 1
+[2025-10-05 22:54:52] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:52] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.9.0 = INTEGER: 1
+
+[2025-10-05 22:54:52] [INFO] [SNMP] snmpset returned: rc=0, success=True
+[2025-10-05 22:54:52] [INFO] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.9.0 = 1 -&gt; OK (v1/public)
+[2025-10-05 22:54:52] [INFO] [SNMP] Successfully set ALL outlets OFF
+[2025-10-05 22:54:52] [PASS] TEARDOWN 1 completed successfully
+</pre>
+</div>
+</details>
+</div>
+</details>
+<details class='teardown'>
+<summary>
+<div class='step-title'><div>TEARDOWN 2 Final verify all outputs OFF</div><div class='status pass'>PASS</div></div>
+</summary>
+<div class='content'>
+<table>
+<tr><th>Started</th><th>Finished</th></tr>
+<tr><td>2025-10-05 22:54:52</td><td>2025-10-05 22:54:52</td></tr>
+</table>
+<details>
+<summary><div class='step-title'><div>Step Log</div><div class='status unknown'>DETAIL</div></div></summary>
+<div class='content'>
+<h4>Log</h4>
+<pre>
+[2025-10-05 22:54:52] [TEARDOWN 2] Final verify all outputs OFF
+[2025-10-05 22:54:52] [INFO] [SNMP] Executing verify_all_outlets: expected_state=OFF
+[2025-10-05 22:54:52] [INFO] [SNMP] Checking channel 1...
+[2025-10-05 22:54:52] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:52] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:52] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0
+[2025-10-05 22:54:52] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:52] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 0
+
+[2025-10-05 22:54:52] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:52] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:52] [INFO] [SNMP] Parsed value: &#x27;0&#x27;
+[2025-10-05 22:54:52] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 -&gt; &#x27;0&#x27; (v1/public)
+[2025-10-05 22:54:52] [INFO] [SNMP] CH1 state: OFF
+[2025-10-05 22:54:52] [INFO] [SNMP] Checking channel 2...
+[2025-10-05 22:54:52] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:52] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.2.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:52] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0
+[2025-10-05 22:54:52] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:52] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 0
+
+[2025-10-05 22:54:52] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:52] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:52] [INFO] [SNMP] Parsed value: &#x27;0&#x27;
+[2025-10-05 22:54:52] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 -&gt; &#x27;0&#x27; (v1/public)
+[2025-10-05 22:54:52] [INFO] [SNMP] CH2 state: OFF
+[2025-10-05 22:54:52] [INFO] [SNMP] Checking channel 3...
+[2025-10-05 22:54:52] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:52] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.3.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:52] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0
+[2025-10-05 22:54:52] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:52] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 0
+
+[2025-10-05 22:54:52] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:52] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:52] [INFO] [SNMP] Parsed value: &#x27;0&#x27;
+[2025-10-05 22:54:52] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 -&gt; &#x27;0&#x27; (v1/public)
+[2025-10-05 22:54:52] [INFO] [SNMP] CH3 state: OFF
+[2025-10-05 22:54:52] [INFO] [SNMP] Checking channel 4...
+[2025-10-05 22:54:52] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:52] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.4.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:52] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0
+[2025-10-05 22:54:52] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:52] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 0
+
+[2025-10-05 22:54:52] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:52] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:52] [INFO] [SNMP] Parsed value: &#x27;0&#x27;
+[2025-10-05 22:54:52] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 -&gt; &#x27;0&#x27; (v1/public)
+[2025-10-05 22:54:52] [INFO] [SNMP] CH4 state: OFF
+[2025-10-05 22:54:52] [INFO] [SNMP] Checking channel 5...
+[2025-10-05 22:54:52] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:52] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.5.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:52] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0
+[2025-10-05 22:54:52] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:52] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 0
+
+[2025-10-05 22:54:52] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:52] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:52] [INFO] [SNMP] Parsed value: &#x27;0&#x27;
+[2025-10-05 22:54:52] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 -&gt; &#x27;0&#x27; (v1/public)
+[2025-10-05 22:54:52] [INFO] [SNMP] CH5 state: OFF
+[2025-10-05 22:54:52] [INFO] [SNMP] Checking channel 6...
+[2025-10-05 22:54:52] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:52] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.6.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:52] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0
+[2025-10-05 22:54:52] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:52] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 0
+
+[2025-10-05 22:54:52] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:52] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:52] [INFO] [SNMP] Parsed value: &#x27;0&#x27;
+[2025-10-05 22:54:52] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 -&gt; &#x27;0&#x27; (v1/public)
+[2025-10-05 22:54:52] [INFO] [SNMP] CH6 state: OFF
+[2025-10-05 22:54:52] [INFO] [SNMP] Checking channel 7...
+[2025-10-05 22:54:52] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:52] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.7.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:52] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0
+[2025-10-05 22:54:52] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:52] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 0
+
+[2025-10-05 22:54:52] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:52] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:52] [INFO] [SNMP] Parsed value: &#x27;0&#x27;
+[2025-10-05 22:54:52] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 -&gt; &#x27;0&#x27; (v1/public)
+[2025-10-05 22:54:52] [INFO] [SNMP] CH7 state: OFF
+[2025-10-05 22:54:52] [INFO] [SNMP] Checking channel 8...
+[2025-10-05 22:54:52] [INFO] [SNMP] get_value() called
+[2025-10-05 22:54:52] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.8.0, Community: public, Timeout: 3.0s
+[2025-10-05 22:54:52] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0
+[2025-10-05 22:54:52] [INFO] [SNMP] rc=0
+[2025-10-05 22:54:52] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 0
+
+[2025-10-05 22:54:52] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 22:54:52] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 22:54:52] [INFO] [SNMP] Parsed value: &#x27;0&#x27;
+[2025-10-05 22:54:52] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 -&gt; &#x27;0&#x27; (v1/public)
+[2025-10-05 22:54:52] [INFO] [SNMP] CH8 state: OFF
+[2025-10-05 22:54:52] [INFO] [SNMP] All 8 channels verified: OFF
+[2025-10-05 22:54:52] [PASS] TEARDOWN 2 completed successfully
+[2025-10-05 22:54:52] ===== tc_network_snmp: RESULT: PASS =====
+</pre>
+</div>
+</details>
 </div>
 </details>
 </section>

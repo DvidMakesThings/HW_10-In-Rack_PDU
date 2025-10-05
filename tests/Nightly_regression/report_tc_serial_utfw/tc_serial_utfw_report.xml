@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ENERGIS Functional Test" tests="88" failures="0" skipped="0" time="0.0" session_id="344987de">
+  <testcase classname="UTFW" name="PRE-STEP 1 Reboot device via UART" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1 Multi-action step with 2 sub-steps" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.1 Send HELP command" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.2 Validate HELP tokens present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2 Send SYSINFO and validate all parameters" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3 Test Network configuration change via Serial" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.1 Change Network parameter to 192.168.0.72, 255.255.0.0, 10.10.10.1, 1.1.1.1" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.2 Verify Network parameter change to 192.168.0.72" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.3 Verify Network parameter change to 10.10.10.1" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.4 Verify Network parameter change to 255.255.0.0" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.5 Verify Network parameter change to 1.1.1.1" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.6 Ping new IP 192.168.0.72" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.7 Revert Network parameters to 192.168.0.11, 255.255.255.0, 192.168.0.1, 8.8.8.8" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4 Test outlet control via Serial and verify with SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.1 Set Channel 1 to ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.2 Verify Channel 1 is ON by Serial" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.3 Validate Serial reports CH1 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.4 Verify CH1 ON via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.5 Set Channel 1 to OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.6 Verify Channel 1 is OFF by Serial" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.7 Validate Serial reports CH1 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.8 Verify CH1 OFF via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.9 Set Channel 2 to ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.10 Verify Channel 2 is ON by Serial" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.11 Validate Serial reports CH2 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.12 Verify CH2 ON via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.13 Set Channel 2 to OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.14 Verify Channel 2 is OFF by Serial" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.15 Validate Serial reports CH2 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.16 Verify CH2 OFF via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.17 Set Channel 3 to ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.18 Verify Channel 3 is ON by Serial" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.19 Validate Serial reports CH3 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.20 Verify CH3 ON via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.21 Set Channel 3 to OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.22 Verify Channel 3 is OFF by Serial" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.23 Validate Serial reports CH3 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.24 Verify CH3 OFF via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.25 Set Channel 4 to ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.26 Verify Channel 4 is ON by Serial" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.27 Validate Serial reports CH4 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.28 Verify CH4 ON via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.29 Set Channel 4 to OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.30 Verify Channel 4 is OFF by Serial" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.31 Validate Serial reports CH4 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.32 Verify CH4 OFF via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.33 Set Channel 5 to ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.34 Verify Channel 5 is ON by Serial" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.35 Validate Serial reports CH5 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.36 Verify CH5 ON via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.37 Set Channel 5 to OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.38 Verify Channel 5 is OFF by Serial" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.39 Validate Serial reports CH5 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.40 Verify CH5 OFF via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.41 Set Channel 6 to ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.42 Verify Channel 6 is ON by Serial" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.43 Validate Serial reports CH6 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.44 Verify CH6 ON via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.45 Set Channel 6 to OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.46 Verify Channel 6 is OFF by Serial" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.47 Validate Serial reports CH6 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.48 Verify CH6 OFF via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.49 Set Channel 7 to ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.50 Verify Channel 7 is ON by Serial" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.51 Validate Serial reports CH7 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.52 Verify CH7 ON via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.53 Set Channel 7 to OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.54 Verify Channel 7 is OFF by Serial" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.55 Validate Serial reports CH7 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.56 Verify CH7 OFF via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.57 Set Channel 8 to ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.58 Verify Channel 8 is ON by Serial" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.59 Validate Serial reports CH8 ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.60 Verify CH8 ON via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.61 Set Channel 8 to OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.62 Verify Channel 8 is OFF by Serial" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.63 Validate Serial reports CH8 OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.64 Verify CH8 OFF via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5 Test ALL Outlets via Serial and verify with SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5.1 Set All Channels to ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5.2 Read All Channels ON state by Serial" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5.3 Verify ALL ON via SNMP (1..8 == 1)" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5.4 Set All Channels to OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5.5 Read All Channels ON state by Serial" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5.6 Verify ALL OFF via SNMP (1..8 == 0)" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 6 Reset to factory settings (RFS) and verify data" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="TEARDOWN 1 Ensure all outputs OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="TEARDOWN 2 Final verify all outputs OFF" time="0.0">
+  </testcase>
+</testsuite>

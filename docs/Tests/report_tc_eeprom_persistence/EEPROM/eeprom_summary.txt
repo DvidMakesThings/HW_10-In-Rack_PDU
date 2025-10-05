@@ -1,0 +1,28 @@
+EEPROM Parse Summary – Analyze EEPROM dump after all tests
+Source lines parsed: 4096
+Address span: 0x0000 – 0xFFFF (65536 bytes)
+Dump (raw)   : eeprom_dump_raw.log
+Dump (ascii) : eeprom_dump_ascii.log
+Checks file  : eeprom_checks.json
+
+-- Findings --
+[OK] Device Serial @ 0x0000 len=15
+    ASCII: SN-369366060325
+[OK] FW Version @ 0x0010 len=5
+    ASCII: 1.0.0
+[OK] Relay Defaults (8x bytes) @ 0x0200 len=8
+    HEX  : 00 00 00 00 00 00 00 00
+[OK] Network Info (first 4 bytes) @ 0x0300 len=4
+    HEX  : C0 A8 00 0B
+[OK] Device Name @ 0x2000 len=13
+    ASCII: ENERGIS-1.0.0
+[OK] Device Location @ 0x2020 len=8
+    ASCII: Location
+[OK] Magic A55A Present @ 0xFFF0 len=16
+    HEX  : FF FF FF FF FF FF FF FF FF FF FF FF FF FF 5A A5
+
+-- Extracted --
+Serial  : SN-369366060325
+Firmware: 1.0.0
+Name    : ENERGIS-1.0.0
+Location: Location
