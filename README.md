@@ -195,12 +195,38 @@ The ENERGIS now includes a lightweight embedded Web-UI for configuration and con
 
 ## Tests
 
-Automated hardware and firmware tests are now part of ENERGIS.  
-Reports are available on GitHub Pages:
+Automated hardware and firmware validation is now integrated into **ENERGIS**.  
+Test reports are published through **GitHub Pages** for transparent, reproducible verification.
 
+All tests are executed using my **Universal Test Framework (UTFW)**, a custom Python-based automation framework, developed for hardware and firmware validation.  
+UTFW provides deterministic test sequencing, automated setup and teardown, structured logging, analysis, and unified HTML/XML reporting.  
+The nightly regression runs every individual test together to verify overall system stability and catch integration issues early.
+
+---
+
+### Nightly Regression Suite
+Comprehensive end-to-end system test covering:
+- UART communication  
+- SNMP protocol  
+- Web interface (PCAP)  
+- EEPROM persistence  
+- Power monitoring (HLW8032)  
+- ADC/thermal sanity checks  
+- Relay stress switching  
+
+**[Latest Regression Report](https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Tests/Nightly_regression/test_suite_Nightly_Tests_20251005_232014.html)**
+
+---
+
+### Individual Test Reports
 - [Serial Communication Test Report (HTML)](https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Tests/report_tc_serial_utfw/tc_serial_utfw_report.html)
 - [Network SNMP Test Report (HTML)](https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Tests/report_tc_network_snmp/tc_network_snmp_report.html)
-- [Ethernet Test Report (HTML)](https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Tests/report_tc_network_eth/tc_network_eth_report.html)
+- [Network PCAP Analysis Report (HTML)](https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Tests/report_tc_network_pcap/tc_network_pcap_report.html)
+- [PCAP Capture Test Report (HTML)](https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Tests/report_tc_pcap_capture/tc_pcap_capture_report.html)
+- [Power Monitoring Test Report (HLW8032) (HTML)](https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Tests/report_tc_power_hlw8032/tc_power_hlw8032_report.html)
+- [EEPROM Persistence Test Report (HTML)](https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Tests/report_tc_eeprom_persistence/tc_eeprom_persistence_report.html)
+- [Sanity Check Test Report (HTML)](https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Tests/report_tc_sanity_check/tc_sanity_check_report.html)
+- [Relay Stress Switching Test Report (HTML)](https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Tests/report_tc_stress_switching/tc_stress_switching_report.html)
 
 ---
 
