@@ -1,0 +1,497 @@
+[2025-10-05 23:16:28] ===== tc_pcap_capture: START =====
+[2025-10-05 23:16:28] [INFO] Test Session ID: 878c94fc
+[2025-10-05 23:16:28] [PRE-STEP 1] Reboot device via UART
+[2025-10-05 23:16:28] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:16:28] [INFO] [SERIAL]   port=COM11, command='REBOOT', baudrate=115200, timeout=2.0s
+[2025-10-05 23:16:28] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:16:28] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:16:28] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:16:28] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:16:28] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:16:28] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:16:28] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:16:28] [INFO] [SERIAL TX] Sending command: 'REBOOT'
+[2025-10-05 23:16:28] [INFO] [SERIAL TX] Payload length: 8 bytes (including CR+LF)
+[2025-10-05 23:16:28] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:16:28] [INFO]   0000  52 45 42 4F 4F 54 0D 0A                           |REBOOT..|
+[2025-10-05 23:16:28] [INFO] [SERIAL TX] Wrote 8 bytes to port
+[2025-10-05 23:16:28] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:16:28] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:16:28] [INFO] [SERIAL RX] Chunk #1: received 32 bytes (elapsed: 0.135s, total: 32 bytes)
+[2025-10-05 23:16:28] [ERROR] [SERIAL ERROR] Exception during send_command:
+[2025-10-05 23:16:28] [ERROR] [SERIAL ERROR]   Type: SerialException
+[2025-10-05 23:16:28] [ERROR] [SERIAL ERROR]   Message: ClearCommError failed (PermissionError(13, 'The device does not recognize the command.', None, 22))
+[2025-10-05 23:16:28] [ERROR] [SERIAL ERROR]   Port: COM11, Command: 'REBOOT'
+[2025-10-05 23:16:28] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:16:28] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:16:28] [INFO] [SERIAL] wait_for_reboot_and_ready() called
+[2025-10-05 23:16:28] [INFO] [SERIAL]   port=COM11, ready_token='SYSTEM READY', baudrate=115200, timeout=15.0s
+[2025-10-05 23:16:28] [INFO] [SERIAL] Waiting 200ms for device to start rebooting...
+[2025-10-05 23:16:28] [INFO] [SERIAL] Connection attempt #1 (remaining timeout: 14.8s)
+[2025-10-05 23:16:28] [INFO] [SERIAL] Connection attempt #1 failed: SerialException: could not open port 'COM11': FileNotFoundError(2, 'The system cannot find the file specified.', None, 2)
+[2025-10-05 23:16:28] [INFO] [SERIAL] Waiting 200ms before next attempt...
+[2025-10-05 23:16:28] [INFO] [SERIAL] Connection attempt #2 (remaining timeout: 14.6s)
+[2025-10-05 23:16:28] [INFO] [SERIAL] Connection attempt #2 failed: SerialException: could not open port 'COM11': FileNotFoundError(2, 'The system cannot find the file specified.', None, 2)
+[2025-10-05 23:16:28] [INFO] [SERIAL] Waiting 200ms before next attempt...
+[2025-10-05 23:16:29] [INFO] [SERIAL] Connection attempt #3 (remaining timeout: 14.4s)
+[2025-10-05 23:16:29] [INFO] [SERIAL] Connection attempt #3 failed: SerialException: could not open port 'COM11': FileNotFoundError(2, 'The system cannot find the file specified.', None, 2)
+[2025-10-05 23:16:29] [INFO] [SERIAL] Waiting 200ms before next attempt...
+[2025-10-05 23:16:29] [INFO] [SERIAL] Connection attempt #4 (remaining timeout: 14.2s)
+[2025-10-05 23:16:29] [INFO] [SERIAL] Connection attempt #4 failed: SerialException: could not open port 'COM11': FileNotFoundError(2, 'The system cannot find the file specified.', None, 2)
+[2025-10-05 23:16:29] [INFO] [SERIAL] Waiting 200ms before next attempt...
+[2025-10-05 23:16:29] [INFO] [SERIAL] Connection attempt #5 (remaining timeout: 14.0s)
+[2025-10-05 23:16:29] [INFO] [SERIAL] Connection attempt #5 failed: SerialException: could not open port 'COM11': FileNotFoundError(2, 'The system cannot find the file specified.', None, 2)
+[2025-10-05 23:16:29] [INFO] [SERIAL] Waiting 200ms before next attempt...
+[2025-10-05 23:16:29] [INFO] [SERIAL] Connection attempt #6 (remaining timeout: 13.8s)
+[2025-10-05 23:16:29] [INFO] [SERIAL] Connection attempt #6 failed: SerialException: could not open port 'COM11': FileNotFoundError(2, 'The system cannot find the file specified.', None, 2)
+[2025-10-05 23:16:29] [INFO] [SERIAL] Waiting 200ms before next attempt...
+[2025-10-05 23:16:29] [INFO] [SERIAL] Connection attempt #7 (remaining timeout: 13.6s)
+[2025-10-05 23:16:29] [INFO] [SERIAL] Connected to port COM11 on attempt #7
+[2025-10-05 23:16:29] [INFO] [SERIAL RX] Monitoring for ready token: 'SYSTEM READY'
+[2025-10-05 23:16:32] [INFO] [SERIAL RX] Chunk #1: 393 bytes
+[2025-10-05 23:16:32] [INFO] [SERIAL RX] Content: [INFO] Core 0 initializing...<CR><LF>
+	[ECHO] Device Serial : SN-369366060325<CR><LF>
+	[ECHO] Firmware Ver  : 1.0.0<CR><LF>
+	[ECHO] Core voltage  : 1.15 V (vsel = 1)<CR><LF>
+	[ECHO] Clock Sources :<CR><LF>
+	[ECHO] 	SYS: 200000000 Hz (200 MHz)<CR><LF>
+	[ECHO] 	USB: 48000000 Hz (48 MHz)<CR><LF>
+	[ECHO] 	PER: 48000000 Hz (48 MHz)<CR><LF>
+	[ECHO] 	ADC: 48000000 Hz (48 MHz)<CR><LF>
+[INFO] ADC initializing<CR><LF>
+VREG register: 0x000010D1<CR><LF>
+[INFO] I2C scanning...<CR><LF>
+
+[2025-10-05 23:16:32] [INFO] [SERIAL RX] Chunk #2: 64 bytes
+[2025-10-05 23:16:32] [INFO] [SERIAL RX] Content: [INFO] EEPROM initializing...<CR><LF>
+[INFO] MCP23017 initializing...<CR><LF>
+
+[2025-10-05 23:16:35] [INFO] [SERIAL RX] Chunk #3: 162 bytes
+[2025-10-05 23:16:35] [INFO] [SERIAL RX] Content: [INFO] Headless mode, skipping display initialization<CR><LF>
+[INFO] Initializing HLW8032...<CR><LF>
+[INFO] Initializing buttons...<CR><LF>
+[INFO] Loaded network config from EEPROM.<CR><LF>
+
+[2025-10-05 23:16:36] [INFO] [SERIAL RX] Chunk #4: 456 bytes
+[2025-10-05 23:16:36] [INFO] [SERIAL RX] Content: [INFO] W5500 version: 0x04<CR><LF>
+[INFO] W5500 PHY link is up<CR><LF>
+	[ECHO] =============================================<CR><LF>
+	[ECHO]  W5500 network configuration : static<CR><LF>
+	[ECHO]  MAC         : 00:08:DC:BE:EF:91<CR><LF>
+	[ECHO]  IP          : 192.168.0.11<CR><LF>
+	[ECHO]  Subnet Mask : 255.255.255.0<CR><LF>
+	[ECHO]  Gateway     : 192.168.0.1<CR><LF>
+	[ECHO]  DNS         : 8.8.8.8<CR><LF>
+	[ECHO] =============================================<CR><LF>
+<CR><LF>
+SYSTEM READY<CR><LF>
+[INFO] - SNMP : Start SNMP Agent Daemon<CR><LF>
+
+[2025-10-05 23:16:36] [INFO] [SERIAL] Ready token 'SYSTEM READY' detected!
+[2025-10-05 23:16:36] [INFO] [SERIAL RX] Total response: 1075 bytes in 4 chunks
+[2025-10-05 23:16:36] [INFO] [SERIAL RX] Elapsed time: 8.302s
+[2025-10-05 23:16:36] [INFO] [SERIAL RX] Full response:
+[2025-10-05 23:16:36] [INFO] [INFO] Core 0 initializing...\r\n
+	[ECHO] Device Serial : SN-369366060325\r\n
+	[ECHO] Firmware Ver  : 1.0.0\r\n
+	[ECHO] Core voltage  : 1.15 V (vsel = 1)\r\n
+	[ECHO] Clock Sources :\r\n
+	[ECHO] 	SYS: 200000000 Hz (200 MHz)\r\n
+	[ECHO] 	USB: 48000000 Hz (48 MHz)\r\n
+	[ECHO] 	PER: 48000000 Hz (48 MHz)\r\n
+	[ECHO] 	ADC: 48000000 Hz (48 MHz)\r\n
+[INFO] ADC initializing\r\n
+VREG register: 0x000010D1\r\n
+[INFO] I2C scanning...\r\n
+[INFO] EEPROM initializing...\r\n
+[INFO] MCP23017 initializing...\r\n
+[INFO] Headless mode, skipping display initialization\r\n
+[INFO] Initializing HLW8032...\r\n
+[INFO] Initializing buttons...\r\n
+[INFO] Loaded network config from EEPROM.\r\n
+[INFO] W5500 version: 0x04\r\n
+[INFO] W5500 PHY link is up\r\n
+	[ECHO] =============================================\r\n
+	[ECHO]  W5500 network configuration : static\r\n
+	[ECHO]  MAC         : 00:08:DC:BE:EF:91\r\n
+	[ECHO]  IP          : 192.168.0.11\r\n
+	[ECHO]  Subnet Mask : 255.255.255.0\r\n
+	[ECHO]  Gateway     : 192.168.0.1\r\n
+	[ECHO]  DNS         : 8.8.8.8\r\n
+	[ECHO] =============================================\r\n
+\r\n
+SYSTEM READY\r\n
+[INFO] - SNMP : Start SNMP Agent Daemon\r\n
+
+[2025-10-05 23:16:36] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:16:36] [INFO]   0000  5B 49 4E 46 4F 5D 20 43 6F 72 65 20 30 20 69 6E   |[INFO] Core 0 in|
+  0010  69 74 69 61 6C 69 7A 69 6E 67 2E 2E 2E 0D 0A 09   |itializing......|
+  0020  5B 45 43 48 4F 5D 20 44 65 76 69 63 65 20 53 65   |[ECHO] Device Se|
+  0030  72 69 61 6C 20 3A 20 53 4E 2D 33 36 39 33 36 36   |rial : SN-369366|
+  0040  30 36 30 33 32 35 0D 0A 09 5B 45 43 48 4F 5D 20   |060325...[ECHO] |
+  0050  46 69 72 6D 77 61 72 65 20 56 65 72 20 20 3A 20   |Firmware Ver  : |
+  0060  31 2E 30 2E 30 0D 0A 09 5B 45 43 48 4F 5D 20 43   |1.0.0...[ECHO] C|
+  0070  6F 72 65 20 76 6F 6C 74 61 67 65 20 20 3A 20 31   |ore voltage  : 1|
+  0080  2E 31 35 20 56 20 28 76 73 65 6C 20 3D 20 31 29   |.15 V (vsel = 1)|
+  0090  0D 0A 09 5B 45 43 48 4F 5D 20 43 6C 6F 63 6B 20   |...[ECHO] Clock |
+  00A0  53 6F 75 72 63 65 73 20 3A 0D 0A 09 5B 45 43 48   |Sources :...[ECH|
+  00B0  4F 5D 20 09 53 59 53 3A 20 32 30 30 30 30 30 30   |O] .SYS: 2000000|
+  00C0  30 30 20 48 7A 20 28 32 30 30 20 4D 48 7A 29 0D   |00 Hz (200 MHz).|
+  00D0  0A 09 5B 45 43 48 4F 5D 20 09 55 53 42 3A 20 34   |..[ECHO] .USB: 4|
+  00E0  38 30 30 30 30 30 30 20 48 7A 20 28 34 38 20 4D   |8000000 Hz (48 M|
+  00F0  48 7A 29 0D 0A 09 5B 45 43 48 4F 5D 20 09 50 45   |Hz)...[ECHO] .PE|
+  0100  52 3A 20 34 38 30 30 30 30 30 30 20 48 7A 20 28   |R: 48000000 Hz (|
+  0110  34 38 20 4D 48 7A 29 0D 0A 09 5B 45 43 48 4F 5D   |48 MHz)...[ECHO]|
+  0120  20 09 41 44 43 3A 20 34 38 30 30 30 30 30 30 20   | .ADC: 48000000 |
+  0130  48 7A 20 28 34 38 20 4D 48 7A 29 0D 0A 5B 49 4E   |Hz (48 MHz)..[IN|
+  0140  46 4F 5D 20 41 44 43 20 69 6E 69 74 69 61 6C 69   |FO] ADC initiali|
+  0150  7A 69 6E 67 0D 0A 56 52 45 47 20 72 65 67 69 73   |zing..VREG regis|
+  0160  74 65 72 3A 20 30 78 30 30 30 30 31 30 44 31 0D   |ter: 0x000010D1.|
+  0170  0A 5B 49 4E 46 4F 5D 20 49 32 43 20 73 63 61 6E   |.[INFO] I2C scan|
+  0180  6E 69 6E 67 2E 2E 2E 0D 0A 5B 49 4E 46 4F 5D 20   |ning.....[INFO] |
+  0190  45 45 50 52 4F 4D 20 69 6E 69 74 69 61 6C 69 7A   |EEPROM initializ|
+  01A0  69 6E 67 2E 2E 2E 0D 0A 5B 49 4E 46 4F 5D 20 4D   |ing.....[INFO] M|
+  01B0  43 50 32 33 30 31 37 20 69 6E 69 74 69 61 6C 69   |CP23017 initiali|
+  01C0  7A 69 6E 67 2E 2E 2E 0D 0A 5B 49 4E 46 4F 5D 20   |zing.....[INFO] |
+  01D0  48 65 61 64 6C 65 73 73 20 6D 6F 64 65 2C 20 73   |Headless mode, s|
+  01E0  6B 69 70 70 69 6E 67 20 64 69 73 70 6C 61 79 20   |kipping display |
+  01F0  69 6E 69 74 69 61 6C 69 7A 61 74 69 6F 6E 0D 0A   |initialization..|
+  0200  5B 49 4E 46 4F 5D 20 49 6E 69 74 69 61 6C 69 7A   |[INFO] Initializ|
+  0210  69 6E 67 20 48 4C 57 38 30 33 32 2E 2E 2E 0D 0A   |ing HLW8032.....|
+  0220  5B 49 4E 46 4F 5D 20 49 6E 69 74 69 61 6C 69 7A   |[INFO] Initializ|
+  0230  69 6E 67 20 62 75 74 74 6F 6E 73 2E 2E 2E 0D 0A   |ing buttons.....|
+  0240  5B 49 4E 46 4F 5D 20 4C 6F 61 64 65 64 20 6E 65   |[INFO] Loaded ne|
+  0250  74 77 6F 72 6B 20 63 6F 6E 66 69 67 20 66 72 6F   |twork config fro|
+  0260  6D 20 45 45 50 52 4F 4D 2E 0D 0A 5B 49 4E 46 4F   |m EEPROM...[INFO|
+  0270  5D 20 57 35 35 30 30 20 76 65 72 73 69 6F 6E 3A   |] W5500 version:|
+  0280  20 30 78 30 34 0D 0A 5B 49 4E 46 4F 5D 20 57 35   | 0x04..[INFO] W5|
+  0290  35 30 30 20 50 48 59 20 6C 69 6E 6B 20 69 73 20   |500 PHY link is |
+  02A0  75 70 0D 0A 09 5B 45 43 48 4F 5D 20 3D 3D 3D 3D   |up...[ECHO] ====|
+  02B0  3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D   |================|
+  02C0  3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D   |================|
+  02D0  3D 3D 3D 3D 3D 3D 3D 3D 3D 0D 0A 09 5B 45 43 48   |=========...[ECH|
+  02E0  4F 5D 20 20 57 35 35 30 30 20 6E 65 74 77 6F 72   |O]  W5500 networ|
+  02F0  6B 20 63 6F 6E 66 69 67 75 72 61 74 69 6F 6E 20   |k configuration |
+  0300  3A 20 73 74 61 74 69 63 0D 0A 09 5B 45 43 48 4F   |: static...[ECHO|
+  0310  5D 20 20 4D 41 43 20 20 20 20 20 20 20 20 20 3A   |]  MAC         :|
+  0320  20 30 30 3A 30 38 3A 44 43 3A 42 45 3A 45 46 3A   | 00:08:DC:BE:EF:|
+  0330  39 31 0D 0A 09 5B 45 43 48 4F 5D 20 20 49 50 20   |91...[ECHO]  IP |
+  0340  20 20 20 20 20 20 20 20 20 3A 20 31 39 32 2E 31   |         : 192.1|
+  0350  36 38 2E 30 2E 31 31 0D 0A 09 5B 45 43 48 4F 5D   |68.0.11...[ECHO]|
+  0360  20 20 53 75 62 6E 65 74 20 4D 61 73 6B 20 3A 20   |  Subnet Mask : |
+  0370  32 35 35 2E 32 35 35 2E 32 35 35 2E 30 0D 0A 09   |255.255.255.0...|
+  0380  5B 45 43 48 4F 5D 20 20 47 61 74 65 77 61 79 20   |[ECHO]  Gateway |
+  0390  20 20 20 20 3A 20 31 39 32 2E 31 36 38 2E 30 2E   |    : 192.168.0.|
+  03A0  31 0D 0A 09 5B 45 43 48 4F 5D 20 20 44 4E 53 20   |1...[ECHO]  DNS |
+  03B0  20 20 20 20 20 20 20 20 3A 20 38 2E 38 2E 38 2E   |        : 8.8.8.|
+  03C0  38 0D 0A 09 5B 45 43 48 4F 5D 20 3D 3D 3D 3D 3D   |8...[ECHO] =====|
+  03D0  3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D   |================|
+  03E0  3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D   |================|
+  03F0  3D 3D 3D 3D 3D 3D 3D 3D 0D 0A 0D 0A 53 59 53 54   |========....SYST|
+  0400  45 4D 20 52 45 41 44 59 0D 0A 5B 49 4E 46 4F 5D   |EM READY..[INFO]|
+  0410  20 2D 20 53 4E 4D 50 20 3A 20 53 74 61 72 74 20   | - SNMP : Start |
+  0420  53 4E 4D 50 20 41 67 65 6E 74 20 44 61 65 6D 6F   |SNMP Agent Daemo|
+  0430  6E 0D 0A                                          |n..|
+[2025-10-05 23:16:36] [INFO] [SERIAL] Device ready! Returning True
+[2025-10-05 23:16:36] [INFO] [SERIAL] Closed port COM11
+[2025-10-05 23:16:36] [PASS] PRE-STEP 1 completed successfully
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE] _dumpcap_resolve_interface() called
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE]   requested=lo
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE] _dumpcap_list_interfaces() called
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE]   dumpcap_exe=C:\Program Files\Wireshark\dumpcap.exe
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE]   cwd=G:\_GitHub\HW_10-In-Rack_PDU\tests
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE] dumpcap -D returned 9 interfaces
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE]   1. \Device\NPF_{CED0C9EE-D3D8-4AF6-A642-236D14517B9D} (Bluetooth Network Connection)
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE]   2. \Device\NPF_{50788C95-4726-4446-BEF9-1BDAD79385DF} (Wi-Fi)
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE]   3. \Device\NPF_{F7EF8ACA-533A-4582-A44C-AA6FD3B30B80} (Local Area Connection* 10)
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE]   4. \Device\NPF_{D62A827E-C7BA-46D2-ACE5-772C43BD80F7} (Local Area Connection* 9)
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE]   5. \Device\NPF_{FCE23F70-F218-4EDE-B551-6FCAD6766D9B} (Ethernet 4)
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE]   6. \Device\NPF_{1342939B-DAE3-4B54-A305-87408E83C962} (Ethernet 2)
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE]   7. \Device\NPF_{8FBED501-71F5-4B70-96B8-C2464A93CE8E} (Ethernet)
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE]   8. \Device\NPF_{7CB6D269-0786-7E57-C13F-6CDFFF02FB02} (Eddie)
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE]   9. \Device\NPF_Loopback (Adapter for loopback traffic capture)
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE] Windows loopback alias detected, searching for loopback interface...
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE] Resolved to loopback: idx=9, desc=Adapter for loopback traffic capture
+[2025-10-05 23:16:38] [STEP 1] Ping 127.0.0.1
+[2025-10-05 23:16:38] [INFO] [PING] mode=BG target=127.0.0.1 count=0 timeout_s=1.0 interval_s=0.2 duration_s=6.0
+[2025-10-05 23:16:38] [INFO] [PING] cmd=C:\Windows\system32\ping.exe -t -w 1000 127.0.0.1
+[2025-10-05 23:16:38] [INFO] [PING] started background ping pid=2336052
+[2025-10-05 23:16:38] [PASS] STEP 1 completed successfully
+[2025-10-05 23:16:38] [STEP 2] Capture PCAP
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE] tag=GTUVVY dumpcap -D:
+1. \Device\NPF_{CED0C9EE-D3D8-4AF6-A642-236D14517B9D} (Bluetooth Network Connection)
+2. \Device\NPF_{50788C95-4726-4446-BEF9-1BDAD79385DF} (Wi-Fi)
+3. \Device\NPF_{F7EF8ACA-533A-4582-A44C-AA6FD3B30B80} (Local Area Connection* 10)
+4. \Device\NPF_{D62A827E-C7BA-46D2-ACE5-772C43BD80F7} (Local Area Connection* 9)
+5. \Device\NPF_{FCE23F70-F218-4EDE-B551-6FCAD6766D9B} (Ethernet 4)
+6. \Device\NPF_{1342939B-DAE3-4B54-A305-87408E83C962} (Ethernet 2)
+7. \Device\NPF_{8FBED501-71F5-4B70-96B8-C2464A93CE8E} (Ethernet)
+8. \Device\NPF_{7CB6D269-0786-7E57-C13F-6CDFFF02FB02} (Eddie)
+9. \Device\NPF_Loopback (Adapter for loopback traffic capture)
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE] tag=GTUVVY resolved interface 'lo' -> '9'
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE] tag=GTUVVY validating BPF filter: icmp and host 127.0.0.1
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE] tag=GTUVVY tool=dumpcap exe=C:\Program Files\Wireshark\dumpcap.exe
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE] tag=GTUVVY interface='lo' promiscuous=False snaplen=256 duration_s=5 packet_count=None file_format=pcap ring_files=None ring_megabytes=None
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE] tag=GTUVVY bpf='icmp and host 127.0.0.1'
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE] tag=GTUVVY output_path=G:\_GitHub\HW_10-In-Rack_PDU\tests\Nightly_regression\report_tc_pcap_capture\capture_test.pcap
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE] tag=GTUVVY cwd=G:\_GitHub\HW_10-In-Rack_PDU\tests
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE] tag=GTUVVY argv="C:\Program Files\Wireshark\dumpcap.exe" -i 9 -F pcap -w G:\_GitHub\HW_10-In-Rack_PDU\tests\Nightly_regression\report_tc_pcap_capture\capture_test.pcap -p -s 256 -a duration:5 -f "icmp and host 127.0.0.1"
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE] tag=GTUVVY waiting for capture tool to initialize...
+[2025-10-05 23:16:38] [INFO] [PCAP-CAPTURE] tag=GTUVVY output file created, dumpcap is ready
+[2025-10-05 23:16:43] [INFO] [PCAP-CAPTURE] tag=GTUVVY exit_code=0 elapsed_s=5.255 timed_stop=False
+[2025-10-05 23:16:43] [INFO] [PCAP-CAPTURE STDERR]
+Capturing on 'Adapter for loopback traffic capture'
+File: G:\_GitHub\HW_10-In-Rack_PDU\tests\Nightly_regression\report_tc_pcap_capture\capture_test.pcap
+
+Packets: 1 
+Packets: 5 
+Packets: 6 
+Packets: 7 
+Packets: 11 
+Packets: 12 
+Packets: 13 
+Packets: 17 
+Packets: 18 
+Packets: 19 
+Packets: 23 
+Packets: 24 
+Packets: 25 
+Packets: 29 
+Packets captured: 29
+Packets received/dropped on interface 'Adapter for loopback traffic capture': 29/0 (pcap:0/dumpcap:0/flushed:0/ps_ifdrop:0) (100.0%)
+[2025-10-05 23:16:43] [INFO] [PCAP-CAPTURE] tag=GTUVVY file size after capture: 2344 bytes
+[2025-10-05 23:16:43] [INFO] [PCAP-CAPTURE] tag=GTUVVY output_size=2344 bytes
+[2025-10-05 23:16:43] [PASS] STEP 2 completed successfully
+[2025-10-05 23:16:43] [STEP 3] Check_ICMP_Captured
+[2025-10-05 23:16:43] [INFO] [PCAP-CHECK] analyze start path=G:\_GitHub\HW_10-In-Rack_PDU\tests\Nightly_regression\report_tc_pcap_capture\capture_test.pcap filter=icmp && ip.addr==127.0.0.1
+[2025-10-05 23:16:43] [INFO] [PCAP-READ] read_PCAPFrames() execute called
+[2025-10-05 23:16:43] [INFO] [PCAP-READ]   pcap_path=G:\_GitHub\HW_10-In-Rack_PDU\tests\Nightly_regression\report_tc_pcap_capture\capture_test.pcap
+[2025-10-05 23:16:43] [INFO] [PCAP-READ]   display_filter=icmp && ip.addr==127.0.0.1
+[2025-10-05 23:16:43] [INFO] [PCAP-READ] File exists, size=2344 bytes
+[2025-10-05 23:16:43] [INFO] [PCAP-READ] Running tshark to extract fields...
+[2025-10-05 23:16:43] [INFO] [PCAP-CHECK] tshark fields start filter=icmp && ip.addr==127.0.0.1
+[2025-10-05 23:16:43] [TSHARK-FIELDS] cmd=tshark -r G:\_GitHub\HW_10-In-Rack_PDU\tests\Nightly_regression\report_tc_pcap_capture\capture_test.pcap -o tcp.desegment_tcp_streams:TRUE -o http.desegment_body:TRUE -T fields -E header=n -E separator=	 -E occurrence=f -e frame.number -e frame.len -e frame.time_epoch -e eth.src -e eth.dst -e vlan.id -e vlan.priority -e http.file_data -e tcp.reassembled.data -e tcp.payload -e data.data -Y "icmp && ip.addr==127.0.0.1"
+[2025-10-05 23:16:43] [TSHARK-FIELDS] rc=0
+[2025-10-05 23:16:43] [TSHARK-FIELDS OUT]
+1	64	1759698999.065021000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+2	64	1759698999.065047000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+3	64	1759698999.080311000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+4	64	1759698999.080333000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+5	64	1759698999.323720000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+6	64	1759698999.323743000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+7	64	1759699000.069541000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+8	64	1759699000.069573000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+9	64	1759699000.084505000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+10	64	1759699000.084534000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+11	64	1759699000.329270000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+12	64	1759699000.329299000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+13	64	1759699001.084491000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+14	64	1759699001.084528000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+15	64	1759699001.100173000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+16	64	1759699001.100199000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+17	64	1759699001.331794000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+18	64	1759699001.331845000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+19	64	1759699002.085996000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+20	64	1759699002.086033000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+21	64	1759699002.101802000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+22	64	1759699002.101844000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+23	64	1759699002.333102000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+24	64	1759699002.333120000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+25	64	1759699003.093884000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+26	64	1759699003.093917000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+27	64	1759699003.109127000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+28	64	1759699003.109170000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+29	64	1759699003.339120000								6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869
+
+[2025-10-05 23:16:43] [INFO] [PCAP-READ] tshark succeeded, parsing output...
+[2025-10-05 23:16:43] [INFO] [PCAP-READ] Parsed 29 frames from tshark output
+[2025-10-05 23:16:43] [INFO] [PCAP-READ] Extracting VLAN stack information...
+[2025-10-05 23:16:43] [TSHARK-VLAN] cmd=tshark -r G:\_GitHub\HW_10-In-Rack_PDU\tests\Nightly_regression\report_tc_pcap_capture\capture_test.pcap -T fields -E header=n -E separator=	 -E occurrence=a -e vlan.id -e vlan.priority -Y "icmp && ip.addr==127.0.0.1"
+[2025-10-05 23:16:43] [TSHARK-VLAN] rc=0
+[2025-10-05 23:16:43] [TSHARK-VLAN OUT]
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+[2025-10-05 23:16:43] [INFO] [PCAP-READ] VLAN stack mismatch or empty, using single-level VLAN data
+[2025-10-05 23:16:43] [INFO] [PCAP-READ] Total frames parsed: 29
+[2025-10-05 23:16:43] [INFO] [PCAP-READ] Frame summary (showing up to 20):
+[2025-10-05 23:16:43] [INFO] [PCAP-READ]   fnum=1 len=64 t=1759698999065020928ns src= dst= vlan=[]
+[2025-10-05 23:16:43] [INFO] [PCAP-READ]   fnum=2 len=64 t=1759698999065047040ns src= dst= vlan=[]
+[2025-10-05 23:16:43] [INFO] [PCAP-READ]   fnum=3 len=64 t=1759698999080311040ns src= dst= vlan=[]
+[2025-10-05 23:16:43] [INFO] [PCAP-READ]   fnum=4 len=64 t=1759698999080333056ns src= dst= vlan=[]
+[2025-10-05 23:16:43] [INFO] [PCAP-READ]   fnum=5 len=64 t=1759698999323719936ns src= dst= vlan=[]
+[2025-10-05 23:16:43] [INFO] [PCAP-READ]   fnum=6 len=64 t=1759698999323743232ns src= dst= vlan=[]
+[2025-10-05 23:16:43] [INFO] [PCAP-READ]   fnum=7 len=64 t=1759699000069540864ns src= dst= vlan=[]
+[2025-10-05 23:16:43] [INFO] [PCAP-READ]   fnum=8 len=64 t=1759699000069572864ns src= dst= vlan=[]
+[2025-10-05 23:16:43] [INFO] [PCAP-READ]   fnum=9 len=64 t=1759699000084505088ns src= dst= vlan=[]
+[2025-10-05 23:16:43] [INFO] [PCAP-READ]   fnum=10 len=64 t=1759699000084534016ns src= dst= vlan=[]
+[2025-10-05 23:16:43] [INFO] [PCAP-READ]   fnum=11 len=64 t=1759699000329269760ns src= dst= vlan=[]
+[2025-10-05 23:16:43] [INFO] [PCAP-READ]   fnum=12 len=64 t=1759699000329298944ns src= dst= vlan=[]
+[2025-10-05 23:16:43] [INFO] [PCAP-READ]   fnum=13 len=64 t=1759699001084491008ns src= dst= vlan=[]
+[2025-10-05 23:16:43] [INFO] [PCAP-READ]   fnum=14 len=64 t=1759699001084527872ns src= dst= vlan=[]
+[2025-10-05 23:16:43] [INFO] [PCAP-READ]   fnum=15 len=64 t=1759699001100173056ns src= dst= vlan=[]
+[2025-10-05 23:16:43] [INFO] [PCAP-READ]   fnum=16 len=64 t=1759699001100198912ns src= dst= vlan=[]
+[2025-10-05 23:16:43] [INFO] [PCAP-READ]   fnum=17 len=64 t=1759699001331793920ns src= dst= vlan=[]
+[2025-10-05 23:16:43] [INFO] [PCAP-READ]   fnum=18 len=64 t=1759699001331845120ns src= dst= vlan=[]
+[2025-10-05 23:16:43] [INFO] [PCAP-READ]   fnum=19 len=64 t=1759699002085996032ns src= dst= vlan=[]
+[2025-10-05 23:16:43] [INFO] [PCAP-READ]   fnum=20 len=64 t=1759699002086033152ns src= dst= vlan=[]
+[2025-10-05 23:16:43] [INFO] [PCAP-READ]   ... and 9 more frames
+[2025-10-05 23:16:43] [INFO] [PCAP-READ] read_PCAPFrames() returning 29 frames
+[2025-10-05 23:16:43] [INFO] [PCAP-CHECK] filtered=29 (expect_count=None expect_count_min=1)
+[2025-10-05 23:16:43] [INFO] [PCAP-CHECK] ========================================
+[2025-10-05 23:16:43] [INFO] [PCAP-CHECK] ALL VALIDATIONS PASSED
+[2025-10-05 23:16:43] [INFO] [PCAP-CHECK] Filter: 'icmp && ip.addr==127.0.0.1'
+[2025-10-05 23:16:43] [INFO] [PCAP-CHECK] Frames validated: 29
+[2025-10-05 23:16:43] [INFO] [PCAP-CHECK] PCAP file: G:\_GitHub\HW_10-In-Rack_PDU\tests\Nightly_regression\report_tc_pcap_capture\capture_test.pcap
+[2025-10-05 23:16:43] [INFO] [PCAP-CHECK] ========================================
+[2025-10-05 23:16:43] [PASS] STEP 3 completed successfully
+[2025-10-05 23:16:43] [TEARDOWN 1] Ensure all outputs OFF
+[2025-10-05 23:16:43] [INFO] [SNMP] Executing set_all_outlets: state=OFF
+[2025-10-05 23:16:43] [INFO] [SNMP] Using trigger OID: 1.3.6.1.4.1.19865.2.9.0
+[2025-10-05 23:16:43] [INFO] [SNMP] set_integer() called
+[2025-10-05 23:16:43] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.9.0, Value: 1, Community: public, Timeout: 3.0s
+[2025-10-05 23:16:43] [INFO] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.9.0 i 1
+[2025-10-05 23:16:43] [INFO] [SNMP] rc=0
+[2025-10-05 23:16:43] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.9.0 = INTEGER: 1
+
+[2025-10-05 23:16:43] [INFO] [SNMP] snmpset returned: rc=0, success=True
+[2025-10-05 23:16:43] [INFO] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.9.0 = 1 -> OK (v1/public)
+[2025-10-05 23:16:43] [INFO] [SNMP] Successfully set ALL outlets OFF
+[2025-10-05 23:16:43] [PASS] TEARDOWN 1 completed successfully
+[2025-10-05 23:16:43] [TEARDOWN 2] Final verify all outputs OFF
+[2025-10-05 23:16:43] [INFO] [SNMP] Executing verify_all_outlets: expected_state=OFF
+[2025-10-05 23:16:43] [INFO] [SNMP] Checking channel 1...
+[2025-10-05 23:16:43] [INFO] [SNMP] get_value() called
+[2025-10-05 23:16:43] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 23:16:43] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0
+[2025-10-05 23:16:43] [INFO] [SNMP] rc=0
+[2025-10-05 23:16:43] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 0
+
+[2025-10-05 23:16:43] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 23:16:43] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 23:16:43] [INFO] [SNMP] Parsed value: '0'
+[2025-10-05 23:16:43] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 -> '0' (v1/public)
+[2025-10-05 23:16:43] [INFO] [SNMP] CH1 state: OFF
+[2025-10-05 23:16:43] [INFO] [SNMP] Checking channel 2...
+[2025-10-05 23:16:43] [INFO] [SNMP] get_value() called
+[2025-10-05 23:16:43] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.2.0, Community: public, Timeout: 3.0s
+[2025-10-05 23:16:43] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0
+[2025-10-05 23:16:43] [INFO] [SNMP] rc=0
+[2025-10-05 23:16:43] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 0
+
+[2025-10-05 23:16:43] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 23:16:43] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 23:16:43] [INFO] [SNMP] Parsed value: '0'
+[2025-10-05 23:16:43] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 -> '0' (v1/public)
+[2025-10-05 23:16:43] [INFO] [SNMP] CH2 state: OFF
+[2025-10-05 23:16:43] [INFO] [SNMP] Checking channel 3...
+[2025-10-05 23:16:43] [INFO] [SNMP] get_value() called
+[2025-10-05 23:16:43] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.3.0, Community: public, Timeout: 3.0s
+[2025-10-05 23:16:43] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0
+[2025-10-05 23:16:43] [INFO] [SNMP] rc=0
+[2025-10-05 23:16:43] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 0
+
+[2025-10-05 23:16:43] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 23:16:43] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 23:16:43] [INFO] [SNMP] Parsed value: '0'
+[2025-10-05 23:16:43] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 -> '0' (v1/public)
+[2025-10-05 23:16:43] [INFO] [SNMP] CH3 state: OFF
+[2025-10-05 23:16:43] [INFO] [SNMP] Checking channel 4...
+[2025-10-05 23:16:43] [INFO] [SNMP] get_value() called
+[2025-10-05 23:16:43] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.4.0, Community: public, Timeout: 3.0s
+[2025-10-05 23:16:44] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0
+[2025-10-05 23:16:44] [INFO] [SNMP] rc=0
+[2025-10-05 23:16:44] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 0
+
+[2025-10-05 23:16:44] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 23:16:44] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 23:16:44] [INFO] [SNMP] Parsed value: '0'
+[2025-10-05 23:16:44] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 -> '0' (v1/public)
+[2025-10-05 23:16:44] [INFO] [SNMP] CH4 state: OFF
+[2025-10-05 23:16:44] [INFO] [SNMP] Checking channel 5...
+[2025-10-05 23:16:44] [INFO] [SNMP] get_value() called
+[2025-10-05 23:16:44] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.5.0, Community: public, Timeout: 3.0s
+[2025-10-05 23:16:44] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0
+[2025-10-05 23:16:44] [INFO] [SNMP] rc=0
+[2025-10-05 23:16:44] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 0
+
+[2025-10-05 23:16:44] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 23:16:44] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 23:16:44] [INFO] [SNMP] Parsed value: '0'
+[2025-10-05 23:16:44] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 -> '0' (v1/public)
+[2025-10-05 23:16:44] [INFO] [SNMP] CH5 state: OFF
+[2025-10-05 23:16:44] [INFO] [SNMP] Checking channel 6...
+[2025-10-05 23:16:44] [INFO] [SNMP] get_value() called
+[2025-10-05 23:16:44] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.6.0, Community: public, Timeout: 3.0s
+[2025-10-05 23:16:44] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0
+[2025-10-05 23:16:44] [INFO] [SNMP] rc=0
+[2025-10-05 23:16:44] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 0
+
+[2025-10-05 23:16:44] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 23:16:44] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 23:16:44] [INFO] [SNMP] Parsed value: '0'
+[2025-10-05 23:16:44] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 -> '0' (v1/public)
+[2025-10-05 23:16:44] [INFO] [SNMP] CH6 state: OFF
+[2025-10-05 23:16:44] [INFO] [SNMP] Checking channel 7...
+[2025-10-05 23:16:44] [INFO] [SNMP] get_value() called
+[2025-10-05 23:16:44] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.7.0, Community: public, Timeout: 3.0s
+[2025-10-05 23:16:44] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0
+[2025-10-05 23:16:44] [INFO] [SNMP] rc=0
+[2025-10-05 23:16:44] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 0
+
+[2025-10-05 23:16:44] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 23:16:44] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 23:16:44] [INFO] [SNMP] Parsed value: '0'
+[2025-10-05 23:16:44] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 -> '0' (v1/public)
+[2025-10-05 23:16:44] [INFO] [SNMP] CH7 state: OFF
+[2025-10-05 23:16:44] [INFO] [SNMP] Checking channel 8...
+[2025-10-05 23:16:44] [INFO] [SNMP] get_value() called
+[2025-10-05 23:16:44] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.8.0, Community: public, Timeout: 3.0s
+[2025-10-05 23:16:44] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0
+[2025-10-05 23:16:44] [INFO] [SNMP] rc=0
+[2025-10-05 23:16:44] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 0
+
+[2025-10-05 23:16:44] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 23:16:44] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 23:16:44] [INFO] [SNMP] Parsed value: '0'
+[2025-10-05 23:16:44] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 -> '0' (v1/public)
+[2025-10-05 23:16:44] [INFO] [SNMP] CH8 state: OFF
+[2025-10-05 23:16:44] [INFO] [SNMP] All 8 channels verified: OFF
+[2025-10-05 23:16:44] [PASS] TEARDOWN 2 completed successfully
+[2025-10-05 23:16:44] ===== tc_pcap_capture: RESULT: PASS =====

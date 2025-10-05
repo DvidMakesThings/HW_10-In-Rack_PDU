@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ENERGIS Functional Test " tests="86" failures="0" time="0.0">
+<testsuite name="ENERGIS Functional Test" tests="88" failures="0" skipped="0" time="0.0" session_id="25ce8348">
+  <testcase classname="UTFW" name="PRE-STEP 1 Reboot device via UART" time="0.0">
+  </testcase>
   <testcase classname="UTFW" name="STEP 1 Multi-action step with 2 sub-steps" time="0.0">
   </testcase>
   <testcase classname="UTFW" name="STEP 1.1 Send HELP command" time="0.0">
@@ -170,6 +172,8 @@
   </testcase>
   <testcase classname="UTFW" name="STEP 6 Reset to factory settings (RFS) and verify data" time="0.0">
   </testcase>
-  <testcase classname="UTFW" name="STEP 7 Create EEPROM dump and analyze EEPROM content" time="0.0">
+  <testcase classname="UTFW" name="TEARDOWN 1 Ensure all outputs OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="TEARDOWN 2 Final verify all outputs OFF" time="0.0">
   </testcase>
 </testsuite>

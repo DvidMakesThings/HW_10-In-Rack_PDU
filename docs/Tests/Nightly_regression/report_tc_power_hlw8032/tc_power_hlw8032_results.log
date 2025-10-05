@@ -1,0 +1,1748 @@
+[2025-10-05 23:18:22] ===== tc_power_hlw8032: START =====
+[2025-10-05 23:18:22] [INFO] Test Session ID: d0b508e2
+[2025-10-05 23:18:22] [PRE-STEP 1] Reboot device via UART
+[2025-10-05 23:18:22] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:22] [INFO] [SERIAL]   port=COM11, command='REBOOT', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:22] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:22] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:22] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:22] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:22] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:22] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:22] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:22] [INFO] [SERIAL TX] Sending command: 'REBOOT'
+[2025-10-05 23:18:22] [INFO] [SERIAL TX] Payload length: 8 bytes (including CR+LF)
+[2025-10-05 23:18:22] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:22] [INFO]   0000  52 45 42 4F 4F 54 0D 0A                           |REBOOT..|
+[2025-10-05 23:18:22] [INFO] [SERIAL TX] Wrote 8 bytes to port
+[2025-10-05 23:18:22] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:22] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:23] [INFO] [SERIAL RX] Chunk #1: received 32 bytes (elapsed: 0.216s, total: 32 bytes)
+[2025-10-05 23:18:23] [ERROR] [SERIAL ERROR] Exception during send_command:
+[2025-10-05 23:18:23] [ERROR] [SERIAL ERROR]   Type: SerialException
+[2025-10-05 23:18:23] [ERROR] [SERIAL ERROR]   Message: ClearCommError failed (PermissionError(13, 'The device does not recognize the command.', None, 22))
+[2025-10-05 23:18:23] [ERROR] [SERIAL ERROR]   Port: COM11, Command: 'REBOOT'
+[2025-10-05 23:18:23] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:23] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:23] [INFO] [SERIAL] wait_for_reboot_and_ready() called
+[2025-10-05 23:18:23] [INFO] [SERIAL]   port=COM11, ready_token='SYSTEM READY', baudrate=115200, timeout=15.0s
+[2025-10-05 23:18:23] [INFO] [SERIAL] Waiting 200ms for device to start rebooting...
+[2025-10-05 23:18:23] [INFO] [SERIAL] Connection attempt #1 (remaining timeout: 14.8s)
+[2025-10-05 23:18:23] [INFO] [SERIAL] Connection attempt #1 failed: SerialException: could not open port 'COM11': FileNotFoundError(2, 'The system cannot find the file specified.', None, 2)
+[2025-10-05 23:18:23] [INFO] [SERIAL] Waiting 200ms before next attempt...
+[2025-10-05 23:18:23] [INFO] [SERIAL] Connection attempt #2 (remaining timeout: 14.6s)
+[2025-10-05 23:18:23] [INFO] [SERIAL] Connection attempt #2 failed: SerialException: could not open port 'COM11': FileNotFoundError(2, 'The system cannot find the file specified.', None, 2)
+[2025-10-05 23:18:23] [INFO] [SERIAL] Waiting 200ms before next attempt...
+[2025-10-05 23:18:23] [INFO] [SERIAL] Connection attempt #3 (remaining timeout: 14.4s)
+[2025-10-05 23:18:23] [INFO] [SERIAL] Connection attempt #3 failed: SerialException: could not open port 'COM11': FileNotFoundError(2, 'The system cannot find the file specified.', None, 2)
+[2025-10-05 23:18:23] [INFO] [SERIAL] Waiting 200ms before next attempt...
+[2025-10-05 23:18:23] [INFO] [SERIAL] Connection attempt #4 (remaining timeout: 14.2s)
+[2025-10-05 23:18:23] [INFO] [SERIAL] Connection attempt #4 failed: SerialException: could not open port 'COM11': FileNotFoundError(2, 'The system cannot find the file specified.', None, 2)
+[2025-10-05 23:18:23] [INFO] [SERIAL] Waiting 200ms before next attempt...
+[2025-10-05 23:18:24] [INFO] [SERIAL] Connection attempt #5 (remaining timeout: 14.0s)
+[2025-10-05 23:18:24] [INFO] [SERIAL] Connection attempt #5 failed: SerialException: could not open port 'COM11': FileNotFoundError(2, 'The system cannot find the file specified.', None, 2)
+[2025-10-05 23:18:24] [INFO] [SERIAL] Waiting 200ms before next attempt...
+[2025-10-05 23:18:24] [INFO] [SERIAL] Connection attempt #6 (remaining timeout: 13.8s)
+[2025-10-05 23:18:24] [INFO] [SERIAL] Connection attempt #6 failed: SerialException: could not open port 'COM11': FileNotFoundError(2, 'The system cannot find the file specified.', None, 2)
+[2025-10-05 23:18:24] [INFO] [SERIAL] Waiting 200ms before next attempt...
+[2025-10-05 23:18:24] [INFO] [SERIAL] Connection attempt #7 (remaining timeout: 13.6s)
+[2025-10-05 23:18:24] [INFO] [SERIAL] Connected to port COM11 on attempt #7
+[2025-10-05 23:18:24] [INFO] [SERIAL RX] Monitoring for ready token: 'SYSTEM READY'
+[2025-10-05 23:18:27] [INFO] [SERIAL RX] Chunk #1: 393 bytes
+[2025-10-05 23:18:27] [INFO] [SERIAL RX] Content: [INFO] Core 0 initializing...<CR><LF>
+	[ECHO] Device Serial : SN-369366060325<CR><LF>
+	[ECHO] Firmware Ver  : 1.0.0<CR><LF>
+	[ECHO] Core voltage  : 1.15 V (vsel = 1)<CR><LF>
+	[ECHO] Clock Sources :<CR><LF>
+	[ECHO] 	SYS: 200000000 Hz (200 MHz)<CR><LF>
+	[ECHO] 	USB: 48000000 Hz (48 MHz)<CR><LF>
+	[ECHO] 	PER: 48000000 Hz (48 MHz)<CR><LF>
+	[ECHO] 	ADC: 48000000 Hz (48 MHz)<CR><LF>
+[INFO] ADC initializing<CR><LF>
+VREG register: 0x000010D1<CR><LF>
+[INFO] I2C scanning...<CR><LF>
+
+[2025-10-05 23:18:27] [INFO] [SERIAL RX] Chunk #2: 64 bytes
+[2025-10-05 23:18:27] [INFO] [SERIAL RX] Content: [INFO] EEPROM initializing...<CR><LF>
+[INFO] MCP23017 initializing...<CR><LF>
+
+[2025-10-05 23:18:29] [INFO] [SERIAL RX] Chunk #3: 162 bytes
+[2025-10-05 23:18:29] [INFO] [SERIAL RX] Content: [INFO] Headless mode, skipping display initialization<CR><LF>
+[INFO] Initializing HLW8032...<CR><LF>
+[INFO] Initializing buttons...<CR><LF>
+[INFO] Loaded network config from EEPROM.<CR><LF>
+
+[2025-10-05 23:18:31] [INFO] [SERIAL RX] Chunk #4: 456 bytes
+[2025-10-05 23:18:31] [INFO] [SERIAL RX] Content: [INFO] W5500 version: 0x04<CR><LF>
+[INFO] W5500 PHY link is up<CR><LF>
+	[ECHO] =============================================<CR><LF>
+	[ECHO]  W5500 network configuration : static<CR><LF>
+	[ECHO]  MAC         : 00:08:DC:BE:EF:91<CR><LF>
+	[ECHO]  IP          : 192.168.0.11<CR><LF>
+	[ECHO]  Subnet Mask : 255.255.255.0<CR><LF>
+	[ECHO]  Gateway     : 192.168.0.1<CR><LF>
+	[ECHO]  DNS         : 8.8.8.8<CR><LF>
+	[ECHO] =============================================<CR><LF>
+<CR><LF>
+SYSTEM READY<CR><LF>
+[INFO] - SNMP : Start SNMP Agent Daemon<CR><LF>
+
+[2025-10-05 23:18:31] [INFO] [SERIAL] Ready token 'SYSTEM READY' detected!
+[2025-10-05 23:18:31] [INFO] [SERIAL RX] Total response: 1075 bytes in 4 chunks
+[2025-10-05 23:18:31] [INFO] [SERIAL RX] Elapsed time: 8.301s
+[2025-10-05 23:18:31] [INFO] [SERIAL RX] Full response:
+[2025-10-05 23:18:31] [INFO] [INFO] Core 0 initializing...\r\n
+	[ECHO] Device Serial : SN-369366060325\r\n
+	[ECHO] Firmware Ver  : 1.0.0\r\n
+	[ECHO] Core voltage  : 1.15 V (vsel = 1)\r\n
+	[ECHO] Clock Sources :\r\n
+	[ECHO] 	SYS: 200000000 Hz (200 MHz)\r\n
+	[ECHO] 	USB: 48000000 Hz (48 MHz)\r\n
+	[ECHO] 	PER: 48000000 Hz (48 MHz)\r\n
+	[ECHO] 	ADC: 48000000 Hz (48 MHz)\r\n
+[INFO] ADC initializing\r\n
+VREG register: 0x000010D1\r\n
+[INFO] I2C scanning...\r\n
+[INFO] EEPROM initializing...\r\n
+[INFO] MCP23017 initializing...\r\n
+[INFO] Headless mode, skipping display initialization\r\n
+[INFO] Initializing HLW8032...\r\n
+[INFO] Initializing buttons...\r\n
+[INFO] Loaded network config from EEPROM.\r\n
+[INFO] W5500 version: 0x04\r\n
+[INFO] W5500 PHY link is up\r\n
+	[ECHO] =============================================\r\n
+	[ECHO]  W5500 network configuration : static\r\n
+	[ECHO]  MAC         : 00:08:DC:BE:EF:91\r\n
+	[ECHO]  IP          : 192.168.0.11\r\n
+	[ECHO]  Subnet Mask : 255.255.255.0\r\n
+	[ECHO]  Gateway     : 192.168.0.1\r\n
+	[ECHO]  DNS         : 8.8.8.8\r\n
+	[ECHO] =============================================\r\n
+\r\n
+SYSTEM READY\r\n
+[INFO] - SNMP : Start SNMP Agent Daemon\r\n
+
+[2025-10-05 23:18:31] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:31] [INFO]   0000  5B 49 4E 46 4F 5D 20 43 6F 72 65 20 30 20 69 6E   |[INFO] Core 0 in|
+  0010  69 74 69 61 6C 69 7A 69 6E 67 2E 2E 2E 0D 0A 09   |itializing......|
+  0020  5B 45 43 48 4F 5D 20 44 65 76 69 63 65 20 53 65   |[ECHO] Device Se|
+  0030  72 69 61 6C 20 3A 20 53 4E 2D 33 36 39 33 36 36   |rial : SN-369366|
+  0040  30 36 30 33 32 35 0D 0A 09 5B 45 43 48 4F 5D 20   |060325...[ECHO] |
+  0050  46 69 72 6D 77 61 72 65 20 56 65 72 20 20 3A 20   |Firmware Ver  : |
+  0060  31 2E 30 2E 30 0D 0A 09 5B 45 43 48 4F 5D 20 43   |1.0.0...[ECHO] C|
+  0070  6F 72 65 20 76 6F 6C 74 61 67 65 20 20 3A 20 31   |ore voltage  : 1|
+  0080  2E 31 35 20 56 20 28 76 73 65 6C 20 3D 20 31 29   |.15 V (vsel = 1)|
+  0090  0D 0A 09 5B 45 43 48 4F 5D 20 43 6C 6F 63 6B 20   |...[ECHO] Clock |
+  00A0  53 6F 75 72 63 65 73 20 3A 0D 0A 09 5B 45 43 48   |Sources :...[ECH|
+  00B0  4F 5D 20 09 53 59 53 3A 20 32 30 30 30 30 30 30   |O] .SYS: 2000000|
+  00C0  30 30 20 48 7A 20 28 32 30 30 20 4D 48 7A 29 0D   |00 Hz (200 MHz).|
+  00D0  0A 09 5B 45 43 48 4F 5D 20 09 55 53 42 3A 20 34   |..[ECHO] .USB: 4|
+  00E0  38 30 30 30 30 30 30 20 48 7A 20 28 34 38 20 4D   |8000000 Hz (48 M|
+  00F0  48 7A 29 0D 0A 09 5B 45 43 48 4F 5D 20 09 50 45   |Hz)...[ECHO] .PE|
+  0100  52 3A 20 34 38 30 30 30 30 30 30 20 48 7A 20 28   |R: 48000000 Hz (|
+  0110  34 38 20 4D 48 7A 29 0D 0A 09 5B 45 43 48 4F 5D   |48 MHz)...[ECHO]|
+  0120  20 09 41 44 43 3A 20 34 38 30 30 30 30 30 30 20   | .ADC: 48000000 |
+  0130  48 7A 20 28 34 38 20 4D 48 7A 29 0D 0A 5B 49 4E   |Hz (48 MHz)..[IN|
+  0140  46 4F 5D 20 41 44 43 20 69 6E 69 74 69 61 6C 69   |FO] ADC initiali|
+  0150  7A 69 6E 67 0D 0A 56 52 45 47 20 72 65 67 69 73   |zing..VREG regis|
+  0160  74 65 72 3A 20 30 78 30 30 30 30 31 30 44 31 0D   |ter: 0x000010D1.|
+  0170  0A 5B 49 4E 46 4F 5D 20 49 32 43 20 73 63 61 6E   |.[INFO] I2C scan|
+  0180  6E 69 6E 67 2E 2E 2E 0D 0A 5B 49 4E 46 4F 5D 20   |ning.....[INFO] |
+  0190  45 45 50 52 4F 4D 20 69 6E 69 74 69 61 6C 69 7A   |EEPROM initializ|
+  01A0  69 6E 67 2E 2E 2E 0D 0A 5B 49 4E 46 4F 5D 20 4D   |ing.....[INFO] M|
+  01B0  43 50 32 33 30 31 37 20 69 6E 69 74 69 61 6C 69   |CP23017 initiali|
+  01C0  7A 69 6E 67 2E 2E 2E 0D 0A 5B 49 4E 46 4F 5D 20   |zing.....[INFO] |
+  01D0  48 65 61 64 6C 65 73 73 20 6D 6F 64 65 2C 20 73   |Headless mode, s|
+  01E0  6B 69 70 70 69 6E 67 20 64 69 73 70 6C 61 79 20   |kipping display |
+  01F0  69 6E 69 74 69 61 6C 69 7A 61 74 69 6F 6E 0D 0A   |initialization..|
+  0200  5B 49 4E 46 4F 5D 20 49 6E 69 74 69 61 6C 69 7A   |[INFO] Initializ|
+  0210  69 6E 67 20 48 4C 57 38 30 33 32 2E 2E 2E 0D 0A   |ing HLW8032.....|
+  0220  5B 49 4E 46 4F 5D 20 49 6E 69 74 69 61 6C 69 7A   |[INFO] Initializ|
+  0230  69 6E 67 20 62 75 74 74 6F 6E 73 2E 2E 2E 0D 0A   |ing buttons.....|
+  0240  5B 49 4E 46 4F 5D 20 4C 6F 61 64 65 64 20 6E 65   |[INFO] Loaded ne|
+  0250  74 77 6F 72 6B 20 63 6F 6E 66 69 67 20 66 72 6F   |twork config fro|
+  0260  6D 20 45 45 50 52 4F 4D 2E 0D 0A 5B 49 4E 46 4F   |m EEPROM...[INFO|
+  0270  5D 20 57 35 35 30 30 20 76 65 72 73 69 6F 6E 3A   |] W5500 version:|
+  0280  20 30 78 30 34 0D 0A 5B 49 4E 46 4F 5D 20 57 35   | 0x04..[INFO] W5|
+  0290  35 30 30 20 50 48 59 20 6C 69 6E 6B 20 69 73 20   |500 PHY link is |
+  02A0  75 70 0D 0A 09 5B 45 43 48 4F 5D 20 3D 3D 3D 3D   |up...[ECHO] ====|
+  02B0  3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D   |================|
+  02C0  3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D   |================|
+  02D0  3D 3D 3D 3D 3D 3D 3D 3D 3D 0D 0A 09 5B 45 43 48   |=========...[ECH|
+  02E0  4F 5D 20 20 57 35 35 30 30 20 6E 65 74 77 6F 72   |O]  W5500 networ|
+  02F0  6B 20 63 6F 6E 66 69 67 75 72 61 74 69 6F 6E 20   |k configuration |
+  0300  3A 20 73 74 61 74 69 63 0D 0A 09 5B 45 43 48 4F   |: static...[ECHO|
+  0310  5D 20 20 4D 41 43 20 20 20 20 20 20 20 20 20 3A   |]  MAC         :|
+  0320  20 30 30 3A 30 38 3A 44 43 3A 42 45 3A 45 46 3A   | 00:08:DC:BE:EF:|
+  0330  39 31 0D 0A 09 5B 45 43 48 4F 5D 20 20 49 50 20   |91...[ECHO]  IP |
+  0340  20 20 20 20 20 20 20 20 20 3A 20 31 39 32 2E 31   |         : 192.1|
+  0350  36 38 2E 30 2E 31 31 0D 0A 09 5B 45 43 48 4F 5D   |68.0.11...[ECHO]|
+  0360  20 20 53 75 62 6E 65 74 20 4D 61 73 6B 20 3A 20   |  Subnet Mask : |
+  0370  32 35 35 2E 32 35 35 2E 32 35 35 2E 30 0D 0A 09   |255.255.255.0...|
+  0380  5B 45 43 48 4F 5D 20 20 47 61 74 65 77 61 79 20   |[ECHO]  Gateway |
+  0390  20 20 20 20 3A 20 31 39 32 2E 31 36 38 2E 30 2E   |    : 192.168.0.|
+  03A0  31 0D 0A 09 5B 45 43 48 4F 5D 20 20 44 4E 53 20   |1...[ECHO]  DNS |
+  03B0  20 20 20 20 20 20 20 20 3A 20 38 2E 38 2E 38 2E   |        : 8.8.8.|
+  03C0  38 0D 0A 09 5B 45 43 48 4F 5D 20 3D 3D 3D 3D 3D   |8...[ECHO] =====|
+  03D0  3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D   |================|
+  03E0  3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D 3D   |================|
+  03F0  3D 3D 3D 3D 3D 3D 3D 3D 0D 0A 0D 0A 53 59 53 54   |========....SYST|
+  0400  45 4D 20 52 45 41 44 59 0D 0A 5B 49 4E 46 4F 5D   |EM READY..[INFO]|
+  0410  20 2D 20 53 4E 4D 50 20 3A 20 53 74 61 72 74 20   | - SNMP : Start |
+  0420  53 4E 4D 50 20 41 67 65 6E 74 20 44 61 65 6D 6F   |SNMP Agent Daemo|
+  0430  6E 0D 0A                                          |n..|
+[2025-10-05 23:18:31] [INFO] [SERIAL] Device ready! Returning True
+[2025-10-05 23:18:31] [INFO] [SERIAL] Closed port COM11
+[2025-10-05 23:18:31] [PASS] PRE-STEP 1 completed successfully
+[2025-10-05 23:18:31] [STEP 1] Test power monitoring per channel with ON/OFF cycles
+[2025-10-05 23:18:31] [STEP 1.1] Turn ON Channel 1
+[2025-10-05 23:18:31] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:31] [INFO] [SERIAL]   port=COM11, command='SET_CH 1 ON', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:31] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:31] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:31] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:31] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:31] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:31] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:31] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:31] [INFO] [SERIAL TX] Sending command: 'SET_CH 1 ON'
+[2025-10-05 23:18:31] [INFO] [SERIAL TX] Payload length: 13 bytes (including CR+LF)
+[2025-10-05 23:18:31] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:31] [INFO]   0000  53 45 54 5F 43 48 20 31 20 4F 4E 0D 0A            |SET_CH 1 ON..|
+[2025-10-05 23:18:31] [INFO] [SERIAL TX] Wrote 13 bytes to port
+[2025-10-05 23:18:31] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:31] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:31] [INFO] [SERIAL RX] Chunk #1: received 93 bytes (elapsed: 0.011s, total: 93 bytes)
+[2025-10-05 23:18:31] [INFO] [SERIAL RX] Chunk #2: received 110 bytes (elapsed: 0.340s, total: 203 bytes)
+[2025-10-05 23:18:31] [INFO] [SERIAL RX] Chunk #3: received 30 bytes (elapsed: 0.350s, total: 233 bytes)
+[2025-10-05 23:18:32] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:32] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:32] [INFO] [SERIAL RX]   Total bytes: 233
+[2025-10-05 23:18:32] [INFO] [SERIAL RX]   Chunks received: 3
+[2025-10-05 23:18:32] [INFO] [SERIAL RX]   Total time: 0.851s
+[2025-10-05 23:18:32] [INFO] [SERIAL RX] Decoded text (233 characters):
+[2025-10-05 23:18:32] [INFO]   [INFO] HTTP server listening on port 80\r\n
+  [INFO] - [1] UDP Socket for SNMP Agent, port [161]\r\n
+  	[ECHO] Received CMD: "SET_CH 1 ON"\r\n
+  [INFO] SET_RELAY[1] t=8764727 us tag=<UART Command Handler> pin=0 val=1\r\n
+  	[ECHO] OK: Channel 1 set ON\r\n
+  
+[2025-10-05 23:18:32] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:32] [INFO]   0000  5B 49 4E 46 4F 5D 20 48 54 54 50 20 73 65 72 76   |[INFO] HTTP serv|
+  0010  65 72 20 6C 69 73 74 65 6E 69 6E 67 20 6F 6E 20   |er listening on |
+  0020  70 6F 72 74 20 38 30 0D 0A 5B 49 4E 46 4F 5D 20   |port 80..[INFO] |
+  0030  2D 20 5B 31 5D 20 55 44 50 20 53 6F 63 6B 65 74   |- [1] UDP Socket|
+  0040  20 66 6F 72 20 53 4E 4D 50 20 41 67 65 6E 74 2C   | for SNMP Agent,|
+  0050  20 70 6F 72 74 20 5B 31 36 31 5D 0D 0A 09 5B 45   | port [161]...[E|
+  0060  43 48 4F 5D 20 52 65 63 65 69 76 65 64 20 43 4D   |CHO] Received CM|
+  0070  44 3A 20 22 53 45 54 5F 43 48 20 31 20 4F 4E 22   |D: "SET_CH 1 ON"|
+  0080  0D 0A 5B 49 4E 46 4F 5D 20 53 45 54 5F 52 45 4C   |..[INFO] SET_REL|
+  0090  41 59 5B 31 5D 20 74 3D 38 37 36 34 37 32 37 20   |AY[1] t=8764727 |
+  00A0  75 73 20 74 61 67 3D 3C 55 41 52 54 20 43 6F 6D   |us tag=<UART Com|
+  00B0  6D 61 6E 64 20 48 61 6E 64 6C 65 72 3E 20 70 69   |mand Handler> pi|
+  00C0  6E 3D 30 20 76 61 6C 3D 31 0D 0A 09 5B 45 43 48   |n=0 val=1...[ECH|
+  00D0  4F 5D 20 4F 4B 3A 20 43 68 61 6E 6E 65 6C 20 31   |O] OK: Channel 1|
+  00E0  20 73 65 74 20 4F 4E 0D 0A                        | set ON..|
+[2025-10-05 23:18:32] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:32] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:32] [PASS] STEP 1.1 completed successfully
+[2025-10-05 23:18:32] [STEP 1.2] Read power data for Channel 1
+[2025-10-05 23:18:32] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:32] [INFO] [SERIAL]   port=COM11, command='READ_HLW8032 1', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:32] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:32] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:32] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:32] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:32] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:32] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:32] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:32] [INFO] [SERIAL TX] Sending command: 'READ_HLW8032 1'
+[2025-10-05 23:18:32] [INFO] [SERIAL TX] Payload length: 16 bytes (including CR+LF)
+[2025-10-05 23:18:32] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:32] [INFO]   0000  52 45 41 44 5F 48 4C 57 38 30 33 32 20 31 0D 0A   |READ_HLW8032 1..|
+[2025-10-05 23:18:32] [INFO] [SERIAL TX] Wrote 16 bytes to port
+[2025-10-05 23:18:32] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:32] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:32] [INFO] [SERIAL RX] Chunk #1: received 89 bytes (elapsed: 0.205s, total: 89 bytes)
+[2025-10-05 23:18:33] [INFO] [SERIAL RX] Chunk #2: received 44 bytes (elapsed: 0.635s, total: 133 bytes)
+[2025-10-05 23:18:33] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:33] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:33] [INFO] [SERIAL RX]   Total bytes: 133
+[2025-10-05 23:18:33] [INFO] [SERIAL RX]   Chunks received: 2
+[2025-10-05 23:18:33] [INFO] [SERIAL RX]   Total time: 1.144s
+[2025-10-05 23:18:33] [INFO] [SERIAL RX] Decoded text (133 characters):
+[2025-10-05 23:18:33] [INFO]   	[ECHO] Received CMD: "READ_HLW8032 1"\r\n
+  	[ECHO] Reading HLW8032 values for channel 1...\r\n
+  	[ECHO] CH1: V=0.78 V, I=0.066 A, P=0.05 W\r\n
+  
+[2025-10-05 23:18:33] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:33] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 52 45 41 44 5F 48 4C 57 38   | CMD: "READ_HLW8|
+  0020  30 33 32 20 31 22 0D 0A 09 5B 45 43 48 4F 5D 20   |032 1"...[ECHO] |
+  0030  52 65 61 64 69 6E 67 20 48 4C 57 38 30 33 32 20   |Reading HLW8032 |
+  0040  76 61 6C 75 65 73 20 66 6F 72 20 63 68 61 6E 6E   |values for chann|
+  0050  65 6C 20 31 2E 2E 2E 0D 0A 09 5B 45 43 48 4F 5D   |el 1......[ECHO]|
+  0060  20 43 48 31 3A 20 56 3D 30 2E 37 38 20 56 2C 20   | CH1: V=0.78 V, |
+  0070  49 3D 30 2E 30 36 36 20 41 2C 20 50 3D 30 2E 30   |I=0.066 A, P=0.0|
+  0080  35 20 57 0D 0A                                    |5 W..|
+[2025-10-05 23:18:33] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:33] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:33] [PASS] STEP 1.2 completed successfully
+[2025-10-05 23:18:33] [STEP 1.3] Validate power response for CH1
+[2025-10-05 23:18:33] [PASS] STEP 1.3 completed successfully
+[2025-10-05 23:18:33] [STEP 1.4] Turn OFF Channel 1
+[2025-10-05 23:18:33] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:33] [INFO] [SERIAL]   port=COM11, command='SET_CH 1 OFF', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:33] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:33] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:33] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:33] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:33] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:33] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:33] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:33] [INFO] [SERIAL TX] Sending command: 'SET_CH 1 OFF'
+[2025-10-05 23:18:33] [INFO] [SERIAL TX] Payload length: 14 bytes (including CR+LF)
+[2025-10-05 23:18:33] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:33] [INFO]   0000  53 45 54 5F 43 48 20 31 20 4F 46 46 0D 0A         |SET_CH 1 OFF..|
+[2025-10-05 23:18:33] [INFO] [SERIAL TX] Wrote 14 bytes to port
+[2025-10-05 23:18:33] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:33] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:34] [INFO] [SERIAL RX] Chunk #1: received 112 bytes (elapsed: 0.193s, total: 112 bytes)
+[2025-10-05 23:18:34] [INFO] [SERIAL RX] Chunk #2: received 31 bytes (elapsed: 0.204s, total: 143 bytes)
+[2025-10-05 23:18:34] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:34] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:34] [INFO] [SERIAL RX]   Total bytes: 143
+[2025-10-05 23:18:34] [INFO] [SERIAL RX]   Chunks received: 2
+[2025-10-05 23:18:34] [INFO] [SERIAL RX]   Total time: 0.706s
+[2025-10-05 23:18:34] [INFO] [SERIAL RX] Decoded text (143 characters):
+[2025-10-05 23:18:34] [INFO]   	[ECHO] Received CMD: "SET_CH 1 OFF"\r\n
+  [INFO] SET_RELAY[2] t=10918533 us tag=<UART Command Handler> pin=0 val=0\r\n
+  	[ECHO] OK: Channel 1 set OFF\r\n
+  
+[2025-10-05 23:18:34] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:34] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 31 20   | CMD: "SET_CH 1 |
+  0020  4F 46 46 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54   |OFF"..[INFO] SET|
+  0030  5F 52 45 4C 41 59 5B 32 5D 20 74 3D 31 30 39 31   |_RELAY[2] t=1091|
+  0040  38 35 33 33 20 75 73 20 74 61 67 3D 3C 55 41 52   |8533 us tag=<UAR|
+  0050  54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65   |T Command Handle|
+  0060  72 3E 20 70 69 6E 3D 30 20 76 61 6C 3D 30 0D 0A   |r> pin=0 val=0..|
+  0070  09 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61 6E   |.[ECHO] OK: Chan|
+  0080  6E 65 6C 20 31 20 73 65 74 20 4F 46 46 0D 0A      |nel 1 set OFF..|
+[2025-10-05 23:18:34] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:34] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:34] [PASS] STEP 1.4 completed successfully
+[2025-10-05 23:18:34] [STEP 1.5] Turn ON Channel 2
+[2025-10-05 23:18:34] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:34] [INFO] [SERIAL]   port=COM11, command='SET_CH 2 ON', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:34] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:34] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:34] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:34] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:34] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:34] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:34] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:34] [INFO] [SERIAL TX] Sending command: 'SET_CH 2 ON'
+[2025-10-05 23:18:34] [INFO] [SERIAL TX] Payload length: 13 bytes (including CR+LF)
+[2025-10-05 23:18:34] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:34] [INFO]   0000  53 45 54 5F 43 48 20 32 20 4F 4E 0D 0A            |SET_CH 2 ON..|
+[2025-10-05 23:18:34] [INFO] [SERIAL TX] Wrote 13 bytes to port
+[2025-10-05 23:18:34] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:34] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:34] [INFO] [SERIAL RX] Chunk #1: received 141 bytes (elapsed: 0.206s, total: 141 bytes)
+[2025-10-05 23:18:35] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:35] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:35] [INFO] [SERIAL RX]   Total bytes: 141
+[2025-10-05 23:18:35] [INFO] [SERIAL RX]   Chunks received: 1
+[2025-10-05 23:18:35] [INFO] [SERIAL RX]   Total time: 0.709s
+[2025-10-05 23:18:35] [INFO] [SERIAL RX] Decoded text (141 characters):
+[2025-10-05 23:18:35] [INFO]   	[ECHO] Received CMD: "SET_CH 2 ON"\r\n
+  [INFO] SET_RELAY[3] t=11784091 us tag=<UART Command Handler> pin=1 val=1\r\n
+  	[ECHO] OK: Channel 2 set ON\r\n
+  
+[2025-10-05 23:18:35] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:35] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 32 20   | CMD: "SET_CH 2 |
+  0020  4F 4E 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54 5F   |ON"..[INFO] SET_|
+  0030  52 45 4C 41 59 5B 33 5D 20 74 3D 31 31 37 38 34   |RELAY[3] t=11784|
+  0040  30 39 31 20 75 73 20 74 61 67 3D 3C 55 41 52 54   |091 us tag=<UART|
+  0050  20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65 72   | Command Handler|
+  0060  3E 20 70 69 6E 3D 31 20 76 61 6C 3D 31 0D 0A 09   |> pin=1 val=1...|
+  0070  5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61 6E 6E   |[ECHO] OK: Chann|
+  0080  65 6C 20 32 20 73 65 74 20 4F 4E 0D 0A            |el 2 set ON..|
+[2025-10-05 23:18:35] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:35] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:35] [PASS] STEP 1.5 completed successfully
+[2025-10-05 23:18:35] [STEP 1.6] Read power data for Channel 2
+[2025-10-05 23:18:35] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:35] [INFO] [SERIAL]   port=COM11, command='READ_HLW8032 2', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:35] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:35] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:35] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:35] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:35] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:35] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:35] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:35] [INFO] [SERIAL TX] Sending command: 'READ_HLW8032 2'
+[2025-10-05 23:18:35] [INFO] [SERIAL TX] Payload length: 16 bytes (including CR+LF)
+[2025-10-05 23:18:35] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:35] [INFO]   0000  52 45 41 44 5F 48 4C 57 38 30 33 32 20 32 0D 0A   |READ_HLW8032 2..|
+[2025-10-05 23:18:35] [INFO] [SERIAL TX] Wrote 16 bytes to port
+[2025-10-05 23:18:35] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:35] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:35] [INFO] [SERIAL RX] Chunk #1: received 89 bytes (elapsed: 0.203s, total: 89 bytes)
+[2025-10-05 23:18:36] [INFO] [SERIAL RX] Chunk #2: received 44 bytes (elapsed: 0.633s, total: 133 bytes)
+[2025-10-05 23:18:36] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:36] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:36] [INFO] [SERIAL RX]   Total bytes: 133
+[2025-10-05 23:18:36] [INFO] [SERIAL RX]   Chunks received: 2
+[2025-10-05 23:18:36] [INFO] [SERIAL RX]   Total time: 1.137s
+[2025-10-05 23:18:36] [INFO] [SERIAL RX] Decoded text (133 characters):
+[2025-10-05 23:18:36] [INFO]   	[ECHO] Received CMD: "READ_HLW8032 2"\r\n
+  	[ECHO] Reading HLW8032 values for channel 2...\r\n
+  	[ECHO] CH2: V=0.76 V, I=0.047 A, P=0.04 W\r\n
+  
+[2025-10-05 23:18:36] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:36] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 52 45 41 44 5F 48 4C 57 38   | CMD: "READ_HLW8|
+  0020  30 33 32 20 32 22 0D 0A 09 5B 45 43 48 4F 5D 20   |032 2"...[ECHO] |
+  0030  52 65 61 64 69 6E 67 20 48 4C 57 38 30 33 32 20   |Reading HLW8032 |
+  0040  76 61 6C 75 65 73 20 66 6F 72 20 63 68 61 6E 6E   |values for chann|
+  0050  65 6C 20 32 2E 2E 2E 0D 0A 09 5B 45 43 48 4F 5D   |el 2......[ECHO]|
+  0060  20 43 48 32 3A 20 56 3D 30 2E 37 36 20 56 2C 20   | CH2: V=0.76 V, |
+  0070  49 3D 30 2E 30 34 37 20 41 2C 20 50 3D 30 2E 30   |I=0.047 A, P=0.0|
+  0080  34 20 57 0D 0A                                    |4 W..|
+[2025-10-05 23:18:36] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:36] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:36] [PASS] STEP 1.6 completed successfully
+[2025-10-05 23:18:36] [STEP 1.7] Validate power response for CH2
+[2025-10-05 23:18:36] [PASS] STEP 1.7 completed successfully
+[2025-10-05 23:18:36] [STEP 1.8] Turn OFF Channel 2
+[2025-10-05 23:18:36] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:36] [INFO] [SERIAL]   port=COM11, command='SET_CH 2 OFF', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:36] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:36] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:36] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:36] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:36] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:36] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:36] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:36] [INFO] [SERIAL TX] Sending command: 'SET_CH 2 OFF'
+[2025-10-05 23:18:36] [INFO] [SERIAL TX] Payload length: 14 bytes (including CR+LF)
+[2025-10-05 23:18:36] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:36] [INFO]   0000  53 45 54 5F 43 48 20 32 20 4F 46 46 0D 0A         |SET_CH 2 OFF..|
+[2025-10-05 23:18:36] [INFO] [SERIAL TX] Wrote 14 bytes to port
+[2025-10-05 23:18:36] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:36] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:37] [INFO] [SERIAL RX] Chunk #1: received 143 bytes (elapsed: 0.208s, total: 143 bytes)
+[2025-10-05 23:18:37] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:37] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:37] [INFO] [SERIAL RX]   Total bytes: 143
+[2025-10-05 23:18:37] [INFO] [SERIAL RX]   Chunks received: 1
+[2025-10-05 23:18:37] [INFO] [SERIAL RX]   Total time: 0.709s
+[2025-10-05 23:18:37] [INFO] [SERIAL RX] Decoded text (143 characters):
+[2025-10-05 23:18:37] [INFO]   	[ECHO] Received CMD: "SET_CH 2 OFF"\r\n
+  [INFO] SET_RELAY[4] t=13937792 us tag=<UART Command Handler> pin=1 val=0\r\n
+  	[ECHO] OK: Channel 2 set OFF\r\n
+  
+[2025-10-05 23:18:37] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:37] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 32 20   | CMD: "SET_CH 2 |
+  0020  4F 46 46 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54   |OFF"..[INFO] SET|
+  0030  5F 52 45 4C 41 59 5B 34 5D 20 74 3D 31 33 39 33   |_RELAY[4] t=1393|
+  0040  37 37 39 32 20 75 73 20 74 61 67 3D 3C 55 41 52   |7792 us tag=<UAR|
+  0050  54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65   |T Command Handle|
+  0060  72 3E 20 70 69 6E 3D 31 20 76 61 6C 3D 30 0D 0A   |r> pin=1 val=0..|
+  0070  09 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61 6E   |.[ECHO] OK: Chan|
+  0080  6E 65 6C 20 32 20 73 65 74 20 4F 46 46 0D 0A      |nel 2 set OFF..|
+[2025-10-05 23:18:37] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:37] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:37] [PASS] STEP 1.8 completed successfully
+[2025-10-05 23:18:37] [STEP 1.9] Turn ON Channel 3
+[2025-10-05 23:18:37] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:37] [INFO] [SERIAL]   port=COM11, command='SET_CH 3 ON', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:37] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:37] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:37] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:37] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:37] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:37] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:37] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:37] [INFO] [SERIAL TX] Sending command: 'SET_CH 3 ON'
+[2025-10-05 23:18:37] [INFO] [SERIAL TX] Payload length: 13 bytes (including CR+LF)
+[2025-10-05 23:18:37] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:37] [INFO]   0000  53 45 54 5F 43 48 20 33 20 4F 4E 0D 0A            |SET_CH 3 ON..|
+[2025-10-05 23:18:37] [INFO] [SERIAL TX] Wrote 13 bytes to port
+[2025-10-05 23:18:37] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:37] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:37] [INFO] [SERIAL RX] Chunk #1: received 111 bytes (elapsed: 0.205s, total: 111 bytes)
+[2025-10-05 23:18:37] [INFO] [SERIAL RX] Chunk #2: received 30 bytes (elapsed: 0.215s, total: 141 bytes)
+[2025-10-05 23:18:38] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:38] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:38] [INFO] [SERIAL RX]   Total bytes: 141
+[2025-10-05 23:18:38] [INFO] [SERIAL RX]   Chunks received: 2
+[2025-10-05 23:18:38] [INFO] [SERIAL RX]   Total time: 0.718s
+[2025-10-05 23:18:38] [INFO] [SERIAL RX] Decoded text (141 characters):
+[2025-10-05 23:18:38] [INFO]   	[ECHO] Received CMD: "SET_CH 3 ON"\r\n
+  [INFO] SET_RELAY[5] t=14803397 us tag=<UART Command Handler> pin=2 val=1\r\n
+  	[ECHO] OK: Channel 3 set ON\r\n
+  
+[2025-10-05 23:18:38] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:38] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 33 20   | CMD: "SET_CH 3 |
+  0020  4F 4E 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54 5F   |ON"..[INFO] SET_|
+  0030  52 45 4C 41 59 5B 35 5D 20 74 3D 31 34 38 30 33   |RELAY[5] t=14803|
+  0040  33 39 37 20 75 73 20 74 61 67 3D 3C 55 41 52 54   |397 us tag=<UART|
+  0050  20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65 72   | Command Handler|
+  0060  3E 20 70 69 6E 3D 32 20 76 61 6C 3D 31 0D 0A 09   |> pin=2 val=1...|
+  0070  5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61 6E 6E   |[ECHO] OK: Chann|
+  0080  65 6C 20 33 20 73 65 74 20 4F 4E 0D 0A            |el 3 set ON..|
+[2025-10-05 23:18:38] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:38] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:38] [PASS] STEP 1.9 completed successfully
+[2025-10-05 23:18:38] [STEP 1.10] Read power data for Channel 3
+[2025-10-05 23:18:38] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:38] [INFO] [SERIAL]   port=COM11, command='READ_HLW8032 3', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:38] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:38] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:38] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:38] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:38] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:38] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:38] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:38] [INFO] [SERIAL TX] Sending command: 'READ_HLW8032 3'
+[2025-10-05 23:18:38] [INFO] [SERIAL TX] Payload length: 16 bytes (including CR+LF)
+[2025-10-05 23:18:38] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:38] [INFO]   0000  52 45 41 44 5F 48 4C 57 38 30 33 32 20 33 0D 0A   |READ_HLW8032 3..|
+[2025-10-05 23:18:38] [INFO] [SERIAL TX] Wrote 16 bytes to port
+[2025-10-05 23:18:38] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:38] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:38] [INFO] [SERIAL RX] Chunk #1: received 89 bytes (elapsed: 0.205s, total: 89 bytes)
+[2025-10-05 23:18:39] [INFO] [SERIAL RX] Chunk #2: received 44 bytes (elapsed: 0.634s, total: 133 bytes)
+[2025-10-05 23:18:39] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:39] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:39] [INFO] [SERIAL RX]   Total bytes: 133
+[2025-10-05 23:18:39] [INFO] [SERIAL RX]   Chunks received: 2
+[2025-10-05 23:18:39] [INFO] [SERIAL RX]   Total time: 1.135s
+[2025-10-05 23:18:39] [INFO] [SERIAL RX] Decoded text (133 characters):
+[2025-10-05 23:18:39] [INFO]   	[ECHO] Received CMD: "READ_HLW8032 3"\r\n
+  	[ECHO] Reading HLW8032 values for channel 3...\r\n
+  	[ECHO] CH3: V=0.78 V, I=0.052 A, P=0.04 W\r\n
+  
+[2025-10-05 23:18:39] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:39] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 52 45 41 44 5F 48 4C 57 38   | CMD: "READ_HLW8|
+  0020  30 33 32 20 33 22 0D 0A 09 5B 45 43 48 4F 5D 20   |032 3"...[ECHO] |
+  0030  52 65 61 64 69 6E 67 20 48 4C 57 38 30 33 32 20   |Reading HLW8032 |
+  0040  76 61 6C 75 65 73 20 66 6F 72 20 63 68 61 6E 6E   |values for chann|
+  0050  65 6C 20 33 2E 2E 2E 0D 0A 09 5B 45 43 48 4F 5D   |el 3......[ECHO]|
+  0060  20 43 48 33 3A 20 56 3D 30 2E 37 38 20 56 2C 20   | CH3: V=0.78 V, |
+  0070  49 3D 30 2E 30 35 32 20 41 2C 20 50 3D 30 2E 30   |I=0.052 A, P=0.0|
+  0080  34 20 57 0D 0A                                    |4 W..|
+[2025-10-05 23:18:39] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:39] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:39] [PASS] STEP 1.10 completed successfully
+[2025-10-05 23:18:39] [STEP 1.11] Validate power response for CH3
+[2025-10-05 23:18:39] [PASS] STEP 1.11 completed successfully
+[2025-10-05 23:18:39] [STEP 1.12] Turn OFF Channel 3
+[2025-10-05 23:18:39] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:39] [INFO] [SERIAL]   port=COM11, command='SET_CH 3 OFF', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:39] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:39] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:39] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:39] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:39] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:39] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:39] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:39] [INFO] [SERIAL TX] Sending command: 'SET_CH 3 OFF'
+[2025-10-05 23:18:39] [INFO] [SERIAL TX] Payload length: 14 bytes (including CR+LF)
+[2025-10-05 23:18:39] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:39] [INFO]   0000  53 45 54 5F 43 48 20 33 20 4F 46 46 0D 0A         |SET_CH 3 OFF..|
+[2025-10-05 23:18:39] [INFO] [SERIAL TX] Wrote 14 bytes to port
+[2025-10-05 23:18:39] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:39] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:40] [INFO] [SERIAL RX] Chunk #1: received 112 bytes (elapsed: 0.205s, total: 112 bytes)
+[2025-10-05 23:18:40] [INFO] [SERIAL RX] Chunk #2: received 31 bytes (elapsed: 0.215s, total: 143 bytes)
+[2025-10-05 23:18:40] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:40] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:40] [INFO] [SERIAL RX]   Total bytes: 143
+[2025-10-05 23:18:40] [INFO] [SERIAL RX]   Chunks received: 2
+[2025-10-05 23:18:40] [INFO] [SERIAL RX]   Total time: 0.718s
+[2025-10-05 23:18:40] [INFO] [SERIAL RX] Decoded text (143 characters):
+[2025-10-05 23:18:40] [INFO]   	[ECHO] Received CMD: "SET_CH 3 OFF"\r\n
+  [INFO] SET_RELAY[6] t=16957148 us tag=<UART Command Handler> pin=2 val=0\r\n
+  	[ECHO] OK: Channel 3 set OFF\r\n
+  
+[2025-10-05 23:18:40] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:40] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 33 20   | CMD: "SET_CH 3 |
+  0020  4F 46 46 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54   |OFF"..[INFO] SET|
+  0030  5F 52 45 4C 41 59 5B 36 5D 20 74 3D 31 36 39 35   |_RELAY[6] t=1695|
+  0040  37 31 34 38 20 75 73 20 74 61 67 3D 3C 55 41 52   |7148 us tag=<UAR|
+  0050  54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65   |T Command Handle|
+  0060  72 3E 20 70 69 6E 3D 32 20 76 61 6C 3D 30 0D 0A   |r> pin=2 val=0..|
+  0070  09 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61 6E   |.[ECHO] OK: Chan|
+  0080  6E 65 6C 20 33 20 73 65 74 20 4F 46 46 0D 0A      |nel 3 set OFF..|
+[2025-10-05 23:18:40] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:40] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:40] [PASS] STEP 1.12 completed successfully
+[2025-10-05 23:18:40] [STEP 1.13] Turn ON Channel 4
+[2025-10-05 23:18:40] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:40] [INFO] [SERIAL]   port=COM11, command='SET_CH 4 ON', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:40] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:40] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:40] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:40] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:40] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:40] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:40] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:40] [INFO] [SERIAL TX] Sending command: 'SET_CH 4 ON'
+[2025-10-05 23:18:40] [INFO] [SERIAL TX] Payload length: 13 bytes (including CR+LF)
+[2025-10-05 23:18:40] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:40] [INFO]   0000  53 45 54 5F 43 48 20 34 20 4F 4E 0D 0A            |SET_CH 4 ON..|
+[2025-10-05 23:18:40] [INFO] [SERIAL TX] Wrote 13 bytes to port
+[2025-10-05 23:18:40] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:40] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:41] [INFO] [SERIAL RX] Chunk #1: received 111 bytes (elapsed: 0.196s, total: 111 bytes)
+[2025-10-05 23:18:41] [INFO] [SERIAL RX] Chunk #2: received 30 bytes (elapsed: 0.206s, total: 141 bytes)
+[2025-10-05 23:18:41] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:41] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:41] [INFO] [SERIAL RX]   Total bytes: 141
+[2025-10-05 23:18:41] [INFO] [SERIAL RX]   Chunks received: 2
+[2025-10-05 23:18:41] [INFO] [SERIAL RX]   Total time: 0.707s
+[2025-10-05 23:18:41] [INFO] [SERIAL RX] Decoded text (141 characters):
+[2025-10-05 23:18:41] [INFO]   	[ECHO] Received CMD: "SET_CH 4 ON"\r\n
+  [INFO] SET_RELAY[7] t=17822702 us tag=<UART Command Handler> pin=3 val=1\r\n
+  	[ECHO] OK: Channel 4 set ON\r\n
+  
+[2025-10-05 23:18:41] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:41] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 34 20   | CMD: "SET_CH 4 |
+  0020  4F 4E 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54 5F   |ON"..[INFO] SET_|
+  0030  52 45 4C 41 59 5B 37 5D 20 74 3D 31 37 38 32 32   |RELAY[7] t=17822|
+  0040  37 30 32 20 75 73 20 74 61 67 3D 3C 55 41 52 54   |702 us tag=<UART|
+  0050  20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65 72   | Command Handler|
+  0060  3E 20 70 69 6E 3D 33 20 76 61 6C 3D 31 0D 0A 09   |> pin=3 val=1...|
+  0070  5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61 6E 6E   |[ECHO] OK: Chann|
+  0080  65 6C 20 34 20 73 65 74 20 4F 4E 0D 0A            |el 4 set ON..|
+[2025-10-05 23:18:41] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:41] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:41] [PASS] STEP 1.13 completed successfully
+[2025-10-05 23:18:41] [STEP 1.14] Read power data for Channel 4
+[2025-10-05 23:18:41] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:41] [INFO] [SERIAL]   port=COM11, command='READ_HLW8032 4', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:41] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:41] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:41] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:41] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:41] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:41] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:41] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:41] [INFO] [SERIAL TX] Sending command: 'READ_HLW8032 4'
+[2025-10-05 23:18:41] [INFO] [SERIAL TX] Payload length: 16 bytes (including CR+LF)
+[2025-10-05 23:18:41] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:41] [INFO]   0000  52 45 41 44 5F 48 4C 57 38 30 33 32 20 34 0D 0A   |READ_HLW8032 4..|
+[2025-10-05 23:18:41] [INFO] [SERIAL TX] Wrote 16 bytes to port
+[2025-10-05 23:18:41] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:41] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:41] [INFO] [SERIAL RX] Chunk #1: received 89 bytes (elapsed: 0.205s, total: 89 bytes)
+[2025-10-05 23:18:42] [INFO] [SERIAL RX] Chunk #2: received 44 bytes (elapsed: 0.634s, total: 133 bytes)
+[2025-10-05 23:18:42] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:42] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:42] [INFO] [SERIAL RX]   Total bytes: 133
+[2025-10-05 23:18:42] [INFO] [SERIAL RX]   Chunks received: 2
+[2025-10-05 23:18:42] [INFO] [SERIAL RX]   Total time: 1.136s
+[2025-10-05 23:18:42] [INFO] [SERIAL RX] Decoded text (133 characters):
+[2025-10-05 23:18:42] [INFO]   	[ECHO] Received CMD: "READ_HLW8032 4"\r\n
+  	[ECHO] Reading HLW8032 values for channel 4...\r\n
+  	[ECHO] CH4: V=0.78 V, I=0.058 A, P=0.04 W\r\n
+  
+[2025-10-05 23:18:42] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:42] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 52 45 41 44 5F 48 4C 57 38   | CMD: "READ_HLW8|
+  0020  30 33 32 20 34 22 0D 0A 09 5B 45 43 48 4F 5D 20   |032 4"...[ECHO] |
+  0030  52 65 61 64 69 6E 67 20 48 4C 57 38 30 33 32 20   |Reading HLW8032 |
+  0040  76 61 6C 75 65 73 20 66 6F 72 20 63 68 61 6E 6E   |values for chann|
+  0050  65 6C 20 34 2E 2E 2E 0D 0A 09 5B 45 43 48 4F 5D   |el 4......[ECHO]|
+  0060  20 43 48 34 3A 20 56 3D 30 2E 37 38 20 56 2C 20   | CH4: V=0.78 V, |
+  0070  49 3D 30 2E 30 35 38 20 41 2C 20 50 3D 30 2E 30   |I=0.058 A, P=0.0|
+  0080  34 20 57 0D 0A                                    |4 W..|
+[2025-10-05 23:18:42] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:42] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:42] [PASS] STEP 1.14 completed successfully
+[2025-10-05 23:18:42] [STEP 1.15] Validate power response for CH4
+[2025-10-05 23:18:42] [PASS] STEP 1.15 completed successfully
+[2025-10-05 23:18:42] [STEP 1.16] Turn OFF Channel 4
+[2025-10-05 23:18:42] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:42] [INFO] [SERIAL]   port=COM11, command='SET_CH 4 OFF', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:42] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:42] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:42] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:42] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:42] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:42] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:42] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:42] [INFO] [SERIAL TX] Sending command: 'SET_CH 4 OFF'
+[2025-10-05 23:18:42] [INFO] [SERIAL TX] Payload length: 14 bytes (including CR+LF)
+[2025-10-05 23:18:42] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:42] [INFO]   0000  53 45 54 5F 43 48 20 34 20 4F 46 46 0D 0A         |SET_CH 4 OFF..|
+[2025-10-05 23:18:42] [INFO] [SERIAL TX] Wrote 14 bytes to port
+[2025-10-05 23:18:42] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:42] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:43] [INFO] [SERIAL RX] Chunk #1: received 112 bytes (elapsed: 0.206s, total: 112 bytes)
+[2025-10-05 23:18:43] [INFO] [SERIAL RX] Chunk #2: received 31 bytes (elapsed: 0.216s, total: 143 bytes)
+[2025-10-05 23:18:43] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:43] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:43] [INFO] [SERIAL RX]   Total bytes: 143
+[2025-10-05 23:18:43] [INFO] [SERIAL RX]   Chunks received: 2
+[2025-10-05 23:18:43] [INFO] [SERIAL RX]   Total time: 0.726s
+[2025-10-05 23:18:43] [INFO] [SERIAL RX] Decoded text (143 characters):
+[2025-10-05 23:18:43] [INFO]   	[ECHO] Received CMD: "SET_CH 4 OFF"\r\n
+  [INFO] SET_RELAY[8] t=19976513 us tag=<UART Command Handler> pin=3 val=0\r\n
+  	[ECHO] OK: Channel 4 set OFF\r\n
+  
+[2025-10-05 23:18:43] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:43] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 34 20   | CMD: "SET_CH 4 |
+  0020  4F 46 46 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54   |OFF"..[INFO] SET|
+  0030  5F 52 45 4C 41 59 5B 38 5D 20 74 3D 31 39 39 37   |_RELAY[8] t=1997|
+  0040  36 35 31 33 20 75 73 20 74 61 67 3D 3C 55 41 52   |6513 us tag=<UAR|
+  0050  54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65   |T Command Handle|
+  0060  72 3E 20 70 69 6E 3D 33 20 76 61 6C 3D 30 0D 0A   |r> pin=3 val=0..|
+  0070  09 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61 6E   |.[ECHO] OK: Chan|
+  0080  6E 65 6C 20 34 20 73 65 74 20 4F 46 46 0D 0A      |nel 4 set OFF..|
+[2025-10-05 23:18:43] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:43] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:43] [PASS] STEP 1.16 completed successfully
+[2025-10-05 23:18:43] [STEP 1.17] Turn ON Channel 5
+[2025-10-05 23:18:43] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:43] [INFO] [SERIAL]   port=COM11, command='SET_CH 5 ON', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:43] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:43] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:43] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:43] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:43] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:43] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:43] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:43] [INFO] [SERIAL TX] Sending command: 'SET_CH 5 ON'
+[2025-10-05 23:18:43] [INFO] [SERIAL TX] Payload length: 13 bytes (including CR+LF)
+[2025-10-05 23:18:43] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:43] [INFO]   0000  53 45 54 5F 43 48 20 35 20 4F 4E 0D 0A            |SET_CH 5 ON..|
+[2025-10-05 23:18:43] [INFO] [SERIAL TX] Wrote 13 bytes to port
+[2025-10-05 23:18:43] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:43] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:44] [INFO] [SERIAL RX] Chunk #1: received 141 bytes (elapsed: 0.194s, total: 141 bytes)
+[2025-10-05 23:18:44] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:44] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:44] [INFO] [SERIAL RX]   Total bytes: 141
+[2025-10-05 23:18:44] [INFO] [SERIAL RX]   Chunks received: 1
+[2025-10-05 23:18:44] [INFO] [SERIAL RX]   Total time: 0.698s
+[2025-10-05 23:18:44] [INFO] [SERIAL RX] Decoded text (141 characters):
+[2025-10-05 23:18:44] [INFO]   	[ECHO] Received CMD: "SET_CH 5 ON"\r\n
+  [INFO] SET_RELAY[9] t=20842075 us tag=<UART Command Handler> pin=4 val=1\r\n
+  	[ECHO] OK: Channel 5 set ON\r\n
+  
+[2025-10-05 23:18:44] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:44] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 35 20   | CMD: "SET_CH 5 |
+  0020  4F 4E 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54 5F   |ON"..[INFO] SET_|
+  0030  52 45 4C 41 59 5B 39 5D 20 74 3D 32 30 38 34 32   |RELAY[9] t=20842|
+  0040  30 37 35 20 75 73 20 74 61 67 3D 3C 55 41 52 54   |075 us tag=<UART|
+  0050  20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65 72   | Command Handler|
+  0060  3E 20 70 69 6E 3D 34 20 76 61 6C 3D 31 0D 0A 09   |> pin=4 val=1...|
+  0070  5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61 6E 6E   |[ECHO] OK: Chann|
+  0080  65 6C 20 35 20 73 65 74 20 4F 4E 0D 0A            |el 5 set ON..|
+[2025-10-05 23:18:44] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:44] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:44] [PASS] STEP 1.17 completed successfully
+[2025-10-05 23:18:44] [STEP 1.18] Read power data for Channel 5
+[2025-10-05 23:18:44] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:44] [INFO] [SERIAL]   port=COM11, command='READ_HLW8032 5', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:44] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:44] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:44] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:44] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:44] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:44] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:44] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:44] [INFO] [SERIAL TX] Sending command: 'READ_HLW8032 5'
+[2025-10-05 23:18:44] [INFO] [SERIAL TX] Payload length: 16 bytes (including CR+LF)
+[2025-10-05 23:18:44] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:44] [INFO]   0000  52 45 41 44 5F 48 4C 57 38 30 33 32 20 35 0D 0A   |READ_HLW8032 5..|
+[2025-10-05 23:18:44] [INFO] [SERIAL TX] Wrote 16 bytes to port
+[2025-10-05 23:18:44] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:44] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:44] [INFO] [SERIAL RX] Chunk #1: received 89 bytes (elapsed: 0.205s, total: 89 bytes)
+[2025-10-05 23:18:45] [INFO] [SERIAL RX] Chunk #2: received 44 bytes (elapsed: 0.635s, total: 133 bytes)
+[2025-10-05 23:18:45] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:45] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:45] [INFO] [SERIAL RX]   Total bytes: 133
+[2025-10-05 23:18:45] [INFO] [SERIAL RX]   Chunks received: 2
+[2025-10-05 23:18:45] [INFO] [SERIAL RX]   Total time: 1.138s
+[2025-10-05 23:18:45] [INFO] [SERIAL RX] Decoded text (133 characters):
+[2025-10-05 23:18:45] [INFO]   	[ECHO] Received CMD: "READ_HLW8032 5"\r\n
+  	[ECHO] Reading HLW8032 values for channel 5...\r\n
+  	[ECHO] CH5: V=0.76 V, I=0.033 A, P=0.03 W\r\n
+  
+[2025-10-05 23:18:45] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:45] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 52 45 41 44 5F 48 4C 57 38   | CMD: "READ_HLW8|
+  0020  30 33 32 20 35 22 0D 0A 09 5B 45 43 48 4F 5D 20   |032 5"...[ECHO] |
+  0030  52 65 61 64 69 6E 67 20 48 4C 57 38 30 33 32 20   |Reading HLW8032 |
+  0040  76 61 6C 75 65 73 20 66 6F 72 20 63 68 61 6E 6E   |values for chann|
+  0050  65 6C 20 35 2E 2E 2E 0D 0A 09 5B 45 43 48 4F 5D   |el 5......[ECHO]|
+  0060  20 43 48 35 3A 20 56 3D 30 2E 37 36 20 56 2C 20   | CH5: V=0.76 V, |
+  0070  49 3D 30 2E 30 33 33 20 41 2C 20 50 3D 30 2E 30   |I=0.033 A, P=0.0|
+  0080  33 20 57 0D 0A                                    |3 W..|
+[2025-10-05 23:18:45] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:45] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:45] [PASS] STEP 1.18 completed successfully
+[2025-10-05 23:18:45] [STEP 1.19] Validate power response for CH5
+[2025-10-05 23:18:45] [PASS] STEP 1.19 completed successfully
+[2025-10-05 23:18:45] [STEP 1.20] Turn OFF Channel 5
+[2025-10-05 23:18:45] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:45] [INFO] [SERIAL]   port=COM11, command='SET_CH 5 OFF', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:45] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:45] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:45] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:45] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:45] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:45] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:45] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:45] [INFO] [SERIAL TX] Sending command: 'SET_CH 5 OFF'
+[2025-10-05 23:18:45] [INFO] [SERIAL TX] Payload length: 14 bytes (including CR+LF)
+[2025-10-05 23:18:45] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:45] [INFO]   0000  53 45 54 5F 43 48 20 35 20 4F 46 46 0D 0A         |SET_CH 5 OFF..|
+[2025-10-05 23:18:45] [INFO] [SERIAL TX] Wrote 14 bytes to port
+[2025-10-05 23:18:45] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:45] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:46] [INFO] [SERIAL RX] Chunk #1: received 113 bytes (elapsed: 0.202s, total: 113 bytes)
+[2025-10-05 23:18:46] [INFO] [SERIAL RX] Chunk #2: received 31 bytes (elapsed: 0.213s, total: 144 bytes)
+[2025-10-05 23:18:46] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:46] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:46] [INFO] [SERIAL RX]   Total bytes: 144
+[2025-10-05 23:18:46] [INFO] [SERIAL RX]   Chunks received: 2
+[2025-10-05 23:18:46] [INFO] [SERIAL RX]   Total time: 0.715s
+[2025-10-05 23:18:46] [INFO] [SERIAL RX] Decoded text (144 characters):
+[2025-10-05 23:18:46] [INFO]   	[ECHO] Received CMD: "SET_CH 5 OFF"\r\n
+  [INFO] SET_RELAY[10] t=22995819 us tag=<UART Command Handler> pin=4 val=0\r\n
+  	[ECHO] OK: Channel 5 set OFF\r\n
+  
+[2025-10-05 23:18:46] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:46] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 35 20   | CMD: "SET_CH 5 |
+  0020  4F 46 46 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54   |OFF"..[INFO] SET|
+  0030  5F 52 45 4C 41 59 5B 31 30 5D 20 74 3D 32 32 39   |_RELAY[10] t=229|
+  0040  39 35 38 31 39 20 75 73 20 74 61 67 3D 3C 55 41   |95819 us tag=<UA|
+  0050  52 54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C   |RT Command Handl|
+  0060  65 72 3E 20 70 69 6E 3D 34 20 76 61 6C 3D 30 0D   |er> pin=4 val=0.|
+  0070  0A 09 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61   |..[ECHO] OK: Cha|
+  0080  6E 6E 65 6C 20 35 20 73 65 74 20 4F 46 46 0D 0A   |nnel 5 set OFF..|
+[2025-10-05 23:18:46] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:46] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:46] [PASS] STEP 1.20 completed successfully
+[2025-10-05 23:18:46] [STEP 1.21] Turn ON Channel 6
+[2025-10-05 23:18:46] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:46] [INFO] [SERIAL]   port=COM11, command='SET_CH 6 ON', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:46] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:46] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:46] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:46] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:46] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:46] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:46] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:46] [INFO] [SERIAL TX] Sending command: 'SET_CH 6 ON'
+[2025-10-05 23:18:46] [INFO] [SERIAL TX] Payload length: 13 bytes (including CR+LF)
+[2025-10-05 23:18:46] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:46] [INFO]   0000  53 45 54 5F 43 48 20 36 20 4F 4E 0D 0A            |SET_CH 6 ON..|
+[2025-10-05 23:18:46] [INFO] [SERIAL TX] Wrote 13 bytes to port
+[2025-10-05 23:18:46] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:46] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:47] [INFO] [SERIAL RX] Chunk #1: received 142 bytes (elapsed: 0.205s, total: 142 bytes)
+[2025-10-05 23:18:47] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:47] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:47] [INFO] [SERIAL RX]   Total bytes: 142
+[2025-10-05 23:18:47] [INFO] [SERIAL RX]   Chunks received: 1
+[2025-10-05 23:18:47] [INFO] [SERIAL RX]   Total time: 0.707s
+[2025-10-05 23:18:47] [INFO] [SERIAL RX] Decoded text (142 characters):
+[2025-10-05 23:18:47] [INFO]   	[ECHO] Received CMD: "SET_CH 6 ON"\r\n
+  [INFO] SET_RELAY[11] t=23861369 us tag=<UART Command Handler> pin=5 val=1\r\n
+  	[ECHO] OK: Channel 6 set ON\r\n
+  
+[2025-10-05 23:18:47] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:47] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 36 20   | CMD: "SET_CH 6 |
+  0020  4F 4E 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54 5F   |ON"..[INFO] SET_|
+  0030  52 45 4C 41 59 5B 31 31 5D 20 74 3D 32 33 38 36   |RELAY[11] t=2386|
+  0040  31 33 36 39 20 75 73 20 74 61 67 3D 3C 55 41 52   |1369 us tag=<UAR|
+  0050  54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65   |T Command Handle|
+  0060  72 3E 20 70 69 6E 3D 35 20 76 61 6C 3D 31 0D 0A   |r> pin=5 val=1..|
+  0070  09 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61 6E   |.[ECHO] OK: Chan|
+  0080  6E 65 6C 20 36 20 73 65 74 20 4F 4E 0D 0A         |nel 6 set ON..|
+[2025-10-05 23:18:47] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:47] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:47] [PASS] STEP 1.21 completed successfully
+[2025-10-05 23:18:47] [STEP 1.22] Read power data for Channel 6
+[2025-10-05 23:18:47] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:47] [INFO] [SERIAL]   port=COM11, command='READ_HLW8032 6', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:47] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:47] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:47] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:47] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:47] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:47] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:47] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:47] [INFO] [SERIAL TX] Sending command: 'READ_HLW8032 6'
+[2025-10-05 23:18:47] [INFO] [SERIAL TX] Payload length: 16 bytes (including CR+LF)
+[2025-10-05 23:18:47] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:47] [INFO]   0000  52 45 41 44 5F 48 4C 57 38 30 33 32 20 36 0D 0A   |READ_HLW8032 6..|
+[2025-10-05 23:18:47] [INFO] [SERIAL TX] Wrote 16 bytes to port
+[2025-10-05 23:18:47] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:47] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:47] [INFO] [SERIAL RX] Chunk #1: received 89 bytes (elapsed: 0.204s, total: 89 bytes)
+[2025-10-05 23:18:48] [INFO] [SERIAL RX] Chunk #2: received 44 bytes (elapsed: 0.635s, total: 133 bytes)
+[2025-10-05 23:18:48] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:48] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:48] [INFO] [SERIAL RX]   Total bytes: 133
+[2025-10-05 23:18:48] [INFO] [SERIAL RX]   Chunks received: 2
+[2025-10-05 23:18:48] [INFO] [SERIAL RX]   Total time: 1.144s
+[2025-10-05 23:18:48] [INFO] [SERIAL RX] Decoded text (133 characters):
+[2025-10-05 23:18:48] [INFO]   	[ECHO] Received CMD: "READ_HLW8032 6"\r\n
+  	[ECHO] Reading HLW8032 values for channel 6...\r\n
+  	[ECHO] CH6: V=0.80 V, I=0.056 A, P=0.04 W\r\n
+  
+[2025-10-05 23:18:48] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:48] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 52 45 41 44 5F 48 4C 57 38   | CMD: "READ_HLW8|
+  0020  30 33 32 20 36 22 0D 0A 09 5B 45 43 48 4F 5D 20   |032 6"...[ECHO] |
+  0030  52 65 61 64 69 6E 67 20 48 4C 57 38 30 33 32 20   |Reading HLW8032 |
+  0040  76 61 6C 75 65 73 20 66 6F 72 20 63 68 61 6E 6E   |values for chann|
+  0050  65 6C 20 36 2E 2E 2E 0D 0A 09 5B 45 43 48 4F 5D   |el 6......[ECHO]|
+  0060  20 43 48 36 3A 20 56 3D 30 2E 38 30 20 56 2C 20   | CH6: V=0.80 V, |
+  0070  49 3D 30 2E 30 35 36 20 41 2C 20 50 3D 30 2E 30   |I=0.056 A, P=0.0|
+  0080  34 20 57 0D 0A                                    |4 W..|
+[2025-10-05 23:18:48] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:48] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:48] [PASS] STEP 1.22 completed successfully
+[2025-10-05 23:18:48] [STEP 1.23] Validate power response for CH6
+[2025-10-05 23:18:48] [PASS] STEP 1.23 completed successfully
+[2025-10-05 23:18:48] [STEP 1.24] Turn OFF Channel 6
+[2025-10-05 23:18:48] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:48] [INFO] [SERIAL]   port=COM11, command='SET_CH 6 OFF', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:48] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:48] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:48] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:48] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:48] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:48] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:48] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:48] [INFO] [SERIAL TX] Sending command: 'SET_CH 6 OFF'
+[2025-10-05 23:18:48] [INFO] [SERIAL TX] Payload length: 14 bytes (including CR+LF)
+[2025-10-05 23:18:48] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:48] [INFO]   0000  53 45 54 5F 43 48 20 36 20 4F 46 46 0D 0A         |SET_CH 6 OFF..|
+[2025-10-05 23:18:48] [INFO] [SERIAL TX] Wrote 14 bytes to port
+[2025-10-05 23:18:48] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:48] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:49] [INFO] [SERIAL RX] Chunk #1: received 144 bytes (elapsed: 0.205s, total: 144 bytes)
+[2025-10-05 23:18:49] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:49] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:49] [INFO] [SERIAL RX]   Total bytes: 144
+[2025-10-05 23:18:49] [INFO] [SERIAL RX]   Chunks received: 1
+[2025-10-05 23:18:49] [INFO] [SERIAL RX]   Total time: 0.707s
+[2025-10-05 23:18:49] [INFO] [SERIAL RX] Decoded text (144 characters):
+[2025-10-05 23:18:49] [INFO]   	[ECHO] Received CMD: "SET_CH 6 OFF"\r\n
+  [INFO] SET_RELAY[12] t=26015114 us tag=<UART Command Handler> pin=5 val=0\r\n
+  	[ECHO] OK: Channel 6 set OFF\r\n
+  
+[2025-10-05 23:18:49] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:49] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 36 20   | CMD: "SET_CH 6 |
+  0020  4F 46 46 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54   |OFF"..[INFO] SET|
+  0030  5F 52 45 4C 41 59 5B 31 32 5D 20 74 3D 32 36 30   |_RELAY[12] t=260|
+  0040  31 35 31 31 34 20 75 73 20 74 61 67 3D 3C 55 41   |15114 us tag=<UA|
+  0050  52 54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C   |RT Command Handl|
+  0060  65 72 3E 20 70 69 6E 3D 35 20 76 61 6C 3D 30 0D   |er> pin=5 val=0.|
+  0070  0A 09 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61   |..[ECHO] OK: Cha|
+  0080  6E 6E 65 6C 20 36 20 73 65 74 20 4F 46 46 0D 0A   |nnel 6 set OFF..|
+[2025-10-05 23:18:49] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:49] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:49] [PASS] STEP 1.24 completed successfully
+[2025-10-05 23:18:49] [STEP 1.25] Turn ON Channel 7
+[2025-10-05 23:18:49] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:49] [INFO] [SERIAL]   port=COM11, command='SET_CH 7 ON', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:49] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:49] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:49] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:49] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:49] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:49] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:49] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:49] [INFO] [SERIAL TX] Sending command: 'SET_CH 7 ON'
+[2025-10-05 23:18:49] [INFO] [SERIAL TX] Payload length: 13 bytes (including CR+LF)
+[2025-10-05 23:18:49] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:49] [INFO]   0000  53 45 54 5F 43 48 20 37 20 4F 4E 0D 0A            |SET_CH 7 ON..|
+[2025-10-05 23:18:49] [INFO] [SERIAL TX] Wrote 13 bytes to port
+[2025-10-05 23:18:49] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:49] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:50] [INFO] [SERIAL RX] Chunk #1: received 112 bytes (elapsed: 0.205s, total: 112 bytes)
+[2025-10-05 23:18:50] [INFO] [SERIAL RX] Chunk #2: received 30 bytes (elapsed: 0.216s, total: 142 bytes)
+[2025-10-05 23:18:50] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:50] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:50] [INFO] [SERIAL RX]   Total bytes: 142
+[2025-10-05 23:18:50] [INFO] [SERIAL RX]   Chunks received: 2
+[2025-10-05 23:18:50] [INFO] [SERIAL RX]   Total time: 0.716s
+[2025-10-05 23:18:50] [INFO] [SERIAL RX] Decoded text (142 characters):
+[2025-10-05 23:18:50] [INFO]   	[ECHO] Received CMD: "SET_CH 7 ON"\r\n
+  [INFO] SET_RELAY[13] t=26880697 us tag=<UART Command Handler> pin=6 val=1\r\n
+  	[ECHO] OK: Channel 7 set ON\r\n
+  
+[2025-10-05 23:18:50] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:50] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 37 20   | CMD: "SET_CH 7 |
+  0020  4F 4E 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54 5F   |ON"..[INFO] SET_|
+  0030  52 45 4C 41 59 5B 31 33 5D 20 74 3D 32 36 38 38   |RELAY[13] t=2688|
+  0040  30 36 39 37 20 75 73 20 74 61 67 3D 3C 55 41 52   |0697 us tag=<UAR|
+  0050  54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65   |T Command Handle|
+  0060  72 3E 20 70 69 6E 3D 36 20 76 61 6C 3D 31 0D 0A   |r> pin=6 val=1..|
+  0070  09 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61 6E   |.[ECHO] OK: Chan|
+  0080  6E 65 6C 20 37 20 73 65 74 20 4F 4E 0D 0A         |nel 7 set ON..|
+[2025-10-05 23:18:50] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:50] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:50] [PASS] STEP 1.25 completed successfully
+[2025-10-05 23:18:50] [STEP 1.26] Read power data for Channel 7
+[2025-10-05 23:18:50] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:50] [INFO] [SERIAL]   port=COM11, command='READ_HLW8032 7', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:50] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:50] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:50] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:50] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:50] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:50] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:50] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:50] [INFO] [SERIAL TX] Sending command: 'READ_HLW8032 7'
+[2025-10-05 23:18:50] [INFO] [SERIAL TX] Payload length: 16 bytes (including CR+LF)
+[2025-10-05 23:18:50] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:50] [INFO]   0000  52 45 41 44 5F 48 4C 57 38 30 33 32 20 37 0D 0A   |READ_HLW8032 7..|
+[2025-10-05 23:18:50] [INFO] [SERIAL TX] Wrote 16 bytes to port
+[2025-10-05 23:18:50] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:50] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:50] [INFO] [SERIAL RX] Chunk #1: received 89 bytes (elapsed: 0.205s, total: 89 bytes)
+[2025-10-05 23:18:51] [INFO] [SERIAL RX] Chunk #2: received 44 bytes (elapsed: 0.636s, total: 133 bytes)
+[2025-10-05 23:18:51] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:51] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:51] [INFO] [SERIAL RX]   Total bytes: 133
+[2025-10-05 23:18:51] [INFO] [SERIAL RX]   Chunks received: 2
+[2025-10-05 23:18:51] [INFO] [SERIAL RX]   Total time: 1.144s
+[2025-10-05 23:18:51] [INFO] [SERIAL RX] Decoded text (133 characters):
+[2025-10-05 23:18:51] [INFO]   	[ECHO] Received CMD: "READ_HLW8032 7"\r\n
+  	[ECHO] Reading HLW8032 values for channel 7...\r\n
+  	[ECHO] CH7: V=0.79 V, I=0.034 A, P=0.03 W\r\n
+  
+[2025-10-05 23:18:51] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:51] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 52 45 41 44 5F 48 4C 57 38   | CMD: "READ_HLW8|
+  0020  30 33 32 20 37 22 0D 0A 09 5B 45 43 48 4F 5D 20   |032 7"...[ECHO] |
+  0030  52 65 61 64 69 6E 67 20 48 4C 57 38 30 33 32 20   |Reading HLW8032 |
+  0040  76 61 6C 75 65 73 20 66 6F 72 20 63 68 61 6E 6E   |values for chann|
+  0050  65 6C 20 37 2E 2E 2E 0D 0A 09 5B 45 43 48 4F 5D   |el 7......[ECHO]|
+  0060  20 43 48 37 3A 20 56 3D 30 2E 37 39 20 56 2C 20   | CH7: V=0.79 V, |
+  0070  49 3D 30 2E 30 33 34 20 41 2C 20 50 3D 30 2E 30   |I=0.034 A, P=0.0|
+  0080  33 20 57 0D 0A                                    |3 W..|
+[2025-10-05 23:18:51] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:51] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:51] [PASS] STEP 1.26 completed successfully
+[2025-10-05 23:18:51] [STEP 1.27] Validate power response for CH7
+[2025-10-05 23:18:51] [PASS] STEP 1.27 completed successfully
+[2025-10-05 23:18:51] [STEP 1.28] Turn OFF Channel 7
+[2025-10-05 23:18:51] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:51] [INFO] [SERIAL]   port=COM11, command='SET_CH 7 OFF', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:51] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:51] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:51] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:51] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:51] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:51] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:51] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:51] [INFO] [SERIAL TX] Sending command: 'SET_CH 7 OFF'
+[2025-10-05 23:18:51] [INFO] [SERIAL TX] Payload length: 14 bytes (including CR+LF)
+[2025-10-05 23:18:51] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:51] [INFO]   0000  53 45 54 5F 43 48 20 37 20 4F 46 46 0D 0A         |SET_CH 7 OFF..|
+[2025-10-05 23:18:51] [INFO] [SERIAL TX] Wrote 14 bytes to port
+[2025-10-05 23:18:51] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:52] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:52] [INFO] [SERIAL RX] Chunk #1: received 113 bytes (elapsed: 0.194s, total: 113 bytes)
+[2025-10-05 23:18:52] [INFO] [SERIAL RX] Chunk #2: received 31 bytes (elapsed: 0.204s, total: 144 bytes)
+[2025-10-05 23:18:52] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:52] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:52] [INFO] [SERIAL RX]   Total bytes: 144
+[2025-10-05 23:18:52] [INFO] [SERIAL RX]   Chunks received: 2
+[2025-10-05 23:18:52] [INFO] [SERIAL RX]   Total time: 0.714s
+[2025-10-05 23:18:52] [INFO] [SERIAL RX] Decoded text (144 characters):
+[2025-10-05 23:18:52] [INFO]   	[ECHO] Received CMD: "SET_CH 7 OFF"\r\n
+  [INFO] SET_RELAY[14] t=29034446 us tag=<UART Command Handler> pin=6 val=0\r\n
+  	[ECHO] OK: Channel 7 set OFF\r\n
+  
+[2025-10-05 23:18:52] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:52] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 37 20   | CMD: "SET_CH 7 |
+  0020  4F 46 46 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54   |OFF"..[INFO] SET|
+  0030  5F 52 45 4C 41 59 5B 31 34 5D 20 74 3D 32 39 30   |_RELAY[14] t=290|
+  0040  33 34 34 34 36 20 75 73 20 74 61 67 3D 3C 55 41   |34446 us tag=<UA|
+  0050  52 54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C   |RT Command Handl|
+  0060  65 72 3E 20 70 69 6E 3D 36 20 76 61 6C 3D 30 0D   |er> pin=6 val=0.|
+  0070  0A 09 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61   |..[ECHO] OK: Cha|
+  0080  6E 6E 65 6C 20 37 20 73 65 74 20 4F 46 46 0D 0A   |nnel 7 set OFF..|
+[2025-10-05 23:18:52] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:52] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:52] [PASS] STEP 1.28 completed successfully
+[2025-10-05 23:18:52] [STEP 1.29] Turn ON Channel 8
+[2025-10-05 23:18:52] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:52] [INFO] [SERIAL]   port=COM11, command='SET_CH 8 ON', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:52] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:52] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:52] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:52] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:52] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:52] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:52] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:52] [INFO] [SERIAL TX] Sending command: 'SET_CH 8 ON'
+[2025-10-05 23:18:52] [INFO] [SERIAL TX] Payload length: 13 bytes (including CR+LF)
+[2025-10-05 23:18:52] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:52] [INFO]   0000  53 45 54 5F 43 48 20 38 20 4F 4E 0D 0A            |SET_CH 8 ON..|
+[2025-10-05 23:18:52] [INFO] [SERIAL TX] Wrote 13 bytes to port
+[2025-10-05 23:18:52] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:52] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:53] [INFO] [SERIAL RX] Chunk #1: received 142 bytes (elapsed: 0.196s, total: 142 bytes)
+[2025-10-05 23:18:53] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:53] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:53] [INFO] [SERIAL RX]   Total bytes: 142
+[2025-10-05 23:18:53] [INFO] [SERIAL RX]   Chunks received: 1
+[2025-10-05 23:18:53] [INFO] [SERIAL RX]   Total time: 0.698s
+[2025-10-05 23:18:53] [INFO] [SERIAL RX] Decoded text (142 characters):
+[2025-10-05 23:18:53] [INFO]   	[ECHO] Received CMD: "SET_CH 8 ON"\r\n
+  [INFO] SET_RELAY[15] t=29899989 us tag=<UART Command Handler> pin=7 val=1\r\n
+  	[ECHO] OK: Channel 8 set ON\r\n
+  
+[2025-10-05 23:18:53] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:53] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 38 20   | CMD: "SET_CH 8 |
+  0020  4F 4E 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54 5F   |ON"..[INFO] SET_|
+  0030  52 45 4C 41 59 5B 31 35 5D 20 74 3D 32 39 38 39   |RELAY[15] t=2989|
+  0040  39 39 38 39 20 75 73 20 74 61 67 3D 3C 55 41 52   |9989 us tag=<UAR|
+  0050  54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C 65   |T Command Handle|
+  0060  72 3E 20 70 69 6E 3D 37 20 76 61 6C 3D 31 0D 0A   |r> pin=7 val=1..|
+  0070  09 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61 6E   |.[ECHO] OK: Chan|
+  0080  6E 65 6C 20 38 20 73 65 74 20 4F 4E 0D 0A         |nel 8 set ON..|
+[2025-10-05 23:18:53] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:53] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:53] [PASS] STEP 1.29 completed successfully
+[2025-10-05 23:18:53] [STEP 1.30] Read power data for Channel 8
+[2025-10-05 23:18:53] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:53] [INFO] [SERIAL]   port=COM11, command='READ_HLW8032 8', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:53] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:53] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:53] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:53] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:53] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:53] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:53] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:53] [INFO] [SERIAL TX] Sending command: 'READ_HLW8032 8'
+[2025-10-05 23:18:53] [INFO] [SERIAL TX] Payload length: 16 bytes (including CR+LF)
+[2025-10-05 23:18:53] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:53] [INFO]   0000  52 45 41 44 5F 48 4C 57 38 30 33 32 20 38 0D 0A   |READ_HLW8032 8..|
+[2025-10-05 23:18:53] [INFO] [SERIAL TX] Wrote 16 bytes to port
+[2025-10-05 23:18:53] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:53] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:53] [INFO] [SERIAL RX] Chunk #1: received 89 bytes (elapsed: 0.204s, total: 89 bytes)
+[2025-10-05 23:18:54] [INFO] [SERIAL RX] Chunk #2: received 44 bytes (elapsed: 0.635s, total: 133 bytes)
+[2025-10-05 23:18:54] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:54] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:54] [INFO] [SERIAL RX]   Total bytes: 133
+[2025-10-05 23:18:54] [INFO] [SERIAL RX]   Chunks received: 2
+[2025-10-05 23:18:54] [INFO] [SERIAL RX]   Total time: 1.137s
+[2025-10-05 23:18:54] [INFO] [SERIAL RX] Decoded text (133 characters):
+[2025-10-05 23:18:54] [INFO]   	[ECHO] Received CMD: "READ_HLW8032 8"\r\n
+  	[ECHO] Reading HLW8032 values for channel 8...\r\n
+  	[ECHO] CH8: V=0.76 V, I=0.041 A, P=0.03 W\r\n
+  
+[2025-10-05 23:18:54] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:54] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 52 45 41 44 5F 48 4C 57 38   | CMD: "READ_HLW8|
+  0020  30 33 32 20 38 22 0D 0A 09 5B 45 43 48 4F 5D 20   |032 8"...[ECHO] |
+  0030  52 65 61 64 69 6E 67 20 48 4C 57 38 30 33 32 20   |Reading HLW8032 |
+  0040  76 61 6C 75 65 73 20 66 6F 72 20 63 68 61 6E 6E   |values for chann|
+  0050  65 6C 20 38 2E 2E 2E 0D 0A 09 5B 45 43 48 4F 5D   |el 8......[ECHO]|
+  0060  20 43 48 38 3A 20 56 3D 30 2E 37 36 20 56 2C 20   | CH8: V=0.76 V, |
+  0070  49 3D 30 2E 30 34 31 20 41 2C 20 50 3D 30 2E 30   |I=0.041 A, P=0.0|
+  0080  33 20 57 0D 0A                                    |3 W..|
+[2025-10-05 23:18:54] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:54] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:54] [PASS] STEP 1.30 completed successfully
+[2025-10-05 23:18:54] [STEP 1.31] Validate power response for CH8
+[2025-10-05 23:18:54] [PASS] STEP 1.31 completed successfully
+[2025-10-05 23:18:54] [STEP 1.32] Turn OFF Channel 8
+[2025-10-05 23:18:54] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:54] [INFO] [SERIAL]   port=COM11, command='SET_CH 8 OFF', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:54] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:54] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:54] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:54] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:54] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:54] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:54] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:54] [INFO] [SERIAL TX] Sending command: 'SET_CH 8 OFF'
+[2025-10-05 23:18:54] [INFO] [SERIAL TX] Payload length: 14 bytes (including CR+LF)
+[2025-10-05 23:18:54] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:54] [INFO]   0000  53 45 54 5F 43 48 20 38 20 4F 46 46 0D 0A         |SET_CH 8 OFF..|
+[2025-10-05 23:18:54] [INFO] [SERIAL TX] Wrote 14 bytes to port
+[2025-10-05 23:18:54] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:55] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:55] [INFO] [SERIAL RX] Chunk #1: received 113 bytes (elapsed: 0.205s, total: 113 bytes)
+[2025-10-05 23:18:55] [INFO] [SERIAL RX] Chunk #2: received 31 bytes (elapsed: 0.215s, total: 144 bytes)
+[2025-10-05 23:18:55] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:55] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:55] [INFO] [SERIAL RX]   Total bytes: 144
+[2025-10-05 23:18:55] [INFO] [SERIAL RX]   Chunks received: 2
+[2025-10-05 23:18:55] [INFO] [SERIAL RX]   Total time: 0.723s
+[2025-10-05 23:18:55] [INFO] [SERIAL RX] Decoded text (144 characters):
+[2025-10-05 23:18:55] [INFO]   	[ECHO] Received CMD: "SET_CH 8 OFF"\r\n
+  [INFO] SET_RELAY[16] t=32053718 us tag=<UART Command Handler> pin=7 val=0\r\n
+  	[ECHO] OK: Channel 8 set OFF\r\n
+  
+[2025-10-05 23:18:55] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:55] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 53 45 54 5F 43 48 20 38 20   | CMD: "SET_CH 8 |
+  0020  4F 46 46 22 0D 0A 5B 49 4E 46 4F 5D 20 53 45 54   |OFF"..[INFO] SET|
+  0030  5F 52 45 4C 41 59 5B 31 36 5D 20 74 3D 33 32 30   |_RELAY[16] t=320|
+  0040  35 33 37 31 38 20 75 73 20 74 61 67 3D 3C 55 41   |53718 us tag=<UA|
+  0050  52 54 20 43 6F 6D 6D 61 6E 64 20 48 61 6E 64 6C   |RT Command Handl|
+  0060  65 72 3E 20 70 69 6E 3D 37 20 76 61 6C 3D 30 0D   |er> pin=7 val=0.|
+  0070  0A 09 5B 45 43 48 4F 5D 20 4F 4B 3A 20 43 68 61   |..[ECHO] OK: Cha|
+  0080  6E 6E 65 6C 20 38 20 73 65 74 20 4F 46 46 0D 0A   |nnel 8 set OFF..|
+[2025-10-05 23:18:55] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:55] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:55] [PASS] STEP 1.32 completed successfully
+[2025-10-05 23:18:55] [STEP 2] Read power data from all channels
+[2025-10-05 23:18:55] [STEP 2.1] Read power data for Channel 1
+[2025-10-05 23:18:55] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:55] [INFO] [SERIAL]   port=COM11, command='READ_HLW8032 1', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:55] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:55] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:55] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:55] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:55] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:55] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:55] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:55] [INFO] [SERIAL TX] Sending command: 'READ_HLW8032 1'
+[2025-10-05 23:18:55] [INFO] [SERIAL TX] Payload length: 16 bytes (including CR+LF)
+[2025-10-05 23:18:55] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:55] [INFO]   0000  52 45 41 44 5F 48 4C 57 38 30 33 32 20 31 0D 0A   |READ_HLW8032 1..|
+[2025-10-05 23:18:55] [INFO] [SERIAL TX] Wrote 16 bytes to port
+[2025-10-05 23:18:55] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:55] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:56] [INFO] [SERIAL RX] Chunk #1: received 89 bytes (elapsed: 0.195s, total: 89 bytes)
+[2025-10-05 23:18:56] [INFO] [SERIAL RX] Chunk #2: received 44 bytes (elapsed: 0.624s, total: 133 bytes)
+[2025-10-05 23:18:57] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:57] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:57] [INFO] [SERIAL RX]   Total bytes: 133
+[2025-10-05 23:18:57] [INFO] [SERIAL RX]   Chunks received: 2
+[2025-10-05 23:18:57] [INFO] [SERIAL RX]   Total time: 1.125s
+[2025-10-05 23:18:57] [INFO] [SERIAL RX] Decoded text (133 characters):
+[2025-10-05 23:18:57] [INFO]   	[ECHO] Received CMD: "READ_HLW8032 1"\r\n
+  	[ECHO] Reading HLW8032 values for channel 1...\r\n
+  	[ECHO] CH1: V=0.77 V, I=0.039 A, P=0.03 W\r\n
+  
+[2025-10-05 23:18:57] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:57] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 52 45 41 44 5F 48 4C 57 38   | CMD: "READ_HLW8|
+  0020  30 33 32 20 31 22 0D 0A 09 5B 45 43 48 4F 5D 20   |032 1"...[ECHO] |
+  0030  52 65 61 64 69 6E 67 20 48 4C 57 38 30 33 32 20   |Reading HLW8032 |
+  0040  76 61 6C 75 65 73 20 66 6F 72 20 63 68 61 6E 6E   |values for chann|
+  0050  65 6C 20 31 2E 2E 2E 0D 0A 09 5B 45 43 48 4F 5D   |el 1......[ECHO]|
+  0060  20 43 48 31 3A 20 56 3D 30 2E 37 37 20 56 2C 20   | CH1: V=0.77 V, |
+  0070  49 3D 30 2E 30 33 39 20 41 2C 20 50 3D 30 2E 30   |I=0.039 A, P=0.0|
+  0080  33 20 57 0D 0A                                    |3 W..|
+[2025-10-05 23:18:57] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:57] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:57] [PASS] STEP 2.1 completed successfully
+[2025-10-05 23:18:57] [STEP 2.2] Read power data for Channel 2
+[2025-10-05 23:18:57] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:57] [INFO] [SERIAL]   port=COM11, command='READ_HLW8032 2', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:57] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:57] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:57] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:57] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:57] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:57] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:57] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:57] [INFO] [SERIAL TX] Sending command: 'READ_HLW8032 2'
+[2025-10-05 23:18:57] [INFO] [SERIAL TX] Payload length: 16 bytes (including CR+LF)
+[2025-10-05 23:18:57] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:57] [INFO]   0000  52 45 41 44 5F 48 4C 57 38 30 33 32 20 32 0D 0A   |READ_HLW8032 2..|
+[2025-10-05 23:18:57] [INFO] [SERIAL TX] Wrote 16 bytes to port
+[2025-10-05 23:18:57] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:57] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:57] [INFO] [SERIAL RX] Chunk #1: received 89 bytes (elapsed: 0.204s, total: 89 bytes)
+[2025-10-05 23:18:57] [INFO] [SERIAL RX] Chunk #2: received 44 bytes (elapsed: 0.633s, total: 133 bytes)
+[2025-10-05 23:18:58] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:58] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:58] [INFO] [SERIAL RX]   Total bytes: 133
+[2025-10-05 23:18:58] [INFO] [SERIAL RX]   Chunks received: 2
+[2025-10-05 23:18:58] [INFO] [SERIAL RX]   Total time: 1.139s
+[2025-10-05 23:18:58] [INFO] [SERIAL RX] Decoded text (133 characters):
+[2025-10-05 23:18:58] [INFO]   	[ECHO] Received CMD: "READ_HLW8032 2"\r\n
+  	[ECHO] Reading HLW8032 values for channel 2...\r\n
+  	[ECHO] CH2: V=0.76 V, I=0.047 A, P=0.04 W\r\n
+  
+[2025-10-05 23:18:58] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:58] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 52 45 41 44 5F 48 4C 57 38   | CMD: "READ_HLW8|
+  0020  30 33 32 20 32 22 0D 0A 09 5B 45 43 48 4F 5D 20   |032 2"...[ECHO] |
+  0030  52 65 61 64 69 6E 67 20 48 4C 57 38 30 33 32 20   |Reading HLW8032 |
+  0040  76 61 6C 75 65 73 20 66 6F 72 20 63 68 61 6E 6E   |values for chann|
+  0050  65 6C 20 32 2E 2E 2E 0D 0A 09 5B 45 43 48 4F 5D   |el 2......[ECHO]|
+  0060  20 43 48 32 3A 20 56 3D 30 2E 37 36 20 56 2C 20   | CH2: V=0.76 V, |
+  0070  49 3D 30 2E 30 34 37 20 41 2C 20 50 3D 30 2E 30   |I=0.047 A, P=0.0|
+  0080  34 20 57 0D 0A                                    |4 W..|
+[2025-10-05 23:18:58] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:58] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:58] [PASS] STEP 2.2 completed successfully
+[2025-10-05 23:18:58] [STEP 2.3] Read power data for Channel 3
+[2025-10-05 23:18:58] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:58] [INFO] [SERIAL]   port=COM11, command='READ_HLW8032 3', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:58] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:58] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:58] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:58] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:58] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:58] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:58] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:58] [INFO] [SERIAL TX] Sending command: 'READ_HLW8032 3'
+[2025-10-05 23:18:58] [INFO] [SERIAL TX] Payload length: 16 bytes (including CR+LF)
+[2025-10-05 23:18:58] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:58] [INFO]   0000  52 45 41 44 5F 48 4C 57 38 30 33 32 20 33 0D 0A   |READ_HLW8032 3..|
+[2025-10-05 23:18:58] [INFO] [SERIAL TX] Wrote 16 bytes to port
+[2025-10-05 23:18:58] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:58] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:58] [INFO] [SERIAL RX] Chunk #1: received 89 bytes (elapsed: 0.205s, total: 89 bytes)
+[2025-10-05 23:18:59] [INFO] [SERIAL RX] Chunk #2: received 44 bytes (elapsed: 0.634s, total: 133 bytes)
+[2025-10-05 23:18:59] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:18:59] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:18:59] [INFO] [SERIAL RX]   Total bytes: 133
+[2025-10-05 23:18:59] [INFO] [SERIAL RX]   Chunks received: 2
+[2025-10-05 23:18:59] [INFO] [SERIAL RX]   Total time: 1.139s
+[2025-10-05 23:18:59] [INFO] [SERIAL RX] Decoded text (133 characters):
+[2025-10-05 23:18:59] [INFO]   	[ECHO] Received CMD: "READ_HLW8032 3"\r\n
+  	[ECHO] Reading HLW8032 values for channel 3...\r\n
+  	[ECHO] CH3: V=0.78 V, I=0.061 A, P=0.05 W\r\n
+  
+[2025-10-05 23:18:59] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:18:59] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 52 45 41 44 5F 48 4C 57 38   | CMD: "READ_HLW8|
+  0020  30 33 32 20 33 22 0D 0A 09 5B 45 43 48 4F 5D 20   |032 3"...[ECHO] |
+  0030  52 65 61 64 69 6E 67 20 48 4C 57 38 30 33 32 20   |Reading HLW8032 |
+  0040  76 61 6C 75 65 73 20 66 6F 72 20 63 68 61 6E 6E   |values for chann|
+  0050  65 6C 20 33 2E 2E 2E 0D 0A 09 5B 45 43 48 4F 5D   |el 3......[ECHO]|
+  0060  20 43 48 33 3A 20 56 3D 30 2E 37 38 20 56 2C 20   | CH3: V=0.78 V, |
+  0070  49 3D 30 2E 30 36 31 20 41 2C 20 50 3D 30 2E 30   |I=0.061 A, P=0.0|
+  0080  35 20 57 0D 0A                                    |5 W..|
+[2025-10-05 23:18:59] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:18:59] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:18:59] [PASS] STEP 2.3 completed successfully
+[2025-10-05 23:18:59] [STEP 2.4] Read power data for Channel 4
+[2025-10-05 23:18:59] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:18:59] [INFO] [SERIAL]   port=COM11, command='READ_HLW8032 4', baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:59] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:18:59] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:18:59] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:18:59] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:18:59] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:18:59] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:18:59] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:18:59] [INFO] [SERIAL TX] Sending command: 'READ_HLW8032 4'
+[2025-10-05 23:18:59] [INFO] [SERIAL TX] Payload length: 16 bytes (including CR+LF)
+[2025-10-05 23:18:59] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:18:59] [INFO]   0000  52 45 41 44 5F 48 4C 57 38 30 33 32 20 34 0D 0A   |READ_HLW8032 4..|
+[2025-10-05 23:18:59] [INFO] [SERIAL TX] Wrote 16 bytes to port
+[2025-10-05 23:18:59] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:18:59] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:18:59] [INFO] [SERIAL RX] Chunk #1: received 89 bytes (elapsed: 0.195s, total: 89 bytes)
+[2025-10-05 23:19:00] [INFO] [SERIAL RX] Chunk #2: received 44 bytes (elapsed: 0.625s, total: 133 bytes)
+[2025-10-05 23:19:00] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:19:00] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:19:00] [INFO] [SERIAL RX]   Total bytes: 133
+[2025-10-05 23:19:00] [INFO] [SERIAL RX]   Chunks received: 2
+[2025-10-05 23:19:00] [INFO] [SERIAL RX]   Total time: 1.126s
+[2025-10-05 23:19:00] [INFO] [SERIAL RX] Decoded text (133 characters):
+[2025-10-05 23:19:00] [INFO]   	[ECHO] Received CMD: "READ_HLW8032 4"\r\n
+  	[ECHO] Reading HLW8032 values for channel 4...\r\n
+  	[ECHO] CH4: V=0.83 V, I=0.033 A, P=0.03 W\r\n
+  
+[2025-10-05 23:19:00] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:19:00] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 52 45 41 44 5F 48 4C 57 38   | CMD: "READ_HLW8|
+  0020  30 33 32 20 34 22 0D 0A 09 5B 45 43 48 4F 5D 20   |032 4"...[ECHO] |
+  0030  52 65 61 64 69 6E 67 20 48 4C 57 38 30 33 32 20   |Reading HLW8032 |
+  0040  76 61 6C 75 65 73 20 66 6F 72 20 63 68 61 6E 6E   |values for chann|
+  0050  65 6C 20 34 2E 2E 2E 0D 0A 09 5B 45 43 48 4F 5D   |el 4......[ECHO]|
+  0060  20 43 48 34 3A 20 56 3D 30 2E 38 33 20 56 2C 20   | CH4: V=0.83 V, |
+  0070  49 3D 30 2E 30 33 33 20 41 2C 20 50 3D 30 2E 30   |I=0.033 A, P=0.0|
+  0080  33 20 57 0D 0A                                    |3 W..|
+[2025-10-05 23:19:00] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:19:00] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:19:00] [PASS] STEP 2.4 completed successfully
+[2025-10-05 23:19:00] [STEP 2.5] Read power data for Channel 5
+[2025-10-05 23:19:00] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:19:00] [INFO] [SERIAL]   port=COM11, command='READ_HLW8032 5', baudrate=115200, timeout=2.0s
+[2025-10-05 23:19:00] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:19:00] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:19:00] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:19:00] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:19:00] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:19:00] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:19:00] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:19:00] [INFO] [SERIAL TX] Sending command: 'READ_HLW8032 5'
+[2025-10-05 23:19:00] [INFO] [SERIAL TX] Payload length: 16 bytes (including CR+LF)
+[2025-10-05 23:19:00] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:19:00] [INFO]   0000  52 45 41 44 5F 48 4C 57 38 30 33 32 20 35 0D 0A   |READ_HLW8032 5..|
+[2025-10-05 23:19:00] [INFO] [SERIAL TX] Wrote 16 bytes to port
+[2025-10-05 23:19:00] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:19:01] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:19:01] [INFO] [SERIAL RX] Chunk #1: received 89 bytes (elapsed: 0.205s, total: 89 bytes)
+[2025-10-05 23:19:01] [INFO] [SERIAL RX] Chunk #2: received 44 bytes (elapsed: 0.637s, total: 133 bytes)
+[2025-10-05 23:19:02] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:19:02] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:19:02] [INFO] [SERIAL RX]   Total bytes: 133
+[2025-10-05 23:19:02] [INFO] [SERIAL RX]   Chunks received: 2
+[2025-10-05 23:19:02] [INFO] [SERIAL RX]   Total time: 1.139s
+[2025-10-05 23:19:02] [INFO] [SERIAL RX] Decoded text (133 characters):
+[2025-10-05 23:19:02] [INFO]   	[ECHO] Received CMD: "READ_HLW8032 5"\r\n
+  	[ECHO] Reading HLW8032 values for channel 5...\r\n
+  	[ECHO] CH5: V=0.75 V, I=0.054 A, P=0.04 W\r\n
+  
+[2025-10-05 23:19:02] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:19:02] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 52 45 41 44 5F 48 4C 57 38   | CMD: "READ_HLW8|
+  0020  30 33 32 20 35 22 0D 0A 09 5B 45 43 48 4F 5D 20   |032 5"...[ECHO] |
+  0030  52 65 61 64 69 6E 67 20 48 4C 57 38 30 33 32 20   |Reading HLW8032 |
+  0040  76 61 6C 75 65 73 20 66 6F 72 20 63 68 61 6E 6E   |values for chann|
+  0050  65 6C 20 35 2E 2E 2E 0D 0A 09 5B 45 43 48 4F 5D   |el 5......[ECHO]|
+  0060  20 43 48 35 3A 20 56 3D 30 2E 37 35 20 56 2C 20   | CH5: V=0.75 V, |
+  0070  49 3D 30 2E 30 35 34 20 41 2C 20 50 3D 30 2E 30   |I=0.054 A, P=0.0|
+  0080  34 20 57 0D 0A                                    |4 W..|
+[2025-10-05 23:19:02] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:19:02] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:19:02] [PASS] STEP 2.5 completed successfully
+[2025-10-05 23:19:02] [STEP 2.6] Read power data for Channel 6
+[2025-10-05 23:19:02] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:19:02] [INFO] [SERIAL]   port=COM11, command='READ_HLW8032 6', baudrate=115200, timeout=2.0s
+[2025-10-05 23:19:02] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:19:02] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:19:02] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:19:02] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:19:02] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:19:02] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:19:02] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:19:02] [INFO] [SERIAL TX] Sending command: 'READ_HLW8032 6'
+[2025-10-05 23:19:02] [INFO] [SERIAL TX] Payload length: 16 bytes (including CR+LF)
+[2025-10-05 23:19:02] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:19:02] [INFO]   0000  52 45 41 44 5F 48 4C 57 38 30 33 32 20 36 0D 0A   |READ_HLW8032 6..|
+[2025-10-05 23:19:02] [INFO] [SERIAL TX] Wrote 16 bytes to port
+[2025-10-05 23:19:02] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:19:02] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:19:02] [INFO] [SERIAL RX] Chunk #1: received 89 bytes (elapsed: 0.205s, total: 89 bytes)
+[2025-10-05 23:19:02] [INFO] [SERIAL RX] Chunk #2: received 44 bytes (elapsed: 0.634s, total: 133 bytes)
+[2025-10-05 23:19:03] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:19:03] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:19:03] [INFO] [SERIAL RX]   Total bytes: 133
+[2025-10-05 23:19:03] [INFO] [SERIAL RX]   Chunks received: 2
+[2025-10-05 23:19:03] [INFO] [SERIAL RX]   Total time: 1.136s
+[2025-10-05 23:19:03] [INFO] [SERIAL RX] Decoded text (133 characters):
+[2025-10-05 23:19:03] [INFO]   	[ECHO] Received CMD: "READ_HLW8032 6"\r\n
+  	[ECHO] Reading HLW8032 values for channel 6...\r\n
+  	[ECHO] CH6: V=0.79 V, I=0.058 A, P=0.05 W\r\n
+  
+[2025-10-05 23:19:03] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:19:03] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 52 45 41 44 5F 48 4C 57 38   | CMD: "READ_HLW8|
+  0020  30 33 32 20 36 22 0D 0A 09 5B 45 43 48 4F 5D 20   |032 6"...[ECHO] |
+  0030  52 65 61 64 69 6E 67 20 48 4C 57 38 30 33 32 20   |Reading HLW8032 |
+  0040  76 61 6C 75 65 73 20 66 6F 72 20 63 68 61 6E 6E   |values for chann|
+  0050  65 6C 20 36 2E 2E 2E 0D 0A 09 5B 45 43 48 4F 5D   |el 6......[ECHO]|
+  0060  20 43 48 36 3A 20 56 3D 30 2E 37 39 20 56 2C 20   | CH6: V=0.79 V, |
+  0070  49 3D 30 2E 30 35 38 20 41 2C 20 50 3D 30 2E 30   |I=0.058 A, P=0.0|
+  0080  35 20 57 0D 0A                                    |5 W..|
+[2025-10-05 23:19:03] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:19:03] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:19:03] [PASS] STEP 2.6 completed successfully
+[2025-10-05 23:19:03] [STEP 2.7] Read power data for Channel 7
+[2025-10-05 23:19:03] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:19:03] [INFO] [SERIAL]   port=COM11, command='READ_HLW8032 7', baudrate=115200, timeout=2.0s
+[2025-10-05 23:19:03] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:19:03] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:19:03] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:19:03] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:19:03] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:19:03] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:19:03] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:19:03] [INFO] [SERIAL TX] Sending command: 'READ_HLW8032 7'
+[2025-10-05 23:19:03] [INFO] [SERIAL TX] Payload length: 16 bytes (including CR+LF)
+[2025-10-05 23:19:03] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:19:03] [INFO]   0000  52 45 41 44 5F 48 4C 57 38 30 33 32 20 37 0D 0A   |READ_HLW8032 7..|
+[2025-10-05 23:19:03] [INFO] [SERIAL TX] Wrote 16 bytes to port
+[2025-10-05 23:19:03] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:19:03] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:19:03] [INFO] [SERIAL RX] Chunk #1: received 89 bytes (elapsed: 0.205s, total: 89 bytes)
+[2025-10-05 23:19:04] [INFO] [SERIAL RX] Chunk #2: received 44 bytes (elapsed: 0.636s, total: 133 bytes)
+[2025-10-05 23:19:04] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:19:04] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:19:04] [INFO] [SERIAL RX]   Total bytes: 133
+[2025-10-05 23:19:04] [INFO] [SERIAL RX]   Chunks received: 2
+[2025-10-05 23:19:04] [INFO] [SERIAL RX]   Total time: 1.146s
+[2025-10-05 23:19:04] [INFO] [SERIAL RX] Decoded text (133 characters):
+[2025-10-05 23:19:04] [INFO]   	[ECHO] Received CMD: "READ_HLW8032 7"\r\n
+  	[ECHO] Reading HLW8032 values for channel 7...\r\n
+  	[ECHO] CH7: V=0.79 V, I=0.068 A, P=0.05 W\r\n
+  
+[2025-10-05 23:19:04] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:19:04] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 52 45 41 44 5F 48 4C 57 38   | CMD: "READ_HLW8|
+  0020  30 33 32 20 37 22 0D 0A 09 5B 45 43 48 4F 5D 20   |032 7"...[ECHO] |
+  0030  52 65 61 64 69 6E 67 20 48 4C 57 38 30 33 32 20   |Reading HLW8032 |
+  0040  76 61 6C 75 65 73 20 66 6F 72 20 63 68 61 6E 6E   |values for chann|
+  0050  65 6C 20 37 2E 2E 2E 0D 0A 09 5B 45 43 48 4F 5D   |el 7......[ECHO]|
+  0060  20 43 48 37 3A 20 56 3D 30 2E 37 39 20 56 2C 20   | CH7: V=0.79 V, |
+  0070  49 3D 30 2E 30 36 38 20 41 2C 20 50 3D 30 2E 30   |I=0.068 A, P=0.0|
+  0080  35 20 57 0D 0A                                    |5 W..|
+[2025-10-05 23:19:04] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:19:04] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:19:04] [PASS] STEP 2.7 completed successfully
+[2025-10-05 23:19:04] [STEP 2.8] Read power data for Channel 8
+[2025-10-05 23:19:04] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:19:04] [INFO] [SERIAL]   port=COM11, command='READ_HLW8032 8', baudrate=115200, timeout=2.0s
+[2025-10-05 23:19:04] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:19:04] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:19:04] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:19:04] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:19:04] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:19:04] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:19:04] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:19:04] [INFO] [SERIAL TX] Sending command: 'READ_HLW8032 8'
+[2025-10-05 23:19:04] [INFO] [SERIAL TX] Payload length: 16 bytes (including CR+LF)
+[2025-10-05 23:19:04] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:19:04] [INFO]   0000  52 45 41 44 5F 48 4C 57 38 30 33 32 20 38 0D 0A   |READ_HLW8032 8..|
+[2025-10-05 23:19:04] [INFO] [SERIAL TX] Wrote 16 bytes to port
+[2025-10-05 23:19:04] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:19:04] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:19:05] [INFO] [SERIAL RX] Chunk #1: received 89 bytes (elapsed: 0.193s, total: 89 bytes)
+[2025-10-05 23:19:05] [INFO] [SERIAL RX] Chunk #2: received 44 bytes (elapsed: 0.626s, total: 133 bytes)
+[2025-10-05 23:19:06] [INFO] [SERIAL RX] No data received for 500ms, assuming response complete
+[2025-10-05 23:19:06] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:19:06] [INFO] [SERIAL RX]   Total bytes: 133
+[2025-10-05 23:19:06] [INFO] [SERIAL RX]   Chunks received: 2
+[2025-10-05 23:19:06] [INFO] [SERIAL RX]   Total time: 1.131s
+[2025-10-05 23:19:06] [INFO] [SERIAL RX] Decoded text (133 characters):
+[2025-10-05 23:19:06] [INFO]   	[ECHO] Received CMD: "READ_HLW8032 8"\r\n
+  	[ECHO] Reading HLW8032 values for channel 8...\r\n
+  	[ECHO] CH8: V=0.76 V, I=0.070 A, P=0.05 W\r\n
+  
+[2025-10-05 23:19:06] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:19:06] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 52 45 41 44 5F 48 4C 57 38   | CMD: "READ_HLW8|
+  0020  30 33 32 20 38 22 0D 0A 09 5B 45 43 48 4F 5D 20   |032 8"...[ECHO] |
+  0030  52 65 61 64 69 6E 67 20 48 4C 57 38 30 33 32 20   |Reading HLW8032 |
+  0040  76 61 6C 75 65 73 20 66 6F 72 20 63 68 61 6E 6E   |values for chann|
+  0050  65 6C 20 38 2E 2E 2E 0D 0A 09 5B 45 43 48 4F 5D   |el 8......[ECHO]|
+  0060  20 43 48 38 3A 20 56 3D 30 2E 37 36 20 56 2C 20   | CH8: V=0.76 V, |
+  0070  49 3D 30 2E 30 37 30 20 41 2C 20 50 3D 30 2E 30   |I=0.070 A, P=0.0|
+  0080  35 20 57 0D 0A                                    |5 W..|
+[2025-10-05 23:19:06] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:19:06] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:19:06] [PASS] STEP 2.8 completed successfully
+[2025-10-05 23:19:06] [STEP 3] Test bulk power monitoring command
+[2025-10-05 23:19:06] [STEP 3.1] Read all power data at once
+[2025-10-05 23:19:06] [INFO] [SERIAL] send_command() called
+[2025-10-05 23:19:06] [INFO] [SERIAL]   port=COM11, command='READ_HLW8032', baudrate=115200, timeout=2.0s
+[2025-10-05 23:19:06] [INFO] [SERIAL] Opening connection to port=COM11
+[2025-10-05 23:19:06] [INFO] [SERIAL]   Configuration: baudrate=115200, timeout=2.0s, write_timeout=2.0s
+[2025-10-05 23:19:06] [INFO] [SERIAL]   Flow control: xonxoff=False, rtscts=False, dsrdtr=False
+[2025-10-05 23:19:06] [INFO] [SERIAL] Port COM11 opened successfully
+[2025-10-05 23:19:06] [INFO] [SERIAL] Stabilizing connection (100ms delay)...
+[2025-10-05 23:19:06] [INFO] [SERIAL] Resetting input and output buffers
+[2025-10-05 23:19:06] [INFO] [SERIAL] Connection ready: port=COM11, baudrate=115200, timeout=2.0s
+[2025-10-05 23:19:06] [INFO] [SERIAL TX] Sending command: 'READ_HLW8032'
+[2025-10-05 23:19:06] [INFO] [SERIAL TX] Payload length: 14 bytes (including CR+LF)
+[2025-10-05 23:19:06] [INFO] [SERIAL TX] Hex dump:
+[2025-10-05 23:19:06] [INFO]   0000  52 45 41 44 5F 48 4C 57 38 30 33 32 0D 0A         |READ_HLW8032..|
+[2025-10-05 23:19:06] [INFO] [SERIAL TX] Wrote 14 bytes to port
+[2025-10-05 23:19:06] [INFO] [SERIAL TX] Waiting 50ms for device processing...
+[2025-10-05 23:19:06] [INFO] [SERIAL RX] Starting to read response (timeout=2.0s)
+[2025-10-05 23:19:06] [INFO] [SERIAL RX] Chunk #1: received 92 bytes (elapsed: 0.196s, total: 92 bytes)
+[2025-10-05 23:19:06] [INFO] [SERIAL RX] Chunk #2: received 46 bytes (elapsed: 0.625s, total: 138 bytes)
+[2025-10-05 23:19:07] [INFO] [SERIAL RX] Chunk #3: received 46 bytes (elapsed: 1.056s, total: 184 bytes)
+[2025-10-05 23:19:07] [INFO] [SERIAL RX] Chunk #4: received 46 bytes (elapsed: 1.487s, total: 230 bytes)
+[2025-10-05 23:19:08] [INFO] [SERIAL RX] Chunk #5: received 46 bytes (elapsed: 1.916s, total: 276 bytes)
+[2025-10-05 23:19:08] [INFO] [SERIAL RX] Response complete:
+[2025-10-05 23:19:08] [INFO] [SERIAL RX]   Total bytes: 276
+[2025-10-05 23:19:08] [INFO] [SERIAL RX]   Chunks received: 5
+[2025-10-05 23:19:08] [INFO] [SERIAL RX]   Total time: 2.009s
+[2025-10-05 23:19:08] [INFO] [SERIAL RX] Decoded text (276 characters):
+[2025-10-05 23:19:08] [INFO]   	[ECHO] Received CMD: "READ_HLW8032"\r\n
+  	[ECHO] Reading HLW8032 values for all 8 channels...\r\n
+  	[ECHO] CH1: V=0.76 V, I=0.070 A, P=0.05 W\r\n
+  \r\n
+  	[ECHO] CH2: V=0.77 V, I=0.045 A, P=0.04 W\r\n
+  \r\n
+  	[ECHO] CH3: V=0.76 V, I=0.065 A, P=0.05 W\r\n
+  \r\n
+  	[ECHO] CH4: V=0.78 V, I=0.043 A, P=0.03 W\r\n
+  \r\n
+  
+[2025-10-05 23:19:08] [INFO] [SERIAL RX] Hex dump:
+[2025-10-05 23:19:08] [INFO]   0000  09 5B 45 43 48 4F 5D 20 52 65 63 65 69 76 65 64   |.[ECHO] Received|
+  0010  20 43 4D 44 3A 20 22 52 45 41 44 5F 48 4C 57 38   | CMD: "READ_HLW8|
+  0020  30 33 32 22 0D 0A 09 5B 45 43 48 4F 5D 20 52 65   |032"...[ECHO] Re|
+  0030  61 64 69 6E 67 20 48 4C 57 38 30 33 32 20 76 61   |ading HLW8032 va|
+  0040  6C 75 65 73 20 66 6F 72 20 61 6C 6C 20 38 20 63   |lues for all 8 c|
+  0050  68 61 6E 6E 65 6C 73 2E 2E 2E 0D 0A 09 5B 45 43   |hannels......[EC|
+  0060  48 4F 5D 20 43 48 31 3A 20 56 3D 30 2E 37 36 20   |HO] CH1: V=0.76 |
+  0070  56 2C 20 49 3D 30 2E 30 37 30 20 41 2C 20 50 3D   |V, I=0.070 A, P=|
+  0080  30 2E 30 35 20 57 0D 0A 0D 0A 09 5B 45 43 48 4F   |0.05 W.....[ECHO|
+  0090  5D 20 43 48 32 3A 20 56 3D 30 2E 37 37 20 56 2C   |] CH2: V=0.77 V,|
+  00A0  20 49 3D 30 2E 30 34 35 20 41 2C 20 50 3D 30 2E   | I=0.045 A, P=0.|
+  00B0  30 34 20 57 0D 0A 0D 0A 09 5B 45 43 48 4F 5D 20   |04 W.....[ECHO] |
+  00C0  43 48 33 3A 20 56 3D 30 2E 37 36 20 56 2C 20 49   |CH3: V=0.76 V, I|
+  00D0  3D 30 2E 30 36 35 20 41 2C 20 50 3D 30 2E 30 35   |=0.065 A, P=0.05|
+  00E0  20 57 0D 0A 0D 0A 09 5B 45 43 48 4F 5D 20 43 48   | W.....[ECHO] CH|
+  00F0  34 3A 20 56 3D 30 2E 37 38 20 56 2C 20 49 3D 30   |4: V=0.78 V, I=0|
+  0100  2E 30 34 33 20 41 2C 20 50 3D 30 2E 30 33 20 57   |.043 A, P=0.03 W|
+  0110  0D 0A 0D 0A                                       |....|
+[2025-10-05 23:19:08] [INFO] [SERIAL] Closing port COM11
+[2025-10-05 23:19:08] [INFO] [SERIAL] Port COM11 closed successfully
+[2025-10-05 23:19:08] [PASS] STEP 3.1 completed successfully
+[2025-10-05 23:19:08] [STEP 3.2] Validate bulk power response
+[2025-10-05 23:19:08] [PASS] STEP 3.2 completed successfully
+[2025-10-05 23:19:08] [TEARDOWN 1] Ensure all outputs OFF
+[2025-10-05 23:19:08] [INFO] [SNMP] Executing set_all_outlets: state=OFF
+[2025-10-05 23:19:08] [INFO] [SNMP] Using trigger OID: 1.3.6.1.4.1.19865.2.9.0
+[2025-10-05 23:19:08] [INFO] [SNMP] set_integer() called
+[2025-10-05 23:19:08] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.9.0, Value: 1, Community: public, Timeout: 3.0s
+[2025-10-05 23:19:08] [INFO] [SNMP] cmd=snmpset -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.9.0 i 1
+[2025-10-05 23:19:08] [INFO] [SNMP] rc=0
+[2025-10-05 23:19:08] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.9.0 = INTEGER: 1
+
+[2025-10-05 23:19:08] [INFO] [SNMP] snmpset returned: rc=0, success=True
+[2025-10-05 23:19:08] [INFO] [SNMP SET] 192.168.0.11 1.3.6.1.4.1.19865.2.9.0 = 1 -> OK (v1/public)
+[2025-10-05 23:19:08] [INFO] [SNMP] Successfully set ALL outlets OFF
+[2025-10-05 23:19:08] [PASS] TEARDOWN 1 completed successfully
+[2025-10-05 23:19:08] [TEARDOWN 2] Final verify all outputs OFF
+[2025-10-05 23:19:08] [INFO] [SNMP] Executing verify_all_outlets: expected_state=OFF
+[2025-10-05 23:19:08] [INFO] [SNMP] Checking channel 1...
+[2025-10-05 23:19:08] [INFO] [SNMP] get_value() called
+[2025-10-05 23:19:08] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.1.0, Community: public, Timeout: 3.0s
+[2025-10-05 23:19:08] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.1.0
+[2025-10-05 23:19:08] [INFO] [SNMP] rc=0
+[2025-10-05 23:19:08] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.1.0 = INTEGER: 0
+
+[2025-10-05 23:19:08] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 23:19:08] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 23:19:08] [INFO] [SNMP] Parsed value: '0'
+[2025-10-05 23:19:08] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.1.0 -> '0' (v1/public)
+[2025-10-05 23:19:08] [INFO] [SNMP] CH1 state: OFF
+[2025-10-05 23:19:08] [INFO] [SNMP] Checking channel 2...
+[2025-10-05 23:19:08] [INFO] [SNMP] get_value() called
+[2025-10-05 23:19:08] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.2.0, Community: public, Timeout: 3.0s
+[2025-10-05 23:19:08] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.2.0
+[2025-10-05 23:19:08] [INFO] [SNMP] rc=0
+[2025-10-05 23:19:08] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.2.0 = INTEGER: 0
+
+[2025-10-05 23:19:08] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 23:19:08] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 23:19:08] [INFO] [SNMP] Parsed value: '0'
+[2025-10-05 23:19:08] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.2.0 -> '0' (v1/public)
+[2025-10-05 23:19:08] [INFO] [SNMP] CH2 state: OFF
+[2025-10-05 23:19:08] [INFO] [SNMP] Checking channel 3...
+[2025-10-05 23:19:08] [INFO] [SNMP] get_value() called
+[2025-10-05 23:19:08] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.3.0, Community: public, Timeout: 3.0s
+[2025-10-05 23:19:08] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.3.0
+[2025-10-05 23:19:08] [INFO] [SNMP] rc=0
+[2025-10-05 23:19:08] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.3.0 = INTEGER: 0
+
+[2025-10-05 23:19:08] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 23:19:08] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 23:19:08] [INFO] [SNMP] Parsed value: '0'
+[2025-10-05 23:19:08] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.3.0 -> '0' (v1/public)
+[2025-10-05 23:19:08] [INFO] [SNMP] CH3 state: OFF
+[2025-10-05 23:19:08] [INFO] [SNMP] Checking channel 4...
+[2025-10-05 23:19:08] [INFO] [SNMP] get_value() called
+[2025-10-05 23:19:08] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.4.0, Community: public, Timeout: 3.0s
+[2025-10-05 23:19:08] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.4.0
+[2025-10-05 23:19:08] [INFO] [SNMP] rc=0
+[2025-10-05 23:19:08] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.4.0 = INTEGER: 0
+
+[2025-10-05 23:19:08] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 23:19:08] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 23:19:08] [INFO] [SNMP] Parsed value: '0'
+[2025-10-05 23:19:08] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.4.0 -> '0' (v1/public)
+[2025-10-05 23:19:08] [INFO] [SNMP] CH4 state: OFF
+[2025-10-05 23:19:08] [INFO] [SNMP] Checking channel 5...
+[2025-10-05 23:19:08] [INFO] [SNMP] get_value() called
+[2025-10-05 23:19:08] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.5.0, Community: public, Timeout: 3.0s
+[2025-10-05 23:19:08] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.5.0
+[2025-10-05 23:19:08] [INFO] [SNMP] rc=0
+[2025-10-05 23:19:08] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.5.0 = INTEGER: 0
+
+[2025-10-05 23:19:08] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 23:19:08] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 23:19:08] [INFO] [SNMP] Parsed value: '0'
+[2025-10-05 23:19:08] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.5.0 -> '0' (v1/public)
+[2025-10-05 23:19:08] [INFO] [SNMP] CH5 state: OFF
+[2025-10-05 23:19:08] [INFO] [SNMP] Checking channel 6...
+[2025-10-05 23:19:08] [INFO] [SNMP] get_value() called
+[2025-10-05 23:19:08] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.6.0, Community: public, Timeout: 3.0s
+[2025-10-05 23:19:08] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.6.0
+[2025-10-05 23:19:08] [INFO] [SNMP] rc=0
+[2025-10-05 23:19:08] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.6.0 = INTEGER: 0
+
+[2025-10-05 23:19:08] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 23:19:08] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 23:19:08] [INFO] [SNMP] Parsed value: '0'
+[2025-10-05 23:19:08] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.6.0 -> '0' (v1/public)
+[2025-10-05 23:19:08] [INFO] [SNMP] CH6 state: OFF
+[2025-10-05 23:19:08] [INFO] [SNMP] Checking channel 7...
+[2025-10-05 23:19:08] [INFO] [SNMP] get_value() called
+[2025-10-05 23:19:08] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.7.0, Community: public, Timeout: 3.0s
+[2025-10-05 23:19:08] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.7.0
+[2025-10-05 23:19:08] [INFO] [SNMP] rc=0
+[2025-10-05 23:19:08] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.7.0 = INTEGER: 0
+
+[2025-10-05 23:19:08] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 23:19:08] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 23:19:08] [INFO] [SNMP] Parsed value: '0'
+[2025-10-05 23:19:08] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.7.0 -> '0' (v1/public)
+[2025-10-05 23:19:08] [INFO] [SNMP] CH7 state: OFF
+[2025-10-05 23:19:08] [INFO] [SNMP] Checking channel 8...
+[2025-10-05 23:19:08] [INFO] [SNMP] get_value() called
+[2025-10-05 23:19:08] [INFO] [SNMP]   Target: 192.168.0.11, OID: 1.3.6.1.4.1.19865.2.8.0, Community: public, Timeout: 3.0s
+[2025-10-05 23:19:08] [INFO] [SNMP] cmd=snmpget -v1 -c public 192.168.0.11 1.3.6.1.4.1.19865.2.8.0
+[2025-10-05 23:19:08] [INFO] [SNMP] rc=0
+[2025-10-05 23:19:08] [INFO] [SNMP OUT]
+SNMPv2-SMI::enterprises.19865.2.8.0 = INTEGER: 0
+
+[2025-10-05 23:19:08] [INFO] [SNMP] snmpget returned: rc=0
+[2025-10-05 23:19:08] [INFO] [SNMP] _parse_snmp_value() called, output length: 49 chars
+[2025-10-05 23:19:08] [INFO] [SNMP] Parsed value: '0'
+[2025-10-05 23:19:08] [INFO] [SNMP GET] 192.168.0.11 1.3.6.1.4.1.19865.2.8.0 -> '0' (v1/public)
+[2025-10-05 23:19:08] [INFO] [SNMP] CH8 state: OFF
+[2025-10-05 23:19:08] [INFO] [SNMP] All 8 channels verified: OFF
+[2025-10-05 23:19:08] [PASS] TEARDOWN 2 completed successfully
+[2025-10-05 23:19:08] ===== tc_power_hlw8032: RESULT: PASS =====

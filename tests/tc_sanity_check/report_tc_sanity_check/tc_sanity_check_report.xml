@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ENERGIS Functional Test" tests="14" failures="0" skipped="0" time="0.0" session_id="8f5d7a46">
+  <testcase classname="UTFW" name="PRE-STEP 1 Reboot device via UART" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1 Die Sensor Voltage" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2 Die Sensor Temperature" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3 12V PSU Voltage" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4 5V USB Voltage" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5 12V PSU Divider Voltage" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 6 5V USB Divider Voltage" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7 Core VREG Target Voltage" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 8 Bandgap Reference" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 9 USB PHY Rail" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 10 IO Rail Nominal" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 11 Core VREG Status" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="TEARDOWN 1 Ensure all outputs OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="TEARDOWN 2 Final verify all outputs OFF" time="0.0">
+  </testcase>
+</testsuite>

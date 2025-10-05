@@ -1,0 +1,54 @@
+# Nightly Test Suite
+# Extended test suite including stress tests and long-running validations
+# Typical duration: 15 min
+
+name: "Nightly Tests"
+description: "Extended nightly test suite with stress testing"
+
+tests:
+  # Sanity Check Test
+  - name: "Sanity Check Test"
+    path: "G:/_GitHub/HW_10-In-Rack_PDU/tests/tc_sanity_check/tc_sanity_check.py"
+    enabled: true
+    timeout: 300
+
+  # Serial Communication Test
+  - name: "Serial Communication Test"
+    path: "G:/_GitHub/HW_10-In-Rack_PDU/tests/tc_serial/tc_serial_utfw.py"
+    enabled: true
+    timeout: 300
+
+  # SNMP Communication Test
+  - name: "SNMP Test"
+    path: "G:/_GitHub/HW_10-In-Rack_PDU/tests/tc_network_snmp/tc_network_snmp.py"
+    enabled: true
+    timeout: 300
+
+  # Network tests with PCAP analysis
+  - name: "Network PCAP Test"
+    path: "G:/_GitHub/HW_10-In-Rack_PDU/tests/tc_network_pcap/tc_network_pcap.py"
+    enabled: true
+    timeout: 300
+
+  - name: "PCAP Capture Test"
+    path: "G:/_GitHub/HW_10-In-Rack_PDU/tests/tc_pcap_capture/tc_pcap_capture.py"
+    enabled: true
+    timeout: 300
+
+  # EEPROM Test
+  - name: "EEPROM Persistence Test"
+    path: "G:/_GitHub/HW_10-In-Rack_PDU/tests/tc_eeprom_persistence/tc_eeprom_persistence.py"
+    enabled: true
+    timeout: 300
+
+  # Power Test
+  - name: "Power Meter HLW8032 Test"
+    path: "G:/_GitHub/HW_10-In-Rack_PDU/tests/tc_power_hlw8032/tc_power_hlw8032.py"
+    enabled: true
+    timeout: 300
+
+  # Stress Test
+  - name: "Stress Test - Rapid Switching"
+    path: "G:/_GitHub/HW_10-In-Rack_PDU/tests/tc_stress_switching/tc_stress_switching.py"
+    enabled: true
+    timeout: 3600  # 1 hour

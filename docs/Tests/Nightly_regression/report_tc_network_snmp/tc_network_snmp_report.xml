@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ENERGIS Functional Test" tests="64" failures="0" skipped="0" time="0.0" session_id="93263420">
+  <testcase classname="UTFW" name="PRE-STEP 1 Reboot device via UART" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1 Walk enterprise subtree" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2 Validate MIB-II system group" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.1 sysDescr matches expected" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.2 sysObjectID present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.3 sysUpTime present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.4 sysContact matches expected" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.5 sysName matches expected" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.6 sysLocation matches expected" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.7 sysServices matches expected" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3 Validate long-length OIDs" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.1 19865.1.0 long-length string OK" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.2 19865.2.0 produces noSuchName (expected error)" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4 Validate network configuration OIDs" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.1 Network IP equals baseline" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.2 Network SN equals expected" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.3 Network GW equals expected" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.4 Network DNS equals expected" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5 Cycle all channels ON/OFF with SNMP verify" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 6 Cycle ALL ON / ALL OFF with SNMP verify" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 6.1 ALL ON trigger" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 6.2 Verify ALL ON via SNMP (1..8 == 1)" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 6.3 ALL ON trigger" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 6.4 Verify ALL OFF via SNMP (1..8 == 0)" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7 HLW8032 Power Monitoring - Outlets OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.1 Ensure all outlets OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.2 Wait 8s for all HLW8032 to be updated" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.3 Ch1 Voltage OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.4 Ch1 Current OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.5 Ch2 Voltage OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.6 Ch2 Current OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.7 Ch3 Voltage OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.8 Ch3 Current OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.9 Ch4 Voltage OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.10 Ch4 Current OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.11 Ch5 Voltage OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.12 Ch5 Current OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.13 Ch6 Voltage OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.14 Ch6 Current OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.15 Ch7 Voltage OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.16 Ch7 Current OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.17 Ch8 Voltage OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.18 Ch8 Current OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 8 HLW8032 Power Monitoring - Outlets ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 8.1 Turn all outlets ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 8.2 Wait 8s for all HLW8032 to be updated" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 8.3 Ch1 Voltage ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 8.4 Ch1 Current ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 8.5 Ch2 Voltage ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 8.6 Ch2 Current ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 8.7 Ch3 Voltage ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 8.8 Ch3 Current ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 8.9 Ch4 Voltage ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 8.10 Ch4 Current ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 8.11 Ch5 Voltage ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 8.12 Ch5 Current ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 8.13 Ch6 Voltage ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 8.14 Ch6 Current ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 8.15 Ch7 Voltage ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 8.16 Ch7 Current ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 8.17 Ch8 Voltage ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 8.18 Ch8 Current ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="TEARDOWN 1 Ensure all outputs OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="TEARDOWN 2 Final verify all outputs OFF" time="0.0">
+  </testcase>
+</testsuite>

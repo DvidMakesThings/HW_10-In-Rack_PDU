@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ENERGIS Functional Test" tests="48" failures="0" skipped="0" time="0.0" session_id="d0b508e2">
+  <testcase classname="UTFW" name="PRE-STEP 1 Reboot device via UART" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1 Test power monitoring per channel with ON/OFF cycles" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.1 Turn ON Channel 1" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.2 Read power data for Channel 1" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.3 Validate power response for CH1" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.4 Turn OFF Channel 1" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.5 Turn ON Channel 2" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.6 Read power data for Channel 2" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.7 Validate power response for CH2" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.8 Turn OFF Channel 2" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.9 Turn ON Channel 3" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.10 Read power data for Channel 3" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.11 Validate power response for CH3" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.12 Turn OFF Channel 3" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.13 Turn ON Channel 4" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.14 Read power data for Channel 4" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.15 Validate power response for CH4" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.16 Turn OFF Channel 4" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.17 Turn ON Channel 5" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.18 Read power data for Channel 5" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.19 Validate power response for CH5" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.20 Turn OFF Channel 5" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.21 Turn ON Channel 6" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.22 Read power data for Channel 6" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.23 Validate power response for CH6" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.24 Turn OFF Channel 6" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.25 Turn ON Channel 7" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.26 Read power data for Channel 7" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.27 Validate power response for CH7" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.28 Turn OFF Channel 7" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.29 Turn ON Channel 8" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.30 Read power data for Channel 8" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.31 Validate power response for CH8" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.32 Turn OFF Channel 8" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2 Read power data from all channels" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.1 Read power data for Channel 1" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.2 Read power data for Channel 2" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.3 Read power data for Channel 3" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.4 Read power data for Channel 4" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.5 Read power data for Channel 5" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.6 Read power data for Channel 6" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.7 Read power data for Channel 7" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.8 Read power data for Channel 8" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3 Test bulk power monitoring command" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.1 Read all power data at once" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.2 Validate bulk power response" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="TEARDOWN 1 Ensure all outputs OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="TEARDOWN 2 Final verify all outputs OFF" time="0.0">
+  </testcase>
+</testsuite>

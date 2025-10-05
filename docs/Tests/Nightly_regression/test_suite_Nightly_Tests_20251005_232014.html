@@ -1,0 +1,156 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<title>Test Suite Report - Nightly Tests</title>
+<style>
+        body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;background:#0f1216;color:#e7eaf0;margin:0}
+        header{padding:20px;background:#151a21;border-bottom:1px solid #2a2f37}
+        h1{margin:0;font-size:20px}
+        .meta{font-size:12px;color:#a6adbb;margin-top:6px}
+        .summary{display:flex;gap:16px;flex-wrap:wrap;margin:16px 0}
+        .chip{padding:8px 12px;border-radius:20px;border:1px solid #2a2f37;background:#151a21}
+        .chip.pass{border-color:#1e7f45;color:#d7ffe6;background:#0e2017}
+        .chip.fail{border-color:#a23b3b;color:#ffe1e1;background:#210e0e}
+        .chip.unknown{border-color:#6b7280;color:#e7eaf0;background:#1b2028}
+        main{padding:20px}
+        table{width:100%;border-collapse:collapse;margin-top:8px}
+        th,td{border-bottom:1px solid #1f2530;padding:8px 6px;text-align:left;font-size:13px}
+        th{color:#a6adbb;font-weight:600;background:#131820}
+        tr.pass{background:#0e2017}
+        tr.fail{background:#210e0e}
+        tr.timeout{background:#332200}
+        tr.error{background:#330033}
+        tr.skipped{background:#1b2028}
+        .status{padding:3px 8px;border-radius:12px;border:1px solid #2a2f37;font-size:12px;font-weight:600}
+        .status.pass{border-color:#1e7f45;color:#d7ffe6;background:#0e2017}
+        .status.fail{border-color:#a23b3b;color:#ffe1e1;background:#210e0e}
+        .status.timeout{border-color:#a8770f;color:#fff4cc;background:#332200}
+        .status.error{border-color:#a23ba2;color:#ffe1ff;background:#330033}
+        .status.skipped{border-color:#6b7280;color:#e7eaf0;background:#1b2028}
+        .kv{display:grid;grid-template-columns:180px 1fr;gap:8px;margin-top:10px}
+        pre{background:#0b0f14;border:1px solid #2a2f37;border-radius:8px;padding:10px;overflow:auto;font-size:12px;max-height:300px}
+        details{margin-top:8px}
+        summary{cursor:pointer;font-weight:600;color:#9ad0ff}
+        a{color:#9ad0ff;text-decoration:none}
+        a:hover{text-decoration:underline}
+        .test-link{color:#9ad0ff;font-weight:600}
+        .test-link:hover{text-decoration:underline}
+        .report-badge{display:inline-block;padding:2px 6px;margin-left:6px;border-radius:8px;background:#1a3a52;color:#7dd3fc;font-size:11px;border:1px solid #2563eb}
+        </style></head><body>
+<header>
+<h1>Test Suite: Nightly Tests</h1>
+<div class='meta'>
+Overall: <b class='chip pass'>PASS</b> &nbsp;
+Started: 2025-10-05 23:13:43 &nbsp;
+Duration: 390.46s &nbsp;
+Session ID: fa559c7a &nbsp;
+<br>Extended nightly test suite with stress testing
+</div>
+</header>
+<main>
+<section class='summary'>
+<div class='chip pass'>Passed: 8</div>
+<div class='chip fail'>Failed: 0</div>
+<div class='chip timeout'>Timeout: 0</div>
+<div class='chip error'>Error: 0</div>
+<div class='chip skipped'>Skipped: 0</div>
+<div class='chip'>Total: 8</div>
+</section>
+<section>
+<h3>Test Results</h3>
+<table>
+<tr><th>#</th><th>Test Name</th><th>Status</th><th>Duration</th><th>Details</th></tr>
+<tr class='pass'>
+<td>1</td>
+<td>
+<a href='report_tc_sanity_check/tc_sanity_check_report.html' target='_blank' class='test-link'>Sanity Check Test</a><span class='report-badge'>📄 Report</span>
+</td>
+<td><span class='status pass'>PASS</span></td>
+<td>12.12s</td>
+<td>
+</td>
+</tr>
+<tr class='pass'>
+<td>2</td>
+<td>
+<a href='report_tc_serial_utfw/tc_serial_utfw_report.html' target='_blank' class='test-link'>Serial Communication Test</a><span class='report-badge'>📄 Report</span>
+</td>
+<td><span class='status pass'>PASS</span></td>
+<td>75.31s</td>
+<td>
+</td>
+</tr>
+<tr class='pass'>
+<td>3</td>
+<td>
+<a href='report_tc_network_snmp/tc_network_snmp_report.html' target='_blank' class='test-link'>SNMP Test</a><span class='report-badge'>📄 Report</span>
+</td>
+<td><span class='status pass'>PASS</span></td>
+<td>39.42s</td>
+<td>
+</td>
+</tr>
+<tr class='pass'>
+<td>4</td>
+<td>
+<a href='report_tc_network_pcap/tc_network_pcap_report.html' target='_blank' class='test-link'>Network PCAP Test</a><span class='report-badge'>📄 Report</span>
+</td>
+<td><span class='status pass'>PASS</span></td>
+<td>37.50s</td>
+<td>
+</td>
+</tr>
+<tr class='pass'>
+<td>5</td>
+<td>
+<a href='report_tc_pcap_capture/tc_pcap_capture_report.html' target='_blank' class='test-link'>PCAP Capture Test</a><span class='report-badge'>📄 Report</span>
+</td>
+<td><span class='status pass'>PASS</span></td>
+<td>16.09s</td>
+<td>
+</td>
+</tr>
+<tr class='pass'>
+<td>6</td>
+<td>
+<a href='report_tc_eeprom_persistence/tc_eeprom_persistence_report.html' target='_blank' class='test-link'>EEPROM Persistence Test</a><span class='report-badge'>📄 Report</span>
+</td>
+<td><span class='status pass'>PASS</span></td>
+<td>98.56s</td>
+<td>
+</td>
+</tr>
+<tr class='pass'>
+<td>7</td>
+<td>
+<a href='report_tc_power_hlw8032/tc_power_hlw8032_report.html' target='_blank' class='test-link'>Power Meter HLW8032 Test</a><span class='report-badge'>📄 Report</span>
+</td>
+<td><span class='status pass'>PASS</span></td>
+<td>47.81s</td>
+<td>
+</td>
+</tr>
+<tr class='pass'>
+<td>8</td>
+<td>
+<a href='report_tc_stress_switching/tc_stress_switching_report.html' target='_blank' class='test-link'>Stress Test - Rapid Switching</a><span class='report-badge'>📄 Report</span>
+</td>
+<td><span class='status pass'>PASS</span></td>
+<td>63.66s</td>
+<td>
+</td>
+</tr>
+</table>
+</section>
+<section>
+<h3>Environment</h3>
+<div class='kv'>
+<div>Session ID</div><div><code>fa559c7a</code></div>
+<div>Hostname</div><div>DPC</div>
+<div>OS</div><div>Windows 11</div>
+<div>Python</div><div>3.13.7</div>
+<div>Config</div><div>G:\_GitHub\HW_10-In-Rack_PDU\tests\.test_suites\nightly.yaml</div>
+<div>Reports Dir</div><div>G:\_GitHub\HW_10-In-Rack_PDU\tests\Nightly_regression</div>
+</div>
+</section>
+</main>
+</body></html>

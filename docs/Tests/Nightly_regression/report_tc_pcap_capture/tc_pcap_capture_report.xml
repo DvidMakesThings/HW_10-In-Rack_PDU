@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ENERGIS Functional Test" tests="6" failures="0" skipped="0" time="0.0" session_id="878c94fc">
+  <testcase classname="UTFW" name="PRE-STEP 1 Reboot device via UART" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1 Ping 127.0.0.1" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2 Capture PCAP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3 Check_ICMP_Captured" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="TEARDOWN 1 Ensure all outputs OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="TEARDOWN 2 Final verify all outputs OFF" time="0.0">
+  </testcase>
+</testsuite>

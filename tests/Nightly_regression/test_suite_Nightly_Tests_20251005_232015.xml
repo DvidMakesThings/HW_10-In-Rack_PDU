@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Nightly Tests" tests="8" failures="0" skipped="0" time="390.462" session_id="fa559c7a">
+  <testcase classname="TestSuite" name="Sanity Check Test" time="12.115">
+  </testcase>
+  <testcase classname="TestSuite" name="Serial Communication Test" time="75.308">
+  </testcase>
+  <testcase classname="TestSuite" name="SNMP Test" time="39.417">
+  </testcase>
+  <testcase classname="TestSuite" name="Network PCAP Test" time="37.500">
+  </testcase>
+  <testcase classname="TestSuite" name="PCAP Capture Test" time="16.089">
+  </testcase>
+  <testcase classname="TestSuite" name="EEPROM Persistence Test" time="98.556">
+  </testcase>
+  <testcase classname="TestSuite" name="Power Meter HLW8032 Test" time="47.814">
+  </testcase>
+  <testcase classname="TestSuite" name="Stress Test - Rapid Switching" time="63.660">
+  </testcase>
+</testsuite>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ENERGIS Functional Test" tests="53" failures="0" skipped="0" time="0.0" session_id="3d873dba">
+  <testcase classname="UTFW" name="PRE-STEP 1 Reboot device via UART" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1 Set custom network configuration" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.1 Set custom network config" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.2 Verify custom IP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1.3 Verify custom Gateway" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2 Set alternating channel states (odd ON, even OFF)" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.1 Set CH1 to ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.2 Set CH2 to OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.3 Set CH3 to ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.4 Set CH4 to OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.5 Set CH5 to ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.6 Set CH6 to OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.7 Set CH7 to ON" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.8 Set CH8 to OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.9 Verify CH1 state via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.10 Verify CH2 state via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.11 Verify CH3 state via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.12 Verify CH4 state via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.13 Verify CH5 state via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.14 Verify CH6 state via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.15 Verify CH7 state via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.16 Verify CH8 state via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3 Reboot and verify network config persistence" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.1 Reboot device" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.2 Get network config after reboot" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.3 Verify network config persisted" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4 Verify channel states not persisted after reboot" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.1 [NEGATIVE TEST] MUST FAIL - Verify CH1 state via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.2 [NEGATIVE TEST] MUST FAIL - Verify CH2 state via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.3 [NEGATIVE TEST] MUST FAIL - Verify CH3 state via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.4 [NEGATIVE TEST] MUST FAIL - Verify CH4 state via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.5 [NEGATIVE TEST] MUST FAIL - Verify CH5 state via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.6 [NEGATIVE TEST] MUST FAIL - Verify CH6 state via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.7 [NEGATIVE TEST] MUST FAIL - Verify CH7 state via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.8 [NEGATIVE TEST] MUST FAIL - Verify CH8 state via SNMP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5 Factory reset device" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5.1 Perform factory reset (RFS)" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 6 Verify factory defaults restored" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 6.1 Get network config after factory reset" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 6.2 Verify baseline network config restored" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 6.3 Verify all channels reset to OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7 Multiple reboot cycle stability test" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.1 Reboot cycle 1" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.2 Verify ready after reboot 1" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.3 Reboot cycle 2" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.4 Verify ready after reboot 2" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.5 Reboot cycle 3" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.6 Verify ready after reboot 3" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 7.7 Verify config stable after multiple reboots" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 8 Final EEPROM dump and analysis" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 8.1 Analyze EEPROM dump after all tests" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="TEARDOWN 1 Ensure all outputs OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="TEARDOWN 2 Final verify all outputs OFF" time="0.0">
+  </testcase>
+</testsuite>

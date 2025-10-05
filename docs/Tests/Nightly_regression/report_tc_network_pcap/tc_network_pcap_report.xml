@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ENERGIS Functional Test" tests="44" failures="0" skipped="0" time="0.0" session_id="90d075a6">
+  <testcase classname="UTFW" name="PRE-STEP 1 Reboot device via UART" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 1 Wait for device to boot fully" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2 Start capturing settings page" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.1 Capture PCAP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 2.2 Access the settings page" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3 Analyze captured settings page" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.1 Validate IP address" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.2 Validate Gateway address" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.3 Validate Subnet mask" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.4 Validate DNS address" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.5 Settings: Device Name present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.6 Settings: Device Location present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.7 Settings: Page title present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.8 Settings: Network Settings section present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.9 Settings: Device Settings section present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.10 Settings: Temperature Unit section present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.11 Settings: Celsius option present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.12 Settings: Fahrenheit option present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.13 Settings: Kelvin option present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.14 Settings: Save Settings button present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.15 Settings: Manuals section present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.16 Settings: User Manual link present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.17 Settings: Programming Manual link present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 3.18 Settings: All form labels present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4 Start capturing control page" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.1 Capture Control Page PCAP" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 4.2 Access the control page" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5 Analyze captured control page" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5.1 Control: Page title present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5.2 Control: Page description present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5.3 Control: Channel header present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5.4 Control: Switch header present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5.5 Control: Voltage header present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5.6 Control: Current header present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5.7 Control: Uptime header present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5.8 Control: Power header present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5.9 Control: All 8 channels present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5.10 Control: Apply Changes button present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5.11 Control: All On button present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5.12 Control: All Off button present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5.13 Control: Internal Temperature label present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="STEP 5.14 Control: System Status label present" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="TEARDOWN 1 Ensure all outputs OFF" time="0.0">
+  </testcase>
+  <testcase classname="UTFW" name="TEARDOWN 2 Final verify all outputs OFF" time="0.0">
+  </testcase>
+</testsuite>
