@@ -78,7 +78,8 @@
         "power_manager.h": "c",
         "snmp_networkctrl.h": "c",
         "snmp_powermon.h": "c",
-        "snmp_voltagemon.h": "c"
+        "snmp_voltagemon.h": "c",
+        "address_mapped.h": "c"
     },
     "editor.formatOnSave": true,
     "[c]": {
