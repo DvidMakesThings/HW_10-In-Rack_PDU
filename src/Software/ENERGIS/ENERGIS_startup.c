@@ -135,10 +135,8 @@ bool startup_init(void) {
 bool core0_init(void) {
     sleep_ms(3000); // Delay for debugging
 
-    INFO_PRINT("Core 0 initializing...\n");
-
-    getSysInfo();                      // Print system information
     check_and_init_factory_defaults(); // Only on the very first run, then ignored
+    getSysInfo();                      // Print system information
 
     INFO_PRINT("ADC initializing\n");
     adc_init();
@@ -298,8 +296,5 @@ void check_and_init_factory_defaults(void) {
 
         INFO_PRINT("Factory defaults written. Rebooting...\n");
         sleep_ms(1000);
-        watchdog_reboot(0, 0, 0);
-        while (1) { /* wait for reset */
-        }
     }
 }

@@ -4,3 +4,4 @@ UseTab: Never
 BreakBeforeBraces: Attach
 AllowShortBlocksOnASingleLine: Always
 ColumnLimit: 100
+PointerAlignment: Right

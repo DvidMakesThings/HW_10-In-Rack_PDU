@@ -52,6 +52,7 @@ int main(void) {
         reset_usb_boot(0, 0);
     }
 
+    // replace stdio_usb_init();
     stdio_usb_init();
 
     if (!startup_init()) {

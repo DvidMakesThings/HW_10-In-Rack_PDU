@@ -12,6 +12,11 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+#define USBD_MANUFACTURER "DvidMakesThings"
+#define USBD_PRODUCT "ENERGIS"
+#define USBD_SERIALNUMBER SERIAL_NUMBER
+#define USBD_STR_CDC_NAME "ENERGIS USB Serial"
+
 #include "hardware/adc.h"
 #include "hardware/address_mapped.h"
 #include "hardware/clocks.h"
@@ -37,6 +42,7 @@
 #include "network/socket.h"
 #include "network/w5x00_spi.h"
 #include "network/wizchip_conf.h"
+#include "serial_number.h"
 
 // Drivers & utilities
 #include "ENERGIS_startup.h"
@@ -81,9 +87,9 @@
  ********************************************************************************/
 
 // Default values (Factory settings)
-#define DEFAULT_SN "SN-369366060325"
-#define SWVERSION "1.0.0"
-#define SW_REV 100 // 1.0.0 → numeric literal
+#define DEFAULT_SN SERIAL_NUMBER
+#define SWVERSION FIRMWARE_VERSION
+#define SW_REV FIRMWARE_VERSION_LITERAL
 #define DEFAULT_NAME "ENERGIS-1.0.0"
 #define DEFAULT_LOCATION "Location"
 
