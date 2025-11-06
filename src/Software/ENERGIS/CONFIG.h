@@ -46,14 +46,13 @@
 
 // Drivers & utilities
 #include "ENERGIS_startup.h"
-#include "PDU_display.h"
 #include "drivers/CAT24C512_driver.h"
 #include "drivers/HLW8032_driver.h"
-#include "drivers/ILI9488_driver.h"
 #include "drivers/MCP23017_display_driver.h"
 #include "drivers/MCP23017_dual_driver.h"
 #include "drivers/MCP23017_relay_driver.h"
 #include "drivers/MCP23017_selection_driver.h"
+#include "drivers/button_driver.h"
 #include "utils/EEPROM_MemoryMap.h"
 #include "utils/helper_functions.h"
 #include "web_handlers/form_helpers.h"
@@ -90,7 +89,7 @@
 #define DEFAULT_SN SERIAL_NUMBER
 #define SWVERSION FIRMWARE_VERSION
 #define SW_REV FIRMWARE_VERSION_LITERAL
-#define DEFAULT_NAME "ENERGIS-1.0.0"
+#define DEFAULT_NAME "ENERGIS-" FIRMWARE_VERSION
 #define DEFAULT_LOCATION "Location"
 
 /* log.h — single source of truth */
@@ -165,13 +164,8 @@
 #define I2C_SPEED 100000                            ///< 100 kHz standard mode
 #define EEPROM_I2C i2c1                             ///< Using I2C1 for EEPROM communication
 #define MCP23017_RELAY_I2C i2c1                     ///< Using I2C0 for Relay Board MCP23017
-#define MCP23017_DISPLAY_I2C i2c0                   ///< Using I2C1 for Display Board MCP23017
-#define MCP23017_SELECTION_I2C MCP23017_DISPLAY_I2C ///< Using I2C1 for Selection Row MCP23017
-
-// SPI Peripheral Assignments
-#if HAS_SCREEN
-#define SPI_SPEED 62500000 // 62.5MHz
-#endif
+#define MCP23017_DISPLAY_I2C i2c0                   ///< Using I2C0 for Display Board MCP23017
+#define MCP23017_SELECTION_I2C MCP23017_DISPLAY_I2C ///< Using I2C0 for Selection Row MCP23017
 
 #define SPI_SPEED_W5500 40000000  // 40MHz
 #define ILI9488_SPI_INSTANCE spi1 ///< SPI1 for ILI9488 Display

@@ -4,13 +4,13 @@
 
 **Design File**: `ENERGIS_DispBrd_Rack-PDU_1.1.0.brd`
 
-**Evaluation Date**: 9/26/2025 9:10 PM
+**Evaluation Date**: 2025-10-30 11:44 PM
 
-**Total Components (placed)**: 85
+**Total Components (placed)**: 83
 
-**Evaluated (excluding Not mounted)**: 54
+**Evaluated (excluding Not mounted)**: 55
 
-**Compliant Components**: 54
+**Compliant Components**: 55
 
 ---
 
@@ -40,14 +40,14 @@ This certificate reflects only metadata embedded in the project and does not rep
 | C2 | - | - | - | Not mounted |
 | C3 | - | - | - | Not mounted |
 | C4 | - | - | - | Not mounted |
-| C5 | CC0402KRX5R8BB104 | Yageo | YES | PASS |
-| C6 | CC0402KRX5R8BB104 | Yageo | YES | PASS |
-| C7 | CC0402KRX5R8BB104 | Yageo | YES | PASS |
-| C8 | CC0402KRX5R8BB104 | Yageo | YES | PASS |
-| C9 | CC0402KRX5R8BB104 | Yageo | YES | PASS |
-| C10 | CC0402KRX5R8BB104 | Yageo | YES | PASS |
-| C11 | CC0402KRX5R8BB104 | Yageo | YES | PASS |
-| C12 | CC0402KRX5R8BB104 | Yageo | YES | PASS |
+| C5 | 0402X104K250CT | Walsin | YES | PASS |
+| C6 | 0402X104K250CT | Walsin | YES | PASS |
+| C7 | 0402X104K250CT | Walsin | YES | PASS |
+| C8 | 0402X104K250CT | Walsin | YES | PASS |
+| C9 | 0402X104K250CT | Walsin | YES | PASS |
+| C10 | 0402X104K250CT | Walsin | YES | PASS |
+| C11 | 0402X104K250CT | Walsin | YES | PASS |
+| C12 | 0402X104K250CT | Walsin | YES | PASS |
 | CH1 | MHT170UGCT | MEIHUA | YES | PASS |
 | CH2 | MHT170UGCT | MEIHUA | YES | PASS |
 | CH3 | MHT170UGCT | MEIHUA | YES | PASS |
@@ -81,14 +81,14 @@ This certificate reflects only metadata embedded in the project and does not rep
 | R1 | - | - | - | Not mounted |
 | R2 | - | - | - | Not mounted |
 | R3 | - | - | - | Not mounted |
-| R4 | MCR01MZPF1002 | ROHM | - | Not mounted |
+| R4 | MCR01MZPF1002 | ROHM | YES | PASS |
 | R5 | RTT023302FTH | RALEC | YES | PASS |
 | R6 | RTT023302FTH | RALEC | YES | PASS |
-| R7 | 0402WGF1001TCE | Uniohm | YES | PASS |
+| R7 | RC-02K1001FT | FH | YES | PASS |
 | R8 | YC164-JR-071KL  | Yageo | YES | PASS |
 | R9 | YC164-JR-071KL  | Yageo | YES | PASS |
-| R10 | 0402WGF1001TCE | Uniohm | YES | PASS |
-| R11 | 0402WGF1001TCE | Uniohm | YES | PASS |
+| R10 | RC-02K1001FT | FH | YES | PASS |
+| R11 | RC-02K1001FT | FH | YES | PASS |
 | R12 | RTT023302FTH | RALEC | YES | PASS |
 | R13 | RTT023302FTH | RALEC | YES | PASS |
 | R14 | YC164-JR-071KL  | Yageo | YES | PASS |
@@ -111,8 +111,6 @@ This certificate reflects only metadata embedded in the project and does not rep
 | T1 | BSS138 | HUASHUO | - | Not mounted |
 | U$1 | - | - | - | Not mounted |
 | U$5 | - | - | - | Not mounted |
-| U$6 | - | - | - | Not mounted |
-| U$7 | - | - | - | Not mounted |
 | U$8 | - | - | - | Not mounted |
 | U$9 | - | - | - | Not mounted |
 | U$10 | - | - | - | Not mounted |

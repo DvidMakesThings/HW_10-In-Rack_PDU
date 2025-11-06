@@ -15,14 +15,14 @@
  * Device unique serial number - DO NOT MODIFY THIS FORMAT
  * This specific format allows the device to be identified
  */
-#define SERIAL_NUMBER "SN-369366060325"
+#define SERIAL_NUMBER "SN-0167662"
 
 /**
  * Device firmware version - DO NOT MODIFY THIS FORMAT
  * This specific format allows the device to be identified
  */
-#define FIRMWARE_VERSION "1.0.0"
-#define FIRMWARE_VERSION_LITERAL 100
+#define FIRMWARE_VERSION "1.1.0"
+#define FIRMWARE_VERSION_LITERAL 110
 
 /**
  * Manufacturing date

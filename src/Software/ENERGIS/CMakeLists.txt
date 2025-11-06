@@ -1,4 +1,7 @@
 # Generated Cmake Pico project file
+if(WIN32)
+    set(CMAKE_MAKE_PROGRAM "$ENV{USERPROFILE}/.pico-sdk/ninja/v1.12.1/ninja.exe" CACHE FILEPATH "Path to Ninja")
+endif()
 
 cmake_minimum_required(VERSION 3.13)
 
@@ -28,7 +31,7 @@ set(PICO_BOARD pico CACHE STRING "Board type")
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
 
-project(Test C CXX ASM)
+project(ENERGIS C CXX ASM)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
@@ -38,7 +41,6 @@ pico_sdk_init()
 add_executable(ENERGIS 
     ENERGIS_core0_task.c
     drivers/CAT24C512_driver.c
-    drivers/ILI9488_driver.c
     drivers/MCP23017_dual_driver.c
     drivers/MCP23017_display_driver.c
     drivers/MCP23017_relay_driver.c
@@ -66,7 +68,6 @@ add_executable(ENERGIS
     html/web_pages.c
     utils/EEPROM_MemoryMap.c
     utils/helper_functions.c
-    PDU_display.c
     ENERGIS_startup.c
     ENERGIS_core1_task.c
 )

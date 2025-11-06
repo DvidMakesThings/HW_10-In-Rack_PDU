@@ -20,8 +20,6 @@
 #define MCP23017_DUAL_DRIVER_H
 
 #include "../CONFIG.h"
-#include "MCP23017_display_driver.h"
-#include "MCP23017_relay_driver.h"
 #include <stdint.h>
 
 /**

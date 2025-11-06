@@ -21,9 +21,7 @@
 #define BUTTON_DRIVER_H
 
 #include "../CONFIG.h"
-#include "../PDU_display.h"
 #include "drivers/MCP23017_dual_driver.h"
-#include "drivers/MCP23017_relay_driver.h"
 #include "hardware/gpio.h"
 #include "pico/stdlib.h"
 #include "pico/time.h"

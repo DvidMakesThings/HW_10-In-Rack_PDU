@@ -54,28 +54,7 @@ bool startup_init(void) {
     gpio_set_dir(MCP_LCD_RST, GPIO_OUT);
     gpio_put(MCP_LCD_RST, 1);
 
-// ----- SPI Initialization -----
-// SPI for LCD (using ILI9488_SPI_INSTANCE, e.g. SPI1)
-#if HAS_SCREEN
-    spi_init(ILI9488_SPI_INSTANCE, SPI_SPEED);
 
-    spi_set_format(ILI9488_SPI_INSTANCE, 8, SPI_CPOL_0, SPI_CPHA_0, SPI_MSB_FIRST);
-    gpio_set_function(LCD_SCLK, GPIO_FUNC_SPI);
-    gpio_set_function(LCD_MISO, GPIO_FUNC_SPI);
-    gpio_set_function(LCD_MOSI, GPIO_FUNC_SPI);
-    gpio_set_function(LCD_CS, GPIO_OUT);
-
-    // LCD control pins
-    gpio_init(LCD_DC);
-    gpio_set_dir(LCD_DC, GPIO_OUT);
-
-    gpio_init(LCD_BL);
-    gpio_set_dir(LCD_BL, GPIO_OUT);
-
-    gpio_init(LCD_RESET);
-    gpio_set_dir(LCD_RESET, GPIO_OUT);
-    gpio_put(LCD_RESET, 1); // Release LCD reset
-#endif
     // SPI for W5500 Ethernet Module (using W5500_SPI_INSTANCE, e.g. SPI0)
     gpio_init(W5500_CS);
     gpio_set_dir(W5500_CS, GPIO_OUT);
@@ -133,7 +112,7 @@ bool startup_init(void) {
  * Also initializes the PDU display and updates the status message.
  */
 bool core0_init(void) {
-    sleep_ms(3000); // Delay for debugging
+    sleep_ms(2000); // Delay for debugging
 
     check_and_init_factory_defaults(); // Only on the very first run, then ignored
     getSysInfo();                      // Print system information
@@ -146,9 +125,9 @@ bool core0_init(void) {
     uint32_t vreg = *((volatile uint32_t *)0x40064000); // VREG_AND_CHIP_RESET->vreg
     printf("VREG register: 0x%08X\n", vreg);
 
-    INFO_PRINT("I2C scanning...\n");
-    i2c_scan_bus(i2c0, "I2C0");
-    i2c_scan_bus(i2c1, "I2C1");
+    // INFO_PRINT("I2C scanning...\n");
+    // i2c_scan_bus(i2c0, "I2C0");
+    // i2c_scan_bus(i2c1, "I2C1");
 
     // Initialize EEPROM.
 
@@ -181,23 +160,6 @@ bool core0_init(void) {
     }
     mcp_display_write_pin(PWR_LED, 1);
     setError(true);
-
-    // Initialize the ILI9488 display.
-    if (HAS_SCREEN) {
-
-        INFO_PRINT("ILI9488 display initializing...\n");
-        ILI9488_Init();
-        DEBUG_PRINT("ILI9488 OK\n");
-
-        INFO_PRINT("Starting PDU display\n");
-        PDU_Display_Init();
-        sleep_ms(200);
-        DEBUG_PRINT("PDU display started\n");
-        PDU_Display_UpdateStatus("System initialized.");
-
-    } else {
-        INFO_PRINT("Headless mode, skipping display initialization\n");
-    }
 
     INFO_PRINT("Initializing HLW8032...\n");
     hlw8032_init();
@@ -258,10 +220,6 @@ bool core1_init(void) {
     network_initialize(g_net_info);
     print_network_information(g_net_info);
 
-    if (HAS_SCREEN) {
-        PDU_Display_UpdateIP(g_net_info.ip);
-        PDU_Display_UpdateConnectionStatus(1);
-    }
     mcp_display_write_pin(ETH_LED, 1);
 
     if (socket(server_socket, Sn_MR_TCP, port, 0) != server_socket) {

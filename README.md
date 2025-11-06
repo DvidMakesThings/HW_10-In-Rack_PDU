@@ -1,16 +1,5 @@
 # ENERGIS - The Managed PDU Project for 10-Inch Rack
 
-<div align="center">
-  <br></br>
-  <a href="https://www.nextpcb.com/">
-    <img src="images/Sponsorship/nextpcb_rgb.png" alt="NextPCB Logo" width="300" />
-  </a>
-  
-  <h3>PCBs manufactured by <a href="https://www.nextpcb.com/" style="color:#ff3e3e;">NextPCB</a></h3>
-  <p><em>Supporter and sponsor of the ENERGIS project</em></p>
-</div>
-
-
 ## Overview
 ![Firmware Development Status](https://img.shields.io/badge/status-Testing%20%26%20Debugging-yellowgreen)
 
@@ -258,12 +247,6 @@ Comprehensive end-to-end system test covering:
 - Added enable functionality to the PSU
 - Added high precision LDO to supply the MCU
 - Additional fan is possible, but the temperature doesn't go above 36°C
-
-#### ENERGIS 1.1.0 Final revision
-- Special thanks for NextPCB for the sponsorship
-- Redesigned PCBs: 6-layer Mainboard and 4-layer Displayboard
-- Signal layers moved to inner layers - EMC protection
-- Stronger ESD protection
 
 ## License
 ### Software Components

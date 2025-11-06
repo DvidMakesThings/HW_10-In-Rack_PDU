@@ -4,13 +4,13 @@
 
 **Design File**: `ENERGIS_Rack-PDU_1.1.0.brd`
 
-**Evaluation Date**: 9/26/2025 2:23 PM
+**Evaluation Date**: 2025-10-30 11:44 PM
 
-**Total Components (placed)**: 442
+**Total Components (placed)**: 441
 
-**Evaluated (excluding Not mounted)**: 397
+**Evaluated (excluding Not mounted)**: 351
 
-**Compliant Components**: 397
+**Compliant Components**: 351
 
 ---
 
@@ -31,29 +31,29 @@ Based on the attributes present in the EAGLE board file at the time of export, t
 This certificate reflects only metadata embedded in the project and does not replace manufacturer documentation.
 | Ref | MPN | Manufacturer | ROHS Compliant | Result |
 |-----|-----|--------------|----------------|--------|
-| 3VDC | - | - | YES | PASS |
-| 3VFB | - | - | YES | PASS |
-| 5V-NI1 | - | - | YES | PASS |
-| 5V-NI2 | - | - | YES | PASS |
-| 5VDC | - | - | YES | PASS |
-| 5VFB | - | - | YES | PASS |
-| 12VDC | - | - | YES | PASS |
+| 3VDC | - | - | - | Not mounted |
+| 3VFB | - | - | - | Not mounted |
+| 5V-NI1 | - | - | - | Not mounted |
+| 5V-NI2 | - | - | - | Not mounted |
+| 5VDC | - | - | - | Not mounted |
+| 5VFB | - | - | - | Not mounted |
+| 12VDC | - | - | - | Not mounted |
 | AC/DC1 | IRM-10-12  | MW | YES | PASS |
 | AC/DC2 | - | - | - | Not mounted |
 | AC_L | - | - | - | Not mounted |
 | AC_N | - | - | - | Not mounted |
-| ADC12 | - | - | YES | PASS |
-| AVDD | - | - | YES | PASS |
+| ADC12 | - | - | - | Not mounted |
+| AVDD | - | - | - | Not mounted |
 | BOOT | B3U-1000P | Omron | YES | PASS |
 | C1 | 1206X226K250NT | FH | YES | PASS |
 | C2 | 1206X226K250NT | FH | YES | PASS |
-| C3 | CC0402KRX5R8BB104 | Yageo | YES | PASS |
-| C4 | CC0402KRX5R8BB104 | Yageo | YES | PASS |
+| C3 | 0402X104K250CT | Walsin | YES | PASS |
+| C4 | 0402X104K250CT | Walsin | YES | PASS |
 | C5 | CEU3E2X7R2A102KT0Y0S | TDK | YES | PASS |
-| C6 | CC0402KRX5R8BB104 | Yageo | YES | PASS |
-| C7 | CC0402KRX5R8BB104 | Yageo | YES | PASS |
-| C8 | CC0402KRX5R8BB104 | Yageo | YES | PASS |
-| C9 | CC0402KRX5R8BB104 | Yageo | YES | PASS |
+| C6 | 0402X104K250CT | Walsin | YES | PASS |
+| C7 | 0402X104K250CT | Walsin | YES | PASS |
+| C8 | 0402X104K250CT | Walsin | YES | PASS |
+| C9 | 0402X104K250CT | Walsin | YES | PASS |
 | C10 | RVT1E101M0607 | HONOR | YES | PASS |
 | C11 | FN15N330J500PNG | PSA | YES | PASS |
 | C12 | FN15N330J500PNG | PSA | YES | PASS |
@@ -63,8 +63,8 @@ This certificate reflects only metadata embedded in the project and does not rep
 | C16 | RVT1E101M0607 | HONOR | YES | PASS |
 | C17 | 1206X226K250NT | FH | YES | PASS |
 | C18 | 1206X226K250NT | FH | YES | PASS |
-| C19 | CC0402KRX5R8BB104 | Yageo | YES | PASS |
-| C20 | CC0402KRX5R8BB104 | Yageo | YES | PASS |
+| C19 | 0402X104K250CT | Walsin | YES | PASS |
+| C20 | 0402X104K250CT | Walsin | YES | PASS |
 | C21 | 0603X225K160NT | FH | YES | PASS |
 | C22 | 0805B224K500NT | FH | YES | PASS |
 | C23 | RVT1H101M0607 | ROQANG | YES | PASS |
@@ -77,8 +77,8 @@ This certificate reflects only metadata embedded in the project and does not rep
 | C30 | 0805B333K500NT | FH | YES | PASS |
 | C31 | 0805B333K500NT | FH | YES | PASS |
 | C32 | 0805B333K500NT | FH | YES | PASS |
-| C33 | CC0402KRX5R8BB104 | Yageo | YES | PASS |
-| C34 | CC0402KRX5R8BB104 | Yageo | YES | PASS |
+| C33 | 0402X104K250CT | Walsin | YES | PASS |
+| C34 | 0402X104K250CT | Walsin | YES | PASS |
 | C35 | RVT2G2R2M0610-TR  | HUAHUI | YES | PASS |
 | C36 | 0805B333K500NT | FH | YES | PASS |
 | C37 | 0805B333K500NT | FH | YES | PASS |
@@ -110,7 +110,7 @@ This certificate reflects only metadata embedded in the project and does not rep
 | C63 | CL03A104MP3NNNC | Samsung | YES | PASS |
 | C64 | CL03A104MP3NNNC | Samsung | YES | PASS |
 | C65 | CL21A226MAYNNNE | Samsung | YES | PASS |
-| C66 | CC0402KRX5R8BB104 | Yageo | YES | PASS |
+| C66 | 0402X104K250CT | Walsin | YES | PASS |
 | C67 | CL03A104MP3NNNC | Samsung | YES | PASS |
 | C68 | CL03A104MP3NNNC | Samsung | YES | PASS |
 | C69 | CL03A104MP3NNNC | Samsung | YES | PASS |
@@ -123,7 +123,7 @@ This certificate reflects only metadata embedded in the project and does not rep
 | C76 | CL03A104MP3NNNC | Samsung | YES | PASS |
 | C77 | CL03A104MP3NNNC | Samsung | YES | PASS |
 | C78 | 0402B472K500CT | Walsin | YES | PASS |
-| C79 | CC0402KRX5R8BB104 | Yageo | YES | PASS |
+| C79 | 0402X104K250CT | Walsin | YES | PASS |
 | C80 | CL05B223KB5NNNC | Samsung | YES | PASS |
 | C81 | 0201B682K500NT | FH | YES | PASS |
 | C82 | 0201B682K500NT | FH | YES | PASS |
@@ -157,8 +157,8 @@ This certificate reflects only metadata embedded in the project and does not rep
 | C111 | CL03B102KA3NNNC | Samsung | YES | PASS |
 | C112 | CL03B102KA3NNNC | Samsung | YES | PASS |
 | C113 | CL03B102KA3NNNC | Samsung | YES | PASS |
-| CS | - | - | YES | PASS |
-| CS1 | - | - | YES | PASS |
+| CS | - | - | - | Not mounted |
+| CS1 | - | - | - | Not mounted |
 | D1 | MBRA340T3G | ON | YES | PASS |
 | D2 | MBRA340T3G | ON | YES | PASS |
 | D3 | MBRA340T3G | ON | YES | PASS |
@@ -179,16 +179,16 @@ This certificate reflects only metadata embedded in the project and does not rep
 | D18 | RCLAMP0582BQTCT | SEMTECH | YES | PASS |
 | DAT | FC-1608BK-465G5  | NATIONSTAR | YES | PASS |
 | DSP | AFC11-S20ICA-00 | JS | YES | PASS |
-| DVDD | - | - | YES | PASS |
+| DVDD | - | - | - | Not mounted |
 | ESD1 | SP0503BAHTG | Littelfuse | YES | PASS |
 | ETH1 | J1B1211CCD | WIZnet | YES | PASS |
 | FAN | HX25003-2A | HXH | YES | PASS |
-| FB1 | - | - | YES | PASS |
-| FB2 | - | - | YES | PASS |
+| FB1 | - | - | - | Not mounted |
+| FB2 | - | - | - | Not mounted |
 | GDRC | - | - | - | Not mounted |
-| GND | - | - | YES | PASS |
-| GND-3 | - | - | YES | PASS |
-| GND-5 | - | - | YES | PASS |
+| GND | - | - | - | Not mounted |
+| GND-3 | - | - | - | Not mounted |
+| GND-5 | - | - | - | Not mounted |
 | IC1 | MP2315GJ-Z | MPS | YES | PASS |
 | IC2 | MP2315GJ-Z | MPS | YES | PASS |
 | IC3 | ULN2803A | UMW | YES | PASS |
@@ -211,7 +211,8 @@ This certificate reflects only metadata embedded in the project and does not rep
 | IC20 | W5500 | WIZNET | YES | PASS |
 | IC21 | MIC5504-3.3YM5-TR  | Microchip | YES | PASS |
 | IC22 | MCP6001RT-I/OT  | MICROCHIP | YES | PASS |
-| IOVDD | - | - | YES | PASS |
+| IOVDD | - | - | - | Not mounted |
+| J1 | - | - | - | Not mounted |
 | J2 | - | - | - | Not mounted |
 | J7 | - | - | - | Not mounted |
 | J8 | CRCW08050000Z0EA | Vishay | YES | PASS |
@@ -225,8 +226,8 @@ This certificate reflects only metadata embedded in the project and does not rep
 | K6 | G2RL-1A-E DC12 | Omron | YES | PASS |
 | K7 | G2RL-1A-E DC12 | Omron | YES | PASS |
 | K8 | G2RL-1A-E DC12 | Omron | YES | PASS |
-| L-REC1 | - | - | YES | PASS |
-| L-REC2 | - | - | YES | PASS |
+| L-REC1 | - | - | - | Not mounted |
+| L-REC2 | - | - | - | Not mounted |
 | L1 | YP0503-4R7M | YJYCOIN | YES | PASS |
 | L2 | YP0503-4R7M | YJYCOIN | YES | PASS |
 | L3 | SMNR6045-102MT | SXN | YES | PASS |
@@ -240,10 +241,10 @@ This certificate reflects only metadata embedded in the project and does not rep
 | L_OUT6 | - | - | - | Not mounted |
 | L_OUT7 | - | - | - | Not mounted |
 | L_OUT8 | - | - | - | Not mounted |
-| MI | - | - | YES | PASS |
-| MISO1 | - | - | YES | PASS |
-| MO | - | - | YES | PASS |
-| MOSI1 | - | - | YES | PASS |
+| MI | - | - | - | Not mounted |
+| MISO1 | - | - | - | Not mounted |
+| MO | - | - | - | Not mounted |
+| MOSI1 | - | - | - | Not mounted |
 | N_OUT1 | - | - | - | Not mounted |
 | N_OUT2 | - | - | - | Not mounted |
 | N_OUT3 | - | - | - | Not mounted |
@@ -370,7 +371,7 @@ This certificate reflects only metadata embedded in the project and does not rep
 | R109 | RTT014701FTH | RALEC | YES | PASS |
 | R110 | 1206W4F1004T5E | Uniohm | YES | PASS |
 | R111 | - | - | - | Not mounted |
-| R112 | 0402WGF1001TCE | Uniohm | YES | PASS |
+| R112 | RC-02K1001FT | FH | YES | PASS |
 | R113 | RS-05K1001FT | FH | YES | PASS |
 | R114 | RS-05K1001FT | FH | YES | PASS |
 | R115 | LR12FTDSR002 | Viking | YES | PASS |
@@ -380,8 +381,8 @@ This certificate reflects only metadata embedded in the project and does not rep
 | R119 | ERJ6ENF4703V | Panasonic | YES | PASS |
 | R120 | RS-05K1001FT | FH | YES | PASS |
 | R121 | RC-01W2201FT | FH | YES | PASS |
-| R122 | 0402WGF1001TCE | Uniohm | YES | PASS |
-| R123 | 0402WGF1001TCE | Uniohm | YES | PASS |
+| R122 | RC-02K1001FT | FH | YES | PASS |
+| R123 | RC-02K1001FT | FH | YES | PASS |
 | R124 | RC0201FR-075K1L | Yageo | YES | PASS |
 | R125 | RC0201FR-075K1L | Yageo | YES | PASS |
 | R126 | RC-01W1002FT | FH | YES | PASS |
@@ -409,7 +410,7 @@ This certificate reflects only metadata embedded in the project and does not rep
 | R148 | CR0402FF2401G | LIZ | YES | PASS |
 | R149 | TC164-FR-073K3L | Yageo | YES | PASS |
 | R150 | RC-02W8201FT | FH | YES | PASS |
-| R151 | 0402WGF1001TCE | Uniohm | YES | PASS |
+| R151 | RC-02K1001FT | FH | YES | PASS |
 | R152 | AF0201FR-0710RL  | Yageo | YES | PASS |
 | R153 | RC0201FR-071KL  | Yageo | YES | PASS |
 | R154 | RC0201FR-071KL  | Yageo | YES | PASS |
@@ -421,35 +422,35 @@ This certificate reflects only metadata embedded in the project and does not rep
 | R160 | RC-01W27R0FT  | FH | YES | PASS |
 | R161 | - | - | - | Not mounted |
 | R162 | MCR01MZPF1002 | ROHM | YES | PASS |
-| R163 | 0402WGF1001TCE | Uniohm | YES | PASS |
+| R163 | RC-02K1001FT | FH | YES | PASS |
 | R164 | MCR01MZPF1002 | ROHM | YES | PASS |
 | R165 | - | - | - | Not mounted |
 | R166 | 0402WGF3301TCE | Uniohm | YES | PASS |
 | R167 | 0402WGF3301TCE | Uniohm | YES | PASS |
 | R168 | 0402WGF3301TCE | Uniohm | YES | PASS |
 | REF1 | LM4040C30FTA  | DIODES | YES | PASS |
-| REL0 | - | - | YES | PASS |
-| REL1 | - | - | YES | PASS |
-| REL2 | - | - | YES | PASS |
-| REL3 | - | - | YES | PASS |
-| REL4 | - | - | YES | PASS |
-| REL5 | - | - | YES | PASS |
-| REL6 | - | - | YES | PASS |
-| REL7 | - | - | YES | PASS |
+| REL0 | - | - | - | Not mounted |
+| REL1 | - | - | - | Not mounted |
+| REL2 | - | - | - | Not mounted |
+| REL3 | - | - | - | Not mounted |
+| REL4 | - | - | - | Not mounted |
+| REL5 | - | - | - | Not mounted |
+| REL6 | - | - | - | Not mounted |
+| REL7 | - | - | - | Not mounted |
 | RESET | B3U-1000P | Omron | YES | PASS |
 | RGTG | - | - | - | Not mounted |
 | RN1 | YC164-FR-07100KL  | Yageo | YES | PASS |
 | RN2 | YC164-FR-07100KL  | Yageo | YES | PASS |
-| RX0 | - | - | YES | PASS |
-| RX1 | - | - | YES | PASS |
-| SC | - | - | YES | PASS |
-| SCL0 | - | - | YES | PASS |
-| SCL1 | - | - | YES | PASS |
-| SCLK1 | - | - | YES | PASS |
-| SDA0 | - | - | YES | PASS |
-| SDA1 | - | - | YES | PASS |
-| SW | - | - | YES | PASS |
-| SW3 | - | - | YES | PASS |
+| RX0 | - | - | - | Not mounted |
+| RX1 | - | - | - | Not mounted |
+| SC | - | - | - | Not mounted |
+| SCL0 | - | - | - | Not mounted |
+| SCL1 | - | - | - | Not mounted |
+| SCLK1 | - | - | - | Not mounted |
+| SDA0 | - | - | - | Not mounted |
+| SDA1 | - | - | - | Not mounted |
+| SW | - | - | - | Not mounted |
+| SW3 | - | - | - | Not mounted |
 | T1 | BSS138 | HUASHUO | YES | PASS |
 | U$1 | - | - | - | Not mounted |
 | U$2 | - | - | - | Not mounted |
@@ -458,8 +459,6 @@ This certificate reflects only metadata embedded in the project and does not rep
 | U$5 | - | - | - | Not mounted |
 | U$6 | - | - | - | Not mounted |
 | U$7 | - | - | - | Not mounted |
-| U$8 | - | - | - | Not mounted |
-| U$9 | - | - | - | Not mounted |
 | U$10 | - | - | - | Not mounted |
 | U$11 | - | - | - | Not mounted |
 | U$12 | - | - | - | Not mounted |
@@ -467,11 +466,11 @@ This certificate reflects only metadata embedded in the project and does not rep
 | U$14 | - | - | - | Not mounted |
 | U$15 | - | - | - | Not mounted |
 | USB1 | USB-TYPE-C-018  | DEALON | YES | PASS |
-| VBUS | - | - | YES | PASS |
-| VCC | - | - | YES | PASS |
-| VCC2 | - | - | YES | PASS |
-| VREF | - | - | YES | PASS |
-| X1 | ABM8-272-T3  | Abracon | YES | PASS |
+| VBUS | - | - | - | Not mounted |
+| VCC | - | - | - | Not mounted |
+| VCC2 | - | - | - | Not mounted |
+| VREF | - | - | - | Not mounted |
+| X1 | SX32Y012000B91T | TKD | YES | PASS |
 | X2 | X1E000021013900 | Epson | YES | PASS |
 
 ---

@@ -63,9 +63,6 @@ int main(void) {
 
     if (core0_init()) {
         setError(false);
-        if (HAS_SCREEN)
-            PDU_Display_UpdateStatus("System ready.");
-        DEBUG_PRINT("Core 0 initialized.\n\n");
     } else {
         setError(true);
         ERROR_PRINT("Core 0 initialization failed.\n\n");
@@ -94,7 +91,6 @@ int main(void) {
 
     while (1) {
         uart_command_loop(); // stay responsive always
-        // mcp_dual_guardian_poll(); // << watchdog for relay/display divergence
         uint64_t now_us = time_us_64();
         if ((now_us - last_poll_us) >= 100000) { // 100ms per channel
             hlw8032_poll_once();                 // non-blocking: one channel per loop

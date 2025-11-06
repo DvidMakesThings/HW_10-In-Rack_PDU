@@ -15,27 +15,6 @@
 #include "helper_functions.h"
 
 /**
- * @brief Scans an I2C bus for devices and prints their addresses.
- * @param i2c The I2C instance to scan.
- * @param bus_name The name of the bus for logging purposes.
- */
-void i2c_scan_bus(i2c_inst_t *i2c, const char *bus_name) {
-    DEBUG_PRINT("Scanning %s...\n", bus_name);
-    bool device_found = false;
-    uint8_t dummy = 0;
-    for (uint8_t addr = 0x08; addr <= 0x77; addr++) {
-        int ret = i2c_write_blocking(i2c, addr, &dummy, 1, false);
-        if (ret >= 0) {
-            DEBUG_PRINT("Found device at address 0x%02X\n", addr);
-            device_found = true;
-        }
-    }
-    if (!device_found) {
-        DEBUG_PRINT("No devices found on %s.\n", bus_name);
-    }
-}
-
-/**
  * @brief Returns the HTML content for a given request.
  * @param request The HTTP request string.
  * @return The HTML content as a string.

@@ -54,40 +54,35 @@ try {
     New-Item -ItemType Directory -Force -Path $LOG_DIR_ABS | Out-Null
     $log = Join-Path $LOG_DIR_ABS ("energis_{0}.log" -f (Get-Date -Format 'yyyyMMdd_HHmmss'))
 
-    Write-Host "=== Auto-reopen Serial (Windows) ===  Ctrl+C to quit"
+    Write-Host "=== Serial Terminal (Windows) ==="
     Write-Host "Port: $PORT | Baud: $BAUD"
     Write-Host "Log:  $log"
     Write-Host ""
 
-    while ($true) {
-        # Wait for the port to appear
-        while (-not (Test-PortPresent -Port $PORT)) {
-            Write-Host ("[{0}] Waiting for {1}..." -f (Get-Date -Format HH:mm:ss), $PORT)
-            Start-Sleep -Milliseconds 500
-        }
-
-        # Start PuTTY and keep a handle so we can close it on disconnect
-        $args = @('-serial', "$PORT", '-sercfg', "$BAUD,8,n,1,N", '-sessionlog', "$log")
-        $proc = Start-Process -FilePath "$PUTTY_ABS" -ArgumentList $args -PassThru
-        Write-Host ("[{0}] Opened PuTTY (PID {1}) on {2} @{3}" -f (Get-Date -Format HH:mm:ss), $proc.Id, $PORT, $BAUD)
-
-        # Monitor port availability; if the device reboots (port disappears), close PuTTY immediately
-        while (-not $proc.HasExited) {
-            if (-not (Test-PortPresent -Port $PORT)) {
-                Write-Host ("[{0}] {1} disappeared → closing PuTTY..." -f (Get-Date -Format HH:mm:ss), $PORT)
-                $null = $proc.CloseMainWindow()
-                Start-Sleep -Milliseconds 800
-                if (-not $proc.HasExited) { $proc.Kill() }
-                break
-            }
-            Start-Sleep -Milliseconds 300
-        }
-
-        # If user manually closed PuTTY, we also loop back and reopen when the port is present
-        Write-Host ("[{0}] Session ended. Reconnecting when {1} is available..." -f (Get-Date -Format HH:mm:ss), $PORT)
-        # brief backoff to avoid thrashing
+    # Wait for the port to appear
+    while (-not (Test-PortPresent -Port $PORT)) {
+        Write-Host ("[{0}] Waiting for {1}..." -f (Get-Date -Format HH:mm:ss), $PORT)
         Start-Sleep -Milliseconds 500
     }
+
+    # Start PuTTY and keep a handle so we can close it on disconnect
+    $uartprop = @('-serial', "$PORT", '-sercfg', "$BAUD,8,n,1,N", '-sessionlog', "$log")
+    $proc = Start-Process -FilePath "$PUTTY_ABS" -ArgumentList $uartprop -PassThru
+    Write-Host ("[{0}] Opened PuTTY (PID {1}) on {2} @{3}" -f (Get-Date -Format HH:mm:ss), $proc.Id, $PORT, $BAUD)
+
+    # Monitor port availability; if the device reboots (port disappears), close PuTTY
+    while (-not $proc.HasExited) {
+        if (-not (Test-PortPresent -Port $PORT)) {
+            Write-Host ("[{0}] {1} disappeared → closing PuTTY..." -f (Get-Date -Format HH:mm:ss), $PORT)
+            $null = $proc.CloseMainWindow()
+            Start-Sleep -Milliseconds 800
+            if (-not $proc.HasExited) { $proc.Kill() }
+            break
+        }
+        Start-Sleep -Milliseconds 300
+    }
+
+    Write-Host ("[{0}] Session ended." -f (Get-Date -Format HH:mm:ss))
 }
 catch {
     Write-Error "openSerial.ps1 failed: $($_.Exception.Message)"
