@@ -31,11 +31,7 @@
 
 // Drivers & utilities
 #include "ENERGIS_startup.h"
-#include "PDU_display.h"
 #include "drivers/CAT24C512_driver.h"
-#include "drivers/ILI9488_driver.h"
-#include "drivers/MCP23017_display_driver.h"
-#include "drivers/MCP23017_relay_driver.h"
 #include "html/control_html.h"
 #include "html/help_html.h"
 #include "html/programming_manual_html.h"
@@ -43,13 +39,6 @@
 #include "html/user_manual_html.h"
 #include "utils/EEPROM_MemoryMap.h"
 #include "utils/helper_functions.h"
-
-/**
- * @brief Scans an I2C bus for devices and prints their addresses.
- * @param i2c The I2C instance to scan.
- * @param bus_name The name of the bus for logging purposes.
- */
-void i2c_scan_bus(i2c_inst_t *i2c, const char *bus_name);
 
 /**
  * @brief Returns the HTML content for a given request.

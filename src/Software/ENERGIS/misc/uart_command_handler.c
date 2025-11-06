@@ -132,6 +132,24 @@ static void process_command(const char *cmd_in) {
     } else if (strcmp(trimmed, "GET_USB") == 0) {
         float voltage = get_Voltage(V_USB) * (20000.0f / 10000.0f);
         ECHO("USB SUPPLY VOLTAGE: %.3f V\r\n", voltage);
+    } else if (strncmp(trimmed, "CALIBRATE ", 10) == 0) {
+        handle_calibrate_command(trimmed + 10);
+    } else if (strncmp(trimmed, "SHOW_CALIB ", 11) == 0) {
+        int ch = atoi(trimmed + 11);
+        if (ch >= 1 && ch <= 8) {
+            hlw8032_print_calibration((uint8_t)(ch - 1));
+        } else {
+            ERROR_PRINT("Invalid channel: %d (must be 1-8)\r\n", ch);
+        }
+    } else if (strcmp(trimmed, "SHOW_CALIB") == 0) {
+        for (uint8_t i = 0; i < 8; i++) {
+            hlw8032_print_calibration(i);
+        }
+    } else if (strcmp(trimmed, "AUTO_CALIBRATE_ZERO") == 0) {
+        handle_auto_calibrate_zero();
+    } else if (strncmp(trimmed, "AUTO_CALIBRATE_VOLTAGE ", 23) == 0) {
+        float ref_voltage = atof(trimmed + 23);
+        handle_auto_calibrate_voltage(ref_voltage);
     } else {
         setError(true);
         ERROR_PRINT("Unknown command \"%s\"\r\n", trimmed);
@@ -195,31 +213,39 @@ void reboot(void) {
  * @return None
  */
 void printHelp() {
-    printf("\nAvailable commands:\r\n");
-    printf("%-32s %s\r\n", "\tHELP", "Show this help message");
-    printf("%-32s %s\r\n", "\tSYSINFO", "Show system information");
-    printf("%-32s %s\r\n", "\tREBOOT", "Reboot the device");
-    printf("%-32s %s\r\n", "\tBOOTSEL", "Reset the device into bootloader mode");
-    printf("%-32s %s\r\n", "\t------------ Network Settings ------------", "");
-    printf("%-32s %s\r\n", "\tCONFIG_NETWORK <ip$sn$gw$dns>", "Configure network settings");
-    printf("%-32s %s\r\n", "\tSET_IP <xxx.xxx.xxx.xxx>", "Set the device IP address");
-    printf("%-32s %s\r\n", "\tSET_DNS <x.x.x.x>", "Set the DNS server address");
-    printf("%-32s %s\r\n", "\tSET_GW <xxx.xxx.xxx.xxx>", "Set the gateway address");
-    printf("%-32s %s\r\n", "\tSET_SN <xxx.xxx.xxx.xxx>", "Set the subnet mask");
-    printf("%-32s %s\r\n", "\tNETINFO", "Show network information");
-    printf("%-32s %s\r\n", "\t------------ Output Functions ------------", "");
-    printf("%-32s %s\r\n", "\tSET_CH <n|ALL> <ON|OFF>", "Set channel relay state");
-    printf("%-32s %s\r\n", "\tGET_CH <n|ALL>", "Get channel relay state");
-    printf("%-32s %s\r\n", "\tREAD_HLW8032", "Read HLW8032 sensor data");
-    printf("%-32s %s\r\n", "\tREAD_HLW8032 <ch>", "Read specific HLW8032 channel");
-    printf("%-32s %s\r\n", "\t------------ Other Functions ------------", "");
-    printf("%-32s %s\r\n", "\tDUMP_EEPROM", "Create snapshot from the EEPROM");
-    printf("%-32s %s\r\n", "\tCLR_ERR", "Clear errors");
-    printf("%-32s %s\r\n", "\tGET_TEMP", "Get die temperature");
-    printf("%-32s %s\r\n", "\tRFS", "Reset to factory settings");
-    printf("%-32s %s\r\n", "\tBAADCAFE", "Erase entire EEPROM (all settings lost)");
-    printf("%-32s %s\r\n", "\tGET_SUPPLY", "Get voltage from 12V supply sense line");
-    printf("%-32s %s\r\n", "\tGET_USB", "Get voltage from USB supply sense line");
+    INFO_PRINT("\nAvailable commands:\r\n");
+    INFO_PRINT("%-32s %s\r\n", "\tHELP", "Show this help message");
+    INFO_PRINT("%-32s %s\r\n", "\tSYSINFO", "Show system information");
+    INFO_PRINT("%-32s %s\r\n", "\tREBOOT", "Reboot the device");
+    INFO_PRINT("%-32s %s\r\n", "\tBOOTSEL", "Reset the device into bootloader mode");
+    INFO_PRINT("%-32s %s\r\n", "\t------------ Network Settings ------------", "");
+    INFO_PRINT("%-32s %s\r\n", "\tCONFIG_NETWORK <ip$sn$gw$dns>", "Configure network settings");
+    INFO_PRINT("%-32s %s\r\n", "\tSET_IP <xxx.xxx.xxx.xxx>", "Set the device IP address");
+    INFO_PRINT("%-32s %s\r\n", "\tSET_DNS <x.x.x.x>", "Set the DNS server address");
+    INFO_PRINT("%-32s %s\r\n", "\tSET_GW <xxx.xxx.xxx.xxx>", "Set the gateway address");
+    INFO_PRINT("%-32s %s\r\n", "\tSET_SN <xxx.xxx.xxx.xxx>", "Set the subnet mask");
+    INFO_PRINT("%-32s %s\r\n", "\tNETINFO", "Show network information");
+    INFO_PRINT("%-32s %s\r\n", "\t------------ Output Functions ------------", "");
+    INFO_PRINT("%-32s %s\r\n", "\tSET_CH <n|ALL> <ON|OFF>", "Set channel relay state");
+    INFO_PRINT("%-32s %s\r\n", "\tGET_CH <n|ALL>", "Get channel relay state");
+    INFO_PRINT("%-32s %s\r\n", "\tREAD_HLW8032", "Read HLW8032 sensor data");
+    INFO_PRINT("%-32s %s\r\n", "\tREAD_HLW8032 <ch>", "Read specific HLW8032 channel");
+    INFO_PRINT("%-32s %s\r\n", "\t------------ Other Functions ------------", "");
+    INFO_PRINT("%-32s %s\r\n", "\tDUMP_EEPROM", "Create snapshot from the EEPROM");
+    INFO_PRINT("%-32s %s\r\n", "\tCLR_ERR", "Clear errors");
+    INFO_PRINT("%-32s %s\r\n", "\tGET_TEMP", "Get die temperature");
+    INFO_PRINT("%-32s %s\r\n", "\tRFS", "Reset to factory settings");
+    INFO_PRINT("%-32s %s\r\n", "\tBAADCAFE", "Erase entire EEPROM (all settings lost)");
+    INFO_PRINT("%-32s %s\r\n", "\tGET_SUPPLY", "Get voltage from 12V supply sense line");
+    INFO_PRINT("%-32s %s\r\n", "\tGET_USB", "Get voltage from USB supply sense line");
+    INFO_PRINT("%-32s %s\r\n", "\t------------ Calibration ------------", "");
+    INFO_PRINT("%-32s %s\r\n", "\tCALIBRATE <ch> <V> <A>",
+               "Calibrate channel with reference V and A");
+    INFO_PRINT("%-32s %s\r\n", "\tAUTO_CALIBRATE_ZERO",
+               "Auto-calibrate zero-point for all channels");
+    INFO_PRINT("%-32s %s\r\n", "\tAUTO_CALIBRATE_VOLTAGE <V>",
+               "Auto-calibrate voltage for all channels");
+    INFO_PRINT("%-32s %s\r\n", "\tSHOW_CALIB [ch]", "Show calibration for channel or all");
 }
 
 /**
@@ -724,6 +750,142 @@ void read_dieTemp(void) {
     float temp_c = 27.0f - (v_die - 0.706f) / 0.001721f;
     PLOT("temp_sensor_voltage: %.5f\n", v_die);
     PLOT("temp_sensor_temperature: %.3f\n", temp_c);
+}
+
+/**
+ * @brief Handle CALIBRATE command.
+ * @param args The argument string: "<ch> <voltage> <current>"
+ *
+ * Performs HLW8032 calibration for the specified channel with known
+ * reference voltage and current values.
+ */
+void handle_calibrate_command(const char *args) {
+    int ch;
+    float ref_v, ref_a;
+
+    if (sscanf(args, "%d %f %f", &ch, &ref_v, &ref_a) != 3) {
+        setError(true);
+        ERROR_PRINT("Usage: CALIBRATE <ch> <voltage> <current>\r\n");
+        ERROR_PRINT("Examples:\r\n");
+        ERROR_PRINT("  CALIBRATE 1 0 0        (zero-point: channel OFF/disconnected)\r\n");
+        ERROR_PRINT("  CALIBRATE 1 230.0 0    (voltage-only, no load required)\r\n");
+        ERROR_PRINT("  CALIBRATE 1 230.0 1.5  (with known load)\r\n");
+        return;
+    }
+
+    if (ch < 1 || ch > 8) {
+        setError(true);
+        ERROR_PRINT("Invalid channel: %d (must be 1-8)\r\n", ch);
+        return;
+    }
+
+    if (ref_v < 0.0f || ref_a < 0.0f) {
+        setError(true);
+        ERROR_PRINT("Reference values cannot be negative\r\n");
+        return;
+    }
+
+    ECHO("Starting calibration for channel %d...\r\n", ch);
+
+    if (ref_v == 0.0f && ref_a == 0.0f) {
+        ECHO("Zero-point calibration: measuring offsets\r\n");
+        ECHO("Please ensure channel is OFF or disconnected\r\n\n");
+    } else {
+        ECHO("Reference: %.3fV, %.3fA\r\n", ref_v, ref_a);
+    }
+
+    if (hlw8032_calibrate_channel((uint8_t)(ch - 1), ref_v, ref_a)) {
+        ECHO("Calibration completed successfully!\r\n");
+    } else {
+        setError(true);
+        ERROR_PRINT("\nCalibration failed!\r\n");
+    }
+}
+
+/**
+ * @brief AUTO_CALIBRATE_ZERO - Zero-point calibration for all channels
+ *
+ * Performs zero-point offset calibration (0V, 0A) for all 8 channels sequentially.
+ * All channels should be OFF or disconnected before running this command.
+ */
+void handle_auto_calibrate_zero(void) {
+    ECHO("\n");
+    ECHO("========================================\r\n");
+    ECHO("  AUTO ZERO-POINT CALIBRATION\r\n");
+    ECHO("========================================\r\n");
+    ECHO("Calibrating all 8 channels (0V, 0A)\r\n");
+    ECHO("Ensure all channels are OFF/disconnected\r\n");
+    ECHO("========================================\r\n\n");
+
+    int success_count = 0;
+    int failed_count = 0;
+
+    for (uint8_t ch = 0; ch < 8; ch++) {
+        ECHO("Channel %d\n ", ch + 1);
+        if (hlw8032_calibrate_channel(ch, 0.0f, 0.0f)) {
+            ECHO("OK\r\n");
+            success_count++;
+        } else {
+            ECHO("FAILED\r\n");
+            failed_count++;
+        }
+        sleep_ms(200);
+    }
+
+    ECHO("========================================\r\n");
+    ECHO("RESULTS: %d successful, %d failed\r\n", success_count, failed_count);
+    ECHO("========================================\r\n\n");
+
+    if (failed_count > 0) {
+        setError(true);
+    }
+}
+
+/**
+ * @brief AUTO_CALIBRATE_VOLTAGE - Voltage calibration for all channels
+ *
+ * Performs voltage calibration (ref_voltage, 0A) for all 8 channels sequentially.
+ * All channels should have mains voltage present (no load required).
+ *
+ * @param ref_voltage The reference voltage (e.g., 230.0)
+ */
+void handle_auto_calibrate_voltage(float ref_voltage) {
+    if (ref_voltage <= 0.0f) {
+        setError(true);
+        ERROR_PRINT("Invalid reference voltage: %.3f (must be > 0)\r\n", ref_voltage);
+        return;
+    }
+
+    ECHO("");
+    ECHO("========================================\r\n");
+    ECHO("  AUTO VOLTAGE CALIBRATION\r\n");
+    ECHO("========================================\r\n");
+    ECHO("Calibrating all 8 channels (%.1fV, 0A)\r\n", ref_voltage);
+    ECHO("Ensure all channels have mains voltage\r\n");
+    ECHO("========================================\r\n\n");
+
+    int success_count = 0;
+    int failed_count = 0;
+
+    for (uint8_t ch = 0; ch < 8; ch++) {
+        ECHO("Channel %d: ", ch + 1);
+        if (hlw8032_calibrate_channel(ch, ref_voltage, 0.0f)) {
+            ECHO("OK\r\n");
+            success_count++;
+        } else {
+            ECHO("FAILED\r\n");
+            failed_count++;
+        }
+        sleep_ms(200);
+    }
+
+    ECHO("========================================\r\n");
+    ECHO("RESULTS: %d successful, %d failed\r\n", success_count, failed_count);
+    ECHO("========================================\r\n\n");
+
+    if (failed_count > 0) {
+        setError(true);
+    }
 }
 
 /**

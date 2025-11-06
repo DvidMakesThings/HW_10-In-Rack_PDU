@@ -9,49 +9,89 @@
  *
  * Provides API for interfacing with the HLW8032 power measurement chip.
  * Includes functions for initialization, reading measurements, uptime tracking,
- * and cached access for multi-core systems.
+ * cached access for multi-core systems, and EEPROM-backed calibration.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
  */
 
 #include "HLW8032_driver.h"
-#include "../CONFIG.h" // for HLW8032_UART_ID, HLW8032_BAUDRATE, mcp_relay_write_pin
+#include "../CONFIG.h" /* HLW8032_UART_ID, HLW8032_BAUDRATE, mcp_relay_write_pin */
 #include "pico/stdlib.h"
+#include <math.h>
+#include <stdio.h>
 #include <string.h>
 
-// frame buffer
+#define HLW_OFFSET 0.0f
+
+/* =====================  Nominal component values  ===================== */
+#define NOMINAL_R1 1880000.0f /* 1880 kOhm high side divider */
+#define NOMINAL_R2 1000.0f    /* 1 kOhm low side divider */
+#define NOMINAL_SHUNT 0.001f  /* 1 mOhm shunt resistor */
+
+/* =====================  Frame & book-keeping  ========================= */
 static uint8_t frame[HLW8032_FRAME_LENGTH];
 static uint8_t rx_buf[MAX_RX_BYTES];
 static uint32_t channel_uptime[8] = {0};
 static absolute_time_t channel_last_on[8];
 
-// raw registers
+/* =====================  Per-channel calibration  ====================== */
+static hlw_calib_t channel_calib[8];
+
+/* =====================  Last raw registers  =========================== */
 static uint32_t VolPar, VolData;
 static uint32_t CurPar, CurData;
 static uint32_t PowPar, PowData;
 static uint16_t PF;
 static uint32_t PF_Count = 1;
+static uint8_t last_channel_read = 0xFF;
 
-// last scaled readings
+/* =====================  Last scaled readings  ========================= */
 static float last_voltage = 0.0f;
 static float last_current = 0.0f;
 static float last_power = 0.0f;
 
-// Cached measurements
+/* =====================  Cached measurements  ========================== */
 static float cached_voltage[8];
 static float cached_current[8];
 static float cached_power[8];
 static uint32_t cached_uptime[8];
 static bool cached_state[8];
 
-// For reading schedule
+/* =====================  Polling helper  =============================== */
 static uint8_t poll_channel = 0;
 
+/* ===================================================================== */
+/*                        Internal helpers (static)                       */
+/* ===================================================================== */
+
+static inline uint8_t _port_from_pin(uint8_t pin) { return (pin < 8) ? 0u : 1u; }
+static inline uint8_t _bit_from_pin(uint8_t pin) { return (uint8_t)(pin & 7u); }
+
+/* Build a mask+value for a given pin/value onto a specific port bucket */
+static inline void _accum_mask_for_pin(uint8_t pin, uint8_t val, uint8_t *maskA, uint8_t *valA,
+                                       uint8_t *maskB, uint8_t *valB) {
+    const uint8_t port = _port_from_pin(pin);
+    const uint8_t bit = _bit_from_pin(pin);
+    if (port == 0) {
+        *maskA |= (uint8_t)(1u << bit);
+        if (val)
+            *valA |= (uint8_t)(1u << bit);
+        else
+            *valA &= (uint8_t)~(1u << bit);
+    } else {
+        *maskB |= (uint8_t)(1u << bit);
+        if (val)
+            *valB |= (uint8_t)(1u << bit);
+        else
+            *valB &= (uint8_t)~(1u << bit);
+    }
+}
+
+static inline float _finite_or(float v, float fb) { return isfinite(v) ? v : fb; }
+
 /**
- * @brief Determine if MUX A/B lines need to be inverted for upper channels
- * @return true if inversion is needed, false otherwise
- * @note This is required for hardware revision 1.0.0 due to faulty PCB routing.
+ * @brief Determine if MUX A/B lines need inversion for upper channels.
  */
 static inline bool _mux_invert_needed(void) {
 #if defined(SW_REV) && (SW_REV == 100)
@@ -62,47 +102,76 @@ static inline bool _mux_invert_needed(void) {
 }
 
 /**
- * @brief Select a channel on the multiplexer
+ * @brief Atomically set MUX select lines with MUX_ENABLE held low.
  *
- * This function sets the multiplexer select pins to choose one of 8 channels.
- * It uses a binary encoding (3 bits) to select the desired channel.
+ * This avoids intermediate select codes showing up on the shared MCP port,
+ * which could otherwise glitch other outputs on the same port if any writer
+ * interleaves a read-modify-write. We only use masked whole-port writes.
  *
- * @param ch Channel index (0-7) to select
+ * Pins may be on mixed ports; we build masks for A and B separately.
  */
 static void mux_select(uint8_t ch) {
-    ch &= 0x07; // 0..7
+    ch &= 0x07;
 
     uint8_t a = (ch >> 0) & 1;
     uint8_t b = (ch >> 1) & 1;
     uint8_t c = (ch >> 2) & 1;
 
-    /* HW rev 1.0.0: upper bank (4..7) has A/B inverted through routing.
-       Compensate only for that version. */
-    if (_mux_invert_needed() && c) {
+    /* If your board uses inverted A/B for upper bank, keep this quirk */
+#if defined(SW_REV) && (SW_REV == 100)
+    if (c) {
         a ^= 1;
         b ^= 1;
     }
+#endif
 
-    /* Quiet the lines, then apply selection */
-    mcp_relay_write_pin(MUX_SELECT_A, 0);
-    mcp_relay_write_pin(MUX_SELECT_B, 0);
-    mcp_relay_write_pin(MUX_SELECT_C, 0);
-    sleep_us(500);
+    /* Build one write per MCP port to avoid interleaved RMW */
+    uint8_t maskA = 0, valA = 0;
+    uint8_t maskB = 0, valB = 0;
 
-    mcp_relay_write_pin(MUX_SELECT_A, a);
-    mcp_relay_write_pin(MUX_SELECT_B, b);
-    mcp_relay_write_pin(MUX_SELECT_C, c);
-    sleep_us(500);
+/* helper lambdas */
+#define ACCUM(_pin_, _lvl_)                                                                        \
+    do {                                                                                           \
+        uint8_t _p = ((_pin_) < 8) ? 0 : 1;                                                        \
+        uint8_t _b = (uint8_t)((_pin_) & 7);                                                       \
+        if (_p == 0) {                                                                             \
+            maskA |= (uint8_t)(1u << _b);                                                          \
+            if (_lvl_)                                                                             \
+                valA |= (uint8_t)(1u << _b);                                                       \
+            else                                                                                   \
+                valA &= (uint8_t)~(1u << _b);                                                      \
+        } else {                                                                                   \
+            maskB |= (uint8_t)(1u << _b);                                                          \
+            if (_lvl_)                                                                             \
+                valB |= (uint8_t)(1u << _b);                                                       \
+            else                                                                                   \
+                valB &= (uint8_t)~(1u << _b);                                                      \
+        }                                                                                          \
+    } while (0)
+
+    /* target select lines */
+    ACCUM(MUX_SELECT_A, a);
+    ACCUM(MUX_SELECT_B, b);
+    ACCUM(MUX_SELECT_C, c);
+
+    /* Active-low enable: disable → set A/B/C → enable */
+    mcp_relay_write_pin(MUX_ENABLE, 1);
+    busy_wait_us(200);
+
+    if (maskA)
+        mcp_relay_write_mask(0, maskA, valA);
+    if (maskB)
+        mcp_relay_write_mask(1, maskB, valB);
+    busy_wait_us(500);
+
+    mcp_relay_write_pin(MUX_ENABLE, 0);
+    busy_wait_us(500);
+
+#undef ACCUM
 }
 
 /**
- * @brief Validate the checksum of a HLW8032 frame
- *
- * This function verifies that the checksum in the frame (byte 23) matches
- * the calculated sum of bytes 2-22.
- *
- * @param f Pointer to the frame buffer containing the 24-byte frame
- * @return true if checksum is valid, false otherwise
+ * @brief HLW8032 frame checksum validate.
  */
 static bool checksum_ok(const uint8_t *f) {
     uint8_t sum = 0;
@@ -112,13 +181,7 @@ static bool checksum_ok(const uint8_t *f) {
 }
 
 /**
- * @brief Read one valid 24-byte frame from the UART
- *
- * This function attempts to read a valid frame from the HLW8032 chip via UART.
- * It has a timeout mechanism and scans the received data for a valid frame
- * with correct checksum.
- *
- * @return true if a valid frame was read, false on timeout or checksum failure
+ * @brief Read one valid 24-byte frame from UART.
  */
 static bool read_frame(void) {
     uint64_t start = time_us_64();
@@ -128,7 +191,6 @@ static bool read_frame(void) {
             rx_buf[cnt++] = uart_getc(HLW8032_UART_ID);
         }
     }
-    // scan for a window of 24 bytes starting at any index i
     for (int i = 0; i + HLW8032_FRAME_LENGTH <= cnt; i++) {
         if (rx_buf[i + 1] != 0x5A)
             continue;
@@ -139,195 +201,154 @@ static bool read_frame(void) {
     return false;
 }
 
+/* ===================================================================== */
+/*                           Public API (driver)                          */
+/* ===================================================================== */
+
 /**
- * @brief Initialize the HLW8032 power measurement interface
- *
- * This function initializes the UART interface for the HLW8032 power measurement chip.
- * It configures the UART with 8 data bits, 1 stop bit, and even parity.
- * It also activates the multiplexer by setting the MUX_ENABLE pin low.
+ * @brief Initialize HLW8032 and load EEPROM calibration.
  */
 void hlw8032_init(void) {
     uart_init(HLW8032_UART_ID, HLW8032_BAUDRATE);
     uart_set_format(HLW8032_UART_ID, 8, 1, UART_PARITY_EVEN);
-    mcp_relay_write_pin(MUX_ENABLE, 0);
+
+    /* Keep mux disabled at boot (active-low) and clear selects */
+    mcp_relay_write_pin(MUX_ENABLE, 1);
+    mcp_relay_write_pin(MUX_SELECT_A, 0);
+    mcp_relay_write_pin(MUX_SELECT_B, 0);
+    mcp_relay_write_pin(MUX_SELECT_C, 0);
+
+    for (uint8_t i = 0; i < 8; i++) {
+        channel_calib[i].voltage_factor = HLW8032_VF;
+        channel_calib[i].current_factor = HLW8032_CF;
+        channel_calib[i].voltage_offset = 0.0f;
+        channel_calib[i].current_offset = 0.0f;
+        channel_calib[i].r1_actual = NOMINAL_R1;
+        channel_calib[i].r2_actual = NOMINAL_R2;
+        channel_calib[i].shunt_actual = NOMINAL_SHUNT;
+        channel_calib[i].calibrated = 0xFF;
+        channel_calib[i].zero_calibrated = 0xFF;
+    }
+
+    hlw8032_load_calibration();
 }
 
+
 /**
- * @brief Read power measurements from the specified channel
- *
- * This function reads and parses a measurement frame from the HLW8032 chip for a given channel.
- * It selects the appropriate multiplexer channel, flushes any stale data, and reads a fresh
- * frame. The raw values are parsed and converted to scaled voltage, current, and power
- * measurements.
- *
- * @param channel Channel index (0-7) to read from
- * @return true if a valid frame was read and parsed successfully, false otherwise
+ * @brief Read one measurement frame from the selected channel and apply calibration.
+ *        NOTE: VF/CF are defined to already include the board’s divider/shunt scaling.
+ *        Do NOT multiply by external R1/R2 or shunt again (that caused 1.5 kV / 1e8 A).
+ * @param channel Channel index (0..7).
+ * @return true if a valid, parsed frame is available; false otherwise.
  */
 bool hlw8032_read(uint8_t channel) {
-    // 1) select the channel on your MUX
     mux_select(channel);
     sleep_ms(10);
 
-    // 2) flush any garbage
     while (uart_is_readable(HLW8032_UART_ID))
-        uart_getc(HLW8032_UART_ID);
-
-    // 3) discard the first (stale) frame
+        (void)uart_getc(HLW8032_UART_ID);
     (void)read_frame();
-
-    // 4) now read the real frame
     if (!read_frame())
         return false;
 
-    // 5) parse VolPar, VolData, CurPar, CurData, PowPar, PowData, PF from 'frame[]'
     VolPar = ((uint32_t)frame[2] << 16) | (frame[3] << 8) | frame[4];
-    VolData = (frame[20] & 0x40) ? ((uint32_t)frame[5] << 16) | (frame[6] << 8) | frame[7] : 0;
+    VolData = (frame[20] & 0x40) ? (((uint32_t)frame[5] << 16) | (frame[6] << 8) | frame[7]) : 0;
     CurPar = ((uint32_t)frame[8] << 16) | (frame[9] << 8) | frame[10];
-    CurData = (frame[20] & 0x20) ? ((uint32_t)frame[11] << 16) | (frame[12] << 8) | frame[13] : 0;
+    CurData = (frame[20] & 0x20) ? (((uint32_t)frame[11] << 16) | (frame[12] << 8) | frame[13]) : 0;
     PowPar = ((uint32_t)frame[14] << 16) | (frame[15] << 8) | frame[16];
-    PowData = (frame[20] & 0x10) ? ((uint32_t)frame[17] << 16) | (frame[18] << 8) | frame[19] : 0;
+    PowData = (frame[20] & 0x10) ? (((uint32_t)frame[17] << 16) | (frame[18] << 8) | frame[19]) : 0;
     PF = ((uint16_t)frame[21] << 8) | frame[22];
     if (frame[20] & 0x80)
         PF_Count++;
 
-    // 6) compute your scaled values in one shot
-    last_voltage = (VolData > 0) ? ((float)VolPar / VolData) * HLW8032_VF : 0.0f;
-    last_current = (CurData > 0) ? ((float)CurPar / CurData) * HLW8032_CF : 0.0f;
-    last_power = last_voltage * last_current;
+    last_channel_read = channel;
 
+    const float vf = (channel_calib[channel].voltage_factor > 0.0f)
+                         ? channel_calib[channel].voltage_factor
+                         : HLW8032_VF;
+    const float cf = (channel_calib[channel].current_factor > 0.0f)
+                         ? channel_calib[channel].current_factor
+                         : HLW8032_CF;
+    const float v_off = channel_calib[channel].voltage_offset;
+    const float c_off = channel_calib[channel].current_offset;
+
+    const float v_raw = (VolData > 0) ? ((float)VolPar / (float)VolData) * vf : 0.0f;
+    const float i_raw = (CurData > 0) ? ((float)CurPar / (float)CurData) * cf : 0.0f;
+
+    last_voltage = v_raw - v_off;
+    last_current = i_raw - c_off;
+
+    if (!(last_voltage >= 0.0f) || last_voltage > 400.0f)
+        last_voltage = 0.0f;
+    if (!(last_current >= 0.0f) || last_current > 100.0f)
+        last_current = 0.0f;
+
+    last_power = last_voltage * last_current;
     return true;
 }
 
-/**
- * @brief Get the most recently measured voltage
- *
- * @return Voltage in volts (V) from the last successful measurement
- */
 float hlw8032_get_voltage(void) { return last_voltage; }
-
-/**
- * @brief Get the most recently measured current
- *
- * @return Current in amperes (A) from the last successful measurement
- */
 float hlw8032_get_current(void) { return last_current; }
-
-/**
- * @brief Get the most recently measured power
- *
- * @return Power in watts (W) from the last successful measurement
- */
 float hlw8032_get_power(void) { return last_power; }
-
-/**
- * @brief Get power value calculated from voltage and current measurements
- *
- * @return Power in watts (W) calculated as voltage * current
- */
 float hlw8032_get_power_inspect(void) { return last_voltage * last_current; }
 
-/**
- * @brief Get the power factor from the most recent measurements
- *
- * @return Power factor (0.0-1.0) calculated as actual power / apparent power
- */
 float hlw8032_get_power_factor(void) {
-    float app = last_voltage * last_current;
+    const float app = last_voltage * last_current;
     return app > 0.0f ? last_power / app : 0.0f;
 }
-/**
- * @brief Get the accumulated energy consumption
- *
- * @return Energy in kilowatt-hours (kWh) based on power measurements and pulse counts
- */
+
 float hlw8032_get_kwh(void) {
-    float app = last_voltage * last_current;
+    const float app = last_voltage * last_current;
     if (app <= 0.0f || PowPar == 0)
         return 0.0f;
-    float imp_per_wh = ((float)PowPar / app) / 1e9f;
+    const float imp_per_wh = ((float)PowPar / app) / 1e9f;
     return ((float)PF * PF_Count) / (imp_per_wh * 3600.0f);
 }
 
-/**
- * @brief Update the uptime counter for a channel based on its state
- *
- * This function tracks the total time a channel has been in the ON state.
- * It accumulates elapsed time when a channel remains ON and resets timing
- * when a channel is turned OFF.
- *
- * @param ch Channel index (0-7) to update
- * @param state Current state of the channel (true = ON, false = OFF)
- */
 void hlw8032_update_uptime(uint8_t ch, bool state) {
     if (state) {
         if (is_nil_time(channel_last_on[ch])) {
             channel_last_on[ch] = get_absolute_time();
         } else {
-            // accumulate elapsed seconds
             absolute_time_t now = get_absolute_time();
             int64_t diff_us = absolute_time_diff_us(channel_last_on[ch], now);
-            channel_uptime[ch] += diff_us / 1000000;
+            channel_uptime[ch] += (uint32_t)(diff_us / 1000000);
             channel_last_on[ch] = now;
         }
     } else {
-        channel_last_on[ch] = nil_time; // reset timer if off
+        channel_last_on[ch] = nil_time;
     }
 }
 
-/**
- * @brief Get the accumulated uptime for a channel
- *
- * @param ch Channel index (0-7) to query
- * @return Total uptime in seconds for the specified channel
- */
 uint32_t hlw8032_get_uptime(uint8_t ch) { return channel_uptime[ch]; }
 
 /**
- * @brief Poll a single channel for power measurements
- *
- * This function reads the current state and power measurements for one channel
- * in a round-robin fashion. It updates cached values for the current channel
- * and increments to the next channel for the next call.
+ * @brief Poll exactly one channel round-robin and update calibrated caches.
+ *        Caches always store CALIBRATED values as produced by hlw8032_read().
  */
 void hlw8032_poll_once(void) {
-    bool state = mcp_relay_read_pin(poll_channel);
-    cached_state[poll_channel] = state;
+    const uint8_t ch = poll_channel;
 
-    hlw8032_update_uptime(poll_channel, state);
+    const bool state = mcp_relay_read_pin(ch);
+    cached_state[ch] = state;
+    hlw8032_update_uptime(ch, state);
 
-    bool ok = hlw8032_read(poll_channel);
-    cached_voltage[poll_channel] = ok ? hlw8032_get_voltage() : 0.0f;
-    cached_current[poll_channel] = ok ? hlw8032_get_current() : 0.0f;
-    cached_power[poll_channel] = ok ? hlw8032_get_power() : 0.0f;
-    cached_uptime[poll_channel] = hlw8032_get_uptime(poll_channel);
+    const bool ok = hlw8032_read(ch);
+    cached_voltage[ch] = ok ? hlw8032_get_voltage() : 0.0f;
+    cached_current[ch] = ok ? hlw8032_get_current() : 0.0f;
+    cached_power[ch] = ok ? hlw8032_get_power() : 0.0f;
+    cached_uptime[ch] = hlw8032_get_uptime(ch);
 
-    poll_channel = (poll_channel + 1) % 8; // next channel next time
+    poll_channel = (uint8_t)((ch + 1) % 8);
 }
 
-/**
- * @brief Refresh power measurements for all channels
- *
- * This function reads and caches power measurements for all 8 channels.
- * It is a blocking function that updates voltage, current, power and uptime
- * values for each channel sequentially.
- *
- * Intended to be called periodically by Core0 to provide fresh measurements
- * that can be read by either core without blocking.
- *
- * @note This function blocks for the duration of reading all channels, and makes serial
- * communication unresponsive during this time. Not used anymore
- */
 void hlw8032_refresh_all(void) {
     for (uint8_t ch = 0; ch < 8; ch++) {
-        // Latch current relay state and update uptime bookkeeping
         bool state = mcp_relay_read_pin(ch);
         cached_state[ch] = state;
         hlw8032_update_uptime(ch, state);
 
-        // Read one fresh frame for this channel (blocking per channel)
         bool ok = hlw8032_read(ch);
-
-        // Store scaled results into SRAM cache (read-only for Core1)
         cached_voltage[ch] = ok ? hlw8032_get_voltage() : 0.0f;
         cached_current[ch] = ok ? hlw8032_get_current() : 0.0f;
         cached_power[ch] = ok ? hlw8032_get_power() : 0.0f;
@@ -336,41 +357,196 @@ void hlw8032_refresh_all(void) {
 }
 
 /**
- * @brief Get the cached voltage for a channel
- *
- * @param ch Channel index (0-7) to query
- * @return Cached voltage in volts (V) for the specified channel
+ * @brief Return cached calibrated voltage. Guarantees sane, non-negative value.
  */
-float hlw8032_cached_voltage(uint8_t ch) { return cached_voltage[ch] - 0.7f; }
+float hlw8032_cached_voltage(uint8_t ch) {
+    float v = (ch < 8) ? cached_voltage[ch] : 0.0f;
+    if (!(v >= 0.0f) || v > 400.0f)
+        v = 0.0f;
+    return v;
+}
 
 /**
- * @brief Get the cached current for a channel
- *
- * @param ch Channel index (0-7) to query
- * @return Cached current in amperes (A) for the specified channel
+ * @brief Return cached calibrated current. Guarantees sane, non-negative value.
  */
-float hlw8032_cached_current(uint8_t ch) { return cached_current[ch]; }
+float hlw8032_cached_current(uint8_t ch) {
+    float i = (ch < 8) ? cached_current[ch] : 0.0f;
+    if (!(i >= 0.0f) || i > 100.0f)
+        i = 0.0f;
+    return i;
+}
 
 /**
- * @brief Get the cached power for a channel
- *
- * @param ch Channel index (0-7) to query
- * @return Cached power in watts (W) for the specified channel
+ * @brief Return cached calibrated power computed at read time.
+ *        If voltage/current were clamped later, recompute a safe product.
  */
-float hlw8032_cached_power(uint8_t ch) { return cached_power[ch]; }
+float hlw8032_cached_power(uint8_t ch) {
+    if (ch >= 8)
+        return 0.0f;
+    /* recompute to stay consistent with clamped getters */
+    const float v = hlw8032_cached_voltage(ch);
+    const float i = hlw8032_cached_current(ch);
+    const float p = v * i;
+    return (p >= 0.0f && p < 400.0f * 100.0f) ? p : 0.0f;
+}
 
 /**
- * @brief Get the cached uptime for a channel
- *
- * @param ch Channel index (0-7) to query
- * @return Cached uptime in seconds for the specified channel
+ * @brief Return cached uptime seconds for a channel.
  */
-uint32_t hlw8032_cached_uptime(uint8_t ch) { return cached_uptime[ch]; }
+uint32_t hlw8032_cached_uptime(uint8_t ch) { return (ch < 8) ? cached_uptime[ch] : 0u; }
 
 /**
- * @brief Get the cached state for a channel
- *
- * @param ch Channel index (0-7) to query
- * @return Cached state (true = ON, false = OFF) for the specified channel
+ * @brief Return cached switch state for a channel.
  */
-bool hlw8032_cached_state(uint8_t ch) { return cached_state[ch]; }
+bool hlw8032_cached_state(uint8_t ch) { return (ch < 8) ? cached_state[ch] : false; }
+
+/* ===================================================================== */
+/*                           Calibration section                          */
+/* ===================================================================== */
+
+/**
+ * @brief Load calibration for all channels; keep EEPROM values and only sanitize invalid fields.
+ */
+void hlw8032_load_calibration(void) {
+    for (uint8_t i = 0; i < 8; i++) {
+        hlw_calib_t tmp;
+        if (EEPROM_ReadSensorCalibrationForChannel(i, &tmp) == 0) {
+            if (!(tmp.voltage_factor > 0.0f))
+                tmp.voltage_factor = HLW8032_VF;
+            if (!(tmp.current_factor > 0.0f))
+                tmp.current_factor = HLW8032_CF;
+            if (!(tmp.voltage_offset > -1000.0f && tmp.voltage_offset < 1000.0f))
+                tmp.voltage_offset = 0.0f;
+            if (!(tmp.current_offset > -1000.0f && tmp.current_offset < 1000.0f))
+                tmp.current_offset = 0.0f;
+            if (!(tmp.r1_actual > 0.0f))
+                tmp.r1_actual = NOMINAL_R1;
+            if (!(tmp.r2_actual > 0.0f))
+                tmp.r2_actual = NOMINAL_R2;
+            if (!(tmp.shunt_actual > 0.0f))
+                tmp.shunt_actual = NOMINAL_SHUNT;
+
+            channel_calib[i] = tmp;
+        } else {
+            channel_calib[i].voltage_factor = HLW8032_VF;
+            channel_calib[i].current_factor = HLW8032_CF;
+            channel_calib[i].voltage_offset = 0.0f;
+            channel_calib[i].current_offset = 0.0f;
+            channel_calib[i].r1_actual = NOMINAL_R1;
+            channel_calib[i].r2_actual = NOMINAL_R2;
+            channel_calib[i].shunt_actual = NOMINAL_SHUNT;
+            channel_calib[i].calibrated = 0xFF;
+            channel_calib[i].zero_calibrated = 0xFF;
+        }
+    }
+}
+
+/**
+ * @brief Calibrate a single channel against known references (non-zero),
+ *        recompute derived resistor/shunt values, write to EEPROM immediately.
+ * @param channel 0..7
+ * @param ref_voltage Reference voltage in volts (>0 to calibrate VF)
+ * @param ref_current Reference current in amps  (>0 to calibrate CF)
+ * @return true on success
+ */
+bool hlw8032_calibrate_channel(uint8_t channel, float ref_voltage, float ref_current) {
+    (void)ref_current; /* current calibration not used */
+    if (channel >= 8)
+        return false;
+
+    const int NUM_SAMPLES = 10;
+    uint32_t vpar_sum = 0, vdat_sum = 0;
+    int valid = 0;
+
+    for (int i = 0; i < NUM_SAMPLES; i++) {
+        if (hlw8032_read(channel)) {
+            vpar_sum += VolPar;
+            vdat_sum += VolData;
+            valid++;
+        }
+        sleep_ms(100);
+    }
+    if (valid < (NUM_SAMPLES / 2))
+        return false;
+
+    float vf = (channel_calib[channel].voltage_factor > 0.f) ? channel_calib[channel].voltage_factor
+                                                             : HLW8032_VF;
+    float voff = channel_calib[channel].voltage_offset;
+
+    const float avgvp = (float)vpar_sum / valid;
+    const float avgvd = (float)vdat_sum / valid;
+
+    bool did_zero = false, did_v = false;
+
+    if (ref_voltage == 0.0f) {
+        const float v_meas = (avgvd > 0.f) ? (avgvp / avgvd) * vf : 0.0f;
+        voff = v_meas;
+        did_zero = true;
+    } else {
+        if (ref_voltage > 0.0f && avgvp > 0.0f && avgvd > 0.0f) {
+            vf = (ref_voltage + voff) * (avgvd / avgvp);
+            did_v = true;
+        } else {
+            return false;
+        }
+    }
+
+    /* Update only voltage-related fields */
+    channel_calib[channel].voltage_factor = vf;
+    channel_calib[channel].voltage_offset = voff;
+
+    /* Keep current calibration unused/default in EEPROM */
+    channel_calib[channel].current_factor = HLW8032_CF;
+    channel_calib[channel].current_offset = 0.0f;
+
+    /* Fixed shunt, project divider from VF for info */
+    const float v_ratio = vf / HLW8032_VF;
+    channel_calib[channel].r1_actual = NOMINAL_R1 * v_ratio;
+    channel_calib[channel].r2_actual = NOMINAL_R2 * v_ratio;
+    channel_calib[channel].shunt_actual = NOMINAL_SHUNT; /* 1 mOhm fixed */
+
+    channel_calib[channel].calibrated =
+        (did_v || did_zero) ? 0xCA : channel_calib[channel].calibrated;
+    channel_calib[channel].zero_calibrated =
+        did_zero ? 0xCA : channel_calib[channel].zero_calibrated;
+
+    /* Persist to EEPROM using existing API */
+    if (EEPROM_WriteSensorCalibrationForChannel(channel, &channel_calib[channel]) != 0)
+        return false;
+
+    ECHO("HLW8032 CH%u voltage-cal saved: VF=%.5f, Voff=%.5f\n", (unsigned)(channel + 1), vf, voff);
+    return true;
+}
+
+/**
+ * @brief Zero-calibrate all channels at 0V/0A using 25 frames, save to EEPROM, and use immediately.
+ *        Sets voltage_offset/current_offset from measured zero, keeps vf/cf as-is.
+ * @return true on success (all channels), false on first failure
+ */
+bool hlw8032_zero_calibrate_all(void) {
+    uint8_t ok = 0;
+    for (uint8_t ch = 0; ch < 8; ch++) {
+        if (hlw8032_calibrate_channel(ch, 0.0f, 0.0f))
+            ok++;
+    }
+    return ok == 8;
+}
+
+/**
+ * @brief Print calibration for a channel.
+ *        Shows offsets when zero-calibrated; VF/CF are listed separately for reference.
+ */
+void hlw8032_print_calibration(uint8_t channel) {
+    if (channel >= 8)
+        return;
+    const hlw_calib_t *c = &channel_calib[channel];
+
+    ECHO("=== CH%u Calibration ===\n", (unsigned)(channel + 1));
+    ECHO("Status: %s\n", (c->calibrated == 0xCA) ? "CALIBRATED" : "DEFAULTS");
+    ECHO("VF=%.5f CF=%.5f\n", c->voltage_factor, c->current_factor);
+    ECHO("Offsets: Voff=%.5fV Ioff=%.5fA\n", c->voltage_offset, c->current_offset);
+    ECHO("R1=%.5f ohm  R2=%.5f ohm  Rshunt=%.6f ohm\n", c->r1_actual, c->r2_actual,
+         c->shunt_actual);
+}
+
+/** @} */

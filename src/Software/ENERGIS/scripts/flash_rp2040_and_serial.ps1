@@ -22,7 +22,7 @@ function Set-ConfigValue {
     $lines = Get-Content -LiteralPath $Path -ErrorAction Stop
     $pattern = "^\s*${Key}\s*="
     $idx = -1
-    for ($i=0; $i -lt $lines.Count; $i++) { if ($lines[$i] -match $pattern) { $idx = $i; break } }
+    for ($i = 0; $i -lt $lines.Count; $i++) { if ($lines[$i] -match $pattern) { $idx = $i; break } }
     if ($idx -ge 0) { $lines[$idx] = "$Key=$Value" } else { $lines += "$Key=$Value" }
     Set-Content -LiteralPath $Path -Value $lines -Encoding UTF8
 }
@@ -33,7 +33,8 @@ function Resolve-PathRelative {
     if ([System.IO.Path]::IsPathRooted($PathLike)) {
         $rp = Resolve-Path -LiteralPath $PathLike -ErrorAction SilentlyContinue
         if ($rp) { return $rp.Path } else { return $PathLike }
-    } else {
+    }
+    else {
         $full = Join-Path $PSScriptRoot $PathLike
         $rp = Resolve-Path -LiteralPath $full -ErrorAction SilentlyContinue
         if ($rp) { return $rp.Path } else { return $full }
@@ -42,9 +43,9 @@ function Resolve-PathRelative {
 
 function Get-SerialPortList {
     Get-CimInstance Win32_PnPEntity -Filter "Name LIKE '%(COM%'" -ErrorAction SilentlyContinue |
-        Where-Object { $_.Name -match '\((COM\d+)\)' } |
-        ForEach-Object { [PSCustomObject]@{ Port = $matches[1]; Name = $_.Name } } |
-        Sort-Object { [int]($_.Port -replace '\D') }
+    Where-Object { $_.Name -match '\((COM\d+)\)' } |
+    ForEach-Object { [PSCustomObject]@{ Port = $matches[1]; Name = $_.Name } } |
+    Sort-Object { [int]($_.Port -replace '\D') }
 }
 
 function Select-SerialPort {
@@ -54,7 +55,7 @@ function Select-SerialPort {
     Write-Host "Configured PORT '$CurrentPort' not found."
     if ($ports.Count -eq 0) { throw "No serial ports detected." }
     Write-Host "Available ports:"
-    for ($i=0; $i -lt $ports.Count; $i++) { Write-Host ("  [{0}] {1}" -f $i, $ports[$i].Name) }
+    for ($i = 0; $i -lt $ports.Count; $i++) { Write-Host ("  [{0}] {1}" -f $i, $ports[$i].Name) }
     do {
         $sel = Read-Host "Select port index"
         $ok = [int]::TryParse($sel, [ref]$null) -and [int]$sel -ge 0 -and [int]$sel -lt $ports.Count
@@ -81,15 +82,15 @@ try {
     if (-not $PUTTY) { throw "Missing 'PUTTY' in config." }
     if (-not $LOG_DIR) { throw "Missing 'LOG_DIR' in config." }
 
-    $PORT        = Select-SerialPort -CurrentPort $PORT -ConfigPath $confPath
-    $FIRMWARE_ABS= Resolve-PathRelative $FIRMWARE
-    $PY_ABS      = Resolve-PathRelative $PY_UPLOADER
-    $PUTTY_ABS   = Resolve-PathRelative $PUTTY
+    $PORT = Select-SerialPort -CurrentPort $PORT -ConfigPath $confPath
+    $FIRMWARE_ABS = Resolve-PathRelative $FIRMWARE
+    $PY_ABS = Resolve-PathRelative $PY_UPLOADER
+    $PUTTY_ABS = Resolve-PathRelative $PUTTY
     $LOG_DIR_ABS = Resolve-PathRelative $LOG_DIR
 
-    if (-not (Test-Path -LiteralPath $PY_ABS))       { throw "Python uploader not found: $PY_ABS" }
+    if (-not (Test-Path -LiteralPath $PY_ABS)) { throw "Python uploader not found: $PY_ABS" }
     if (-not (Test-Path -LiteralPath $FIRMWARE_ABS)) { throw "Firmware file not found: $FIRMWARE_ABS" }
-    if (-not (Test-Path -LiteralPath $PUTTY_ABS))    { throw "PuTTY not found: $PUTTY_ABS" }
+    if (-not (Test-Path -LiteralPath $PUTTY_ABS)) { throw "PuTTY not found: $PUTTY_ABS" }
 
     New-Item -ItemType Directory -Force -Path $LOG_DIR_ABS | Out-Null
     $log = Join-Path $LOG_DIR_ABS ("energis_{0}.log" -f (Get-Date -Format 'yyyyMMdd_HHmmss'))
@@ -97,33 +98,30 @@ try {
     & python "$PY_ABS" --p "$PORT" --b $BAUD --f "$FIRMWARE_ABS"
 
     Write-Host ""
-    Write-Host "[*] Auto-reopen serial on $PORT @ $BAUD (Ctrl+C to quit)"
+    Write-Host "[*] Opening serial on $PORT @ $BAUD"
     Write-Host "    Log: $log"
     Write-Host ""
 
-    while ($true) {
-        while (-not (Test-PortPresent -Port $PORT)) {
-            Start-Sleep -Milliseconds 500
-        }
-
-        $proc = Start-Process -FilePath "$PUTTY_ABS" -ArgumentList @('-serial', "$PORT", '-sercfg', "$BAUD,8,n,1,N", '-sessionlog', "$log") -PassThru
-
-        while (-not $proc.HasExited) {
-            if (-not (Test-PortPresent -Port $PORT)) {
-                $null = $proc.CloseMainWindow()
-                Start-Sleep -Seconds 1
-                if (-not $proc.HasExited) { $proc.Kill() }
-            } else {
-                Start-Sleep -Milliseconds 500
-            }
-        }
-
-        Write-Host "Serial session ended. Waiting for $PORT to reappear..."
-        while (-not (Test-PortPresent -Port $PORT)) {
-            Start-Sleep -Milliseconds 500
-        }
-        Write-Host "Reconnecting..."
+    while (-not (Test-PortPresent -Port $PORT)) {
+        Write-Host "Waiting for $PORT..."
+        Start-Sleep -Milliseconds 500
     }
+
+    $proc = Start-Process -FilePath "$PUTTY_ABS" -ArgumentList @('-serial', "$PORT", '-sercfg', "$BAUD,8,n,1,N", '-sessionlog', "$log") -PassThru
+
+    while (-not $proc.HasExited) {
+        if (-not (Test-PortPresent -Port $PORT)) {
+            Write-Host "$PORT disconnected, closing PuTTY..."
+            $null = $proc.CloseMainWindow()
+            Start-Sleep -Seconds 1
+            if (-not $proc.HasExited) { $proc.Kill() }
+        }
+        else {
+            Start-Sleep -Milliseconds 500
+        }
+    }
+
+    Write-Host "Serial session ended."
 }
 catch {
     Write-Error "flash_rp2040_and_serial.ps1 failed: $($_.Exception.Message)"

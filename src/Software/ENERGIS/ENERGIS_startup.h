@@ -30,13 +30,9 @@
 
 // Drivers & utilities
 #include "ENERGIS_startup.h"
-#include "PDU_display.h"
 #include "drivers/CAT24C512_driver.h"
 #include "drivers/HLW8032_driver.h"
-#include "drivers/ILI9488_driver.h"
-#include "drivers/MCP23017_display_driver.h"
-#include "drivers/MCP23017_relay_driver.h"
-#include "drivers/button_driver.h"
+
 #include "utils/EEPROM_MemoryMap.h"
 #include "utils/helper_functions.h"
 

@@ -156,4 +156,36 @@ void hlw8032_read_channel(uint8_t channel);
  */
 void read_dieTemp(void);
 
+/**
+ * @brief Handle HLW8032 calibration command.
+ *
+ * Performs calibration for a specified channel using known reference
+ * voltage and current values.
+ *
+ * @param args The argument string: "<ch> <voltage> <current>"
+ * @return None
+ */
+void handle_calibrate_command(const char *args);
+
+/**
+ * @brief Handle AUTO_CALIBRATE_ZERO command.
+ *
+ * Performs zero-point offset calibration (0V, 0A) for all 8 channels.
+ * All channels should be OFF or disconnected before running this command.
+ *
+ * @return None
+ */
+void handle_auto_calibrate_zero(void);
+
+/**
+ * @brief Handle AUTO_CALIBRATE_VOLTAGE command.
+ *
+ * Performs voltage calibration (ref_voltage, 0A) for all 8 channels.
+ * All channels should have mains voltage present (no load required).
+ *
+ * @param ref_voltage The reference voltage (e.g., 230.0)
+ * @return None
+ */
+void handle_auto_calibrate_voltage(float ref_voltage);
+
 #endif // UART_COMMAND_HANDLER_H

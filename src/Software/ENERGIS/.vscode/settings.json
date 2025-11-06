@@ -79,7 +79,8 @@
         "snmp_networkctrl.h": "c",
         "snmp_powermon.h": "c",
         "snmp_voltagemon.h": "c",
-        "address_mapped.h": "c"
+        "address_mapped.h": "c",
+        "mcp23017_selection_driver.h": "c"
     },
     "editor.formatOnSave": true,
     "[c]": {

@@ -566,10 +566,9 @@ DIN A3, landscape with location and doc. field</description>
 <smd name="4" x="4.55" y="-2.24" dx="2.1" dy="1.38" layer="1" roundness="15"/>
 <smd name="2" x="4.55" y="2.24" dx="2.1" dy="1.38" layer="1" roundness="15"/>
 </package>
-<package name="TP-ROUND">
-<smd name="TP" x="0" y="0" dx="1.4" dy="1.4" layer="1" roundness="90"/>
+<package name="TP-ROUND" urn="urn:adsk.eagle:footprint:50081793/1">
+<smd name="TP" x="0" y="0" dx="1" dy="1" layer="1" roundness="100"/>
 <text x="1.27" y="0" size="1.016" layer="25" align="center-left">&gt;NAME</text>
-<circle x="0" y="0" radius="0.894425" width="0.254" layer="21"/>
 </package>
 </packages>
 <packages3d>
@@ -660,6 +659,11 @@ DIN A3, landscape with location and doc. field</description>
 <packageinstance name="PUSHBUTTON-6X6"/>
 </packageinstances>
 </package3d>
+<package3d name="TP-ROUND" urn="urn:adsk.eagle:package:50081795/1" type="box">
+<packageinstances>
+<packageinstance name="TP-ROUND"/>
+</packageinstances>
+</package3d>
 </packages3d>
 <symbols>
 <symbol name="C" urn="urn:adsk.eagle:symbol:46683739/1">
@@ -688,7 +692,7 @@ DIN A3, landscape with location and doc. field</description>
 <wire x1="-0.762" y1="0.762" x2="0.762" y2="-0.762" width="0.254" layer="92"/>
 <wire x1="-0.762" y1="-0.762" x2="0.762" y2="0.762" width="0.254" layer="92"/>
 </symbol>
-<symbol name="+3V3" urn="urn:adsk.eagle:symbol:46683734/2">
+<symbol name="+3V3" urn="urn:adsk.eagle:symbol:46683734/3">
 <wire x1="1.27" y1="-1.905" x2="0" y2="0" width="0.254" layer="94"/>
 <wire x1="0" y1="0" x2="-1.27" y2="-1.905" width="0.254" layer="94"/>
 <text x="0" y="2.54" size="1.778" layer="96" align="top-center">&gt;VALUE</text>
@@ -916,7 +920,7 @@ DIN A3, landscape with location and doc. field</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="+3V3" urn="urn:adsk.eagle:component:46683755/2" prefix="+3V3">
+<deviceset name="+3V3" urn="urn:adsk.eagle:component:46683755/3" prefix="+3V3">
 <description>&lt;b&gt;SUPPLY SYMBOL&lt;/b&gt;</description>
 <gates>
 <gate name="G$1" symbol="+3V3" x="0" y="0"/>
@@ -955,7 +959,7 @@ DIN A3, landscape with location and doc. field</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="TP" urn="urn:adsk.eagle:component:46683747/2" locally_modified="yes" prefix="TP">
+<deviceset name="TP" urn="urn:adsk.eagle:component:46683747/3" prefix="TP">
 <gates>
 <gate name="G$1" symbol="TP" x="0" y="0"/>
 </gates>
@@ -978,6 +982,9 @@ DIN A3, landscape with location and doc. field</description>
 <connects>
 <connect gate="G$1" pin="P$1" pad="TP"/>
 </connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:50081795/1"/>
+</package3dinstances>
 <technologies>
 <technology name="">
 <attribute name="ROHS" value="YES" constant="no"/>
@@ -987,7 +994,7 @@ DIN A3, landscape with location and doc. field</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="SWITCH" urn="urn:adsk.eagle:component:46683757/2" locally_modified="yes" prefix="SW">
+<deviceset name="SWITCH" urn="urn:adsk.eagle:component:46683757/3" prefix="SW">
 <gates>
 <gate name="G$1" symbol="DTSM31N" x="0" y="0"/>
 </gates>
@@ -1323,7 +1330,7 @@ DIN A3, landscape with location and doc. field</description>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="MCP23017" urn="urn:adsk.eagle:component:46683908/2" locally_modified="yes" prefix="IC">
+<deviceset name="MCP23017" urn="urn:adsk.eagle:component:46683908/3" prefix="IC">
 <description>16-Bit I2C I/O Expander with Serial Interface</description>
 <gates>
 <gate name="G$1" symbol="MCP23017" x="0" y="0"/>
@@ -1786,14 +1793,14 @@ DIN A3, landscape with location and doc. field</description>
 <pin name="19" x="7.62" y="-20.32" visible="pad" length="short" rot="R180"/>
 <pin name="20" x="7.62" y="-22.86" visible="pad" length="short" rot="R180"/>
 </symbol>
-<symbol name="CON-1X4" urn="urn:adsk.eagle:symbol:46684987/1">
+<symbol name="CON-1X4" urn="urn:adsk.eagle:symbol:46684987/2">
 <pin name="P$1" x="-5.08" y="5.08" visible="pad" length="middle"/>
 <pin name="P$2" x="-5.08" y="2.54" visible="pad" length="middle"/>
 <pin name="P$3" x="-5.08" y="0" visible="pad" length="middle"/>
 <pin name="P$4" x="-5.08" y="-2.54" visible="pad" length="middle"/>
-<wire x1="-2.54" y1="7.62" x2="3.81" y2="7.62" width="0.254" layer="94"/>
-<wire x1="3.81" y1="7.62" x2="3.81" y2="-5.08" width="0.254" layer="94"/>
-<wire x1="3.81" y1="-5.08" x2="-2.54" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="7.62" x2="2.54" y2="7.62" width="0.254" layer="94"/>
+<wire x1="2.54" y1="7.62" x2="2.54" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="2.54" y1="-5.08" x2="-2.54" y2="-5.08" width="0.254" layer="94"/>
 <wire x1="-2.54" y1="-5.08" x2="-2.54" y2="7.62" width="0.254" layer="94"/>
 <wire x1="-0.635" y1="5.08" x2="0.635" y2="5.08" width="0.8128" layer="94"/>
 <wire x1="-0.635" y1="2.54" x2="0.635" y2="2.54" width="0.8128" layer="94"/>
@@ -1965,7 +1972,7 @@ DIN A3, landscape with location and doc. field</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="CON-1X4" urn="urn:adsk.eagle:component:46684995/2" prefix="CON" uservalue="yes">
+<deviceset name="CON-1X4" urn="urn:adsk.eagle:component:46684995/3" prefix="CON" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="CON-1X4" x="0" y="0"/>
 </gates>
@@ -2720,15 +2727,16 @@ DIN A3, landscape with location and doc. field</description>
 <pin name="5" x="7.62" y="-5.08" visible="pad" length="middle" direction="pas" rot="R180"/>
 <pin name="4" x="-7.62" y="-5.08" visible="pad" length="middle" direction="pas"/>
 </symbol>
-<symbol name="R" urn="urn:adsk.eagle:symbol:49287417/1">
+<symbol name="R" urn="urn:adsk.eagle:symbol:49287417/1" locally_modified="yes">
 <wire x1="-0.889" y1="2.54" x2="-0.889" y2="-2.54" width="0.254" layer="94"/>
 <wire x1="0.889" y1="-2.54" x2="0.889" y2="2.54" width="0.254" layer="94"/>
 <wire x1="-0.889" y1="-2.54" x2="0.889" y2="-2.54" width="0.254" layer="94"/>
 <wire x1="-0.889" y1="2.54" x2="0.889" y2="2.54" width="0.254" layer="94"/>
 <text x="1.905" y="1.4986" size="1.778" layer="95">&gt;NAME</text>
-<text x="1.905" y="-0.762" size="1.778" layer="96">&gt;VALUE</text>
+<text x="1.905" y="-0.635" size="1.778" layer="96">&gt;VALUE</text>
 <pin name="2" x="0" y="-5.08" visible="off" length="short" direction="pas" swaplevel="1" rot="R90"/>
 <pin name="1" x="0" y="5.08" visible="off" length="short" direction="pas" swaplevel="1" rot="R270"/>
+<text x="1.905" y="-2.794" size="1.778" layer="96">&gt;PACKAGE</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -2758,6 +2766,7 @@ DIN A3, landscape with location and doc. field</description>
 <attribute name="LCSC_PART" value="C110021" constant="no"/>
 <attribute name="MANUFACTURER" value="Yageo" constant="no"/>
 <attribute name="MPN" value="YC164-JR-071KL " constant="no"/>
+<attribute name="PACKAGE" value="" constant="no"/>
 <attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="1K 1%" constant="no"/>
 </technology>
@@ -2782,6 +2791,7 @@ DIN A3, landscape with location and doc. field</description>
 <technology name="">
 <attribute name="DESCRIPTION" value="50mW Thick Film Resistors 25V ±1% ±200ppm/℃ 33kΩ 0201 Chip Resistor - Surface Mount ROHS" constant="no"/>
 <attribute name="LCSC_PART" value="C473534" constant="no"/>
+<attribute name="PACKAGE" value="" constant="no"/>
 <attribute name="VALUE" value="33K 1%" constant="no"/>
 </technology>
 </technologies>
@@ -2801,6 +2811,7 @@ DIN A3, landscape with location and doc. field</description>
 <attribute name="LCSC_PART" value="C25779" constant="no"/>
 <attribute name="MANUFACTURER" value="RALEC" constant="no"/>
 <attribute name="MPN" value="RTT023302FTH" constant="no"/>
+<attribute name="PACKAGE" value="" constant="no"/>
 <attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="33K 1%" constant="no"/>
 </technology>
@@ -2818,6 +2829,7 @@ DIN A3, landscape with location and doc. field</description>
 <technology name="">
 <attribute name="DESCRIPTION" value="100mW Thick Film Resistors 75V ±100ppm/℃ ±1% 33kΩ 0603 Chip Resistor - Surface Mount ROHS" constant="no"/>
 <attribute name="LCSC_PART" value="C4216" constant="no"/>
+<attribute name="PACKAGE" value="" constant="no"/>
 <attribute name="VALUE" value="33K 1%" constant="no"/>
 </technology>
 </technologies>
@@ -2834,6 +2846,7 @@ DIN A3, landscape with location and doc. field</description>
 <technology name="">
 <attribute name="DESCRIPTION" value="125mW Thick Film Resistors 150V ±100ppm/℃ ±1% 33kΩ 0805 Chip Resistor - Surface Mount ROHS" constant="no"/>
 <attribute name="LCSC_PART" value="C17633" constant="no"/>
+<attribute name="PACKAGE" value="" constant="no"/>
 <attribute name="VALUE" value="33K 1%" constant="no"/>
 </technology>
 </technologies>
@@ -2850,6 +2863,7 @@ DIN A3, landscape with location and doc. field</description>
 <technology name="">
 <attribute name="DESCRIPTION" value="250mW Thick Film Resistors 200V ±100ppm/℃ ±1% 33kΩ 1206 Chip Resistor - Surface Mount ROHS" constant="no"/>
 <attribute name="LCSC_PART" value="C18004" constant="no"/>
+<attribute name="PACKAGE" value="" constant="no"/>
 <attribute name="VALUE" value="33K 1%" constant="no"/>
 </technology>
 </technologies>
@@ -2876,6 +2890,7 @@ DIN A3, landscape with location and doc. field</description>
 <attribute name="LCSC_PART" value="C25744" constant="no"/>
 <attribute name="MANUFACTURER" value="ROHM" constant="no"/>
 <attribute name="MPN" value="MCR01MZPF1002" constant="no"/>
+<attribute name="PACKAGE" value="" constant="no"/>
 <attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="10K 1%" constant="no"/>
 </technology>
@@ -2893,6 +2908,7 @@ DIN A3, landscape with location and doc. field</description>
 <technology name="">
 <attribute name="DESCRIPTION" value="100mW Thick Film Resistors 75V ±100ppm/℃ ±1% 10kΩ 0603 Chip Resistor - Surface Mount ROHS" constant="no"/>
 <attribute name="LCSC_PART" value="C25804" constant="no"/>
+<attribute name="PACKAGE" value="" constant="no"/>
 <attribute name="VALUE" value="10K 1%" constant="no"/>
 </technology>
 </technologies>
@@ -2912,6 +2928,7 @@ DIN A3, landscape with location and doc. field</description>
 <attribute name="LCSC_PART" value="C17414" constant="no"/>
 <attribute name="MANUFACTURER" value="RALEC" constant="no"/>
 <attribute name="MPN" value="RTT051002FTP" constant="no"/>
+<attribute name="PACKAGE" value="" constant="no"/>
 <attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="10K 1%" constant="no"/>
 </technology>
@@ -2929,6 +2946,7 @@ DIN A3, landscape with location and doc. field</description>
 <technology name="">
 <attribute name="DESCRIPTION" value="250mW Thick Film Resistors 200V ±100ppm/℃ ±1% 10kΩ 1206 Chip Resistor - Surface Mount ROHS" constant="no"/>
 <attribute name="LCSC_PART" value="C17902" constant="no"/>
+<attribute name="PACKAGE" value="" constant="no"/>
 <attribute name="VALUE" value="10K 1%" constant="no"/>
 </technology>
 </technologies>
@@ -2948,6 +2966,7 @@ DIN A3, landscape with location and doc. field</description>
 <attribute name="LCSC_PART" value="C473048" constant="no"/>
 <attribute name="MANUFACTURER" value="FH" constant="no"/>
 <attribute name="MPN" value="RC-01W1002FT" constant="no"/>
+<attribute name="PACKAGE" value="" constant="no"/>
 <attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="10K 1%" constant="no"/>
 </technology>
@@ -2975,6 +2994,7 @@ DIN A3, landscape with location and doc. field</description>
 <attribute name="LCSC_PART" value="C11702" constant="no"/>
 <attribute name="MANUFACTURER" value="FH" constant="no"/>
 <attribute name="MPN" value="RC-02K1001FT" constant="no"/>
+<attribute name="PACKAGE" value="" constant="no"/>
 <attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="1K 1%" constant="no"/>
 </technology>
@@ -2995,6 +3015,7 @@ DIN A3, landscape with location and doc. field</description>
 <attribute name="LCSC_PART" value="C21190" constant="no"/>
 <attribute name="MANUFACTURER" value="Yageo" constant="no"/>
 <attribute name="MPN" value="RC0603FR-071KL" constant="no"/>
+<attribute name="PACKAGE" value="" constant="no"/>
 <attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="1K 1%" constant="no"/>
 </technology>
@@ -3015,6 +3036,7 @@ DIN A3, landscape with location and doc. field</description>
 <attribute name="LCSC_PART" value="C17513" constant="no"/>
 <attribute name="MANUFACTURER" value="FH" constant="no"/>
 <attribute name="MPN" value="RS-05K1001FT" constant="no"/>
+<attribute name="PACKAGE" value="" constant="no"/>
 <attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="1K 1%" constant="no"/>
 </technology>
@@ -3035,6 +3057,7 @@ DIN A3, landscape with location and doc. field</description>
 <attribute name="LCSC_PART" value="C4410" constant="no"/>
 <attribute name="MANUFACTURER" value="FH" constant="no"/>
 <attribute name="MPN" value="RS-06K1001FT " constant="no"/>
+<attribute name="PACKAGE" value="" constant="no"/>
 <attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="1K 1%" constant="no"/>
 </technology>
@@ -3055,6 +3078,7 @@ DIN A3, landscape with location and doc. field</description>
 <attribute name="LCSC_PART" value="C270365" constant="no"/>
 <attribute name="MANUFACTURER" value="Yageo" constant="no"/>
 <attribute name="MPN" value="RC0201FR-071KL " constant="no"/>
+<attribute name="PACKAGE" value="" constant="no"/>
 <attribute name="ROHS" value="YES" constant="no"/>
 <attribute name="VALUE" value="1K 1%" constant="no"/>
 </technology>
@@ -3066,7 +3090,7 @@ DIN A3, landscape with location and doc. field</description>
 </library>
 <library name="ds_capacitors">
 <packages>
-<package name="0402" urn="urn:adsk.eagle:footprint:46766476/2" locally_modified="yes">
+<package name="0402" urn="urn:adsk.eagle:footprint:46766476/3">
 <wire x1="-0.245" y1="0.224" x2="0.245" y2="0.224" width="0.1524" layer="51"/>
 <wire x1="0.245" y1="-0.224" x2="-0.245" y2="-0.224" width="0.1524" layer="51"/>
 <wire x1="-1.173" y1="0.483" x2="1.173" y2="0.483" width="0.0508" layer="39"/>
@@ -3138,7 +3162,7 @@ DIN A3, landscape with location and doc. field</description>
 </package>
 </packages>
 <packages3d>
-<package3d name="C0402" urn="urn:adsk.eagle:package:46766485/3" locally_modified="yes" type="model">
+<package3d name="C0402" urn="urn:adsk.eagle:package:46766485/4" type="model">
 <packageinstances>
 <packageinstance name="0402"/>
 </packageinstances>
@@ -3178,7 +3202,7 @@ DIN A3, landscape with location and doc. field</description>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="100NF-25V" urn="urn:adsk.eagle:component:48944476/1" locally_modified="yes" prefix="C" uservalue="yes">
+<deviceset name="100NF-25V" urn="urn:adsk.eagle:component:48944476/2" prefix="C" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="C" x="0" y="0"/>
 </gates>
@@ -3209,7 +3233,7 @@ DIN A3, landscape with location and doc. field</description>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <package3dinstances>
-<package3dinstance package3d_urn="urn:adsk.eagle:package:46766485/3"/>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:46766485/4"/>
 </package3dinstances>
 <technologies>
 <technology name="">
@@ -3613,7 +3637,7 @@ overvoltage protection.</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="RCLAMP0582BQTCT" urn="urn:adsk.eagle:component:49873940/2" locally_modified="yes" prefix="D">
+<deviceset name="RCLAMP0582BQTCT" urn="urn:adsk.eagle:component:49873940/3" prefix="D">
 <description>The RailClamp0582BQ is a 5V, dual-line, low-capacitance automotive-grade RailClamp transient voltage suppressor (TVS) optimized for safeguarding high-speed data ports, such as Ethernet and USB, from electrostatic discharge (ESD) threats. 
 The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal protection device for safeguarding automotive-based data lines from harsh ESD spikes.</description>
 <gates>
@@ -4079,25 +4103,25 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="+3V37" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="P+3" library="ds_passive" deviceset="+5V" device=""/>
 <part name="R5" library="ds_resistor" deviceset="33K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="33K 1%"/>
-<part name="C7" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
+<part name="C7" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/4" value="100nF 25V"/>
 <part name="GND13" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND17" library="ds_passive" deviceset="GND" device=""/>
 <part name="+3V310" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="R6" library="ds_resistor" deviceset="33K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="33K 1%"/>
-<part name="C8" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
+<part name="C8" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/4" value="100nF 25V"/>
 <part name="GND14" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND18" library="ds_passive" deviceset="GND" device=""/>
 <part name="+3V311" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="R12" library="ds_resistor" deviceset="33K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="33K 1%"/>
-<part name="C9" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
+<part name="C9" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/4" value="100nF 25V"/>
 <part name="GND19" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND22" library="ds_passive" deviceset="GND" device=""/>
 <part name="+3V312" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="NC6" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="NC" device=""/>
 <part name="+3V38" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="+3V39" library="ds_passive" deviceset="+3V3" device=""/>
-<part name="C5" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
-<part name="C6" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
+<part name="C5" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/4" value="100nF 25V"/>
+<part name="C6" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/4" value="100nF 25V"/>
 <part name="GND12" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND11" library="ds_passive" deviceset="GND" device=""/>
 <part name="CH1" library="ds_LED" deviceset="LED-GREEN" device="LED-0805" package3d_urn="urn:adsk.eagle:package:49260836/1" value="Green"/>
@@ -4145,18 +4169,18 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="IC1" library="ds_ic_peripherals" deviceset="MCP23017" device="-E/ML" package3d_urn="urn:adsk.eagle:package:46683895/2" value="MCP23017T-E/ML "/>
 <part name="NC7" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="NC" device=""/>
 <part name="NC5" library="ds_passive" deviceset="NC" device=""/>
-<part name="R4" library="ds_resistor" deviceset="10K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="DNI"/>
+<part name="R4" library="ds_resistor" deviceset="10K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="10K 1%"/>
 <part name="GND7" library="ds_passive" deviceset="GND" device=""/>
 <part name="NC8" library="ds_passive" deviceset="NC" device=""/>
-<part name="3V3" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
-<part name="5V" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
-<part name="BL" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
-<part name="GND" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="3V3" library="ds_passive" deviceset="TP" device="-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI"/>
+<part name="5V" library="ds_passive" deviceset="TP" device="-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI"/>
+<part name="BL" library="ds_passive" deviceset="TP" device="-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI"/>
+<part name="GND" library="ds_passive" deviceset="TP" device="-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI"/>
 <part name="+3V36" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="P+2" library="ds_passive" deviceset="+5V" device=""/>
 <part name="GND10" library="ds_passive" deviceset="GND" device=""/>
 <part name="R13" library="ds_resistor" deviceset="33K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="33K 1%"/>
-<part name="C10" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
+<part name="C10" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/4" value="100nF 25V"/>
 <part name="GND24" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND26" library="ds_passive" deviceset="GND" device=""/>
 <part name="+3V1" library="ds_passive" deviceset="+3V3" device=""/>
@@ -4164,8 +4188,8 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="NC13" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="NC" device=""/>
 <part name="+3V2" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="+3V3" library="ds_passive" deviceset="+3V3" device=""/>
-<part name="C11" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
-<part name="C12" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/3" value="100nF 25V"/>
+<part name="C11" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/4" value="100nF 25V"/>
+<part name="C12" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/4" value="100nF 25V"/>
 <part name="GND27" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND28" library="ds_passive" deviceset="GND" device=""/>
 <part name="SEL1" library="ds_LED" deviceset="LED-ORANGE" device="LED-0805" package3d_urn="urn:adsk.eagle:package:49260836/1" value="Orange"/>
@@ -4196,12 +4220,12 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="&gt;" library="ds_passive" deviceset="SWITCH" device="6X6-SHORT" package3d_urn="urn:adsk.eagle:package:49287357/2" value="TS-1002S-04326C "/>
 <part name="O" library="ds_passive" deviceset="SWITCH" device="6X6-SHORT" package3d_urn="urn:adsk.eagle:package:49287357/2" value="TS-1002S-04326C "/>
 <part name="PWR" library="ds_passive" deviceset="SWITCH" device="6X6-SHORT" package3d_urn="urn:adsk.eagle:package:49287357/2" value="TS-1002S-04326C "/>
-<part name="SDA0" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
-<part name="SCL0" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
-<part name="MOSI" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
-<part name="SCK" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
-<part name="MISO" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
-<part name="CS" library="ds_passive" deviceset="TP" device="-ROUND" value="DNI"/>
+<part name="SDA0" library="ds_passive" deviceset="TP" device="-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI"/>
+<part name="SCL0" library="ds_passive" deviceset="TP" device="-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI"/>
+<part name="MOSI" library="ds_passive" deviceset="TP" device="-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI"/>
+<part name="SCK" library="ds_passive" deviceset="TP" device="-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI"/>
+<part name="MISO" library="ds_passive" deviceset="TP" device="-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI"/>
+<part name="CS" library="ds_passive" deviceset="TP" device="-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI"/>
 <part name="R16" library="ds_resistor" deviceset="10K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="10K 1%"/>
 <part name="R17" library="ds_resistor" deviceset="10K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="10K 1%"/>
 <part name="R18" library="ds_resistor" deviceset="10K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="10K 1%"/>

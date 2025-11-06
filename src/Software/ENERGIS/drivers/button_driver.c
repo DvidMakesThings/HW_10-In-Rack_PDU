@@ -349,9 +349,6 @@ static bool _sel_timer_cb(repeating_timer_t *rt) {
  */
 static void _select_left(void) {
     selected_row = (selected_row == 0u) ? 7u : (uint8_t)(selected_row - 1u);
-    if (HAS_SCREEN) {
-        PDU_Display_UpdateSelection(selected_row);
-    }
     if (s_sel_active) {
         _sel_show_current_only(s_blink_on ? 1u : 0u);
     }
@@ -364,9 +361,6 @@ static void _select_left(void) {
  */
 static void _select_right(void) {
     selected_row = (selected_row == 7u) ? 0u : (uint8_t)(selected_row + 1u);
-    if (HAS_SCREEN) {
-        PDU_Display_UpdateSelection(selected_row);
-    }
     if (s_sel_active) {
         _sel_show_current_only(s_blink_on ? 1u : 0u);
     }
@@ -663,11 +657,6 @@ void button_driver_init(void) {
                                        &button_isr);
     gpio_set_irq_enabled_with_callback(BUT_SET, GPIO_IRQ_EDGE_FALL | GPIO_IRQ_EDGE_RISE, true,
                                        &button_isr);
-
-    selected_row &= 0x07u;
-    if (HAS_SCREEN) {
-        PDU_Display_UpdateSelection(selected_row);
-    }
 
     /* Start internal timer so blink/timeout works without external polling */
     add_repeating_timer_ms((int32_t)SELECT_TIMER_TICK_MS, _sel_timer_cb, NULL, &s_sel_timer);
