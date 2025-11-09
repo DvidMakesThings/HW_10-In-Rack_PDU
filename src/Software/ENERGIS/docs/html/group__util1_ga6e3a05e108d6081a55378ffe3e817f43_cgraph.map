@@ -1,5 +1,0 @@
-<map id="EEPROM_WriteSystemInfo" name="EEPROM_WriteSystemInfo">
-<area shape="rect" id="Node000001" title="Writes system info to EEPROM." alt="" coords="5,5,189,32"/>
-<area shape="rect" id="Node000002" href="$group__driver2.html#ga32a5def129c38d7a4d232142105671c0" title="Writes a buffer of data to the EEPROM." alt="" coords="237,5,400,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="189,16,221,16,221,21,189,21"/>
-</map>

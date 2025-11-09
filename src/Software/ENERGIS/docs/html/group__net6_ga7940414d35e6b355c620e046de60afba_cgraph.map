@@ -1,7 +1,0 @@
-<map id="reg_wizchip_spiburst_cbfunc" name="reg_wizchip_spiburst_cbfunc">
-<area shape="rect" id="Node000001" title="Registers call back function for SPI interface." alt="" coords="5,23,149,65"/>
-<area shape="rect" id="Node000002" href="$group__net6.html#ga35f9655d4255108b60c9e72d5d615d81" title="Default function to burst read in SPI interface." alt="" coords="198,5,348,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="148,32,183,28,183,33,149,37"/>
-<area shape="rect" id="Node000003" href="$group__net6.html#ga9281882f48d41a1ddd9693dd054cad20" title="Default function to burst write in SPI interface." alt="" coords="197,56,350,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="149,51,181,55,181,60,148,56"/>
-</map>

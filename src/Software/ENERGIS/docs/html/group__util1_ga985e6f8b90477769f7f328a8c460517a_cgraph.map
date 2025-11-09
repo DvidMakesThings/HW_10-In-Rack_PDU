@@ -1,5 +1,0 @@
-<map id="read_event_log_pointer" name="read_event_log_pointer">
-<area shape="rect" id="Node000001" title="Reads the current write pointer for event logs." alt="" coords="5,5,161,32"/>
-<area shape="rect" id="Node000002" href="$group__driver2.html#ga3c156ce369df5b4a1a29e47955a5d7c1" title="Reads a byte from the EEPROM." alt="" coords="209,5,366,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,16,193,16,193,21,161,21"/>
-</map>

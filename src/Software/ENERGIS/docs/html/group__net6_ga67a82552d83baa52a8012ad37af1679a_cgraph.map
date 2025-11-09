@@ -1,7 +1,0 @@
-<map id="reg_wizchip_bus_cbfunc" name="reg_wizchip_bus_cbfunc">
-<area shape="rect" id="Node000001" title="Registers call back function for bus interface." alt="" coords="5,31,170,57"/>
-<area shape="rect" id="Node000002" href="$group__net6.html#gabd0ab76653f4bff13ec360cc4bc26c1d" title="Default function to read in direct or indirect interface." alt="" coords="219,5,370,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,31,203,27,204,32,170,37"/>
-<area shape="rect" id="Node000003" href="$group__net6.html#ga80268b180b4b03c9c53fadd97fe6744f" title="Default function to write in direct or indirect interface." alt="" coords="218,56,371,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="170,51,203,55,202,61,170,57"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="mcp_relay_write_reg" name="mcp_relay_write_reg">
-<area shape="rect" id="Node000001" title="Writes a value to a specified MCP23017 register (guarded)." alt="" coords="191,5,332,32"/>
-<area shape="rect" id="Node000002" href="$group__driver6.html#gac00aa0678cb81d6bb6add9d0f8ab0de4" title="Write a value to a register on both MCP23017 chips." alt="" coords="5,5,143,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,21,143,21,143,16,175,16"/>
-</map>

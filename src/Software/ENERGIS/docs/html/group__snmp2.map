@@ -1,4 +1,0 @@
-<map id="2. SNMP Agent" name="2. SNMP Agent">
-<area shape="rect" id="Node000002" href="$group__snmp.html" title="SNMP protocol stack for ENERGIS PDU." alt="" coords="5,5,66,32"/>
-<area shape="rect" id="Node000001" title="Custom SNMP agent implementation for ENERGIS PDU." alt="" coords="114,5,226,32"/>
-</map>

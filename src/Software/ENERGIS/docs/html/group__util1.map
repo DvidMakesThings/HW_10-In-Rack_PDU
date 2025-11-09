@@ -1,4 +1,0 @@
-<map id="1. EEPROM Memory Map" name="1. EEPROM Memory Map">
-<area shape="rect" id="Node000001" title="Implementation of the EEPROM Memory Map functions." alt="" coords="102,5,276,32"/>
-<area shape="rect" id="Node000002" href="$group__utils.html" title="Utility modules for the Energis PDU." alt="" coords="5,5,54,32"/>
-</map>

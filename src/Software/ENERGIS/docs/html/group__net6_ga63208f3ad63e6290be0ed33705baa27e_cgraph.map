@@ -1,7 +1,0 @@
-<map id="reg_wizchip_cs_cbfunc" name="reg_wizchip_cs_cbfunc">
-<area shape="rect" id="Node000001" title="Registers call back function for WIZCHIP select &amp; deselect." alt="" coords="5,31,163,57"/>
-<area shape="rect" id="Node000002" href="$group__net6.html#gaeed928f8cddb547702ee3937fadcb727" title="Default function to deselect chip." alt="" coords="211,5,353,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,31,195,27,195,32,163,37"/>
-<area shape="rect" id="Node000003" href="$group__net6.html#ga244d1c94f43c6c4a6c0e5b17357e1f5c" title="Default function to select chip." alt="" coords="218,56,346,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="163,51,203,57,202,62,163,57"/>
-</map>

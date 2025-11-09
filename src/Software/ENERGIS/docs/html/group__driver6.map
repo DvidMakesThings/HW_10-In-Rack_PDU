@@ -1,4 +1,0 @@
-<map id="6. MCP23017 Dual Driver" name="6. MCP23017 Dual Driver">
-<area shape="rect" id="Node000001" title="Thin wrapper driver that controls both Relay and Display MCP23017 chips together." alt="" coords="117,5,288,32"/>
-<area shape="rect" id="Node000002" href="$group__drivers.html" title="All hardware drivers for the Energis PDU." alt="" coords="5,5,69,32"/>
-</map>

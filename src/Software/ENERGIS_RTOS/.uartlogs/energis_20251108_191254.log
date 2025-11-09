@@ -1,0 +1,130 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2025.11.08 19:13:03 =~=~=~=~=~=~=~=~=~=~=~=
+
+========================================
+	NERGIS PDU - Bootloader
+========================================
+	Starting FreeRTOS...
+========================================
+
+[Main] Starting FreeRTOS scheduler...
+
+[INFO] 
+[INFO] ========================================
+[INFO]   ENERGIS PDU - System Bring-Alive
+[INFO] ========================================
+[INFO] Firmware: 1.1.0
+[INFO] Serial: SN-0167662
+[INFO] ========================================
+
+[INFO] [InitTask] Phase 1: Hardware Init
+[INFO] [InitTask] GPIO configured
+[INFO] [InitTask] I2C buses initialized
+[INFO] [InitTask] SPI initialized for W5500
+[INFO] [InitTask] ADC initialized
+[INFO] [CAT24C512] Driver initialized (I2C1: SDA=2, SCL=3)
+	[ECHO] [MCP] init 0x20 OK
+	[ECHO] [MCP] init 0x21 OK
+	[ECHO] [MCP] init 0x23 OK
+	[DEBUG] 	[MCP] Found devices:
+	[DEBUG] 	[MCP] relay=20023724 
+	[DEBUG] 	[MCP] display=20023734
+	[DEBUG] 	[MCP] selection=20023744
+[INFO] 
+[InitTask] Phase 2: Peripheral Probing
+[INFO] [InitTask] ✓ Relay MCP23017 detected at 0x20
+[INFO] [InitTask] ✓ Display MCP23017 detected at 0x21
+[INFO] [InitTask] ✓ Selection MCP23017 detected at 0x23
+[INFO] [InitTask] All MCP23017s detected
+[INFO] [InitTask] ✓ EEPROM CAT24C512 detected at 0x50
+[INFO] 
+[InitTask] Phase 3: Subsystem Bring-up (deterministic)
+[INFO] [InitTask] Logger ready
+[INFO] [Console] Task initialized (polling USB-CDC @ 10ms)
+[INFO] [InitTask] Console ready
+[INFO] [Storage] Task initialized
+	[ECHO] [Storage] Task started
+[INFO] [Storage] Magic value verified
+[INFO] [Storage] Loaded network config from EEPROM
+[INFO] [Storage] Loaded user prefs from EEPROM
+[INFO] [Storage] Config loaded from EEPROM
+[INFO] [Storage] Config ready
+[INFO] [InitTask] Storage ready
+[INFO] [InitTask] Button ready
+[INFO] [Net] Task created successfully
+[INFO] [InitTask] Network ready
+[INFO] [MeterTask]  MeterTask started
+[INFO] [InitTask] Meter ready
+[INFO] 
+[InitTask] Phase 4: Configuration Load
+[INFO] [InitTask] Storage config ready
+[INFO] [Net] Task started
+[INFO] [InitTask] Saved Network config: 
+[INFO]                  IP  : 192.168.0.11
+[INFO]                  SM  : 255.255.255.0
+[INFO]                  GW  : 192.168.0.1
+[INFO]                  DNS : 8.8.8.8
+[INFO] 
+[InitTask] System bring-alive complete
+[INFO] ========================================
+
+[INFO] [ETH] Hardware initialized (SPI @ 40 MHz)
+	[ECHO] 
+	[ECHO] === ENERGIS Console Ready ===
+	[ECHO] Type HELP for available commands
+	[ECHO] 
+[INFO] [ETH] PHY link established
+[INFO] [ETH] Chip initialized
+[INFO] [ETH] Network Configuration:
+[INFO] [ETH]  MAC  : 00:08:DC:BE:EF:91
+[INFO] [ETH]  IP   : 192.168.0.11
+[INFO] [ETH]  Mask : 255.255.255.0
+[INFO] [ETH]  GW   : 192.168.0.1
+[INFO] [ETH]  DNS  : 8.8.8.8
+[INFO] [ETH]  DHCP : Disabled
+[INFO] [Net] Ethernet up, starting HTTP server
+	[DEBUG] [Socket 0] Closed
+	[DEBUG] [Socket 0] Opened (protocol=0x01, port=80)
+	[DEBUG] [Socket 0] Listening
+[INFO] <HTTP Server> Listening on port 80
+	[DEBUG] [Socket 1] Closed
+	[DEBUG] [Socket 1] Closed
+	[DEBUG] [Socket 1] Opened (protocol=0x02, port=161)
+	[DEBUG] [Socket 2] Closed
+	[DEBUG] [Socket 2] Closed
+	[DEBUG] [Socket 2] Opened (protocol=0x02, port=162)
+	[DEBUG] [Socket 2] Closed
+[INFO] [SNMP] ready on UDP socket 1, port 161
+	[DEBUG] [Socket 1] Closed
+	[DEBUG] [Socket 1] Closed
+	[DEBUG] [Socket 1] Opened (protocol=0x02, port=161)
+	[DEBUG] [Socket 2] Closed
+	[DEBUG] [Socket 2] Closed
+	[DEBUG] [Socket 2] Opened (protocol=0x02, port=162)
+	[DEBUG] [Socket 2] Closed
+[INFO] [SNMP] ready on UDP socket 1, port 161
+[INFO] [SNMP] Agent running on UDP/161 (sock 1)
+	[DEBUG] [Socket 0] Received 360 bytes
+[NETLOG] >> handle_status_request()
+[NETLOG] Selecting ADC input 4 for temp sensor
+[NETLOG] Raw ADC reading = 950
+[NETLOG] temp_unit pref = 0 (0=C,1=F,2=K)
+[NETLOG] Reporting temp_value = 32.93 °C
+[NETLOG] Ch0: V=0.00 I=0.00 P=0.00 uptime=0 valid=true
+[NETLOG] Ch1: V=0.00 I=0.00 P=0.00 uptime=0 valid=true
+[NETLOG] Ch2: V=0.00 I=0.00 P=0.00 uptime=0 valid=true
+[NETLOG] Ch3: V=0.00 I=0.00 P=0.00 uptime=0 valid=true
+[NETLOG] Ch4: V=0.00 I=0.00 P=0.00 uptime=0 valid=true
+[NETLOG] Ch5: V=0.00 I=0.00 P=0.00 uptime=0 valid=true
+[NETLOG] Ch6: V=0.00 I=0.00 P=0.00 uptime=0 valid=true
+[NETLOG] Ch7: V=0.00 I=0.00 P=0.00 uptime=0 valid=true
+[NETLOG] Built JSON payload (743 bytes)
+[NETLOG] Sending HTTP header (104 bytes)
+	[DEBUG] [Socket 0] Sent 104 bytes
+	[DEBUG] [Socket 0] Sent 743 bytes
+[NETLOG] Sent JSON body
+[NETLOG] << handle_status_request() done
+	[DEBUG] [Socket 0] Disconnected
+	[DEBUG] [Socket 0] Closed
+	[DEBUG] [Socket 0] Closed
+	[DEBUG] [Socket 0] Opened (protocol=0x01, port=80)
+	[DEBUG] [Socket 0] Listening

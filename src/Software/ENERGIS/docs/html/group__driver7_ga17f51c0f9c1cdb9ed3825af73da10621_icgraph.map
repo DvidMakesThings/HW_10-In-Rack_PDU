@@ -1,5 +1,0 @@
-<map id="mcp_relay_write_mask" name="mcp_relay_write_mask">
-<area shape="rect" id="Node000001" title="Atomically set/clear a group of bits on a given port from a mask." alt="" coords="205,5,360,32"/>
-<area shape="rect" id="Node000002" href="$group__driver6.html#ga881bcc923a6be895363969bbff79dc1e" title="Atomically write a masked group of bits on both MCP23017 chips." alt="" coords="5,5,157,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="189,21,157,21,157,16,189,16"/>
-</map>

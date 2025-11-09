@@ -1,0 +1,97 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2025.11.08 17:53:28 =~=~=~=~=~=~=~=~=~=~=~=
+
+========================================
+	NERGIS PDU - Bootloader
+========================================
+	Starting FreeRTOS...
+========================================
+
+[Main] Starting FreeRTOS scheduler...
+
+
+========================================
+  ENERGIS PDU - System Bring-Alive
+========================================
+Firmware: 1.1.0
+Serial: SN-0167662
+========================================
+
+[InitTask] Phase 1: Hardware Init
+[InitTask] GPIO configured
+[InitTask] I2C buses initialized
+[InitTask] SPI initialized for W5500
+[InitTask] ADC initialized
+
+[InitTask] Phase 2: Peripheral Probing
+[InitTask] ✓ Relay MCP23017 detected at 0x20
+[InitTask] ✓ Display MCP23017 detected at 0x21
+[InitTask] ✓ Selection MCP23017 detected at 0x23
+[InitTask] All MCP23017s detected
+[InitTask] ✓ EEPROM CAT24C512 detected at 0x50
+
+[InitTask] Phase 3: Subsystem Bring-up (deterministic)
+[InitTask] Logger ready
+[INFO] [Console] Task initialized (polling USB-CDC @ 10ms)
+[INFO] [InitTask] Console ready
+[INFO] [Storage] Task initialized
+	[ECHO] [Storage] Task started
+[INFO] [Storage] Magic value verified
+[INFO] [Storage] Loaded network config from EEPROM
+[INFO] [Storage] Loaded user prefs from EEPROM
+[INFO] [Storage] Config loaded from EEPROM
+[INFO] [Storage] Config ready
+
+[InitTask] Phase 4: Configuration Load
+
+[InitTask] System bring-alive complete
+========================================
+
+[INFO] [InitTask] Storage ready
+[INFO] [InitTask] Button ready
+[INFO] [Net] Task created successfully
+[INFO] [InitTask] Network ready
+[INFO] [MeterTask]  MeterTask started
+[INFO] [InitTask] Meter ready
+[INFO] [InitTask] Storage config ready
+[INFO] [Net] Task started
+[INFO] [InitTask] Saved Network config: 
+[INFO]                  IP  : 192.168.0.11
+[INFO]                  SM  : 255.255.255.0
+[INFO]                  GW  : 192.168.0.1
+[INFO]                  DNS : 8.8.8.8
+[INFO] [ETH] Hardware initialized (SPI @ 40 MHz)
+	[ECHO] 
+	[ECHO] === ENERGIS Console Ready ===
+	[ECHO] Type HELP for available commands
+	[ECHO] 
+[INFO] [ETH] PHY link established
+[INFO] [ETH] Chip initialized
+[INFO] [ETH] Network Configuration:
+[INFO] [ETH]  MAC  : 00:08:DC:BE:EF:91
+[INFO] [ETH]  IP   : 192.168.0.11
+[INFO] [ETH]  Mask : 255.255.255.0
+[INFO] [ETH]  GW   : 192.168.0.1
+[INFO] [ETH]  DNS  : 8.8.8.8
+[INFO] [ETH]  DHCP : Disabled
+[INFO] [Net] Ethernet up, starting HTTP server
+	[DEBUG] [Socket 0] Closed
+	[DEBUG] [Socket 0] Opened (protocol=0x01, port=80)
+	[DEBUG] [Socket 0] Listening
+[INFO] <HTTP Server> Listening on port 80
+	[DEBUG] [Socket 1] Closed
+	[DEBUG] [Socket 1] Closed
+	[DEBUG] [Socket 1] Opened (protocol=0x02, port=161)
+	[DEBUG] [Socket 2] Closed
+	[DEBUG] [Socket 2] Closed
+	[DEBUG] [Socket 2] Opened (protocol=0x02, port=162)
+	[DEBUG] [Socket 2] Closed
+[INFO] [SNMP] ready on UDP socket 1, port 161
+	[DEBUG] [Socket 1] Closed
+	[DEBUG] [Socket 1] Closed
+	[DEBUG] [Socket 1] Opened (protocol=0x02, port=161)
+	[DEBUG] [Socket 2] Closed
+	[DEBUG] [Socket 2] Closed
+	[DEBUG] [Socket 2] Opened (protocol=0x02, port=162)
+	[DEBUG] [Socket 2] Closed
+[INFO] [SNMP] ready on UDP socket 1, port 161
+[INFO] [SNMP] Agent running on UDP/161 (sock 1)

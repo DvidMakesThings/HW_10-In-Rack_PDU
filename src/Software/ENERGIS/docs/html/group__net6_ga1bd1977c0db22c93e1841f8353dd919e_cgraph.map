@@ -1,5 +1,0 @@
-<map id="wizchip_init" name="wizchip_init">
-<area shape="rect" id="Node000001" title="Initializes WIZCHIP with socket buffer size." alt="" coords="5,5,95,32"/>
-<area shape="rect" id="Node000002" href="$group__net6.html#ga4033269f88b0e202837c4c56a1d8d437" title="Reset WIZCHIP by softly." alt="" coords="143,5,268,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,16,127,16,127,21,95,21"/>
-</map>

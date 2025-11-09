@@ -1,6 +1,0 @@
-<map id="Main" name="Main">
-<area shape="rect" id="Node000001" title="Main files for the Energis PDU firmware." alt="" coords="5,80,55,107"/>
-<area shape="rect" id="Node000002" href="$group__main01.html" title="Main entry point for the ENERGIS PDU firmware." alt="" coords="103,5,253,48"/>
-<area shape="rect" id="Node000003" href="$group__main02.html" title="Core 1 task for handling SNMP and HTTP server." alt="" coords="103,72,253,115"/>
-<area shape="rect" id="Node000004" href="$group__main03.html" title="Contains the initialization code for the Pico board." alt="" coords="139,139,217,165"/>
-</map>

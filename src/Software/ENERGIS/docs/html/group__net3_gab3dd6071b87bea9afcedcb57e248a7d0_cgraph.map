@@ -1,5 +1,0 @@
-<map id="wiz_send_data" name="wiz_send_data">
-<area shape="rect" id="Node000001" title="It copies data to internal TX memory." alt="" coords="5,5,114,32"/>
-<area shape="rect" id="Node000002" href="$group__net3.html#gace1d7f17bb930589033e06e067888b2f" title="It writes sequence data to registers." alt="" coords="162,5,326,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="114,16,146,16,146,21,114,21"/>
-</map>
