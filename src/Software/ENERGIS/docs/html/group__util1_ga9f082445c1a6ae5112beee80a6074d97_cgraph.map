@@ -1,5 +1,0 @@
-<map id="EEPROM_ReadUserPreferences" name="EEPROM_ReadUserPreferences">
-<area shape="rect" id="Node000001" title="Reads user preferences from EEPROM." alt="" coords="5,5,221,32"/>
-<area shape="rect" id="Node000002" href="$group__driver2.html#ga32e8f6f7cd5d0fba27b004b8c2637ea4" title="Reads a buffer of data from the EEPROM." alt="" coords="269,5,433,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="221,16,253,16,253,21,221,21"/>
-</map>

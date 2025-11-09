@@ -1,8 +1,0 @@
-<map id="Web&#45;UI Handlers" name="Web&#45;UI Handlers">
-<area shape="rect" id="Node000001" title="HTTP/Web UI handler modules for the Energis PDU." alt="" coords="5,107,127,133"/>
-<area shape="rect" id="Node000002" href="$group__webui1.html" title="Handler for the page control.html." alt="" coords="178,5,305,32"/>
-<area shape="rect" id="Node000003" href="$group__webui2.html" title="Helper functions for handling form data in HTTP requests." alt="" coords="184,56,299,83"/>
-<area shape="rect" id="Node000004" href="$group__webui3.html" title="HTTP server functionality for the ENERGIS PDU project." alt="" coords="185,107,298,133"/>
-<area shape="rect" id="Node000005" href="$group__webui4.html" title="Handler for the page control.html." alt="" coords="175,157,308,184"/>
-<area shape="rect" id="Node000006" href="$group__webui5.html" title="Handler for building JSON for /api/status." alt="" coords="180,208,303,235"/>
-</map>

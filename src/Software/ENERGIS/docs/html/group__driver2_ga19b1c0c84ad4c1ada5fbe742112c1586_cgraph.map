@@ -1,5 +1,0 @@
-<map id="CAT24C512_DumpFormatted" name="CAT24C512_DumpFormatted">
-<area shape="rect" id="Node000001" title="Dumps the EEPROM contents in a formatted hex table." alt="" coords="5,5,199,32"/>
-<area shape="rect" id="Node000002" href="$group__driver2.html#ga32e8f6f7cd5d0fba27b004b8c2637ea4" title="Reads a buffer of data from the EEPROM." alt="" coords="247,5,411,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,16,231,16,231,21,199,21"/>
-</map>

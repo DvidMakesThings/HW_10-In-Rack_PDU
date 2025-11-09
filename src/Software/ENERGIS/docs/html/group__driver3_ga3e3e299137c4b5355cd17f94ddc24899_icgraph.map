@@ -1,9 +1,0 @@
-<map id="hlw8032_get_uptime" name="hlw8032_get_uptime">
-<area shape="rect" id="Node000001" title="Get the accumulated uptime for a channel." alt="" coords="334,31,474,57"/>
-<area shape="rect" id="Node000002" href="$group__driver3.html#ga0b3a5c410541deaf144c3e33d4b65175" title="Poll a single channel for power measurements." alt="" coords="152,5,284,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="318,35,283,30,284,25,319,30"/>
-<area shape="rect" id="Node000004" href="$group__driver3.html#ga76f09e4482db113563628126492d3200" title="Refresh power measurements for all channels." alt="" coords="150,56,286,83"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="319,58,287,63,286,57,318,53"/>
-<area shape="rect" id="Node000003" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,5,102,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="136,21,102,21,102,16,136,16"/>
-</map>

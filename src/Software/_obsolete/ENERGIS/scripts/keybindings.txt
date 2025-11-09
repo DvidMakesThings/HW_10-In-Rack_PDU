@@ -1,0 +1,8 @@
+Upload only
+CTRL+ALT+O
+
+Upload and open serial terminal (Putty)
+CTRL+ALT+P
+
+Open serial terminal only (Putty)
+CTRL+ALT+Z 

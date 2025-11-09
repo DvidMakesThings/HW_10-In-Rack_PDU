@@ -1,0 +1,10 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2025.11.08 18:27:35 =~=~=~=~=~=~=~=~=~=~=~=
+	[ECHO] Command received: 'NETINFO'
+	[ECHO] NETWORK INFORMATION:
+	[ECHO] [ETH] Network Configuration:
+	[ECHO] [ETH]  MAC  : 00:08:DC:BE:EF:91
+	[ECHO] [ETH]  IP   : 192.168.0.11
+	[ECHO] [ETH]  Mask : 255.255.255.0
+	[ECHO] [ETH]  GW   : 192.168.0.1
+	[ECHO] [ETH]  DNS  : 8.8.8.8
+	[ECHO] [ETH]  DHCP : Disabled

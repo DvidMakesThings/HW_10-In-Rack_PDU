@@ -1,5 +1,0 @@
-<map id="read_event_log_pointer" name="read_event_log_pointer">
-<area shape="rect" id="Node000001" title="Reads the current write pointer for event logs." alt="" coords="239,5,394,32"/>
-<area shape="rect" id="Node000002" href="$group__util1.html#gad0eb91b4220eb372727d5d4af70a6a5f" title="Appends an event log entry to EEPROM." alt="" coords="5,5,191,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="223,21,191,21,191,16,223,16"/>
-</map>

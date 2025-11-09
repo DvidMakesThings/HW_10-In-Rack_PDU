@@ -1,5 +1,0 @@
-<map id="EEPROM_WriteSensorCalibration" name="EEPROM_WriteSensorCalibration">
-<area shape="rect" id="Node000001" title="Writes sensor calibration data to EEPROM." alt="" coords="5,5,225,32"/>
-<area shape="rect" id="Node000002" href="$group__driver2.html#ga32a5def129c38d7a4d232142105671c0" title="Writes a buffer of data to the EEPROM." alt="" coords="273,5,436,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="225,16,257,16,257,21,225,21"/>
-</map>

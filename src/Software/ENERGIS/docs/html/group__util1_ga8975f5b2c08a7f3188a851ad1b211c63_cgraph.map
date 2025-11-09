@@ -1,5 +1,0 @@
-<map id="EEPROM_EraseAll" name="EEPROM_EraseAll">
-<area shape="rect" id="Node000001" title="Erases the entire EEPROM by writing 0xFF to all bytes. This is destructive and should only be used fo..." alt="" coords="5,5,141,32"/>
-<area shape="rect" id="Node000002" href="$group__driver2.html#ga32a5def129c38d7a4d232142105671c0" title="Writes a buffer of data to the EEPROM." alt="" coords="189,5,352,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="141,16,173,16,173,21,141,21"/>
-</map>

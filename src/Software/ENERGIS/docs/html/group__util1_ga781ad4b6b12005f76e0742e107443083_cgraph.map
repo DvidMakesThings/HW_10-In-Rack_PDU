@@ -1,7 +1,0 @@
-<map id="EEPROM_ReadSystemInfoWithChecksum" name="EEPROM_ReadSystemInfoWithChecksum">
-<area shape="rect" id="Node000001" title="Reads system info with CRC&#45;8 checksum verification." alt="" coords="5,23,217,65"/>
-<area shape="rect" id="Node000002" href="$group__util1.html#gac234fd9aa26c0f3a24a54afa80ca8035" title="Calculates the CRC&#45;8 checksum of the given data." alt="" coords="294,5,400,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="217,30,279,23,279,29,218,35"/>
-<area shape="rect" id="Node000003" href="$group__driver2.html#ga32e8f6f7cd5d0fba27b004b8c2637ea4" title="Reads a buffer of data from the EEPROM." alt="" coords="265,56,429,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="218,53,249,56,249,62,217,58"/>
-</map>

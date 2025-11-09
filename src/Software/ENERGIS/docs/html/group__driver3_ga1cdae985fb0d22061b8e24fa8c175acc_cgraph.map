@@ -1,5 +1,0 @@
-<map id="read_frame" name="read_frame">
-<area shape="rect" id="Node000001" title="Read one valid 24&#45;byte frame from the UART." alt="" coords="5,5,92,32"/>
-<area shape="rect" id="Node000002" href="$group__driver3.html#ga8c3364fbeb1899ae2c744c1c78ea30be" title="Validate the checksum of a HLW8032 frame." alt="" coords="140,5,242,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,16,124,16,124,21,92,21"/>
-</map>

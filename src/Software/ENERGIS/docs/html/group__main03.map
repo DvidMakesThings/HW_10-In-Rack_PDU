@@ -1,4 +1,0 @@
-<map id="3. Startup" name="3. Startup">
-<area shape="rect" id="Node000002" href="$group__main.html" title="Main files for the Energis PDU firmware." alt="" coords="5,5,55,32"/>
-<area shape="rect" id="Node000001" title="Contains the initialization code for the Pico board." alt="" coords="103,5,181,32"/>
-</map>

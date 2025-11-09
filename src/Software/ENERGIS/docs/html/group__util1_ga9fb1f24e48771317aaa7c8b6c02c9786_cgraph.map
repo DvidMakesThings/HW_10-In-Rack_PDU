@@ -1,5 +1,0 @@
-<map id="EEPROM_ReadEnergyMonitoring" name="EEPROM_ReadEnergyMonitoring">
-<area shape="rect" id="Node000001" title="Reads energy monitoring data from EEPROM." alt="" coords="5,5,224,32"/>
-<area shape="rect" id="Node000002" href="$group__driver2.html#ga32e8f6f7cd5d0fba27b004b8c2637ea4" title="Reads a buffer of data from the EEPROM." alt="" coords="272,5,436,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="224,16,256,16,256,21,224,21"/>
-</map>

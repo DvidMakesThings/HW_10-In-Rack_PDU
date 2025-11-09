@@ -1,7 +1,0 @@
-<map id="reg_wizchip_spi_cbfunc" name="reg_wizchip_spi_cbfunc">
-<area shape="rect" id="Node000001" title="Registers call back function for SPI interface." alt="" coords="5,31,166,57"/>
-<area shape="rect" id="Node000002" href="$group__net6.html#gaa2207654c49a9f57887feaf9921a05a9" title="Default function to read in SPI interface." alt="" coords="215,5,362,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,31,199,27,200,32,166,37"/>
-<area shape="rect" id="Node000003" href="$group__net6.html#ga4e493cf7e22451f15725d15891ad9b23" title="Default function to write in SPI interface." alt="" coords="214,56,363,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="166,51,198,55,198,61,166,57"/>
-</map>

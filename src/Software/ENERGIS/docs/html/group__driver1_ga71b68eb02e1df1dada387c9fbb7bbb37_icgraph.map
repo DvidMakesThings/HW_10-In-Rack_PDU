@@ -1,7 +1,0 @@
-<map id="button_driver_init" name="button_driver_init">
-<area shape="rect" id="Node000001" title="Initialize button GPIO interrupts and synchronize UI selection." alt="" coords="275,5,395,32"/>
-<area shape="rect" id="Node000002" href="$group__main03.html#gafe3a0b770057ac7103be4185e393395f" title="Initializes Core 0." alt="" coords="150,5,227,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="259,21,228,21,228,16,259,16"/>
-<area shape="rect" id="Node000003" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,5,102,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="134,21,102,21,102,16,134,16"/>
-</map>

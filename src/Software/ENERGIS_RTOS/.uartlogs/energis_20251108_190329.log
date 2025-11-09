@@ -1,0 +1,49 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2025.11.08 19:03:38 =~=~=~=~=~=~=~=~=~=~=~=
+
+========================================
+	NERGIS PDU - Bootloader
+========================================
+	Starting FreeRTOS...
+========================================
+
+[Main] Starting FreeRTOS scheduler...
+
+[INFO] 
+[INFO] ========================================
+[INFO]   ENERGIS PDU - System Bring-Alive
+[INFO] ========================================
+[INFO] Firmware: 1.1.0
+[INFO] Serial: SN-0167662
+[INFO] ========================================
+
+[INFO] [InitTask] Phase 1: Hardware Init
+[INFO] [InitTask] GPIO configured
+[INFO] [InitTask] I2C buses initialized
+[INFO] [InitTask] SPI initialized for W5500
+[INFO] [InitTask] ADC initialized
+[INFO] [CAT24C512] Driver initialized (I2C1: SDA=2, SCL=3)
+	[ECHO] [MCP] init 0x20 OK
+	[ECHO] [MCP] init 0x21 OK
+	[ECHO] [MCP] init 0x23 OK
+	[DEBUG] 	[MCP] Found devices:	[DEBUG] 	[MCP] relay=200230C8 
+	[DEBUG] 	[MCP] display=200230D8
+	[DEBUG] 	[MCP] selection=200230E8
+[INFO] 
+[InitTask] Phase 2: Peripheral Probing
+[INFO] [InitTask] ✓ Relay MCP23017 detected at 0x20
+[INFO] [InitTask] ✓ Display MCP23017 detected at 0x21
+[INFO] [InitTask] ✓ Selection MCP23017 detected at 0x23
+[INFO] [InitTask] All MCP23017s detected
+[INFO] [InitTask] ✓ EEPROM CAT24C512 detected at 0x50
+[INFO] 
+[InitTask] Phase 3: Subsystem Bring-up (deterministic)
+[INFO] [InitTask] Logger ready
+[INFO] [Console] Task initialized (polling USB-CDC @ 10ms)
+[INFO] [InitTask] Console ready
+[INFO] [Storage] Task initialized
+	[ECHO] [Storage] Task started
+[INFO] [Storage] Magic value verified
+[INFO] [Storage] Loaded network config from EEPROM
+[INFO] [Storage] Loaded user prefs from EEPROM
+[INFO] [Storage] Config loaded from EEPROM
+[INFO] [Storage] Config ready

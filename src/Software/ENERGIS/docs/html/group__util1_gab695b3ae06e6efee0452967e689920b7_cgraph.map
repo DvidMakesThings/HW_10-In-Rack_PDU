@@ -1,5 +1,0 @@
-<map id="read_energy_pointer" name="read_energy_pointer">
-<area shape="rect" id="Node000001" title="Reads the current write pointer for energy monitoring records." alt="" coords="5,5,144,32"/>
-<area shape="rect" id="Node000002" href="$group__driver2.html#ga3c156ce369df5b4a1a29e47955a5d7c1" title="Reads a byte from the EEPROM." alt="" coords="192,5,349,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,16,176,16,176,21,144,21"/>
-</map>

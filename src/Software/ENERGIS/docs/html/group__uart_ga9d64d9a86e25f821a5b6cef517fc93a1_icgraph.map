@@ -1,9 +1,0 @@
-<map id="bootsel_trigger" name="bootsel_trigger">
-<area shape="rect" id="Node000001" title="Set flag to enter BOOTSEL mode on next reboot." alt="" coords="515,5,622,32"/>
-<area shape="rect" id="Node000002" href="$group__uart.html#gaf78d8689607ba97d44d30e4e3fc56533" title="Parse and execute a received UART command string." alt="" coords="336,5,467,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="500,21,468,21,468,16,500,16"/>
-<area shape="rect" id="Node000003" href="$group__uart.html#ga6c04950ec7c317f61e910caa14e9e893" title="Main loop for reading and processing UART commands." alt="" coords="150,5,288,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="321,21,289,21,289,16,321,16"/>
-<area shape="rect" id="Node000004" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,5,102,32"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="134,21,102,21,102,16,134,16"/>
-</map>

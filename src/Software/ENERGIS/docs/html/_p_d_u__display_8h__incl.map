@@ -1,7 +1,0 @@
-<map id="ENERGIS/PDU_display.h" name="ENERGIS/PDU_display.h">
-<area shape="rect" id="Node000001" title="Display UI handling for the Energis PDU." alt="" coords="5,5,179,32"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="8,80,82,107"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="86,34,64,68,59,66,82,31"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="106,80,171,107"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="102,31,125,66,120,68,98,34"/>
-</map>

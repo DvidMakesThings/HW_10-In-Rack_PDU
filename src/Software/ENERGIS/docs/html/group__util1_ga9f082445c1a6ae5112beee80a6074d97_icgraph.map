@@ -1,5 +1,0 @@
-<map id="EEPROM_ReadUserPreferences" name="EEPROM_ReadUserPreferences">
-<area shape="rect" id="Node000001" title="Reads user preferences from EEPROM." alt="" coords="264,5,479,32"/>
-<area shape="rect" id="Node000002" href="$group__util1.html#ga997f3d6e141a711fa6f969fc16edc7ce" title="Reads and validates factory defaults stored in EEPROM. If any section is invalid, it restores the def..." alt="" coords="5,5,216,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="248,21,216,21,216,16,248,16"/>
-</map>

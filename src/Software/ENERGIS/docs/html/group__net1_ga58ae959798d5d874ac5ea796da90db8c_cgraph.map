@@ -1,5 +1,0 @@
-<map id="listen" name="listen">
-<area shape="rect" id="Node000001" title="Listen to a connection request from a client." alt="" coords="5,5,58,32"/>
-<area shape="rect" id="Node000002" href="$group__net1.html#gaf7c8a46c623edfab31d9e09788394b2f" title="Close a socket." alt="" coords="106,5,158,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="58,16,90,16,90,21,58,21"/>
-</map>
