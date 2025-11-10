@@ -40,7 +40,6 @@ void urldecode(char *s);
 /**
  * @brief Reads the voltage from a specified ADC channel.
  * @param ch The ADC channel to read from.
- * @param len Pointer to store the length of the data read (not used here).
  * @return The voltage as a float.
  */
 float get_Voltage(uint8_t ch);
@@ -57,5 +56,42 @@ float get_Voltage(uint8_t ch);
  * to configure networking without needing to know the internal type.
  */
 bool ethernet_apply_network_from_storage(const networkInfo *ni);
+
+/**
+ * @brief Log the true silicon reset cause at the very start of boot.
+ *
+ * Reads RP2040 reset-cause hardware and prints a single concise line:
+ *   [BOOT] cause: chip=0xXXXXXXXX had{por=?,run=?,wd=?,vreg=?,temp=?} wd_reason=0xXXXXXXXX
+ *
+ * Place this as the first call in your entry point (before peripheral init).
+ * It relies only on RP2040 'hardware/regs' mappings and INFO_PRINT.
+ *
+ * @note This function is non-intrusive: it does not modify any state bits,
+ *       it only reads and prints. All bit fields are also printed raw to
+ *       avoid dependence on SDK version or naming differences.
+ */
+void Boot_LogResetCause(void);
+
+/**
+ * @brief Capture a minimal reset snapshot at the very beginning of boot.
+ *
+ * Persist a monotonic boots counter, raw reset reason bits, and the watchdog
+ * scratch registers into noinit memory. Performs no logging and uses no heap.
+ *
+ * Call this as the first statement in main(), before clocks, USB-CDC, logger,
+ * or the RTOS are initialized.
+ */
+void Helpers_EarlyBootSnapshot(void);
+
+/**
+ * @brief Print the previously captured snapshot once logging is available, then clear it.
+ *
+ * If a valid snapshot is present, prints a short diagnostics block that includes
+ * the boots counter, the raw reset bits, and the watchdog scratch registers,
+ * then clears the snapshot so the next boot starts fresh.
+ *
+ * Call this near the end of your deterministic bring-up, after the console/logger is ready.
+ */
+void Helpers_LateBootDumpAndClear(void);
 
 #endif // HELPERS_H

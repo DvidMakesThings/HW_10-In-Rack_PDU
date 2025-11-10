@@ -35,6 +35,8 @@ endif()
 project(ENERGIS_RTOS C CXX ASM)
 pico_sdk_init()
 
+message(STATUS "PICO_SDK_PATH = ${PICO_SDK_PATH}")
+
 # ---------------------------- FreeRTOS integration -------------------------
 # 1) Tell the Kernel which port and heap to use for RP2040
 set(FREERTOS_PORT "GCC_RP2040" CACHE STRING "")
@@ -83,6 +85,7 @@ add_executable(ENERGIS_RTOS
     src/web_handlers/settings_handler.c
     src/web_handlers/status_handler.c
     src/web_handlers/page_content.c
+    src/wrap_watchdog.c
 )
 
 target_include_directories(ENERGIS_RTOS PRIVATE
@@ -93,6 +96,7 @@ target_link_libraries(ENERGIS_RTOS
     pico_stdlib
     hardware_gpio
     freertos_kernel
+    freertos_config          
     hardware_vreg       
     hardware_spi        
     hardware_i2c        
@@ -104,6 +108,25 @@ target_link_libraries(ENERGIS_RTOS
     hardware_resets
     hardware_dma
     hardware_adc
+)
+
+target_compile_definitions(ENERGIS_RTOS PRIVATE CFG_TUSB_DEBUG=1)
+
+target_link_options(ENERGIS_RTOS PRIVATE
+  -Wl,--wrap=watchdog_reboot
+  -Wl,--wrap=abort
+  -Wl,--wrap=__assert_func
+  -Wl,--wrap=panic
+  -Wl,--wrap=hard_assertion_failure
+  -Wl,--wrap=invalid_params
+  -Wl,--wrap=reset_usb_boot
+  -Wl,--trace-symbol,watchdog_reboot
+  -Wl,--trace-symbol,abort
+  -Wl,--trace-symbol,__assert_func
+  -Wl,--trace-symbol,panic
+  -Wl,--trace-symbol,hard_assertion_failure
+  -Wl,--trace-symbol,invalid_params
+  -Wl,--trace-symbol,reset_usb_boot
 )
 
 # ----------------------------- Pico settings -------------------------------

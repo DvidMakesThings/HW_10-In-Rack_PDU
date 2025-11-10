@@ -104,7 +104,7 @@ static void NetTask_Function(void *pvParameters) {
     static uint32_t hb_net_ms = 0;
     while (!storage_wait_ready(5000)) {
         uint32_t __now = to_ms_since_boot(get_absolute_time());
-        if ((__now - hb_net_ms) >= 250) {
+        if ((__now - hb_net_ms) >= NETTASKBEAT_MS) {
             hb_net_ms = __now;
             Health_Heartbeat(HEALTH_ID_NET);
         }

@@ -39,11 +39,6 @@
 
 static EventGroupHandle_t init_events = NULL;
 
-static inline void BOOT_BREAD(const char *tag) {
-    INFO_PRINT("[InitTask] BOOT Task: %s\r\n", tag);
-    taskYIELD();
-}
-
 /**
  * @brief Initialize GPIO pins for all peripherals
  */
@@ -271,7 +266,7 @@ static void InitTask(void *pvParameters) {
 
     /* 1) Logger (already started above, just report state) */
     if (Logger_IsReady())
-        BOOT_BREAD("Logger ready");
+        INFO_PRINT("[InitTask] LoggerTask ready\r\n");
     else
         ERROR_PRINT("[InitTask] ERROR: Logger not ready (timeout)\r\n");
 
@@ -283,9 +278,9 @@ static void InitTask(void *pvParameters) {
             vTaskDelay(poll_10ms);
         }
         if (Console_IsReady())
-            BOOT_BREAD("Console ready");
+            INFO_PRINT("[InitTask] ConsoleTask ready\r\n");
         else
-            ERROR_PRINT("[InitTask] Console not ready (timeout)\r\n");
+            ERROR_PRINT("[InitTask] ConsoleTask not ready (timeout)\r\n");
     }
 
     /* 3) Storage */
@@ -296,16 +291,13 @@ static void InitTask(void *pvParameters) {
             vTaskDelay(poll_10ms);
         }
         if (Storage_IsReady())
-            BOOT_BREAD("Storage ready");
+            INFO_PRINT("[InitTask] StorageTask ready\r\n");
         else
-            ERROR_PRINT("[InitTask] Storage not ready (timeout)\r\n");
+            ERROR_PRINT("[InitTask] StorageTask not ready (timeout)\r\n");
     }
 
     /* 4) Button */
-    BOOT_BREAD("enter ButtonTask_Init");
     ButtonTask_Init(true);
-    BOOT_BREAD("exit  ButtonTask_Init");
-
     {
         const TickType_t step_timeout = pdMS_TO_TICKS(5000);
         const TickType_t poll_10ms = pdMS_TO_TICKS(10);
@@ -316,9 +308,9 @@ static void InitTask(void *pvParameters) {
         }
 
         if (Button_IsReady()) {
-            INFO_PRINT("[InitTask] Button ready\r\n");
+            INFO_PRINT("[InitTask] ButtonTask ready\r\n");
         } else {
-            ERROR_PRINT("[InitTask] Button NOT ready (timeout) — continuing boot\r\n");
+            ERROR_PRINT("[InitTask] ButtonTask NOT ready (timeout) — continuing boot\r\n");
         }
     }
 
@@ -332,9 +324,9 @@ static void InitTask(void *pvParameters) {
             vTaskDelay(poll_10ms);
         }
         if (Net_IsReady())
-            BOOT_BREAD("Network ready");
+            INFO_PRINT("[InitTask] NetTask ready\r\n");
         else
-            ERROR_PRINT("[InitTask] Network not ready (timeout)\r\n");
+            ERROR_PRINT("[InitTask] NetTask not ready (timeout)\r\n");
     }
 
     /* 6) Meter (HLW handled asynchronously by the task) */
@@ -347,9 +339,9 @@ static void InitTask(void *pvParameters) {
             vTaskDelay(poll_10ms);
         }
         if (Meter_IsReady())
-            BOOT_BREAD("Meter ready");
+            INFO_PRINT("[InitTask] MeterTask ready\r\n");
         else
-            ERROR_PRINT("[InitTask] Meter not ready (timeout)\r\n");
+            ERROR_PRINT("[InitTask] MeterTask not ready (timeout)\r\n");
     }
 
     /* ===== PHASE 4: Configuration Load & Distribution ===== */
@@ -357,7 +349,7 @@ static void InitTask(void *pvParameters) {
     if (!storage_wait_ready(10000)) {
         ERROR_PRINT("[InitTask] Storage config NOT ready, using defaults\r\n");
     } else {
-        BOOT_BREAD("Storage config ready");
+        INFO_PRINT("[InitTask] Storage config ready\r\n");
     }
 
     networkInfo ni;
@@ -374,7 +366,7 @@ static void InitTask(void *pvParameters) {
     }
 
     /* ===== PHASE 5: Finalization ===== */
-    BOOT_BREAD("Finalization: entering");
+    INFO_PRINT("[InitTask] Finalization: entering\r\n");
 
     /* ===== Health task wiring (register existing tasks, then start) ===== */
     {
@@ -382,41 +374,33 @@ static void InitTask(void *pvParameters) {
 
         h = xTaskGetHandle("Logger");
         if (h)
-            Health_RegisterTask(HEALTH_ID_LOGGER, h, "Logger");
+            Health_RegisterTask(HEALTH_ID_LOGGER, h, "LoggerTask");
+
         h = xTaskGetHandle("Console");
         if (h)
-            Health_RegisterTask(HEALTH_ID_CONSOLE, h, "Console");
+            Health_RegisterTask(HEALTH_ID_CONSOLE, h, "ConsoleTask");
+
         h = xTaskGetHandle("Storage");
         if (h)
-            Health_RegisterTask(HEALTH_ID_STORAGE, h, "Storage");
-        h = xTaskGetHandle("Button");
+            Health_RegisterTask(HEALTH_ID_STORAGE, h, "StorageTask");
+
+        h = xTaskGetHandle("ButtonTask");
         if (h)
-            Health_RegisterTask(HEALTH_ID_BUTTON, h, "Button");
+            Health_RegisterTask(HEALTH_ID_BUTTON, h, "ButtonTask");
+
         // h = xTaskGetHandle("Switch");
         // if (h)
-        //     Health_RegisterTask(HEALTH_ID_SWITCH, h, "Switch");
+        //     Health_RegisterTask(HEALTH_ID_SWITCH, h, "SwitchTask");
+
         h = xTaskGetHandle("Net");
         if (h)
-            Health_RegisterTask(HEALTH_ID_NET, h, "Net");
-        h = xTaskGetHandle("Meter");
+            Health_RegisterTask(HEALTH_ID_NET, h, "NetTask");
+
+        h = xTaskGetHandle("MeterTask");
         if (h)
-            Health_RegisterTask(HEALTH_ID_METER, h, "Meter");
+            Health_RegisterTask(HEALTH_ID_METER, h, "MeterTask");
 
-        /* Start Health only after Meter is actually ready */
-        if (!Meter_IsReady()) {
-            INFO_PRINT("[InitTask] Waiting for Meter to be ready before starting Health...\r\n");
-            const TickType_t t0 = xTaskGetTickCount();
-            const TickType_t max_wait = pdMS_TO_TICKS(30000); /* give it up to 30 s */
-            while (!Meter_IsReady() && (xTaskGetTickCount() - t0) < max_wait) {
-                vTaskDelay(pdMS_TO_TICKS(50));
-            }
-        }
-
-        if (Meter_IsReady()) {
-            HealthTask_Start();
-        } else {
-            WARNING_PRINT("[InitTask] Meter not ready after wait; NOT starting Health.\r\n");
-        }
+        HealthTask_Start();
     }
 
     INFO_PRINT("\r\n[InitTask] System bring-alive complete\r\n");
@@ -427,7 +411,7 @@ static void InitTask(void *pvParameters) {
     INFO_PRINT("========================================\r\n");
     // xEventGroupWaitBits(cfgEvents, CFG_READY_BIT, pdFALSE, pdTRUE, portMAX_DELAY);
     INFO_PRINT("[InitTask] Crash logs:\r\n");
-    CrashLog_PrintAndClearOnBoot();
+    Helpers_LateBootDumpAndClear();
     INFO_PRINT("========================================\r\n\r\n");
 
     vTaskDelete(NULL);
