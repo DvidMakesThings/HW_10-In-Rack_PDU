@@ -432,55 +432,74 @@ int send_all_blocking(uint8_t sn, const uint8_t *buf, int len) {
 }
 
 /**
- * @brief Receive data from TCP socket
+ * @brief Receive data from a TCP socket (cooperative, bounded wait)
  *
- * @param sn Socket number
- * @param buf Pointer to receive buffer
- * @param len Maximum number of bytes to receive
- * @return Number of bytes received, or negative error code
+ * @param sn  Socket number
+ * @param buf Destination buffer
+ * @param len Maximum number of bytes to read
+ * @return Number of bytes read (>0), 0 if no data available (non-blocking mode),
+ *         or negative error code on failure (SOCKERR_*, SOCK_BUSY when bounded wait elapsed).
+ *
+ * @details
+ * Reads up to @p len bytes from the socket RX buffer. If no data is currently available,
+ * this function waits only for a short, bounded slice to avoid stalling the caller.
+ * After the slice expires, it returns @ref SOCK_BUSY so upper layers can yield and retry.
+ * This prevents long idle connections from starving the scheduler and the HealthTask.
  */
 int32_t recv(uint8_t sn, uint8_t *buf, uint16_t len) {
-    uint8_t tmp = 0;
-    uint16_t recvsize = 0;
+    uint8_t sr;
+    uint16_t rxsize;
 
     CHECK_SOCKNUM();
     CHECK_SOCKMODE(Sn_MR_TCP);
     CHECK_SOCKDATA();
 
-    /* Check RX received size */
-    recvsize = getSn_RX_RSR(sn);
+    /* Check socket state */
+    sr = getSn_SR(sn);
+    if (sr != SOCK_ESTABLISHED && sr != SOCK_CLOSE_WAIT)
+        return SOCKERR_SOCKSTATUS;
 
-    if (recvsize == 0) {
-        /* Check socket state */
-        tmp = getSn_SR(sn);
-        if (tmp == SOCK_CLOSED)
-            return SOCKERR_SOCKCLOSED;
-        if (tmp == SOCK_CLOSE_WAIT) {
-            if (recvsize != 0)
-                return recvsize; /* Read remaining data */
-            else if (getSn_TX_FSR(sn) == getSn_TxMAX(sn)) {
-                /* Close wait and all data sent */
-                closesocket(sn);
-                return SOCKERR_SOCKCLOSED;
-            }
+    /* Bounded cooperative wait for RX data */
+    {
+        TickType_t t0 = xTaskGetTickCount();
+        for (;;) {
+            rxsize = getSn_RX_RSR(sn);
+            sr = getSn_SR(sn);
+
+            if (sr != SOCK_ESTABLISHED && sr != SOCK_CLOSE_WAIT)
+                return SOCKERR_SOCKSTATUS;
+
+            if (rxsize > 0)
+                break;
+
+            if (sock_io_mode & (1 << sn))
+                return 0; /* non-blocking: no data */
+
+            if ((xTaskGetTickCount() - t0) >= pdMS_TO_TICKS(10))
+                return SOCK_BUSY;
+
+            vTaskDelay(pdMS_TO_TICKS(1));
         }
-        return SOCK_BUSY;
     }
 
-    /* Limit to requested length */
-    if (recvsize > len)
-        recvsize = len;
+    /* Limit to available data and socket RX max */
+    if (len > rxsize)
+        len = rxsize;
+    {
+        uint16_t rxmax = getSn_RxMAX(sn);
+        if (len > rxmax)
+            len = rxmax;
+    }
 
-    /* Read data from RX buffer */
-    eth_recv_data(sn, buf, recvsize);
+    /* Read from RX buffer */
+    eth_recv_data(sn, buf, len);
 
-    /* Issue RECV command to update pointers */
+    /* Notify chip we consumed data */
     setSn_CR(sn, Sn_CR_RECV);
     while (getSn_CR(sn))
         vTaskDelay(pdMS_TO_TICKS(1));
 
-    W5500_SOCK_DBG("[Socket %u] Received %u bytes\r\n", sn, recvsize);
-    return (int32_t)recvsize;
+    return (int32_t)len;
 }
 
 /******************************************************************************
@@ -496,6 +515,13 @@ int32_t recv(uint8_t sn, uint8_t *buf, uint16_t len) {
  * @param addr Destination IP address (4 bytes)
  * @param port Destination port number
  * @return Number of bytes sent, or negative error code
+ *
+ * @details
+ * Sends a single UDP datagram. The W5500 requires the full datagram to fit into the socket's
+ * TX buffer in one shot; this implementation waits for TX free space only for a short,
+ * bounded slice. If sufficient space does not become available quickly, the function
+ * returns @ref SOCK_BUSY so the caller can yield and retry on a later tick.
+ * No datagram fragmentation is attempted.
  */
 int32_t sendto(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uint16_t port) {
     uint8_t tmp = 0;
@@ -525,21 +551,28 @@ int32_t sendto(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uint16_t p
     if (len > freesize)
         len = freesize;
 
-    /* Wait for TX buffer space */
-    while (1) {
-        freesize = getSn_TX_FSR(sn);
-        tmp = getSn_SR(sn);
+    /* Wait for TX buffer space (bounded slice; UDP requires full datagram to fit) */
+    {
+        TickType_t t0 = xTaskGetTickCount();
+        for (;;) {
+            freesize = getSn_TX_FSR(sn);
+            tmp = getSn_SR(sn);
 
-        if (tmp != SOCK_UDP)
-            return SOCKERR_SOCKSTATUS;
+            if (tmp != SOCK_UDP)
+                return SOCKERR_SOCKSTATUS;
 
-        if ((sock_io_mode & (1 << sn)) && (len > freesize))
-            return SOCK_BUSY;
+            if ((sock_io_mode & (1 << sn)) && (len > freesize))
+                return SOCK_BUSY;
 
-        if (len <= freesize)
-            break;
+            if (len <= freesize)
+                break;
 
-        vTaskDelay(pdMS_TO_TICKS(1));
+            /* Bounded cooperative wait: yield briefly, then let caller retry */
+            if ((xTaskGetTickCount() - t0) >= pdMS_TO_TICKS(10))
+                return SOCK_BUSY;
+
+            vTaskDelay(pdMS_TO_TICKS(1));
+        }
     }
 
     /* Write data to TX buffer */
@@ -556,6 +589,109 @@ int32_t sendto(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uint16_t p
 }
 
 /**
+ * @brief Receive datagram from a UDP socket (cooperative, bounded wait)
+ *
+ * @param sn    Socket number
+ * @param buf   Destination buffer
+ * @param len   Maximum bytes to receive
+ * @param addr  OUT: source IPv4 address (4 bytes)
+ * @param port  OUT: source UDP port
+ * @return Number of bytes read (>0), 0 if no data available (non-blocking mode),
+ *         or negative error code on failure (SOCKERR_*, SOCK_BUSY when bounded wait elapsed).
+ *
+ * @details
+ * Waits briefly for a datagram, then returns @ref SOCK_BUSY so the caller can yield and retry.
+ * Prevents long stalls when no UDP data is pending (e.g., idle SNMP).
+ * This implementation reads and consumes the 8-byte UDP header first, then the payload.
+ * If @p len is smaller than the payload, the remainder is read into a small throwaway buffer
+ * to advance the RX pointer, and then @ref Sn_CR_RECV is issued once to commit consumption.
+ */
+/**
+ * @brief Receive datagram from a UDP socket (cooperative, bounded wait)
+ *
+ * Reads one complete UDP datagram (header + payload) from the W5500 socket.
+ * Properly flushes the chip RX pointer with Sn_CR_RECV once the datagram
+ * is fully consumed, preventing stale header bytes from contaminating the
+ * next read. Non-blocking and bounded for cooperative multitasking.
+ */
+int32_t recvfrom(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uint16_t *port) {
+    uint8_t sr;
+    uint16_t rxsize;
+
+    CHECK_SOCKNUM();
+    CHECK_SOCKMODE(Sn_MR_UDP);
+    CHECK_SOCKDATA();
+
+    /* Verify socket state */
+    sr = getSn_SR(sn);
+    if (sr != SOCK_UDP)
+        return SOCKERR_SOCKSTATUS;
+
+    /* Bounded wait for data */
+    {
+        TickType_t t0 = xTaskGetTickCount();
+        for (;;) {
+            rxsize = getSn_RX_RSR(sn);
+            sr = getSn_SR(sn);
+
+            if (sr != SOCK_UDP)
+                return SOCKERR_SOCKSTATUS;
+
+            if (rxsize > 0)
+                break;
+
+            if (sock_io_mode & (1 << sn))
+                return 0; /* non-blocking mode: nothing available */
+
+            if ((xTaskGetTickCount() - t0) >= pdMS_TO_TICKS(10))
+                return SOCK_BUSY;
+
+            vTaskDelay(pdMS_TO_TICKS(1));
+        }
+    }
+
+    /* Read UDP header */
+    uint8_t head[8];
+    if (rxsize < sizeof(head)) {
+        if (sock_io_mode & (1 << sn))
+            return 0;
+        return SOCK_BUSY;
+    }
+
+    eth_recv_data(sn, head, sizeof(head));
+    addr[0] = head[0];
+    addr[1] = head[1];
+    addr[2] = head[2];
+    addr[3] = head[3];
+    *port = (uint16_t)((uint16_t)head[4] << 8) | (uint16_t)head[5];
+    uint16_t payload = (uint16_t)((uint16_t)head[6] << 8) | (uint16_t)head[7];
+
+    /* Copy payload */
+    uint16_t to_copy = (payload > len) ? len : payload;
+    if (to_copy)
+        eth_recv_data(sn, buf, to_copy);
+
+    /* Discard overflow (if any) */
+    if (payload > to_copy) {
+        uint16_t remain = (uint16_t)(payload - to_copy);
+        uint8_t scratch[32];
+        while (remain) {
+            uint16_t chunk = (remain > sizeof(scratch)) ? (uint16_t)sizeof(scratch) : remain;
+            eth_recv_data(sn, scratch, chunk);
+            remain = (uint16_t)(remain - chunk);
+            vTaskDelay(pdMS_TO_TICKS(1));
+        }
+    }
+
+    /* *** Critical fix: flush RX pointer once per full datagram *** */
+    setSn_CR(sn, Sn_CR_RECV);
+    while (getSn_CR(sn))
+        vTaskDelay(pdMS_TO_TICKS(1));
+
+    return (int32_t)to_copy;
+}
+
+/**
  * @brief Receive datagram from UDP socket
  *
  * @param sn Socket number
@@ -565,7 +701,7 @@ int32_t sendto(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uint16_t p
  * @param port Pointer to buffer for source port number
  * @return Number of bytes received, or negative error code
  */
-int32_t recvfrom(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uint16_t *port) {
+int32_t recvfrom_SNMP(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uint16_t *port) {
     uint8_t head[8];
     uint16_t pack_len = 0;
     uint8_t mr = 0;

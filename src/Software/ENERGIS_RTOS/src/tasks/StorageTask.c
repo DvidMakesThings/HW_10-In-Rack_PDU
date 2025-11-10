@@ -667,7 +667,7 @@ static void commit_dirty_sections(void) {
             ECHO("%s Network config committed\r\n", STORAGE_TASK_TAG);
 #if STORAGE_REBOOT_ON_CONFIG_SAVE
             vTaskDelay(pdMS_TO_TICKS(100));
-            watchdog_reboot(0, 0, 0);
+            Health_RebootNow("Settings applied");
 #endif
         } else {
             ERROR_PRINT("%s Failed to commit network config\r\n", STORAGE_TASK_TAG);
@@ -680,7 +680,7 @@ static void commit_dirty_sections(void) {
             ECHO("%s User prefs committed\r\n", STORAGE_TASK_TAG);
 #if STORAGE_REBOOT_ON_CONFIG_SAVE
             vTaskDelay(pdMS_TO_TICKS(100));
-            watchdog_reboot(0, 0, 0);
+            Health_RebootNow("Settings applied");
 #endif
         } else {
             ERROR_PRINT("%s Failed to commit user prefs\r\n", STORAGE_TASK_TAG);
@@ -846,7 +846,7 @@ static void StorageTask(void *arg) {
 
     for (;;) {
         uint32_t __now = to_ms_since_boot(get_absolute_time());
-        if ((__now - hb_stor_ms) >= 500) {
+        if ((__now - hb_stor_ms) >= STORAGETASKBEAT_MS) {
             hb_stor_ms = __now;
             Health_Heartbeat(HEALTH_ID_STORAGE);
         }

@@ -55,7 +55,7 @@ static void LoggerTask(void *arg) {
     for (;;) {
         /* periodic beat irrespective of queue traffic */
         uint32_t __now = to_ms_since_boot(get_absolute_time());
-        if ((__now - hb_log_ms) >= 500) {
+        if ((__now - hb_log_ms) >= LOGTASKBEAT_MS) {
             hb_log_ms = __now;
             Health_Heartbeat(HEALTH_ID_LOGGER);
         }

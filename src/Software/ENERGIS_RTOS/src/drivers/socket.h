@@ -382,6 +382,18 @@ int32_t sendto(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uint16_t p
  */
 int32_t recvfrom(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uint16_t *port);
 
+/**
+ * @brief Receive datagram from UDP socket
+ *
+ * @param sn Socket number
+ * @param buf Pointer to receive buffer
+ * @param len Maximum number of bytes to receive
+ * @param addr Pointer to buffer for source IP address (4 bytes)
+ * @param port Pointer to buffer for source port number
+ * @return Number of bytes received, or negative error code
+ */
+int32_t recvfrom_SNMP(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uint16_t *port);
+
 /******************************************************************************
  *                          USAGE EXAMPLES                                    *
  ******************************************************************************/

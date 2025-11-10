@@ -1,0 +1,76 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2025.11.10 17:21:39 =~=~=~=~=~=~=~=~=~=~=~=
+	[ECHO] [Storage] Task started
+[INFO] [Storage] Magic value verified
+[INFO] [Storage] Loaded network config from EEPROM
+[INFO] [Storage] Loaded user prefs from EEPROM
+[INFO] [Storage] Config loaded from EEPROM
+[INFO] [Storage] Config ready
+[INFO] [InitTask] StorageTask ready
+[INFO] [InitTask] ButtonTask ready
+[INFO] [Net] Task created successfully
+[INFO] [InitTask] NetTask ready
+[INFO] [MeterTask]  MeterTask started
+[INFO] [InitTask] MeterTask ready
+[INFO] 
+[InitTask] Phase 4: Configuration Load
+[INFO] [InitTask] Storage config ready
+[INFO] [Net] Task started
+[INFO] [InitTask] Saved Network config: 
+[INFO]                  IP  : 192.168.0.12
+[INFO]                  SM  : 255.255.255.0
+[INFO]                  GW  : 192.168.0.1
+[INFO]                  DNS : 8.8.8.8
+[INFO] [InitTask] Finalization: entering
+[INFO] 
+[InitTask] System bring-alive complete
+[INFO] ========================================
+[INFO] SYSTEM READY
+[INFO] ========================================
+
+[INFO] ========================================
+[INFO] [InitTask] Crash logs:
+[ERROR] 
+[CRASH] Boot diagnostics
+[ERROR]   boots=0 reason=0 raw=0x00000000 tag=""
+[ERROR]   last_wdt_feed_abs=18612ms
+[ERROR]   wdt_deltas[16] (ms):[ERROR]  250[ERROR]  250[ERROR]  250[ERROR]  250[ERROR]  250[ERROR]  250[ERROR]  250[ERROR]  250[ERROR]  250[ERROR]  250[ERROR]  250[ERROR]  250[ERROR]  250[ERROR]  250[ERROR]  250[ERROR]  250[ERROR] 
+[INFO] ========================================
+
+[INFO] [BOOT] cause: chip=0x00000100 had{por=0,run=0,wd=0,vreg=0,temp=0} wd_reason=0x00000002
+
+[INFO] [BOOT] Watchdog Scratch Register dump:
+[INFO] [BOOT] wd_scratch0=0x00000000
+[INFO] [BOOT] wd_scratch1=0x00000000
+[INFO] [BOOT] wd_scratch2=0x00000000
+[INFO] [BOOT] wd_scratch3=0x00000000
+[INFO] [BOOT] wd_scratch4=0x00000000
+[INFO] [BOOT] wd_scratch5=0x4ff824a4
+[INFO] [BOOT] wd_scratch6=0x20042000
+[INFO] [BOOT] wd_scratch7=0x00001b89
+
+[INFO] [ETH] Hardware initialized (SPI @ 40 MHz)
+[WARNING] [Health] waiting warmup: 1750 ms remain
+	[ECHO] 
+	[ECHO] === ENERGIS Console Ready ===
+	[ECHO] Type HELP for available commands
+	[ECHO] 
+[WARNING] [Health] waiting warmup: 1500 ms remain
+[WARNING] [Health] waiting warmup: 1250 ms remain
+[WARNING] [Health] waiting warmup: 1000 ms remain
+[WARNING] [Health] waiting warmup: 750 ms remain
+[WARNING] [Health] waiting warmup: 500 ms remain
+[INFO] [ETH] PHY link established
+[INFO] [ETH] Chip initialized
+[INFO] [ETH] Network Configuration:
+[INFO] [ETH]  MAC  : 00:08:DC:BE:EF:91
+[INFO] [ETH]  IP   : 192.168.0.12
+[INFO] [ETH]  Mask : 255.255.255.0
+[INFO] [ETH]  GW   : 192.168.0.1
+[INFO] [ETH]  DNS  : 8.8.8.8
+[INFO] [ETH]  DHCP : Disabled
+[INFO] [Net] Ethernet up, starting HTTP server
+[INFO] <SERVER> Listening on port 80
+[INFO] [SNMP] ready on UDP socket 1, port 161
+[INFO] [SNMP] Agent running on UDP/161 (sock 1)
+[WARNING] [Health] waiting warmup: 250 ms remain
+[WARNING] [Health] ARMING WATCHDOG (warmup elapsed, all required tasks confirmed). Timeout=20000 ms

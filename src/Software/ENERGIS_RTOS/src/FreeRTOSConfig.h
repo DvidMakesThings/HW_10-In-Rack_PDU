@@ -36,7 +36,7 @@
 #define configUSE_TIME_SLICING 1
 #define configUSE_PORT_OPTIMISED_TASK_SELECTION 0
 #define configUSE_TICKLESS_IDLE 0
-#define configCPU_CLOCK_HZ 125000000UL
+#define configCPU_CLOCK_HZ 200000000UL
 #define configTICK_RATE_HZ ((TickType_t)1000)
 #define configMAX_PRIORITIES 24
 #define configMINIMAL_STACK_SIZE ((configSTACK_DEPTH_TYPE)512)
@@ -67,7 +67,7 @@
 #define configTOTAL_HEAP_SIZE (128 * 1024)
 
 /* Hooks */
-#define configUSE_IDLE_HOOK 0
+#define configUSE_IDLE_HOOK 1
 #define configUSE_TICK_HOOK 0
 #define configCHECK_FOR_STACK_OVERFLOW 2
 #define configUSE_MALLOC_FAILED_HOOK 1
@@ -75,7 +75,7 @@
 
 /* Runtime stats / trace */
 #define configGENERATE_RUN_TIME_STATS 0
-#define configUSE_TRACE_FACILITY 1
+#define configUSE_TRACE_FACILITY 0
 #define configUSE_STATS_FORMATTING_FUNCTIONS 0
 
 /* Co-routines */
@@ -109,6 +109,7 @@ void vAssertCalled(const char *file, int line);
 #define INCLUDE_xTaskGetSchedulerState 1
 #define INCLUDE_xTaskGetCurrentTaskHandle 1
 #define INCLUDE_uxTaskGetStackHighWaterMark 1
+#define INCLUDE_uxTaskGetStackHighWaterMark2 1
 #define INCLUDE_xTaskGetIdleTaskHandle 1
 #define INCLUDE_eTaskGetState 1
 #define INCLUDE_xTaskAbortDelay 1

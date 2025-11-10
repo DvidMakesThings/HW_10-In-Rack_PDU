@@ -102,6 +102,11 @@
         "set": "c",
         "healthtask.h": "c",
         "text_encoding": "c",
-        "functional": "c"
+        "functional": "c",
+        "sync.h": "c",
+        "rtos_hooks.h": "c",
+        "memory": "c",
+        "optional": "c",
+        "vreg_and_chip_reset.h": "c"
     }
 }

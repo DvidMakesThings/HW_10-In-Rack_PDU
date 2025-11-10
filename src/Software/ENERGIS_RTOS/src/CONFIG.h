@@ -21,6 +21,10 @@
 
 #include "FreeRTOS.h"
 #include "event_groups.h"
+#include "hardware/irq.h"
+#include "hardware/structs/vreg_and_chip_reset.h"
+#include "hardware/structs/watchdog.h"
+#include "hardware/watchdog.h"
 #include "pico/bootrom.h"
 #include "pico/multicore.h"
 #include "pico/stdlib.h"
@@ -52,6 +56,7 @@
 #include "misc/EEPROM_MemoryMap.h"
 #include "misc/helpers.h"
 #include "misc/crashlog.h"
+#include "misc/rtos_hooks.h"
 
 #include "drivers/CAT24C512_driver.h"
 #include "drivers/MCP23017_driver.h"
@@ -125,6 +130,9 @@ extern w5500_NetConfig eth_netcfg;
 #ifndef DEBUG
 #define DEBUG 1
 #endif
+#ifndef DEBUG_HEALTH
+#define DEBUG_HEALTH 0
+#endif
 #ifndef INFO
 #define INFO 1
 #endif
@@ -148,6 +156,12 @@ extern w5500_NetConfig eth_netcfg;
 #define DEBUG_PRINT(...) log_printf("\t[DEBUG] " __VA_ARGS__)
 #else
 #define DEBUG_PRINT(...) ((void)0)
+#endif
+
+#if DEBUG_HEALTH
+#define DEBUG_PRINT_HEALTH(...) log_printf("\t[HEALTH] " __VA_ARGS__)
+#else
+#define DEBUG_PRINT_HEALTH(...) ((void)0)
 #endif
 
 #if INFO

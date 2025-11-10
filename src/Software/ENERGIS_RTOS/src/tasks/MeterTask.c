@@ -145,7 +145,7 @@ static void MeterTask_Loop(void *pvParameters) {
     /* Main polling loop */
     while (1) {
         uint32_t now_ms_ = to_ms_since_boot(get_absolute_time());
-        if ((now_ms_ - hb_meter_ms) >= 500) {
+        if ((now_ms_ - hb_meter_ms) >= METERTASKBEAT_MS) {
             hb_meter_ms = now_ms_;
             Health_Heartbeat(HEALTH_ID_METER);
         }

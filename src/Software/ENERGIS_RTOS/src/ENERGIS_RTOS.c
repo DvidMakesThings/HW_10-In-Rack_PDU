@@ -44,19 +44,13 @@ w5500_NetConfig eth_netcfg;
  */
 int main(void) {
     /* ===== MINIMAL INIT IN MAIN CONTEXT ===== */
+    Helpers_EarlyBootSnapshot();
 
     // Set system clock to 200 MHz
     set_sys_clock_khz(200000, true);
 
     /* Small delay to let USB enumerate */
     sleep_ms(1000);
-
-    printf("\r\n");
-    printf("========================================\r\n");
-    printf("\tNERGIS PDU - Bootloader\r\n");
-    printf("========================================\r\n");
-    printf("\tStarting FreeRTOS...\r\n");
-    printf("========================================\r\n\r\n");
 
     /* ===== CREATE INIT TASK ===== */
 
@@ -65,12 +59,12 @@ int main(void) {
 
     /* ===== START RTOS SCHEDULER ===== */
 
-    printf("[Main] Starting FreeRTOS scheduler...\r\n\r\n");
+    log_printf("[Main] Starting FreeRTOS scheduler...\r\n\r\n");
     vTaskStartScheduler(); /* Never returns */
 
     /* ===== SAFETY LOOP (should never reach here) ===== */
 
-    printf("[FATAL] Scheduler returned - should never happen!\r\n");
+    log_printf("[FATAL] Scheduler returned - should never happen!\r\n");
     for (;;) {
         tight_loop_contents();
     }

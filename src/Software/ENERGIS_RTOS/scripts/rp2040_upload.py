@@ -32,7 +32,7 @@ Platform Support:
 Requirements:
     - The target firmware must implement:
           bootloader_trigger = 0xDEADBEEF;
-          watchdog_reboot(0, 0, 0);
+          //watchdog_reboot(0, 0, 0);
       and early boot check for reset_usb_boot() when flag is set.
 ================================================================================
 """

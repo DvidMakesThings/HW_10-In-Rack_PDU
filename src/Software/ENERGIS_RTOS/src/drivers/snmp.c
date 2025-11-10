@@ -100,28 +100,56 @@ bool SNMP_Init(uint8_t sock_agent, uint16_t local_port, uint8_t sock_trap) {
     return true;
 }
 
+/**
+ * @brief Poll and service pending SNMP packets on the agent UDP socket.
+ *
+ * Non-blocking service routine that processes up to @p max_packets SNMPv1 requests
+ * from the UDP socket bound to port 161, and emits corresponding GetResponse PDUs.
+ * This variant relies on the W5500-style datagram reader @ref recvfrom_SNMP(),
+ * which already consumes the 8-byte UDP datagram header (src IP[4], src port[2],
+ * payload length[2]) and returns the pure ASN.1 payload starting with 0x30.
+ *
+ * Robustness:
+ *  - If no data is pending or the bounded wait in @ref recvfrom_SNMP() elapses,
+ *    the function returns early without blocking the caller.
+ *  - Source address and port are taken directly from @ref recvfrom_SNMP() and
+ *    used for the reply via @ref sendto().
+ *
+ * @param[in] max_packets Maximum number of datagrams to process in this call (>=1).
+ *
+ * @return int Number of serviced packets in this call (0..max_packets).
+ */
 int SNMP_Poll(int max_packets) {
-    if (max_packets <= 0)
+    if (max_packets <= 0) {
         max_packets = 1;
+    }
+
     int serviced = 0;
 
     while (serviced < max_packets) {
+        /* Fast exit if socket RX has nothing queued */
         uint16_t rsr = getSn_RX_RSR(s_sock_agent);
-        if (rsr == 0)
+        if (rsr == 0) {
             break;
+        }
 
-        uint8_t src_addr[6] = {0};
+        uint8_t src_addr[6] = {0}; /* recvfrom_SNMP fills IPv4 in first 4 bytes */
         uint16_t src_port = 0;
 
-        int rlen = recvfrom(s_sock_agent, s_req.buffer, (rsr > SNMP_MAX_MSG) ? SNMP_MAX_MSG : rsr,
-                            src_addr, &src_port);
-        if (rlen <= 0)
-            break;
+        /* Read one full UDP datagram's payload (ASN.1 starts at buf[0]) */
+        int rlen = recvfrom_SNMP(s_sock_agent, s_req.buffer,
+                                 (rsr > SNMP_MAX_MSG) ? SNMP_MAX_MSG : rsr, src_addr, &src_port);
 
-        s_req.len = rlen;
+        if (rlen <= 0) {
+            /* 0 or SOCK_BUSY/negative: nothing usable right now */
+            break;
+        }
+
+        s_req.len = (uint16_t)rlen;
         s_req.index = 0;
         s_resp.index = 0;
-        s_errorStatus = s_errorIndex = 0;
+        s_errorStatus = 0;
+        s_errorIndex = 0;
         memset(s_resp.buffer, 0, sizeof(s_resp.buffer));
 
 #if _SNMP_DEBUG_
@@ -134,8 +162,10 @@ int SNMP_Poll(int max_packets) {
             dumpCode("[SNMP TX]\r\n", "\r\n", s_resp.buffer, s_resp.index);
 #endif
         }
+
         serviced++;
     }
+
     return serviced;
 }
 

@@ -224,9 +224,9 @@ static void vButtonTask(void *arg) {
     static uint32_t hb_btn_ms = 0;
 
     for (;;) {
-        uint32_t now = now_ms();
-        if ((now - hb_btn_ms) >= 500) {
-            hb_btn_ms = now;
+        uint32_t __now = to_ms_since_boot(get_absolute_time());
+        if ((__now - hb_btn_ms) >= BUTTONTASKBEAT_MS) {
+            hb_btn_ms = __now;
             Health_Heartbeat(HEALTH_ID_BUTTON);
         }
 

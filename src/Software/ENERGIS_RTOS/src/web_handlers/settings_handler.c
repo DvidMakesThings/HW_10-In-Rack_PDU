@@ -341,7 +341,7 @@ void handle_settings_post(uint8_t sock, char *body) {
 
     vTaskDelay(pdMS_TO_TICKS(100));
     net_beat();
-    watchdog_reboot(0, 0, 0);
+    Health_RebootNow("HTTP settings applied");
 }
 
 /**

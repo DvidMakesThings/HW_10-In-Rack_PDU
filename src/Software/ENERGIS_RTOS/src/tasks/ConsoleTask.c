@@ -130,9 +130,11 @@ static void cmd_help(void) {
  */
 static void cmd_bootsel(void) {
     ECHO("Entering BOOTSEL mode on next reboot...\n");
-    bootloader_trigger = 0xDEADBEEF; /* Magic value survives reset */
-    vTaskDelay(pdMS_TO_TICKS(100));
-    reset_usb_boot(0, 0); /* Immediately reboot into bootloader */
+    bootloader_trigger = 0xDEADBEEF; /* place in .noinit */
+    /* optional: Health_LogIntent("BOOTSEL"); */
+    vTaskDelay(pdMS_TO_TICKS(50));
+    reset_usb_boot(0, 0); /* immediate jump to BOOTSEL */
+    for (;;) {}           /* not reached */
 }
 
 /**
@@ -141,7 +143,8 @@ static void cmd_bootsel(void) {
 static void cmd_reboot(void) {
     ECHO("Rebooting system...\n");
     vTaskDelay(pdMS_TO_TICKS(100));
-    watchdog_reboot(0, 0, 0);
+    Health_RebootNow("CLI REBOOT");
+
     /* Never returns */
 }
 
@@ -850,7 +853,7 @@ static void dispatch_command(const char *line) {
         EEPROM_WriteFactoryDefaults();
         ECHO("Factory defaults written. Rebooting...\n");
         vTaskDelay(pdMS_TO_TICKS(100));
-        watchdog_reboot(0, 0, 0);
+        Health_RebootNow("CLI REBOOT");
     } else if (strcmp(trimmed, "BAADCAFE") == 0) {
         ECHO("Erasing EEPROM... (THIS CANNOT BE UNDONE!)\n");
         EEPROM_EraseAll();
@@ -881,7 +884,7 @@ static void ConsoleTask(void *arg) {
 
     for (;;) {
         uint32_t __now = to_ms_since_boot(get_absolute_time());
-        if ((__now - hb_cons_ms) >= 500) {
+        if ((__now - hb_cons_ms) >= CONSOLETASKBEAT_MS) {
             hb_cons_ms = __now;
             Health_Heartbeat(HEALTH_ID_CONSOLE);
         }
