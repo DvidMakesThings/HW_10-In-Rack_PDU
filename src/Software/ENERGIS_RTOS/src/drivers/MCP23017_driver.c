@@ -327,6 +327,8 @@ void MCP2017_Init(void) {
     DEBUG_PRINT("\t[MCP] relay=%p \n", (void *)g_mcp_relay);
     DEBUG_PRINT("\t[MCP] display=%p\n", (void *)g_mcp_display);
     DEBUG_PRINT("\t[MCP] selection=%p\n", (void *)g_mcp_selection);
+
+    setPowerGood(true);
 }
 
 mcp23017_t *mcp_relay(void) { return g_mcp_relay; }

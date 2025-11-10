@@ -63,6 +63,8 @@ add_executable(ENERGIS_RTOS
     src/drivers/socket.c
     src/drivers/HLW8032_driver.c
     src/misc/helpers.c
+    src/misc/rtos_hooks.c
+    src/misc/crashlog.c
     src/snmp/snmp_custom.c
     src/snmp/snmp_networkCtrl.c
     src/snmp/snmp_outletCtrl.c
@@ -75,6 +77,7 @@ add_executable(ENERGIS_RTOS
     src/tasks/NetTask.c
     src/tasks/MeterTask.c
     src/tasks/ButtonTask.c
+    src/tasks/HealthTask.c
     src/web_handlers/http_server.c
     src/web_handlers/control_handler.c
     src/web_handlers/settings_handler.c

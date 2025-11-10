@@ -130,7 +130,7 @@ static void cmd_help(void) {
  */
 static void cmd_bootsel(void) {
     ECHO("Entering BOOTSEL mode on next reboot...\n");
-    bootloader_trigger = 0xB00754E1; /* Magic value survives reset */
+    bootloader_trigger = 0xDEADBEEF; /* Magic value survives reset */
     vTaskDelay(pdMS_TO_TICKS(100));
     reset_usb_boot(0, 0); /* Immediately reboot into bootloader */
 }
@@ -877,8 +877,15 @@ static void ConsoleTask(void *arg) {
     ECHO("\n");
 
     const TickType_t poll_ticks = pdMS_TO_TICKS(CONSOLE_POLL_MS);
+    static uint32_t hb_cons_ms = 0;
 
     for (;;) {
+        uint32_t __now = to_ms_since_boot(get_absolute_time());
+        if ((__now - hb_cons_ms) >= 500) {
+            hb_cons_ms = __now;
+            Health_Heartbeat(HEALTH_ID_CONSOLE);
+        }
+
         /* Poll USB-CDC for available characters (non-blocking with timeout) */
         int ch_int = getchar_timeout_us(0); /* 0 = non-blocking */
 
@@ -890,38 +897,19 @@ static void ConsoleTask(void *arg) {
                 if (line_len > 0) {
                     line_len--;
                 }
-                continue;
-            }
-
-            /* Handle newline (CR or LF) */
-            if (ch == '\n' || ch == '\r') {
+            } else if (ch == '\r' || ch == '\n') {
+                line_buf[line_len] = '\0';
                 if (line_len > 0) {
-                    /* Null-terminate and dispatch */
-                    line_buf[line_len] = '\0';
-
-                    /* Convert line_buf to uppercase for display */
-                    char upper_buf[LINE_BUF_SIZE];
-                    strncpy(upper_buf, line_buf, LINE_BUF_SIZE);
-                    for (int i = 0; upper_buf[i]; i++) {
-                        upper_buf[i] = (char)toupper((unsigned char)upper_buf[i]);
-                    }
-                    ECHO("Command received: '%s'\n", upper_buf);
-
                     dispatch_command(line_buf);
-
                     line_len = 0;
                 }
-                continue;
-            }
-
-            /* Accumulate printable characters */
-            if (line_len < LINE_BUF_SIZE - 1 && ch >= 0x20 && ch < 0x7F) {
+                ECHO("\r\n");
+            } else if (line_len < (int)(sizeof(line_buf) - 1)) {
                 line_buf[line_len++] = ch;
             }
+        } else {
+            vTaskDelay(poll_ticks);
         }
-
-        /* Sleep to avoid busy-wait (10ms polling interval) */
-        vTaskDelay(poll_ticks);
     }
 }
 
@@ -950,18 +938,23 @@ BaseType_t ConsoleTask_Init(bool enable) {
         return pdPASS;
     }
 
-    extern bool Logger_IsReady(void);
-    const TickType_t t0 = xTaskGetTickCount();
-    const TickType_t deadline = t0 + pdMS_TO_TICKS(5000);
-    while (!Logger_IsReady() && xTaskGetTickCount() < deadline) {
-        vTaskDelay(pdMS_TO_TICKS(10));
+    /* Wait briefly for logger so prints don't jam CDC */
+    {
+        extern bool Logger_IsReady(void);
+        TickType_t t0 = xTaskGetTickCount();
+        while (!Logger_IsReady() && (xTaskGetTickCount() - t0) < pdMS_TO_TICKS(2000)) {
+            vTaskDelay(pdMS_TO_TICKS(10));
+        }
     }
 
+    /* Queues: ensure item sizes MATCH the consumer task types */
     extern QueueHandle_t q_power, q_cfg, q_meter, q_net;
     q_power = xQueueCreate(8, sizeof(power_msg_t));
-    q_cfg = xQueueCreate(8, sizeof(cfg_msg_t));
     q_meter = xQueueCreate(8, sizeof(meter_msg_t));
     q_net = xQueueCreate(8, sizeof(net_msg_t));
+
+    /* The critical one: StorageTask expects storage_msg_t items on q_cfg */
+    q_cfg = xQueueCreate(8, sizeof(storage_msg_t));
 
     if (!q_power || !q_cfg || !q_meter || !q_net) {
         ERROR_PRINT("[Console] Failed to create one or more queues\r\n");
@@ -974,7 +967,7 @@ BaseType_t ConsoleTask_Init(bool enable) {
         return pdFAIL;
     }
 
-    INFO_PRINT("[Console] Task initialized (polling USB-CDC @ %ums)\n", CONSOLE_POLL_MS);
+    INFO_PRINT("[Console] Task initialized (polling USB-CDC @ %ums)\r\n", CONSOLE_POLL_MS);
     return pdPASS;
 }
 

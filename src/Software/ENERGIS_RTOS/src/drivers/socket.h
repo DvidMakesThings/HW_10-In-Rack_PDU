@@ -471,7 +471,7 @@ int32_t recvfrom(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uint16_t
  * int32_t len = recvfrom(sn, buf, sizeof(buf), src_ip, &src_port);
  * if (len > 0) {
  *     // Process received datagram
- *     printf("Received %ld bytes from %d.%d.%d.%d:%d\n",
+ *     log_printf("Received %ld bytes from %d.%d.%d.%d:%d\n",
  *            len, src_ip[0], src_ip[1], src_ip[2], src_ip[3], src_port);
  * }
  *

@@ -44,10 +44,10 @@ EventGroupHandle_t cfgEvents = NULL;
 const uint8_t DEFAULT_RELAY_STATUS[8] = {0};
 
 /** @brief Default network configuration. */
-const networkInfo DEFAULT_NETWORK = {.ip = {192, 168, 0, 12},
+const networkInfo DEFAULT_NETWORK = {.ip = {192, 168, 0, 22},
                                      .gw = {192, 168, 0, 1},
                                      .sn = {255, 255, 255, 0},
-                                     .mac = {0x00, 0x08, 0xDC, 0xBE, 0xEF, 0x91},
+                                     .mac = {0x1C, 0x08, 0xDC, 0xBE, 0xEF, 0x91},
                                      .dns = {8, 8, 8, 8},
                                      .dhcp = EEPROM_NETINFO_STATIC};
 
@@ -655,14 +655,20 @@ static void load_config_from_eeprom(void) {
  * @brief Commit all dirty sections to EEPROM.
  */
 static void commit_dirty_sections(void) {
+#ifndef STORAGE_REBOOT_ON_CONFIG_SAVE
+#define STORAGE_REBOOT_ON_CONFIG_SAVE 0
+#endif
+
     xSemaphoreTake(eepromMtx, portMAX_DELAY);
 
     if (g_cache.network_dirty) {
         if (EEPROM_WriteUserNetworkWithChecksum(&g_cache.network) == 0) {
             g_cache.network_dirty = false;
             ECHO("%s Network config committed\r\n", STORAGE_TASK_TAG);
-            vTaskDelay(pdMS_TO_TICKS(100)); // Small delay to avoid I2C bus issues
+#if STORAGE_REBOOT_ON_CONFIG_SAVE
+            vTaskDelay(pdMS_TO_TICKS(100));
             watchdog_reboot(0, 0, 0);
+#endif
         } else {
             ERROR_PRINT("%s Failed to commit network config\r\n", STORAGE_TASK_TAG);
         }
@@ -672,8 +678,10 @@ static void commit_dirty_sections(void) {
         if (EEPROM_WriteUserPrefsWithChecksum(&g_cache.preferences) == 0) {
             g_cache.prefs_dirty = false;
             ECHO("%s User prefs committed\r\n", STORAGE_TASK_TAG);
-            vTaskDelay(pdMS_TO_TICKS(100)); // Small delay to avoid I2C bus issues
+#if STORAGE_REBOOT_ON_CONFIG_SAVE
+            vTaskDelay(pdMS_TO_TICKS(100));
             watchdog_reboot(0, 0, 0);
+#endif
         } else {
             ERROR_PRINT("%s Failed to commit user prefs\r\n", STORAGE_TASK_TAG);
         }
@@ -821,18 +829,12 @@ static void process_storage_msg(const storage_msg_t *msg) {
 static void StorageTask(void *arg) {
     (void)arg;
 
-    /* Wait for logger to be ready */
     vTaskDelay(pdMS_TO_TICKS(1000));
-
     ECHO("%s Task started\r\n", STORAGE_TASK_TAG);
 
-    /* Check and write factory defaults if needed */
     check_factory_defaults();
-
-    /* Load config from EEPROM to RAM cache */
     load_config_from_eeprom();
 
-    /* Signal that config is ready */
     eth_netcfg_ready = true;
     xEventGroupSetBits(cfgEvents, CFG_READY_BIT);
     INFO_PRINT("%s Config ready\r\n", STORAGE_TASK_TAG);
@@ -840,13 +842,19 @@ static void StorageTask(void *arg) {
     storage_msg_t msg;
     const TickType_t poll_ticks = pdMS_TO_TICKS(STORAGE_QUEUE_POLL_MS);
 
+    static uint32_t hb_stor_ms = 0;
+
     for (;;) {
-        /* Process queue messages */
+        uint32_t __now = to_ms_since_boot(get_absolute_time());
+        if ((__now - hb_stor_ms) >= 500) {
+            hb_stor_ms = __now;
+            Health_Heartbeat(HEALTH_ID_STORAGE);
+        }
+
         if (xQueueReceive(q_cfg, &msg, poll_ticks) == pdPASS) {
             process_storage_msg(&msg);
         }
 
-        /* Debounced write: if idle for STORAGE_DEBOUNCE_MS, commit changes */
         if (g_cache.last_change_tick != 0) {
             TickType_t now = xTaskGetTickCount();
             if ((now - g_cache.last_change_tick) >= pdMS_TO_TICKS(STORAGE_DEBOUNCE_MS)) {
@@ -925,17 +933,21 @@ void StorageTask_Init(bool enable) {
  * @return true if configuration is ready, false otherwise.
  */
 bool Storage_IsReady(void) {
-    if (cfgEvents == NULL) {
-        return false;
+    /* Fast path: once StorageTask finished boot load it sets this flag. */
+    extern volatile bool eth_netcfg_ready;
+    if (eth_netcfg_ready) {
+        return true;
     }
-    EventBits_t bits = xEventGroupGetBits(cfgEvents);
-#ifdef CFG_READY
-    return (bits & CFG_READY) != 0;
-#else
-    /* Fallback to legacy predicate if bit not available */
-    extern bool Storage_Config_IsReady(void);
-    return Storage_Config_IsReady();
-#endif
+
+    /* Fallback to event bit (in case other modules rely on it). */
+    extern EventGroupHandle_t cfgEvents; /* defined in StorageTask.c */
+    if (cfgEvents) {
+        EventBits_t bits = xEventGroupGetBits(cfgEvents);
+        if ((bits & CFG_READY_BIT) != 0) {
+            return true;
+        }
+    }
+    return false;
 }
 
 bool storage_wait_ready(uint32_t timeout_ms) {

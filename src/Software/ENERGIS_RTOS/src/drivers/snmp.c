@@ -696,27 +696,27 @@ static void ipToByteArray(const int8_t *ip, uint8_t *pDes) {
 
 #if _SNMP_DEBUG_
 static void dumpCode(const char *hdr, const char *tail, const uint8_t *buf, int32_t len) {
-    printf("%s", hdr);
+    log_printf("%s", hdr);
     for (int i = 0; i < len; i++) {
         if ((i % 16) == 0)
-            printf("0x%04x : ", i);
-        printf("%02X ", buf[i]);
+            log_printf("0x%04x : ", i);
+        log_printf("%02X ", buf[i]);
         if ((i % 16) == 15) {
-            printf("  ");
+            log_printf("  ");
             for (int j = i - 15; j <= i; j++)
-                printf("%c", isprint(buf[j]) ? buf[j] : '.');
-            printf("\r\n");
+                log_printf("%c", isprint(buf[j]) ? buf[j] : '.');
+            log_printf("\r\n");
         }
     }
     if (len % 16) {
         int rem = 16 - (len % 16);
         for (int s = 0; s < rem * 3 + 2; s++)
-            printf(" ");
+            log_printf(" ");
         for (int j = len - (len % 16); j < len; j++)
-            printf("%c", isprint(buf[j]) ? buf[j] : '.');
-        printf("\r\n");
+            log_printf("%c", isprint(buf[j]) ? buf[j] : '.');
+        log_printf("\r\n");
     }
-    printf("%s", tail);
+    log_printf("%s", tail);
 }
 #endif
 

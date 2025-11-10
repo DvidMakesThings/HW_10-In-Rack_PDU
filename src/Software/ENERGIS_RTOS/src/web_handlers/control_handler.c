@@ -21,6 +21,8 @@
 
 #include "../CONFIG.h"
 
+static inline void net_beat(void) { Health_Heartbeat(HEALTH_ID_NET); }
+
 #define CONTROL_HANDLER_TAG "<Control Handler>"
 
 /**
@@ -34,7 +36,9 @@
  */
 void handle_control_request(uint8_t sock, char *body) {
     NETLOG_PRINT(">> handle_control_request()\n");
+    net_beat();
     NETLOG_PRINT("Incoming body: '%s'\n", body ? body : "(null)");
+    net_beat();
 
     if (!body) {
         static const char resp[] = "HTTP/1.1 400 Bad Request\r\n"
@@ -45,11 +49,13 @@ void handle_control_request(uint8_t sock, char *body) {
                                    "\r\n"
                                    "{\"error\":\"Missing body\"}";
         send(sock, (uint8_t *)resp, sizeof(resp) - 1);
+        net_beat();
         return;
     }
 
     /* Decode in-place (handles '+' and %XX) */
     urldecode(body);
+    net_beat();
 
     /* Default all OFF unless present in form */
     bool want_on[8] = {false};
@@ -60,23 +66,26 @@ void handle_control_request(uint8_t sock, char *body) {
         if (value && strcmp(value, "on") == 0) {
             want_on[i - 1] = true;
         }
+        if ((i & 3) == 0)
+            net_beat();
     }
 
     /* Apply relay states using mcp_set_channel_state() */
     int changed_total = 0;
     for (uint8_t i = 0; i < 8; i++) {
-        /* Read current state */
         bool current = mcp_read_pin(mcp_relay(), i);
-        /* Set new state if different */
         if (current != want_on[i]) {
             mcp_set_channel_state(i, (uint8_t)want_on[i]);
             changed_total++;
             NETLOG_PRINT("  CH%u: %s -> %s\n", (unsigned)(i + 1), current ? "ON" : "OFF",
                          want_on[i] ? "ON" : "OFF");
         }
+        if ((i & 1) == 0)
+            net_beat();
     }
 
     NETLOG_PRINT("Control: changed=%d\n", changed_total);
+    net_beat();
 
     /* Update channel labels if provided */
     for (uint8_t ch = 0; ch < 8; ch++) {
@@ -86,6 +95,8 @@ void handle_control_request(uint8_t sock, char *body) {
         if (val) {
             EEPROM_WriteChannelLabel(ch, val);
         }
+        if ((ch & 1) == 0)
+            net_beat();
     }
 
     /* Send minimal 204 No Content response */
@@ -95,6 +106,7 @@ void handle_control_request(uint8_t sock, char *body) {
                              "Connection: close\r\n"
                              "\r\n";
     send(sock, (uint8_t *)ok, sizeof(ok) - 1);
+    net_beat();
 
     NETLOG_PRINT("<< handle_control_request() done\n");
 }

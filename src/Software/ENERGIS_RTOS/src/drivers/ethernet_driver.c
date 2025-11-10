@@ -478,7 +478,17 @@ bool w5500_hw_init(void) {
 }
 
 /**
- * @brief Initialize W5500 chip (memory, PHY, network)
+ * @brief Initialize the W5500 chip and bring link up
+ *
+ * @param net_info Pointer to network configuration (MAC, IP, SN, GW, DNS, DHCP)
+ * @return true on success, false on failure
+ *
+ * @details
+ * - Configures per-socket RX/TX buffer sizes.
+ * - Brings the PHY up and waits for link.
+ * - Applies the provided network configuration.
+ * - Programs TCP retry timing registers RTR/RCR from ethernet_config.h.
+ * - Leaves the device ready for socket allocation and use.
  */
 bool w5500_chip_init(w5500_NetConfig *net_info) {
     if (!net_info) {
@@ -504,7 +514,11 @@ bool w5500_chip_init(w5500_NetConfig *net_info) {
     setSn_RXBUF_SIZE(7, W5500_RX_SIZE_S7);
     setSn_TXBUF_SIZE(7, W5500_TX_SIZE_S7);
 
-    /* Wait for PHY link */
+    /* Configure PHY */
+    setPHYCFGR(PHYCFGR_OPMD | PHYCFGR_OPMDC_ALLA | PHYCFGR_RST);
+    vTaskDelay(pdMS_TO_TICKS(10));
+
+    /* Wait for link up */
     uint8_t link_status;
     uint32_t timeout = 0;
     do {
@@ -521,6 +535,11 @@ bool w5500_chip_init(w5500_NetConfig *net_info) {
 
     /* Configure network parameters */
     w5500_set_network(net_info);
+
+    /* Program TCP retry behavior from configuration */
+    w5500_write_reg(_RTR_, (uint8_t)(W5500_RETRY_TIME >> 8));
+    w5500_write_reg(W5500_OFFSET_INC(_RTR_, 1), (uint8_t)(W5500_RETRY_TIME & 0xFF));
+    w5500_write_reg(_RCR_, (uint8_t)W5500_RETRY_COUNT);
 
     ETH_LOG("[ETH] Chip initialized\r\n");
     return true;
