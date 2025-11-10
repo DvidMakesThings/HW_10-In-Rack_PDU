@@ -128,7 +128,7 @@ extern w5500_NetConfig eth_netcfg;
 
 /* ---------- LOGGING FLAGS ---------- */
 #ifndef DEBUG
-#define DEBUG 1
+#define DEBUG 0
 #endif
 #ifndef DEBUG_HEALTH
 #define DEBUG_HEALTH 0

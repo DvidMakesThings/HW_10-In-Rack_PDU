@@ -100,3 +100,36 @@ void __wrap_reset_usb_boot(uint32_t a, uint32_t b) {
             (unsigned long)rd_lr());
     stall_forever();
 }
+
+/* pico_runtime exposes internal reboot helpers in newer SDKs; harmless to wrap even if unused */
+void __real_runtime_unreset_core(void);
+void __wrap_runtime_unreset_core(void) {
+    register unsigned lr __asm("lr");
+    ERROR_PRINT("[WRAP] runtime_unreset_core lr=%08x\r\n", lr);
+    for (;;)
+        __asm volatile("wfi");
+}
+
+void __real_runtime_reboot(void);
+void __wrap_runtime_reboot(void) {
+    register unsigned lr __asm("lr");
+    ERROR_PRINT("[WRAP] runtime_reboot lr=%08x\r\n", lr);
+    for (;;)
+        __asm volatile("wfi");
+}
+
+void __real___NVIC_SystemReset(void);
+void __wrap___NVIC_SystemReset(void) {
+    register unsigned lr __asm("lr");
+    ERROR_PRINT("[WRAP] __NVIC_SystemReset lr=%08x\r\n", lr);
+    for (;;)
+        __asm volatile("wfi");
+}
+
+void __real_scb_reboot(void);
+void __wrap_scb_reboot(void) {
+    register unsigned lr __asm("lr");
+    ERROR_PRINT("[WRAP] scb_reboot lr=%08x\r\n", lr);
+    for (;;)
+        __asm volatile("wfi");
+}

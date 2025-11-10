@@ -19,11 +19,6 @@
 #include "../CONFIG.h"
 
 /**
- * @brief Network task priority
- */
-#define NET_TASK_PRIORITY (tskIDLE_PRIORITY + 2)
-
-/**
  * @brief Network task stack size
  */
 #define NET_TASK_STACK_SIZE 1024

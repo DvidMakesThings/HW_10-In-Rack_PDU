@@ -65,7 +65,7 @@ do {
 #endif
 
 #ifndef HEALTH_LOG_PERIOD_MS
-#define HEALTH_LOG_PERIOD_MS 5000u
+#define HEALTH_LOG_PERIOD_MS 60000u
 #endif
 
 #ifndef HEALTH_WARMUP_MS
@@ -73,7 +73,7 @@ do {
 #endif
 
 #ifndef HEALTH_SILENCE_MS
-#define HEALTH_SILENCE_MS 20000u
+#define HEALTH_SILENCE_MS 3000u
 #endif
 
 #ifndef HEALTH_BLOCK_RING_SIZE
@@ -395,7 +395,7 @@ static void log_required_status(uint32_t current_time) {
             }
         } else {
             uint32_t dt = current_time - s_meta[task_id].last_seen_ms;
-            HEALTH_DBG("  %s: %lu ms\r\n", task_name, (unsigned long)dt);
+            HEALTH_INFO("  %s: %lu ms\r\n", task_name, (unsigned long)dt);
         }
     }
 }
@@ -520,9 +520,10 @@ static void health_task(void *arg) {
     uint32_t idle_prev = RTOS_IdleCanary_Read();
     uint32_t idle_stall_ms = 0u;
 
-    HEALTH_DBG("task started, cfg: period=%u ms, warmup=%u ms, silence=%u ms, req_mask=0x%08lx\r\n",
-               (unsigned)HEALTH_PERIOD_MS, (unsigned)HEALTH_WARMUP_MS, (unsigned)HEALTH_SILENCE_MS,
-               (unsigned long)HEALTH_REQUIRED_MASK);
+    HEALTH_INFO(
+        "task started, cfg: period=%u ms, warmup=%u ms, silence=%u ms, req_mask=0x%08lx\r\n",
+        (unsigned)HEALTH_PERIOD_MS, (unsigned)HEALTH_WARMUP_MS, (unsigned)HEALTH_SILENCE_MS,
+        (unsigned long)HEALTH_REQUIRED_MASK);
 
     for (;;) {
         vTaskDelayUntil(&last_wake, period_ticks);
@@ -551,12 +552,16 @@ static void health_task(void *arg) {
             const uint32_t elapsed = t - s_start_ms;
             const uint32_t maxdt = max_dt_required(t);
             const uint32_t remain = (maxdt >= HEALTH_SILENCE_MS) ? 0u : (HEALTH_SILENCE_MS - maxdt);
-            HEALTH_DBG("Summary:\r\n");
-            HEALTH_DBG("Elapsed since boot = %lu ms\r\n", (unsigned long)elapsed);
-            HEALTH_DBG("WD Armed = %u\r\n", s_watchdog_armed ? 1u : 0u);
-            HEALTH_DBG("Max dt = %lu ms\r\n", (unsigned long)maxdt);
-            HEALTH_DBG("Remaining time until WD reset = %lu ms\r\n", (unsigned long)remain);
-            HEALTH_DBG("Idle stall = %lu ms\r\n", (unsigned long)idle_stall_ms);
+
+            log_printf("\r\n");
+            HEALTH_INFO("**** %usec Report at %lu sec ****\r\n", HEALTH_LOG_PERIOD_MS / 1000,
+                        (unsigned long)(xTaskGetTickCount() * portTICK_PERIOD_MS / 1000));
+            HEALTH_INFO("Summary:\r\n");
+            HEALTH_INFO("Elapsed since boot = %lu ms\r\n", (unsigned long)elapsed);
+            HEALTH_INFO("WD Armed = %u\r\n", s_watchdog_armed ? 1u : 0u);
+            HEALTH_INFO("Max dt = %lu ms\r\n", (unsigned long)maxdt);
+            HEALTH_INFO("Remaining time until WD reset = %lu ms\r\n", (unsigned long)remain);
+            HEALTH_INFO("Idle stall = %lu ms\r\n", (unsigned long)idle_stall_ms);
             log_required_status(t);
             log_stack_watermarks();
             log_heap_free();
@@ -569,9 +574,12 @@ static void health_task(void *arg) {
             const bool warmup_elapsed = (t - s_start_ms) >= HEALTH_WARMUP_MS;
             const bool all_required_beaten = required_tasks_have_heartbeat_once();
             if (warmup_elapsed && all_required_beaten) {
-                HEALTH_WRN("ARMING WATCHDOG (warmup elapsed, all required tasks confirmed). "
-                           "Timeout=%u ms\r\n",
-                           (unsigned)HEALTH_SILENCE_MS);
+                HEALTH_WRN("########### GRACE PERIOD ENDED ############\r\n");
+                HEALTH_WRN("############# ARMING WATCHDOG #############\r\n");
+                HEALTH_INFO("\tAll required tasks confirmed\r\n");
+                HEALTH_INFO("\tTask Timeout = %u ms\r\n\r\n", (unsigned)HEALTH_SILENCE_MS);
+                // WARNING_PRINT("############# WATCHDOG DISABLED FOR DEVELOPMENT BUILD
+                // #############\r\n");
                 watchdog_enable(HEALTH_SILENCE_MS, 1);
                 watchdog_update();
                 CrashLog_RecordWdtFeed(t);
@@ -582,13 +590,13 @@ static void health_task(void *arg) {
                 s_prebark_emitted = false;
 
 #if defined(HEALTH_PRINT_WDT_FEED) && (HEALTH_PRINT_WDT_FEED)
-                INFO_PRINT("[WDT] FEED at %lums (armed)\r\n", (unsigned long)t);
+                HEALTH_DBG("[WDT] FEED at %lums (armed)\r\n", (unsigned long)t);
 #endif
                 HEALTH_DBG("watchdog armed\r\n");
             } else {
                 if (!warmup_elapsed) {
-                    HEALTH_WRN("waiting warmup: %lu ms remain\r\n",
-                               (unsigned long)(HEALTH_WARMUP_MS - (t - s_start_ms)));
+                    HEALTH_INFO("Waiting warmup: %lu ms remain\r\n",
+                                (unsigned long)(HEALTH_WARMUP_MS - (t - s_start_ms)));
                 }
                 if (!all_required_beaten) {
                     char line[192];
@@ -675,7 +683,7 @@ static void health_task(void *arg) {
             s_prebark_emitted = false;
 
 #if defined(HEALTH_PRINT_WDT_FEED) && (HEALTH_PRINT_WDT_FEED)
-            INFO_PRINT("[WDT] FEED at %lums (remain=%lums, max_dt=%lums)\r\n", (unsigned long)t,
+            HEALTH_DBG("[WDT] FEED at %lums (remain=%lums, max_dt=%lums)\r\n", (unsigned long)t,
                        (unsigned long)remain, (unsigned long)maxdt);
 #endif
 
@@ -684,19 +692,16 @@ static void health_task(void *arg) {
                     continue;
                 uint32_t last = s_meta[i].last_seen_ms;
                 if (!last) {
-                    HEALTH_WRN("misbehaving: %s NEVER heartbeated\r\n",
+                    HEALTH_WRN("Misbehaving: %s NEVER heartbeated\r\n",
                                s_meta[i].name ? s_meta[i].name : "task");
                     continue;
                 }
                 uint32_t dt = (t >= last) ? (t - last) : 0u;
                 if (dt >= (HEALTH_SILENCE_MS * 3u) / 4u) {
-                    HEALTH_WRN("misbehaving: %s dt=%lu ms\r\n",
+                    HEALTH_WRN("Misbehaving: %s dt = %lu ms\r\n",
                                s_meta[i].name ? s_meta[i].name : "task", (unsigned long)dt);
                 }
             }
-
-            HEALTH_DBG("feed: max_dt=%lu ms remain=%lu ms\r\n", (unsigned long)maxdt,
-                       (unsigned long)remain);
         } else {
             report_stale(t);
         }
@@ -707,8 +712,8 @@ static void health_task(void *arg) {
 void HealthTask_Start(void) {
     if (s_health_handle)
         return;
-    xTaskCreate(health_task, "Health", 1024, NULL, tskIDLE_PRIORITY + 1, &s_health_handle);
-    HEALTH_DBG("start requested (created=%u)\r\n", s_health_handle ? 1u : 0u);
+    xTaskCreate(health_task, "Health", 1024, NULL, HEALTHTASK_PRIORITY, &s_health_handle);
+    HEALTH_DBG("Start requested, (created=%u)\r\n", s_health_handle ? 1u : 0u);
 }
 
 void Health_RegisterTask(health_id_t id, TaskHandle_t h, const char *name) {
@@ -725,11 +730,11 @@ void Health_RegisterTask(health_id_t id, TaskHandle_t h, const char *name) {
         s_meta[id].last_seen_ms = now_ms();
     }
 
-    HEALTH_DBG("registered id=%d name=%s handle=%p required=%u\r\n", (int)id, s_meta[id].name,
-               (void *)h, id_in_required((uint8_t)id) ? 1u : 0u);
+    HEALTH_INFO("%s Registered on ID = %d, Handle = %p\r\n", s_meta[id].name, (int)id, (void *)h);
+    HEALTH_INFO("\tRequired = %s\r\n", id_in_required((uint8_t)id) ? "YES" : "NO");
 
     if (was_registered) {
-        HEALTH_WRN("re-register id=%d name=%s (keeping last_seen_ms=%lu)\r\n", (int)id,
+        HEALTH_WRN("Re-register on ID = %d Name = %s (Keeping last_seen_ms = %lu)\r\n", (int)id,
                    s_meta[id].name, (unsigned long)s_meta[id].last_seen_ms);
     }
 }
@@ -751,7 +756,7 @@ void Health_Heartbeat(health_id_t id) {
     uint32_t last = s_last_log[(int)id];
     if ((t - last) >= HEALTH_BEAT_LOG_MIN_MS) {
         s_last_log[(int)id] = t;
-        HEALTH_DBG("beat id=%d name=%s t=%lu ms\r\n", (int)id,
+        HEALTH_DBG("Beat ID = %d Name = %s t = %lu ms\r\n", (int)id,
                    s_meta[id].name ? s_meta[id].name : "task", (unsigned long)t);
     }
 #endif
@@ -768,8 +773,8 @@ void Health_RecordBlocked(const char *tag, uint32_t waited_ms) {
     } else {
         e->tag[0] = 0;
     }
-    HEALTH_DBG("blocked tag=%s waited=%u ms (idx=%lu)\r\n", tag ? tag : "-", (unsigned)e->waited_ms,
-               (unsigned long)i);
+    HEALTH_DBG("Blocked tag = %s Waited = %u ms (idx = %lu)\r\n", tag ? tag : "-",
+               (unsigned)e->waited_ms, (unsigned long)i);
 }
 
 void Health_PrintLastRebootDetailed(void) {
@@ -784,8 +789,8 @@ void Health_PrintLastRebootDetailed(void) {
         req = watchdog_hw->scratch[HSCR_REQMSK];
         flags = watchdog_hw->scratch[HSCR_FLAGS];
 
-        HEALTH_ERR("LAST HEALTH REBOOT: max_dt=%lu ms silence=%lu ms req_mask=0x%08lx flags=0x%lx "
-                   "t=%lu ms\r\n",
+        HEALTH_ERR("LAST HEALTH REBOOT: max_dt = %lu ms, Silence = %lu ms, req_mask = 0x%08lx, "
+                   "flags = 0x%lx, t = %lu ms\r\n",
                    (unsigned long)maxdt, (unsigned long)silence, (unsigned long)req,
                    (unsigned long)flags, (unsigned long)tnow);
 

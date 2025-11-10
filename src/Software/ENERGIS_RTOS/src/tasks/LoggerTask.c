@@ -103,7 +103,7 @@ BaseType_t LoggerTask_Init(bool enable) {
     if (s_logger_task == NULL) {
         if (xTaskCreate(LoggerTask, "Logger", LOGGER_STACK_SIZE,
                         NULL, /* task reads file-scope logQueue */
-                        tskIDLE_PRIORITY + 1, &s_logger_task) != pdPASS) {
+                        LOGTASK_PRIORITY, &s_logger_task) != pdPASS) {
             return pdFAIL;
         }
     }

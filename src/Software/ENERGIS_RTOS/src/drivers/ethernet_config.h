@@ -159,9 +159,6 @@ static const uint8_t W5500_DEFAULT_DNS[4] = {8, 8, 8, 8};
  * @{
  */
 
-/** Network task priority (higher = more priority) */
-#define W5500_TASK_PRIORITY 3
-
 /** Network task stack size (bytes) */
 #define W5500_TASK_STACK 2048
 

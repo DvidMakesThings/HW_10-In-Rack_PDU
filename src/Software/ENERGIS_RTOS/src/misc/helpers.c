@@ -210,7 +210,7 @@ bool ethernet_apply_network_from_storage(const networkInfo *ni) {
     }
 
     /* Optional: print applied configuration */
-    w5500_print_network(&cfg);
+    // w5500_print_network(&cfg);
     setNetworkLink(true);
     return true;
 }
@@ -357,26 +357,26 @@ void Helpers_EarlyBootSnapshot(void) {
 void Helpers_LateBootDumpAndClear(void) {
     if (s_bootsnap.magic != HELPERS_SNAPSHOT_MAGIC ||
         s_bootsnap.version != HELPERS_SNAPSHOT_VERSION) {
-        printf("[INFO] ========================================\r\n");
-        printf("[INFO] [InitTask] Early snapshot: <none>\r\n");
-        printf("[INFO] ========================================\r\n");
+        DEBUG_PRINT("[INFO] ========================================\r\n");
+        DEBUG_PRINT("[INFO] [InitTask] Early snapshot: <none>\r\n");
+        DEBUG_PRINT("[INFO] ========================================\r\n");
         return;
     }
 
-    printf("[INFO] ========================================\r\n");
-    printf("[INFO] [InitTask] Early snapshot dump:\r\n");
-    printf("[INFO]   boots=%lu raw=0x%08lX\r\n", (unsigned long)s_bootsnap.boots,
-           (unsigned long)s_bootsnap.reset_raw_bits);
+    DEBUG_PRINT("[INFO] ========================================\r\n");
+    DEBUG_PRINT("[INFO] [InitTask] Early snapshot dump:\r\n");
+    DEBUG_PRINT("[INFO]   boots=%lu raw=0x%08lX\r\n", (unsigned long)s_bootsnap.boots,
+                (unsigned long)s_bootsnap.reset_raw_bits);
 
-    printf("[INFO]   wd_scratch[0..7]:\r\n");
-    printf("[INFO]     0=0x%08lX 1=0x%08lX 2=0x%08lX 3=0x%08lX\r\n",
-           (unsigned long)s_bootsnap.wd_scratch[0], (unsigned long)s_bootsnap.wd_scratch[1],
-           (unsigned long)s_bootsnap.wd_scratch[2], (unsigned long)s_bootsnap.wd_scratch[3]);
-    printf("[INFO]     4=0x%08lX 5=0x%08lX 6=0x%08lX 7=0x%08lX\r\n",
-           (unsigned long)s_bootsnap.wd_scratch[4], (unsigned long)s_bootsnap.wd_scratch[5],
-           (unsigned long)s_bootsnap.wd_scratch[6], (unsigned long)s_bootsnap.wd_scratch[7]);
+    DEBUG_PRINT("[INFO]   wd_scratch[0..7]:\r\n");
+    DEBUG_PRINT("[INFO]     0=0x%08lX 1=0x%08lX 2=0x%08lX 3=0x%08lX\r\n",
+                (unsigned long)s_bootsnap.wd_scratch[0], (unsigned long)s_bootsnap.wd_scratch[1],
+                (unsigned long)s_bootsnap.wd_scratch[2], (unsigned long)s_bootsnap.wd_scratch[3]);
+    DEBUG_PRINT("[INFO]     4=0x%08lX 5=0x%08lX 6=0x%08lX 7=0x%08lX\r\n",
+                (unsigned long)s_bootsnap.wd_scratch[4], (unsigned long)s_bootsnap.wd_scratch[5],
+                (unsigned long)s_bootsnap.wd_scratch[6], (unsigned long)s_bootsnap.wd_scratch[7]);
 
-    printf("[INFO] ========================================\r\n");
+    DEBUG_PRINT("[INFO] ========================================\r\n");
 
     /* Clear only transient diagnostics so boots/magic/version persist across cycles. */
     s_bootsnap.reset_raw_bits = 0u;

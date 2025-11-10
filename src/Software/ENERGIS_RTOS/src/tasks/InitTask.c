@@ -27,8 +27,10 @@
 
 #include "../CONFIG.h"
 
-#define INIT_TASK_PRIORITY (configMAX_PRIORITIES - 1) /* Highest priority */
+#define INIT_TASK_PRIORITY INITTASK_PRIORITY /* Highest priority */
 #define INIT_TASK_STACK_SIZE 2048
+
+#define INIT_TASK_TAG "[InitTask]"
 
 /* Event flags for subsystem ready states */
 #define READY_LOGGER (1 << 0)
@@ -92,7 +94,7 @@ static void init_gpio(void) {
     gpio_init(KEY_3);
     gpio_set_dir(KEY_3, GPIO_IN);
 
-    INFO_PRINT("[InitTask] GPIO configured\r\n");
+    INFO_PRINT("%s GPIO configured\r\n", INIT_TASK_TAG);
 }
 
 /**
@@ -114,7 +116,7 @@ static void init_i2c(void) {
     gpio_pull_up(I2C1_SCL);
 
     vTaskDelay(pdMS_TO_TICKS(10)); /* Allow I2C to stabilize */
-    INFO_PRINT("[InitTask] I2C buses initialized\r\n");
+    INFO_PRINT("%s I2C buses initialized\r\n", INIT_TASK_TAG);
 }
 
 /**
@@ -127,7 +129,7 @@ static void init_spi(void) {
     gpio_set_function(W5500_SCK, GPIO_FUNC_SPI);
     gpio_set_function(W5500_MISO, GPIO_FUNC_SPI);
 
-    INFO_PRINT("[InitTask] SPI initialized for W5500\r\n");
+    INFO_PRINT("%s SPI initialized for W5500\r\n", INIT_TASK_TAG);
 }
 
 /**
@@ -139,7 +141,7 @@ static void init_adc(void) {
     adc_gpio_init(ADC_VUSB);    /* GPIO26 */
     adc_gpio_init(ADC_12V_MEA); /* GPIO29 */
 
-    INFO_PRINT("[InitTask] ADC initialized\r\n");
+    INFO_PRINT("%s ADC initialized\r\n", INIT_TASK_TAG);
 }
 
 /**
@@ -152,9 +154,9 @@ static bool probe_i2c_device(i2c_inst_t *i2c, uint8_t addr, const char *name) {
     bool present = (ret >= 0);
 
     if (present) {
-        INFO_PRINT("[InitTask] ✓ %s detected at 0x%02X\r\n", name, addr);
+        INFO_PRINT("%s ✓ %s detected at 0x%02X\r\n", INIT_TASK_TAG, name, addr);
     } else {
-        INFO_PRINT("[InitTask] ✗ %s NOT detected at 0x%02X\r\n", name, addr);
+        INFO_PRINT("%s ✗ %s NOT detected at 0x%02X\r\n", INIT_TASK_TAG, name, addr);
     }
 
     return present;
@@ -169,10 +171,10 @@ static bool probe_mcps(void) {
     bool selection_ok = probe_i2c_device(i2c0, MCP_SELECTION_ADDR, "Selection MCP23017");
 
     if (relay_ok && display_ok && selection_ok) {
-        INFO_PRINT("[InitTask] All MCP23017s detected\r\n");
+        INFO_PRINT("%s ✓ All MCP23017s detected\r\n", INIT_TASK_TAG);
         return true;
     } else {
-        INFO_PRINT("[InitTask] WARNING: Some MCP23017s missing!\r\n");
+        INFO_PRINT("%s ✗ WARNING: Some MCP23017s missing!\r\n", INIT_TASK_TAG);
         return false;
     }
 }
@@ -235,7 +237,7 @@ static void InitTask(void *pvParameters) {
     }
 
     /* ===== Banner (after logger is ready; never before) ===== */
-    INFO_PRINT("\r\n");
+    log_printf("\r\n");
     INFO_PRINT("========================================\r\n");
     INFO_PRINT("  ENERGIS PDU - System Bring-Alive\r\n");
     INFO_PRINT("========================================\r\n");
@@ -244,7 +246,7 @@ static void InitTask(void *pvParameters) {
     INFO_PRINT("========================================\r\n\r\n");
 
     /* ===== PHASE 1: Hardware Initialization ===== */
-    INFO_PRINT("[InitTask] Phase 1: Hardware Init\r\n");
+    INFO_PRINT("%s ===== Phase 1: Hardware Init =====\r\n", INIT_TASK_TAG);
 
     init_gpio();
     init_i2c();
@@ -255,20 +257,22 @@ static void InitTask(void *pvParameters) {
     vTaskDelay(pdMS_TO_TICKS(100));
 
     /* ===== PHASE 2: Peripheral Probing (non-blocking; HLW deferred) ===== */
-    INFO_PRINT("\r\n[InitTask] Phase 2: Peripheral Probing\r\n");
+    log_printf("\r\n");
+    INFO_PRINT("%s ===== Phase 2: Peripheral Probing =====\r\n", INIT_TASK_TAG);
     (void)probe_mcps();
     (void)probe_eeprom();
 
     /* ===== PHASE 3: Deterministic Subsystem Bring-up (keep your order) ===== */
-    INFO_PRINT("\r\n[InitTask] Phase 3: Subsystem Bring-up (deterministic)\r\n");
+    log_printf("\r\n");
+    INFO_PRINT("%s ===== Phase 3: Subsystem Bring-up (deterministic) =====\r\n", INIT_TASK_TAG);
     const TickType_t step_timeout = pdMS_TO_TICKS(5000);
     const TickType_t poll_10ms = pdMS_TO_TICKS(10);
 
     /* 1) Logger (already started above, just report state) */
     if (Logger_IsReady())
-        INFO_PRINT("[InitTask] LoggerTask ready\r\n");
+        INFO_PRINT("%s LoggerTask ready\r\n", INIT_TASK_TAG);
     else
-        ERROR_PRINT("[InitTask] ERROR: Logger not ready (timeout)\r\n");
+        ERROR_PRINT("%s ERROR: Logger not ready (timeout)\r\n", INIT_TASK_TAG);
 
     /* 2) Console */
     ConsoleTask_Init(true);
@@ -278,9 +282,9 @@ static void InitTask(void *pvParameters) {
             vTaskDelay(poll_10ms);
         }
         if (Console_IsReady())
-            INFO_PRINT("[InitTask] ConsoleTask ready\r\n");
+            INFO_PRINT("%s ConsoleTask ready\r\n", INIT_TASK_TAG);
         else
-            ERROR_PRINT("[InitTask] ConsoleTask not ready (timeout)\r\n");
+            ERROR_PRINT("%s ConsoleTask not ready (timeout)\r\n", INIT_TASK_TAG);
     }
 
     /* 3) Storage */
@@ -291,9 +295,9 @@ static void InitTask(void *pvParameters) {
             vTaskDelay(poll_10ms);
         }
         if (Storage_IsReady())
-            INFO_PRINT("[InitTask] StorageTask ready\r\n");
+            INFO_PRINT("%s StorageTask ready\r\n", INIT_TASK_TAG);
         else
-            ERROR_PRINT("[InitTask] StorageTask not ready (timeout)\r\n");
+            ERROR_PRINT("%s StorageTask not ready (timeout)\r\n", INIT_TASK_TAG);
     }
 
     /* 4) Button */
@@ -308,15 +312,15 @@ static void InitTask(void *pvParameters) {
         }
 
         if (Button_IsReady()) {
-            INFO_PRINT("[InitTask] ButtonTask ready\r\n");
+            INFO_PRINT("%s ButtonTask ready\r\n", INIT_TASK_TAG);
         } else {
-            ERROR_PRINT("[InitTask] ButtonTask NOT ready (timeout) — continuing boot\r\n");
+            ERROR_PRINT("%s ButtonTask NOT ready (timeout) — continuing boot\r\n", INIT_TASK_TAG);
         }
     }
 
     /* 5) Network */
     if (NetTask_Init(true) != pdPASS) {
-        ERROR_PRINT("[InitTask] Failed to create NetTask\r\n");
+        ERROR_PRINT("%s Failed to create NetTask\r\n", INIT_TASK_TAG);
     }
     {
         TickType_t t0 = xTaskGetTickCount();
@@ -324,14 +328,14 @@ static void InitTask(void *pvParameters) {
             vTaskDelay(poll_10ms);
         }
         if (Net_IsReady())
-            INFO_PRINT("[InitTask] NetTask ready\r\n");
+            INFO_PRINT("%s NetTask ready\r\n", INIT_TASK_TAG);
         else
-            ERROR_PRINT("[InitTask] NetTask not ready (timeout)\r\n");
+            ERROR_PRINT("%s NetTask not ready (timeout)\r\n", INIT_TASK_TAG);
     }
 
     /* 6) Meter (HLW handled asynchronously by the task) */
     if (MeterTask_Init(true) != pdPASS) {
-        ERROR_PRINT("[InitTask] Failed to create MeterTask\r\n");
+        ERROR_PRINT("%s Failed to create MeterTask\r\n", INIT_TASK_TAG);
     }
     {
         TickType_t t0 = xTaskGetTickCount();
@@ -339,22 +343,23 @@ static void InitTask(void *pvParameters) {
             vTaskDelay(poll_10ms);
         }
         if (Meter_IsReady())
-            INFO_PRINT("[InitTask] MeterTask ready\r\n");
+            INFO_PRINT("%s MeterTask ready\r\n", INIT_TASK_TAG);
         else
-            ERROR_PRINT("[InitTask] MeterTask not ready (timeout)\r\n");
+            ERROR_PRINT("%s MeterTask not ready (timeout)\r\n", INIT_TASK_TAG);
     }
 
     /* ===== PHASE 4: Configuration Load & Distribution ===== */
-    INFO_PRINT("\r\n[InitTask] Phase 4: Configuration Load\r\n");
+    log_printf("\r\n");
+    INFO_PRINT("%s ===== Phase 4: Configuration Load =====\r\n", INIT_TASK_TAG);
     if (!storage_wait_ready(10000)) {
-        ERROR_PRINT("[InitTask] Storage config NOT ready, using defaults\r\n");
+        ERROR_PRINT("%s Storage config NOT ready, using defaults\r\n", INIT_TASK_TAG);
     } else {
-        INFO_PRINT("[InitTask] Storage config ready\r\n");
+        INFO_PRINT("%s Storage config ready\r\n", INIT_TASK_TAG);
     }
 
     networkInfo ni;
     if (storage_get_network(&ni)) {
-        INFO_PRINT("[InitTask] Saved Network config: \r\n");
+        INFO_PRINT("%s Saved Network config: \r\n", INIT_TASK_TAG);
         INFO_PRINT("                 IP  : %u.%u.%u.%u\r\n", ni.ip[0], ni.ip[1], ni.ip[2],
                    ni.ip[3]);
         INFO_PRINT("                 SM  : %u.%u.%u.%u\r\n", ni.sn[0], ni.sn[1], ni.sn[2],
@@ -366,7 +371,8 @@ static void InitTask(void *pvParameters) {
     }
 
     /* ===== PHASE 5: Finalization ===== */
-    INFO_PRINT("[InitTask] Finalization: entering\r\n");
+    log_printf("\r\n");
+    INFO_PRINT("%s ===== Finalization: entering =====\r\n", INIT_TASK_TAG);
 
     /* ===== Health task wiring (register existing tasks, then start) ===== */
     {
@@ -388,10 +394,6 @@ static void InitTask(void *pvParameters) {
         if (h)
             Health_RegisterTask(HEALTH_ID_BUTTON, h, "ButtonTask");
 
-        // h = xTaskGetHandle("Switch");
-        // if (h)
-        //     Health_RegisterTask(HEALTH_ID_SWITCH, h, "SwitchTask");
-
         h = xTaskGetHandle("Net");
         if (h)
             Health_RegisterTask(HEALTH_ID_NET, h, "NetTask");
@@ -400,20 +402,35 @@ static void InitTask(void *pvParameters) {
         if (h)
             Health_RegisterTask(HEALTH_ID_METER, h, "MeterTask");
 
-        HealthTask_Start();
+        /* Start Health only after Meter is actually ready */
+        if (!Meter_IsReady()) {
+            INFO_PRINT("%s Waiting for Meter to be ready before starting Health...\r\n",
+                       INIT_TASK_TAG);
+            const TickType_t t0 = xTaskGetTickCount();
+            const TickType_t max_wait = pdMS_TO_TICKS(30000); /* give it up to 30 s */
+            while (!Meter_IsReady() && (xTaskGetTickCount() - t0) < max_wait) {
+                vTaskDelay(pdMS_TO_TICKS(50));
+            }
+        }
+
+        if (Meter_IsReady()) {
+            HealthTask_Start();
+        } else {
+            WARNING_PRINT("%s Meter not ready after wait; NOT starting Health.\r\n", INIT_TASK_TAG);
+        }
     }
 
-    INFO_PRINT("\r\n[InitTask] System bring-alive complete\r\n");
-    INFO_PRINT("========================================\r\n");
-    INFO_PRINT("SYSTEM READY\r\n");
-    INFO_PRINT("========================================\r\n\r\n");
+    log_printf("\r\n");
+    INFO_PRINT("%s System bring-alive complete =====\r\n\r\n", INIT_TASK_TAG);
+    INFO_PRINT("==========================================\r\n");
+    INFO_PRINT("               SYSTEM READY               \r\n");
+    INFO_PRINT("==========================================\r\n\r\n");
 
-    INFO_PRINT("========================================\r\n");
+    DEBUG_PRINT("==========================================\r\n");
     // xEventGroupWaitBits(cfgEvents, CFG_READY_BIT, pdFALSE, pdTRUE, portMAX_DELAY);
-    INFO_PRINT("[InitTask] Crash logs:\r\n");
+    DEBUG_PRINT("%s Crash logs:\r\n", INIT_TASK_TAG);
     Helpers_LateBootDumpAndClear();
-    INFO_PRINT("========================================\r\n\r\n");
-
+    DEBUG_PRINT("==========================================\r\n\r\n");
     vTaskDelete(NULL);
 }
 

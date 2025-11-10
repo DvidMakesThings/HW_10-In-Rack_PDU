@@ -282,7 +282,7 @@ BaseType_t MeterTask_Init(bool enable) {
     INFO_PRINT("%s MeterTask started\r\n", METER_TASK_TAG);
 
     BaseType_t result = xTaskCreate(MeterTask_Loop, "MeterTask", METER_TASK_STACK_SIZE, NULL,
-                                    METER_TASK_PRIORITY, &meterTaskHandle);
+                                    METERTASK_PRIORITY, &meterTaskHandle);
 
     if (result == pdPASS) {
         METER_READY() = true;
