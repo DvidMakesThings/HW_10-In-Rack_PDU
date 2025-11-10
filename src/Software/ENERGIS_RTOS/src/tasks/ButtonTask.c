@@ -220,36 +220,29 @@ static void vButtonTask(void *arg) {
     s_window_active = false;
 
     const TickType_t scan_ticks = pdMS_TO_TICKS(BTN_SCAN_PERIOD_MS);
-
-    static uint32_t hb_btn_ms = 0;
+    uint32_t hb_btn_ms = now_ms();
 
     for (;;) {
-        uint32_t __now = to_ms_since_boot(get_absolute_time());
-        if ((__now - hb_btn_ms) >= BUTTONTASKBEAT_MS) {
-            hb_btn_ms = __now;
+        uint32_t now = now_ms();
+
+        /* Heartbeat */
+        if ((now - hb_btn_ms) >= (uint32_t)BUTTONTASKBEAT_MS) {
+            hb_btn_ms = now;
             Health_Heartbeat(HEALTH_ID_BUTTON);
         }
 
-        /* Sample raw levels (true = not pressed) */
-        bool r_plus = ButtonDrv_ReadPlus();
-        bool r_minus = ButtonDrv_ReadMinus();
-        bool r_set = ButtonDrv_ReadSet();
-        (void)r_plus;
-        (void)r_minus;
-        (void)r_set;
-
-        /* Debounce -> edges */
-        deb_edge_t e_plus = deb_update(&s_plus, ButtonDrv_ReadPlus(), t0);
-        deb_edge_t e_minus = deb_update(&s_minus, ButtonDrv_ReadMinus(), t0);
-        deb_edge_t e_set = deb_update(&s_set, ButtonDrv_ReadSet(), t0);
+        /* Debounce using current timebase */
+        deb_edge_t e_plus = deb_update(&s_plus, ButtonDrv_ReadPlus(), now);
+        deb_edge_t e_minus = deb_update(&s_minus, ButtonDrv_ReadMinus(), now);
+        deb_edge_t e_set = deb_update(&s_set, ButtonDrv_ReadSet(), now);
 
         /* PLUS */
         if (e_plus.fell) {
             if (!s_window_active) {
-                window_open(t0); /* open only, no step */
+                window_open(now); /* open only, no step */
             } else {
                 ButtonDrv_SelectRight((uint8_t *)&s_selected, true);
-                window_refresh(t0);
+                window_refresh(now);
             }
             emit(BTN_EV_PLUS_FALL);
         }
@@ -260,10 +253,10 @@ static void vButtonTask(void *arg) {
         /* MINUS */
         if (e_minus.fell) {
             if (!s_window_active) {
-                window_open(t0); /* open only, no step */
+                window_open(now); /* open only, no step */
             } else {
                 ButtonDrv_SelectLeft((uint8_t *)&s_selected, true);
-                window_refresh(t0);
+                window_refresh(now);
             }
             emit(BTN_EV_MINUS_FALL);
         }
@@ -274,31 +267,36 @@ static void vButtonTask(void *arg) {
         /* SET short/long */
         if (e_set.fell) {
             s_set.latched_press = true; /* candidate for long */
-            /* Do NOT open window here; wait until we know if short */
+            /* do not open window yet; only on short */
         }
+
+        /* Long-press detection while still held */
         if (!s_set.stable && s_set.latched_press) {
-            uint32_t held_ms = (uint32_t)(t0 - s_set.stable_since);
+            uint32_t held_ms = (uint32_t)(now - s_set.stable_since);
             if (held_ms >= (uint32_t)LONGPRESS_DT) {
-                /* Long press resolves here: never open the window */
+                /* Long press: never opens window; act only if window is already open */
                 s_set.latched_press = false;
-                ButtonDrv_DoSetLong();
-                emit(BTN_EV_SET_LONG);
-                /* If window was open already, we can optionally close it;
-                   spec says long never opens; it does not forbid closing. */
-                window_close();
+                if (s_window_active) {
+                    ButtonDrv_DoSetLong();
+                    emit(BTN_EV_SET_LONG);
+                    window_close();
+                }
             }
         }
+
         if (e_set.rose) {
             if (s_set.latched_press) {
-                /* Short press resolved */
-                s_set.latched_press = false;
+                s_set.latched_press = false; /* resolves as short */
                 if (!s_window_active) {
-                    window_open(t0); /* Open on short if idle */
+                    /* First interaction: open window ONLY, no action */
+                    window_open(now);
+                    /* no BTN_EV_SET_SHORT emit here since no action performed */
                 } else {
-                    window_refresh(t0);
+                    /* Window already open -> perform short action */
+                    window_refresh(now);
+                    ButtonDrv_DoSetShort(s_selected);
+                    emit(BTN_EV_SET_SHORT);
                 }
-                ButtonDrv_DoSetShort(s_selected);
-                emit(BTN_EV_SET_SHORT);
             }
         }
 
@@ -350,7 +348,7 @@ BaseType_t ButtonTask_Init(bool enable) {
     }
 
     /* Spawn the scanner task */
-    if (xTaskCreate(vButtonTask, "ButtonTask", 1024, NULL, tskIDLE_PRIORITY + 2, NULL) != pdPASS) {
+    if (xTaskCreate(vButtonTask, "ButtonTask", 1024, NULL, BUTTONTASK_PRIORITY, NULL) != pdPASS) {
         return pdFAIL;
     }
 

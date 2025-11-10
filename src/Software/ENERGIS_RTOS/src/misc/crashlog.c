@@ -233,7 +233,7 @@ void CrashLog_PrintAndClearOnBoot(void) {
             uint8_t idx = (uint8_t)((start + i) % CRASH_FEED_RING);
             CRASH_LOG(" %lu", (unsigned long)s_crash.wdt_feed_delta_ms[idx]);
         }
-        CRASH_LOG("\r\n");
+        log_printf("\r\n");
     } else {
         CRASH_LOG("  wdt_deltas[0]\r\n");
     }

@@ -39,7 +39,6 @@ typedef struct {
 } meter_telemetry_t;
 
 /* =====================  Task Configuration  =========================== */
-#define METER_TASK_PRIORITY 19
 #define METER_TASK_STACK_SIZE 512
 #define METER_POLL_RATE_HZ 25        /**< Polling rate: 25 Hz (40 ms period) */
 #define METER_AVERAGE_WINDOW_MS 1000 /**< Rolling average window: 1 second */

@@ -127,7 +127,7 @@ static void NetTask_Function(void *pvParameters) {
     if (!net_apply_config_and_init(&neti)) {
         uint8_t mr = getMR();
         if (mr & MR_PB)
-            setMR(mr & ~MR_PB); /* Disable ping block if set */
+            setMR(mr & ~MR_PB);
         ERROR_PRINT("%s Ethernet init failed, entering safe loop\r\n", NET_TASK_TAG);
         for (;;) {
             uint32_t __now = to_ms_since_boot(get_absolute_time());
@@ -141,14 +141,14 @@ static void NetTask_Function(void *pvParameters) {
 
     INFO_PRINT("%s Ethernet up, starting HTTP server\r\n", NET_TASK_TAG);
 
-    /* 3a) Wait for link-up, but keep heartbeating while we wait */
+    /* 3a) Wait for link-up, beat while waiting */
     (void)wait_for_link_up(5000);
 
     /* 4a) Start HTTP server */
     http_server_init();
     Health_Heartbeat(HEALTH_ID_NET);
 
-    /* 4b) Start SNMP agent (uses sockets defined in CONFIG.h) */
+    /* 4b) Start SNMP agent */
     if (!SNMP_Init(SNMP_SOCKET_NUM, SNMP_PORT_AGENT, TRAP_SOCKET_NUM)) {
         ERROR_PRINT("[SNMP] init failed\r\n");
     } else {
@@ -172,10 +172,10 @@ static void NetTask_Function(void *pvParameters) {
         if (dt > 750)
             Health_RecordBlocked("http_server_process", dt);
 
-        vTaskDelay(pdMS_TO_TICKS(1)); /* prevent tight spin under heavy polling */
+        vTaskDelay(pdMS_TO_TICKS(1));
         taskYIELD();
 
-        /* SNMP service: tick + poll a couple of PDUs per cycle */
+        /* SNMP service */
         t0 = to_ms_since_boot(get_absolute_time());
         SNMP_Tick10ms();
         (void)SNMP_Poll(2);
@@ -224,7 +224,8 @@ BaseType_t NetTask_Init(bool enable) {
     }
 
     /* Create the task with a handle name that matches InitTask registration */
-    BaseType_t result = xTaskCreate(NetTask_Function, "Net", 4096, NULL, 3, &netTaskHandle);
+    BaseType_t result =
+        xTaskCreate(NetTask_Function, "Net", 4096, NULL, NETTASK_PRIORITY, &netTaskHandle);
     if (result == pdPASS) {
         INFO_PRINT("%s Task created successfully\r\n", NET_TASK_TAG);
         NET_READY() = true;

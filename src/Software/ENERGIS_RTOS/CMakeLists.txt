@@ -110,8 +110,6 @@ target_link_libraries(ENERGIS_RTOS
     hardware_adc
 )
 
-target_compile_definitions(ENERGIS_RTOS PRIVATE CFG_TUSB_DEBUG=1)
-
 target_link_options(ENERGIS_RTOS PRIVATE
   -Wl,--wrap=watchdog_reboot
   -Wl,--wrap=abort
@@ -127,13 +125,17 @@ target_link_options(ENERGIS_RTOS PRIVATE
   -Wl,--trace-symbol,hard_assertion_failure
   -Wl,--trace-symbol,invalid_params
   -Wl,--trace-symbol,reset_usb_boot
+  -Wl,--wrap=runtime_unreset_core
+  -Wl,--wrap=runtime_reboot
+  -Wl,--wrap=__NVIC_SystemReset
+  -Wl,--wrap=scb_reboot
 )
 
 # ----------------------------- Pico settings -------------------------------
 pico_set_program_name(ENERGIS_RTOS "ENERGIS_RTOS")
 pico_set_program_version(ENERGIS_RTOS "0.1")
 
-pico_enable_stdio_uart(ENERGIS_RTOS 0)
 pico_enable_stdio_usb(ENERGIS_RTOS 1)
+pico_enable_stdio_uart(ENERGIS_RTOS 0)
 
 pico_add_extra_outputs(ENERGIS_RTOS)

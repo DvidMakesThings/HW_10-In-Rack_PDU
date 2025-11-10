@@ -31,7 +31,7 @@ static inline void net_beat(void) { Health_Heartbeat(HEALTH_ID_NET); }
 #define HTTP_BUF_SIZE 2048
 #define HTTP_SOCK_NUM 0
 
-#define HTTP_SERVER_TAG "<SERVER>"
+#define HTTP_SERVER_TAG "[SERVER]"
 
 #define TX_WINDOW_MS 1200
 
@@ -59,10 +59,17 @@ static void send_http_response(uint8_t sock, const char *content_type, const cha
                               "Connection: close\r\n"
                               "\r\n",
                               content_type, body_len);
+    if (header_len < 0)
+        return;
+    if (header_len > (int)sizeof(header))
+        header_len = (int)sizeof(header);
+
     send(sock, (uint8_t *)header, header_len);
     net_beat();
-    send(sock, (uint8_t *)body, body_len);
-    net_beat();
+    if (body && body_len > 0) {
+        send(sock, (uint8_t *)body, body_len);
+        net_beat();
+    }
 }
 
 /**
@@ -203,10 +210,9 @@ bool http_server_init(void) {
  * @return None
  *
  * @details
- * - Routes GET/POST to the respective handlers.
- * - After responding, proactively closes and reopens the listener.
- * - Adds a safety guard: if TX free space makes no forward progress for a short window,
- *   the connection is dropped to prevent long stalls from starving NetTask.
+ * - Routes GET and POST to handlers.
+ * - Drops stalled peers if TX FSR makes no progress for TX_WINDOW_MS.
+ * - Always closes connection after response.
  */
 void http_server_process(void) {
     /* TX progress watchdog for idle or stalled peers */
@@ -268,15 +274,24 @@ void http_server_process(void) {
             char header[256];
             const int hlen = snprintf(header, sizeof(header),
                                       "HTTP/1.1 200 OK\r\n"
-                                      "Content-Type: text/html; charset=utf-8\r\n"
+                                      "Content-Type: text/html\r\n"
                                       "Content-Length: %d\r\n"
                                       "Access-Control-Allow-Origin: *\r\n"
                                       "Cache-Control: no-cache\r\n"
                                       "Connection: close\r\n"
                                       "\r\n",
                                       plen);
-            send(http_sock, (uint8_t *)header, hlen);
-            send(http_sock, (uint8_t *)page, plen);
+            int hsend = hlen;
+            if (hsend < 0)
+                hsend = 0;
+            if (hsend > (int)sizeof(header))
+                hsend = (int)sizeof(header);
+            send(http_sock, (uint8_t *)header, hsend);
+            net_beat();
+            if (plen > 0) {
+                send(http_sock, (uint8_t *)page, (uint16_t)plen);
+                net_beat();
+            }
         }
 
         disconnect(http_sock);
@@ -284,10 +299,6 @@ void http_server_process(void) {
         http_sock = socket(HTTP_SOCK_NUM, Sn_MR_TCP, HTTP_PORT, 0);
         if ((int)http_sock >= 0)
             listen(http_sock);
-
-        /* Reset progress tracker after recycling the socket */
-        s_last_tx_check = xTaskGetTickCount();
-        s_last_fsr = 0;
         break;
     }
 
@@ -297,16 +308,10 @@ void http_server_process(void) {
         http_sock = socket(HTTP_SOCK_NUM, Sn_MR_TCP, HTTP_PORT, 0);
         if ((int)http_sock >= 0)
             listen(http_sock);
-        s_last_tx_check = xTaskGetTickCount();
-        s_last_fsr = 0;
         break;
 
-    case SOCK_CLOSED:
-        http_sock = socket(HTTP_SOCK_NUM, Sn_MR_TCP, HTTP_PORT, 0);
-        if ((int)http_sock >= 0)
-            listen(http_sock);
-        s_last_tx_check = xTaskGetTickCount();
-        s_last_fsr = 0;
+    case SOCK_INIT:
+        listen(http_sock);
         break;
 
     default:

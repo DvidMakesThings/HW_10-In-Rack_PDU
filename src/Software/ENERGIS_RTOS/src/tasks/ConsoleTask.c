@@ -126,15 +126,54 @@ static void cmd_help(void) {
 }
 
 /**
- * @brief Enter BOOTSEL mode (USB bootloader) on next reboot.
+ * @brief Enter BOOTSEL (USB ROM bootloader) now, robustly.
+ *        Flush CDC, stop scheduling, disconnect USB, then jump.
  */
 static void cmd_bootsel(void) {
-    ECHO("Entering BOOTSEL mode on next reboot...\n");
-    bootloader_trigger = 0xDEADBEEF; /* place in .noinit */
-    /* optional: Health_LogIntent("BOOTSEL"); */
-    vTaskDelay(pdMS_TO_TICKS(50));
-    reset_usb_boot(0, 0); /* immediate jump to BOOTSEL */
-    for (;;) {}           /* not reached */
+    ECHO("Entering BOOTSEL mode now...\n");
+
+    /* Optional breadcrumb if you read noinit on next cold boot */
+    bootloader_trigger = 0xDEADBEEF;
+
+    /* Give host a moment to read the last line */
+    vTaskDelay(pdMS_TO_TICKS(20));
+
+    /* Flush stdio USB if present */
+#if PICO_STDIO_USB
+    extern void stdio_usb_flush(void);
+    stdio_usb_flush();
+#endif
+
+    /* Try TinyUSB CDC flush if linked */
+#ifdef CFG_TUD_CDC
+    extern bool tud_cdc_connected(void);
+    extern uint32_t tud_task_interval_ms;
+    extern void tud_task(void);
+    extern void tud_cdc_write_flush(void);
+    for (int i = 0; i < 10; i++) {
+        tud_cdc_write_flush();
+        tud_task();
+        busy_wait_ms(2);
+    }
+#endif
+
+    /* Stop everyone else from running mid-transition */
+    taskENTER_CRITICAL();
+    vTaskSuspendAll();
+
+    /* Best effort: disconnect from USB to force re-enumeration on host */
+#if PICO_STDIO_USB
+    extern void tud_disconnect(void);
+    tud_disconnect(); /* ignore if not linked */
+#endif
+    busy_wait_ms(40); /* let host notice the drop */
+
+    /* Jump to ROM bootloader */
+    reset_usb_boot(0, 0);
+
+    /* Should never return; if it does, park CPU */
+    for (;;)
+        __asm volatile("wfi");
 }
 
 /**
@@ -906,7 +945,7 @@ static void ConsoleTask(void *arg) {
                     dispatch_command(line_buf);
                     line_len = 0;
                 }
-                ECHO("\r\n");
+                log_printf("\r\n");
             } else if (line_len < (int)(sizeof(line_buf) - 1)) {
                 line_buf[line_len++] = ch;
             }
@@ -965,7 +1004,7 @@ BaseType_t ConsoleTask_Init(bool enable) {
     }
 
     extern void ConsoleTask(void *arg);
-    if (xTaskCreate(ConsoleTask, "Console", 1024, NULL, 2, NULL) != pdPASS) {
+    if (xTaskCreate(ConsoleTask, "Console", 1024, NULL, CONSOLETASK_PRIORITY, NULL) != pdPASS) {
         ERROR_PRINT("[Console] Failed to create task\r\n");
         return pdFAIL;
     }
