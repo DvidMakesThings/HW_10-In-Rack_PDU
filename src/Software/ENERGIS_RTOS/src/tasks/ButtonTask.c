@@ -221,8 +221,14 @@ static void vButtonTask(void *arg) {
 
     const TickType_t scan_ticks = pdMS_TO_TICKS(BTN_SCAN_PERIOD_MS);
 
+    static uint32_t hb_btn_ms = 0;
+
     for (;;) {
-        uint32_t t = now_ms();
+        uint32_t now = now_ms();
+        if ((now - hb_btn_ms) >= 500) {
+            hb_btn_ms = now;
+            Health_Heartbeat(HEALTH_ID_BUTTON);
+        }
 
         /* Sample raw levels (true = not pressed) */
         bool r_plus = ButtonDrv_ReadPlus();
@@ -233,17 +239,17 @@ static void vButtonTask(void *arg) {
         (void)r_set;
 
         /* Debounce -> edges */
-        deb_edge_t e_plus = deb_update(&s_plus, ButtonDrv_ReadPlus(), t);
-        deb_edge_t e_minus = deb_update(&s_minus, ButtonDrv_ReadMinus(), t);
-        deb_edge_t e_set = deb_update(&s_set, ButtonDrv_ReadSet(), t);
+        deb_edge_t e_plus = deb_update(&s_plus, ButtonDrv_ReadPlus(), t0);
+        deb_edge_t e_minus = deb_update(&s_minus, ButtonDrv_ReadMinus(), t0);
+        deb_edge_t e_set = deb_update(&s_set, ButtonDrv_ReadSet(), t0);
 
         /* PLUS */
         if (e_plus.fell) {
             if (!s_window_active) {
-                window_open(t); /* open only, no step */
+                window_open(t0); /* open only, no step */
             } else {
                 ButtonDrv_SelectRight((uint8_t *)&s_selected, true);
-                window_refresh(t);
+                window_refresh(t0);
             }
             emit(BTN_EV_PLUS_FALL);
         }
@@ -254,10 +260,10 @@ static void vButtonTask(void *arg) {
         /* MINUS */
         if (e_minus.fell) {
             if (!s_window_active) {
-                window_open(t); /* open only, no step */
+                window_open(t0); /* open only, no step */
             } else {
                 ButtonDrv_SelectLeft((uint8_t *)&s_selected, true);
-                window_refresh(t);
+                window_refresh(t0);
             }
             emit(BTN_EV_MINUS_FALL);
         }
@@ -271,7 +277,7 @@ static void vButtonTask(void *arg) {
             /* Do NOT open window here; wait until we know if short */
         }
         if (!s_set.stable && s_set.latched_press) {
-            uint32_t held_ms = (uint32_t)(t - s_set.stable_since);
+            uint32_t held_ms = (uint32_t)(t0 - s_set.stable_since);
             if (held_ms >= (uint32_t)LONGPRESS_DT) {
                 /* Long press resolves here: never open the window */
                 s_set.latched_press = false;
@@ -287,9 +293,9 @@ static void vButtonTask(void *arg) {
                 /* Short press resolved */
                 s_set.latched_press = false;
                 if (!s_window_active) {
-                    window_open(t); /* Open on short if idle */
+                    window_open(t0); /* Open on short if idle */
                 } else {
-                    window_refresh(t);
+                    window_refresh(t0);
                 }
                 ButtonDrv_DoSetShort(s_selected);
                 emit(BTN_EV_SET_SHORT);
@@ -338,7 +344,8 @@ BaseType_t ButtonTask_Init(bool enable) {
             xTimerCreate("btn_blink", pdMS_TO_TICKS(SELECT_BLINK_MS), pdTRUE, NULL, vBlinkTimerCb);
         if (!s_blink_timer)
             return pdFAIL;
-        if (xTimerStart(s_blink_timer, 0) != pdPASS)
+        /* avoid 0 block time & let lower prio run */
+        if (xTimerStart(s_blink_timer, pdMS_TO_TICKS(10)) != pdPASS)
             return pdFAIL;
     }
 

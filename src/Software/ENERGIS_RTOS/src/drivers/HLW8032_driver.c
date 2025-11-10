@@ -696,7 +696,7 @@ bool hlw8032_get_calibration(uint8_t channel, hlw_calib_t *calib) {
 void hlw8032_print_calibration(uint8_t channel) {
     if (channel >= 8)
         return;
-    /* Logging via queue recommended instead of direct printf */
+    /* Logging via queue recommended instead of direct log_printf */
     /* const hlw_calib_t *c = &channel_calib[channel]; */
     /* Send to logger queue instead of ECHO */
 }

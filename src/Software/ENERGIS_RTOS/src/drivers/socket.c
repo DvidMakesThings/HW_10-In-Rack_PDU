@@ -281,68 +281,19 @@ int8_t listen(uint8_t sn) {
 }
 
 /**
- * @brief Connect to remote server (TCP client)
- *
- * @param sn Socket number
- * @param addr Remote IP address (4 bytes)
- * @param port Remote port number
- * @return SOCK_OK on success, SOCK_BUSY if in progress, negative on error
- */
-int8_t connect(uint8_t sn, uint8_t *addr, uint16_t port) {
-    CHECK_SOCKNUM();
-    CHECK_SOCKMODE(Sn_MR_TCP);
-    CHECK_SOCKINIT();
-
-    /* Validate IP address */
-    uint32_t taddr;
-    taddr = ((uint32_t)addr[0] & 0x000000FF);
-    taddr = (taddr << 8) + ((uint32_t)addr[1] & 0x000000FF);
-    taddr = (taddr << 8) + ((uint32_t)addr[2] & 0x000000FF);
-    taddr = (taddr << 8) + ((uint32_t)addr[3] & 0x000000FF);
-    if (taddr == 0xFFFFFFFF || taddr == 0)
-        return SOCKERR_IPINVALID;
-
-    /* Validate port */
-    if (port == 0)
-        return SOCKERR_PORTZERO;
-
-    /* Set destination IP and port */
-    setSn_DIPR(sn, addr);
-    setSn_DPORT(sn, port);
-
-    /* Issue CONNECT command */
-    setSn_CR(sn, Sn_CR_CONNECT);
-    while (getSn_CR(sn))
-        vTaskDelay(pdMS_TO_TICKS(1));
-
-    /* Non-blocking mode: return immediately */
-    if (sock_io_mode & (1 << sn))
-        return SOCK_BUSY;
-
-    /* Blocking mode: wait for connection */
-    while (getSn_SR(sn) != SOCK_ESTABLISHED) {
-        if (getSn_IR(sn) & Sn_IR_TIMEOUT) {
-            setSn_IR(sn, Sn_IR_TIMEOUT);
-            return SOCKERR_TIMEOUT;
-        }
-        if (getSn_SR(sn) == SOCK_CLOSED) {
-            return SOCKERR_SOCKCLOSED;
-        }
-        vTaskDelay(pdMS_TO_TICKS(10));
-    }
-
-    W5500_SOCK_DBG("[Socket %u] Connected to %u.%u.%u.%u:%u\r\n", sn, addr[0], addr[1], addr[2],
-                   addr[3], port);
-    return SOCK_OK;
-}
-
-/**
  * @brief Send data over TCP socket
  *
  * @param sn Socket number
  * @param buf Pointer to data buffer
  * @param len Number of bytes to send
  * @return Number of bytes sent, or negative error code
+ *
+ * @details
+ * - Sends up to @p len bytes on a connected TCP socket.
+ * - Preserves blocking semantics when TX space becomes available within a short, bounded slice.
+ * - If TX space does not become available quickly, returns @ref SOCK_BUSY so upper layers can yield
+ * and retry.
+ * - Never waits unbounded for remote window growth; avoids long stalls when the peer is idle.
  */
 int32_t send(uint8_t sn, uint8_t *buf, uint16_t len) {
     uint8_t tmp = 0;
@@ -376,23 +327,30 @@ int32_t send(uint8_t sn, uint8_t *buf, uint16_t len) {
     if (len > freesize)
         len = freesize;
 
-    /* Wait for TX buffer space */
-    while (1) {
-        freesize = getSn_TX_FSR(sn);
-        tmp = getSn_SR(sn);
+    /* Wait (bounded) for TX buffer space to fit 'len' */
+    {
+        TickType_t t0 = xTaskGetTickCount();
+        for (;;) {
+            freesize = getSn_TX_FSR(sn);
+            tmp = getSn_SR(sn);
 
-        if ((tmp != SOCK_ESTABLISHED) && (tmp != SOCK_CLOSE_WAIT)) {
-            closesocket(sn);
-            return SOCKERR_SOCKSTATUS;
+            if ((tmp != SOCK_ESTABLISHED) && (tmp != SOCK_CLOSE_WAIT)) {
+                closesocket(sn);
+                return SOCKERR_SOCKSTATUS;
+            }
+
+            if ((sock_io_mode & (1 << sn)) && (len > freesize))
+                return SOCK_BUSY;
+
+            if (len <= freesize)
+                break;
+
+            /* Bounded cooperative wait: yield briefly, then let caller retry */
+            if ((xTaskGetTickCount() - t0) >= pdMS_TO_TICKS(10))
+                return SOCK_BUSY;
+
+            vTaskDelay(pdMS_TO_TICKS(1));
         }
-
-        if ((sock_io_mode & (1 << sn)) && (len > freesize))
-            return SOCK_BUSY;
-
-        if (len <= freesize)
-            break;
-
-        vTaskDelay(pdMS_TO_TICKS(1));
     }
 
     /* Write data to TX buffer */

@@ -45,6 +45,7 @@ static bool wait_for_link_up(uint32_t timeout_ms) {
     while (w5500_get_link_status() != PHY_LINK_ON) {
         if (xTaskGetTickCount() - start >= timeout)
             return false;
+        Health_Heartbeat(HEALTH_ID_NET);
         vTaskDelay(pdMS_TO_TICKS(100));
     }
     return true;
@@ -70,15 +71,14 @@ static bool net_apply_config_and_init(const networkInfo *ni) {
         ERROR_PRINT("%s w5500_hw_init failed\r\n", NET_TASK_TAG);
         return false;
     }
+    Health_Heartbeat(HEALTH_ID_NET);
 
     /* Map StorageTask schema to driver and init chip */
     if (!ethernet_apply_network_from_storage(ni)) {
         ERROR_PRINT("%s ethernet_apply_network_from_storage failed\r\n", NET_TASK_TAG);
         return false;
     }
-
-    /* Optional: print current network to logs */
-    /* driver prints internally or we can call w5500_print_network if needed */
+    Health_Heartbeat(HEALTH_ID_NET);
 
     return true;
 }
@@ -101,9 +101,17 @@ static void NetTask_Function(void *pvParameters) {
     INFO_PRINT("%s Task started\r\n", NET_TASK_TAG);
 
     /* 1) Wait for configuration to be ready */
+    static uint32_t hb_net_ms = 0;
     while (!storage_wait_ready(5000)) {
+        uint32_t __now = to_ms_since_boot(get_absolute_time());
+        if ((__now - hb_net_ms) >= 250) {
+            hb_net_ms = __now;
+            Health_Heartbeat(HEALTH_ID_NET);
+        }
         WARNING_PRINT("%s waiting for config ready.\r\n", NET_TASK_TAG);
+        vTaskDelay(pdMS_TO_TICKS(10));
     }
+    Health_Heartbeat(HEALTH_ID_NET);
 
     /* 2) Read network configuration from StorageTask */
     networkInfo neti;
@@ -113,6 +121,7 @@ static void NetTask_Function(void *pvParameters) {
         neti = LoadUserNetworkConfig();
         WARNING_PRINT("%s using fallback network defaults\r\n", NET_TASK_TAG);
     }
+    Health_Heartbeat(HEALTH_ID_NET);
 
     /* 3) Apply config and initialize Ethernet */
     if (!net_apply_config_and_init(&neti)) {
@@ -121,14 +130,23 @@ static void NetTask_Function(void *pvParameters) {
             setMR(mr & ~MR_PB); /* Disable ping block if set */
         ERROR_PRINT("%s Ethernet init failed, entering safe loop\r\n", NET_TASK_TAG);
         for (;;) {
+            uint32_t __now = to_ms_since_boot(get_absolute_time());
+            if ((__now - hb_net_ms) >= 250) {
+                hb_net_ms = __now;
+                Health_Heartbeat(HEALTH_ID_NET);
+            }
             vTaskDelay(pdMS_TO_TICKS(1000));
         }
     }
 
     INFO_PRINT("%s Ethernet up, starting HTTP server\r\n", NET_TASK_TAG);
 
-    // then start servers
+    /* 3a) Wait for link-up, but keep heartbeating while we wait */
+    (void)wait_for_link_up(5000);
+
+    /* 4a) Start HTTP server */
     http_server_init();
+    Health_Heartbeat(HEALTH_ID_NET);
 
     /* 4b) Start SNMP agent (uses sockets defined in CONFIG.h) */
     if (!SNMP_Init(SNMP_SOCKET_NUM, SNMP_PORT_AGENT, TRAP_SOCKET_NUM)) {
@@ -137,15 +155,35 @@ static void NetTask_Function(void *pvParameters) {
         INFO_PRINT("[SNMP] Agent running on UDP/%u (sock %u)\r\n", (unsigned)SNMP_PORT_AGENT,
                    (unsigned)SNMP_SOCKET_NUM);
     }
+    Health_Heartbeat(HEALTH_ID_NET);
 
     /* 5) Main service loop */
     for (;;) {
-        http_server_process(); /* nonblocking */
+        uint32_t __now = to_ms_since_boot(get_absolute_time());
+        if ((__now - hb_net_ms) >= 250) {
+            hb_net_ms = __now;
+            Health_Heartbeat(HEALTH_ID_NET);
+        }
+
+        /* HTTP service with cooperative pacing */
+        uint32_t t0 = to_ms_since_boot(get_absolute_time());
+        http_server_process();
+        uint32_t dt = to_ms_since_boot(get_absolute_time()) - t0;
+        if (dt > 750)
+            Health_RecordBlocked("http_server_process", dt);
+
+        vTaskDelay(pdMS_TO_TICKS(1)); /* prevent tight spin under heavy polling */
+        taskYIELD();
 
         /* SNMP service: tick + poll a couple of PDUs per cycle */
+        t0 = to_ms_since_boot(get_absolute_time());
         SNMP_Tick10ms();
         (void)SNMP_Poll(2);
+        dt = to_ms_since_boot(get_absolute_time()) - t0;
+        if (dt > 750)
+            Health_RecordBlocked("snmp_poll", dt);
 
+        Health_Heartbeat(HEALTH_ID_NET);
         vTaskDelay(pdMS_TO_TICKS(NET_TASK_CYCLE_MS));
     }
 }
@@ -185,9 +223,8 @@ BaseType_t NetTask_Init(bool enable) {
         vTaskDelay(pdMS_TO_TICKS(10));
     }
 
-    /* Original body preserved */
-    extern void NetTask_Function(void *arg);
-    BaseType_t result = xTaskCreate(NetTask_Function, "NetTask", 4096, NULL, 3, &netTaskHandle);
+    /* Create the task with a handle name that matches InitTask registration */
+    BaseType_t result = xTaskCreate(NetTask_Function, "Net", 4096, NULL, 3, &netTaskHandle);
     if (result == pdPASS) {
         INFO_PRINT("%s Task created successfully\r\n", NET_TASK_TAG);
         NET_READY() = true;

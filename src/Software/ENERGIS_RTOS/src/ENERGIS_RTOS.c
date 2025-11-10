@@ -33,32 +33,6 @@ __attribute__((section(".uninitialized_data"))) uint32_t bootloader_trigger;
 w5500_NetConfig eth_netcfg;
 
 /**
- * @brief FreeRTOS malloc failed hook
- * @note Called when pvPortMalloc() fails
- */
-void vApplicationMallocFailedHook(void) {
-    /* Heap exhausted - fatal error */
-    printf("[FATAL] Heap allocation failed!\r\n");
-    while (1) {
-        tight_loop_contents();
-    }
-}
-
-/**
- * @brief FreeRTOS stack overflow hook
- * @param t Task handle that overflowed
- * @param n Task name
- */
-void vApplicationStackOverflowHook(TaskHandle_t t, char *n) {
-    (void)t;
-    /* Task stack overflow - fatal error */
-    printf("[FATAL] Stack overflow in task: %s\r\n", n ? n : "unknown");
-    while (1) {
-        tight_loop_contents();
-    }
-}
-
-/**
  * @brief Main entry point
  *
  * Performs minimal initialization:
@@ -73,13 +47,6 @@ int main(void) {
 
     // Set system clock to 200 MHz
     set_sys_clock_khz(200000, true);
-
-    // Early BOOTSEL check before anything touches USB
-    if (bootloader_trigger == 0xDEADBEEF) {
-        bootloader_trigger = 0;
-        sleep_ms(100);
-        reset_usb_boot(0, 0);
-    }
 
     /* Small delay to let USB enumerate */
     sleep_ms(1000);

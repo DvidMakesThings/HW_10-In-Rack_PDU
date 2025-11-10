@@ -72,6 +72,20 @@ function Test-PortPresent {
 }
 
 try {
+    # Change to project directory
+    Set-Location "G:\_GitHub\HW_10-In-Rack_PDU\src\Software\ENERGIS_RTOS"
+    
+    # Remove existing build directory if it exists and create new one
+    if (Test-Path build) { Remove-Item build -Recurse -Force }
+    New-Item -ItemType Directory -Path build | Out-Null
+    Set-Location build
+    
+    # Run CMake and Ninja build
+    cmake -G Ninja -DPICO_SDK_PATH=C:/Users/sdvid/.pico-sdk/sdk/2.2.0 ..
+    ninja
+    
+    # Continue with flashing and serial monitoring
+    Set-Location $PSScriptRoot
     $confPath = Join-Path $PSScriptRoot 'serial_port.win.conf'
     Get-Config -Path $confPath
 

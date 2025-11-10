@@ -235,7 +235,7 @@ static const uint8_t W5500_DEFAULT_DNS[4] = {8, 8, 8, 8};
 #define W5500_DEBUG DEBUG
 
 /** Enable socket operation debug */
-#define W5500_DEBUG_SOCKET 1
+#define W5500_DEBUG_SOCKET 0
 
 /** Enable SPI transaction debug */
 #define W5500_DEBUG_SPI 1

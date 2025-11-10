@@ -48,10 +48,10 @@
 #include "hardware/watchdog.h"
 
 /* clang-format off */
-#include "system_startup.h"
 
 #include "misc/EEPROM_MemoryMap.h"
 #include "misc/helpers.h"
+#include "misc/crashlog.h"
 
 #include "drivers/CAT24C512_driver.h"
 #include "drivers/MCP23017_driver.h"
@@ -76,6 +76,7 @@
 #include "tasks/StorageTask.h"
 #include "tasks/MeterTask.h"
 #include "tasks/InitTask.h"
+#include "tasks/HealthTask.h"
 
 #include "web_handlers/control_handler.h"
 #include "web_handlers/http_server.h"
@@ -137,7 +138,7 @@ extern w5500_NetConfig eth_netcfg;
 #define PLOT_EN 0
 #endif
 #ifndef NETLOG
-#define NETLOG 1
+#define NETLOG 0
 #endif
 #ifndef UART_IFACE
 #define UART_IFACE 1
@@ -184,6 +185,15 @@ extern w5500_NetConfig eth_netcfg;
 #else
 #define ECHO(...) ((void)0)
 #endif
+
+#define HEALTH_BEAT_EVERY_MS(id, last_ms_var, period_ms)                                           \
+    do {                                                                                           \
+        uint32_t __now = to_ms_since_boot(get_absolute_time());                                    \
+        if (((__now) - (last_ms_var)) >= (period_ms)) {                                            \
+            (last_ms_var) = __now;                                                                 \
+            Health_Heartbeat((id));                                                                \
+        }                                                                                          \
+    } while (0)
 
 /********************************************************************************
  *                          PERIPHERAL ASSIGNMENTS                              *

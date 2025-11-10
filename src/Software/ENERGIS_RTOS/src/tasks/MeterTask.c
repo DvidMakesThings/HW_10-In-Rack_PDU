@@ -140,8 +140,16 @@ static void MeterTask_Loop(void *pvParameters) {
         last_energy_update_ms[ch] = boot_ms;
     }
 
+    static uint32_t hb_meter_ms = 0;
+
     /* Main polling loop */
     while (1) {
+        uint32_t now_ms_ = to_ms_since_boot(get_absolute_time());
+        if ((now_ms_ - hb_meter_ms) >= 500) {
+            hb_meter_ms = now_ms_;
+            Health_Heartbeat(HEALTH_ID_METER);
+        }
+
         /* Poll next channel in round-robin */
         hlw8032_poll_once();
 

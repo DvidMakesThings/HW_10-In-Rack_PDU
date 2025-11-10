@@ -24,91 +24,85 @@
 
 #include "../CONFIG.h"
 
+static inline void net_beat(void) { Health_Heartbeat(HEALTH_ID_NET); }
+
 /* HTTP server configuration */
 #define HTTP_PORT 80
 #define HTTP_BUF_SIZE 2048
 #define HTTP_SOCK_NUM 0
 
-/* Static buffers and socket handle */
+#define HTTP_SERVER_TAG "<SERVER>"
+
+#define TX_WINDOW_MS 1200
+
+/* Global variables for server state */
 static int8_t http_sock;
 static char *http_buf;
 
-/* Tag for logging */
-#define HTTP_SERVER_TAG "<HTTP Server>"
+/**
+ * @brief Sends HTTP response with headers and body
+ * @param sock The socket number
+ * @param content_type Content-Type header value
+ * @param body The body of the response
+ * @param body_len Length of the body
+ * @return None
+ */
+static void send_http_response(uint8_t sock, const char *content_type, const char *body,
+                               int body_len) {
+    char header[256];
+    int header_len = snprintf(header, sizeof(header),
+                              "HTTP/1.1 200 OK\r\n"
+                              "Content-Type: %s\r\n"
+                              "Content-Length: %d\r\n"
+                              "Access-Control-Allow-Origin: *\r\n"
+                              "Cache-Control: no-cache\r\n"
+                              "Connection: close\r\n"
+                              "\r\n",
+                              content_type, body_len);
+    send(sock, (uint8_t *)header, header_len);
+    net_beat();
+    send(sock, (uint8_t *)body, body_len);
+    net_beat();
+}
 
 /**
- * @brief Parse the Content-Length header case-insensitively
+ * @brief Parses Content-Length from HTTP headers
  * @param headers Pointer to the start of the headers
  * @param header_len Length of the headers
- * @return The Content-Length value, or 0 if not found
- * @note Case-insensitive parsing for better HTTP compliance
+ * @return Content-Length value, or 0 if not found
  */
-static int parse_content_length_ci(const char *headers, int header_len) {
+static int parse_content_length(const char *headers, int header_len) {
     const char *p = headers;
     const char *end = headers + header_len;
-    static const char key[] = "content-length:";
-    const size_t klen = sizeof(key) - 1;
 
     while (p < end) {
         const char *line_end = memchr(p, '\n', (size_t)(end - p));
         if (!line_end)
             line_end = end;
 
-        if ((size_t)(line_end - p) >= klen) {
-            size_t i = 0;
-            while (i < klen && (char)tolower((unsigned char)p[i]) == key[i])
-                i++;
-            if (i == klen) {
-                const char *q = p + klen;
-                while (q < line_end && (*q == ' ' || *q == '\t'))
-                    q++;
-                long v = strtol(q, NULL, 10);
-                if (v > 0 && v < (1 << 28))
-                    return (int)v;
-                return 0;
-            }
+        if ((size_t)(line_end - p) > 16 && strncasecmp(p, "Content-Length:", 15) == 0) {
+            const char *q = p + 15;
+            while (q < line_end && (*q == ' ' || *q == '\t'))
+                q++;
+            long v = strtol(q, NULL, 10);
+            if (v > 0 && v < (1 << 28))
+                return (int)v;
+            return 0;
         }
+
         p = line_end + 1;
     }
     return 0;
 }
 
 /**
- * @brief Sends the entire buffer over the socket
- * @param sock The socket to send data on
- * @param buf The buffer containing data to send
- * @param len The length of the buffer
- * @return The total number of bytes sent
- * @note Handles partial sends and retries as needed
- */
-static int send_all(uint8_t sock, const uint8_t *buf, int len) {
-    int total = 0;
-    while (total < len) {
-        int n = send(sock, (uint8_t *)buf + total, len - total);
-        if (n > 0) {
-            total += n;
-            continue;
-        }
-        /* If the peer closed or socket not established, stop */
-        uint8_t st = getSn_SR(sock);
-        if (st != SOCK_ESTABLISHED && st != SOCK_CLOSE_WAIT) {
-            break;
-        }
-        /* brief yield to let W5500 free TX space */
-        vTaskDelay(pdMS_TO_TICKS(1));
-    }
-    return total;
-}
-
-/**
- * @brief Reads a full HTTP request from the socket
- * @param sock The socket to read from
- * @param buf The buffer to store the request
- * @param buflen The length of the buffer
- * @param body_off Pointer to store the offset of the body
- * @param body_len Pointer to store the length of the body
- * @return The total number of bytes read, or -1 if headers are incomplete
- * @note This function reads headers first, then body based on Content-Length
+ * @brief Reads HTTP request from socket
+ * @param sock The socket number
+ * @param buf Buffer to store the request
+ * @param buflen Buffer length
+ * @param body_off Output parameter for body offset
+ * @param body_len Output parameter for body length
+ * @return Total bytes read, or -1 if headers incomplete
  */
 static int read_http_request(uint8_t sock, char *buf, int buflen, int *body_off, int *body_len) {
     int total = 0;
@@ -119,6 +113,7 @@ static int read_http_request(uint8_t sock, char *buf, int buflen, int *body_off,
         int n = recv(sock, (uint8_t *)buf + total, buflen - 1 - total);
         if (n <= 0)
             break;
+        net_beat();
         total += n;
         buf[total] = '\0';
 
@@ -128,22 +123,27 @@ static int read_http_request(uint8_t sock, char *buf, int buflen, int *body_off,
             header_end = (int)(p - buf) + 4;
             break;
         }
+        net_beat();
+        vTaskDelay(pdMS_TO_TICKS(1));
     }
 
     if (header_end < 0)
         return -1;
 
     /* Read body according to Content-Length */
-    int clen = parse_content_length_ci(buf, header_end);
+    int content_length = parse_content_length(buf, header_end);
     int have = total - header_end;
 
-    while (have < clen && total < buflen - 1) {
+    while (have < content_length && total < buflen - 1) {
         int n = recv(sock, (uint8_t *)buf + total, buflen - 1 - total);
         if (n <= 0)
             break;
+        net_beat();
         total += n;
         have += n;
         buf[total] = '\0';
+        net_beat();
+        vTaskDelay(pdMS_TO_TICKS(1));
     }
 
     *body_off = header_end;
@@ -153,8 +153,13 @@ static int read_http_request(uint8_t sock, char *buf, int buflen, int *body_off,
 
 /**
  * @brief Initializes the HTTP server
+ *
  * @return true on success, false on failure
- * @note Allocates buffers and opens listening socket on port 80
+ *
+ * @details
+ * - Allocates the server RX buffer.
+ * - Opens a TCP socket and starts listening on HTTP_PORT.
+ * - Enables TCP keep-alive timer so idle peers are culled automatically.
  */
 bool http_server_init(void) {
     /* Allocate HTTP buffer */
@@ -172,6 +177,14 @@ bool http_server_init(void) {
         return false;
     }
 
+    /* Enable TCP keep-alive auto timer (value is in 5 s units on W5500) */
+    {
+        uint8_t ka_units = (uint8_t)((W5500_KEEPALIVE_TIME + 4) / 5);
+        if (ka_units) {
+            setsockopt((uint8_t)http_sock, SO_KEEPALIVEAUTO, &ka_units);
+        }
+    }
+
     /* Start listening */
     if (listen(http_sock) != SOCK_OK) {
         ERROR_PRINT("%s Failed to listen on HTTP socket\n", HTTP_SERVER_TAG);
@@ -186,13 +199,20 @@ bool http_server_init(void) {
 
 /**
  * @brief Processes incoming HTTP requests
+ *
  * @return None
- * @note Call this regularly from NetTask to handle incoming connections.
- *       Routes requests to appropriate handlers based on URL path.
- *       After serving a request, proactively closes and reopens the listener
- *       to avoid TIME_WAIT/FIN_WAIT stalls under load.
+ *
+ * @details
+ * - Routes GET/POST to the respective handlers.
+ * - After responding, proactively closes and reopens the listener.
+ * - Adds a safety guard: if TX free space makes no forward progress for a short window,
+ *   the connection is dropped to prevent long stalls from starving NetTask.
  */
 void http_server_process(void) {
+    /* TX progress watchdog for idle or stalled peers */
+    static TickType_t s_last_tx_check = 0;
+    static uint16_t s_last_fsr = 0;
+
     switch (getSn_SR(http_sock)) {
 
     case SOCK_ESTABLISHED: {
@@ -201,8 +221,28 @@ void http_server_process(void) {
 
         int body_off = 0, body_len = 0;
         int n = read_http_request(http_sock, http_buf, HTTP_BUF_SIZE, &body_off, &body_len);
-        if (n <= 0)
+        if (n <= 0) {
+            /* Guard: if TX FSR is stuck and peer is not reading, reap the socket */
+            uint16_t fsr = getSn_TX_FSR(http_sock);
+            uint16_t fmax = getSn_TxMAX(http_sock);
+            TickType_t now = xTaskGetTickCount();
+
+            if (fsr == s_last_fsr && fsr != fmax) {
+                if ((now - s_last_tx_check) >= pdMS_TO_TICKS(TX_WINDOW_MS)) {
+                    disconnect(http_sock);
+                    closesocket(http_sock);
+                    http_sock = socket(HTTP_SOCK_NUM, Sn_MR_TCP, HTTP_PORT, 0);
+                    if ((int)http_sock >= 0)
+                        listen(http_sock);
+                    s_last_tx_check = now;
+                    s_last_fsr = 0;
+                }
+            } else {
+                s_last_tx_check = now;
+                s_last_fsr = fsr;
+            }
             break;
+        }
 
         http_buf[n] = '\0';
         char *body_ptr = http_buf + ((body_off > 0 && body_off < HTTP_BUF_SIZE) ? body_off : n);
@@ -212,18 +252,17 @@ void http_server_process(void) {
             body_len = 0;
         body_ptr[body_len] = '\0';
 
-        if (!strncmp(http_buf, "GET /api/status", 15))
+        if (!strncmp(http_buf, "GET /api/status", 15)) {
             handle_status_request(http_sock);
-        else if (!strncmp(http_buf, "GET /api/settings", 17))
+        } else if (!strncmp(http_buf, "GET /api/settings", 17)) {
             handle_settings_api(http_sock);
-        else if (!strncmp(http_buf, "GET /settings.html", 18))
+        } else if (!strncmp(http_buf, "GET /settings.html", 18)) {
             handle_settings_request(http_sock);
-        else if (!strncmp(http_buf, "POST /settings", 14))
+        } else if (!strncmp(http_buf, "POST /settings", 14)) {
             handle_settings_post(http_sock, body_ptr);
-        else if (!strncmp(http_buf, "POST /control", 13))
+        } else if (!strncmp(http_buf, "POST /control", 13)) {
             handle_control_request(http_sock, body_ptr);
-        else {
-            /* Static page */
+        } else {
             const char *page = get_page_content(http_buf);
             const int plen = (int)strlen(page);
             char header[256];
@@ -236,25 +275,8 @@ void http_server_process(void) {
                                       "Connection: close\r\n"
                                       "\r\n",
                                       plen);
-
-            (void)send_all_blocking(http_sock, (const uint8_t *)header, hlen);
-            (void)send_all_blocking(http_sock, (const uint8_t *)page, plen);
-        }
-
-        /* Drain until peer closes or nothing left to send */
-        TickType_t tstart = xTaskGetTickCount();
-        for (;;) {
-            uint8_t sr = getSn_SR(http_sock);
-            if (sr == SOCK_CLOSE_WAIT || sr == SOCK_CLOSED)
-                break;
-
-            /* When TX buffer empties, it’s safe to close even if peer is slow */
-            if (getSn_TX_FSR(http_sock) == getSn_TxMAX(http_sock))
-                break;
-
-            if ((xTaskGetTickCount() - tstart) > pdMS_TO_TICKS(3000))
-                break;
-            vTaskDelay(pdMS_TO_TICKS(1));
+            send(http_sock, (uint8_t *)header, hlen);
+            send(http_sock, (uint8_t *)page, plen);
         }
 
         disconnect(http_sock);
@@ -262,6 +284,10 @@ void http_server_process(void) {
         http_sock = socket(HTTP_SOCK_NUM, Sn_MR_TCP, HTTP_PORT, 0);
         if ((int)http_sock >= 0)
             listen(http_sock);
+
+        /* Reset progress tracker after recycling the socket */
+        s_last_tx_check = xTaskGetTickCount();
+        s_last_fsr = 0;
         break;
     }
 
@@ -271,12 +297,16 @@ void http_server_process(void) {
         http_sock = socket(HTTP_SOCK_NUM, Sn_MR_TCP, HTTP_PORT, 0);
         if ((int)http_sock >= 0)
             listen(http_sock);
+        s_last_tx_check = xTaskGetTickCount();
+        s_last_fsr = 0;
         break;
 
     case SOCK_CLOSED:
         http_sock = socket(HTTP_SOCK_NUM, Sn_MR_TCP, HTTP_PORT, 0);
         if ((int)http_sock >= 0)
             listen(http_sock);
+        s_last_tx_check = xTaskGetTickCount();
+        s_last_fsr = 0;
         break;
 
     default:

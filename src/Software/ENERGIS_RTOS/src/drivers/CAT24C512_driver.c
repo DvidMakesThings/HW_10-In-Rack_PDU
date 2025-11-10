@@ -217,14 +217,14 @@ void CAT24C512_DumpFormatted(void) {
 
     vTaskPrioritySet(h, configMAX_PRIORITIES - 1);
 
-    printf("EE_DUMP_START\r\n");
+    log_printf("EE_DUMP_START\r\n");
 
     snprintf(line, sizeof(line), "%-7s", "Addr");
     for (uint8_t col = 0; col < 16; col++) {
         snprintf(field, sizeof(field), "%-7X", col);
         strncat(line, field, sizeof(line) - strlen(line) - 1);
     }
-    printf("%s\r\n", line);
+    log_printf("%s\r\n", line);
 
     for (uint32_t addr = 0; addr < CAT24C512_TOTAL_SIZE; addr += 16) {
         uint8_t buffer[16];
@@ -234,12 +234,12 @@ void CAT24C512_DumpFormatted(void) {
             snprintf(field, sizeof(field), "%02X ", buffer[i]);
             strncat(line, field, sizeof(line) - strlen(line) - 1);
         }
-        printf("%s\r\n", line);
+        log_printf("%s\r\n", line);
         fflush(stdout);
         vTaskDelay(pdMS_TO_TICKS(1));
     }
 
-    printf("EE_DUMP_END\r\n");
+    log_printf("EE_DUMP_END\r\n");
 
     vTaskPrioritySet(h, old_prio);
 }

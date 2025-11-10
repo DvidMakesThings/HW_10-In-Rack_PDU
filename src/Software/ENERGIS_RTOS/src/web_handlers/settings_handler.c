@@ -1,6 +1,6 @@
 /**
- * @file control_handler.c
- * @author DvidMakesThings - David Sipos
+ * @file settings_handler.c
+ * @author
  *
  * @defgroup webui3 3. Settings Handler
  * @ingroup webhandlers
@@ -20,6 +20,8 @@
 
 #include "../CONFIG.h"
 
+static inline void net_beat(void) { Health_Heartbeat(HEALTH_ID_NET); }
+
 #define SETTINGS_HANDLER_TAG "<Settings Handler>"
 
 /**
@@ -30,32 +32,29 @@
  */
 void handle_settings_request(uint8_t sock) {
     NETLOG_PRINT(">> handle_settings_request()\n");
+    net_beat();
 
     /* Load network from EEPROM */
     networkInfo net;
     EEPROM_ReadUserNetworkWithChecksum(&net);
     NETLOG_PRINT("Network EEPROM: IP=%u.%u.%u.%u  GW=%u.%u.%u.%u\n", net.ip[0], net.ip[1],
                  net.ip[2], net.ip[3], net.gw[0], net.gw[1], net.gw[2], net.gw[3]);
+    net_beat();
 
     /* Load prefs from EEPROM */
     userPrefInfo pref;
     EEPROM_ReadUserPrefsWithChecksum(&pref);
     NETLOG_PRINT("Prefs EEPROM: device_name=\"%s\"  location=\"%s\"  unit=%u\n", pref.device_name,
                  pref.location, pref.temp_unit);
+    net_beat();
 
     /* Read internal temperature */
     adc_select_input(4);
-    NETLOG_PRINT("Selecting ADC input 4 for temp sensor\n");
     int raw = adc_read();
-    NETLOG_PRINT("Raw ADC reading = %d\n", raw);
-
     const float VREF = 3.00f;
     float voltage = (raw * VREF) / (1 << 12);
-    NETLOG_PRINT("Converted voltage = %.3fV\n", voltage);
-
-    /* RP2040 internal formula: Temp (°C) = 27 - (voltage - 0.706)/0.001721 */
     float temp_c = 27.0f - (voltage - 0.706f) / 0.001721f;
-    NETLOG_PRINT("Calculated temp_c = %.2f °C\n", temp_c);
+    net_beat();
 
     /* Convert to user's unit */
     float temp_out;
@@ -73,7 +72,6 @@ void handle_settings_request(uint8_t sock) {
         temp_out = temp_c;
         unit_suffix = "°C";
     }
-    NETLOG_PRINT("Displaying temp = %.2f%s\n", temp_out, unit_suffix);
 
     /* Build dotted-decimal strings for network */
     char ip_s[16], gw_s[16], sn_s[16], dns_s[16];
@@ -111,6 +109,7 @@ void handle_settings_request(uint8_t sock) {
                        /* radios (3)*/ c_chk, f_chk, k_chk,
                        /* temp display (2)*/ temp_out, unit_suffix);
     NETLOG_PRINT("Rendered HTML len=%d\n", len);
+    net_beat();
 
     /* Send HTTP headers + body */
     char hdr[128];
@@ -122,7 +121,9 @@ void handle_settings_request(uint8_t sock) {
                         len);
     NETLOG_PRINT("Sending header len=%d\n", hlen);
     send(sock, (uint8_t *)hdr, hlen);
+    net_beat();
     send(sock, (uint8_t *)page, len);
+    net_beat();
 
     NETLOG_PRINT("<< handle_settings_request() done\n");
 }
@@ -135,6 +136,7 @@ void handle_settings_request(uint8_t sock) {
  */
 void handle_settings_api(uint8_t sock) {
     NETLOG_PRINT(">> handle_settings_api()\n");
+    net_beat();
 
     /* Load network from EEPROM */
     networkInfo net;
@@ -190,6 +192,7 @@ void handle_settings_api(uint8_t sock) {
                  net.dns[2], net.dns[3], pref.device_name, pref.location, unit_suffix, temp_out);
 
     NETLOG_PRINT("JSON response len=%d\n", len);
+    net_beat();
 
     /* Send HTTP headers + JSON */
     char hdr[128];
@@ -203,7 +206,9 @@ void handle_settings_api(uint8_t sock) {
                         "\r\n",
                         len);
     send(sock, (uint8_t *)hdr, hlen);
+    net_beat();
     send(sock, (uint8_t *)json, len);
+    net_beat();
 
     NETLOG_PRINT("<< handle_settings_api() done\n");
 }
@@ -218,6 +223,7 @@ void handle_settings_api(uint8_t sock) {
 void handle_settings_post(uint8_t sock, char *body) {
     NETLOG_PRINT(">> handle_settings_post()\n");
     NETLOG_PRINT("Raw POST body: \"%s\"\n", body);
+    net_beat();
 
     /* Update network config */
     networkInfo net = LoadUserNetworkConfig();
@@ -227,9 +233,7 @@ void handle_settings_post(uint8_t sock, char *body) {
 
     /* IP */
     if ((tmp = get_form_value(body, "ip"))) {
-        NETLOG_PRINT("Raw ip=\"%s\"\n", tmp);
         urldecode(tmp);
-        NETLOG_PRINT("Decoded ip=\"%s\"\n", tmp);
         strncpy(buf, tmp, sizeof(buf) - 1);
         buf[63] = 0;
         unsigned a, b, c, d;
@@ -238,15 +242,11 @@ void handle_settings_post(uint8_t sock, char *body) {
             net.ip[1] = b;
             net.ip[2] = c;
             net.ip[3] = d;
-            NETLOG_PRINT("  -> new IP=%u.%u.%u.%u\n", a, b, c, d);
         }
     }
-
     /* Gateway */
     if ((tmp = get_form_value(body, "gateway"))) {
-        NETLOG_PRINT("Raw gateway=\"%s\"\n", tmp);
         urldecode(tmp);
-        NETLOG_PRINT("Decoded gateway=\"%s\"\n", tmp);
         strncpy(buf, tmp, sizeof(buf) - 1);
         buf[63] = 0;
         unsigned a, b, c, d;
@@ -255,15 +255,11 @@ void handle_settings_post(uint8_t sock, char *body) {
             net.gw[1] = b;
             net.gw[2] = c;
             net.gw[3] = d;
-            NETLOG_PRINT("  -> new GW=%u.%u.%u.%u\n", a, b, c, d);
         }
     }
-
     /* Subnet */
     if ((tmp = get_form_value(body, "subnet"))) {
-        NETLOG_PRINT("Raw subnet=\"%s\"\n", tmp);
         urldecode(tmp);
-        NETLOG_PRINT("Decoded subnet=\"%s\"\n", tmp);
         strncpy(buf, tmp, sizeof(buf) - 1);
         buf[63] = 0;
         unsigned a, b, c, d;
@@ -272,15 +268,11 @@ void handle_settings_post(uint8_t sock, char *body) {
             net.sn[1] = b;
             net.sn[2] = c;
             net.sn[3] = d;
-            NETLOG_PRINT("  -> new SN=%u.%u.%u.%u\n", a, b, c, d);
         }
     }
-
     /* DNS */
     if ((tmp = get_form_value(body, "dns"))) {
-        NETLOG_PRINT("Raw dns=\"%s\"\n", tmp);
         urldecode(tmp);
-        NETLOG_PRINT("Decoded dns=\"%s\"\n", tmp);
         strncpy(buf, tmp, sizeof(buf) - 1);
         buf[63] = 0;
         unsigned a, b, c, d;
@@ -289,17 +281,16 @@ void handle_settings_post(uint8_t sock, char *body) {
             net.dns[1] = b;
             net.dns[2] = c;
             net.dns[3] = d;
-            NETLOG_PRINT("  -> new DNS=%u.%u.%u.%u\n", a, b, c, d);
         }
     }
+    net_beat();
 
     /* Write network only if changed */
     if (memcmp(&net, &backup_net, sizeof(net)) != 0) {
-        NETLOG_PRINT("Network changed; writing EEPROM\n");
         EEPROM_WriteUserNetworkWithChecksum(&net);
         vTaskDelay(pdMS_TO_TICKS(10));
+        net_beat();
 
-        /* Update W5500 network configuration */
         w5500_NetConfig w5500_net = {
             .mac = {net.mac[0], net.mac[1], net.mac[2], net.mac[3], net.mac[4], net.mac[5]},
             .ip = {net.ip[0], net.ip[1], net.ip[2], net.ip[3]},
@@ -308,54 +299,37 @@ void handle_settings_post(uint8_t sock, char *body) {
             .dns = {net.dns[0], net.dns[1], net.dns[2], net.dns[3]},
             .dhcp = net.dhcp};
         w5500_set_network(&w5500_net);
-        NETLOG_PRINT("Network reconfigured\n");
-    } else {
-        NETLOG_PRINT("Network unchanged; skipping EEPROM write\n");
+        net_beat();
     }
 
     /* Update user preferences */
     userPrefInfo pref = LoadUserPreferences();
     userPrefInfo backup_pref = pref;
 
-    /* Device Name */
     if ((tmp = get_form_value(body, "device_name"))) {
-        NETLOG_PRINT("Raw device_name=\"%s\"\n", tmp);
         urldecode(tmp);
-        NETLOG_PRINT("Decoded device_name=\"%s\"\n", tmp);
         strncpy(pref.device_name, tmp, sizeof(pref.device_name) - 1);
         pref.device_name[sizeof(pref.device_name) - 1] = '\0';
     }
-
-    /* Location */
     if ((tmp = get_form_value(body, "location"))) {
-        NETLOG_PRINT("Raw location=\"%s\"\n", tmp);
         urldecode(tmp);
-        NETLOG_PRINT("Decoded location=\"%s\"\n", tmp);
         strncpy(pref.location, tmp, sizeof(pref.location) - 1);
         pref.location[sizeof(pref.location) - 1] = '\0';
     }
-
-    /* Temp Unit */
     if ((tmp = get_form_value(body, "temp_unit"))) {
-        NETLOG_PRINT("Raw temp_unit=\"%s\"\n", tmp);
         urldecode(tmp);
-        NETLOG_PRINT("Decoded temp_unit=\"%s\"\n", tmp);
         if (!strcmp(tmp, "fahrenheit"))
             pref.temp_unit = 1;
         else if (!strcmp(tmp, "kelvin"))
             pref.temp_unit = 2;
         else
             pref.temp_unit = 0;
-        NETLOG_PRINT("  -> new temp_unit=%u\n", pref.temp_unit);
     }
 
-    /* Write prefs only if changed */
     if (memcmp(&pref, &backup_pref, sizeof(pref)) != 0) {
-        NETLOG_PRINT("Prefs changed; writing EEPROM\n");
         EEPROM_WriteUserPrefsWithChecksum(&pref);
         vTaskDelay(pdMS_TO_TICKS(10));
-    } else {
-        NETLOG_PRINT("Prefs unchanged; skipping EEPROM write\n");
+        net_beat();
     }
 
     /* Send 204 No Content then reboot */
@@ -363,8 +337,10 @@ void handle_settings_post(uint8_t sock, char *body) {
                        "Connection: close\r\n"
                        "\r\n";
     send(sock, (uint8_t *)resp, strlen(resp));
+    net_beat();
 
     vTaskDelay(pdMS_TO_TICKS(100));
+    net_beat();
     watchdog_reboot(0, 0, 0);
 }
 

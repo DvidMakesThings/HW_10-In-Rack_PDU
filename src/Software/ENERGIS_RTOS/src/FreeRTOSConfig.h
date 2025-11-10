@@ -32,14 +32,14 @@
 #define xPortSysTickHandler isr_systick
 
 /* Scheduler Related */
-#define configUSE_PREEMPTION 1   // Allow tasks to be pre-empted
-#define configUSE_TIME_SLICING 1 // Allow FreeRTOS to switch tasks at each tick
+#define configUSE_PREEMPTION 1
+#define configUSE_TIME_SLICING 1
 #define configUSE_PORT_OPTIMISED_TASK_SELECTION 0
 #define configUSE_TICKLESS_IDLE 0
-#define configCPU_CLOCK_HZ 125000000        // 125MHz for RP2040
-#define configTICK_RATE_HZ (TickType_t)1000 // FreeRTOS beats per second
-#define configMAX_PRIORITIES 24             // Max number of priority values (0-24)
-#define configMINIMAL_STACK_SIZE (configSTACK_DEPTH_TYPE)512
+#define configCPU_CLOCK_HZ 125000000UL
+#define configTICK_RATE_HZ ((TickType_t)1000)
+#define configMAX_PRIORITIES 24
+#define configMINIMAL_STACK_SIZE ((configSTACK_DEPTH_TYPE)512)
 #define configUSE_16_BIT_TICKS 0
 #define configIDLE_SHOULD_YIELD 1
 #define configMAX_TASK_NAME_LEN 16
@@ -48,7 +48,7 @@
 /* Synchronization Related */
 #define configUSE_MUTEXES 1
 #define configUSE_RECURSIVE_MUTEXES 0
-#define configUSE_COUNTING_SEMAPHORES 0
+#define configUSE_COUNTING_SEMAPHORES 1
 #define configUSE_TASK_NOTIFICATIONS 1
 #define configUSE_QUEUE_SETS 0
 #define configQUEUE_REGISTRY_SIZE 10
@@ -58,36 +58,33 @@
 
 /* System */
 #define configSTACK_DEPTH_TYPE uint32_t
-#define configMESSAGE_BUFFER_LENGTH_TYPE                                                           \
-    size_t // Defaults to size_t for backward compatibility,
-           // but can be changed if lengths will always be less
-           // than the number of bytes in a size_t.
+#define configMESSAGE_BUFFER_LENGTH_TYPE size_t
 
-/* Memory allocation related definitions. */
+/* Memory allocation */
 #define configSUPPORT_STATIC_ALLOCATION 0
-#define configSUPPORT_DYNAMIC_ALLOCATION 1 // Get FreeRTOS to allocation task memory
+#define configSUPPORT_DYNAMIC_ALLOCATION 1
 #define configAPPLICATION_ALLOCATED_HEAP 0
 #define configTOTAL_HEAP_SIZE (128 * 1024)
 
-/* Hook function related definitions. */
+/* Hooks */
 #define configUSE_IDLE_HOOK 0
 #define configUSE_TICK_HOOK 0
-#define configCHECK_FOR_STACK_OVERFLOW 0
-#define configUSE_MALLOC_FAILED_HOOK 0
+#define configCHECK_FOR_STACK_OVERFLOW 2
+#define configUSE_MALLOC_FAILED_HOOK 1
 #define configUSE_DAEMON_TASK_STARTUP_HOOK 0
 
-/* Run time and task stats gathering related definitions. */
+/* Runtime stats / trace */
 #define configGENERATE_RUN_TIME_STATS 0
-#define configUSE_TRACE_FACILITY 0
+#define configUSE_TRACE_FACILITY 1
 #define configUSE_STATS_FORMATTING_FUNCTIONS 0
 
-/* Co-routine related definitions. */
+/* Co-routines */
 #define configUSE_CO_ROUTINES 0
 #define configMAX_CO_ROUTINE_PRIORITIES 1
 
-/* Software timer related definitions. */
+/* Software timers */
 #define configUSE_TIMERS 1
-#define configTIMER_TASK_PRIORITY (configMAX_PRIORITIES - 1)
+#define configTIMER_TASK_PRIORITY (tskIDLE_PRIORITY + 2)
 #define configTIMER_QUEUE_LENGTH 10
 #define configTIMER_TASK_STACK_DEPTH 1024
 
@@ -95,11 +92,14 @@
 #define configSUPPORT_PICO_SYNC_INTEROP 1
 #define configSUPPORT_PICO_TIME_INTEROP 1
 
-/* Define to trap errors during development. */
-#include <assert.h>
-#define configASSERT(x)
+/* Assert */
+void vAssertCalled(const char *file, int line);
+#define configASSERT(x)                                                                            \
+    if ((x) == 0) {                                                                                \
+        vAssertCalled(__FILE__, __LINE__);                                                         \
+    }
 
-/* Optional functions - most linkers will remove unused functions anyway. */
+/* Optional functions */
 #define INCLUDE_vTaskPrioritySet 1
 #define INCLUDE_uxTaskPriorityGet 1
 #define INCLUDE_vTaskDelete 1
@@ -119,6 +119,6 @@
 #define INCLUDE_xEventGroupSetBitFromISR 1
 #define INCLUDE_xTimerPendFunctionCall 1
 
-/* A header file that defines trace macro can be included here. */
+/* A header that defines trace macros can be included here. */
 
 #endif /* FREERTOS_CONFIG_H */

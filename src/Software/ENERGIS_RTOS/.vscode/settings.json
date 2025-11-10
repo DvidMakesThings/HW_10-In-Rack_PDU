@@ -99,6 +99,9 @@
         "variant": "c",
         "helpers.h": "c",
         "hlw8032_driver.h": "c",
-        "set": "c"
+        "set": "c",
+        "healthtask.h": "c",
+        "text_encoding": "c",
+        "functional": "c"
     }
 }

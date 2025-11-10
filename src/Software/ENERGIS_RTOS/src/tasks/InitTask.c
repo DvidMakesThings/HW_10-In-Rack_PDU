@@ -39,10 +39,16 @@
 
 static EventGroupHandle_t init_events = NULL;
 
+static inline void BOOT_BREAD(const char *tag) {
+    INFO_PRINT("[InitTask] BOOT Task: %s\r\n", tag);
+    taskYIELD();
+}
+
 /**
  * @brief Initialize GPIO pins for all peripherals
  */
 static void init_gpio(void) {
+
     /* Enable voltage regulator */
     gpio_init(VREG_EN);
     gpio_set_dir(VREG_EN, GPIO_OUT);
@@ -220,12 +226,7 @@ static bool probe_eeprom(void) {
  *
  * @param pvParameters Unused.
  */
-/**
- * @brief InitTask main routine that performs the full bring-alive sequence.
- *
- * @param pvParameters Unused.
- */
-static void InitTask_Run(void *pvParameters) {
+static void InitTask(void *pvParameters) {
     (void)pvParameters;
 
     /* ===== PHASE 0: Start logger FIRST to avoid USB-CDC stalls ===== */
@@ -249,10 +250,7 @@ static void InitTask_Run(void *pvParameters) {
 
     /* ===== PHASE 1: Hardware Initialization ===== */
     INFO_PRINT("[InitTask] Phase 1: Hardware Init\r\n");
-#if defined(ENABLE_WATCHDOG_STANDBY) && (ENABLE_WATCHDOG_STANDBY)
-    watchdog_enable(2000, 1);
-    watchdog_update();
-#endif
+
     init_gpio();
     init_i2c();
     init_spi();
@@ -273,7 +271,7 @@ static void InitTask_Run(void *pvParameters) {
 
     /* 1) Logger (already started above, just report state) */
     if (Logger_IsReady())
-        INFO_PRINT("[InitTask] Logger ready\r\n");
+        BOOT_BREAD("Logger ready");
     else
         ERROR_PRINT("[InitTask] ERROR: Logger not ready (timeout)\r\n");
 
@@ -285,7 +283,7 @@ static void InitTask_Run(void *pvParameters) {
             vTaskDelay(poll_10ms);
         }
         if (Console_IsReady())
-            INFO_PRINT("[InitTask] Console ready\r\n");
+            BOOT_BREAD("Console ready");
         else
             ERROR_PRINT("[InitTask] Console not ready (timeout)\r\n");
     }
@@ -298,22 +296,30 @@ static void InitTask_Run(void *pvParameters) {
             vTaskDelay(poll_10ms);
         }
         if (Storage_IsReady())
-            INFO_PRINT("[InitTask] Storage ready\r\n");
+            BOOT_BREAD("Storage ready");
         else
             ERROR_PRINT("[InitTask] Storage not ready (timeout)\r\n");
     }
 
     /* 4) Button */
+    BOOT_BREAD("enter ButtonTask_Init");
     ButtonTask_Init(true);
+    BOOT_BREAD("exit  ButtonTask_Init");
+
     {
+        const TickType_t step_timeout = pdMS_TO_TICKS(5000);
+        const TickType_t poll_10ms = pdMS_TO_TICKS(10);
         TickType_t t0 = xTaskGetTickCount();
+
         while (!Button_IsReady() && (xTaskGetTickCount() - t0) < step_timeout) {
             vTaskDelay(poll_10ms);
         }
-        if (Button_IsReady())
+
+        if (Button_IsReady()) {
             INFO_PRINT("[InitTask] Button ready\r\n");
-        else
-            ERROR_PRINT("[InitTask] Button not ready (timeout)\r\n");
+        } else {
+            ERROR_PRINT("[InitTask] Button NOT ready (timeout) — continuing boot\r\n");
+        }
     }
 
     /* 5) Network */
@@ -326,7 +332,7 @@ static void InitTask_Run(void *pvParameters) {
             vTaskDelay(poll_10ms);
         }
         if (Net_IsReady())
-            INFO_PRINT("[InitTask] Network ready\r\n");
+            BOOT_BREAD("Network ready");
         else
             ERROR_PRINT("[InitTask] Network not ready (timeout)\r\n");
     }
@@ -341,7 +347,7 @@ static void InitTask_Run(void *pvParameters) {
             vTaskDelay(poll_10ms);
         }
         if (Meter_IsReady())
-            INFO_PRINT("[InitTask] Meter ready\r\n");
+            BOOT_BREAD("Meter ready");
         else
             ERROR_PRINT("[InitTask] Meter not ready (timeout)\r\n");
     }
@@ -351,7 +357,7 @@ static void InitTask_Run(void *pvParameters) {
     if (!storage_wait_ready(10000)) {
         ERROR_PRINT("[InitTask] Storage config NOT ready, using defaults\r\n");
     } else {
-        INFO_PRINT("[InitTask] Storage config ready\r\n");
+        BOOT_BREAD("Storage config ready");
     }
 
     networkInfo ni;
@@ -368,13 +374,60 @@ static void InitTask_Run(void *pvParameters) {
     }
 
     /* ===== PHASE 5: Finalization ===== */
-    setPowerGood(true);
-    setError(false);
-    setNetworkLink(false); /* NetTask updates on link change */
+    BOOT_BREAD("Finalization: entering");
+
+    /* ===== Health task wiring (register existing tasks, then start) ===== */
+    {
+        TaskHandle_t h;
+
+        h = xTaskGetHandle("Logger");
+        if (h)
+            Health_RegisterTask(HEALTH_ID_LOGGER, h, "Logger");
+        h = xTaskGetHandle("Console");
+        if (h)
+            Health_RegisterTask(HEALTH_ID_CONSOLE, h, "Console");
+        h = xTaskGetHandle("Storage");
+        if (h)
+            Health_RegisterTask(HEALTH_ID_STORAGE, h, "Storage");
+        h = xTaskGetHandle("Button");
+        if (h)
+            Health_RegisterTask(HEALTH_ID_BUTTON, h, "Button");
+        // h = xTaskGetHandle("Switch");
+        // if (h)
+        //     Health_RegisterTask(HEALTH_ID_SWITCH, h, "Switch");
+        h = xTaskGetHandle("Net");
+        if (h)
+            Health_RegisterTask(HEALTH_ID_NET, h, "Net");
+        h = xTaskGetHandle("Meter");
+        if (h)
+            Health_RegisterTask(HEALTH_ID_METER, h, "Meter");
+
+        /* Start Health only after Meter is actually ready */
+        if (!Meter_IsReady()) {
+            INFO_PRINT("[InitTask] Waiting for Meter to be ready before starting Health...\r\n");
+            const TickType_t t0 = xTaskGetTickCount();
+            const TickType_t max_wait = pdMS_TO_TICKS(30000); /* give it up to 30 s */
+            while (!Meter_IsReady() && (xTaskGetTickCount() - t0) < max_wait) {
+                vTaskDelay(pdMS_TO_TICKS(50));
+            }
+        }
+
+        if (Meter_IsReady()) {
+            HealthTask_Start();
+        } else {
+            WARNING_PRINT("[InitTask] Meter not ready after wait; NOT starting Health.\r\n");
+        }
+    }
 
     INFO_PRINT("\r\n[InitTask] System bring-alive complete\r\n");
     INFO_PRINT("========================================\r\n");
     INFO_PRINT("SYSTEM READY\r\n");
+    INFO_PRINT("========================================\r\n\r\n");
+
+    INFO_PRINT("========================================\r\n");
+    // xEventGroupWaitBits(cfgEvents, CFG_READY_BIT, pdFALSE, pdTRUE, portMAX_DELAY);
+    INFO_PRINT("[InitTask] Crash logs:\r\n");
+    CrashLog_PrintAndClearOnBoot();
     INFO_PRINT("========================================\r\n\r\n");
 
     vTaskDelete(NULL);
@@ -389,7 +442,7 @@ static void InitTask_Run(void *pvParameters) {
  * then delete itself when all subsystems are ready or have timed out.
  */
 void InitTask_Create(void) {
-    xTaskCreate(InitTask_Run, "InitTask", INIT_TASK_STACK_SIZE, NULL, INIT_TASK_PRIORITY, NULL);
+    xTaskCreate(InitTask, "InitTask", INIT_TASK_STACK_SIZE, NULL, INIT_TASK_PRIORITY, NULL);
 }
 
 /** @} */
