@@ -41,14 +41,17 @@
     <h2>Manuals</h2>
     <p>Below are the PDF manuals for your PDU:</p>
     <ul>
-        <li><a href="./Manuals/Programming_Manual.pdf" target="_blank">Programming Manual (PDF)</a></li>
+        <li><a href="./Manuals/AUTOMATION_MANUAL.pdf" target="_blank">Automation Manual (PDF)</a></li>
         <li><a href="./Manuals/User_Manual.pdf" target="_blank">User Manual (PDF)</a></li>
     </ul>
 
     <h2>Test Reports</h2>
-    <p>Explore detailed reports for each hardware and network test. Each entry describes what is being validated, making it easy to add new tests in the future.</p>
+    <p>Explore detailed reports for each hardware and network test. Each entry describes what is being validated, making
+        it easy to add new tests in the future.</p>
     <p style="margin-bottom: 1rem; color: #bfc7d5; font-size: 0.97em;">
-        <strong>Note:</strong> All test scripts and their requirements are available in the <a href="https://github.com/DvidMakesThings/HW_10-In-Rack_PDU/tree/master/tests" target="_blank">GitHub repository</a>.<br>
+        <strong>Note:</strong> All test scripts and their requirements are available in the <a
+            href="https://github.com/DvidMakesThings/HW_10-In-Rack_PDU/tree/master/tests" target="_blank">GitHub
+            repository</a>.<br>
         These tests use my own custom Universal Test Framework (UTFW) for consistent and automated validation.
     </p>
 
@@ -56,46 +59,67 @@
 
         <!-- Nightly Regression Suite -->
         <div style="background: #2b313a; padding: 1.2rem; border-radius: 8px; border: 1px solid #4c566a;">
-            <strong><a href="./Tests/Nightly_regression/test_suite_Nightly_Tests_20251005_232014.html" target="_blank">Nightly Regression Suite</a></strong><br>
+            <strong><a href="./Tests/Nightly_regression/test_suite_Nightly_Tests_20251005_232014.html"
+                    target="_blank">Nightly Regression Suite</a></strong><br>
             <span style="color: #bfc7d5; font-size: 0.97em;">
-                Comprehensive end-to-end system test covering all modules: UART communication, SNMP protocol, web interface (PCAP), EEPROM persistence, power monitoring (HLW8032), ADC/thermal sanity checks, and relay stress switching.
-                This suite aggregates results from all individual tests and represents the overall stability of the current firmware.
+                Comprehensive end-to-end system test covering all modules: UART communication, SNMP protocol, web
+                interface (PCAP), EEPROM persistence, power monitoring (HLW8032), ADC/thermal sanity checks, and relay
+                stress switching.
+                This suite aggregates results from all individual tests and represents the overall stability of the
+                current firmware.
             </span>
         </div>
 
         <div style="background: #23262b; padding: 1rem; border-radius: 8px;">
-            <strong><a href="./Tests/report_tc_serial_utfw/tc_serial_utfw_report.html" target="_blank">Serial Communication Test Report</a></strong><br>
-            <span style="color: #bfc7d5; font-size: 0.97em;">Verifies UART communication between controller and peripheral devices, including data integrity, error handling, and protocol compliance.</span>
+            <strong><a href="./Tests/report_tc_serial_utfw/tc_serial_utfw_report.html" target="_blank">Serial
+                    Communication Test Report</a></strong><br>
+            <span style="color: #bfc7d5; font-size: 0.97em;">Verifies UART communication between controller and
+                peripheral devices, including data integrity, error handling, and protocol compliance.</span>
         </div>
         <div style="background: #23262b; padding: 1rem; border-radius: 8px;">
-            <strong><a href="./Tests/report_tc_network_snmp/tc_network_snmp_report.html" target="_blank">Network SNMP Test Report</a></strong><br>
-            <span style="color: #bfc7d5; font-size: 0.97em;">Tests SNMP protocol support, ensuring correct device monitoring, trap generation, and remote management capabilities.</span>
+            <strong><a href="./Tests/report_tc_network_snmp/tc_network_snmp_report.html" target="_blank">Network SNMP
+                    Test Report</a></strong><br>
+            <span style="color: #bfc7d5; font-size: 0.97em;">Tests SNMP protocol support, ensuring correct device
+                monitoring, trap generation, and remote management capabilities.</span>
         </div>
         <div style="background: #23262b; padding: 1rem; border-radius: 8px;">
-            <strong><a href="./Tests/report_tc_network_pcap/tc_network_pcap_report.html" target="_blank">Network PCAP Analysis Report</a></strong><br>
-            <span style="color: #bfc7d5; font-size: 0.97em;">Analyzes captured network packets to validate communication timing, HTTP request/response patterns, and correct data encapsulation.</span>
+            <strong><a href="./Tests/report_tc_network_pcap/tc_network_pcap_report.html" target="_blank">Network PCAP
+                    Analysis Report</a></strong><br>
+            <span style="color: #bfc7d5; font-size: 0.97em;">Analyzes captured network packets to validate communication
+                timing, HTTP request/response patterns, and correct data encapsulation.</span>
         </div>
         <div style="background: #23262b; padding: 1rem; border-radius: 8px;">
-            <strong><a href="./Tests/report_tc_pcap_capture/tc_pcap_capture_report.html" target="_blank">PCAP Capture Test Report</a></strong><br>
-            <span style="color: #bfc7d5; font-size: 0.97em;">Validates real-time packet capture functionality and ensures consistent capture across Ethernet sessions.</span>
+            <strong><a href="./Tests/report_tc_pcap_capture/tc_pcap_capture_report.html" target="_blank">PCAP Capture
+                    Test Report</a></strong><br>
+            <span style="color: #bfc7d5; font-size: 0.97em;">Validates real-time packet capture functionality and
+                ensures consistent capture across Ethernet sessions.</span>
         </div>
         <div style="background: #23262b; padding: 1rem; border-radius: 8px;">
-            <strong><a href="./Tests/report_tc_power_hlw8032/tc_power_hlw8032_report.html" target="_blank">Power Monitoring Test Report (HLW8032)</a></strong><br>
-            <span style="color: #bfc7d5; font-size: 0.97em;">Verifies power, current, and voltage measurements using the HLW8032 sensor, including accuracy and calibration consistency.</span>
+            <strong><a href="./Tests/report_tc_power_hlw8032/tc_power_hlw8032_report.html" target="_blank">Power
+                    Monitoring Test Report (HLW8032)</a></strong><br>
+            <span style="color: #bfc7d5; font-size: 0.97em;">Verifies power, current, and voltage measurements using the
+                HLW8032 sensor, including accuracy and calibration consistency.</span>
         </div>
         <div style="background: #23262b; padding: 1rem; border-radius: 8px;">
-            <strong><a href="./Tests/report_tc_eeprom_persistence/tc_eeprom_persistence_report.html" target="_blank">EEPROM Persistence Test Report</a></strong><br>
-            <span style="color: #bfc7d5; font-size: 0.97em;">Checks EEPROM data integrity, verifying correct storage, read/write cycles, and recovery behavior after power loss.</span>
+            <strong><a href="./Tests/report_tc_eeprom_persistence/tc_eeprom_persistence_report.html"
+                    target="_blank">EEPROM Persistence Test Report</a></strong><br>
+            <span style="color: #bfc7d5; font-size: 0.97em;">Checks EEPROM data integrity, verifying correct storage,
+                read/write cycles, and recovery behavior after power loss.</span>
         </div>
         <div style="background: #23262b; padding: 1rem; border-radius: 8px;">
-            <strong><a href="./Tests/report_tc_sanity_check/tc_sanity_check_report.html" target="_blank">Sanity Check Test Report</a></strong><br>
-            <span style="color: #bfc7d5; font-size: 0.97em;">Performs fundamental system checks to ensure all major subsystems initialize and operate as expected after boot.</span>
+            <strong><a href="./Tests/report_tc_sanity_check/tc_sanity_check_report.html" target="_blank">Sanity Check
+                    Test Report</a></strong><br>
+            <span style="color: #bfc7d5; font-size: 0.97em;">Performs fundamental system checks to ensure all major
+                subsystems initialize and operate as expected after boot.</span>
         </div>
         <div style="background: #23262b; padding: 1rem; border-radius: 8px;">
-            <strong><a href="./Tests/report_tc_stress_switching/tc_stress_switching_report.html" target="_blank">Relay Stress Switching Test Report</a></strong><br>
-            <span style="color: #bfc7d5; font-size: 0.97em;">Executes prolonged relay switching cycles to test endurance, heating, and response stability under load.</span>
+            <strong><a href="./Tests/report_tc_stress_switching/tc_stress_switching_report.html" target="_blank">Relay
+                    Stress Switching Test Report</a></strong><br>
+            <span style="color: #bfc7d5; font-size: 0.97em;">Executes prolonged relay switching cycles to test
+                endurance, heating, and response stability under load.</span>
         </div>
     </div>
 
 </body>
+
 </html>

@@ -58,14 +58,14 @@ A comprehensive serial console is available over the USB‑C port (USB‑CDC). A
 | `SYSINFO`                         | Show system information                                         | |
 | `GET_TEMP`                        | Show MCU temperature                                            | |
 |OUTPUT CONTROL AND MEASUREMENT|
-| `SET_CH <ch> <STATE>`             | Set channel <ch> (1–8) to <state> (0|1|ON|OFF|ALL).             | `SET_CH 1 1`            |
-| `GET_CH <ch>`                     | Read current state of channel `n`. (1-8|ALL)                    | `GET_CH 3`              |
+| `SET_CH <ch> <STATE>`             | Set channel <ch> (1–8) to <state> (0/1|ON/OFF/ALL).             | `SET_CH 1 1`            |
+| `GET_CH <ch>`                     | Read current state of channel <ch>. (1-8/ALL)                   | `GET_CH 3`              |
 | `READ_HLW8032`                    | Read power data for all channels                                | |
 | `READ_HLW8032 <ch>`               | Read power data for <ch> (1-8)                                  | `READ_HLW8032 2`        |
 | `CALIBRATE <ch> <V> <I>`          | Start single <ch> (1-8) calibration on given voltage and current| `CALIBRATE 2 0 0 (Off state - zero calibration)` |
 | `AUTO_CAL_ZERO`                   | Zero-calibrate all channels.                                    | |
 | `AUTO_CAL_V <voltage>`            | Voltage-calibrate all channels.                                 | `AUTO_CAL_V 230`        |
-| `SHOW_CALIB <ch>`                 | Show calibration data (1-8|ALL)                                 | `SHOW_CALIB 5`          |
+| `SHOW_CALIB <ch>`                 | Show calibration data (1-8/ALL)                                 | `SHOW_CALIB 5`          |
 |NETWORK SETTINGS|
 | `NETINFO`                         | Display the current IP, subnet mask, gateway and DNS addresses. | |
 | `SET_IP <ip>`                     | Set a static IP address.  Requires reboot.                      | `SET_IP 10.10.0.67`     |
@@ -196,9 +196,34 @@ Serves an HTML settings page for use in a browser.  It displays current network 
 
 ![settings-html](img/settings_html.png)
 
-### GET /help.html, GET /user_manual.html, GET /programming_manual.html
+### GET /help.html, /user_manual.html, /programming_manual.html
 
-Documentation pages
+These endpoints serve small HTML pages.
+
+* **/user_manual.html** and **/programming_manual.html**: simple stubs that link to the PDFs hosted on GitHub Pages:
+
+  * User Manual → `https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Manuals/User_Manual.pdf`
+  * Programming & Interfacing Manual → `https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Manuals/Automation_Manual.pdf`
+    Internet access is required to load those PDFs.
+
+* **/help.html**: a **fast help** page that is served fully from the device. It does not depend on internet access and is meant for quick reference and basic troubleshooting when you’re offline.
+
+**HTTP behavior**
+All three return `200 OK`, `Content-Type: text/html`, `Cache-Control: no-cache`, and the server closes the connection after sending the body.
+
+**What’s on /help.html (fast help, offline-safe)**
+
+* **Front panel cheatsheet**
+* **Network quick checks**
+* **Web API short guide**
+* **SNMP sanity**
+* **Offline troubleshooting** 
+
+**Why keep Help**
+
+* It gives operators something usable when the site has no internet.
+* It points to the full PDFs when WAN is available.
+* It reduces support by solving the common “why doesn’t it switch / where’s my IP / why are values zero” cases directly on the box.
 
 
 ## SNMP interface
