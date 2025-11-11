@@ -67,7 +67,7 @@ const char control_html[] =
     "class=\"container\"><nav class=\"sidebar\"><ul><li><a "
     "href=\"control.html\">Control</a></li><li><a href=\"settings.html\">Settings</a></li><li><a "
     "href=\"help.html\">Help</a></li><li><a href=\"user_manual.html\">User Manual</a></li><li><a "
-    "href=\"programming_manual.html\">Programming Manual</a></li></ul></nav><main "
+    "href=\"programming_manual.html\">Automation Manual</a></li></ul></nav><main "
     "class=\"main-content\"><h2>Control</h2><p>Manage power channels and monitor real-time "
     "data.</p><form method=\"post\" action=\"/api/control\" "
     "onsubmit=\"applyChanges(event)\"><table><tr><th>Channel</th><th>Switch</th><th>Voltage "
@@ -143,7 +143,7 @@ const char settings_html[] =
     "<li><a href=\"settings.html\">Settings</a></li>"
     "<li><a href=\"help.html\">Help</a></li>"
     "<li><a href=\"user_manual.html\">User Manual</a></li>"
-    "<li><a href=\"programming_manual.html\">Programming Manual</a></li>"
+    "<li><a href=\"programming_manual.html\">Automation Manual</a></li>"
     "</ul></nav><main class=\"main-content\">"
     "<h2>Settings</h2><form method=\"post\" action=\"/api/settings\">"
     "<h3>Network Settings</h3><hr>"
@@ -210,7 +210,7 @@ const char help_html[] =
     "class=\"sidebar\"><ul><li><a href=\"control.html\">Control</a></li><li><a "
     "href=\"settings.html\">Settings</a></li><li><a href=\"help.html\">Help</a></li><li><a "
     "href=\"user_manual.html\">User Manual</a></li><li><a "
-    "href=\"programming_manual.html\">Programming Manual</a></li></ul></div><div "
+    "href=\"programming_manual.html\">Automation Manual</a></li></ul></div><div "
     "class=\"main-content\"><h2>Help</h2><p>Welcome to the ENERGIS PDU Help page.</p><p>For "
     "detailed instructions, see:</p><ul><li><a href=\"user_manual.html\">User "
     "Manual</a></li><li><a href=\"programming_manual.html\">Programming &amp; Interfacing "
@@ -239,7 +239,7 @@ const char user_manual_html[] =
     "PDU</h1></div><div class=\"container\"><div class=\"sidebar\"><ul><li><a "
     "href=\"control.html\">Control</a></li><li><a href=\"settings.html\">Settings</a></li><li><a "
     "href=\"help.html\">Help</a></li><li><a href=\"user_manual.html\">User Manual</a></li><li><a "
-    "href=\"programming_manual.html\">Programming Manual</a></li></ul></div><div "
+    "href=\"programming_manual.html\">Automation Manual</a></li></ul></div><div "
     "class=\"content\"><div class=\"pdf-container\"><iframe "
     "src=\"https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Manuals/User_Manual.pdf\" "
     "width=\"100%\" height=\"100%\" frameborder=\"0\"></iframe></div><p class=\"note\">If your "
@@ -248,9 +248,9 @@ const char user_manual_html[] =
     "target=\"_blank\">here</a>.</p></div></div></body></html>\n";
 
 /**
- * @brief HTML content for the Programming Manual page.
+ * @brief HTML content for the Automation Manual page.
  *
- * This string contains the HTML markup for the Programming Manual page,
+ * This string contains the HTML markup for the Automation Manual page,
  * embedding the programming manual PDF and providing a download link.
  */
 const char programming_manual_html[] =
@@ -270,12 +270,12 @@ const char programming_manual_html[] =
     "class=\"sidebar\"><ul><li><a href=\"control.html\">Control</a></li><li><a "
     "href=\"settings.html\">Settings</a></li><li><a href=\"help.html\">Help</a></li><li><a "
     "href=\"user_manual.html\">User Manual</a></li><li><a "
-    "href=\"programming_manual.html\">Programming Manual</a></li></ul></div><div "
+    "href=\"programming_manual.html\">Automation Manual</a></li></ul></div><div "
     "class=\"content\"><div class=\"pdf-container\"><iframe "
-    "src=\"https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Manuals/Programming_Manual.pdf\" "
+    "src=\"https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Manuals/AUTOMATION_MANUAL.pdf\" "
     "width=\"100%\" height=\"100%\" frameborder=\"0\"></iframe></div><p class=\"note\">If your "
     "browser does not display the PDF, you can download it directly <a "
-    "href=\"https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Manuals/Programming_Manual.pdf\" "
+    "href=\"https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Manuals/AUTOMATION_MANUAL.pdf\" "
     "target=\"_blank\">here</a>.</p></div></div></body></html>\n";
 
 /**
