@@ -4,7 +4,7 @@
  *
  * @version 2.0.0
  * @date 2025-11-08
- * 
+ *
  * @details
  * Architecture:
  * 1. ConsoleTask polls USB-CDC at 10ms intervals (no ISR)
@@ -90,8 +90,10 @@ static bool parse_ip(const char *str, uint8_t ip[4]) {
 static void cmd_help(void) {
     ECHO("\n=== ENERGIS PDU Console Commands ===\n");
     ECHO("%-32s %s\n", "HELP", "Show this help");
-    ECHO("%-32s %s\n", "REBOOT", "Reboot system");
-    ECHO("%-32s %s\n", "BOOTSEL", "Enter bootloader mode");
+    if (DEBUG)
+        ECHO("%-32s %s\n", "REBOOT", "Reboot system");
+    if (DEBUG)
+        ECHO("%-32s %s\n", "BOOTSEL", "Enter bootloader mode");
     ECHO("%-32s %s\n", "SYSINFO", "Show system information");
     ECHO("%-32s %s\n", "GET_TEMP", "Read die temperature");
     ECHO("%-32s %s\n", "------------ Output Control ------------", "");
@@ -106,7 +108,7 @@ static void cmd_help(void) {
     ECHO("%-32s %s\n", "CALIBRATE <ch> <V> <I>", "Calibrate channel (ch=1-8)");
     ECHO("%-32s %s\n", "AUTO_CAL_ZERO", "Zero-calibrate all channels");
     ECHO("%-32s %s\n", "AUTO_CAL_V <voltage>", "Voltage-calibrate all channels");
-    ECHO("%-32s %s\n", "SHOW_CALIB [ch]", "Show calibration data (1-8 or ALL)");
+    ECHO("%-32s %s\n", "SHOW_CALIB <ch>", "Show calibration data (1-8 or ALL)");
     ECHO("%-32s %s\n", "------------ Network Settings ------------", "");
     ECHO("%-32s %s\n", "SET_IP <ip>", "Set IP address");
     ECHO("%-32s %s\n", "SET_SN <mask>", "Set subnet mask");
@@ -115,10 +117,10 @@ static void cmd_help(void) {
     ECHO("%-32s %s\n", "CONFIG_NETWORK <ip$sn$gw$dns>", "Configure all network settings");
     ECHO("%-32s %s\n", "NETINFO", "Show network information");
     ECHO("%-32s %s\n", "------------ System ------------", "");
-    ECHO("%-32s %s\n", "GET_SUPPLY", "Read 12V supply voltage");
-    ECHO("%-32s %s\n", "GET_USB", "Read USB supply voltage");
-    ECHO("%-32s %s\n", "DUMP_EEPROM", "Dump EEPROM contents");
-    ECHO("%-32s %s\n", "RFS", "Reset to factory settings");
+    if (DEBUG) ECHO("%-32s %s\n", "GET_SUPPLY", "Read 12V supply voltage");
+    if (DEBUG) ECHO("%-32s %s\n", "GET_USB", "Read USB supply voltage");
+    if (DEBUG) ECHO("%-32s %s\n", "DUMP_EEPROM", "Dump EEPROM contents");
+    if (DEBUG) ECHO("%-32s %s\n", "RFS", "Reset to factory settings");
     ECHO("=====================================\n");
 }
 

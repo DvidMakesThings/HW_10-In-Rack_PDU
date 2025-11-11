@@ -1,9 +1,9 @@
-=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2025.11.11 00:21:45 =~=~=~=~=~=~=~=~=~=~=~=
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2025.11.11 18:43:04 =~=~=~=~=~=~=~=~=~=~=~=
 
 [INFO] ========================================
 [INFO]   ENERGIS PDU - System Bring-Alive
 [INFO] ========================================
-[INFO] Firmware: 1.1.0
+[INFO] Firmware: 1.0.0
 [INFO] Serial: SN-0167662
 [INFO] ========================================
 
@@ -100,13 +100,28 @@
 [INFO] [Health] Summary:
 [INFO] [Health] Elapsed since boot = 60000 ms
 [INFO] [Health] WD Armed = 1
-[INFO] [Health] Max dt = 499 ms
-[INFO] [Health] Remaining time until WD reset = 2501 ms
+[INFO] [Health] Max dt = 492 ms
+[INFO] [Health] Remaining time until WD reset = 2508 ms
 [INFO] [Health] Idle stall = 0 ms
-[INFO] [Health]   LoggerTask: 291 ms
-[INFO] [Health]   ConsoleTask: 81 ms
-[INFO] [Health]   StorageTask: 491 ms
-[INFO] [Health]   ButtonTask: 499 ms
-[INFO] [Health]   NetTask: 6 ms
-[INFO] [Health]   MeterTask: 299 ms
+[INFO] [Health]   LoggerTask: 292 ms
+[INFO] [Health]   ConsoleTask: 19 ms
+[INFO] [Health]   StorageTask: 492 ms
+[INFO] [Health]   ButtonTask: 1 ms
+[INFO] [Health]   NetTask: 7 ms
+[INFO] [Health]   MeterTask: 323 ms
+[INFO] [Health] HEAP FREE=67456 bytes
+
+[INFO] [Health] **** 60sec Report at 121 sec ****
+[INFO] [Health] Summary:
+[INFO] [Health] Elapsed since boot = 120250 ms
+[INFO] [Health] WD Armed = 1
+[INFO] [Health] Max dt = 498 ms
+[INFO] [Health] Remaining time until WD reset = 2502 ms
+[INFO] [Health] Idle stall = 0 ms
+[INFO] [Health]   LoggerTask: 498 ms
+[INFO] [Health]   ConsoleTask: 215 ms
+[INFO] [Health]   StorageTask: 225 ms
+[INFO] [Health]   ButtonTask: 251 ms
+[INFO] [Health]   NetTask: 10 ms
+[INFO] [Health]   MeterTask: 348 ms
 [INFO] [Health] HEAP FREE=67456 bytes

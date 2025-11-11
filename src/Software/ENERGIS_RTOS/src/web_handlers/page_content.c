@@ -56,7 +56,8 @@ const char control_html[] =
     "pendingChanges.add(c); } function applyChanges(e) { e.preventDefault(); let fd = new "
     "FormData(e.target), body = new URLSearchParams(); for (let [k] of fd) if "
     "(k.startsWith('channel')) { let i = +k.replace('channel', ''); if "
-    "(document.getElementById(`toggle-${i}`).checked) body.append(k, 'on'); } fetch('/control', { "
+    "(document.getElementById(`toggle-${i}`).checked) body.append(k, 'on'); } "
+    "fetch('/api/control', { "
     "method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: "
     "body.toString() }) .then(r =>{ if (!r.ok) throw ''; pendingChanges.clear(); updateStatus(); "
     "}) .catch(_ =>updateStatus()); } function setAll(state) { for (let i = 1; i<= 8; i++) { "
@@ -68,7 +69,7 @@ const char control_html[] =
     "href=\"help.html\">Help</a></li><li><a href=\"user_manual.html\">User Manual</a></li><li><a "
     "href=\"programming_manual.html\">Programming Manual</a></li></ul></nav><main "
     "class=\"main-content\"><h2>Control</h2><p>Manage power channels and monitor real-time "
-    "data.</p><form method=\"post\" action=\"/control\" "
+    "data.</p><form method=\"post\" action=\"/api/control\" "
     "onsubmit=\"applyChanges(event)\"><table><tr><th>Channel</th><th>Switch</th><th>Voltage "
     "(V)</th><th>Current (A)</th><th>Uptime (s)</th><th>Power "
     "(W)</th></tr><tr><td>1</td><td><label class=\"switch\"><input id=\"toggle-1\" "
@@ -144,7 +145,7 @@ const char settings_html[] =
     "<li><a href=\"user_manual.html\">User Manual</a></li>"
     "<li><a href=\"programming_manual.html\">Programming Manual</a></li>"
     "</ul></nav><main class=\"main-content\">"
-    "<h2>Settings</h2><form method=\"post\" action=\"/settings\">"
+    "<h2>Settings</h2><form method=\"post\" action=\"/api/settings\">"
     "<h3>Network Settings</h3><hr>"
     "<div class=\"form-group\"><label for=\"ip\">IP Address:</label>"
     "<input type=\"text\" id=\"ip\" name=\"ip\" value=\"%s\">"
@@ -279,7 +280,7 @@ const char programming_manual_html[] =
 
 /**
  * @brief Gets the HTML content for a requested page
- * @param request The HTTP request line (e.g., "GET /control.html HTTP/1.1")
+ * @param request The HTTP request line (e.g., "GET /api/control.html HTTP/1.1")
  * @return Pointer to the HTML content, or control.html as default
  * @note Routes HTTP requests to appropriate HTML page content
  */
@@ -292,7 +293,7 @@ const char *get_page_content(const char *request) {
         return user_manual_html;
     else if (strstr(request, "GET /programming_manual.html"))
         return programming_manual_html;
-    else if (strstr(request, "GET /") || strstr(request, "GET /control.html"))
+    else if (strstr(request, "GET /"))
         return control_html;
 
     /* Default to control page */

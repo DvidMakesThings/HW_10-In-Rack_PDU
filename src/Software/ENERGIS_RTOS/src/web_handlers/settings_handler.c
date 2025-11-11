@@ -124,10 +124,16 @@ void handle_settings_request(uint8_t sock) {
 }
 
 /**
- * @brief Handles the HTTP request for the settings API (returns JSON)
+ * @brief Handles the HTTP request for the settings API (GET /api/settings)
  * @param sock The socket number
  * @return None
- * @note This function is called when JavaScript requests settings data
+ *
+ * @details Returns JSON with network configuration and user preferences:
+ *  - ip, gateway, subnet, dns, device_name, location, temp_unit, temperature, timezone, time,
+ * autologout
+ *
+ * @http
+ * - 200 OK on success with JSON body and Connection: close.
  */
 void handle_settings_api(uint8_t sock) {
     NETLOG_PRINT(">> handle_settings_api()\n");
@@ -141,7 +147,7 @@ void handle_settings_api(uint8_t sock) {
     userPrefInfo pref;
     EEPROM_ReadUserPrefsWithChecksum(&pref);
 
-    /* Read the internal temp */
+    /* Read internal temp */
     adc_select_input(4);
     int raw = adc_read();
     const float VREF = 3.00f;
@@ -152,17 +158,18 @@ void handle_settings_api(uint8_t sock) {
     float temp_out;
     const char *unit_suffix;
     switch (pref.temp_unit) {
-    case 1: /* Fahrenheit */
-        temp_out = temp_c * 9.0f / 5.0f + 32.0f;
+    case 1:
         unit_suffix = "fahrenheit";
+        temp_out = temp_c * 9.0f / 5.0f + 32.0f;
         break;
-    case 2: /* Kelvin */
-        temp_out = temp_c + 273.15f;
+    case 2:
         unit_suffix = "kelvin";
+        temp_out = temp_c + 273.15f;
         break;
-    default: /* Celsius */
-        temp_out = temp_c;
+    default:
         unit_suffix = "celsius";
+        temp_out = temp_c;
+        break;
     }
 
     /* Build JSON response */
@@ -186,11 +193,13 @@ void handle_settings_api(uint8_t sock) {
                  net.gw[3], net.sn[0], net.sn[1], net.sn[2], net.sn[3], net.dns[0], net.dns[1],
                  net.dns[2], net.dns[3], pref.device_name, pref.location, unit_suffix, temp_out);
 
-    NETLOG_PRINT("JSON response len=%d\n", len);
-    net_beat();
+    if (len < 0)
+        len = 0;
+    if (len > (int)sizeof(json))
+        len = (int)sizeof(json);
 
     /* Send HTTP headers + JSON */
-    char hdr[128];
+    char hdr[160];
     int hlen = snprintf(hdr, sizeof(hdr),
                         "HTTP/1.1 200 OK\r\n"
                         "Content-Type: application/json\r\n"
@@ -209,16 +218,36 @@ void handle_settings_api(uint8_t sock) {
 }
 
 /**
- * @brief Handles the HTTP POST request for the settings page
+ * @brief Handles the HTTP POST for settings (/api/settings)
  * @param sock The socket number
- * @param body The body of the POST request
+ * @param body Form-encoded POST body
  * @return None
- * @note This function updates network config and user preferences, then reboots
+ *
+ * @details Updates network config and user preferences. Writes changes to EEPROM,
+ *          applies runtime net config if needed, then reboots the device.
+ *
+ * @http
+ * - 400 Bad Request if body is missing.
+ * - 204 No Content on success, followed by reboot.
  */
 void handle_settings_post(uint8_t sock, char *body) {
     NETLOG_PRINT(">> handle_settings_post()\n");
-    NETLOG_PRINT("Raw POST body: \"%s\"\n", body);
+    NETLOG_PRINT("Raw POST body: \"%s\"\n", body ? body : "(null)");
     net_beat();
+
+    if (!body) {
+        static const char bad[] = "HTTP/1.1 400 Bad Request\r\n"
+                                  "Content-Type: application/json\r\n"
+                                  "Content-Length: 30\r\n"
+                                  "Access-Control-Allow-Origin: *\r\n"
+                                  "Cache-Control: no-cache\r\n"
+                                  "Connection: close\r\n"
+                                  "\r\n"
+                                  "{\"error\":\"Missing form body\"}";
+        send(sock, (uint8_t *)bad, sizeof(bad) - 1);
+        net_beat();
+        return;
+    }
 
     /* Update network config */
     networkInfo net = LoadUserNetworkConfig();
@@ -318,7 +347,7 @@ void handle_settings_post(uint8_t sock, char *body) {
         else if (!strcmp(tmp, "kelvin"))
             pref.temp_unit = 2;
         else
-            pref.temp_unit = 0;
+            pref.temp_unit = 0; /* celsius/default */
     }
 
     if (memcmp(&pref, &backup_pref, sizeof(pref)) != 0) {
@@ -327,12 +356,16 @@ void handle_settings_post(uint8_t sock, char *body) {
         net_beat();
     }
 
-    /* Send 204 No Content then reboot */
-    const char *resp = "HTTP/1.1 204 No Content\r\n"
-                       "Connection: close\r\n"
-                       "\r\n";
-    send(sock, (uint8_t *)resp, strlen(resp));
-    net_beat();
+    /* 204 No Content (then reboot) */
+    {
+        static const char resp[] = "HTTP/1.1 204 No Content\r\n"
+                                   "Access-Control-Allow-Origin: *\r\n"
+                                   "Cache-Control: no-cache\r\n"
+                                   "Connection: close\r\n"
+                                   "\r\n";
+        send(sock, (uint8_t *)resp, sizeof(resp) - 1);
+        net_beat();
+    }
 
     vTaskDelay(pdMS_TO_TICKS(100));
     net_beat();
