@@ -5,7 +5,7 @@
  * @version 1.0.0
  * @date 2025-11-07
  *
- * @details Handles POST requests to /control endpoint for relay control.
+ * @details Handles POST requests to /api/control endpoint for relay control.
  *          Processes form-encoded channel states and labels, applies changes
  *          using idempotent relay control functions with logging and dual
  *          asymmetry detection.
@@ -21,13 +21,21 @@ static inline void net_beat(void) { Health_Heartbeat(HEALTH_ID_NET); }
 #define CONTROL_HANDLER_TAG "<Control Handler>"
 
 /**
- * @brief Handles the HTTP request for the control page
+ * @brief Handles the HTTP request for the control page (/api/control)
  * @param sock The socket number
- * @param body Form-encoded POST body (e.g., channel1=on&channel3=on)
+ * @param body Form-encoded POST body (e.g., "channel1=on&channel3=off")
  * @return None
- * @note Uses set_relay_state_with_tag() for idempotent writes with logging.
- *       Decodes URL-encoded body in-place, so body must be writable.
- *       Tracks and warns about dual asymmetry conditions.
+ *
+ * @details
+ * - Parses form-urlencoded fields: channelN where N=1..8.
+ * - Semantics:
+ *      "on"  -> relay ON
+ *      "off" or missing -> relay OFF
+ * - Updates per-channel labels if labelN fields are present.
+ *
+ * @http
+ * - 400 Bad Request if body is missing.
+ * - 200 OK on success with "OK\n" text body.
  */
 void handle_control_request(uint8_t sock, char *body) {
     NETLOG_PRINT(">> handle_control_request()\n");
@@ -40,6 +48,7 @@ void handle_control_request(uint8_t sock, char *body) {
                                    "Content-Type: application/json\r\n"
                                    "Content-Length: 26\r\n"
                                    "Access-Control-Allow-Origin: *\r\n"
+                                   "Cache-Control: no-cache\r\n"
                                    "Connection: close\r\n"
                                    "\r\n"
                                    "{\"error\":\"Missing body\"}";
@@ -52,20 +61,22 @@ void handle_control_request(uint8_t sock, char *body) {
     urldecode(body);
     net_beat();
 
-    /* Default all OFF unless present in form */
+    /* Default all OFF unless present and "on" */
     bool want_on[8] = {false};
     for (int i = 1; i <= 8; i++) {
         char key[16];
         snprintf(key, sizeof(key), "channel%d", i);
         char *value = get_form_value(body, key);
         if (value && strcmp(value, "on") == 0) {
-            want_on[i - 1] = true;
+            want_on[i - 1] = true; /* explicit ON */
+        } else {
+            want_on[i - 1] = false; /* explicit "off" or omitted => OFF */
         }
         if ((i & 3) == 0)
             net_beat();
     }
 
-    /* Apply relay states using mcp_set_channel_state() */
+    /* Apply relay states */
     int changed_total = 0;
     for (uint8_t i = 0; i < 8; i++) {
         bool current = mcp_read_pin(mcp_relay(), i);
@@ -94,14 +105,24 @@ void handle_control_request(uint8_t sock, char *body) {
             net_beat();
     }
 
-    /* Send minimal 204 No Content response */
-    static const char ok[] = "HTTP/1.1 204 No Content\r\n"
-                             "Access-Control-Allow-Origin: *\r\n"
-                             "Cache-Control: no-cache\r\n"
-                             "Connection: close\r\n"
-                             "\r\n";
-    send(sock, (uint8_t *)ok, sizeof(ok) - 1);
-    net_beat();
+    /* 200 OK + small body so clients see confirmation */
+    {
+        static const char ok_body[] = "OK\n";
+        char hdr[160];
+        int hlen = snprintf(hdr, sizeof(hdr),
+                            "HTTP/1.1 200 OK\r\n"
+                            "Content-Type: text/plain\r\n"
+                            "Content-Length: %u\r\n"
+                            "Access-Control-Allow-Origin: *\r\n"
+                            "Cache-Control: no-cache\r\n"
+                            "Connection: close\r\n"
+                            "\r\n",
+                            (unsigned)(sizeof(ok_body) - 1));
+        send(sock, (uint8_t *)hdr, hlen);
+        net_beat();
+        send(sock, (uint8_t *)ok_body, (uint16_t)(sizeof(ok_body) - 1));
+        net_beat();
+    }
 
     NETLOG_PRINT("<< handle_control_request() done\n");
 }

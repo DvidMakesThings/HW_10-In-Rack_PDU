@@ -21,17 +21,22 @@ static inline void net_beat(void) { Health_Heartbeat(HEALTH_ID_NET); }
 #define STATUS_HANDLER_TAG "<Status Handler>"
 
 /**
- * @brief Handles the HTTP request for the status page
+ * @brief Handles the HTTP request for the status page (/api/status)
  * @param sock The socket number
  * @return None
- * @note Returns JSON with live relay states and cached measurements.
- *       STATE = LIVE (instant UI feedback), MEAS = CACHED (non-blocking).
+ *
+ * @details Returns JSON with:
+ *  - channels[0..7]: { voltage, current, uptime, power, state }
+ *  - internalTemperature, temperatureUnit ("°C"|"°F"|"K"), systemStatus ("OK")
+ *
+ * @http
+ * - 200 OK on success with JSON body and Connection: close.
  */
 void handle_status_request(uint8_t sock) {
     NETLOG_PRINT(">> handle_status_request()\n");
     net_beat();
 
-    /* Internal temperature (fast ADC) */
+    /* Internal temperature (ADC) */
     adc_select_input(4);
     uint16_t raw = adc_read();
 
@@ -61,7 +66,7 @@ void handle_status_request(uint8_t sock) {
         break;
     }
 
-    /* Build JSON: STATE = LIVE (instant sliders), MEAS = CACHED */
+    /* Build JSON */
     char json[1024];
     int pos = 0;
     pos += snprintf(json + pos, sizeof(json) - pos, "{ \"channels\": [");
@@ -70,9 +75,7 @@ void handle_status_request(uint8_t sock) {
         bool state = mcp_get_channel_state((uint8_t)i);
 
         meter_telemetry_t telem;
-        float V = 0.0f;
-        float I = 0.0f;
-        float P = 0.0f;
+        float V = 0.0f, I = 0.0f, P = 0.0f;
         uint32_t up = 0;
 
         if (MeterTask_GetTelemetry((uint8_t)i, &telem) && telem.valid) {
@@ -96,12 +99,14 @@ void handle_status_request(uint8_t sock) {
                     temp_value, unit_str, "OK");
 
     /* Send HTTP response */
-    char header[128];
+    char header[160];
     int hdr_len = snprintf(header, sizeof(header),
                            "HTTP/1.1 200 OK\r\n"
                            "Content-Type: application/json\r\n"
                            "Content-Length: %d\r\n"
                            "Access-Control-Allow-Origin: *\r\n"
+                           "Cache-Control: no-cache\r\n"
+                           "Connection: close\r\n"
                            "\r\n",
                            pos);
     send(sock, (uint8_t *)header, hdr_len);

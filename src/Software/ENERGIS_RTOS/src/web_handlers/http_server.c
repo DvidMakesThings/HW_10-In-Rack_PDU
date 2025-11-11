@@ -253,12 +253,12 @@ void http_server_process(void) {
             handle_status_request(http_sock);
         } else if (!strncmp(http_buf, "GET /api/settings", 17)) {
             handle_settings_api(http_sock);
+        } else if (!strncmp(http_buf, "POST /api/settings", 18)) {
+            handle_settings_post(http_sock, body_ptr);
+        } else if (!strncmp(http_buf, "POST /api/control", 17)) {
+            handle_control_request(http_sock, body_ptr);
         } else if (!strncmp(http_buf, "GET /settings.html", 18)) {
             handle_settings_request(http_sock);
-        } else if (!strncmp(http_buf, "POST /settings", 14)) {
-            handle_settings_post(http_sock, body_ptr);
-        } else if (!strncmp(http_buf, "POST /control", 13)) {
-            handle_control_request(http_sock, body_ptr);
         } else {
             const char *page = get_page_content(http_buf);
             const int plen = (int)strlen(page);

@@ -31,7 +31,7 @@ extern const char programming_manual_html[];
 
 /**
  * @brief Gets the HTML content for a requested page
- * @param request The HTTP request line (e.g., "GET /control.html HTTP/1.1")
+ * @param request The HTTP request line (e.g., "GET /api/control.html HTTP/1.1")
  * @return Pointer to the HTML content, or control.html as default
  * @note Returns appropriate HTML page based on request path
  */

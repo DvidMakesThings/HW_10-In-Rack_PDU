@@ -10,7 +10,7 @@
  * @version 1.0.0
  * @date 2025-11-07
  *
- * @details Handles POST requests to /control endpoint for relay control.
+ * @details Handles POST requests to /api/control endpoint for relay control.
  * Processes form-encoded channel states and labels, applies changes
  * using idempotent relay control functions with logging and dual
  * asymmetry detection.
