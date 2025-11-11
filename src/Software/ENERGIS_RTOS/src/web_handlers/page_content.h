@@ -1,12 +1,17 @@
 /**
- * @file page_content.h
+ * @file src/web_handlers/page_content.h
  * @author DvidMakesThings - David Sipos
+ *
+ * @defgroup webui5 5. Page Content
+ * @ingroup webhandlers
  * @brief HTML page content storage and retrieval
- * 
+ * @{
+ *
  * @version 1.0.0
- * @date 2025-05-24
- * @details Provides access to embedded HTML pages for the web interface.
- *          Pages are stored as const char arrays in flash memory.
+ * @date 2025-11-07
+ *
+ * @details Stores HTML pages as const char arrays in flash memory.
+ * Pages should be embedded directly from your HTML files.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -34,6 +39,4 @@ const char *get_page_content(const char *request);
 
 #endif // PAGE_CONTENT_H
 
-/**
- * @}
- */
+/** @} */

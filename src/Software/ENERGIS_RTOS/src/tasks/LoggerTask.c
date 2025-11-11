@@ -1,16 +1,11 @@
 /**
- * @file LoggerTask.c
+ * @file src/tasks/LoggerTask.c
  * @author DvidMakesThings - David Sipos
- *
- * @defgroup tasks03 3. Logger
- * @ingroup tasks
- * @brief Logger task implementation (RTOS version)
- * @{
  *
  * @version 1.0.0
  * @date 2025-11-06
- * @details
- * Implements a FreeRTOS-based logging task that receives log messages
+ * 
+ * @details Implements a FreeRTOS-based logging task that receives log messages
  * via a queue and outputs them to stdio (USB-CDC).
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
@@ -134,5 +129,3 @@ void log_printf(const char *fmt, ...) {
     /* Non-blocking send; drop if full */
     (void)xQueueSend(logQueue, &item, 0);
 }
-
-/** @} */

@@ -1,19 +1,34 @@
-/* File: tasks/HealthTask.c */
-#include "../CONFIG.h"
-
 /**
- * @file HealthTask.c
- * @brief System health monitoring and watchdog supervision task.
+ * @file src/tasks/HealthTask.c
+ * @author DvidMakesThings - David Sipos
  *
- * This module tracks heartbeats of registered tasks, records long blocking sections,
- * periodically logs stack-watermarks and heap status, and decides when to arm and
- * feed the hardware watchdog. On stale tasks it stores reboot context into RP2040
- * watchdog scratch registers, allowing the next boot to report exact offenders.
+ * @version 1.0.0
+ * @date 2025-11-06
+ * 
+ * @details Implements a FreeRTOS-based health monitoring task that manages the
+ * hardware watchdog, tracks heartbeats from registered tasks, logs diagnostics,
+ * and records long blocking events for post-mortem analysis.
+ * Key behavior:
+ *  - Graceful ARMING: watchdog is enabled only after a warmup period and after
+ *    at least one heartbeat from each registered task (or warmup timeout).
+ *  - LIVENESS WINDOW: each task must heartbeat at least once within
+ *    HEALTH_SILENCE_MS; otherwise the watchdog is NOT fed.
+ *  - DIAGNOSTICS: prints stack high-water marks and free heap periodically,
+ *    and keeps a small ring of "blocked" events for post-mortem.
  *
- * The set of "required" tasks is controlled by HEALTH_REQUIRED_MASK (bit-per-ID).
- * Any registered task whose bit is set in HEALTH_REQUIRED_MASK must issue periodic
- * Health_Heartbeat(id) calls; otherwise the watchdog will be allowed to bite.
+ * Integration:
+ *  1) Call Health_RegisterTask(id, handle, "name") after xTaskCreate for each task.
+ *  2) Call HealthTask_Start() once everything is created (at end of InitTask).
+ *  3) Inside each task loop, call Health_Heartbeat(HEALTH_ID_xxx) once per loop.
+ *  4) Optionally call Health_RecordBlocked("tag", waited_ms) on long waits.
+ * 
+ * @note Do NOT arm another watchdog elsewhere. Let HealthTask manage it.
+ * You can adjust HEALTH_WARMUP_MS and HEALTH_SILENCE_MS below.
+ * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
+ * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
  */
+
+#include "../CONFIG.h"
 
 /* ---------- Tag + Logging ---------- */
 #ifndef HEALTH_TAG

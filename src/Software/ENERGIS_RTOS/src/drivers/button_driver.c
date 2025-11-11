@@ -1,15 +1,12 @@
 /**
  * @file src/drivers/button_driver.c
  * @author DvidMakesThings - David Sipos
- * @defgroup driver2 2. Button Task Driver
- * @ingroup drivers
- * @brief FreeRTOS-based button scanner + debouncer for ENERGIS.
- * @{
+ * 
  * @version 1.0.0
  * @date 2025-11-06
- * @details
- *  Low-level driver implementation for the front-panel buttons and
- *  selection/relay indicators using FreeRTOS.
+ * 
+ * @details Low-level driver implementation for the front-panel buttons and
+ * selection/relay indicators using FreeRTOS.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -34,9 +31,11 @@
 #endif
 
 /* -------------------- Local helpers ---------------------------------------- */
-
 /**
- * @brief Internal utility to turn off all selection outputs on both MCP banks.
+ * @brief Turn off all selection LEDs.
+ * @param None
+ * @return None
+ * 
  */
 static inline void drv_sel_all_off(void) {
     mcp23017_t *sel = mcp_selection();
@@ -120,5 +119,3 @@ void ButtonDrv_DoSetLong(void) {
 }
 
 uint32_t ButtonDrv_NowMs(void) { return (uint32_t)to_ms_since_boot(get_absolute_time()); }
-
-/** @} */

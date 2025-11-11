@@ -1,9 +1,18 @@
-/* File: tasks/HealthTask.h */
-#pragma once
 /**
- * @file HealthTask.h
- * @brief System health monitor: watchdog, heartbeats, diagnostics (reset-safe).
+ * @file src/tasks/HealthTask.h
+ * @author DvidMakesThings - David Sipos
  *
+ * @defgroup tasks08 8. Health
+ * @ingroup tasks
+ * @brief System health monitor: watchdog, heartbeats, diagnostics (reset-safe).
+ * @{
+ *
+ * @version 1.0.0
+ * @date 2025-11-06
+ * 
+ * @details Implements a FreeRTOS-based health monitoring task that manages the
+ * hardware watchdog, tracks heartbeats from registered tasks, logs diagnostics,
+ * and records long blocking events for post-mortem analysis.
  * Key behavior:
  *  - Graceful ARMING: watchdog is enabled only after a warmup period and after
  *    at least one heartbeat from each registered task (or warmup timeout).
@@ -17,11 +26,14 @@
  *  2) Call HealthTask_Start() once everything is created (at end of InitTask).
  *  3) Inside each task loop, call Health_Heartbeat(HEALTH_ID_xxx) once per loop.
  *  4) Optionally call Health_RecordBlocked("tag", waited_ms) on long waits.
- *
- * Notes:
- *  - Do NOT arm another watchdog elsewhere. Let HealthTask manage it.
- *  - You can adjust HEALTH_WARMUP_MS and HEALTH_SILENCE_MS below.
+ * 
+ * @note Do NOT arm another watchdog elsewhere. Let HealthTask manage it.
+ * You can adjust HEALTH_WARMUP_MS and HEALTH_SILENCE_MS below.
+ * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
+ * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
  */
+
+#pragma once
 
 #include "../CONFIG.h"
 
@@ -110,3 +122,5 @@ void Health_RebootNow(const char *reason);
 #ifdef __cplusplus
 }
 #endif
+
+/** @} */

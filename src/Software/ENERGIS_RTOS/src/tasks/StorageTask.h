@@ -1,18 +1,22 @@
 /**
- * @file StorageTask.h
+ * @file src/tasks/StorageTask.c
  * @author DvidMakesThings - David Sipos
- * @brief EEPROM/Config Storage Task (RTOS version) with SIL Testing Support
+ * 
+ * @defgroup tasks05 5. Storage Task
+ * @ingroup tasks
+ * @brief EEPROM/Config Storage Task Implementation (RTOS version)
+ * @{
+ *
+ * @version 2.0
  * @date 2025-11-06
  *
  * @details
  * StorageTask Architecture:
  * - Owns ALL EEPROM access (only this task touches CAT24C512)
- * - Maintains RAM cache of critical config (network, prefs, relay states)
- * - Debounces writes (2 second idle period before committing)
+ * - Maintains RAM cache of critical config
+ * - Debounces writes (2 second idle period)
  * - Processes requests from q_cfg queue
- * - Signals "cfg_ready" event when boot loading complete
- * - Provides SIL testing commands for EEPROM validation
- * Other tasks NEVER access EEPROM directly - they post to q_cfg.
+ * - Implements ALL EEPROM_* functions from old EEPROM_MemoryMap.c
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -535,3 +539,5 @@ userPrefInfo LoadUserPreferences(void);
 networkInfo LoadUserNetworkConfig(void);
 
 #endif /* STORAGE_TASK_H */
+
+/** @} */

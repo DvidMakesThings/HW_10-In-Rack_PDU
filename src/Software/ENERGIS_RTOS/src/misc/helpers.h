@@ -1,12 +1,17 @@
 /**
- * @file helpers.h
+ * @file src/misc/helpers.h
  * @author DvidMakesThings - David Sipos
- * @brief General-purpose helper functions for string processing and utilities
- *
+ * 
+ * @defgroup misc2 2. Helpers Module
+ * @ingroup misc
+ * @brief Header file for helpers module
+ * @{
+ * 
  * @version 1.0.0
- * @date 2025-11-07
- * @details Provides utility functions for URL decoding, form parsing, and
- *          other common string operations used throughout the application.
+ * @date 2025-11-06
+ * 
+ * @details System wide used helper functions, which cannot fit 
+ * into other modules.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -95,3 +100,5 @@ void Helpers_EarlyBootSnapshot(void);
 void Helpers_LateBootDumpAndClear(void);
 
 #endif // HELPERS_H
+
+/** @} */

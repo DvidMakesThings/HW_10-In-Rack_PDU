@@ -1,4 +1,17 @@
-/* File: misc/crashlog.c */
+/**
+ * @file src/misc/crashlog.c
+ * @author DvidMakesThings - David Sipos
+ * 
+ * @version 1.0.0
+ * @date 2025-11-06
+ * 
+ * @details Minimal HardFault + reset and watchdog feed crash log kept in 
+ * retained RAM with integrity. 
+ *
+ * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
+ * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
+ */
+
 #include "../CONFIG.h"
 
 /* Log through your non-blocking logger to avoid CDC blocking. */

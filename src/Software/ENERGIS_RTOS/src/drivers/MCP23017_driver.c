@@ -1,14 +1,10 @@
 /**
- * @file MCP23017_driver.c
+ * @file src/drivers/MCP23017_driver.c
  * @author DvidMakesThings - David Sipos
- *
- * @defgroup driver1 1. MCP23017 Driver
- * @ingroup drivers
- * @brief Single robust MCP23017 driver for ENERGIS.
- * @{
  *
  * @version 1.0.0
  * @date 2025-11-06
+ * 
  * @details
  * All functions accept the I2C address via the registered device context.
  * Uses FreeRTOS mutex for thread-safety, shadowed OLAT writes to avoid
@@ -47,7 +43,13 @@
 static mcp23017_t g_devs[MCP_MAX_DEVICES];
 static size_t g_dev_count = 0;
 
-/* Find existing device by address on same bus. */
+/** 
+ * @brief Find existing device by address on same bus. 
+ * 
+ * @param i2c I2C bus instance
+ * @param addr 7-bit I2C address
+ * @return Pointer to existing device context, or NULL if not found
+*/
 static mcp23017_t *_find_dev(i2c_inst_t *i2c, uint8_t addr) {
     for (size_t i = 0; i < g_dev_count; ++i) {
         if (g_devs[i].i2c == i2c && g_devs[i].addr == addr) {
@@ -57,7 +59,15 @@ static mcp23017_t *_find_dev(i2c_inst_t *i2c, uint8_t addr) {
     return NULL;
 }
 
-/* I2C robust write: reg+1byte, with retries. */
+/** 
+ * @brief I2C robust write: reg+1byte, with retries. 
+ * 
+ * @param i2c I2C bus instance
+ * @param addr 7-bit I2C address
+ * @param reg Register address
+ * @param val Value to write
+ * @return true on success, false on failure
+*/
 static bool _i2c_wr(i2c_inst_t *i2c, uint8_t addr, uint8_t reg, uint8_t val) {
     uint8_t buf[2] = {reg, val};
     for (int attempt = 0; attempt < MCP_I2C_MAX_RETRIES; ++attempt) {
@@ -70,7 +80,15 @@ static bool _i2c_wr(i2c_inst_t *i2c, uint8_t addr, uint8_t reg, uint8_t val) {
     return false;
 }
 
-/* I2C robust read: write reg, repeated-start, read 1 byte, with retries. */
+/** 
+ * @brief I2C robust read: write reg, repeated-start, read 1 byte, with retries. 
+ *
+ * @param i2c I2C bus instance
+ * @param addr 7-bit I2C address
+ * @param reg Register address
+ * @param out Pointer to output byte
+ * @return true on success, false on failure 
+ */
 static bool _i2c_rd(i2c_inst_t *i2c, uint8_t addr, uint8_t reg, uint8_t *out) {
     if (!out)
         return false;
@@ -388,7 +406,3 @@ bool setNetworkLink(bool state) {
     mcp_write_pin(disp, ETH_LED, state ? 1u : 0u);
     return true;
 }
-
-/**
- * @}
- */

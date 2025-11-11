@@ -1,18 +1,13 @@
 /**
- * @file settings_handler.c
+ * @file src/web_handlers/settings_handler.c
  * @author
- *
- * @defgroup webui3 3. Settings Handler
- * @ingroup webhandlers
- * @brief Handler for the page settings.html
- * @{
  *
  * @version 1.0.0
  * @date 2025-11-07
  *
  * @details Handles GET and POST requests for settings page. Reads/writes
- *          network configuration and user preferences from/to EEPROM.
- *          Triggers system reboot after settings changes.
+ * network configuration and user preferences from/to EEPROM.
+ * Triggers system reboot after settings changes.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -343,7 +338,3 @@ void handle_settings_post(uint8_t sock, char *body) {
     net_beat();
     Health_RebootNow("HTTP settings applied");
 }
-
-/**
- * @}
- */

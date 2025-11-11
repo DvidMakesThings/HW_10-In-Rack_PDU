@@ -1,10 +1,19 @@
 /**
- * @file http_server.h
+ * @file src/web_handlers/http_server.h
  * @author DvidMakesThings - David Sipos
- * @brief Header file for the HTTP server functionality
+ *
+ * @defgroup webhandlers Web-UI Handlers
+ * @brief HTTP server functionality for the ENERGIS PDU project.
+ * @{
+ *
+ * @defgroup webui1 1. HTTP Server
+ * @ingroup webhandlers
+ * @brief Main HTTP server implementation
+ * @{
  *
  * @version 1.0.0
  * @date 2025-05-24
+ *
  * @details Main HTTP server implementation using W5500 Ethernet controller.
  *          Handles all HTTP requests and routes to appropriate handlers.
  *          Uses spiMtx for thread-safe W5500 access.
@@ -33,3 +42,5 @@ bool http_server_init(void);
 void http_server_process(void);
 
 #endif // HTTP_SERVER_H
+
+/** @} */

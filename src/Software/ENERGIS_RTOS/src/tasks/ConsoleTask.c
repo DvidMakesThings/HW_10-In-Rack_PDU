@@ -1,13 +1,10 @@
 /**
- * @file ConsoleTask.c
+ * @file src/tasks/ConsoleTask.c
  * @author DvidMakesThings - David Sipos
- * @defgroup tasks04 3. Console Task
- * @ingroup tasks
- * @brief UART console task implementation (RTOS version, polling USB-CDC)
- * @{
  *
  * @version 2.0.0
  * @date 2025-11-08
+ * 
  * @details
  * Architecture:
  * 1. ConsoleTask polls USB-CDC at 10ms intervals (no ISR)
@@ -1026,7 +1023,3 @@ bool Console_IsReady(void) {
     extern QueueHandle_t q_cfg; /* created in ConsoleTask_Init() */
     return (q_cfg != NULL);
 }
-
-/**
- * @}
- */

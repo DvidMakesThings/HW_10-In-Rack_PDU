@@ -1,3 +1,23 @@
+/**
+ * @file src/FreeRTOSConfig.h
+ * @author DvidMakesThings - David Sipos
+ *
+ * @defgroup config02 2. RTOS Configuration
+ * @ingroup config
+ * @brief FreeRTOS Configuration Header
+ * @{
+ *
+ * @version 2.0.0
+ * @date 2025-11-08
+ *
+ * @details FreeRTOS configuration settings for the Energis PDU firmware.
+ * This file defines various parameters that control the behavior of the FreeRTOS kernel,
+ * including task priorities, memory allocation, and system hooks.
+ *
+ * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
+ * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
+ */
+
 #ifndef FREERTOS_CONFIG_H
 #define FREERTOS_CONFIG_H
 
@@ -106,6 +126,8 @@ void vAssertCalled(const char *file, int line);
 #define INCLUDE_xEventGroupSetBitFromISR    1
 #define INCLUDE_xTimerPendFunctionCall      1
 
-/* A header that defines trace macros can be included here. */
 /* clang-format on */
+
 #endif /* FREERTOS_CONFIG_H */
+
+/** @} */

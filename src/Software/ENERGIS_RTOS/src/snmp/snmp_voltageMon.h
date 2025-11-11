@@ -1,11 +1,16 @@
 /**
- * @file snmp_voltageMon.h
+ * @file src/snmp/snmp_voltageMon.h
  * @author DvidMakesThings - David Sipos
- * @brief SNMP voltage/temperature callbacks (RTOS-safe)
+ *
+ * @defgroup snmp05 5. SNMP Agent - Voltage monitoring (RTOS)
+ * @ingroup snmp
+ * @brief RP2040 rails + die temperature; project rails with dividers.
+ * @{
  *
  * @version 1.0.0
  * @date 2025-11-07
- * @details Returns ADC-derived rails and internal temperature; plus constants.
+ * 
+ * @details Uses Pico SDK ADC for on-die sensor; helper HAL for external rails.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -105,3 +110,5 @@ void get_usbPHYrail(void *buf, uint8_t *len);
 void get_ioRail(void *buf, uint8_t *len);
 
 #endif
+
+/** @} */

@@ -1,14 +1,10 @@
 /**
- * @file snmp_outletCtrl.c
+ * @file src/snmp/snmp_outletCtrl.c
  * @author DvidMakesThings - David Sipos
- *
- * @defgroup snmp03 3. SNMP Agent - Outlet control (RTOS)
- * @ingroup snmp
- * @brief Outlet state GET/SET callbacks that talk to SwitchTask (sole MCP owner).
- * @{
  *
  * @version 1.0.0
  * @date 2025-11-07
+ * 
  * @details Uses RTOS-safe SwitchTask API: query current state and request changes.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
@@ -251,5 +247,3 @@ void set_allOff(uint32_t u32) {
         (void)mcp_set_channel_state(i, 0);
     }
 }
-
-/** @} */

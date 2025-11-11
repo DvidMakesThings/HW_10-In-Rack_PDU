@@ -1,16 +1,12 @@
 /**
- * @file helpers.c
+ * @file src/misc/helpers.c
  * @author DvidMakesThings - David Sipos
- *
- * @defgroup misc_helpers01 1. Helper Functions
- * @ingroup misc_helpers
- * @brief General-purpose helper functions for string processing and utilities
- * @{
- *
+ * 
  * @version 1.0.0
- * @date 2025-11-07
- * @details Provides utility functions for URL decoding, form parsing, and
- *          other common string operations used throughout the application.
+ * @date 2025-11-06
+ * 
+ * @details System wide used helper functions, which cannot fit 
+ * into other modules.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU

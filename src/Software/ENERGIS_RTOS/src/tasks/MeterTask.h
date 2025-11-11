@@ -1,16 +1,19 @@
 /**
- * @file MeterTask.h
+ * @file src/tasks/MeterTask.h
  * @author DvidMakesThings - David Sipos
- * @brief Power Metering Task Header
+ *
+ * @defgroup tasks07 7. Meter Task
+ * @ingroup tasks
+ * @brief Power Metering Task Implementation
+ * @{
  *
  * @version 1.0.0
  * @date 2025-11-08
  *
  * @details MeterTask is the sole owner of the HLW8032 power measurement
- * peripheral. It polls all 8 channels in round-robin fashion, computes
- * rolling averages, tracks uptime, and publishes telemetry data to other
- * tasks via a message queue. Operates at 20-50 Hz polling rate with 1s
- * averaging window.
+ * peripheral. It polls all 8 channels in round-robin fashion at 25 Hz,
+ * computes rolling averages, tracks uptime, and publishes telemetry data
+ * to other tasks via q_meter_telemetry queue.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU

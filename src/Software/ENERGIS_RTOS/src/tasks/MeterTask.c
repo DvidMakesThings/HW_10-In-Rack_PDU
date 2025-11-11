@@ -1,11 +1,6 @@
 /**
- * @file MeterTask.c
+ * @file src/tasks/MeterTask.c
  * @author DvidMakesThings - David Sipos
- *
- * @defgroup tasks07 7. Meter Task
- * @ingroup tasks
- * @brief Power Metering Task Implementation
- * @{
  *
  * @version 1.0.0
  * @date 2025-11-08
@@ -338,5 +333,3 @@ void MeterTask_RefreshAll(void) {
                                                    .valid = true};
     }
 }
-
-/** @} */

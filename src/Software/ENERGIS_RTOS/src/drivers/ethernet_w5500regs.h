@@ -1,14 +1,18 @@
 /**
- * @file ethernet_w5500regs.h
+ * @file src/drivers/ethernet_w5500regs.h
  * @author DvidMakesThings - David Sipos
- * @brief W5500 Register Definitions (Self-Contained)
+ *
+ * @defgroup config04 4. W5500 Register definitions
+ * @ingroup config
+ * @brief W5500 Register Definitions
+ * @{
  *
  * @version 1.0.0
  * @date 2025-11-06
- * @details
- * Complete W5500 register map.
- * This file is self-contained and doesn't depend on old library files.
- *
+ * 
+ * @details Complete W5500 register map.
+ * 
+ * @note This file is self-contained and doesn't depend on old library files.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -17,7 +21,7 @@
 #ifndef W5500_REGS_H
 #define W5500_REGS_H
 
-#include <stdint.h>
+#include "../CONFIG.h"
 
 /******************************************************************************
  *                          CHIP DEFINITIONS                                  *
@@ -283,3 +287,5 @@
 #define PHY_DUPLEX_FULL 1   /* Full-duplex */
 
 #endif /* W5500_REGS_H */
+
+/** @} */

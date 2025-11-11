@@ -1,7 +1,15 @@
 /**
- * @file MCP23017_driver.h
+ * @file src/drivers/MCP23017_driver.h
  * @author DvidMakesThings - David Sipos
- * @brief Single robust MCP23017 driver header for ENERGIS.
+ *
+ * @defgroup drivers Drivers
+ * @brief HAL drivers for the Energis PDU firmware.
+ * @{
+ * 
+ * @defgroup driver1 1. MCP23017 Driver
+ * @ingroup drivers
+ * @brief Header file for MCP23017 I2C GPIO expander driver
+ * @{
  *
  * @version 1.0.0
  * @date 2025-11-06
@@ -151,10 +159,16 @@ void mcp_write_mask(mcp23017_t *dev, uint8_t port_ab, uint8_t mask, uint8_t valu
  * @brief Re-sync software shadows from hardware OLATx registers.
  *
  * @param dev Device context.
+ * @return None
  */
 void mcp_resync_from_hw(mcp23017_t *dev);
 
-/* ===== Board binding (uses CONFIG.h macros) =====
+/** 
+ * @brief Initialize all MCP23017 devices used in the system.
+ * 
+ * @param None
+ * @return None
+ * @note ===== Board binding (uses CONFIG.h macros) =====
    Required in CONFIG.h:
      - I2C_SPEED
      - MCP23017_DISPLAY_I2C (e.g., i2c0), MCP23017_RELAY_I2C (e.g., i2c1), MCP23017_SELECTION_I2C
@@ -169,16 +183,53 @@ mcp23017_t *mcp_relay(void);
 mcp23017_t *mcp_display(void);
 mcp23017_t *mcp_selection(void);
 
-/* Sets one channel on the RELAY MCP and mirrors it to the DISPLAY MCP.
- * ch: 0..7, value: 0=off, 1=on. Returns true on success (relay MCP present). */
+/**
+ * @brief Sets one channel on the RELAY MCP and mirrors it to the DISPLAY MCP.
+ * ch: 0..7, value: 0=off, 1=on. Returns true on success (relay MCP present). 
+ * 
+ * @param ch Channel index 0..7
+ * @param value 0=off, 1=on
+ * @return true on success
+ * 
+*/
 bool mcp_set_channel_state(uint8_t ch, uint8_t value);
 
+/**
+ * @brief Gets one channel state from the RELAY MCP.
+ * ch: 0..7. Returns true if ON, false if OFF or error.
+ * 
+ * @param ch Channel index 0..7
+ * @return true if relay is ON, false if OFF or error
+ */
 bool mcp_get_channel_state(uint8_t ch);
 
-bool setError(bool);
+/**
+ * @brief Set or clear the FAULT LED on the DISPLAY MCP.
+ * state: true=ON, false=OFF. Returns true on success (display MCP present).
+ * 
+ * @param state true=ON, false=OFF
+ * @return true on success
+ */
+bool setError(bool state);
 
+/**
+ * @brief Set or clear the POWER GOOD indicator on the DISPLAY MCP.
+ * state: true=ON, false=OFF. Returns true on success (display MCP present).
+ * 
+ * @param state true=ON, false=OFF
+ * @return true on success
+ */
 bool setPowerGood(bool state);
 
+/**
+ * @brief Set or clear the NETWORK LINK indicator on the DISPLAY MCP.
+ * state: true=ON, false=OFF. Returns true on success (display MCP present).
+ * 
+ * @param state true=ON, false=OFF
+ * @return true on success
+ */
 bool setNetworkLink(bool state);
 
 #endif /* MCP23017_DRIVER_H */
+
+/** @} */

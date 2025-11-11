@@ -1,19 +1,13 @@
 /**
- * @file HLW8032_driver.c
+ * @file src/drivers/HLW8032_driver.c
  * @author DvidMakesThings - David Sipos
- *
- * @defgroup driver7 7. HLW8032 Energy Measurement Driver
- * @ingroup drivers
- * @brief HLW8032 Power Measurement Driver Source (RTOS-compatible)
- * @{
- *
+ * 
  * @version 1.2.0
  * @date 2025-11-08
  *
  * @details Provides RTOS-safe API for interfacing with the HLW8032 power
  * measurement chip. Features mutex-protected UART access, channel polling,
  * cached measurements, uptime tracking, and EEPROM-backed calibration.
- * Uses new MCP23017 driver API for MUX control.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -308,10 +302,6 @@ static float calc_power(const hlw_calib_t *calib) {
 /*                            Public API                                  */
 /* ===================================================================== */
 
-/**
- * @brief Initialize HLW8032 hardware (UART, load calibration).
- * @note Call once during system init, before creating MeterTask.
- */
 void hlw8032_init(void) {
     /* Initialize UART for HLW8032 communication */
     uart_init(HLW8032_UART_ID, HLW8032_BAUDRATE);
@@ -329,12 +319,6 @@ void hlw8032_init(void) {
     }
 }
 
-/**
- * @brief Read and parse a measurement frame for a given channel.
- * @param channel Channel index 0..7
- * @return true if a valid frame was read and parsed successfully
- * @note UART access is mutex-protected; blocks until mutex available
- */
 bool hlw8032_read(uint8_t channel) {
     if (channel >= 8)
         return false;
@@ -369,34 +353,14 @@ bool hlw8032_read(uint8_t channel) {
     return ok;
 }
 
-/**
- * @brief Get last voltage measurement [V].
- * @return Voltage in volts from most recent successful read
- */
 float hlw8032_get_voltage(void) { return last_voltage; }
 
-/**
- * @brief Get last current measurement [A].
- * @return Current in amps from most recent successful read
- */
 float hlw8032_get_current(void) { return last_current; }
 
-/**
- * @brief Get last active power measurement [W].
- * @return Active power in watts from most recent successful read
- */
 float hlw8032_get_power(void) { return last_power; }
 
-/**
- * @brief Calculate apparent power as V×I [W].
- * @return Apparent power in watts (voltage × current)
- */
 float hlw8032_get_power_inspect(void) { return last_voltage * last_current; }
 
-/**
- * @brief Get power factor [0..1].
- * @return Power factor ratio (active power / apparent power)
- */
 float hlw8032_get_power_factor(void) {
     float apparent = hlw8032_get_power_inspect();
     if (apparent < 0.1f)
@@ -405,21 +369,11 @@ float hlw8032_get_power_factor(void) {
     return (pf >= 0.0f && pf <= 1.0f) ? pf : 1.0f;
 }
 
-/**
- * @brief Get accumulated energy [kWh].
- * @return Energy in kilowatt-hours since last reset
- */
 float hlw8032_get_kwh(void) {
     /* TODO: Implement energy accumulation */
     return 0.0f;
 }
 
-/**
- * @brief Update uptime accounting for a channel.
- * @param ch Channel index 0..7
- * @param state true if relay is ON, false if OFF
- * @note Called by MeterTask to track ON-time per channel
- */
 void hlw8032_update_uptime(uint8_t ch, bool state) {
     if (ch >= 8)
         return;
@@ -436,11 +390,6 @@ void hlw8032_update_uptime(uint8_t ch, bool state) {
     cached_state[ch] = state;
 }
 
-/**
- * @brief Get accumulated uptime [s] for a channel.
- * @param ch Channel index 0..7
- * @return Uptime in seconds since last power-on
- */
 uint32_t hlw8032_get_uptime(uint8_t ch) {
     if (ch >= 8)
         return 0;
@@ -458,10 +407,6 @@ uint32_t hlw8032_get_uptime(uint8_t ch) {
 /*                     Producer / Consumer API                            */
 /* ===================================================================== */
 
-/**
- * @brief Poll one channel (round-robin) and update internal cache.
- * @note Advances to next channel automatically; called by MeterTask loop
- */
 void hlw8032_poll_once(void) {
     uint8_t ch = poll_channel;
 
@@ -481,10 +426,6 @@ void hlw8032_poll_once(void) {
     poll_channel = (uint8_t)((ch + 1) % 8);
 }
 
-/**
- * @brief Refresh all 8 channels sequentially (blocking).
- * @note Takes ~2s to complete; use sparingly
- */
 void hlw8032_refresh_all(void) {
     for (uint8_t ch = 0; ch < 8; ch++) {
         bool state = mcp_get_channel_state(ch);
@@ -499,9 +440,6 @@ void hlw8032_refresh_all(void) {
     }
 }
 
-/**
- * @brief Get cached voltage [V] for a channel (clamped 0-400V).
- */
 float hlw8032_cached_voltage(uint8_t ch) {
     float v = (ch < 8) ? cached_voltage[ch] : 0.0f;
     if (!(v >= 0.0f) || v > 400.0f)
@@ -509,9 +447,6 @@ float hlw8032_cached_voltage(uint8_t ch) {
     return v;
 }
 
-/**
- * @brief Get cached current [A] for a channel (clamped 0-100A).
- */
 float hlw8032_cached_current(uint8_t ch) {
     float i = (ch < 8) ? cached_current[ch] : 0.0f;
     if (!(i >= 0.0f) || i > 100.0f)
@@ -519,9 +454,6 @@ float hlw8032_cached_current(uint8_t ch) {
     return i;
 }
 
-/**
- * @brief Get cached power [W] for a channel (recomputed from V×I).
- */
 float hlw8032_cached_power(uint8_t ch) {
     if (ch >= 8)
         return 0.0f;
@@ -531,23 +463,14 @@ float hlw8032_cached_power(uint8_t ch) {
     return (p >= 0.0f && p < 400.0f * 100.0f) ? p : 0.0f;
 }
 
-/**
- * @brief Get cached uptime [s] for a channel.
- */
 uint32_t hlw8032_cached_uptime(uint8_t ch) { return (ch < 8) ? cached_uptime[ch] : 0u; }
 
-/**
- * @brief Get cached relay state for a channel.
- */
 bool hlw8032_cached_state(uint8_t ch) { return (ch < 8) ? cached_state[ch] : false; }
 
 /* ===================================================================== */
 /*                           Calibration section                          */
 /* ===================================================================== */
 
-/**
- * @brief Load calibration for all channels from EEPROM with sanitization.
- */
 void hlw8032_load_calibration(void) {
     for (uint8_t i = 0; i < 8; i++) {
         hlw_calib_t tmp;
@@ -584,13 +507,6 @@ void hlw8032_load_calibration(void) {
     }
 }
 
-/**
- * @brief Calibrate a single channel against known reference values.
- * @param channel Channel index 0..7
- * @param ref_voltage Reference voltage in volts (0 for zero-cal only)
- * @param ref_current Reference current in amps (0 for zero-cal only)
- * @return true on success
- */
 bool hlw8032_calibrate_channel(uint8_t channel, float ref_voltage, float ref_current) {
     (void)ref_current; /* Current calibration not implemented */
     if (channel >= 8)
@@ -662,10 +578,6 @@ bool hlw8032_calibrate_channel(uint8_t channel, float ref_voltage, float ref_cur
     return true;
 }
 
-/**
- * @brief Zero-calibrate all 8 channels simultaneously.
- * @return true if all channels succeeded
- */
 bool hlw8032_zero_calibrate_all(void) {
     uint8_t ok = 0;
     for (uint8_t ch = 0; ch < 8; ch++) {
@@ -675,12 +587,6 @@ bool hlw8032_zero_calibrate_all(void) {
     return ok == 8;
 }
 
-/**
- * @brief Get a copy of calibration data for a channel.
- * @param channel Channel index 0..7
- * @param calib Pointer to receive calibration data
- * @return true if channel has valid calibration (0xCA marker)
- */
 bool hlw8032_get_calibration(uint8_t channel, hlw_calib_t *calib) {
     if (channel >= 8 || calib == NULL)
         return false;
@@ -688,11 +594,6 @@ bool hlw8032_get_calibration(uint8_t channel, hlw_calib_t *calib) {
     return (calib->calibrated == 0xCA);
 }
 
-/**
- * @brief Print calibration data for a channel.
- * @param channel Channel index 0..7
- * @note ECHO macro disabled in RTOS builds
- */
 void hlw8032_print_calibration(uint8_t channel) {
     if (channel >= 8)
         return;
@@ -700,5 +601,3 @@ void hlw8032_print_calibration(uint8_t channel) {
     /* const hlw_calib_t *c = &channel_calib[channel]; */
     /* Send to logger queue instead of ECHO */
 }
-
-/** @} */

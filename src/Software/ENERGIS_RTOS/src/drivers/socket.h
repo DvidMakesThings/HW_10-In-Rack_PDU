@@ -1,19 +1,21 @@
 /**
- * @file socket.h
+ * @file src/drivers/socket.h
  * @author DvidMakesThings - David Sipos
- * @brief W5500 Socket API (BSD-like interface) - Complete Header
+ *
+ * @defgroup drivers08 8. Ethernet Socket Implementation
+ * @ingroup drivers
+ * @brief Header file for BSD-like socket API implementation
+ * @{
  *
  * @version 1.0.0
- * @date 2025-11-06
+ * @date 2025-11-07
+ * 
  * @details
- * Complete BSD socket-like API for W5500 Ethernet controller.
- * Supports TCP, UDP, and RAW sockets with thread-safe operation.
- *
- * Key Differences from BSD Sockets:
- * - No bind() - socket() assigns port automatically
- * - No accept() - listen() handles connections automatically
- * - closesocket() closes and cleans up socket state
- * - Socket numbers are 0-7 (hardware limited)
+ * Thread-safe BSD socket-like API for W5500.
+ * Key Features:
+ * - Thread-safe operation via w5500_spi_mutex
+ * - Blocking and non-blocking I/O modes
+ * - TCP, UDP, IPRAW, MACRAW protocol support
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -492,3 +494,5 @@ int32_t recvfrom_SNMP(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uin
  */
 
 #endif /* ETH_SOCKET_H */
+
+/** @} */

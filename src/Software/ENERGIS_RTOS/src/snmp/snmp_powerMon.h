@@ -1,11 +1,17 @@
 /**
- * @file snmp_powerMon.h
+ * @file src/snmp/snmp_powerMon.h
  * @author DvidMakesThings - David Sipos
- * @brief SNMP power monitoring callbacks (RTOS-safe reads)
  *
- * @version 1.0.0
- * @date 2025-11-07
- * @details Exposes Vrms/Irms/W/PF/kWh/Uptime per channel via SNMP GET callbacks.
+ * @defgroup snmp04 4. SNMP Agent - Power monitoring (RTOS)
+ * @ingroup snmp
+ * @brief Per-channel power telemetry GET callbacks using MeterTask API.
+ * @{
+ *
+ * @version 1.1.0
+ * @date 2025-11-08
+ * 
+ * @details Queries the canonical telemetry cache owned by MeterTask.
+ *          Uses MeterTask_GetTelemetry() for non-blocking cached reads.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -83,3 +89,5 @@ void get_power_7_MEAS_KWH(void *buf, uint8_t *len);
 void get_power_7_MEAS_UPTIME(void *buf, uint8_t *len);
 
 #endif
+
+/** @} */

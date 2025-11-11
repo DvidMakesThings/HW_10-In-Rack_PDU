@@ -1,17 +1,12 @@
 /**
- * @file socket.c
+ * @file src/drivers/socket.c
  * @author DvidMakesThings - David Sipos
- *
- * @defgroup drivers05 5. Ethernet Socket Implementation
- * @ingroup drivers
- * @brief BSD-like socket API implementation for W5500 Ethernet controller
- * @{
  *
  * @version 1.0.0
  * @date 2025-11-07
+ * 
  * @details
  * Thread-safe BSD socket-like API for W5500.
- *
  * Key Features:
  * - Thread-safe operation via w5500_spi_mutex
  * - Blocking and non-blocking I/O modes
@@ -1037,7 +1032,3 @@ int8_t getsockopt(uint8_t sn, sockopt_type sotype, void *arg) {
 
     return SOCK_OK;
 }
-
-/**
- * @}
- */

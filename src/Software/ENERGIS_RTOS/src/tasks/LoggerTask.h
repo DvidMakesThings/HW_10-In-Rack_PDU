@@ -1,12 +1,16 @@
 /**
- * @file LoggerTask.h
+ * @file src/tasks/LoggerTask.h
  * @author DvidMakesThings - David Sipos
- * @brief Logger task implementation header (RTOS version)
  *
- * @version 1.0
+ * @defgroup tasks03 3. Logger
+ * @ingroup tasks
+ * @brief Logger task implementation (RTOS version)
+ * @{
+ *
+ * @version 1.0.0
  * @date 2025-11-06
- * @details
- * Implements a FreeRTOS-based logging task that receives log messages
+ * 
+ * @details Implements a FreeRTOS-based logging task that receives log messages
  * via a queue and outputs them to stdio (USB-CDC).
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
@@ -53,3 +57,5 @@ BaseType_t LoggerTask_Init(bool enable);
 void log_printf(const char *fmt, ...);
 
 #endif /* LOGGER_H */
+
+/** @} */

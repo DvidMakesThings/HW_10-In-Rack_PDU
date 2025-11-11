@@ -1,11 +1,6 @@
 /**
- * @file ethernet_driver.c
+ * @file src/drivers/ethernet_driver.c
  * @author DvidMakesThings - David Sipos
- *
- * @defgroup drivers04 4. W5500 Driver Implementation
- * @ingroup drivers
- * @brief W5500 Ethernet Controller HAL Driver Implementation (RTOS-compatible)
- * @{
  *
  * @version 1.0.0
  * @date 2025-11-06
@@ -94,9 +89,6 @@ static void _w5500_cris_exit(void) {
  *                          W5500 REGISTER ACCESS                             *
  ******************************************************************************/
 
-/**
- * @brief Read single byte from W5500 register
- */
 uint8_t w5500_read_reg(uint32_t addr_sel) {
     uint8_t ret;
     uint8_t spi_data[3];
@@ -124,9 +116,6 @@ uint8_t w5500_read_reg(uint32_t addr_sel) {
     return ret;
 }
 
-/**
- * @brief Write single byte to W5500 register
- */
 void w5500_write_reg(uint32_t addr_sel, uint8_t wb) {
     uint8_t spi_data[4];
 
@@ -150,9 +139,6 @@ void w5500_write_reg(uint32_t addr_sel, uint8_t wb) {
     _cris_exit();
 }
 
-/**
- * @brief Read buffer from W5500
- */
 void w5500_read_buf(uint32_t addr_sel, uint8_t *pBuf, uint16_t len) {
     uint8_t spi_data[3];
 
@@ -182,9 +168,6 @@ void w5500_read_buf(uint32_t addr_sel, uint8_t *pBuf, uint16_t len) {
     _cris_exit();
 }
 
-/**
- * @brief Write buffer to W5500
- */
 void w5500_write_buf(uint32_t addr_sel, uint8_t *pBuf, uint16_t len) {
     uint8_t spi_data[3];
 
@@ -217,14 +200,7 @@ void w5500_write_buf(uint32_t addr_sel, uint8_t *pBuf, uint16_t len) {
 /******************************************************************************
  *                          SOCKET DATA TRANSFER                              *
  ******************************************************************************/
-/**
- * @brief Set socket TX write pointer (Sn_TX_WR) in big-endian.
- *
- * Fix: always serialize the 16-bit register in network/big-endian.
- *
- * @param sn   Socket number [0..7]
- * @param ptr  New TX write pointer
- */
+
 void setSn_TX_WR(uint8_t sn, uint16_t ptr) {
     uint8_t be[2];
     be[0] = (uint8_t)(ptr >> 8);
@@ -232,12 +208,6 @@ void setSn_TX_WR(uint8_t sn, uint16_t ptr) {
     w5500_write_buf(Sn_TX_WR(sn), be, 2);
 }
 
-/**
- * @brief Set socket RX read pointer (Sn_RX_RD) in big-endian.
- *
- * @param sn   Socket number [0..7]
- * @param ptr  New RX read pointer
- */
 void setSn_RX_RD(uint8_t sn, uint16_t ptr) {
     uint8_t be[2];
     be[0] = (uint8_t)(ptr >> 8);
@@ -245,12 +215,6 @@ void setSn_RX_RD(uint8_t sn, uint16_t ptr) {
     w5500_write_buf(Sn_RX_RD(sn), be, 2);
 }
 
-/**
- * @brief Set the source TCP/UDP port (big-endian)
- * @param sn   Socket number [0..7]
- * @param port Host-endian source port
- * @return     void
- */
 void setSn_PORT(uint8_t sn, uint16_t port) {
     uint8_t be[2];
     be[0] = (uint8_t)(port >> 8);
@@ -258,23 +222,12 @@ void setSn_PORT(uint8_t sn, uint16_t port) {
     w5500_write_buf(Sn_PORT(sn), be, 2);
 }
 
-/**
- * @brief Get the source TCP/UDP port (big-endian)
- * @param sn   Socket number [0..7]
- * @return     Host-endian source port
- */
 uint16_t getSn_PORT(uint8_t sn) {
     uint8_t be[2];
     w5500_read_buf(Sn_PORT(sn), be, 2);
     return (uint16_t)((be[0] << 8) | be[1]);
 }
 
-/**
- * @brief Set the destination TCP/UDP port (big-endian)
- * @param sn   Socket number [0..7]
- * @param port Host-endian destination port
- * @return     void
- */
 void setSn_DPORT(uint8_t sn, uint16_t dport) {
     uint8_t be[2];
     be[0] = (uint8_t)(dport >> 8);
@@ -282,20 +235,12 @@ void setSn_DPORT(uint8_t sn, uint16_t dport) {
     w5500_write_buf(Sn_DPORT(sn), be, 2);
 }
 
-/**
- * @brief Get the destination TCP/UDP port (big-endian)
- * @param sn   Socket number [0..7]
- * @return     Host-endian destination port
- */
 uint16_t getSn_DPORT(uint8_t sn) {
     uint8_t be[2];
     w5500_read_buf(Sn_DPORT(sn), be, 2);
     return (uint16_t)((be[0] << 8) | be[1]);
 }
 
-/**
- * @brief Get socket TX free size (with double-read protection)
- */
 uint16_t w5500_get_tx_fsr(uint8_t sn) {
     uint16_t val = 0, val1 = 0;
 
@@ -311,9 +256,6 @@ uint16_t w5500_get_tx_fsr(uint8_t sn) {
     return val;
 }
 
-/**
- * @brief Get socket RX received size (with double-read protection)
- */
 uint16_t w5500_get_rx_rsr(uint8_t sn) {
     uint16_t val = 0, val1 = 0;
 
@@ -329,17 +271,6 @@ uint16_t w5500_get_rx_rsr(uint8_t sn) {
     return val;
 }
 
-/**
- * @brief Send data to socket TX buffer with ring-wrap handling
- *
- * Writes 'len' bytes from wizdata into the socket's TX ring buffer.
- * If the write pointer + len crosses the end of the TX buffer, the write
- * is split into two SPI bursts: tail then head.
- *
- * @param sn     Socket number
- * @param wizdata Source buffer
- * @param len    Number of bytes to write
- */
 void eth_send_data(uint8_t sn, uint8_t *wizdata, uint16_t len) {
     if (!wizdata || len == 0)
         return;
@@ -376,17 +307,6 @@ void eth_send_data(uint8_t sn, uint8_t *wizdata, uint16_t len) {
     setSn_TX_WR(sn, wr_ptr);
 }
 
-/**
- * @brief Receive data from socket RX buffer with ring-wrap handling
- *
- * Reads up to 'len' bytes from the socket's RX ring buffer into wizdata.
- * If the read pointer + len crosses the end of the RX buffer, the read
- * is split into two SPI bursts: tail then head.
- *
- * @param sn      Socket number
- * @param wizdata Destination buffer
- * @param len     Number of bytes to read
- */
 void eth_recv_data(uint8_t sn, uint8_t *wizdata, uint16_t len) {
     if (!wizdata || len == 0)
         return;
@@ -416,14 +336,6 @@ void eth_recv_data(uint8_t sn, uint8_t *wizdata, uint16_t len) {
     setSn_RX_RD(sn, rd_ptr);
 }
 
-/**
- * @brief Ignore (discard) received data with correct pointer advance
- *
- * Advances the RX read pointer by 'len' bytes without copying data.
- *
- * @param sn  Socket number
- * @param len Number of bytes to discard
- */
 void eth_recv_ignore(uint8_t sn, uint16_t len) {
     if (len == 0)
         return;
@@ -436,9 +348,6 @@ void eth_recv_ignore(uint8_t sn, uint16_t len) {
  *                          HARDWARE INITIALIZATION                           *
  ******************************************************************************/
 
-/**
- * @brief Initialize W5500 hardware (SPI, GPIO, reset)
- */
 bool w5500_hw_init(void) {
     /* Create SPI mutex */
     if (!w5500_spi_mutex) {
@@ -477,19 +386,6 @@ bool w5500_hw_init(void) {
     return true;
 }
 
-/**
- * @brief Initialize the W5500 chip and bring link up
- *
- * @param net_info Pointer to network configuration (MAC, IP, SN, GW, DNS, DHCP)
- * @return true on success, false on failure
- *
- * @details
- * - Configures per-socket RX/TX buffer sizes.
- * - Brings the PHY up and waits for link.
- * - Applies the provided network configuration.
- * - Programs TCP retry timing registers RTR/RCR from ethernet_config.h.
- * - Leaves the device ready for socket allocation and use.
- */
 bool w5500_chip_init(w5500_NetConfig *net_info) {
     if (!net_info) {
         ERROR_PRINT("[W5500] NULL network info\r\n");
@@ -545,9 +441,6 @@ bool w5500_chip_init(w5500_NetConfig *net_info) {
     return true;
 }
 
-/**
- * @brief Check W5500 version register
- */
 bool w5500_check_version(void) {
     uint8_t version = getVERSIONR();
     if (version != 0x04) {
@@ -562,9 +455,6 @@ bool w5500_check_version(void) {
  *                          NETWORK CONFIGURATION                             *
  ******************************************************************************/
 
-/**
- * @brief Set network configuration
- */
 void w5500_set_network(w5500_NetConfig *net_info) {
     if (!net_info)
         return;
@@ -582,9 +472,6 @@ void w5500_set_network(w5500_NetConfig *net_info) {
     setGAR(net_info->gw);
 }
 
-/**
- * @brief Get network configuration
- */
 void w5500_get_network(w5500_NetConfig *net_info) {
     if (!net_info)
         return;
@@ -606,9 +493,6 @@ void w5500_get_network(w5500_NetConfig *net_info) {
     net_info->dhcp = W5500_USE_DHCP;
 }
 
-/**
- * @brief Print network configuration
- */
 void w5500_print_network(w5500_NetConfig *net_info) {
     if (!net_info)
         return;
@@ -631,17 +515,11 @@ void w5500_print_network(w5500_NetConfig *net_info) {
  *                          PHY MANAGEMENT                                    *
  ******************************************************************************/
 
-/**
- * @brief Get PHY link status
- */
 w5500_PhyLink w5500_get_link_status(void) {
     uint8_t phycfgr = getPHYCFGR();
     return (phycfgr & PHYCFGR_LNK_ON) ? PHY_LINK_ON : PHY_LINK_OFF;
 }
 
-/**
- * @brief Configure PHY mode
- */
 int8_t w5500_set_phy_conf(w5500_PhyConfig *phyconf) {
     if (!phyconf)
         return -1;
@@ -657,9 +535,6 @@ int8_t w5500_set_phy_conf(w5500_PhyConfig *phyconf) {
     return 0;
 }
 
-/**
- * @brief Get PHY configuration
- */
 void w5500_get_phy_conf(w5500_PhyConfig *phyconf) {
     if (!phyconf)
         return;
@@ -672,9 +547,6 @@ void w5500_get_phy_conf(w5500_PhyConfig *phyconf) {
     phyconf->duplex = (tmp & PHYCFGR_DPX_FULL) ? PHY_DUPLEX_FULL : PHY_DUPLEX_HALF;
 }
 
-/**
- * @brief Set PHY power mode
- */
 void w5500_set_phy_power(w5500_PhyPower mode) {
     uint8_t tmp = getPHYCFGR();
 
@@ -691,9 +563,6 @@ void w5500_set_phy_power(w5500_PhyPower mode) {
  *                          UTILITY FUNCTIONS                                 *
  ******************************************************************************/
 
-/**
- * @brief Software reset W5500 chip
- */
 void w5500_sw_reset(void) {
     setMR(MR_RST);
     vTaskDelay(pdMS_TO_TICKS(10));
@@ -702,7 +571,4 @@ void w5500_sw_reset(void) {
     }
 }
 
-/**
- * @brief Get chip ID string
- */
 const char *w5500_get_chip_id(void) { return "W5500"; }

@@ -1,15 +1,6 @@
 /**
- * @file http_server.c
+ * @file src/web_handlers/http_server.c
  * @author DvidMakesThings - David Sipos
- *
- * @defgroup webhandlers Web-UI Handlers
- * @brief HTTP server functionality for the ENERGIS PDU project.
- * @{
- *
- * @defgroup webui1 1. HTTP Server
- * @ingroup webhandlers
- * @brief Main HTTP server implementation
- * @{
  *
  * @version 1.0.0
  * @date 2025-05-24
@@ -318,7 +309,3 @@ void http_server_process(void) {
         break;
     }
 }
-
-/**
- * @}
- */
