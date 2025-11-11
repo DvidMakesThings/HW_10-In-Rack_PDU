@@ -1,8 +1,34 @@
 /**
+ * @file src/CONFIG.h
+ * @author DvidMakesThings - David Sipos
+ *
+ * @defgroup config Configuration Files
+ * @brief Configuration files for the Energis PDU firmware.
+ * @{
+ *
+ * @defgroup config01 1. RTOS Configuration
+ * @ingroup config
+ * @brief Configuration header for ENERGIS PDU firmware.
+ * @{
+ *
+ * @version 2.0.0
+ * @date 2025-11-08
+ *
+ * @details This file contains global configuration settings, 
+ * peripheral assignments, and logging macros for the ENERGIS PDU 
+ * firmware project. It contains user-configurable options as well 
+ * as system constants. It describes GPIO pin assignments, I2C/SPI 
+ * peripheral usage, ADC channel assignments, and other peripheral 
+ * configurations.
+ *
+ * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
+ * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
+ */
+
+/**
  * @file CONFIG.h
  * @author DvidMakesThings - David Sipos
- * @brief Configuration header for ENERGIS PDU firmware.
- *
+ * @brief 
  * @version 1.0.0
  * @date 2025-11-06
  * @details
@@ -354,3 +380,6 @@ extern w5500_NetConfig eth_netcfg;
 #define SEL_8 7
 
 #endif /* CONFIG_H */
+
+/** @} */
+/** @} */

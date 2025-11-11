@@ -1,11 +1,6 @@
 /**
- * @file snmp_networkCtrl.c
+ * @file src/snmp/snmp_networkCtrl.c
  * @author DvidMakesThings - David Sipos
- *
- * @defgroup snmp02 2. SNMP Agent - Network configuration (RTOS)
- * @ingroup snmp
- * @brief Expose persisted network config (EEPROM) as SNMP strings.
- * @{
  *
  * @version 1.1.0
  * @date 2025-11-08
@@ -110,5 +105,3 @@ void get_networkDNS(void *ptr, uint8_t *len) {
     load_netcfg(&ni);
     *len = ipfmt(ptr, ni.dns);
 }
-
-/** @} */

@@ -1,14 +1,10 @@
 /**
- * @file snmp_powerMon.c
+ * @file src/snmp/snmp_powerMon.c
  * @author DvidMakesThings - David Sipos
- *
- * @defgroup snmp04 4. SNMP Agent - Power monitoring (RTOS)
- * @ingroup snmp
- * @brief Per-channel power telemetry GET callbacks using MeterTask API.
- * @{
  *
  * @version 1.1.0
  * @date 2025-11-08
+ * 
  * @details Queries the canonical telemetry cache owned by MeterTask.
  *          Uses MeterTask_GetTelemetry() for non-blocking cached reads.
  *
@@ -133,5 +129,3 @@ GEN_CH(4)
 GEN_CH(5)
 GEN_CH(6)
 GEN_CH(7)
-
-/** @} */

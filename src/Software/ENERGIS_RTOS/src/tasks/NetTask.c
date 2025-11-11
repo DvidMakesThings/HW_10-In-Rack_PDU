@@ -1,15 +1,11 @@
 /**
- * @file NetTask.c
+ * @file src/tasks/NetTask.c
  * @author DvidMakesThings - David Sipos
- * @defgroup tasks06 6. Network Task
- * @ingroup tasks
- * @brief Network task handling HTTP server and W5500 Ethernet controller
- * @{
+ * 
  * @version 1.1.0
  * @date 2025-11-07
  *
- * @details
- * NetTask owns all W5500 operations. It waits for StorageTask to signal that
+ * @details NetTask owns all W5500 operations. It waits for StorageTask to signal that
  * configuration is ready, reads the network config, brings up the W5500, then
  * runs the web server loop.
  *
@@ -244,7 +240,3 @@ BaseType_t NetTask_Init(bool enable) {
  * @return true if netTaskHandle is non-NULL, else false.
  */
 bool Net_IsReady(void) { return (netTaskHandle != NULL); }
-
-/**
- * @}
- */

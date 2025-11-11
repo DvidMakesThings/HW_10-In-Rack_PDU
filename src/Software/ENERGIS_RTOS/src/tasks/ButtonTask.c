@@ -1,10 +1,6 @@
 /**
- * @file button_task.c
+ * @file src/tasks/button_task.c
  * @author DvidMakesThings - David Sipos
- * @defgroup tasks02 2. Button Task Driver
- * @ingroup tasks
- * @brief FreeRTOS-based button scanner + debouncer for ENERGIS.
- * @{
  *
  * @version 1.0.1
  * @date 2025-11-08
@@ -13,10 +9,10 @@
  * 2. Debounces with DEBOUNCE_MS and resolves SET short/long with LONGPRESS_DT.
  * 3. Maintains a 10 s "selection window" with 250 ms blinking on selection row.
  * 4. Emits events on q_btn for higher layers; also performs the classic actions:
- *      PLUS  -> move selection RIGHT (wrap)  [only after window is open]
- *      MINUS -> move selection LEFT  (wrap)  [only after window is open]
- *      SET short -> toggle selected relay (opens window if it was idle)
- *      SET long  -> clear error LED; never opens the window
+ * PLUS  -> move selection RIGHT (wrap)  [only after window is open]
+ * MINUS -> move selection LEFT  (wrap)  [only after window is open]
+ * SET short -> toggle selected relay (opens window if it was idle)
+ * SET long  -> clear error LED; never opens the window
  * 5. Non-blocking and ISR-free; suitable for RP2040 + FreeRTOS.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
@@ -361,5 +357,3 @@ BaseType_t ButtonTask_Init(bool enable) {
  * @return true if ButtonTask_Init(true) completed successfully, else false.
  */
 bool Button_IsReady(void) { return s_btn_ready; }
-
-/** @} */

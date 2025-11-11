@@ -1,13 +1,18 @@
 /**
- * @file NetTask.h
+ * @file src/tasks/NetTask.h
  * @author DvidMakesThings - David Sipos
+ * 
+ * @defgroup tasks06 6. Network Task
+ * @ingroup tasks
  * @brief Network task handling HTTP server and W5500 Ethernet controller
+ * @{
+ * 
+ * @version 1.1.0
  * @date 2025-11-07
  *
- * @details This task manages all network operations including HTTP server
- *          processing and W5500 Ethernet controller communication. It runs
- *          continuously, processing HTTP requests and maintaining network
- *          connectivity. SPI access to W5500 is protected by spiMtx.
+ * @details NetTask owns all W5500 operations. It waits for StorageTask to signal that
+ * configuration is ready, reads the network config, brings up the W5500, then
+ * runs the web server loop.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -58,7 +63,4 @@ bool Net_IsReady(void);
 
 #endif // NETTASK_H
 
-/**
- * @}
- * @}
- */
+/** @} */

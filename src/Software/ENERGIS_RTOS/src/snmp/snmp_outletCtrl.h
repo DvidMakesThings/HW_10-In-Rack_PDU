@@ -1,13 +1,16 @@
 /**
- * @file snmp_outletCtrl.h
+ * @file src/snmp/snmp_outletCtrl.h
  * @author DvidMakesThings - David Sipos
- * @brief SNMP outlet control callback (RTOS-safe wrappers to SwitchTask)
+ *
+ * @defgroup snmp03 3. SNMP Agent - Outlet control (RTOS)
+ * @ingroup snmp
+ * @brief Outlet state GET/SET callbacks that talk to SwitchTask (sole MCP owner).
+ * @{
  *
  * @version 1.0.0
  * @date 2025-11-07
- * @details  Provides GET/SET handlers for outlet state OIDs. All mutations are
- *           dispatched to SwitchTask via its RTOS API to keep a single owner of
- *           the MCP expanders. Reads query the canonical state from SwitchTask.
+ * 
+ * @details Uses RTOS-safe SwitchTask API: query current state and request changes.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -205,3 +208,5 @@ void set_allOn(uint32_t u32);
 void set_allOff(uint32_t u32);
 
 #endif
+
+/** @} */

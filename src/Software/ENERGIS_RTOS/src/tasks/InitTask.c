@@ -2,19 +2,10 @@
  * @file InitTask.c
  * @author DvidMakesThings - David Sipos
  *
- * @defgroup tasks Tasks
- * @brief General task implementations for ENERGIS PDU firmware.
- * @{
- *
- * @defgroup tasks01 1. Init Task - RTOS Initialization
- * @ingroup tasks
- * @brief Hardware bring-up sequencing task implementation
- * @{
- *
  * @version 1.0.0
  * @date 2025-11-08
- * @details
- * InitTask runs at highest priority during system boot to:
+ * 
+ * @details InitTask runs at highest priority during system boot to:
  * 1. Initialize all hardware in proper sequence
  * 2. Probe peripherals to verify communication
  * 3. Create subsystem tasks in dependency order
@@ -445,6 +436,3 @@ static void InitTask(void *pvParameters) {
 void InitTask_Create(void) {
     xTaskCreate(InitTask, "InitTask", INIT_TASK_STACK_SIZE, NULL, INIT_TASK_PRIORITY, NULL);
 }
-
-/** @} */
-/** @} */

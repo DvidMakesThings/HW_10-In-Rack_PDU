@@ -1,11 +1,6 @@
 /**
- * @file control_handler.c
+ * @file src/web_handlers/control_handler.c
  * @author DvidMakesThings - David Sipos
- *
- * @defgroup webui2 2. Control Handler
- * @ingroup webhandlers
- * @brief Handler for the page control.html
- * @{
  *
  * @version 1.0.0
  * @date 2025-11-07
@@ -110,8 +105,3 @@ void handle_control_request(uint8_t sock, char *body) {
 
     NETLOG_PRINT("<< handle_control_request() done\n");
 }
-
-/**
- * @}
- * @}
- */

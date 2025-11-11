@@ -1,21 +1,17 @@
 /**
- * @file CAT24C512_driver.h
+ * @file src/drivers/CAT24C512_driver.h
  * @author DvidMakesThings - David Sipos
- * @brief CAT24C512 I2C EEPROM driver implementation (RTOS-compatible)
+ *
+ * @defgroup drivers02 2. CAT24C512 EEPROM Driver Implementation
+ * @ingroup drivers
+ * @brief Header file for CAT24C512 I2C EEPROM driver
+ * @{
  *
  * @version 1.1.0
  * @date 2025-11-06
+ *
  * @details
- * RTOS-compatible driver for CAT24C512 EEPROM (512Kbit / 64KB I2C EEPROM).
- * Uses CONFIG.h definitions for pins, I2C settings, and logging.
- *
- * RTOS Compliance:
- * - Uses vTaskDelay() instead of sleep_ms()
- * - Uses CONFIG.h logging macros (INFO_PRINT, ERROR_PRINT)
- * - Uses CONFIG.h pin definitions (I2C1_SDA, I2C1_SCL, EEPROM_I2C)
- * - Thread-safe when used with eepromMtx (handled by StorageTask)
- *
- * Only StorageTask should call these functions (with mutex protection).
+ * RTOS-compatible implementation for CAT24C512 EEPROM.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -87,53 +83,56 @@ void CAT24C512_Init(void);
 int CAT24C512_WriteByte(uint16_t addr, uint8_t data);
 
 /**
- * @brief Reads a single byte from a specific EEPROM address
+ * @brief Reads a single byte from the specified EEPROM address
  *
- * Performs an atomic read operation of one byte from the specified memory address.
- * Uses a two-step process: first sending the address, then reading the data.
+ * Performs a two-part I2C transaction:
+ * 1. Write address bytes with repeated start
+ * 2. Read one byte of data
  *
- * @param addr Memory address between 0x0000 and 0xFFFF to read from
- * @return The byte value read from EEPROM (0xFF if read fails)
- * @note Thread-safety: Must only be called from StorageTask with eepromMtx protection
+ * @param addr Source memory address (0x0000 - 0xFFFF)
+ * @return Read byte value, 0xFF if read operation fails
  */
 uint8_t CAT24C512_ReadByte(uint16_t addr);
 
 /**
- * @brief Writes multiple bytes to EEPROM starting at specified address
+ * @brief Writes a contiguous block of data to EEPROM with page boundary handling
  *
- * Handles page boundary alignment automatically by splitting writes into appropriate chunks.
- * Includes write cycle delays between pages to ensure data integrity.
+ * Implements automatic page-aware write operations that respect the 128-byte
+ * page boundaries of the CAT24C512. Write operations that cross page boundaries
+ * are automatically split into multiple page-aligned chunks.
  *
- * @param addr Starting memory address between 0x0000 and 0xFFFF
- * @param data Pointer to source buffer containing data to write
- * @param len Number of bytes to write (must not exceed available memory)
- * @return 0 on successful write of all data, -1 if any write operation fails
- * @note Thread-safety: Must only be called from StorageTask with eepromMtx protection
+ * @param addr Starting memory address (0x0000 - 0xFFFF)
+ * @param data Pointer to source data buffer
+ * @param len Number of bytes to write
+ * @return 0 if all writes successful, -1 on NULL pointer or any I2C error
+ * @note Includes write cycle delays between each page write operation
  */
 int CAT24C512_WriteBuffer(uint16_t addr, const uint8_t *data, uint16_t len);
 
 /**
- * @brief Reads multiple bytes from EEPROM into provided buffer
+ * @brief Reads a contiguous block of data from EEPROM
  *
- * Performs a sequential read operation starting from the specified address.
- * No address boundary checking is performed - caller must ensure valid range.
+ * Performs a sequential read operation starting at the specified address.
+ * Uses the EEPROM's auto-increment feature for efficient multi-byte reads.
+ * On error, fills the destination buffer with 0xFF.
  *
- * @param addr Starting memory address between 0x0000 and 0xFFFF
- * @param buffer Pointer to destination buffer for read data
+ * @param addr Starting memory address (0x0000 - 0xFFFF)
+ * @param buffer Pointer to destination buffer
  * @param len Number of bytes to read
  * @return None
- * @note Thread-safety: Must only be called from StorageTask with eepromMtx protection
+ * @note Supports reads across page boundaries without special handling
  */
 void CAT24C512_ReadBuffer(uint16_t addr, uint8_t *buffer, uint32_t len);
 
 /**
- * @brief Reads entire EEPROM contents into provided buffer
+ * @brief Retrieves entire EEPROM contents in a single operation
  *
- * Performs a complete memory dump of the CAT24C512 from address 0x0000 to 0xFFFF.
+ * Performs a complete memory dump of the CAT24C512, reading all 64KB
+ * into the provided buffer. Useful for backup operations or debugging.
  *
- * @param buffer Pointer to pre-allocated buffer of at least CAT24C512_TOTAL_SIZE bytes (64KB)
+ * @param buffer Pointer to pre-allocated buffer of at least 64KB (CAT24C512_TOTAL_SIZE)
  * @return None
- * @note Buffer size requirement: Caller must allocate 65536 bytes
+ * @note Caller must ensure buffer is large enough to hold entire EEPROM contents
  */
 void CAT24C512_Dump(uint8_t *buffer);
 
@@ -151,15 +150,25 @@ void CAT24C512_Dump(uint8_t *buffer);
 void CAT24C512_DumpFormatted(void);
 
 /**
- * @brief Performs a self-test of EEPROM read/write functionality
+ * @brief Performs a comprehensive self-test of EEPROM functionality
  *
- * Writes a predefined test pattern to the specified address and verifies readback.
- * Test pattern includes alternating bits and edge cases (0x00, 0xFF, etc.).
+ * Validates EEPROM operation by:
+ * 1. Writing a test pattern with alternating bits and edge cases
+ * 2. Reading back the pattern to verify data integrity
+ * 3. Comparing written and read data byte-by-byte
  *
- * @param test_addr Starting address for test pattern (ensure 8 bytes available)
- * @return true if test pattern written and read back successfully, false on any error
- * @note Modifies EEPROM content at test_addr through test_addr+7
+ * Test pattern: 0xAA, 0x55, 0xCC, 0x33, 0xF0, 0x0F, 0x00, 0xFF
+ * - Tests alternating bits (0xAA, 0x55)
+ * - Tests paired bits (0xCC, 0x33)
+ * - Tests half-byte patterns (0xF0, 0x0F)
+ * - Tests extreme values (0x00, 0xFF)
+ *
+ * @param test_addr Starting address for test pattern
+ * @return true if test passes, false on any error
+ * @note Modifies 8 bytes of EEPROM content starting at test_addr
  */
 bool CAT24C512_SelfTest(uint16_t test_addr);
 
 #endif /* CAT24C512_DRIVER_H */
+
+/** @} */

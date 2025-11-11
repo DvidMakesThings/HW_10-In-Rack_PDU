@@ -1,14 +1,18 @@
 /**
- * @file snmp_networkCtrl.h
+ * @file src/snmp/snmp_networkCtrl.h
  * @author DvidMakesThings - David Sipos
- * @brief SNMP network configuration getters (RTOS)
  *
- * @version 1.0.0
- * @date 2025-11-07
- * @details Formats wiz_NetInfo fields into dotted strings for SNMP GETs.
+ * @defgroup snmp02 2. SNMP Agent - Network configuration (RTOS)
+ * @ingroup snmp
+ * @brief Expose persisted network config (EEPROM) as SNMP strings.
+ * @{
  *
- * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
- * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
+ * @version 1.1.0
+ * @date 2025-11-08
+ *
+ * @details
+ * Reads the user/network configuration from EEPROM using storage helpers and
+ * formats fields for SNMP. If EEPROM access fails, falls back to compiled defaults.
  */
 
 #ifndef SNMP_NETWORK_CTRL_H
@@ -49,3 +53,5 @@ void get_networkGateway(void *ptr, uint8_t *len);
 void get_networkDNS(void *ptr, uint8_t *len);
 
 #endif
+
+/** @} */

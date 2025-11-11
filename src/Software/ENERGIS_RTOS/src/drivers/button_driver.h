@@ -1,13 +1,16 @@
 /**
  * @file src/drivers/button_driver.h
  * @author DvidMakesThings - David Sipos
- * @brief FreeRTOS-based button scanner + debouncer driver header for ENERGIS.
- *
+ * 
+ * @defgroup driver3 3. Button Task Driver
+ * @ingroup drivers
+ * @brief Header file for pushbutton driver
+ * @{
+ * 
  * @version 1.0.0
  * @date 2025-11-06
- * @details
- * Low-level driver header for the front-panel buttons and
- * selection/relay indicators.
+ * 
+ * @details Low-level driver implementation for buttons.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -90,3 +93,5 @@ void ButtonDrv_DoSetLong(void);
 uint32_t ButtonDrv_NowMs(void);
 
 #endif /* ENERGIS_BUTTON_DRIVER_H */
+
+/** @} */

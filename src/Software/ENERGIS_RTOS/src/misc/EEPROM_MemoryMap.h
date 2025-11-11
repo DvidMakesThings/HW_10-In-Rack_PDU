@@ -5,23 +5,19 @@
  * @brief EEPROM Memory Map (RTOS version)
  * @{
  *
- * @defgroup eeprom01 1. EEPROM Memory Map
- * @ingroup eeprom
+ * @defgroup config05 6. EEPROM Memory Map
+ * @ingroup config
  * @brief EEPROM Memory Layout and Data Structures
  * @{
+ * 
  * @version 2.0
  * @date 2025-11-06
  *
- * @details
- * RTOS-compatible EEPROM memory map for CAT24C512 (64KB).
- *
+ * @details RTOS-compatible EEPROM memory map for CAT24C512 (64KB).
  * This file contains ONLY:
  * - Memory address definitions
  * - Data structures
  * - Default values
- *
- * Function prototypes are in StorageTask.h (high-level API)
- * Implementation is in StorageTask.c
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -208,9 +204,6 @@ typedef struct {
  */
 #define EEPROM_CH_LABEL_SLOT (EEPROM_CH_LABEL_SIZE / ENERGIS_NUM_CHANNELS)
 
-
-/**
- * @}
- */
-
 #endif /* EEPROM_MEMORY_MAP_H */
+
+/** @} */

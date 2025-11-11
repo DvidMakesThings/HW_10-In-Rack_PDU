@@ -1,14 +1,19 @@
 /**
- * @file control_handler.h
+ * @file src/web_handlers/control_handler.h
  * @author DvidMakesThings - David Sipos
+ *
+ * @defgroup webui2 2. Control Handler
+ * @ingroup webhandlers
  * @brief Handler for the page control.html
+ * @{
  *
  * @version 1.0.0
- * @date 2025-05-24
+ * @date 2025-11-07
+ *
  * @details Handles POST requests to /control endpoint for relay control.
- *          Processes form-encoded channel states and labels, applies changes
- *          using idempotent relay control functions with logging and dual
- *          asymmetry detection.
+ * Processes form-encoded channel states and labels, applies changes
+ * using idempotent relay control functions with logging and dual
+ * asymmetry detection.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -28,3 +33,5 @@
 void handle_control_request(uint8_t sock, char *body);
 
 #endif // CONTROL_HANDLER_H
+
+/** @} */

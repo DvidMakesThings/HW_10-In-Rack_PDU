@@ -1,5 +1,5 @@
 /**
- * @file ENERGIS_RTOS.c
+ * @file src/ENERGIS_RTOS.c
  * @author DvidMakesThings - David Sipos
  *
  * @defgroup main Main

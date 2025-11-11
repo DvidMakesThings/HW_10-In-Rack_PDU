@@ -1,13 +1,27 @@
-/* File: misc/crashlog.h */
-#pragma once
 /**
- * @file crashlog.h
- * @brief Minimal HardFault + reset and watchdog feed crash log kept in retained RAM with integrity.
+ * @file src/misc/crashlog.h
+ * @author DvidMakesThings - David Sipos
+ * 
+ * @defgroup misc Miscellaneous Utilities
+ * @brief Miscellaneous utility functions and modules.
+ * @{
+ * 
+ * @defgroup misc1 1. Crash Log Module
+ * @ingroup misc
+ * @brief Header file for crash log module
+ * @{
+ * 
+ * @version 1.0.0
+ * @date 2025-11-06
+ * 
+ * @details Minimal HardFault + reset and watchdog feed crash log kept in 
+ * retained RAM with integrity. 
  *
- * Call CrashLog_CaptureResetReasonEarly() at the very start of boot (before tasks).
- * Call CrashLog_PrintAndClearOnBoot() once the logger is ready.
- * Call CrashLog_RecordWdtFeed(now_ms) right after each HW WDT feed.
+ * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
+ * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
  */
+
+#pragma once
 
 #include "../CONFIG.h"
 
@@ -118,3 +132,5 @@ crash_reset_reason_t CrashLog_Platform_DecodeReset(uint32_t raw);
 #ifdef __cplusplus
 }
 #endif
+
+/** @} */

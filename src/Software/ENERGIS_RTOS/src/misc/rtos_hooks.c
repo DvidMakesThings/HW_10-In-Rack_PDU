@@ -1,4 +1,17 @@
-/* File: misc/rtos_hooks.c  (RP2040-safe, non-blocking hooks) */
+/**
+ * @file src/misc/rtos_hooks.c
+ * @author DvidMakesThings - David Sipos
+ * 
+ * @version 1.0.0
+ * @date 2025-11-06
+ * 
+ * @details FreeRTOS hook implementations, crash breadcrumbs, and 
+ * scheduler canaries. 
+ *
+ * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
+ * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
+ */
+
 #include "../CONFIG.h"
 
 /**

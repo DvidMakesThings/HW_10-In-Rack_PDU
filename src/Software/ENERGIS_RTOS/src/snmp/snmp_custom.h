@@ -1,11 +1,20 @@
 /**
- * @file snmp_custom.h
+ * @file src/snmp/snmp_custom.h
  * @author DvidMakesThings - David Sipos
- * @brief SNMP OID table and helpers (RTOS)
+ *
+ * @defgroup snmp SNMP Agent
+ * @brief SNMP agent implementation for ENERGIS PDU.
+ * @{
+ *
+ * @defgroup snmp01 1. SNMP Agent - ENERGIS OID table (RTOS)
+ * @ingroup snmp
+ * @brief Defines enterprise OIDs and binds to RTOS-safe callbacks.
+ * @{
  *
  * @version 1.0.0
  * @date 2025-11-07
- * @details Declares OID table and utility functions used by the agent core.
+ * 
+ * @details Table-only file; logic lives in per-domain modules.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -44,3 +53,5 @@ void initTable(void);
 void initial_Trap(uint8_t *managerIP, uint8_t *agentIP);
 
 #endif
+
+/** @} */

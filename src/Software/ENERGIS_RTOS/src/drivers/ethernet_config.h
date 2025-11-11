@@ -1,18 +1,24 @@
 /**
- * @file ethernet_config.h
+ * @file src/drivers/ethernet_w5500regs.h
  * @author DvidMakesThings - David Sipos
+ *
+ * @defgroup config05 5. W5500 Ethernet Controller Configuration
+ * @ingroup config
  * @brief W5500 Ethernet Controller Configuration
+ * @{
  *
  * @version 1.0.0
  * @date 2025-11-06
- * @details
- * Centralized configuration for W5500 Ethernet controller.
+ * 
+ * @details Centralized configuration for W5500 Ethernet controller.
  * This file provides flexible, easy-to-use configuration for:
  * - Hardware pins and SPI settings
  * - Socket memory allocation
  * - Network parameters
  * - Protocol support (TCP, UDP, SNMP, etc.)
  * - RTOS integration
+ * 
+ * @note This file is self-contained and doesn't depend on old library files.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -289,3 +295,5 @@ static const uint8_t W5500_DEFAULT_DNS[4] = {8, 8, 8, 8};
 #endif
 
 #endif /* W5500_CONFIG_H */
+
+/** @} */

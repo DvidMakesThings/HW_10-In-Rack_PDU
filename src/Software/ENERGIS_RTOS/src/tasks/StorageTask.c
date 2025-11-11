@@ -1,11 +1,7 @@
 /**
- * @file StorageTask.c
+ * @file src/tasks/StorageTask.c
  * @author DvidMakesThings - David Sipos
- * @defgroup tasks05 5. Storage Task
- * @ingroup tasks
- * @brief EEPROM/Config Storage Task Implementation (RTOS version)
- * @{
- *
+ * 
  * @version 2.0
  * @date 2025-11-06
  *
@@ -1123,7 +1119,3 @@ bool storage_self_test(uint16_t test_addr, uint32_t timeout_ms) {
     vSemaphoreDelete(done_sem);
     return result;
 }
-
-/**
- * @}
- */

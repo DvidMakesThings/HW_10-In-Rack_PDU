@@ -1,18 +1,22 @@
 /**
- * @file snmp.h
+ * @file src/drivers/snmp.h
  * @author DvidMakesThings - David Sipos
- * @brief RTOS-ready SNMP agent API and core types
+ *
+ * @defgroup drivers07 7. SNMP Agent Implementation
+ * @ingroup drivers
+ * @brief Header file for non-blocking SNMPv1 agent with UDP transport
+ * @{
  *
  * @version 1.0.0
  * @date 2025-11-07
- * @details  Single-owner, non-blocking SNMPv1 agent for ENERGIS.
- * Provides a compact UDP transport (port 161) and core TLV parsing,
- * integrated with FreeRTOS via periodic tick calls from NetTask.
+ * đ
+ * @details  SNMP agent for ENERGIS RTOS. Owns a UDP socket (port 161),
+ * parses incoming PDUs and emits responses without blocking the scheduler.
+ * Time base is 10 ms via SNMP_Tick10ms(), used for TimeTicks.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
  */
-
 #ifndef ENERGIS_SNMP_H
 #define ENERGIS_SNMP_H
 
@@ -247,3 +251,5 @@ extern const uint8_t COMMUNITY[];
 extern const uint8_t COMMUNITY_SIZE;
 
 #endif /* ENERGIS_SNMP_H */
+
+/** @} */

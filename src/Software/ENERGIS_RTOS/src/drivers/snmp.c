@@ -1,15 +1,11 @@
 /**
- * @file snmp.c
+ * @file src/drivers/snmp.c
  * @author DvidMakesThings - David Sipos
- *
- * @defgroup drivers06 6. SNMP Agent Implementation
- * @ingroup drivers
- * @brief Non-blocking SNMPv1 agent with UDP transport for RTOS
- * @{
  *
  * @version 1.0.0
  * @date 2025-11-07
- * @details  Reworked SNMP agent for ENERGIS RTOS. Owns a UDP socket (port 161),
+ * 
+ * @details  SNMP agent for ENERGIS RTOS. Owns a UDP socket (port 161),
  * parses incoming PDUs and emits responses without blocking the scheduler.
  * Time base is 10 ms via SNMP_Tick10ms(), used for TimeTicks.
  *
@@ -749,7 +745,3 @@ static void dumpCode(const char *hdr, const char *tail, const uint8_t *buf, int3
     log_printf("%s", tail);
 }
 #endif
-
-/**
- * @}
- */

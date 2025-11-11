@@ -1,16 +1,21 @@
 /**
- * @file ConsoleTask.h
+ * @file src/tasks/ConsoleTask.h
  * @author DvidMakesThings - David Sipos
- * @brief UART console task implementation header (RTOS version, polling USB-CDC)
+ * 
+ * @defgroup tasks04 3. Console Task
+ * @ingroup tasks
+ * @brief UART console task implementation (RTOS version, polling USB-CDC)
+ * @{
  *
- * @version 1.0.0
- * @date 2025-11-06
+ * @version 2.0.0
+ * @date 2025-11-08
+ * 
  * @details
  * Architecture:
  * 1. ConsoleTask polls USB-CDC at 10ms intervals (no ISR)
  * 2. Accumulates characters into line buffer
  * 3. On complete line: parses and dispatches to handlers
- * 4. Handlers execute directly or post to other queues
+ * 4. Handlers execute directly or query other tasks
  *
  * Note: Console input comes from USB-CDC (stdio), not a hardware UART.
  * This matches the CMakeLists.txt config: pico_enable_stdio_usb(... 1)
@@ -18,6 +23,7 @@
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
  */
+
 
 #ifndef CONSOLE_TASK_H
 #define CONSOLE_TASK_H
@@ -109,3 +115,5 @@ bool Console_IsReady(void);
 
 
 #endif /* CONSOLE_TASK_H */
+
+/** @} */
