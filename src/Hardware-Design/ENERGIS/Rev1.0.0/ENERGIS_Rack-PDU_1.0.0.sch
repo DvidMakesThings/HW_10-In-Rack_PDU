@@ -12065,7 +12065,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <label x="353.06" y="60.96" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="LCD_CS" class="0">
+<net name="SPI1_CS" class="0">
 <segment>
 <pinref part="IC15" gate="G$1" pin="GPIO9"/>
 <wire x1="147.32" y1="185.42" x2="210.82" y2="185.42" width="0.1524" layer="91"/>
@@ -12077,7 +12077,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <junction x="210.82" y="185.42"/>
 </segment>
 </net>
-<net name="LCD_SCLK" class="0">
+<net name="SPI1_SCLK" class="0">
 <segment>
 <pinref part="IC15" gate="G$1" pin="GPIO10"/>
 <wire x1="147.32" y1="182.88" x2="210.82" y2="182.88" width="0.1524" layer="91"/>
@@ -12089,7 +12089,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <junction x="210.82" y="182.88"/>
 </segment>
 </net>
-<net name="LCD_MISO" class="0">
+<net name="SPI1_MISO" class="0">
 <segment>
 <pinref part="IC15" gate="G$1" pin="GPIO8"/>
 <wire x1="147.32" y1="187.96" x2="208.28" y2="187.96" width="0.1524" layer="91"/>
@@ -12101,7 +12101,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <junction x="208.28" y="187.96"/>
 </segment>
 </net>
-<net name="LCD_MOSI" class="0">
+<net name="SPI1_MOSI" class="0">
 <segment>
 <pinref part="IC15" gate="G$1" pin="GPIO11"/>
 <wire x1="147.32" y1="180.34" x2="208.28" y2="180.34" width="0.1524" layer="91"/>
@@ -13105,7 +13105,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <pinref part="DSP" gate="G$1" pin="7"/>
 </segment>
 </net>
-<net name="LCD_CS" class="0">
+<net name="SPI1_CS" class="0">
 <segment>
 <wire x1="327.66" y1="58.42" x2="289.56" y2="58.42" width="0.1524" layer="91"/>
 <label x="289.56" y="58.42" size="1.27" layer="95" rot="MR0" xref="yes"/>
@@ -13117,7 +13117,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <label x="266.7" y="105.41" size="1.27" layer="95" rot="MR0" xref="yes"/>
 </segment>
 </net>
-<net name="LCD_MOSI" class="0">
+<net name="SPI1_MOSI" class="0">
 <segment>
 <wire x1="289.56" y1="66.04" x2="327.66" y2="66.04" width="0.1524" layer="91"/>
 <label x="289.56" y="66.04" size="1.27" layer="95" rot="R180" xref="yes"/>
@@ -13175,7 +13175,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <pinref part="DSP" gate="G$1" pin="9"/>
 </segment>
 </net>
-<net name="LCD_MISO" class="0">
+<net name="SPI1_MISO" class="0">
 <segment>
 <wire x1="327.66" y1="68.58" x2="289.56" y2="68.58" width="0.1524" layer="91"/>
 <label x="289.56" y="68.58" size="1.27" layer="95" rot="R180" xref="yes"/>
@@ -13187,7 +13187,7 @@ DUAL/QUAD SPI &amp; QPI &amp; DTR</description>
 <label x="266.7" y="107.95" size="1.27" layer="95" rot="MR0" xref="yes"/>
 </segment>
 </net>
-<net name="LCD_SCLK" class="0">
+<net name="SPI1_SCLK" class="0">
 <segment>
 <wire x1="327.66" y1="63.5" x2="289.56" y2="63.5" width="0.1524" layer="91"/>
 <label x="289.56" y="63.5" size="1.27" layer="95" rot="R180" xref="yes"/>

@@ -4,7 +4,7 @@
  *
  * @version 1.0.0
  * @date 2025-11-06
- * 
+ *
  * @details Implements a FreeRTOS-based health monitoring task that manages the
  * hardware watchdog, tracks heartbeats from registered tasks, logs diagnostics,
  * and records long blocking events for post-mortem analysis.
@@ -21,7 +21,7 @@
  *  2) Call HealthTask_Start() once everything is created (at end of InitTask).
  *  3) Inside each task loop, call Health_Heartbeat(HEALTH_ID_xxx) once per loop.
  *  4) Optionally call Health_RecordBlocked("tag", waited_ms) on long waits.
- * 
+ *
  * @note Do NOT arm another watchdog elsewhere. Let HealthTask manage it.
  * You can adjust HEALTH_WARMUP_MS and HEALTH_SILENCE_MS below.
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack

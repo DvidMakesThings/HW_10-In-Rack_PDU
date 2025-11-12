@@ -13,7 +13,7 @@
  * @details This header file contains the unique serial number and firmware version
  * for the Energis PDU device. It is auto-generated during the build process
  * from a template to ensure uniqueness and consistency.
- * 
+ *
  * @note Do not edit manually - this file is generated during the build process
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
@@ -27,7 +27,9 @@
  * Device unique serial number - DO NOT MODIFY THIS FORMAT
  * This specific format allows the device to be identified
  */
-#define SERIAL_NUMBER "SN-0167662"
+#define SERIAL_NUMBER_STR "SN-"
+#define SERIAL_NUMBER_NUM "0167662"
+#define SERIAL_NUMBER SERIAL_NUMBER_STR SERIAL_NUMBER_NUM
 
 /**
  * Device firmware version - DO NOT MODIFY THIS FORMAT
@@ -45,5 +47,13 @@
  * Build timestamp
  */
 #define BUILD_TIMESTAMP __DATE__ " " __TIME__
+
+/**
+ * ENERGIS default network macros
+ */
+#define ENERGIS_DEFAULT_IP {192, 168, 0, 22}  // Default static IPv4 address octets.
+#define ENERGIS_DEFAULT_SN {255, 255, 255, 0} // Default IPv4 subnet mask octets.
+#define ENERGIS_DEFAULT_GW {192, 168, 0, 1}   // Default IPv4 gateway octets.
+#define ENERGIS_DEFAULT_DNS {8, 8, 8, 8}      // Default IPv4 DNS octets.
 
 #endif /* SERIAL_NUMBER_H */

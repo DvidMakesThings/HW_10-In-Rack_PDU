@@ -1,7 +1,7 @@
 /**
  * @file src/tasks/StorageTask.c
  * @author DvidMakesThings - David Sipos
- * 
+ *
  * @version 2.0
  * @date 2025-11-06
  *
@@ -39,13 +39,14 @@ EventGroupHandle_t cfgEvents = NULL;
 /** @brief Default relay status array (all OFF). */
 const uint8_t DEFAULT_RELAY_STATUS[8] = {0};
 
-/** @brief Default network configuration. */
-const networkInfo DEFAULT_NETWORK = {.ip = {192, 168, 0, 22},
-                                     .gw = {192, 168, 0, 1},
-                                     .sn = {255, 255, 255, 0},
-                                     .mac = {0x1C, 0x08, 0xDC, 0xBE, 0xEF, 0x91},
-                                     .dns = {8, 8, 8, 8},
-                                     .dhcp = EEPROM_NETINFO_STATIC};
+/** @brief Default network configuration (MAC suffix filled at runtime). */
+const networkInfo DEFAULT_NETWORK = {
+    .ip = ENERGIS_DEFAULT_IP,
+    .gw = ENERGIS_DEFAULT_GW,
+    .sn = ENERGIS_DEFAULT_SN,
+    .mac = {ENERGIS_MAC_PREFIX0, ENERGIS_MAC_PREFIX1, ENERGIS_MAC_PREFIX2, 0x00, 0x00, 0x00},
+    .dns = ENERGIS_DEFAULT_DNS,
+    .dhcp = ENERGIS_DEFAULT_DHCP};
 
 /** @brief Default user preferences. */
 static const userPrefInfo DEFAULT_USER_PREFS = {
@@ -90,6 +91,38 @@ static uint8_t calculate_crc8(const uint8_t *data, size_t len) {
         }
     }
     return crc;
+}
+
+/* ==================== MAC Address builder from SN ==================== */
+/* Derive ENERGIS MAC from SERIAL_NUMBER (FNV-1a 32-bit, low 24 bits). */
+static void Energis_FillMacFromSerial(uint8_t mac[6]) {
+#ifndef SERIAL_NUMBER
+#define SERIAL_NUMBER SERIAL_NUMBER_STR SERIAL_NUMBER_NUM
+#endif
+    uint32_t h = 0x811C9DC5u;
+    const char *s = (const char *)SERIAL_NUMBER;
+    while (*s) {
+        h ^= (uint8_t)*s++;
+        h *= 0x01000193u;
+    }
+    mac[0] = ENERGIS_MAC_PREFIX0;
+    mac[1] = ENERGIS_MAC_PREFIX1;
+    mac[2] = ENERGIS_MAC_PREFIX2;
+    mac[3] = (uint8_t)(h >> 16);
+    mac[4] = (uint8_t)(h >> 8);
+    mac[5] = (uint8_t)h;
+}
+
+static bool Energis_RepairMac(networkInfo *n) {
+    const bool wrong_prefix = n->mac[0] != ENERGIS_MAC_PREFIX0 ||
+                              n->mac[1] != ENERGIS_MAC_PREFIX1 || n->mac[2] != ENERGIS_MAC_PREFIX2;
+    const bool zero_suffix = (n->mac[3] | n->mac[4] | n->mac[5]) == 0x00;
+    const bool ff_suffix = (n->mac[3] & n->mac[4] & n->mac[5]) == 0xFF;
+    if (wrong_prefix || zero_suffix || ff_suffix) {
+        Energis_FillMacFromSerial(n->mac);
+        return true;
+    }
+    return false;
 }
 
 /* ====================================================================== */
@@ -185,8 +218,12 @@ int EEPROM_WriteFactoryDefaults(void) {
     INFO_PRINT("%s Relay Status written\r\n", STORAGE_TASK_TAG);
 
     /* Network Configuration (with CRC) */
-    status |= EEPROM_WriteUserNetworkWithChecksum(&DEFAULT_NETWORK);
-    INFO_PRINT("%s Network Configuration written\r\n", STORAGE_TASK_TAG);
+    {
+        networkInfo defnet = DEFAULT_NETWORK; /* work on a copy */
+        Energis_FillMacFromSerial(defnet.mac);
+        status |= EEPROM_WriteUserNetworkWithChecksum(&defnet);
+        INFO_PRINT("%s Network Configuration written\r\n", STORAGE_TASK_TAG);
+    }
 
     /* Sensor Calibration (defaults for all channels) */
     hlw_calib_data_t zero_cal;
@@ -284,6 +321,7 @@ int EEPROM_WriteUserNetworkWithChecksum(const networkInfo *net_info) {
         return -1;
 
     uint8_t buffer[24];
+    /* EEPROM order: MAC(6), IP(4), SN(4), GW(4), DNS(4), DHCP(1), CRC(1) */
     memcpy(&buffer[0], net_info->mac, 6);
     memcpy(&buffer[6], net_info->ip, 4);
     memcpy(&buffer[10], net_info->sn, 4);
@@ -291,7 +329,6 @@ int EEPROM_WriteUserNetworkWithChecksum(const networkInfo *net_info) {
     memcpy(&buffer[18], net_info->dns, 4);
     buffer[22] = net_info->dhcp;
     buffer[23] = calculate_crc8(buffer, 23);
-
     return CAT24C512_WriteBuffer(EEPROM_USER_NETWORK_START, buffer, 24);
 }
 
@@ -301,7 +338,6 @@ int EEPROM_ReadUserNetworkWithChecksum(networkInfo *net_info) {
 
     uint8_t buffer[24];
     CAT24C512_ReadBuffer(EEPROM_USER_NETWORK_START, buffer, 24);
-
     if (calculate_crc8(buffer, 23) != buffer[23]) {
         ERROR_PRINT("%s Network config CRC mismatch\r\n", STORAGE_TASK_TAG);
         return -1;
@@ -313,7 +349,6 @@ int EEPROM_ReadUserNetworkWithChecksum(networkInfo *net_info) {
     memcpy(net_info->gw, &buffer[14], 4);
     memcpy(net_info->dns, &buffer[18], 4);
     net_info->dhcp = buffer[22];
-
     return 0;
 }
 
@@ -499,12 +534,24 @@ int EEPROM_WriteDefaultNameLocation(void) {
 
 networkInfo LoadUserNetworkConfig(void) {
     networkInfo net_info;
+
+    /* Read from EEPROM (legacy layout + CRC). */
     if (EEPROM_ReadUserNetworkWithChecksum(&net_info) == 0) {
-        INFO_PRINT("%s Loaded network config from EEPROM\r\n", STORAGE_TASK_TAG);
-    } else {
-        WARNING_PRINT("%s Invalid network config, using defaults\r\n", STORAGE_TASK_TAG);
-        net_info = DEFAULT_NETWORK;
+        /* Fix MAC if needed and persist once. */
+        if (Energis_RepairMac(&net_info)) {
+            WARNING_PRINT("%s Network MAC repaired to %02X:%02X:%02X:%02X:%02X:%02X\r\n",
+                          STORAGE_TASK_TAG, net_info.mac[0], net_info.mac[1], net_info.mac[2],
+                          net_info.mac[3], net_info.mac[4], net_info.mac[5]);
+            (void)EEPROM_WriteUserNetworkWithChecksum(&net_info);
+        }
+        return net_info;
     }
+
+    /* CRC fail or empty -> use defaults + derived MAC, persist, return. */
+    WARNING_PRINT("%s Invalid network config, using defaults\r\n", STORAGE_TASK_TAG);
+    net_info = DEFAULT_NETWORK;
+    Energis_FillMacFromSerial(net_info.mac);
+    (void)EEPROM_WriteUserNetworkWithChecksum(&net_info);
     return net_info;
 }
 
