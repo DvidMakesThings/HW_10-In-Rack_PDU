@@ -14,29 +14,12 @@
  * @version 2.0.0
  * @date 2025-11-08
  *
- * @details This file contains global configuration settings, 
- * peripheral assignments, and logging macros for the ENERGIS PDU 
- * firmware project. It contains user-configurable options as well 
- * as system constants. It describes GPIO pin assignments, I2C/SPI 
- * peripheral usage, ADC channel assignments, and other peripheral 
+ * @details This file contains global configuration settings,
+ * peripheral assignments, and logging macros for the ENERGIS PDU
+ * firmware project. It contains user-configurable options as well
+ * as system constants. It describes GPIO pin assignments, I2C/SPI
+ * peripheral usage, ADC channel assignments, and other peripheral
  * configurations.
- *
- * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
- * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
- */
-
-/**
- * @file CONFIG.h
- * @author DvidMakesThings - David Sipos
- * @brief 
- * @version 1.0.0
- * @date 2025-11-06
- * @details
- * This file contains global configuration settings, peripheral assignments,
- * and logging macros for the ENERGIS PDU firmware project.
- * It contains user-configurable options as well as system constants.
- * It describes GPIO pin assignments, I2C/SPI peripheral usage,
- * ADC channel assignments, and other peripheral configurations.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -152,6 +135,14 @@ extern w5500_NetConfig eth_netcfg;
 #define LOGGER_QUEUE_LEN 64
 #define LOGGER_MSG_MAX 128
 
+/** Default DHCP mode for first boot. */
+#define ENERGIS_DEFAULT_DHCP EEPROM_NETINFO_STATIC
+
+/** Locally-administered unicast OUI for ENERGIS ("02:45:4E"). */
+#define ENERGIS_MAC_PREFIX0 0x02 /* local, unicast */
+#define ENERGIS_MAC_PREFIX1 0x45 /* 'E' */
+#define ENERGIS_MAC_PREFIX2 0x4E /* 'N' */
+
 /* ---------- LOGGING FLAGS ---------- */
 #ifndef DEBUG
 #define DEBUG 0
@@ -226,15 +217,6 @@ extern w5500_NetConfig eth_netcfg;
 #define ECHO(...) ((void)0)
 #endif
 
-#define HEALTH_BEAT_EVERY_MS(id, last_ms_var, period_ms)                                           \
-    do {                                                                                           \
-        uint32_t __now = to_ms_since_boot(get_absolute_time());                                    \
-        if (((__now) - (last_ms_var)) >= (period_ms)) {                                            \
-            (last_ms_var) = __now;                                                                 \
-            Health_Heartbeat((id));                                                                \
-        }                                                                                          \
-    } while (0)
-
 /********************************************************************************
  *                          PERIPHERAL ASSIGNMENTS                              *
  ********************************************************************************/
@@ -246,7 +228,7 @@ extern w5500_NetConfig eth_netcfg;
 #define MCP23017_SELECTION_I2C MCP23017_DISPLAY_I2C // Using I2C0 for Selection Row MCP23017
 
 // SPI Peripheral Assignments
-#define SPI_SPEED_W5500 40000000 // 40MHz
+#define SPI_SPEED_W5500 62500000 // 62.5MHz
 #define W5500_SPI_INSTANCE spi0  // SPI0 for W5500 Ethernet Modul
 
 /********************************************************************************

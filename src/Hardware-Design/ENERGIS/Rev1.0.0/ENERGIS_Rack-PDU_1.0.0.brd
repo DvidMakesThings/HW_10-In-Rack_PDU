@@ -3,7 +3,7 @@
 <eagle version="9.2.1">
 <drawing>
 <settings>
-<setting alwaysvectorfont="yes"/>
+<setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.01" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mm"/>
@@ -12509,7 +12509,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="153.2" y1="15.88" x2="153.2" y2="15.01118125" width="0.2032" layer="14"/>
 <wire x1="153.2" y1="15.01118125" x2="150.85781875" y2="12.669" width="0.2032" layer="14"/>
 </signal>
-<signal name="LCD_CS">
+<signal name="SPI1_CS">
 <contactref element="IC15" pad="12"/>
 <contactref element="R149" pad="C2"/>
 <contactref element="DSP" pad="19"/>
@@ -12531,7 +12531,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="132.232" y1="8.66" x2="132.242" y2="8.65" width="0.2032" layer="1"/>
 <wire x1="128.31" y1="11.49" x2="131.14" y2="8.66" width="0.2032" layer="16"/>
 </signal>
-<signal name="LCD_SCLK">
+<signal name="SPI1_SCLK">
 <contactref element="IC15" pad="13"/>
 <contactref element="DSP" pad="17"/>
 <wire x1="133.242" y1="5.162" x2="133.242" y2="9.28" width="0.2" layer="1"/>
@@ -12549,7 +12549,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <via x="133.242" y="9.28" extent="1-16" drill="0.2"/>
 <wire x1="129.22781875" y1="7.991" x2="131.953" y2="7.991" width="0.2032" layer="16"/>
 </signal>
-<signal name="LCD_MISO">
+<signal name="SPI1_MISO">
 <contactref element="IC15" pad="11"/>
 <contactref element="R149" pad="B2"/>
 <contactref element="DSP" pad="15"/>
@@ -12570,7 +12570,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="130.29" y1="12.07" x2="130.6052" y2="11.7548" width="0.2032" layer="16"/>
 <wire x1="130.6052" y1="11.7548" x2="132.87" y2="11.7548" width="0.2032" layer="16"/>
 </signal>
-<signal name="LCD_MOSI">
+<signal name="SPI1_MOSI">
 <contactref element="IC15" pad="14"/>
 <contactref element="DSP" pad="16"/>
 <wire x1="133.742" y1="2.362" x2="133.742" y2="3.692" width="0.2" layer="1"/>
