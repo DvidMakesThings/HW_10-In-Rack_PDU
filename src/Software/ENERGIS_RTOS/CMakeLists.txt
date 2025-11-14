@@ -80,6 +80,15 @@ add_executable(ENERGIS_RTOS
     src/tasks/MeterTask.c
     src/tasks/ButtonTask.c
     src/tasks/HealthTask.c
+    src/tasks/storage_submodule/calibration.c
+    src/tasks/storage_submodule/channel_labels.c
+    src/tasks/storage_submodule/energy_monitor.c
+    src/tasks/storage_submodule/event_log.c
+    src/tasks/storage_submodule/factory_defaults.c
+    src/tasks/storage_submodule/network.c
+    src/tasks/storage_submodule/storage_common.c
+    src/tasks/storage_submodule/user_output.c
+    src/tasks/storage_submodule/user_prefs.c
     src/web_handlers/http_server.c
     src/web_handlers/control_handler.c
     src/web_handlers/settings_handler.c

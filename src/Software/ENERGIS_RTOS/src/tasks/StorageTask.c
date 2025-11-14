@@ -1,9 +1,9 @@
 /**
- * @file src/tasks/StorageTask.c
+ * @file StorageTask.c
  * @author DvidMakesThings - David Sipos
  *
- * @version 2.0
- * @date 2025-11-06
+ * @version 3.0
+ * @date 2025-11-14
  *
  * @details
  * StorageTask Architecture:
@@ -11,7 +11,7 @@
  * - Maintains RAM cache of critical config
  * - Debounces writes (2 second idle period)
  * - Processes requests from q_cfg queue
- * - Implements ALL EEPROM_* functions from old EEPROM_MemoryMap.c
+ * - Delegates EEPROM operations to submodules in storage_submodule/
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -49,7 +49,7 @@ const networkInfo DEFAULT_NETWORK = {
     .dhcp = ENERGIS_DEFAULT_DHCP};
 
 /** @brief Default user preferences. */
-static const userPrefInfo DEFAULT_USER_PREFS = {
+const userPrefInfo DEFAULT_USER_PREFS = {
     .device_name = DEFAULT_NAME, .location = DEFAULT_LOCATION, .temp_unit = 0};
 
 /** @brief Default energy data (placeholder). */
@@ -57,9 +57,6 @@ const uint8_t DEFAULT_ENERGY_DATA[64] = {0};
 
 /** @brief Default event log data (placeholder). */
 const uint8_t DEFAULT_LOG_DATA[64] = {0};
-
-/** @brief Default user pref data (placeholder). */
-const uint8_t DEFAULT_USER_PREF[64] = {0};
 
 /* ==================== Private State ==================== */
 
@@ -71,66 +68,14 @@ static volatile bool eth_netcfg_ready = false;
 
 bool Storage_Config_IsReady(void) { return eth_netcfg_ready; }
 
-/* ==================== CRC Helper ==================== */
-
-/**
- * @brief Calculate CRC-8 checksum.
- * @param data Input buffer
- * @param len Buffer length
- * @return CRC-8 checksum value
- */
-static uint8_t calculate_crc8(const uint8_t *data, size_t len) {
-    uint8_t crc = 0x00;
-    for (size_t i = 0; i < len; i++) {
-        crc ^= data[i];
-        for (uint8_t j = 0; j < 8; j++) {
-            if (crc & 0x80)
-                crc = (uint8_t)((crc << 1) ^ 0x07);
-            else
-                crc <<= 1;
-        }
-    }
-    return crc;
-}
-
-/* ==================== MAC Address builder from SN ==================== */
-/* Derive ENERGIS MAC from SERIAL_NUMBER (FNV-1a 32-bit, low 24 bits). */
-static void Energis_FillMacFromSerial(uint8_t mac[6]) {
-#ifndef SERIAL_NUMBER
-#define SERIAL_NUMBER SERIAL_NUMBER_STR SERIAL_NUMBER_NUM
-#endif
-    uint32_t h = 0x811C9DC5u;
-    const char *s = (const char *)SERIAL_NUMBER;
-    while (*s) {
-        h ^= (uint8_t)*s++;
-        h *= 0x01000193u;
-    }
-    mac[0] = ENERGIS_MAC_PREFIX0;
-    mac[1] = ENERGIS_MAC_PREFIX1;
-    mac[2] = ENERGIS_MAC_PREFIX2;
-    mac[3] = (uint8_t)(h >> 16);
-    mac[4] = (uint8_t)(h >> 8);
-    mac[5] = (uint8_t)h;
-}
-
-static bool Energis_RepairMac(networkInfo *n) {
-    const bool wrong_prefix = n->mac[0] != ENERGIS_MAC_PREFIX0 ||
-                              n->mac[1] != ENERGIS_MAC_PREFIX1 || n->mac[2] != ENERGIS_MAC_PREFIX2;
-    const bool zero_suffix = (n->mac[3] | n->mac[4] | n->mac[5]) == 0x00;
-    const bool ff_suffix = (n->mac[3] & n->mac[4] & n->mac[5]) == 0xFF;
-    if (wrong_prefix || zero_suffix || ff_suffix) {
-        Energis_FillMacFromSerial(n->mac);
-        return true;
-    }
-    return false;
-}
-
 /* ====================================================================== */
-/*                  EEPROM_* FUNCTIONS (from old code)                   */
+/*                    EEPROM_EraseAll (utility)                          */
 /* ====================================================================== */
 
 /**
  * @brief Erase entire EEPROM to 0xFF.
+ *
+ * Writes 0xFF to all EEPROM addresses in 32-byte chunks.
  *
  * CRITICAL: Must be called with eepromMtx held!
  *
@@ -148,523 +93,23 @@ int EEPROM_EraseAll(void) {
     return 0;
 }
 
-/* ---- System Info ---- */
-
-int EEPROM_WriteSystemInfo(const uint8_t *data, size_t len) {
-    if (len > EEPROM_SYS_INFO_SIZE)
-        return -1;
-    return CAT24C512_WriteBuffer(EEPROM_SYS_INFO_START, data, (uint16_t)len);
-}
-
-int EEPROM_ReadSystemInfo(uint8_t *data, size_t len) {
-    if (len > EEPROM_SYS_INFO_SIZE)
-        return -1;
-    CAT24C512_ReadBuffer(EEPROM_SYS_INFO_START, data, (uint32_t)len);
-    return 0;
-}
-
-int EEPROM_WriteSystemInfoWithChecksum(const uint8_t *data, size_t len) {
-    if (len > EEPROM_SYS_INFO_SIZE - 1)
-        return -1;
-
-    uint8_t buffer[EEPROM_SYS_INFO_SIZE];
-    memcpy(buffer, data, len);
-    buffer[len] = calculate_crc8(data, len);
-
-    return CAT24C512_WriteBuffer(EEPROM_SYS_INFO_START, buffer, (uint16_t)(len + 1));
-}
-
-int EEPROM_ReadSystemInfoWithChecksum(uint8_t *data, size_t len) {
-    if (len > EEPROM_SYS_INFO_SIZE - 1)
-        return -1;
-
-    uint8_t buffer[EEPROM_SYS_INFO_SIZE];
-    CAT24C512_ReadBuffer(EEPROM_SYS_INFO_START, buffer, (uint32_t)(len + 1));
-
-    uint8_t crc = calculate_crc8(buffer, len);
-    if (crc != buffer[len]) {
-        ERROR_PRINT("%s System info CRC mismatch\r\n", STORAGE_TASK_TAG);
-        return -1;
-    }
-
-    memcpy(data, buffer, len);
-    return 0;
-}
-
-/* ---- Factory Defaults ---- */
-
-/**
- * @brief Write factory defaults to all sections.
- *
- * CRITICAL: Must be called with eepromMtx held!
- *
- * @return 0 on success, -1 if any write fails
- */
-int EEPROM_WriteFactoryDefaults(void) {
-    int status = 0;
-
-    /* Serial Number + SWVERSION */
-    char sys_info_buf[64];
-    size_t sn_len = strlen(DEFAULT_SN) + 1;
-    size_t swv_len = strlen(SWVERSION) + 1;
-    memset(sys_info_buf, 0, sizeof(sys_info_buf));
-    memcpy(sys_info_buf, DEFAULT_SN, sn_len);
-    memcpy(sys_info_buf + sn_len, SWVERSION, swv_len);
-    status |= EEPROM_WriteSystemInfo((const uint8_t *)sys_info_buf, sn_len + swv_len);
-    INFO_PRINT("%s Serial Number and SWVERSION written\r\n", STORAGE_TASK_TAG);
-
-    /* Relay Status (all OFF) */
-    status |= EEPROM_WriteUserOutput(DEFAULT_RELAY_STATUS, sizeof(DEFAULT_RELAY_STATUS));
-    INFO_PRINT("%s Relay Status written\r\n", STORAGE_TASK_TAG);
-
-    /* Network Configuration (with CRC) */
-    {
-        networkInfo defnet = DEFAULT_NETWORK; /* work on a copy */
-        Energis_FillMacFromSerial(defnet.mac);
-        status |= EEPROM_WriteUserNetworkWithChecksum(&defnet);
-        INFO_PRINT("%s Network Configuration written\r\n", STORAGE_TASK_TAG);
-    }
-
-    /* Sensor Calibration (defaults for all channels) */
-    hlw_calib_data_t zero_cal;
-    memset(&zero_cal, 0xFF, sizeof(zero_cal));
-    for (int i = 0; i < 8; i++) {
-        zero_cal.channels[i].voltage_factor = HLW8032_VF;
-        zero_cal.channels[i].current_factor = HLW8032_CF;
-        zero_cal.channels[i].r1_actual = 1880000.0f;
-        zero_cal.channels[i].r2_actual = 1000.0f;
-        zero_cal.channels[i].shunt_actual = 0.001f;
-        zero_cal.channels[i].voltage_offset = 0.0f;
-        zero_cal.channels[i].current_offset = 0.0f;
-        zero_cal.channels[i].calibrated = 0xFF;
-        zero_cal.channels[i].zero_calibrated = 0xFF;
-    }
-    status |= EEPROM_WriteSensorCalibration((const uint8_t *)&zero_cal, sizeof(zero_cal));
-    INFO_PRINT("%s Sensor Calibration written\r\n", STORAGE_TASK_TAG);
-
-    /* Energy Monitoring Data */
-    status |= EEPROM_WriteEnergyMonitoring(DEFAULT_ENERGY_DATA, sizeof(DEFAULT_ENERGY_DATA));
-    INFO_PRINT("%s Energy Monitoring Data written\r\n", STORAGE_TASK_TAG);
-
-    /* Event Logs */
-    status |= EEPROM_WriteEventLogs(DEFAULT_LOG_DATA, sizeof(DEFAULT_LOG_DATA));
-    INFO_PRINT("%s Event Logs written\r\n", STORAGE_TASK_TAG);
-
-    /* User Preferences (default name/location) */
-    status |= EEPROM_WriteDefaultNameLocation();
-    INFO_PRINT("%s User Preferences written\r\n", STORAGE_TASK_TAG);
-
-    if (status == 0) {
-        INFO_PRINT("%s Factory defaults written successfully\r\n", STORAGE_TASK_TAG);
-    } else {
-        ERROR_PRINT("%s Factory defaults write failed\r\n", STORAGE_TASK_TAG);
-    }
-    return status;
-}
-
-int EEPROM_ReadFactoryDefaults(void) {
-    /* Serial Number check */
-    char stored_sn[32];
-    EEPROM_ReadSystemInfo((uint8_t *)stored_sn, strlen(DEFAULT_SN) + 1);
-    if (memcmp(stored_sn, DEFAULT_SN, strlen(DEFAULT_SN)) != 0) {
-        WARNING_PRINT("%s Invalid Serial Number in EEPROM\r\n", STORAGE_TASK_TAG);
-    }
-
-    /* Network (CRC verified) */
-    networkInfo stored_network;
-    if (EEPROM_ReadUserNetworkWithChecksum(&stored_network) != 0) {
-        WARNING_PRINT("%s Invalid Network Configuration in EEPROM\r\n", STORAGE_TASK_TAG);
-    }
-
-    /* Sensor Calibration — presence check */
-    hlw_calib_data_t tmp;
-    if (EEPROM_ReadSensorCalibration((uint8_t *)&tmp, sizeof(tmp)) != 0) {
-        WARNING_PRINT("%s Sensor Calibration missing/invalid\r\n", STORAGE_TASK_TAG);
-    }
-
-    INFO_PRINT("%s EEPROM content checked\r\n", STORAGE_TASK_TAG);
-    return 0;
-}
-
-/* ---- User Output ---- */
-
-int EEPROM_WriteUserOutput(const uint8_t *data, size_t len) {
-    if (len > EEPROM_USER_OUTPUT_SIZE)
-        return -1;
-    return CAT24C512_WriteBuffer(EEPROM_USER_OUTPUT_START, data, (uint16_t)len);
-}
-
-int EEPROM_ReadUserOutput(uint8_t *data, size_t len) {
-    if (len > EEPROM_USER_OUTPUT_SIZE)
-        return -1;
-    CAT24C512_ReadBuffer(EEPROM_USER_OUTPUT_START, data, (uint32_t)len);
-    return 0;
-}
-
-/* ---- Network (raw + CRC) ---- */
-
-int EEPROM_WriteUserNetwork(const uint8_t *data, size_t len) {
-    if (len > EEPROM_USER_NETWORK_SIZE)
-        return -1;
-    return CAT24C512_WriteBuffer(EEPROM_USER_NETWORK_START, data, (uint16_t)len);
-}
-
-int EEPROM_ReadUserNetwork(uint8_t *data, size_t len) {
-    if (len > EEPROM_USER_NETWORK_SIZE)
-        return -1;
-    CAT24C512_ReadBuffer(EEPROM_USER_NETWORK_START, data, (uint32_t)len);
-    return 0;
-}
-
-int EEPROM_WriteUserNetworkWithChecksum(const networkInfo *net_info) {
-    if (!net_info)
-        return -1;
-
-    uint8_t buffer[24];
-    /* EEPROM order: MAC(6), IP(4), SN(4), GW(4), DNS(4), DHCP(1), CRC(1) */
-    memcpy(&buffer[0], net_info->mac, 6);
-    memcpy(&buffer[6], net_info->ip, 4);
-    memcpy(&buffer[10], net_info->sn, 4);
-    memcpy(&buffer[14], net_info->gw, 4);
-    memcpy(&buffer[18], net_info->dns, 4);
-    buffer[22] = net_info->dhcp;
-    buffer[23] = calculate_crc8(buffer, 23);
-    return CAT24C512_WriteBuffer(EEPROM_USER_NETWORK_START, buffer, 24);
-}
-
-int EEPROM_ReadUserNetworkWithChecksum(networkInfo *net_info) {
-    if (!net_info)
-        return -1;
-
-    uint8_t buffer[24];
-    CAT24C512_ReadBuffer(EEPROM_USER_NETWORK_START, buffer, 24);
-    if (calculate_crc8(buffer, 23) != buffer[23]) {
-        ERROR_PRINT("%s Network config CRC mismatch\r\n", STORAGE_TASK_TAG);
-        return -1;
-    }
-
-    memcpy(net_info->mac, &buffer[0], 6);
-    memcpy(net_info->ip, &buffer[6], 4);
-    memcpy(net_info->sn, &buffer[10], 4);
-    memcpy(net_info->gw, &buffer[14], 4);
-    memcpy(net_info->dns, &buffer[18], 4);
-    net_info->dhcp = buffer[22];
-    return 0;
-}
-
-/* ---- Sensor Calibration ---- */
-
-int EEPROM_WriteSensorCalibration(const uint8_t *data, size_t len) {
-    if (len > EEPROM_SENSOR_CAL_SIZE)
-        return -1;
-    return CAT24C512_WriteBuffer(EEPROM_SENSOR_CAL_START, data, (uint16_t)len);
-}
-
-int EEPROM_WriteSensorCalibrationForChannel(uint8_t ch, const hlw_calib_t *in) {
-    if (ch >= 8 || !in)
-        return -1;
-
-    uint16_t addr = EEPROM_SENSOR_CAL_START + (ch * sizeof(hlw_calib_t));
-    return CAT24C512_WriteBuffer(addr, (const uint8_t *)in, sizeof(hlw_calib_t));
-}
-
-int EEPROM_ReadSensorCalibration(uint8_t *data, size_t len) {
-    if (len > EEPROM_SENSOR_CAL_SIZE)
-        return -1;
-    CAT24C512_ReadBuffer(EEPROM_SENSOR_CAL_START, data, (uint32_t)len);
-    return 0;
-}
-
-int EEPROM_ReadSensorCalibrationForChannel(uint8_t ch, hlw_calib_t *out) {
-    if (ch >= 8 || !out)
-        return -1;
-
-    uint16_t addr = EEPROM_SENSOR_CAL_START + (ch * sizeof(hlw_calib_t));
-    CAT24C512_ReadBuffer(addr, (uint8_t *)out, sizeof(hlw_calib_t));
-
-    /* Apply sane defaults if not calibrated */
-    if (out->calibrated != 0xCA) {
-        out->voltage_factor = HLW8032_VF;
-        out->current_factor = HLW8032_CF;
-        out->r1_actual = 1880000.0f;
-        out->r2_actual = 1000.0f;
-        out->shunt_actual = 0.001f;
-    }
-
-    return 0;
-}
-
-/* ---- Energy Monitoring ---- */
-
-int EEPROM_WriteEnergyMonitoring(const uint8_t *data, size_t len) {
-    if (len > EEPROM_ENERGY_MON_SIZE)
-        return -1;
-    return CAT24C512_WriteBuffer(EEPROM_ENERGY_MON_START, data, (uint16_t)len);
-}
-
-int EEPROM_ReadEnergyMonitoring(uint8_t *data, size_t len) {
-    if (len > EEPROM_ENERGY_MON_SIZE)
-        return -1;
-    CAT24C512_ReadBuffer(EEPROM_ENERGY_MON_START, data, (uint32_t)len);
-    return 0;
-}
-
-int EEPROM_AppendEnergyRecord(const uint8_t *data) {
-    /* Read current pointer */
-    uint16_t ptr = 0;
-    CAT24C512_ReadBuffer(EEPROM_ENERGY_MON_START, (uint8_t *)&ptr, 2);
-
-    /* Calculate address */
-    uint16_t addr = EEPROM_ENERGY_MON_START + ENERGY_MON_POINTER_SIZE + (ptr * ENERGY_RECORD_SIZE);
-
-    /* Write record */
-    if (CAT24C512_WriteBuffer(addr, data, ENERGY_RECORD_SIZE) != 0)
-        return -1;
-
-    /* Update pointer (wrap around) */
-    ptr++;
-    if ((ptr * ENERGY_RECORD_SIZE) >= (EEPROM_ENERGY_MON_SIZE - ENERGY_MON_POINTER_SIZE))
-        ptr = 0;
-
-    return CAT24C512_WriteBuffer(EEPROM_ENERGY_MON_START, (uint8_t *)&ptr, 2);
-}
-
-/* ---- Event Logs ---- */
-
-int EEPROM_WriteEventLogs(const uint8_t *data, size_t len) {
-    if (len > EEPROM_EVENT_LOG_SIZE)
-        return -1;
-    return CAT24C512_WriteBuffer(EEPROM_EVENT_LOG_START, data, (uint16_t)len);
-}
-
-int EEPROM_ReadEventLogs(uint8_t *data, size_t len) {
-    if (len > EEPROM_EVENT_LOG_SIZE)
-        return -1;
-    CAT24C512_ReadBuffer(EEPROM_EVENT_LOG_START, data, (uint32_t)len);
-    return 0;
-}
-
-int EEPROM_AppendEventLog(const uint8_t *entry) {
-    /* Read current pointer */
-    uint16_t ptr = 0;
-    CAT24C512_ReadBuffer(EEPROM_EVENT_LOG_START, (uint8_t *)&ptr, 2);
-
-    /* Calculate address */
-    uint16_t addr = EEPROM_EVENT_LOG_START + EVENT_LOG_POINTER_SIZE + (ptr * EVENT_LOG_ENTRY_SIZE);
-
-    /* Write entry */
-    if (CAT24C512_WriteBuffer(addr, entry, EVENT_LOG_ENTRY_SIZE) != 0)
-        return -1;
-
-    /* Update pointer (wrap around) */
-    ptr++;
-    if ((ptr * EVENT_LOG_ENTRY_SIZE) >= (EEPROM_EVENT_LOG_SIZE - EVENT_LOG_POINTER_SIZE))
-        ptr = 0;
-
-    return CAT24C512_WriteBuffer(EEPROM_EVENT_LOG_START, (uint8_t *)&ptr, 2);
-}
-
-/* ---- User Preferences ---- */
-
-int EEPROM_WriteUserPreferences(const uint8_t *data, size_t len) {
-    if (len > EEPROM_USER_PREF_SIZE)
-        return -1;
-    return CAT24C512_WriteBuffer(EEPROM_USER_PREF_START, data, (uint16_t)len);
-}
-
-int EEPROM_ReadUserPreferences(uint8_t *data, size_t len) {
-    if (len > EEPROM_USER_PREF_SIZE)
-        return -1;
-    CAT24C512_ReadBuffer(EEPROM_USER_PREF_START, data, (uint32_t)len);
-    return 0;
-}
-
-int EEPROM_WriteUserPrefsWithChecksum(const userPrefInfo *prefs) {
-    if (!prefs)
-        return -1;
-
-    uint8_t buffer[66];
-    memcpy(&buffer[0], prefs->device_name, 32);
-    memcpy(&buffer[32], prefs->location, 32);
-    buffer[64] = prefs->temp_unit;
-    buffer[65] = calculate_crc8(buffer, 65);
-
-    /* Split write (page boundary safety) */
-    int res = 0;
-    res |= CAT24C512_WriteBuffer(EEPROM_USER_PREF_START, &buffer[0], 64);
-    res |= CAT24C512_WriteBuffer(EEPROM_USER_PREF_START + 64, &buffer[64], 2);
-    return res;
-}
-
-int EEPROM_ReadUserPrefsWithChecksum(userPrefInfo *prefs) {
-    if (!prefs)
-        return -1;
-
-    uint8_t record[66];
-    CAT24C512_ReadBuffer(EEPROM_USER_PREF_START, record, 66);
-
-    if (calculate_crc8(&record[0], 65) != record[65]) {
-        ERROR_PRINT("%s User prefs CRC mismatch\r\n", STORAGE_TASK_TAG);
-        return -1;
-    }
-
-    memcpy(prefs->device_name, &record[0], 32);
-    prefs->device_name[31] = '\0';
-    memcpy(prefs->location, &record[32], 32);
-    prefs->location[31] = '\0';
-    prefs->temp_unit = record[64];
-
-    return 0;
-}
-
-userPrefInfo LoadUserPreferences(void) {
-    userPrefInfo prefs;
-    if (EEPROM_ReadUserPrefsWithChecksum(&prefs) == 0) {
-        INFO_PRINT("%s Loaded user prefs from EEPROM\r\n", STORAGE_TASK_TAG);
-    } else {
-        WARNING_PRINT("%s No saved prefs, using defaults\r\n", STORAGE_TASK_TAG);
-        prefs = DEFAULT_USER_PREFS;
-    }
-    return prefs;
-}
-
-int EEPROM_WriteDefaultNameLocation(void) {
-    return EEPROM_WriteUserPrefsWithChecksum(&DEFAULT_USER_PREFS);
-}
-
-networkInfo LoadUserNetworkConfig(void) {
-    networkInfo net_info;
-
-    /* Read from EEPROM (legacy layout + CRC). */
-    if (EEPROM_ReadUserNetworkWithChecksum(&net_info) == 0) {
-        /* Fix MAC if needed and persist once. */
-        if (Energis_RepairMac(&net_info)) {
-            WARNING_PRINT("%s Network MAC repaired to %02X:%02X:%02X:%02X:%02X:%02X\r\n",
-                          STORAGE_TASK_TAG, net_info.mac[0], net_info.mac[1], net_info.mac[2],
-                          net_info.mac[3], net_info.mac[4], net_info.mac[5]);
-            (void)EEPROM_WriteUserNetworkWithChecksum(&net_info);
-        }
-        return net_info;
-    }
-
-    /* CRC fail or empty -> use defaults + derived MAC, persist, return. */
-    WARNING_PRINT("%s Invalid network config, using defaults\r\n", STORAGE_TASK_TAG);
-    net_info = DEFAULT_NETWORK;
-    Energis_FillMacFromSerial(net_info.mac);
-    (void)EEPROM_WriteUserNetworkWithChecksum(&net_info);
-    return net_info;
-}
-
-/* ---- Channel Labels ---- */
-
-static inline uint16_t _LabelSlotAddr(uint8_t channel_index) {
-    return (uint16_t)(EEPROM_CH_LABEL_START + (uint32_t)channel_index * EEPROM_CH_LABEL_SLOT);
-}
-
-int EEPROM_WriteChannelLabel(uint8_t channel_index, const char *label) {
-    if (channel_index >= ENERGIS_NUM_CHANNELS || label == NULL)
-        return -1;
-
-    uint8_t buf[EEPROM_CH_LABEL_SLOT];
-    size_t maxcpy = EEPROM_CH_LABEL_SLOT - 1u;
-
-    size_t n = 0u;
-    for (; n < maxcpy && label[n] != '\0'; ++n)
-        buf[n] = (uint8_t)label[n];
-
-    buf[n++] = 0x00;
-    for (; n < EEPROM_CH_LABEL_SLOT; ++n)
-        buf[n] = 0x00;
-
-    return CAT24C512_WriteBuffer(_LabelSlotAddr(channel_index), buf, EEPROM_CH_LABEL_SLOT);
-}
-
-int EEPROM_ReadChannelLabel(uint8_t channel_index, char *out, size_t out_len) {
-    if (channel_index >= ENERGIS_NUM_CHANNELS || out == NULL || out_len == 0u)
-        return -1;
-
-    uint8_t buf[EEPROM_CH_LABEL_SLOT];
-    CAT24C512_ReadBuffer(_LabelSlotAddr(channel_index), buf, EEPROM_CH_LABEL_SLOT);
-
-    size_t i = 0u;
-    while (i + 1u < out_len && i < EEPROM_CH_LABEL_SLOT && buf[i] != 0x00) {
-        out[i] = (char)buf[i];
-        ++i;
-    }
-    out[i] = '\0';
-    return 0;
-}
-
-int EEPROM_ClearChannelLabel(uint8_t channel_index) {
-    if (channel_index >= ENERGIS_NUM_CHANNELS)
-        return -1;
-
-    uint8_t zero[32];
-    memset(zero, 0x00, sizeof(zero));
-
-    for (uint16_t addr = 0; addr < EEPROM_CH_LABEL_SLOT; addr += sizeof(zero)) {
-        if (CAT24C512_WriteBuffer(_LabelSlotAddr(channel_index) + addr, zero, sizeof(zero)) != 0)
-            return -1;
-    }
-    return 0;
-}
-
-int EEPROM_ClearAllChannelLabels(void) {
-    for (uint8_t ch = 0; ch < ENERGIS_NUM_CHANNELS; ++ch)
-        if (EEPROM_ClearChannelLabel(ch) != 0)
-            return -1;
-    return 0;
-}
-
 /* ====================================================================== */
 /*                        RTOS STORAGE TASK                              */
 /* ====================================================================== */
 
 /**
- * @brief Check if factory defaults need to be written (first boot).
- * @return true if defaults were written, false otherwise
- */
-bool check_factory_defaults(void) {
-    uint16_t magic = 0xFFFF;
-
-    xSemaphoreTake(eepromMtx, portMAX_DELAY);
-    CAT24C512_ReadBuffer(EEPROM_MAGIC_ADDR, (uint8_t *)&magic, sizeof(magic));
-    xSemaphoreGive(eepromMtx);
-
-    if (magic != EEPROM_MAGIC_VAL) {
-        INFO_PRINT("%s First boot detected, writing factory defaults...\r\n", STORAGE_TASK_TAG);
-
-        xSemaphoreTake(eepromMtx, portMAX_DELAY);
-        int ret = EEPROM_WriteFactoryDefaults();
-        if (ret == 0) {
-            magic = EEPROM_MAGIC_VAL;
-            CAT24C512_WriteBuffer(EEPROM_MAGIC_ADDR, (uint8_t *)&magic, sizeof(magic));
-        }
-        xSemaphoreGive(eepromMtx);
-
-        if (ret == 0) {
-            INFO_PRINT("%s Factory defaults written successfully\r\n", STORAGE_TASK_TAG);
-            return true;
-        } else {
-            ERROR_PRINT("%s Failed to write factory defaults\r\n", STORAGE_TASK_TAG);
-            return false;
-        }
-    }
-    INFO_PRINT("%s Magic value verified\r\n", STORAGE_TASK_TAG);
-
-    return true;
-}
-
-/**
  * @brief Load all config from EEPROM to RAM cache.
+ *
+ * Called once during task startup to populate RAM cache with stored config.
+ * Uses submodule functions to load each section.
  */
 static void load_config_from_eeprom(void) {
     xSemaphoreTake(eepromMtx, portMAX_DELAY);
 
-    /* Load network config */
+    /* Load network config (handles MAC repair internally) */
     g_cache.network = LoadUserNetworkConfig();
 
-    /* Load user preferences */
+    /* Load user preferences (handles defaults internally) */
     g_cache.preferences = LoadUserPreferences();
 
     /* Load relay states */
@@ -696,6 +141,9 @@ static void load_config_from_eeprom(void) {
 
 /**
  * @brief Commit all dirty sections to EEPROM.
+ *
+ * Checks dirty flags and writes changed sections to EEPROM using submodule functions.
+ * Optionally triggers reboot if STORAGE_REBOOT_ON_CONFIG_SAVE is enabled.
  */
 static void commit_dirty_sections(void) {
 #ifndef STORAGE_REBOOT_ON_CONFIG_SAVE
@@ -704,6 +152,7 @@ static void commit_dirty_sections(void) {
 
     xSemaphoreTake(eepromMtx, portMAX_DELAY);
 
+    /* Commit network config if dirty */
     if (g_cache.network_dirty) {
         if (EEPROM_WriteUserNetworkWithChecksum(&g_cache.network) == 0) {
             g_cache.network_dirty = false;
@@ -717,6 +166,7 @@ static void commit_dirty_sections(void) {
         }
     }
 
+    /* Commit user prefs if dirty */
     if (g_cache.prefs_dirty) {
         if (EEPROM_WriteUserPrefsWithChecksum(&g_cache.preferences) == 0) {
             g_cache.prefs_dirty = false;
@@ -730,6 +180,7 @@ static void commit_dirty_sections(void) {
         }
     }
 
+    /* Commit relay states if dirty */
     if (g_cache.relay_dirty) {
         if (EEPROM_WriteUserOutput(g_cache.relay_states, sizeof(g_cache.relay_states)) == 0) {
             g_cache.relay_dirty = false;
@@ -739,6 +190,7 @@ static void commit_dirty_sections(void) {
         }
     }
 
+    /* Commit sensor calibration if any channel is dirty */
     for (uint8_t ch = 0; ch < 8; ch++) {
         if (g_cache.sensor_cal_dirty[ch]) {
             if (EEPROM_WriteSensorCalibrationForChannel(ch, &g_cache.sensor_cal[ch]) == 0) {
@@ -755,12 +207,18 @@ static void commit_dirty_sections(void) {
 
 /**
  * @brief Process storage request message.
+ *
+ * Handles all storage commands by updating RAM cache, setting dirty flags,
+ * or directly accessing EEPROM (for channel labels and testing).
+ *
+ * @param msg Pointer to storage message structure
  */
 static void process_storage_msg(const storage_msg_t *msg) {
     if (!msg)
         return;
 
     switch (msg->cmd) {
+    /* Network config operations */
     case STORAGE_CMD_READ_NETWORK:
         if (msg->output_ptr) {
             memcpy(msg->output_ptr, &g_cache.network, sizeof(networkInfo));
@@ -773,6 +231,7 @@ static void process_storage_msg(const storage_msg_t *msg) {
         g_cache.last_change_tick = xTaskGetTickCount();
         break;
 
+    /* User preferences operations */
     case STORAGE_CMD_READ_PREFS:
         if (msg->output_ptr) {
             memcpy(msg->output_ptr, &g_cache.preferences, sizeof(userPrefInfo));
@@ -785,6 +244,7 @@ static void process_storage_msg(const storage_msg_t *msg) {
         g_cache.last_change_tick = xTaskGetTickCount();
         break;
 
+    /* Relay state operations */
     case STORAGE_CMD_READ_RELAY_STATES:
         if (msg->output_ptr) {
             memcpy(msg->output_ptr, g_cache.relay_states, 8);
@@ -797,6 +257,7 @@ static void process_storage_msg(const storage_msg_t *msg) {
         g_cache.last_change_tick = xTaskGetTickCount();
         break;
 
+    /* Sensor calibration operations */
     case STORAGE_CMD_READ_SENSOR_CAL:
         if (msg->data.sensor_cal.channel < 8 && msg->output_ptr) {
             memcpy(msg->output_ptr, &g_cache.sensor_cal[msg->data.sensor_cal.channel],
@@ -813,6 +274,7 @@ static void process_storage_msg(const storage_msg_t *msg) {
         }
         break;
 
+    /* Channel label operations (direct EEPROM access, no caching) */
     case STORAGE_CMD_READ_CHANNEL_LABEL:
         if (msg->data.ch_label.channel < 8 && msg->output_ptr) {
             xSemaphoreTake(eepromMtx, portMAX_DELAY);
@@ -829,6 +291,7 @@ static void process_storage_msg(const storage_msg_t *msg) {
         }
         break;
 
+    /* Commit and defaults operations */
     case STORAGE_CMD_COMMIT:
         commit_dirty_sections();
         break;
@@ -840,6 +303,7 @@ static void process_storage_msg(const storage_msg_t *msg) {
         load_config_from_eeprom();
         break;
 
+    /* SIL testing operations */
     case STORAGE_CMD_DUMP_FORMATTED:
         xSemaphoreTake(eepromMtx, portMAX_DELAY);
         CAT24C512_DumpFormatted();
@@ -868,6 +332,18 @@ static void process_storage_msg(const storage_msg_t *msg) {
 
 /**
  * @brief Storage task main function.
+ *
+ * Initialization sequence:
+ * 1. Check/write factory defaults (first boot)
+ * 2. Load config from EEPROM to RAM cache
+ * 3. Signal CFG_READY
+ *
+ * Main loop:
+ * - Process storage messages from q_cfg queue
+ * - Auto-commit dirty sections after debounce period
+ * - Send periodic heartbeat
+ *
+ * @param arg Unused task parameter
  */
 static void StorageTask(void *arg) {
     (void)arg;
@@ -875,9 +351,13 @@ static void StorageTask(void *arg) {
     vTaskDelay(pdMS_TO_TICKS(1000));
     ECHO("%s Task started\r\n", STORAGE_TASK_TAG);
 
+    /* Check and write factory defaults if first boot */
     check_factory_defaults();
+
+    /* Load all config from EEPROM to RAM cache */
     load_config_from_eeprom();
 
+    /* Signal that config is ready */
     eth_netcfg_ready = true;
     xEventGroupSetBits(cfgEvents, CFG_READY_BIT);
     INFO_PRINT("%s Config ready\r\n", STORAGE_TASK_TAG);
@@ -887,17 +367,21 @@ static void StorageTask(void *arg) {
 
     static uint32_t hb_stor_ms = 0;
 
+    /* Main task loop */
     for (;;) {
+        /* Send heartbeat */
         uint32_t __now = to_ms_since_boot(get_absolute_time());
         if ((__now - hb_stor_ms) >= STORAGETASKBEAT_MS) {
             hb_stor_ms = __now;
             Health_Heartbeat(HEALTH_ID_STORAGE);
         }
 
+        /* Process queue messages */
         if (xQueueReceive(q_cfg, &msg, poll_ticks) == pdPASS) {
             process_storage_msg(&msg);
         }
 
+        /* Auto-commit after debounce period */
         if (g_cache.last_change_tick != 0) {
             TickType_t now = xTaskGetTickCount();
             if ((now - g_cache.last_change_tick) >= pdMS_TO_TICKS(STORAGE_DEBOUNCE_MS)) {
@@ -915,17 +399,9 @@ static void StorageTask(void *arg) {
 /**
  * @brief Initialize and start the Storage task with a deterministic enable gate.
  *
- * @details
- * - Deterministic boot order step 3/6. Waits for Console to be READY.
- * - If @p enable is false, storage is skipped and marked NOT ready.
- * - Signals CFG_READY via cfgEvents; READY latch is set after task creation.
+ * Creates mutex, event group, and task. Waits for Console readiness before proceeding.
  *
- * @instructions
- * Call after ConsoleTask_Init(true):
- *   StorageTask_Init(true);
- * Query readiness via Storage_IsReady().
- *
- * @param enable Gate that allows or skips starting this subsystem.
+ * @param enable Gate that allows or skips starting this subsystem
  */
 void StorageTask_Init(bool enable) {
     /* TU-local READY flag accessor (no file-scope globals added). */
@@ -946,7 +422,7 @@ void StorageTask_Init(bool enable) {
         vTaskDelay(pdMS_TO_TICKS(10));
     }
 
-    /* Original body preserved */
+    /* Create mutex and event group */
     extern void StorageTask(void *arg);
     eepromMtx = xSemaphoreCreateMutex();
     cfgEvents = xEventGroupCreate();
@@ -956,6 +432,7 @@ void StorageTask_Init(bool enable) {
         return;
     }
 
+    /* Create task */
     if (xTaskCreate(StorageTask, "Storage", STORAGE_TASK_STACK_SIZE, NULL, STORAGE_TASK_PRIORITY,
                     NULL) != pdPASS) {
         ERROR_PRINT("%s Failed to create task\r\n", STORAGE_TASK_TAG);
@@ -969,11 +446,9 @@ void StorageTask_Init(bool enable) {
 /**
  * @brief Storage subsystem readiness query (configuration loaded).
  *
- * @details
- * Returns true once StorageTask has signaled CFG_READY in cfgEvents. This directly
- * reflects the config-ready bit instead of relying on any separate latch.
+ * Returns true once StorageTask has signaled CFG_READY in cfgEvents.
  *
- * @return true if configuration is ready, false otherwise.
+ * @return true if configuration is ready, false otherwise
  */
 bool Storage_IsReady(void) {
     /* Fast path: once StorageTask finished boot load it sets this flag. */
@@ -983,7 +458,7 @@ bool Storage_IsReady(void) {
     }
 
     /* Fallback to event bit (in case other modules rely on it). */
-    extern EventGroupHandle_t cfgEvents; /* defined in StorageTask.c */
+    extern EventGroupHandle_t cfgEvents;
     if (cfgEvents) {
         EventBits_t bits = xEventGroupGetBits(cfgEvents);
         if ((bits & CFG_READY_BIT) != 0) {
