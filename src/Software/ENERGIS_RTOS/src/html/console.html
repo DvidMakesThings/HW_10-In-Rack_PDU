@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ENERGIS PDU - Console</title>
     <style>
@@ -139,7 +139,6 @@
             padding: 0 2px 6px 2px
         }
 
-        /* Password modal */
         .modal {
             position: fixed;
             inset: 0;
@@ -203,7 +202,6 @@
     <div class="topbar">
         <h1>ENERGIS PDU</h1>
     </div>
-
     <div class="container">
         <nav class="sidebar">
             <ul>
@@ -212,101 +210,101 @@
                 <li><a href="help.html">Help</a></li>
                 <li><a href="user_manual.html">User Manual</a></li>
                 <li><a href="programming_manual.html">Programming Manual</a></li>
-                <li><a class="active" href="console.html">Console</a></li><!-- bottom item -->
+                <li><a class="active" href="console.html">Console</a></li>
             </ul>
         </nav>
-
         <main class="main">
             <div class="card">
                 <div class="term-header">
                     <div class="term-title">Console</div>
-                    <div id="s" class="term-status">locked</div>
+                    <div id="status">locked</div>
                 </div>
-                <div id="v" class="term-view"></div>
+                <div id="output" class="term-view"></div>
                 <div class="term-input">
-                    <input id="i" placeholder="type and hit Enter (Ctrl+L to clear)" disabled>
+                    <input id="input" placeholder="type and hit Enter (Ctrl+L to clear)" disabled>
                 </div>
             </div>
-            <div class="hint">This console requires a password. Hash is validated on the device; the plain text is never
-                sent.</div>
+            <div class="hint">Default password: admin</div>
         </main>
     </div>
-
-    <!-- Password modal -->
-    <div class="modal" id="m">
+    <div class="modal" id="modal">
         <div class="sheet">
             <h2>Enter console password</h2>
-            <p class="hint">What are you doing here? That's a developer feature. Are you a developer?</p>
+            <p class="hint">Default: admin</p>
             <div class="row">
-                <input id="pw" type="password" placeholder="Password" autocomplete="current-password">
-                <button class="btn" id="go">Unlock</button>
+                <input id="password" type="password" placeholder="Password">
+                <button class="btn" onclick="unlock()">Unlock</button>
             </div>
-            <div class="err" id="err"></div>
+            <div class="err" id="error"></div>
         </div>
     </div>
-
     <script>
-        const s = document.getElementById('s');
-        const v = document.getElementById('v');
-        const i = document.getElementById('i');
-        const m = document.getElementById('m');
-        const pw = document.getElementById('pw');
-        const go = document.getElementById('go');
-        const err = document.getElementById('err');
-        let ws = null;
+        var ws = null;
+        function unlock() {
+            var pwd = document.getElementById('password').value;
+            if (!pwd) {
+                document.getElementById('error').textContent = 'Password required.';
+                return;
+            }
 
-        function append(t) { v.textContent += t; v.scrollTop = v.scrollHeight; }
+            console.log('Attempting WebSocket connection...');
+            console.log('URL: ws://' + location.host + '/ws/console?pass=' + encodeURIComponent(pwd));
 
-        async function sha256_hex(str) {
-            const enc = new TextEncoder().encode(str);
-            const digest = await crypto.subtle.digest('SHA-256', enc);
-            return [...new Uint8Array(digest)].map(b => b.toString(16).padStart(2, '0')).join('');
+            document.getElementById('error').textContent = 'Connecting...';
+
+            try {
+                ws = new WebSocket('ws://' + location.host + '/ws/console?pass=' + encodeURIComponent(pwd));
+
+                ws.onopen = function () {
+                    console.log('WebSocket OPENED');
+                    document.getElementById('status').textContent = 'connected';
+                    document.getElementById('input').disabled = false;
+                    document.getElementById('modal').style.display = 'none';
+                    document.getElementById('input').focus();
+                };
+
+                ws.onclose = function (e) {
+                    console.log('WebSocket CLOSED. Code:', e.code, 'Reason:', e.reason);
+                    document.getElementById('input').disabled = true;
+                    document.getElementById('status').textContent = 'disconnected';
+                    if (e.code === 4401) {
+                        document.getElementById('error').textContent = 'Invalid password!';
+                        document.getElementById('modal').style.display = 'flex';
+                        document.getElementById('password').value = '';
+                    } else {
+                        document.getElementById('error').textContent = 'Connection closed (code: ' + e.code + ')';
+                    }
+                };
+
+                ws.onerror = function (e) {
+                    console.error('WebSocket ERROR:', e);
+                    document.getElementById('error').textContent = 'Connection error - check console (F12)';
+                };
+
+                ws.onmessage = function (e) {
+                    console.log('WebSocket message:', e.data);
+                    document.getElementById('output').textContent += e.data;
+                    document.getElementById('output').scrollTop = document.getElementById('output').scrollHeight;
+                };
+
+                document.getElementById('status').textContent = 'connecting...';
+
+            } catch (err) {
+                console.error('Failed to create WebSocket:', err);
+                document.getElementById('error').textContent = 'Failed to create connection: ' + err.message;
+            }
         }
 
-        async function unlock() {
-            err.textContent = '';
-            const pwd = pw.value || '';
-            if (!pwd) { err.textContent = 'Password required.'; return; }
-            const key = await sha256_hex(pwd); // send only the hash
-            connect(key);
-        }
+        document.getElementById('input').onkeydown = function (e) {
+            if (e.key === 'Enter' && ws) {
+                ws.send(this.value + '\r\n');
+                this.value = '';
+            }
+        };
 
-        function connect(key) {
-            // ws endpoint validates ?key=<sha256hex> against EEPROM-stored hash
-            ws = new WebSocket(`ws://${location.host}/ws/console?key=${encodeURIComponent(key)}`);
-            s.textContent = 'connecting…';
-
-            ws.onopen = () => {
-                s.textContent = 'connected';
-                i.disabled = false;
-                m.style.display = 'none';
-                i.focus();
-            };
-            ws.onclose = (e) => {
-                i.disabled = true;
-                s.textContent = e.code === 4401 ? 'unauthorized' : 'disconnected';
-                if (e.code === 4401) { // custom 401-ish close code from server
-                    err.textContent = 'Invalid password.';
-                    m.style.display = 'flex';
-                    pw.value = '';
-                    pw.focus();
-                } else {
-                    append('\n[disconnected]\n');
-                }
-            };
-            ws.onerror = () => { s.textContent = 'error'; };
-            ws.onmessage = (e) => { append(e.data); };
-        }
-
-        i.addEventListener('keydown', e => {
-            if (e.key === 'Enter' && !i.disabled) { ws?.send(i.value + '\r'); i.value = ''; }
-            else if (e.ctrlKey && e.key.toLowerCase() === 'l') { e.preventDefault(); v.textContent = ''; }
-        });
-        go.addEventListener('click', unlock);
-        pw.addEventListener('keydown', e => { if (e.key === 'Enter') unlock(); });
-
-        // show modal immediately
-        pw.focus();
+        document.getElementById('password').onkeydown = function (e) {
+            if (e.key === 'Enter') unlock();
+        };
     </script>
 </body>
 

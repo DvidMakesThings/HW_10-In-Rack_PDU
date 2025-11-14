@@ -107,6 +107,14 @@
         "rtos_hooks.h": "c",
         "memory": "c",
         "optional": "c",
-        "vreg_and_chip_reset.h": "c"
+        "vreg_and_chip_reset.h": "c",
+        "system_error": "cpp",
+        "snmp_outletctrl.h": "c",
+        "snmp_powermon.h": "c",
+        "websocket.h": "c",
+        "console_websocket.h": "c",
+        "user_prefs.h": "c",
+        "calibration.h": "c",
+        "multicore.h": "c"
     }
 }

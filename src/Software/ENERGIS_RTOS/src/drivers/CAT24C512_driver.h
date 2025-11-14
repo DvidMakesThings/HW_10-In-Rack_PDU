@@ -137,19 +137,6 @@ void CAT24C512_ReadBuffer(uint16_t addr, uint8_t *buffer, uint32_t len);
 void CAT24C512_Dump(uint8_t *buffer);
 
 /**
- * @brief Outputs formatted hex dump of EEPROM contents for testing
- *
- * Creates a human-readable hex dump with address headers and 16-byte rows.
- * Output is wrapped in EE_DUMP_START and EE_DUMP_END markers for automated testing.
- * Includes periodic task yields to prevent RTOS task starvation.
- *
- * @param None
- * @return None
- * @note Thread-safety: Must only be called from StorageTask with eepromMtx protection
- */
-void CAT24C512_DumpFormatted(void);
-
-/**
  * @brief Performs a comprehensive self-test of EEPROM functionality
  *
  * Validates EEPROM operation by:

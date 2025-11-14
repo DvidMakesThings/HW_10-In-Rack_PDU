@@ -33,6 +33,20 @@ QueueHandle_t q_cfg = NULL;
 QueueHandle_t q_meter = NULL;
 QueueHandle_t q_net = NULL;
 
+/* ==================== WebSocket bridge queues ==================== */
+
+static QueueHandle_t q_console_output = NULL;
+static QueueHandle_t q_console_input = NULL;
+
+#define CONSOLE_OUTPUT_QUEUE_SIZE 10
+#define CONSOLE_INPUT_QUEUE_SIZE 5
+#define CONSOLE_LINE_MAX 128
+
+typedef struct {
+    char data[CONSOLE_LINE_MAX];
+    int len;
+} console_msg_t;
+
 /* ==================== Console Task State ==================== */
 
 #define LINE_BUF_SIZE 128
@@ -96,6 +110,8 @@ static void cmd_help(void) {
         ECHO("%-32s %s\n", "BOOTSEL", "Enter bootloader mode");
     ECHO("%-32s %s\n", "SYSINFO", "Show system information");
     ECHO("%-32s %s\n", "GET_TEMP", "Read die temperature");
+    if (DEBUG)
+        ECHO("%-32s %s\n", "SET_CONSOLE_PASSWORD <pwd>", "Set web console password");
     ECHO("%-32s %s\n", "------------ Output Control ------------", "");
     ECHO("%-32s %s\n", "SET_CH <ch> <0|1|ON|OFF|ALL>", "Set relay channel (ch=1-8)");
     ECHO("%-32s %s\n", "GET_CH <ch>", "Get relay channel state (ch=1-8)");
@@ -117,10 +133,14 @@ static void cmd_help(void) {
     ECHO("%-32s %s\n", "CONFIG_NETWORK <ip$sn$gw$dns>", "Configure all network settings");
     ECHO("%-32s %s\n", "NETINFO", "Show network information");
     ECHO("%-32s %s\n", "------------ System ------------", "");
-    if (DEBUG) ECHO("%-32s %s\n", "GET_SUPPLY", "Read 12V supply voltage");
-    if (DEBUG) ECHO("%-32s %s\n", "GET_USB", "Read USB supply voltage");
-    if (DEBUG) ECHO("%-32s %s\n", "DUMP_EEPROM", "Dump EEPROM contents");
-    if (DEBUG) ECHO("%-32s %s\n", "RFS", "Reset to factory settings");
+    if (DEBUG)
+        ECHO("%-32s %s\n", "GET_SUPPLY", "Read 12V supply voltage");
+    if (DEBUG)
+        ECHO("%-32s %s\n", "GET_USB", "Read USB supply voltage");
+    if (DEBUG)
+        ECHO("%-32s %s\n", "DUMP_EEPROM", "Dump EEPROM contents");
+    if (DEBUG)
+        ECHO("%-32s %s\n", "RFS", "Reset to factory settings");
     ECHO("=====================================\n");
 }
 
@@ -806,6 +826,53 @@ static void cmd_get_usb(void) {
     ECHO("USB Supply: %.2f V\n", voltage);
 }
 
+/**
+ * @brief Pushes console output to WebSocket queue
+ * @param text Text to send
+ * @param len Text length
+ */
+static void console_push_output(const char *text, int len) {
+    if (!q_console_output || len <= 0 || len >= CONSOLE_LINE_MAX)
+        return;
+
+    console_msg_t msg;
+    msg.len = len;
+    memcpy(msg.data, text, len);
+    msg.data[len] = '\0';
+
+    xQueueSend(q_console_output, &msg, 0);
+}
+
+/**
+ * @brief Set console password hash from plaintext
+ * Usage: SET_CONSOLE_PASSWORD <password>
+ */
+static void cmd_set_console_password(const char *args) {
+    if (!args || strlen(args) == 0) {
+        ECHO("Usage: SET_CONSOLE_PASSWORD <password>\n");
+        ECHO("Example: SET_CONSOLE_PASSWORD mynewpassword\n");
+        return;
+    }
+
+    /* Hash the password using SHA-256 */
+    extern void sha256_compute(const uint8_t *data, size_t len, uint8_t hash[32]);
+    uint8_t hash[32];
+    sha256_compute((const uint8_t *)args, strlen(args), hash);
+
+    /* Write to EEPROM */
+    if (EEPROM_WriteConsoleHash(hash)) {
+        ECHO("\nConsole password updated successfully!\n");
+        ECHO("SHA-256 Hash: ");
+        for (int i = 0; i < 32; i++) {
+            ECHO("%02x", hash[i]);
+        }
+        ECHO("\n\nPlease save this hash in a secure location.\n");
+        ECHO("You can use this password in the web console.\n\n");
+    } else {
+        ECHO("ERROR: Failed to write console password to EEPROM\n");
+    }
+}
+
 /* ==================== Command Dispatcher ==================== */
 
 /**
@@ -896,6 +963,8 @@ static void dispatch_command(const char *line) {
         ECHO("Erasing EEPROM... (THIS CANNOT BE UNDONE!)\n");
         EEPROM_EraseAll();
         ECHO("EEPROM erased. Reboot required.\n");
+    } else if (strcmp(trimmed, "SET_CONSOLE_PASSWORD") == 0) {
+        cmd_set_console_password(args ? args : "");
     } else {
         ERROR_PRINT("Unknown command: '%s'. Type HELP for list.\n", trimmed);
     }
@@ -937,24 +1006,95 @@ static void ConsoleTask(void *arg) {
             if (ch == '\b' || ch == 0x7F) {
                 if (line_len > 0) {
                     line_len--;
+                    console_push_output("\b \b", 3);
                 }
+                Health_Heartbeat(HEALTH_ID_CONSOLE);
             } else if (ch == '\r' || ch == '\n') {
                 line_buf[line_len] = '\0';
                 if (line_len > 0) {
+                    console_push_output("\r\n", 2);
                     dispatch_command(line_buf);
                     line_len = 0;
                 }
                 log_printf("\r\n");
+                Health_Heartbeat(HEALTH_ID_CONSOLE);
             } else if (line_len < (int)(sizeof(line_buf) - 1)) {
                 line_buf[line_len++] = ch;
+                console_push_output(&ch, 1);
+                Health_Heartbeat(HEALTH_ID_CONSOLE);
             }
-        } else {
-            vTaskDelay(poll_ticks);
+            vTaskDelay(poll_ticks); /* Yield to other tasks */
+            Health_Heartbeat(HEALTH_ID_CONSOLE);
         }
+
+        /* Check for WebSocket input */
+        console_msg_t ws_input;
+        if (xQueueReceive(q_console_input, &ws_input, 0) == pdPASS) {
+            /* Process WebSocket input like USB input */
+            for (int i = 0; i < ws_input.len; i++) {
+                char c = ws_input.data[i];
+                if (c == '\r' || c == '\n') {
+                    if (line_len > 0) {
+                        line_buf[line_len] = '\0';
+                        console_push_output("\r\n", 2);
+                        dispatch_command(line_buf);
+                        line_len = 0;
+                    }
+                } else if (c == '\b' || c == 127) {
+                    if (line_len > 0) {
+                        line_len--;
+                        console_push_output("\b \b", 3);
+                    }
+                } else if (line_len < (int)(sizeof(line_buf) - 1)) {
+                    line_buf[line_len++] = c;
+                    console_push_output(&c, 1);
+                }
+            }
+        }
+
+        vTaskDelay(poll_ticks);
     }
 }
 
 /* ==================== Public API ==================== */
+
+/**
+ * @brief Sends input to console task from external source (WebSocket)
+ * @param input Input string
+ * @param len Input length
+ * @return true if queued, false otherwise
+ */
+bool Console_SendInput(const char *input, int len) {
+    if (!q_console_input || len <= 0 || len >= CONSOLE_LINE_MAX)
+        return false;
+
+    console_msg_t msg;
+    msg.len = len;
+    memcpy(msg.data, input, len);
+    msg.data[len] = '\0';
+
+    return xQueueSend(q_console_input, &msg, 0) == pdPASS;
+}
+
+/**
+ * @brief Gets console output for external consumers (WebSocket)
+ * @param buf Output buffer
+ * @param buflen Buffer size
+ * @return Number of bytes read
+ */
+int Console_GetOutput(char *buf, int buflen) {
+    if (!q_console_output || !buf || buflen <= 0)
+        return 0;
+
+    console_msg_t msg;
+    if (xQueueReceive(q_console_output, &msg, 0) == pdPASS) {
+        int copy_len = msg.len < buflen ? msg.len : buflen;
+        memcpy(buf, msg.data, copy_len);
+        return copy_len;
+    }
+
+    return 0;
+}
 
 /**
  * @brief Initialize and start the Console task with a deterministic enable gate.
@@ -996,6 +1136,18 @@ BaseType_t ConsoleTask_Init(bool enable) {
 
     /* The critical one: StorageTask expects storage_msg_t items on q_cfg */
     q_cfg = xQueueCreate(8, sizeof(storage_msg_t));
+
+    q_console_output = xQueueCreate(CONSOLE_OUTPUT_QUEUE_SIZE, sizeof(console_msg_t));
+    q_console_input = xQueueCreate(CONSOLE_INPUT_QUEUE_SIZE, sizeof(console_msg_t));
+
+    if (!q_console_output || !q_console_input) {
+        ERROR_PRINT("[Console] Failed to create WebSocket queues\n");
+        if (q_console_output)
+            vQueueDelete(q_console_output);
+        if (q_console_input)
+            vQueueDelete(q_console_input);
+        return pdFAIL;
+    }
 
     if (!q_power || !q_cfg || !q_meter || !q_net) {
         ERROR_PRINT("[Console] Failed to create one or more queues\r\n");

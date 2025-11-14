@@ -1,21 +1,22 @@
 /**
  * @file src/tasks/ConsoleTask.h
  * @author DvidMakesThings - David Sipos
- * 
+ *
  * @defgroup tasks04 3. Console Task
  * @ingroup tasks
  * @brief UART console task implementation (RTOS version, polling USB-CDC)
  * @{
  *
- * @version 2.0.0
- * @date 2025-11-08
- * 
+ * @version 2.1.0
+ * @date 2025-11-14
+ *
  * @details
  * Architecture:
  * 1. ConsoleTask polls USB-CDC at 10ms intervals (no ISR)
  * 2. Accumulates characters into line buffer
  * 3. On complete line: parses and dispatches to handlers
  * 4. Handlers execute directly or query other tasks
+ * 5. Bridges console I/O with WebSocket for remote access
  *
  * Note: Console input comes from USB-CDC (stdio), not a hardware UART.
  * This matches the CMakeLists.txt config: pico_enable_stdio_usb(... 1)
@@ -23,7 +24,6 @@
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
  */
-
 
 #ifndef CONSOLE_TASK_H
 #define CONSOLE_TASK_H
@@ -101,7 +101,6 @@ typedef struct {
  */
 BaseType_t ConsoleTask_Init(bool enable);
 
-
 /**
  * @brief Get Console READY state.
  *
@@ -113,6 +112,21 @@ BaseType_t ConsoleTask_Init(bool enable);
  */
 bool Console_IsReady(void);
 
+/**
+ * @brief Sends input to console task from external source (WebSocket)
+ * @param input Input string
+ * @param len Input length
+ * @return true if queued, false otherwise
+ */
+bool Console_SendInput(const char *input, int len);
+
+/**
+ * @brief Gets console output for external consumers (WebSocket)
+ * @param buf Output buffer
+ * @param buflen Buffer size
+ * @return Number of bytes read
+ */
+int Console_GetOutput(char *buf, int buflen);
 
 #endif /* CONSOLE_TASK_H */
 

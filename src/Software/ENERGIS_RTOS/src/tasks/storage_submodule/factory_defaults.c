@@ -94,6 +94,10 @@ int EEPROM_WriteFactoryDefaults(void) {
     status |= EEPROM_WriteDefaultNameLocation();
     INFO_PRINT("%s User Preferences written\r\n", STORAGE_TASK_TAG);
 
+    /* Write default console password hash (SHA-256 of "admin") */
+    const uint8_t default_hash[32] = CONSOLE_DEFAULT_PASSWORD_HASH;
+    status |= EEPROM_WriteConsoleHash(default_hash);
+
     /* Report final status */
     if (status == 0) {
         INFO_PRINT("%s Factory defaults written successfully\r\n", STORAGE_TASK_TAG);

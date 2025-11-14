@@ -88,7 +88,7 @@ do {
 #endif
 
 #ifndef HEALTH_SILENCE_MS
-#define HEALTH_SILENCE_MS 3000u
+#define HEALTH_SILENCE_MS 50000u
 #endif
 
 #ifndef HEALTH_BLOCK_RING_SIZE

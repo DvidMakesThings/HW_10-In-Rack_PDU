@@ -278,6 +278,81 @@ const char programming_manual_html[] =
     "href=\"https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Manuals/AUTOMATION_MANUAL.pdf\" "
     "target=\"_blank\">here</a>.</p></div></div></body></html>\n";
 
+const char console_html[] =
+    "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" "
+    "content=\"width=device-width, initial-scale=1.0\"><title>ENERGIS PDU - "
+    "Console</title><style>* { margin: 0; padding: 0; box-sizing: border-box; font-family: "
+    "system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif } body { background: #1a1d23; "
+    "color: #e4e4e4 } a { color: #aaa; text-decoration: none } a:hover { color: #fff } .topbar { "
+    "height: 50px; background: #242731; display: flex; align-items: center; padding: 0 20px; "
+    "border-bottom: 1px solid #333842 } .topbar h1 { font-size: 1.1rem; color: #fff; font-weight: "
+    "600 } .container { display: flex; height: calc(100vh - 50px) } .sidebar { width: 220px; "
+    "background: #2e323c; padding: 12px 0; border-right: 1px solid #333842 } .sidebar ul { "
+    "list-style: none } .sidebar li a { display: block; padding: 10px 20px } .sidebar li a:hover, "
+    ".sidebar li a.active { background: #3b404d; color: #fff } .main { flex: 1; display: flex; "
+    "flex-direction: column; padding: 16px; gap: 10px; overflow: hidden } .card { background: "
+    "#2a2f39; border: 1px solid #333842; border-radius: 10px; overflow: hidden; display: flex; "
+    "flex-direction: column; min-height: 0 } .term-header { padding: 10px 12px; border-bottom: 1px "
+    "solid #333842; display: flex; justify-content: space-between; align-items: center } "
+    ".term-title { font-weight: 600; font-size: 14px; color: #fff } .term-status { font-size: "
+    "12px; color: #aeb4bf } .term-view { flex: 1; overflow: auto; background: #0e1116; color: "
+    "#e6e6e6; padding: 10px 12px; font: 13px/1.35 ui-monospace, Menlo, Consolas, monospace; "
+    "white-space: pre-wrap } .term-input { border-top: 1px solid #333842; background: #141922; "
+    "display: flex } .term-input input { width: 100%; border: 0; outline: none; background: "
+    "transparent; color: #e6e6e6; padding: 10px 12px; font: 13px/1.35 ui-monospace, Menlo, "
+    "Consolas, monospace } .hint { font-size: 12px; color: #aeb4bf; padding: 0 2px 6px 2px } "
+    ".modal { position: fixed; inset: 0; background: rgba(0, 0, 0, .55); display: flex; "
+    "align-items: center; justify-content: center } .sheet { width: min(560px, 92vw); background: "
+    "#2a2f39; border: 1px solid #333842; border-radius: 12px; padding: 16px } .sheet h2 { "
+    "font-size: 16px; margin-bottom: 8px } .row { display: flex; gap: 8px; margin-top: 8px } .row "
+    "input { flex: 1; padding: 10px 12px; border: 1px solid #3a4050; border-radius: 8px; "
+    "background: #141922; color: #e6e6e6 } .btn { padding: 10px 14px; border-radius: 8px; border: "
+    "1px solid #3a4050; background: #1f2531; color: #e6e6e6; cursor: pointer } .btn:hover { "
+    "background: #293141 } .err { margin-top: 8px; color: #f2a3a3; font-size: 12px; min-height: "
+    "1em }</style></head><body><div class=\"topbar\"><h1>ENERGIS PDU</h1></div><div "
+    "class=\"container\"><nav class=\"sidebar\"><ul><li><a "
+    "href=\"control.html\">Control</a></li><li><a href=\"settings.html\">Settings</a></li><li><a "
+    "href=\"help.html\">Help</a></li><li><a href=\"user_manual.html\">User Manual</a></li><li><a "
+    "href=\"programming_manual.html\">Programming Manual</a></li><li><a class=\"active\" "
+    "href=\"console.html\">Console</a></li></ul></nav><main class=\"main\"><div "
+    "class=\"card\"><div class=\"term-header\"><div class=\"term-title\">Console</div><div "
+    "id=\"status\">locked</div></div><div id=\"output\" class=\"term-view\"></div><div "
+    "class=\"term-input\"><input id=\"input\" placeholder=\"type and hit Enter (Ctrl+L to clear)\" "
+    "disabled></div></div><div class=\"hint\">Default password: admin</div></main></div><div "
+    "class=\"modal\" id=\"modal\"><div class=\"sheet\"><h2>Enter console password</h2><p "
+    "class=\"hint\">Default: admin</p><div class=\"row\"><input id=\"password\" type=\"password\" "
+    "placeholder=\"Password\"><button class=\"btn\" onclick=\"unlock()\">Unlock</button></div><div "
+    "class=\"err\" id=\"error\"></div></div></div><script>var ws = null; function unlock() { var "
+    "pwd = document.getElementById('password').value; if (!pwd) { "
+    "document.getElementById('error').textContent = 'Password required.'; return; } "
+    "console.log('Attempting WebSocket connection...'); console.log('URL: ws://' + location.host + "
+    "'/ws/console?pass=' + encodeURIComponent(pwd)); document.getElementById('error').textContent "
+    "= 'Connecting...'; try { ws = new WebSocket('ws://' + location.host + '/ws/console?pass=' + "
+    "encodeURIComponent(pwd)); ws.onopen = function () { console.log('WebSocket OPENED'); "
+    "document.getElementById('status').textContent = 'connected'; "
+    "document.getElementById('input').disabled = false; "
+    "document.getElementById('modal').style.display = 'none'; "
+    "document.getElementById('input').focus(); }; ws.onclose = function (e) { "
+    "console.log('WebSocket CLOSED. Code:', e.code, 'Reason:', e.reason); "
+    "document.getElementById('input').disabled = true; "
+    "document.getElementById('status').textContent = 'disconnected'; if (e.code === 4401) { "
+    "document.getElementById('error').textContent = 'Invalid password!'; "
+    "document.getElementById('modal').style.display = 'flex'; "
+    "document.getElementById('password').value = ''; } else { "
+    "document.getElementById('error').textContent = 'Connection closed (code: ' + e.code + ')'; } "
+    "}; ws.onerror = function (e) { console.error('WebSocket ERROR:', e); "
+    "document.getElementById('error').textContent = 'Connection error - check console (F12)'; }; "
+    "ws.onmessage = function (e) { console.log('WebSocket message:', e.data); "
+    "document.getElementById('output').textContent += e.data; "
+    "document.getElementById('output').scrollTop = document.getElementById('output').scrollHeight; "
+    "}; document.getElementById('status').textContent = 'connecting...'; } catch (err) { "
+    "console.error('Failed to create WebSocket:', err); "
+    "document.getElementById('error').textContent = 'Failed to create connection: ' + err.message; "
+    "} } document.getElementById('input').onkeydown = function (e) { if (e.key === 'Enter' && ws) "
+    "{ ws.send(this.value + '\r'); this.value = ''; } }; "
+    "document.getElementById('password').onkeydown = function (e) { if (e.key === 'Enter') "
+    "unlock(); };</script></body></html>\n";
+
 /**
  * @brief Gets the HTML content for a requested page
  * @param request The HTTP request line (e.g., "GET /api/control.html HTTP/1.1")
@@ -285,7 +360,12 @@ const char programming_manual_html[] =
  * @note Routes HTTP requests to appropriate HTML page content
  */
 const char *get_page_content(const char *request) {
-    if (strstr(request, "GET /settings.html"))
+    if (!request)
+        return control_html;
+
+    if (strstr(request, "GET /control.html") || strstr(request, "GET / "))
+        return control_html;
+    else if (strstr(request, "GET /settings.html"))
         return settings_html;
     else if (strstr(request, "GET /help.html"))
         return help_html;
@@ -293,9 +373,8 @@ const char *get_page_content(const char *request) {
         return user_manual_html;
     else if (strstr(request, "GET /programming_manual.html"))
         return programming_manual_html;
-    else if (strstr(request, "GET /"))
-        return control_html;
+    else if (strstr(request, "GET /console.html"))
+        return console_html;
 
-    /* Default to control page */
-    return control_html;
+    return control_html; /* Default page */
 }

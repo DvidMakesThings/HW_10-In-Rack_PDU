@@ -63,6 +63,7 @@ add_executable(ENERGIS_RTOS
     src/drivers/ethernet_driver.c
     src/drivers/snmp.c
     src/drivers/socket.c
+    src/drivers/websocket.c
     src/drivers/HLW8032_driver.c
     src/misc/helpers.c
     src/misc/rtos_hooks.c
@@ -94,6 +95,7 @@ add_executable(ENERGIS_RTOS
     src/web_handlers/settings_handler.c
     src/web_handlers/status_handler.c
     src/web_handlers/page_content.c
+    src/web_handlers/console_websocket.c
     src/wrap_watchdog.c
 )
 

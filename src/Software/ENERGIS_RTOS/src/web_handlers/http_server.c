@@ -2,12 +2,13 @@
  * @file src/web_handlers/http_server.c
  * @author DvidMakesThings - David Sipos
  *
- * @version 1.0.0
- * @date 2025-05-24
+ * @version 1.0.1
+ * @date 2025-11-14
  *
  * @details Main HTTP server implementation using W5500 Ethernet controller.
  *          Handles all HTTP requests and routes to appropriate handlers.
  *          Uses spiMtx for thread-safe W5500 access.
+ *          Fixed: Socket 0 ownership transfer when WebSocket upgrades.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -204,8 +205,21 @@ bool http_server_init(void) {
  * - Routes GET and POST to handlers.
  * - Drops stalled peers if TX FSR makes no progress for TX_WINDOW_MS.
  * - Always closes connection after response.
+ * - Handles Socket 0 ownership transfer when WebSocket upgrades.
  */
 void http_server_process(void) {
+    /* If WebSocket owns Socket 0, check if it's been released */
+    if (http_sock < 0) {
+        if (!console_ws_is_active()) {
+            /* WebSocket released the socket, reopen it for HTTP */
+            http_sock = socket(HTTP_SOCK_NUM, Sn_MR_TCP, HTTP_PORT, 0);
+            if (http_sock >= 0) {
+                listen(http_sock);
+            }
+        }
+        return;
+    }
+
     /* TX progress watchdog for idle or stalled peers */
     static TickType_t s_last_tx_check = 0;
     static uint16_t s_last_fsr = 0;
@@ -259,6 +273,46 @@ void http_server_process(void) {
             handle_control_request(http_sock, body_ptr);
         } else if (!strncmp(http_buf, "GET /settings.html", 18)) {
             handle_settings_request(http_sock);
+        } else if (!strncmp(http_buf, "GET /ws/console", 15)) {
+            INFO_PRINT("%s WebSocket upgrade request received\r\n", HTTP_SERVER_TAG);
+
+            /* Extract query string */
+            char *query_start = strchr(http_buf + 15, '?');
+            char *query_end = strstr(http_buf, " HTTP/");
+            char query[128] = {0};
+
+            if (query_start && query_end && query_end > query_start) {
+                int query_len = query_end - query_start - 1;
+                if (query_len > 0 && query_len < (int)sizeof(query)) {
+                    memcpy(query, query_start + 1, query_len);
+                    query[query_len] = '\0';
+                }
+            }
+            net_beat();
+
+            INFO_PRINT("%s Query string: %s\r\n", HTTP_SERVER_TAG, query[0] ? query : "(empty)");
+
+            /* Attempt upgrade */
+            if (console_ws_handle_upgrade(http_sock, http_buf, query)) {
+                INFO_PRINT("%s WebSocket upgrade SUCCESS\r\n", HTTP_SERVER_TAG);
+                /* WebSocket now owns Socket 0 - mark http_sock as unavailable */
+                http_sock = -1;
+                break;
+            } else {
+                ERROR_PRINT("%s WebSocket upgrade FAILED\r\n", HTTP_SERVER_TAG);
+                /* Auth failed - send 401 and close */
+                const char *unauthorized = "HTTP/1.1 401 Unauthorized\r\n"
+                                           "Content-Length: 0\r\n"
+                                           "\r\n";
+                send(http_sock, (uint8_t *)unauthorized, strlen(unauthorized));
+                net_beat();
+                disconnect(http_sock);
+                closesocket(http_sock);
+                http_sock = socket(HTTP_SOCK_NUM, Sn_MR_TCP, HTTP_PORT, 0);
+                if ((int)http_sock >= 0)
+                    listen(http_sock);
+                break;
+            }
         } else {
             const char *page = get_page_content(http_buf);
             const int plen = (int)strlen(page);

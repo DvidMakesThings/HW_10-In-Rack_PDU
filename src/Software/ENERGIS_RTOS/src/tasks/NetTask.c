@@ -1,7 +1,7 @@
 /**
  * @file src/tasks/NetTask.c
  * @author DvidMakesThings - David Sipos
- * 
+ *
  * @version 1.1.0
  * @date 2025-11-07
  *
@@ -153,6 +153,12 @@ static void NetTask_Function(void *pvParameters) {
     }
     Health_Heartbeat(HEALTH_ID_NET);
 
+    /* 4c) Initialize console WebSocket */
+    if (!console_ws_init()) {
+        ERROR_PRINT("%s Console WebSocket init failed\n", NET_TASK_TAG);
+    }
+    Health_Heartbeat(HEALTH_ID_NET);
+
     /* 5) Main service loop */
     for (;;) {
         uint32_t __now = to_ms_since_boot(get_absolute_time());
@@ -168,6 +174,18 @@ static void NetTask_Function(void *pvParameters) {
         if (dt > 750)
             Health_RecordBlocked("http_server_process", dt);
 
+        vTaskDelay(pdMS_TO_TICKS(1));
+        taskYIELD();
+
+        /* Console WebSocket service */
+        if (console_ws_is_active()) {
+            t0 = to_ms_since_boot(get_absolute_time());
+            console_ws_process();
+            dt = to_ms_since_boot(get_absolute_time()) - t0;
+            if (dt > 750)
+                Health_RecordBlocked("console_ws_process", dt);
+        }
+        Health_Heartbeat(HEALTH_ID_NET);
         vTaskDelay(pdMS_TO_TICKS(1));
         taskYIELD();
 

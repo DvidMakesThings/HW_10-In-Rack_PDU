@@ -1,7 +1,7 @@
 /**
  * @file src/tasks/storage_submodule/storage_common.h
  * @author DvidMakesThings - David Sipos
- * 
+ *
  * @defgroup storage Storage Common
  * @brief Shared utilities for storage submodules
  * @{
@@ -10,7 +10,7 @@
  * @ingroup storage
  * @brief Shared definitions and helper functions for EEPROM storage
  * @{
- * 
+ *
  * @version 1.0
  * @date 2025-11-14
  *
@@ -46,6 +46,32 @@ void Energis_FillMacFromSerial(uint8_t mac[6]);
  * @return true if MAC was repaired, false if already valid
  */
 bool Energis_RepairMac(networkInfo *n);
+
+/**
+ * @brief Outputs formatted hex dump of EEPROM contents for testing
+ *
+ * Creates a human-readable hex dump with address headers and 16-byte rows.
+ * Output is wrapped in EE_DUMP_START and EE_DUMP_END markers for automated testing.
+ * Includes periodic task yields to prevent RTOS task starvation.
+ *
+ * @param None
+ * @return None
+ * @note Thread-safety: Must only be called from StorageTask with eepromMtx protection
+ */
+void CAT24C512_DumpFormatted(void);
+/**
+ * @brief Reads console password hash from EEPROM
+ * @param hash Output buffer (32 bytes)
+ * @return true on success, false on failure
+ */
+bool EEPROM_ReadConsoleHash(uint8_t hash[32]);
+
+/**
+ * @brief Writes console password hash to EEPROM
+ * @param hash Input buffer (32 bytes)
+ * @return 0 on success, -1 on failure
+ */
+int EEPROM_WriteConsoleHash(const uint8_t hash[32]);
 
 #endif /* STORAGE_COMMON_H */
 

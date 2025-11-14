@@ -129,7 +129,6 @@ void CAT24C512_ReadBuffer(uint16_t addr, uint8_t *buffer, uint32_t len) {
     }
 }
 
-
 void CAT24C512_Dump(uint8_t *buffer) {
     if (!buffer) {
         ERROR_PRINT("[CAT24C512] Dump: NULL buffer pointer\r\n");
@@ -139,40 +138,6 @@ void CAT24C512_Dump(uint8_t *buffer) {
     INFO_PRINT("[CAT24C512] Dumping entire EEPROM (%u bytes)\r\n", CAT24C512_TOTAL_SIZE);
     CAT24C512_ReadBuffer(0x0000, buffer, CAT24C512_TOTAL_SIZE);
     INFO_PRINT("[CAT24C512] EEPROM dump complete\r\n");
-}
-
-void CAT24C512_DumpFormatted(void) {
-    char line[256], field[16];
-    TaskHandle_t h = xTaskGetCurrentTaskHandle();
-    UBaseType_t old_prio = uxTaskPriorityGet(h);
-
-    vTaskPrioritySet(h, configMAX_PRIORITIES - 1);
-
-    log_printf("EE_DUMP_START\r\n");
-
-    snprintf(line, sizeof(line), "%-7s", "Addr");
-    for (uint8_t col = 0; col < 16; col++) {
-        snprintf(field, sizeof(field), "%-7X", col);
-        strncat(line, field, sizeof(line) - strlen(line) - 1);
-    }
-    log_printf("%s\r\n", line);
-
-    for (uint32_t addr = 0; addr < CAT24C512_TOTAL_SIZE; addr += 16) {
-        uint8_t buffer[16];
-        CAT24C512_ReadBuffer((uint16_t)addr, buffer, 16);
-        snprintf(line, sizeof(line), "0x%04X ", (uint16_t)addr);
-        for (uint8_t i = 0; i < 16; i++) {
-            snprintf(field, sizeof(field), "%02X ", buffer[i]);
-            strncat(line, field, sizeof(line) - strlen(line) - 1);
-        }
-        log_printf("%s\r\n", line);
-        fflush(stdout);
-        vTaskDelay(pdMS_TO_TICKS(1));
-    }
-
-    log_printf("EE_DUMP_END\r\n");
-
-    vTaskPrioritySet(h, old_prio);
 }
 
 bool CAT24C512_SelfTest(uint16_t test_addr) {

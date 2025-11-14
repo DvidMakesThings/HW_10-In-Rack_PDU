@@ -28,6 +28,7 @@ extern const char settings_html[];
 extern const char help_html[];
 extern const char user_manual_html[];
 extern const char programming_manual_html[];
+extern const char console_html[];
 
 /**
  * @brief Gets the HTML content for a requested page

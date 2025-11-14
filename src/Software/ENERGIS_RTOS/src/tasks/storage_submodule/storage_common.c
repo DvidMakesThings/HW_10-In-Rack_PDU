@@ -97,3 +97,123 @@ bool Energis_RepairMac(networkInfo *n) {
 
     return false;
 }
+
+/**
+ * @brief Dumps entire EEPROM contents in formatted hex to log.
+ *
+ * Reads all EEPROM data in 16-byte chunks and logs in hex format.
+ *
+ * @details
+ * This helper walks the whole CAT24C512 address space and prints a
+ * human-readable hex dump header plus one line per 16-byte row.
+ * During the dump the Storage task temporarily runs at idle priority
+ * and periodically delays so that other tasks (Net, Button, Health, etc.)
+ * can continue to run and feed the watchdog. Intended for debug use only
+ * because it generates a large amount of log output.
+ *
+ * @param None
+ * @return None
+ */
+void CAT24C512_DumpFormatted(void) {
+    char line[256], field[16];
+    TaskHandle_t h = xTaskGetCurrentTaskHandle();
+    UBaseType_t old_prio = uxTaskPriorityGet(h);
+
+    vTaskPrioritySet(h, tskIDLE_PRIORITY);
+
+    log_printf("EE_DUMP_START\r\n");
+
+    snprintf(line, sizeof(line), "%-7s", "Addr");
+    for (uint8_t col = 0; col < 16; col++) {
+        snprintf(field, sizeof(field), "%-7X", col);
+        strncat(line, field, sizeof(line) - strlen(line) - 1);
+    }
+    log_printf("%s\r\n", line);
+
+    for (uint32_t addr = 0; addr < CAT24C512_TOTAL_SIZE; addr += 16) {
+        uint8_t buffer[16];
+
+        CAT24C512_ReadBuffer((uint16_t)addr, buffer, 16);
+
+        snprintf(line, sizeof(line), "0x%04X ", (uint16_t)addr);
+        for (uint8_t i = 0; i < 16; i++) {
+            snprintf(field, sizeof(field), "%02X ", buffer[i]);
+            strncat(line, field, sizeof(line) - strlen(line) - 1);
+        }
+
+        log_printf("%s\r\n", line);
+
+        Health_Heartbeat(HEALTH_ID_STORAGE);
+        vTaskDelay(pdMS_TO_TICKS(2));
+    }
+
+    Health_Heartbeat(HEALTH_ID_STORAGE);
+    log_printf("EE_DUMP_END\r\n");
+
+    vTaskPrioritySet(h, old_prio);
+}
+
+/**
+ * @brief Reads console password hash from EEPROM
+ * @param hash Output buffer (32 bytes)
+ * @return true on success, false on failure
+ */
+bool EEPROM_ReadConsoleHash(uint8_t hash[32]) {
+    if (!hash)
+        return false;
+
+    /* Read from EEPROM */
+    CAT24C512_ReadBuffer(EEPROM_CONSOLE_HASH_ADDR, hash, 32);
+
+    /* Check if hash is all 0xFF (unprogrammed) or all 0x00 (invalid) */
+    bool all_ff = true;
+    bool all_00 = true;
+    for (int i = 0; i < 32; i++) {
+        if (hash[i] != 0xFF)
+            all_ff = false;
+        if (hash[i] != 0x00)
+            all_00 = false;
+    }
+
+    /* If unprogrammed, return default hash (SHA-256 of "admin") */
+    if (all_ff || all_00) {
+        const uint8_t default_hash[32] = CONSOLE_DEFAULT_PASSWORD_HASH;
+        memcpy(hash, default_hash, 32);
+        WARNING_PRINT("[EEPROM] Console hash unprogrammed, using default password 'admin'\r\n");
+        WARNING_PRINT("[EEPROM] SECURITY WARNING: Change console password immediately!\r\n");
+        return true;
+    }
+
+    INFO_PRINT("[EEPROM] Console hash loaded from EEPROM\r\n");
+    return true;
+}
+
+/**
+ * @brief Writes console password hash to EEPROM
+ * @param hash Input buffer (32 bytes)
+ * @return true on success, false on failure (returns int to match factory_defaults.c)
+ */
+int EEPROM_WriteConsoleHash(const uint8_t hash[32]) {
+    if (!hash)
+        return -1;
+
+    int result = CAT24C512_WriteBuffer(EEPROM_CONSOLE_HASH_ADDR, hash, 32);
+
+    if (result == 0) {
+        INFO_PRINT("[EEPROM] Console password hash written\r\n");
+
+        /* Verify write */
+        uint8_t verify[32];
+        CAT24C512_ReadBuffer(EEPROM_CONSOLE_HASH_ADDR, verify, 32);
+        if (memcmp(hash, verify, 32) == 0) {
+            INFO_PRINT("[EEPROM] Console hash verified OK\r\n");
+            return 0;
+        } else {
+            ERROR_PRINT("[EEPROM] Console hash verification FAILED!\r\n");
+            return -1;
+        }
+    } else {
+        ERROR_PRINT("[EEPROM] Failed to write console hash\r\n");
+        return -1;
+    }
+}

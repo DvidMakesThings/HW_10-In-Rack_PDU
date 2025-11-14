@@ -9,7 +9,7 @@
  * @ingroup config
  * @brief EEPROM Memory Layout and Data Structures
  * @{
- * 
+ *
  * @version 2.0
  * @date 2025-11-06
  *
@@ -117,10 +117,17 @@
 /** @} */
 
 /**
+ * @name Magic Value (Factory Init Check)
+ * @{
+ */
+#define EEPROM_CONSOLE_HASH_ADDR 0x6000
+/** @} */
+
+/**
  * @name Reserved Area
  * @{
  */
-#define EEPROM_RESERVED_START 0x6000                               /**< Start of reserved area. */
+#define EEPROM_RESERVED_START 0x8000                               /**< Start of reserved area. */
 #define EEPROM_RESERVED_SIZE (EEPROM_SIZE - EEPROM_RESERVED_START) /**< Size of reserved area. */
 /** @} */
 

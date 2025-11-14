@@ -76,6 +76,7 @@
 #include "drivers/ethernet_w5500regs.h"
 #include "drivers/snmp.h"
 #include "drivers/socket.h"
+#include "drivers/websocket.h"
 
 #include "snmp/snmp_custom.h"
 #include "snmp/snmp_networkCtrl.h"
@@ -106,6 +107,7 @@
 #include "web_handlers/page_content.h"
 #include "web_handlers/settings_handler.h"
 #include "web_handlers/status_handler.h"
+#include "web_handlers/console_websocket.h"
 /* clang-format on */
 
 #include "serial_number.h"
@@ -152,9 +154,16 @@ extern w5500_NetConfig eth_netcfg;
 #define ENERGIS_MAC_PREFIX1 0x45 /* 'E' */
 #define ENERGIS_MAC_PREFIX2 0x4E /* 'N' */
 
+/* Default console password hash (sha256 of "admin") */
+#define CONSOLE_DEFAULT_PASSWORD_HASH                                                              \
+    {                                                                                              \
+        0x8c, 0x69, 0x76, 0xe5, 0xb5, 0x41, 0x04, 0x15, 0xbd, 0xe9, 0x08,                          \
+        0xbd, 0x4d, 0xee, 0x15, 0xdf, 0xb1, 0x67, 0xa9, 0xc8, 0x73, 0xfc,                          \
+        0x4b, 0xb8, 0xa8, 0x1f, 0x6f, 0x2a, 0xb4, 0x48, 0xa9, 0x18}
+
 /* ---------- LOGGING FLAGS ---------- */
 #ifndef DEBUG
-#define DEBUG 0
+#define DEBUG 1
 #endif
 #ifndef DEBUG_HEALTH
 #define DEBUG_HEALTH 0
@@ -172,7 +181,7 @@ extern w5500_NetConfig eth_netcfg;
 #define PLOT_EN 0
 #endif
 #ifndef NETLOG
-#define NETLOG 0
+#define NETLOG 1
 #endif
 #ifndef UART_IFACE
 #define UART_IFACE 1
