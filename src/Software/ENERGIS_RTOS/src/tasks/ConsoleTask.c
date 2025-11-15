@@ -45,6 +45,17 @@ static uint16_t line_len = 0;
 /* ==================== Helper Functions ==================== */
 
 /**
+ * @brief Skip ASCII spaces and tabs.
+ * @param s Input C-string (not NULL).
+ * @return Pointer to first non-space char in @p s.
+ */
+static const char *skip_spaces(const char *s) {
+    while (*s == ' ' || *s == '\t')
+        s++;
+    return s;
+}
+
+/**
  * @brief Trim leading and trailing whitespace from string (in-place).
  * @param str Input string (modified).
  * @return Pointer to trimmed string (same buffer).
@@ -82,6 +93,32 @@ static bool parse_ip(const char *str, uint8_t ip[4]) {
     return true;
 }
 
+/**
+ * @brief Parse next token (space-delimited).
+ * @param pptr [in,out] pointer to char* cursor; advanced past token
+ * @return Pointer to token start, or NULL if none
+ *
+ * @note The returned token is in-place and null-terminated temporarily.
+ */
+static char *next_token(char **pptr) {
+    if (!pptr || !*pptr)
+        return NULL;
+    char *s = (char *)skip_spaces(*pptr);
+    if (*s == '\0') {
+        *pptr = s;
+        return NULL;
+    }
+    char *start = s;
+    while (*s && *s != ' ' && *s != '\t' && *s != '\r' && *s != '\n')
+        s++;
+    if (*s) {
+        *s = '\0';
+        s++;
+    }
+    *pptr = s;
+    return start;
+}
+
 /* ==================== Command Handlers ==================== */
 
 /**
@@ -96,6 +133,7 @@ static void cmd_help(void) {
         ECHO("%-32s %s\n", "BOOTSEL", "Enter bootloader mode");
     ECHO("%-32s %s\n", "SYSINFO", "Show system information");
     ECHO("%-32s %s\n", "GET_TEMP", "Read die temperature");
+    ECHO("%-32s %s\n", "CALIB_TEMP <P1|P2> <T1> <T2> [WAIT]", "Calibrate temperature sensor");
     ECHO("%-32s %s\n", "------------ Output Control ------------", "");
     ECHO("%-32s %s\n", "SET_CH <ch> <0|1|ON|OFF|ALL>", "Set relay channel (ch=1-8)");
     ECHO("%-32s %s\n", "GET_CH <ch>", "Get relay channel state (ch=1-8)");
@@ -117,10 +155,14 @@ static void cmd_help(void) {
     ECHO("%-32s %s\n", "CONFIG_NETWORK <ip$sn$gw$dns>", "Configure all network settings");
     ECHO("%-32s %s\n", "NETINFO", "Show network information");
     ECHO("%-32s %s\n", "------------ System ------------", "");
-    if (DEBUG) ECHO("%-32s %s\n", "GET_SUPPLY", "Read 12V supply voltage");
-    if (DEBUG) ECHO("%-32s %s\n", "GET_USB", "Read USB supply voltage");
-    if (DEBUG) ECHO("%-32s %s\n", "DUMP_EEPROM", "Dump EEPROM contents");
-    if (DEBUG) ECHO("%-32s %s\n", "RFS", "Reset to factory settings");
+    if (DEBUG)
+        ECHO("%-32s %s\n", "GET_SUPPLY", "Read 12V supply voltage");
+    if (DEBUG)
+        ECHO("%-32s %s\n", "GET_USB", "Read USB supply voltage");
+    if (DEBUG)
+        ECHO("%-32s %s\n", "DUMP_EEPROM", "Dump EEPROM contents");
+    if (DEBUG)
+        ECHO("%-32s %s\n", "RFS", "Reset to factory settings");
     ECHO("=====================================\n");
 }
 
@@ -223,6 +265,11 @@ static void cmd_read_hlw8032_all(void) {
 
 /**
  * @brief Print system information (clocks, voltage, FreeRTOS status).
+ *
+ * @details
+ * Uses cached system telemetry from MeterTask (non-blocking) instead of
+ * touching ADC hardware directly. MeterTask owns ADC sampling and provides
+ * the latest snapshot via MeterTask_GetSystemTelemetry().
  */
 static void cmd_sysinfo(void) {
     /* -------- Get clock frequencies -------- */
@@ -261,17 +308,9 @@ static void cmd_sysinfo(void) {
         }
     }
 
-    /* -------- Read VUSB from ADC (GPIO26, channel 0) -------- */
-    adc_select_input(V_USB);
-    vTaskDelay(pdMS_TO_TICKS(1)); /* Allow ADC to settle */
-    uint16_t raw_vusb = adc_read();
-    float v_usb = get_Voltage(V_USB) * VBUS_DIVIDER;
-
-    /* -------- Read 12V supply (GPIO29, ADC channel 3) -------- */
-    adc_select_input(V_SUPPLY);
-    vTaskDelay(pdMS_TO_TICKS(1)); /* Allow ADC to settle */
-    uint16_t raw_12v = adc_read();
-    float v_12v = get_Voltage(V_SUPPLY) * SUPPLY_DIVIDER;
+    /* -------- Get cached system telemetry (VUSB, 12V, die temp) -------- */
+    system_telemetry_t sys_tele = {0};
+    bool tele_ok = MeterTask_GetSystemTelemetry(&sys_tele);
 
     /* --------  Assemble and print info -------- */
     ECHO("\n=== Hardware Specific Info ===\n");
@@ -287,23 +326,126 @@ static void cmd_sysinfo(void) {
     ECHO("Firmware Ver: %s\n", fw_buf);
 
     ECHO("\n=== Device Voltages ===\n");
-    ECHO("USB Voltage: %.2f V (ADC raw=%u)\n", v_usb, raw_vusb);
-    ECHO("12V Supply: %.2f V (ADC raw=%u)\n", v_12v, raw_12v);
+    if (tele_ok) {
+        ECHO("USB Voltage: %.2f V\n", sys_tele.vusb_volts);
+        ECHO("12V Supply: %.2f V\n", sys_tele.vsupply_volts);
+    } else {
+        ECHO("USB Voltage: N/A (no telemetry)\n");
+        ECHO("12V Supply: N/A (no telemetry)\n");
+    }
+
+    ECHO("\n=== Device Temperature ===\n");
+    if (tele_ok) {
+        ECHO("Die Temperature: %.2f °C (ADC raw=%u)\n", sys_tele.die_temp_c, sys_tele.raw_temp);
+    } else {
+        ECHO("Die Temperature: N/A (no telemetry)\n");
+    }
     ECHO("==========================\n");
 }
 
 /**
- * @brief Read and print RP2040 die temperature.
+ * @brief Read and print RP2040 die temperature from cached telemetry.
+ *
+ * @details
+ * MeterTask owns the ADC. This command reads the latest cached value
+ * (non-blocking). If telemetry isn’t ready yet, it prints N/A.
  */
 static void cmd_get_temp(void) {
-    adc_select_input(4);          /* Temperature sensor */
-    vTaskDelay(pdMS_TO_TICKS(1)); /* Allow ADC to settle */
-    uint16_t raw = adc_read();
+    system_telemetry_t sys = {0};
+    if (MeterTask_GetSystemTelemetry(&sys)) {
+        ECHO("Die Temperature: %.2f °C (ADC raw=%u)\n", sys.die_temp_c, sys.raw_temp);
+    } else {
+        ECHO("Die Temperature: N/A (telemetry not ready)\n");
+    }
+}
 
-    float voltage = (raw * ADC_VREF) / ADC_MAX;
-    float temp_c = 27.0f - (voltage - 0.706f) / 0.001721f;
+/**
+ * @brief Calibrate RP2040 die temperature sensor and persist to EEPROM.
+ * @param args Expected formats:
+ *             "1P <T1_C>"
+ *             "2P <T1_C> <T2_C> [delay_ms]"
+ */
+static void cmd_calib_temp(const char *args) {
+    extern SemaphoreHandle_t eepromMtx;
 
-    ECHO("Die Temperature: %.2f °C (ADC raw=%u, V=%.3f)\n", temp_c, raw, voltage);
+    if (!args || *args == '\0') {
+        ECHO("Usage:\n  CALIB_TEMP 1P <T1_C>\n  CALIB_TEMP 2P <T1_C> <T2_C> [delay_ms]\n");
+        return;
+    }
+
+    /* Read current telemetry for first raw sample */
+    system_telemetry_t sys = {0};
+    if (!MeterTask_GetSystemTelemetry(&sys) || !sys.valid) {
+        ECHO("Error: temperature telemetry not ready. Try again shortly.\n");
+        return;
+    }
+
+    /* Parse mode */
+    char mode[3] = {0};
+    float T1 = 0.0f, T2 = 0.0f;
+    unsigned delay_ms = 1500;
+
+    /* Try 1P */
+    if (sscanf(args, "%2s %f", mode, &T1) == 2 && strcmp(mode, "1P") == 0) {
+        temp_calib_t rec;
+        if (TempCalibration_ComputeSinglePoint(T1, sys.raw_temp, &rec) != 0) {
+            ECHO("Error: single-point compute failed.\n");
+            return;
+        }
+
+        if (xSemaphoreTake(eepromMtx, pdMS_TO_TICKS(250)) != pdTRUE) {
+            ECHO("Error: EEPROM busy.\n");
+            return;
+        }
+        int wrc = EEPROM_WriteTempCalibration(&rec);
+        xSemaphoreGive(eepromMtx);
+        if (wrc != 0) {
+            ECHO("Error: EEPROM write failed.\n");
+            return;
+        }
+        (void)TempCalibration_ApplyToMeterTask(&rec);
+
+        ECHO("CALIB_TEMP 1P OK: offset=%.3f °C (raw=%u)\n", rec.offset_c, (unsigned)sys.raw_temp);
+        return;
+    }
+
+    /* Try 2P */
+    if (sscanf(args, "%2s %f %f %u", mode, &T1, &T2, &delay_ms) >= 3 && strcmp(mode, "2P") == 0) {
+        uint16_t raw1 = sys.raw_temp;
+
+        vTaskDelay(pdMS_TO_TICKS(delay_ms));
+
+        if (!MeterTask_GetSystemTelemetry(&sys) || !sys.valid) {
+            ECHO("Error: temperature telemetry not ready for second point.\n");
+            return;
+        }
+        uint16_t raw2 = sys.raw_temp;
+
+        temp_calib_t rec;
+        if (TempCalibration_ComputeTwoPoint(T1, raw1, T2, raw2, &rec) != 0) {
+            ECHO("Error: two-point compute failed. Check inputs.\n");
+            return;
+        }
+
+        if (xSemaphoreTake(eepromMtx, pdMS_TO_TICKS(250)) != pdTRUE) {
+            ECHO("Error: EEPROM busy.\n");
+            return;
+        }
+        int wrc = EEPROM_WriteTempCalibration(&rec);
+        xSemaphoreGive(eepromMtx);
+        if (wrc != 0) {
+            ECHO("Error: EEPROM write failed.\n");
+            return;
+        }
+        (void)TempCalibration_ApplyToMeterTask(&rec);
+
+        ECHO("CALIB_TEMP 2P OK: V0=%.4f V, S=%.6f V/°C, offset=%.3f °C (raw1=%u, raw2=%u)\n",
+             rec.v0_volts_at_27c, rec.slope_volts_per_deg, rec.offset_c, (unsigned)raw1,
+             (unsigned)raw2);
+        return;
+    }
+
+    ECHO("Usage:\n  CALIB_TEMP 1P <T1_C>\n  CALIB_TEMP 2P <T1_C> <T2_C> [delay_ms]\n");
 }
 
 /**
@@ -787,24 +929,30 @@ static void cmd_netinfo(void) {
 }
 
 /**
- * @brief Read 12V supply voltage.
+ * @brief Read 12V supply voltage (cached, no ADC access).
  */
 static void cmd_get_supply(void) {
-    adc_select_input(V_SUPPLY);
-    vTaskDelay(pdMS_TO_TICKS(1));
-    float voltage = get_Voltage(V_SUPPLY) * SUPPLY_DIVIDER;
-    ECHO("12V Supply: %.2f V\n", voltage);
+    system_telemetry_t sys = {0};
+    if (MeterTask_GetSystemTelemetry(&sys)) {
+        ECHO("12V Supply: %.2f V\n", sys.vsupply_volts);
+    } else {
+        ECHO("12V Supply: N/A (telemetry not ready)\n");
+    }
 }
 
 /**
- * @brief Read USB supply voltage.
+ * @brief Read USB supply voltage (cached, no ADC access).
  */
 static void cmd_get_usb(void) {
-    adc_select_input(V_USB);
-    vTaskDelay(pdMS_TO_TICKS(1));
-    float voltage = get_Voltage(V_USB) * VBUS_DIVIDER;
-    ECHO("USB Supply: %.2f V\n", voltage);
+    system_telemetry_t sys = {0};
+    if (MeterTask_GetSystemTelemetry(&sys)) {
+        ECHO("USB Supply: %.2f V\n", sys.vusb_volts);
+    } else {
+        ECHO("USB Supply: N/A (telemetry not ready)\n");
+    }
 }
+
+/* ==================== Command Dispatcher ==================== */
 
 /* ==================== Command Dispatcher ==================== */
 
@@ -845,6 +993,8 @@ static void dispatch_command(const char *line) {
         cmd_sysinfo();
     } else if (strcmp(trimmed, "GET_TEMP") == 0) {
         cmd_get_temp();
+    } else if (strcmp(trimmed, "CALIB_TEMP") == 0) {
+        cmd_calib_temp(args ? args : "");
     } else if (strcmp(trimmed, "SET_CH") == 0) {
         cmd_set_ch(args ? args : "");
     } else if (strcmp(trimmed, "GET_CH") == 0) {

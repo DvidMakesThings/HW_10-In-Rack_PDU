@@ -107,6 +107,9 @@
         "rtos_hooks.h": "c",
         "memory": "c",
         "optional": "c",
-        "vreg_and_chip_reset.h": "c"
+        "vreg_and_chip_reset.h": "c",
+        "control_handler.h": "c",
+        "buttontask.h": "c",
+        "tuple": "c"
     }
 }

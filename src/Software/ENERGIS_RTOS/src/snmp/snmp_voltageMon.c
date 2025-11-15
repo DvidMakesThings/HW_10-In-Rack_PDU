@@ -4,7 +4,7 @@
  *
  * @version 1.0.0
  * @date 2025-11-07
- * 
+ *
  * @details Uses Pico SDK ADC for on-die sensor; helper HAL for external rails.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
@@ -16,85 +16,102 @@
 static float g_temp_v = 0.0f;
 
 /**
- * @brief Get the on-die temperature sensor voltage.
+ * @brief Get the on-die temperature sensor voltage (cached, no ADC access).
  * @param buf Output buffer for ASCII result.
  * @param len Out length (bytes written).
  * @return None
  */
 void get_tempSensorVoltage(void *buf, uint8_t *len) {
-    adc_select_input(4);
-    uint16_t raw = adc_read();
-    g_temp_v = (float)raw * 3.0f / 4096.0f;
-    *len = (uint8_t)snprintf((char *)buf, 16, "%.5f", g_temp_v);
+    system_telemetry_t sys = {0};
+    if (MeterTask_GetSystemTelemetry(&sys)) {
+        float v = (float)sys.raw_temp * (ADC_VREF / ADC_MAX);
+        *len = (uint8_t)snprintf((char *)buf, 16, "%.5f", v);
+#ifdef g_temp_v
+        g_temp_v = v;
+#endif
+    } else {
+        *len = (uint8_t)snprintf((char *)buf, 16, "%.5f", 0.0f);
+    }
 }
 
 /**
- * @brief Get the on-die temperature sensor temperature in Celsius.
+ * @brief Get the on-die temperature sensor temperature in Celsius (cached).
  * @param buf Output buffer for ASCII result.
  * @param len Out length (bytes written).
  * @return None
  */
 void get_tempSensorTemperature(void *buf, uint8_t *len) {
-    /* use last g_temp_v if available; refresh if zero */
-    if (g_temp_v <= 0.0f) {
-        adc_select_input(4);
-        uint16_t raw = adc_read();
-        g_temp_v = (float)raw * 3.0f / 4096.0f;
+    system_telemetry_t sys = {0};
+    if (MeterTask_GetSystemTelemetry(&sys)) {
+        *len = (uint8_t)snprintf((char *)buf, 16, "%.3f", sys.die_temp_c);
+#ifdef g_temp_v
+        g_temp_v = (float)sys.raw_temp * (ADC_VREF / ADC_MAX);
+#endif
+    } else {
+        *len = (uint8_t)snprintf((char *)buf, 16, "%.3f", 0.0f);
     }
-    float t = 27.0f - (g_temp_v - 0.706f) / 0.001721f;
-    *len = (uint8_t)snprintf((char *)buf, 16, "%.3f", t);
 }
 
 /**
- * @brief Get the V_SUPPLY rail voltage.
+ * @brief Get the V_SUPPLY rail voltage in volts (cached).
  * @param buf Output buffer for ASCII result.
  * @param len Out length (bytes written).
  * @return None
  */
 void get_VSUPPLY(void *buf, uint8_t *len) {
-    adc_select_input(V_SUPPLY);
-    vTaskDelay(pdMS_TO_TICKS(1));
-    float v = get_Voltage(V_SUPPLY) * SUPPLY_DIVIDER;
-    *len = (uint8_t)snprintf((char *)buf, 16, "%.3f", v);
+    system_telemetry_t sys = {0};
+    if (MeterTask_GetSystemTelemetry(&sys)) {
+        *len = (uint8_t)snprintf((char *)buf, 16, "%.3f", sys.vsupply_volts);
+    } else {
+        *len = (uint8_t)snprintf((char *)buf, 16, "%.3f", 0.0f);
+    }
 }
 
 /**
- * @brief Get the V_USB rail voltage.
+ * @brief Get the V_USB rail voltage in volts (cached).
  * @param buf Output buffer for ASCII result.
  * @param len Out length (bytes written).
  * @return None
  */
 void get_VUSB(void *buf, uint8_t *len) {
-    adc_select_input(V_USB);
-    vTaskDelay(pdMS_TO_TICKS(1));
-    float v = get_Voltage(V_USB) * VBUS_DIVIDER;
-    *len = (uint8_t)snprintf((char *)buf, 16, "%.3f", v);
+    system_telemetry_t sys = {0};
+    if (MeterTask_GetSystemTelemetry(&sys)) {
+        *len = (uint8_t)snprintf((char *)buf, 16, "%.3f", sys.vusb_volts);
+    } else {
+        *len = (uint8_t)snprintf((char *)buf, 16, "%.3f", 0.0f);
+    }
 }
 
 /**
- * @brief Get the V_SUPPLY divider tap voltage.
+ * @brief Get the V_SUPPLY divider tap voltage (pre-divider) in volts (cached).
  * @param buf Output buffer for ASCII result.
  * @param len Out length (bytes written).
  * @return None
  */
 void get_VSUPPLY_divider(void *buf, uint8_t *len) {
-    adc_select_input(V_SUPPLY);
-    vTaskDelay(pdMS_TO_TICKS(1));
-    float v = get_Voltage(V_SUPPLY); // raw divider tap voltage
-    *len = (uint8_t)snprintf((char *)buf, 16, "%.3f", v);
+    system_telemetry_t sys = {0};
+    if (MeterTask_GetSystemTelemetry(&sys)) {
+        float vtap = (float)sys.raw_vsupply * (ADC_VREF / ADC_MAX);
+        *len = (uint8_t)snprintf((char *)buf, 16, "%.3f", vtap);
+    } else {
+        *len = (uint8_t)snprintf((char *)buf, 16, "%.3f", 0.0f);
+    }
 }
 
 /**
- * @brief Get the V_USB divider tap voltage.
+ * @brief Get the V_USB divider tap voltage (pre-divider) in volts (cached).
  * @param buf Output buffer for ASCII result.
  * @param len Out length (bytes written).
  * @return None
  */
 void get_VUSB_divider(void *buf, uint8_t *len) {
-    adc_select_input(V_USB);
-    vTaskDelay(pdMS_TO_TICKS(1));
-    float v = get_Voltage(V_USB); // raw divider tap voltage
-    *len = (uint8_t)snprintf((char *)buf, 16, "%.3f", v);
+    system_telemetry_t sys = {0};
+    if (MeterTask_GetSystemTelemetry(&sys)) {
+        float vtap = (float)sys.raw_vusb * (ADC_VREF / ADC_MAX);
+        *len = (uint8_t)snprintf((char *)buf, 16, "%.3f", vtap);
+    } else {
+        *len = (uint8_t)snprintf((char *)buf, 16, "%.3f", 0.0f);
+    }
 }
 
 /**

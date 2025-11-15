@@ -1,6 +1,6 @@
 /**
  * @file src/web_handlers/status_handler.c
- * @author
+ * @author DvidMakesThings - David Sipos
  *
  * @version 1.0.0
  * @date 2025-11-07
@@ -29,6 +29,8 @@ static inline void net_beat(void) { Health_Heartbeat(HEALTH_ID_NET); }
  *  - channels[0..7]: { voltage, current, uptime, power, state }
  *  - internalTemperature, temperatureUnit ("°C"|"°F"|"K"), systemStatus ("OK")
  *
+ * Uses cached die temperature from MeterTask (non-blocking). No direct ADC access here.
+ *
  * @http
  * - 200 OK on success with JSON body and Connection: close.
  */
@@ -36,12 +38,10 @@ void handle_status_request(uint8_t sock) {
     NETLOG_PRINT(">> handle_status_request()\n");
     net_beat();
 
-    /* Internal temperature (ADC) */
-    adc_select_input(4);
-    uint16_t raw = adc_read();
-
-    float v_die = raw * 3.0f / 4096.0f;
-    float temp_c = 27.0f - (v_die - 0.706f) / 0.001721f;
+    /* Internal temperature (cached from MeterTask) */
+    system_telemetry_t sys_tele = {0};
+    bool tele_ok = MeterTask_GetSystemTelemetry(&sys_tele);
+    float temp_c = tele_ok ? sys_tele.die_temp_c : 0.0f;
 
     /* Unit preference */
     userPrefInfo pref;

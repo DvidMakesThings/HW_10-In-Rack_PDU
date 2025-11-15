@@ -94,6 +94,7 @@ add_executable(ENERGIS_RTOS
     src/web_handlers/settings_handler.c
     src/web_handlers/status_handler.c
     src/web_handlers/page_content.c
+    src/web_handlers/metrics_handler.c
     src/wrap_watchdog.c
 )
 

@@ -9,7 +9,7 @@
  * @ingroup config
  * @brief EEPROM Memory Layout and Data Structures
  * @{
- * 
+ *
  * @version 2.0
  * @date 2025-11-06
  *
@@ -81,10 +81,19 @@
 /** @} */
 
 /**
+ * @name Temperature Sensor Calibration
+ * @brief Section for temperature sensor calibration data.
+ * @{
+ */
+#define EEPROM_TEMP_CAL_START 0x0800 /**< Start of sensor calibration block. */
+#define EEPROM_TEMP_CAL_SIZE 0x0200  /**< Size of sensor calibration block. */
+/** @} */
+
+/**
  * @name Energy Monitoring Data
  * @{
  */
-#define EEPROM_ENERGY_MON_START 0x0800 /**< Start of energy monitoring block. */
+#define EEPROM_ENERGY_MON_START 0x1500 /**< Start of energy monitoring block. */
 #define EEPROM_ENERGY_MON_SIZE 0x0800  /**< Size of energy monitoring block. */
 #define ENERGY_MON_POINTER_SIZE 2      /**< Pointer bytes at start of energy block. */
 #define ENERGY_RECORD_SIZE 16          /**< Size of one energy record in bytes. */
@@ -94,8 +103,8 @@
  * @name Event Logs and Fault History
  * @{
  */
-#define EEPROM_EVENT_LOG_START 0x1000 /**< Start of event log block. */
-#define EEPROM_EVENT_LOG_SIZE 0x1000  /**< Size of event log block. */
+#define EEPROM_EVENT_LOG_START 0x1800 /**< Start of event log block. */
+#define EEPROM_EVENT_LOG_SIZE 0x200   /**< Size of event log block. */
 #define EVENT_LOG_POINTER_SIZE 2      /**< Pointer bytes at start of event log block. */
 #define EVENT_LOG_ENTRY_SIZE 32       /**< Size of one event log entry in bytes. */
 /** @} */

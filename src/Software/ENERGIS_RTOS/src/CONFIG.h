@@ -106,6 +106,7 @@
 #include "web_handlers/page_content.h"
 #include "web_handlers/settings_handler.h"
 #include "web_handlers/status_handler.h"
+#include "web_handlers/metrics_handler.h"
 /* clang-format on */
 
 #include "serial_number.h"
@@ -121,11 +122,13 @@ extern w5500_NetConfig eth_netcfg;
 // Button longpress duration thresholds
 #define LONGPRESS_DT 2500
 
-// Debounce time for button presses
+/************************* Debounce and Guard Timers ****************************/
 #define DEBOUNCE_MS 100u
 
 #define POST_GUARD_MS (DEBOUNCE_MS + 10u)
-#define BTN_LOG_ENABLE 1
+
+/********************** Feature Enable/Disable Flags ***************************/
+#define CFG_ENABLE_METRICS 1
 
 /********************************************************************************
  *                          GLOBAL CONFIGURATIONS                               *
@@ -237,7 +240,7 @@ extern w5500_NetConfig eth_netcfg;
 #define MCP23017_SELECTION_I2C MCP23017_DISPLAY_I2C // Using I2C0 for Selection Row MCP23017
 
 // SPI Peripheral Assignments
-#define SPI_SPEED_W5500 62500000 // 62.5MHz
+#define SPI_SPEED_W5500 40000000 // 40MHz
 #define W5500_SPI_INSTANCE spi0  // SPI0 for W5500 Ethernet Modul
 
 /********************************************************************************
