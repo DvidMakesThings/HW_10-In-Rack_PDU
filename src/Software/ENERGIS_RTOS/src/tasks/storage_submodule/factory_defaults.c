@@ -150,7 +150,7 @@ bool check_factory_defaults(void) {
 
     /* Read magic value to detect first boot */
     xSemaphoreTake(eepromMtx, portMAX_DELAY);
-    CAT24C512_ReadBuffer(EEPROM_MAGIC_ADDR, (uint8_t *)&magic, sizeof(magic));
+    CAT24C256_ReadBuffer(EEPROM_MAGIC_ADDR, (uint8_t *)&magic, sizeof(magic));
     xSemaphoreGive(eepromMtx);
 
     /* Check if factory init needed */
@@ -163,7 +163,7 @@ bool check_factory_defaults(void) {
         if (ret == 0) {
             /* Mark EEPROM as initialized */
             magic = EEPROM_MAGIC_VAL;
-            CAT24C512_WriteBuffer(EEPROM_MAGIC_ADDR, (uint8_t *)&magic, sizeof(magic));
+            CAT24C256_WriteBuffer(EEPROM_MAGIC_ADDR, (uint8_t *)&magic, sizeof(magic));
         }
         xSemaphoreGive(eepromMtx);
 

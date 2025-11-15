@@ -33,7 +33,7 @@ extern const networkInfo DEFAULT_NETWORK;
 int EEPROM_WriteSystemInfo(const uint8_t *data, size_t len) {
     if (len > EEPROM_SYS_INFO_SIZE)
         return -1;
-    return CAT24C512_WriteBuffer(EEPROM_SYS_INFO_START, data, (uint16_t)len);
+    return CAT24C256_WriteBuffer(EEPROM_SYS_INFO_START, data, (uint16_t)len);
 }
 
 /**
@@ -48,7 +48,7 @@ int EEPROM_WriteSystemInfo(const uint8_t *data, size_t len) {
 int EEPROM_ReadSystemInfo(uint8_t *data, size_t len) {
     if (len > EEPROM_SYS_INFO_SIZE)
         return -1;
-    CAT24C512_ReadBuffer(EEPROM_SYS_INFO_START, data, (uint32_t)len);
+    CAT24C256_ReadBuffer(EEPROM_SYS_INFO_START, data, (uint32_t)len);
     return 0;
 }
 
@@ -69,7 +69,7 @@ int EEPROM_WriteSystemInfoWithChecksum(const uint8_t *data, size_t len) {
     memcpy(buffer, data, len);
     buffer[len] = calculate_crc8(data, len);
 
-    return CAT24C512_WriteBuffer(EEPROM_SYS_INFO_START, buffer, (uint16_t)(len + 1));
+    return CAT24C256_WriteBuffer(EEPROM_SYS_INFO_START, buffer, (uint16_t)(len + 1));
 }
 
 /**
@@ -86,7 +86,7 @@ int EEPROM_ReadSystemInfoWithChecksum(uint8_t *data, size_t len) {
         return -1;
 
     uint8_t buffer[EEPROM_SYS_INFO_SIZE];
-    CAT24C512_ReadBuffer(EEPROM_SYS_INFO_START, buffer, (uint32_t)(len + 1));
+    CAT24C256_ReadBuffer(EEPROM_SYS_INFO_START, buffer, (uint32_t)(len + 1));
 
     uint8_t crc = calculate_crc8(buffer, len);
     if (crc != buffer[len]) {
@@ -112,7 +112,7 @@ int EEPROM_ReadSystemInfoWithChecksum(uint8_t *data, size_t len) {
 int EEPROM_WriteUserNetwork(const uint8_t *data, size_t len) {
     if (len > EEPROM_USER_NETWORK_SIZE)
         return -1;
-    return CAT24C512_WriteBuffer(EEPROM_USER_NETWORK_START, data, (uint16_t)len);
+    return CAT24C256_WriteBuffer(EEPROM_USER_NETWORK_START, data, (uint16_t)len);
 }
 
 /**
@@ -127,7 +127,7 @@ int EEPROM_WriteUserNetwork(const uint8_t *data, size_t len) {
 int EEPROM_ReadUserNetwork(uint8_t *data, size_t len) {
     if (len > EEPROM_USER_NETWORK_SIZE)
         return -1;
-    CAT24C512_ReadBuffer(EEPROM_USER_NETWORK_START, data, (uint32_t)len);
+    CAT24C256_ReadBuffer(EEPROM_USER_NETWORK_START, data, (uint32_t)len);
     return 0;
 }
 
@@ -158,7 +158,7 @@ int EEPROM_WriteUserNetworkWithChecksum(const networkInfo *net_info) {
     /* Calculate and append CRC */
     buffer[23] = calculate_crc8(buffer, 23);
 
-    return CAT24C512_WriteBuffer(EEPROM_USER_NETWORK_START, buffer, 24);
+    return CAT24C256_WriteBuffer(EEPROM_USER_NETWORK_START, buffer, 24);
 }
 
 /**
@@ -174,7 +174,7 @@ int EEPROM_ReadUserNetworkWithChecksum(networkInfo *net_info) {
         return -1;
 
     uint8_t buffer[24];
-    CAT24C512_ReadBuffer(EEPROM_USER_NETWORK_START, buffer, 24);
+    CAT24C256_ReadBuffer(EEPROM_USER_NETWORK_START, buffer, 24);
 
     /* Verify CRC */
     if (calculate_crc8(buffer, 23) != buffer[23]) {

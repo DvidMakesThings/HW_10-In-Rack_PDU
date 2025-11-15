@@ -7,7 +7,7 @@
  *
  * @details
  * StorageTask Architecture:
- * - Owns ALL EEPROM access (only this task touches CAT24C512)
+ * - Owns ALL EEPROM access (only this task touches CAT24C256)
  * - Maintains RAM cache of critical config
  * - Debounces writes (2 second idle period)
  * - Processes requests from q_cfg queue
@@ -86,7 +86,7 @@ int EEPROM_EraseAll(void) {
     memset(blank, 0xFF, sizeof(blank));
 
     for (uint16_t addr = 0; addr < EEPROM_SIZE; addr += sizeof(blank)) {
-        if (CAT24C512_WriteBuffer(addr, blank, sizeof(blank)) != 0) {
+        if (CAT24C256_WriteBuffer(addr, blank, sizeof(blank)) != 0) {
             return -1;
         }
     }
@@ -306,13 +306,13 @@ static void process_storage_msg(const storage_msg_t *msg) {
     /* SIL testing operations */
     case STORAGE_CMD_DUMP_FORMATTED:
         xSemaphoreTake(eepromMtx, portMAX_DELAY);
-        CAT24C512_DumpFormatted();
+        CAT24C256_DumpFormatted();
         xSemaphoreGive(eepromMtx);
         break;
 
     case STORAGE_CMD_SELF_TEST:
         xSemaphoreTake(eepromMtx, portMAX_DELAY);
-        bool result = CAT24C512_SelfTest(msg->data.sil_test.test_addr);
+        bool result = CAT24C256_SelfTest(msg->data.sil_test.test_addr);
         if (msg->data.sil_test.result) {
             *msg->data.sil_test.result = result;
         }

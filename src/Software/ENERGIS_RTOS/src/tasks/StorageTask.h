@@ -12,7 +12,7 @@
  *
  * @details
  * StorageTask Architecture:
- * - Owns ALL EEPROM access (only this task touches CAT24C512)
+ * - Owns ALL EEPROM access (only this task touches CAT24C256)
  * - Maintains RAM cache of critical config
  * - Debounces writes (2 second idle period)
  * - Processes requests from q_cfg queue
@@ -39,7 +39,6 @@
 #include "../CONFIG.h"
 
 /* Include all storage submodules */
-
 
 /* Note: All includes come via CONFIG.h */
 /* CONFIG.h provides: FreeRTOS, event_groups.h, EEPROM_MemoryMap.h, etc. */
@@ -240,7 +239,7 @@ bool storage_dump_formatted(uint32_t timeout_ms);
 bool storage_self_test(uint16_t test_addr, uint32_t timeout_ms);
 
 /**
- * @brief Erase the entire CAT24C512 by writing 0xFF over all addresses.
+ * @brief Erase the entire CAT24C256 by writing 0xFF over all addresses.
  * @warning Must be called with eepromMtx held by the caller.
  * @return 0 on success, -1 on I2C/write failure.
  */

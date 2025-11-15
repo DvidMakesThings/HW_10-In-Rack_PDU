@@ -21,9 +21,9 @@ energis_up 1
 # HELP energis_build_info Build and device identifiers.
 # TYPE energis_build_info gauge
 energis_build_info{version="1.0.0",serial="SN-0167663"} 1
-# HELP energis_uptime_seconds System uptime in seconds.
-# TYPE energis_uptime_seconds counter
-energis_uptime_seconds 27
+# HELP energis_uptime_seconds_total System uptime in seconds.
+# TYPE energis_uptime_seconds_total counter
+energis_uptime_seconds_total 27
 # HELP energis_internal_temperature_celsius Internal temperature (calibrated).
 # TYPE energis_internal_temperature_celsius gauge
 energis_internal_temperature_celsius 30.668
@@ -57,6 +57,9 @@ energis_channel_current_amps{ch="1"} 0.000
 # HELP energis_channel_power_watts Active power per channel.
 # TYPE energis_channel_power_watts gauge
 energis_channel_power_watts{ch="1"} 0.000
+# HELP energis_channel_energy_watt_hours_total Accumulated energy per channel.
+# TYPE energis_channel_energy_watt_hours_total counter
+energis_channel_energy_watt_hours_total{ch="1"} 0.000
 ...
 ```
 
@@ -81,23 +84,24 @@ scrape_configs:
 
 ### System
 
-* `energis_up` — Health indicator (gauge; 1 if handler responds)
-* `energis_build_info{version,serial}` — Build and device info (gauge; always 1)
-* `energis_uptime_seconds` — Uptime since boot in seconds (counter)
-* `energis_internal_temperature_celsius` — Internal MCU temperature, calibrated (gauge)
-* `energis_temp_calibrated` — 1 if temperature calibration is applied (gauge)
-* `energis_temp_calibration_mode` — Calibration mode (0=none, 1=1pt, 2=2pt) (gauge)
-* `energis_vusb_volts` — USB rail voltage (gauge)
-* `energis_vsupply_volts` — 12 V rail voltage (gauge)
-* `energis_http_requests_total` — Total HTTP requests served (counter)
+* `energis_up` - Health indicator (gauge; 1 if handler responds)
+* `energis_build_info{version,serial}` - Build and device info (gauge; always 1)
+* `energis_uptime_seconds_total` - Uptime since boot in seconds (counter)
+* `energis_internal_temperature_celsius` - Internal MCU temperature, calibrated (gauge)
+* `energis_temp_calibrated` - 1 if temperature calibration is applied (gauge)
+* `energis_temp_calibration_mode` - Calibration mode (0=none, 1=1pt, 2=2pt) (gauge)
+* `energis_vusb_volts` - USB rail voltage (gauge)
+* `energis_vsupply_volts` - 12 V rail voltage (gauge)
+* `energis_http_requests_total` - Total HTTP requests served (counter)
 
 ### Per-Channel (ch = "1" … "8")
 
-* `energis_channel_state{ch}` — Relay state: 1=ON, 0=OFF (gauge)
-* `energis_channel_telemetry_valid{ch}` — 1 if cached telemetry for channel is fresh (gauge)
-* `energis_channel_voltage_volts{ch}` — Channel voltage [V] (gauge)
-* `energis_channel_current_amps{ch}` — Channel current [A] (gauge)
-* `energis_channel_power_watts{ch}` — Active power [W] (gauge)
+* `energis_channel_state{ch}` - Relay state: 1=ON, 0=OFF (gauge)
+* `energis_channel_telemetry_valid{ch}` - 1 if cached telemetry for channel is fresh (gauge)
+* `energis_channel_voltage_volts{ch}` - Channel voltage [V] (gauge)
+* `energis_channel_current_amps{ch}` - Channel current [A] (gauge)
+* `energis_channel_power_watts{ch}` - Active power [W] (gauge)
+* `energis_channel_energy_watt_hours_total{ch}` - Accumulated energy in watt-hours (counter)
 
 ## Notes and Behavior
 

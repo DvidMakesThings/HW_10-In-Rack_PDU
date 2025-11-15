@@ -1036,7 +1036,7 @@ static void dispatch_command(const char *line) {
     } else if (strcmp(trimmed, "GET_USB") == 0) {
         cmd_get_usb();
     } else if (strcmp(trimmed, "DUMP_EEPROM") == 0) {
-        CAT24C512_DumpFormatted();
+        CAT24C256_DumpFormatted();
     } else if (strcmp(trimmed, "RFS") == 0) {
         EEPROM_WriteFactoryDefaults();
         ECHO("Factory defaults written. Rebooting...\n");

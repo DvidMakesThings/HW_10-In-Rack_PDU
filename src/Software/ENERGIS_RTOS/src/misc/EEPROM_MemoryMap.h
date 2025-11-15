@@ -13,7 +13,7 @@
  * @version 2.0
  * @date 2025-11-06
  *
- * @details RTOS-compatible EEPROM memory map for CAT24C512 (64KB).
+ * @details RTOS-compatible EEPROM memory map for CAT24C256 (32KB).
  * This file contains ONLY:
  * - Memory address definitions
  * - Data structures
@@ -28,14 +28,6 @@
 
 #include "../CONFIG.h"
 
-/* Note: All includes come via CONFIG.h */
-
-/**
- * @def EEPROM_SIZE
- * @brief Total EEPROM size in bytes.
- */
-#define EEPROM_SIZE 65536
-
 /* =====================  EEPROM MEMORY MAP  ============================ */
 
 /**
@@ -43,11 +35,13 @@
  * @{
  */
 #define EEPROM_SYS_INFO_START 0x0000 /**< Start address of system info block. */
-#define EEPROM_SYS_INFO_SIZE 0x0100  /**< Size of system info block in bytes. */
+#define EEPROM_SYS_INFO_SIZE 0x0050  /**< Size of system info block in bytes. */
 /** @} */
 
 /**
  * @name Factory Defaults (reserved)
+ *
+ * @note Currently not used
  * @{
  */
 #define EEPROM_FACTORY_DEFAULTS_START 0x0100 /**< Start of factory defaults block. */
@@ -59,7 +53,7 @@
  * @{
  */
 #define EEPROM_USER_OUTPUT_START 0x0200 /**< Start of user output block. */
-#define EEPROM_USER_OUTPUT_SIZE 0x0100  /**< Size of user output block. */
+#define EEPROM_USER_OUTPUT_SIZE 0x0020  /**< Size of user output block. */
 /** @} */
 
 /**
@@ -67,7 +61,7 @@
  * @{
  */
 #define EEPROM_USER_NETWORK_START 0x0300 /**< Start of user network block. */
-#define EEPROM_USER_NETWORK_SIZE 32      /**< Size of user network block (networkInfo + CRC). */
+#define EEPROM_USER_NETWORK_SIZE 0x0020  /**< Size of user network block (networkInfo + CRC). */
 /** @} */
 
 /**
@@ -77,7 +71,7 @@
  * @{
  */
 #define EEPROM_SENSOR_CAL_START 0x0400 /**< Start of sensor calibration block. */
-#define EEPROM_SENSOR_CAL_SIZE 0x0400  /**< Size of sensor calibration block. */
+#define EEPROM_SENSOR_CAL_SIZE 0x0150  /**< Size of sensor calibration block. */
 /** @} */
 
 /**
@@ -86,15 +80,17 @@
  * @{
  */
 #define EEPROM_TEMP_CAL_START 0x0800 /**< Start of sensor calibration block. */
-#define EEPROM_TEMP_CAL_SIZE 0x0200  /**< Size of sensor calibration block. */
+#define EEPROM_TEMP_CAL_SIZE 0x0050  /**< Size of sensor calibration block. */
 /** @} */
 
 /**
  * @name Energy Monitoring Data
+ *
+ * @note Currently not used
  * @{
  */
 #define EEPROM_ENERGY_MON_START 0x1500 /**< Start of energy monitoring block. */
-#define EEPROM_ENERGY_MON_SIZE 0x0800  /**< Size of energy monitoring block. */
+#define EEPROM_ENERGY_MON_SIZE 0x0100  /**< Size of energy monitoring block. */
 #define ENERGY_MON_POINTER_SIZE 2      /**< Pointer bytes at start of energy block. */
 #define ENERGY_RECORD_SIZE 16          /**< Size of one energy record in bytes. */
 /** @} */
@@ -104,7 +100,7 @@
  * @{
  */
 #define EEPROM_EVENT_LOG_START 0x1800 /**< Start of event log block. */
-#define EEPROM_EVENT_LOG_SIZE 0x200   /**< Size of event log block. */
+#define EEPROM_EVENT_LOG_SIZE 0x0200  /**< Size of event log block. */
 #define EVENT_LOG_POINTER_SIZE 2      /**< Pointer bytes at start of event log block. */
 #define EVENT_LOG_ENTRY_SIZE 32       /**< Size of one event log entry in bytes. */
 /** @} */
@@ -114,22 +110,22 @@
  * @{
  */
 #define EEPROM_USER_PREF_START 0x2000 /**< Start of user preferences block. */
-#define EEPROM_USER_PREF_SIZE 0x1000  /**< Size of user preferences block. */
+#define EEPROM_USER_PREF_SIZE 0x0200  /**< Size of user preferences block. */
 /** @} */
 
 /**
  * @name Channel Labels
  * @{
  */
-#define EEPROM_CH_LABEL_START 0x3000 /**< Start of channel labels block. */
-#define EEPROM_CH_LABEL_SIZE 0x3000  /**< Size of channel labels block. */
+#define EEPROM_CH_LABEL_START 0x1A00 /**< Start of channel labels block. */
+#define EEPROM_CH_LABEL_SIZE 0x0200  /**< Size of channel labels block. */
 /** @} */
 
 /**
  * @name Reserved Area
  * @{
  */
-#define EEPROM_RESERVED_START 0x6000                               /**< Start of reserved area. */
+#define EEPROM_RESERVED_START 0x8000                               /**< Start of reserved area. */
 #define EEPROM_RESERVED_SIZE (EEPROM_SIZE - EEPROM_RESERVED_START) /**< Size of reserved area. */
 /** @} */
 

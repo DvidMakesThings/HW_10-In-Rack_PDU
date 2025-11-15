@@ -59,7 +59,7 @@ int EEPROM_WriteChannelLabel(uint8_t channel_index, const char *label) {
         buf[n] = 0x00;
 
     /* Write entire slot to EEPROM */
-    return CAT24C512_WriteBuffer(_LabelSlotAddr(channel_index), buf, EEPROM_CH_LABEL_SLOT);
+    return CAT24C256_WriteBuffer(_LabelSlotAddr(channel_index), buf, EEPROM_CH_LABEL_SLOT);
 }
 
 /**
@@ -81,7 +81,7 @@ int EEPROM_ReadChannelLabel(uint8_t channel_index, char *out, size_t out_len) {
         return -1;
 
     uint8_t buf[EEPROM_CH_LABEL_SLOT];
-    CAT24C512_ReadBuffer(_LabelSlotAddr(channel_index), buf, EEPROM_CH_LABEL_SLOT);
+    CAT24C256_ReadBuffer(_LabelSlotAddr(channel_index), buf, EEPROM_CH_LABEL_SLOT);
 
     /* Copy to output buffer until null byte, buffer full, or slot end */
     size_t i = 0u;
@@ -116,7 +116,7 @@ int EEPROM_ClearChannelLabel(uint8_t channel_index) {
 
     /* Clear slot in 32-byte chunks */
     for (uint16_t addr = 0; addr < EEPROM_CH_LABEL_SLOT; addr += sizeof(zero)) {
-        if (CAT24C512_WriteBuffer(_LabelSlotAddr(channel_index) + addr, zero, sizeof(zero)) != 0)
+        if (CAT24C256_WriteBuffer(_LabelSlotAddr(channel_index) + addr, zero, sizeof(zero)) != 0)
             return -1;
     }
 

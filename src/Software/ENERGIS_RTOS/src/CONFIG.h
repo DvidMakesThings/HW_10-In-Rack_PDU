@@ -67,7 +67,7 @@
 #include "misc/crashlog.h"
 #include "misc/rtos_hooks.h"
 
-#include "drivers/CAT24C512_driver.h"
+#include "drivers/CAT24C256_driver.h"
 #include "drivers/MCP23017_driver.h"
 #include "drivers/button_driver.h"
 #include "drivers/HLW8032_driver.h"
@@ -143,6 +143,7 @@ extern w5500_NetConfig eth_netcfg;
 #define DEFAULT_LOCATION "Location"
 
 /* ---------- SYSTEM CONSTANTS ---------- */
+#define EEPROM_SIZE 0x8000   
 #define LOGGER_STACK_SIZE 1024
 #define LOGGER_QUEUE_LEN 64
 #define LOGGER_MSG_MAX 128

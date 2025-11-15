@@ -33,7 +33,7 @@ int EEPROM_WriteUserOutput(const uint8_t *data, size_t len) {
         return -1;
 
     /* Write to EEPROM */
-    return CAT24C512_WriteBuffer(EEPROM_USER_OUTPUT_START, data, (uint16_t)len);
+    return CAT24C256_WriteBuffer(EEPROM_USER_OUTPUT_START, data, (uint16_t)len);
 }
 
 /**
@@ -53,6 +53,6 @@ int EEPROM_ReadUserOutput(uint8_t *data, size_t len) {
         return -1;
 
     /* Read from EEPROM */
-    CAT24C512_ReadBuffer(EEPROM_USER_OUTPUT_START, data, (uint32_t)len);
+    CAT24C256_ReadBuffer(EEPROM_USER_OUTPUT_START, data, (uint32_t)len);
     return 0;
 }

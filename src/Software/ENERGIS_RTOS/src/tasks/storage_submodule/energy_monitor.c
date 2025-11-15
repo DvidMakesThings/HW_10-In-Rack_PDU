@@ -28,7 +28,7 @@
 int EEPROM_WriteEnergyMonitoring(const uint8_t *data, size_t len) {
     if (len > EEPROM_ENERGY_MON_SIZE)
         return -1;
-    return CAT24C512_WriteBuffer(EEPROM_ENERGY_MON_START, data, (uint16_t)len);
+    return CAT24C256_WriteBuffer(EEPROM_ENERGY_MON_START, data, (uint16_t)len);
 }
 
 /**
@@ -43,7 +43,7 @@ int EEPROM_WriteEnergyMonitoring(const uint8_t *data, size_t len) {
 int EEPROM_ReadEnergyMonitoring(uint8_t *data, size_t len) {
     if (len > EEPROM_ENERGY_MON_SIZE)
         return -1;
-    CAT24C512_ReadBuffer(EEPROM_ENERGY_MON_START, data, (uint32_t)len);
+    CAT24C256_ReadBuffer(EEPROM_ENERGY_MON_START, data, (uint32_t)len);
     return 0;
 }
 
@@ -69,13 +69,13 @@ int EEPROM_ReadEnergyMonitoring(uint8_t *data, size_t len) {
 int EEPROM_AppendEnergyRecord(const uint8_t *data) {
     /* Read current write pointer from start of energy section */
     uint16_t ptr = 0;
-    CAT24C512_ReadBuffer(EEPROM_ENERGY_MON_START, (uint8_t *)&ptr, 2);
+    CAT24C256_ReadBuffer(EEPROM_ENERGY_MON_START, (uint8_t *)&ptr, 2);
 
     /* Calculate address for new record (skip pointer bytes) */
     uint16_t addr = EEPROM_ENERGY_MON_START + ENERGY_MON_POINTER_SIZE + (ptr * ENERGY_RECORD_SIZE);
 
     /* Write the energy record */
-    if (CAT24C512_WriteBuffer(addr, data, ENERGY_RECORD_SIZE) != 0)
+    if (CAT24C256_WriteBuffer(addr, data, ENERGY_RECORD_SIZE) != 0)
         return -1;
 
     /* Increment pointer and wrap if at buffer end */
@@ -84,5 +84,5 @@ int EEPROM_AppendEnergyRecord(const uint8_t *data) {
         ptr = 0;
 
     /* Update pointer in EEPROM */
-    return CAT24C512_WriteBuffer(EEPROM_ENERGY_MON_START, (uint8_t *)&ptr, 2);
+    return CAT24C256_WriteBuffer(EEPROM_ENERGY_MON_START, (uint8_t *)&ptr, 2);
 }

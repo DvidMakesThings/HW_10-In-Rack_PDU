@@ -4,7 +4,7 @@
  *
  * @version 1.0.0
  * @date 2025-11-08
- * 
+ *
  * @details InitTask runs at highest priority during system boot to:
  * 1. Initialize all hardware in proper sequence
  * 2. Probe peripherals to verify communication
@@ -174,7 +174,7 @@ static bool probe_mcps(void) {
  * @brief Probe EEPROM
  */
 static bool probe_eeprom(void) {
-    return probe_i2c_device(EEPROM_I2C, CAT24C512_I2C_ADDR, "EEPROM CAT24C512");
+    return probe_i2c_device(EEPROM_I2C, CAT24C256_I2C_ADDR, "EEPROM CAT24C256");
 }
 
 /**
@@ -185,7 +185,7 @@ static bool probe_eeprom(void) {
  *  1) Boot banner + HW init (GPIO, tick/watchdog standby, UART/SPI/I2C, ADC).
  *  2) Rail check (3V3/5V) and peripheral probes:
  *     - MCP23017 x3 (I2C)
- *     - CAT24C512 EEPROM (read sys-info/checksum block)
+ *     - CAT24C256 EEPROM (read sys-info/checksum block)
  *     - HLW8032 power meter (expect sane response if available)
  *     - W5500 (read VERSIONR)
  *  3) Subsystem initialization in strict dependency order:
@@ -235,7 +235,7 @@ static void InitTask(void *pvParameters) {
     init_i2c();
     init_spi();
     init_adc();
-    CAT24C512_Init();
+    CAT24C256_Init();
     MCP2017_Init(); /* Registers and initializes 0x20/0x21/0x23 MCPs */
     vTaskDelay(pdMS_TO_TICKS(100));
 
