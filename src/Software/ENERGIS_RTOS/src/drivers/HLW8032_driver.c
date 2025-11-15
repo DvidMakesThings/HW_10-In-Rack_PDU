@@ -1,7 +1,7 @@
 /**
  * @file src/drivers/HLW8032_driver.c
  * @author DvidMakesThings - David Sipos
- * 
+ *
  * @version 1.2.0
  * @date 2025-11-08
  *
@@ -379,10 +379,10 @@ void hlw8032_update_uptime(uint8_t ch, bool state) {
         return;
 
     if (state && !cached_state[ch]) {
-        /* Transition OFF → ON: start timer */
+        /* Transition OFF -> ON: remember start of active period */
         channel_last_on[ch] = get_absolute_time();
     } else if (!state && cached_state[ch]) {
-        /* Transition ON → OFF: accumulate elapsed time */
+        /* Transition ON -> OFF: accumulate elapsed time into history */
         uint64_t elapsed_us = absolute_time_diff_us(channel_last_on[ch], get_absolute_time());
         channel_uptime[ch] += (uint32_t)(elapsed_us / 1000000ULL);
     }
@@ -395,12 +395,21 @@ uint32_t hlw8032_get_uptime(uint8_t ch) {
         return 0;
 
     uint32_t total = channel_uptime[ch];
+    uint32_t current = 0;
+
     if (cached_state[ch]) {
-        /* Add currently running time */
+        /* While ON, compute seconds since last ON */
         uint64_t elapsed_us = absolute_time_diff_us(channel_last_on[ch], get_absolute_time());
-        total += (uint32_t)(elapsed_us / 1000000ULL);
+        current = (uint32_t)(elapsed_us / 1000000ULL);
     }
-    return total;
+
+#ifdef USE_ACCUMULATED_UPTIME
+    /* Lifetime uptime: accumulated history + current active slice */
+    return total + current;
+#else
+    /* Session uptime: only the current active period */
+    return cached_state[ch] ? current : 0u;
+#endif
 }
 
 /* ===================================================================== */
@@ -412,7 +421,6 @@ void hlw8032_poll_once(void) {
 
     /* Query relay state from MCP driver */
     bool state = mcp_get_channel_state(ch);
-    cached_state[ch] = state;
     hlw8032_update_uptime(ch, state);
 
     /* Read measurement */
@@ -429,7 +437,6 @@ void hlw8032_poll_once(void) {
 void hlw8032_refresh_all(void) {
     for (uint8_t ch = 0; ch < 8; ch++) {
         bool state = mcp_get_channel_state(ch);
-        cached_state[ch] = state;
         hlw8032_update_uptime(ch, state);
 
         bool ok = hlw8032_read(ch);

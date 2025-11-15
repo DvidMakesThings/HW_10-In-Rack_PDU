@@ -28,7 +28,7 @@
  * This specific format allows the device to be identified
  */
 #define SERIAL_NUMBER_STR "SN-"
-#define SERIAL_NUMBER_NUM "0167662"
+#define SERIAL_NUMBER_NUM "0167663"
 #define SERIAL_NUMBER SERIAL_NUMBER_STR SERIAL_NUMBER_NUM
 
 /**

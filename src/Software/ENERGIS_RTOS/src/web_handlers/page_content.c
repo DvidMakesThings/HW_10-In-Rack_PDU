@@ -18,7 +18,7 @@
  * @brief HTML content for the Control page.
  *
  * This string contains the HTML markup for the Control page,
- * allowing users to toggle power channels and monitor real-time data.
+ * allowing users to toggle power channels and monitor data.
  */
 const char control_html[] =
     "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\" /><meta name=\"viewport\" "
@@ -68,7 +68,7 @@ const char control_html[] =
     "href=\"control.html\">Control</a></li><li><a href=\"settings.html\">Settings</a></li><li><a "
     "href=\"help.html\">Help</a></li><li><a href=\"user_manual.html\">User Manual</a></li><li><a "
     "href=\"programming_manual.html\">Automation Manual</a></li></ul></nav><main "
-    "class=\"main-content\"><h2>Control</h2><p>Manage power channels and monitor real-time "
+    "class=\"main-content\"><h2>Control</h2><p>Manage power channels and monitor "
     "data.</p><form method=\"post\" action=\"/api/control\" "
     "onsubmit=\"applyChanges(event)\"><table><tr><th>Channel</th><th>Switch</th><th>Voltage "
     "(V)</th><th>Current (A)</th><th>Uptime (s)</th><th>Power "

@@ -1,0 +1,85 @@
+# HELP energis_up 1 if the metrics handler is healthy.
+# TYPE energis_up gauge
+energis_up 1
+# HELP energis_build_info Build and device identifiers.
+# TYPE energis_build_info gauge
+energis_build_info{version="1.0.0",serial="SN-0167663"} 1
+# HELP energis_uptime_seconds System uptime in seconds.
+# TYPE energis_uptime_seconds counter
+energis_uptime_seconds 32
+# HELP energis_internal_temperature_celsius Internal temperature.
+# TYPE energis_internal_temperature_celsius gauge
+energis_internal_temperature_celsius 31.136
+# HELP energis_temp_calibrated 1 if temperature calibration is applied.
+# TYPE energis_temp_calibrated gauge
+energis_temp_calibrated 1
+# HELP energis_temp_calibration_mode Calibration mode: 0=none, 1=1pt, 2=2pt.
+# TYPE energis_temp_calibration_mode gauge
+energis_temp_calibration_mode 1
+# HELP energis_vusb_volts USB rail voltage.
+# TYPE energis_vusb_volts gauge
+energis_vusb_volts 5.332
+# HELP energis_vsupply_volts 12V supply rail voltage.
+# TYPE energis_vsupply_volts gauge
+energis_vsupply_volts 12.101
+# HELP energis_http_requests_total Total HTTP requests served.
+# TYPE energis_http_requests_total counter
+energis_http_requests_total 19
+# HELP energis_channel_state Relay state (1=ON, 0=OFF).
+# TYPE energis_channel_state gauge
+energis_channel_state{ch="1"} 1
+energis_channel_state{ch="2"} 0
+energis_channel_state{ch="3"} 1
+energis_channel_state{ch="4"} 1
+energis_channel_state{ch="5"} 0
+energis_channel_state{ch="6"} 0
+energis_channel_state{ch="7"} 1
+energis_channel_state{ch="8"} 0
+# HELP energis_channel_telemetry_valid 1 if telemetry for channel is fresh/valid.
+# TYPE energis_channel_telemetry_valid gauge
+energis_channel_telemetry_valid{ch="1"} 1
+energis_channel_telemetry_valid{ch="2"} 1
+energis_channel_telemetry_valid{ch="3"} 1
+energis_channel_telemetry_valid{ch="4"} 1
+energis_channel_telemetry_valid{ch="5"} 1
+energis_channel_telemetry_valid{ch="6"} 1
+energis_channel_telemetry_valid{ch="7"} 1
+energis_channel_telemetry_valid{ch="8"} 1
+# HELP energis_channel_voltage_volts Channel voltage.
+# TYPE energis_channel_voltage_volts gauge
+energis_channel_voltage_volts{ch="1"} 0.000
+energis_channel_voltage_volts{ch="2"} 0.000
+energis_channel_voltage_volts{ch="3"} 0.000
+energis_channel_voltage_volts{ch="4"} 0.000
+energis_channel_voltage_volts{ch="5"} 0.000
+energis_channel_voltage_volts{ch="6"} 0.000
+energis_channel_voltage_volts{ch="7"} 0.000
+energis_channel_voltage_volts{ch="8"} 0.000
+# HELP energis_channel_current_amps Channel current.
+# TYPE energis_channel_current_amps gauge
+energis_channel_current_amps{ch="1"} 0.000
+energis_channel_current_amps{ch="2"} 0.000
+energis_channel_current_amps{ch="3"} 0.000
+energis_channel_current_amps{ch="4"} 0.000
+energis_channel_current_amps{ch="5"} 0.000
+energis_channel_current_amps{ch="6"} 0.000
+energis_channel_current_amps{ch="7"} 0.000
+energis_channel_current_amps{ch="8"} 0.000
+# HELP energis_channel_power_watts Active power per channel.
+# TYPE energis_channel_power_watts gauge
+energis_channel_power_watts{ch="1"} 0.000
+energis_channel_power_watts{ch="2"} 0.000
+energis_channel_power_watts{ch="3"} 0.000
+energis_channel_power_watts{ch="4"} 0.000
+energis_channel_power_watts{ch="5"} 0.000
+energis_channel_power_watts{ch="6"} 0.000
+energis_channel_power_watts{ch="7"} 0.000
+energis_channel_power_watts{ch="8"} 0.000
+energis_channel_energy_watt_hours_total{ch="1"} 0.000
+energis_channel_energy_watt_hours_total{ch="2"} 0.000
+energis_channel_energy_watt_hours_total{ch="3"} 0.000
+energis_channel_energy_watt_hours_total{ch="4"} 0.000
+energis_channel_energy_watt_hours_total{ch="5"} 0.000
+energis_channel_energy_watt_hours_total{ch="6"} 0.000
+energis_channel_energy_watt_hours_total{ch="7"} 0.000
+energis_channel_energy_watt_hours_total{ch="8"} 0.000

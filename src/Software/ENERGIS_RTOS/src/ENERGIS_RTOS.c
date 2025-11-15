@@ -47,7 +47,7 @@ int main(void) {
     Helpers_EarlyBootSnapshot();
 
     // Set system clock to 200 MHz
-    set_sys_clock_khz(200000, true);
+    // set_sys_clock_khz(200000, true);
 
     /* Small delay to let USB enumerate */
     sleep_ms(1000);

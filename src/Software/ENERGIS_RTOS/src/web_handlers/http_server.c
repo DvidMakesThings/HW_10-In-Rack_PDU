@@ -242,6 +242,7 @@ void http_server_process(void) {
         }
 
         http_buf[n] = '\0';
+        metrics_inc_http_requests();
         char *body_ptr = http_buf + ((body_off > 0 && body_off < HTTP_BUF_SIZE) ? body_off : n);
         if (body_ptr + body_len > http_buf + HTTP_BUF_SIZE)
             body_len = (http_buf + HTTP_BUF_SIZE) - body_ptr;
@@ -257,6 +258,8 @@ void http_server_process(void) {
             handle_settings_post(http_sock, body_ptr);
         } else if (!strncmp(http_buf, "POST /api/control", 17)) {
             handle_control_request(http_sock, body_ptr);
+        } else if (!strncmp(http_buf, "GET /metrics", 12)) {
+            handle_metrics_request(http_sock);
         } else if (!strncmp(http_buf, "GET /settings.html", 18)) {
             handle_settings_request(http_sock);
         } else {
