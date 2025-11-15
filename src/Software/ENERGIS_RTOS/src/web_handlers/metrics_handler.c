@@ -2,7 +2,7 @@
  * @file src/web_handlers/metrics_handler.c
  * @author DvidMakesThings - David Sipos
  *
- * @version 1.0.0
+ * @version 1.1.0
  * @date 2025-11-15
  *
  * @details Implements /metrics HTTP endpoint that exposes ENERGIS runtime data
@@ -96,9 +96,9 @@ static int render_metrics(void) {
 
     /* Uptime */
     pos += snprintf(metrics_buffer + pos, bufsize - pos,
-                    "# HELP energis_uptime_seconds System uptime in seconds.\n"
-                    "# TYPE energis_uptime_seconds counter\n"
-                    "energis_uptime_seconds %u\n",
+                    "# HELP energis_uptime_seconds_total System uptime in seconds.\n"
+                    "# TYPE energis_uptime_seconds_total counter\n"
+                    "energis_uptime_seconds_total %u\n",
                     uptime_sec);
     if (pos >= bufsize)
         return -1;
@@ -232,10 +232,31 @@ static int render_metrics(void) {
         return -1;
 
     for (int ch = 0; ch < 8; ch++) {
-        meter_telemetry_t telem = (meter_telemetry_t){0};
-        float P = (MeterTask_GetTelemetry((uint8_t)ch, &telem) && telem.valid) ? telem.power : 0.0f;
+        meter_telemetry_t telem;
+        float P = 0.0f;
+        if (MeterTask_GetTelemetry((uint8_t)ch, &telem) && telem.valid)
+            P = telem.power;
         pos += snprintf(metrics_buffer + pos, bufsize - pos,
                         "energis_channel_power_watts{ch=\"%d\"} %.3f\n", ch + 1, P);
+        if (pos >= bufsize)
+            return -1;
+    }
+    net_beat();
+
+    pos +=
+        snprintf(metrics_buffer + pos, bufsize - pos,
+                 "# HELP energis_channel_energy_watt_hours_total Accumulated energy per channel.\n"
+                 "# TYPE energis_channel_energy_watt_hours_total counter\n");
+    if (pos >= bufsize)
+        return -1;
+
+    for (int ch = 0; ch < 8; ch++) {
+        meter_telemetry_t telem;
+        float E_wh = 0.0f;
+        if (MeterTask_GetTelemetry((uint8_t)ch, &telem) && telem.valid)
+            E_wh = telem.energy_kwh * 1000.0f;
+        pos += snprintf(metrics_buffer + pos, bufsize - pos,
+                        "energis_channel_energy_watt_hours_total{ch=\"%d\"} %.3f\n", ch + 1, E_wh);
         if (pos >= bufsize)
             return -1;
     }
@@ -248,7 +269,6 @@ static int render_metrics(void) {
  * @brief Send 404 Not Found response.
  *
  * @param sock Socket number
- *
  * @return None
  *
  * @details Used when metrics feature is disabled or not available.
@@ -260,6 +280,35 @@ static void send_404(uint8_t sock) {
     char header[256];
     int header_len = snprintf(header, sizeof(header),
                               "HTTP/1.1 404 Not Found\r\n"
+                              "Content-Type: text/plain\r\n"
+                              "Content-Length: %d\r\n"
+                              "Connection: close\r\n"
+                              "\r\n",
+                              body_len);
+    if (header_len < 0 || header_len >= (int)sizeof(header))
+        return;
+
+    send(sock, (uint8_t *)header, header_len);
+    net_beat();
+    send(sock, (uint8_t *)body, body_len);
+    net_beat();
+}
+
+/**
+ * @brief Send 503 Service Unavailable response.
+ *
+ * @param sock Socket number
+ * @return None
+ *
+ * @details Used when rendering fails (e.g., buffer overflow) to hint retry.
+ */
+static void send_503(uint8_t sock) {
+    const char *body = "503 Service Unavailable\n";
+    int body_len = (int)strlen(body);
+
+    char header[256];
+    int header_len = snprintf(header, sizeof(header),
+                              "HTTP/1.1 503 Service Unavailable\r\n"
                               "Content-Type: text/plain\r\n"
                               "Content-Length: %d\r\n"
                               "Connection: close\r\n"
@@ -306,7 +355,7 @@ void handle_metrics_request(uint8_t sock) {
     int body_len = render_metrics();
     if (body_len < 0) {
         ERROR_PRINT("%s Buffer overflow during metrics render\n", METRICS_HANDLER_TAG);
-        send_404(sock);
+        send_503(sock); /* CHANGED: return 503 instead of 404 on overflow */
         return;
     }
 

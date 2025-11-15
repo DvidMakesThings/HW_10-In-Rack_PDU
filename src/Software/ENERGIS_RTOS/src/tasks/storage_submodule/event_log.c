@@ -28,7 +28,7 @@
 int EEPROM_WriteEventLogs(const uint8_t *data, size_t len) {
     if (len > EEPROM_EVENT_LOG_SIZE)
         return -1;
-    return CAT24C512_WriteBuffer(EEPROM_EVENT_LOG_START, data, (uint16_t)len);
+    return CAT24C256_WriteBuffer(EEPROM_EVENT_LOG_START, data, (uint16_t)len);
 }
 
 /**
@@ -43,7 +43,7 @@ int EEPROM_WriteEventLogs(const uint8_t *data, size_t len) {
 int EEPROM_ReadEventLogs(uint8_t *data, size_t len) {
     if (len > EEPROM_EVENT_LOG_SIZE)
         return -1;
-    CAT24C512_ReadBuffer(EEPROM_EVENT_LOG_START, data, (uint32_t)len);
+    CAT24C256_ReadBuffer(EEPROM_EVENT_LOG_START, data, (uint32_t)len);
     return 0;
 }
 
@@ -69,13 +69,13 @@ int EEPROM_ReadEventLogs(uint8_t *data, size_t len) {
 int EEPROM_AppendEventLog(const uint8_t *entry) {
     /* Read current write pointer from start of event log section */
     uint16_t ptr = 0;
-    CAT24C512_ReadBuffer(EEPROM_EVENT_LOG_START, (uint8_t *)&ptr, 2);
+    CAT24C256_ReadBuffer(EEPROM_EVENT_LOG_START, (uint8_t *)&ptr, 2);
 
     /* Calculate address for new entry (skip pointer bytes) */
     uint16_t addr = EEPROM_EVENT_LOG_START + EVENT_LOG_POINTER_SIZE + (ptr * EVENT_LOG_ENTRY_SIZE);
 
     /* Write the event log entry */
-    if (CAT24C512_WriteBuffer(addr, entry, EVENT_LOG_ENTRY_SIZE) != 0)
+    if (CAT24C256_WriteBuffer(addr, entry, EVENT_LOG_ENTRY_SIZE) != 0)
         return -1;
 
     /* Increment pointer and wrap if at buffer end */
@@ -84,5 +84,5 @@ int EEPROM_AppendEventLog(const uint8_t *entry) {
         ptr = 0;
 
     /* Update pointer in EEPROM */
-    return CAT24C512_WriteBuffer(EEPROM_EVENT_LOG_START, (uint8_t *)&ptr, 2);
+    return CAT24C256_WriteBuffer(EEPROM_EVENT_LOG_START, (uint8_t *)&ptr, 2);
 }

@@ -37,7 +37,7 @@
 int EEPROM_WriteSensorCalibration(const uint8_t *data, size_t len) {
     if (len > EEPROM_SENSOR_CAL_SIZE)
         return -1;
-    return CAT24C512_WriteBuffer(EEPROM_SENSOR_CAL_START, data, (uint16_t)len);
+    return CAT24C256_WriteBuffer(EEPROM_SENSOR_CAL_START, data, (uint16_t)len);
 }
 
 /**
@@ -53,7 +53,7 @@ int EEPROM_WriteSensorCalibration(const uint8_t *data, size_t len) {
 int EEPROM_ReadSensorCalibration(uint8_t *data, size_t len) {
     if (len > EEPROM_SENSOR_CAL_SIZE)
         return -1;
-    CAT24C512_ReadBuffer(EEPROM_SENSOR_CAL_START, data, (uint32_t)len);
+    CAT24C256_ReadBuffer(EEPROM_SENSOR_CAL_START, data, (uint32_t)len);
     return 0;
 }
 
@@ -71,7 +71,7 @@ int EEPROM_WriteSensorCalibrationForChannel(uint8_t ch, const hlw_calib_t *in) {
     if (ch >= 8 || !in)
         return -1;
     uint16_t addr = EEPROM_SENSOR_CAL_START + (ch * sizeof(hlw_calib_t));
-    return CAT24C512_WriteBuffer(addr, (const uint8_t *)in, sizeof(hlw_calib_t));
+    return CAT24C256_WriteBuffer(addr, (const uint8_t *)in, sizeof(hlw_calib_t));
 }
 
 /**
@@ -90,7 +90,7 @@ int EEPROM_ReadSensorCalibrationForChannel(uint8_t ch, hlw_calib_t *out) {
         return -1;
 
     uint16_t addr = EEPROM_SENSOR_CAL_START + (ch * sizeof(hlw_calib_t));
-    CAT24C512_ReadBuffer(addr, (uint8_t *)out, sizeof(hlw_calib_t));
+    CAT24C256_ReadBuffer(addr, (uint8_t *)out, sizeof(hlw_calib_t));
 
     if (out->calibrated != 0xCA) {
         out->voltage_factor = HLW8032_VF;
@@ -216,7 +216,7 @@ int EEPROM_WriteTempCalibration(const temp_calib_t *cal) {
     if (sizeof(copy) > EEPROM_TEMP_CAL_SIZE)
         return -1;
 
-    return CAT24C512_WriteBuffer(EEPROM_TEMP_CAL_START, (const uint8_t *)&copy,
+    return CAT24C256_WriteBuffer(EEPROM_TEMP_CAL_START, (const uint8_t *)&copy,
                                  (uint16_t)sizeof(copy));
 }
 
@@ -237,7 +237,7 @@ int EEPROM_ReadTempCalibration(temp_calib_t *out) {
     temp_calib_t tmp;
     memset(&tmp, 0, sizeof(tmp));
 
-    CAT24C512_ReadBuffer(EEPROM_TEMP_CAL_START, (uint8_t *)&tmp, (uint32_t)sizeof(tmp));
+    CAT24C256_ReadBuffer(EEPROM_TEMP_CAL_START, (uint8_t *)&tmp, (uint32_t)sizeof(tmp));
 
     if (!tempcal_is_valid(&tmp)) {
         tempcal_defaults(out);

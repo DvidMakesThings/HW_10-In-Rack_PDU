@@ -31,7 +31,7 @@ extern const userPrefInfo DEFAULT_USER_PREFS;
 int EEPROM_WriteUserPreferences(const uint8_t *data, size_t len) {
     if (len > EEPROM_USER_PREF_SIZE)
         return -1;
-    return CAT24C512_WriteBuffer(EEPROM_USER_PREF_START, data, (uint16_t)len);
+    return CAT24C256_WriteBuffer(EEPROM_USER_PREF_START, data, (uint16_t)len);
 }
 
 /**
@@ -46,7 +46,7 @@ int EEPROM_WriteUserPreferences(const uint8_t *data, size_t len) {
 int EEPROM_ReadUserPreferences(uint8_t *data, size_t len) {
     if (len > EEPROM_USER_PREF_SIZE)
         return -1;
-    CAT24C512_ReadBuffer(EEPROM_USER_PREF_START, data, (uint32_t)len);
+    CAT24C256_ReadBuffer(EEPROM_USER_PREF_START, data, (uint32_t)len);
     return 0;
 }
 
@@ -54,7 +54,7 @@ int EEPROM_ReadUserPreferences(uint8_t *data, size_t len) {
  * @brief Write user preferences with CRC-8 validation.
  *
  * Layout: device_name(32) + location(32) + temp_unit(1) + CRC(1) = 66 bytes
- * Uses split writes to avoid page boundary issues with CAT24C512.
+ * Uses split writes to avoid page boundary issues with CAT24C256.
  *
  * CRITICAL: Must be called with eepromMtx held!
  *
@@ -77,8 +77,8 @@ int EEPROM_WriteUserPrefsWithChecksum(const userPrefInfo *prefs) {
 
     /* Split write to avoid page boundary issues */
     int res = 0;
-    res |= CAT24C512_WriteBuffer(EEPROM_USER_PREF_START, &buffer[0], 64);
-    res |= CAT24C512_WriteBuffer(EEPROM_USER_PREF_START + 64, &buffer[64], 2);
+    res |= CAT24C256_WriteBuffer(EEPROM_USER_PREF_START, &buffer[0], 64);
+    res |= CAT24C256_WriteBuffer(EEPROM_USER_PREF_START + 64, &buffer[64], 2);
 
     return res;
 }
@@ -98,7 +98,7 @@ int EEPROM_ReadUserPrefsWithChecksum(userPrefInfo *prefs) {
         return -1;
 
     uint8_t record[66];
-    CAT24C512_ReadBuffer(EEPROM_USER_PREF_START, record, 66);
+    CAT24C256_ReadBuffer(EEPROM_USER_PREF_START, record, 66);
 
     /* Verify CRC */
     if (calculate_crc8(&record[0], 65) != record[65]) {

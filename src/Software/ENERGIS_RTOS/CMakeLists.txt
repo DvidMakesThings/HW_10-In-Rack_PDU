@@ -59,7 +59,7 @@ add_executable(ENERGIS_RTOS
     #src/system_startup.c
     src/drivers/button_driver.c
     src/drivers/MCP23017_driver.c
-    src/drivers/CAT24C512_driver.c
+    src/drivers/CAT24C256_driver.c
     src/drivers/ethernet_driver.c
     src/drivers/snmp.c
     src/drivers/socket.c

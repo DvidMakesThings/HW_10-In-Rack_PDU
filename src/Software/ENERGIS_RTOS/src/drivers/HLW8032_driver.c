@@ -361,19 +361,6 @@ float hlw8032_get_power(void) { return last_power; }
 
 float hlw8032_get_power_inspect(void) { return last_voltage * last_current; }
 
-float hlw8032_get_power_factor(void) {
-    float apparent = hlw8032_get_power_inspect();
-    if (apparent < 0.1f)
-        return 1.0f;
-    float pf = last_power / apparent;
-    return (pf >= 0.0f && pf <= 1.0f) ? pf : 1.0f;
-}
-
-float hlw8032_get_kwh(void) {
-    /* TODO: Implement energy accumulation */
-    return 0.0f;
-}
-
 void hlw8032_update_uptime(uint8_t ch, bool state) {
     if (ch >= 8)
         return;
