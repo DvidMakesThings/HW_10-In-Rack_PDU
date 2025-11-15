@@ -6,10 +6,10 @@ energis_up 1
 energis_build_info{version="1.0.0",serial="SN-0167663"} 1
 # HELP energis_uptime_seconds System uptime in seconds.
 # TYPE energis_uptime_seconds counter
-energis_uptime_seconds 32
+energis_uptime_seconds 17
 # HELP energis_internal_temperature_celsius Internal temperature.
 # TYPE energis_internal_temperature_celsius gauge
-energis_internal_temperature_celsius 31.136
+energis_internal_temperature_celsius 30.668
 # HELP energis_temp_calibrated 1 if temperature calibration is applied.
 # TYPE energis_temp_calibrated gauge
 energis_temp_calibrated 1
@@ -18,13 +18,13 @@ energis_temp_calibrated 1
 energis_temp_calibration_mode 1
 # HELP energis_vusb_volts USB rail voltage.
 # TYPE energis_vusb_volts gauge
-energis_vusb_volts 5.332
+energis_vusb_volts 5.333
 # HELP energis_vsupply_volts 12V supply rail voltage.
 # TYPE energis_vsupply_volts gauge
 energis_vsupply_volts 12.101
 # HELP energis_http_requests_total Total HTTP requests served.
 # TYPE energis_http_requests_total counter
-energis_http_requests_total 19
+energis_http_requests_total 11
 # HELP energis_channel_state Relay state (1=ON, 0=OFF).
 # TYPE energis_channel_state gauge
 energis_channel_state{ch="1"} 1
@@ -75,11 +75,3 @@ energis_channel_power_watts{ch="5"} 0.000
 energis_channel_power_watts{ch="6"} 0.000
 energis_channel_power_watts{ch="7"} 0.000
 energis_channel_power_watts{ch="8"} 0.000
-energis_channel_energy_watt_hours_total{ch="1"} 0.000
-energis_channel_energy_watt_hours_total{ch="2"} 0.000
-energis_channel_energy_watt_hours_total{ch="3"} 0.000
-energis_channel_energy_watt_hours_total{ch="4"} 0.000
-energis_channel_energy_watt_hours_total{ch="5"} 0.000
-energis_channel_energy_watt_hours_total{ch="6"} 0.000
-energis_channel_energy_watt_hours_total{ch="7"} 0.000
-energis_channel_energy_watt_hours_total{ch="8"} 0.000
