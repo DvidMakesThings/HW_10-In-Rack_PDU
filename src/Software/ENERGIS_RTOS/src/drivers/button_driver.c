@@ -1,10 +1,10 @@
 /**
  * @file src/drivers/button_driver.c
  * @author DvidMakesThings - David Sipos
- * 
+ *
  * @version 1.0.0
  * @date 2025-11-06
- * 
+ *
  * @details Low-level driver implementation for the front-panel buttons and
  * selection/relay indicators using FreeRTOS.
  *
@@ -14,28 +14,12 @@
 
 #include "../CONFIG.h"
 
-/* These symbols are assumed to exist in your project config/headers */
-#ifndef BUT_PLUS
-#define BUT_PLUS (10)
-#endif
-#ifndef BUT_MINUS
-#define BUT_MINUS (11)
-#endif
-#ifndef BUT_SET
-#define BUT_SET (12)
-#endif
-
-/* Optional LED for faults (defined in your project) */
-#ifdef FAULT_LED
-/* uses mcp_display() */
-#endif
-
 /* -------------------- Local helpers ---------------------------------------- */
 /**
  * @brief Turn off all selection LEDs.
  * @param None
  * @return None
- * 
+ *
  */
 static inline void drv_sel_all_off(void) {
     mcp23017_t *sel = mcp_selection();

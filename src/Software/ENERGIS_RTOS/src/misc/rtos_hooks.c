@@ -26,7 +26,6 @@
  * All routines are non-blocking and safe for RP2040. Reboots use the watchdog path.
  */
 
-/* Non-blocking log macro: prefer your logger, otherwise no-op. */
 #ifndef HOOK_LOGE
 #ifdef ERROR_PRINT
 #define HOOK_LOGE(...) ERROR_PRINT(__VA_ARGS__)

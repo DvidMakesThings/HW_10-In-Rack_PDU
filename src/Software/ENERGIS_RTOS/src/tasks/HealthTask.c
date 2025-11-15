@@ -853,7 +853,7 @@ void Health_RebootNow(const char *reason) {
     HEALTH_ERR("INTENTIONAL REBOOT%s%s\r\n", reason ? ": " : "", reason ? reason : "");
     /* Persist context for next boot */
     hscr_store_intentional(t);
-    /* Snapshot any crash logs your system wants */
+    /* Snapshot any crash logs the system wants */
     CrashLog_RecordWdtFeed(t); /* harmless marker; keeps chronology tidy */
     Helpers_EarlyBootSnapshot();
     /* Trigger RP2040 watchdog reset immediately */

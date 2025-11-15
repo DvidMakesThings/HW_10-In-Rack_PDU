@@ -14,7 +14,7 @@
 
 #include "../CONFIG.h"
 
-/* Log through your non-blocking logger to avoid CDC blocking. */
+/* Log through the non-blocking logger to avoid CDC blocking. */
 #ifndef CRASH_LOG
 #ifdef ERROR_PRINT
 #define CRASH_LOG(...) ERROR_PRINT(__VA_ARGS__)

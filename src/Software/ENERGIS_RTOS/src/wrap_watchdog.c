@@ -5,7 +5,6 @@ static void log_err(const char *fmt, ...) {
     va_list ap;
     va_start(ap, fmt);
 #ifdef ERROR_PRINT
-    /* Route via your logger */
     /* We need a fixed-size buffer to avoid re-entrancy surprises inside printf */
     char buf[256];
     int n = vsnprintf(buf, sizeof(buf), fmt, ap);

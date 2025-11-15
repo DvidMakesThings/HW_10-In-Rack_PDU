@@ -42,7 +42,7 @@
  * - Task still internally waits for cfg ready (storage_wait_ready) as before.
  *
  * @instructions
- * Call after ButtonTask_Init(true) in your bringup sequence:
+ * Call after ButtonTask_Init(true) in the bringup sequence:
  *   NetTask_Init(true);
  * Query readiness via Net_IsReady().
  *

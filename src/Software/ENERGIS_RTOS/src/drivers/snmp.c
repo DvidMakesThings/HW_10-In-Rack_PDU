@@ -16,7 +16,7 @@
 #include "../CONFIG.h"
 
 /* ------------------------------------------------------------------------------------------------
- *  Internal state (keep your names)
+ *  Internal state
  * --------------------------------------------------------------------------------------------- */
 
 static snmp_msg_t s_req;
@@ -36,7 +36,7 @@ static uint8_t s_errorIndex = 0;
 static uint32_t s_startTick10ms = 0;
 
 /* ------------------------------------------------------------------------------------------------
- *  Forward declarations (core, keep your signatures/terminology)
+ *  Forward declarations
  * --------------------------------------------------------------------------------------------- */
 
 static int32_t findEntry(const uint8_t *oid, int32_t len);
@@ -64,7 +64,7 @@ static void dumpCode(const char *hdr, const char *tail, const uint8_t *buf, int3
 #endif
 
 /* ------------------------------------------------------------------------------------------------
- *  Public API (unchanged names)
+ *  Public API
  * --------------------------------------------------------------------------------------------- */
 
 bool SNMP_Init(uint8_t sock_agent, uint16_t local_port, uint8_t sock_trap) {
@@ -292,7 +292,7 @@ int32_t SNMP_SendTrap(uint8_t *managerIP, uint8_t *agentIP, int8_t *community,
 }
 
 /* ------------------------------------------------------------------------------------------------
- *  Core implementation (keep names; fix lengths)
+ *  Core implementation
  * --------------------------------------------------------------------------------------------- */
 
 static int32_t findEntry(const uint8_t *oid, int32_t len) {
@@ -388,7 +388,7 @@ static int32_t setEntry(int32_t id, const void *val, int32_t vlen, uint8_t dataT
     return SNMP_SUCCESS;
 }
 
-/* --- TLV helpers (same names) --------------------------------------------------------------- */
+/* --- TLV helpers --------------------------------------------------------------- */
 
 static int32_t parseLength(const uint8_t *msg, int32_t *len) {
     int32_t i = 1;
@@ -536,7 +536,7 @@ static int32_t parseSequence(int32_t reqType, int32_t index) {
     return content + seglen;
 }
 
-/* --- VarBindList (SEQUENCE OF) ------------------------------------------ */
+/* --- VarBindList ------------------------------------------ */
 static int32_t parseSequenceOf(int32_t reqType) {
     int32_t seglen, respLoc;
     snmp_tlv_t seqof;
