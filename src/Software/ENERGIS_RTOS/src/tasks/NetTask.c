@@ -1,7 +1,7 @@
 /**
  * @file src/tasks/NetTask.c
  * @author DvidMakesThings - David Sipos
- * 
+ *
  * @version 1.1.0
  * @date 2025-11-07
  *
@@ -193,7 +193,7 @@ static void NetTask_Function(void *pvParameters) {
  * - Task still internally waits for cfg ready (storage_wait_ready) as before.
  *
  * @instructions
- * Call after ButtonTask_Init(true) in your bringup sequence:
+ * Call after ButtonTask_Init(true) in the bringup sequence:
  *   NetTask_Init(true);
  * Query readiness via Net_IsReady().
  *

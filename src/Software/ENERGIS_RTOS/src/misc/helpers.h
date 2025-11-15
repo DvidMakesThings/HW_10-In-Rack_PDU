@@ -1,16 +1,16 @@
 /**
  * @file src/misc/helpers.h
  * @author DvidMakesThings - David Sipos
- * 
+ *
  * @defgroup misc2 2. Helpers Module
  * @ingroup misc
  * @brief Header file for helpers module
  * @{
- * 
+ *
  * @version 1.0.0
  * @date 2025-11-06
- * 
- * @details System wide used helper functions, which cannot fit 
+ *
+ * @details System wide used helper functions, which cannot fit
  * into other modules.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
@@ -68,9 +68,6 @@ bool ethernet_apply_network_from_storage(const networkInfo *ni);
  * Reads RP2040 reset-cause hardware and prints a single concise line:
  *   [BOOT] cause: chip=0xXXXXXXXX had{por=?,run=?,wd=?,vreg=?,temp=?} wd_reason=0xXXXXXXXX
  *
- * Place this as the first call in your entry point (before peripheral init).
- * It relies only on RP2040 'hardware/regs' mappings and INFO_PRINT.
- *
  * @note This function is non-intrusive: it does not modify any state bits,
  *       it only reads and prints. All bit fields are also printed raw to
  *       avoid dependence on SDK version or naming differences.
@@ -95,7 +92,6 @@ void Helpers_EarlyBootSnapshot(void);
  * the boots counter, the raw reset bits, and the watchdog scratch registers,
  * then clears the snapshot so the next boot starts fresh.
  *
- * Call this near the end of your deterministic bring-up, after the console/logger is ready.
  */
 void Helpers_LateBootDumpAndClear(void);
 

@@ -11,7 +11,6 @@
  * @date 2025-11-07
  *
  * @details Stores HTML pages as const char arrays in flash memory.
- * Pages should be embedded directly from your HTML files.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU

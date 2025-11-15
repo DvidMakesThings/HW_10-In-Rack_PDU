@@ -204,14 +204,6 @@ static bool probe_eeprom(void) {
  *     - LEDs to indicate RUNNING
  *     - Log "System bring-alive complete" and self-delete
  *
- * @par Instructions
- * - Keep task ownership boundaries: only StorageTask touches EEPROM, only
- *   SwitchTask touches MCPs, only NetTask touches W5500, only MeterTask touches HLW8032.
- * - If a marked "[optional]" task is not compiled in your build, define
- *   the corresponding macro as 0 or leave it undefined; this function
- *   compiles cleanly and skips those steps.
- * - SAFE output mask must be applied by SwitchTask immediately after creation.
- *
  * @param pvParameters Unused.
  */
 static void InitTask(void *pvParameters) {
@@ -253,7 +245,7 @@ static void InitTask(void *pvParameters) {
     (void)probe_mcps();
     (void)probe_eeprom();
 
-    /* ===== PHASE 3: Deterministic Subsystem Bring-up (keep your order) ===== */
+    /* ===== PHASE 3: Deterministic Subsystem Bring-up ===== */
     log_printf("\r\n");
     INFO_PRINT("%s ===== Phase 3: Subsystem Bring-up (deterministic) =====\r\n", INIT_TASK_TAG);
     const TickType_t step_timeout = pdMS_TO_TICKS(5000);
