@@ -241,18 +241,6 @@ static int render_metrics(void) {
     }
     net_beat();
 
-    for (int ch = 0; ch < 8; ch++) {
-        meter_telemetry_t telem = (meter_telemetry_t){0};
-        float E_wh = (MeterTask_GetTelemetry((uint8_t)ch, &telem) && telem.valid)
-                         ? (telem.energy_kwh * 1000.0f)
-                         : 0.0f;
-        pos += snprintf(metrics_buffer + pos, bufsize - pos,
-                        "energis_channel_energy_watt_hours_total{ch=\"%d\"} %.3f\n", ch + 1, E_wh);
-        if (pos >= bufsize)
-            return -1;
-    }
-    net_beat();
-
     return pos;
 }
 
