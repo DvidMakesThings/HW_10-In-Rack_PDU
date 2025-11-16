@@ -9,7 +9,7 @@
  *
  * @version 1.0.0
  * @date 2025-11-06
- * 
+ *
  * @details Implements a FreeRTOS-based logging task that receives log messages
  * via a queue and outputs them to stdio (USB-CDC).
  *
@@ -55,6 +55,32 @@ BaseType_t LoggerTask_Init(bool enable);
  * The message is truncated to @c LOGGER_MSG_MAX bytes if necessary.
  */
 void log_printf(const char *fmt, ...);
+
+/**
+ * @brief Begin a logger mute section.
+ *
+ * Increments an internal counter; while non-zero, @ref log_printf drops all
+ * messages. Nested calls are supported.
+ */
+void Logger_MutePush(void);
+
+/**
+ * @brief End a logger mute section.
+ *
+ * Decrements the internal mute counter (saturating at zero). When it reaches
+ * zero, @ref log_printf resumes normal operation.
+ */
+void Logger_MutePop(void);
+
+/**
+ * @brief Print a log message that bypasses the mute gate.
+ *
+ * Same semantics as @ref log_printf, but logs even while the logger is muted.
+ *
+ * @param fmt Format string
+ * @param ... Format arguments
+ */
+void log_printf_force(const char *fmt, ...);
 
 #endif /* LOGGER_H */
 

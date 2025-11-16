@@ -139,6 +139,33 @@ typedef struct {
 /* ==================== Public API ==================== */
 
 /**
+ * @brief Trigger a formatted EEPROM dump asynchronously.
+ *
+ * Enqueues a @ref STORAGE_CMD_DUMP_FORMATTED message and returns immediately
+ * without waiting for completion. The dump is executed by StorageTask in the
+ * background, and log output is generated from there.
+ *
+ * @return true if the request was enqueued, false if the queue was full or
+ *         storage is not ready.
+ */
+bool storage_dump_formatted_async(void);
+
+/**
+ * @brief Erase the entire EEPROM via the Storage subsystem.
+ *
+ * This helper acquires the EEPROM mutex, invokes EEPROM_EraseAll(), and releases
+ * the mutex again. Erase is performed in 32-byte chunks with write-cycle delays
+ * inside CAT24C256_WriteBuffer(), so other tasks continue to run and the watchdog
+ * is periodically fed.
+ *
+ * @param timeout_ms Maximum time to wait for the EEPROM mutex in milliseconds.
+ *                   If 0, a default of 30000 ms is used.
+ *
+ * @return true if the erase completed successfully, false on timeout or driver error.
+ */
+bool storage_erase_all(uint32_t timeout_ms);
+
+/**
  * @brief Initialize and start the Storage task with a deterministic enable gate.
  *
  * @details
@@ -229,7 +256,15 @@ bool storage_set_sensor_cal(uint8_t channel, const hlw_calib_t *cal);
 /* ==================== SIL Testing API ==================== */
 
 /**
- * @brief Dump entire EEPROM in formatted hex table (SIL testing).
+ * @brief Trigger a formatted EEPROM dump in StorageTask context.
+ *
+ * Enqueues a @ref STORAGE_CMD_DUMP_FORMATTED request and waits for completion.
+ * While the dump executes, logger output from other tasks is muted so the
+ * generated hex dump is not interleaved with unrelated logs.
+ *
+ * @param timeout_ms Maximum time to wait for the dump to finish.
+ *
+ * @return true on success, false on timeout or queue/semaphore failure.
  */
 bool storage_dump_formatted(uint32_t timeout_ms);
 
@@ -237,13 +272,6 @@ bool storage_dump_formatted(uint32_t timeout_ms);
  * @brief Run EEPROM self-test for SIL validation.
  */
 bool storage_self_test(uint16_t test_addr, uint32_t timeout_ms);
-
-/**
- * @brief Erase the entire CAT24C256 by writing 0xFF over all addresses.
- * @warning Must be called with eepromMtx held by the caller.
- * @return 0 on success, -1 on I2C/write failure.
- */
-int EEPROM_EraseAll(void);
 
 #endif /* STORAGE_TASK_H */
 

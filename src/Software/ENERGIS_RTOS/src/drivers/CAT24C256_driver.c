@@ -129,23 +129,9 @@ void CAT24C256_ReadBuffer(uint16_t addr, uint8_t *buffer, uint32_t len) {
     }
 }
 
-void CAT24C256_Dump(uint8_t *buffer) {
-    if (!buffer) {
-        ERROR_PRINT("[CAT24C256] Dump: NULL buffer pointer\r\n");
-        return;
-    }
-
-    INFO_PRINT("[CAT24C256] Dumping entire EEPROM (%u bytes)\r\n", CAT24C256_TOTAL_SIZE);
-    CAT24C256_ReadBuffer(0x0000, buffer, CAT24C256_TOTAL_SIZE);
-    INFO_PRINT("[CAT24C256] EEPROM dump complete\r\n");
-}
-
 void CAT24C256_DumpFormatted(void) {
     char line[256], field[16];
     TaskHandle_t h = xTaskGetCurrentTaskHandle();
-    UBaseType_t old_prio = uxTaskPriorityGet(h);
-
-    vTaskPrioritySet(h, configMAX_PRIORITIES - 1);
 
     log_printf("EE_DUMP_START\r\n");
     log_printf("Addr   00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F \r\n");
@@ -164,8 +150,6 @@ void CAT24C256_DumpFormatted(void) {
     }
 
     log_printf("EE_DUMP_END\r\n");
-
-    vTaskPrioritySet(h, old_prio);
 }
 
 bool CAT24C256_SelfTest(uint16_t test_addr) {

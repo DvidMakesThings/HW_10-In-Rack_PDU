@@ -88,7 +88,7 @@ do {
 #endif
 
 #ifndef HEALTH_SILENCE_MS
-#define HEALTH_SILENCE_MS 50000u
+#define HEALTH_SILENCE_MS 3000u
 #endif
 
 #ifndef HEALTH_BLOCK_RING_SIZE
@@ -557,8 +557,8 @@ static void health_task(void *arg) {
                 idle_stall_ms = 0u;
             }
             if (idle_stall_ms >= (HEALTH_PERIOD_MS * 3u)) {
-                // HEALTH_WRN("scheduler idle stalled ~%lu ms (idle_last_ms=%lu)\r\n", (unsigned
-                // long)idle_stall_ms, (unsigned long)RTOS_IdleCanary_LastMs());
+                HEALTH_WRN("scheduler idle stalled ~%lu ms (idle_last_ms=%lu)\r\n",
+                           (unsigned long)idle_stall_ms, (unsigned long)RTOS_IdleCanary_LastMs());
             }
         }
 

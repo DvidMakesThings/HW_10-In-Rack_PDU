@@ -143,7 +143,7 @@ extern w5500_NetConfig eth_netcfg;
 #define DEFAULT_LOCATION "Location"
 
 /* ---------- SYSTEM CONSTANTS ---------- */
-#define EEPROM_SIZE 0x8000   
+#define EEPROM_SIZE 0x8000
 #define LOGGER_STACK_SIZE 1024
 #define LOGGER_QUEUE_LEN 64
 #define LOGGER_MSG_MAX 128
@@ -201,13 +201,13 @@ extern w5500_NetConfig eth_netcfg;
 #endif
 
 #if ERROR
-#define ERROR_PRINT(...) log_printf("[ERROR] " __VA_ARGS__)
+#define ERROR_PRINT(...) log_printf_force("[ERROR] " __VA_ARGS__)
 #else
 #define ERROR_PRINT(...) ((void)0)
 #endif
 
 #if WARNING
-#define WARNING_PRINT(...) log_printf("[WARNING] " __VA_ARGS__)
+#define WARNING_PRINT(...) log_printf_force("[WARNING] " __VA_ARGS__)
 #else
 #define WARNING_PRINT(...) ((void)0)
 #endif
