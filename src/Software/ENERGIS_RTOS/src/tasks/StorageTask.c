@@ -83,20 +83,6 @@ static SemaphoreHandle_t s_dump_done_sem = NULL;
 
 /**
  * @brief Incremental formatted EEPROM dump worker.
- *
- * Called from @ref StorageTask main loop whenever @ref s_dump_active is true.
- * Prints a small slice of the CAT24C256 contents in 16-byte rows using
- * @ref log_printf_force() so output is not affected by logger mute.
- *
- * The function:
- * - On the very first call (when @ref s_dump_next_addr is 0) prints the header.
- * - Reads a fixed number of rows per invocation to avoid long blocking.
- * - Sends a Health heartbeat for @ref HEALTH_ID_STORAGE on each slice.
- * - On completion prints the EE_DUMP_END marker, pops logger mute, clears
- *   @ref s_dump_active and signals @ref s_dump_done_sem if non-NULL.
- *
- * @note Must only be called from StorageTask context. It acquires and
- *       releases @ref eepromMtx internally with a bounded critical section.
  */
 static void storage_dump_eeprom_formatted(void) {
     if (!s_dump_active) {
@@ -156,40 +142,12 @@ static void storage_dump_eeprom_formatted(void) {
     vTaskDelay(pdMS_TO_TICKS(1));
 }
 
-/**
- * @brief Trigger a formatted EEPROM dump asynchronously.
- *
- * Enqueues a @ref STORAGE_CMD_DUMP_FORMATTED message and returns immediately
- * without waiting for completion. The dump is executed by StorageTask in the
- * background, and log output is generated from there.
- *
- * @return true if the request was enqueued, false if the queue was full or
- *         storage is not ready.
- */
-bool storage_dump_formatted_async(void) {
-    if (!eth_netcfg_ready)
-        return false;
-
-    storage_msg_t msg;
-    memset(&msg, 0, sizeof(msg));
-    msg.cmd = STORAGE_CMD_DUMP_FORMATTED;
-    msg.output_ptr = NULL;
-    msg.done_sem = NULL;
-
-    if (xQueueSend(q_cfg, &msg, 0) != pdPASS) {
-        return false;
-    }
-
-    return true;
-}
-
 /* ====================================================================== */
 /*                        RTOS STORAGE TASK                              */
 /* ====================================================================== */
 
 /**
  * @brief Load all config from EEPROM to RAM cache.
- *
  * Called once during task startup to populate RAM cache with stored config.
  * Uses submodule functions to load each section.
  */
@@ -231,7 +189,6 @@ static void load_config_from_eeprom(void) {
 
 /**
  * @brief Commit all dirty sections to EEPROM.
- *
  * Checks dirty flags and writes changed sections to EEPROM using submodule functions.
  * Optionally triggers reboot if STORAGE_REBOOT_ON_CONFIG_SAVE is enabled.
  */
@@ -297,11 +254,8 @@ static void commit_dirty_sections(void) {
 
 /**
  * @brief Process storage request message.
- *
  * Handles all storage commands by updating RAM cache, setting dirty flags,
  * or directly accessing EEPROM (for channel labels and testing).
- *
- * @param msg Pointer to storage message structure
  */
 static void process_storage_msg(const storage_msg_t *msg) {
     if (!msg)
@@ -413,15 +367,6 @@ static void process_storage_msg(const storage_msg_t *msg) {
          * from the incremental worker when EE_DUMP_END is printed. */
         return;
 
-    case STORAGE_CMD_SELF_TEST:
-        xSemaphoreTake(eepromMtx, portMAX_DELAY);
-        bool result = CAT24C256_SelfTest(msg->data.sil_test.test_addr);
-        if (msg->data.sil_test.result) {
-            *msg->data.sil_test.result = result;
-        }
-        xSemaphoreGive(eepromMtx);
-        break;
-
     default:
         WARNING_PRINT("%s Unknown command: %d\r\n", STORAGE_TASK_TAG, msg->cmd);
         break;
@@ -446,8 +391,6 @@ static void process_storage_msg(const storage_msg_t *msg) {
  * - Auto-commit dirty sections after debounce period
  * - Send periodic heartbeat
  * - Drive incremental EEPROM dump when @ref s_dump_active is true
- *
- * @param arg Unused task parameter
  */
 static void StorageTask(void *arg) {
     (void)arg;
@@ -504,9 +447,35 @@ static void StorageTask(void *arg) {
     }
 }
 
-/* ====================================================================== */
+/* ##################################################################### */
 /*                       PUBLIC API FUNCTIONS                            */
-/* ====================================================================== */
+/* ##################################################################### */
+
+/* ********************************************************************** */
+/*                        EEPROM DUMP (utility)                           */
+/* ********************************************************************** */
+/**
+ * @brief Trigger a formatted EEPROM dump asynchronously.
+ * Enqueues a @ref STORAGE_CMD_DUMP_FORMATTED message and returns immediately
+ * without waiting for completion. The dump is executed by StorageTask in the
+ * background, and log output is generated from there.
+ */
+bool storage_dump_formatted_async(void) {
+    if (!eth_netcfg_ready)
+        return false;
+
+    storage_msg_t msg;
+    memset(&msg, 0, sizeof(msg));
+    msg.cmd = STORAGE_CMD_DUMP_FORMATTED;
+    msg.output_ptr = NULL;
+    msg.done_sem = NULL;
+
+    if (xQueueSend(q_cfg, &msg, 0) != pdPASS) {
+        return false;
+    }
+
+    return true;
+}
 
 /* ********************************************************************** */
 /*                    EEPROM_EraseAll (utility)                           */
@@ -514,12 +483,7 @@ static void StorageTask(void *arg) {
 
 /**
  * @brief Erase entire EEPROM to 0xFF.
- *
  * Writes 0xFF to all EEPROM addresses in 32-byte chunks.
- *
- * CRITICAL: Must be called with eepromMtx held!
- *
- * @return 0 on success, -1 on failure
  */
 int EEPROM_EraseAll(void) {
     uint8_t blank[32];
@@ -535,16 +499,10 @@ int EEPROM_EraseAll(void) {
 
 /**
  * @brief Erase the entire EEPROM via the Storage subsystem.
- *
  * This helper acquires the EEPROM mutex, invokes EEPROM_EraseAll(), and releases
  * the mutex again. Erase is performed in 32-byte chunks with write-cycle delays
  * inside CAT24C256_WriteBuffer(), so other tasks continue to run and the watchdog
  * is periodically fed.
- *
- * @param timeout_ms Maximum time to wait for the EEPROM mutex in milliseconds.
- *                   If 0, a default of 30000 ms is used.
- *
- * @return true if the erase completed successfully, false on timeout or driver error.
  */
 bool storage_erase_all(uint32_t timeout_ms) {
     if (!eth_netcfg_ready)
@@ -564,12 +522,13 @@ bool storage_erase_all(uint32_t timeout_ms) {
     return (res == 0);
 }
 
+/* ********************************************************************** */
+/*                             STORAGE TASK                               */
+/* ********************************************************************** */
+
 /**
  * @brief Initialize and start the Storage task with a deterministic enable gate.
- *
  * Creates mutex, event group, and task. Waits for Console readiness before proceeding.
- *
- * @param enable Gate that allows or skips starting this subsystem
  */
 void StorageTask_Init(bool enable) {
     /* TU-local READY flag accessor (no file-scope globals added). */
@@ -613,10 +572,6 @@ void StorageTask_Init(bool enable) {
 
 /**
  * @brief Storage subsystem readiness query (configuration loaded).
- *
- * Returns true once StorageTask has signaled CFG_READY in cfgEvents.
- *
- * @return true if configuration is ready, false otherwise
  */
 bool Storage_IsReady(void) {
     /* Fast path: once StorageTask finished boot load it sets this flag. */
@@ -636,12 +591,18 @@ bool Storage_IsReady(void) {
     return false;
 }
 
+/**
+ * @brief Wait for config to be loaded from EEPROM.
+ */
 bool storage_wait_ready(uint32_t timeout_ms) {
     EventBits_t bits =
         xEventGroupWaitBits(cfgEvents, CFG_READY_BIT, pdFALSE, pdTRUE, pdMS_TO_TICKS(timeout_ms));
     return (bits & CFG_READY_BIT) != 0;
 }
 
+/**
+ * @brief Get network configuration.
+ */
 bool storage_get_network(networkInfo *out) {
     if (!out || !eth_netcfg_ready)
         return false;
@@ -658,6 +619,9 @@ bool storage_get_network(networkInfo *out) {
     return ok;
 }
 
+/**
+ * @brief Set network configuration.
+ */
 bool storage_set_network(const networkInfo *net) {
     if (!net || !eth_netcfg_ready)
         return false;
@@ -668,6 +632,9 @@ bool storage_set_network(const networkInfo *net) {
     return xQueueSend(q_cfg, &msg, pdMS_TO_TICKS(1000)) == pdPASS;
 }
 
+/**
+ * @brief Get user preferences.
+ */
 bool storage_get_prefs(userPrefInfo *out) {
     if (!out || !eth_netcfg_ready)
         return false;
@@ -677,6 +644,9 @@ bool storage_get_prefs(userPrefInfo *out) {
     return xQueueSend(q_cfg, &msg, pdMS_TO_TICKS(1000)) == pdPASS;
 }
 
+/**
+ * @brief Set user preferences.
+ */
 bool storage_set_prefs(const userPrefInfo *prefs) {
     if (!prefs || !eth_netcfg_ready)
         return false;
@@ -687,6 +657,9 @@ bool storage_set_prefs(const userPrefInfo *prefs) {
     return xQueueSend(q_cfg, &msg, pdMS_TO_TICKS(1000)) == pdPASS;
 }
 
+/**
+ * @brief Get relay power-on states.
+ */
 bool storage_get_relay_states(uint8_t *out) {
     if (!out || !eth_netcfg_ready)
         return false;
@@ -696,6 +669,9 @@ bool storage_get_relay_states(uint8_t *out) {
     return xQueueSend(q_cfg, &msg, pdMS_TO_TICKS(1000)) == pdPASS;
 }
 
+/**
+ * @brief Set relay states.
+ */
 bool storage_set_relay_states(const uint8_t *states) {
     if (!states || !eth_netcfg_ready)
         return false;
@@ -706,6 +682,9 @@ bool storage_set_relay_states(const uint8_t *states) {
     return xQueueSend(q_cfg, &msg, pdMS_TO_TICKS(1000)) == pdPASS;
 }
 
+/**
+ * @brief Load factory defaults via StorageTask.
+ */
 bool storage_commit_now(uint32_t timeout_ms) {
     if (!eth_netcfg_ready)
         return false;
@@ -726,6 +705,9 @@ bool storage_commit_now(uint32_t timeout_ms) {
     return ok;
 }
 
+/**
+ * @brief Load factory defaults into EEPROM and RAM cache.
+ */
 bool storage_load_defaults(uint32_t timeout_ms) {
     if (!eth_netcfg_ready)
         return false;
@@ -746,6 +728,9 @@ bool storage_load_defaults(uint32_t timeout_ms) {
     return ok;
 }
 
+/**
+ * @brief Read sensor calibration for a channel.
+ */
 bool storage_get_sensor_cal(uint8_t channel, hlw_calib_t *out) {
     if (channel >= 8 || !out || !eth_netcfg_ready)
         return false;
@@ -756,6 +741,9 @@ bool storage_get_sensor_cal(uint8_t channel, hlw_calib_t *out) {
     return xQueueSend(q_cfg, &msg, pdMS_TO_TICKS(1000)) == pdPASS;
 }
 
+/**
+ * @brief Set sensor calibration for a channel.
+ */
 bool storage_set_sensor_cal(uint8_t channel, const hlw_calib_t *cal) {
     if (channel >= 8 || !cal || !eth_netcfg_ready)
         return false;
@@ -769,19 +757,6 @@ bool storage_set_sensor_cal(uint8_t channel, const hlw_calib_t *cal) {
 
 /**
  * @brief Trigger a formatted EEPROM dump in StorageTask context.
- *
- * Enqueues a @ref STORAGE_CMD_DUMP_FORMATTED request and waits for completion.
- * The dump itself is executed incrementally from @ref StorageTask, so other
- * tasks (Net, Meter, Buttons, Health) remain responsive and watchdog feeding
- * is not impacted. While the dump runs, logger output from other tasks is
- * muted via @ref Logger_MutePush()/Logger_MutePop(), so the hex dump remains
- * clean and contiguous. Critical errors and warnings still use
- * @ref log_printf_force() and will appear.
- *
- * @param timeout_ms Maximum time to wait for the dump to finish. If 0, a
- *                   default of 60000 ms is used.
- *
- * @return true on success, false on timeout or queue/semaphore failure.
  */
 bool storage_dump_formatted(uint32_t timeout_ms) {
     if (!Storage_Config_IsReady()) {
@@ -814,27 +789,4 @@ bool storage_dump_formatted(uint32_t timeout_ms) {
 
     vSemaphoreDelete(done_sem);
     return true;
-}
-
-bool storage_self_test(uint16_t test_addr, uint32_t timeout_ms) {
-    if (!eth_netcfg_ready)
-        return false;
-
-    bool result = false;
-    SemaphoreHandle_t done_sem = xSemaphoreCreateBinary();
-    if (!done_sem)
-        return false;
-
-    storage_msg_t msg = {.cmd = STORAGE_CMD_SELF_TEST, .done_sem = done_sem};
-    msg.data.sil_test.test_addr = test_addr;
-    msg.data.sil_test.result = &result;
-
-    if (xQueueSend(q_cfg, &msg, pdMS_TO_TICKS(timeout_ms)) != pdPASS) {
-        vSemaphoreDelete(done_sem);
-        return false;
-    }
-
-    xSemaphoreTake(done_sem, pdMS_TO_TICKS(timeout_ms));
-    vSemaphoreDelete(done_sem);
-    return result;
 }

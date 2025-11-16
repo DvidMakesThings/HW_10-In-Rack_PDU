@@ -34,6 +34,8 @@ static EventGroupHandle_t init_events = NULL;
 
 /**
  * @brief Initialize GPIO pins for all peripherals
+ *
+ * @return None
  */
 static void init_gpio(void) {
 
@@ -90,6 +92,8 @@ static void init_gpio(void) {
 
 /**
  * @brief Initialize I2C buses
+ *
+ * @return None
  */
 static void init_i2c(void) {
     /* I2C0 (Display + Selection MCP23017s) */
@@ -112,6 +116,8 @@ static void init_i2c(void) {
 
 /**
  * @brief Initialize SPI for W5500
+ *
+ * @return None
  */
 static void init_spi(void) {
     spi_init(W5500_SPI_INSTANCE, SPI_SPEED_W5500);
@@ -125,6 +131,8 @@ static void init_spi(void) {
 
 /**
  * @brief Initialize ADC for voltage/temperature sensing
+ *
+ * @return None
  */
 static void init_adc(void) {
     adc_init();
@@ -137,6 +145,10 @@ static void init_adc(void) {
 
 /**
  * @brief Probe I2C device at given address
+ *
+ * @param i2c I2C instance
+ * @param addr 7-bit I2C address
+ * @param name Device name for logging
  * @return true if device responds
  */
 static bool probe_i2c_device(i2c_inst_t *i2c, uint8_t addr, const char *name) {
@@ -155,6 +167,8 @@ static bool probe_i2c_device(i2c_inst_t *i2c, uint8_t addr, const char *name) {
 
 /**
  * @brief Probe all MCP23017 devices
+ *
+ * @return true if all MCP23017s respond
  */
 static bool probe_mcps(void) {
     bool relay_ok = probe_i2c_device(i2c1, MCP_RELAY_ADDR, "Relay MCP23017");
@@ -172,6 +186,8 @@ static bool probe_mcps(void) {
 
 /**
  * @brief Probe EEPROM
+ *
+ * @return true if EEPROM responds
  */
 static bool probe_eeprom(void) {
     return probe_i2c_device(EEPROM_I2C, CAT24C256_I2C_ADDR, "EEPROM CAT24C256");
@@ -416,6 +432,10 @@ static void InitTask(void *pvParameters) {
     DEBUG_PRINT("==========================================\r\n\r\n");
     vTaskDelete(NULL);
 }
+
+/* ##################################################################### */
+/*                       PUBLIC API FUNCTIONS                            */
+/* ##################################################################### */
 
 /**
  * @brief Create and start the InitTask at highest priority.

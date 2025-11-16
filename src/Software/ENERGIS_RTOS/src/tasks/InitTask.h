@@ -13,7 +13,7 @@
  *
  * @version 1.0.0
  * @date 2025-11-08
- * 
+ *
  * @details InitTask runs at highest priority during system boot to:
  * 1. Initialize all hardware in proper sequence
  * 2. Probe peripherals to verify communication
@@ -37,7 +37,7 @@
  * during system boot to initialize all hardware and create subsystem tasks.
  *
  * @note Call this from main() BEFORE vTaskStartScheduler()
- * @note InitTask will delete itself after system is fully operational
+ * InitTask will delete itself after system is fully operational
  */
 void InitTask_Create(void);
 

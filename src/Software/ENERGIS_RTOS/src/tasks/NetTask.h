@@ -1,12 +1,12 @@
 /**
  * @file src/tasks/NetTask.h
  * @author DvidMakesThings - David Sipos
- * 
+ *
  * @defgroup tasks06 6. Network Task
  * @ingroup tasks
  * @brief Network task handling HTTP server and W5500 Ethernet controller
  * @{
- * 
+ *
  * @version 1.1.0
  * @date 2025-11-07
  *
@@ -32,6 +32,10 @@
  * @brief Network task cycle time in milliseconds
  */
 #define NET_TASK_CYCLE_MS 10
+
+/* ##################################################################### */
+/*                       PUBLIC API FUNCTIONS                            */
+/* ##################################################################### */
 
 /**
  * @brief Starts the network task with a deterministic enable gate.

@@ -111,6 +111,7 @@
         "control_handler.h": "c",
         "buttontask.h": "c",
         "tuple": "c",
-        "snmp_voltagemon.h": "c"
+        "snmp_voltagemon.h": "c",
+        "atomic": "c"
     }
 }

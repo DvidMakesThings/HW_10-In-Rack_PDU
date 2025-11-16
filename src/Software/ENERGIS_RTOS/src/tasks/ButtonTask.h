@@ -34,14 +34,17 @@
 #ifndef BTN_SCAN_PERIOD_MS
 #define BTN_SCAN_PERIOD_MS 10u
 #endif
+
 /** @brief Selection LED blink period in milliseconds */
 #ifndef SELECT_BLINK_MS
 #define SELECT_BLINK_MS 250u
 #endif
+
 /** @brief Selection window timeout in milliseconds */
 #ifndef SELECT_WINDOW_MS
 #define SELECT_WINDOW_MS 10000u
 #endif
+
 /** @brief Bring-up wait timeout for Storage_IsReady() in milliseconds */
 #ifndef BUTTON_WAIT_STORAGE_READY_MS
 #define BUTTON_WAIT_STORAGE_READY_MS 5000u
@@ -87,6 +90,7 @@ BaseType_t ButtonTask_Init(bool enable);
 
 /**
  * @brief Ready-state query for deterministic boot sequencing.
+ * 
  * @return true if ButtonTask_Init(true) completed successfully, else false.
  */
 bool Button_IsReady(void);

@@ -60,12 +60,13 @@ static float s_temp_v0_cal = 0.706f;       /**< @brief Voltage [V] at 27 °C (in
 static float s_temp_slope_cal = 0.001721f; /**< @brief Sensor slope [V/°C] (positive magnitude). */
 static float s_temp_offset_c = 0.0f;       /**< @brief Additional °C offset after linear model. */
 
+/* ##################################################################### */
+/*                          Internal Functions                           */
+/* ##################################################################### */
+
 /* =====================  ADC Helpers (internal)  ======================= */
 /**
  * @brief Read voltage from the selected ADC channel with averaging.
- *
- * @param ch ADC channel index compatible with adc_select_input()
- * @return Measured tap voltage in volts (pre-divider)
  */
 static float adc_read_voltage_avg(uint8_t ch) {
     adc_set_clkdiv(96.0f); /* slow down ADC clock */
@@ -84,15 +85,6 @@ static float adc_read_voltage_avg(uint8_t ch) {
 
 /**
  * @brief Convert ADC raw code to RP2040 die temperature [°C] using per-device calibration.
- *
- * @param raw ADC raw code (0..ADC_MAX) from temp sensor (channel 4)
- * @return Temperature in degrees Celsius (calibrated)
- *
- * @details
- * Linear calibrated model:
- *   T[°C] = 27 - (V - V0_cal) / S_cal + OFFSET_cal,
- * where V = raw * (ADC_VREF / ADC_MAX).
- * Defaults (V0_cal=0.706 V, S_cal=1.721 mV/°C, OFFSET=0) match datasheet typicals.
  */
 static float adc_raw_to_die_temp_c(uint16_t raw) {
     const float v = ((float)raw) * (ADC_VREF / (float)ADC_MAX);
@@ -100,15 +92,8 @@ static float adc_raw_to_die_temp_c(uint16_t raw) {
     return t + s_temp_offset_c;
 }
 
-/* ===================================================================== */
-/*                          Internal Functions                            */
-/* ===================================================================== */
 /**
  * @brief Update rolling averages for a channel.
- * @param ch Channel index 0..7
- * @param voltage Instantaneous voltage [V]
- * @param current Instantaneous current [A]
- * @param power Instantaneous power [W]
  */
 static void update_averages(uint8_t ch, float voltage, float current, float power) {
     voltage_sum[ch] += voltage;
@@ -127,10 +112,6 @@ static void update_averages(uint8_t ch, float voltage, float current, float powe
 
 /**
  * @brief Get averaged values for a channel.
- * @param ch Channel index 0..7
- * @param avg_voltage Pointer to receive average voltage [V]
- * @param avg_current Pointer to receive average current [A]
- * @param avg_power Pointer to receive average power [W]
  */
 static void get_averages(uint8_t ch, float *avg_voltage, float *avg_current, float *avg_power) {
     if (avg_count[ch] > 0) {
@@ -146,9 +127,6 @@ static void get_averages(uint8_t ch, float *avg_voltage, float *avg_current, flo
 
 /**
  * @brief Update energy accumulation for a channel.
- * @param ch Channel index 0..7
- * @param power Current power reading [W]
- * @param now_ms Current timestamp [ms]
  */
 static void update_energy(uint8_t ch, float power, uint32_t now_ms) {
     if (last_energy_update_ms[ch] == 0) {
@@ -168,7 +146,6 @@ static void update_energy(uint8_t ch, float power, uint32_t now_ms) {
 
 /**
  * @brief Publish telemetry sample to queue (non-blocking).
- * @param telem Pointer to telemetry sample
  */
 static void publish_telemetry(const meter_telemetry_t *telem) {
     /* Send to queue with no wait - drop if full */
@@ -181,15 +158,6 @@ static void publish_telemetry(const meter_telemetry_t *telem) {
 
 /**
  * @brief Main Meter Task loop.
- * @param pvParameters Unused task parameters
- *
- * @details
- * Owns HLW8032 polling and ADC system telemetry sampling.
- * Temperature path:
- *  - Force-enable temp sensor before sampling
- *  - Throw away two samples after mux switch
- *  - Average N samples
- *  - Convert with calibrated model and plausibility clamp
  */
 static void MeterTask_Loop(void *pvParameters) {
     (void)pvParameters;
@@ -319,24 +287,11 @@ static void MeterTask_Loop(void *pvParameters) {
     }
 }
 
-/* ===================================================================== */
-/*                             Public API                                 */
-/* ===================================================================== */
+/* ##################################################################### */
+/*                             Public API                                */
+/* ##################################################################### */
 /**
  * @brief Create and start the Meter Task with a deterministic enable gate.
- *
- * @details
- * - Deterministic boot order step 6/6. Waits for Network to be READY.
- * - If @p enable is false, meter is skipped and marked NOT ready.
- * - On success, READY latch is set after task creation.
- *
- * @instructions
- * Call after NetTask_Init(true):
- *   MeterTask_Init(true);
- * Query readiness via Meter_IsReady().
- *
- * @param enable Gate that allows or skips starting this subsystem.
- * @return pdPASS on success, pdFAIL on failure.
  */
 BaseType_t MeterTask_Init(bool enable) {
     static volatile bool ready_val = false;
@@ -415,19 +370,11 @@ BaseType_t MeterTask_Init(bool enable) {
 
 /**
  * @brief Meter subsystem readiness query.
- *
- * @details
- * READY when the Meter task handle exists (robust against latch desync).
- *
- * @return true if meterTaskHandle is non-NULL, else false.
  */
 bool Meter_IsReady(void) { return (meterTaskHandle != NULL); }
 
 /**
  * @brief Get latest telemetry for a specific channel (non-blocking).
- * @param channel Channel index 0..7
- * @param telem Pointer to receive telemetry data
- * @return true if data available, false otherwise
  */
 bool MeterTask_GetTelemetry(uint8_t channel, meter_telemetry_t *telem) {
     if (channel >= 8 || telem == NULL) {
@@ -440,7 +387,6 @@ bool MeterTask_GetTelemetry(uint8_t channel, meter_telemetry_t *telem) {
 
 /**
  * @brief Request immediate refresh of all channels (blocking).
- * @note Calls hlw8032_refresh_all() which takes ~2s
  */
 void MeterTask_RefreshAll(void) {
     hlw8032_refresh_all();
@@ -462,9 +408,6 @@ void MeterTask_RefreshAll(void) {
 
 /**
  * @brief Get the latest system ADC telemetry snapshot (non-blocking).
- *
- * @param sys Pointer to receive the snapshot
- * @return true if snapshot is valid and fresh, false otherwise
  */
 bool MeterTask_GetSystemTelemetry(system_telemetry_t *sys) {
     if (sys == NULL) {
@@ -476,21 +419,6 @@ bool MeterTask_GetSystemTelemetry(system_telemetry_t *sys) {
 
 /**
  * @brief Compute single-point temperature calibration (offset only).
- *
- * @param ambient_c True ambient temperature in °C from reference thermometer.
- * @param raw_temp  ADC raw code sampled from the RP2040 die sensor (AINSEL=4).
- * @param out_v0    Output: intercept V0 at 27 °C [V]. Returns current calibrated V0.
- * @param out_slope Output: slope S [V/°C] (positive magnitude). Returns current calibrated slope.
- * @param out_offset Output: computed offset [°C] to align T_raw to ambient (ambient - T_raw).
- * @return true on success, false on invalid arguments.
- *
- * @details
- * Uses the current linear model (V0, S) to compute uncalibrated temperature:
- *   T_raw = 27 - (V - V0) / S , where V = raw_temp * (ADC_VREF / ADC_MAX).
- * Then derives the offset to match ambient:
- *   OFFSET = ambient_c - T_raw.
- * Callers should persist (V0, S, OFFSET) to EEPROM and apply later via
- * MeterTask_SetTempCalibration().
  */
 bool MeterTask_TempCalibration_SinglePointCompute(float ambient_c, uint16_t raw_temp, float *out_v0,
                                                   float *out_slope, float *out_offset) {
@@ -509,24 +437,6 @@ bool MeterTask_TempCalibration_SinglePointCompute(float ambient_c, uint16_t raw_
 
 /**
  * @brief Compute two-point temperature calibration (slope + intercept, zero offset).
- *
- * @param t1_c   True temperature point #1 in °C (e.g., ambient).
- * @param raw1   ADC raw code measured at point #1 (AINSEL=4).
- * @param t2_c   True temperature point #2 in °C (e.g., warmed MCU).
- * @param raw2   ADC raw code measured at point #2 (AINSEL=4).
- * @param out_v0 Output: calibrated V0 at 27 °C [V].
- * @param out_slope Output: calibrated slope S [V/°C] (positive magnitude).
- * @param out_offset Output: residual °C offset to add after linear model (set to 0 here).
- * @return true on success (valid inputs and sane results), false otherwise.
- *
- * @details
- * From two known points (T1, V1) and (T2, V2), derive:
- *   V1 = raw1 * (ADC_VREF / ADC_MAX)
- *   V2 = raw2 * (ADC_VREF / ADC_MAX)
- *   S  = (V2 - V1) / (T1 - T2)                [V/°C] (positive magnitude)
- *   V0 = V1 - S * (27.0 - T1)                 [V at 27 °C]
- * Residual offset is set to 0; callers may perform a tiny single-point trim later.
- * Results should be persisted to EEPROM and applied via MeterTask_SetTempCalibration().
  */
 bool MeterTask_TempCalibration_TwoPointCompute(float t1_c, uint16_t raw1, float t2_c, uint16_t raw2,
                                                float *out_v0, float *out_slope, float *out_offset) {
@@ -559,16 +469,6 @@ bool MeterTask_TempCalibration_TwoPointCompute(float t1_c, uint16_t raw1, float 
 
 /**
  * @brief Apply per-device temperature calibration parameters.
- *
- * @param v0_volts_at_27c    Calibrated V0 at 27 °C [V], typical ~0.706.
- * @param slope_volts_per_deg Calibrated slope S [V/°C], typical ~0.001721.
- * @param offset_c           Residual °C offset after linear model (can be 0).
- * @return true if parameters are accepted and applied, false otherwise.
- *
- * @details
- * Validates ranges and updates the internal calibration used by adc_raw_to_die_temp_c().
- * Call at boot after loading values from EEPROM. Callers can read back the active
- * values from their persisted storage (this function does not persist by itself).
  */
 bool MeterTask_SetTempCalibration(float v0_volts_at_27c, float slope_volts_per_deg,
                                   float offset_c) {
@@ -587,19 +487,6 @@ bool MeterTask_SetTempCalibration(float v0_volts_at_27c, float slope_volts_per_d
 
 /**
  * @brief Query active temperature calibration parameters and inferred mode.
- *
- * @param[out] out_mode   Calibration mode: 0=NONE, 1=1PT (offset only), 2=2PT (slope+intercept)
- * @param[out] out_v0     Intercept V0 at 27 °C [V]
- * @param[out] out_slope  Slope S [V/°C] (positive magnitude)
- * @param[out] out_offset Residual °C offset after linear model
- * @return true always (values are taken from the active MeterTask calibration)
- *
- * @details
- * Mode inference avoids extra dependencies:
- *   - Start with RP2040 typicals: V0=0.706, S=0.001721, OFFSET=0.
- *   - If all three match (within tiny epsilon) → NONE (0).
- *   - If V0 & S match typicals but OFFSET ≠ 0 → 1PT (1).
- *   - Otherwise → 2PT (2).
  */
 bool MeterTask_GetTempCalibrationInfo(uint8_t *out_mode, float *out_v0, float *out_slope,
                                       float *out_offset) {

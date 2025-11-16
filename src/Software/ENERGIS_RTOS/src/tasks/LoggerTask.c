@@ -31,14 +31,6 @@ static volatile uint32_t s_logger_mute_depth = 0u;
 
 /**
  * @brief Logger task loop – prints all messages from the queue.
- * @param arg Unused.
- * @details
- * - Initializes stdio and waits ~1 s for USB-CDC enumeration.
- * - Periodically heartbeats @ref HEALTH_ID_LOGGER every 500 ms to the HealthTask,
- *   even if the queue is idle (prevents false "NEVER" or stale detections).
- * - Receives @ref LogItem_t items from @ref logQueue (50 ms timeout) and
- *   writes them to stdio with @c printf().
- * - Sends an additional heartbeat after each printed message.
  */
 static void LoggerTask(void *arg) {
     (void)arg;
@@ -65,25 +57,17 @@ static void LoggerTask(void *arg) {
     }
 }
 
+/* ##################################################################### */
+/*                       PUBLIC API FUNCTIONS                            */
+/* ##################################################################### */
+
 /**
  * @brief Query Logger READY state.
- * @return true if the logger queue exists, false otherwise.
- * @details
- * The logger is considered READY once the log queue has been created by
- * LoggerTask_Init() (i.e., @c logQueue != NULL). This is sufficient for
- * deterministic boot gating since the task is spawned immediately after
- * queue creation.
  */
 bool Logger_IsReady(void) { return (logQueue != NULL); }
 
 /**
  * @brief Initialize and start the Logger task with a deterministic enable gate.
- * @param enable Gate to allow or skip starting this subsystem.
- * @return pdPASS on success (or when skipped), pdFAIL on creation error.
- * @details
- * Boot order step 1. If @p enable is false, the function skips creation and
- * leaves the module NOT ready. When true, it creates @c logQueue (once) and
- * spawns the @c LoggerTask (once). On success the module becomes READY.
  */
 BaseType_t LoggerTask_Init(bool enable) {
     if (!enable) {
@@ -110,17 +94,8 @@ BaseType_t LoggerTask_Init(bool enable) {
 
 /**
  * @brief Printf-style logging into the Logger queue.
- *
  * Formats a message into the internal LogItem_t buffer and enqueues it for the
  * Logger task to flush to the chosen backends (UART, USB-CDC, etc.).
- *
- * When the internal mute depth counter is non-zero (see @ref Logger_MutePush
- * and @ref Logger_MutePop), this function silently drops messages. This allows
- * long, structured dumps (like EEPROM hex dumps) to run without being polluted
- * by unrelated log traffic.
- *
- * @param fmt printf-style format string (must not be NULL)
- * @param ... Variable arguments corresponding to @p fmt
  */
 void log_printf(const char *fmt, ...) {
     if (logQueue == NULL || fmt == NULL) {
@@ -144,17 +119,6 @@ void log_printf(const char *fmt, ...) {
 
 /**
  * @brief Printf-style logging that bypasses the mute gate.
- *
- * This function behaves like @ref log_printf but ignores the internal mute
- * depth counter. It always attempts to enqueue the message as long as the
- * logger queue exists.
- *
- * Intended for highly structured sequences (e.g., EEPROM dumps) that should
- * still appear even while the logger is temporarily muted for all other
- * tasks.
- *
- * @param fmt printf-style format string (must not be NULL)
- * @param ... Variable arguments corresponding to @p fmt
  */
 void log_printf_force(const char *fmt, ...) {
     if (logQueue == NULL || fmt == NULL) {
@@ -173,13 +137,6 @@ void log_printf_force(const char *fmt, ...) {
 
 /**
  * @brief Begin a critical logging section by muting normal log traffic.
- *
- * @details
- * Increments the internal mute depth counter. While the counter is non-zero,
- * calls to @ref log_printf from any task will be silently dropped.
- *
- * This is useful when printing large, structured outputs (e.g. EEPROM dump)
- * and you want to avoid interleaving from other subsystems.
  */
 void Logger_MutePush(void) {
     taskENTER_CRITICAL();
@@ -189,10 +146,6 @@ void Logger_MutePush(void) {
 
 /**
  * @brief End a critical logging section started with Logger_MutePush().
- *
- * @details
- * Decrements the internal mute depth counter, saturating at zero. When the
- * counter reaches zero, @ref log_printf resumes normal operation.
  */
 void Logger_MutePop(void) {
     taskENTER_CRITICAL();

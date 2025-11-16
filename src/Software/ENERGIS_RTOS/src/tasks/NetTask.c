@@ -34,6 +34,9 @@ static TaskHandle_t netTaskHandle = NULL;
 
 /**
  * @brief Wait until PHY link is up or timeout expires.
+ *
+ * @param timeout_ms Timeout in milliseconds
+ * @return true if link is up, false if timeout occurred
  */
 static bool wait_for_link_up(uint32_t timeout_ms) {
     TickType_t start = xTaskGetTickCount();
@@ -184,21 +187,12 @@ static void NetTask_Function(void *pvParameters) {
     }
 }
 
+/* ##################################################################### */
+/*                       PUBLIC API FUNCTIONS                            */
+/* ##################################################################### */
+
 /**
  * @brief Starts the network task with a deterministic enable gate.
- *
- * @details
- * - Deterministic boot order step 5/6. Waits for Storage to be READY.
- * - If @p enable is false, network is skipped and marked NOT ready.
- * - Task still internally waits for cfg ready (storage_wait_ready) as before.
- *
- * @instructions
- * Call after ButtonTask_Init(true) in the bringup sequence:
- *   NetTask_Init(true);
- * Query readiness via Net_IsReady().
- *
- * @param enable Gate that allows or skips starting this subsystem.
- * @return pdPASS if task created successfully, pdFAIL otherwise.
  */
 BaseType_t NetTask_Init(bool enable) {
     /* TU-local READY flag accessor (no file-scope globals added). */
@@ -233,10 +227,5 @@ BaseType_t NetTask_Init(bool enable) {
 
 /**
  * @brief Network subsystem readiness query.
- *
- * @details
- * READY when the Net task handle exists (robust against latch desync).
- *
- * @return true if netTaskHandle is non-NULL, else false.
  */
 bool Net_IsReady(void) { return (netTaskHandle != NULL); }

@@ -1,7 +1,7 @@
 /**
  * @file src/tasks/ConsoleTask.h
  * @author DvidMakesThings - David Sipos
- * 
+ *
  * @defgroup tasks04 3. Console Task
  * @ingroup tasks
  * @brief UART console task implementation (RTOS version, polling USB-CDC)
@@ -9,7 +9,7 @@
  *
  * @version 2.0.0
  * @date 2025-11-08
- * 
+ *
  * @details
  * Architecture:
  * 1. ConsoleTask polls USB-CDC at 10ms intervals (no ISR)
@@ -23,7 +23,6 @@
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
  */
-
 
 #ifndef CONSOLE_TASK_H
 #define CONSOLE_TASK_H
@@ -79,7 +78,9 @@ typedef struct {
     uint8_t ip[4];  /**< IP address bytes */
 } net_msg_t;
 
-/* ==================== Public API ==================== */
+/* ##################################################################### */
+/*                       PUBLIC API FUNCTIONS                            */
+/* ##################################################################### */
 
 /**
  * @brief Initialize and start the Console task with a deterministic enable gate.
@@ -101,7 +102,6 @@ typedef struct {
  */
 BaseType_t ConsoleTask_Init(bool enable);
 
-
 /**
  * @brief Get Console READY state.
  *
@@ -112,7 +112,6 @@ BaseType_t ConsoleTask_Init(bool enable);
  * @return true if the Console config queue exists, false otherwise.
  */
 bool Console_IsReady(void);
-
 
 #endif /* CONSOLE_TASK_H */
 

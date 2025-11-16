@@ -42,10 +42,13 @@ QueueHandle_t q_net = NULL;
 static char line_buf[LINE_BUF_SIZE];
 static uint16_t line_len = 0;
 
-/* ==================== Helper Functions ==================== */
+/* ##################################################################### */
+/*                         INTERNAL FUNCTIONS                            */
+/* ##################################################################### */
 
 /**
  * @brief Skip ASCII spaces and tabs.
+ *
  * @param s Input C-string (not NULL).
  * @return Pointer to first non-space char in @p s.
  */
@@ -57,6 +60,7 @@ static const char *skip_spaces(const char *s) {
 
 /**
  * @brief Trim leading and trailing whitespace from string (in-place).
+ *
  * @param str Input string (modified).
  * @return Pointer to trimmed string (same buffer).
  */
@@ -76,6 +80,7 @@ static char *trim(char *str) {
 
 /**
  * @brief Parse IP address string into 4-byte array.
+ *
  * @param str IP address string (e.g., "192.168.1.100")
  * @param ip Output array of 4 bytes
  * @return true on success, false on parse error
@@ -95,6 +100,7 @@ static bool parse_ip(const char *str, uint8_t ip[4]) {
 
 /**
  * @brief Parse next token (space-delimited).
+ *
  * @param pptr [in,out] pointer to char* cursor; advanced past token
  * @return Pointer to token start, or NULL if none
  *
@@ -123,52 +129,58 @@ static char *next_token(char **pptr) {
 
 /**
  * @brief Print help message with available commands.
+ *
+ * @return None
  */
 static void cmd_help(void) {
     ECHO("\n=== ENERGIS PDU Console Commands ===\n");
-    ECHO("%-32s %s\n", "HELP", "Show this help");
-    if (DEBUG)
-        ECHO("%-32s %s\n", "REBOOT", "Reboot system");
-    if (DEBUG)
-        ECHO("%-32s %s\n", "BOOTSEL", "Enter bootloader mode");
+
+    ECHO("GENERAL COMMANDS\n");
+    ECHO("%-32s %s\n", "HELP", "Show available commands and syntax");
     ECHO("%-32s %s\n", "SYSINFO", "Show system information");
-    ECHO("%-32s %s\n", "GET_TEMP", "Read die temperature");
-    ECHO("%-32s %s\n", "CALIB_TEMP <P1|P2> <T1> <T2> [WAIT]", "Calibrate temperature sensor");
-    ECHO("%-32s %s\n", "------------ Output Control ------------", "");
-    ECHO("%-32s %s\n", "SET_CH <ch> <0|1|ON|OFF|ALL>", "Set relay channel (ch=1-8)");
-    ECHO("%-32s %s\n", "GET_CH <ch>", "Get relay channel state (ch=1-8)");
-    ECHO("%-32s %s\n", "CLR_ERR", "Clear error LED");
-    ECHO("%-32s %s\n", "------------ Power Measurement ------------", "");
-    ECHO("%-32s %s\n", "METER <ch>", "Read power data for channel (1-8 or ALL)");
-    ECHO("%-32s %s\n", "READ_HLW8032", "Read power data from all channels");
-    ECHO("%-32s %s\n", "READ_HLW8032 <ch>", "Read power data from specific channel (1-8)");
-    ECHO("%-32s %s\n", "------------ Calibration ------------", "");
-    ECHO("%-32s %s\n", "CALIBRATE <ch> <V> <I>", "Calibrate channel (ch=1-8)");
+    ECHO("%-32s %s\n", "GET_TEMP", "Show MCU temperature");
+    ECHO("%-32s %s\n", "REBOOT", "Reboot the PDU (network changes take effect after reboot)");
+    ECHO("%-32s %s\n", "BOOTSEL", "Put the MCU into boot mode");
+    ECHO("%-32s %s\n", "CLR_ERR", "Clear all errors");
+    ECHO("%-32s %s\n", "RFS", "Restore factory settings");
+
+    ECHO("\nOUTPUT CONTROL AND MEASUREMENT\n");
+    ECHO("%-32s %s\n", "SET_CH <ch> <STATE>", "Set channel (1-8) to 0|1|ON|OFF|ALL");
+    ECHO("%-32s %s\n", "GET_CH <ch>", "Read current state of channel (1-8|ALL)");
+    ECHO("%-32s %s\n", "READ_HLW8032", "Read power data for all channels");
+    ECHO("%-32s %s\n", "READ_HLW8032 <ch>", "Read power data for channel (1-8)");
+    ECHO("%-32s %s\n", "CALIBRATE <ch> <V> <I>",
+         "Start calibration on channel (1-8) with given V/I");
     ECHO("%-32s %s\n", "AUTO_CAL_ZERO", "Zero-calibrate all channels");
     ECHO("%-32s %s\n", "AUTO_CAL_V <voltage>", "Voltage-calibrate all channels");
-    ECHO("%-32s %s\n", "SHOW_CALIB <ch>", "Show calibration data (1-8 or ALL)");
-    ECHO("%-32s %s\n", "------------ Network Settings ------------", "");
-    ECHO("%-32s %s\n", "SET_IP <ip>", "Set IP address");
+    ECHO("%-32s %s\n", "SHOW_CALIB <ch>", "Show calibration data (1-8|ALL)");
+
+    ECHO("\nNETWORK SETTINGS\n");
+    ECHO("%-32s %s\n", "NETINFO", "Display current IP, subnet mask, gateway and DNS");
+    ECHO("%-32s %s\n", "SET_IP <ip>", "Set static IP address (requires reboot)");
     ECHO("%-32s %s\n", "SET_SN <mask>", "Set subnet mask");
-    ECHO("%-32s %s\n", "SET_GW <gw>", "Set gateway");
+    ECHO("%-32s %s\n", "SET_GW <gw>", "Set default gateway");
     ECHO("%-32s %s\n", "SET_DNS <dns>", "Set DNS server");
     ECHO("%-32s %s\n", "CONFIG_NETWORK <ip$sn$gw$dns>", "Configure all network settings");
-    ECHO("%-32s %s\n", "NETINFO", "Show network information");
-    ECHO("%-32s %s\n", "------------ System ------------", "");
-    if (DEBUG)
-        ECHO("%-32s %s\n", "GET_SUPPLY", "Read 12V supply voltage");
-    if (DEBUG)
-        ECHO("%-32s %s\n", "GET_USB", "Read USB supply voltage");
-    if (DEBUG)
-        ECHO("%-32s %s\n", "DUMP_EEPROM", "Dump EEPROM contents");
-    if (DEBUG)
-        ECHO("%-32s %s\n", "RFS", "Reset to factory settings");
-    ECHO("=====================================\n");
+
+    if (DEBUG) {
+        ECHO("\nDEBUG COMMANDS\n");
+        ECHO("%-32s %s\n", "GET_SUPPLY", "Read 12V supply rail");
+        ECHO("%-32s %s\n", "GET_USB", "Read USB supply rail");
+        ECHO("%-32s %s\n", "CALIB_TEMP <P1|P2> <T1> <T2> [WAIT]",
+             "Calibrate MCU temperature sensor");
+        ECHO("%-32s %s\n", "DUMP_EEPROM", "Enqueue formatted EEPROM dump");
+        ECHO("%-32s %s\n", "BAADCAFE", "Erase EEPROM (factory wipe; reboot required)");
+    }
+
+    ECHO("===========================================================\n");
 }
 
 /**
  * @brief Enter BOOTSEL (USB ROM bootloader) now, robustly.
  *        Flush CDC, stop scheduling, disconnect USB, then jump.
+ *
+ * @return None
  */
 static void cmd_bootsel(void) {
     ECHO("Entering BOOTSEL mode now...\n");
@@ -219,6 +231,12 @@ static void cmd_bootsel(void) {
 
 /**
  * @brief Reboot system via watchdog.
+ *
+ * @details
+ * Flushes console output, waits 100ms, then triggers a software watchdog reset.
+ * This ensures all pending messages are sent before rebooting.
+ *
+ * @return None
  */
 static void cmd_reboot(void) {
     ECHO("Rebooting system...\n");
@@ -230,6 +248,9 @@ static void cmd_reboot(void) {
 
 /**
  * @brief Read power data from HLW8032 for a specific channel
+ *
+ * @param args Command arguments (channel number 1-8)
+ * @return None
  */
 static void cmd_read_hlw8032_ch(const char *args) {
     int ch;
@@ -249,6 +270,8 @@ static void cmd_read_hlw8032_ch(const char *args) {
 
 /**
  * @brief Read power data from HLW8032 for all channels
+ *
+ * @return None
  */
 static void cmd_read_hlw8032_all(void) {
     for (int ch = 0; ch < 8; ch++) {
@@ -270,6 +293,8 @@ static void cmd_read_hlw8032_all(void) {
  * Uses cached system telemetry from MeterTask (non-blocking) instead of
  * touching ADC hardware directly. MeterTask owns ADC sampling and provides
  * the latest snapshot via MeterTask_GetSystemTelemetry().
+ *
+ * @return None
  */
 static void cmd_sysinfo(void) {
     /* -------- Get clock frequencies -------- */
@@ -349,6 +374,8 @@ static void cmd_sysinfo(void) {
  * @details
  * MeterTask owns the ADC. This command reads the latest cached value
  * (non-blocking). If telemetry isn’t ready yet, it prints N/A.
+ *
+ * @return None
  */
 static void cmd_get_temp(void) {
     system_telemetry_t sys = {0};
@@ -364,6 +391,7 @@ static void cmd_get_temp(void) {
  * @param args Expected formats:
  *             "1P <T1_C>"
  *             "2P <T1_C> <T2_C> [delay_ms]"
+ * @return None
  */
 static void cmd_calib_temp(const char *args) {
     extern SemaphoreHandle_t eepromMtx;
@@ -450,7 +478,9 @@ static void cmd_calib_temp(const char *args) {
 
 /**
  * @brief Set relay channel state.
+ *
  * @param args Command arguments: "<ch> <0|1|ON|OFF>" where ch=1-8 or ALL
+ * @return None
  */
 static void cmd_set_ch(const char *args) {
     char ch_str[16] = {0};
@@ -520,7 +550,9 @@ static void cmd_set_ch(const char *args) {
 
 /**
  * @brief Get relay channel state(s).
+ *
  * @param args Command arguments: "<ch>" where ch=1-8 or "ALL"
+ * @return None
  */
 static void cmd_get_ch(const char *args) {
     if (args == NULL || *args == '\0') {
@@ -565,6 +597,8 @@ static void cmd_get_ch(const char *args) {
 
 /**
  * @brief Clear error LED on display board.
+ *
+ * @return None
  */
 static void cmd_clr_err(void) {
     setError(false);
@@ -572,59 +606,10 @@ static void cmd_clr_err(void) {
 }
 
 /**
- * @brief Read power measurement data from MeterTask.
- * @param args Command arguments: "<ch>" where ch=1-8 or "ALL"
- */
-static void cmd_meter(const char *args) {
-    if (args == NULL || strlen(args) == 0) {
-        ERROR_PRINT("Usage: METER <ch> (ch=1-8 or ALL)\n");
-        return;
-    }
-
-    /* Parse argument */
-    char arg[16];
-    strncpy(arg, args, sizeof(arg) - 1);
-    arg[sizeof(arg) - 1] = '\0';
-    for (char *p = arg; *p; p++)
-        *p = (char)toupper((unsigned char)*p);
-
-    if (strcmp(arg, "ALL") == 0) {
-        /* Read all channels */
-        ECHO("\n=== Power Measurement - All Channels ===\n");
-        for (uint8_t ch = 0; ch < 8; ch++) {
-            meter_telemetry_t telem;
-            if (MeterTask_GetTelemetry(ch, &telem) && telem.valid) {
-                ECHO("CH%d: V=%.2fV I=%.3fA P=%.1fW PF=%.3f kWh=%.3f Uptime=%us %s\n", ch + 1,
-                     telem.voltage, telem.current, telem.power, telem.power_factor,
-                     telem.energy_kwh, telem.uptime, telem.relay_state ? "ON" : "OFF");
-            } else {
-                ECHO("CH%d: No valid data\n", ch + 1);
-            }
-        }
-        ECHO("========================================\n");
-    } else {
-        /* Read single channel */
-        int ch = atoi(arg);
-        if (ch < 1 || ch > 8) {
-            ERROR_PRINT("Invalid channel: %d (must be 1-8 or ALL)\n", ch);
-            return;
-        }
-
-        uint8_t ch_idx = (uint8_t)(ch - 1);
-        meter_telemetry_t telem;
-        if (MeterTask_GetTelemetry(ch_idx, &telem) && telem.valid) {
-            ECHO("CH%d: V=%.2fV I=%.3fA P=%.1fW PF=%.3f kWh=%.3f Uptime=%us %s\n", ch,
-                 telem.voltage, telem.current, telem.power, telem.power_factor, telem.energy_kwh,
-                 telem.uptime, telem.relay_state ? "ON" : "OFF");
-        } else {
-            ERROR_PRINT("CH%d: No valid measurement data\n", ch);
-        }
-    }
-}
-
-/**
  * @brief Calibrate a single HLW8032 channel.
+ *
  * @param args Command arguments: "<ch> <voltage> <current>"
+ * @return None
  */
 static void cmd_calibrate(const char *args) {
     int ch;
@@ -668,6 +653,8 @@ static void cmd_calibrate(const char *args) {
 
 /**
  * @brief Auto-calibrate zero point for all channels.
+ *
+ * @return None
  */
 static void cmd_auto_cal_zero(void) {
     ECHO("\n========================================\n");
@@ -700,7 +687,9 @@ static void cmd_auto_cal_zero(void) {
 
 /**
  * @brief Auto-calibrate voltage for all channels.
+ *
  * @param args Command arguments: "<voltage>"
+ * @return None
  */
 static void cmd_auto_cal_v(const char *args) {
     float ref_voltage = atof(args);
@@ -739,7 +728,9 @@ static void cmd_auto_cal_v(const char *args) {
 
 /**
  * @brief Show calibration data for one or all channels.
+ *
  * @param args Command arguments: "<ch>" where ch=1-8, or empty for ALL
+ * @return None
  */
 static void cmd_show_calib(const char *args) {
     if (args == NULL || strlen(args) == 0) {
@@ -760,7 +751,9 @@ static void cmd_show_calib(const char *args) {
 
 /**
  * @brief Set IP address.
+ *
  * @param args Command arguments: "<ip>" e.g., "192.168.1.100"
+ * @return None
  */
 static void cmd_set_ip(const char *args) {
     uint8_t ip[4];
@@ -786,7 +779,9 @@ static void cmd_set_ip(const char *args) {
 
 /**
  * @brief Set subnet mask.
+ *
  * @param args Command arguments: "<mask>" e.g., "255.255.255.0"
+ * @return None
  */
 static void cmd_SET_SN(const char *args) {
     uint8_t sn[4];
@@ -812,7 +807,9 @@ static void cmd_SET_SN(const char *args) {
 
 /**
  * @brief Set gateway address.
+ *
  * @param args Command arguments: "<gw>" e.g., "192.168.1.1"
+ * @return None
  */
 static void cmd_set_gw(const char *args) {
     uint8_t gw[4];
@@ -838,7 +835,9 @@ static void cmd_set_gw(const char *args) {
 
 /**
  * @brief Set DNS server address.
+ *
  * @param args Command arguments: "<dns>" e.g., "8.8.8.8"
+ * @return None
  */
 static void cmd_set_dns(const char *args) {
     uint8_t dns[4];
@@ -864,7 +863,9 @@ static void cmd_set_dns(const char *args) {
 
 /**
  * @brief Configure all network settings at once.
+ *
  * @param args Command arguments: "<ip$sn$gw$dns>"
+ * @return None
  */
 static void cmd_config_network(const char *args) {
     char ip_str[20], sn_str[20], gw_str[20], dns_str[20];
@@ -911,6 +912,8 @@ static void cmd_config_network(const char *args) {
 
 /**
  * @brief Display network information.
+ *
+ * @return None
  */
 static void cmd_netinfo(void) {
     ECHO("NETWORK INFORMATION:\n");
@@ -930,6 +933,8 @@ static void cmd_netinfo(void) {
 
 /**
  * @brief Read 12V supply voltage (cached, no ADC access).
+ *
+ * @return None
  */
 static void cmd_get_supply(void) {
     system_telemetry_t sys = {0};
@@ -942,6 +947,8 @@ static void cmd_get_supply(void) {
 
 /**
  * @brief Read USB supply voltage (cached, no ADC access).
+ *
+ * @return None
  */
 static void cmd_get_usb(void) {
     system_telemetry_t sys = {0};
@@ -954,11 +961,11 @@ static void cmd_get_usb(void) {
 
 /* ==================== Command Dispatcher ==================== */
 
-/* ==================== Command Dispatcher ==================== */
-
 /**
  * @brief Parse and dispatch command line to appropriate handler.
+ *
  * @param line Null-terminated command line string.
+ * @return None
  */
 static void dispatch_command(const char *line) {
     char buf[LINE_BUF_SIZE];
@@ -982,27 +989,35 @@ static void dispatch_command(const char *line) {
         *p = (char)toupper((unsigned char)*p);
     }
 
-    /* Dispatch to handlers */
+    /* GENERAL COMMANDS */
     if (strcmp(trimmed, "HELP") == 0 || strcmp(trimmed, "?") == 0) {
         cmd_help();
-    } else if (strcmp(trimmed, "REBOOT") == 0) {
-        cmd_reboot();
-    } else if (strcmp(trimmed, "BOOTSEL") == 0) {
-        cmd_bootsel();
     } else if (strcmp(trimmed, "SYSINFO") == 0) {
         cmd_sysinfo();
     } else if (strcmp(trimmed, "GET_TEMP") == 0) {
         cmd_get_temp();
-    } else if (strcmp(trimmed, "CALIB_TEMP") == 0) {
-        cmd_calib_temp(args ? args : "");
-    } else if (strcmp(trimmed, "SET_CH") == 0) {
+    } else if (strcmp(trimmed, "REBOOT") == 0) {
+        cmd_reboot();
+    } else if (strcmp(trimmed, "BOOTSEL") == 0) {
+        cmd_bootsel();
+    } else if (strcmp(trimmed, "CLR_ERR") == 0) {
+        cmd_clr_err();
+    } else if (strcmp(trimmed, "RFS") == 0) {
+        ECHO("Restoring factory defaults...\n");
+        if (storage_load_defaults(10000)) {
+            ECHO("Factory defaults written. Rebooting...\n");
+            vTaskDelay(pdMS_TO_TICKS(100));
+            Health_RebootNow("CLI REBOOT");
+        } else {
+            ERROR_PRINT("Failed to write factory defaults\n");
+        }
+    }
+
+    /* OUTPUT CONTROL AND MEASUREMENT */
+    else if (strcmp(trimmed, "SET_CH") == 0) {
         cmd_set_ch(args ? args : "");
     } else if (strcmp(trimmed, "GET_CH") == 0) {
         cmd_get_ch(args ? args : "");
-    } else if (strcmp(trimmed, "CLR_ERR") == 0) {
-        cmd_clr_err();
-    } else if (strcmp(trimmed, "METER") == 0) {
-        cmd_meter(args ? args : "");
     } else if (strcmp(trimmed, "READ_HLW8032") == 0) {
         if (args) {
             cmd_read_hlw8032_ch(args);
@@ -1011,14 +1026,17 @@ static void dispatch_command(const char *line) {
         }
     } else if (strcmp(trimmed, "CALIBRATE") == 0) {
         cmd_calibrate(args ? args : "");
-    } else if (strcmp(trimmed, "AUTO_CAL_ZERO") == 0 ||
-               strcmp(trimmed, "AUTO_CALIBRATE_ZERO") == 0) {
+    } else if (strcmp(trimmed, "AUTO_CAL_ZERO")) {
         cmd_auto_cal_zero();
-    } else if (strcmp(trimmed, "AUTO_CAL_V") == 0 ||
-               strcmp(trimmed, "AUTO_CALIBRATE_VOLTAGE") == 0) {
+    } else if (strcmp(trimmed, "AUTO_CAL_V") == 0) {
         cmd_auto_cal_v(args ? args : "");
     } else if (strcmp(trimmed, "SHOW_CALIB") == 0) {
         cmd_show_calib(args ? args : "");
+    }
+
+    /* NETWORK SETTINGS */
+    else if (strcmp(trimmed, "NETINFO") == 0) {
+        cmd_netinfo();
     } else if (strcmp(trimmed, "SET_IP") == 0) {
         cmd_set_ip(args ? args : "");
     } else if (strcmp(trimmed, "SET_SN") == 0 || strcmp(trimmed, "SET_SN") == 0) {
@@ -1029,25 +1047,18 @@ static void dispatch_command(const char *line) {
         cmd_set_dns(args ? args : "");
     } else if (strcmp(trimmed, "CONFIG_NETWORK") == 0) {
         cmd_config_network(args ? args : "");
-    } else if (strcmp(trimmed, "NETINFO") == 0) {
-        cmd_netinfo();
-    } else if (strcmp(trimmed, "GET_SUPPLY") == 0) {
+    }
+
+    /* DEBUG */
+    else if (strcmp(trimmed, "GET_SUPPLY") == 0) {
         cmd_get_supply();
     } else if (strcmp(trimmed, "GET_USB") == 0) {
         cmd_get_usb();
+    } else if (strcmp(trimmed, "CALIB_TEMP") == 0) {
+        cmd_calib_temp(args ? args : "");
     } else if (strcmp(trimmed, "DUMP_EEPROM") == 0) {
-        /* Fire-and-forget: enqueue dump and return, do NOT block ConsoleTask */
         if (!storage_dump_formatted_async()) {
             ERROR_PRINT("EEPROM dump enqueue failed\n");
-        }
-    } else if (strcmp(trimmed, "RFS") == 0) {
-        ECHO("Restoring factory defaults...\n");
-        if (storage_load_defaults(10000)) {
-            ECHO("Factory defaults written. Rebooting...\n");
-            vTaskDelay(pdMS_TO_TICKS(100));
-            Health_RebootNow("CLI REBOOT");
-        } else {
-            ERROR_PRINT("Failed to write factory defaults\n");
         }
     } else if (strcmp(trimmed, "BAADCAFE") == 0) {
         ECHO("Erasing EEPROM... (THIS CANNOT BE UNDONE!)\n");
@@ -1065,7 +1076,9 @@ static void dispatch_command(const char *line) {
 
 /**
  * @brief FreeRTOS task: polls USB-CDC, accumulates lines, dispatches commands.
- * @param arg Unused.
+ *
+ * @param arg Unused
+ * @return None
  */
 static void ConsoleTask(void *arg) {
     (void)arg;
@@ -1114,7 +1127,9 @@ static void ConsoleTask(void *arg) {
     }
 }
 
-/* ==================== Public API ==================== */
+/* ##################################################################### */
+/*                       PUBLIC API FUNCTIONS                            */
+/* ##################################################################### */
 
 /**
  * @brief Initialize and start the Console task with a deterministic enable gate.

@@ -72,7 +72,6 @@ typedef enum {
     STORAGE_CMD_WRITE_SENSOR_CAL,    /**< Write sensor calibration for channel */
     /* SIL Testing Commands */
     STORAGE_CMD_DUMP_FORMATTED, /**< Dump EEPROM in formatted hex (SIL testing) */
-    STORAGE_CMD_SELF_TEST,      /**< Run EEPROM self-test (SIL validation) */
 } storage_cmd_t;
 
 /** Storage request message (posted to q_cfg) */
@@ -136,7 +135,9 @@ typedef struct {
 
 } storage_cache_t;
 
-/* ==================== Public API ==================== */
+/* ##################################################################### */
+/*                       PUBLIC API FUNCTIONS                            */
+/* ##################################################################### */
 
 /**
  * @brief Trigger a formatted EEPROM dump asynchronously.
@@ -144,7 +145,6 @@ typedef struct {
  * Enqueues a @ref STORAGE_CMD_DUMP_FORMATTED message and returns immediately
  * without waiting for completion. The dump is executed by StorageTask in the
  * background, and log output is generated from there.
- *
  * @return true if the request was enqueued, false if the queue was full or
  *         storage is not ready.
  */
@@ -160,7 +160,6 @@ bool storage_dump_formatted_async(void);
  *
  * @param timeout_ms Maximum time to wait for the EEPROM mutex in milliseconds.
  *                   If 0, a default of 30000 ms is used.
- *
  * @return true if the erase completed successfully, false on timeout or driver error.
  */
 bool storage_erase_all(uint32_t timeout_ms);
@@ -179,6 +178,7 @@ bool storage_erase_all(uint32_t timeout_ms);
  * Query readiness via Storage_IsReady().
  *
  * @param enable Gate that allows or skips starting this subsystem.
+ * @return None
  */
 void StorageTask_Init(bool enable);
 
@@ -195,61 +195,97 @@ bool Storage_IsReady(void);
 
 /**
  * @brief Check if config is loaded and ready.
+ * @return true if config is ready, false otherwise.
  */
 bool Storage_Config_IsReady(void);
 
 /**
  * @brief Wait for config to be loaded from EEPROM.
+ *
+ * @param timeout_ms Maximum time to wait in milliseconds.
+ * @return true if config became ready within timeout, false otherwise.
  */
 bool storage_wait_ready(uint32_t timeout_ms);
 
 /**
  * @brief Get current network config (from RAM cache).
+ *
+ * @param out Pointer to output structure (not NULL).
+ * @return true on success, false on error.
  */
 bool storage_get_network(networkInfo *out);
 
 /**
  * @brief Set network config (update RAM cache, schedule EEPROM write).
+ *
+ * @param net Pointer to new network config (not NULL).
+ * @return true on success, false on error.
  */
 bool storage_set_network(const networkInfo *net);
 
 /**
  * @brief Get current user preferences (from RAM cache).
+ *
+ * @param out Pointer to output structure (not NULL).
+ * @return true on success, false on error.
  */
 bool storage_get_prefs(userPrefInfo *out);
 
 /**
  * @brief Set user preferences (update RAM cache, schedule EEPROM write).
+ *
+ * @param prefs Pointer to new user preferences (not NULL).
+ * @return true on success, false on error.
  */
 bool storage_set_prefs(const userPrefInfo *prefs);
 
 /**
  * @brief Get relay power-on states (from RAM cache).
+ *
+ * @param out Pointer to output array (not NULL).
+ * @return true on success, false on error.
  */
 bool storage_get_relay_states(uint8_t *out);
 
 /**
  * @brief Set relay power-on states (update RAM cache, schedule write).
+ *
+ * @param states Pointer to new relay states array (not NULL).
+ * @return true on success, false on error.
  */
 bool storage_set_relay_states(const uint8_t *states);
 
 /**
  * @brief Force immediate commit of all pending changes to EEPROM.
+ *
+ * @param timeout_ms Maximum time to wait for the commit in milliseconds.
+ * @return true on success, false on timeout or error.
  */
 bool storage_commit_now(uint32_t timeout_ms);
 
 /**
  * @brief Reset all config to factory defaults.
+ *
+ * @param timeout_ms Maximum time to wait for the operation in milliseconds.
+ * @return true on success, false on timeout or error.
  */
 bool storage_load_defaults(uint32_t timeout_ms);
 
 /**
  * @brief Get sensor calibration for one channel (from RAM cache).
+ *
+ * @param channel Channel index (0-7).
+ * @param out Pointer to output calibration structure (not NULL).
+ * @return true on success, false on error.
  */
 bool storage_get_sensor_cal(uint8_t channel, hlw_calib_t *out);
 
 /**
  * @brief Set sensor calibration for one channel (update cache, schedule write).
+ *
+ * @param channel Channel index (0-7).
+ * @param cal Pointer to new calibration structure (not NULL).
+ * @return true on success, false on error.
  */
 bool storage_set_sensor_cal(uint8_t channel, const hlw_calib_t *cal);
 
@@ -259,19 +295,19 @@ bool storage_set_sensor_cal(uint8_t channel, const hlw_calib_t *cal);
  * @brief Trigger a formatted EEPROM dump in StorageTask context.
  *
  * Enqueues a @ref STORAGE_CMD_DUMP_FORMATTED request and waits for completion.
- * While the dump executes, logger output from other tasks is muted so the
- * generated hex dump is not interleaved with unrelated logs.
+ * The dump itself is executed incrementally from @ref StorageTask, so other
+ * tasks (Net, Meter, Buttons, Health) remain responsive and watchdog feeding
+ * is not impacted. While the dump runs, logger output from other tasks is
+ * muted via @ref Logger_MutePush()/Logger_MutePop(), so the hex dump remains
+ * clean and contiguous. Critical errors and warnings still use
+ * @ref log_printf_force() and will appear.
  *
- * @param timeout_ms Maximum time to wait for the dump to finish.
+ * @param timeout_ms Maximum time to wait for the dump to finish. If 0, a
+ *                   default of 60000 ms is used.
  *
  * @return true on success, false on timeout or queue/semaphore failure.
  */
 bool storage_dump_formatted(uint32_t timeout_ms);
-
-/**
- * @brief Run EEPROM self-test for SIL validation.
- */
-bool storage_self_test(uint16_t test_addr, uint32_t timeout_ms);
 
 #endif /* STORAGE_TASK_H */
 

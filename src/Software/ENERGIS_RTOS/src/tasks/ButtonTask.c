@@ -78,19 +78,24 @@ typedef struct {
  */
 static deb_t s_plus, s_minus, s_set;
 
-/* -------------------- Local helpers ----------------------------------------- */
+/* ##################################################################### */
+/*                           INTERNAL HELPERS                            */
+/* ##################################################################### */
 
 /**
  * @brief Monotonic milliseconds helper.
+ *
  * @return Milliseconds since boot.
  */
 static inline uint32_t now_ms(void) { return ButtonDrv_NowMs(); }
 
 /**
  * @brief Initialize a debouncer with the current raw level.
+ *
  * @param d       Debouncer state.
  * @param level   Current raw level (true=high).
  * @param now     Current time in ms.
+ * @return None
  */
 static void deb_init(deb_t *d, bool level, uint32_t now) {
     d->stable = level;
@@ -102,6 +107,7 @@ static void deb_init(deb_t *d, bool level, uint32_t now) {
 
 /**
  * @brief Update debouncer with a new raw level.
+ *
  * @param d       Debouncer state.
  * @param raw     New raw level (true=high).
  * @param now     Current time in ms.
@@ -130,7 +136,9 @@ static deb_edge_t deb_update(deb_t *d, bool raw, uint32_t now) {
 
 /**
  * @brief Emit a button event into q_btn (non-blocking).
+ *
  * @param kind Event kind.
+ * @return None
  */
 static inline void emit(btn_event_kind_t kind) {
     if (!q_btn)
@@ -141,17 +149,34 @@ static inline void emit(btn_event_kind_t kind) {
 
 /* ----- Selection window control (debounced, task-owned) --------------------- */
 
+/**
+ * @brief Open the selection window and start blinking.
+ *
+ * @param now Current time in ms.
+ * @return None
+ */
 static inline void window_open(uint32_t now) {
     s_window_active = true;
     s_last_press_ms = now;
     ButtonDrv_SelectShow(s_selected, true);
 }
 
+/**
+ * @brief Refresh the selection window timeout.
+ *
+ * @param now Current time in ms.
+ * @return None
+ */
 static inline void window_refresh(uint32_t now) {
     if (s_window_active)
         s_last_press_ms = now;
 }
 
+/**
+ * @brief Close the selection window and turn off LEDs.
+ *
+ * @return None
+ */
 static inline void window_close(void) {
     s_window_active = false;
     ButtonDrv_SelectAllOff();
@@ -160,9 +185,11 @@ static inline void window_close(void) {
 /**
  * @brief Blink timer callback toggles selection LED and enforces timeout.
  *
- * Notes:
- *  - This callback no longer reads buttons. All open/refresh/close decisions
- *    are made by the scanner task based on debounced edges.
+ * @param xTimer Timer handle (unused).
+ * @return None
+ *
+ * @note This callback no longer reads buttons. All open/refresh/close decisions
+ * are made by the scanner task based on debounced edges.
  */
 static void vBlinkTimerCb(TimerHandle_t xTimer) {
     (void)xTimer;
@@ -187,8 +214,6 @@ static void vBlinkTimerCb(TimerHandle_t xTimer) {
     }
 }
 
-/* -------------------- Task --------------------------------------------------- */
-
 /**
  * @brief Button scanning task: debounce, selection window, and actions.
  *
@@ -199,6 +224,7 @@ static void vBlinkTimerCb(TimerHandle_t xTimer) {
  * - SET short: toggles output; also opens window if it was idle.
  *
  * @param arg Unused.
+ * @return None
  */
 static void vButtonTask(void *arg) {
     (void)arg;
@@ -300,7 +326,9 @@ static void vButtonTask(void *arg) {
     }
 }
 
-/* -------------------- Public API -------------------------------------------- */
+/* ##################################################################### */
+/*                       PUBLIC API FUNCTIONS                            */
+/* ##################################################################### */
 
 /**
  * @brief Create and start the ButtonTask with an enable gate (bring-up step 4/6).
@@ -354,6 +382,7 @@ BaseType_t ButtonTask_Init(bool enable) {
 
 /**
  * @brief Ready-state query for deterministic boot sequencing.
+ *
  * @return true if ButtonTask_Init(true) completed successfully, else false.
  */
 bool Button_IsReady(void) { return s_btn_ready; }

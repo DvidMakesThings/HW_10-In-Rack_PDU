@@ -120,38 +120,6 @@ do {
 #define HSCR_REQMSK 6
 #define HSCR_FLAGS 7
 
-static inline void hscr_clear(void) {
-#if PICO_RP2040
-    for (int i = 0; i < 8; ++i)
-        watchdog_hw->scratch[i] = 0u;
-#endif
-}
-
-static inline void hscr_store_stale(uint32_t stale_mask, uint32_t maxdt, uint32_t silence_ms,
-                                    uint32_t tnow, uint32_t req_mask, bool armed,
-                                    bool warmup_elapsed) {
-#if PICO_RP2040
-    watchdog_hw->scratch[HSCR_MAGIC] = HEALTH_SCRATCH_MAGIC;
-    watchdog_hw->scratch[HSCR_CAUSE] = 1u;
-    watchdog_hw->scratch[HSCR_STALE] = stale_mask;
-    watchdog_hw->scratch[HSCR_MAXDT] = maxdt;
-    watchdog_hw->scratch[HSCR_TIMEOUT] = silence_ms;
-    watchdog_hw->scratch[HSCR_TNOW] = tnow;
-    watchdog_hw->scratch[HSCR_REQMSK] = req_mask;
-    watchdog_hw->scratch[HSCR_FLAGS] = (armed ? 1u : 0u) | (warmup_elapsed ? 2u : 0u);
-#else
-    (void)stale_mask;
-    (void)maxdt;
-    (void)silence_ms;
-    (void)tnow;
-    (void)req_mask;
-    (void)armed;
-    (void)warmup_elapsed;
-#endif
-}
-
-static inline uint32_t now_ms(void) { return to_ms_since_boot(get_absolute_time()); }
-
 /* ---------- Types ---------- */
 typedef struct {
     uint32_t tick_ms;
@@ -196,6 +164,7 @@ extern size_t xPortGetFreeHeapSize(void);
 /**************************************************************************/
 /** @brief Milliseconds since last watchdog feed recorded by Health. */
 static uint32_t s_last_wdt_feed_ms = 0;
+
 /** @brief Guard to emit at most one pre-bark warning per silence window. */
 static bool s_prebark_emitted = false;
 
@@ -203,6 +172,67 @@ static bool s_prebark_emitted = false;
 #ifndef HEALTH_PREBARK_MS
 #define HEALTH_PREBARK_MS 300u
 #endif
+
+/* ##################################################################### */
+/*                           INTERNAL HELPERS                            */
+/* ##################################################################### */
+
+/**
+ * @brief Clear the watchdog scratch registers.
+ * Used after a clean boot to avoid stale data.
+ *
+ * @return None
+ */
+static inline void hscr_clear(void) {
+#if PICO_RP2040
+    for (int i = 0; i < 8; ++i)
+        watchdog_hw->scratch[i] = 0u;
+#endif
+}
+
+/**
+ * @brief Store watchdog stale info to scratch registers.
+ *
+ * @param stale_mask Bitmask of stale tasks.
+ * @param maxdt Maximum delta observed (ms).
+ * @param silence_ms Watchdog silence timeout (ms).
+ * @param tnow Current time (ms since boot).
+ * @param req_mask Bitmask of required tasks.
+ * @param armed Whether the watchdog was armed.
+ * @param warmup_elapsed Whether warmup period had elapsed.
+ *
+ * @return None
+ */
+static inline void hscr_store_stale(uint32_t stale_mask, uint32_t maxdt, uint32_t silence_ms,
+                                    uint32_t tnow, uint32_t req_mask, bool armed,
+                                    bool warmup_elapsed) {
+#if PICO_RP2040
+    watchdog_hw->scratch[HSCR_MAGIC] = HEALTH_SCRATCH_MAGIC;
+    watchdog_hw->scratch[HSCR_CAUSE] = 1u;
+    watchdog_hw->scratch[HSCR_STALE] = stale_mask;
+    watchdog_hw->scratch[HSCR_MAXDT] = maxdt;
+    watchdog_hw->scratch[HSCR_TIMEOUT] = silence_ms;
+    watchdog_hw->scratch[HSCR_TNOW] = tnow;
+    watchdog_hw->scratch[HSCR_REQMSK] = req_mask;
+    watchdog_hw->scratch[HSCR_FLAGS] = (armed ? 1u : 0u) | (warmup_elapsed ? 2u : 0u);
+#else
+    (void)stale_mask;
+    (void)maxdt;
+    (void)silence_ms;
+    (void)tnow;
+    (void)req_mask;
+    (void)armed;
+    (void)warmup_elapsed;
+#endif
+}
+
+/**
+ * @brief Get current monotonic time in milliseconds.
+ *
+ * @return Current time in milliseconds since boot.
+ */
+
+static inline uint32_t now_ms(void) { return to_ms_since_boot(get_absolute_time()); }
 
 /**
  * @brief Record a watchdog feed and reset the pre-bark guard.
@@ -212,6 +242,7 @@ static bool s_prebark_emitted = false;
  * also stores @p now_ms so we can warn if we approach the timeout.
  *
  * @param now_ms Monotonic time in milliseconds (e.g. to_ms_since_boot()).
+ * @return None
  */
 static inline void Health_OnWdtFeed(uint32_t now_ms) {
     watchdog_update();
@@ -230,6 +261,7 @@ static inline void Health_OnWdtFeed(uint32_t now_ms) {
  * This function never re-arms or feeds the watchdog; it only logs.
  *
  * @param now_ms Monotonic time in milliseconds (e.g. to_ms_since_boot()).
+ * @return None
  */
 static inline void Health_PreBarkCheck(uint32_t now_ms) {
     if (!s_watchdog_armed) {
@@ -293,8 +325,15 @@ static inline void Health_PreBarkCheck(uint32_t now_ms) {
         }
     }
 }
-/**************************************************************************/
 
+/**
+ * @brief Log the current free heap size.
+ *
+ * Prints the amount of free heap memory available. Requires
+ * configUSE_MALLOC_FAILED_HOOK to be enabled in FreeRTOSConfig.h.
+ *
+ * @return None
+ */
 static void log_heap_free(void) {
 #if (configUSE_MALLOC_FAILED_HOOK == 1)
     size_t freeb = xPortGetFreeHeapSize();
@@ -302,6 +341,14 @@ static void log_heap_free(void) {
 #endif
 }
 
+/**
+ * @brief Dump the recent blocked events ring buffer.
+ *
+ * Prints the contents of the s_block_ring buffer to the log, showing
+ * the most recent blocking events recorded via Health_RecordBlocked().
+ *
+ * @return None
+ */
 static void dump_block_ring(void) {
     uint32_t w = s_block_w;
     uint32_t n = (w > HEALTH_BLOCK_RING_SIZE) ? HEALTH_BLOCK_RING_SIZE : w;
@@ -317,9 +364,25 @@ static void dump_block_ring(void) {
     }
 }
 
-/* ---------- Policy helpers (mask-based) ---------- */
+/**
+ * @brief Check if a health ID is in the required mask.
+ *
+ * @param id The health ID to check.
+ * @return true if the ID is required, false otherwise.
+ */
 static inline bool id_in_required(uint8_t id) { return (HEALTH_REQUIRED_MASK & (1u << id)) != 0; }
 
+/**
+ * @brief Check if all required tasks have sent at least one heartbeat.
+ *
+ * @return true if all required tasks have a non-zero last_seen_ms, false otherwise.
+ *
+ * @details
+ * This function iterates over all registered tasks and checks if they are
+ * marked as required. For each required task, it verifies that the
+ * last_seen_ms timestamp is non-zero, indicating that at least one
+ * heartbeat has been received from that task.
+ */
 static bool required_tasks_have_heartbeat_once(void) {
     for (int i = 0; i < HEALTH_ID_MAX; ++i) {
         if (!s_meta[i].registered)
@@ -332,6 +395,22 @@ static bool required_tasks_have_heartbeat_once(void) {
     return true;
 }
 
+/**
+ * @brief Compute the maximum delta time since last heartbeat among required tasks.
+ *
+ * @param now_ms_ Current monotonic time in milliseconds.
+ * @return Maximum delta time in milliseconds since last heartbeat of any required task.
+ *
+ * @details
+ * This function iterates over all registered tasks and checks if they are
+ * marked as required. For each required task, it calculates the time delta
+ * since the last heartbeat and keeps track of the maximum delta found.
+ *
+ * If a required task has never sent a heartbeat (last_seen_ms == 0):
+ *  - If the watchdog is not yet armed, it is ignored in the max calculation.
+ *  - If the watchdog is armed, it contributes a delta greater than
+ *    HEALTH_SILENCE_MS to indicate staleness.
+ */
 static uint32_t max_dt_required(uint32_t now_ms_) {
     uint32_t maxdt = 0;
     for (int i = 0; i < HEALTH_ID_MAX; ++i) {
@@ -355,6 +434,21 @@ static uint32_t max_dt_required(uint32_t now_ms_) {
     return maxdt;
 }
 
+/**
+ * @brief Compute the stale task mask for all required tasks.
+ *
+ * @param now_ms_ Current monotonic time in milliseconds.
+ * @return Bitmask of HEALTH_ID_xxx values that are stale.
+ *
+ * @details
+ * This function iterates over all registered tasks and checks if they are
+ * marked as required. For each required task, it calculates the time delta
+ * since the last heartbeat. If this delta exceeds HEALTH_SILENCE_MS, the
+ * corresponding bit in the returned mask is set to indicate staleness.
+ *
+ * If a required task has never sent a heartbeat (last_seen_ms == 0) and the
+ * watchdog is already armed, it is also considered stale.
+ */
 static uint32_t stale_mask_required(uint32_t now_ms_) {
     uint32_t mask = 0;
     for (int i = 0; i < HEALTH_ID_MAX; ++i) {
@@ -415,6 +509,19 @@ static void log_required_status(uint32_t current_time) {
     }
 }
 
+/**
+ * @brief Report stale tasks and log reboot context if any are found.
+ *
+ * @param now_ms_ Current monotonic time in milliseconds.
+ *
+ * @details
+ * This function checks all required tasks for staleness based on their last
+ * heartbeat timestamps. If any required task is found to be stale (i.e., has
+ * not sent a heartbeat within the allowed silence window), it logs a detailed
+ * message including the stale task mask and their respective delays. It also
+ * records this information in the RP2040 watchdog scratch registers for
+ * post-mortem analysis after a reboot.
+ */
 static void report_stale(uint32_t now_ms_) {
     uint32_t stale_mask = stale_mask_required(now_ms_);
     if (stale_mask == 0u)
@@ -449,6 +556,17 @@ static void report_stale(uint32_t now_ms_) {
                      s_watchdog_armed, ((now_ms_ - s_start_ms) >= HEALTH_WARMUP_MS));
 }
 
+/**
+ * @brief Check if the last reboot was caused by Health and load its context.
+ *
+ * @param stale_mask Pointer to store the stale task mask, or NULL.
+ * @param max_dt_ms Pointer to store the max dt in ms, or NULL.
+ * @param silence_ms Pointer to store the silence timeout in ms, or NULL.
+ * @param t_now_ms Pointer to store the timestamp of the reboot request, or NULL.
+ * @param req_mask Pointer to store the required task mask, or NULL.
+ * @param flags Pointer to store additional flags, or NULL.
+ * @return true if the last reboot was caused by Health; false otherwise.
+ */
 static bool hscr_load_is_health_reboot(uint32_t *stale_mask, uint32_t *max_dt_ms,
                                        uint32_t *silence_ms, uint32_t *t_now_ms, uint32_t *req_mask,
                                        uint32_t *flags) {
@@ -480,6 +598,19 @@ static bool hscr_load_is_health_reboot(uint32_t *stale_mask, uint32_t *max_dt_ms
     return false;
 #endif
 }
+
+/**
+ * @brief Print a brief summary if the last reboot was caused by Health.
+ *
+ * @details
+ * If the last reboot was triggered by Health (i.e., the watchdog bit was set and
+ * the scratch registers contain our magic), this function prints a concise
+ * summary of the reboot context, including which tasks were stale, their max
+ * dt, the silence timeout, and the timestamp of the reboot request.
+ * After printing, it clears the scratch registers to avoid repeated reports.
+ *
+ * @return None
+ */
 
 static void print_health_reboot_brief(void) {
     uint32_t stale, maxdt, silence, tnow, req, flags;
@@ -723,7 +854,13 @@ static void health_task(void *arg) {
     }
 }
 
-/* ---------- Public API ---------- */
+/* ##################################################################### */
+/*                       PUBLIC API FUNCTIONS                            */
+/* ##################################################################### */
+
+/**
+ * @brief Start the Health supervision task.
+ */
 void HealthTask_Start(void) {
     if (s_health_handle)
         return;
@@ -731,6 +868,9 @@ void HealthTask_Start(void) {
     HEALTH_DBG("Start requested, (created=%u)\r\n", s_health_handle ? 1u : 0u);
 }
 
+/**
+ * @brief Register a task with Health supervision.
+ */
 void Health_RegisterTask(health_id_t id, TaskHandle_t h, const char *name) {
     if ((int)id < 0 || (int)id >= HEALTH_ID_MAX)
         return;
@@ -754,6 +894,9 @@ void Health_RegisterTask(health_id_t id, TaskHandle_t h, const char *name) {
     }
 }
 
+/**
+ * @brief Record a heartbeat from a registered task.
+ */
 void Health_Heartbeat(health_id_t id) {
     if ((int)id < 0 || (int)id >= HEALTH_ID_MAX)
         return;
@@ -777,6 +920,9 @@ void Health_Heartbeat(health_id_t id) {
 #endif
 }
 
+/**
+ * @brief Record a blocking event in the ring buffer.
+ */
 void Health_RecordBlocked(const char *tag, uint32_t waited_ms) {
     uint32_t i = __atomic_fetch_add(&s_block_w, 1, __ATOMIC_RELAXED);
     block_evt_t *e = &s_block_ring[i % HEALTH_BLOCK_RING_SIZE];
@@ -792,6 +938,9 @@ void Health_RecordBlocked(const char *tag, uint32_t waited_ms) {
                (unsigned)e->waited_ms, (unsigned long)i);
 }
 
+/**
+ * @brief Print detailed info about the last reboot if it was caused by Health.
+ */
 void Health_PrintLastRebootDetailed(void) {
     uint32_t stale, maxdt, silence, tnow, req, flags;
 #if PICO_RP2040
@@ -846,7 +995,6 @@ static void hscr_store_intentional(uint32_t tnow_ms) {
 
 /**
  * @brief Immediate, Health-owned reboot with context.
- * @param reason Optional reason for diagnostics.
  */
 void Health_RebootNow(const char *reason) {
     uint32_t t = now_ms();
