@@ -1036,16 +1036,26 @@ static void dispatch_command(const char *line) {
     } else if (strcmp(trimmed, "GET_USB") == 0) {
         cmd_get_usb();
     } else if (strcmp(trimmed, "DUMP_EEPROM") == 0) {
-        CAT24C256_DumpFormatted();
+        /* Fire-and-forget: enqueue dump and return, do NOT block ConsoleTask */
+        if (!storage_dump_formatted_async()) {
+            ERROR_PRINT("EEPROM dump enqueue failed\n");
+        }
     } else if (strcmp(trimmed, "RFS") == 0) {
-        EEPROM_WriteFactoryDefaults();
-        ECHO("Factory defaults written. Rebooting...\n");
-        vTaskDelay(pdMS_TO_TICKS(100));
-        Health_RebootNow("CLI REBOOT");
+        ECHO("Restoring factory defaults...\n");
+        if (storage_load_defaults(10000)) {
+            ECHO("Factory defaults written. Rebooting...\n");
+            vTaskDelay(pdMS_TO_TICKS(100));
+            Health_RebootNow("CLI REBOOT");
+        } else {
+            ERROR_PRINT("Failed to write factory defaults\n");
+        }
     } else if (strcmp(trimmed, "BAADCAFE") == 0) {
         ECHO("Erasing EEPROM... (THIS CANNOT BE UNDONE!)\n");
-        EEPROM_EraseAll();
-        ECHO("EEPROM erased. Reboot required.\n");
+        if (storage_erase_all(30000)) {
+            ECHO("EEPROM erased. Reboot required.\n");
+        } else {
+            ERROR_PRINT("EEPROM erase failed or timed out.\n");
+        }
     } else {
         ERROR_PRINT("Unknown command: '%s'. Type HELP for list.\n", trimmed);
     }

@@ -4,7 +4,7 @@
  *
  * @version 1.0.0
  * @date 2025-11-06
- * 
+ *
  * @details Implements a FreeRTOS-based logging task that receives log messages
  * via a queue and outputs them to stdio (USB-CDC).
  *
@@ -26,6 +26,8 @@ static QueueHandle_t logQueue;
 
 /** @brief The logger task handle (for single-instance guard). */
 static TaskHandle_t s_logger_task = NULL;
+
+static volatile uint32_t s_logger_mute_depth = 0u;
 
 /**
  * @brief Logger task loop – prints all messages from the queue.
@@ -108,14 +110,53 @@ BaseType_t LoggerTask_Init(bool enable) {
 
 /**
  * @brief Printf-style logging into the Logger queue.
- * @param fmt printf-style format string.
- * @param ... Variadic arguments for @p fmt.
- * @details
- * Formats a message and sends it to @c logQueue created by LoggerTask_Init().
- * The message is truncated to @c LOGGER_MSG_MAX bytes if necessary.
- * This call is non-blocking; if the queue is full, the message is dropped.
+ *
+ * Formats a message into the internal LogItem_t buffer and enqueues it for the
+ * Logger task to flush to the chosen backends (UART, USB-CDC, etc.).
+ *
+ * When the internal mute depth counter is non-zero (see @ref Logger_MutePush
+ * and @ref Logger_MutePop), this function silently drops messages. This allows
+ * long, structured dumps (like EEPROM hex dumps) to run without being polluted
+ * by unrelated log traffic.
+ *
+ * @param fmt printf-style format string (must not be NULL)
+ * @param ... Variable arguments corresponding to @p fmt
  */
 void log_printf(const char *fmt, ...) {
+    if (logQueue == NULL || fmt == NULL) {
+        return; /* Logger not initialized yet */
+    }
+
+    /* Drop message if logger is muted */
+    if (s_logger_mute_depth != 0u) {
+        return;
+    }
+
+    LogItem_t item;
+    va_list args;
+    va_start(args, fmt);
+    (void)vsnprintf(item.msg, sizeof(item.msg), fmt, args);
+    va_end(args);
+
+    /* Non-blocking send; drop if full */
+    (void)xQueueSend(logQueue, &item, 0);
+}
+
+/**
+ * @brief Printf-style logging that bypasses the mute gate.
+ *
+ * This function behaves like @ref log_printf but ignores the internal mute
+ * depth counter. It always attempts to enqueue the message as long as the
+ * logger queue exists.
+ *
+ * Intended for highly structured sequences (e.g., EEPROM dumps) that should
+ * still appear even while the logger is temporarily muted for all other
+ * tasks.
+ *
+ * @param fmt printf-style format string (must not be NULL)
+ * @param ... Variable arguments corresponding to @p fmt
+ */
+void log_printf_force(const char *fmt, ...) {
     if (logQueue == NULL || fmt == NULL) {
         return; /* Logger not initialized yet */
     }
@@ -128,4 +169,35 @@ void log_printf(const char *fmt, ...) {
 
     /* Non-blocking send; drop if full */
     (void)xQueueSend(logQueue, &item, 0);
+}
+
+/**
+ * @brief Begin a critical logging section by muting normal log traffic.
+ *
+ * @details
+ * Increments the internal mute depth counter. While the counter is non-zero,
+ * calls to @ref log_printf from any task will be silently dropped.
+ *
+ * This is useful when printing large, structured outputs (e.g. EEPROM dump)
+ * and you want to avoid interleaving from other subsystems.
+ */
+void Logger_MutePush(void) {
+    taskENTER_CRITICAL();
+    s_logger_mute_depth++;
+    taskEXIT_CRITICAL();
+}
+
+/**
+ * @brief End a critical logging section started with Logger_MutePush().
+ *
+ * @details
+ * Decrements the internal mute depth counter, saturating at zero. When the
+ * counter reaches zero, @ref log_printf resumes normal operation.
+ */
+void Logger_MutePop(void) {
+    taskENTER_CRITICAL();
+    if (s_logger_mute_depth > 0u) {
+        s_logger_mute_depth--;
+    }
+    taskEXIT_CRITICAL();
 }

@@ -125,18 +125,6 @@ int CAT24C256_WriteBuffer(uint16_t addr, const uint8_t *data, uint16_t len);
 void CAT24C256_ReadBuffer(uint16_t addr, uint8_t *buffer, uint32_t len);
 
 /**
- * @brief Retrieves entire EEPROM contents in a single operation
- *
- * Performs a complete memory dump of the CAT24C256, reading all 32KB
- * into the provided buffer. Useful for backup operations or debugging.
- *
- * @param buffer Pointer to pre-allocated buffer of at least 32KB (CAT24C256_TOTAL_SIZE)
- * @return None
- * @note Caller must ensure buffer is large enough to hold entire EEPROM contents
- */
-void CAT24C256_Dump(uint8_t *buffer);
-
-/**
  * @brief Outputs formatted hex dump of EEPROM contents for testing
  *
  * Creates a human-readable hex dump with address headers and 16-byte rows.

@@ -69,28 +69,118 @@ static volatile bool eth_netcfg_ready = false;
 bool Storage_Config_IsReady(void) { return eth_netcfg_ready; }
 
 /* ====================================================================== */
-/*                    EEPROM_EraseAll (utility)                          */
+/*                        EEPROM DUMP (utility)                           */
 /* ====================================================================== */
 
-/**
- * @brief Erase entire EEPROM to 0xFF.
- *
- * Writes 0xFF to all EEPROM addresses in 32-byte chunks.
- *
- * CRITICAL: Must be called with eepromMtx held!
- *
- * @return 0 on success, -1 on failure
- */
-int EEPROM_EraseAll(void) {
-    uint8_t blank[32];
-    memset(blank, 0xFF, sizeof(blank));
+/** @brief Internal flag indicating an incremental EEPROM dump is in progress. */
+static bool s_dump_active = false;
 
-    for (uint16_t addr = 0; addr < EEPROM_SIZE; addr += sizeof(blank)) {
-        if (CAT24C256_WriteBuffer(addr, blank, sizeof(blank)) != 0) {
-            return -1;
+/** @brief Next EEPROM address to dump (0..CAT24C256_TOTAL_SIZE-1). */
+static uint32_t s_dump_next_addr = 0;
+
+/** @brief Completion semaphore for blocking dump callers. */
+static SemaphoreHandle_t s_dump_done_sem = NULL;
+
+/**
+ * @brief Incremental formatted EEPROM dump worker.
+ *
+ * Called from @ref StorageTask main loop whenever @ref s_dump_active is true.
+ * Prints a small slice of the CAT24C256 contents in 16-byte rows using
+ * @ref log_printf_force() so output is not affected by logger mute.
+ *
+ * The function:
+ * - On the very first call (when @ref s_dump_next_addr is 0) prints the header.
+ * - Reads a fixed number of rows per invocation to avoid long blocking.
+ * - Sends a Health heartbeat for @ref HEALTH_ID_STORAGE on each slice.
+ * - On completion prints the EE_DUMP_END marker, pops logger mute, clears
+ *   @ref s_dump_active and signals @ref s_dump_done_sem if non-NULL.
+ *
+ * @note Must only be called from StorageTask context. It acquires and
+ *       releases @ref eepromMtx internally with a bounded critical section.
+ */
+static void storage_dump_eeprom_formatted(void) {
+    if (!s_dump_active) {
+        return;
+    }
+
+    /* Print header once at the very beginning */
+    if (s_dump_next_addr == 0) {
+        log_printf_force("EE_DUMP_START\r\n");
+        log_printf_force("Addr   00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F \r\n");
+    }
+
+    /* Number of 16-byte lines to emit per slice (keep it tiny to avoid long dt) */
+    const uint32_t lines_per_slice = 1U;
+    char line[256];
+    char field[16];
+    uint8_t buffer[16];
+
+    /* EEPROM access is protected by the mutex */
+    xSemaphoreTake(eepromMtx, portMAX_DELAY);
+
+    for (uint32_t i = 0; i < lines_per_slice && s_dump_next_addr < CAT24C256_TOTAL_SIZE; i++) {
+        uint16_t addr = (uint16_t)s_dump_next_addr;
+
+        /* CAT24C256_ReadBuffer is void, just fill the buffer */
+        CAT24C256_ReadBuffer(addr, buffer, sizeof(buffer));
+
+        snprintf(line, sizeof(line), "0x%04X ", addr);
+        for (uint8_t b = 0; b < 16; b++) {
+            snprintf(field, sizeof(field), "%02X ", buffer[b]);
+            strncat(line, field, sizeof(line) - strlen(line) - 1);
+            Health_Heartbeat(HEALTH_ID_STORAGE);
+        }
+
+        log_printf_force("%s\r\n", line);
+        s_dump_next_addr += 16U;
+    }
+
+    xSemaphoreGive(eepromMtx);
+
+    /* Explicit heartbeat while doing SIL dump work so Health doesn't mark us stale */
+    Health_Heartbeat(HEALTH_ID_STORAGE);
+
+    /* Finished the last slice */
+    if (s_dump_next_addr >= CAT24C256_TOTAL_SIZE) {
+        log_printf_force("EE_DUMP_END\r\n");
+        Logger_MutePop();
+        s_dump_active = false;
+
+        if (s_dump_done_sem != NULL) {
+            xSemaphoreGive(s_dump_done_sem);
+            s_dump_done_sem = NULL;
         }
     }
-    return 0;
+
+    /* Short yield so other tasks (Meter/Net/Button/Console) get CPU time */
+    vTaskDelay(pdMS_TO_TICKS(1));
+}
+
+/**
+ * @brief Trigger a formatted EEPROM dump asynchronously.
+ *
+ * Enqueues a @ref STORAGE_CMD_DUMP_FORMATTED message and returns immediately
+ * without waiting for completion. The dump is executed by StorageTask in the
+ * background, and log output is generated from there.
+ *
+ * @return true if the request was enqueued, false if the queue was full or
+ *         storage is not ready.
+ */
+bool storage_dump_formatted_async(void) {
+    if (!eth_netcfg_ready)
+        return false;
+
+    storage_msg_t msg;
+    memset(&msg, 0, sizeof(msg));
+    msg.cmd = STORAGE_CMD_DUMP_FORMATTED;
+    msg.output_ptr = NULL;
+    msg.done_sem = NULL;
+
+    if (xQueueSend(q_cfg, &msg, 0) != pdPASS) {
+        return false;
+    }
+
+    return true;
 }
 
 /* ====================================================================== */
@@ -303,12 +393,25 @@ static void process_storage_msg(const storage_msg_t *msg) {
         load_config_from_eeprom();
         break;
 
-    /* SIL testing operations */
+    /* SIL testing operations: incremental formatted dump */
     case STORAGE_CMD_DUMP_FORMATTED:
-        xSemaphoreTake(eepromMtx, portMAX_DELAY);
-        CAT24C256_DumpFormatted();
-        xSemaphoreGive(eepromMtx);
-        break;
+        if (s_dump_active) {
+            WARNING_PRINT("%s EEPROM dump already in progress\r\n", STORAGE_TASK_TAG);
+            if (msg->done_sem) {
+                xSemaphoreGive(msg->done_sem);
+            }
+        } else {
+            /* Start incremental dump: remember completion semaphore and mute logger */
+            s_dump_active = true;
+            s_dump_next_addr = 0U;
+            s_dump_done_sem = msg->done_sem;
+
+            Logger_MutePush();
+            /* First slice (header) will be emitted from StorageTask loop */
+        }
+        /* For the dump we do NOT signal done_sem here; completion is signaled
+         * from the incremental worker when EE_DUMP_END is printed. */
+        return;
 
     case STORAGE_CMD_SELF_TEST:
         xSemaphoreTake(eepromMtx, portMAX_DELAY);
@@ -324,7 +427,7 @@ static void process_storage_msg(const storage_msg_t *msg) {
         break;
     }
 
-    /* Signal completion if semaphore provided */
+    /* Signal completion if semaphore provided (synchronous commands only) */
     if (msg->done_sem) {
         xSemaphoreGive(msg->done_sem);
     }
@@ -342,6 +445,7 @@ static void process_storage_msg(const storage_msg_t *msg) {
  * - Process storage messages from q_cfg queue
  * - Auto-commit dirty sections after debounce period
  * - Send periodic heartbeat
+ * - Drive incremental EEPROM dump when @ref s_dump_active is true
  *
  * @param arg Unused task parameter
  */
@@ -369,15 +473,18 @@ static void StorageTask(void *arg) {
 
     /* Main task loop */
     for (;;) {
-        /* Send heartbeat */
+        /* Send heartbeat (baseline) */
         uint32_t __now = to_ms_since_boot(get_absolute_time());
         if ((__now - hb_stor_ms) >= STORAGETASKBEAT_MS) {
             hb_stor_ms = __now;
             Health_Heartbeat(HEALTH_ID_STORAGE);
         }
 
+        /* While dumping, poll the queue more often to stay responsive */
+        TickType_t wait_ticks = s_dump_active ? pdMS_TO_TICKS(10) : poll_ticks;
+
         /* Process queue messages */
-        if (xQueueReceive(q_cfg, &msg, poll_ticks) == pdPASS) {
+        if (xQueueReceive(q_cfg, &msg, wait_ticks) == pdPASS) {
             process_storage_msg(&msg);
         }
 
@@ -389,12 +496,73 @@ static void StorageTask(void *arg) {
                 g_cache.last_change_tick = 0;
             }
         }
+
+        /* Drive incremental EEPROM dump, if one is active */
+        if (s_dump_active) {
+            storage_dump_eeprom_formatted();
+        }
     }
 }
 
 /* ====================================================================== */
 /*                       PUBLIC API FUNCTIONS                            */
 /* ====================================================================== */
+
+/* ********************************************************************** */
+/*                    EEPROM_EraseAll (utility)                           */
+/* ********************************************************************** */
+
+/**
+ * @brief Erase entire EEPROM to 0xFF.
+ *
+ * Writes 0xFF to all EEPROM addresses in 32-byte chunks.
+ *
+ * CRITICAL: Must be called with eepromMtx held!
+ *
+ * @return 0 on success, -1 on failure
+ */
+int EEPROM_EraseAll(void) {
+    uint8_t blank[32];
+    memset(blank, 0xFF, sizeof(blank));
+
+    for (uint16_t addr = 0; addr < EEPROM_SIZE; addr += sizeof(blank)) {
+        if (CAT24C256_WriteBuffer(addr, blank, sizeof(blank)) != 0) {
+            return -1;
+        }
+    }
+    return 0;
+}
+
+/**
+ * @brief Erase the entire EEPROM via the Storage subsystem.
+ *
+ * This helper acquires the EEPROM mutex, invokes EEPROM_EraseAll(), and releases
+ * the mutex again. Erase is performed in 32-byte chunks with write-cycle delays
+ * inside CAT24C256_WriteBuffer(), so other tasks continue to run and the watchdog
+ * is periodically fed.
+ *
+ * @param timeout_ms Maximum time to wait for the EEPROM mutex in milliseconds.
+ *                   If 0, a default of 30000 ms is used.
+ *
+ * @return true if the erase completed successfully, false on timeout or driver error.
+ */
+bool storage_erase_all(uint32_t timeout_ms) {
+    if (!eth_netcfg_ready)
+        return false;
+
+    if (timeout_ms == 0) {
+        timeout_ms = 30000;
+    }
+
+    if (xSemaphoreTake(eepromMtx, pdMS_TO_TICKS(timeout_ms)) != pdTRUE) {
+        return false;
+    }
+
+    int res = EEPROM_EraseAll();
+    xSemaphoreGive(eepromMtx);
+
+    return (res == 0);
+}
 
 /**
  * @brief Initialize and start the Storage task with a deterministic enable gate.
@@ -599,24 +767,53 @@ bool storage_set_sensor_cal(uint8_t channel, const hlw_calib_t *cal) {
     return xQueueSend(q_cfg, &msg, pdMS_TO_TICKS(1000)) == pdPASS;
 }
 
+/**
+ * @brief Trigger a formatted EEPROM dump in StorageTask context.
+ *
+ * Enqueues a @ref STORAGE_CMD_DUMP_FORMATTED request and waits for completion.
+ * The dump itself is executed incrementally from @ref StorageTask, so other
+ * tasks (Net, Meter, Buttons, Health) remain responsive and watchdog feeding
+ * is not impacted. While the dump runs, logger output from other tasks is
+ * muted via @ref Logger_MutePush()/Logger_MutePop(), so the hex dump remains
+ * clean and contiguous. Critical errors and warnings still use
+ * @ref log_printf_force() and will appear.
+ *
+ * @param timeout_ms Maximum time to wait for the dump to finish. If 0, a
+ *                   default of 60000 ms is used.
+ *
+ * @return true on success, false on timeout or queue/semaphore failure.
+ */
 bool storage_dump_formatted(uint32_t timeout_ms) {
-    if (!eth_netcfg_ready)
+    if (!Storage_Config_IsReady()) {
         return false;
+    }
+
+    if (timeout_ms == 0) {
+        timeout_ms = 60000U;
+    }
 
     SemaphoreHandle_t done_sem = xSemaphoreCreateBinary();
-    if (!done_sem)
+    if (done_sem == NULL) {
         return false;
+    }
 
-    storage_msg_t msg = {.cmd = STORAGE_CMD_DUMP_FORMATTED, .done_sem = done_sem};
+    storage_msg_t msg;
+    memset(&msg, 0, sizeof(msg));
+    msg.cmd = STORAGE_CMD_DUMP_FORMATTED;
+    msg.done_sem = done_sem;
 
     if (xQueueSend(q_cfg, &msg, pdMS_TO_TICKS(timeout_ms)) != pdPASS) {
         vSemaphoreDelete(done_sem);
         return false;
     }
 
-    bool ok = xSemaphoreTake(done_sem, pdMS_TO_TICKS(timeout_ms)) == pdPASS;
+    if (xSemaphoreTake(done_sem, pdMS_TO_TICKS(timeout_ms)) != pdTRUE) {
+        vSemaphoreDelete(done_sem);
+        return false;
+    }
+
     vSemaphoreDelete(done_sem);
-    return ok;
+    return true;
 }
 
 bool storage_self_test(uint16_t test_addr, uint32_t timeout_ms) {
