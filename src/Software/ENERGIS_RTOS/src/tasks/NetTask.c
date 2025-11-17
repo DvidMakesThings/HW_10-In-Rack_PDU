@@ -2,12 +2,18 @@
  * @file src/tasks/NetTask.c
  * @author DvidMakesThings - David Sipos
  *
- * @version 1.1.0
- * @date 2025-11-07
+ * @version 1.2.0
+ * @date 2025-11-16
  *
  * @details NetTask owns all W5500 operations. It waits for StorageTask to signal that
  * configuration is ready, reads the network config, brings up the W5500, then
  * runs the web server loop.
+ *
+ * The task is explicitly robust against missing or interrupted Ethernet link:
+ * - If the PDU boots without a cable, the rest of the system still runs.
+ * - ETH LED blinks while there is no PHY link.
+ * - On each link-up transition, the W5500 is fully reinitialized and all
+ *   IP-based services (HTTP + SNMP) are restarted to avoid ERR_CONNECTION_REFUSED.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -15,35 +21,93 @@
 
 #include "../CONFIG.h"
 
-/* Socket allocation (S0 HTTP, S1 SNMP) */
 #ifndef HTTP_SOCKET_NUM
+/**
+ * @brief Socket index used by the HTTP server.
+ */
 #define HTTP_SOCKET_NUM (0u)
 #endif
+
 #ifndef SNMP_SOCKET_NUM
+/**
+ * @brief Socket index used by the SNMP agent.
+ */
 #define SNMP_SOCKET_NUM (1u)
 #endif
+
 #ifndef TRAP_SOCKET_NUM
+/**
+ * @brief Socket index used by the SNMP trap sender.
+ */
 #define TRAP_SOCKET_NUM (2u)
 #endif
 
-/* Task handle */
+/**
+ * @brief Handle to the network FreeRTOS task.
+ */
 static TaskHandle_t netTaskHandle = NULL;
 
-/* Tag for logging */
+/**
+ * @brief Tag string used for NetTask log messages.
+ */
 #define NET_TASK_TAG "[Net]"
+
+/**
+ * @brief Cached network configuration for W5500 reinitialization.
+ *
+ * @details
+ * Once StorageTask provides the persistent network configuration, it is stored
+ * in this global so that any later PHY link-up event can trigger a full W5500
+ * reconfiguration without re-querying StorageTask.
+ */
+static networkInfo s_net_cfg;
+
+/**
+ * @brief Last observed PHY link status.
+ *
+ * @details
+ * Used to detect link-up and link-down transitions; changes in this value
+ * drive ETH LED mode and W5500 reinitialization.
+ */
+static w5500_PhyLink s_last_link = PHY_LINK_OFF;
+
+/**
+ * @brief Flag indicating whether ETH LED should blink (link down).
+ *
+ * @details
+ * When true, NetTask toggles ETH LED at a fixed rate while no PHY link is
+ * present. When false, ETH LED is driven solid according to s_eth_led_state.
+ */
+static bool s_eth_led_blink = false;
+
+/**
+ * @brief Timestamp of last ETH LED toggle for blinking (ms since boot).
+ */
+static uint32_t s_eth_led_blink_last_ms = 0;
+
+/**
+ * @brief Current software state of ETH LED (true = ON, false = OFF).
+ */
+static bool s_eth_led_state = false;
 
 /**
  * @brief Wait until PHY link is up or timeout expires.
  *
- * @param timeout_ms Timeout in milliseconds
- * @return true if link is up, false if timeout occurred
+ * @param timeout_ms Timeout in milliseconds.
+ * @return true if link is up before timeout, false if timeout occurred.
+ *
+ * @details
+ * Polls the W5500 PHY link status at 100 ms cadence, feeding NetTask's health
+ * heartbeat while waiting. Intended for short guards around reinit, not long
+ * blocking waits.
  */
 static bool wait_for_link_up(uint32_t timeout_ms) {
     TickType_t start = xTaskGetTickCount();
     TickType_t timeout = pdMS_TO_TICKS(timeout_ms);
     while (w5500_get_link_status() != PHY_LINK_ON) {
-        if (xTaskGetTickCount() - start >= timeout)
+        if (xTaskGetTickCount() - start >= timeout) {
             return false;
+        }
         Health_Heartbeat(HEALTH_ID_NET);
         vTaskDelay(pdMS_TO_TICKS(100));
     }
@@ -51,19 +115,26 @@ static bool wait_for_link_up(uint32_t timeout_ms) {
 }
 
 /**
- * @brief Convert StorageTask networkInfo into driver configuration.
+ * @brief Convert StorageTask networkInfo into driver configuration and init HW.
  *
- * @param ni Pointer to networkInfo loaded from EEPROM or defaults
- * @return true on success, false on invalid input or driver failure
+ * @param ni Pointer to networkInfo loaded from EEPROM or defaults.
+ * @return true on success, false on unrecoverable hardware failure.
  *
  * @details
  * This helper applies IP, subnet, gateway, DNS, MAC and DHCP/static mode
- * into the W5500 driver. It also performs the final chip init so that
- * sockets can be used by the HTTP server.
+ * into the W5500 driver and performs the low-level hardware bring-up.
+ *
+ * Link presence is *not* treated as fatal:
+ * - If W5500 hardware init fails, the function returns false and NetTask
+ *   enters a safe loop.
+ * - If network application (ethernet_apply_network_from_storage) fails due to
+ *   missing PHY link, the error is logged but the function still returns true
+ *   so the rest of the PDU can operate without Ethernet.
  */
 static bool net_apply_config_and_init(const networkInfo *ni) {
-    if (!ni)
+    if (!ni) {
         return false;
+    }
 
     /* W5500 low level bring-up (GPIO, SPI, reset) */
     if (!w5500_hw_init()) {
@@ -72,10 +143,14 @@ static bool net_apply_config_and_init(const networkInfo *ni) {
     }
     Health_Heartbeat(HEALTH_ID_NET);
 
-    /* Map StorageTask schema to driver and init chip */
+    /* Map StorageTask schema to driver and init chip.
+     * Failure here typically means "no link" -> log and continue;
+     * the link supervisor in the main loop will reinit on link-up.
+     */
     if (!ethernet_apply_network_from_storage(ni)) {
-        ERROR_PRINT("%s ethernet_apply_network_from_storage failed\r\n", NET_TASK_TAG);
-        return false;
+        WARNING_PRINT("%s ethernet_apply_network_from_storage failed (likely no link), "
+                      "continuing without Ethernet\r\n",
+                      NET_TASK_TAG);
     }
     Health_Heartbeat(HEALTH_ID_NET);
 
@@ -83,16 +158,83 @@ static bool net_apply_config_and_init(const networkInfo *ni) {
 }
 
 /**
+ * @brief Start all IP-based services (HTTP server + SNMP agent).
+ *
+ * @return None.
+ *
+ * @details
+ * This function (re)opens all sockets on the W5500 side by calling the
+ * HTTP server and SNMP initialization entry points. It is safe to call
+ * after a chip reset and is used both at initial bring-up and after each
+ * link-up-triggered reinitialization.
+ */
+static void net_start_services(void) {
+    /* HTTP server on dedicated socket */
+    http_server_init();
+    INFO_PRINT("%s HTTP server initialized\r\n", NET_TASK_TAG);
+    Health_Heartbeat(HEALTH_ID_NET);
+
+    /* SNMP agent + trap */
+    if (!SNMP_Init(SNMP_SOCKET_NUM, SNMP_PORT_AGENT, TRAP_SOCKET_NUM)) {
+        ERROR_PRINT("[SNMP] init failed\r\n");
+    } else {
+        INFO_PRINT("[SNMP] Agent running on UDP/%u (sock %u)\r\n", (unsigned)SNMP_PORT_AGENT,
+                   (unsigned)SNMP_SOCKET_NUM);
+    }
+    Health_Heartbeat(HEALTH_ID_NET);
+}
+
+/**
+ * @brief Reinitialize W5500 using cached network configuration on link-up.
+ *
+ * @return true on success, false on failure.
+ *
+ * @details
+ * Triggered when a PHY link-up event is detected. Performs a software reset
+ * of the W5500, waits briefly for link confirmation, reapplies the cached
+ * network configuration and restarts all IP-based services.
+ *
+ * This guarantees a clean link, socket and server state after any interruption,
+ * preventing ERR_CONNECTION_REFUSED when the cable is unplugged and replugged.
+ */
+static bool net_reinit_from_cache(void) {
+    /* Software reset the chip */
+    w5500_sw_reset();
+    Health_Heartbeat(HEALTH_ID_NET);
+
+    /* Guard: ensure the PHY link is actually up (short, non-fatal wait) */
+    (void)wait_for_link_up(1000);
+
+    /* Reapply stored network configuration */
+    if (!ethernet_apply_network_from_storage(&s_net_cfg)) {
+        WARNING_PRINT("%s W5500 reinit from cached config failed\r\n", NET_TASK_TAG);
+        return false;
+    }
+    Health_Heartbeat(HEALTH_ID_NET);
+
+    /* Restart HTTP + SNMP so sockets listen again after reset */
+    net_start_services();
+
+    return true;
+}
+
+/**
  * @brief Network task main function.
- * @param pvParameters Unused
- * @return None
+ *
+ * @param pvParameters Unused.
+ * @return None (task function never returns).
  *
  * @details
  * Boot sequence:
  * 1) Wait for StorageTask to signal CFG_READY.
- * 2) Fetch networkInfo via storage_get_network.
- * 3) Bring up W5500 with that config.
- * 4) Start HTTP server and process requests.
+ * 2) Fetch networkInfo via storage_get_network and cache it in s_net_cfg.
+ * 3) Bring up W5500 with that config (independent of link presence).
+ * 4) Start HTTP server and SNMP agent.
+ * 5) Run service loop with:
+ *      - Link supervision (detect plug/unplug).
+ *      - ETH LED control (steady ON when linked, blinking when no link).
+ *      - Full W5500 + service reinitialization on each link-up event.
+ *      - HTTP + SNMP processing with health monitoring.
  */
 static void NetTask_Function(void *pvParameters) {
     (void)pvParameters;
@@ -112,25 +254,25 @@ static void NetTask_Function(void *pvParameters) {
     }
     Health_Heartbeat(HEALTH_ID_NET);
 
-    /* 2) Read network configuration from StorageTask */
-    networkInfo neti;
-    if (!storage_get_network(&neti)) {
+    /* 2) Read network configuration from StorageTask and cache it */
+    if (!storage_get_network(&s_net_cfg)) {
         ERROR_PRINT("%s storage_get_network failed\r\n", NET_TASK_TAG);
         /* Fallback: use defaults directly from StorageTask helper */
-        neti = LoadUserNetworkConfig();
+        s_net_cfg = LoadUserNetworkConfig();
         WARNING_PRINT("%s using fallback network defaults\r\n", NET_TASK_TAG);
     }
     Health_Heartbeat(HEALTH_ID_NET);
 
-    /* 3) Apply config and initialize Ethernet */
-    if (!net_apply_config_and_init(&neti)) {
+    /* 3) Apply config and initialize Ethernet hardware (but don't depend on link) */
+    if (!net_apply_config_and_init(&s_net_cfg)) {
         uint8_t mr = getMR();
-        if (mr & MR_PB)
+        if (mr & MR_PB) {
             setMR(mr & ~MR_PB);
-        ERROR_PRINT("%s Ethernet init failed, entering safe loop\r\n", NET_TASK_TAG);
+        }
+        ERROR_PRINT("%s Ethernet HW init failed, entering safe loop\r\n", NET_TASK_TAG);
         for (;;) {
             uint32_t __now = to_ms_since_boot(get_absolute_time());
-            if ((__now - hb_net_ms) >= 250) {
+            if ((__now - hb_net_ms) >= 250U) {
                 hb_net_ms = __now;
                 Health_Heartbeat(HEALTH_ID_NET);
             }
@@ -138,49 +280,84 @@ static void NetTask_Function(void *pvParameters) {
         }
     }
 
-    INFO_PRINT("%s Ethernet up, starting HTTP server\r\n", NET_TASK_TAG);
-
-    /* 3a) Wait for link-up, beat while waiting */
-    (void)wait_for_link_up(5000);
-
-    /* 4a) Start HTTP server */
-    http_server_init();
-    Health_Heartbeat(HEALTH_ID_NET);
-
-    /* 4b) Start SNMP agent */
-    if (!SNMP_Init(SNMP_SOCKET_NUM, SNMP_PORT_AGENT, TRAP_SOCKET_NUM)) {
-        ERROR_PRINT("[SNMP] init failed\r\n");
+    /* Initial link evaluation and ETH LED state */
+    s_last_link = w5500_get_link_status();
+    if (s_last_link == PHY_LINK_ON) {
+        s_eth_led_blink = false;
+        s_eth_led_state = true;
+        setNetworkLink(true);
+        INFO_PRINT("%s Initial PHY link detected, ETH LED ON\r\n", NET_TASK_TAG);
     } else {
-        INFO_PRINT("[SNMP] Agent running on UDP/%u (sock %u)\r\n", (unsigned)SNMP_PORT_AGENT,
-                   (unsigned)SNMP_SOCKET_NUM);
+        s_eth_led_blink = true;
+        s_eth_led_state = false;
+        setNetworkLink(false);
+        s_eth_led_blink_last_ms = to_ms_since_boot(get_absolute_time());
+        WARNING_PRINT("%s No PHY link at startup, ETH LED blinking\r\n", NET_TASK_TAG);
     }
-    Health_Heartbeat(HEALTH_ID_NET);
+
+    INFO_PRINT("%s Ethernet HW up, starting services\r\n", NET_TASK_TAG);
+
+    /* 4) Start HTTP + SNMP services on top of configured W5500 */
+    net_start_services();
 
     /* 5) Main service loop */
     for (;;) {
-        uint32_t __now = to_ms_since_boot(get_absolute_time());
-        if ((__now - hb_net_ms) >= 250) {
-            hb_net_ms = __now;
+        uint32_t now_ms = to_ms_since_boot(get_absolute_time());
+
+        /* 5.1) PHY link supervision and ETH LED control */
+        w5500_PhyLink cur_link = w5500_get_link_status();
+        if (cur_link != s_last_link) {
+            if (cur_link == PHY_LINK_ON) {
+                INFO_PRINT("%s PHY link UP detected, full W5500 reinit\r\n", NET_TASK_TAG);
+                (void)net_reinit_from_cache();
+                s_eth_led_blink = false;
+                s_eth_led_state = true;
+                setNetworkLink(true);
+            } else {
+                WARNING_PRINT("%s PHY link DOWN detected\r\n", NET_TASK_TAG);
+                /* TODO: hook error-code reporting for link loss here */
+                s_eth_led_blink = true;
+                s_eth_led_state = false;
+                setNetworkLink(false);
+                s_eth_led_blink_last_ms = now_ms;
+            }
+            s_last_link = cur_link;
+        }
+
+        if (s_eth_led_blink) {
+            /* Blink ETH LED while link is down (about 1 Hz, 50% duty) */
+            if ((now_ms - s_eth_led_blink_last_ms) >= 500U) {
+                s_eth_led_blink_last_ms = now_ms;
+                s_eth_led_state = !s_eth_led_state;
+                setNetworkLink(s_eth_led_state);
+            }
+        }
+
+        /* 5.2) NetTask heartbeat */
+        if ((now_ms - hb_net_ms) >= 250U) {
+            hb_net_ms = now_ms;
             Health_Heartbeat(HEALTH_ID_NET);
         }
 
-        /* HTTP service with cooperative pacing */
+        /* 5.3) HTTP service with cooperative pacing */
         uint32_t t0 = to_ms_since_boot(get_absolute_time());
         http_server_process();
         uint32_t dt = to_ms_since_boot(get_absolute_time()) - t0;
-        if (dt > 750)
+        if (dt > 750U) {
             Health_RecordBlocked("http_server_process", dt);
+        }
 
         vTaskDelay(pdMS_TO_TICKS(1));
         taskYIELD();
 
-        /* SNMP service */
+        /* 5.4) SNMP service */
         t0 = to_ms_since_boot(get_absolute_time());
         SNMP_Tick10ms();
         (void)SNMP_Poll(2);
         dt = to_ms_since_boot(get_absolute_time()) - t0;
-        if (dt > 750)
+        if (dt > 750U) {
             Health_RecordBlocked("snmp_poll", dt);
+        }
 
         Health_Heartbeat(HEALTH_ID_NET);
         vTaskDelay(pdMS_TO_TICKS(NET_TASK_CYCLE_MS));
@@ -192,7 +369,14 @@ static void NetTask_Function(void *pvParameters) {
 /* ##################################################################### */
 
 /**
- * @brief Starts the network task with a deterministic enable gate.
+ * @brief Initialize and start the network task.
+ *
+ * @param enable If false, NetTask is not created but the call returns pdPASS.
+ * @return pdPASS on successful task creation or when disabled, error code otherwise.
+ *
+ * @details
+ * Performs a deterministic gate on StorageTask readiness, then creates the
+ * NetTask FreeRTOS task. The internal READY flag is updated only on success.
  */
 BaseType_t NetTask_Init(bool enable) {
     /* TU-local READY flag accessor (no file-scope globals added). */
@@ -227,5 +411,7 @@ BaseType_t NetTask_Init(bool enable) {
 
 /**
  * @brief Network subsystem readiness query.
+ *
+ * @return true if NetTask has been successfully created, false otherwise.
  */
 bool Net_IsReady(void) { return (netTaskHandle != NULL); }

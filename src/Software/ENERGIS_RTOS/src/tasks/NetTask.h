@@ -38,6 +38,20 @@
 /* ##################################################################### */
 
 /**
+ * @brief Apply network configuration from StorageTask and initialize the W5500.
+ *
+ * @param ni Pointer to storage-layer network configuration structure (networkInfo).
+ * @return true on success, false on failure.
+ *
+ * @details
+ * Converts the persistent network configuration loaded by StorageTask into a
+ * w5500_NetConfig instance, programs the W5500 registers via w5500_chip_init,
+ * and logs the resulting configuration using w5500_print_network.
+ * This is the primary entry point used by NetTask when bringing up the Ethernet interface.
+ */
+bool ethernet_apply_network_from_storage(const networkInfo *ni);
+
+/**
  * @brief Starts the network task with a deterministic enable gate.
  *
  * @details

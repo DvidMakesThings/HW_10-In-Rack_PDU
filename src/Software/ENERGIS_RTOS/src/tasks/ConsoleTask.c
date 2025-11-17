@@ -338,7 +338,7 @@ static void cmd_sysinfo(void) {
     bool tele_ok = MeterTask_GetSystemTelemetry(&sys_tele);
 
     /* --------  Assemble and print info -------- */
-    ECHO("\n=== Hardware Specific Info ===\n");
+    ECHO("=== Hardware Specific Info ===\n");
     ECHO("CPU Frequency: %.2f MHz\n", sys_freq_mhz);
     ECHO("USB Frequency: %.2f MHz\n", usb_freq_mhz);
     ECHO("PERI Frequency: %.2f MHz\n", peri_freq_mhz);
@@ -346,11 +346,11 @@ static void cmd_sysinfo(void) {
     ECHO("FreeRTOS Tick: %lu\n", (unsigned long)xTaskGetTickCount());
     ECHO("Core voltage: %.2f V (vsel = %u)\n", voltage, vsel);
 
-    ECHO("\n=== Device Firmware Info ===\n");
+    ECHO("=== Device Firmware Info ===\n");
     ECHO("Device Serial: %s\n", serial_buf);
     ECHO("Firmware Ver: %s\n", fw_buf);
 
-    ECHO("\n=== Device Voltages ===\n");
+    ECHO("=== Device Voltages ===\n");
     if (tele_ok) {
         ECHO("USB Voltage: %.2f V\n", sys_tele.vusb_volts);
         ECHO("12V Supply: %.2f V\n", sys_tele.vsupply_volts);
@@ -359,7 +359,7 @@ static void cmd_sysinfo(void) {
         ECHO("12V Supply: N/A (no telemetry)\n");
     }
 
-    ECHO("\n=== Device Temperature ===\n");
+    ECHO("=== Device Temperature ===\n");
     if (tele_ok) {
         ECHO("Die Temperature: %.2f °C (ADC raw=%u)\n", sys_tele.die_temp_c, sys_tele.raw_temp);
     } else {
@@ -783,7 +783,7 @@ static void cmd_set_ip(const char *args) {
  * @param args Command arguments: "<mask>" e.g., "255.255.255.0"
  * @return None
  */
-static void cmd_SET_SN(const char *args) {
+static void cmd_set_sn(const char *args) {
     uint8_t sn[4];
     if (!parse_ip(args, sn)) {
         ERROR_PRINT("Invalid subnet mask format: %s\n", args);
@@ -1026,7 +1026,7 @@ static void dispatch_command(const char *line) {
         }
     } else if (strcmp(trimmed, "CALIBRATE") == 0) {
         cmd_calibrate(args ? args : "");
-    } else if (strcmp(trimmed, "AUTO_CAL_ZERO")) {
+    } else if (strcmp(trimmed, "AUTO_CAL_ZERO") == 0) {
         cmd_auto_cal_zero();
     } else if (strcmp(trimmed, "AUTO_CAL_V") == 0) {
         cmd_auto_cal_v(args ? args : "");
@@ -1039,8 +1039,8 @@ static void dispatch_command(const char *line) {
         cmd_netinfo();
     } else if (strcmp(trimmed, "SET_IP") == 0) {
         cmd_set_ip(args ? args : "");
-    } else if (strcmp(trimmed, "SET_SN") == 0 || strcmp(trimmed, "SET_SN") == 0) {
-        cmd_SET_SN(args ? args : "");
+    } else if (strcmp(trimmed, "SET_SN") == 0) {
+        cmd_set_sn(args ? args : "");
     } else if (strcmp(trimmed, "SET_GW") == 0) {
         cmd_set_gw(args ? args : "");
     } else if (strcmp(trimmed, "SET_DNS") == 0) {

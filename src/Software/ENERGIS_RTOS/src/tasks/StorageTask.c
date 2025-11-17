@@ -107,13 +107,13 @@ static void storage_dump_eeprom_formatted(void) {
     for (uint32_t i = 0; i < lines_per_slice && s_dump_next_addr < CAT24C256_TOTAL_SIZE; i++) {
         uint16_t addr = (uint16_t)s_dump_next_addr;
 
-        /* CAT24C256_ReadBuffer is void, just fill the buffer */
         CAT24C256_ReadBuffer(addr, buffer, sizeof(buffer));
 
         snprintf(line, sizeof(line), "0x%04X ", addr);
         for (uint8_t b = 0; b < 16; b++) {
             snprintf(field, sizeof(field), "%02X ", buffer[b]);
             strncat(line, field, sizeof(line) - strlen(line) - 1);
+            vTaskDelay(pdMS_TO_TICKS(1));
             Health_Heartbeat(HEALTH_ID_STORAGE);
         }
 
