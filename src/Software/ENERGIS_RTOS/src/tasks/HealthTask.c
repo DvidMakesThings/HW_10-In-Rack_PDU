@@ -141,6 +141,7 @@ static volatile uint32_t s_block_w = 0;
 static TaskHandle_t s_health_handle = NULL;
 static bool s_watchdog_armed = false;
 static uint32_t s_start_ms = 0;
+static bool proc_state = false;
 
 /* ---------- Introspection helpers ---------- */
 #if (INCLUDE_uxTaskGetStackHighWaterMark == 1)
@@ -239,7 +240,7 @@ static inline uint32_t now_ms(void) { return to_ms_since_boot(get_absolute_time(
  *
  * Call this instead of raw watchdog_update() wherever the Health policy
  * decides to feed the watchdog. It still performs the hardware feed, but
- * also stores @p now_ms so we can warn if we approach the timeout.
+ * also stores @p now_ms so warn is possible if timeout is approaching.
  *
  * @param now_ms Monotonic time in milliseconds (e.g. to_ms_since_boot()).
  * @return None
@@ -248,6 +249,13 @@ static inline void Health_OnWdtFeed(uint32_t now_ms) {
     watchdog_update();
     s_last_wdt_feed_ms = now_ms;
     s_prebark_emitted = false;
+    if (proc_state == false) {
+        proc_state = true;
+        pwm_set_gpio_level(PROC_LED, 65535);
+    } else {
+        proc_state = false;
+        pwm_set_gpio_level(PROC_LED, 0);
+    }
 }
 
 /**
@@ -270,7 +278,7 @@ static inline void Health_PreBarkCheck(uint32_t now_ms) {
 
     const uint32_t since_feed = now_ms - s_last_wdt_feed_ms;
 
-    /* Warn once when we are inside the last HEALTH_PREBARK_MS before the bite. */
+    /* Warn once when inside the last HEALTH_PREBARK_MS before the bite. */
     if (since_feed + HEALTH_PREBARK_MS >= HEALTH_SILENCE_MS) {
         if (!s_prebark_emitted) {
             const uint32_t rem =
@@ -646,7 +654,7 @@ static void print_health_reboot_brief(void) {
  *   (1) warmup window elapsed, AND
  *   (2) every required task produced at least one heartbeat.
  *
- * Additionally, emits a one-shot "pre-bark" ERROR_PRINT when we are within
+ * Additionally, emits a one-shot "pre-bark" ERROR_PRINT when within
  * HEALTH_PREBARK_MS of HEALTH_SILENCE_MS since the last feed, with per-task dt.
  *
  * @param arg Unused task parameter.
@@ -727,7 +735,7 @@ static void health_task(void *arg) {
                 // WARNING_PRINT("############# WATCHDOG DISABLED FOR DEVELOPMENT BUILD
                 // #############\r\n");
                 watchdog_enable(HEALTH_SILENCE_MS, 1);
-                watchdog_update();
+                Health_OnWdtFeed(t);
                 CrashLog_RecordWdtFeed(t);
                 s_watchdog_armed = true;
 
@@ -764,7 +772,7 @@ static void health_task(void *arg) {
             }
         }
 
-        /* One-shot pre-bark: warn once when we are close to the bite */
+        /* One-shot pre-bark: warn once when inside the last HEALTH_PREBARK_MS before the bite. */
         if (s_watchdog_armed) {
             const uint32_t since_feed = t - s_last_wdt_feed_ms;
             if (!s_prebark_emitted && (since_feed + HEALTH_PREBARK_MS) >= HEALTH_SILENCE_MS) {
@@ -821,7 +829,7 @@ static void health_task(void *arg) {
         uint32_t maxdt = max_dt_required(t);
         if (maxdt <= HEALTH_SILENCE_MS) {
             uint32_t remain = HEALTH_SILENCE_MS - maxdt;
-            watchdog_update();
+            Health_OnWdtFeed(t);
             CrashLog_RecordWdtFeed(t);
 
             /* keep pre-bark book-keeping in sync with actual feed */

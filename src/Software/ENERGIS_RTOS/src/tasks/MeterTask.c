@@ -1,9 +1,9 @@
 /**
  * @file src/tasks/MeterTask.c
- * @author
+ * @author DvidMakesThings - David Sipos
  *
- * @version 1.1.0
- * @date 2025-11-15
+ * @version 1.2.0
+ * @date 2025-11-17
  *
  * @details MeterTask is the sole owner of the HLW8032 power measurement
  * peripheral. It polls all 8 channels in round-robin fashion at 25 Hz,
@@ -14,6 +14,13 @@
  * (die temperature, VUSB rail, and 12V supply) and exposes a cached
  * snapshot via MeterTask_GetSystemTelemetry(). The HTTP/SNMP/metrics
  * layers must read these cached values instead of touching ADC drivers.
+ *
+ * Standby mode support:
+ * - When system enters STANDBY mode (via Power_EnterStandby()), MeterTask
+ *   stops all HLW8032 polling and ADC operations.
+ * - MeterTask continues running but only feeds heartbeat and delays.
+ * - On exit from STANDBY (via Power_ExitStandby()), MeterTask detects the
+ *   state transition and resumes normal polling.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -158,6 +165,16 @@ static void publish_telemetry(const meter_telemetry_t *telem) {
 
 /**
  * @brief Main Meter Task loop.
+ *
+ * @details
+ * In normal RUN mode, polls HLW8032 at 25 Hz, updates rolling averages,
+ * samples ADC telemetry every 200ms, and publishes data to the queue.
+ *
+ * In STANDBY mode, skips all hardware operations and only feeds heartbeat
+ * at a reduced rate with long delays to minimize CPU usage.
+ *
+ * @param pvParameters Unused.
+ * @return None
  */
 static void MeterTask_Loop(void *pvParameters) {
     (void)pvParameters;
@@ -177,6 +194,25 @@ static void MeterTask_Loop(void *pvParameters) {
 
     while (1) {
         uint32_t now_ms_ = to_ms_since_boot(get_absolute_time());
+
+        /* Query current power state */
+        power_state_t pwr_state = Power_GetState();
+
+        /* If in STANDBY mode, skip all HLW8032 and ADC operations */
+        if (pwr_state == PWR_STATE_STANDBY) {
+            /* Heartbeat at reduced rate to keep HealthTask happy */
+            if ((now_ms_ - hb_meter_ms) >= 500U) {
+                hb_meter_ms = now_ms_;
+                Health_Heartbeat(HEALTH_ID_METER);
+            }
+            /* Long delay to minimize CPU usage in standby */
+            vTaskDelay(pdMS_TO_TICKS(300));
+            continue;
+        }
+
+        /* ===== Normal RUN mode operation from here ===== */
+
+        /* Regular heartbeat in RUN mode */
         if ((now_ms_ - hb_meter_ms) >= METERTASKBEAT_MS) {
             hb_meter_ms = now_ms_;
             Health_Heartbeat(HEALTH_ID_METER);
@@ -502,7 +538,7 @@ bool MeterTask_GetTempCalibrationInfo(uint8_t *out_mode, float *out_v0, float *o
     const float S_TYP = 0.001721f;
     const float OFFSET_TYP = 0.0f;
 
-    /* Tiny epsilons to classify “equal” without noise sensitivity */
+    /* Tiny epsilons to classify "equal" without noise sensitivity */
     const float EPS_V0 = 0.0005f;     /* 0.5 mV */
     const float EPS_SLOPE = 0.00002f; /* 20 µV/°C */
     const float EPS_OFFSET = 0.05f;   /* 0.05 °C */

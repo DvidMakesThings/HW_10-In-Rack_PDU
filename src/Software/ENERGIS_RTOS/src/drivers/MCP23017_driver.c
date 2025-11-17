@@ -33,7 +33,7 @@
 #define MCP_POST_RESET_MS 10
 #endif
 
-/* Max distinct devices we track (addresses 0x20…0x27 fits well under this) */
+/* Max distinct devices to track (addresses 0x20…0x27 fits well under this) */
 #ifndef MCP_MAX_DEVICES
 #define MCP_MAX_DEVICES 8
 #endif

@@ -4,7 +4,7 @@
  *
  * @version 1.0.0
  * @date 2025-11-07
- * 
+ *
  * @details
  * Thread-safe BSD socket-like API for W5500.
  * Key Features:
@@ -489,7 +489,7 @@ int32_t recv(uint8_t sn, uint8_t *buf, uint16_t len) {
     /* Read from RX buffer */
     eth_recv_data(sn, buf, len);
 
-    /* Notify chip we consumed data */
+    /* Notify chip data was consumed */
     setSn_CR(sn, Sn_CR_RECV);
     while (getSn_CR(sn))
         vTaskDelay(pdMS_TO_TICKS(1));

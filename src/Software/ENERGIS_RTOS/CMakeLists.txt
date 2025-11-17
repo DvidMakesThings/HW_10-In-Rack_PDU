@@ -67,6 +67,7 @@ add_executable(ENERGIS_RTOS
     src/misc/helpers.c
     src/misc/rtos_hooks.c
     src/misc/crashlog.c
+    src/misc/power_mgr.c
     src/snmp/snmp_custom.c
     src/snmp/snmp_networkCtrl.c
     src/snmp/snmp_outletCtrl.c

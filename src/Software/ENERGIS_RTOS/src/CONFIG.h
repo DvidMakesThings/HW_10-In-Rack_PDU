@@ -31,6 +31,7 @@
 #include "FreeRTOS.h"
 #include "event_groups.h"
 #include "hardware/irq.h"
+#include "hardware/pwm.h"
 #include "hardware/structs/vreg_and_chip_reset.h"
 #include "hardware/structs/watchdog.h"
 #include "hardware/watchdog.h"
@@ -66,6 +67,7 @@
 #include "misc/helpers.h"
 #include "misc/crashlog.h"
 #include "misc/rtos_hooks.h"
+#include "misc/power_mgr.h"
 
 #include "drivers/CAT24C256_driver.h"
 #include "drivers/MCP23017_driver.h"
@@ -234,7 +236,8 @@ extern w5500_NetConfig eth_netcfg;
  *                          PERIPHERAL ASSIGNMENTS                              *
  ********************************************************************************/
 // I2C Peripheral Assignments
-#define I2C_SPEED 100000                            // 100 kHz standard mode
+#define I2C_SPEED 400000                            // 400 kHz fast mode
+#define I2C_SPEED2 100000                           // 100 kHz standard mode
 #define EEPROM_I2C i2c1                             // Using I2C1 for EEPROM communication
 #define MCP23017_RELAY_I2C i2c1                     // Using I2C1 for Relay Board MCP23017
 #define MCP23017_DISPLAY_I2C i2c0                   // Using I2C0 for Display Board MCP23017

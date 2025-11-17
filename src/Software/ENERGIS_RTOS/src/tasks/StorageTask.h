@@ -289,25 +289,6 @@ bool storage_get_sensor_cal(uint8_t channel, hlw_calib_t *out);
  */
 bool storage_set_sensor_cal(uint8_t channel, const hlw_calib_t *cal);
 
-/* ==================== SIL Testing API ==================== */
-
-/**
- * @brief Trigger a formatted EEPROM dump in StorageTask context.
- *
- * Enqueues a @ref STORAGE_CMD_DUMP_FORMATTED request and waits for completion.
- * The dump itself is executed incrementally from @ref StorageTask, so other
- * tasks (Net, Meter, Buttons, Health) remain responsive and watchdog feeding
- * is not impacted. While the dump runs, logger output from other tasks is
- * muted via @ref Logger_MutePush()/Logger_MutePop(), so the hex dump remains
- * clean and contiguous. Critical errors and warnings still use
- * @ref log_printf_force() and will appear.
- *
- * @param timeout_ms Maximum time to wait for the dump to finish. If 0, a
- *                   default of 60000 ms is used.
- *
- * @return true on success, false on timeout or queue/semaphore failure.
- */
-bool storage_dump_formatted(uint32_t timeout_ms);
 
 #endif /* STORAGE_TASK_H */
 

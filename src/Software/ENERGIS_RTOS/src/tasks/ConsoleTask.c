@@ -2,8 +2,8 @@
  * @file src/tasks/ConsoleTask.c
  * @author DvidMakesThings - David Sipos
  *
- * @version 2.0.0
- * @date 2025-11-08
+ * @version 2.1.0
+ * @date 2025-11-17
  *
  * @details
  * Architecture:
@@ -14,6 +14,13 @@
  *
  * Note: Console input comes from USB-CDC (stdio), not a hardware UART.
  * This matches the CMakeLists.txt config: pico_enable_stdio_usb(... 1)
+ *
+ * Standby mode support:
+ * - When system enters STANDBY mode (via Power_EnterStandby()), ConsoleTask
+ *   stops all USB-CDC polling and command processing.
+ * - ConsoleTask continues running but only feeds heartbeat and delays.
+ * - On exit from STANDBY (via Power_ExitStandby()), ConsoleTask detects the
+ *   state transition and resumes normal USB-CDC polling and command handling.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -361,7 +368,7 @@ static void cmd_sysinfo(void) {
 
     ECHO("=== Device Temperature ===\n");
     if (tele_ok) {
-        ECHO("Die Temperature: %.2f °C (ADC raw=%u)\n", sys_tele.die_temp_c, sys_tele.raw_temp);
+        ECHO("Die Temperature: %.2f Â°C (ADC raw=%u)\n", sys_tele.die_temp_c, sys_tele.raw_temp);
     } else {
         ECHO("Die Temperature: N/A (no telemetry)\n");
     }
@@ -373,14 +380,14 @@ static void cmd_sysinfo(void) {
  *
  * @details
  * MeterTask owns the ADC. This command reads the latest cached value
- * (non-blocking). If telemetry isn’t ready yet, it prints N/A.
+ * (non-blocking). If telemetry isnâ€™t ready yet, it prints N/A.
  *
  * @return None
  */
 static void cmd_get_temp(void) {
     system_telemetry_t sys = {0};
     if (MeterTask_GetSystemTelemetry(&sys)) {
-        ECHO("Die Temperature: %.2f °C (ADC raw=%u)\n", sys.die_temp_c, sys.raw_temp);
+        ECHO("Die Temperature: %.2f Â°C (ADC raw=%u)\n", sys.die_temp_c, sys.raw_temp);
     } else {
         ECHO("Die Temperature: N/A (telemetry not ready)\n");
     }
@@ -433,7 +440,7 @@ static void cmd_calib_temp(const char *args) {
         }
         (void)TempCalibration_ApplyToMeterTask(&rec);
 
-        ECHO("CALIB_TEMP 1P OK: offset=%.3f °C (raw=%u)\n", rec.offset_c, (unsigned)sys.raw_temp);
+        ECHO("CALIB_TEMP 1P OK: offset=%.3f Â°C (raw=%u)\n", rec.offset_c, (unsigned)sys.raw_temp);
         return;
     }
 
@@ -467,7 +474,7 @@ static void cmd_calib_temp(const char *args) {
         }
         (void)TempCalibration_ApplyToMeterTask(&rec);
 
-        ECHO("CALIB_TEMP 2P OK: V0=%.4f V, S=%.6f V/°C, offset=%.3f °C (raw1=%u, raw2=%u)\n",
+        ECHO("CALIB_TEMP 2P OK: V0=%.4f V, S=%.6f V/Â°C, offset=%.3f Â°C (raw1=%u, raw2=%u)\n",
              rec.v0_volts_at_27c, rec.slope_volts_per_deg, rec.offset_c, (unsigned)raw1,
              (unsigned)raw2);
         return;
@@ -1095,6 +1102,25 @@ static void ConsoleTask(void *arg) {
 
     for (;;) {
         uint32_t __now = to_ms_since_boot(get_absolute_time());
+
+        /* Query current power state */
+        power_state_t pwr_state = Power_GetState();
+
+        /* If in STANDBY mode, skip all USB-CDC polling and command processing */
+        if (pwr_state == PWR_STATE_STANDBY) {
+            /* Heartbeat at reduced rate to keep HealthTask happy */
+            if ((__now - hb_cons_ms) >= 500U) {
+                hb_cons_ms = __now;
+                Health_Heartbeat(HEALTH_ID_CONSOLE);
+            }
+            /* Long delay to minimize CPU usage in standby */
+            vTaskDelay(pdMS_TO_TICKS(300));
+            continue;
+        }
+
+        /* ===== Normal RUN mode operation from here ===== */
+
+        /* Regular heartbeat in RUN mode */
         if ((__now - hb_cons_ms) >= CONSOLETASKBEAT_MS) {
             hb_cons_ms = __now;
             Health_Heartbeat(HEALTH_ID_CONSOLE);

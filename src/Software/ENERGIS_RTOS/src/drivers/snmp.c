@@ -4,7 +4,7 @@
  *
  * @version 1.0.0
  * @date 2025-11-07
- * 
+ *
  * @details  SNMP agent for ENERGIS RTOS. Owns a UDP socket (port 161),
  * parses incoming PDUs and emits responses without blocking the scheduler.
  * Time base is 10 ms via SNMP_Tick10ms(), used for TimeTicks.
@@ -521,7 +521,7 @@ static int32_t parseSequence(int32_t reqType, int32_t index) {
     if (s_req.buffer[seq.start] != SNMPDTYPE_SEQUENCE)
         return -1;
 
-    /* Copy SEQUENCE header (tag+len); we will fill its length after composing content */
+    /* Copy SEQUENCE header (tag+len); will fill its length after composing content */
     seglen = seq.vstart - seq.start;
     respLoc = s_resp.index;
     memcpy(&s_resp.buffer[s_resp.index], &s_req.buffer[seq.start], seglen);
@@ -532,7 +532,7 @@ static int32_t parseSequence(int32_t reqType, int32_t index) {
     int32_t content = parseVarBind(reqType, index);
     insertRespLen(seq.start, respLoc, content);
 
-    /* Return total bytes we emitted for this SEQUENCE (header + content) */
+    /* Return total bytes emitted for this SEQUENCE (header + content) */
     return content + seglen;
 }
 

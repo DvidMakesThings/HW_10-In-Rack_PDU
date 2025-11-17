@@ -87,6 +87,14 @@ static void init_gpio(void) {
     gpio_init(KEY_3);
     gpio_set_dir(KEY_3, GPIO_IN);
 
+    gpio_set_function(PROC_LED, GPIO_FUNC_PWM);
+    
+    static uint32_t s_pwm_slice = 0;
+    s_pwm_slice = pwm_gpio_to_slice_num(PROC_LED);
+    pwm_set_wrap(s_pwm_slice, 65535U);
+    pwm_set_clkdiv(s_pwm_slice, 8.0f);
+    pwm_set_enabled(s_pwm_slice, true);
+
     INFO_PRINT("%s GPIO configured\r\n", INIT_TASK_TAG);
 }
 

@@ -155,7 +155,6 @@ const int32_t maxData = (int32_t)(sizeof(snmpData) / sizeof(snmpData[0]));
 
 void initTable(void) {
     /* Nothing dynamic to initialize right now.
-     * If you want to tweak defaults (e.g., sysServices), do it here.
      */
 }
 

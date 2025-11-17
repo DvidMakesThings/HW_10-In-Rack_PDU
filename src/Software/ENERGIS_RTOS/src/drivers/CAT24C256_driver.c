@@ -129,29 +129,6 @@ void CAT24C256_ReadBuffer(uint16_t addr, uint8_t *buffer, uint32_t len) {
     }
 }
 
-void CAT24C256_DumpFormatted(void) {
-    char line[256], field[16];
-    TaskHandle_t h = xTaskGetCurrentTaskHandle();
-
-    log_printf("EE_DUMP_START\r\n");
-    log_printf("Addr   00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F \r\n");
-
-    for (uint32_t addr = 0; addr < CAT24C256_TOTAL_SIZE; addr += 16) {
-        uint8_t buffer[16];
-        CAT24C256_ReadBuffer((uint16_t)addr, buffer, 16);
-        snprintf(line, sizeof(line), "0x%04X ", (uint16_t)addr);
-        for (uint8_t i = 0; i < 16; i++) {
-            snprintf(field, sizeof(field), "%02X ", buffer[i]);
-            strncat(line, field, sizeof(line) - strlen(line) - 1);
-        }
-        log_printf("%s\r\n", line);
-        fflush(stdout);
-        vTaskDelay(pdMS_TO_TICKS(1));
-    }
-
-    log_printf("EE_DUMP_END\r\n");
-}
-
 bool CAT24C256_SelfTest(uint16_t test_addr) {
     const uint8_t test_pattern[] = {0xAA, 0x55, 0xCC, 0x33, 0xF0, 0x0F, 0x00, 0xFF};
     const uint8_t pattern_len = sizeof(test_pattern);

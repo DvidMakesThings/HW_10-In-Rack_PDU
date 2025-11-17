@@ -2,8 +2,8 @@
  * @file src/tasks/NetTask.c
  * @author DvidMakesThings - David Sipos
  *
- * @version 1.2.0
- * @date 2025-11-16
+ * @version 1.3.0
+ * @date 2025-11-17
  *
  * @details NetTask owns all W5500 operations. It waits for StorageTask to signal that
  * configuration is ready, reads the network config, brings up the W5500, then
@@ -14,6 +14,14 @@
  * - ETH LED blinks while there is no PHY link.
  * - On each link-up transition, the W5500 is fully reinitialized and all
  *   IP-based services (HTTP + SNMP) are restarted to avoid ERR_CONNECTION_REFUSED.
+ *
+ * Standby mode support:
+ * - When system enters STANDBY mode (via Power_EnterStandby()), NetTask
+ *   stops all W5500 access, HTTP, and SNMP processing.
+ * - The W5500 is held in hardware reset by Power_EnterStandby().
+ * - NetTask continues running but only feeds heartbeat and delays.
+ * - On exit from STANDBY (via Power_ExitStandby()), NetTask detects the
+ *   state transition and calls net_reinit_from_cache() to restore network.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -89,6 +97,11 @@ static uint32_t s_eth_led_blink_last_ms = 0;
  * @brief Current software state of ETH LED (true = ON, false = OFF).
  */
 static bool s_eth_led_state = false;
+
+/**
+ * @brief Last observed power state for transition detection.
+ */
+static power_state_t s_last_power_state = PWR_STATE_RUN;
 
 /**
  * @brief Wait until PHY link is up or timeout expires.
@@ -231,10 +244,12 @@ static bool net_reinit_from_cache(void) {
  * 3) Bring up W5500 with that config (independent of link presence).
  * 4) Start HTTP server and SNMP agent.
  * 5) Run service loop with:
+ *      - Power state supervision (detect STANDBY mode).
  *      - Link supervision (detect plug/unplug).
  *      - ETH LED control (steady ON when linked, blinking when no link).
  *      - Full W5500 + service reinitialization on each link-up event.
  *      - HTTP + SNMP processing with health monitoring.
+ *      - In STANDBY: skip all W5500/HTTP/SNMP operations, only heartbeat.
  */
 static void NetTask_Function(void *pvParameters) {
     (void)pvParameters;
@@ -303,6 +318,33 @@ static void NetTask_Function(void *pvParameters) {
     /* 5) Main service loop */
     for (;;) {
         uint32_t now_ms = to_ms_since_boot(get_absolute_time());
+
+        /* 5.0) Power state supervision */
+        power_state_t cur_pwr_state = Power_GetState();
+
+        /* Detect transition from STANDBY to RUN */
+        if (s_last_power_state == PWR_STATE_STANDBY && cur_pwr_state == PWR_STATE_RUN) {
+            INFO_PRINT("%s Exiting STANDBY, reinitializing network\r\n", NET_TASK_TAG);
+            /* W5500 RESET was released by Power_ExitStandby(), now reinit */
+            vTaskDelay(pdMS_TO_TICKS(100)); /* Brief delay after reset release */
+            (void)net_reinit_from_cache();
+            s_last_link = PHY_LINK_OFF; /* Force link redetection */
+        }
+        s_last_power_state = cur_pwr_state;
+
+        /* If in STANDBY mode, skip all W5500/HTTP/SNMP operations */
+        if (cur_pwr_state == PWR_STATE_STANDBY) {
+            /* Heartbeat at reduced rate to keep HealthTask happy */
+            if ((now_ms - hb_net_ms) >= 500U) {
+                hb_net_ms = now_ms;
+                Health_Heartbeat(HEALTH_ID_NET);
+            }
+            /* Long delay to minimize CPU usage in standby */
+            vTaskDelay(pdMS_TO_TICKS(300));
+            continue;
+        }
+
+        /* ===== Normal RUN mode operation from here ===== */
 
         /* 5.1) PHY link supervision and ETH LED control */
         w5500_PhyLink cur_link = w5500_get_link_status();

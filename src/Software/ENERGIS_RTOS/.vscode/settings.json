@@ -112,6 +112,7 @@
         "buttontask.h": "c",
         "tuple": "c",
         "snmp_voltagemon.h": "c",
-        "atomic": "c"
+        "atomic": "c",
+        "cstddef": "c"
     }
 }

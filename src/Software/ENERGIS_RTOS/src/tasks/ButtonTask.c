@@ -2,18 +2,19 @@
  * @file src/tasks/button_task.c
  * @author DvidMakesThings - David Sipos
  *
- * @version 1.0.1
- * @date 2025-11-08
+ * @version 1.1.0
+ * @date 2025-11-17
  * @details
- * 1. Polls PLUS/MINUS/SET GPIOs at 5 ms cadence (configurable).
- * 2. Debounces with DEBOUNCE_MS and resolves SET short/long with LONGPRESS_DT.
+ * 1. Polls PLUS/MINUS/SET/PWR GPIOs at 5 ms cadence (configurable).
+ * 2. Debounces with DEBOUNCE_MS and resolves SET/PWR short/long with LONGPRESS_DT.
  * 3. Maintains a 10 s "selection window" with 250 ms blinking on selection row.
  * 4. Emits events on q_btn for higher layers; also performs the classic actions:
  * PLUS  -> move selection RIGHT (wrap)  [only after window is open]
  * MINUS -> move selection LEFT  (wrap)  [only after window is open]
  * SET short -> toggle selected relay (opens window if it was idle)
  * SET long  -> clear error LED; never opens the window
- * 5. Non-blocking and ISR-free; suitable for RP2040 + FreeRTOS.
+ * PWR long  -> enter STANDBY mode
+ * PWR short (in STANDBY) -> exit STANDBY mode
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -62,7 +63,7 @@ typedef struct {
     bool prev_stable;        /**< Previous debounced level (for edge detection). */
     uint32_t last_change_ms; /**< Time of last raw transition. */
     uint32_t stable_since;   /**< Time since level became stable. */
-    bool latched_press;      /**< Tracks pending SET short/long resolution. */
+    bool latched_press;      /**< Tracks pending SET/PWR short/long resolution. */
 } deb_t;
 
 /**
@@ -74,9 +75,9 @@ typedef struct {
 } deb_edge_t;
 
 /**
- * @brief Debouncer instances for PLUS/MINUS/SET.
+ * @brief Debouncer instances for PLUS/MINUS/SET/PWR.
  */
-static deb_t s_plus, s_minus, s_set;
+static deb_t s_plus, s_minus, s_set, s_pwr;
 
 /* ##################################################################### */
 /*                           INTERNAL HELPERS                            */
@@ -215,6 +216,13 @@ static void vBlinkTimerCb(TimerHandle_t xTimer) {
 }
 
 /**
+ * @brief Read BUT_PWR GPIO state.
+ *
+ * @return true if pin is HIGH (not pressed), false if LOW (pressed, active-low).
+ */
+static inline bool read_pwr_button(void) { return gpio_get(BUT_PWR) ? true : false; }
+
+/**
  * @brief Button scanning task: debounce, selection window, and actions.
  *
  * Behavior rules implemented:
@@ -222,6 +230,9 @@ static void vBlinkTimerCb(TimerHandle_t xTimer) {
  * - PLUS/MINUS: when window active → step right/left and refresh window timer.
  * - SET: open window ONLY if the press resolves as SHORT; LONG never opens it.
  * - SET short: toggles output; also opens window if it was idle.
+ * - PWR long (in RUN): enter STANDBY mode.
+ * - PWR short (in STANDBY): exit STANDBY and return to RUN mode.
+ * - All non-PWR buttons are ignored in STANDBY mode.
  *
  * @param arg Unused.
  * @return None
@@ -231,11 +242,17 @@ static void vButtonTask(void *arg) {
 
     ButtonDrv_InitGPIO();
 
+    /* Initialize PWR button GPIO */
+    gpio_init(BUT_PWR);
+    gpio_pull_up(BUT_PWR);
+    gpio_set_dir(BUT_PWR, false);
+
     /* Initialize debouncers with current levels */
     uint32_t t0 = now_ms();
     deb_init(&s_plus, ButtonDrv_ReadPlus(), t0);
     deb_init(&s_minus, ButtonDrv_ReadMinus(), t0);
     deb_init(&s_set, ButtonDrv_ReadSet(), t0);
+    deb_init(&s_pwr, read_pwr_button(), t0);
 
     /* Start with selection LEDs off; blink timer will drive visibility */
     ButtonDrv_SelectAllOff();
@@ -253,10 +270,56 @@ static void vButtonTask(void *arg) {
             Health_Heartbeat(HEALTH_ID_BUTTON);
         }
 
-        /* Debounce using current timebase */
+        /* Service standby LED animation if in standby */
+        Power_ServiceStandbyLED();
+
+        /* Query current power state */
+        power_state_t pwr_state = Power_GetState();
+
+        /* Debounce all buttons using current timebase */
         deb_edge_t e_plus = deb_update(&s_plus, ButtonDrv_ReadPlus(), now);
         deb_edge_t e_minus = deb_update(&s_minus, ButtonDrv_ReadMinus(), now);
         deb_edge_t e_set = deb_update(&s_set, ButtonDrv_ReadSet(), now);
+        deb_edge_t e_pwr = deb_update(&s_pwr, read_pwr_button(), now);
+
+        /* ===== PWR Button Handling (always active) ===== */
+        if (e_pwr.fell) {
+            s_pwr.latched_press = true; /* candidate for long */
+        }
+
+        /* Long-press detection while still held */
+        if (!s_pwr.stable && s_pwr.latched_press) {
+            uint32_t held_ms = (uint32_t)(now - s_pwr.stable_since);
+            if (held_ms >= (uint32_t)LONGPRESS_DT) {
+                s_pwr.latched_press = false;
+                if (pwr_state == PWR_STATE_RUN) {
+                    /* Long press in RUN mode: enter standby */
+                    DEBUG_PRINT("[ButtonTask] PWR long press detected, entering STANDBY\r\n");
+                    Power_EnterStandby();
+                    window_close(); /* Close selection window on standby entry */
+                }
+                /* Long press in STANDBY is ignored */
+            }
+        }
+
+        if (e_pwr.rose) {
+            if (s_pwr.latched_press) {
+                s_pwr.latched_press = false; /* resolves as short */
+                if (pwr_state == PWR_STATE_STANDBY) {
+                    /* Short press in STANDBY: exit to RUN mode */
+                    DEBUG_PRINT("[ButtonTask] PWR short press detected, exiting STANDBY\r\n");
+                    Power_ExitStandby();
+                }
+                /* Short press in RUN mode has no action */
+            }
+        }
+
+        /* ===== All other buttons: ONLY active in RUN mode ===== */
+        if (pwr_state != PWR_STATE_RUN) {
+            /* In STANDBY: ignore all non-PWR buttons */
+            vTaskDelay(scan_ticks);
+            continue;
+        }
 
         /* PLUS */
         if (e_plus.fell) {
@@ -352,6 +415,9 @@ BaseType_t ButtonTask_Init(bool enable) {
         }
         vTaskDelay(pdMS_TO_TICKS(10));
     }
+
+    /* Initialize power manager */
+    Power_Init();
 
     /* Create event queue if missing */
     if (!q_btn) {

@@ -95,38 +95,51 @@ static void storage_dump_eeprom_formatted(void) {
         log_printf_force("Addr   00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F \r\n");
     }
 
-    /* Number of 16-byte lines to emit per slice (keep it tiny to avoid long dt) */
-    const uint32_t lines_per_slice = 1U;
-    char line[256];
-    char field[16];
-    uint8_t buffer[16];
-
-    /* EEPROM access is protected by the mutex */
-    xSemaphoreTake(eepromMtx, portMAX_DELAY);
-
-    for (uint32_t i = 0; i < lines_per_slice && s_dump_next_addr < CAT24C256_TOTAL_SIZE; i++) {
+    /* Process 32 bytes (two lines) per call for better I2C efficiency */
+    if (s_dump_next_addr < CAT24C256_TOTAL_SIZE) {
         uint16_t addr = (uint16_t)s_dump_next_addr;
+        uint8_t buffer[32];
+        uint16_t read_size = 32;
 
-        CAT24C256_ReadBuffer(addr, buffer, sizeof(buffer));
-
-        snprintf(line, sizeof(line), "0x%04X ", addr);
-        for (uint8_t b = 0; b < 16; b++) {
-            snprintf(field, sizeof(field), "%02X ", buffer[b]);
-            strncat(line, field, sizeof(line) - strlen(line) - 1);
-            vTaskDelay(pdMS_TO_TICKS(1));
-            Health_Heartbeat(HEALTH_ID_STORAGE);
+        /* Don't read past end of EEPROM */
+        if (s_dump_next_addr + 32 > CAT24C256_TOTAL_SIZE) {
+            read_size = CAT24C256_TOTAL_SIZE - s_dump_next_addr;
         }
 
-        log_printf_force("%s\r\n", line);
-        s_dump_next_addr += 16U;
+        /* Acquire mutex only for the actual EEPROM read */
+        xSemaphoreTake(eepromMtx, portMAX_DELAY);
+        CAT24C256_ReadBuffer(addr, buffer, read_size);
+        xSemaphoreGive(eepromMtx);
+
+        /* Print two lines from the 32-byte buffer */
+        for (uint8_t line_num = 0; line_num < 2 && s_dump_next_addr < CAT24C256_TOTAL_SIZE;
+             line_num++) {
+            uint16_t line_addr = addr + (line_num * 16);
+            uint8_t *line_data = &buffer[line_num * 16];
+
+            /* Format efficiently using pointer arithmetic */
+            char line[80];
+            char *p = line;
+            p += snprintf(p, sizeof(line), "0x%04X ", line_addr);
+
+            uint8_t bytes_in_line = 16;
+            if (line_addr + 16 > CAT24C256_TOTAL_SIZE) {
+                bytes_in_line = CAT24C256_TOTAL_SIZE - line_addr;
+            }
+
+            for (uint8_t b = 0; b < bytes_in_line; b++) {
+                p += snprintf(p, sizeof(line) - (p - line), "%02X ", line_data[b]);
+            }
+
+            log_printf_force("%s\r\n", line);
+            s_dump_next_addr += bytes_in_line;
+        }
+
+        /* Critical: Heartbeat after processing the chunk */
+        Health_Heartbeat(HEALTH_ID_STORAGE);
     }
 
-    xSemaphoreGive(eepromMtx);
-
-    /* Explicit heartbeat while doing SIL dump work so Health doesn't mark us stale */
-    Health_Heartbeat(HEALTH_ID_STORAGE);
-
-    /* Finished the last slice */
+    /* Check if dump is complete */
     if (s_dump_next_addr >= CAT24C256_TOTAL_SIZE) {
         log_printf_force("EE_DUMP_END\r\n");
         Logger_MutePop();
@@ -138,7 +151,7 @@ static void storage_dump_eeprom_formatted(void) {
         }
     }
 
-    /* Short yield so other tasks (Meter/Net/Button/Console) get CPU time */
+    /* Yield immediately to let other tasks run */
     vTaskDelay(pdMS_TO_TICKS(1));
 }
 
@@ -363,7 +376,7 @@ static void process_storage_msg(const storage_msg_t *msg) {
             Logger_MutePush();
             /* First slice (header) will be emitted from StorageTask loop */
         }
-        /* For the dump we do NOT signal done_sem here; completion is signaled
+        /* For the dump, do NOT signal done_sem here; completion is signaled
          * from the incremental worker when EE_DUMP_END is printed. */
         return;
 
@@ -482,18 +495,41 @@ bool storage_dump_formatted_async(void) {
 /* ********************************************************************** */
 
 /**
- * @brief Erase entire EEPROM to 0xFF.
- * Writes 0xFF to all EEPROM addresses in 32-byte chunks.
+ * @brief Erase entire EEPROM to 0xFF with watchdog-safe yielding.
+ * Writes 0xFF to all EEPROM addresses in 32-byte chunks with periodic yields.
  */
 int EEPROM_EraseAll(void) {
     uint8_t blank[32];
     memset(blank, 0xFF, sizeof(blank));
 
+    uint32_t chunk_count = 0;
+    const uint32_t total_chunks = EEPROM_SIZE / sizeof(blank);
+
+    INFO_PRINT("[Storage] Erasing EEPROM (%u bytes)...\r\n", EEPROM_SIZE);
+
     for (uint16_t addr = 0; addr < EEPROM_SIZE; addr += sizeof(blank)) {
         if (CAT24C256_WriteBuffer(addr, blank, sizeof(blank)) != 0) {
+            ERROR_PRINT("[Storage] Erase failed at 0x%04X\r\n", addr);
             return -1;
         }
+
+        chunk_count++;
+
+        /* Yield every 4 chunks (128 bytes) to allow other tasks to run */
+        if ((chunk_count & 0x03) == 0) {
+            vTaskDelay(pdMS_TO_TICKS(20));
+            Health_Heartbeat(HEALTH_ID_STORAGE);
+        }
+
+        /* Every 32 chunks (1KB), report progress and take longer break */
+        if ((chunk_count & 0x1F) == 0) {
+            vTaskDelay(pdMS_TO_TICKS(100));
+            INFO_PRINT("[Storage] Erased %lu/%u bytes\r\n", (unsigned long)addr + sizeof(blank),
+                       EEPROM_SIZE);
+        }
     }
+
+    INFO_PRINT("[Storage] Erase complete\r\n");
     return 0;
 }
 
