@@ -21,7 +21,8 @@
  */
 const char control_html[] =
     "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\" /><meta name=\"viewport\" "
-    "content=\"width=device-width,initial-scale=1.0\"><title>ENERGIS PDU – Control</title><style>* "
+    "content=\"width=device-width,initial-scale=1.0\"><title>ENERGIS 8 Channel Managed PDU – "
+    "Control</title><style>* "
     "{ margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif } body { background: "
     "#1a1d23; color: #e4e4e4 } a { text-decoration: none; color: #aaa } a:hover { color: #fff } "
     ".topbar { height: 50px; background: #242731; display: flex; align-items: center; padding: 0 "
@@ -62,11 +63,12 @@ const char control_html[] =
     "}) .catch(_ =>updateStatus()); } function setAll(state) { for (let i = 1; i<= 8; i++) { "
     "document.getElementById(`toggle-${i}`).checked = state; toggleChannel(i); } } "
     "window.addEventListener('load', () =>{ updateStatus(); setInterval(updateStatus, 3000); "
-    "});</script></head><body><div class=\"topbar\"><h1>ENERGIS PDU</h1></div><div "
+    "});</script></head><body><div class=\"topbar\"><h1>ENERGIS 8 Channel Managed "
+    "PDU</h1></div><div "
     "class=\"container\"><nav class=\"sidebar\"><ul><li><a "
     "href=\"control.html\">Control</a></li><li><a href=\"settings.html\">Settings</a></li><li><a "
     "href=\"help.html\">Help</a></li><li><a href=\"user_manual.html\">User Manual</a></li><li><a "
-    "href=\"programming_manual.html\">Automation Manual</a></li></ul></nav><main "
+    "href=\"automation_manual.html\">Automation Manual</a></li></ul></nav><main "
     "class=\"main-content\"><h2>Control</h2><p>Manage power channels and monitor "
     "data.</p><form method=\"post\" action=\"/api/control\" "
     "onsubmit=\"applyChanges(event)\"><table><tr><th>Channel</th><th>Switch</th><th>Voltage "
@@ -119,7 +121,8 @@ const char control_html[] =
  */
 const char settings_html[] =
     "<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" "
-    "content=\"width=device-width,initial-scale=1.0\"><title>ENERGIS PDU - Settings</title>"
+    "content=\"width=device-width,initial-scale=1.0\"><title>ENERGIS 8 Channel Managed PDU - "
+    "Settings</title>"
     "<style>*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}"
     "body{background:#1a1d23;color:#e4e4e4}a{color:#aaa;text-decoration:none}"
     "a:hover{color:#fff}.topbar{width:100%;height:50px;background:#242731;display:flex;"
@@ -136,13 +139,14 @@ const char settings_html[] =
     "max-width:200px;margin-right:10px}.btn{background:#3fa7ff;border:none;"
     "padding:10px 16px;color:#fff;cursor:pointer;border-radius:4px;font-size:.9rem}"
     ".btn:hover{background:#1f8ae3}.manuals{margin-top:2rem}</style></head>"
-    "<body><div class=\"topbar\"><h1>ENERGIS PDU</h1></div><div class=\"container\">"
+    "<body><div class=\"topbar\"><h1>ENERGIS 8 Channel Managed PDU</h1></div><div "
+    "class=\"container\">"
     "<nav class=\"sidebar\"><ul>"
     "<li><a href=\"control.html\">Control</a></li>"
     "<li><a href=\"settings.html\">Settings</a></li>"
     "<li><a href=\"help.html\">Help</a></li>"
     "<li><a href=\"user_manual.html\">User Manual</a></li>"
-    "<li><a href=\"programming_manual.html\">Automation Manual</a></li>"
+    "<li><a href=\"automation_manual.html\">Automation Manual</a></li>"
     "</ul></nav><main class=\"main-content\">"
     "<h2>Settings</h2><form method=\"post\" action=\"/api/settings\">"
     "<h3>Network Settings</h3><hr>"
@@ -183,7 +187,7 @@ const char settings_html[] =
     "<div class=\"manuals\">"
     "<h3>Manuals</h3><hr>"
     "<p><a href=\"user_manual.html\">User Manual</a><br>"
-    "<a href=\"programming_manual.html\">Programming &amp; Interfacing Manual</a></p>"
+    "<a href=\"automation_manual.html\">Programming &amp; Interfacing Manual</a></p>"
     "</div>"
     "</main></div></body></html>\n";
 
@@ -191,11 +195,12 @@ const char settings_html[] =
  * @brief HTML content for the Help page.
  *
  * This string contains the HTML markup for the Help page,
- * providing guidance and links to manuals for the ENERGIS PDU.
+ * providing guidance and links to manuals for the ENERGIS 8 Channel Managed PDU.
  */
 const char help_html[] =
     "<!DOCTYPE html><html><head><meta charset=\"UTF-8\" /><meta name=\"viewport\" "
-    "content=\"width=device-width, initial-scale=1.0\"><title>ENERGIS PDU - Help</title><style>* { "
+    "content=\"width=device-width, initial-scale=1.0\"><title>ENERGIS 8 Channel Managed PDU - "
+    "Help</title><style>* { "
     "margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; } body { "
     "background-color: #1a1d23; color: #e4e4e4; } a { text-decoration: none; color: #aaa; } "
     "a:hover { color: #fff; } .topbar { width: 100%; height: 50px; background-color: #242731; "
@@ -250,7 +255,7 @@ const char help_html[] =
     "class=\"container\"><div class=\"sidebar\"><ul><li><a "
     "href=\"control.html\">Control</a></li><li><a href=\"settings.html\">Settings</a></li><li><a "
     "href=\"help.html\">Help</a></li><li><a href=\"user_manual.html\">User Manual</a></li><li><a "
-    "href=\"programming_manual.html\">Programming Manual</a></li></ul></div><div "
+    "href=\"automation_manual.html\">Automation Manual</a></li></ul></div><div "
     "class=\"main-content\"><div class=\"content-layout\"><div class=\"content-sidebar\"><h3>On "
     "this page</h3><h4>User guide</h4><ul><li><a href=\"#overview\">1. Overview &amp; "
     "safety</a></li><li><a href=\"#front-panel\">2. Front panel &amp; buttons</a></li><li><a "
@@ -264,7 +269,8 @@ const char help_html[] =
     "SNMP</a></li><li><a href=\"#integration\">13. Integration examples</a></li><li><a "
     "href=\"#more-docs\">14. More documentation</a></li></ul></div><div "
     "class=\"content-body\"><div class=\"section\" id=\"overview\"><h3>1. Overview &amp; "
-    "safety</h3><p class=\"tagline\">What the ENERGIS PDU is, who should install it, and the most "
+    "safety</h3><p class=\"tagline\">What the ENERGIS 8 Channel Managed PDU is, who should install "
+    "it, and the most "
     "important limits.</p><div class=\"callout warning\"><strong>Warning:</strong>ENERGIS switches "
     "and distributes mains voltage. Incorrect installation or use can cause electric shock, fire, "
     "or damage to connected equipment. Only qualified personnel familiar with mains installation "
@@ -462,7 +468,7 @@ const char help_html[] =
     "monitoring.</li><li><strong>settings.html</strong>– network and basic "
     "configuration.</li><li><strong>help.html</strong>– this offline help "
     "page.</li><li><strong>user_manual.html</strong>– landing page for the full User "
-    "Manual.</li><li><strong>programming_manual.html</strong>– landing page for "
+    "Manual.</li><li><strong>automation_manual.html</strong>– landing page for "
     "automation/programming documentation.</li></ul></div><div class=\"section\" "
     "id=\"metrics\"><h3>11. /metrics (OpenMetrics / Prometheus)</h3><p class=\"tagline\">Text "
     "based metrics endpoint for monitoring systems.</p><h4>11.1 "
@@ -537,7 +543,7 @@ const char help_html[] =
     "documentation</h3><p class=\"tagline\">Where to find the full manuals and project "
     "details.</p><p>This help page is an embedded summary. For full detail, use:</p><ul><li><a "
     "href=\"user_manual.html\">User Manual</a>– complete installation, safety and technical "
-    "data.</li><li><a href=\"programming_manual.html\">Programming &amp; Automation Manual</a>– "
+    "data.</li><li><a href=\"automation_manual.html\">Programming &amp; Automation Manual</a>– "
     "protocol details, OID tables, and extended examples.</li></ul><p>Project sources, issue "
     "tracking and firmware releases are available through the official repository referenced in "
     "the printed documentation and product "
@@ -551,7 +557,7 @@ const char help_html[] =
  */
 const char user_manual_html[] =
     "<!DOCTYPE html><html><head><meta charset=\"UTF-8\" /><meta name=\"viewport\" "
-    "content=\"width=device-width, initial-scale=1.0\"><title>ENERGIS PDU – User "
+    "content=\"width=device-width, initial-scale=1.0\"><title>ENERGIS 8 Channel Managed PDU – User "
     "Manual</title><style>* { margin: 0; padding: 0; box-sizing: border-box; font-family: "
     "sans-serif; } body { background: #1a1d23; color: #e4e4e4; } a { color: #aaa; text-decoration: "
     "none; } a:hover { color: #fff; } .topbar { height: 50px; background: #242731; display: flex; "
@@ -561,27 +567,30 @@ const char user_manual_html[] =
     "padding: 10px 20px; } .sidebar li:hover { background: #3b404d; } .sidebar a { color: #ccc; } "
     ".sidebar a:hover { color: #fff; } .content { flex: 1; display: flex; flex-direction: column; "
     "} .pdf-container { flex: 1; border: 1px solid #444; } .note { padding: 0.5rem; text-align: "
-    "right; font-size: 0.9rem; }</style></head><body><div class=\"topbar\"><h1>ENERGIS "
-    "PDU</h1></div><div class=\"container\"><div class=\"sidebar\"><ul><li><a "
+    "right; font-size: 0.9rem; }</style></head><body><div class=\"topbar\"><h1>ENERGIS 8 Channel "
+    "Managed PDU</h1></div><div class=\"container\"><div class=\"sidebar\"><ul><li><a "
     "href=\"control.html\">Control</a></li><li><a href=\"settings.html\">Settings</a></li><li><a "
     "href=\"help.html\">Help</a></li><li><a href=\"user_manual.html\">User Manual</a></li><li><a "
-    "href=\"programming_manual.html\">Automation Manual</a></li></ul></div><div "
+    "href=\"automation_manual.html\">Automation Manual</a></li></ul></div><div "
     "class=\"content\"><div class=\"pdf-container\"><iframe "
-    "src=\"https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Manuals/User_Manual.pdf\" "
-    "width=\"100%\" height=\"100%\" frameborder=\"0\"></iframe></div><p class=\"note\">If your "
-    "browser does not display the PDF, you can download it directly<a "
-    "href=\"https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Manuals/User_Manual.pdf\" "
+    "src=\"https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Manuals/"
+    "ENERGIS_UserManual_rev_1.0.0.pdf\" width=\"100%\" height=\"100%\" "
+    "frameborder=\"0\"></iframe></div><p class=\"note\">If your browser does not display the PDF, "
+    "you can download it directly<a "
+    "href=\"https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Manuals/"
+    "ENERGIS_UserManual_rev_1.0.0.pdf\" "
     "target=\"_blank\">here</a>.</p></div></div></body></html>\n";
 
 /**
  * @brief HTML content for the Automation Manual page.
  *
  * This string contains the HTML markup for the Automation Manual page,
- * embedding the programming manual PDF and providing a download link.
+ * embedding the Automation Manual PDF and providing a download link.
  */
-const char programming_manual_html[] =
+const char automation_manual_html[] =
     "<!DOCTYPE html><html><head><meta charset=\"UTF-8\" /><meta name=\"viewport\" "
-    "content=\"width=device-width, initial-scale=1.0\"><title>ENERGIS PDU – Programming "
+    "content=\"width=device-width, initial-scale=1.0\"><title>ENERGIS 8 Channel Managed PDU – "
+    "Programming "
     "Manual</title><style>* { margin: 0; padding: 0; box-sizing: border-box; font-family: "
     "sans-serif; } body { background: #1a1d23; color: #e4e4e4; } a { color: #aaa; text-decoration: "
     "none; } a:hover { color: #fff; } .topbar { height: 50px; background: #242731; display: flex; "
@@ -592,16 +601,18 @@ const char programming_manual_html[] =
     ".sidebar a:hover { color: #fff; } /* Right-side area */ .content { flex: 1; display: flex; "
     "flex-direction: column; } .pdf-container { flex: 1; border: 1px solid #444; } .note { "
     "padding: 0.5rem; text-align: right; font-size: 0.9rem; }</style></head><body><div "
-    "class=\"topbar\"><h1>ENERGIS PDU</h1></div><div class=\"container\"><div "
+    "class=\"topbar\"><h1>ENERGIS 8 Channel Managed PDU</h1></div><div class=\"container\"><div "
     "class=\"sidebar\"><ul><li><a href=\"control.html\">Control</a></li><li><a "
     "href=\"settings.html\">Settings</a></li><li><a href=\"help.html\">Help</a></li><li><a "
     "href=\"user_manual.html\">User Manual</a></li><li><a "
-    "href=\"programming_manual.html\">Automation Manual</a></li></ul></div><div "
+    "href=\"automation_manual.html\">Automation Manual</a></li></ul></div><div "
     "class=\"content\"><div class=\"pdf-container\"><iframe "
-    "src=\"https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Manuals/AUTOMATION_MANUAL.pdf\" "
-    "width=\"100%\" height=\"100%\" frameborder=\"0\"></iframe></div><p class=\"note\">If your "
-    "browser does not display the PDF, you can download it directly <a "
-    "href=\"https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Manuals/AUTOMATION_MANUAL.pdf\" "
+    "src=\"https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Manuals/"
+    "ENERGIS_AutomationManual_rev_1.0.0.pdf\" width=\"100%\" height=\"100%\" "
+    "frameborder=\"0\"></iframe></div><p class=\"note\">If your browser does not display the PDF, "
+    "you can download it directly<a "
+    "href=\"https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Manuals/"
+    "ENERGIS_AutomationManual_rev_1.0.0.pdf\" "
     "target=\"_blank\">here</a>.</p></div></div></body></html>\n";
 
 /**
@@ -617,8 +628,8 @@ const char *get_page_content(const char *request) {
         return help_html;
     else if (strstr(request, "GET /user_manual.html"))
         return user_manual_html;
-    else if (strstr(request, "GET /programming_manual.html"))
-        return programming_manual_html;
+    else if (strstr(request, "GET /automation_manual.html"))
+        return automation_manual_html;
     else if (strstr(request, "GET /"))
         return control_html;
 
