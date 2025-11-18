@@ -162,16 +162,15 @@ pico_add_extra_outputs(ENERGIS_RTOS)
 # The Pico SDK's extra outputs (uf2/bin/hex) are still generated using the TARGET name in some versions
 # To guarantee we have consistently renamed artifacts, copy them with the desired versioned base name.
 add_custom_command(TARGET ENERGIS_RTOS POST_BUILD
-    COMMENT "Creating versioned firmware artifacts ${FIRMWARE_BASE_NAME}.*"
-    # Elf is already renamed via OUTPUT_NAME; ensure .uf2 / .bin (and optionally .hex) get versioned copies
+    COMMENT "Ensuring versioned firmware artifacts present"
+    COMMAND ${CMAKE_COMMAND} -E echo "Source UF2: ${CMAKE_CURRENT_BINARY_DIR}/${FIRMWARE_BASE_NAME}.uf2"
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
-      "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.uf2"
+      "${CMAKE_CURRENT_BINARY_DIR}/${FIRMWARE_BASE_NAME}.uf2"
       "${CMAKE_CURRENT_BINARY_DIR}/${FIRMWARE_BASE_NAME}.uf2"
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
-      "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.bin"
+      "${CMAKE_CURRENT_BINARY_DIR}/${FIRMWARE_BASE_NAME}.bin"
       "${CMAKE_CURRENT_BINARY_DIR}/${FIRMWARE_BASE_NAME}.bin"
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
-      "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.hex"
       "${CMAKE_CURRENT_BINARY_DIR}/${FIRMWARE_BASE_NAME}.hex"
-    VERBATIM
+      "${CMAKE_CURRENT_BINARY_DIR}/${FIRMWARE_BASE_NAME}.hex"
 )

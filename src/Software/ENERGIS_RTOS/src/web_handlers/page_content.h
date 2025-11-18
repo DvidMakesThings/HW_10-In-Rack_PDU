@@ -24,7 +24,6 @@
 /* HTML page declarations */
 extern const char control_html[];
 extern const char settings_html[];
-extern const char help_html[];
 extern const char user_manual_html[];
 extern const char automation_manual_html[];
 
@@ -36,6 +35,35 @@ extern const char automation_manual_html[];
  */
 const char *get_page_content(const char *request);
 
+/**
+ * @brief Gets the content length for a requested HTML page.
+ *
+ * @param request  HTTP request line (for example, "GET /help.html HTTP/1.1").
+ * @param is_gzip  Optional output flag; set to 1 if the selected page is gzipped, 0 otherwise.
+ *
+ * @return Content length in bytes for the selected page.
+ *
+ * @details
+ * - Uses strlen() for pages stored as standard C strings.
+ * - Uses sizeof() for the Help page, which is stored as a gzip-compressed blob.
+ * - Falls back to the control page if the request does not match any known HTML endpoint.
+ */
+int get_page_length(const char *request, int *is_gzip);
+
+/**
+ * @brief Gets the content length for a requested HTML page.
+ *
+ * @param request  HTTP request line (for example, "GET /help.html HTTP/1.1").
+ * @param is_gzip  Optional output flag; set to 1 if the selected page is gzipped, 0 otherwise.
+ *
+ * @return Content length in bytes for the selected page.
+ *
+ * @details
+ * - Uses strlen() for pages stored as standard C strings.
+ * - Uses help_gz_len for the Help page, which is stored as a gzip-compressed blob.
+ * - Falls back to the control page if the request does not match any known HTML endpoint.
+ */
+int get_page_length(const char *request, int *is_gzip);
 #endif // PAGE_CONTENT_H
 
 /** @} */

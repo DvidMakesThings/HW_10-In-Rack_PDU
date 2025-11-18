@@ -203,7 +203,11 @@ extern w5500_NetConfig eth_netcfg;
 #endif
 
 #if ERROR
-#define ERROR_PRINT(...) log_printf_force("[ERROR] " __VA_ARGS__)
+#define ERROR_PRINT(...) \
+    do {                 \
+        setError(true);  \
+        log_printf_force("[ERROR] " __VA_ARGS__); \
+    } while (0)
 #else
 #define ERROR_PRINT(...) ((void)0)
 #endif
