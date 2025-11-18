@@ -37,52 +37,60 @@ int EEPROM_WriteEventLogs(const uint8_t *data, size_t len) {
  * CRITICAL: Must be called with eepromMtx held!
  *
  * @param data Destination buffer
- * @param len Number of bytes to read
+ * @param len  Number of bytes to read
  * @return 0 on success, -1 on bounds check failure
  */
 int EEPROM_ReadEventLogs(uint8_t *data, size_t len) {
     if (len > EEPROM_EVENT_LOG_SIZE)
         return -1;
+
     CAT24C256_ReadBuffer(EEPROM_EVENT_LOG_START, data, (uint32_t)len);
     return 0;
 }
 
 /**
- * @brief Append one event log entry to the ring buffer.
+ * @brief Append one event log entry (16-bit code) to the ring buffer.
  *
  * Ring buffer structure:
- * - Address 0x1000-0x1001: Write pointer (uint16_t)
- * - Address 0x1002+: Event log entries (EVENT_LOG_ENTRY_SIZE bytes each)
- *
- * Process:
- * 1. Read current write pointer
- * 2. Calculate entry address
- * 3. Write new entry
- * 4. Increment and wrap pointer if needed
- * 5. Update pointer in EEPROM
+ * - [EEPROM_EVENT_LOG_START .. +1]        : uint16_t write pointer (entry index)
+ * - [START + EVENT_LOG_POINTER_SIZE .. ]  : EVENT_LOG_ENTRY_SIZE-byte entries
  *
  * CRITICAL: Must be called with eepromMtx held!
  *
- * @param entry Pointer to event log entry (EVENT_LOG_ENTRY_SIZE bytes)
+ * @param entry Pointer to EVENT_LOG_ENTRY_SIZE bytes (here: uint16_t error code).
  * @return 0 on success, -1 on I2C write error
  */
 int EEPROM_AppendEventLog(const uint8_t *entry) {
-    /* Read current write pointer from start of event log section */
     uint16_t ptr = 0;
-    CAT24C256_ReadBuffer(EEPROM_EVENT_LOG_START, (uint8_t *)&ptr, 2);
+
+    /* Read current write pointer from start of event log section */
+    CAT24C256_ReadBuffer(EEPROM_EVENT_LOG_START, (uint8_t *)&ptr, EVENT_LOG_POINTER_SIZE);
+
+    /* How many entries fit in the remaining space */
+    const uint16_t max_entries =
+        (uint16_t)((EEPROM_EVENT_LOG_SIZE - EVENT_LOG_POINTER_SIZE) / EVENT_LOG_ENTRY_SIZE);
+
+    if (ptr >= max_entries) {
+        /* Guard against corrupted pointer */
+        ptr = 0;
+    }
 
     /* Calculate address for new entry (skip pointer bytes) */
-    uint16_t addr = EEPROM_EVENT_LOG_START + EVENT_LOG_POINTER_SIZE + (ptr * EVENT_LOG_ENTRY_SIZE);
+    uint16_t addr =
+        (uint16_t)(EEPROM_EVENT_LOG_START + EVENT_LOG_POINTER_SIZE + (ptr * EVENT_LOG_ENTRY_SIZE));
 
-    /* Write the event log entry */
+    /* Write the event log entry (16-bit code) */
     if (CAT24C256_WriteBuffer(addr, entry, EVENT_LOG_ENTRY_SIZE) != 0)
         return -1;
 
     /* Increment pointer and wrap if at buffer end */
     ptr++;
-    if ((ptr * EVENT_LOG_ENTRY_SIZE) >= (EEPROM_EVENT_LOG_SIZE - EVENT_LOG_POINTER_SIZE))
+    if (ptr >= max_entries)
         ptr = 0;
 
     /* Update pointer in EEPROM */
-    return CAT24C256_WriteBuffer(EEPROM_EVENT_LOG_START, (uint8_t *)&ptr, 2);
+    if (CAT24C256_WriteBuffer(EEPROM_EVENT_LOG_START, (uint8_t *)&ptr, EVENT_LOG_POINTER_SIZE) != 0)
+        return -1;
+
+    return 0;
 }
