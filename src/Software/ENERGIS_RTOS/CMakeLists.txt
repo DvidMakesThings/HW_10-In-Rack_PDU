@@ -143,10 +143,35 @@ target_link_options(ENERGIS_RTOS PRIVATE
 )
 
 # ----------------------------- Pico settings -------------------------------
-pico_set_program_name(ENERGIS_RTOS "ENERGIS_RTOS")
-pico_set_program_version(ENERGIS_RTOS "0.1")
+# Centralized firmware version and base name (update version in ONE place)
+set(FIRMWARE_VERSION "1.0.0")
+set(FIRMWARE_BASE_NAME "ENERGIS_firmware_v${FIRMWARE_VERSION}")
+
+# USB / internal descriptors
+pico_set_program_name(ENERGIS_RTOS "${FIRMWARE_BASE_NAME}")
+pico_set_program_version(ENERGIS_RTOS "${FIRMWARE_VERSION}")
+
+# Change the primary target's output filename (affects ENERGIS_RTOS.elf -> ENERGIS_firmware_v1.0.0.elf)
+set_target_properties(ENERGIS_RTOS PROPERTIES OUTPUT_NAME "${FIRMWARE_BASE_NAME}")
 
 pico_enable_stdio_usb(ENERGIS_RTOS 1)
 pico_enable_stdio_uart(ENERGIS_RTOS 0)
 
 pico_add_extra_outputs(ENERGIS_RTOS)
+
+# The Pico SDK's extra outputs (uf2/bin/hex) are still generated using the TARGET name in some versions
+# To guarantee we have consistently renamed artifacts, copy them with the desired versioned base name.
+add_custom_command(TARGET ENERGIS_RTOS POST_BUILD
+    COMMENT "Creating versioned firmware artifacts ${FIRMWARE_BASE_NAME}.*"
+    # Elf is already renamed via OUTPUT_NAME; ensure .uf2 / .bin (and optionally .hex) get versioned copies
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.uf2"
+      "${CMAKE_CURRENT_BINARY_DIR}/${FIRMWARE_BASE_NAME}.uf2"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.bin"
+      "${CMAKE_CURRENT_BINARY_DIR}/${FIRMWARE_BASE_NAME}.bin"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.hex"
+      "${CMAKE_CURRENT_BINARY_DIR}/${FIRMWARE_BASE_NAME}.hex"
+    VERBATIM
+)
