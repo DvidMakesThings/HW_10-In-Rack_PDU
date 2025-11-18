@@ -2,18 +2,28 @@
  * @file src/web_handlers/http_server.c
  * @author DvidMakesThings - David Sipos
  *
- * @version 1.0.0
- * @date 2025-05-24
+ * @version 1.0.1
+ * @date 2025-11-18
  *
  * @details Main HTTP server implementation using W5500 Ethernet controller.
  *          Handles all HTTP requests and routes to appropriate handlers.
  *          Uses spiMtx for thread-safe W5500 access.
+ *
+ * @note Due to size constraints of the preallocated W5500 TX buffer (8KB), and
+ * the large size of HTML pages (some >8KB), this server implements chunked
+ * sending of HTTP responses. For large pages, eg. help.html, the server uses
+ * gzipped content stored in flash, which drastically reduces size and allows
+ * fitting within TX buffer limits.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
  */
 
 #include "../CONFIG.h"
+
+/* Page content helpers implemented in page_content.c */
+extern const char *get_page_content(const char *request);
+extern int get_page_length(const char *request, int *is_gzip);
 
 static inline void net_beat(void) { Health_Heartbeat(HEALTH_ID_NET); }
 
@@ -25,10 +35,42 @@ static inline void net_beat(void) { Health_Heartbeat(HEALTH_ID_NET); }
 #define HTTP_SERVER_TAG "[SERVER]"
 
 #define TX_WINDOW_MS 1200
+#define MAX_SEND_CHUNK 4096 /* Send in 4KB chunks to stay safe within 8KB TX buffer */
 
 /* Global variables for server state */
 static int8_t http_sock;
 static char *http_buf;
+
+/**
+ * @brief Sends data in chunks that fit within W5500 TX buffer
+ * @param sock The socket number
+ * @param data Pointer to data to send
+ * @param len Total length to send
+ * @return Number of bytes sent, or -1 on error
+ */
+static int send_all(uint8_t sock, const uint8_t *data, int len) {
+    int total_sent = 0;
+
+    while (total_sent < len) {
+        int remaining = len - total_sent;
+        int to_send = (remaining > MAX_SEND_CHUNK) ? MAX_SEND_CHUNK : remaining;
+
+        int sent = send(sock, (uint8_t *)(data + total_sent), (uint16_t)to_send);
+        if (sent <= 0) {
+            return -1;
+        }
+
+        total_sent += sent;
+        net_beat();
+
+        /* Small delay between chunks to allow TX buffer drain */
+        if (total_sent < len) {
+            vTaskDelay(pdMS_TO_TICKS(5));
+        }
+    }
+
+    return total_sent;
+}
 
 /**
  * @brief Sends HTTP response with headers and body
@@ -55,11 +97,10 @@ static void send_http_response(uint8_t sock, const char *content_type, const cha
     if (header_len > (int)sizeof(header))
         header_len = (int)sizeof(header);
 
-    send(sock, (uint8_t *)header, header_len);
-    net_beat();
+    send_all(sock, (uint8_t *)header, header_len);
+
     if (body && body_len > 0) {
-        send(sock, (uint8_t *)body, body_len);
-        net_beat();
+        send_all(sock, (const uint8_t *)body, body_len);
     }
 }
 
@@ -196,7 +237,7 @@ bool http_server_init(void) {
 }
 
 /**
- * @brief Processes incoming HTTP requests
+ * @brief Processes incoming HTTP connections
  *
  * @return None
  *
@@ -263,28 +304,47 @@ void http_server_process(void) {
         } else if (!strncmp(http_buf, "GET /settings.html", 18)) {
             handle_settings_request(http_sock);
         } else {
+            int is_gzip = 0;
             const char *page = get_page_content(http_buf);
-            const int plen = (int)strlen(page);
+            int plen = get_page_length(http_buf, &is_gzip);
             char header[256];
-            const int hlen = snprintf(header, sizeof(header),
-                                      "HTTP/1.1 200 OK\r\n"
-                                      "Content-Type: text/html\r\n"
-                                      "Content-Length: %d\r\n"
-                                      "Access-Control-Allow-Origin: *\r\n"
-                                      "Cache-Control: no-cache\r\n"
-                                      "Connection: close\r\n"
-                                      "\r\n",
-                                      plen);
+            int hlen;
+
+            if (plen < 0)
+                plen = 0;
+
+            if (is_gzip) {
+                hlen = snprintf(header, sizeof(header),
+                                "HTTP/1.1 200 OK\r\n"
+                                "Content-Type: text/html\r\n"
+                                "Content-Encoding: gzip\r\n"
+                                "Content-Length: %d\r\n"
+                                "Access-Control-Allow-Origin: *\r\n"
+                                "Cache-Control: no-cache\r\n"
+                                "Connection: close\r\n"
+                                "\r\n",
+                                plen);
+            } else {
+                hlen = snprintf(header, sizeof(header),
+                                "HTTP/1.1 200 OK\r\n"
+                                "Content-Type: text/html\r\n"
+                                "Content-Length: %d\r\n"
+                                "Access-Control-Allow-Origin: *\r\n"
+                                "Cache-Control: no-cache\r\n"
+                                "Connection: close\r\n"
+                                "\r\n",
+                                plen);
+            }
             int hsend = hlen;
             if (hsend < 0)
                 hsend = 0;
             if (hsend > (int)sizeof(header))
                 hsend = (int)sizeof(header);
-            send(http_sock, (uint8_t *)header, hsend);
-            net_beat();
-            if (plen > 0) {
-                send(http_sock, (uint8_t *)page, (uint16_t)plen);
-                net_beat();
+
+            /* Send using chunked send to handle files larger than 8KB TX buffer */
+            send_all(http_sock, (uint8_t *)header, hsend);
+            if (plen > 0 && page != NULL) {
+                send_all(http_sock, (const uint8_t *)page, plen);
             }
         }
 

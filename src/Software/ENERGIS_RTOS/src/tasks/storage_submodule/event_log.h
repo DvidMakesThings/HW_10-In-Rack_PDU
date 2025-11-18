@@ -32,26 +32,27 @@
 int EEPROM_WriteEventLogs(const uint8_t *data, size_t len);
 
 /**
- * @brief Read the event log region.
+ * @brief Read event log region from EEPROM.
+ *
+ * CRITICAL: Must be called with eepromMtx held!
+ *
  * @param data Destination buffer
- * @param len Must be <= EEPROM_EVENT_LOG_SIZE
- * @warning Must be called with eepromMtx held by the caller.
- * @return 0 on success, -1 on error
+ * @param len  Number of bytes to read
+ * @return 0 on success, -1 on bounds check failure
  */
 int EEPROM_ReadEventLogs(uint8_t *data, size_t len);
 
 /**
- * @brief Append one event log entry to the ring buffer and update pointer.
+ * @brief Append one event log entry (16-bit code) to the ring buffer.
  *
- * Implements circular buffer behavior:
- * 1. Reads current write pointer
- * 2. Writes new entry at pointer location
- * 3. Increments pointer (wraps to 0 if at end)
- * 4. Updates pointer in EEPROM
+ * Ring buffer structure:
+ * - [EEPROM_EVENT_LOG_START .. +1]        : uint16_t write pointer (entry index)
+ * - [START + EVENT_LOG_POINTER_SIZE .. ]  : EVENT_LOG_ENTRY_SIZE-byte entries
  *
- * @param entry Pointer to one entry of size EVENT_LOG_ENTRY_SIZE
- * @warning Must be called with eepromMtx held by the caller.
- * @return 0 on success, -1 on write error
+ * CRITICAL: Must be called with eepromMtx held!
+ *
+ * @param entry Pointer to EVENT_LOG_ENTRY_SIZE bytes (here: uint16_t error code).
+ * @return 0 on success, -1 on I2C write error
  */
 int EEPROM_AppendEventLog(const uint8_t *entry);
 

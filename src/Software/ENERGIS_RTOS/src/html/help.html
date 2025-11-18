@@ -92,7 +92,7 @@
     }
 
     .content-sidebar {
-      width: 230px;
+      width: 300px;
       background-color: #2e323c;
       padding: 16px 16px 18px 16px;
       /* Increased interior padding for airiness */
@@ -108,18 +108,18 @@
       margin-top: 0;
       margin-bottom: 0.6rem;
       /* more space below heading */
-      font-size: 0.95rem;
+      font-size: 1.1rem;
       /* slightly larger */
     }
 
     .content-sidebar h4 {
       margin: 0.9rem 0 0.45rem 0;
       /* larger separation between groups */
-      font-size: 0.78rem;
+      font-size: 0.9rem;
       /* compact label but airy surroundings */
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      color: #c0c0c0;
+      color: #eeebeb;
       border-top: 1px solid #3a3f49;
       /* subtle divider */
       padding-top: 0.65rem;
@@ -178,13 +178,14 @@
     .section h3 {
       margin-top: 0.4rem;
       margin-bottom: 0.2rem;
-      font-size: 1rem;
+      font-size: 1.5rem;
     }
 
     .section h4 {
       margin-top: 0.6rem;
       margin-bottom: 0.2rem;
-      font-size: 0.95rem;
+      font-size: 1.1rem;
+      line-height: 3;
     }
 
     /* Increase vertical rhythm in body text */
@@ -224,12 +225,28 @@
       text-justify: inter-word;
     }
 
-    .tagline {
-      font-size: 0.85rem;
-      color: #c0c0c0;
-      margin-top: 0.1rem;
-      margin-bottom: 0.4rem;
+    /* Prefix QUICK LINKS (overview shortcuts) anchors with a chevron */
+    .quick-links a::before {
+      content: '> ';
+      color: #6366f1;
+      font-weight: 600;
     }
+
+    /* Inline quick link inside paragraph/list text */
+    .inline-quick a {
+      color: #6366f1;
+      font-style: italic;
+      font-size: 1rem;
+    }
+
+    .inline-quick a::before {
+      /* Four non-breaking spaces before the chevron */
+      content: '\00a0\00a0\00a0\00a0> ';
+      font-weight: 600;
+      color: #6366f1;
+    }
+
+    /* .tagline removed */
 
     .muted {
       color: #a0a0a0;
@@ -238,10 +255,16 @@
 
     .callout {
       border-left: 3px solid #4f46e5;
-      background-color: #1f2230;
+      background-color: #383d55;
       padding: 8px 10px;
       margin: 0.5rem 0;
-      font-size: 0.86rem;
+      font-size: 0.9rem;
+      text-align: justify;
+      text-justify: inter-word;
+      line-height: 1.25;
+      /* more airy */
+      font-style: italic;
+      /* italic text */
     }
 
     .callout strong {
@@ -254,27 +277,33 @@
     }
 
     pre {
-      background-color: #111827;
-      padding: 8px 10px;
+      background-color: #1e2130;
+      /* or #242a33 */
+      border: 1px solid #2f3642;
+      padding: 8px 12px;
       border-radius: 4px;
       overflow-x: auto;
-      font-size: 0.8rem;
-      margin: 0.45rem 0 0.7rem 0;
+      font-size: 0.85rem;
+      line-height: 1.35;
+      margin: 0.55rem 0 0.9rem;
       white-space: pre;
     }
 
     code {
       font-family: Consolas, "Fira Code", monospace;
+      font-weight: 400;
+      color: #e5e7eb;
     }
 
     .quick-links {
       margin: 0.4rem 0 0.8rem 0;
-      font-size: 0.82rem;
+      font-size: 1rem;
+      font-style: italic;
     }
 
     .quick-links a {
       margin-right: 10px;
-      color: #ddd;
+      color: #6366f1;
     }
 
     .quick-links a:hover {
@@ -348,7 +377,7 @@
         <div class="content-body">
           <div class="section" id="overview">
             <h3>1. Overview &amp; safety</h3>
-            <p class="tagline">What the ENERGIS PDU is, who should install it, and the most important limits.</p>
+
 
             <div class="callout warning">
               <strong>Warning:</strong> ENERGIS switches and distributes mains voltage. Incorrect installation or use
@@ -357,39 +386,40 @@
             </div>
 
             <h4>1.1 What ENERGIS is</h4>
-            <p>ENERGIS is an 8 channel managed power distribution unit for 10&nbsp;inch racks, lab benches and small
-              installations. Each rear IEC&nbsp;C13 outlet can be switched individually and has per channel measurements
+            <p>ENERGIS is an 8 channel managed power distribution unit for 10inch racks, lab benches and small
+              installations. Each rear IECC13 outlet can be switched individually and has per channel measurements
               for voltage, current, power and uptime.</p>
             <p>You can operate the PDU:</p>
             <ul>
-              <li>Locally from the front panel buttons and LEDs,</li>
-              <li>Via the built in web interface (<a href="control.html">control.html</a>, <a
-                  href="settings.html">settings.html</a>),</li>
-              <li>Over USB serial with a text console,</li>
-              <li>Through automation interfaces: HTTP API, SNMP and a Prometheus compatible <code>/metrics</code>
-                endpoint.</li>
-            </ul>
+              <li>Locally from the front panel buttons and LEDs <span class="inline-quick"><a href="#front-panel">Front
+                    panel</a></span></li>
+              <li>Via the built in web interface <span class="inline-quick"><a href="#html-pages">HTML pages</a></span>
+              </li>
+              <li>Over USB serial CLI <span class="inline-quick"><a href="#serial-cli">Serial console</a></span></li>
+              <li>Through automation interfaces:
+                <ul class="automation-list">
+                  <li>HTTP API <span class="inline-quick"><a href="#http-api">HTTP API</a></span></li>
+                  <li>SNMP <span class="inline-quick"><a href="#snmp">SNMP</a></span></li>
+                  <li>Prometheus compatible <code>/metrics</code> endpoint <span class="inline-quick"><a
+                        href="#metrics">/metrics</a></span></li>
+                </ul>
+              </li>
 
-            <div class="quick-links">
-              <a href="#installation">Installation</a>
-              <a href="#front-panel">Front panel behavior</a>
-              <a href="#http-api">HTTP API</a>
-              <a href="#metrics">/metrics</a>
-            </div>
+            </ul>
 
             <h4>1.2 Intended use</h4>
             <ul>
-              <li>Indoor IT, lab and test equipment compatible with local mains voltage and IEC&nbsp;C13 outlets.</li>
+              <li>Indoor IT, lab and test equipment compatible with local mains voltage and IECC13 outlets.</li>
               <li>Small racks and cabinets where individual outlet control and basic power monitoring are needed.</li>
             </ul>
             <p>ENERGIS is not an extension cord, surge protector, or safety / life support device.</p>
 
             <h4>1.3 Electrical ratings (summary)</h4>
             <ul>
-              <li>Input voltage: 85&nbsp;VAC to 305&nbsp;VAC, 50/60&nbsp;Hz.</li>
-              <li>Maximum input current: 16&nbsp;A at the inlet.</li>
-              <li>Maximum per channel current: 16&nbsp;A per outlet, limited by connectors and wiring.</li>
-              <li>Total current of all active outlets must not exceed 16&nbsp;A.</li>
+              <li>Input voltage: 85VAC to 305VAC, 50/60Hz.</li>
+              <li>Maximum input current: 15A at the inlet.</li>
+              <li>Maximum per channel current: 15A per outlet, limited by connectors and wiring.</li>
+              <li>Total current of all active outlets must not exceed 15A.</li>
             </ul>
             <p>Do not daisy chain multiple PDUs from a single mains outlet and do not feed other multi way strips from
               ENERGIS.</p>
@@ -399,17 +429,17 @@
               <li>Connect the AC inlet only to a properly grounded mains outlet.</li>
               <li>Protective earth is mandatory. Do not defeat or bypass earth connection.</li>
               <li>Indoor use only, in dry, non corrosive environments without conductive dust.</li>
-              <li>Typical operating temperature: 0&nbsp;°C to 50&nbsp;°C. At higher temperatures, reduce load for
+              <li>Typical operating temperature: 0°C to 50°C. At higher temperatures, reduce load for
                 reliability.</li>
             </ul>
           </div>
 
           <div class="section" id="front-panel">
             <h3>2. Front panel &amp; button behavior</h3>
-            <p class="tagline">How LEDs and buttons work for local control.</p>
+
 
             <h4>2.1 Channel indicators</h4>
-            <p>Each channel (CH1–CH8) has a pair of LEDs:</p>
+            <p>Each channel (CH1-CH8) has a pair of LEDs:</p>
             <ul>
               <li><strong>Green LED:</strong> outlet state
                 <ul>
@@ -420,7 +450,7 @@
               <li><strong>Orange LED:</strong> selection indication
                 <ul>
                   <li>Off: no selection window is active.</li>
-                  <li>Blinking: this channel is currently selected in the 10&nbsp;s selection window.</li>
+                  <li>Blinking: this channel is currently selected in the 10s selection window.</li>
                 </ul>
               </li>
             </ul>
@@ -441,7 +471,7 @@
             <ul>
               <li><strong>Opening the window:</strong>
                 <ul>
-                  <li>A short press on any of the three buttons (Left, Right, Set) when idle opens a 10&nbsp;s selection
+                  <li>A short press on any of the three buttons (Left, Right, Set) when idle opens a 10s selection
                     window.</li>
                   <li>One channel is selected and its orange LED starts blinking.</li>
                   <li>No outlet state changes with this first press; it only opens the window.</li>
@@ -453,14 +483,14 @@
                     LED follows and wraps between CH1 and CH8.</li>
                   <li><strong>Set (short press):</strong> toggles the selected outlet on/off. The green LED updates.
                   </li>
-                  <li><strong>Set (long press, approx. 1&nbsp;s):</strong> clears ERR. Does not change any outlet state.
+                  <li><strong>Set (long press, approx. 1s):</strong> clears ERR. Does not change any outlet state.
                   </li>
-                  <li>Any valid button press restarts the 10&nbsp;s timeout.</li>
+                  <li>Any valid button press restarts the 10s timeout.</li>
                 </ul>
               </li>
               <li><strong>Closing the window:</strong>
                 <ul>
-                  <li>If there is no button activity for 10&nbsp;s, the selection window closes and all orange LEDs turn
+                  <li>If there is no button activity for 10s, the selection window closes and all orange LEDs turn
                     off.</li>
                 </ul>
               </li>
@@ -469,14 +499,14 @@
 
           <div class="section" id="sleep-mode">
             <h3>3. Power button &amp; sleep mode</h3>
-            <p class="tagline">How the dedicated power button behaves.</p>
+
 
             <p>The front panel power button controls a low power sleep state for the whole unit.</p>
             <ul>
-              <li><strong>Device active, long press (&gt; 2&nbsp;s):</strong> enters low power sleep.
+              <li><strong>Device active, long press (&gt; 2s):</strong> enters low power sleep.
                 <ul>
                   <li>All outputs are turned off.</li>
-                  <li>PWR LED blinks at 0.5&nbsp;Hz (1&nbsp;s on, 1&nbsp;s off).</li>
+                  <li>PWR LED blinks at 0.5Hz (1s on, 1s off).</li>
                   <li>All normal functionality becomes unavailable until wakeup.</li>
                 </ul>
               </li>
@@ -489,7 +519,7 @@
 
           <div class="section" id="installation">
             <h3>4. Installation &amp; wiring</h3>
-            <p class="tagline">Mounting, mains connection, load connection and optional USB.</p>
+
 
             <div class="callout warning">
               <strong>Important:</strong> All work on the mains supply must be done by qualified personnel. Always
@@ -498,7 +528,7 @@
 
             <h4>4.1 Mounting in a rack</h4>
             <ul>
-              <li>Designed for 10&nbsp;inch racks and small cabinets, 1U height.</li>
+              <li>Designed for 10inch racks and small cabinets, 1U height.</li>
               <li>Use the mounting ears with suitable screws or cage nuts.</li>
               <li>Avoid mechanical stress on front panel and connectors during installation.</li>
               <li>Leave clearance for rear cables and some airflow. Keep LEDs and buttons visible.</li>
@@ -507,20 +537,20 @@
             <h4>4.2 Power connection</h4>
             <ol>
               <li>Verify local mains voltage matches the rating on the device label.</li>
-              <li>Connect the AC inlet to a properly grounded mains outlet using a suitable cable rated at 16&nbsp;A.
+              <li>Connect the AC inlet to a properly grounded mains outlet using a suitable cable rated at 15A.
               </li>
-              <li>Check upstream protection (fuse or breaker) and wiring are appropriate for 16&nbsp;A maximum input
+              <li>Check upstream protection (fuse or breaker) and wiring are appropriate for 15A maximum input
                 current.</li>
               <li>Once powered, verify that PWR LED is lit.</li>
             </ol>
 
             <h4>4.3 Connecting loads</h4>
             <ul>
-              <li>Use IEC&nbsp;C14 cord sets or certified adapters for the rear C13 outlets.</li>
-              <li>Document which device is plugged into which channel (CH1–CH8).</li>
+              <li>Use IECC14 cord sets or certified adapters for the rear C13 outlets.</li>
+              <li>Document which device is plugged into which channel (CH1-CH8).</li>
               <li>Best practice: switch the outlet off before plugging or unplugging loads to minimise arcing and
                 unintended reboots.</li>
-              <li>Keep total current within the 16&nbsp;A limit and distribute high power loads across channels.</li>
+              <li>Keep total current within the 15A limit and distribute high power loads across channels.</li>
               <li>Do not daisy chain other PDUs or multi strips from ENERGIS outlets.</li>
             </ul>
 
@@ -535,9 +565,9 @@
 
             <h4>4.5 USB connection (console)</h4>
             <ul>
-              <li>Connect the front USB&nbsp;C port to a computer.</li>
+              <li>Connect the front USBC port to a computer.</li>
               <li>The OS will detect a USB CDC (virtual COM) device; usually no extra driver is required.</li>
-              <li>Use 115200&nbsp;baud, 8&nbsp;data bits, no parity, 1&nbsp;stop bit.</li>
+              <li>Use 115200baud, 8data bits, no parity, 1stop bit.</li>
               <li>Use the console for commissioning, diagnostics and advanced configuration. Normal daily use can be
                 done via web UI and front panel.</li>
             </ul>
@@ -545,7 +575,7 @@
 
           <div class="section" id="web-ui">
             <h3>5. Web interface</h3>
-            <p class="tagline">Browser based control and configuration.</p>
+
 
             <h4>5.1 Accessing the web UI</h4>
             <ol>
@@ -557,7 +587,7 @@
 
             <h4>5.2 Control page (<a href="control.html">control.html</a>)</h4>
             <ul>
-              <li>Shows one row per outlet (CH1–CH8).</li>
+              <li>Shows one row per outlet (CH1-CH8).</li>
               <li>Per channel:
                 <ul>
                   <li>Outlet state (ON/OFF) and control to toggle the relay.</li>
@@ -582,7 +612,7 @@
 
           <div class="section" id="troubleshooting">
             <h3>6. Basic troubleshooting</h3>
-            <p class="tagline">Quick checks for common on site issues.</p>
+
 
             <h4>6.1 Web UI not reachable</h4>
             <ol>
@@ -601,7 +631,7 @@
               <li>Confirm you are addressing the correct channel for the physical outlet.</li>
               <li>Check ERR LED and clear it with a long press on Set.</li>
               <li>Verify upstream protection (breaker/fuse) has not tripped.</li>
-              <li>Ensure total load does not exceed 16&nbsp;A.</li>
+              <li>Ensure total load does not exceed 15A.</li>
             </ul>
 
             <h4>6.3 Measurements show zero</h4>
@@ -622,12 +652,12 @@
 
           <div class="section" id="firmware">
             <h3>7. Firmware update &amp; technical summary</h3>
-            <p class="tagline">Safe firmware update and key technical data.</p>
+
 
             <h4>7.1 Firmware update via UF2</h4>
             <ol>
               <li>Obtain the correct <code>.uf2</code> file for your hardware revision.</li>
-              <li>Connect ENERGIS via USB&nbsp;C to a computer. Mains can stay connected during the update.</li>
+              <li>Connect ENERGIS via USBC to a computer. Mains can stay connected during the update.</li>
               <li>Open a serial terminal (see <a href="#serial-cli">USB serial console</a>) and run the
                 <code>BOOTSEL</code> command, or use the documented button sequence to enter boot mode.
               </li>
@@ -646,83 +676,83 @@
 
             <h4>7.2 Technical data (short)</h4>
             <ul>
-              <li>Input: 85&nbsp;VAC to 305&nbsp;VAC, 50/60&nbsp;Hz, 16&nbsp;A max.</li>
-              <li>Outputs: 8&nbsp;x IEC&nbsp;C13, each up to 16&nbsp;A, max 16&nbsp;A total.</li>
-              <li>Form factor: 10&nbsp;inch rack, 1U.</li>
-              <li>Interfaces: RJ45&nbsp;10/100 Ethernet, USB&nbsp;C (USB CDC console).</li>
+              <li>Input: 85VAC to 305VAC, 50/60Hz, 15A max.</li>
+              <li>Outputs: 8x IECC13, each up to 15A, max 15A total.</li>
+              <li>Form factor: 10inch rack, 1U.</li>
+              <li>Interfaces: RJ4510/100 Ethernet, USBC (USB CDC console).</li>
               <li>Per channel metering: HLW8032 based, used internally by firmware.</li>
             </ul>
           </div>
 
           <div class="section" id="serial-cli">
             <h3>8. USB serial console</h3>
-            <p class="tagline">Text commands for diagnostics and configuration.</p>
+
 
             <h4>8.1 Access</h4>
             <ul>
-              <li>Connect USB&nbsp;C to a host.</li>
-              <li>Open a serial terminal at 115200&nbsp;baud, 8N1.</li>
+              <li>Connect USBC to a host.</li>
+              <li>Open a serial terminal at 115200baud, 8N1.</li>
               <li>Type <code>HELP</code> to see supported commands.</li>
             </ul>
 
             <h4>8.2 Typical commands</h4>
             <ul>
-              <li><code>HELP</code> – list commands.</li>
-              <li><code>SYSINFO</code> – show firmware version and basic system info.</li>
-              <li><code>GET_TEMP</code> – MCU temperature.</li>
-              <li><code>REBOOT</code> – restart the device.</li>
-              <li><code>BOOTSEL</code> – enter USB mass storage mode for firmware update.</li>
-              <li><code>CLR_ERR</code> – clear internal error (same as long press Set).</li>
-              <li><code>RFS</code> – restore factory settings (network and preferences).</li>
+              <li><code>HELP</code> - list commands.</li>
+              <li><code>SYSINFO</code> - show firmware version and basic system info.</li>
+              <li><code>GET_TEMP</code> - MCU temperature.</li>
+              <li><code>REBOOT</code> - restart the device.</li>
+              <li><code>BOOTSEL</code> - enter USB mass storage mode for firmware update.</li>
+              <li><code>CLR_ERR</code> - clear internal error (same as long press Set).</li>
+              <li><code>RFS</code> - restore factory settings (network and preferences).</li>
             </ul>
 
             <h4>8.3 Outlet control</h4>
             <ul>
-              <li><code>SET_CH &lt;ch&gt; &lt;STATE&gt;</code> – set channel <code>ch</code> (1–8) to ON/OFF or ALL:
+              <li><code>SET_CH &lt;ch&gt; &lt;STATE&gt;</code> - set channel <code>ch</code> (1-8) to ON/OFF or ALL:
                 <ul>
                   <li>State can be <code>0</code>/<code>OFF</code> or <code>1</code>/<code>ON</code>, or
                     <code>ALL</code> where supported.
                   </li>
                 </ul>
               </li>
-              <li><code>GET_CH &lt;ch&gt;</code> – read state of a channel or all channels.</li>
-              <li><code>READ_HLW8032</code> – read meter snapshot for all channels.</li>
+              <li><code>GET_CH &lt;ch&gt;</code> - read state of a channel or all channels.</li>
+              <li><code>READ_HLW8032</code> - read meter snapshot for all channels.</li>
             </ul>
 
             <h4>8.4 Network configuration</h4>
             <ul>
-              <li><code>NETINFO</code> – prints current IP, subnet, gateway, DNS.</li>
+              <li><code>NETINFO</code> - prints current IP, subnet, gateway, DNS.</li>
               <li><code>SET_IP &lt;ip&gt;</code>, <code>SET_SN &lt;mask&gt;</code>, <code>SET_GW &lt;gw&gt;</code>,
-                <code>SET_DNS &lt;dns&gt;</code> – set network parameters.
+                <code>SET_DNS &lt;dns&gt;</code> - set network parameters.
               </li>
-              <li><code>CONFIG_NETWORK ip$sn$gw$dns</code> – configure all network parameters in one command.</li>
+              <li><code>CONFIG_NETWORK ip$sn$gw$dns</code> - configure all network parameters in one command.</li>
             </ul>
           </div>
 
           <div class="section" id="http-api">
             <h3>9. HTTP API</h3>
-            <p class="tagline">JSON and form based endpoints for remote control and configuration.</p>
 
-            <p>The embedded HTTP server listens on port&nbsp;80 and exposes JSON endpoints under <code>/api/...</code>.
+
+            <p>The embedded HTTP server listens on port80 and exposes JSON endpoints under <code>/api/...</code>.
               All responses use HTTP/1.1 and include <code>Connection: close</code>.</p>
 
             <h4>9.1 GET /api/status</h4>
             <p>Returns overall status and per channel telemetry.</p>
             <ul>
-              <li><code>channels</code> – array of 8 objects, each containing <code>voltage</code>,
+              <li><code>channels</code> - array of 8 objects, each containing <code>voltage</code>,
                 <code>current</code>, <code>uptime</code>, <code>power</code>, <code>state</code>.
               </li>
-              <li><code>internalTemperature</code> – MCU die temperature.</li>
-              <li><code>temperatureUnit</code> – such as <code>"°C"</code>.</li>
-              <li><code>systemStatus</code> – short status string.</li>
+              <li><code>internalTemperature</code> - MCU die temperature.</li>
+              <li><code>temperatureUnit</code> - such as <code>"°C"</code>.</li>
+              <li><code>systemStatus</code> - short status string.</li>
             </ul>
             <pre><code>curl http://&lt;device-ip&gt;/api/status</code></pre>
 
             <h4>9.2 POST /api/control</h4>
             <p>Control relays using simple form encoded data. Each field is named <code>channelN</code> for
-              N&nbsp;=&nbsp;1..8.</p>
+              N=1..8.</p>
             <ul>
-              <li><code>channelN=on</code> – turn channel N on.</li>
+              <li><code>channelN=on</code> - turn channel N on.</li>
               <li>Omit the field or set it to an empty string to turn the channel off.</li>
             </ul>
             <pre><code># Turn channels 1 and 3 on, all others off
@@ -742,26 +772,26 @@ curl -X POST "http://&lt;device-ip&gt;/api/control" \
             <p>Updates network parameters and user preferences. Uses form encoded data.</p>
             <pre><code>curl -X POST "http://&lt;device-ip&gt;/api/settings" \
  --data "ip=192.168.0.12&amp;subnet=255.255.255.0&amp;gateway=192.168.0.1&amp;dns=8.8.8.8&amp;device_name=ENERGIS&amp;location=Rack1&amp;temp_unit=celsius"</code></pre>
-            <p>On success, the device stores the configuration, replies with 204&nbsp;No&nbsp;Content and then reboots.
+            <p>On success, the device stores the configuration, replies with 204NoContent and then reboots.
             </p>
           </div>
 
           <div class="section" id="html-pages">
             <h3>10. Built in HTML pages</h3>
-            <p class="tagline">Small static pages served directly by the PDU.</p>
+
 
             <ul>
-              <li><strong>control.html</strong> – main outlet control and monitoring.</li>
-              <li><strong>settings.html</strong> – network and basic configuration.</li>
-              <li><strong>help.html</strong> – this offline help page.</li>
-              <li><strong>user_manual.html</strong> – landing page for the full User Manual.</li>
-              <li><strong>automation_manual.html</strong> – landing page for automation/programming documentation.</li>
+              <li><strong>control.html</strong> - main outlet control and monitoring.</li>
+              <li><strong>settings.html</strong> - network and basic configuration.</li>
+              <li><strong>help.html</strong> - this offline help page.</li>
+              <li><strong>user_manual.html</strong> - landing page for the full User Manual.</li>
+              <li><strong>automation_manual.html</strong> - landing page for automation/programming documentation.</li>
             </ul>
           </div>
 
           <div class="section" id="metrics">
             <h3>11. /metrics (OpenMetrics / Prometheus)</h3>
-            <p class="tagline">Text based metrics endpoint for monitoring systems.</p>
+
 
             <h4>11.1 Endpoint</h4>
             <p>The <code>/metrics</code> endpoint exposes metrics in Prometheus/OpenMetrics text format.</p>
@@ -769,26 +799,26 @@ curl -X POST "http://&lt;device-ip&gt;/api/control" \
 
             <h4>11.2 Global metrics (examples)</h4>
             <ul>
-              <li><code>energis_up</code> – gauge, 1 if the metrics handler is healthy.</li>
-              <li><code>energis_build_info{version,serial}</code> – gauge always 1, with labels identifying the build.
+              <li><code>energis_up</code> - gauge, 1 if the metrics handler is healthy.</li>
+              <li><code>energis_build_info{version,serial}</code> - gauge always 1, with labels identifying the build.
               </li>
-              <li><code>energis_uptime_seconds_total</code> – counter, total uptime in seconds.</li>
-              <li><code>energis_internal_temperature_celsius</code> – gauge, MCU temperature.</li>
-              <li><code>energis_vusb_volts</code>, <code>energis_vsupply_volts</code> – gauges, internal rails.</li>
+              <li><code>energis_uptime_seconds_total</code> - counter, total uptime in seconds.</li>
+              <li><code>energis_internal_temperature_celsius</code> - gauge, MCU temperature.</li>
+              <li><code>energis_vusb_volts</code>, <code>energis_vsupply_volts</code> - gauges, internal rails.</li>
             </ul>
 
             <h4>11.3 Per channel metrics (examples)</h4>
             <p>Each channel has label <code>{ch="1"}</code> to <code>{ch="8"}</code>.</p>
             <ul>
-              <li><code>energis_channel_state{ch}</code> – gauge, 1 for on, 0 for off.</li>
-              <li><code>energis_channel_telemetry_valid{ch}</code> – gauge, 1 if cached telemetry is fresh.</li>
-              <li><code>energis_channel_voltage_volts{ch}</code> – gauge.</li>
-              <li><code>energis_channel_current_amps{ch}</code> – gauge.</li>
-              <li><code>energis_channel_power_watts{ch}</code> – gauge.</li>
-              <li><code>energis_channel_energy_watt_hours_total{ch}</code> – counter, accumulated energy.</li>
+              <li><code>energis_channel_state{ch}</code> - gauge, 1 for on, 0 for off.</li>
+              <li><code>energis_channel_telemetry_valid{ch}</code> - gauge, 1 if cached telemetry is fresh.</li>
+              <li><code>energis_channel_voltage_volts{ch}</code> - gauge.</li>
+              <li><code>energis_channel_current_amps{ch}</code> - gauge.</li>
+              <li><code>energis_channel_power_watts{ch}</code> - gauge.</li>
+              <li><code>energis_channel_energy_watt_hours_total{ch}</code> - counter, accumulated energy.</li>
             </ul>
             <p>Metrics are produced from cached meter data and never perform blocking I/O in the handler. If the output
-              would exceed the internal buffer, the handler returns HTTP&nbsp;503 to signal an error instead of emitting
+              would exceed the internal buffer, the handler returns HTTP503 to signal an error instead of emitting
               partial metrics.</p>
 
             <h4>11.4 Prometheus configuration example</h4>
@@ -805,7 +835,7 @@ curl -X POST "http://&lt;device-ip&gt;/api/control" \
 
           <div class="section" id="snmp">
             <h3>12. SNMP</h3>
-            <p class="tagline">SNMPv1 agent for state control and telemetry.</p>
+
 
             <h4>12.1 Overview</h4>
             <ul>
@@ -817,13 +847,13 @@ curl -X POST "http://&lt;device-ip&gt;/api/control" \
 
             <h4>12.2 System OIDs (MIB-II)</h4>
             <ul>
-              <li><code>1.3.6.1.2.1.1.1.0</code> – <code>sysDescr</code>, descriptive text.</li>
-              <li><code>1.3.6.1.2.1.1.2.0</code> – <code>sysObjectID</code>, set to the enterprise ID.</li>
-              <li><code>1.3.6.1.2.1.1.3.0</code> – <code>sysUpTime</code>.</li>
-              <li><code>1.3.6.1.2.1.1.4.0</code> – <code>sysContact</code>.</li>
-              <li><code>1.3.6.1.2.1.1.5.0</code> – <code>sysName</code>, often serial number.</li>
-              <li><code>1.3.6.1.2.1.1.6.0</code> – <code>sysLocation</code>.</li>
-              <li><code>1.3.6.1.2.1.1.7.0</code> – <code>sysServices</code>.</li>
+              <li><code>1.3.6.1.2.1.1.1.0</code> - <code>sysDescr</code>, descriptive text.</li>
+              <li><code>1.3.6.1.2.1.1.2.0</code> - <code>sysObjectID</code>, set to the enterprise ID.</li>
+              <li><code>1.3.6.1.2.1.1.3.0</code> - <code>sysUpTime</code>.</li>
+              <li><code>1.3.6.1.2.1.1.4.0</code> - <code>sysContact</code>.</li>
+              <li><code>1.3.6.1.2.1.1.5.0</code> - <code>sysName</code>, often serial number.</li>
+              <li><code>1.3.6.1.2.1.1.6.0</code> - <code>sysLocation</code>.</li>
+              <li><code>1.3.6.1.2.1.1.7.0</code> - <code>sysServices</code>.</li>
             </ul>
 
             <h4>12.3 Outlet control OIDs</h4>
@@ -840,13 +870,13 @@ curl -X POST "http://&lt;device-ip&gt;/api/control" \
 
             <h4>12.4 Group control OIDs</h4>
             <ul>
-              <li><code>1.3.6.1.4.1.19865.2.9.0</code> – All OFF:
+              <li><code>1.3.6.1.4.1.19865.2.9.0</code> - All OFF:
                 <ul>
                   <li>GET: 1 only if all channels are off.</li>
                   <li>SET: any non zero value forces all channels off.</li>
                 </ul>
               </li>
-              <li><code>1.3.6.1.4.1.19865.2.10.0</code> – All ON:
+              <li><code>1.3.6.1.4.1.19865.2.10.0</code> - All ON:
                 <ul>
                   <li>GET: 1 only if all channels are on.</li>
                   <li>SET: any non zero value forces all channels on.</li>
@@ -870,7 +900,7 @@ curl -X POST "http://&lt;device-ip&gt;/api/control" \
 
           <div class="section" id="integration">
             <h3>13. Integration examples</h3>
-            <p class="tagline">Using ENERGIS with scripts and monitoring systems.</p>
+
 
             <h4>13.1 Simple shell control with curl</h4>
             <pre><code># Turn channel 2 on from a shell script
@@ -903,12 +933,12 @@ curl -s -o /dev/null -X POST "http://&lt;device-ip&gt;/api/control" \
 
           <div class="section" id="more-docs">
             <h3>14. More documentation</h3>
-            <p class="tagline">Where to find the full manuals and project details.</p>
+
 
             <p>This help page is an embedded summary. For full detail, use:</p>
             <ul>
-              <li><a href="user_manual.html">User Manual</a> – complete installation, safety and technical data.</li>
-              <li><a href="automation_manual.html">Programming &amp; Automation Manual</a> – protocol details, OID
+              <li><a href="user_manual.html">User Manual</a> - complete installation, safety and technical data.</li>
+              <li><a href="automation_manual.html">Programming &amp; Automation Manual</a> - protocol details, OID
                 tables, and extended examples.</li>
             </ul>
             <p>Project sources, issue tracking and firmware releases are available through the official repository

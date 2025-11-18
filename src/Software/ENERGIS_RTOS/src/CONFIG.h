@@ -184,6 +184,40 @@ extern w5500_NetConfig eth_netcfg;
 #define UART_IFACE 1
 #endif
 
+/**
+ * @brief Error code severity nibble values for 0xMSCC encoding.
+ *
+ * Bits 11..8 of the 16-bit error code define the severity/category.
+ * M (bits 15..12) = module, S (bits 11..8) = severity, CC (bits 7..0) = code.
+ */
+typedef enum {
+    ERR_SEV_INFO = 0x1u,    /**< Informational event (0x1SCC). */
+    ERR_SEV_WARNING = 0x2u, /**< Warning / degraded but running (0x2SCC). */
+    ERR_SEV_ERROR = 0xFu    /**< Error / fault condition (0xFSCC). */
+} error_severity_t;
+
+/**
+ * @brief Compose a 16-bit error code in 0xMSCC format.
+ * 0xMSCC:
+ *  M – module:
+ *      1=Init, 2=Net,
+ *      3=Meter, 4=Storage,
+ *      5=Button, 6=Health,
+ *      7=Logger, 8=Console
+ *  S – severity/category:
+ *      1=INFO, 2=WARNING, F=ERROR
+ *  CC – detail.
+ *
+ * @param module   4-bit module ID (bits 15..12).
+ * @param severity 4-bit severity (bits 11..8), see @ref error_severity_t.
+ * @param code     8-bit module-specific code (bits 7..0).
+ *
+ * @return Encoded 16-bit error code.
+ */
+#define ERR_MAKE_CODE(module, severity, code)                                                      \
+    (uint16_t)((((uint16_t)(module) & 0x0Fu) << 12) | (((uint16_t)(severity) & 0x0Fu) << 8) |      \
+               ((uint16_t)(code) & 0xFFu))
+
 #if DEBUG
 #define DEBUG_PRINT(...) log_printf("\t[DEBUG] " __VA_ARGS__)
 #else
@@ -203,15 +237,43 @@ extern w5500_NetConfig eth_netcfg;
 #endif
 
 #if ERROR
-#define ERROR_PRINT(...) log_printf_force("[ERROR] " __VA_ARGS__)
+#define ERROR_PRINT(...) (setError(true), log_printf_force("[ERROR] " __VA_ARGS__))
+
+/**
+ * @brief Print an error with a 16-bit error code in 0xMSCC format.
+ *
+ * @param code Encoded 16-bit error code (see ERR_MAKE_CODE()).
+ * @param ...  printf-style format string and arguments.
+ *
+ * Example:
+ * @code
+ * uint16_t code = ERR_MAKE_CODE(0x2, ERR_SEV_ERROR, 0x01); // NetTask, ERROR, code 1
+ * ERROR_PRINT_CODE(code, "W5500 init failed\n");
+ * @endcode
+ */
+#define ERROR_PRINT_CODE(code, ...)                                                                \
+    (setError(true), log_printf_force("[ERROR 0x%04X] " __VA_ARGS__, (unsigned)(code)))
+
 #else
 #define ERROR_PRINT(...) ((void)0)
+#define ERROR_PRINT_CODE(...) ((void)0)
 #endif
 
 #if WARNING
 #define WARNING_PRINT(...) log_printf_force("[WARNING] " __VA_ARGS__)
+
+/**
+ * @brief Print a warning with a 16-bit error code in 0xMSCC format.
+ *
+ * @param code Encoded 16-bit code (usually ERR_SEV_WARNING).
+ * @param ...  printf-style format string and arguments.
+ */
+#define WARNING_PRINT_CODE(code, ...)                                                              \
+    log_printf_force("[WARNING 0x%04X] " __VA_ARGS__, (unsigned)(code))
+
 #else
 #define WARNING_PRINT(...) ((void)0)
+#define WARNING_PRINT_CODE(...) ((void)0)
 #endif
 
 #if PLOT_EN
