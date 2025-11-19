@@ -113,6 +113,8 @@
         "tuple": "c",
         "snmp_voltagemon.h": "c",
         "atomic": "c",
-        "cstddef": "c"
+        "cstddef": "c",
+        "cmath": "c",
+        "compare": "c"
     }
 }

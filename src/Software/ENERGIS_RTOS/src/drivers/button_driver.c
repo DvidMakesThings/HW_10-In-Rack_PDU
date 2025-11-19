@@ -14,6 +14,8 @@
 
 #include "../CONFIG.h"
 
+#define BTNDRV_TAG "[BTNDRV]"
+
 /* -------------------- Local helpers ---------------------------------------- */
 /**
  * @brief Turn off all selection LEDs.
@@ -55,8 +57,16 @@ void ButtonDrv_SelectAllOff(void) { drv_sel_all_off(); }
 
 void ButtonDrv_SelectShow(uint8_t index, bool on) {
     mcp23017_t *sel = mcp_selection();
-    if (!sel)
+    if (!sel) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_BUTTON_DRV, 0x1);
+        ERROR_PRINT_CODE(errorcode,
+                         "%s ButtonDrv_SelectShow: MCP23017 selection device not found\r\n",
+                         BTNDRV_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
+    }
 
     /* show current only */
     drv_sel_all_off();
@@ -66,8 +76,15 @@ void ButtonDrv_SelectShow(uint8_t index, bool on) {
 }
 
 void ButtonDrv_SelectLeft(uint8_t *io_index, bool led_on) {
-    if (!io_index)
+    if (!io_index) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_BUTTON_DRV, 0x2);
+        ERROR_PRINT_CODE(errorcode, "%s ButtonDrv_SelectLeft: NULL io_index pointer\r\n",
+                         BTNDRV_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
+    }
     uint8_t idx = *io_index;
     idx = (idx == 0u) ? 7u : (uint8_t)(idx - 1u);
     *io_index = idx;
@@ -75,8 +92,15 @@ void ButtonDrv_SelectLeft(uint8_t *io_index, bool led_on) {
 }
 
 void ButtonDrv_SelectRight(uint8_t *io_index, bool led_on) {
-    if (!io_index)
+    if (!io_index) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_BUTTON_DRV, 0x3);
+        ERROR_PRINT_CODE(errorcode, "%s ButtonDrv_SelectRight: NULL io_index pointer\r\n",
+                         BTNDRV_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
+    }
     uint8_t idx = *io_index;
     idx = (idx == 7u) ? 0u : (uint8_t)(idx + 1u);
     *io_index = idx;
@@ -85,8 +109,15 @@ void ButtonDrv_SelectRight(uint8_t *io_index, bool led_on) {
 
 void ButtonDrv_DoSetShort(uint8_t index) {
     mcp23017_t *rel = mcp_relay();
-    if (!rel)
+    if (!rel) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_BUTTON_DRV, 0x4);
+        ERROR_PRINT_CODE(errorcode, "%s ButtonDrv_DoSetShort: MCP23017 relay device not found\r\n",
+                         BTNDRV_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
+    }
 
     uint8_t cur = mcp_read_pin(rel, index & 0x0Fu);
     uint8_t want = cur ? 0u : 1u;

@@ -14,6 +14,8 @@
 
 #include "../../CONFIG.h"
 
+#define ST_CH_LABEL_TAG "[ST-CHLAB]"
+
 /**
  * @brief Calculate EEPROM address for a channel's label slot.
  *
@@ -40,8 +42,16 @@ static inline uint16_t _LabelSlotAddr(uint8_t channel_index) {
  */
 int EEPROM_WriteChannelLabel(uint8_t channel_index, const char *label) {
     /* Validate inputs */
-    if (channel_index >= ENERGIS_NUM_CHANNELS || label == NULL)
+    if (channel_index >= ENERGIS_NUM_CHANNELS || label == NULL) {
+#if ERRORLOGGER
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CHANNEL_LBL, 0x0);
+        ERROR_PRINT("%s EEPROM_WriteChannelLabel invalid input: ch=%u, label=%p\r\n",
+                    ST_CH_LABEL_TAG, channel_index, (void *)label);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return -1;
+    }
 
     uint8_t buf[EEPROM_CH_LABEL_SLOT];
     size_t maxcpy = EEPROM_CH_LABEL_SLOT - 1u; /* Reserve 1 byte for null terminator */
@@ -77,9 +87,16 @@ int EEPROM_WriteChannelLabel(uint8_t channel_index, const char *label) {
  */
 int EEPROM_ReadChannelLabel(uint8_t channel_index, char *out, size_t out_len) {
     /* Validate inputs */
-    if (channel_index >= ENERGIS_NUM_CHANNELS || out == NULL || out_len == 0u)
+    if (channel_index >= ENERGIS_NUM_CHANNELS || out == NULL || out_len == 0u) {
+#if ERRORLOGGER
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CHANNEL_LBL, 0x1);
+        ERROR_PRINT("%s EEPROM_ReadChannelLabel invalid input: ch=%u, out=%p, out_len=%u\r\n",
+                    ST_CH_LABEL_TAG, channel_index, (void *)out, (unsigned)out_len);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return -1;
-
+    }
     uint8_t buf[EEPROM_CH_LABEL_SLOT];
     CAT24C256_ReadBuffer(_LabelSlotAddr(channel_index), buf, EEPROM_CH_LABEL_SLOT);
 
@@ -108,8 +125,16 @@ int EEPROM_ReadChannelLabel(uint8_t channel_index, char *out, size_t out_len) {
  */
 int EEPROM_ClearChannelLabel(uint8_t channel_index) {
     /* Validate channel index */
-    if (channel_index >= ENERGIS_NUM_CHANNELS)
+    if (channel_index >= ENERGIS_NUM_CHANNELS) {
+#if ERRORLOGGER
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CHANNEL_LBL, 0x2);
+        ERROR_PRINT("%s EEPROM_ClearChannelLabel invalid channel: ch=%u\r\n", ST_CH_LABEL_TAG,
+                    channel_index);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return -1;
+    }
 
     uint8_t zero[32];
     memset(zero, 0x00, sizeof(zero));
@@ -134,8 +159,16 @@ int EEPROM_ClearChannelLabel(uint8_t channel_index) {
  */
 int EEPROM_ClearAllChannelLabels(void) {
     for (uint8_t ch = 0; ch < ENERGIS_NUM_CHANNELS; ++ch) {
-        if (EEPROM_ClearChannelLabel(ch) != 0)
+        if (EEPROM_ClearChannelLabel(ch) != 0) {
+#if ERRORLOGGER
+            uint16_t err_code =
+                ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CHANNEL_LBL, 0x3);
+            ERROR_PRINT("%s EEPROM_ClearAllChannelLabels failed on channel: ch=%u\r\n",
+                        ST_CH_LABEL_TAG, ch);
+            Storage_EnqueueErrorCode(err_code);
+#endif
             return -1;
+        }
     }
     return 0;
 }

@@ -4,7 +4,7 @@
  *
  * @version 1.0.0
  * @date 2025-11-06
- * 
+ *
  * @details
  * All functions accept the I2C address via the registered device context.
  * Uses FreeRTOS mutex for thread-safety, shadowed OLAT writes to avoid
@@ -15,6 +15,8 @@
  */
 
 #include "../CONFIG.h"
+
+#define MCP23017_TAG "[MCPDRV]"
 
 /* ===================== Tunables (safe, conservative) ===================== */
 #ifndef MCP_I2C_MAX_RETRIES
@@ -43,13 +45,13 @@
 static mcp23017_t g_devs[MCP_MAX_DEVICES];
 static size_t g_dev_count = 0;
 
-/** 
- * @brief Find existing device by address on same bus. 
- * 
+/**
+ * @brief Find existing device by address on same bus.
+ *
  * @param i2c I2C bus instance
  * @param addr 7-bit I2C address
  * @return Pointer to existing device context, or NULL if not found
-*/
+ */
 static mcp23017_t *_find_dev(i2c_inst_t *i2c, uint8_t addr) {
     for (size_t i = 0; i < g_dev_count; ++i) {
         if (g_devs[i].i2c == i2c && g_devs[i].addr == addr) {
@@ -59,15 +61,15 @@ static mcp23017_t *_find_dev(i2c_inst_t *i2c, uint8_t addr) {
     return NULL;
 }
 
-/** 
- * @brief I2C robust write: reg+1byte, with retries. 
- * 
+/**
+ * @brief I2C robust write: reg+1byte, with retries.
+ *
  * @param i2c I2C bus instance
  * @param addr 7-bit I2C address
  * @param reg Register address
  * @param val Value to write
  * @return true on success, false on failure
-*/
+ */
 static bool _i2c_wr(i2c_inst_t *i2c, uint8_t addr, uint8_t reg, uint8_t val) {
     uint8_t buf[2] = {reg, val};
     for (int attempt = 0; attempt < MCP_I2C_MAX_RETRIES; ++attempt) {
@@ -76,22 +78,34 @@ static bool _i2c_wr(i2c_inst_t *i2c, uint8_t addr, uint8_t reg, uint8_t val) {
             return true;
         busy_wait_us(MCP_I2C_RETRY_DELAY_US);
     }
-    ERROR_PRINT("[MCP] I2C write fail addr=0x%02X reg=0x%02X\r\n", addr, reg);
+#if ERRORLOGGER
+    uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017, 0x1);
+    ERROR_PRINT_CODE(errorcode, "%s I2C write fail addr=0x%02X reg=0x%02X\r\n", MCP23017_TAG, addr,
+                     reg);
+    Storage_EnqueueErrorCode(errorcode);
+#endif
     return false;
 }
 
-/** 
- * @brief I2C robust read: write reg, repeated-start, read 1 byte, with retries. 
+/**
+ * @brief I2C robust read: write reg, repeated-start, read 1 byte, with retries.
  *
  * @param i2c I2C bus instance
  * @param addr 7-bit I2C address
  * @param reg Register address
  * @param out Pointer to output byte
- * @return true on success, false on failure 
+ * @return true on success, false on failure
  */
 static bool _i2c_rd(i2c_inst_t *i2c, uint8_t addr, uint8_t reg, uint8_t *out) {
-    if (!out)
+    if (!out) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017, 0x2);
+        ERROR_PRINT_CODE(errorcode, "%s I2C read fail addr=0x%02X reg=0x%02X NULL output\r\n",
+                         MCP23017_TAG, addr, reg);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return false;
+    }
     for (int attempt = 0; attempt < MCP_I2C_MAX_RETRIES; ++attempt) {
         int n = i2c_write_blocking(i2c, addr, &reg, 1, true);
         if (n == 1) {
@@ -101,7 +115,12 @@ static bool _i2c_rd(i2c_inst_t *i2c, uint8_t addr, uint8_t reg, uint8_t *out) {
         }
         busy_wait_us(MCP_I2C_RETRY_DELAY_US);
     }
-    ERROR_PRINT("[MCP] I2C read fail addr=0x%02X reg=0x%02X\r\n", addr, reg);
+#if ERRORLOGGER
+    uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017, 0x3);
+    ERROR_PRINT_CODE(errorcode, "%s I2C read fail addr=0x%02X reg=0x%02X\r\n", MCP23017_TAG, addr,
+                     reg);
+    Storage_EnqueueErrorCode(errorcode);
+#endif
     return false;
 }
 
@@ -109,7 +128,12 @@ static bool _i2c_rd(i2c_inst_t *i2c, uint8_t addr, uint8_t reg, uint8_t *out) {
 
 mcp23017_t *mcp_register(i2c_inst_t *i2c, uint8_t addr, int8_t rst_gpio) {
     if (!i2c || addr < 0x20 || addr > 0x27) {
-        ERROR_PRINT("[MCP] register bad args i2c=%p addr=0x%02X\r\n", i2c, addr);
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017, 0x4);
+        ERROR_PRINT_CODE(errorcode, "%s Register bad args i2c=%p addr=0x%02X\r\n", MCP23017_TAG,
+                         i2c, addr);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return NULL;
     }
     mcp23017_t *dev = _find_dev(i2c, addr);
@@ -117,7 +141,11 @@ mcp23017_t *mcp_register(i2c_inst_t *i2c, uint8_t addr, int8_t rst_gpio) {
         return dev;
 
     if (g_dev_count >= MCP_MAX_DEVICES) {
-        ERROR_PRINT("[MCP] registry full\r\n");
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017, 0x5);
+        ERROR_PRINT_CODE(errorcode, "%s Registry full\r\n", MCP23017_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return NULL;
     }
 
@@ -132,7 +160,11 @@ mcp23017_t *mcp_register(i2c_inst_t *i2c, uint8_t addr, int8_t rst_gpio) {
 
     dev->mutex = xSemaphoreCreateMutex();
     if (!dev->mutex) {
-        ERROR_PRINT("[MCP] mutex create failed\r\n");
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017, 0x6);
+        ERROR_PRINT_CODE(errorcode, "%s Mutex create failed\r\n", MCP23017_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         g_dev_count--;
         return NULL;
     }
@@ -145,11 +177,23 @@ mcp23017_t *mcp_register(i2c_inst_t *i2c, uint8_t addr, int8_t rst_gpio) {
     return dev;
 }
 void mcp_init(mcp23017_t *dev) {
-    if (!dev)
+    if (!dev) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017, 0x7);
+        ERROR_PRINT_CODE(errorcode, "%s Cannot initialize. NULL device pointer\r\n", MCP23017_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
-    if (dev->inited)
+    }
+    if (dev->inited) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017, 0x8);
+        ERROR_PRINT_CODE(errorcode, "%s Device already initialized addr=0x%02X\r\n", MCP23017_TAG,
+                         dev->addr);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
-
+    }
     if (dev->rst_gpio >= 0) {
         gpio_put((uint)dev->rst_gpio, 0);
         sleep_ms(MCP_RESET_PULSE_MS);
@@ -183,8 +227,15 @@ void mcp_init(mcp23017_t *dev) {
 }
 
 bool mcp_write_reg(mcp23017_t *dev, uint8_t reg, uint8_t value) {
-    if (!dev)
+    if (!dev) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017, 0x9);
+        ERROR_PRINT_CODE(errorcode, "%s Cannot write register. NULL device pointer\r\n",
+                         MCP23017_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return false;
+    }
     if (!dev->inited)
         mcp_init(dev);
 
@@ -199,8 +250,15 @@ bool mcp_write_reg(mcp23017_t *dev, uint8_t reg, uint8_t value) {
 }
 
 bool mcp_read_reg(mcp23017_t *dev, uint8_t reg, uint8_t *out) {
-    if (!dev || !out)
+    if (!dev || !out) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017, 0xA);
+        ERROR_PRINT_CODE(errorcode, "%s Cannot read register. NULL device or output pointer\r\n",
+                         MCP23017_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return false;
+    }
     if (!dev->inited)
         mcp_init(dev);
     xSemaphoreTake(dev->mutex, portMAX_DELAY);
@@ -210,8 +268,15 @@ bool mcp_read_reg(mcp23017_t *dev, uint8_t reg, uint8_t *out) {
 }
 
 void mcp_set_direction(mcp23017_t *dev, uint8_t pin, uint8_t direction) {
-    if (!dev || pin > 15)
+    if (!dev || pin > 15) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017, 0xB);
+        ERROR_PRINT_CODE(errorcode, "%s Cannot set direction. NULL device or bad pin %u\r\n",
+                         MCP23017_TAG, pin);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
+    }
     if (!dev->inited)
         mcp_init(dev);
     const bool is_a = (pin < 8);
@@ -230,8 +295,15 @@ void mcp_set_direction(mcp23017_t *dev, uint8_t pin, uint8_t direction) {
 }
 
 void mcp_write_pin(mcp23017_t *dev, uint8_t pin, uint8_t value) {
-    if (!dev || pin > 15)
+    if (!dev || pin > 15) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017, 0xC);
+        ERROR_PRINT_CODE(errorcode, "%s Cannot write pin. NULL device or bad pin %u\r\n",
+                         MCP23017_TAG, pin);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
+    }
     if (!dev->inited)
         mcp_init(dev);
 
@@ -257,8 +329,15 @@ void mcp_write_pin(mcp23017_t *dev, uint8_t pin, uint8_t value) {
 }
 
 uint8_t mcp_read_pin(mcp23017_t *dev, uint8_t pin) {
-    if (!dev || pin > 15)
+    if (!dev || pin > 15) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017, 0xD);
+        ERROR_PRINT_CODE(errorcode, "%s Cannot read pin. NULL device or bad pin %u\r\n",
+                         MCP23017_TAG, pin);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return 0;
+    }
     if (!dev->inited)
         mcp_init(dev);
     const bool is_a = (pin < 8);
@@ -273,8 +352,14 @@ uint8_t mcp_read_pin(mcp23017_t *dev, uint8_t pin) {
 }
 
 void mcp_write_mask(mcp23017_t *dev, uint8_t port_ab, uint8_t mask, uint8_t value_bits) {
-    if (!dev)
+    if (!dev) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017, 0xE);
+        ERROR_PRINT_CODE(errorcode, "%s Cannot write mask. NULL device pointer\r\n", MCP23017_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
+    }
     if (!dev->inited)
         mcp_init(dev);
     xSemaphoreTake(dev->mutex, portMAX_DELAY);
@@ -289,8 +374,14 @@ void mcp_write_mask(mcp23017_t *dev, uint8_t port_ab, uint8_t mask, uint8_t valu
 }
 
 void mcp_resync_from_hw(mcp23017_t *dev) {
-    if (!dev)
+    if (!dev) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017, 0xF);
+        ERROR_PRINT_CODE(errorcode, "%s Cannot resync. NULL device pointer\r\n", MCP23017_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
+    }
     if (!dev->inited)
         mcp_init(dev);
     xSemaphoreTake(dev->mutex, portMAX_DELAY);
@@ -354,11 +445,26 @@ mcp23017_t *mcp_display(void) { return g_mcp_display; }
 mcp23017_t *mcp_selection(void) { return g_mcp_selection; }
 
 bool mcp_set_channel_state(uint8_t ch, uint8_t value) {
-    if (ch > 7)
+    if (ch > 7) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017_2, 0x1);
+        ERROR_PRINT_CODE(errorcode, "%s Cannot set channel state. bad channel %u\r\n", MCP23017_TAG,
+                         ch);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return false;
+    }
     mcp23017_t *rel = mcp_relay();
-    if (!rel)
+    if (!rel) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017_2, 0x2);
+        ERROR_PRINT_CODE(errorcode,
+                         "%s Cannot set channel state. MCP23017 relay device not found\r\n",
+                         MCP23017_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return false;
+    }
 
     uint8_t v = value ? 1u : 0u;
     mcp_write_pin(rel, ch, v); /* switch relay */
@@ -371,19 +477,41 @@ bool mcp_set_channel_state(uint8_t ch, uint8_t value) {
 }
 
 bool mcp_get_channel_state(uint8_t ch) {
-    if (ch > 7)
+    if (ch > 7) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017_2, 0x3);
+        ERROR_PRINT_CODE(errorcode, "%s Cannot get channel state. bad channel %u\r\n", MCP23017_TAG,
+                         ch);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return false;
+    }
     mcp23017_t *rel = mcp_relay();
-    if (!rel)
+    if (!rel) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017_2, 0x4);
+        ERROR_PRINT_CODE(errorcode,
+                         "%s Cannot get channel state. MCP23017 relay device not found\r\n",
+                         MCP23017_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return false;
+    }
     uint8_t v = mcp_read_pin(rel, ch);
     return (v != 0);
 }
 
 bool setError(bool state) {
     mcp23017_t *disp = mcp_display();
-    if (!disp)
+    if (!disp) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017_2, 0x5);
+        ERROR_PRINT_CODE(errorcode, "%s Error cannot set. MCP23017 display device not found\r\n",
+                         MCP23017_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return false;
+    }
     /* Error LED on pin 8 (port B, bit 0), active HIGH */
     mcp_write_pin(disp, FAULT_LED, state ? 1u : 0u);
     return true;
@@ -391,8 +519,16 @@ bool setError(bool state) {
 
 bool setPowerGood(bool state) {
     mcp23017_t *disp = mcp_display();
-    if (!disp)
+    if (!disp) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017_2, 0x6);
+        ERROR_PRINT_CODE(errorcode,
+                         "%s Power good cannot set. MCP23017 display device not found\r\n",
+                         MCP23017_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return false;
+    }
     /* Power Good LED on pin 9 (port B, bit 1), active HIGH */
     mcp_write_pin(disp, PWR_LED, state ? 1u : 0u);
     return true;
@@ -400,8 +536,16 @@ bool setPowerGood(bool state) {
 
 bool setNetworkLink(bool state) {
     mcp23017_t *disp = mcp_display();
-    if (!disp)
+    if (!disp) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017_2, 0x7);
+        ERROR_PRINT_CODE(errorcode,
+                         "%s Network link cannot set. MCP23017 display device not found\r\n",
+                         MCP23017_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return false;
+    }
     /* Network Link LED on pin 10 (port B, bit 2), active HIGH */
     mcp_write_pin(disp, ETH_LED, state ? 1u : 0u);
     return true;

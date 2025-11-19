@@ -1,18 +1,20 @@
 /**
  * @file src/misc/rtos_hooks.c
  * @author DvidMakesThings - David Sipos
- * 
+ *
  * @version 1.0.0
  * @date 2025-11-06
- * 
- * @details FreeRTOS hook implementations, crash breadcrumbs, and 
- * scheduler canaries. 
+ *
+ * @details FreeRTOS hook implementations, crash breadcrumbs, and
+ * scheduler canaries.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
  */
 
 #include "../CONFIG.h"
+
+#define RTOS_HOOKS_TAG "[RTOSHKS]"
 
 /**
  * @file rtos_hooks.c
@@ -203,10 +205,16 @@ void hardfault_c(uint32_t *sp) {
     uint32_t pc = sp[6];
     uint32_t xpsr = sp[7];
 
-    ERROR_PRINT(
-        "[HF] pc=%08lx lr=%08lx xpsr=%08lx r0=%08lx r1=%08lx r2=%08lx r3=%08lx r12=%08lx\r\n",
-        (unsigned long)pc, (unsigned long)lr, (unsigned long)xpsr, (unsigned long)r0,
-        (unsigned long)r1, (unsigned long)r2, (unsigned long)r3, (unsigned long)r12);
+#if ERRORLOGGER
+    uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_FATAL_ERROR, ERR_FID_RTOS_HOOKS, 0x0);
+    ERROR_PRINT_CODE(errorcode,
+                     "%s pc = % 08lx lr = % 08lx xpsr = % 08lx r0 = % 08lx r1 = % 08lx r2 = % 08lx "
+                     "r3 = % 08lx r12 = % 08lx\r\n",
+                     RTOS_HOOKS_TAG, (unsigned long)pc, (unsigned long)lr, (unsigned long)xpsr,
+                     (unsigned long)r0, (unsigned long)r1, (unsigned long)r2, (unsigned long)r3,
+                     (unsigned long)r12);
+    Storage_EnqueueErrorCode(errorcode);
+#endif
 
     for (;;)
         __asm volatile("wfi");

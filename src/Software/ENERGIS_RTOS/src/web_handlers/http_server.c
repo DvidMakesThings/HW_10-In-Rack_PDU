@@ -57,6 +57,13 @@ static int send_all(uint8_t sock, const uint8_t *data, int len) {
 
         int sent = send(sock, (uint8_t *)(data + total_sent), (uint16_t)to_send);
         if (sent <= 0) {
+#if ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_SERVER, 0x0);
+            ERROR_PRINT_CODE(errorcode, "%s send_all failed on sock %u\r\n", HTTP_SERVER_TAG, sock);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
+
             return -1;
         }
 
@@ -126,11 +133,13 @@ static int parse_content_length(const char *headers, int header_len) {
             long v = strtol(q, NULL, 10);
             if (v > 0 && v < (1 << 28))
                 return (int)v;
+
             return 0;
         }
 
         p = line_end + 1;
     }
+
     return 0;
 }
 
@@ -166,8 +175,9 @@ static int read_http_request(uint8_t sock, char *buf, int buflen, int *body_off,
         vTaskDelay(pdMS_TO_TICKS(1));
     }
 
-    if (header_end < 0)
+    if (header_end < 0) {
         return -1;
+    }
 
     /* Read body according to Content-Length */
     int content_length = parse_content_length(buf, header_end);
@@ -205,6 +215,13 @@ bool http_server_init(void) {
     http_buf = pvPortMalloc(HTTP_BUF_SIZE);
     if (!http_buf) {
         ERROR_PRINT("%s Failed to allocate HTTP buffer\n", HTTP_SERVER_TAG);
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_SERVER, 0x3);
+        ERROR_PRINT_CODE(errorcode, "%s HTTP buffer allocation failed\r\n", HTTP_SERVER_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+
         return false;
     }
 
@@ -213,6 +230,14 @@ bool http_server_init(void) {
     if (http_sock < 0) {
         ERROR_PRINT("%s Failed to open HTTP socket\n", HTTP_SERVER_TAG);
         vPortFree(http_buf);
+
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_SERVER, 0x4);
+        ERROR_PRINT_CODE(errorcode, "%s HTTP socket open failed\r\n", HTTP_SERVER_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+
         return false;
     }
 
@@ -229,6 +254,13 @@ bool http_server_init(void) {
         ERROR_PRINT("%s Failed to listen on HTTP socket\n", HTTP_SERVER_TAG);
         closesocket(http_sock);
         vPortFree(http_buf);
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_SERVER, 0x5);
+        ERROR_PRINT_CODE(errorcode, "%s HTTP listen failed\r\n", HTTP_SERVER_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+
         return false;
     }
 

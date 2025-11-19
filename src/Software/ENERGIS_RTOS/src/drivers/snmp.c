@@ -15,6 +15,8 @@
 
 #include "../CONFIG.h"
 
+#define SNMP_TAG "[SNMPDRV]"
+
 /* ------------------------------------------------------------------------------------------------
  *  Internal state
  * --------------------------------------------------------------------------------------------- */
@@ -80,8 +82,12 @@ bool SNMP_Init(uint8_t sock_agent, uint16_t local_port, uint8_t sock_trap) {
     /* Bind UDP/161 */
     closesocket(s_sock_agent);
     if (socket(s_sock_agent, Sn_MR_UDP, s_local_port, 0) != s_sock_agent) {
-        ERROR_PRINT("[SNMP] failed to open UDP socket %u:%u\r\n", (unsigned)s_sock_agent,
-                    (unsigned)s_local_port);
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SNMP, 0x0);
+        ERROR_PRINT_CODE(err_code, "%s failed to open UDP socket %u:%u\r\n", SNMP_TAG,
+                         (unsigned)s_sock_agent, (unsigned)s_local_port);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return false;
     }
 
@@ -91,7 +97,7 @@ bool SNMP_Init(uint8_t sock_agent, uint16_t local_port, uint8_t sock_trap) {
     uint8_t mgr_ip[4] = {0, 0, 0, 0};
     initial_Trap(mgr_ip, agent_ip);
 
-    INFO_PRINT("[SNMP] ready on UDP socket %u, port %u\r\n", (unsigned)s_sock_agent,
+    INFO_PRINT("%s ready on UDP socket %u, port %u\r\n", SNMP_TAG, (unsigned)s_sock_agent,
                (unsigned)s_local_port);
     return true;
 }
@@ -304,8 +310,9 @@ static int32_t findEntry(const uint8_t *oid, int32_t len) {
 }
 
 static int32_t getOID(int32_t id, uint8_t *oid, uint8_t *len) {
-    if (!(id >= 0 && id < maxData))
+    if (!(id >= 0 && id < maxData)) {
         return INVALID_ENTRY_ID;
+    }
     *len = snmpData[id].oidlen;
     for (uint8_t j = 0; j < *len; j++)
         oid[j] = snmpData[id].oid[j];
@@ -352,6 +359,12 @@ static int32_t getEntry(int32_t id, uint8_t *dataType, void *ptr, int32_t *len) 
     } break;
 
     default:
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SNMP, 0x1);
+        ERROR_PRINT_CODE(err_code, "%s getEntry: Unsupported data type %u for ID %d\r\n", SNMP_TAG,
+                         (unsigned)*dataType, id);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return INVALID_DATA_TYPE;
     }
     return SNMP_SUCCESS;
@@ -362,6 +375,12 @@ static int32_t setEntry(int32_t id, const void *val, int32_t vlen, uint8_t dataT
     if (snmpData[id].dataType != dataType) {
         s_errorStatus = BAD_VALUE;
         s_errorIndex = index;
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SNMP, 0x2);
+        ERROR_PRINT_CODE(err_code, "%s setEntry: Data type mismatch for ID %d on index %d\r\n",
+                         SNMP_TAG, id, index);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return INVALID_DATA_TYPE;
     }
 
@@ -444,9 +463,16 @@ static int32_t parseVarBind(int32_t reqType, int32_t index) {
     snmp_tlv_t name, value;
 
     parseTLV(s_req.buffer, s_req.index, &name);
-    if (s_req.buffer[name.start] != SNMPDTYPE_OBJ_ID)
-        return -1;
+    if (s_req.buffer[name.start] != SNMPDTYPE_OBJ_ID) {
 
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SNMP, 0x3);
+        ERROR_PRINT_CODE(err_code, "%s parseVarBind: Expected OID at VarBind index %d\r\n",
+                         SNMP_TAG, index);
+        Storage_EnqueueErrorCode(err_code);
+#endif
+        return -1;
+    }
     id = findEntry(&s_req.buffer[name.vstart], name.len);
 
     if (reqType == GET_REQUEST || reqType == SET_REQUEST) {
@@ -506,6 +532,11 @@ static int32_t parseVarBind(int32_t reqType, int32_t index) {
 
         s_errorIndex = (uint8_t)index;
         s_errorStatus = NO_SUCH_NAME;
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_INFO, ERR_FID_NET_SNMP, 0x0);
+        ERROR_PRINT_CODE(err_code, "%s parseVarBind: OID not found for VarBind index %d\r\n",
+                         SNMP_TAG, index);
+#endif
     }
 
     size += seglen;
@@ -518,8 +549,15 @@ static int32_t parseSequence(int32_t reqType, int32_t index) {
     snmp_tlv_t seq;
 
     parseTLV(s_req.buffer, s_req.index, &seq);
-    if (s_req.buffer[seq.start] != SNMPDTYPE_SEQUENCE)
+    if (s_req.buffer[seq.start] != SNMPDTYPE_SEQUENCE) {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SNMP, 0x4);
+        ERROR_PRINT_CODE(err_code, "%s parseSequence: Expected SEQUENCE at VarBind index %d\r\n",
+                         SNMP_TAG, index);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return -1;
+    }
 
     /* Copy SEQUENCE header (tag+len); will fill its length after composing content */
     seglen = seq.vstart - seq.start;
@@ -542,8 +580,15 @@ static int32_t parseSequenceOf(int32_t reqType) {
     snmp_tlv_t seqof;
 
     parseTLV(s_req.buffer, s_req.index, &seqof);
-    if (s_req.buffer[seqof.start] != SNMPDTYPE_SEQUENCE_OF)
+    if (s_req.buffer[seqof.start] != SNMPDTYPE_SEQUENCE_OF) {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SNMP, 0x5);
+        ERROR_PRINT_CODE(err_code, "%s parseSequenceOf: Expected SEQUENCE OF at VarBindList\r\n",
+                         SNMP_TAG);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return -1;
+    }
 
     /* Copy SEQUENCE OF header; fill length after composing all inner SEQUENCEs */
     seglen = seqof.vstart - seqof.start;
@@ -557,8 +602,16 @@ static int32_t parseSequenceOf(int32_t reqType) {
     int32_t idx = 0;
     while (s_req.index < s_req.len) {
         int32_t one = parseSequence(reqType, idx++);
-        if (one < 0)
+        if (one < 0) {
+#if ERRORLOGGER
+            uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SNMP, 0x6);
+            ERROR_PRINT_CODE(err_code,
+                             "%s parseSequenceOf: Failed to parse inner SEQUENCE at index %d\r\n",
+                             SNMP_TAG, idx - 1);
+            Storage_EnqueueErrorCode(err_code);
+#endif
             return -1;
+        }
         content += one;
     }
 
@@ -576,8 +629,15 @@ static int32_t parseRequest(void) {
 
     parseTLV(s_req.buffer, s_req.index, &snmpreq);
     reqType = s_req.buffer[snmpreq.start];
-    if (!VALID_REQUEST(reqType))
+    if (!VALID_REQUEST(reqType)) {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SNMP, 0x7);
+        ERROR_PRINT_CODE(err_code, "%s parseRequest: Invalid PDU type 0x%02X\r\n", SNMP_TAG,
+                         reqType);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return -1;
+    }
 
     /* Copy PDU header; we’ll set its length to content later */
     seglen = snmpreq.vstart - snmpreq.start;
@@ -615,8 +675,14 @@ static int32_t parseRequest(void) {
 
     /* VarBindList */
     int32_t r = parseSequenceOf(reqType);
-    if (r < 0)
+    if (r < 0) {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SNMP, 0x8);
+        ERROR_PRINT_CODE(err_code, "%s parseRequest: Failed to parse VarBindList\r\n", SNMP_TAG);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return -1;
+    }
     content += r;
 
     /* Fix PDU length to content only */
@@ -638,8 +704,15 @@ static int32_t parseCommunity(void) {
 
     parseTLV(s_req.buffer, s_req.index, &community);
     if (!(s_req.buffer[community.start] == SNMPDTYPE_OCTET_STRING &&
-          community.len == COMMUNITY_SIZE))
+          community.len == COMMUNITY_SIZE)) {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SNMP, 0x9);
+        ERROR_PRINT_CODE(err_code, "%s parseCommunity: Invalid community string length %d\r\n",
+                         SNMP_TAG, community.len);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return -1;
+    }
 
     if (memcmp(&s_req.buffer[community.vstart], COMMUNITY, COMMUNITY_SIZE) == 0) {
         seglen = community.nstart - community.start;
@@ -649,10 +722,24 @@ static int32_t parseCommunity(void) {
         size += seglen;
 
         int32_t r = parseRequest();
-        if (r < 0)
+        if (r < 0) {
+#if ERRORLOGGER
+            uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SNMP, 0xA);
+            ERROR_PRINT_CODE(err_code, "%s parseCommunity: Failed to parse SNMP request\r\n",
+                             SNMP_TAG);
+            Storage_EnqueueErrorCode(err_code);
+#endif
+
             return -1;
+        }
         size += r;
     } else {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SNMP, 0xB);
+        ERROR_PRINT_CODE(err_code, "%s parseCommunity: Unauthorized community string\r\n",
+                         SNMP_TAG);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return -1;
     }
     return size;
@@ -663,8 +750,15 @@ static int32_t parseVersion(void) {
     snmp_tlv_t tlv;
 
     parseTLV(s_req.buffer, s_req.index, &tlv);
-    if (!(s_req.buffer[tlv.start] == SNMPDTYPE_INTEGER && s_req.buffer[tlv.vstart] == SNMP_V1))
+    if (!(s_req.buffer[tlv.start] == SNMPDTYPE_INTEGER && s_req.buffer[tlv.vstart] == SNMP_V1)) {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SNMP, 0xC);
+        ERROR_PRINT_CODE(err_code, "%s parseVersion: Unsupported SNMP version %d\r\n", SNMP_TAG,
+                         s_req.buffer[tlv.vstart]);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return -1;
+    }
 
     seglen = tlv.nstart - tlv.start;
     memcpy(&s_resp.buffer[s_resp.index], &s_req.buffer[tlv.start], seglen);
@@ -673,8 +767,15 @@ static int32_t parseVersion(void) {
     size += seglen;
 
     int32_t r = parseCommunity();
-    if (r < 0)
+    if (r < 0) {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SNMP, 0xD);
+        ERROR_PRINT_CODE(err_code, "%s parseVersion: Failed to parse community string\r\n",
+                         SNMP_TAG);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return -1;
+    }
     return size + r; /* bytes appended after version TLV */
 }
 
@@ -685,8 +786,15 @@ static int32_t parseSNMPMessage(void) {
     s_resp.index = 0;
 
     parseTLV(s_req.buffer, s_req.index, &tlv);
-    if (s_req.buffer[tlv.start] != SNMPDTYPE_SEQUENCE_OF)
+    if (s_req.buffer[tlv.start] != SNMPDTYPE_SEQUENCE_OF) {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SNMP, 0xE);
+        ERROR_PRINT_CODE(err_code, "%s parseSNMPMessage: Invalid SNMP message header\r\n",
+                         SNMP_TAG);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return -1;
+    }
 
     /* Copy message header; fix length after composing content */
     int32_t seglen = tlv.vstart - tlv.start;
@@ -697,8 +805,15 @@ static int32_t parseSNMPMessage(void) {
 
     /* Build content (version + community + PDU) */
     int32_t r = parseVersion();
-    if (r < 0)
+    if (r < 0) {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SNMP, 0xF);
+        ERROR_PRINT_CODE(err_code, "%s parseSNMPMessage: Failed to parse SNMP version\r\n",
+                         SNMP_TAG);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return -1;
+    }
 
     /* Set outer length to content only */
     int32_t content_len = (int32_t)(s_resp.index - tlv.vstart);

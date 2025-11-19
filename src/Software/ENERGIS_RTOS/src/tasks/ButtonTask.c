@@ -25,6 +25,8 @@
 /* External storage gate (provided by StorageTask module) */
 extern bool Storage_IsReady(void);
 
+#define BUTTON_TASK_TAG "[BUTTONTASK]"
+
 /* -------------------- Globals ------------------------------------------------ */
 
 /**
@@ -142,8 +144,14 @@ static deb_edge_t deb_update(deb_t *d, bool raw, uint32_t now) {
  * @return None
  */
 static inline void emit(btn_event_kind_t kind) {
-    if (!q_btn)
+    if (!q_btn) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_BUTTONTASK, 0x0);
+        ERROR_PRINT_CODE(errorcode, "%s emit: NULL q_btn\r\n", BUTTON_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
+    }
     btn_event_t ev = {.kind = kind, .t_ms = now_ms(), .sel = s_selected};
     (void)xQueueSend(q_btn, &ev, 0);
 }
@@ -241,6 +249,7 @@ static void vButtonTask(void *arg) {
     (void)arg;
 
     ButtonDrv_InitGPIO();
+    ECHO("%s Task started\r\n", BUTTON_TASK_TAG);
 
     /* Initialize PWR button GPIO */
     gpio_init(BUT_PWR);
@@ -359,13 +368,17 @@ static void vButtonTask(void *arg) {
         if (!s_set.stable && s_set.latched_press) {
             uint32_t held_ms = (uint32_t)(now - s_set.stable_since);
             if (held_ms >= (uint32_t)LONGPRESS_DT) {
-                /* Long press: never opens window; act only if window is already open */
+                /* Long press: clear error/warning history and error LED */
                 s_set.latched_press = false;
-                if (s_window_active) {
-                    ButtonDrv_DoSetLong();
-                    emit(BTN_EV_SET_LONG);
-                    window_close();
-                }
+                (void)storage_clear_error_log_async();
+                Health_Heartbeat(HEALTH_ID_STORAGE);
+                vTaskDelay(pdMS_TO_TICKS(10));
+                (void)storage_clear_warning_log_async();
+                Health_Heartbeat(HEALTH_ID_STORAGE);
+                vTaskDelay(pdMS_TO_TICKS(10));
+                setError(false);
+                emit(BTN_EV_SET_LONG);
+                window_close();
             }
         }
 
@@ -411,6 +424,12 @@ BaseType_t ButtonTask_Init(bool enable) {
     const TickType_t to = pdMS_TO_TICKS(BUTTON_WAIT_STORAGE_READY_MS);
     while (!Storage_IsReady()) {
         if ((xTaskGetTickCount() - t0) >= to) {
+#if ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_BUTTONTASK, 0x1);
+            ERROR_PRINT_CODE(errorcode, "%s Storage not ready within timeout\r\n", BUTTON_TASK_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
             return pdFAIL;
         }
         vTaskDelay(pdMS_TO_TICKS(10));
@@ -422,16 +441,30 @@ BaseType_t ButtonTask_Init(bool enable) {
     /* Create event queue if missing */
     if (!q_btn) {
         q_btn = xQueueCreate(32, sizeof(btn_event_t));
-        if (!q_btn)
+        if (!q_btn) {
+#if ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_BUTTONTASK, 0x2);
+            ERROR_PRINT_CODE(errorcode, "%s q_btn create failed\r\n", BUTTON_TASK_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
             return pdFAIL;
+        }
     }
 
     /* Create and start blink timer */
     if (!s_blink_timer) {
         s_blink_timer =
             xTimerCreate("btn_blink", pdMS_TO_TICKS(SELECT_BLINK_MS), pdTRUE, NULL, vBlinkTimerCb);
-        if (!s_blink_timer)
+        if (!s_blink_timer) {
+#if ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_BUTTONTASK, 0x3);
+            ERROR_PRINT_CODE(errorcode, "%s blink timer create failed\r\n", BUTTON_TASK_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
             return pdFAIL;
+        }
         /* avoid 0 block time & let lower prio run */
         if (xTimerStart(s_blink_timer, pdMS_TO_TICKS(10)) != pdPASS)
             return pdFAIL;
@@ -439,6 +472,11 @@ BaseType_t ButtonTask_Init(bool enable) {
 
     /* Spawn the scanner task */
     if (xTaskCreate(vButtonTask, "ButtonTask", 1024, NULL, BUTTONTASK_PRIORITY, NULL) != pdPASS) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_BUTTONTASK, 0x4);
+        ERROR_PRINT_CODE(errorcode, "%s ButtonTask create failed\r\n", BUTTON_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return pdFAIL;
     }
 

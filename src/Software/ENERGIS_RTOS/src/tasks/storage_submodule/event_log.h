@@ -6,7 +6,7 @@
  * @ingroup storage
  * @brief System event logging with ring buffer
  * @{
- * 
+ *
  * @version 1.0
  * @date 2025-11-14
  *
@@ -25,7 +25,7 @@
 /**
  * @brief Write the event log region.
  * @param data Pointer to source buffer
- * @param len Must be <= EEPROM_EVENT_LOG_SIZE
+ * @param len Must be <= EEPROM_EVENT_ERR_SIZE
  * @warning Must be called with eepromMtx held by the caller.
  * @return 0 on success, -1 on error
  */
@@ -43,18 +43,32 @@ int EEPROM_WriteEventLogs(const uint8_t *data, size_t len);
 int EEPROM_ReadEventLogs(uint8_t *data, size_t len);
 
 /**
- * @brief Append one event log entry (16-bit code) to the ring buffer.
+ * @brief Append one error event code (16-bit) to the error log ring buffer.
  *
- * Ring buffer structure:
- * - [EEPROM_EVENT_LOG_START .. +1]        : uint16_t write pointer (entry index)
- * - [START + EVENT_LOG_POINTER_SIZE .. ]  : EVENT_LOG_ENTRY_SIZE-byte entries
+ * Uses the error log region defined by EEPROM_EVENT_ERR_START / EEPROM_EVENT_ERR_SIZE
+ * and stores one 16-bit code per entry.
  *
  * CRITICAL: Must be called with eepromMtx held!
  *
- * @param entry Pointer to EVENT_LOG_ENTRY_SIZE bytes (here: uint16_t error code).
- * @return 0 on success, -1 on I2C write error
+ * @param entry Pointer to EVENT_LOG_ENTRY_SIZE bytes (uint16_t error code).
+ *
+ * @return 0 on success, -1 on I2C write error.
  */
-int EEPROM_AppendEventLog(const uint8_t *entry);
+int EEPROM_AppendErrorCode(const uint8_t *entry);
+
+/**
+ * @brief Append one warning event code (16-bit) to the warning log ring buffer.
+ *
+ * Uses the warning log region defined by EEPROM_EVENT_WARN_START / EEPROM_EVENT_WARN_SIZE
+ * and stores one 16-bit code per entry.
+ *
+ * CRITICAL: Must be called with eepromMtx held!
+ *
+ * @param entry Pointer to EVENT_LOG_ENTRY_SIZE bytes (uint16_t warning code).
+ *
+ * @return 0 on success, -1 on I2C write error.
+ */
+int EEPROM_AppendWarningCode(const uint8_t *entry);
 
 #endif /* EVENT_LOG_H */
 

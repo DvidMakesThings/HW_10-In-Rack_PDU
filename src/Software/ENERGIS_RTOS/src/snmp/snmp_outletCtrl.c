@@ -4,7 +4,7 @@
  *
  * @version 1.0.0
  * @date 2025-11-07
- * 
+ *
  * @details Uses RTOS-safe SwitchTask API: query current state and request changes.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack

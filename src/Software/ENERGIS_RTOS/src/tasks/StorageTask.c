@@ -23,16 +23,23 @@
 extern QueueHandle_t q_cfg;
 
 /* ==================== Configuration ==================== */
-#define STORAGE_TASK_TAG "[Storage]"
+#define STORAGE_TASK_TAG "[STORAGE]"
+
 #define STORAGE_TASK_STACK_SIZE 2048
 #define STORAGE_TASK_PRIORITY 2
 #define STORAGE_DEBOUNCE_MS 2000  /* 2 seconds idle before writing */
 #define STORAGE_QUEUE_POLL_MS 100 /* Check queue every 100ms */
 
+#define ERROR_LOG_QUEUE_LENGTH 32
+#define WARNING_LOG_QUEUE_LENGTH 32
+#define STORAGE_LOG_MAX_WRITES 4 /* max EEPROM writes per loop */
+
 /* ==================== Global Handles ==================== */
 
 SemaphoreHandle_t eepromMtx = NULL;
 EventGroupHandle_t cfgEvents = NULL;
+QueueHandle_t g_errorCodeQueue = NULL;
+QueueHandle_t g_warningCodeQueue = NULL;
 
 /* ==================== Default Values ==================== */
 
@@ -80,6 +87,30 @@ static uint32_t s_dump_next_addr = 0;
 
 /** @brief Completion semaphore for blocking dump callers. */
 static SemaphoreHandle_t s_dump_done_sem = NULL;
+
+/** @brief Internal flag indicating an incremental error log dump is in progress. */
+static bool s_err_dump_active = false;
+
+/** @brief Next offset within the error log region to dump. */
+static uint16_t s_err_dump_next_offset = 0;
+
+/** @brief Internal flag indicating an incremental warning log dump is in progress. */
+static bool s_warn_dump_active = false;
+
+/** @brief Next offset within the warning log region to dump. */
+static uint16_t s_warn_dump_next_offset = 0;
+
+/** @brief Internal flag indicating an incremental error log clear is in progress. */
+static bool s_err_clear_active = false;
+
+/** @brief Next offset within the error log region to clear. */
+static uint16_t s_err_clear_next_offset = 0;
+
+/** @brief Internal flag indicating an incremental warning log clear is in progress. */
+static bool s_warn_clear_active = false;
+
+/** @brief Next offset within the warning log region to clear. */
+static uint16_t s_warn_clear_next_offset = 0;
 
 /**
  * @brief Incremental formatted EEPROM dump worker.
@@ -155,9 +186,218 @@ static void storage_dump_eeprom_formatted(void) {
     vTaskDelay(pdMS_TO_TICKS(1));
 }
 
+/**
+ * @brief Incrementally dump an event log region in formatted hex.
+ *
+ * This helper prints the specified EEPROM region in the same format and 16-byte
+ * lines as the full EEPROM dump, but limited to a given base address and size.
+ *
+ * @param base   Start address of the region.
+ * @param size   Size in bytes of the region.
+ * @param offset [in,out] Current offset within the region (0..size).
+ * @param active [in,out] Pointer to active flag; cleared when dump completes.
+ */
+static void storage_dump_event_region(uint16_t base, uint16_t size, uint16_t *offset,
+                                      bool *active) {
+    if (!active || !*active || !offset) {
+        return;
+    }
+
+    /* Print header once at the very beginning of this region */
+    if (*offset == 0U) {
+        log_printf_force("START\r\n");
+        log_printf_force("Addr   00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F \r\n");
+    }
+
+    if (*offset >= size) {
+        log_printf_force("END\r\n");
+        Logger_MutePop();
+        *active = false;
+        return;
+    }
+
+    uint16_t remaining = (uint16_t)(size - *offset);
+    uint16_t chunk = (remaining > 32U) ? 32U : remaining;
+    uint16_t addr = (uint16_t)(base + *offset);
+    uint8_t buffer[32];
+
+    xSemaphoreTake(eepromMtx, portMAX_DELAY);
+    CAT24C256_ReadBuffer(addr, buffer, chunk);
+    xSemaphoreGive(eepromMtx);
+
+    uint16_t produced = 0;
+    while (produced < chunk) {
+        uint16_t line_addr = (uint16_t)(addr + produced);
+        uint8_t *line_data = &buffer[produced];
+
+        char line[80];
+        char *p = line;
+        p += snprintf(p, sizeof(line), "0x%04X ", line_addr);
+
+        uint8_t bytes_in_line = (uint8_t)((chunk - produced) > 16U ? 16U : (chunk - produced));
+        for (uint8_t b = 0; b < bytes_in_line; b++) {
+            p += snprintf(p, (size_t)(sizeof(line) - (size_t)(p - line)), "%02X ", line_data[b]);
+        }
+
+        log_printf_force("%s\r\n", line);
+        produced = (uint16_t)(produced + bytes_in_line);
+    }
+
+    *offset = (uint16_t)(*offset + chunk);
+
+    Health_Heartbeat(HEALTH_ID_STORAGE);
+    vTaskDelay(pdMS_TO_TICKS(1));
+
+    if (*offset >= size) {
+        log_printf_force("END\r\n");
+        Logger_MutePop();
+        *active = false;
+    }
+}
+
+/**
+ * @brief Incrementally clear an event log region to 0xFF bytes.
+ *
+ * The region is erased in small chunks with watchdog-safe yielding and short
+ * EEPROM mutex holds so that the operation remains non-blocking for other
+ * tasks.
+ *
+ * @param base   Start address of the region.
+ * @param size   Size in bytes of the region.
+ * @param offset [in,out] Current offset within the region (0..size).
+ * @param active [in,out] Pointer to active flag; cleared when clear completes.
+ */
+static void storage_clear_event_region(uint16_t base, uint16_t size, uint16_t *offset,
+                                       bool *active) {
+    if (!active || !*active || !offset) {
+        return;
+    }
+
+    if (*offset >= size) {
+        *active = false;
+        return;
+    }
+
+    uint8_t blank[32];
+    memset(blank, 0xFF, sizeof(blank));
+
+    uint16_t remaining = (uint16_t)(size - *offset);
+    uint16_t chunk = (remaining > (uint16_t)sizeof(blank)) ? (uint16_t)sizeof(blank) : remaining;
+    uint16_t addr = (uint16_t)(base + *offset);
+
+    if (xSemaphoreTake(eepromMtx, pdMS_TO_TICKS(5)) != pdTRUE) {
+        return;
+    }
+
+    if (CAT24C256_WriteBuffer(addr, blank, chunk) != 0) {
+        ERROR_PRINT("%s Failed to clear event log at 0x%04X\r\n", STORAGE_TASK_TAG, addr);
+        xSemaphoreGive(eepromMtx);
+        *active = false;
+        return;
+    }
+
+    xSemaphoreGive(eepromMtx);
+
+    *offset = (uint16_t)(*offset + chunk);
+
+    Health_Heartbeat(HEALTH_ID_STORAGE);
+    vTaskDelay(pdMS_TO_TICKS(1));
+
+    if (*offset >= size) {
+        INFO_PRINT("%s Event log cleared [0x%04X..0x%04X]\r\n", STORAGE_TASK_TAG, base,
+                   (uint16_t)(base + size - 1U));
+        *active = false;
+    }
+}
+
 /* ====================================================================== */
 /*                        RTOS STORAGE TASK                              */
 /* ====================================================================== */
+
+/**
+ * @brief Flush queued error and warning codes into EEPROM event logs.
+ *
+ * @details
+ * This function is invoked periodically by @ref StorageTask to persist
+ * error and warning codes that have been enqueued during runtime into their
+ * respective EEPROM circular buffers. Each entry is written as a 16-bit
+ * event code in big-endian format.
+ *
+ * To prevent repetitive flooding of the failure memory by the same error
+ * code (e.g., when a function repeatedly detects the same fault in a loop),
+ * this implementation tracks the last stored error and warning code and
+ * skips consecutive duplicates. This ensures that the event log records
+ * unique error transitions rather than continuous repetitions.
+ *
+ * Operation is non-blocking and watchdog-safe:
+ * - Each EEPROM transaction is performed under @ref eepromMtx protection.
+ * - Only a limited number of writes per call are allowed.
+ * - The function yields periodically to feed the watchdog.
+ *
+ * @note
+ * The ring buffer layout in EEPROM:
+ * - [0..1]  : 16-bit write pointer (entry index)
+ * - [2..N]  : Event entries (16-bit each, big-endian)
+ *
+ * @note
+ * Only the first occurrence of an identical code (after a different one)
+ * is written. Subsequent identical codes are ignored until a new code
+ * appears. Both error and warning queues are handled independently.
+ */
+
+static void Storage_FlushEventQueues(void) {
+    uint16_t code;
+    uint16_t writes = 0;
+
+    static uint16_t last_err_code = 0;
+    static bool last_err_valid = false;
+    static uint16_t last_warn_code = 0;
+    static bool last_warn_valid = false;
+
+    if (xSemaphoreTake(eepromMtx, pdMS_TO_TICKS(5)) != pdTRUE)
+        return;
+
+    /* ---- Process Error Queue ---- */
+    while (writes < STORAGE_LOG_MAX_WRITES && g_errorCodeQueue &&
+           xQueueReceive(g_errorCodeQueue, &code, 0) == pdTRUE) {
+
+        if (last_err_valid && code == last_err_code)
+            continue;
+
+        /* Convert to big-endian before writing */
+        uint8_t bytes[2];
+        bytes[0] = (uint8_t)((code >> 8) & 0xFF);
+        bytes[1] = (uint8_t)(code & 0xFF);
+
+        (void)EEPROM_AppendErrorCode(bytes);
+        last_err_code = code;
+        last_err_valid = true;
+
+        writes++;
+        Health_Heartbeat(HEALTH_ID_STORAGE);
+    }
+
+    /* ---- Process Warning Queue ---- */
+    while (writes < STORAGE_LOG_MAX_WRITES && g_warningCodeQueue &&
+           xQueueReceive(g_warningCodeQueue, &code, 0) == pdTRUE) {
+
+        if (last_warn_valid && code == last_warn_code)
+            continue;
+
+        uint8_t bytes[2];
+        bytes[0] = (uint8_t)((code >> 8) & 0xFF);
+        bytes[1] = (uint8_t)(code & 0xFF);
+
+        (void)EEPROM_AppendWarningCode(bytes);
+        last_warn_code = code;
+        last_warn_valid = true;
+
+        writes++;
+        Health_Heartbeat(HEALTH_ID_STORAGE);
+    }
+
+    xSemaphoreGive(eepromMtx);
+}
 
 /**
  * @brief Load all config from EEPROM to RAM cache.
@@ -360,7 +600,7 @@ static void process_storage_msg(const storage_msg_t *msg) {
         load_config_from_eeprom();
         break;
 
-    /* SIL testing operations: incremental formatted dump */
+    /* SIL testing operations: incremental formatted dump (full EEPROM) */
     case STORAGE_CMD_DUMP_FORMATTED:
         if (s_dump_active) {
             WARNING_PRINT("%s EEPROM dump already in progress\r\n", STORAGE_TASK_TAG);
@@ -379,6 +619,46 @@ static void process_storage_msg(const storage_msg_t *msg) {
         /* For the dump, do NOT signal done_sem here; completion is signaled
          * from the incremental worker when EE_DUMP_END is printed. */
         return;
+
+    /* Event log dump operations (async, non-blocking) */
+    case STORAGE_CMD_DUMP_ERROR_LOG:
+        if (s_err_dump_active) {
+            WARNING_PRINT("%s Error log dump already in progress\r\n", STORAGE_TASK_TAG);
+        } else {
+            s_err_dump_active = true;
+            s_err_dump_next_offset = 0U;
+            Logger_MutePush();
+        }
+        return;
+
+    case STORAGE_CMD_DUMP_WARNING_LOG:
+        if (s_warn_dump_active) {
+            WARNING_PRINT("%s Warning log dump already in progress\r\n", STORAGE_TASK_TAG);
+        } else {
+            s_warn_dump_active = true;
+            s_warn_dump_next_offset = 0U;
+            Logger_MutePush();
+        }
+        return;
+
+    /* Event log clear operations (async, non-blocking) */
+    case STORAGE_CMD_CLEAR_ERROR_LOG:
+        if (s_err_clear_active) {
+            WARNING_PRINT("%s Error log clear already in progress\r\n", STORAGE_TASK_TAG);
+        } else {
+            s_err_clear_active = true;
+            s_err_clear_next_offset = 0U;
+        }
+        break;
+
+    case STORAGE_CMD_CLEAR_WARNING_LOG:
+        if (s_warn_clear_active) {
+            WARNING_PRINT("%s Warning log clear already in progress\r\n", STORAGE_TASK_TAG);
+        } else {
+            s_warn_clear_active = true;
+            s_warn_clear_next_offset = 0U;
+        }
+        break;
 
     default:
         WARNING_PRINT("%s Unknown command: %d\r\n", STORAGE_TASK_TAG, msg->cmd);
@@ -403,6 +683,7 @@ static void process_storage_msg(const storage_msg_t *msg) {
  * - Process storage messages from q_cfg queue
  * - Auto-commit dirty sections after debounce period
  * - Send periodic heartbeat
+ * - Flush queued error/warning codes to EEPROM (bounded)
  * - Drive incremental EEPROM dump when @ref s_dump_active is true
  */
 static void StorageTask(void *arg) {
@@ -436,8 +717,11 @@ static void StorageTask(void *arg) {
             Health_Heartbeat(HEALTH_ID_STORAGE);
         }
 
-        /* While dumping, poll the queue more often to stay responsive */
-        TickType_t wait_ticks = s_dump_active ? pdMS_TO_TICKS(10) : poll_ticks;
+        /* While any long-running operation is active, poll the queue more often */
+        TickType_t wait_ticks = (s_dump_active || s_err_dump_active || s_warn_dump_active ||
+                                 s_err_clear_active || s_warn_clear_active)
+                                    ? pdMS_TO_TICKS(10)
+                                    : poll_ticks;
 
         /* Process queue messages */
         if (xQueueReceive(q_cfg, &msg, wait_ticks) == pdPASS) {
@@ -453,9 +737,32 @@ static void StorageTask(void *arg) {
             }
         }
 
-        /* Drive incremental EEPROM dump, if one is active */
+        /* Flush queued error/warning codes to EEPROM without blocking */
+        Storage_FlushEventQueues();
+
+        /* Drive incremental full EEPROM dump, if one is active */
         if (s_dump_active) {
             storage_dump_eeprom_formatted();
+        }
+
+        /* Drive incremental error/warning log dumps, if active */
+        if (s_err_dump_active) {
+            storage_dump_event_region(EEPROM_EVENT_ERR_START, EEPROM_EVENT_ERR_SIZE,
+                                      &s_err_dump_next_offset, &s_err_dump_active);
+        }
+        if (s_warn_dump_active) {
+            storage_dump_event_region(EEPROM_EVENT_WARN_START, EEPROM_EVENT_WARN_SIZE,
+                                      &s_warn_dump_next_offset, &s_warn_dump_active);
+        }
+
+        /* Drive incremental error/warning log clears, if active */
+        if (s_err_clear_active) {
+            storage_clear_event_region(EEPROM_EVENT_ERR_START, EEPROM_EVENT_ERR_SIZE,
+                                       &s_err_clear_next_offset, &s_err_clear_active);
+        }
+        if (s_warn_clear_active) {
+            storage_clear_event_region(EEPROM_EVENT_WARN_START, EEPROM_EVENT_WARN_SIZE,
+                                       &s_warn_clear_next_offset, &s_warn_clear_active);
         }
     }
 }
@@ -480,6 +787,90 @@ bool storage_dump_formatted_async(void) {
     storage_msg_t msg;
     memset(&msg, 0, sizeof(msg));
     msg.cmd = STORAGE_CMD_DUMP_FORMATTED;
+    msg.output_ptr = NULL;
+    msg.done_sem = NULL;
+
+    if (xQueueSend(q_cfg, &msg, 0) != pdPASS) {
+        return false;
+    }
+
+    return true;
+}
+
+/**
+ * @brief Asynchronously dump the error event log region in hex format.
+ */
+bool storage_dump_error_log_async(void) {
+    if (!Storage_Config_IsReady()) {
+        return false;
+    }
+
+    storage_msg_t msg;
+    memset(&msg, 0, sizeof(msg));
+    msg.cmd = STORAGE_CMD_DUMP_ERROR_LOG;
+    msg.output_ptr = NULL;
+    msg.done_sem = NULL;
+
+    if (xQueueSend(q_cfg, &msg, 0) != pdPASS) {
+        return false;
+    }
+
+    return true;
+}
+
+/**
+ * @brief Asynchronously dump the warning event log region in hex format.
+ */
+bool storage_dump_warning_log_async(void) {
+    if (!Storage_Config_IsReady()) {
+        return false;
+    }
+
+    storage_msg_t msg;
+    memset(&msg, 0, sizeof(msg));
+    msg.cmd = STORAGE_CMD_DUMP_WARNING_LOG;
+    msg.output_ptr = NULL;
+    msg.done_sem = NULL;
+
+    if (xQueueSend(q_cfg, &msg, 0) != pdPASS) {
+        return false;
+    }
+
+    return true;
+}
+
+/**
+ * @brief Asynchronously clear the error event log region.
+ */
+bool storage_clear_error_log_async(void) {
+    if (!Storage_Config_IsReady()) {
+        return false;
+    }
+
+    storage_msg_t msg;
+    memset(&msg, 0, sizeof(msg));
+    msg.cmd = STORAGE_CMD_CLEAR_ERROR_LOG;
+    msg.output_ptr = NULL;
+    msg.done_sem = NULL;
+
+    if (xQueueSend(q_cfg, &msg, 0) != pdPASS) {
+        return false;
+    }
+
+    return true;
+}
+
+/**
+ * @brief Asynchronously clear the warning event log region.
+ */
+bool storage_clear_warning_log_async(void) {
+    if (!Storage_Config_IsReady()) {
+        return false;
+    }
+
+    storage_msg_t msg;
+    memset(&msg, 0, sizeof(msg));
+    msg.cmd = STORAGE_CMD_CLEAR_WARNING_LOG;
     msg.output_ptr = NULL;
     msg.done_sem = NULL;
 
@@ -559,6 +950,28 @@ bool storage_erase_all(uint32_t timeout_ms) {
 }
 
 /* ********************************************************************** */
+/*                        FAILURE MEMORY WRITE                            */
+/* ********************************************************************** */
+
+/**
+ * @brief Enqueue an error code for deferred EEPROM logging (non-blocking).
+ */
+void Storage_EnqueueErrorCode(uint16_t code) {
+    if (g_errorCodeQueue) {
+        (void)xQueueSend(g_errorCodeQueue, &code, 0); /* drop if full */
+    }
+}
+
+/**
+ * @brief Enqueue a warning code for deferred EEPROM logging (non-blocking).
+ */
+void Storage_EnqueueWarningCode(uint16_t code) {
+    if (g_warningCodeQueue) {
+        (void)xQueueSend(g_warningCodeQueue, &code, 0); /* drop if full */
+    }
+}
+
+/* ********************************************************************** */
 /*                             STORAGE TASK                               */
 /* ********************************************************************** */
 
@@ -589,6 +1002,10 @@ void StorageTask_Init(bool enable) {
     extern void StorageTask(void *arg);
     eepromMtx = xSemaphoreCreateMutex();
     cfgEvents = xEventGroupCreate();
+
+    /* Create error and warning code queues */
+    g_errorCodeQueue = xQueueCreate(ERROR_LOG_QUEUE_LENGTH, sizeof(uint16_t));
+    g_warningCodeQueue = xQueueCreate(WARNING_LOG_QUEUE_LENGTH, sizeof(uint16_t));
 
     if (!eepromMtx || !cfgEvents) {
         ERROR_PRINT("%s Failed to create mutex/events\r\n", STORAGE_TASK_TAG);

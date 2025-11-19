@@ -14,6 +14,8 @@
 
 #include "../../CONFIG.h"
 
+#define ST_USER_OUTPUT_TAG "[ST-USRO]"
+
 /**
  * @brief Write relay states to EEPROM user output section.
  *
@@ -29,8 +31,14 @@
  */
 int EEPROM_WriteUserOutput(const uint8_t *data, size_t len) {
     /* Bounds check */
-    if (len > EEPROM_USER_OUTPUT_SIZE)
+    if (len > EEPROM_USER_OUTPUT_SIZE) {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x1);
+        ERROR_PRINT_CODE(err_code, "%s Write length exceeds size\r\n", ST_USER_OUTPUT_TAG);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return -1;
+    }
 
     /* Write to EEPROM */
     return CAT24C256_WriteBuffer(EEPROM_USER_OUTPUT_START, data, (uint16_t)len);
@@ -49,8 +57,14 @@ int EEPROM_WriteUserOutput(const uint8_t *data, size_t len) {
  */
 int EEPROM_ReadUserOutput(uint8_t *data, size_t len) {
     /* Bounds check */
-    if (len > EEPROM_USER_OUTPUT_SIZE)
+    if (len > EEPROM_USER_OUTPUT_SIZE) {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x2);
+        ERROR_PRINT_CODE(err_code, "%s Read length exceeds size\r\n", ST_USER_OUTPUT_TAG);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return -1;
+    }
 
     /* Read from EEPROM */
     CAT24C256_ReadBuffer(EEPROM_USER_OUTPUT_START, data, (uint32_t)len);

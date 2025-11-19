@@ -31,46 +31,24 @@
 #include "../CONFIG.h"
 
 /* ---------- Tag + Logging ---------- */
-#ifndef HEALTH_TAG
-#define HEALTH_TAG "[Health]"
+#ifndef HEALTH_TASK_TAG
+#define HEALTH_TASK_TAG "[HEALTH]"
+#endif
+
+#ifndef WDT_PREBARK
+#define WDT_PREBARK "[WDT-PREBARK]"
 #endif
 
 #define HEALTH_PRINT_WDT_FEED 1
 
 #ifndef HEALTH_DBG
 #ifdef DEBUG_PRINT_HEALTH
-#define HEALTH_DBG(fmt, ...) DEBUG_PRINT_HEALTH("%s " fmt, HEALTH_TAG, ##__VA_ARGS__)
+#define HEALTH_DBG(fmt, ...) DEBUG_PRINT_HEALTH("%s " fmt, HEALTH_TASK_TAG, ##__VA_ARGS__)
 #else
 #define HEALTH_DBG(fmt, ...)                                                                       \
     do {                                                                                           \
         (void)0;                                                                                   \
     } while (0)
-#endif
-#endif
-
-#ifndef HEALTH_INFO
-#ifdef INFO_PRINT
-#define HEALTH_INFO(fmt, ...) INFO_PRINT("%s " fmt, HEALTH_TAG, ##__VA_ARGS__)
-#else
-#define HEALTH_INFO(fmt, ...)
-do {
-} while (0)
-#endif
-#endif
-
-#ifndef HEALTH_WRN
-#ifdef WARNING_PRINT
-#define HEALTH_WRN(fmt, ...) WARNING_PRINT("%s " fmt, HEALTH_TAG, ##__VA_ARGS__)
-#else
-#define HEALTH_WRN(fmt, ...) HEALTH_DBG("WARN: " fmt, ##__VA_ARGS__)
-#endif
-#endif
-
-#ifndef HEALTH_ERR
-#ifdef ERROR_PRINT
-#define HEALTH_ERR(fmt, ...) ERROR_PRINT("%s " fmt, HEALTH_TAG, ##__VA_ARGS__)
-#else
-#define HEALTH_ERR(fmt, ...) HEALTH_DBG("ERR: " fmt, ##__VA_ARGS__)
 #endif
 #endif
 
@@ -311,23 +289,28 @@ static inline void Health_PreBarkCheck(uint32_t now_ms) {
                 dtM = s_meta[HEALTH_ID_METER].last_seen_ms
                           ? (now_ms - s_meta[HEALTH_ID_METER].last_seen_ms)
                           : 0xFFFFFFFFu;
-
-            ERROR_PRINT("[WDT-PREBARK] since_last_feed=%lu ms, remain=%lu ms | "
-                        "Logger=%s%lu  Console=%s%lu  Storage=%s%lu  Button=%s%lu  Net=%s%lu  "
-                        "Meter=%s%lu\r\n",
-                        (unsigned long)since_feed, (unsigned long)rem,
-                        (dtL == 0xFFFFFFFFu ? "NEVER/" : ""),
-                        (unsigned long)(dtL == 0xFFFFFFFFu ? 0u : dtL),
-                        (dtC == 0xFFFFFFFFu ? "NEVER/" : ""),
-                        (unsigned long)(dtC == 0xFFFFFFFFu ? 0u : dtC),
-                        (dtS == 0xFFFFFFFFu ? "NEVER/" : ""),
-                        (unsigned long)(dtS == 0xFFFFFFFFu ? 0u : dtS),
-                        (dtB == 0xFFFFFFFFu ? "NEVER/" : ""),
-                        (unsigned long)(dtB == 0xFFFFFFFFu ? 0u : dtB),
-                        (dtN == 0xFFFFFFFFu ? "NEVER/" : ""),
-                        (unsigned long)(dtN == 0xFFFFFFFFu ? 0u : dtN),
-                        (dtM == 0xFFFFFFFFu ? "NEVER/" : ""),
-                        (unsigned long)(dtM == 0xFFFFFFFFu ? 0u : dtM));
+#if ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_FATAL_ERROR, ERR_FID_HEALTHTASK, 0x1);
+            ERROR_PRINT_CODE(errorcode,
+                             "%s %s since_last_feed=%lu ms, remain=%lu ms | "
+                             "Logger=%s%lu  Console=%s%lu  Storage=%s%lu  Button=%s%lu  Net=%s%lu  "
+                             "Meter=%s%lu\r\n",
+                             HEALTH_TASK_TAG, WDT_PREBARK, (unsigned long)since_feed,
+                             (unsigned long)rem, (dtL == 0xFFFFFFFFu ? "NEVER/" : ""),
+                             (unsigned long)(dtL == 0xFFFFFFFFu ? 0u : dtL),
+                             (dtC == 0xFFFFFFFFu ? "NEVER/" : ""),
+                             (unsigned long)(dtC == 0xFFFFFFFFu ? 0u : dtC),
+                             (dtS == 0xFFFFFFFFu ? "NEVER/" : ""),
+                             (unsigned long)(dtS == 0xFFFFFFFFu ? 0u : dtS),
+                             (dtB == 0xFFFFFFFFu ? "NEVER/" : ""),
+                             (unsigned long)(dtB == 0xFFFFFFFFu ? 0u : dtB),
+                             (dtN == 0xFFFFFFFFu ? "NEVER/" : ""),
+                             (unsigned long)(dtN == 0xFFFFFFFFu ? 0u : dtN),
+                             (dtM == 0xFFFFFFFFu ? "NEVER/" : ""),
+                             (unsigned long)(dtM == 0xFFFFFFFFu ? 0u : dtM));
+            Storage_EnqueueErrorCode(errorcode);
+#endif
 
             s_prebark_emitted = true;
         }
@@ -556,8 +539,11 @@ static void report_stale(uint32_t now_ms_) {
         if (p >= sizeof(line))
             break;
     }
-
-    HEALTH_ERR("%s\r\n", line);
+#if ERRORLOGGER
+    uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_FATAL_ERROR, ERR_FID_HEALTHTASK, 0x2);
+    ERROR_PRINT_CODE(errorcode, "%s, %s\r\n", HEALTH_TASK_TAG, line);
+    Storage_EnqueueErrorCode(errorcode);
+#endif
 
     uint32_t maxdt = max_dt_required(now_ms_);
     hscr_store_stale(stale_mask, maxdt, HEALTH_SILENCE_MS, now_ms_, (uint32_t)HEALTH_REQUIRED_MASK,
@@ -623,10 +609,7 @@ static bool hscr_load_is_health_reboot(uint32_t *stale_mask, uint32_t *max_dt_ms
 static void print_health_reboot_brief(void) {
     uint32_t stale, maxdt, silence, tnow, req, flags;
     if (hscr_load_is_health_reboot(&stale, &maxdt, &silence, &tnow, &req, &flags)) {
-        HEALTH_ERR("PREVIOUS REBOOT by Health: stale_mask=0x%08lx max_dt=%lu ms silence=%lu ms "
-                   "flags=0x%lx req_mask=0x%08lx at t=%lu ms\r\n",
-                   (unsigned long)stale, (unsigned long)maxdt, (unsigned long)silence,
-                   (unsigned long)flags, (unsigned long)req, (unsigned long)tnow);
+
         if (stale) {
             char line[192];
             size_t p = 0;
@@ -639,7 +622,12 @@ static void print_health_reboot_brief(void) {
                 if (p >= sizeof(line))
                     break;
             }
-            HEALTH_ERR("%s\r\n", line);
+#if ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_INFO, ERR_FID_HEALTHTASK, 0x4);
+            WARNING_PRINT_CODE(errorcode, "%s %s\r\n", HEALTH_TASK_TAG, line);
+
+#endif
         }
         hscr_clear();
     }
@@ -664,6 +652,8 @@ static void health_task(void *arg) {
     s_start_ms = now_ms();
 
     print_health_reboot_brief();
+
+    ECHO("%s Task started\r\n", HEALTH_TASK_TAG);
 
     const TickType_t period_ticks = pdMS_TO_TICKS(HEALTH_PERIOD_MS);
     const TickType_t log_period = (HEALTH_LOG_PERIOD_MS ? pdMS_TO_TICKS(HEALTH_LOG_PERIOD_MS) : 0);
@@ -696,8 +686,15 @@ static void health_task(void *arg) {
                 idle_stall_ms = 0u;
             }
             if (idle_stall_ms >= (HEALTH_PERIOD_MS * 3u)) {
-                HEALTH_WRN("scheduler idle stalled ~%lu ms (idle_last_ms=%lu)\r\n",
-                           (unsigned long)idle_stall_ms, (unsigned long)RTOS_IdleCanary_LastMs());
+#if ERRORLOGGER
+                uint16_t errorcode =
+                    ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_WARNING, ERR_FID_HEALTHTASK, 0x0);
+                WARNING_PRINT_CODE(errorcode,
+                                   "%s scheduler idle stalled ~%lu ms (idle_last_ms=%lu)\r\n",
+                                   HEALTH_TASK_TAG, (unsigned long)idle_stall_ms,
+                                   (unsigned long)RTOS_IdleCanary_LastMs());
+                Storage_EnqueueWarningCode(errorcode);
+#endif
             }
         }
 
@@ -707,7 +704,6 @@ static void health_task(void *arg) {
             const uint32_t maxdt = max_dt_required(t);
             const uint32_t remain = (maxdt >= HEALTH_SILENCE_MS) ? 0u : (HEALTH_SILENCE_MS - maxdt);
 
-            log_printf("\r\n");
             HEALTH_INFO("**** %usec Report at %lu sec ****\r\n", HEALTH_LOG_PERIOD_MS / 1000,
                         (unsigned long)(xTaskGetTickCount() * portTICK_PERIOD_MS / 1000));
             HEALTH_INFO("Summary:\r\n");
@@ -728,8 +724,12 @@ static void health_task(void *arg) {
             const bool warmup_elapsed = (t - s_start_ms) >= HEALTH_WARMUP_MS;
             const bool all_required_beaten = required_tasks_have_heartbeat_once();
             if (warmup_elapsed && all_required_beaten) {
-                HEALTH_WRN("########### GRACE PERIOD ENDED ############\r\n");
-                HEALTH_WRN("############# ARMING WATCHDOG #############\r\n");
+#if ERRORLOGGER
+                uint16_t errorcode =
+                    ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_INFO, ERR_FID_HEALTHTASK, 0x1);
+                WARNING_PRINT_CODE(errorcode, "%s GRACE PERIOD ENDED \r\n", HEALTH_TASK_TAG);
+                WARNING_PRINT_CODE(errorcode, "%s ARMING WATCHDOG \r\n", HEALTH_TASK_TAG);
+#endif
                 HEALTH_INFO("\tAll required tasks confirmed\r\n");
                 HEALTH_INFO("\tTask Timeout = %u ms\r\n\r\n", (unsigned)HEALTH_SILENCE_MS);
                 // WARNING_PRINT("############# WATCHDOG DISABLED FOR DEVELOPMENT BUILD
@@ -766,7 +766,12 @@ static void health_task(void *arg) {
                                 break;
                         }
                     }
-                    HEALTH_WRN("%s\r\n", line);
+#if ERRORLOGGER
+                    uint16_t errorcode =
+                        ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_WARNING, ERR_FID_HEALTHTASK, 0x2);
+                    WARNING_PRINT_CODE(errorcode, "%s\r\n", line);
+                    Storage_EnqueueWarningCode(errorcode);
+#endif
                 }
                 continue;
             }
@@ -804,23 +809,29 @@ static void health_task(void *arg) {
                     dtM = s_meta[HEALTH_ID_METER].last_seen_ms
                               ? (t - s_meta[HEALTH_ID_METER].last_seen_ms)
                               : 0xFFFFFFFFu;
-
-                ERROR_PRINT("[WDT-PREBARK] since_last_feed=%lu ms, remain=%lu ms | "
-                            "Logger=%s%lu Console=%s%lu Storage=%s%lu Button=%s%lu "
-                            "Net=%s%lu Meter=%s%lu\r\n",
-                            (unsigned long)since_feed, (unsigned long)rem,
-                            (dtL == 0xFFFFFFFFu ? "NEVER/" : ""),
-                            (unsigned long)(dtL == 0xFFFFFFFFu ? 0u : dtL),
-                            (dtC == 0xFFFFFFFFu ? "NEVER/" : ""),
-                            (unsigned long)(dtC == 0xFFFFFFFFu ? 0u : dtC),
-                            (dtS == 0xFFFFFFFFu ? "NEVER/" : ""),
-                            (unsigned long)(dtS == 0xFFFFFFFFu ? 0u : dtS),
-                            (dtB == 0xFFFFFFFFu ? "NEVER/" : ""),
-                            (unsigned long)(dtB == 0xFFFFFFFFu ? 0u : dtB),
-                            (dtN == 0xFFFFFFFFu ? "NEVER/" : ""),
-                            (unsigned long)(dtN == 0xFFFFFFFFu ? 0u : dtN),
-                            (dtM == 0xFFFFFFFFu ? "NEVER/" : ""),
-                            (unsigned long)(dtM == 0xFFFFFFFFu ? 0u : dtM));
+#if ERRORLOGGER
+                uint16_t errorcode =
+                    ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_FATAL_ERROR, ERR_FID_HEALTHTASK, 0x5);
+                ERROR_PRINT_CODE(
+                    errorcode,
+                    "%s %s since_last_feed=%lu ms, remain=%lu ms | "
+                    "Logger=%s%lu  Console=%s%lu  Storage=%s%lu  Button=%s%lu  Net=%s%lu  "
+                    "Meter=%s%lu\r\n",
+                    HEALTH_TASK_TAG, WDT_PREBARK, (unsigned long)since_feed, (unsigned long)rem,
+                    (dtL == 0xFFFFFFFFu ? "NEVER/" : ""),
+                    (unsigned long)(dtL == 0xFFFFFFFFu ? 0u : dtL),
+                    (dtC == 0xFFFFFFFFu ? "NEVER/" : ""),
+                    (unsigned long)(dtC == 0xFFFFFFFFu ? 0u : dtC),
+                    (dtS == 0xFFFFFFFFu ? "NEVER/" : ""),
+                    (unsigned long)(dtS == 0xFFFFFFFFu ? 0u : dtS),
+                    (dtB == 0xFFFFFFFFu ? "NEVER/" : ""),
+                    (unsigned long)(dtB == 0xFFFFFFFFu ? 0u : dtB),
+                    (dtN == 0xFFFFFFFFu ? "NEVER/" : ""),
+                    (unsigned long)(dtN == 0xFFFFFFFFu ? 0u : dtN),
+                    (dtM == 0xFFFFFFFFu ? "NEVER/" : ""),
+                    (unsigned long)(dtM == 0xFFFFFFFFu ? 0u : dtM));
+                Storage_EnqueueErrorCode(errorcode);
+#endif
                 s_prebark_emitted = true;
             }
         }
@@ -846,14 +857,25 @@ static void health_task(void *arg) {
                     continue;
                 uint32_t last = s_meta[i].last_seen_ms;
                 if (!last) {
-                    HEALTH_WRN("Misbehaving: %s NEVER heartbeated\r\n",
-                               s_meta[i].name ? s_meta[i].name : "task");
+
+#if ERRORLOGGER
+                    uint16_t errorcode =
+                        ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_WARNING, ERR_FID_HEALTHTASK, 0x3);
+                    WARNING_PRINT_CODE(errorcode, "Misbehaving: %s NEVER heartbeated\r\n",
+                                       s_meta[i].name ? s_meta[i].name : "task");
+                    Storage_EnqueueWarningCode(errorcode);
+#endif
                     continue;
                 }
                 uint32_t dt = (t >= last) ? (t - last) : 0u;
                 if (dt >= (HEALTH_SILENCE_MS * 3u) / 4u) {
-                    HEALTH_WRN("Misbehaving: %s dt = %lu ms\r\n",
-                               s_meta[i].name ? s_meta[i].name : "task", (unsigned long)dt);
+#if ERRORLOGGER
+                    uint16_t errorcode =
+                        ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_WARNING, ERR_FID_HEALTHTASK, 0x4);
+                    WARNING_PRINT_CODE(errorcode, "Misbehaving: %s dt = %lu ms\r\n",
+                                       s_meta[i].name ? s_meta[i].name : "task", (unsigned long)dt);
+                    Storage_EnqueueWarningCode(errorcode);
+#endif
                 }
             }
         } else {
@@ -897,8 +919,14 @@ void Health_RegisterTask(health_id_t id, TaskHandle_t h, const char *name) {
     HEALTH_INFO("\tRequired = %s\r\n", id_in_required((uint8_t)id) ? "YES" : "NO");
 
     if (was_registered) {
-        HEALTH_WRN("Re-register on ID = %d Name = %s (Keeping last_seen_ms = %lu)\r\n", (int)id,
-                   s_meta[id].name, (unsigned long)s_meta[id].last_seen_ms);
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_WARNING, ERR_FID_HEALTHTASK, 0x5);
+        WARNING_PRINT_CODE(
+            errorcode, "%s Re-register on ID = %d Name = %s (Keeping last_seen_ms = %lu)\r\n",
+            HEALTH_TASK_TAG, (int)id, s_meta[id].name, (unsigned long)s_meta[id].last_seen_ms);
+        Storage_EnqueueWarningCode(errorcode);
+#endif
     }
 }
 
@@ -960,11 +988,16 @@ void Health_PrintLastRebootDetailed(void) {
         tnow = watchdog_hw->scratch[HSCR_TNOW];
         req = watchdog_hw->scratch[HSCR_REQMSK];
         flags = watchdog_hw->scratch[HSCR_FLAGS];
-
-        HEALTH_ERR("LAST HEALTH REBOOT: max_dt = %lu ms, Silence = %lu ms, req_mask = 0x%08lx, "
-                   "flags = 0x%lx, t = %lu ms\r\n",
-                   (unsigned long)maxdt, (unsigned long)silence, (unsigned long)req,
-                   (unsigned long)flags, (unsigned long)tnow);
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_FATAL_ERROR, ERR_FID_HEALTHTASK, 0x6);
+        ERROR_PRINT_CODE(errorcode,
+                         "%s LAST REBOOT by Health Task: max_dt = %lu ms, Silence = %lu ms, "
+                         "req_mask = 0x%08lx, flags = 0x%lx, t = %lu ms\r\n",
+                         HEALTH_TASK_TAG, (unsigned long)maxdt, (unsigned long)silence,
+                         (unsigned long)req, (unsigned long)flags, (unsigned long)tnow);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
 
         if (stale) {
             char line[192];
@@ -978,7 +1011,12 @@ void Health_PrintLastRebootDetailed(void) {
                 if (p >= sizeof(line))
                     break;
             }
-            HEALTH_ERR("%s\r\n", line);
+#if ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_FATAL_ERROR, ERR_FID_HEALTHTASK, 0x7);
+            ERROR_PRINT_CODE(errorcode, "%s %s\r\n", HEALTH_TASK_TAG, line);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
         }
 
         hscr_clear();
@@ -1006,7 +1044,11 @@ static void hscr_store_intentional(uint32_t tnow_ms) {
  */
 void Health_RebootNow(const char *reason) {
     uint32_t t = now_ms();
-    HEALTH_ERR("INTENTIONAL REBOOT%s%s\r\n", reason ? ": " : "", reason ? reason : "");
+#if ERRORLOGGER
+    uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_INFO, ERR_FID_HEALTHTASK, 0x0);
+    WARNING_PRINT_CODE(errorcode, "%s INTENTIONAL REBOOT%s%s\r\n", HEALTH_TASK_TAG,
+                       reason ? ": " : "", reason ? reason : "");
+#endif
     /* Persist context for next boot */
     hscr_store_intentional(t);
     /* Snapshot any crash logs the system wants */

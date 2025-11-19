@@ -28,6 +28,8 @@
 
 #include "../CONFIG.h"
 
+#define CONSOLE_TASK_TAG "[CONSOLE]"
+
 /* ==================== Bootloader Trigger ==================== */
 
 /** Magic value to enter BOOTSEL mode on next reboot (survives reset) */
@@ -94,10 +96,25 @@ static char *trim(char *str) {
  */
 static bool parse_ip(const char *str, uint8_t ip[4]) {
     int a, b, c, d;
-    if (sscanf(str, "%d.%d.%d.%d", &a, &b, &c, &d) != 4)
+    if (sscanf(str, "%d.%d.%d.%d", &a, &b, &c, &d) != 4) {
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK, 0x0);
+        ERROR_PRINT_CODE(errorcode, "%s invalid IP address format: %s\r\n", CONSOLE_TASK_TAG, str);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return false;
-    if (a < 0 || a > 255 || b < 0 || b > 255 || c < 0 || c > 255 || d < 0 || d > 255)
+    }
+    if (a < 0 || a > 255 || b < 0 || b > 255 || c < 0 || c > 255 || d < 0 || d > 255) {
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK, 0x1);
+        ERROR_PRINT_CODE(errorcode, "%s invalid IP address octet value: %s\r\n", CONSOLE_TASK_TAG,
+                         str);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return false;
+    }
     ip[0] = (uint8_t)a;
     ip[1] = (uint8_t)b;
     ip[2] = (uint8_t)c;
@@ -177,6 +194,10 @@ static void cmd_help(void) {
         ECHO("%-32s %s\n", "CALIB_TEMP <P1|P2> <T1> <T2> [WAIT]",
              "Calibrate MCU temperature sensor");
         ECHO("%-32s %s\n", "DUMP_EEPROM", "Enqueue formatted EEPROM dump");
+        ECHO("%-32s %s\n", "READ_ERROR", "Dump error event log region");
+        ECHO("%-32s %s\n", "READ_WARNING", "Dump warning event log region");
+        ECHO("%-32s %s\n", "CLEAR_ERROR", "Clear error event log region");
+        ECHO("%-32s %s\n", "CLEAR_WARNING", "Clear warning event log region");
         ECHO("%-32s %s\n", "BAADCAFE", "Erase EEPROM (factory wipe; reboot required)");
     }
 
@@ -262,7 +283,13 @@ static void cmd_reboot(void) {
 static void cmd_read_hlw8032_ch(const char *args) {
     int ch;
     if (sscanf(args, "%d", &ch) != 1 || ch < 1 || ch > 8) {
-        ECHO("Error: Invalid channel. Usage: READ_HLW8032 <ch> (1-8)\n");
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK, 0x2);
+        ERROR_PRINT_CODE(errorcode, "%s invalid channel for READ_HLW8032: %s\r\n", CONSOLE_TASK_TAG,
+                         args);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
     }
 
@@ -368,7 +395,7 @@ static void cmd_sysinfo(void) {
 
     ECHO("=== Device Temperature ===\n");
     if (tele_ok) {
-        ECHO("Die Temperature: %.2f Â°C (ADC raw=%u)\n", sys_tele.die_temp_c, sys_tele.raw_temp);
+        ECHO("Die Temperature: %.2f°C (ADC raw=%u)\n", sys_tele.die_temp_c, sys_tele.raw_temp);
     } else {
         ECHO("Die Temperature: N/A (no telemetry)\n");
     }
@@ -387,7 +414,7 @@ static void cmd_sysinfo(void) {
 static void cmd_get_temp(void) {
     system_telemetry_t sys = {0};
     if (MeterTask_GetSystemTelemetry(&sys)) {
-        ECHO("Die Temperature: %.2f Â°C (ADC raw=%u)\n", sys.die_temp_c, sys.raw_temp);
+        ECHO("Die Temperature: %.2f °C (ADC raw=%u)\n", sys.die_temp_c, sys.raw_temp);
     } else {
         ECHO("Die Temperature: N/A (telemetry not ready)\n");
     }
@@ -429,18 +456,29 @@ static void cmd_calib_temp(const char *args) {
         }
 
         if (xSemaphoreTake(eepromMtx, pdMS_TO_TICKS(250)) != pdTRUE) {
-            ECHO("Error: EEPROM busy.\n");
+#if ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK, 0x3);
+            ERROR_PRINT_CODE(errorcode, "%s EEPROM busy\r\n", CONSOLE_TASK_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
             return;
         }
         int wrc = EEPROM_WriteTempCalibration(&rec);
         xSemaphoreGive(eepromMtx);
         if (wrc != 0) {
-            ECHO("Error: EEPROM write failed.\n");
+#if ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK, 0x4);
+            ERROR_PRINT_CODE(errorcode, "%s EEPROM write failed during CALIB_TEMP 1P\r\n",
+                             CONSOLE_TASK_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
             return;
         }
         (void)TempCalibration_ApplyToMeterTask(&rec);
 
-        ECHO("CALIB_TEMP 1P OK: offset=%.3f Â°C (raw=%u)\n", rec.offset_c, (unsigned)sys.raw_temp);
+        ECHO("CALIB_TEMP 1P OK: offset=%.3f °C (raw=%u)\n", rec.offset_c, (unsigned)sys.raw_temp);
         return;
     }
 
@@ -469,12 +507,17 @@ static void cmd_calib_temp(const char *args) {
         int wrc = EEPROM_WriteTempCalibration(&rec);
         xSemaphoreGive(eepromMtx);
         if (wrc != 0) {
-            ECHO("Error: EEPROM write failed.\n");
+#if ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK, 0x5);
+            ERROR_PRINT_CODE(errorcode, "%s EEPROM write failed\r\n", CONSOLE_TASK_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
             return;
         }
         (void)TempCalibration_ApplyToMeterTask(&rec);
 
-        ECHO("CALIB_TEMP 2P OK: V0=%.4f V, S=%.6f V/Â°C, offset=%.3f Â°C (raw1=%u, raw2=%u)\n",
+        ECHO("CALIB_TEMP 2P OK: V0=%.4f V, S=%.6f V/°C, offset=%.3f °C (raw1=%u, raw2=%u)\n",
              rec.v0_volts_at_27c, rec.slope_volts_per_deg, rec.offset_c, (unsigned)raw1,
              (unsigned)raw2);
         return;
@@ -494,7 +537,12 @@ static void cmd_set_ch(const char *args) {
     char tok[16] = {0};
 
     if (sscanf(args, "%15s %15s", ch_str, tok) != 2) {
-        ERROR_PRINT("Usage: SET_CH <ch> <0|1|ON|OFF|ALL> \n");
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK, 0x6);
+        ERROR_PRINT_CODE(errorcode, "%s invalid SET_CH arguments: %s\r\n", CONSOLE_TASK_TAG, args);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
     }
 
@@ -521,7 +569,13 @@ static void cmd_set_ch(const char *args) {
     }
 
     if (val < 0) {
-        ERROR_PRINT("Invalid value: '%s' (use 0/1 or ON/OFF)\n", tok);
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK, 0x7);
+        ERROR_PRINT_CODE(errorcode, "%s invalid value for SET_CH: %s. (use 0/1 or ON/OFF)\r\n",
+                         CONSOLE_TASK_TAG, tok);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
     }
 
@@ -530,7 +584,13 @@ static void cmd_set_ch(const char *args) {
         bool success = true;
         for (uint8_t ch_idx = 0; ch_idx < 8; ch_idx++) {
             if (!mcp_set_channel_state(ch_idx, (uint8_t)val)) {
-                ERROR_PRINT("Failed to set CH%d\n", ch_idx + 1);
+#if ERRORLOGGER
+                uint16_t errorcode =
+                    ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK, 0x8);
+                ERROR_PRINT_CODE(errorcode, "%s failed to set CH%d during SET_CH ALL\r\n",
+                                 CONSOLE_TASK_TAG, ch_idx + 1);
+                Storage_EnqueueErrorCode(errorcode);
+#endif
                 success = false;
             }
         }
@@ -543,7 +603,13 @@ static void cmd_set_ch(const char *args) {
     /* Handle single channel */
     int ch = atoi(ch_str);
     if (ch < 1 || ch > 8) {
-        ERROR_PRINT("Invalid channel: %s (must be 1-8 or ALL)\n", ch_str);
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK, 0x9);
+        ERROR_PRINT_CODE(errorcode, "%s invalid channel for SET_CH: %s\r\n", CONSOLE_TASK_TAG,
+                         ch_str);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
     }
 
@@ -551,7 +617,13 @@ static void cmd_set_ch(const char *args) {
     if (mcp_set_channel_state(ch_idx, (uint8_t)val)) {
         ECHO("CH%d = %s\n", ch, val ? "ON" : "OFF");
     } else {
-        ERROR_PRINT("Failed to set CH%d\n", ch);
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK, 0xA);
+        ERROR_PRINT_CODE(errorcode, "%s failed to set CH%d during SET_CH\r\n", CONSOLE_TASK_TAG,
+                         ch);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
     }
 }
 
@@ -563,7 +635,14 @@ static void cmd_set_ch(const char *args) {
  */
 static void cmd_get_ch(const char *args) {
     if (args == NULL || *args == '\0') {
-        ERROR_PRINT("Usage: GET_CH <ch> (ch=1-8 or ALL)\n");
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK, 0xB);
+        ERROR_PRINT_CODE(errorcode,
+                         "%s missing arguments for GET_CH. Usage: GET_CH <ch> (ch=1-8 or ALL)\r\n",
+                         CONSOLE_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
     }
 
@@ -593,7 +672,14 @@ static void cmd_get_ch(const char *args) {
 
     int ch;
     if (sscanf(p, "%d", &ch) != 1 || ch < 1 || ch > 8) {
-        ERROR_PRINT("Invalid channel. Usage: GET_CH <ch> (ch=1-8 or ALL)\n");
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK, 0xC);
+        ERROR_PRINT_CODE(
+            errorcode, "%s invalid channel for GET_CH: %s. Usage: GET_CH <ch> (ch=1-8 or ALL)\r\n",
+            CONSOLE_TASK_TAG, p);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
     }
 
@@ -623,21 +709,39 @@ static void cmd_calibrate(const char *args) {
     float ref_v, ref_a;
 
     if (sscanf(args, "%d %f %f", &ch, &ref_v, &ref_a) != 3) {
-        ERROR_PRINT("Usage: CALIBRATE <ch> <voltage> <current>\n");
-        ERROR_PRINT("Examples:\n");
-        ERROR_PRINT("  CALIBRATE 1 0 0        (zero-point: channel OFF/disconnected)\n");
-        ERROR_PRINT("  CALIBRATE 1 230.0 0    (voltage-only, no load required)\n");
-        ERROR_PRINT("  CALIBRATE 1 230.0 1.5  (with known load)\n");
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_WARNING, ERR_FID_CONSOLETASK, 0x0);
+        ERROR_PRINT_CODE(
+            errorcode,
+            "%s Invalid arguments for CALIBRATE. Usage: CALIBRATE <ch> <voltage> <current>\r\n",
+            CONSOLE_TASK_TAG);
+#endif
         return;
     }
 
     if (ch < 1 || ch > 8) {
-        ERROR_PRINT("Invalid channel: %d (must be 1-8)\n", ch);
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK, 0xD);
+        ERROR_PRINT_CODE(
+            errorcode,
+            "%s Invalid channel for CALIBRATE: %d. Usage: CALIBRATE <ch> <voltage> <current>\r\n",
+            CONSOLE_TASK_TAG, ch);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
     }
 
     if (ref_v < 0.0f || ref_a < 0.0f) {
-        ERROR_PRINT("Reference values cannot be negative\n");
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK, 0xE);
+        ERROR_PRINT_CODE(errorcode,
+                         "%s Negative reference values for CALIBRATE: V=%.3f, I=%.3f\r\n",
+                         CONSOLE_TASK_TAG, ref_v, ref_a);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
     }
 
@@ -653,7 +757,13 @@ static void cmd_calibrate(const char *args) {
     if (hlw8032_calibrate_channel((uint8_t)(ch - 1), ref_v, ref_a)) {
         ECHO("Calibration completed successfully!\n");
     } else {
-        ERROR_PRINT("Calibration failed!\n");
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK, 0xF);
+        ERROR_PRINT_CODE(errorcode, "%s Calibration failed for channel %d\r\n", CONSOLE_TASK_TAG,
+                         ch);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         setError(true);
     }
 }
@@ -688,8 +798,15 @@ static void cmd_auto_cal_zero(void) {
     ECHO("RESULTS: %d successful, %d failed\n", success, failed);
     ECHO("========================================\n\n");
 
-    if (failed > 0)
-        setError(true);
+    if (failed > 0) {
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x0);
+        ERROR_PRINT_CODE(errorcode, "%s Auto zero-point calibration had failures\r\n",
+                         CONSOLE_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+    }
 }
 
 /**
@@ -701,7 +818,13 @@ static void cmd_auto_cal_zero(void) {
 static void cmd_auto_cal_v(const char *args) {
     float ref_voltage = atof(args);
     if (ref_voltage <= 0.0f) {
-        ERROR_PRINT("Invalid reference voltage: %.3f (must be > 0)\n", ref_voltage);
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x1);
+        ERROR_PRINT_CODE(errorcode, "%s Invalid reference voltage for AUTO_CAL_V: %.3f\r\n",
+                         CONSOLE_TASK_TAG, ref_voltage);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
     }
 
@@ -729,8 +852,15 @@ static void cmd_auto_cal_v(const char *args) {
     ECHO("RESULTS: %d successful, %d failed\n", success, failed);
     ECHO("========================================\n\n");
 
-    if (failed > 0)
-        setError(true);
+    if (failed > 0) {
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x2);
+        ERROR_PRINT_CODE(errorcode, "%s Auto voltage calibration had failures\r\n",
+                         CONSOLE_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+    }
 }
 
 /**
@@ -749,7 +879,13 @@ static void cmd_show_calib(const char *args) {
         /* Show specific channel */
         int ch = atoi(args);
         if (ch < 1 || ch > 8) {
-            ERROR_PRINT("Invalid channel: %d (must be 1-8)\n", ch);
+#if ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x3);
+            ERROR_PRINT_CODE(errorcode, "%s Invalid channel for SHOW_CALIB: %s\r\n",
+                             CONSOLE_TASK_TAG, args);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
             return;
         }
         hlw8032_print_calibration((uint8_t)(ch - 1));
@@ -765,13 +901,23 @@ static void cmd_show_calib(const char *args) {
 static void cmd_set_ip(const char *args) {
     uint8_t ip[4];
     if (!parse_ip(args, ip)) {
-        ERROR_PRINT("Invalid IP address format: %s\n", args);
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x4);
+        ERROR_PRINT_CODE(errorcode, "%s Invalid IP address format: %s\r\n", CONSOLE_TASK_TAG, args);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
     }
 
     networkInfo net;
     if (!storage_get_network(&net)) {
-        ERROR_PRINT("Failed to read network config\n");
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x5);
+        ERROR_PRINT_CODE(errorcode, "%s Failed to read network config\r\n", CONSOLE_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
     }
 
@@ -780,7 +926,12 @@ static void cmd_set_ip(const char *args) {
     if (storage_set_network(&net)) {
         ECHO("IP address set to %d.%d.%d.%d (reboot required)\n", ip[0], ip[1], ip[2], ip[3]);
     } else {
-        ERROR_PRINT("Failed to save IP address\n");
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x6);
+        ERROR_PRINT_CODE(errorcode, "%s Failed to save IP address\r\n", CONSOLE_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
     }
 }
 
@@ -793,13 +944,24 @@ static void cmd_set_ip(const char *args) {
 static void cmd_set_sn(const char *args) {
     uint8_t sn[4];
     if (!parse_ip(args, sn)) {
-        ERROR_PRINT("Invalid subnet mask format: %s\n", args);
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x7);
+        ERROR_PRINT_CODE(errorcode, "%s Invalid subnet mask format: %s\r\n", CONSOLE_TASK_TAG,
+                         args);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
     }
 
     networkInfo net;
     if (!storage_get_network(&net)) {
-        ERROR_PRINT("Failed to read network config\n");
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x8);
+        ERROR_PRINT_CODE(errorcode, "%s Failed to read network config\r\n", CONSOLE_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
     }
 
@@ -808,7 +970,12 @@ static void cmd_set_sn(const char *args) {
     if (storage_set_network(&net)) {
         ECHO("Subnet mask set to %d.%d.%d.%d (reboot required)\n", sn[0], sn[1], sn[2], sn[3]);
     } else {
-        ERROR_PRINT("Failed to save subnet mask\n");
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x9);
+        ERROR_PRINT_CODE(errorcode, "%s Failed to save subnet mask\r\n", CONSOLE_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
     }
 }
 
@@ -821,13 +988,23 @@ static void cmd_set_sn(const char *args) {
 static void cmd_set_gw(const char *args) {
     uint8_t gw[4];
     if (!parse_ip(args, gw)) {
-        ERROR_PRINT("Invalid gateway format: %s\n", args);
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0xA);
+        ERROR_PRINT_CODE(errorcode, "%s Invalid gateway format: %s\r\n", CONSOLE_TASK_TAG, args);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
     }
 
     networkInfo net;
     if (!storage_get_network(&net)) {
-        ERROR_PRINT("Failed to read network config\n");
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0xB);
+        ERROR_PRINT_CODE(errorcode, "%s Failed to read network config\r\n", CONSOLE_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
     }
 
@@ -836,7 +1013,12 @@ static void cmd_set_gw(const char *args) {
     if (storage_set_network(&net)) {
         ECHO("Gateway set to %d.%d.%d.%d (reboot required)\n", gw[0], gw[1], gw[2], gw[3]);
     } else {
-        ERROR_PRINT("Failed to save gateway\n");
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0xC);
+        ERROR_PRINT_CODE(errorcode, "%s Failed to save gateway\r\n", CONSOLE_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
     }
 }
 
@@ -849,13 +1031,23 @@ static void cmd_set_gw(const char *args) {
 static void cmd_set_dns(const char *args) {
     uint8_t dns[4];
     if (!parse_ip(args, dns)) {
-        ERROR_PRINT("Invalid DNS format: %s\n", args);
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0xD);
+        ERROR_PRINT_CODE(errorcode, "%s Invalid DNS format: %s\r\n", CONSOLE_TASK_TAG, args);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
     }
 
     networkInfo net;
     if (!storage_get_network(&net)) {
-        ERROR_PRINT("Failed to read network config\n");
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0xE);
+        ERROR_PRINT_CODE(errorcode, "%s Failed to read network config\r\n", CONSOLE_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
     }
 
@@ -864,7 +1056,12 @@ static void cmd_set_dns(const char *args) {
     if (storage_set_network(&net)) {
         ECHO("DNS set to %d.%d.%d.%d (reboot required)\n", dns[0], dns[1], dns[2], dns[3]);
     } else {
-        ERROR_PRINT("Failed to save DNS\n");
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0xF);
+        ERROR_PRINT_CODE(errorcode, "%s Failed to save DNS\r\n", CONSOLE_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
     }
 }
 
@@ -877,31 +1074,63 @@ static void cmd_set_dns(const char *args) {
 static void cmd_config_network(const char *args) {
     char ip_str[20], sn_str[20], gw_str[20], dns_str[20];
     if (sscanf(args, "%19[^$]$%19[^$]$%19[^$]$%19s", ip_str, sn_str, gw_str, dns_str) != 4) {
-        ERROR_PRINT("Usage: CONFIG_NETWORK <ip$sn$gw$dns>\n");
-        ERROR_PRINT("Example: CONFIG_NETWORK 192.168.1.100$255.255.255.0$192.168.1.1$8.8.8.8\n");
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK3, 0x0);
+        ERROR_PRINT_CODE(
+            errorcode,
+            "%s Invalid CONFIG_NETWORK arguments: %s. Usage: CONFIG_NETWORK <ip$sn$gw$dns>\r\n",
+            CONSOLE_TASK_TAG, args);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
     }
 
     networkInfo net;
     if (!storage_get_network(&net)) {
-        ERROR_PRINT("Failed to read network config\n");
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK3, 0x1);
+        ERROR_PRINT_CODE(errorcode, "%s Failed to read network config\r\n", CONSOLE_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
     }
 
     if (!parse_ip(ip_str, net.ip)) {
-        ERROR_PRINT("Invalid IP: %s\n", ip_str);
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK3, 0x2);
+        ERROR_PRINT_CODE(errorcode, "%s Invalid IP: %s\r\n", CONSOLE_TASK_TAG, ip_str);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
     }
     if (!parse_ip(sn_str, net.sn)) {
-        ERROR_PRINT("Invalid subnet: %s\n", sn_str);
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK3, 0x3);
+        ERROR_PRINT_CODE(errorcode, "%s Invalid subnet: %s\r\n", CONSOLE_TASK_TAG, sn_str);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
     }
     if (!parse_ip(gw_str, net.gw)) {
-        ERROR_PRINT("Invalid gateway: %s\n", gw_str);
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK3, 0x4);
+        ERROR_PRINT_CODE(errorcode, "%s Invalid gateway: %s\r\n", CONSOLE_TASK_TAG, gw_str);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
     }
     if (!parse_ip(dns_str, net.dns)) {
-        ERROR_PRINT("Invalid DNS: %s\n", dns_str);
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK3, 0x5);
+        ERROR_PRINT_CODE(errorcode, "%s Invalid DNS: %s\r\n", CONSOLE_TASK_TAG, dns_str);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
     }
 
@@ -913,7 +1142,12 @@ static void cmd_config_network(const char *args) {
         ECHO("  DNS: %s\n", dns_str);
         ECHO("Reboot required to apply changes.\n");
     } else {
-        ERROR_PRINT("Failed to save network config\n");
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK3, 0x6);
+        ERROR_PRINT_CODE(errorcode, "%s Failed to save network config\r\n", CONSOLE_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
     }
 }
 
@@ -963,6 +1197,88 @@ static void cmd_get_usb(void) {
         ECHO("USB Supply: %.2f V\n", sys.vusb_volts);
     } else {
         ECHO("USB Supply: N/A (telemetry not ready)\n");
+    }
+}
+
+/**
+ * @brief Asynchronously dump the error event log region.
+ *
+ * @details
+ * Issues a non-blocking request to StorageTask to print the error event log
+ * region in the same formatted hex layout as the full EEPROM dump, but limited
+ * to the error log address range.
+ */
+static void cmd_read_error_log(void) {
+    if (!storage_dump_error_log_async()) {
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK3, 0x7);
+        ERROR_PRINT_CODE(errorcode, "%s Failed to enqueue error log dump (storage busy)\r\n",
+                         CONSOLE_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+    }
+}
+
+/**
+ * @brief Asynchronously dump the warning event log region.
+ *
+ * @details
+ * Issues a non-blocking request to StorageTask to print the warning event log
+ * region in the same formatted hex layout as the full EEPROM dump, but limited
+ * to the warning log address range.
+ */
+static void cmd_read_warning_log(void) {
+    if (!storage_dump_warning_log_async()) {
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK3, 0x8);
+        ERROR_PRINT_CODE(errorcode, "%s Failed to enqueue warning log dump (storage busy)\r\n",
+                         CONSOLE_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+    }
+}
+
+/**
+ * @brief Asynchronously clear the error event log region.
+ *
+ * @details
+ * Requests StorageTask to erase the error event log region in small chunks.
+ * The operation runs in the background; this command returns immediately.
+ */
+static void cmd_clear_error_log(void) {
+    if (!storage_clear_error_log_async()) {
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK3, 0x9);
+        ERROR_PRINT_CODE(errorcode, "%s Failed to enqueue error log clear (storage busy)\r\n",
+                         CONSOLE_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+    } else {
+        ECHO("Error event log clear requested\n");
+    }
+}
+
+/**
+ * @brief Asynchronously clear the warning event log region.
+ *
+ * @details
+ * Requests StorageTask to erase the warning event log region in small chunks.
+ * The operation runs in the background; this command returns immediately.
+ */
+static void cmd_clear_warning_log(void) {
+    if (!storage_clear_warning_log_async()) {
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK3, 0xA);
+        ERROR_PRINT_CODE(errorcode, "%s Failed to enqueue warning log clear (storage busy)\r\n",
+                         CONSOLE_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+    } else {
+        ECHO("Warning event log clear requested\n");
     }
 }
 
@@ -1056,7 +1372,7 @@ static void dispatch_command(const char *line) {
         cmd_config_network(args ? args : "");
     }
 
-    /* DEBUG */
+    /* DEBUG COMMANDS */
     else if (strcmp(trimmed, "GET_SUPPLY") == 0) {
         cmd_get_supply();
     } else if (strcmp(trimmed, "GET_USB") == 0) {
@@ -1067,6 +1383,16 @@ static void dispatch_command(const char *line) {
         if (!storage_dump_formatted_async()) {
             ERROR_PRINT("EEPROM dump enqueue failed\n");
         }
+    } else if (strcmp(trimmed, "READ_ERROR") == 0) {
+        cmd_read_error_log();
+    } else if (strcmp(trimmed, "READ_WARNING") == 0) {
+        cmd_read_warning_log();
+    } else if (strcmp(trimmed, "CLEAR_ERROR") == 0) {
+        cmd_clear_error_log();
+        setError(false);
+    } else if (strcmp(trimmed, "CLEAR_WARNING") == 0) {
+        cmd_clear_warning_log();
+        setError(false);
     } else if (strcmp(trimmed, "BAADCAFE") == 0) {
         ECHO("Erasing EEPROM... (THIS CANNOT BE UNDONE!)\n");
         if (storage_erase_all(30000)) {
@@ -1091,6 +1417,8 @@ static void ConsoleTask(void *arg) {
     (void)arg;
 
     /* Wait for logger to be ready */
+    ECHO("%s Task started\r\n", CONSOLE_TASK_TAG);
+
     vTaskDelay(pdMS_TO_TICKS(1500));
     ECHO("\n");
     ECHO("=== ENERGIS Console Ready ===\n");
@@ -1199,13 +1527,23 @@ BaseType_t ConsoleTask_Init(bool enable) {
     q_cfg = xQueueCreate(8, sizeof(storage_msg_t));
 
     if (!q_power || !q_cfg || !q_meter || !q_net) {
-        ERROR_PRINT("[Console] Failed to create one or more queues\r\n");
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK3, 0xB);
+        ERROR_PRINT_CODE(errorcode, "%s Queue creation failed\r\n", CONSOLE_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return pdFAIL;
     }
 
     extern void ConsoleTask(void *arg);
     if (xTaskCreate(ConsoleTask, "Console", 1024, NULL, CONSOLETASK_PRIORITY, NULL) != pdPASS) {
-        ERROR_PRINT("[Console] Failed to create task\r\n");
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK3, 0xC);
+        ERROR_PRINT_CODE(errorcode, "%s Failed to create task\r\n", CONSOLE_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return pdFAIL;
     }
 

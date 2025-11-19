@@ -18,6 +18,8 @@
  *                          PRIVATE DEFINITIONS                               *
  ******************************************************************************/
 
+#define ETH_TASK_TAG "[W5500]"
+
 /* W5500 SPI command prefixes */
 #define W5500_SPI_READ 0x00
 #define W5500_SPI_WRITE 0x04
@@ -308,8 +310,16 @@ void eth_send_data(uint8_t sn, uint8_t *wizdata, uint16_t len) {
 }
 
 void eth_recv_data(uint8_t sn, uint8_t *wizdata, uint16_t len) {
-    if (!wizdata || len == 0)
+    if (!wizdata || len == 0) {
+
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_ETHERNET, 0x1);
+        ERROR_PRINT_CODE(errorcode, "%s Null pointer or zero length in eth_recv_data\n",
+                         ETH_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
+    }
 
     uint16_t rx_max = getSn_RxMAX(sn);
     uint16_t rx_mask = (uint16_t)(rx_max - 1);
@@ -337,8 +347,16 @@ void eth_recv_data(uint8_t sn, uint8_t *wizdata, uint16_t len) {
 }
 
 void eth_recv_ignore(uint8_t sn, uint16_t len) {
-    if (len == 0)
+    if (len == 0) {
+
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_ETHERNET, 0x2);
+        ERROR_PRINT_CODE(errorcode, "%s Zero length in eth_recv_ignore\n", ETH_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
+    }
+
     uint16_t rd_ptr = getSn_RX_RD(sn);
     rd_ptr = (uint16_t)(rd_ptr + len);
     setSn_RX_RD(sn, rd_ptr);
@@ -353,7 +371,13 @@ bool w5500_hw_init(void) {
     if (!w5500_spi_mutex) {
         w5500_spi_mutex = xSemaphoreCreateMutex();
         if (!w5500_spi_mutex) {
-            ERROR_PRINT("[W5500] Failed to create SPI mutex\r\n");
+
+#if ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_ETHERNET, 0x3);
+            ERROR_PRINT_CODE(errorcode, "%s Failed to create SPI mutex\n", ETH_TASK_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
             return false;
         }
     }
@@ -388,7 +412,12 @@ bool w5500_hw_init(void) {
 
 bool w5500_chip_init(w5500_NetConfig *net_info) {
     if (!net_info) {
-        ERROR_PRINT("[W5500] NULL network info\r\n");
+
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_ETHERNET, 0x4);
+        ERROR_PRINT_CODE(errorcode, "%s NULL network info\r\n", ETH_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return false;
     }
 
@@ -421,9 +450,15 @@ bool w5500_chip_init(w5500_NetConfig *net_info) {
         link_status = getPHYCFGR();
         vTaskDelay(pdMS_TO_TICKS(100));
         timeout++;
-        if (timeout > 50) { /* 5 second timeout */
+        if (timeout > 25) { /* 2.5 second timeout */
             ERROR_PRINT("[W5500] PHY link timeout\r\n");
             return false;
+#if ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_ETHERNET, 0x5);
+            ERROR_PRINT_CODE(errorcode, "%s PHY link timeout\r\n", ETH_TASK_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
         }
     } while ((link_status & PHYCFGR_LNK_ON) == 0);
 
@@ -444,7 +479,12 @@ bool w5500_chip_init(w5500_NetConfig *net_info) {
 bool w5500_check_version(void) {
     uint8_t version = getVERSIONR();
     if (version != 0x04) {
-        ERROR_PRINT("[W5500] Invalid version: 0x%02X (expected 0x04)\r\n", version);
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_ETHERNET, 0x6);
+        ERROR_PRINT_CODE(errorcode, "%s Invalid version: 0x%02X (expected 0x04)\n", ETH_TASK_TAG,
+                         version);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return false;
     }
     ETH_LOG("[ETH] Version check OK: 0x%02X\r\n", version);
@@ -456,8 +496,14 @@ bool w5500_check_version(void) {
  ******************************************************************************/
 
 void w5500_set_network(w5500_NetConfig *net_info) {
-    if (!net_info)
+    if (!net_info) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_ETHERNET, 0x7);
+        ERROR_PRINT_CODE(errorcode, "%s NULL network info\r\n", ETH_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
+    }
 
     /* Set MAC address */
     setSHAR(net_info->mac);
@@ -473,8 +519,14 @@ void w5500_set_network(w5500_NetConfig *net_info) {
 }
 
 void w5500_get_network(w5500_NetConfig *net_info) {
-    if (!net_info)
+    if (!net_info) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_ETHERNET, 0x8);
+        ERROR_PRINT_CODE(errorcode, "%s NULL network info\r\n", ETH_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
+    }
 
     /* Get MAC address */
     getSHAR(net_info->mac);
@@ -494,8 +546,14 @@ void w5500_get_network(w5500_NetConfig *net_info) {
 }
 
 void w5500_print_network(w5500_NetConfig *net_info) {
-    if (!net_info)
+    if (!net_info) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_ETHERNET, 0x9);
+        ERROR_PRINT_CODE(errorcode, "%s NULL network info\r\n", ETH_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
+    }
 
     ETH_LOG("[ETH] Network Configuration:\r\n");
     ETH_LOG("[ETH]  MAC  : %02X:%02X:%02X:%02X:%02X:%02X\r\n", net_info->mac[0], net_info->mac[1],
@@ -521,8 +579,14 @@ w5500_PhyLink w5500_get_link_status(void) {
 }
 
 int8_t w5500_set_phy_conf(w5500_PhyConfig *phyconf) {
-    if (!phyconf)
+    if (!phyconf) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_ETHERNET, 0xA);
+        ERROR_PRINT_CODE(errorcode, "%s NULL PHY configuration\r\n", ETH_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return -1;
+    }
 
     uint8_t tmp = 0;
 
@@ -536,8 +600,14 @@ int8_t w5500_set_phy_conf(w5500_PhyConfig *phyconf) {
 }
 
 void w5500_get_phy_conf(w5500_PhyConfig *phyconf) {
-    if (!phyconf)
+    if (!phyconf) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_ETHERNET, 0xB);
+        ERROR_PRINT_CODE(errorcode, "%s NULL PHY configuration\r\n", ETH_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
+    }
 
     uint8_t tmp = getPHYCFGR();
 

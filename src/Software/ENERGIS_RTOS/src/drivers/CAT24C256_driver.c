@@ -14,6 +14,8 @@
 
 #include "../CONFIG.h"
 
+#define CAT24_TAG "[CAT24DRV]"
+
 /* ==================== Private Functions ==================== */
 
 /**
@@ -39,7 +41,7 @@ void CAT24C256_Init(void) {
     gpio_pull_up(I2C1_SDA);
     gpio_pull_up(I2C1_SCL);
 
-    INFO_PRINT("[CAT24C256] Driver initialized (I2C1: SDA=%u, SCL=%u)\r\n", I2C1_SDA, I2C1_SCL);
+    INFO_PRINT("%s Driver initialized \r\n", CAT24_TAG);
 }
 
 int CAT24C256_WriteByte(uint16_t addr, uint8_t data) {
@@ -51,7 +53,11 @@ int CAT24C256_WriteByte(uint16_t addr, uint8_t data) {
         write_cycle_delay();
         return 0;
     } else {
-        ERROR_PRINT("[CAT24C256] WriteByte failed at 0x%04X\r\n", addr);
+#ifdef ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CAT24, 0x0);
+        ERROR_PRINT_CODE(errorcode, "%s WriteByte failed at 0x%04X\r\n", CAT24_TAG, addr);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return -1;
     }
 }
@@ -64,7 +70,11 @@ uint8_t CAT24C256_ReadByte(uint16_t addr) {
     int res2 = i2c_read_blocking(EEPROM_I2C, CAT24C256_I2C_ADDR, &data, 1, false);
 
     if (res1 != 2 || res2 != 1) {
-        ERROR_PRINT("[CAT24C256] ReadByte failed at 0x%04X\r\n", addr);
+#ifdef ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CAT24, 0x1);
+        ERROR_PRINT_CODE(errorcode, "%s ReadByte failed at 0x%04X\r\n", CAT24_TAG, addr);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
     }
 
     return data;
@@ -72,7 +82,11 @@ uint8_t CAT24C256_ReadByte(uint16_t addr) {
 
 int CAT24C256_WriteBuffer(uint16_t addr, const uint8_t *data, uint16_t len) {
     if (!data) {
-        ERROR_PRINT("[CAT24C256] WriteBuffer: NULL data pointer\r\n");
+#ifdef ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CAT24, 0x2);
+        ERROR_PRINT_CODE(errorcode, "%s WriteBuffer: NULL data pointer\r\n", CAT24_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return -1;
     }
 
@@ -94,8 +108,13 @@ int CAT24C256_WriteBuffer(uint16_t addr, const uint8_t *data, uint16_t len) {
         int res = i2c_write_blocking(EEPROM_I2C, CAT24C256_I2C_ADDR, buffer, chunk_size + 2, false);
 
         if (res != (chunk_size + 2)) {
-            ERROR_PRINT("[CAT24C256] WriteBuffer failed at 0x%04X (chunk %u bytes)\r\n", addr,
-                        chunk_size);
+#ifdef ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CAT24, 0x3);
+            ERROR_PRINT_CODE(errorcode, "%s WriteBuffer failed at 0x%04X (chunk %u bytes)\r\n",
+                             CAT24_TAG, addr, chunk_size);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
             return -1;
         }
 
@@ -112,7 +131,11 @@ int CAT24C256_WriteBuffer(uint16_t addr, const uint8_t *data, uint16_t len) {
 
 void CAT24C256_ReadBuffer(uint16_t addr, uint8_t *buffer, uint32_t len) {
     if (!buffer) {
-        ERROR_PRINT("[CAT24C256] ReadBuffer: NULL buffer pointer\r\n");
+#ifdef ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CAT24, 0x4);
+        ERROR_PRINT_CODE(errorcode, "%s ReadBuffer: NULL buffer pointer\r\n", CAT24_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return;
     }
 
@@ -122,8 +145,12 @@ void CAT24C256_ReadBuffer(uint16_t addr, uint8_t *buffer, uint32_t len) {
     int res2 = i2c_read_blocking(EEPROM_I2C, CAT24C256_I2C_ADDR, buffer, len, false);
 
     if (res1 != 2 || res2 != (int)len) {
-        ERROR_PRINT("[CAT24C256] ReadBuffer failed at 0x%04X (%lu bytes)\r\n", addr,
-                    (unsigned long)len);
+#ifdef ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CAT24, 0x5);
+        ERROR_PRINT_CODE(errorcode, "%s ReadBuffer failed at 0x%04X (%lu bytes)\r\n", CAT24_TAG,
+                         addr, (unsigned long)len);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         /* Fill with 0xFF on failure */
         memset(buffer, 0xFF, len);
     }
@@ -138,7 +165,11 @@ bool CAT24C256_SelfTest(uint16_t test_addr) {
 
     /* Write test pattern */
     if (CAT24C256_WriteBuffer(test_addr, test_pattern, pattern_len) != 0) {
-        ERROR_PRINT("[CAT24C256] Self-test FAILED: Write error\r\n");
+#ifdef ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CAT24, 0x6);
+        ERROR_PRINT_CODE(errorcode, "%s Self-test WriteBuffer failed\r\n", CAT24_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return false;
     }
 
@@ -150,7 +181,11 @@ bool CAT24C256_SelfTest(uint16_t test_addr) {
 
     /* Compare */
     if (memcmp(test_pattern, read_buffer, pattern_len) != 0) {
-        ERROR_PRINT("[CAT24C256] Self-test FAILED: Data mismatch\r\n");
+#ifdef ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CAT24, 0x7);
+        ERROR_PRINT_CODE(errorcode, "%s Self-test failed: Data mismatch\r\n", CAT24_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         for (uint8_t i = 0; i < pattern_len; i++) {
             DEBUG_PRINT("Exp[%u]=%02X Read[%u]=%02X\r\n", i, test_pattern[i], i, read_buffer[i]);
         }

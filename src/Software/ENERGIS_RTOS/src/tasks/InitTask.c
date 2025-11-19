@@ -21,7 +21,7 @@
 #define INIT_TASK_PRIORITY INITTASK_PRIORITY /* Highest priority */
 #define INIT_TASK_STACK_SIZE 2048
 
-#define INIT_TASK_TAG "[InitTask]"
+#define INIT_TASK_TAG "[INIT]"
 
 /* Event flags for subsystem ready states */
 #define READY_LOGGER (1 << 0)
@@ -88,7 +88,7 @@ static void init_gpio(void) {
     gpio_set_dir(KEY_3, GPIO_IN);
 
     gpio_set_function(PROC_LED, GPIO_FUNC_PWM);
-    
+
     static uint32_t s_pwm_slice = 0;
     s_pwm_slice = pwm_gpio_to_slice_num(PROC_LED);
     pwm_set_wrap(s_pwm_slice, 65535U);
@@ -187,7 +187,11 @@ static bool probe_mcps(void) {
         INFO_PRINT("%s ✓ All MCP23017s detected\r\n", INIT_TASK_TAG);
         return true;
     } else {
-        INFO_PRINT("%s ✗ WARNING: Some MCP23017s missing!\r\n", INIT_TASK_TAG);
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x0);
+        ERROR_PRINT_CODE(errorcode, "%s ✗ WARNING: Some MCP23017s missing!\r\n", INIT_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return false;
     }
 }
@@ -199,6 +203,23 @@ static bool probe_mcps(void) {
  */
 static bool probe_eeprom(void) {
     return probe_i2c_device(EEPROM_I2C, CAT24C256_I2C_ADDR, "EEPROM CAT24C256");
+}
+
+/**
+ * @brief Read voltage from the selected ADC channel with averaging.
+ */
+static float adc_read_voltage_avg(uint8_t ch) {
+    adc_set_clkdiv(96.0f); /* slow down ADC clock */
+    adc_select_input(ch);
+    (void)adc_read(); /* throwaway */
+    (void)adc_read(); /* throwaway */
+    vTaskDelay(pdMS_TO_TICKS(1));
+    uint32_t adcread = 0;
+    for (int i = 0; i < 16; i++)
+        adcread += adc_read();
+    uint16_t raw_12v = (uint16_t)(adcread / 16);
+    float v_tap = ((float)raw_12v) * (ADC_VREF / (float)ADC_MAX);
+    return v_tap * 1; 
 }
 
 /**
@@ -253,7 +274,7 @@ static void InitTask(void *pvParameters) {
     INFO_PRINT("========================================\r\n\r\n");
 
     /* ===== PHASE 1: Hardware Initialization ===== */
-    INFO_PRINT("%s ===== Phase 1: Hardware Init =====\r\n", INIT_TASK_TAG);
+    INFO_PRINT("%s ===== Phase 1: Hardware Init =====\r\n\r\n", INIT_TASK_TAG);
 
     init_gpio();
     init_i2c();
@@ -262,6 +283,17 @@ static void InitTask(void *pvParameters) {
     CAT24C256_Init();
     MCP2017_Init(); /* Registers and initializes 0x20/0x21/0x23 MCPs */
     vTaskDelay(pdMS_TO_TICKS(100));
+
+    while (adc_read_voltage_avg(V_SUPPLY) * SUPPLY_DIVIDER < 10.0f) {
+
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x7);
+        ERROR_PRINT_CODE(errorcode, "%s 12V rail low, %f waiting...\r\n", INIT_TASK_TAG,
+                         adc_read_voltage_avg(V_SUPPLY) * SUPPLY_DIVIDER);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+        vTaskDelay(pdMS_TO_TICKS(500));
+    }
 
     /* ===== PHASE 2: Peripheral Probing (non-blocking; HLW deferred) ===== */
     log_printf("\r\n");
@@ -278,8 +310,13 @@ static void InitTask(void *pvParameters) {
     /* 1) Logger (already started above, just report state) */
     if (Logger_IsReady())
         INFO_PRINT("%s LoggerTask ready\r\n", INIT_TASK_TAG);
-    else
-        ERROR_PRINT("%s ERROR: Logger not ready (timeout)\r\n", INIT_TASK_TAG);
+    else {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x1);
+        ERROR_PRINT_CODE(errorcode, "%s LoggerTask NOT ready!\r\n", INIT_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+    }
 
     /* 2) Console */
     ConsoleTask_Init(true);
@@ -290,8 +327,13 @@ static void InitTask(void *pvParameters) {
         }
         if (Console_IsReady())
             INFO_PRINT("%s ConsoleTask ready\r\n", INIT_TASK_TAG);
-        else
-            ERROR_PRINT("%s ConsoleTask not ready (timeout)\r\n", INIT_TASK_TAG);
+        else {
+#if ERRORLOGGER
+            uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x2);
+            ERROR_PRINT_CODE(errorcode, "%s ConsoleTask NOT ready!\r\n", INIT_TASK_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
+        }
     }
 
     /* 3) Storage */
@@ -303,8 +345,13 @@ static void InitTask(void *pvParameters) {
         }
         if (Storage_IsReady())
             INFO_PRINT("%s StorageTask ready\r\n", INIT_TASK_TAG);
-        else
-            ERROR_PRINT("%s StorageTask not ready (timeout)\r\n", INIT_TASK_TAG);
+        else {
+#if ERRORLOGGER
+            uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x3);
+            ERROR_PRINT_CODE(errorcode, "%s StorageTask not ready (timeout)\r\n", INIT_TASK_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
+        }
     }
 
     /* 4) Button */
@@ -321,7 +368,11 @@ static void InitTask(void *pvParameters) {
         if (Button_IsReady()) {
             INFO_PRINT("%s ButtonTask ready\r\n", INIT_TASK_TAG);
         } else {
-            ERROR_PRINT("%s ButtonTask NOT ready (timeout) — continuing boot\r\n", INIT_TASK_TAG);
+#if ERRORLOGGER
+            uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x4);
+            ERROR_PRINT_CODE(errorcode, "%s ButtonTask NOT ready (timeout)\r\n", INIT_TASK_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
         }
     }
 
@@ -336,13 +387,22 @@ static void InitTask(void *pvParameters) {
         }
         if (Net_IsReady())
             INFO_PRINT("%s NetTask ready\r\n", INIT_TASK_TAG);
-        else
-            ERROR_PRINT("%s NetTask not ready (timeout)\r\n", INIT_TASK_TAG);
+        else {
+#if ERRORLOGGER
+            uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x5);
+            ERROR_PRINT_CODE(errorcode, "%s NetTask not ready (timeout)\r\n", INIT_TASK_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
+        }
     }
 
     /* 6) Meter (HLW handled asynchronously by the task) */
     if (MeterTask_Init(true) != pdPASS) {
-        ERROR_PRINT("%s Failed to create MeterTask\r\n", INIT_TASK_TAG);
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x6);
+        ERROR_PRINT_CODE(errorcode, "%s Failed to create MeterTask\r\n", INIT_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
     }
     {
         TickType_t t0 = xTaskGetTickCount();
@@ -351,15 +411,24 @@ static void InitTask(void *pvParameters) {
         }
         if (Meter_IsReady())
             INFO_PRINT("%s MeterTask ready\r\n", INIT_TASK_TAG);
-        else
-            ERROR_PRINT("%s MeterTask not ready (timeout)\r\n", INIT_TASK_TAG);
+        else {
+#if ERRORLOGGER
+            uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x7);
+            ERROR_PRINT_CODE(errorcode, "%s MeterTask not ready (timeout)\r\n", INIT_TASK_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
+        }
     }
 
     /* ===== PHASE 4: Configuration Load & Distribution ===== */
     log_printf("\r\n");
     INFO_PRINT("%s ===== Phase 4: Configuration Load =====\r\n", INIT_TASK_TAG);
     if (!storage_wait_ready(10000)) {
-        ERROR_PRINT("%s Storage config NOT ready, using defaults\r\n", INIT_TASK_TAG);
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x8);
+        ERROR_PRINT_CODE(errorcode, "%s Storage config NOT ready (timeout)\r\n", INIT_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
     } else {
         INFO_PRINT("%s Storage config ready\r\n", INIT_TASK_TAG);
     }
@@ -423,7 +492,12 @@ static void InitTask(void *pvParameters) {
         if (Meter_IsReady()) {
             HealthTask_Start();
         } else {
-            WARNING_PRINT("%s Meter not ready after wait; NOT starting Health.\r\n", INIT_TASK_TAG);
+#if ERRORLOGGER
+            uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x9);
+            ERROR_PRINT_CODE(errorcode, "%s Meter not ready after wait; NOT starting Health.\r\n",
+                             INIT_TASK_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
         }
     }
 

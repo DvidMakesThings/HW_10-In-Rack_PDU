@@ -14,6 +14,8 @@
 
 #include "../../CONFIG.h"
 
+#define ST_ENERGY_MON_TAG "[ST-EMON]"
+
 /**
  * @brief Write energy monitoring region to EEPROM.
  *
@@ -26,8 +28,16 @@
  * @return 0 on success, -1 on bounds check failure or I2C error
  */
 int EEPROM_WriteEnergyMonitoring(const uint8_t *data, size_t len) {
-    if (len > EEPROM_ENERGY_MON_SIZE)
+    if (len > EEPROM_ENERGY_MON_SIZE) {
+#if ERRORLOGGER
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_ENERGY_MON, 0x1);
+        ERROR_PRINT_CODE(err_code, "%s EEPROM_WriteEnergyMonitoring: Write length exceeds size\r\n",
+                         ST_ENERGY_MON_TAG);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return -1;
+    }
     return CAT24C256_WriteBuffer(EEPROM_ENERGY_MON_START, data, (uint16_t)len);
 }
 
@@ -41,8 +51,16 @@ int EEPROM_WriteEnergyMonitoring(const uint8_t *data, size_t len) {
  * @return 0 on success, -1 on bounds check failure
  */
 int EEPROM_ReadEnergyMonitoring(uint8_t *data, size_t len) {
-    if (len > EEPROM_ENERGY_MON_SIZE)
+    if (len > EEPROM_ENERGY_MON_SIZE) {
+#if ERRORLOGGER
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_ENERGY_MON, 0x2);
+        ERROR_PRINT_CODE(err_code, "%s EEPROM_ReadEnergyMonitoring: Read length exceeds size\r\n",
+                         ST_ENERGY_MON_TAG);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return -1;
+    }
     CAT24C256_ReadBuffer(EEPROM_ENERGY_MON_START, data, (uint32_t)len);
     return 0;
 }
@@ -75,8 +93,18 @@ int EEPROM_AppendEnergyRecord(const uint8_t *data) {
     uint16_t addr = EEPROM_ENERGY_MON_START + ENERGY_MON_POINTER_SIZE + (ptr * ENERGY_RECORD_SIZE);
 
     /* Write the energy record */
-    if (CAT24C256_WriteBuffer(addr, data, ENERGY_RECORD_SIZE) != 0)
+    if (CAT24C256_WriteBuffer(addr, data, ENERGY_RECORD_SIZE) != 0) {
+#if ERRORLOGGER
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_ENERGY_MON, 0x3);
+        ERROR_PRINT_CODE(
+            err_code,
+            "%s EEPROM_AppendEnergyRecord: Failed to write energy record at address 0x%04X\r\n",
+            ST_ENERGY_MON_TAG, addr);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return -1;
+    }
 
     /* Increment pointer and wrap if at buffer end */
     ptr++;

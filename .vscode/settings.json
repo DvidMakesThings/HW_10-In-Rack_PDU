@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "*.bak": "cpp"
+        "*.bak": "cpp",
+        "rtos_hooks.h": "c",
+        "power_mgr.h": "c"
     }
 }

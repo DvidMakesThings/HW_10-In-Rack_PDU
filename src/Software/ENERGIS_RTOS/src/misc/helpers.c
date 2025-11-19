@@ -1,11 +1,11 @@
 /**
  * @file src/misc/helpers.c
  * @author DvidMakesThings - David Sipos
- * 
+ *
  * @version 1.0.0
  * @date 2025-11-06
- * 
- * @details System wide used helper functions, which cannot fit 
+ *
+ * @details System wide used helper functions, which cannot fit
  * into other modules.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
@@ -13,6 +13,8 @@
  */
 
 #include "../CONFIG.h"
+
+#define HELPERS_TAG "[HELPERS]"
 
 /** @brief Magic tag to validate retained snapshot content. */
 #define HELPERS_SNAPSHOT_MAGIC (0x534E4150u) /* 'SNAP' */
@@ -85,8 +87,17 @@ char *get_form_value(const char *body, const char *key) {
 
     /* Find the key in the body */
     char *start = strstr(body, search);
-    if (!start)
+    if (!start) {
+        /* This feature hasnt been implemented (yet?)*/
+        /*
+        #if ERRORLOGGER
+                uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_LOGGER, ERR_SEV_ERROR, ERR_FID_HELPERS,
+        0x0); ERROR_PRINT_CODE(errorcode, "%s Key '%s' not found in form data\n", HELPERS_TAG, key);
+                Storage_EnqueueErrorCode(errorcode);
+        #endif
+        */
         return NULL;
+    }
 
     /* Move past "key=" */
     start += strlen(search);
@@ -140,27 +151,6 @@ void urldecode(char *s) {
     *dst = '\0';
 }
 
-/**
- * @brief Read voltage from the selected ADC channel with averaging.
- *
- * @param ch ADC channel index compatible with adc_select_input
- * @return Measured voltage as float
- */
-float get_Voltage(uint8_t ch) {
-    adc_set_clkdiv(96.0f); /* slow down ADC clock */
-    adc_select_input(ch);
-    (void)adc_read();             /* throwaway sample */
-    vTaskDelay(pdMS_TO_TICKS(1)); /* allow S&H to settle ~0.1 ms rounded up */
-
-    uint32_t acc = 0;
-    for (int i = 0; i < 16; i++) {
-        acc += adc_read();
-    }
-
-    float vtap = (acc / 16.0f) * (ADC_VREF / ADC_MAX);
-    return vtap * 1 /*ADC_TOL*/; /* apply +0.5 percent correction */
-}
-
 /******************************************************************************
  *                     PUBLIC HELPER ADDED FOR NETTASK                        *
  ******************************************************************************/
@@ -177,8 +167,14 @@ float get_Voltage(uint8_t ch) {
  * to configure networking without needing to know the internal type.
  */
 bool ethernet_apply_network_from_storage(const networkInfo *ni) {
-    if (!ni)
+    if (!ni) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_LOGGER, ERR_SEV_ERROR, ERR_FID_HELPERS, 0x1);
+        ERROR_PRINT_CODE(errorcode, "%s Null networkInfo pointer\r\n", HELPERS_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return false;
+    }
 
     w5500_NetConfig cfg;
     memset(&cfg, 0, sizeof(cfg));
@@ -278,12 +274,17 @@ void Boot_LogResetCause(void) {
         default:
             break;
         }
-
-        ERROR_PRINT("[BOOT] last fault: cause=%s(0x%04lx) lr=0x%08lx a=0x%08lx b=0x%08lx c=0x%08lx "
-                    "d=0x%08lx e=0x%08lx f=0x%08lx\r\n\r\n",
-                    cause_str, (unsigned long)cause, (unsigned long)s1, (unsigned long)s2,
-                    (unsigned long)s3, (unsigned long)s4, (unsigned long)s5, (unsigned long)s6,
-                    (unsigned long)s7);
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_LOGGER, ERR_SEV_ERROR, ERR_FID_HELPERS, 0x2);
+        ERROR_PRINT_CODE(
+            errorcode,
+            "%s last fault: cause=%s(0x%04lx) lr=0x%08lx a=0x%08lx b=0x%08lx c=0x%08lx "
+            "d=0x%08lx e=0x%08lx f=0x%08lx\r\n\r\n",
+            HELPERS_TAG, cause_str, (unsigned long)cause, (unsigned long)s1, (unsigned long)s2,
+            (unsigned long)s3, (unsigned long)s4, (unsigned long)s5, (unsigned long)s6,
+            (unsigned long)s7);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
 
         /* Clear signature to avoid repeating stale report on next power-on. */
         watchdog_hw->scratch[0] = 0u;

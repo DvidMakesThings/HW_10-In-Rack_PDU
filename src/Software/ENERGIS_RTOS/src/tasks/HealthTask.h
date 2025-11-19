@@ -37,10 +37,6 @@
 
 #include "../CONFIG.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #define LOGTASKBEAT_MS 500
 #define NETTASKBEAT_MS 500
 #define METERTASKBEAT_MS 500
@@ -122,9 +118,5 @@ void Health_RecordBlocked(const char *tag, uint32_t waited_ms);
  * early-boot info, then triggers the RP2040 watchdog reset.
  */
 void Health_RebootNow(const char *reason);
-
-#ifdef __cplusplus
-}
-#endif
 
 /** @} */

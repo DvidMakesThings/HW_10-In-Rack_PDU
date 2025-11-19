@@ -135,7 +135,11 @@ power_state_t Power_GetState(void) { return s_power_state; }
  */
 void Power_EnterStandby(void) {
     if (s_power_state == PWR_STATE_STANDBY) {
-        WARNING_PRINT("%s Already in STANDBY\r\n", POWER_MGR_TAG);
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_WARNING, ERR_FID_POWER_MGR, 0x0);
+        WARNING_PRINT_CODE(errorcode, "%s Already in STANDBY\r\n", POWER_MGR_TAG);
+        Storage_EnqueueWarningCode(errorcode);
+#endif
         return;
     }
 
@@ -171,7 +175,11 @@ void Power_EnterStandby(void) {
  */
 void Power_ExitStandby(void) {
     if (s_power_state == PWR_STATE_RUN) {
-        WARNING_PRINT("%s Already in RUN mode\r\n", POWER_MGR_TAG);
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_WARNING, ERR_FID_POWER_MGR, 0x1);
+        WARNING_PRINT_CODE(errorcode, "%s Already in RUN mode\r\n", POWER_MGR_TAG);
+        Storage_EnqueueWarningCode(errorcode);
+#endif
         return;
     }
 
@@ -196,7 +204,7 @@ void Power_ExitStandby(void) {
     /* Note: Relays remain OFF; user must explicitly turn them on
      * NetTask will detect the state change and call net_reinit_from_cache()
      * when it sees the link come back up */
-    
+
     static uint32_t s_pwm_slice = 0;
     s_pwm_slice = pwm_gpio_to_slice_num(PROC_LED);
     pwm_set_wrap(s_pwm_slice, 65535U);

@@ -99,10 +99,12 @@
  * @name Event Logs and Fault History
  * @{
  */
-#define EEPROM_EVENT_LOG_START 0x1600 /**< Start of event log block. */
-#define EEPROM_EVENT_LOG_SIZE 0x0400  /**< Size of event log block. */
-#define EVENT_LOG_POINTER_SIZE 2u     /**< Pointer bytes at start of event log block. */
-#define EVENT_LOG_ENTRY_SIZE 2u       /**< Size of one event log entry in bytes. */
+#define EEPROM_EVENT_ERR_START 0x1600  /**< Start of event log block. */
+#define EEPROM_EVENT_ERR_SIZE 0x0200   /**< Size of event log block. */
+#define EEPROM_EVENT_WARN_START 0x1800 /**< Start of event log block. */
+#define EEPROM_EVENT_WARN_SIZE 0x0200  /**< Size of event log block. */
+#define EVENT_LOG_POINTER_SIZE 2u      /**< Pointer bytes at start of event log block. */
+#define EVENT_LOG_ENTRY_SIZE 2u        /**< Size of one event log entry in bytes. */
 /** @} */
 
 /**

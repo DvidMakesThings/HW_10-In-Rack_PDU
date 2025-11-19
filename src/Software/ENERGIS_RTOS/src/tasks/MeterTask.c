@@ -71,25 +71,6 @@ static float s_temp_offset_c = 0.0f;       /**< @brief Additional °C offset aft
 /*                          Internal Functions                           */
 /* ##################################################################### */
 
-/* =====================  ADC Helpers (internal)  ======================= */
-/**
- * @brief Read voltage from the selected ADC channel with averaging.
- */
-static float adc_read_voltage_avg(uint8_t ch) {
-    adc_set_clkdiv(96.0f); /* slow down ADC clock */
-    adc_select_input(ch);
-    (void)adc_read();             /* throwaway sample */
-    vTaskDelay(pdMS_TO_TICKS(1)); /* allow S&H to settle ~0.1 ms rounded up */
-
-    uint32_t acc = 0;
-    for (int i = 0; i < 16; i++) {
-        acc += adc_read();
-    }
-
-    float vtap = (acc / 16.0f) * (ADC_VREF / ADC_MAX);
-    return vtap * 1; /* apply ADC_TOL if needed */
-}
-
 /**
  * @brief Convert ADC raw code to RP2040 die temperature [°C] using per-device calibration.
  */
@@ -181,6 +162,8 @@ static void MeterTask_Loop(void *pvParameters) {
 
     const TickType_t pollPeriod = pdMS_TO_TICKS(1000 / METER_POLL_RATE_HZ);
     TickType_t lastWakeTime = xTaskGetTickCount();
+
+    ECHO("%s Task started\r\n", METER_TASK_TAG);
 
     /* Initialize energy tracking */
     uint32_t boot_ms = to_ms_since_boot(get_absolute_time());
@@ -279,7 +262,17 @@ static void MeterTask_Loop(void *pvParameters) {
                 acc_vusb += adc_read();
             uint16_t raw_vusb = (uint16_t)(acc_vusb / 16);
             float v_usb_tap = ((float)raw_vusb) * (ADC_VREF / (float)ADC_MAX);
-            float v_usb = v_usb_tap * VBUS_DIVIDER;
+            float v_usb = v_usb_tap * VBUS_DIVIDER * ADC_TOL;
+
+            if (v_usb < 4.5f) {
+#if ERRORLOGGER
+                uint16_t err_code =
+                    ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_METERTASK, 0x5);
+                ERROR_PRINT_CODE(err_code, "%s CRITICAL: USB supply low: %.2f V\r\n",
+                                 METER_TASK_TAG, v_usb);
+                Storage_EnqueueErrorCode(err_code);
+#endif
+            }
 
             /* --- 12V supply (GPIO29, channel 3) --- */
             adc_select_input(V_SUPPLY);
@@ -291,7 +284,17 @@ static void MeterTask_Loop(void *pvParameters) {
                 acc_12v += adc_read();
             uint16_t raw_12v = (uint16_t)(acc_12v / 16);
             float v_12_tap = ((float)raw_12v) * (ADC_VREF / (float)ADC_MAX);
-            float v_12v = v_12_tap * SUPPLY_DIVIDER;
+            float v_12v = v_12_tap * SUPPLY_DIVIDER * ADC_TOL;
+
+            if (v_12v < 10.0f) {
+#if ERRORLOGGER
+                uint16_t err_code =
+                    ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_METERTASK, 0x6);
+                ERROR_PRINT_CODE(err_code, "%s CRITICAL: 12V supply low: %.2f V\r\n",
+                                 METER_TASK_TAG, v_12v);
+                Storage_EnqueueErrorCode(err_code);
+#endif
+            }
 
             /* --- Die temperature (channel 4) --- */
             adc_set_temp_sensor_enabled(true); /* force-enable each time */
@@ -304,6 +307,29 @@ static void MeterTask_Loop(void *pvParameters) {
                 acc_t += adc_read();
             uint16_t raw_temp = (uint16_t)(acc_t / 32);
             float temp_c = adc_raw_to_die_temp_c(raw_temp);
+
+            if (temp_c > 60.0f) {
+#if ERRORLOGGER
+                uint16_t err_code =
+                    ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_METERTASK, 0x7);
+                ERROR_PRINT_CODE(err_code, "%s CRITICAL: Die temperature high: %.2f C\r\n",
+                                 METER_TASK_TAG, temp_c);
+                Storage_EnqueueErrorCode(err_code);
+#endif
+            }
+            vTaskDelay(pdMS_TO_TICKS(5));
+            Health_Heartbeat(HEALTH_ID_METER);
+            if (temp_c < 0.0f) {
+#if ERRORLOGGER
+                uint16_t err_code =
+                    ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_METERTASK, 0x8);
+                ERROR_PRINT_CODE(err_code, "%s CRITICAL: Die temperature low: %.2f C\r\n",
+                                 METER_TASK_TAG, temp_c);
+                Storage_EnqueueErrorCode(err_code);
+#endif
+            }
+            Health_Heartbeat(HEALTH_ID_METER);
+            vTaskDelay(pdMS_TO_TICKS(5));
 
             /* Plausibility clamp: ignore junk (e.g., if another task stomped ADC) */
             if (temp_c >= -20.0f && temp_c <= 120.0f) {
@@ -350,6 +376,11 @@ BaseType_t MeterTask_Init(bool enable) {
     /* Create queue */
     q_meter_telemetry = xQueueCreate(METER_TELEMETRY_QUEUE_LEN, sizeof(meter_telemetry_t));
     if (q_meter_telemetry == NULL) {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_METERTASK, 0x2);
+        ERROR_PRINT_CODE(err_code, "%s Failed to create telemetry queue\r\n", METER_TASK_TAG);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return pdFAIL;
     }
 
@@ -447,6 +478,12 @@ void MeterTask_RefreshAll(void) {
  */
 bool MeterTask_GetSystemTelemetry(system_telemetry_t *sys) {
     if (sys == NULL) {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_METERTASK, 0x3);
+        ERROR_PRINT_CODE(err_code, "%s NULL pointer in MeterTask_GetSystemTelemetry\r\n",
+                         METER_TASK_TAG);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return false;
     }
     *sys = s_sys;
@@ -459,6 +496,11 @@ bool MeterTask_GetSystemTelemetry(system_telemetry_t *sys) {
 bool MeterTask_TempCalibration_SinglePointCompute(float ambient_c, uint16_t raw_temp, float *out_v0,
                                                   float *out_slope, float *out_offset) {
     if (!out_v0 || !out_slope || !out_offset) {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_METERTASK, 0x4);
+        ERROR_PRINT_CODE(err_code, "%s NULL pointer in Single Point Compute\r\n", METER_TASK_TAG);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return false;
     }
 
@@ -477,6 +519,11 @@ bool MeterTask_TempCalibration_SinglePointCompute(float ambient_c, uint16_t raw_
 bool MeterTask_TempCalibration_TwoPointCompute(float t1_c, uint16_t raw1, float t2_c, uint16_t raw2,
                                                float *out_v0, float *out_slope, float *out_offset) {
     if (!out_v0 || !out_slope || !out_offset) {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_METERTASK, 0x5);
+        ERROR_PRINT_CODE(err_code, "%s NULL pointer in Two Point Compute\r\n", METER_TASK_TAG);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return false;
     }
     const float v1 = ((float)raw1) * (ADC_VREF / (float)ADC_MAX);
@@ -491,9 +538,21 @@ bool MeterTask_TempCalibration_TwoPointCompute(float t1_c, uint16_t raw1, float 
 
     /* Sanity ranges to guard bad inputs */
     if (s_cal <= 0.0005f || s_cal >= 0.005f) {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_WARNING, ERR_FID_METERTASK, 0x1);
+        WARNING_PRINT_CODE(err_code, "%s Two Point Compute: computed slope out of range\r\n",
+                           METER_TASK_TAG);
+        Storage_EnqueueWarningCode(err_code);
+#endif
         return false;
     }
     if (v0_cal <= 0.60f || v0_cal >= 0.85f) {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_WARNING, ERR_FID_METERTASK, 0x2);
+        WARNING_PRINT_CODE(err_code, "%s Two Point Compute: computed slope out of range\r\n",
+                           METER_TASK_TAG);
+        Storage_EnqueueWarningCode(err_code);
+#endif
         return false;
     }
 
@@ -509,9 +568,20 @@ bool MeterTask_TempCalibration_TwoPointCompute(float t1_c, uint16_t raw1, float 
 bool MeterTask_SetTempCalibration(float v0_volts_at_27c, float slope_volts_per_deg,
                                   float offset_c) {
     if (slope_volts_per_deg <= 0.0005f || slope_volts_per_deg >= 0.005f) {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_WARNING, ERR_FID_METERTASK, 0x3);
+        WARNING_PRINT_CODE(err_code, "%s SetTempCalibration: slope out of range\r\n",
+                           METER_TASK_TAG);
+        Storage_EnqueueWarningCode(err_code);
+#endif
         return false;
     }
     if (v0_volts_at_27c <= 0.60f || v0_volts_at_27c >= 0.85f) {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_WARNING, ERR_FID_METERTASK, 0x4);
+        WARNING_PRINT_CODE(err_code, "%s SetTempCalibration: V0 out of range\r\n", METER_TASK_TAG);
+        Storage_EnqueueWarningCode(err_code);
+#endif
         return false;
     }
 

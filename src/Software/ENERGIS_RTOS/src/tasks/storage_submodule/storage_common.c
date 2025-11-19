@@ -14,6 +14,8 @@
 
 #include "../../CONFIG.h"
 
+#define ST_COMMON_TAG "[ST-COM]"
+
 /**
  * @brief Calculate CRC-8 checksum using polynomial 0x07.
  *

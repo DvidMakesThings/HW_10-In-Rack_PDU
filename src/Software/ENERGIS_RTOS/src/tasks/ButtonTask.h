@@ -1,7 +1,7 @@
 /**
  * @file src/tasks/button_task.h
  * @author DvidMakesThings - David Sipos
- * 
+ *
  * @defgroup tasks02 2. Button Task Driver
  * @ingroup tasks
  * @brief FreeRTOS-based button scanner + debouncer for ENERGIS.
@@ -50,10 +50,6 @@
 #define BUTTON_WAIT_STORAGE_READY_MS 5000u
 #endif
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 /**
  * @brief Button events emitted to q_btn.
  */
@@ -90,14 +86,10 @@ BaseType_t ButtonTask_Init(bool enable);
 
 /**
  * @brief Ready-state query for deterministic boot sequencing.
- * 
+ *
  * @return true if ButtonTask_Init(true) completed successfully, else false.
  */
 bool Button_IsReady(void);
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif /* ENERGIS_BUTTONTASK_H */
 

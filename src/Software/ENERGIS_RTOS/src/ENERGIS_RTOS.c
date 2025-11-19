@@ -23,6 +23,8 @@
 
 #include "CONFIG.h"
 
+#define MAIN_TAG "[MAIN] "
+
 /**
  * @brief Global variable to trigger BOOTSEL mode.
  *
@@ -63,8 +65,11 @@ int main(void) {
     vTaskStartScheduler(); /* Never returns */
 
     /* ===== SAFETY LOOP (should never reach here) ===== */
-
-    log_printf("[FATAL] Scheduler returned - should never happen!\r\n");
+#if ERRORLOGGER
+    uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_FATAL_ERROR, ERR_FID_INIT_MAIN, 0x0);
+    ERROR_PRINT_CODE(errorcode, "%s Scheduler returned - should never happen!\r\n", MAIN_TAG);
+    Storage_EnqueueErrorCode(errorcode);
+#endif
     for (;;) {
         tight_loop_contents();
     }

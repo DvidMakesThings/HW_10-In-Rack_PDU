@@ -246,6 +246,14 @@ void handle_settings_post(uint8_t sock, char *body) {
                                   "{\"error\":\"Missing form body\"}";
         send(sock, (uint8_t *)bad, sizeof(bad) - 1);
         net_beat();
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_SETTINGS, 0x1);
+        ERROR_PRINT_CODE(errorcode, "%s Missing POST body in settings handler\r\n",
+                         SETTINGS_HANDLER_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+
         return;
     }
 

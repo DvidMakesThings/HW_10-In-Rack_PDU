@@ -1,21 +1,21 @@
 /**
  * @file src/misc/crashlog.h
  * @author DvidMakesThings - David Sipos
- * 
+ *
  * @defgroup misc Miscellaneous Utilities
  * @brief Miscellaneous utility functions and modules.
  * @{
- * 
+ *
  * @defgroup misc1 1. Crash Log Module
  * @ingroup misc
  * @brief Header file for crash log module
  * @{
- * 
+ *
  * @version 1.0.0
  * @date 2025-11-06
- * 
- * @details Minimal HardFault + reset and watchdog feed crash log kept in 
- * retained RAM with integrity. 
+ *
+ * @details Minimal HardFault + reset and watchdog feed crash log kept in
+ * retained RAM with integrity.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -24,10 +24,6 @@
 #pragma once
 
 #include "../CONFIG.h"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 /** @brief Retained log ring capacity for watchdog feeds. */
 #define CRASH_FEED_RING 16u
@@ -128,9 +124,5 @@ uint32_t CrashLog_Platform_ReadResetBits(void);
  * @return Decoded reason.
  */
 crash_reset_reason_t CrashLog_Platform_DecodeReset(uint32_t raw);
-
-#ifdef __cplusplus
-}
-#endif
 
 /** @} */

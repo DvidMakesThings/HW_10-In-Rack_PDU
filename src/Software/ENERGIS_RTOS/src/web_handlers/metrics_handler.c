@@ -80,8 +80,17 @@ static int render_metrics(void) {
                     "# HELP energis_up 1 if the metrics handler is healthy.\n"
                     "# TYPE energis_up gauge\n"
                     "energis_up 1\n");
-    if (pos >= bufsize)
+    if (pos >= bufsize) {
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_METRICS, 0x0);
+        ERROR_PRINT_CODE(errorcode, "%s Metrics buffer overflow on energis_up\n",
+                         METRICS_HANDLER_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+
         return -1;
+    }
     net_beat();
 
     /* Build info */
@@ -90,8 +99,17 @@ static int render_metrics(void) {
                     "# TYPE energis_build_info gauge\n"
                     "energis_build_info{version=\"%s\",serial=\"%s\"} 1\n",
                     version, serial);
-    if (pos >= bufsize)
+    if (pos >= bufsize) {
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_METRICS, 0x1);
+        ERROR_PRINT_CODE(errorcode, "%s Metrics buffer overflow on energis_build_info\n",
+                         METRICS_HANDLER_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+
         return -1;
+    }
     net_beat();
 
     /* Uptime */
@@ -100,8 +118,17 @@ static int render_metrics(void) {
                     "# TYPE energis_uptime_seconds_total counter\n"
                     "energis_uptime_seconds_total %u\n",
                     uptime_sec);
-    if (pos >= bufsize)
+    if (pos >= bufsize) {
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_METRICS, 0x2);
+        ERROR_PRINT_CODE(errorcode, "%s Metrics buffer overflow on energis_uptime_seconds_total\n",
+                         METRICS_HANDLER_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+
         return -1;
+    }
 
     /* Temp and rails */
     pos += snprintf(metrics_buffer + pos, bufsize - pos,
@@ -109,40 +136,86 @@ static int render_metrics(void) {
                     "# TYPE energis_internal_temperature_celsius gauge\n"
                     "energis_internal_temperature_celsius %.3f\n",
                     temp_c);
-    if (pos >= bufsize)
+    if (pos >= bufsize) {
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_METRICS, 0x3);
+        ERROR_PRINT_CODE(errorcode,
+                         "%s Metrics buffer overflow on energis_internal_temperature_celsius\n",
+                         METRICS_HANDLER_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+
         return -1;
+    }
 
     pos += snprintf(metrics_buffer + pos, bufsize - pos,
                     "# HELP energis_temp_calibrated 1 if temperature calibration is applied.\n"
                     "# TYPE energis_temp_calibrated gauge\n"
                     "energis_temp_calibrated %d\n",
                     calibrated);
-    if (pos >= bufsize)
+    if (pos >= bufsize) {
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_METRICS, 0x4);
+        ERROR_PRINT_CODE(errorcode, "%s Metrics buffer overflow on energis_temp_calibrated\n",
+                         METRICS_HANDLER_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+
         return -1;
+    }
 
     pos += snprintf(metrics_buffer + pos, bufsize - pos,
                     "# HELP energis_temp_calibration_mode Calibration mode: 0=none, 1=1pt, 2=2pt.\n"
                     "# TYPE energis_temp_calibration_mode gauge\n"
                     "energis_temp_calibration_mode %u\n",
                     (unsigned)cal_mode);
-    if (pos >= bufsize)
+    if (pos >= bufsize) {
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_METRICS, 0x5);
+        ERROR_PRINT_CODE(errorcode, "%s Metrics buffer overflow on energis_temp_calibration_mode\n",
+                         METRICS_HANDLER_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+
         return -1;
+    }
 
     pos += snprintf(metrics_buffer + pos, bufsize - pos,
                     "# HELP energis_vusb_volts USB rail voltage.\n"
                     "# TYPE energis_vusb_volts gauge\n"
                     "energis_vusb_volts %.3f\n",
                     v_usb);
-    if (pos >= bufsize)
+    if (pos >= bufsize) {
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_METRICS, 0x6);
+        ERROR_PRINT_CODE(errorcode, "%s Metrics buffer overflow on energis_vusb_volts\n",
+                         METRICS_HANDLER_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+
         return -1;
+    }
 
     pos += snprintf(metrics_buffer + pos, bufsize - pos,
                     "# HELP energis_vsupply_volts 12V supply rail voltage.\n"
                     "# TYPE energis_vsupply_volts gauge\n"
                     "energis_vsupply_volts %.3f\n",
                     v_12v);
-    if (pos >= bufsize)
+    if (pos >= bufsize) {
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_METRICS, 0x7);
+        ERROR_PRINT_CODE(errorcode, "%s Metrics buffer overflow on energis_vsupply_volts\n",
+                         METRICS_HANDLER_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+
         return -1;
+    }
     net_beat();
 
     /* HTTP counter */
@@ -151,8 +224,17 @@ static int render_metrics(void) {
                     "# TYPE energis_http_requests_total counter\n"
                     "energis_http_requests_total %u\n",
                     g_metrics.http_requests_total);
-    if (pos >= bufsize)
+    if (pos >= bufsize) {
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_METRICS, 0x8);
+        ERROR_PRINT_CODE(errorcode, "%s Metrics buffer overflow on energis_http_requests_total\n",
+                         METRICS_HANDLER_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+
         return -1;
+    }
     net_beat();
 
     /* Relay state */
@@ -166,8 +248,17 @@ static int render_metrics(void) {
         bool state = mcp_get_channel_state((uint8_t)ch);
         pos += snprintf(metrics_buffer + pos, bufsize - pos,
                         "energis_channel_state{ch=\"%d\"} %d\n", ch + 1, state ? 1 : 0);
-        if (pos >= bufsize)
+        if (pos >= bufsize) {
+#if ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_METRICS, 0x9);
+            ERROR_PRINT_CODE(errorcode, "%s Metrics buffer overflow on energis_channel_state\n",
+                             METRICS_HANDLER_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
+
             return -1;
+        }
     }
     net_beat();
 
@@ -176,8 +267,18 @@ static int render_metrics(void) {
         metrics_buffer + pos, bufsize - pos,
         "# HELP energis_channel_telemetry_valid 1 if telemetry for channel is fresh/valid.\n"
         "# TYPE energis_channel_telemetry_valid gauge\n");
-    if (pos >= bufsize)
+    if (pos >= bufsize) {
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_METRICS, 0xA);
+        ERROR_PRINT_CODE(errorcode,
+                         "%s Metrics buffer overflow on energis_channel_telemetry_valid\n",
+                         METRICS_HANDLER_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+
         return -1;
+    }
 
     for (int ch = 0; ch < 8; ch++) {
         meter_telemetry_t telem = (meter_telemetry_t){0};
@@ -185,8 +286,18 @@ static int render_metrics(void) {
         pos += snprintf(metrics_buffer + pos, bufsize - pos,
                         "energis_channel_telemetry_valid{ch=\"%d\"} %d\n", ch + 1,
                         telem.valid ? 1 : 0);
-        if (pos >= bufsize)
+        if (pos >= bufsize) {
+#if ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_METRICS, 0xA);
+            ERROR_PRINT_CODE(errorcode,
+                             "%s Metrics buffer overflow on energis_channel_telemetry_valid\n",
+                             METRICS_HANDLER_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
+
             return -1;
+        }
     }
     net_beat();
 
@@ -194,8 +305,17 @@ static int render_metrics(void) {
     pos += snprintf(metrics_buffer + pos, bufsize - pos,
                     "# HELP energis_channel_voltage_volts Channel voltage.\n"
                     "# TYPE energis_channel_voltage_volts gauge\n");
-    if (pos >= bufsize)
+    if (pos >= bufsize) {
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_METRICS, 0xB);
+        ERROR_PRINT_CODE(errorcode, "%s Metrics buffer overflow on energis_channel_voltage_volts\n",
+                         METRICS_HANDLER_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+
         return -1;
+    }
 
     for (int ch = 0; ch < 8; ch++) {
         meter_telemetry_t telem = (meter_telemetry_t){0};
@@ -203,16 +323,35 @@ static int render_metrics(void) {
             (MeterTask_GetTelemetry((uint8_t)ch, &telem) && telem.valid) ? telem.voltage : 0.0f;
         pos += snprintf(metrics_buffer + pos, bufsize - pos,
                         "energis_channel_voltage_volts{ch=\"%d\"} %.3f\n", ch + 1, V);
-        if (pos >= bufsize)
+        if (pos >= bufsize) {
+#if ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_METRICS, 0xB);
+            ERROR_PRINT_CODE(errorcode,
+                             "%s Metrics buffer overflow on energis_channel_voltage_volts\n",
+                             METRICS_HANDLER_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
+
             return -1;
+        }
     }
     net_beat();
 
     pos += snprintf(metrics_buffer + pos, bufsize - pos,
                     "# HELP energis_channel_current_amps Channel current.\n"
                     "# TYPE energis_channel_current_amps gauge\n");
-    if (pos >= bufsize)
+    if (pos >= bufsize) {
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_METRICS, 0xC);
+        ERROR_PRINT_CODE(errorcode, "%s Metrics buffer overflow on energis_channel_current_amps\n",
+                         METRICS_HANDLER_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+
         return -1;
+    }
 
     for (int ch = 0; ch < 8; ch++) {
         meter_telemetry_t telem = (meter_telemetry_t){0};
@@ -220,16 +359,35 @@ static int render_metrics(void) {
             (MeterTask_GetTelemetry((uint8_t)ch, &telem) && telem.valid) ? telem.current : 0.0f;
         pos += snprintf(metrics_buffer + pos, bufsize - pos,
                         "energis_channel_current_amps{ch=\"%d\"} %.3f\n", ch + 1, I);
-        if (pos >= bufsize)
+        if (pos >= bufsize) {
+#if ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_METRICS, 0xC);
+            ERROR_PRINT_CODE(errorcode,
+                             "%s Metrics buffer overflow on energis_channel_current_amps\n",
+                             METRICS_HANDLER_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
+
             return -1;
+        }
     }
     net_beat();
 
     pos += snprintf(metrics_buffer + pos, bufsize - pos,
                     "# HELP energis_channel_power_watts Active power per channel.\n"
                     "# TYPE energis_channel_power_watts gauge\n");
-    if (pos >= bufsize)
+    if (pos >= bufsize) {
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_METRICS, 0xD);
+        ERROR_PRINT_CODE(errorcode, "%s Metrics buffer overflow on energis_channel_power_watts\n",
+                         METRICS_HANDLER_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+
         return -1;
+    }
 
     for (int ch = 0; ch < 8; ch++) {
         meter_telemetry_t telem;
@@ -238,8 +396,18 @@ static int render_metrics(void) {
             P = telem.power;
         pos += snprintf(metrics_buffer + pos, bufsize - pos,
                         "energis_channel_power_watts{ch=\"%d\"} %.3f\n", ch + 1, P);
-        if (pos >= bufsize)
+        if (pos >= bufsize) {
+#if ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_METRICS, 0xD);
+            ERROR_PRINT_CODE(errorcode,
+                             "%s Metrics buffer overflow on energis_channel_power_watts\n",
+                             METRICS_HANDLER_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
+
             return -1;
+        }
     }
     net_beat();
 
@@ -247,8 +415,18 @@ static int render_metrics(void) {
         snprintf(metrics_buffer + pos, bufsize - pos,
                  "# HELP energis_channel_energy_watt_hours_total Accumulated energy per channel.\n"
                  "# TYPE energis_channel_energy_watt_hours_total counter\n");
-    if (pos >= bufsize)
+    if (pos >= bufsize) {
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_METRICS, 0xE);
+        ERROR_PRINT_CODE(errorcode,
+                         "%s Metrics buffer overflow on energis_channel_energy_watt_hours_total\n",
+                         METRICS_HANDLER_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+
         return -1;
+    }
 
     for (int ch = 0; ch < 8; ch++) {
         meter_telemetry_t telem;
@@ -257,8 +435,19 @@ static int render_metrics(void) {
             E_wh = telem.energy_kwh * 1000.0f;
         pos += snprintf(metrics_buffer + pos, bufsize - pos,
                         "energis_channel_energy_watt_hours_total{ch=\"%d\"} %.3f\n", ch + 1, E_wh);
-        if (pos >= bufsize)
+        if (pos >= bufsize) {
+#if ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_METRICS, 0xE);
+            ERROR_PRINT_CODE(
+                errorcode,
+                "%s Metrics buffer overflow on energis_channel_energy_watt_hours_total\n",
+                METRICS_HANDLER_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
+
             return -1;
+        }
     }
     net_beat();
 

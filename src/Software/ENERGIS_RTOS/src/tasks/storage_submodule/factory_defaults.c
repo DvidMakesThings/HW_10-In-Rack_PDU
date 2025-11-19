@@ -15,14 +15,14 @@
 
 #include "../../CONFIG.h"
 
+#define ST_FACTORY_DEFAULTS_TAG "[ST-FDEF]"
+
 /* External declarations from StorageTask.c */
 extern const uint8_t DEFAULT_RELAY_STATUS[8];
 extern const networkInfo DEFAULT_NETWORK;
 extern const uint8_t DEFAULT_ENERGY_DATA[64];
 extern const uint8_t DEFAULT_LOG_DATA[64];
 extern SemaphoreHandle_t eepromMtx;
-
-#define STORAGE_TASK_TAG "[Storage]"
 
 /**
  * @brief Write factory defaults to all EEPROM sections.
@@ -51,18 +51,18 @@ int EEPROM_WriteFactoryDefaults(void) {
     memcpy(sys_info_buf, DEFAULT_SN, sn_len);
     memcpy(sys_info_buf + sn_len, SWVERSION, swv_len);
     status |= EEPROM_WriteSystemInfo((const uint8_t *)sys_info_buf, sn_len + swv_len);
-    INFO_PRINT("%s Serial Number and SWVERSION written\r\n", STORAGE_TASK_TAG);
+    INFO_PRINT("%s Serial Number and SWVERSION written\r\n", ST_FACTORY_DEFAULTS_TAG);
 
     /* 2. Write Relay Status (all OFF) */
     status |= EEPROM_WriteUserOutput(DEFAULT_RELAY_STATUS, sizeof(DEFAULT_RELAY_STATUS));
-    INFO_PRINT("%s Relay Status written\r\n", STORAGE_TASK_TAG);
+    INFO_PRINT("%s Relay Status written\r\n", ST_FACTORY_DEFAULTS_TAG);
 
     /* 3. Write Network Configuration (with CRC and derived MAC) */
     {
         networkInfo defnet = DEFAULT_NETWORK; /* work on a copy */
         Energis_FillMacFromSerial(defnet.mac);
         status |= EEPROM_WriteUserNetworkWithChecksum(&defnet);
-        INFO_PRINT("%s Network Configuration written\r\n", STORAGE_TASK_TAG);
+        INFO_PRINT("%s Network Configuration written\r\n", ST_FACTORY_DEFAULTS_TAG);
     }
 
     /* 4. Write Sensor Calibration (default factors for all channels) */
@@ -80,25 +80,31 @@ int EEPROM_WriteFactoryDefaults(void) {
         zero_cal.channels[i].zero_calibrated = 0xFF;
     }
     status |= EEPROM_WriteSensorCalibration((const uint8_t *)&zero_cal, sizeof(zero_cal));
-    INFO_PRINT("%s Sensor Calibration written\r\n", STORAGE_TASK_TAG);
+    INFO_PRINT("%s Sensor Calibration written\r\n", ST_FACTORY_DEFAULTS_TAG);
 
     /* 5. Write Energy Monitoring Data (placeholder) */
     status |= EEPROM_WriteEnergyMonitoring(DEFAULT_ENERGY_DATA, sizeof(DEFAULT_ENERGY_DATA));
-    INFO_PRINT("%s Energy Monitoring Data written\r\n", STORAGE_TASK_TAG);
+    INFO_PRINT("%s Energy Monitoring Data written\r\n", ST_FACTORY_DEFAULTS_TAG);
 
     /* 6. Write Event Logs (placeholder) */
     status |= EEPROM_WriteEventLogs(DEFAULT_LOG_DATA, sizeof(DEFAULT_LOG_DATA));
-    INFO_PRINT("%s Event Logs written\r\n", STORAGE_TASK_TAG);
+    INFO_PRINT("%s Event Logs written\r\n", ST_FACTORY_DEFAULTS_TAG);
 
     /* 7. Write User Preferences (default name/location with CRC) */
     status |= EEPROM_WriteDefaultNameLocation();
-    INFO_PRINT("%s User Preferences written\r\n", STORAGE_TASK_TAG);
+    INFO_PRINT("%s User Preferences written\r\n", ST_FACTORY_DEFAULTS_TAG);
 
     /* Report final status */
     if (status == 0) {
-        INFO_PRINT("%s Factory defaults written successfully\r\n", STORAGE_TASK_TAG);
+        INFO_PRINT("%s Factory defaults written successfully\r\n", ST_FACTORY_DEFAULTS_TAG);
     } else {
-        ERROR_PRINT("%s Factory defaults write failed\r\n", STORAGE_TASK_TAG);
+#if ERRORLOGGER
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_FACTORY_DEFS, 0x1);
+        ERROR_PRINT_CODE(err_code, "%s Factory defaults write encountered errors\r\n",
+                         ST_FACTORY_DEFAULTS_TAG);
+        Storage_EnqueueErrorCode(err_code);
+#endif
     }
     return status;
 }
@@ -118,22 +124,40 @@ int EEPROM_ReadFactoryDefaults(void) {
     char stored_sn[32];
     EEPROM_ReadSystemInfo((uint8_t *)stored_sn, strlen(DEFAULT_SN) + 1);
     if (memcmp(stored_sn, DEFAULT_SN, strlen(DEFAULT_SN)) != 0) {
-        WARNING_PRINT("%s Invalid Serial Number in EEPROM\r\n", STORAGE_TASK_TAG);
+#if ERRORLOGGER
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_WARNING, ERR_FID_ST_FACTORY_DEFS, 0x1);
+        WARNING_PRINT_CODE(err_code, "%s Serial Number mismatch: expected '%s', got '%s'\r\n",
+                           ST_FACTORY_DEFAULTS_TAG, DEFAULT_SN, stored_sn);
+        Storage_EnqueueWarningCode(err_code);
+#endif
     }
 
     /* Check Network Configuration (CRC verified) */
     networkInfo stored_network;
     if (EEPROM_ReadUserNetworkWithChecksum(&stored_network) != 0) {
-        WARNING_PRINT("%s Invalid Network Configuration in EEPROM\r\n", STORAGE_TASK_TAG);
+#if ERRORLOGGER
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_WARNING, ERR_FID_ST_FACTORY_DEFS, 0x2);
+        WARNING_PRINT_CODE(err_code, "%s Network Configuration CRC mismatch\r\n",
+                           ST_FACTORY_DEFAULTS_TAG);
+        Storage_EnqueueWarningCode(err_code);
+#endif
     }
 
     /* Check Sensor Calibration presence */
     hlw_calib_data_t tmp;
     if (EEPROM_ReadSensorCalibration((uint8_t *)&tmp, sizeof(tmp)) != 0) {
-        WARNING_PRINT("%s Sensor Calibration missing/invalid\r\n", STORAGE_TASK_TAG);
+#if ERRORLOGGER
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_WARNING, ERR_FID_ST_FACTORY_DEFS, 0x3);
+        WARNING_PRINT_CODE(err_code, "%s Sensor Calibration read error\r\n",
+                           ST_FACTORY_DEFAULTS_TAG);
+        Storage_EnqueueWarningCode(err_code);
+#endif
     }
 
-    INFO_PRINT("%s EEPROM content checked\r\n", STORAGE_TASK_TAG);
+    INFO_PRINT("%s EEPROM content checked\r\n", ST_FACTORY_DEFAULTS_TAG);
     return 0;
 }
 
@@ -155,7 +179,8 @@ bool check_factory_defaults(void) {
 
     /* Check if factory init needed */
     if (magic != EEPROM_MAGIC_VAL) {
-        INFO_PRINT("%s First boot detected, writing factory defaults...\r\n", STORAGE_TASK_TAG);
+        INFO_PRINT("%s First boot detected, writing factory defaults...\r\n",
+                   ST_FACTORY_DEFAULTS_TAG);
 
         /* Write factory defaults with mutex protection */
         xSemaphoreTake(eepromMtx, portMAX_DELAY);
@@ -169,15 +194,21 @@ bool check_factory_defaults(void) {
 
         /* Report result */
         if (ret == 0) {
-            INFO_PRINT("%s Factory defaults written successfully\r\n", STORAGE_TASK_TAG);
+            INFO_PRINT("%s Factory defaults written successfully\r\n", ST_FACTORY_DEFAULTS_TAG);
             return true;
         } else {
-            ERROR_PRINT("%s Failed to write factory defaults\r\n", STORAGE_TASK_TAG);
+#if ERRORLOGGER
+            uint16_t err_code =
+                ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_FACTORY_DEFS, 0x2);
+            ERROR_PRINT_CODE(err_code, "%s Factory defaults write failed\r\n",
+                             ST_FACTORY_DEFAULTS_TAG);
+            Storage_EnqueueErrorCode(err_code);
+#endif
             return false;
         }
     }
 
     /* Magic value verified - EEPROM already initialized */
-    INFO_PRINT("%s Magic value verified\r\n", STORAGE_TASK_TAG);
+    INFO_PRINT("%s Magic value verified\r\n", ST_FACTORY_DEFAULTS_TAG);
     return true;
 }

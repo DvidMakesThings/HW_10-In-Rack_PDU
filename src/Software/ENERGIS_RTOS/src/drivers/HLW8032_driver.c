@@ -15,6 +15,8 @@
 
 #include "../CONFIG.h"
 
+#define HLW8032_TAG "[HLW8032]"
+
 #define HLW_OFFSET 0.0f
 
 /* =====================  Nominal component values  ===================== */
@@ -320,8 +322,13 @@ void hlw8032_init(void) {
 }
 
 bool hlw8032_read(uint8_t channel) {
-    if (channel >= 8)
+    if (channel >= 8) {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0x1);
+        ERROR_PRINT_CODE(err_code, "%s Invalid channel %u\r\n", HLW8032_TAG, (unsigned)channel);
+#endif
         return false;
+    }
 
     /* Select channel via MUX (MCP access is mutex-protected internally) */
     mux_select(channel);
@@ -378,8 +385,14 @@ void hlw8032_update_uptime(uint8_t ch, bool state) {
 }
 
 uint32_t hlw8032_get_uptime(uint8_t ch) {
-    if (ch >= 8)
+    if (ch >= 8) {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0x2);
+        ERROR_PRINT_CODE(err_code, "%s Invalid channel %u for uptime\r\n", HLW8032_TAG,
+                         (unsigned)ch);
+#endif
         return 0;
+    }
 
     uint32_t total = channel_uptime[ch];
     uint32_t current = 0;
@@ -503,8 +516,13 @@ void hlw8032_load_calibration(void) {
 
 bool hlw8032_calibrate_channel(uint8_t channel, float ref_voltage, float ref_current) {
     (void)ref_current; /* Current calibration not implemented */
-    if (channel >= 8)
+    if (channel >= 8) {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0x3);
+        ERROR_PRINT_CODE(err_code, "%s Invalid channel %u\r\n", HLW8032_TAG, (unsigned)channel);
+#endif
         return false;
+    }
 
     const int NUM_SAMPLES = 10;
     uint32_t vpar_sum = 0, vdat_sum = 0;
@@ -582,8 +600,9 @@ bool hlw8032_zero_calibrate_all(void) {
 }
 
 bool hlw8032_get_calibration(uint8_t channel, hlw_calib_t *calib) {
-    if (channel >= 8 || calib == NULL)
+    if (channel >= 8 || calib == NULL) {
         return false;
+    }
     *calib = channel_calib[channel];
     return (calib->calibrated == 0xCA);
 }

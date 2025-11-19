@@ -51,6 +51,12 @@ extern SemaphoreHandle_t eepromMtx;
 /** Config ready event group - signals when boot config loaded */
 extern EventGroupHandle_t cfgEvents;
 
+/**
+ * @brief Queue handles for deferred error/warning logging.
+ */
+extern QueueHandle_t g_errorCodeQueue;
+extern QueueHandle_t g_warningCodeQueue;
+
 /** Config ready bit flag */
 #define CFG_READY_BIT (1 << 0)
 
@@ -70,6 +76,11 @@ typedef enum {
     STORAGE_CMD_LOAD_DEFAULTS,       /**< Reset to factory defaults */
     STORAGE_CMD_READ_SENSOR_CAL,     /**< Read sensor calibration for channel */
     STORAGE_CMD_WRITE_SENSOR_CAL,    /**< Write sensor calibration for channel */
+    STORAGE_CMD_DUMP_ERROR_LOG,      /**< Dump error event log region */
+    STORAGE_CMD_DUMP_WARNING_LOG,    /**< Dump warning event log region */
+    STORAGE_CMD_CLEAR_ERROR_LOG,     /**< Clear error event log region */
+    STORAGE_CMD_CLEAR_WARNING_LOG,   /**< Clear warning event log region */
+
     /* SIL Testing Commands */
     STORAGE_CMD_DUMP_FORMATTED, /**< Dump EEPROM in formatted hex (SIL testing) */
 } storage_cmd_t;
@@ -289,6 +300,79 @@ bool storage_get_sensor_cal(uint8_t channel, hlw_calib_t *out);
  */
 bool storage_set_sensor_cal(uint8_t channel, const hlw_calib_t *cal);
 
+/**
+ * @brief Non-blocking enqueue of error/warning codes.
+ * These can be safely called from any task context.
+ *
+ * @param code Error or warning code to enqueue.
+ * @return None
+ */
+void Storage_EnqueueErrorCode(uint16_t code);
+
+/**
+ * @brief Non-blocking enqueue of warning codes.
+ * These can be safely called from any task context.
+ *
+ * @param code Warning code to enqueue.
+ * @return None
+ */
+void Storage_EnqueueWarningCode(uint16_t code);
+
+/**
+ * @brief Asynchronously dump the error event log region in hex format.
+ *
+ * @details
+ * Enqueues a @ref STORAGE_CMD_DUMP_ERROR_LOG message to StorageTask and
+ * returns immediately. StorageTask then prints the error event log region
+ * in the same EE_DUMP_START / EE_DUMP_END framed hex format as the full
+ * EEPROM dump, but restricted to the configured error log address range.
+ *
+ * @return true if the request was enqueued, false if storage is not ready or
+ *         the queue was full.
+ */
+bool storage_dump_error_log_async(void);
+
+/**
+ * @brief Asynchronously dump the warning event log region in hex format.
+ *
+ * @details
+ * Enqueues a @ref STORAGE_CMD_DUMP_WARNING_LOG message to StorageTask and
+ * returns immediately. StorageTask then prints the warning event log region
+ * in the same EE_DUMP_START / EE_DUMP_END framed hex format as the full
+ * EEPROM dump, but restricted to the configured warning log address range.
+ *
+ * @return true if the request was enqueued, false if storage is not ready or
+ *         the queue was full.
+ */
+bool storage_dump_warning_log_async(void);
+
+/**
+ * @brief Asynchronously clear the error event log region in EEPROM.
+ *
+ * @details
+ * Enqueues a @ref STORAGE_CMD_CLEAR_ERROR_LOG message and returns immediately.
+ * StorageTask then erases the corresponding EEPROM region in small chunks,
+ * feeding the watchdog and yielding between writes. After this operation the
+ * error event log region contains only 0xFF bytes.
+ *
+ * @return true if the request was enqueued, false if storage is not ready or
+ *         the queue was full.
+ */
+bool storage_clear_error_log_async(void);
+
+/**
+ * @brief Asynchronously clear the warning event log region in EEPROM.
+ *
+ * @details
+ * Enqueues a @ref STORAGE_CMD_CLEAR_WARNING_LOG message and returns immediately.
+ * StorageTask then erases the corresponding EEPROM region in small chunks,
+ * feeding the watchdog and yielding between writes. After this operation the
+ * warning event log region contains only 0xFF bytes.
+ *
+ * @return true if the request was enqueued, false if storage is not ready or
+ *         the queue was full.
+ */
+bool storage_clear_warning_log_async(void);
 
 #endif /* STORAGE_TASK_H */
 

@@ -14,10 +14,10 @@
 
 #include "../../CONFIG.h"
 
+#define ST_USER_PREF_TAG "[ST-USRPR]"
+
 /* External declarations from StorageTask.c */
 extern const userPrefInfo DEFAULT_USER_PREFS;
-
-#define STORAGE_TASK_TAG "[Storage]"
 
 /**
  * @brief Write raw user preferences block to EEPROM.
@@ -29,8 +29,15 @@ extern const userPrefInfo DEFAULT_USER_PREFS;
  * @return 0 on success, -1 on bounds check failure or I2C error
  */
 int EEPROM_WriteUserPreferences(const uint8_t *data, size_t len) {
-    if (len > EEPROM_USER_PREF_SIZE)
+    if (len > EEPROM_USER_PREF_SIZE) {
+#if ERRORLOGGER
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_PREFS, 0x1);
+        ERROR_PRINT_CODE(err_code, "%s Write length exceeds size\r\n", ST_USER_PREF_TAG);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return -1;
+    }
     return CAT24C256_WriteBuffer(EEPROM_USER_PREF_START, data, (uint16_t)len);
 }
 
@@ -44,8 +51,15 @@ int EEPROM_WriteUserPreferences(const uint8_t *data, size_t len) {
  * @return 0 on success, -1 on bounds check failure
  */
 int EEPROM_ReadUserPreferences(uint8_t *data, size_t len) {
-    if (len > EEPROM_USER_PREF_SIZE)
+    if (len > EEPROM_USER_PREF_SIZE) {
+#if ERRORLOGGER
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_PREFS, 0x2);
+        ERROR_PRINT_CODE(err_code, "%s Read length exceeds size\r\n", ST_USER_PREF_TAG);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return -1;
+    }
     CAT24C256_ReadBuffer(EEPROM_USER_PREF_START, data, (uint32_t)len);
     return 0;
 }
@@ -62,9 +76,15 @@ int EEPROM_ReadUserPreferences(uint8_t *data, size_t len) {
  * @return 0 on success, -1 on null pointer or I2C error
  */
 int EEPROM_WriteUserPrefsWithChecksum(const userPrefInfo *prefs) {
-    if (!prefs)
+    if (!prefs) {
+#if ERRORLOGGER
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_PREFS, 0x3);
+        ERROR_PRINT_CODE(err_code, "%s Null pointer for user prefs\r\n", ST_USER_PREF_TAG);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return -1;
-
+    }
     uint8_t buffer[66];
 
     /* Pack preferences into buffer */
@@ -94,15 +114,27 @@ int EEPROM_WriteUserPrefsWithChecksum(const userPrefInfo *prefs) {
  * @return 0 if CRC OK, -1 on CRC mismatch or null pointer
  */
 int EEPROM_ReadUserPrefsWithChecksum(userPrefInfo *prefs) {
-    if (!prefs)
+    if (!prefs) {
+#if ERRORLOGGER
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_PREFS, 0x4);
+        ERROR_PRINT_CODE(err_code, "%s Null pointer for user prefs\r\n", ST_USER_PREF_TAG);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return -1;
+    }
 
     uint8_t record[66];
     CAT24C256_ReadBuffer(EEPROM_USER_PREF_START, record, 66);
 
     /* Verify CRC */
     if (calculate_crc8(&record[0], 65) != record[65]) {
-        ERROR_PRINT("%s User prefs CRC mismatch\r\n", STORAGE_TASK_TAG);
+#if ERRORLOGGER
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_PREFS, 0x5);
+        ERROR_PRINT_CODE(err_code, "%s User prefs CRC mismatch\r\n", ST_USER_PREF_TAG);
+        Storage_EnqueueErrorCode(err_code);
+#endif
         return -1;
     }
 
@@ -131,12 +163,17 @@ userPrefInfo LoadUserPreferences(void) {
 
     /* Attempt to read from EEPROM with CRC validation */
     if (EEPROM_ReadUserPrefsWithChecksum(&prefs) == 0) {
-        INFO_PRINT("%s Loaded user prefs from EEPROM\r\n", STORAGE_TASK_TAG);
+        INFO_PRINT("%s Loaded user prefs from EEPROM\r\n", ST_USER_PREF_TAG);
         return prefs;
     }
 
-    /* CRC failed or empty EEPROM - use defaults */
-    WARNING_PRINT("%s No saved prefs, using defaults\r\n", STORAGE_TASK_TAG);
+/* CRC failed or empty EEPROM - use defaults */
+#if ERRORLOGGER
+    uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_WARNING, ERR_FID_ST_USER_PREFS, 0x0);
+    WARNING_PRINT_CODE(err_code, "%s Using default user prefs due to read/CRC failure\r\n",
+                       ST_USER_PREF_TAG);
+    Storage_EnqueueWarningCode(err_code);
+#endif
     return DEFAULT_USER_PREFS;
 }
 

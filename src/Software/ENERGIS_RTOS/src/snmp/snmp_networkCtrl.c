@@ -23,8 +23,13 @@
  *       receives compiled defaults via LoadUserNetworkConfig().
  */
 static inline void load_netcfg(networkInfo *out) {
-    if (!out)
+    if (!out) {
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SNMP_NETCTRL, 0x1);
+        ERROR_PRINT_CODE(errorcode, "<SNMP Network Ctrl> Null pointer in load_netcfg\n");
+        Storage_EnqueueErrorCode(errorcode);
         return;
+    }
     if (!storage_get_network(out)) {
         *out = LoadUserNetworkConfig();
     }

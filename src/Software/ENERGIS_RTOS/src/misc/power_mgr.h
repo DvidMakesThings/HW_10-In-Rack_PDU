@@ -29,10 +29,6 @@
 
 #include "CONFIG.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 /**
  * @brief System power states
  */
@@ -117,10 +113,6 @@ void Power_ExitStandby(void);
  * @return None
  */
 void Power_ServiceStandbyLED(void);
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif /* POWER_MGR_H */
 

@@ -29,6 +29,8 @@
 
 #include "../CONFIG.h"
 
+#define NET_TASK_TAG "[NET]"
+
 #ifndef HTTP_SOCKET_NUM
 /**
  * @brief Socket index used by the HTTP server.
@@ -54,11 +56,6 @@
  * @brief Handle to the network FreeRTOS task.
  */
 static TaskHandle_t netTaskHandle = NULL;
-
-/**
- * @brief Tag string used for NetTask log messages.
- */
-#define NET_TASK_TAG "[Net]"
 
 /**
  * @brief Cached network configuration for W5500 reinitialization.
@@ -151,7 +148,11 @@ static bool net_apply_config_and_init(const networkInfo *ni) {
 
     /* W5500 low level bring-up (GPIO, SPI, reset) */
     if (!w5500_hw_init()) {
-        ERROR_PRINT("%s w5500_hw_init failed\r\n", NET_TASK_TAG);
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NETTASK, 0x1);
+        ERROR_PRINT_CODE(errorcode, "%s w5500_hw_init failed\r\n", NET_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         return false;
     }
     Health_Heartbeat(HEALTH_ID_NET);
@@ -161,9 +162,14 @@ static bool net_apply_config_and_init(const networkInfo *ni) {
      * the link supervisor in the main loop will reinit on link-up.
      */
     if (!ethernet_apply_network_from_storage(ni)) {
-        WARNING_PRINT("%s ethernet_apply_network_from_storage failed (likely no link), "
-                      "continuing without Ethernet\r\n",
-                      NET_TASK_TAG);
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_WARNING, ERR_FID_NETTASK, 0x1);
+        WARNING_PRINT_CODE(errorcode,
+                           "%s Network configuration failed (likely no link), "
+                           "continuing without Ethernet\r\n",
+                           NET_TASK_TAG);
+        Storage_EnqueueWarningCode(errorcode);
+#endif
     }
     Health_Heartbeat(HEALTH_ID_NET);
 
@@ -189,7 +195,11 @@ static void net_start_services(void) {
 
     /* SNMP agent + trap */
     if (!SNMP_Init(SNMP_SOCKET_NUM, SNMP_PORT_AGENT, TRAP_SOCKET_NUM)) {
-        ERROR_PRINT("[SNMP] init failed\r\n");
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NETTASK, 0x2);
+        ERROR_PRINT_CODE(errorcode, "%s [SNMP] init failed\r\n", NET_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
     } else {
         INFO_PRINT("[SNMP] Agent running on UDP/%u (sock %u)\r\n", (unsigned)SNMP_PORT_AGENT,
                    (unsigned)SNMP_SOCKET_NUM);
@@ -220,7 +230,12 @@ static bool net_reinit_from_cache(void) {
 
     /* Reapply stored network configuration */
     if (!ethernet_apply_network_from_storage(&s_net_cfg)) {
-        WARNING_PRINT("%s W5500 reinit from cached config failed\r\n", NET_TASK_TAG);
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_WARNING, ERR_FID_NETTASK, 0x1);
+        WARNING_PRINT_CODE(errorcode, "%s W5500 reinit from cached config failed\r\n",
+                           NET_TASK_TAG);
+        Storage_EnqueueWarningCode(errorcode);
+#endif
         return false;
     }
     Health_Heartbeat(HEALTH_ID_NET);
@@ -254,7 +269,7 @@ static bool net_reinit_from_cache(void) {
 static void NetTask_Function(void *pvParameters) {
     (void)pvParameters;
 
-    INFO_PRINT("%s Task started\r\n", NET_TASK_TAG);
+    ECHO("%s Task started\r\n", NET_TASK_TAG);
 
     /* 1) Wait for configuration to be ready */
     static uint32_t hb_net_ms = 0;
@@ -264,17 +279,28 @@ static void NetTask_Function(void *pvParameters) {
             hb_net_ms = __now;
             Health_Heartbeat(HEALTH_ID_NET);
         }
-        WARNING_PRINT("%s waiting for config ready.\r\n", NET_TASK_TAG);
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_WARNING, ERR_FID_NETTASK, 0x3);
+        WARNING_PRINT_CODE(errorcode, "%s waiting for config ready.\r\n", NET_TASK_TAG);
+        Storage_EnqueueWarningCode(errorcode);
+#endif
         vTaskDelay(pdMS_TO_TICKS(10));
     }
     Health_Heartbeat(HEALTH_ID_NET);
 
     /* 2) Read network configuration from StorageTask and cache it */
     if (!storage_get_network(&s_net_cfg)) {
-        ERROR_PRINT("%s storage_get_network failed\r\n", NET_TASK_TAG);
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NETTASK, 0x3);
+        ERROR_PRINT_CODE(errorcode, "%s storage_get_network failed\r\n", NET_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+
         /* Fallback: use defaults directly from StorageTask helper */
         s_net_cfg = LoadUserNetworkConfig();
-        WARNING_PRINT("%s using fallback network defaults\r\n", NET_TASK_TAG);
+        errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_WARNING, ERR_FID_NETTASK, 0x4);
+        WARNING_PRINT_CODE(errorcode, "%s using fallback network defaults\r\n", NET_TASK_TAG);
+        Storage_EnqueueWarningCode(errorcode);
     }
     Health_Heartbeat(HEALTH_ID_NET);
 
@@ -284,14 +310,20 @@ static void NetTask_Function(void *pvParameters) {
         if (mr & MR_PB) {
             setMR(mr & ~MR_PB);
         }
-        ERROR_PRINT("%s Ethernet HW init failed, entering safe loop\r\n", NET_TASK_TAG);
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NETTASK, 0x4);
+        ERROR_PRINT_CODE(errorcode, "%s Ethernet HW init failed, entering safe loop\r\n",
+                         NET_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+
         for (;;) {
             uint32_t __now = to_ms_since_boot(get_absolute_time());
             if ((__now - hb_net_ms) >= 250U) {
                 hb_net_ms = __now;
                 Health_Heartbeat(HEALTH_ID_NET);
             }
-            vTaskDelay(pdMS_TO_TICKS(1000));
+            vTaskDelay(pdMS_TO_TICKS(100));
         }
     }
 
@@ -307,7 +339,11 @@ static void NetTask_Function(void *pvParameters) {
         s_eth_led_state = false;
         setNetworkLink(false);
         s_eth_led_blink_last_ms = to_ms_since_boot(get_absolute_time());
-        WARNING_PRINT("%s No PHY link at startup, ETH LED blinking\r\n", NET_TASK_TAG);
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_WARNING, ERR_FID_NETTASK, 0x5);
+        WARNING_PRINT_CODE(errorcode, "%s No PHY link at startup\r\n", NET_TASK_TAG);
+        Storage_EnqueueWarningCode(errorcode);
+#endif
     }
 
     INFO_PRINT("%s Ethernet HW up, starting services\r\n", NET_TASK_TAG);
@@ -356,8 +392,13 @@ static void NetTask_Function(void *pvParameters) {
                 s_eth_led_state = true;
                 setNetworkLink(true);
             } else {
-                WARNING_PRINT("%s PHY link DOWN detected\r\n", NET_TASK_TAG);
-                /* TODO: hook error-code reporting for link loss here */
+#if ERRORLOGGER
+                uint16_t errorcode =
+                    ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_WARNING, ERR_FID_NETTASK, 0x6);
+                WARNING_PRINT_CODE(errorcode, "%s PHY link DOWN detected\r\n", NET_TASK_TAG);
+                Storage_EnqueueWarningCode(errorcode);
+#endif
+
                 s_eth_led_blink = true;
                 s_eth_led_state = false;
                 setNetworkLink(false);
@@ -446,7 +487,11 @@ BaseType_t NetTask_Init(bool enable) {
         INFO_PRINT("%s Task created successfully\r\n", NET_TASK_TAG);
         NET_READY() = true;
     } else {
-        ERROR_PRINT("%s Failed to create task\r\n", NET_TASK_TAG);
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NETTASK, 0x5);
+        ERROR_PRINT_CODE(errorcode, "%s Failed to create task\r\n", NET_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
     }
     return result;
 }

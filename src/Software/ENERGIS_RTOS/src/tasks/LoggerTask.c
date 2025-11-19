@@ -14,6 +14,8 @@
 
 #include "../CONFIG.h"
 
+#define LOGGER_TAG "[LOGGER]"
+
 /**
  * @brief Single log record placed on the logger queue.
  */
@@ -37,6 +39,7 @@ static void LoggerTask(void *arg) {
 
     stdio_init_all();
     vTaskDelay(pdMS_TO_TICKS(1000)); /* allow USB-CDC to enumerate */
+    ECHO("%s Task started\r\n", LOGGER_TAG);
 
     static uint32_t hb_log_ms = 0;
     LogItem_t item;
@@ -77,6 +80,12 @@ BaseType_t LoggerTask_Init(bool enable) {
     if (logQueue == NULL) {
         logQueue = xQueueCreate(LOGGER_QUEUE_LEN, sizeof(LogItem_t));
         if (logQueue == NULL) {
+#if ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_LOGGER, ERR_SEV_ERROR, ERR_FID_LOGGERTASK, 0x0);
+            ERROR_PRINT_CODE(errorcode, "%s Failed to create logger queue\r\n", LOGGER_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
             return pdFAIL;
         }
     }
