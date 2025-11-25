@@ -447,7 +447,7 @@ static void load_config_from_eeprom(void) {
  */
 static void commit_dirty_sections(void) {
 #ifndef STORAGE_REBOOT_ON_CONFIG_SAVE
-#define STORAGE_REBOOT_ON_CONFIG_SAVE 0
+#define STORAGE_REBOOT_ON_CONFIG_SAVE 1
 #endif
 
     xSemaphoreTake(eepromMtx, portMAX_DELAY);
@@ -457,10 +457,12 @@ static void commit_dirty_sections(void) {
         if (EEPROM_WriteUserNetworkWithChecksum(&g_cache.network) == 0) {
             g_cache.network_dirty = false;
             ECHO("%s Network config committed\r\n", STORAGE_TASK_TAG);
+
 #if STORAGE_REBOOT_ON_CONFIG_SAVE
             vTaskDelay(pdMS_TO_TICKS(100));
             Health_RebootNow("Settings applied");
 #endif
+
         } else {
             ERROR_PRINT("%s Failed to commit network config\r\n", STORAGE_TASK_TAG);
         }

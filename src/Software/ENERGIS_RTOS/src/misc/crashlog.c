@@ -1,12 +1,12 @@
 /**
  * @file src/misc/crashlog.c
  * @author DvidMakesThings - David Sipos
- * 
+ *
  * @version 1.0.0
  * @date 2025-11-06
- * 
- * @details Minimal HardFault + reset and watchdog feed crash log kept in 
- * retained RAM with integrity. 
+ *
+ * @details Minimal HardFault + reset and watchdog feed crash log kept in
+ * retained RAM with integrity.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -268,9 +268,27 @@ void CrashLog_PrintAndClearOnBoot(void) {
 __attribute__((weak)) uint32_t CrashLog_Platform_ReadResetBits(void) {
 #if defined(PICO_RP2040) || defined(PICO_RP2350) || defined(PICO_SDK_VERSION_MAJOR)
     uint32_t bits = 0u;
+
+#if defined(PICO_RP2040)
+    if (watchdog_caused_reboot()) {
+        /* Distinguish intentional Health-owned watchdog reboots via scratch[0..1] */
+        uint32_t magic = watchdog_hw->scratch[0];
+        uint32_t cause = watchdog_hw->scratch[1];
+
+        if (magic == 0x484C5448u && cause == 2u) {
+            /* HSCR_MAGIC + CAUSE=2 => intentional reboot: treat as SOFTWARE reset */
+            bits |= 0x2u;
+        } else {
+            /* Any other watchdog reboot is treated as a real watchdog fault */
+            bits |= 0x1u;
+        }
+    }
+#else
     if (watchdog_caused_reboot()) {
         bits |= 0x1u;
     }
+#endif
+
     if (s_crash.sw_reboot_tag[0] != '\0') {
         bits |= 0x2u;
     }

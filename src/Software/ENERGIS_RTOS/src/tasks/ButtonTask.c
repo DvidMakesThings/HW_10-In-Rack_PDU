@@ -147,7 +147,7 @@ static inline void emit(btn_event_kind_t kind) {
     if (!q_btn) {
 #if ERRORLOGGER
         uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_BUTTONTASK, 0x0);
-        ERROR_PRINT_CODE(errorcode, "%s emit: NULL q_btn\r\n", BUTTON_TASK_TAG);
+        ERROR_PRINT_CODE(errorcode, "%s Button event queue not initialized\r\n", BUTTON_TASK_TAG);
         Storage_EnqueueErrorCode(errorcode);
 #endif
         return;
@@ -427,7 +427,7 @@ BaseType_t ButtonTask_Init(bool enable) {
 #if ERRORLOGGER
             uint16_t errorcode =
                 ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_BUTTONTASK, 0x1);
-            ERROR_PRINT_CODE(errorcode, "%s Storage not ready within timeout\r\n", BUTTON_TASK_TAG);
+            ERROR_PRINT_CODE(errorcode, "%s Storage not ready within timeout, cannot start ButtonTask\r\n", BUTTON_TASK_TAG);
             Storage_EnqueueErrorCode(errorcode);
 #endif
             return pdFAIL;
@@ -445,7 +445,7 @@ BaseType_t ButtonTask_Init(bool enable) {
 #if ERRORLOGGER
             uint16_t errorcode =
                 ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_BUTTONTASK, 0x2);
-            ERROR_PRINT_CODE(errorcode, "%s q_btn create failed\r\n", BUTTON_TASK_TAG);
+            ERROR_PRINT_CODE(errorcode, "%s Button event queue create failed\r\n", BUTTON_TASK_TAG);
             Storage_EnqueueErrorCode(errorcode);
 #endif
             return pdFAIL;
@@ -460,7 +460,7 @@ BaseType_t ButtonTask_Init(bool enable) {
 #if ERRORLOGGER
             uint16_t errorcode =
                 ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_BUTTONTASK, 0x3);
-            ERROR_PRINT_CODE(errorcode, "%s blink timer create failed\r\n", BUTTON_TASK_TAG);
+            ERROR_PRINT_CODE(errorcode, "%s Blink timer create failed\r\n", BUTTON_TASK_TAG);
             Storage_EnqueueErrorCode(errorcode);
 #endif
             return pdFAIL;

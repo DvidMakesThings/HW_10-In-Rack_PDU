@@ -112,8 +112,9 @@ bool SNMP_Init(uint8_t sock_agent, uint16_t local_port, uint8_t sock_trap) {
  * payload length[2]) and returns the pure ASN.1 payload starting with 0x30.
  *
  * Robustness:
- *  - If no data is pending or the bounded wait in @ref recvfrom_SNMP() elapses,
- *    the function returns early without blocking the caller.
+ *  - If no data is pending in the RX buffer, the function returns immediately.
+ *  - If the per-call RTOS time budget elapses, the function returns early to
+ *    avoid starving other tasks and the watchdog.
  *  - Source address and port are taken directly from @ref recvfrom_SNMP() and
  *    used for the reply via @ref sendto().
  *
@@ -129,21 +130,19 @@ int SNMP_Poll(int max_packets) {
     int serviced = 0;
 
     while (serviced < max_packets) {
-        /* Fast exit if socket RX has nothing queued */
         uint16_t rsr = getSn_RX_RSR(s_sock_agent);
-        if (rsr == 0) {
+        if (rsr == 0U) {
             break;
         }
 
-        uint8_t src_addr[6] = {0}; /* recvfrom_SNMP fills IPv4 in first 4 bytes */
+        uint8_t src_addr[4] = {0};
         uint16_t src_port = 0;
+        uint16_t max_len = (rsr > SNMP_MAX_MSG) ? SNMP_MAX_MSG : rsr;
 
-        /* Read one full UDP datagram's payload (ASN.1 starts at buf[0]) */
-        int rlen = recvfrom_SNMP(s_sock_agent, s_req.buffer,
-                                 (rsr > SNMP_MAX_MSG) ? SNMP_MAX_MSG : rsr, src_addr, &src_port);
+        int rlen = recvfrom_SNMP(s_sock_agent, s_req.buffer, max_len, src_addr, &src_port);
 
         if (rlen <= 0) {
-            /* 0 or SOCK_BUSY/negative: nothing usable right now */
+            /* No more data or socket busy: stop for this cycle */
             break;
         }
 

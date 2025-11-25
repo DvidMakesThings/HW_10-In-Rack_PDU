@@ -100,9 +100,7 @@ int8_t socket(uint8_t sn, uint8_t protocol, uint16_t port, uint8_t flag) {
 
 #if ERRORLOGGER
             uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET, 0x1);
-            ERROR_PRINT_CODE(errorcode,
-                             "%s Socket creation failed: No IP address configured for TCP",
-                             SOCK_TAG);
+            ERROR_PRINT_CODE(errorcode, "%s TCP requested but no IP configured", SOCK_TAG);
             Storage_EnqueueErrorCode(errorcode);
             return SOCKERR_SOCKINIT;
 #endif
@@ -122,8 +120,8 @@ int8_t socket(uint8_t sn, uint8_t protocol, uint16_t port, uint8_t flag) {
 
 #if ERRORLOGGER
         uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET, 0x2);
-        ERROR_PRINT_CODE(errorcode, "%s Socket creation failed: Invalid socket flag 0x%02X",
-                         SOCK_TAG, flag);
+        ERROR_PRINT_CODE(errorcode, "%s Invalid flag bit set (0x04 reserved): 0x%02X", SOCK_TAG,
+                         flag);
         Storage_EnqueueErrorCode(errorcode);
 #endif
         return SOCKERR_SOCKFLAG;
@@ -138,7 +136,7 @@ int8_t socket(uint8_t sn, uint8_t protocol, uint16_t port, uint8_t flag) {
                 uint16_t errorcode =
                     ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET, 0x3);
                 ERROR_PRINT_CODE(errorcode,
-                                 "%s Socket creation failed: Invalid TCP socket flag 0x%02X",
+                                 "%s Invalid TCP flags (only NODELAY/NONBLOCK allowed): 0x%02X",
                                  SOCK_TAG, flag);
                 Storage_EnqueueErrorCode(errorcode);
 #endif
@@ -151,9 +149,10 @@ int8_t socket(uint8_t sn, uint8_t protocol, uint16_t port, uint8_t flag) {
 #if ERRORLOGGER
                     uint16_t errorcode =
                         ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET, 0x4);
-                    ERROR_PRINT_CODE(errorcode,
-                                     "%s Socket creation failed: Invalid UDP socket flag 0x%02X",
-                                     SOCK_TAG, flag);
+                    ERROR_PRINT_CODE(
+                        errorcode,
+                        "%s IGMPv2 set without MULTI_ENABLE: Invalid UDP socket flag 0x%02X",
+                        SOCK_TAG, flag);
                     Storage_EnqueueErrorCode(errorcode);
 #endif
                     return SOCKERR_SOCKFLAG;
@@ -165,7 +164,8 @@ int8_t socket(uint8_t sn, uint8_t protocol, uint16_t port, uint8_t flag) {
                     uint16_t errorcode =
                         ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET, 0x5);
                     ERROR_PRINT_CODE(errorcode,
-                                     "%s Socket creation failed: Invalid UDP socket flag 0x%02X",
+                                     "%s UNIBLOCK set without MULTI_ENABLE: Socket creation "
+                                     "failed: Invalid UDP socket flag 0x%02X",
                                      SOCK_TAG, flag);
                     Storage_EnqueueErrorCode(errorcode);
 #endif
@@ -327,8 +327,8 @@ int8_t listen(uint8_t sn) {
 #if ERRORLOGGER
             uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET, 0x8);
             ERROR_PRINT_CODE(errorcode,
-                             "%s Listen failed, socket moved to invalid state 0x%02X\r\n",
-                             SOCK_TAG, sr);
+                             "%s Listen failed, socket moved to invalid state 0x%02X\r\n", SOCK_TAG,
+                             sr);
             Storage_EnqueueErrorCode(errorcode);
 #endif
             return SOCKERR_SOCKCLOSED;
@@ -376,8 +376,8 @@ int32_t send(uint8_t sn, uint8_t *buf, uint16_t len) {
 
 #if ERRORLOGGER
         uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET, 0xA);
-        ERROR_PRINT_CODE(errorcode, "%s Socket %u not connected (state=0x%02X)\r\n", SOCK_TAG,
-                         sn, tmp);
+        ERROR_PRINT_CODE(errorcode, "%s Socket %u not connected (state=0x%02X)\r\n", SOCK_TAG, sn,
+                         tmp);
         Storage_EnqueueErrorCode(errorcode);
 #endif
 
@@ -481,8 +481,8 @@ int send_all_blocking(uint8_t sn, const uint8_t *buf, int len) {
 #if ERRORLOGGER
                 uint16_t errorcode =
                     ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET, 0xD);
-                ERROR_PRINT_CODE(errorcode, "%s Socket %u not connected during send\r\n",
-                                 SOCK_TAG, sn);
+                ERROR_PRINT_CODE(errorcode, "%s Socket %u not connected during send\r\n", SOCK_TAG,
+                                 sn);
                 Storage_EnqueueErrorCode(errorcode);
 #endif
 
@@ -493,8 +493,7 @@ int send_all_blocking(uint8_t sn, const uint8_t *buf, int len) {
 #if ERRORLOGGER
                 uint16_t errorcode =
                     ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET, 0xE);
-                ERROR_PRINT_CODE(errorcode, "%s Socket %u send wait timeout\r\n", SOCK_TAG,
-                                 sn);
+                ERROR_PRINT_CODE(errorcode, "%s Socket %u send wait timeout\r\n", SOCK_TAG, sn);
                 Storage_EnqueueErrorCode(errorcode);
 #endif
 
@@ -567,8 +566,8 @@ int32_t recv(uint8_t sn, uint8_t *buf, uint16_t len) {
     if (sr != SOCK_ESTABLISHED && sr != SOCK_CLOSE_WAIT) {
 #if ERRORLOGGER
         uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET, 0xF);
-        ERROR_PRINT_CODE(errorcode, "%s Socket %u not connected (state=0x%02X)\r\n", SOCK_TAG,
-                         sn, sr);
+        ERROR_PRINT_CODE(errorcode, "%s Socket %u not connected (state=0x%02X)\r\n", SOCK_TAG, sn,
+                         sr);
         Storage_EnqueueErrorCode(errorcode);
 #endif
         return SOCKERR_SOCKSTATUS;
@@ -683,8 +682,8 @@ int32_t sendto(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uint16_t p
     if (tmp != SOCK_UDP) {
 #if ERRORLOGGER
         uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x04);
-        ERROR_PRINT_CODE(errorcode, "%s Socket %u not in UDP mode (state=0x%02X)\r\n",
-                         SOCK_TAG, sn, tmp);
+        ERROR_PRINT_CODE(errorcode, "%s Socket %u not in UDP mode (state=0x%02X)\r\n", SOCK_TAG, sn,
+                         tmp);
         Storage_EnqueueErrorCode(errorcode);
 #endif
         return SOCKERR_SOCKSTATUS;
@@ -877,16 +876,16 @@ int32_t recvfrom_SNMP(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uin
     /* Get socket mode */
     mr = getSn_MR(sn);
 
-    /* Check if data available */
+    /* Cooperative, non-blocking check for pending data */
     if (sock_remained_size[sn] == 0) {
-        /* Wait for data */
-        while (1) {
-            pack_len = getSn_RX_RSR(sn);
-            if (pack_len != 0)
-                break;
-            if ((sock_io_mode & (1 << sn)))
+        pack_len = getSn_RX_RSR(sn);
+        if (pack_len == 0) {
+            /* Non-blocking sockets: "no data" -> 0, blocking sockets: "come back later" */
+            if (sock_io_mode & (1 << sn)) {
+                return 0;
+            } else {
                 return SOCK_BUSY;
-            vTaskDelay(pdMS_TO_TICKS(1));
+            }
         }
     }
 
@@ -956,7 +955,7 @@ int32_t recvfrom_SNMP(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uin
             eth_recv_data(sn, head, 2);
             setSn_CR(sn, Sn_CR_RECV);
             while (getSn_CR(sn))
-                vTaskDelay(pdMS_TO_TICKS(1));
+                vTaskDelay(pdMS_TO_TICKS(10));
 
             /* Parse header */
             sock_remained_size[sn] = head[0];
@@ -996,7 +995,7 @@ int32_t recvfrom_SNMP(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uin
     /* Issue RECV command to update pointers */
     setSn_CR(sn, Sn_CR_RECV);
     while (getSn_CR(sn))
-        vTaskDelay(pdMS_TO_TICKS(1));
+        vTaskDelay(pdMS_TO_TICKS(10));
 
     /* Update remaining size */
     sock_remained_size[sn] -= pack_len;
@@ -1041,8 +1040,7 @@ int8_t ctlsocket(uint8_t sn, ctlsock_type cstype, void *arg) {
 #if ERRORLOGGER
             uint16_t errorcode =
                 ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x08);
-            ERROR_PRINT_CODE(errorcode, "%s ctlsocket: Invalid I/O mode %u\r\n", SOCK_TAG,
-                             tmp);
+            ERROR_PRINT_CODE(errorcode, "%s ctlsocket: Invalid I/O mode %u\r\n", SOCK_TAG, tmp);
             Storage_EnqueueErrorCode(errorcode);
 #endif
 
@@ -1085,8 +1083,7 @@ int8_t ctlsocket(uint8_t sn, ctlsock_type cstype, void *arg) {
     default:
 #if ERRORLOGGER
         uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x09);
-        ERROR_PRINT_CODE(errorcode, "%s ctlsocket: Invalid control type %u\r\n", SOCK_TAG,
-                         cstype);
+        ERROR_PRINT_CODE(errorcode, "%s ctlsocket: Invalid control type %u\r\n", SOCK_TAG, cstype);
         Storage_EnqueueErrorCode(errorcode);
 #endif
         return SOCKERR_ARG;

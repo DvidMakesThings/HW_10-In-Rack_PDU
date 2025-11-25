@@ -543,7 +543,13 @@ void handle_metrics_request(uint8_t sock) {
 
     int body_len = render_metrics();
     if (body_len < 0) {
-        ERROR_PRINT("%s Buffer overflow during metrics render\n", METRICS_HANDLER_TAG);
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_METRICS, 0xF);
+        ERROR_PRINT_CODE(errorcode, "%s 503 Buffer overflow during metrics render\r\n",
+                         METRICS_HANDLER_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
         send_503(sock); /* CHANGED: return 503 instead of 404 on overflow */
         return;
     }

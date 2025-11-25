@@ -189,7 +189,7 @@ static bool probe_mcps(void) {
     } else {
 #if ERRORLOGGER
         uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x0);
-        ERROR_PRINT_CODE(errorcode, "%s ✗ WARNING: Some MCP23017s missing!\r\n", INIT_TASK_TAG);
+        ERROR_PRINT_CODE(errorcode, "%s Some MCP23017s missing!\r\n", INIT_TASK_TAG);
         Storage_EnqueueErrorCode(errorcode);
 #endif
         return false;
@@ -219,7 +219,7 @@ static float adc_read_voltage_avg(uint8_t ch) {
         adcread += adc_read();
     uint16_t raw_12v = (uint16_t)(adcread / 16);
     float v_tap = ((float)raw_12v) * (ADC_VREF / (float)ADC_MAX);
-    return v_tap * 1; 
+    return v_tap * 1;
 }
 
 /**
@@ -378,7 +378,11 @@ static void InitTask(void *pvParameters) {
 
     /* 5) Network */
     if (NetTask_Init(true) != pdPASS) {
-        ERROR_PRINT("%s Failed to create NetTask\r\n", INIT_TASK_TAG);
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x5);
+        ERROR_PRINT_CODE(errorcode, "%s Failed to create NetTask\r\n", INIT_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
     }
     {
         TickType_t t0 = xTaskGetTickCount();
@@ -501,17 +505,18 @@ static void InitTask(void *pvParameters) {
         }
     }
 
+    INFO_PRINT("%s ===================================\r\n", INIT_TASK_TAG);
+    xEventGroupWaitBits(cfgEvents, CFG_READY_BIT, pdFALSE, pdTRUE, portMAX_DELAY);
+    INFO_PRINT("%s \tCrash logs:\r\n", INIT_TASK_TAG);
+    Helpers_LateBootDumpAndClear();
+    INFO_PRINT("%s ===================================\r\n\r\n", INIT_TASK_TAG);
     log_printf("\r\n");
+
     INFO_PRINT("%s System bring-alive complete =====\r\n\r\n", INIT_TASK_TAG);
     INFO_PRINT("==========================================\r\n");
     INFO_PRINT("               SYSTEM READY               \r\n");
     INFO_PRINT("==========================================\r\n\r\n");
 
-    DEBUG_PRINT("==========================================\r\n");
-    // xEventGroupWaitBits(cfgEvents, CFG_READY_BIT, pdFALSE, pdTRUE, portMAX_DELAY);
-    DEBUG_PRINT("%s Crash logs:\r\n", INIT_TASK_TAG);
-    Helpers_LateBootDumpAndClear();
-    DEBUG_PRINT("==========================================\r\n\r\n");
     vTaskDelete(NULL);
 }
 

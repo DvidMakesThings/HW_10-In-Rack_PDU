@@ -60,7 +60,7 @@ static int send_all(uint8_t sock, const uint8_t *data, int len) {
 #if ERRORLOGGER
             uint16_t errorcode =
                 ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_SERVER, 0x0);
-            ERROR_PRINT_CODE(errorcode, "%s send_all failed on sock %u\r\n", HTTP_SERVER_TAG, sock);
+            ERROR_PRINT_CODE(errorcode, "%s Send failed on socket %u\r\n", HTTP_SERVER_TAG, sock);
             Storage_EnqueueErrorCode(errorcode);
 #endif
 
@@ -214,7 +214,6 @@ bool http_server_init(void) {
     /* Allocate HTTP buffer */
     http_buf = pvPortMalloc(HTTP_BUF_SIZE);
     if (!http_buf) {
-        ERROR_PRINT("%s Failed to allocate HTTP buffer\n", HTTP_SERVER_TAG);
 #if ERRORLOGGER
         uint16_t errorcode =
             ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_SERVER, 0x3);
@@ -228,7 +227,6 @@ bool http_server_init(void) {
     /* Open TCP socket for HTTP */
     http_sock = socket(HTTP_SOCK_NUM, Sn_MR_TCP, HTTP_PORT, 0);
     if (http_sock < 0) {
-        ERROR_PRINT("%s Failed to open HTTP socket\n", HTTP_SERVER_TAG);
         vPortFree(http_buf);
 
 #if ERRORLOGGER
@@ -251,7 +249,6 @@ bool http_server_init(void) {
 
     /* Start listening */
     if (listen(http_sock) != SOCK_OK) {
-        ERROR_PRINT("%s Failed to listen on HTTP socket\n", HTTP_SERVER_TAG);
         closesocket(http_sock);
         vPortFree(http_buf);
 #if ERRORLOGGER

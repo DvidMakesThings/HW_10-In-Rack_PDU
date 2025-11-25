@@ -66,7 +66,7 @@
 #endif
 
 #ifndef HEALTH_SILENCE_MS
-#define HEALTH_SILENCE_MS 3000u
+#define HEALTH_SILENCE_MS 6000u
 #endif
 
 #ifndef HEALTH_BLOCK_RING_SIZE
@@ -120,6 +120,7 @@ static TaskHandle_t s_health_handle = NULL;
 static bool s_watchdog_armed = false;
 static uint32_t s_start_ms = 0;
 static bool proc_state = false;
+static volatile bool s_intentional_reboot_pending = false;
 
 /* ---------- Introspection helpers ---------- */
 #if (INCLUDE_uxTaskGetStackHighWaterMark == 1)
@@ -673,6 +674,10 @@ static void health_task(void *arg) {
         vTaskDelayUntil(&last_wake, period_ticks);
         uint32_t t = now_ms();
 
+        if (s_intentional_reboot_pending) {
+            continue;
+        }
+
         /* Scheduler liveness via Idle canary */
         {
             uint32_t idle_now = RTOS_IdleCanary_Read();
@@ -836,47 +841,50 @@ static void health_task(void *arg) {
             }
         }
 
-        /* When armed: feed if every required task is within silence bound */
-        uint32_t maxdt = max_dt_required(t);
-        if (maxdt <= HEALTH_SILENCE_MS) {
-            uint32_t remain = HEALTH_SILENCE_MS - maxdt;
-            Health_OnWdtFeed(t);
-            CrashLog_RecordWdtFeed(t);
+        /* Watchdog liveness logic: compute max dt and decide whether to feed */
+        if (s_watchdog_armed) {
+            uint32_t maxdt = max_dt_required(t);
+            const uint32_t since_feed = t - s_last_wdt_feed_ms;
 
-            /* keep pre-bark book-keeping in sync with actual feed */
-            s_last_wdt_feed_ms = t;
-            s_prebark_emitted = false;
+            uint32_t remain = 0u;
+            if (since_feed < HEALTH_SILENCE_MS)
+                remain = HEALTH_SILENCE_MS - since_feed;
 
+            if (maxdt <= HEALTH_SILENCE_MS && remain > 0u) {
+                Health_OnWdtFeed(t);
 #if defined(HEALTH_PRINT_WDT_FEED) && (HEALTH_PRINT_WDT_FEED)
-            HEALTH_DBG("[WDT] FEED at %lums (remain=%lums, max_dt=%lums)\r\n", (unsigned long)t,
-                       (unsigned long)remain, (unsigned long)maxdt);
+                HEALTH_DBG("[WDT] FEED at %lums (remain=%lums, max_dt=%lums)\r\n", (unsigned long)t,
+                           (unsigned long)remain, (unsigned long)maxdt);
 #endif
 
-            for (int i = 0; i < HEALTH_ID_MAX; ++i) {
-                if (!id_in_required((uint8_t)i) || !s_meta[i].registered)
-                    continue;
-                uint32_t last = s_meta[i].last_seen_ms;
-                if (!last) {
-
+                for (int i = 0; i < HEALTH_ID_MAX; ++i) {
+                    if (!id_in_required((uint8_t)i) || !s_meta[i].registered)
+                        continue;
+                    uint32_t last = s_meta[i].last_seen_ms;
+                    if (!last) {
 #if ERRORLOGGER
-                    uint16_t errorcode =
-                        ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_WARNING, ERR_FID_HEALTHTASK, 0x3);
-                    WARNING_PRINT_CODE(errorcode, "Misbehaving: %s NEVER heartbeated\r\n",
-                                       s_meta[i].name ? s_meta[i].name : "task");
-                    Storage_EnqueueWarningCode(errorcode);
+                        uint16_t errorcode =
+                            ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_WARNING, ERR_FID_HEALTHTASK, 0x3);
+                        WARNING_PRINT_CODE(errorcode, "Misbehaving: %s NEVER heartbeated\r\n",
+                                           s_meta[i].name ? s_meta[i].name : "task");
+                        Storage_EnqueueWarningCode(errorcode);
 #endif
-                    continue;
-                }
-                uint32_t dt = (t >= last) ? (t - last) : 0u;
-                if (dt >= (HEALTH_SILENCE_MS * 3u) / 4u) {
+                        continue;
+                    }
+                    uint32_t dt = (t >= last) ? (t - last) : 0u;
+                    if (dt >= (HEALTH_SILENCE_MS * 3u) / 4u) {
 #if ERRORLOGGER
-                    uint16_t errorcode =
-                        ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_WARNING, ERR_FID_HEALTHTASK, 0x4);
-                    WARNING_PRINT_CODE(errorcode, "Misbehaving: %s dt = %lu ms\r\n",
-                                       s_meta[i].name ? s_meta[i].name : "task", (unsigned long)dt);
-                    Storage_EnqueueWarningCode(errorcode);
+                        uint16_t errorcode =
+                            ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_WARNING, ERR_FID_HEALTHTASK, 0x4);
+                        WARNING_PRINT_CODE(errorcode, "Misbehaving: %s dt = %lu ms\r\n",
+                                           s_meta[i].name ? s_meta[i].name : "task",
+                                           (unsigned long)dt);
+                        Storage_EnqueueWarningCode(errorcode);
 #endif
+                    }
                 }
+            } else {
+                report_stale(t);
             }
         } else {
             report_stale(t);
@@ -1044,6 +1052,7 @@ static void hscr_store_intentional(uint32_t tnow_ms) {
  */
 void Health_RebootNow(const char *reason) {
     uint32_t t = now_ms();
+    s_intentional_reboot_pending = true;
 #if ERRORLOGGER
     uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_INFO, ERR_FID_HEALTHTASK, 0x0);
     WARNING_PRINT_CODE(errorcode, "%s INTENTIONAL REBOOT%s%s\r\n", HEALTH_TASK_TAG,
@@ -1051,12 +1060,17 @@ void Health_RebootNow(const char *reason) {
 #endif
     /* Persist context for next boot */
     hscr_store_intentional(t);
+
+    /* Tag this as a software reboot for CrashLog boot diagnostics */
+    CrashLog_RecordSoftwareRebootTag(reason ? reason : "CLI REBOOT");
+
     /* Snapshot any crash logs the system wants */
     CrashLog_RecordWdtFeed(t); /* harmless marker; keeps chronology tidy */
     Helpers_EarlyBootSnapshot();
+
     /* Trigger RP2040 watchdog reset immediately */
     watchdog_reboot(0, 0, 0);
+
     /* No watchdog_enable() here; reboot is immediate. */
-    for (;;) { /* safety spin */
-    }
+    for (;;) {}
 }

@@ -4,7 +4,7 @@
 
 **Design File**: `ENERGIS_DispBrd_Rack-PDU_1.1.0.brd`
 
-**Evaluation Date**: 2025-10-30 11:44 PM
+**Evaluation Date**: 2025-11-25 9:02 PM
 
 **Total Components (placed)**: 83
 
@@ -82,21 +82,21 @@ This certificate reflects only metadata embedded in the project and does not rep
 | R2 | - | - | - | Not mounted |
 | R3 | - | - | - | Not mounted |
 | R4 | MCR01MZPF1002 | ROHM | YES | PASS |
-| R5 | RTT023302FTH | RALEC | YES | PASS |
-| R6 | RTT023302FTH | RALEC | YES | PASS |
+| R5 | MCR01MZPF1002 | ROHM | YES | PASS |
+| R6 | MCR01MZPF1002 | ROHM | YES | PASS |
 | R7 | RC-02K1001FT | FH | YES | PASS |
 | R8 | YC164-JR-071KL  | Yageo | YES | PASS |
 | R9 | YC164-JR-071KL  | Yageo | YES | PASS |
 | R10 | RC-02K1001FT | FH | YES | PASS |
 | R11 | RC-02K1001FT | FH | YES | PASS |
-| R12 | RTT023302FTH | RALEC | YES | PASS |
-| R13 | RTT023302FTH | RALEC | YES | PASS |
+| R12 | MCR01MZPF1002 | ROHM | YES | PASS |
+| R13 | MCR01MZPF1002 | ROHM | YES | PASS |
 | R14 | YC164-JR-071KL  | Yageo | YES | PASS |
 | R15 | YC164-JR-071KL  | Yageo | YES | PASS |
-| R16 | MCR01MZPF1002 | ROHM | YES | PASS |
-| R17 | MCR01MZPF1002 | ROHM | YES | PASS |
-| R18 | MCR01MZPF1002 | ROHM | YES | PASS |
-| R19 | MCR01MZPF1002 | ROHM | YES | PASS |
+| R16 | RC0402JR-130RL | YAGEO | YES | PASS |
+| R17 | RC0402JR-130RL | YAGEO | YES | PASS |
+| R18 | RC0402JR-130RL | YAGEO | YES | PASS |
+| R19 | RC0402JR-130RL | YAGEO | YES | PASS |
 | SCK | - | - | - | Not mounted |
 | SCL0 | - | - | - | Not mounted |
 | SDA0 | - | - | - | Not mounted |

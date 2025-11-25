@@ -238,7 +238,7 @@ int EEPROM_WriteTempCalibration(const temp_calib_t *cal) {
     if (!cal) {
 #if ERRORLOGGER
         uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0x4);
-        ERROR_PRINT_CODE(err_code, "%s Null pointer\r\n", ST_CAL_TAG);
+        ERROR_PRINT_CODE(err_code, "%s Null pointer was passed to write\r\n", ST_CAL_TAG);
         Storage_EnqueueErrorCode(err_code);
 #endif
 
@@ -278,7 +278,7 @@ int EEPROM_ReadTempCalibration(temp_calib_t *out) {
     if (!out) {
 #if ERRORLOGGER
         uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0x6);
-        ERROR_PRINT_CODE(err_code, "%s Null pointer\r\n", ST_CAL_TAG);
+        ERROR_PRINT_CODE(err_code, "%s Null pointer was passed to read\r\n", ST_CAL_TAG);
         Storage_EnqueueErrorCode(err_code);
 #endif
         return -1;

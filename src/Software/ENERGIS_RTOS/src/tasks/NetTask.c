@@ -162,14 +162,17 @@ static bool net_apply_config_and_init(const networkInfo *ni) {
      * the link supervisor in the main loop will reinit on link-up.
      */
     if (!ethernet_apply_network_from_storage(ni)) {
+        /* If link is down, this is expected at boot or unplugged state. */
+        if (w5500_get_link_status() == PHY_LINK_ON) {
 #if ERRORLOGGER
-        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_WARNING, ERR_FID_NETTASK, 0x1);
-        WARNING_PRINT_CODE(errorcode,
-                           "%s Network configuration failed (likely no link), "
-                           "continuing without Ethernet\r\n",
-                           NET_TASK_TAG);
-        Storage_EnqueueWarningCode(errorcode);
+            uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_WARNING, ERR_FID_NETTASK, 0x1);
+            WARNING_PRINT_CODE(errorcode,
+                               "%s Network configuration failed (link was up), "
+                               "continuing without Ethernet\r\n",
+                               NET_TASK_TAG);
+            Storage_EnqueueWarningCode(errorcode);
 #endif
+        }
     }
     Health_Heartbeat(HEALTH_ID_NET);
 
@@ -226,7 +229,11 @@ static bool net_reinit_from_cache(void) {
     Health_Heartbeat(HEALTH_ID_NET);
 
     /* Guard: ensure the PHY link is actually up (short, non-fatal wait) */
-    (void)wait_for_link_up(1000);
+    w5500_PhyLink link = wait_for_link_up(1000);
+    if (link != PHY_LINK_ON) {
+        /* Link still down, skip reinit quietly */
+        return false;
+    }
 
     /* Reapply stored network configuration */
     if (!ethernet_apply_network_from_storage(&s_net_cfg)) {
@@ -350,6 +357,9 @@ static void NetTask_Function(void *pvParameters) {
 
     /* 4) Start HTTP + SNMP services on top of configured W5500 */
     net_start_services();
+
+    /* Baseline power state so we do not fake a STANDBY to RUN transition on boot */
+    s_last_power_state = Power_GetState();
 
     /* 5) Main service loop */
     for (;;) {

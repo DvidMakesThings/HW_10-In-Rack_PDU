@@ -1,9 +1,9 @@
 # ENERGIS - The Managed PDU Project for 10-Inch Rack
 
 ## Overview
-![Firmware Development Status](https://img.shields.io/badge/status-Testing%20%26%20Debugging-yellowgreen)
+![Firmware Development Status](https://img.shields.io/badge/status-Ongoing%20testing%20%26%20debugging-brightgreen)
 
-![Sheetmetal enclosure ordered](https://img.shields.io/badge/status-Sheetmetal%20enclosure%20ordered-yellowgreen)
+![Sheetmetal enclosure ordered](https://img.shields.io/badge/status-Sheetmetal%20enclosure%20designed,%20ordered,%20assembled-brightgreen)
 
 ![PDU 3D View](images/ENERGIS_1.0.0/Assembled-in-case_1.0.0_3D_3.png)
 
@@ -140,7 +140,7 @@ Key specifications:
 * **Material:** Aluminum 5052, 1.5 mm
 * **Finish:** Powder coat (matte black, process black)
 * **Threads & tapped holes:** Yes (no inserts, no welding)
-* **Marking:** Laser engraved front panel labeling
+* **Marking:** Laser engraved front and back panel labeling
 * **Design:** Precision CNC cut and bent sheet metal, matte black powder-coated for protection and aesthetics
 
 <br></br>
@@ -152,13 +152,7 @@ Key specifications:
 <br></br>
 Mounting options:
 * **Desktop use** without brackets  
-* **10-inch rack mounting** with brackets  
-* Even **19-inch rack integration** with extender brackets  
-
-<div style="display: flex; gap: 24px; justify-content: center; align-items: flex-start; margin-bottom: 24px;">
-  <img src="images/ENERGIS_1.0.0/Energis_Enclosure-5.png" alt="PDU 3D View 1" style="max-width: 48%; border-radius: 6px; padding: 8px; background: #fafbfc;">
-  <img src="images/ENERGIS_1.0.0/Energis_Enclosure-6.png" alt="PDU 3D View 2" style="max-width: 48%; border-radius: 6px; padding: 8px; background: #fafbfc;">
-</div>
+* **10-inch rack mounting** 
 
 ---
 
@@ -247,6 +241,12 @@ Comprehensive end-to-end system test covering:
 - Added enable functionality to the PSU
 - Added high precision LDO to supply the MCU
 - Additional fan is possible, but the temperature doesn't go above 36°C
+
+#### ENERGIS 1.1.0
+- Cleaned up routing both for Display- and Main board
+- NEW: PEM-Adapter: Unfortunately the commercially available Power Entry Modules are using bussed topology, seems like it's
+impossible to buy snap-in modules with individual L/N control. The only possibility I've found is the 3-104-370 from Schurter, but
+it's a PCB-mountable version. Using a small adapter board to hook the solder joints to faston connectors seems to be the only possibility
 
 ## License
 ### Software Components

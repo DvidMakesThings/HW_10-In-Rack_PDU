@@ -314,7 +314,7 @@ void eth_recv_data(uint8_t sn, uint8_t *wizdata, uint16_t len) {
 
 #if ERRORLOGGER
         uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_ETHERNET, 0x1);
-        ERROR_PRINT_CODE(errorcode, "%s Null pointer or zero length in eth_recv_data\n",
+        ERROR_PRINT_CODE(errorcode, "%s Null pointer or zero length in ethernet receive\n",
                          ETH_TASK_TAG);
         Storage_EnqueueErrorCode(errorcode);
 #endif
@@ -351,7 +351,7 @@ void eth_recv_ignore(uint8_t sn, uint16_t len) {
 
 #if ERRORLOGGER
         uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_ETHERNET, 0x2);
-        ERROR_PRINT_CODE(errorcode, "%s Zero length in eth_recv_ignore\n", ETH_TASK_TAG);
+        ERROR_PRINT_CODE(errorcode, "%s Zero length in Ethernet receive ignore\n", ETH_TASK_TAG);
         Storage_EnqueueErrorCode(errorcode);
 #endif
         return;
@@ -451,14 +451,13 @@ bool w5500_chip_init(w5500_NetConfig *net_info) {
         vTaskDelay(pdMS_TO_TICKS(100));
         timeout++;
         if (timeout > 25) { /* 2.5 second timeout */
-            ERROR_PRINT("[W5500] PHY link timeout\r\n");
-            return false;
 #if ERRORLOGGER
             uint16_t errorcode =
-                ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_ETHERNET, 0x5);
-            ERROR_PRINT_CODE(errorcode, "%s PHY link timeout\r\n", ETH_TASK_TAG);
-            Storage_EnqueueErrorCode(errorcode);
+                ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_WARNING, ERR_FID_NET_ETHERNET, 0x0);
+            WARNING_PRINT_CODE(errorcode, "%s PHY link timeout\r\n", ETH_TASK_TAG);
+            Storage_EnqueueWarningCode(errorcode);
 #endif
+            return false;
         }
     } while ((link_status & PHYCFGR_LNK_ON) == 0);
 
@@ -499,7 +498,8 @@ void w5500_set_network(w5500_NetConfig *net_info) {
     if (!net_info) {
 #if ERRORLOGGER
         uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_ETHERNET, 0x7);
-        ERROR_PRINT_CODE(errorcode, "%s NULL network info\r\n", ETH_TASK_TAG);
+        ERROR_PRINT_CODE(errorcode, "%s NULL network info: Network config not applied\r\n",
+                         ETH_TASK_TAG);
         Storage_EnqueueErrorCode(errorcode);
 #endif
         return;
@@ -522,7 +522,8 @@ void w5500_get_network(w5500_NetConfig *net_info) {
     if (!net_info) {
 #if ERRORLOGGER
         uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_ETHERNET, 0x8);
-        ERROR_PRINT_CODE(errorcode, "%s NULL network info\r\n", ETH_TASK_TAG);
+        ERROR_PRINT_CODE(errorcode, "%s NULL network info: Cannot read network config\r\n",
+                         ETH_TASK_TAG);
         Storage_EnqueueErrorCode(errorcode);
 #endif
         return;
@@ -549,7 +550,8 @@ void w5500_print_network(w5500_NetConfig *net_info) {
     if (!net_info) {
 #if ERRORLOGGER
         uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_ETHERNET, 0x9);
-        ERROR_PRINT_CODE(errorcode, "%s NULL network info\r\n", ETH_TASK_TAG);
+        ERROR_PRINT_CODE(errorcode, "%s NULL network info: Cannot print network config\r\n",
+                         ETH_TASK_TAG);
         Storage_EnqueueErrorCode(errorcode);
 #endif
         return;
@@ -582,7 +584,8 @@ int8_t w5500_set_phy_conf(w5500_PhyConfig *phyconf) {
     if (!phyconf) {
 #if ERRORLOGGER
         uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_ETHERNET, 0xA);
-        ERROR_PRINT_CODE(errorcode, "%s NULL PHY configuration\r\n", ETH_TASK_TAG);
+        ERROR_PRINT_CODE(errorcode, "%s NULL PHY configuration, PHY config not written\r\n",
+                         ETH_TASK_TAG);
         Storage_EnqueueErrorCode(errorcode);
 #endif
         return -1;
@@ -603,7 +606,8 @@ void w5500_get_phy_conf(w5500_PhyConfig *phyconf) {
     if (!phyconf) {
 #if ERRORLOGGER
         uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_ETHERNET, 0xB);
-        ERROR_PRINT_CODE(errorcode, "%s NULL PHY configuration\r\n", ETH_TASK_TAG);
+        ERROR_PRINT_CODE(errorcode, "%s NULL PHY configuration, PHY config not returned\r\n",
+                         ETH_TASK_TAG);
         Storage_EnqueueErrorCode(errorcode);
 #endif
         return;
