@@ -63,25 +63,50 @@ Planned features (the list will be appended as I find more development possibili
 
 ---
 
-## Specifications
+## Specifications (EU, IEC/ENEC)
 
 ### Electrical Characteristics
 
-- **Input:** 230V AC, 15A max
-- **Output:**   230V AC, 15A/Active Channels - Amps per Channel
-- **Internal Power Supply:** 12V, 1.5A SMPS
-- **Derived Internal Voltages:** 5V and 3.3V regulated from 12V
+* **Input:** 230 V AC, **10 A max**
+* **Output Voltage:** 230 V AC
+* **Total Output Current (all channels combined):** **10 A max**
+* **Per-Channel Output Current:** **10 A max per active channel**, with **total combined output limited to 10 A**
+* **Internal Power Supply:** 12 V, 1.5 A SMPS
+* **Derived Internal Voltages:** 5 V and 3.3 V regulated from 12 V
 
 ### Relay Output Ratings
 
-- **Common AC Trace Handling:** 16A max
-- **Per-Relay Trace Rating:** 16A max
-- **Relay Contact Rating:** 16A max
+* **Common AC Trace Handling:** 16 A max
+* **Per-Relay Trace Rating:** 16 A max
+* **Relay Contact Rating:** 16 A max
 
-### Control & Driving Circuit
+### Control and Driving Circuit
 
-- **Relay Driver:** ULN2803 Darlington Array
-- **Driving Current:** 33mA per relay
+* **Relay Driver:** ULN2803 Darlington Array
+* **Driving Current:** 33 mA per relay
+
+## Specifications (US/Canada, UL/CSA)
+
+### Electrical Characteristics
+
+* **Input:** 250 V AC, **15 A max**
+* **Output Voltage:** 250 V AC
+* **Total Output Current (all channels combined):** **15 A max**
+* **Per-Channel Output Current:** **15 A max per active channel**, with **total combined output limited to 15 A**
+* **Internal Power Supply:** 12 V, 1.5 A SMPS
+* **Derived Internal Voltages:** 5 V and 3.3 V regulated from 12 V
+
+### Relay Output Ratings
+
+* **Common AC Trace Handling:** 16 A max
+* **Per-Relay Trace Rating:** 16 A max
+* **Relay Contact Rating:** 16 A max
+
+### Control and Driving Circuit
+
+* **Relay Driver:** ULN2803 Darlington Array
+* **Driving Current:** 33 mA per relay
+
 
 ---
 
