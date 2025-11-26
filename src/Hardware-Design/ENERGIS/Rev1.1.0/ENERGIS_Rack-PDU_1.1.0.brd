@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.01" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mm"/>
+<grid distance="0.2" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mm"/>
 <layers>
 <layer number="1" name="L1-GND/SIG" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="L2-SIG-HS/AGND" color="25" fill="1" visible="yes" active="yes"/>
@@ -1460,12 +1460,12 @@ Used 0.8128 mm (32 mil) clearance on polygon pours</text>
 <wire x1="2" y1="14" x2="1" y2="15" width="0.147575" layer="25" curve="-90"/>
 <wire x1="1" y1="15" x2="1" y2="43" width="0.147575" layer="25"/>
 <text x="6" y="22" size="1.27" layer="25" rot="R90">Place Label Here</text>
-<text x="205" y="27" size="1.27" layer="25" rot="R270">EBP</text>
-<text x="204" y="4" size="1.27" layer="25" rot="R90">EBP</text>
-<text x="73" y="8" size="1.27" layer="25">EBP</text>
-<text x="73" y="10" size="1.27" layer="25">PE</text>
-<text x="202" y="4" size="1.27" layer="25" rot="R90">PE</text>
-<text x="203" y="27" size="1.27" layer="25" rot="R270">PE</text>
+<text x="205" y="27" size="0.8128" layer="25" rot="R270">EBP</text>
+<text x="204" y="4" size="0.8128" layer="25" rot="R90">EBP</text>
+<text x="73" y="8" size="0.8128" layer="25">EBP</text>
+<text x="73" y="10" size="0.8128" layer="25">PE</text>
+<text x="202" y="4" size="0.8128" layer="25" rot="R90">PE</text>
+<text x="203" y="27" size="0.8128" layer="25" rot="R270">PE</text>
 </plain>
 <libraries>
 <library name="ds_passive">
@@ -7356,7 +7356,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="LCSC_PART" value="C845537" x="135.8062" y="29.0536" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MANUFACTURER" value="UMW" x="135.8062" y="29.0536" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MPN" value="ULN2803A" x="135.8062" y="29.0536" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="138.2564" y="23.0062" size="1.27" layer="25" rot="R180"/>
+<attribute name="NAME" x="138.2564" y="23.0062" size="0.8128" layer="25" rot="R180"/>
 <attribute name="ROHS" value="YES" x="135.8062" y="29.0536" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" value="ULN2803AFWG" x="135.8062" y="29.0536" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
@@ -7388,7 +7388,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="LCSC_PART" value="C17477" x="208.0676" y="46.0386" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MANUFACTURER" value="Vishay" x="208.0676" y="46.0386" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MPN" value="CRCW08050000Z0EA" x="208.0676" y="46.0386" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="207.6264" y="48.2376" size="1.016" layer="25"/>
+<attribute name="NAME" x="207.6264" y="48.2376" size="0.8128" layer="25"/>
 <attribute name="PACKAGE" value="0805" x="208.0676" y="46.0386" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="ROHS" value="YES" x="208.0676" y="46.0386" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" value="0R 1%" x="208.0676" y="46.0386" size="1.778" layer="27" rot="R270" display="off"/>
@@ -7425,7 +7425,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="LCSC_PART" value="C629439" x="148.451425" y="29.952646875" size="1.778" layer="27" rot="R135" display="off"/>
 <attribute name="MANUFACTURER" value="MICROCHIP" x="148.451425" y="29.952646875" size="1.778" layer="27" rot="R135" display="off"/>
 <attribute name="MPN" value="MCP23017-E/ML" x="148.451425" y="29.952646875" size="1.778" layer="27" rot="R135" display="off"/>
-<attribute name="NAME" x="149.01825625" y="25.620759375" size="1.27" layer="25" rot="R225"/>
+<attribute name="NAME" x="149.01825625" y="25.620759375" size="0.8128" layer="25" rot="R225"/>
 <attribute name="ROHS" value="YES" x="148.451425" y="29.952646875" size="1.778" layer="27" rot="R135" display="off"/>
 <attribute name="VALUE" x="153.839578125" y="30.850671875" size="1.27" layer="27" rot="R135"/>
 <attribute name="VALUE" value="MCP23017T-E/ML " x="148.451425" y="29.952646875" size="1.778" layer="27" rot="R135" display="off"/>
@@ -7437,7 +7437,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="LCSC_PART" value="C20618065" x="91.4676" y="30.6386" size="1.778" layer="27" display="off"/>
 <attribute name="MANUFACTURER" value="MW" x="91.4676" y="30.6386" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="IRM-10-12 " x="91.4676" y="30.6386" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="75.1676" y="46.3186" size="1.27" layer="25" rot="R180"/>
+<attribute name="NAME" x="75.1676" y="46.3186" size="0.8128" layer="25" rot="R180"/>
 <attribute name="ROHS" value="YES" x="91.4676" y="30.6386" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="68.3676" y="17.9586" size="1.27" layer="27" align="top-left"/>
 <attribute name="VALUE" value="IRM_10_12" x="91.4676" y="30.6386" size="1.778" layer="27" display="off"/>
@@ -7491,7 +7491,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="ROHS" value="YES" x="123.9986" y="19.7124" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="VALUE" value="DNI" x="123.9986" y="19.7124" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="IC1" library="ds_ic_vreg" package="SOT65P280X110-8N" package3d_urn="urn:adsk.eagle:package:29335450/2" value="MP2315GJ-Z " x="104.3576" y="10.2496" smashed="yes" rot="R90">
+<element name="IC1" library="ds_ic_vreg" package="SOT65P280X110-8N" package3d_urn="urn:adsk.eagle:package:29335450/2" value="DNI" x="104.3576" y="10.2496" smashed="yes" rot="R90">
 <attribute name="DATASHEET" value="https://www.monolithicpower.com/en/documentview/productdocument/index/version/2/document_type/Datasheet/lang/EN/sku/MP2315S?srsltid=AfmBOoqbTpEIx6KSoiWl4ZUQnKkVQGj573Ur79inB-ZmXjzR-CZxOYOr" x="104.3576" y="10.2496" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="DESCRIPTION" value="Step-down type Adjustable 800mV~22.8V 3A 4.5V~24V TSOT-23-8 DC-DC Converters ROHS " x="104.3576" y="10.2496" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="HQ_PART" value="IC0339027" x="104.3576" y="10.2496" size="1.778" layer="27" rot="R90" display="off"/>
@@ -7771,14 +7771,15 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" x="88.1362" y="12.0072" size="1.016" layer="27" rot="R90"/>
 <attribute name="VALUE" value="33K 1%" x="86.2312" y="12.6422" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
-<element name="L2" library="ds_inductor" package="SRR5228A" package3d_urn="urn:adsk.eagle:package:46684196/2" value="4.7uH" x="94.6312" y="10.1422" smashed="yes">
-<attribute name="DESCRIPTION" value="Power Inductance 70mΩ 4.7µH ±20% 2.5A - IND_5.8X5.2MM_SM " x="94.6312" y="10.1422" size="1.778" layer="27" display="off"/>
-<attribute name="HQ_PART" value="IN0027228" x="94.6312" y="10.1422" size="1.778" layer="27" display="off"/>
-<attribute name="MANUFACTURER" value="YJYCOIN" x="94.6312" y="10.1422" size="1.778" layer="27" display="off"/>
+<element name="L2" library="ds_inductor" package="SRR5228A" package3d_urn="urn:adsk.eagle:package:46684196/2" value="4.7uH 3.5A" x="94.6312" y="10.1422" smashed="yes">
+<attribute name="DESCRIPTION" value="3.5A 4.7uH 52mΩ Unshielded Inductor ±20% SMD,5.8x5.2mm Power Inductors ROHS" x="94.6312" y="10.1422" size="1.778" layer="27" display="off"/>
+<attribute name="HQ_PART" value="" x="94.6312" y="10.1422" size="1.778" layer="27" display="off"/>
+<attribute name="LCSC_PART" value="C14258" x="94.6312" y="10.1422" size="1.778" layer="27" display="off"/>
+<attribute name="MANUFACTURER" value="SXN" x="94.6312" y="10.1422" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="YP0503-4R7M" x="94.6312" y="10.1422" size="1.778" layer="27" display="off"/>
 <attribute name="ROHS" value="YES" x="94.6312" y="10.1422" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="94.6312" y="13.9522" size="1.27" layer="27" align="center"/>
 <attribute name="VALUE" value="4.7uH" x="94.6312" y="10.1422" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" value="4.7uH 3.5A" x="94.6312" y="13.9522" size="1.27" layer="27" align="center"/>
 </element>
 <element name="R13" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="40.2K 1%" x="86.2312" y="15.7422" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 40.2kΩ 0402 Chip Resistor - Surface Mount ROHS" x="86.2312" y="15.7422" size="1.778" layer="27" rot="R270" display="off"/>
@@ -9088,7 +9089,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="LCSC_PART" value="C188681" x="168.6512" y="46.1518" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MANUFACTURER" value="Broadcom" x="168.6512" y="46.1518" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MPN" value="ACPL-247-500E" x="168.6512" y="46.1518" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="173.9818" y="47.3988" size="1.27" layer="25"/>
+<attribute name="NAME" x="173.9818" y="47.3988" size="0.8128" layer="25"/>
 <attribute name="ROHS" value="YES" x="168.6512" y="46.1518" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" value="ACPL-247-500E " x="168.6512" y="46.1518" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
@@ -9540,7 +9541,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="LCSC_PART" value="C17477" x="205.7148" y="46.0566" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MANUFACTURER" value="Vishay" x="205.7148" y="46.0566" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MPN" value="CRCW08050000Z0EA" x="205.7148" y="46.0566" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="204.6084" y="48.2848" size="1.016" layer="25"/>
+<attribute name="NAME" x="204.6084" y="48.2848" size="0.8128" layer="25"/>
 <attribute name="PACKAGE" value="0805" x="205.7148" y="46.0566" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="ROHS" value="YES" x="205.7148" y="46.0566" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" value="0R 1%" x="205.7148" y="46.0566" size="1.778" layer="27" rot="R270" display="off"/>
@@ -9626,10 +9627,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="ROHS" value="YES" x="162.5368" y="8.7058" size="1.778" layer="28" rot="MR90" display="off"/>
 <attribute name="VALUE" value="DNI" x="162.5368" y="8.7058" size="1.778" layer="28" rot="MR90" display="off"/>
 </element>
-<element name="VREF" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="141.2984" y="18.9912" smashed="yes" rot="MR0">
-<attribute name="NAME" x="140.2926" y="19.1538" size="0.8128" layer="26" rot="MR0" align="center-left"/>
-<attribute name="ROHS" value="YES" x="141.2984" y="18.9912" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="VALUE" value="DNI" x="141.2984" y="18.9912" size="1.778" layer="28" rot="MR0" display="off"/>
+<element name="VREF" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="141.2984" y="18.3912" smashed="yes" rot="MR0">
+<attribute name="NAME" x="142.1074" y="18.4462" size="0.8128" layer="26" rot="MR180" align="center-left"/>
+<attribute name="ROHS" value="YES" x="141.2984" y="18.3912" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="VALUE" value="DNI" x="141.2984" y="18.3912" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
 <element name="IC17" library="ds_ic_opa" package="SOT23-5" package3d_urn="urn:adsk.eagle:package:25419215/3" value="MCP6001RT-I/OT" x="140.7674" y="19.2632" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="Single 1pA 0.6V/us 1MHz SOT-23-5 Operational Amplifier ROHS " x="140.7674" y="19.2632" size="1.778" layer="27" rot="R270" display="off"/>
@@ -9907,8 +9908,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" x="161.169228125" y="16.176584375" size="1.27" layer="27" rot="R45"/>
 </element>
 <element name="GDRC" library="ds_con" package="1X4" package3d_urn="urn:adsk.eagle:package:46684991/2" value="DNI" x="157.5386" y="2.3926" smashed="yes" rot="R270">
-<attribute name="NAME" x="156.1946" y="5.2608" size="1.27" layer="25" rot="R180"/>
-<attribute name="VALUE" x="-3.2434" y="62.743" size="1.778" layer="27" rot="R270"/>
+<attribute name="NAME" x="156.1946" y="5.2608" size="0.8128" layer="25" rot="R180"/>
 </element>
 <element name="R126" library="ds_resistor" package="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="10K 1%" x="169.7422" y="13.0802" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="50mW Thick Film Resistors 25V ±1% ±200ppm/℃ 10kΩ 0201 Chip Resistor - Surface Mount ROHS" x="169.7422" y="13.0802" size="1.778" layer="27" rot="R270" display="off"/>
@@ -9957,8 +9957,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" x="156.388" y="23.4572" size="1.27" layer="27"/>
 </element>
 <element name="RGTG" library="ds_con" package="1X4" package3d_urn="urn:adsk.eagle:package:46684991/2" value="DNI" x="182.2014" y="21.994" smashed="yes" rot="R90">
-<attribute name="NAME" x="176.6456" y="21.7494" size="1.27" layer="25" rot="R180"/>
-<attribute name="VALUE" x="368.8914" y="-50.8532" size="1.778" layer="27" rot="R90"/>
+<attribute name="NAME" x="176.6456" y="21.7494" size="0.8128" layer="25" rot="R180"/>
 </element>
 <element name="R131" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="1M 1%" x="169.2278" y="4.7474" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 1MΩ 0402 Chip Resistor - Surface Mount ROHS" x="169.2278" y="4.7474" size="1.778" layer="27" rot="R90" display="off"/>
@@ -10011,7 +10010,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="LCSC_PART" value="C231329" x="182.789" y="29.9858" size="1.778" layer="27" display="off"/>
 <attribute name="MANUFACTURER" value="Omron" x="182.789" y="29.9858" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="B3U-1000P" x="182.789" y="29.9858" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="182.727" y="31.7118" size="1.4224" layer="25"/>
+<attribute name="NAME" x="182.727" y="31.7118" size="0.8128" layer="25"/>
 <attribute name="ROHS" value="YES" x="182.789" y="29.9858" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="180.089" y="27.0858" size="1.27" layer="27"/>
 <attribute name="VALUE" value="B3U-1000P " x="182.789" y="29.9858" size="1.778" layer="27" display="off"/>
@@ -10023,7 +10022,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="LCSC_PART" value="C231329" x="182.721" y="25.6288" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MANUFACTURER" value="Omron" x="182.721" y="25.6288" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MPN" value="B3U-1000P" x="182.721" y="25.6288" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="180.223" y="28.2128" size="1.4224" layer="25" rot="R180"/>
+<attribute name="NAME" x="180.223" y="28.2128" size="0.8128" layer="25" rot="R180"/>
 <attribute name="ROHS" value="YES" x="182.721" y="25.6288" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="185.421" y="28.5288" size="1.27" layer="27" rot="R180"/>
 <attribute name="VALUE" value="B3U-1000P " x="182.721" y="25.6288" size="1.778" layer="27" rot="R180" display="off"/>
@@ -10194,15 +10193,15 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="6.8nF 50V" x="194.03905" y="24.316028125" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="192.13405" y="24.951028125" size="1.27" layer="27" rot="R270"/>
 </element>
-<element name="C83" library="ds_capacitors" package="1206" package3d_urn="urn:adsk.eagle:package:46766482/3" value="" x="205.6458" y="11.2382" smashed="yes" rot="R270">
+<element name="C83" library="ds_capacitors" package="1206" package3d_urn="urn:adsk.eagle:package:46766482/3" value="1nF 2kV" x="205.6458" y="11.2382" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="Chip Capacitor (MLCC) 1206 1nF ±10% 2KV X7R " x="205.6458" y="11.2382" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="HQ_PART" value="CA0134884" x="205.6458" y="11.2382" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="LCSC_PART" value="C9196" x="205.6458" y="11.2382" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="MANUFACTURER" value="KEMET" x="205.6458" y="11.2382" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="MPN" value="C1206C102KGRACTU" x="205.6458" y="11.2382" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="LCSC_PART" value="C173242" x="205.6458" y="11.2382" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MANUFACTURER" value="Johanson Dielectrics " x="205.6458" y="11.2382" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MPN" value="202R18W102KV4E" x="205.6458" y="11.2382" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="PACKAGE" value="1206" x="205.6458" y="11.2382" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="ROHS" value="YES" x="205.6458" y="11.2382" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="VALUE" x="203.1058" y="12.5082" size="1.016" layer="27" rot="R270"/>
+<attribute name="VALUE" value="1nF 2kV" x="203.1058" y="12.5082" size="1.016" layer="27" rot="R270"/>
 <attribute name="VALUE" value="" x="205.6458" y="11.2382" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
 <element name="R143" library="ds_resistor" package="0201" package3d_urn="urn:adsk.eagle:package:47403529/4" value="12.4K 1%" x="197.1" y="28.4354" smashed="yes" rot="R90">
@@ -10654,7 +10653,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="LCSC_PART" value="C188681" x="184.1" y="46" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MANUFACTURER" value="Broadcom" x="184.1" y="46" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MPN" value="ACPL-247-500E" x="184.1" y="46" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="189.53" y="47.45" size="1.27" layer="25"/>
+<attribute name="NAME" x="189.53" y="47.45" size="0.8128" layer="25"/>
 <attribute name="ROHS" value="YES" x="184.1" y="46" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" value="ACPL-247-500E " x="184.1" y="46" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
@@ -10685,7 +10684,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="LCSC_PART" value="C466537" x="136.69" y="3.8" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MANUFACTURER" value="JS" x="136.69" y="3.8" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MPN" value="AFC11-S20ICA-00" x="136.69" y="3.8" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="125.523" y="4.054" size="1.016" layer="25" rot="R270" align="bottom-right"/>
+<attribute name="NAME" x="125.523" y="4.054" size="0.8128" layer="25" rot="R270" align="bottom-right"/>
 <attribute name="ROHS" value="YES" x="136.69" y="3.8" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" value="AFC11-S20ICC-00 " x="133.41" y="7.906" size="1.016" layer="27" rot="R180" align="bottom-right"/>
 </element>
@@ -10705,7 +10704,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="LCSC_PART" value="C965804" x="161.78" y="34" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MANUFACTURER" value="Wurth" x="161.78" y="34" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MPN" value="150060GS75000" x="161.78" y="34" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="160.5551" y="34.163" size="1.27" layer="25" rot="R90" align="bottom-center"/>
+<attribute name="NAME" x="160.5551" y="34.163" size="0.8128" layer="25" rot="R90" align="bottom-center"/>
 <attribute name="ROHS" value="YES" x="161.78" y="34" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" value="Green" x="155.8651" y="43.347" size="1.27" layer="27" rot="R270" align="top-center"/>
 </element>
@@ -11037,7 +11036,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="LCSC_PART" value="C20625731" x="150.027278125" y="9.68585625" size="1.778" layer="27" rot="R315" display="off"/>
 <attribute name="MANUFACTURER" value="TKD" x="150.027278125" y="9.68585625" size="1.778" layer="27" rot="R315" display="off"/>
 <attribute name="MPN" value="SX32Y012000B91T" x="150.027278125" y="9.68585625" size="1.778" layer="27" rot="R315" display="off"/>
-<attribute name="NAME" x="148.141909375" y="11.272403125" size="1.27" layer="25" rot="R45" align="bottom-center"/>
+<attribute name="NAME" x="148.141909375" y="11.272403125" size="0.8128" layer="25" rot="R45" align="bottom-center"/>
 <attribute name="ROHS" value="YES" x="150.027278125" y="9.68585625" size="1.778" layer="27" rot="R315" display="off"/>
 <attribute name="VALUE" value="12MHz" x="145.07753125" y="9.544434375" size="1.27" layer="27" rot="R315"/>
 </element>
@@ -11067,7 +11066,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="LCSC_PART" value="C13740" x="193.41" y="42.11" size="1.778" layer="27" display="off"/>
 <attribute name="MANUFACTURER" value="Epson" x="193.41" y="42.11" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="X1E000021013900" x="193.41" y="42.11" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="196.82" y="41.25" size="1.27" layer="25" align="bottom-center"/>
+<attribute name="NAME" x="196.82" y="41.25" size="0.8128" layer="25" align="bottom-center"/>
 <attribute name="ROHS" value="YES" x="193.41" y="42.11" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="25MHz" x="190.01" y="38.51" size="1.27" layer="27"/>
 </element>
@@ -11235,7 +11234,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="LCSC_PART" value="C965804" x="168.6" y="-0.2" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MANUFACTURER" value="Wurth" x="168.6" y="-0.2" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MPN" value="150060GS75000" x="168.6" y="-0.2" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="167.833" y="1.2649" size="1.27" layer="25" align="bottom-center"/>
+<attribute name="NAME" x="167.833" y="1.2649" size="0.8128" layer="25" align="bottom-center"/>
 <attribute name="ROHS" value="YES" x="168.6" y="-0.2" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="170.0049" y="-0.327" size="1.27" layer="27" rot="R90" align="top-center"/>
 </element>
@@ -11256,7 +11255,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="LCSC_PART" value="C910371" x="191.48" y="4.92" size="1.778" layer="27" display="off"/>
 <attribute name="MANUFACTURER" value="WIZnet" x="191.48" y="4.92" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="J1B1211CCD" x="191.48" y="4.92" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="182.135" y="10.15" size="1.016" layer="25" rot="R90"/>
+<attribute name="NAME" x="182.135" y="10.15" size="0.8128" layer="25" rot="R90"/>
 <attribute name="ROHS" value="YES" x="191.48" y="4.92" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="183.86" y="-7.78" size="1.778" layer="27"/>
 </element>
@@ -11266,19 +11265,19 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="LCSC_PART" value="C2927038" x="175.15" y="0.41" size="1.778" layer="27" display="off"/>
 <attribute name="MANUFACTURER" value="DEALON" x="175.15" y="0.41" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="USB-TYPE-C-018 " x="175.15" y="0.41" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="180.85" y="1.02" size="1.016" layer="25" rot="R90" align="center"/>
+<attribute name="NAME" x="180.85" y="1.02" size="0.8128" layer="25" rot="R90" align="center"/>
 <attribute name="ROHS" value="YES" x="175.15" y="0.41" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="177.72" y="-4.39" size="0.762" layer="27" align="center"/>
 </element>
-<element name="RX0" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="158.64" y="39.75" smashed="yes" rot="MR0">
-<attribute name="NAME" x="159.62" y="39.09" size="0.8128" layer="26" rot="MR180" align="center-left"/>
-<attribute name="ROHS" value="YES" x="158.64" y="39.75" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="VALUE" value="DNI" x="158.64" y="39.75" size="1.778" layer="28" rot="MR0" display="off"/>
+<element name="RX0" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="158.64" y="40.15" smashed="yes" rot="MR0">
+<attribute name="NAME" x="159.62" y="39.49" size="0.8128" layer="26" rot="MR180" align="center-left"/>
+<attribute name="ROHS" value="YES" x="158.64" y="40.15" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="VALUE" value="DNI" x="158.64" y="40.15" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="TX0" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="158.72" y="37.08" smashed="yes" rot="MR0">
-<attribute name="NAME" x="159.78" y="37.61" size="0.8128" layer="26" rot="MR180" align="center-left"/>
-<attribute name="ROHS" value="YES" x="158.72" y="37.08" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="VALUE" value="DNI" x="158.72" y="37.08" size="1.778" layer="28" rot="MR0" display="off"/>
+<element name="TX0" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="158.72" y="36.68" smashed="yes" rot="MR0">
+<attribute name="NAME" x="159.78" y="37.21" size="0.8128" layer="26" rot="MR180" align="center-left"/>
+<attribute name="ROHS" value="YES" x="158.72" y="36.68" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="VALUE" value="DNI" x="158.72" y="36.68" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
 <element name="SDA0" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="141.32" y="11.23" smashed="yes" rot="MR0">
 <attribute name="NAME" x="142.59" y="11.09" size="0.8128" layer="26" rot="MR180" align="center-left"/>
@@ -11340,45 +11339,45 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="ROHS" value="YES" x="203.71" y="36.29" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="VALUE" value="DNI" x="203.71" y="36.29" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="REL0" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="152.58" y="36.4" smashed="yes" rot="MR270">
-<attribute name="NAME" x="152.63" y="37.87" size="0.8128" layer="26" rot="MR90" align="center-left"/>
-<attribute name="ROHS" value="YES" x="152.58" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
-<attribute name="VALUE" value="DNI" x="152.58" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
+<element name="REL0" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="153.18" y="36.4" smashed="yes" rot="MR270">
+<attribute name="NAME" x="153.23" y="37.87" size="0.8128" layer="26" rot="MR90" align="center-left"/>
+<attribute name="ROHS" value="YES" x="153.18" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
+<attribute name="VALUE" value="DNI" x="153.18" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
 </element>
-<element name="REL2" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="148.31" y="36.4" smashed="yes" rot="MR270">
-<attribute name="NAME" x="148.33" y="37.94" size="0.8128" layer="26" rot="MR90" align="center-left"/>
-<attribute name="ROHS" value="YES" x="148.31" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
-<attribute name="VALUE" value="DNI" x="148.31" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
+<element name="REL2" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="148.51" y="36.4" smashed="yes" rot="MR270">
+<attribute name="NAME" x="148.53" y="37.94" size="0.8128" layer="26" rot="MR90" align="center-left"/>
+<attribute name="ROHS" value="YES" x="148.51" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
+<attribute name="VALUE" value="DNI" x="148.51" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
 </element>
-<element name="REL4" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="144.08" y="36.4" smashed="yes" rot="MR90">
-<attribute name="NAME" x="144.01" y="37.89" size="0.8128" layer="26" rot="MR90" align="center-left"/>
-<attribute name="ROHS" value="YES" x="144.08" y="36.4" size="1.778" layer="28" rot="MR90" display="off"/>
-<attribute name="VALUE" value="DNI" x="144.08" y="36.4" size="1.778" layer="28" rot="MR90" display="off"/>
+<element name="REL4" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="143.88" y="36.4" smashed="yes" rot="MR90">
+<attribute name="NAME" x="143.81" y="37.89" size="0.8128" layer="26" rot="MR90" align="center-left"/>
+<attribute name="ROHS" value="YES" x="143.88" y="36.4" size="1.778" layer="28" rot="MR90" display="off"/>
+<attribute name="VALUE" value="DNI" x="143.88" y="36.4" size="1.778" layer="28" rot="MR90" display="off"/>
 </element>
-<element name="REL6" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="139.89" y="36.4" smashed="yes" rot="MR270">
-<attribute name="NAME" x="139.86" y="37.83" size="0.8128" layer="26" rot="MR90" align="center-left"/>
-<attribute name="ROHS" value="YES" x="139.89" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
-<attribute name="VALUE" value="DNI" x="139.89" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
+<element name="REL6" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="139.29" y="36.4" smashed="yes" rot="MR270">
+<attribute name="NAME" x="139.26" y="37.83" size="0.8128" layer="26" rot="MR90" align="center-left"/>
+<attribute name="ROHS" value="YES" x="139.29" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
+<attribute name="VALUE" value="DNI" x="139.29" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
 </element>
-<element name="REL1" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="150.44" y="36.4" smashed="yes" rot="MR270">
-<attribute name="NAME" x="150.46" y="38.01" size="0.8128" layer="26" rot="MR90" align="center-left"/>
-<attribute name="ROHS" value="YES" x="150.44" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
-<attribute name="VALUE" value="DNI" x="150.44" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
+<element name="REL1" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="150.84" y="36.4" smashed="yes" rot="MR270">
+<attribute name="NAME" x="150.86" y="38.01" size="0.8128" layer="26" rot="MR90" align="center-left"/>
+<attribute name="ROHS" value="YES" x="150.84" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
+<attribute name="VALUE" value="DNI" x="150.84" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
 </element>
 <element name="REL3" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="146.21" y="36.4" smashed="yes" rot="MR270">
 <attribute name="NAME" x="146.17" y="37.86" size="0.8128" layer="26" rot="MR90" align="center-left"/>
 <attribute name="ROHS" value="YES" x="146.21" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
 <attribute name="VALUE" value="DNI" x="146.21" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
 </element>
-<element name="REL5" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="141.99" y="36.4" smashed="yes" rot="MR270">
-<attribute name="NAME" x="142" y="37.88" size="0.8128" layer="26" rot="MR90" align="center-left"/>
-<attribute name="ROHS" value="YES" x="141.99" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
-<attribute name="VALUE" value="DNI" x="141.99" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
+<element name="REL5" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="141.59" y="36.4" smashed="yes" rot="MR270">
+<attribute name="NAME" x="141.6" y="37.88" size="0.8128" layer="26" rot="MR90" align="center-left"/>
+<attribute name="ROHS" value="YES" x="141.59" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
+<attribute name="VALUE" value="DNI" x="141.59" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
 </element>
-<element name="REL7" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="137.79" y="36.4" smashed="yes" rot="MR270">
-<attribute name="NAME" x="137.81" y="37.89" size="0.8128" layer="26" rot="MR90" align="center-left"/>
-<attribute name="ROHS" value="YES" x="137.79" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
-<attribute name="VALUE" value="DNI" x="137.79" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
+<element name="REL7" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="136.99" y="36.4" smashed="yes" rot="MR270">
+<attribute name="NAME" x="137.01" y="37.89" size="0.8128" layer="26" rot="MR90" align="center-left"/>
+<attribute name="ROHS" value="YES" x="136.99" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
+<attribute name="VALUE" value="DNI" x="136.99" y="36.4" size="1.778" layer="28" rot="MR270" display="off"/>
 </element>
 <element name="T1" library="ds_active" package="SOT23" package3d_urn="urn:adsk.eagle:package:46684430/3" value="BSS138" x="128.33" y="23.7" smashed="yes">
 <attribute name="DESCRIPTION" value="50V 230mA 3.4Ω@10V,220mA 230mW 1.5V@250uA N Channel SOT-23-3 MOSFETs ROHS " x="128.33" y="23.7" size="1.778" layer="27" display="off"/>
@@ -11404,7 +11403,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <element name="FAN" library="con-amp-quick" library_urn="urn:adsk.eagle:library:125" package="02P" package3d_urn="urn:adsk.eagle:package:5956/1" value="DNI" x="127.22" y="29.47" smashed="yes" rot="R90">
 <attribute name="MF" value="" x="127.22" y="29.47" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MPN" value="" x="127.22" y="29.47" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="129.106" y="33.3836" size="1.27" layer="25" ratio="10" rot="R180"/>
+<attribute name="NAME" x="129.106" y="33.3836" size="0.8128" layer="25" ratio="10" rot="R180"/>
 <attribute name="OC_FARNELL" value="unknown" x="127.22" y="29.47" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="OC_NEWARK" value="unknown" x="127.22" y="29.47" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="131.0554" y="27.184" size="1.27" layer="27" ratio="10" rot="R90"/>
@@ -11506,7 +11505,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="ROHS" value="YES" x="146.97" y="20.01" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="145.7" y="17.47" size="1.016" layer="27"/>
 </element>
-<element name="R170" library="ds_resistor" package="1206" package3d_urn="urn:adsk.eagle:package:46683745/2" value="0R 1%" x="175.17" y="0.42" smashed="yes" rot="MR0">
+<element name="R170" library="ds_resistor" package="1206" package3d_urn="urn:adsk.eagle:package:46683745/2" value="DNI" x="175.17" y="0.42" smashed="yes" rot="MR0">
 <attribute name="DESCRIPTION" value="250mW Thick Film Resistors ±100ppm/℃ ±1% 30.9kΩ 1206 Chip Resistor - Surface Mount ROHS" x="175.17" y="0.42" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="HQ_PART" value="RE0209081" x="175.17" y="0.42" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="LCSC_PART" value="C205296" x="175.17" y="0.42" size="1.778" layer="28" rot="MR0" display="off"/>
@@ -11548,6 +11547,44 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="R172" library="ds_passive" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/2" value="DNI" x="81.71" y="8.21" smashed="yes" rot="R90">
 <attribute name="VALUE" x="83.615" y="7.575" size="1.016" layer="27" rot="R90"/>
+</element>
+<element name="ADC_TEMP" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="165.14" y="4.01" smashed="yes" rot="MR0">
+<attribute name="ROHS" value="YES" x="165.14" y="4.01" size="1.778" layer="28" rot="MR0" display="off"/>
+</element>
+<element name="FCTL" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="127.41" y="21.26" smashed="yes" rot="MR0">
+<attribute name="ROHS" value="YES" x="127.41" y="21.26" size="1.778" layer="28" rot="MR0" display="off"/>
+</element>
+<element name="3V3A" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="188.98" y="27.06" smashed="yes" rot="MR0">
+<attribute name="ROHS" value="YES" x="188.98" y="27.06" size="1.778" layer="28" rot="MR0" display="off"/>
+</element>
+<element name="ADCUSB" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="159.57" y="12.99" smashed="yes" rot="MR0">
+<attribute name="ROHS" value="YES" x="159.57" y="12.99" size="1.778" layer="28" rot="MR0" display="off"/>
+</element>
+<element name="DNI" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="0R 1%" x="138.29" y="19.4" smashed="yes" rot="MR0">
+<attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±800ppm/℃ ±1% 0Ω 0402 Chip Resistor - Surface Mount ROHS" x="138.29" y="19.4" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="HQ_PART" value="RE0250181" x="138.29" y="19.4" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="LCSC_PART" value="C17168" x="138.29" y="19.4" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="MANUFACTURER" value="YAGEO" x="138.29" y="19.4" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="MPN" value="RC0402JR-130RL" x="138.29" y="19.4" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="PACKAGE" value="0402" x="138.29" y="19.4" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="ROHS" value="YES" x="138.29" y="19.4" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="VALUE" x="138.925" y="17.495" size="1.016" layer="28" rot="MR0"/>
+</element>
+<element name="MCPVIN" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="134.2" y="19.8" smashed="yes" rot="MR0">
+<attribute name="NAME" x="132.93" y="19.8" size="0.8128" layer="26" rot="MR0" align="center-left"/>
+<attribute name="ROHS" value="YES" x="134.2" y="19.8" size="1.778" layer="28" rot="MR0" display="off"/>
+</element>
+<element name="RST" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="157" y="5.2" smashed="yes" rot="MR0">
+<attribute name="NAME" x="155.73" y="5.2" size="0.8128" layer="26" rot="MR0" align="center-left"/>
+<attribute name="ROHS" value="YES" x="157" y="5.2" size="1.778" layer="28" rot="MR0" display="off"/>
+</element>
+<element name="BOOT" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="179.2" y="28.2" smashed="yes" rot="MR0">
+<attribute name="NAME" x="177.93" y="28.2" size="0.8128" layer="26" rot="MR0" align="center-left"/>
+<attribute name="ROHS" value="YES" x="179.2" y="28.2" size="1.778" layer="28" rot="MR0" display="off"/>
+</element>
+<element name="UTX" library="ds_passive" package="TP-ROUND" package3d_urn="urn:adsk.eagle:package:50081795/1" value="DNI" x="167.6" y="39.2" smashed="yes" rot="MR180">
+<attribute name="NAME" x="168.87" y="39.2" size="0.8128" layer="26" rot="MR180" align="center-left"/>
+<attribute name="ROHS" value="YES" x="167.6" y="39.2" size="1.778" layer="28" rot="MR180" display="off"/>
 </element>
 </elements>
 <signals>
@@ -14077,6 +14114,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="142.6600125" y1="28" x2="144.6" y2="28" width="0.2032" layer="2"/>
 <wire x1="139.8600125" y1="25.2" x2="142.6600125" y2="28" width="0.2032" layer="2"/>
 <wire x1="140.44" y1="36.95" x2="139.89" y2="36.4" width="0.1524" layer="1"/>
+<wire x1="139.29" y1="36.4" x2="139.89" y2="36.4" width="0.1524" layer="16"/>
 </signal>
 <signal name="REL_4">
 <contactref element="IC4" pad="21"/>
@@ -14107,6 +14145,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="139" y1="27.8" x2="138.7" y2="27.8" width="0.2032" layer="2"/>
 <wire x1="140.42599375" y1="30.16598125" x2="139.6" y2="29.3399875" width="0.2032" layer="2"/>
 <wire x1="143.08" y1="37.4" x2="144.08" y2="36.4" width="0.1524" layer="1"/>
+<wire x1="144.08" y1="36.4" x2="143.88" y2="36.4" width="0" layer="19" extent="1-16"/>
 </signal>
 <signal name="REL_2">
 <contactref element="IC4" pad="19"/>
@@ -14132,6 +14171,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="143.32805" y1="33.208025" x2="144.15255" y2="33.208025" width="0.2032" layer="2"/>
 <wire x1="144.15255" y1="33.208025" x2="144.7302875" y2="32.6302875" width="0.2032" layer="2"/>
 <wire x1="149" y1="37.09" x2="148.31" y2="36.4" width="0.1524" layer="1"/>
+<wire x1="148.51" y1="36.4" x2="148.31" y2="36.4" width="0.1524" layer="16"/>
 </signal>
 <signal name="REL_0">
 <contactref element="IC4" pad="17"/>
@@ -14158,6 +14198,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="141.8" y1="32.8" x2="143" y2="34" width="0.2032" layer="2"/>
 <wire x1="143" y1="34" x2="145.5" y2="34" width="0.2032" layer="2"/>
 <wire x1="151.58" y1="37.4" x2="152.58" y2="36.4" width="0.1524" layer="1"/>
+<wire x1="153.18" y1="36.4" x2="152.58" y2="36.4" width="0.1524" layer="16"/>
 </signal>
 <signal name="REL_1">
 <contactref element="IC4" pad="18"/>
@@ -14183,6 +14224,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="141.964025" y1="32.4040125" x2="139.6040125" y2="32.4040125" width="0.2032" layer="2"/>
 <wire x1="143.164025" y1="33.6040125" x2="141.964025" y2="32.4040125" width="0.2032" layer="2"/>
 <wire x1="149.8" y1="37.04" x2="150.44" y2="36.4" width="0.1524" layer="1"/>
+<wire x1="150.84" y1="36.4" x2="150.44" y2="36.4" width="0.1524" layer="16"/>
 </signal>
 <signal name="REL_3">
 <contactref element="IC4" pad="20"/>
@@ -14231,6 +14273,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="138.7" y1="26.5" x2="140.6" y2="26.5" width="0.2032" layer="2"/>
 <wire x1="140.6" y1="26.5" x2="144.3" y2="30.2" width="0.2032" layer="2"/>
 <wire x1="141.24" y1="37.15" x2="141.99" y2="36.4" width="0.1524" layer="1"/>
+<wire x1="141.59" y1="36.4" x2="141.99" y2="36.4" width="0.1524" layer="16"/>
 </signal>
 <signal name="REL_7">
 <contactref element="IC4" pad="24"/>
@@ -14256,6 +14299,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="142.6436" y1="27.2436" x2="144.8" y2="27.2436" width="0.2032" layer="2"/>
 <wire x1="139.3" y1="23.9" x2="142.6436" y2="27.2436" width="0.2032" layer="2"/>
 <wire x1="138.69" y1="37.3" x2="137.79" y2="36.4" width="0.1524" layer="1"/>
+<wire x1="136.99" y1="36.4" x2="137.79" y2="36.4" width="0.1524" layer="16"/>
 </signal>
 <signal name="N$6">
 <contactref element="R24" pad="1"/>
@@ -16580,6 +16624,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="168.92" y1="26.93" x2="168.92" y2="25.08" width="0.1524" layer="15"/>
 <wire x1="174.43" y1="23.07" x2="182.3954" y2="23.07" width="0.1524" layer="2"/>
 <wire x1="159.14" y1="37.5" x2="158.72" y2="37.08" width="0.2" layer="2"/>
+<wire x1="158.72" y1="36.68" x2="158.72" y2="37.08" width="0.1524" layer="16"/>
 </signal>
 <signal name="UART0_RX">
 <contactref element="RGTG" pad="1"/>
@@ -16624,6 +16669,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="172.58" y1="23.84" x2="169.59" y2="23.84" width="0.1524" layer="15"/>
 <wire x1="168.58" y1="26.56" x2="167.54" y2="27.6" width="0.1524" layer="15"/>
 <wire x1="159.69" y1="38.7" x2="158.64" y2="39.75" width="0.2" layer="2"/>
+<wire x1="158.64" y1="40.15" x2="158.64" y2="39.75" width="0.1524" layer="16"/>
 </signal>
 <signal name="+12V_MEA">
 <contactref element="R94" pad="1"/>
@@ -17484,8 +17530,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="140.7068" y1="18.3132" x2="139.4674" y2="18.3132" width="0.15" layer="1"/>
 <wire x1="139.1816" y1="16.0022" x2="139.17" y2="16.0138" width="0.15" layer="1"/>
 <wire x1="139.17" y1="16.0138" x2="139.17" y2="16.8638" width="0.15" layer="1"/>
-<wire x1="141.2984" y1="18.9912" x2="140.93" y2="18.6228" width="0.147575" layer="16"/>
-<wire x1="140.93" y1="17.1796" x2="140.93" y2="18.6228" width="0.147575" layer="16"/>
+<wire x1="141.2984" y1="18.3912" x2="141.2984" y2="17.7912" width="0.147575" layer="16"/>
+<wire x1="141.2984" y1="17.7912" x2="140.93" y2="17.4228" width="0.147575" layer="16"/>
+<wire x1="140.93" y1="17.1796" x2="140.93" y2="17.4228" width="0.147575" layer="16"/>
 <via x="140.93" y="17.1796" extent="1-16" drill="0.2"/>
 </signal>
 <signal name="AVDD">
@@ -17535,12 +17582,20 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="140.7334" y1="23.6188" x2="140.7334" y2="20.0634" width="0.147575" layer="16"/>
 <wire x1="140.7334" y1="20.0634" x2="140.55" y2="19.88" width="0.147575" layer="16"/>
 <via x="140.55" y="19.88" extent="1-16" drill="0.2"/>
+<contactref element="DNI" pad="1"/>
+<wire x1="138.94" y1="19.4" x2="139.42" y2="19.88" width="0.1524" layer="16"/>
+<wire x1="139.42" y1="19.88" x2="140.55" y2="19.88" width="0.1524" layer="16"/>
 </signal>
 <signal name="USB_BOOT">
 <contactref element="R112" pad="1"/>
 <contactref element="BT" pad="1"/>
-<wire x1="179.1722" y1="29.9998" x2="181.075" y2="29.9998" width="0.2032" layer="1"/>
+<wire x1="179.1722" y1="29.9998" x2="180.2" y2="29.9998" width="0.2032" layer="1"/>
+<wire x1="180.2" y1="29.9998" x2="181.075" y2="29.9998" width="0.2032" layer="1"/>
 <wire x1="181.075" y1="29.9998" x2="181.089" y2="29.9858" width="0.2032" layer="1"/>
+<contactref element="BOOT" pad="TP"/>
+<wire x1="179.2" y1="28.2" x2="179.2" y2="28.9998" width="0.1524" layer="16"/>
+<wire x1="179.2" y1="28.9998" x2="180.2" y2="29.9998" width="0.1524" layer="16"/>
+<via x="180.2" y="29.9998" extent="1-16" drill="0.2"/>
 </signal>
 <signal name="RP_XO">
 <contactref element="R16" pad="2"/>
@@ -17772,6 +17827,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <via x="165.49" y="10.09" extent="1-16" drill="0.2"/>
 <wire x1="165.49" y1="10.09" x2="166.8" y2="10.09" width="0.15" layer="15"/>
 <wire x1="166.8" y1="10.09" x2="168.99" y2="12.28" width="0.15" layer="15"/>
+<contactref element="ADCUSB" pad="TP"/>
+<wire x1="159.57" y1="12.99" x2="159.45001875" y2="12.99" width="0.1524" layer="16"/>
+<wire x1="159.45001875" y1="12.99" x2="159.34" y2="13.10001875" width="0.1524" layer="16"/>
 </signal>
 <signal name="I2C0_SDA">
 <contactref element="SDA0" pad="TP"/>
@@ -18190,6 +18248,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="162.65" y1="1.74" x2="162.13" y2="1.22" width="0.2" layer="2"/>
 <wire x1="159.9812" y1="1.22" x2="158.8086" y2="2.3926" width="0.2" layer="2"/>
 <wire x1="162.13" y1="1.22" x2="159.9812" y2="1.22" width="0.2" layer="2"/>
+<contactref element="RST" pad="TP"/>
+<wire x1="158.8086" y1="4.5926" x2="158.2012" y2="5.2" width="0.1524" layer="16"/>
+<wire x1="157" y1="5.2" x2="158.2012" y2="5.2" width="0.1524" layer="16"/>
+<wire x1="158.8086" y1="4.5926" x2="158.8086" y2="2.3926" width="0.1524" layer="16"/>
 </signal>
 <signal name="LCD_BL">
 <contactref element="IC15" pad="9"/>
@@ -18724,6 +18786,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <vertex x="188.03" y="27.32"/>
 </polygon>
 <via x="198.98" y="34.422753125" extent="1-16" drill="0.2"/>
+<contactref element="3V3A" pad="TP"/>
+<wire x1="188.98" y1="27.01" x2="188.98" y2="27.06" width="0" layer="19" extent="1-16"/>
 </signal>
 <signal name="TCT">
 <contactref element="C80" pad="1"/>
@@ -20117,6 +20181,12 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="163.8338" y1="40.0664" x2="163.8338" y2="41.3164" width="0.2032" layer="1"/>
 <wire x1="165.16" y1="38.77" x2="165.16" y2="37.57" width="0.147575" layer="1"/>
 <wire x1="165.16" y1="37.57" x2="165.15" y2="37.56" width="0.147575" layer="1"/>
+<contactref element="UTX" pad="TP"/>
+<wire x1="167.6" y1="39.2" x2="167.2" y2="38.8" width="0.1524" layer="16"/>
+<wire x1="167.2" y1="38.8" x2="166" y2="38.8" width="0.1524" layer="16"/>
+<via x="166" y="38.8" extent="1-16" drill="0.2"/>
+<wire x1="166" y1="38.8" x2="165.1602" y2="38.8" width="0.1524" layer="1"/>
+<wire x1="165.1602" y1="38.8" x2="165.1302" y2="38.77" width="0.1524" layer="1"/>
 </signal>
 <signal name="MCP_VIN">
 <contactref element="C63" pad="1"/>
@@ -20127,8 +20197,20 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="138.492" y1="19.2632" x2="138.3128" y2="19.4424" width="0.15" layer="1"/>
 <wire x1="138.3128" y1="19.4424" x2="137.6174" y2="19.4424" width="0.15" layer="1"/>
 <wire x1="137.6174" y1="19.4424" x2="137.6" y2="19.425" width="0.15" layer="1"/>
-<wire x1="137.6" y1="19.425" x2="136.8" y2="19.425" width="0.15" layer="1"/>
+<wire x1="137.6" y1="19.425" x2="137.2" y2="19.425" width="0.15" layer="1"/>
+<wire x1="137.2" y1="19.425" x2="136.8" y2="19.425" width="0.15" layer="1"/>
 <wire x1="136.8" y1="19.425" x2="136.775" y2="19.4" width="0.15" layer="1"/>
+<contactref element="DNI" pad="2"/>
+<contactref element="MCPVIN" pad="TP"/>
+<wire x1="137.64" y1="19.4" x2="136.84" y2="20.2" width="0.1524" layer="16"/>
+<wire x1="134.6" y1="20.2" x2="134.2" y2="19.8" width="0.1524" layer="16"/>
+<wire x1="136.84" y1="20.2" x2="136.6" y2="20.2" width="0.1524" layer="16"/>
+<wire x1="136.6" y1="20.2" x2="136.2" y2="20.2" width="0.1524" layer="16"/>
+<wire x1="136.2" y1="20.2" x2="134.6" y2="20.2" width="0.1524" layer="16"/>
+<wire x1="136.775" y1="19.4" x2="136.775" y2="19.825" width="0.1524" layer="1"/>
+<wire x1="136.775" y1="19.825" x2="136.6" y2="20" width="0.1524" layer="1"/>
+<via x="136.6" y="20" extent="1-16" drill="0.2"/>
+<wire x1="136.6" y1="20.2" x2="136.6" y2="20" width="0.1524" layer="16"/>
 </signal>
 <signal name="5V_EN">
 <contactref element="R161" pad="2"/>
@@ -20213,6 +20295,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <via x="158.21" y="12.02" extent="1-16" drill="0.2"/>
 <wire x1="158.21" y1="12.02" x2="157.07" y2="12.02" width="0.147575" layer="2"/>
 <wire x1="157.07" y1="12.02" x2="156.89" y2="11.84" width="0.147575" layer="2"/>
+<contactref element="FCTL" pad="TP"/>
+<wire x1="127.41" y1="21.26" x2="127.39" y2="21.26" width="0.1524" layer="16"/>
 </signal>
 <signal name="USB_VBUS">
 <contactref element="R121" pad="1"/>
@@ -20271,6 +20355,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="162.3" y1="10.09" x2="162.3" y2="10.63" width="0.147575" layer="2"/>
 <wire x1="160.199928125" y1="12.847259375" x2="161.36" y2="11.6871875" width="0.147575" layer="1"/>
 <wire x1="161.36" y1="11.6871875" x2="161.36" y2="11.57" width="0.147575" layer="1"/>
+<contactref element="ADC_TEMP" pad="TP"/>
+<wire x1="165.14" y1="4.01" x2="165.08" y2="4.07" width="0.1524" layer="16"/>
 </signal>
 <signal name="3V3_EN">
 <contactref element="R2" pad="2"/>
@@ -20361,7 +20447,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <approved hash="5,1,d4f119a6ba3efff0"/>
 <approved hash="5,1,c5be083b7e228ce7"/>
 <approved hash="5,1,eb8c78aebb67f268"/>
-<approved hash="5,1,27ec18a808324e7a"/>
 <approved hash="5,16,f79b6ef411d3dff7"/>
 <approved hash="5,16,19aa749f4747ad34"/>
 <approved hash="5,16,9ced5ef39db6e176"/>
@@ -20383,7 +20468,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <approved hash="7,39,0bca69ed69ed0bca"/>
 <approved hash="7,39,4161be46be474160"/>
 <approved hash="7,39,a3bdd19ad19aa3bd"/>
-<approved hash="19,1,5251545350435641"/>
 <approved hash="19,1,f82d0e10f0851745"/>
 <approved hash="19,1,3f6f3c226e3e6d73"/>
 <approved hash="19,1,4d054f5113411115"/>
@@ -20398,7 +20482,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <approved hash="19,1,fd5afa65e679e146"/>
 <approved hash="19,1,fe54ff57e34be248"/>
 <approved hash="19,1,02a9f73b61a19373"/>
-<approved hash="19,1,6b7f6c8c809c876f"/>
 <approved hash="19,1,534aa782aff90ec8"/>
 <approved hash="19,1,80ee435ccbd4e8a4"/>
 <approved hash="19,1,7f657ea526b92779"/>
@@ -20498,10 +20581,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <approved hash="19,16,a068a778a37cb86c"/>
 <approved hash="19,16,3f6f3c226e3e6d73"/>
 <approved hash="19,16,1b31893a1a877421"/>
-<approved hash="19,16,93499089b499b759"/>
 <approved hash="19,16,a832eff33529baea"/>
 <approved hash="19,16,4f4d4c8b089b0b5d"/>
-<approved hash="19,16,4e484d8b959b9658"/>
 <approved hash="19,16,02a9f73b61a19373"/>
 <approved hash="19,16,3cbecf625dc2af6e"/>
 <approved hash="19,16,3e156049baf6bfe5"/>
@@ -20511,7 +20592,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <approved hash="19,16,fd6ffca5a0b9a173"/>
 <approved hash="19,16,f879ff77a36ba465"/>
 <approved hash="19,16,1a35198b499b4a25"/>
-<approved hash="19,16,025a059e158e124a"/>
 <approved hash="19,16,8214805e444e4604"/>
 <approved hash="19,16,2c1bad1461579a65"/>
 <approved hash="19,16,ba2f4797c467c3dc"/>
@@ -20528,8 +20608,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <approved hash="19,16,e423ea7f2515d547"/>
 <approved hash="19,16,e4a3d0b41eecd7e5"/>
 <approved hash="19,16,37a30f4ce843e4a3"/>
-<approved hash="19,16,6c466f8a439a4056"/>
-<approved hash="19,16,5a61594d895d8a71"/>
 <approved hash="19,16,79ef77e077fc79f3"/>
 <approved hash="19,16,477d4496448a4761"/>
 <approved hash="19,16,a8744cab8acace14"/>
@@ -20575,8 +20653,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <approved hash="19,16,3f00aee0750418e9"/>
 <approved hash="19,16,fd5cfa63e67fe140"/>
 <approved hash="19,16,4c8452d88ac89494"/>
-<approved hash="19,16,0b75088b549b5765"/>
-<approved hash="19,16,1f481c8830983358"/>
 <approved hash="19,16,4b49488984998759"/>
 <approved hash="6,1,0a9a09806e666d7c"/>
 <approved hash="6,1,27b2063fcc24a024"/>
@@ -20969,6 +21045,22 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <approved hash="23,16,647001835d97bcff"/>
 <approved hash="23,16,1cdc232423621c9e"/>
 <approved hash="23,16,f7ecdf1edf07f7f5"/>
+<approved hash="21,19,f1f8f3faf3faf1f8"/>
+<approved hash="21,19,783f7a3d7a3d783f"/>
+<approved hash="19,16,d88e260062149caa"/>
+<approved hash="19,16,da7adb8ecf9ece6a"/>
+<approved hash="19,16,ddebf94fc9e01d45"/>
+<approved hash="19,16,8f50894d515d5740"/>
+<approved hash="19,16,195b6aed67a40a22"/>
+<approved hash="19,16,7902816217cdefad"/>
+<approved hash="19,16,6b7f6c8c809c876f"/>
+<approved hash="19,16,5251545350435641"/>
+<approved hash="19,16,842c895662ac71e6"/>
+<approved hash="19,16,27e2d95ce93617b8"/>
+<approved hash="19,16,6a3a640e481e462a"/>
+<approved hash="19,16,9d749b3a9f2a9964"/>
+<approved hash="6,1,0aa63af5bccc304d"/>
+<approved hash="6,1,7699931c78bf2457"/>
 </errors>
 </board>
 </drawing>

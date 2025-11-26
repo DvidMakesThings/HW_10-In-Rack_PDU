@@ -4,13 +4,13 @@
 
 **Design File**: `ENERGIS_Rack-PDU_1.1.0.brd`
 
-**Evaluation Date**: 2025-11-25 9:18 PM
+**Evaluation Date**: 2025-11-26 8:04 PM
 
-**Total Components (placed)**: 446
+**Total Components (placed)**: 455
 
-**Evaluated (excluding Not mounted)**: 369
+**Evaluated (excluding Not mounted)**: 370
 
-**Compliant Components**: 369
+**Compliant Components**: 370
 
 ---
 
@@ -31,6 +31,7 @@ Based on the attributes present in the EAGLE board file at the time of export, t
 This certificate reflects only metadata embedded in the project and does not replace manufacturer documentation.
 | Ref | MPN | Manufacturer | ROHS Compliant | Result |
 |-----|-----|--------------|----------------|--------|
+| 3V3A | - | - | - | Not mounted |
 | 3VDC | - | - | - | Not mounted |
 | 3VFB | - | - | - | Not mounted |
 | 5V-NI1 | - | - | - | Not mounted |
@@ -43,7 +44,10 @@ This certificate reflects only metadata embedded in the project and does not rep
 | AC_L | 1217861-1 | TE CONNECTIVITY | YES | PASS |
 | AC_N | 1217861-1 | TE CONNECTIVITY | YES | PASS |
 | ADC12 | - | - | - | Not mounted |
+| ADCUSB | - | - | - | Not mounted |
+| ADC_TEMP | - | - | - | Not mounted |
 | AVDD | - | - | - | Not mounted |
+| BOOT | - | - | - | Not mounted |
 | BT | B3U-1000P | Omron | YES | PASS |
 | C1 | 1206X226K250NT | FH | YES | PASS |
 | C2 | 1206X226K250NT | FH | YES | PASS |
@@ -179,6 +183,7 @@ This certificate reflects only metadata embedded in the project and does not rep
 | D17 | RCLAMP0582BQTCT | SEMTECH | YES | PASS |
 | D18 | RCLAMP0582BQTCT | SEMTECH | YES | PASS |
 | DAT | FC-1608BK-465G5  | NATIONSTAR | YES | PASS |
+| DNI | RC0402JR-130RL | YAGEO | YES | PASS |
 | DSP | AFC11-S20ICA-00 | JS | YES | PASS |
 | DVDD | - | - | - | Not mounted |
 | ESD1 | SP0503BAHTG | Littelfuse | YES | PASS |
@@ -186,6 +191,7 @@ This certificate reflects only metadata embedded in the project and does not rep
 | FAN | - | - | - | Not mounted |
 | FB1 | - | - | - | Not mounted |
 | FB2 | - | - | - | Not mounted |
+| FCTL | - | - | - | Not mounted |
 | GDRC | - | - | - | Not mounted |
 | GND | - | - | - | Not mounted |
 | GND-3 | - | - | - | Not mounted |
@@ -242,6 +248,7 @@ This certificate reflects only metadata embedded in the project and does not rep
 | L_OUT6 | 1217861-1 | TE CONNECTIVITY | YES | PASS |
 | L_OUT7 | 1217861-1 | TE CONNECTIVITY | YES | PASS |
 | L_OUT8 | 1217861-1 | TE CONNECTIVITY | YES | PASS |
+| MCPVIN | - | - | - | Not mounted |
 | MI | - | - | - | Not mounted |
 | MISO1 | - | - | - | Not mounted |
 | MO | - | - | - | Not mounted |
@@ -446,6 +453,7 @@ This certificate reflects only metadata embedded in the project and does not rep
 | RGTG | - | - | - | Not mounted |
 | RN1 | YC164-FR-07100KL  | Yageo | YES | PASS |
 | RN2 | YC164-FR-07100KL  | Yageo | YES | PASS |
+| RST | - | - | - | Not mounted |
 | RX0 | - | - | - | Not mounted |
 | SC | - | - | - | Not mounted |
 | SCL0 | - | - | - | Not mounted |
@@ -471,6 +479,7 @@ This certificate reflects only metadata embedded in the project and does not rep
 | U$14 | - | - | - | Not mounted |
 | U$15 | - | - | - | Not mounted |
 | USB1 | USB-TYPE-C-018  | DEALON | YES | PASS |
+| UTX | - | - | - | Not mounted |
 | VBUS | - | - | - | Not mounted |
 | VCC | - | - | - | Not mounted |
 | VCC2 | - | - | - | Not mounted |
