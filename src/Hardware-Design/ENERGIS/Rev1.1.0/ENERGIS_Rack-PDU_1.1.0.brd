@@ -9115,16 +9115,16 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="1K 1%" x="191.9518" y="52.1488" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="194.341409375" y="50.374409375" size="0.66234375" layer="27" rot="R90"/>
 </element>
-<element name="IC9" library="ds_ic_logic" package="TSSOP16" package3d_urn="urn:adsk.eagle:package:16485/2" value="CD74ACT151M96" x="170.3664" y="33.7262" smashed="yes" rot="R180">
+<element name="IC9" library="ds_ic_logic" package="TSSOP16" package3d_urn="urn:adsk.eagle:package:16485/2" value="SN74HC151PWR" x="170.3664" y="33.7262" smashed="yes" rot="R180">
 <attribute name="DATASHEET" value="https://www.ti.com/lit/ds/symlink/sn74hc151.pdf?ts=1749408396579&amp;ref_url=https%253A%252F%252Fwww.google.com%252F" x="170.3664" y="33.7262" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="DESCRIPTION" value="24mA 4.5V~5.5V 24mA SOIC-16 Signal Switches, Multiplexers, Decoders ROHS " x="170.3664" y="33.7262" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="DESCRIPTION" value="-40℃~+85℃ 25ns@6V,50pF 2V~6V 7.8mA 7.8mA 80uA Single Supply TSSOP-16 Signal Switches, Multiplexers, Decoders ROHS" x="170.3664" y="33.7262" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="HQ_PART" value="IC0244620" x="170.3664" y="33.7262" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="LCSC_PART" value="C2674746" x="170.3664" y="33.7262" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MANUFACTURER" value="Nexperia" x="170.3664" y="33.7262" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MPN" value="74HC151PW-Q100,118 " x="170.3664" y="33.7262" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="LCSC_PART" value="C2653837" x="170.3664" y="33.7262" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MANUFACTURER" value="Texas Instruments" x="170.3664" y="33.7262" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MPN" value="SN74HC151PWR" x="170.3664" y="33.7262" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="173.472" y="36.809" size="0.8128" layer="25" ratio="10" rot="R270"/>
 <attribute name="ROHS" value="YES" x="170.3664" y="33.7262" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="VALUE" value="CD74ACT151M96" x="170.3664" y="33.7262" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" value="SN74HC151PWR" x="170.3664" y="33.7262" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="166.4802" y="35.809" size="1.016" layer="27" ratio="10" rot="R270"/>
 </element>
 <element name="C33" library="ds_capacitors" package="0402" package3d_urn="urn:adsk.eagle:package:46766485/4" value="100nF 25V" x="174.6664" y="31.5262" smashed="yes">
@@ -10401,7 +10401,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="470R 1%" x="188.196" y="25.2386" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="190.101" y="24.6036" size="1.016" layer="27" rot="R90"/>
 </element>
-<element name="IC21" library="ds_ic_vreg" package="SOT23-5" package3d_urn="urn:adsk.eagle:package:25419215/2" value="DNI" x="178.6242" y="17.1666" smashed="yes">
+<element name="IC21" library="ds_ic_vreg" package="SOT23-5" package3d_urn="urn:adsk.eagle:package:25419215/2" value="MIC5504-3.3YM5 " x="178.6242" y="17.1666" smashed="yes">
 <attribute name="DATASHEET" value="https://ww1.microchip.com/downloads/en/DeviceDoc/MIC5501-02-03-04-300mA-Single-Output-LDO-in-Small-Packages-DS20006006B.pdf" x="178.6242" y="17.1666" size="1.778" layer="27" display="off"/>
 <attribute name="DESCRIPTION" value="SOT-23-5 Voltage Regulators - Linear, Low Drop Out (LDO) Regulators ROHS " x="178.6242" y="17.1666" size="1.778" layer="27" display="off"/>
 <attribute name="HQ_PART" value="IC0230296" x="178.6242" y="17.1666" size="1.778" layer="27" display="off"/>
@@ -11526,7 +11526,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="ROHS" value="YES" x="83.57" y="5.75" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="81.665" y="6.385" size="1.016" layer="27" rot="R270"/>
 </element>
-<element name="IC23" library="ds_ic_peripherals" package="SC70-5" package3d_urn="urn:adsk.eagle:package:49052119/1" value="DNI" x="164.41" y="4.1" smashed="yes" rot="R90">
+<element name="IC23" library="ds_ic_peripherals" package="SC70-5" package3d_urn="urn:adsk.eagle:package:49052119/1" value="MCP9700AT-E/LT " x="164.41" y="4.1" smashed="yes" rot="R90">
 <attribute name="DATASHEET" value="https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/MCP970X-Family-Data-Sheet-DS20001942.pdf" x="164.41" y="4.1" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="DESCRIPTION" value="-40℃~+125℃ 2.3V~5.5V ±2℃ SC-70-5 Temperature Sensors ROHS" x="164.41" y="4.1" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="LCSC_PART" value="C97546" x="164.41" y="4.1" size="1.778" layer="27" rot="R90" display="off"/>

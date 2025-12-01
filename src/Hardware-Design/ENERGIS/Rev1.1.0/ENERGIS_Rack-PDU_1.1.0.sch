@@ -522,11 +522,9 @@ DIN A3, landscape with location and doc. field</description>
 <text x="0" y="2.54" size="1.778" layer="96" align="top-center">&gt;VALUE</text>
 <pin name="+5V" x="0" y="-2.54" visible="off" length="short" direction="sup" rot="R90"/>
 </symbol>
-<symbol name="AGND" urn="urn:adsk.eagle:symbol:46683729/1" locally_modified="yes">
+<symbol name="AGND" urn="urn:adsk.eagle:symbol:46683729/2">
 <wire x1="-1.905" y1="0" x2="1.905" y2="0" width="0.254" layer="94"/>
 <wire x1="-1.0922" y1="-0.508" x2="1.0922" y2="-0.508" width="0.254" layer="94"/>
-<wire x1="-0.6223" y1="-1.016" x2="0.6223" y2="-1.016" width="0.254" layer="94"/>
-<wire x1="-0.3048" y1="-1.524" x2="0.3302" y2="-1.524" width="0.254" layer="94"/>
 <text x="0" y="-2.54" size="1.778" layer="96" rot="R180" align="bottom-center">&gt;VALUE</text>
 <pin name="AGND" x="0" y="2.54" visible="off" length="short" direction="sup" rot="R270"/>
 </symbol>
@@ -807,7 +805,7 @@ DIN A3, landscape with location and doc. field</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="AGND" urn="urn:adsk.eagle:component:46683750/1" locally_modified="yes" prefix="AGND">
+<deviceset name="AGND" urn="urn:adsk.eagle:component:46683750/2" prefix="AGND">
 <description>&lt;b&gt;SUPPLY SYMBOL&lt;/b&gt;</description>
 <gates>
 <gate name="M" symbol="AGND" x="0" y="0"/>
@@ -919,7 +917,7 @@ DIN A3, landscape with location and doc. field</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="CRYSTAL-3225" urn="urn:adsk.eagle:component:49287378/2" locally_modified="yes" prefix="X" uservalue="yes">
+<deviceset name="CRYSTAL-3225" urn="urn:adsk.eagle:component:49287378/3" prefix="X" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="CRYSTAL-4PIN" x="0" y="0"/>
 </gates>
@@ -1936,7 +1934,7 @@ DIN A3, landscape with location and doc. field</description>
 <pin name="RSVD5" x="-17.78" y="-22.86" length="middle" direction="in"/>
 <pin name="RSVD6" x="-17.78" y="-25.4" length="middle" direction="in"/>
 </symbol>
-<symbol name="MCP9700">
+<symbol name="MCP9700" urn="urn:adsk.eagle:symbol:50678392/1">
 <pin name="VDD" x="-12.7" y="2.54" length="middle" direction="pwr"/>
 <pin name="GND" x="-12.7" y="-2.54" length="middle" direction="pwr"/>
 <pin name="VOUT" x="15.24" y="2.54" length="middle" direction="out" rot="R180"/>
@@ -2267,7 +2265,7 @@ system, W5500 provides WOL (Wake on LAN) and power down mode.</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="MCP9700" prefix="IC" uservalue="yes">
+<deviceset name="MCP9700" urn="urn:adsk.eagle:component:50678398/1" prefix="IC" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="MCP9700" x="0" y="0"/>
 </gates>
@@ -2749,7 +2747,7 @@ Copyright: Würth Elektronik</description>
 <pin name="A" x="0" y="-2.54" visible="off" length="short" direction="pas" rot="R90"/>
 <pin name="C" x="0" y="2.54" visible="off" length="short" direction="pas" rot="R270"/>
 </symbol>
-<symbol name="MIC5504" urn="urn:adsk.eagle:symbol:46684415/1" locally_modified="yes">
+<symbol name="MIC5504" urn="urn:adsk.eagle:symbol:46684415/2">
 <pin name="VIN" x="-12.7" y="5.08" length="middle"/>
 <pin name="GND" x="-12.7" y="-5.08" length="middle"/>
 <pin name="EN" x="-12.7" y="0" length="middle"/>
@@ -2892,7 +2890,7 @@ The MP2315 is a high frequency synchronous rectified step-down switch mode conve
 </device>
 </devices>
 </deviceset>
-<deviceset name="MIC5504-3.3YM5-TR" urn="urn:adsk.eagle:component:46684451/2" locally_modified="yes" prefix="IC" uservalue="yes">
+<deviceset name="MIC5504-3.3YM5-TR" urn="urn:adsk.eagle:component:46684451/3" prefix="IC" uservalue="yes">
 <description>The MIC5501/2/3/4 is an advanced general-purpose LDO ideal for powering general-purpose portable devices. The MIC5501/2/3/4 family of products provides a high-performance 300mA LDO</description>
 <gates>
 <gate name="G$1" symbol="MIC5504" x="0" y="0"/>
@@ -3043,13 +3041,13 @@ MAX3223-MAX3243.pdf</description>
 <technologies>
 <technology name="">
 <attribute name="DATASHEET" value="https://www.ti.com/lit/ds/symlink/sn74hc151.pdf?ts=1749408396579&amp;ref_url=https%253A%252F%252Fwww.google.com%252F" constant="no"/>
-<attribute name="DESCRIPTION" value="24mA 4.5V~5.5V 24mA SOIC-16 Signal Switches, Multiplexers, Decoders ROHS " constant="no"/>
+<attribute name="DESCRIPTION" value="-40℃~+85℃ 25ns@6V,50pF 2V~6V 7.8mA 7.8mA 80uA Single Supply TSSOP-16 Signal Switches, Multiplexers, Decoders ROHS" constant="no"/>
 <attribute name="HQ_PART" value="IC0244620" constant="no"/>
-<attribute name="LCSC_PART" value="C2674746" constant="no"/>
-<attribute name="MANUFACTURER" value="Nexperia" constant="no"/>
-<attribute name="MPN" value="74HC151PW-Q100,118 " constant="no"/>
+<attribute name="LCSC_PART" value="C2653837" constant="no"/>
+<attribute name="MANUFACTURER" value="Texas Instruments" constant="no"/>
+<attribute name="MPN" value="SN74HC151PWR" constant="no"/>
 <attribute name="ROHS" value="YES" constant="no"/>
-<attribute name="VALUE" value="CD74ACT151M96" constant="no"/>
+<attribute name="VALUE" value="SN74HC151PWR" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -4044,7 +4042,7 @@ MAX3223-MAX3243.pdf</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="FASTON-1217861-1" urn="urn:adsk.eagle:component:50470016/1" locally_modified="yes" prefix="CON">
+<deviceset name="FASTON-1217861-1" urn="urn:adsk.eagle:component:50470016/2" prefix="CON">
 <gates>
 <gate name="G$1" symbol="63067-1" x="0" y="0"/>
 </gates>
@@ -4465,7 +4463,7 @@ MAX3223-MAX3243.pdf</description>
 </package3d>
 </packages3d>
 <symbols>
-<symbol name="OPA_PWR">
+<symbol name="OPA_PWR" urn="urn:adsk.eagle:symbol:50677889/1">
 <wire x1="-1.27" y1="-3.175" x2="-1.27" y2="-1.905" width="0.1524" layer="94"/>
 <wire x1="-0.635" y1="-2.54" x2="-1.905" y2="-2.54" width="0.1524" layer="94"/>
 <wire x1="-0.635" y1="2.54" x2="-1.905" y2="2.54" width="0.1524" layer="94"/>
@@ -4473,20 +4471,20 @@ MAX3223-MAX3243.pdf</description>
 <wire x1="0" y1="5.08" x2="0" y2="3.8862" width="0.1524" layer="94"/>
 <wire x1="-2.54" y1="5.08" x2="7.62" y2="0" width="0.4064" layer="94"/>
 <wire x1="-2.54" y1="-5.08" x2="7.62" y2="0" width="0.4064" layer="94"/>
+<wire x1="0" y1="-5.08" x2="0" y2="-3.8862" width="0.1524" layer="94"/>
 <text x="5.08" y="-6.35" size="1.778" layer="95">&gt;NAME</text>
 <text x="5.08" y="-10.16" size="1.778" layer="96">&gt;VALUE</text>
 <text x="1.143" y="4.191" size="0.8128" layer="93" rot="R90">V+</text>
+<text x="1.016" y="-5.08" size="0.8128" layer="93" rot="R90">V-</text>
 <pin name="+IN" x="-5.08" y="-2.54" visible="pad" length="short" direction="in"/>
 <pin name="-IN" x="-5.08" y="2.54" visible="pad" length="short" direction="in"/>
 <pin name="OUT" x="10.16" y="0" visible="pad" length="short" direction="out" rot="R180"/>
 <pin name="V+" x="0" y="7.62" visible="pad" length="short" direction="pwr" rot="R270"/>
-<wire x1="0" y1="-5.08" x2="0" y2="-3.8862" width="0.1524" layer="94"/>
-<text x="1.016" y="-5.08" size="0.8128" layer="93" rot="R90">V-</text>
 <pin name="V-" x="0" y="-7.62" visible="pad" length="short" direction="pwr" rot="R90"/>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="MCP6001RT" prefix="IC">
+<deviceset name="MCP6001RT" urn="urn:adsk.eagle:component:50677906/1" prefix="IC">
 <description>1 MHz, Low-Power Op Amp</description>
 <gates>
 <gate name="G$1" symbol="OPA_PWR" x="0" y="0"/>
@@ -11590,7 +11588,7 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="BSS138" urn="urn:adsk.eagle:component:47392606/1" locally_modified="yes" prefix="T" uservalue="yes">
+<deviceset name="BSS138" urn="urn:adsk.eagle:component:47392606/2" prefix="T" uservalue="yes">
 <gates>
 <gate name="1" symbol="N-MOSFET" x="0" y="0"/>
 </gates>
@@ -12021,7 +12019,7 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="R63" library="ds_resistor" deviceset="1K-1%_ARRAY" device="0603X4-1206" package3d_urn="urn:adsk.eagle:package:49287421/2" value="1K 1%"/>
 <part name="R64" library="ds_resistor" deviceset="1K-1%_ARRAY" device="0603X4-1206" package3d_urn="urn:adsk.eagle:package:49287421/2" value="1K 1%"/>
 <part name="GND25" library="ds_passive" deviceset="GND" device=""/>
-<part name="IC9" library="ds_ic_logic" deviceset="74AC151" device="" package3d_urn="urn:adsk.eagle:package:16485/2" value="CD74ACT151M96"/>
+<part name="IC9" library="ds_ic_logic" deviceset="74AC151" device="" package3d_urn="urn:adsk.eagle:package:16485/2" value="SN74HC151PWR"/>
 <part name="+3V1" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="C33" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/4" value="100nF 25V"/>
 <part name="C34" library="ds_capacitors" deviceset="100NF-25V" device="-0402" package3d_urn="urn:adsk.eagle:package:46766485/4" value="100nF 25V"/>
@@ -12233,7 +12231,7 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="GND73" library="ds_passive" deviceset="GND" device=""/>
 <part name="+3V24" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="P+15" library="ds_passive" deviceset="+5V" device=""/>
-<part name="IC21" library="ds_ic_vreg" deviceset="MIC5504-3.3YM5-TR" device="" package3d_urn="urn:adsk.eagle:package:25419215/2" value="DNI"/>
+<part name="IC21" library="ds_ic_vreg" deviceset="MIC5504-3.3YM5-TR" device="" package3d_urn="urn:adsk.eagle:package:25419215/2" value="MIC5504-3.3YM5 "/>
 <part name="C97" library="ds_capacitors" deviceset="10UF-50V" device="-0805" package3d_urn="urn:adsk.eagle:package:46766483/3" value="10uF 50V"/>
 <part name="C98" library="ds_capacitors" deviceset="100NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="100nF 25V"/>
 <part name="GND74" library="ds_passive" library_urn="urn:adsk.eagle:library:46685041" deviceset="GND" device=""/>
@@ -12445,7 +12443,7 @@ The low-capacitance and high ESD robustness of the RClamp0582BQ make it an ideal
 <part name="+3V9" library="ds_passive" deviceset="+3V3" device=""/>
 <part name="R170" library="ds_resistor" deviceset="0R" device="1206" package3d_urn="urn:adsk.eagle:package:46683745/2" value="DNI"/>
 <part name="R171" library="ds_resistor" deviceset="10K-1%" device="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="10K 1%"/>
-<part name="IC23" library="ds_ic_peripherals" deviceset="MCP9700" device="AT-E/LT" package3d_urn="urn:adsk.eagle:package:49052119/1" value="DNI"/>
+<part name="IC23" library="ds_ic_peripherals" deviceset="MCP9700" device="AT-E/LT" package3d_urn="urn:adsk.eagle:package:49052119/1" value="MCP9700AT-E/LT "/>
 <part name="C105" library="ds_capacitors" deviceset="100NF-25V" device="-0201" package3d_urn="urn:adsk.eagle:package:47403530/3" value="100nF 25V"/>
 <part name="GND94" library="ds_passive" deviceset="GND" device=""/>
 <part name="GND95" library="ds_passive" deviceset="GND" device=""/>
