@@ -2,11 +2,15 @@
  * @file src/drivers/button_driver.c
  * @author DvidMakesThings - David Sipos
  *
- * @version 1.0.0
- * @date 2025-11-06
+ * @version 1.1.0
+ * @date 2025-12-10
  *
  * @details Low-level driver implementation for the front-panel buttons and
  * selection/relay indicators using FreeRTOS.
+ *
+ * v1.1.0 Changes:
+ * - Replaced mcp_set_channel_state with Switch_Toggle for RTOS-cooperative
+ *   relay control via SwitchTask
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -108,20 +112,11 @@ void ButtonDrv_SelectRight(uint8_t *io_index, bool led_on) {
 }
 
 void ButtonDrv_DoSetShort(uint8_t index) {
-    mcp23017_t *rel = mcp_relay();
-    if (!rel) {
-#if ERRORLOGGER
-        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_BUTTON_DRV, 0x4);
-        ERROR_PRINT_CODE(errorcode, "%s ButtonDrv_DoSetShort: MCP23017 relay device not found\r\n",
-                         BTNDRV_TAG);
-        Storage_EnqueueErrorCode(errorcode);
-#endif
-        return;
+    /* Use non-blocking Switch_Toggle via SwitchTask
+     * This prevents I2C bus contention and watchdog starvation */
+    if (index < 8) {
+        (void)Switch_Toggle(index & 0x07u, pdMS_TO_TICKS(100));
     }
-
-    uint8_t cur = mcp_read_pin(rel, index & 0x0Fu);
-    uint8_t want = cur ? 0u : 1u;
-    (void)mcp_set_channel_state(index & 0x0Fu, want);
 }
 
 void ButtonDrv_DoSetLong(void) {

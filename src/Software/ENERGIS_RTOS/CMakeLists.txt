@@ -81,6 +81,7 @@ add_executable(ENERGIS_RTOS
     src/tasks/MeterTask.c
     src/tasks/ButtonTask.c
     src/tasks/HealthTask.c
+    src/tasks/SwitchTask.c
     src/tasks/storage_submodule/calibration.c
     src/tasks/storage_submodule/channel_labels.c
     src/tasks/storage_submodule/energy_monitor.c

@@ -5693,7 +5693,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="MCP23017T-E/ML " x="77.286446875" y="37.500809375" size="1.778" layer="28" rot="MR45" display="off"/>
 <attribute name="VALUE" x="76.388421875" y="32.112653125" size="1.27" layer="28" rot="MR45"/>
 </element>
-<element name="R4" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="10K 1%" x="29.64" y="30.61" smashed="yes" rot="MR90">
+<element name="R4" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="DNI" x="29.64" y="30.61" smashed="yes" rot="MR90">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 10kΩ 0402 Chip Resistor - Surface Mount ROHS" x="29.64" y="30.61" size="1.778" layer="28" rot="MR90" display="off"/>
 <attribute name="HQ_PART" value="RE0207399" x="29.64" y="30.61" size="1.778" layer="28" rot="MR90" display="off"/>
 <attribute name="LCSC_PART" value="C25744" x="29.64" y="30.61" size="1.778" layer="28" rot="MR90" display="off"/>

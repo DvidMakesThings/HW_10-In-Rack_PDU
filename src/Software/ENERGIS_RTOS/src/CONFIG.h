@@ -30,6 +30,7 @@
 
 #include "FreeRTOS.h"
 #include "event_groups.h"
+#include "hardware/clocks.h"
 #include "hardware/irq.h"
 #include "hardware/pwm.h"
 #include "hardware/structs/vreg_and_chip_reset.h"
@@ -96,6 +97,7 @@
 #include "tasks/storage_submodule/storage_common.h"
 #include "tasks/storage_submodule/user_output.h"
 #include "tasks/storage_submodule/user_prefs.h"
+#include "tasks/SwitchTask.h"
 #include "tasks/ConsoleTask.h"
 #include "tasks/ButtonTask.h"
 #include "tasks/LoggerTask.h"
@@ -143,6 +145,7 @@ extern w5500_NetConfig eth_netcfg;
 #define DEFAULT_SN SERIAL_NUMBER
 #define SWVERSION FIRMWARE_VERSION
 #define SW_REV FIRMWARE_VERSION_LITERAL
+#define HW_REV HARDWARE_VERSION_LITERAL
 #define DEFAULT_NAME "ENERGIS-" FIRMWARE_VERSION
 #define DEFAULT_LOCATION "Location"
 
@@ -244,15 +247,15 @@ extern w5500_NetConfig eth_netcfg;
  ********************************************************************************/
 // I2C Peripheral Assignments
 #define I2C_SPEED 400000                            // 400 kHz fast mode
-#define I2C_SPEED2 100000                           // 100 kHz standard mode
+#define I2C_SPEED2 400000                           // 400 kHz fast mode
 #define EEPROM_I2C i2c1                             // Using I2C1 for EEPROM communication
 #define MCP23017_RELAY_I2C i2c1                     // Using I2C1 for Relay Board MCP23017
 #define MCP23017_DISPLAY_I2C i2c0                   // Using I2C0 for Display Board MCP23017
 #define MCP23017_SELECTION_I2C MCP23017_DISPLAY_I2C // Using I2C0 for Selection Row MCP23017
 
 // SPI Peripheral Assignments
-#define SPI_SPEED_W5500 40000000 // 40MHz
-#define W5500_SPI_INSTANCE spi0  // SPI0 for W5500 Ethernet Modul
+#define SPI_SPEED_W5500 40000000 // 40 MHz
+#define W5500_SPI_INSTANCE spi0  // SPI0 for Ethernet
 
 /********************************************************************************
  *                            CONSOLE CONFIGURATIONS                            *

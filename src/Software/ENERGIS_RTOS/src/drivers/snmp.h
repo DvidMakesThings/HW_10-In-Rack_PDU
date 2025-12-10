@@ -26,7 +26,7 @@
 
 /** @brief Enable hexdumps of requests/responses on the UART console. */
 #ifndef _SNMP_DEBUG_
-#define _SNMP_DEBUG_ 0
+#define _SNMP_DEBUG_ DEBUG
 #endif
 
 /** @brief Maximum OID components per entry. */

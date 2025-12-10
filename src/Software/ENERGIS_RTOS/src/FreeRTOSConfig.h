@@ -7,12 +7,16 @@
  * @brief FreeRTOS Configuration Header
  * @{
  *
- * @version 2.0.0
- * @date 2025-11-08
+ * @version 2.1.0
+ * @date 2025-12-10
  *
  * @details FreeRTOS configuration settings for the Energis PDU firmware.
  * This file defines various parameters that control the behavior of the FreeRTOS kernel,
  * including task priorities, memory allocation, and system hooks.
+ *
+ * v2.1.0 Changes:
+ * - Updated configCPU_CLOCK_HZ to 200MHz for improved network performance
+ *   during SNMP stress testing and heavy traffic scenarios
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -25,8 +29,9 @@
 // Task priorities
 #define HEALTHTASK_PRIORITY        (configMAX_PRIORITIES - 1)
 #define INITTASK_PRIORITY          (configMAX_PRIORITIES - 2)
+#define BUTTONTASK_PRIORITY        (tskIDLE_PRIORITY + 6)
+#define SWITCHTASK_PRIORITY        (tskIDLE_PRIORITY + 5)
 #define NETTASK_PRIORITY           (tskIDLE_PRIORITY + 4)
-#define BUTTONTASK_PRIORITY        (tskIDLE_PRIORITY + 4)
 #define CONSOLETASK_PRIORITY       (tskIDLE_PRIORITY + 3)
 #define STORAGETASK_PRIORITY       (tskIDLE_PRIORITY + 3)
 #define LOGTASK_PRIORITY           (tskIDLE_PRIORITY + 2)
@@ -42,7 +47,7 @@
 #define configUSE_TIME_SLICING             1
 #define configUSE_PORT_OPTIMISED_TASK_SELECTION 0
 #define configUSE_TICKLESS_IDLE            0
-#define configCPU_CLOCK_HZ                 125000000UL
+#define configCPU_CLOCK_HZ                 200000000UL 
 #define configTICK_RATE_HZ                 ((TickType_t)1000)
 #define configMAX_PRIORITIES               24
 #define configMINIMAL_STACK_SIZE           ((configSTACK_DEPTH_TYPE)512)

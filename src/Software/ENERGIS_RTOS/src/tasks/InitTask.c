@@ -165,9 +165,9 @@ static bool probe_i2c_device(i2c_inst_t *i2c, uint8_t addr, const char *name) {
     bool present = (ret >= 0);
 
     if (present) {
-        INFO_PRINT("%s ✓ %s detected at 0x%02X\r\n", INIT_TASK_TAG, name, addr);
+        INFO_PRINT("%s %s detected at 0x%02X\r\n", INIT_TASK_TAG, name, addr);
     } else {
-        INFO_PRINT("%s ✗ %s NOT detected at 0x%02X\r\n", INIT_TASK_TAG, name, addr);
+        INFO_PRINT("%s %s NOT detected at 0x%02X\r\n", INIT_TASK_TAG, name, addr);
     }
 
     return present;
@@ -184,7 +184,7 @@ static bool probe_mcps(void) {
     bool selection_ok = probe_i2c_device(i2c0, MCP_SELECTION_ADDR, "Selection MCP23017");
 
     if (relay_ok && display_ok && selection_ok) {
-        INFO_PRINT("%s ✓ All MCP23017s detected\r\n", INIT_TASK_TAG);
+        INFO_PRINT("%s All MCP23017s detected\r\n", INIT_TASK_TAG);
         return true;
     } else {
 #if ERRORLOGGER
@@ -354,6 +354,24 @@ static void InitTask(void *pvParameters) {
         }
     }
 
+    /* 3.5) Switch - relay control task (must start before ButtonTask and NetTask) */
+    SwitchTask_Init(true);
+    {
+        TickType_t t0 = xTaskGetTickCount();
+        while (!Switch_IsReady() && (xTaskGetTickCount() - t0) < step_timeout) {
+            vTaskDelay(poll_10ms);
+        }
+        if (Switch_IsReady())
+            INFO_PRINT("%s SwitchTask ready\r\n", INIT_TASK_TAG);
+        else {
+#if ERRORLOGGER
+            uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0xA);
+            ERROR_PRINT_CODE(errorcode, "%s SwitchTask not ready (timeout)\r\n", INIT_TASK_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
+        }
+    }
+
     /* 4) Button */
     ButtonTask_Init(true);
     {
@@ -473,6 +491,10 @@ static void InitTask(void *pvParameters) {
         h = xTaskGetHandle("ButtonTask");
         if (h)
             Health_RegisterTask(HEALTH_ID_BUTTON, h, "ButtonTask");
+
+        h = xTaskGetHandle("SwitchTask");
+        if (h)
+            Health_RegisterTask(HEALTH_ID_SWITCH, h, "SwitchTask");
 
         h = xTaskGetHandle("Net");
         if (h)

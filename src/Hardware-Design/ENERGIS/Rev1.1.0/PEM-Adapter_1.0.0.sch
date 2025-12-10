@@ -499,6 +499,7 @@ DIN A3, landscape with location and doc. field</description>
 <plain>
 <text x="264.16" y="40.64" size="6.4516" layer="94">PEM-Adapter Board</text>
 <text x="261.62" y="27.94" size="3.81" layer="94">PEM-Adapter</text>
+<text x="10.16" y="241.3" size="6.4516" layer="94">4X IEC C13 POWER ENTRY MODULE</text>
 </plain>
 <instances>
 <instance part="PEM1" gate="A" x="147.32" y="165.1" smashed="yes">

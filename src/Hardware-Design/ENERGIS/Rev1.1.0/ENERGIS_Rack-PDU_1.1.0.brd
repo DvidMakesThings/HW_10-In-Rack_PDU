@@ -7434,7 +7434,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="DATASHEET" value="https://www.meanwell.com/Upload/PDF/IRM-10/IRM-10-SPEC.PDF" x="91.4676" y="30.6386" size="1.778" layer="27" display="off"/>
 <attribute name="DESCRIPTION" value="- Power supply module,Power Supplies ROHS " x="91.4676" y="30.6386" size="1.778" layer="27" display="off"/>
 <attribute name="HQ_PART" value="ZHLM0215926" x="91.4676" y="30.6386" size="1.778" layer="27" display="off"/>
-<attribute name="LCSC_PART" value="C20618065" x="91.4676" y="30.6386" size="1.778" layer="27" display="off"/>
+<attribute name="LCSC_PART" value="C42418573" x="91.4676" y="30.6386" size="1.778" layer="27" display="off"/>
 <attribute name="MANUFACTURER" value="MW" x="91.4676" y="30.6386" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="IRM-10-12 " x="91.4676" y="30.6386" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="75.1676" y="46.3186" size="0.8128" layer="25" rot="R180"/>

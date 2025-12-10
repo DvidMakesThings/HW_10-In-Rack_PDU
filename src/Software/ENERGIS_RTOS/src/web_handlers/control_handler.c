@@ -2,13 +2,12 @@
  * @file src/web_handlers/control_handler.c
  * @author DvidMakesThings - David Sipos
  *
- * @version 1.0.0
- * @date 2025-11-07
+ * @version 1.1.1
+ * @date 2025-12-10
  *
  * @details Handles POST requests to /api/control endpoint for relay control.
  *          Processes form-encoded channel states and labels, applies changes
- *          using idempotent relay control functions with logging and dual
- *          asymmetry detection.
+ *          using RTOS-cooperative SwitchTask API for non-blocking operation.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -61,36 +60,43 @@ void handle_control_request(uint8_t sock, char *body) {
     urldecode(body);
     net_beat();
 
-    /* Default all OFF unless present and "on" */
-    bool want_on[8] = {false};
+    /* Parse desired state for all 8 channels */
+    uint8_t want_mask = 0x00;
     for (int i = 1; i <= 8; i++) {
         char key[16];
         snprintf(key, sizeof(key), "channel%d", i);
         char *value = get_form_value(body, key);
         if (value && strcmp(value, "on") == 0) {
-            want_on[i - 1] = true; /* explicit ON */
-        } else {
-            want_on[i - 1] = false; /* explicit "off" or omitted => OFF */
+            want_mask |= (1u << (i - 1)); /* explicit ON */
         }
+        /* explicit "off" or omitted => OFF (bit stays 0) */
         if ((i & 3) == 0)
             net_beat();
     }
 
-    /* Apply relay states */
-    int changed_total = 0;
-    for (uint8_t i = 0; i < 8; i++) {
-        bool current = mcp_read_pin(mcp_relay(), i);
-        if (current != want_on[i]) {
-            mcp_set_channel_state(i, (uint8_t)want_on[i]);
-            changed_total++;
-            NETLOG_PRINT("  CH%u: %s -> %s\n", (unsigned)(i + 1), current ? "ON" : "OFF",
-                         want_on[i] ? "ON" : "OFF");
-        }
-        if ((i & 1) == 0)
-            net_beat();
-    }
+    /* Get current state from SwitchTask cache */
+    uint8_t current_mask = 0x00;
+    (void)Switch_GetAllStates(&current_mask);
+    net_beat();
 
-    NETLOG_PRINT("Control: changed=%d\n", changed_total);
+    /* Apply relay states using per-channel operations (non-blocking) */
+    if (want_mask != current_mask) {
+        for (uint8_t ch = 0; ch < 8; ch++) {
+            bool want = (want_mask & (1u << ch)) != 0u;
+            bool have = (current_mask & (1u << ch)) != 0u;
+
+            if (want != have) {
+                /* UI path: use ~100ms queue timeout in *milliseconds* */
+                (void)Switch_SetChannel(ch, want, 100u);
+            }
+
+            if ((ch & 3u) == 0u) {
+                net_beat();
+            }
+        }
+
+        NETLOG_PRINT("Control: state 0x%02X -> 0x%02X\n", current_mask, want_mask);
+    }
     net_beat();
 
     /* Update channel labels if provided */

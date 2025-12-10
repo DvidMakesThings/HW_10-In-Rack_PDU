@@ -709,7 +709,7 @@ static void health_task(void *arg) {
             const uint32_t maxdt = max_dt_required(t);
             const uint32_t remain = (maxdt >= HEALTH_SILENCE_MS) ? 0u : (HEALTH_SILENCE_MS - maxdt);
 
-            HEALTH_INFO("**** %usec Report at %lu sec ****\r\n", HEALTH_LOG_PERIOD_MS / 1000,
+            HEALTH_INFO("**** %u sec Report at %lu sec ****\r\n", HEALTH_LOG_PERIOD_MS / 1000,
                         (unsigned long)(xTaskGetTickCount() * portTICK_PERIOD_MS / 1000));
             HEALTH_INFO("Summary:\r\n");
             HEALTH_INFO("Elapsed since boot = %lu ms\r\n", (unsigned long)elapsed);

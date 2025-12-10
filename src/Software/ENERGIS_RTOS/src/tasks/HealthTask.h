@@ -43,6 +43,7 @@
 #define STORAGETASKBEAT_MS 500
 #define BUTTONTASKBEAT_MS 500
 #define CONSOLETASKBEAT_MS 500
+#define SWITCHTASKBEAT_MS 500
 
 /**
  * @enum health_id_t
@@ -57,10 +58,10 @@ typedef enum {
     HEALTH_ID_CONSOLE = 1, /**< Console (CLI) task. */
     HEALTH_ID_STORAGE = 2, /**< Storage/EEPROM task. */
     HEALTH_ID_BUTTON = 3,  /**< Front-panel button scanner task. */
-    // HEALTH_ID_SWITCH = 4,  /**< Relay/switch control task. */
-    HEALTH_ID_NET = 5,   /**< Network stack task (SNMP/HTTP). */
-    HEALTH_ID_METER = 6, /**< Metering task (HLW8032). */
-    HEALTH_ID_MAX = 16   /**< Maximum number of tracked IDs (compile-time cap). */
+    HEALTH_ID_SWITCH = 4,  /**< Relay/switch control task. */
+    HEALTH_ID_NET = 5,     /**< Network stack task (SNMP/HTTP). */
+    HEALTH_ID_METER = 6,   /**< Metering task (HLW8032). */
+    HEALTH_ID_MAX = 16     /**< Maximum number of tracked IDs (compile-time cap). */
 } health_id_t;
 
 /* ##################################################################### */

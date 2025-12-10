@@ -1,15 +1,15 @@
 /**
  * @file src/web_handlers/status_handler.c
- * @author DvidMakesThings - David Sipos
+ * @author
  *
- * @version 1.0.0
- * @date 2025-11-07
+ * @version 1.0.1
+ * @date 2025-12-10
  *
  * @details Handles GET requests to /api/status endpoint. Returns JSON with
- * channel states (live from MCP), voltage/current/power (cached from
+ * channel states (cached from SwitchTask), voltage/current/power (cached from
  * MeterTask), internal temperature, and system status. Decouples UI
  * immediacy from measurement cadence.
- *
+ * 
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
  */
@@ -66,19 +66,25 @@ void handle_status_request(uint8_t sock) {
         break;
     }
 
+    /* Snapshot all channel states once from SwitchTask cache */
+    uint8_t state_mask = 0u;
+    (void)Switch_GetAllStates(&state_mask);
+
     /* Build JSON */
     char json[1024];
     int pos = 0;
     pos += snprintf(json + pos, sizeof(json) - pos, "{ \"channels\": [");
 
     for (int i = 0; i < 8; i++) {
-        bool state = mcp_get_channel_state((uint8_t)i);
+        bool state = (state_mask & (1u << i)) != 0u;
 
         meter_telemetry_t telem;
         float V = 0.0f, I = 0.0f, P = 0.0f;
         uint32_t up = 0;
 
         if (MeterTask_GetTelemetry((uint8_t)i, &telem) && telem.valid) {
+            // DEBUG_PRINT("[StatusHandler] CH%d: telem.voltage=%.2f telem.current=%.3f\r\n", i,
+            //             telem.voltage, telem.current);
             V = telem.voltage;
             I = telem.current;
             P = telem.power;

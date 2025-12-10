@@ -5,7 +5,7 @@
  * @defgroup drivers Drivers
  * @brief HAL drivers for the Energis PDU firmware.
  * @{
- * 
+ *
  * @defgroup driver1 1. MCP23017 Driver
  * @ingroup drivers
  * @brief Header file for MCP23017 I2C GPIO expander driver
@@ -60,13 +60,14 @@ enum {
  * and a mutex for race-free multi-task access.
  */
 typedef struct {
-    i2c_inst_t *i2c;         /* Pico SDK I2C instance (i2c0/i2c1). */
-    uint8_t addr;            /* 7-bit address 0x20..0x27. */
-    int8_t rst_gpio;         /* Optional reset GPIO, -1 if none. */
-    volatile uint8_t olat_a; /* Software shadow of OLATA. */
-    volatile uint8_t olat_b; /* Software shadow of OLATB. */
-    SemaphoreHandle_t mutex; /* FreeRTOS mutex. */
-    bool inited;             /* True after mcp_init(). */
+    i2c_inst_t *i2c;              /* Pico SDK I2C instance (i2c0/i2c1). */
+    uint8_t addr;                 /* 7-bit address 0x20..0x27. */
+    int8_t rst_gpio;              /* Optional reset GPIO, -1 if none. */
+    volatile uint8_t olat_a;      /* Software shadow of OLATA. */
+    volatile uint8_t olat_b;      /* Software shadow of OLATB. */
+    SemaphoreHandle_t mutex;      /* FreeRTOS mutex. */
+    bool inited;                  /* True after mcp_init(). */
+    uint8_t consecutive_failures; /* Track I2C failures to detect dead bus. */
 } mcp23017_t;
 
 /**
@@ -163,9 +164,9 @@ void mcp_write_mask(mcp23017_t *dev, uint8_t port_ab, uint8_t mask, uint8_t valu
  */
 void mcp_resync_from_hw(mcp23017_t *dev);
 
-/** 
+/**
  * @brief Initialize all MCP23017 devices used in the system.
- * 
+ *
  * @param None
  * @return None
  * @note ===== Board binding (uses CONFIG.h macros) =====
@@ -185,19 +186,19 @@ mcp23017_t *mcp_selection(void);
 
 /**
  * @brief Sets one channel on the RELAY MCP and mirrors it to the DISPLAY MCP.
- * ch: 0..7, value: 0=off, 1=on. Returns true on success (relay MCP present). 
- * 
+ * ch: 0..7, value: 0=off, 1=on. Returns true on success (relay MCP present).
+ *
  * @param ch Channel index 0..7
  * @param value 0=off, 1=on
  * @return true on success
- * 
-*/
+ *
+ */
 bool mcp_set_channel_state(uint8_t ch, uint8_t value);
 
 /**
  * @brief Gets one channel state from the RELAY MCP.
  * ch: 0..7. Returns true if ON, false if OFF or error.
- * 
+ *
  * @param ch Channel index 0..7
  * @return true if relay is ON, false if OFF or error
  */
@@ -206,7 +207,7 @@ bool mcp_get_channel_state(uint8_t ch);
 /**
  * @brief Set or clear the FAULT LED on the DISPLAY MCP.
  * state: true=ON, false=OFF. Returns true on success (display MCP present).
- * 
+ *
  * @param state true=ON, false=OFF
  * @return true on success
  */
@@ -215,7 +216,7 @@ bool setError(bool state);
 /**
  * @brief Set or clear the POWER GOOD indicator on the DISPLAY MCP.
  * state: true=ON, false=OFF. Returns true on success (display MCP present).
- * 
+ *
  * @param state true=ON, false=OFF
  * @return true on success
  */
@@ -224,7 +225,7 @@ bool setPowerGood(bool state);
 /**
  * @brief Set or clear the NETWORK LINK indicator on the DISPLAY MCP.
  * state: true=ON, false=OFF. Returns true on success (display MCP present).
- * 
+ *
  * @param state true=ON, false=OFF
  * @return true on success
  */

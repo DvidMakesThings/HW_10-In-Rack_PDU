@@ -1,8 +1,10 @@
 /**
- * @file src/misc/power_mgr.h
+ * @file src/misc/helpers.h
  * @author DvidMakesThings - David Sipos
- * @defgroup powermgr Power Manager
- * @brief Centralized power state management for ENERGIS standby mode
+ *
+ * @defgroup misc4 4. Power manager Module
+ * @ingroup misc
+ * @brief Header file for power manager module
  * @{
  *
  * @version 1.0.0

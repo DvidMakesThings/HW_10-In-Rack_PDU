@@ -2,12 +2,12 @@
  * @file src/tasks/MeterTask.c
  * @author DvidMakesThings - David Sipos
  *
- * @version 1.2.0
- * @date 2025-11-17
+ * @version 1.2.3
+ * @date 2025-12-08
  *
  * @details MeterTask is the sole owner of the HLW8032 power measurement
  * peripheral. It polls all 8 channels in round-robin fashion at 25 Hz,
- * computes rolling averages, tracks uptime, and publishes telemetry data
+ * reads instantaneous voltage/current/power, tracks uptime, and publishes telemetry data
  * to other tasks via q_meter_telemetry queue.
  *
  * This module also performs periodic ADC sampling for system telemetry
@@ -21,6 +21,10 @@
  * - MeterTask continues running but only feeds heartbeat and delays.
  * - On exit from STANDBY (via Power_ExitStandby()), MeterTask detects the
  *   state transition and resumes normal polling.
+ *
+ * Version 1.2.3 changes:
+ * - Removed rolling filter; telemetry now uses instantaneous
+ *   HLW8032 values to avoid display lag.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -39,13 +43,6 @@ static TaskHandle_t meterTaskHandle = NULL;
 /* =====================  Internal State  =============================== */
 static meter_telemetry_t latest_telemetry[8];
 static uint32_t sample_count[8] = {0};
-
-/* Rolling average accumulators (1 second window) */
-#define AVG_SAMPLES (METER_POLL_RATE_HZ * METER_AVERAGE_WINDOW_MS / 1000)
-static float voltage_sum[8] = {0};
-static float current_sum[8] = {0};
-static float power_sum[8] = {0};
-static uint32_t avg_count[8] = {0};
 
 /* Energy accumulation */
 static float energy_accum_kwh[8] = {0};
@@ -78,39 +75,6 @@ static float adc_raw_to_die_temp_c(uint16_t raw) {
     const float v = ((float)raw) * (ADC_VREF / (float)ADC_MAX);
     const float t = 27.0f - (v - s_temp_v0_cal) / s_temp_slope_cal;
     return t + s_temp_offset_c;
-}
-
-/**
- * @brief Update rolling averages for a channel.
- */
-static void update_averages(uint8_t ch, float voltage, float current, float power) {
-    voltage_sum[ch] += voltage;
-    current_sum[ch] += current;
-    power_sum[ch] += power;
-    avg_count[ch]++;
-
-    /* Reset accumulator after reaching window size */
-    if (avg_count[ch] >= AVG_SAMPLES) {
-        avg_count[ch] = 0;
-        voltage_sum[ch] = 0.0f;
-        current_sum[ch] = 0.0f;
-        power_sum[ch] = 0.0f;
-    }
-}
-
-/**
- * @brief Get averaged values for a channel.
- */
-static void get_averages(uint8_t ch, float *avg_voltage, float *avg_current, float *avg_power) {
-    if (avg_count[ch] > 0) {
-        *avg_voltage = voltage_sum[ch] / avg_count[ch];
-        *avg_current = current_sum[ch] / avg_count[ch];
-        *avg_power = power_sum[ch] / avg_count[ch];
-    } else {
-        *avg_voltage = 0.0f;
-        *avg_current = 0.0f;
-        *avg_power = 0.0f;
-    }
 }
 
 /**
@@ -148,7 +112,7 @@ static void publish_telemetry(const meter_telemetry_t *telem) {
  * @brief Main Meter Task loop.
  *
  * @details
- * In normal RUN mode, polls HLW8032 at 25 Hz, updates rolling averages,
+ * In normal RUN mode, polls HLW8032 at 25 Hz, updates energy accumulation,
  * samples ADC telemetry every 200ms, and publishes data to the queue.
  *
  * In STANDBY mode, skips all hardware operations and only feeds heartbeat
@@ -213,16 +177,12 @@ static void MeterTask_Loop(void *pvParameters) {
             uint32_t uptime = hlw8032_cached_uptime(ch);
             bool state = hlw8032_cached_state(ch);
 
-            update_averages(ch, v, i, p);
             update_energy(ch, p, now_ms);
 
-            float avg_v, avg_i, avg_p;
-            get_averages(ch, &avg_v, &avg_i, &avg_p);
-
             float pf = 0.0f;
-            float apparent = avg_v * avg_i;
+            float apparent = v * i;
             if (apparent > 0.01f) {
-                pf = avg_p / apparent;
+                pf = p / apparent;
                 if (pf < 0.0f)
                     pf = 0.0f;
                 if (pf > 1.0f)
@@ -230,9 +190,9 @@ static void MeterTask_Loop(void *pvParameters) {
             }
 
             meter_telemetry_t telem = {.channel = ch,
-                                       .voltage = avg_v,
-                                       .current = avg_i,
-                                       .power = avg_p,
+                                       .voltage = v,
+                                       .current = i,
+                                       .power = p,
                                        .power_factor = pf,
                                        .uptime = uptime,
                                        .energy_kwh = energy_accum_kwh[ch],
@@ -241,6 +201,9 @@ static void MeterTask_Loop(void *pvParameters) {
                                        .valid = true};
 
             latest_telemetry[ch] = telem;
+            // DEBUG_PRINT("%s latest_telemetry[%u] = V:%.2f I:%.3f\r\n", METER_TASK_TAG,
+            // (unsigned)ch,
+            //             telem.voltage, telem.current);
             sample_count[ch]++;
 
             if ((sample_count[ch] % 5) == 0) {
@@ -407,10 +370,6 @@ BaseType_t MeterTask_Init(bool enable) {
                                                    .timestamp_ms = 0,
                                                    .valid = false};
         sample_count[ch] = 0;
-        avg_count[ch] = 0;
-        voltage_sum[ch] = 0.0f;
-        current_sum[ch] = 0.0f;
-        power_sum[ch] = 0.0f;
         energy_accum_kwh[ch] = 0.0f;
     }
 

@@ -177,6 +177,8 @@ static void cmd_help(void) {
          "Start calibration on channel (1-8) with given V/I");
     ECHO("%-32s %s\n", "AUTO_CAL_ZERO", "Zero-calibrate all channels");
     ECHO("%-32s %s\n", "AUTO_CAL_V <voltage>", "Voltage-calibrate all channels");
+    ECHO("%-32s %s\n", "AUTO_CAL_I <current> <ch>",
+         "Current-calibrate single channel (requires known load)");
     ECHO("%-32s %s\n", "SHOW_CALIB <ch>", "Show calibration data (1-8|ALL)");
 
     ECHO("\nNETWORK SETTINGS\n");
@@ -336,8 +338,10 @@ static void cmd_sysinfo(void) {
     float usb_freq_mhz = clock_get_hz(clk_usb) / 1000000.0f;
     float peri_freq_mhz = clock_get_hz(clk_peri) / 1000000.0f;
     float adc_freq_mhz = clock_get_hz(clk_adc) / 1000000.0f;
+    float spi_speed_mhz =
+        clock_get_hz(clk_peri) / (2 * (((spi_get_hw(spi0)->cr0 >> 8) & 0xFF) + 1)) / 1000000.0f;
 
-    ECHO("\n=== System Information ===\n");
+    ECHO("=== System Information ===\n");
 
     /* -------- Read core voltage regulator setting -------- */
     uint32_t vreg_raw = *((volatile uint32_t *)VREG_BASE);
@@ -372,17 +376,20 @@ static void cmd_sysinfo(void) {
     bool tele_ok = MeterTask_GetSystemTelemetry(&sys_tele);
 
     /* --------  Assemble and print info -------- */
+
+    ECHO("=== Device Firmware Info ===\n");
+    ECHO("Device Serial: %s\n", serial_buf);
+    ECHO("Firmware Version: %s\n\n", fw_buf);
+
     ECHO("=== Hardware Specific Info ===\n");
+    ECHO("Hardware Version: %s\n\n", fw_buf);
     ECHO("CPU Frequency: %.2f MHz\n", sys_freq_mhz);
     ECHO("USB Frequency: %.2f MHz\n", usb_freq_mhz);
     ECHO("PERI Frequency: %.2f MHz\n", peri_freq_mhz);
     ECHO("ADC Frequency: %.2f MHz\n", adc_freq_mhz);
+    ECHO("SPI0 Speed: %.2f MHz\n\n", spi_speed_mhz);
     ECHO("FreeRTOS Tick: %lu\n", (unsigned long)xTaskGetTickCount());
-    ECHO("Core voltage: %.2f V (vsel = %u)\n", voltage, vsel);
-
-    ECHO("=== Device Firmware Info ===\n");
-    ECHO("Device Serial: %s\n", serial_buf);
-    ECHO("Firmware Ver: %s\n", fw_buf);
+    ECHO("Core voltage: %.2f V (vsel = %u)\n\n", voltage, vsel);
 
     ECHO("=== Device Voltages ===\n");
     if (tele_ok) {
@@ -390,7 +397,7 @@ static void cmd_sysinfo(void) {
         ECHO("12V Supply: %.2f V\n", sys_tele.vsupply_volts);
     } else {
         ECHO("USB Voltage: N/A (no telemetry)\n");
-        ECHO("12V Supply: N/A (no telemetry)\n");
+        ECHO("12V Supply: N/A (no telemetry)\n\n");
     }
 
     ECHO("=== Device Temperature ===\n");
@@ -399,7 +406,7 @@ static void cmd_sysinfo(void) {
     } else {
         ECHO("Die Temperature: N/A (no telemetry)\n");
     }
-    ECHO("==========================\n");
+    ECHO("==========================\n\n");
 }
 
 /**
@@ -407,7 +414,7 @@ static void cmd_sysinfo(void) {
  *
  * @details
  * MeterTask owns the ADC. This command reads the latest cached value
- * (non-blocking). If telemetry isnâ€™t ready yet, it prints N/A.
+ * (non-blocking). If telemetry isn't ready yet, it prints N/A.
  *
  * @return None
  */
@@ -583,7 +590,7 @@ static void cmd_set_ch(const char *args) {
     if (strcmp(ch_str, "ALL") == 0) {
         bool success = true;
         for (uint8_t ch_idx = 0; ch_idx < 8; ch_idx++) {
-            if (!mcp_set_channel_state(ch_idx, (uint8_t)val)) {
+            if (!Switch_SetChannel(ch_idx, val, pdMS_TO_TICKS(200))) {
 #if ERRORLOGGER
                 uint16_t errorcode =
                     ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK, 0x8);
@@ -614,7 +621,7 @@ static void cmd_set_ch(const char *args) {
     }
 
     uint8_t ch_idx = (uint8_t)(ch - 1);
-    if (mcp_set_channel_state(ch_idx, (uint8_t)val)) {
+    if (Switch_SetChannel(ch_idx, val, pdMS_TO_TICKS(200))) {
         ECHO("CH%d = %s\n", ch, val ? "ON" : "OFF");
     } else {
 #if ERRORLOGGER
@@ -664,7 +671,8 @@ static void cmd_get_ch(const char *args) {
 
     if (strcmp(p, "ALL") == 0) {
         for (uint8_t i = 0; i < 8; i++) {
-            bool state = mcp_get_channel_state(i);
+            bool state = false;
+            (void)Switch_GetState(i, &state);
             ECHO("CH%d: %s\r\n", (int)(i + 1), state ? "ON" : "OFF");
         }
         return;
@@ -684,7 +692,8 @@ static void cmd_get_ch(const char *args) {
     }
 
     uint8_t ch_idx = (uint8_t)(ch - 1);
-    bool state = mcp_get_channel_state(ch_idx);
+    bool state = false;
+    (void)Switch_GetState(ch_idx, &state);
     ECHO("CH%d: %s\r\n", ch, state ? "ON" : "OFF");
 }
 
@@ -699,124 +708,67 @@ static void cmd_clr_err(void) {
 }
 
 /**
- * @brief Calibrate a single HLW8032 channel.
+ * @brief Calibrate a single HLW8032 channel (deprecated).
  *
  * @param args Command arguments: "<ch> <voltage> <current>"
  * @return None
+ *
+ * @note Legacy blocking calibration is no longer supported. Use AUTO_CAL_ZERO
+ *       and AUTO_CAL_V instead, which run cooperatively in the background.
  */
 static void cmd_calibrate(const char *args) {
-    int ch;
-    float ref_v, ref_a;
-
-    if (sscanf(args, "%d %f %f", &ch, &ref_v, &ref_a) != 3) {
-#if ERRORLOGGER
-        uint16_t errorcode =
-            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_WARNING, ERR_FID_CONSOLETASK, 0x0);
-        ERROR_PRINT_CODE(
-            errorcode,
-            "%s Invalid arguments for CALIBRATE. Usage: CALIBRATE <ch> <voltage> <current>\r\n",
-            CONSOLE_TASK_TAG);
-#endif
-        return;
-    }
-
-    if (ch < 1 || ch > 8) {
-#if ERRORLOGGER
-        uint16_t errorcode =
-            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK, 0xD);
-        ERROR_PRINT_CODE(
-            errorcode,
-            "%s Invalid channel for CALIBRATE: %d. Usage: CALIBRATE <ch> <voltage> <current>\r\n",
-            CONSOLE_TASK_TAG, ch);
-        Storage_EnqueueErrorCode(errorcode);
-#endif
-        return;
-    }
-
-    if (ref_v < 0.0f || ref_a < 0.0f) {
-#if ERRORLOGGER
-        uint16_t errorcode =
-            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK, 0xE);
-        ERROR_PRINT_CODE(errorcode,
-                         "%s Negative reference values for CALIBRATE: V=%.3f, I=%.3f\r\n",
-                         CONSOLE_TASK_TAG, ref_v, ref_a);
-        Storage_EnqueueErrorCode(errorcode);
-#endif
-        return;
-    }
-
-    ECHO("Starting calibration for channel %d...\n", ch);
-
-    if (ref_v == 0.0f && ref_a == 0.0f) {
-        ECHO("Zero-point calibration: measuring offsets\n");
-        ECHO("Please ensure channel is OFF or disconnected\n\n");
-    } else {
-        ECHO("Reference: %.3fV, %.3fA\n", ref_v, ref_a);
-    }
-
-    if (hlw8032_calibrate_channel((uint8_t)(ch - 1), ref_v, ref_a)) {
-        ECHO("Calibration completed successfully!\n");
-    } else {
-#if ERRORLOGGER
-        uint16_t errorcode =
-            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK, 0xF);
-        ERROR_PRINT_CODE(errorcode, "%s Calibration failed for channel %d\r\n", CONSOLE_TASK_TAG,
-                         ch);
-        Storage_EnqueueErrorCode(errorcode);
-#endif
-        setError(true);
-    }
+    (void)args;
+    ECHO("CALIBRATE is deprecated.\r\n");
+    ECHO("Use AUTO_CAL_ZERO (0V/0A) and AUTO_CAL_V <voltage> instead.\r\n");
 }
 
 /**
- * @brief Auto-calibrate zero point for all channels.
+ * @brief Auto-calibrate zero point (0V, 0A) for all channels (async).
  *
  * @return None
  */
 static void cmd_auto_cal_zero(void) {
-    ECHO("\n========================================\n");
-    ECHO("  AUTO ZERO-POINT CALIBRATION\n");
+    ECHO("========================================\n");
+    ECHO("  AUTO ZERO-POINT CALIBRATION (ASYNC)\n");
     ECHO("========================================\n");
     ECHO("Calibrating all 8 channels (0V, 0A)\n");
     ECHO("Ensure all channels are OFF/disconnected\n");
+    ECHO("Calibration will run in background; check\n ");
+    ECHO("log for per-channel results.\n");
     ECHO("========================================\n\n");
 
-    int success = 0, failed = 0;
-    for (uint8_t ch = 0; ch < 8; ch++) {
-        ECHO("Channel %d: ", ch + 1);
-        if (hlw8032_calibrate_channel(ch, 0.0f, 0.0f)) {
-            ECHO("OK\n");
-            success++;
-        } else {
-            ECHO("FAILED\n");
-            failed++;
-        }
-        vTaskDelay(pdMS_TO_TICKS(200));
-    }
-
-    ECHO("========================================\n");
-    ECHO("RESULTS: %d successful, %d failed\n", success, failed);
-    ECHO("========================================\n\n");
-
-    if (failed > 0) {
+    if (!hlw8032_calibration_start_zero_all()) {
 #if ERRORLOGGER
         uint16_t errorcode =
             ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x0);
-        ERROR_PRINT_CODE(errorcode, "%s Auto zero-point calibration had failures\r\n",
+        ERROR_PRINT_CODE(errorcode,
+                         "%s Failed to start async zero-point calibration (already running?)\r\n",
                          CONSOLE_TASK_TAG);
         Storage_EnqueueErrorCode(errorcode);
 #endif
+        ECHO("ERROR: Could not start zero-point calibration (already running?).\r\n");
+        return;
     }
+
+    ECHO("Async zero calibration started.\r\n");
 }
 
 /**
- * @brief Auto-calibrate voltage for all channels.
+ * @brief Auto-calibrate voltage for all channels (async).
  *
- * @param args Command arguments: "<voltage>"
+ * @param args Command arguments: "<voltage>" (optional, defaults to 230V)
  * @return None
  */
 static void cmd_auto_cal_v(const char *args) {
-    float ref_voltage = atof(args);
+    float ref_voltage = 230.0f;
+
+    if (args != NULL && strlen(args) > 0) {
+        float tmp = (float)atof(args);
+        if (tmp > 0.0f) {
+            ref_voltage = tmp;
+        }
+    }
+
     if (ref_voltage <= 0.0f) {
 #if ERRORLOGGER
         uint16_t errorcode =
@@ -825,42 +777,124 @@ static void cmd_auto_cal_v(const char *args) {
                          CONSOLE_TASK_TAG, ref_voltage);
         Storage_EnqueueErrorCode(errorcode);
 #endif
+        ECHO("ERROR: Invalid reference voltage.\r\n");
         return;
     }
 
     ECHO("\n========================================\n");
-    ECHO("  AUTO VOLTAGE CALIBRATION\n");
+    ECHO("  AUTO VOLTAGE CALIBRATION (ASYNC)\n");
     ECHO("========================================\n");
     ECHO("Calibrating all 8 channels (%.1fV, 0A)\n", ref_voltage);
-    ECHO("Ensure all channels have mains voltage\n");
+    ECHO("Ensure all channels have the same stable mains voltage\n");
+    ECHO("Calibration will run in background; check log for per-channel results.\n");
     ECHO("========================================\n\n");
 
-    int success = 0, failed = 0;
-    for (uint8_t ch = 0; ch < 8; ch++) {
-        ECHO("Channel %d: ", ch + 1);
-        if (hlw8032_calibrate_channel(ch, ref_voltage, 0.0f)) {
-            ECHO("OK\n");
-            success++;
-        } else {
-            ECHO("FAILED\n");
-            failed++;
-        }
-        vTaskDelay(pdMS_TO_TICKS(200));
-    }
-
-    ECHO("========================================\n");
-    ECHO("RESULTS: %d successful, %d failed\n", success, failed);
-    ECHO("========================================\n\n");
-
-    if (failed > 0) {
+    if (!hlw8032_calibration_start_voltage_all(ref_voltage)) {
 #if ERRORLOGGER
         uint16_t errorcode =
             ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x2);
-        ERROR_PRINT_CODE(errorcode, "%s Auto voltage calibration had failures\r\n",
+        ERROR_PRINT_CODE(errorcode,
+                         "%s Failed to start async voltage calibration (already running?)\r\n",
                          CONSOLE_TASK_TAG);
         Storage_EnqueueErrorCode(errorcode);
 #endif
+        ECHO("ERROR: Could not start voltage calibration (already running?).\r\n");
+        return;
     }
+
+    ECHO("Async voltage calibration started.\r\n");
+}
+
+/**
+ * @brief Auto-calibrate current gain for a single channel (async).
+ *
+ * @param args Command arguments: "<current_A> <channel>"
+ *
+ * @return None
+ *
+ * @note Console uses 1-based channel indices (1..8).
+ *       Internally the driver uses 0-based indices (0..7).
+ * @note Requires a known current flowing through the selected channel.
+ *       Use an external DMM as reference.
+ */
+static void cmd_auto_cal_i(const char *args) {
+    float ref_current = 0.0f;
+    int channel_console = -1;
+    int channel_internal = -1;
+
+    if (args == NULL || strlen(args) == 0) {
+        ECHO("Usage: AUTO_CAL_I <current_A> <channel>\r\n");
+        ECHO("Example: AUTO_CAL_I 0.170 2   (for CH2)\r\n");
+        return;
+    }
+
+    char buf[64];
+    memset(buf, 0, sizeof(buf));
+    strncpy(buf, args, sizeof(buf) - 1);
+
+    char *tok1 = strtok(buf, " \t");
+    char *tok2 = strtok(NULL, " \t");
+
+    if (tok1 == NULL || tok2 == NULL) {
+        ECHO("Usage: AUTO_CAL_I <current_A> <channel>\r\n");
+        ECHO("Example: AUTO_CAL_I 0.170 2   (for CH2)\r\n");
+        return;
+    }
+
+    ref_current = (float)atof(tok1);
+    channel_console = atoi(tok2);           /* User enters 1..8 */
+    channel_internal = channel_console - 1; /* Convert to 0..7 */
+
+    if (ref_current <= 0.0f) {
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x3);
+        ERROR_PRINT_CODE(errorcode, "%s Invalid reference current for AUTO_CAL_I: %.3f\r\n",
+                         CONSOLE_TASK_TAG, ref_current);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+        ECHO("ERROR: Invalid reference current.\r\n");
+        return;
+    }
+
+    if (channel_internal < 0 || channel_internal > 7) {
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x4);
+        ERROR_PRINT_CODE(errorcode, "%s Invalid channel for AUTO_CAL_I: %d (console index)\r\n",
+                         CONSOLE_TASK_TAG, channel_console);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+        ECHO("ERROR: Invalid channel index. Valid range: 1..8\r\n");
+        return;
+    }
+
+    ECHO("========================================\n");
+    ECHO("  AUTO CURRENT CALIBRATION (ASYNC)\n");
+    ECHO("========================================\n");
+    ECHO("Channel (console): %d\n", channel_console);
+    ECHO("Channel (internal): %d\n", channel_internal);
+    ECHO("Iref              : %.3fA\n", ref_current);
+    ECHO("Ensure the selected channel carries the known current.\n");
+    ECHO("Use an external DMM as reference.\n");
+    ECHO("Calibration runs in background; check log for\n");
+    ECHO("per-channel results.\n");
+    ECHO("========================================\n\n");
+
+    if (!hlw8032_calibration_start_current_all((uint8_t)channel_internal, ref_current)) {
+#if ERRORLOGGER
+        uint16_t errorcode =
+            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x5);
+        ERROR_PRINT_CODE(errorcode,
+                         "%s Failed to start async current calibration (already running?)\r\n",
+                         CONSOLE_TASK_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+        ECHO("ERROR: Could not start current calibration (already running?).\r\n");
+        return;
+    }
+
+    ECHO("Async current calibration started.\r\n");
 }
 
 /**
@@ -1353,6 +1387,8 @@ static void dispatch_command(const char *line) {
         cmd_auto_cal_zero();
     } else if (strcmp(trimmed, "AUTO_CAL_V") == 0) {
         cmd_auto_cal_v(args ? args : "");
+    } else if (strcmp(trimmed, "AUTO_CAL_I") == 0) {
+        cmd_auto_cal_i(args ? args : "");
     } else if (strcmp(trimmed, "SHOW_CALIB") == 0) {
         cmd_show_calib(args ? args : "");
     }

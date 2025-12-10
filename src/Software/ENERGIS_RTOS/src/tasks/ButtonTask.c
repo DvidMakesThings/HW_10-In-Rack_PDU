@@ -2,8 +2,8 @@
  * @file src/tasks/button_task.c
  * @author DvidMakesThings - David Sipos
  *
- * @version 1.1.0
- * @date 2025-11-17
+ * @version 1.2.0
+ * @date 2025-12-09
  * @details
  * 1. Polls PLUS/MINUS/SET/PWR GPIOs at 5 ms cadence (configurable).
  * 2. Debounces with DEBOUNCE_MS and resolves SET/PWR short/long with LONGPRESS_DT.
@@ -15,6 +15,10 @@
  * SET long  -> clear error LED; never opens the window
  * PWR long  -> enter STANDBY mode
  * PWR short (in STANDBY) -> exit STANDBY mode
+ *
+ * Version 1.2.0 changes:
+ * - FIX: Moved I2C blink operations from timer callback to main task loop.
+ * - Timer now only sets a flag; ButtonTask main loop handles actual LED toggling.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -54,6 +58,23 @@ static TimerHandle_t s_blink_timer = NULL;
  */
 static volatile bool s_window_active = false;
 static volatile uint32_t s_last_press_ms = 0;
+
+/**
+ * @brief Blink request flag - set by timer callback, cleared by task after processing.
+ * @details This decouples the timer callback from I2C operations. The timer only
+ * sets this flag; the main task loop handles the actual I2C LED toggling.
+ */
+static volatile bool s_blink_pending = false;
+
+/**
+ * @brief Current blink state (on/off) for selection LED.
+ */
+static volatile bool s_blink_state = false;
+
+/**
+ * @brief Last blink update timestamp for rate limiting in main loop.
+ */
+static volatile uint32_t s_last_blink_ms = 0;
 
 /* -------------------- Debounce state ---------------------------------------- */
 
@@ -167,6 +188,8 @@ static inline void emit(btn_event_kind_t kind) {
 static inline void window_open(uint32_t now) {
     s_window_active = true;
     s_last_press_ms = now;
+    s_blink_state = true;
+    s_last_blink_ms = now;
     ButtonDrv_SelectShow(s_selected, true);
 }
 
@@ -188,37 +211,64 @@ static inline void window_refresh(uint32_t now) {
  */
 static inline void window_close(void) {
     s_window_active = false;
+    s_blink_state = false;
     ButtonDrv_SelectAllOff();
 }
 
 /**
- * @brief Blink timer callback toggles selection LED and enforces timeout.
+ * @brief Blink timer callback - ONLY sets a flag, NO I2C operations.
  *
  * @param xTimer Timer handle (unused).
  * @return None
  *
- * @note This callback no longer reads buttons. All open/refresh/close decisions
- * are made by the scanner task based on debounced edges.
+ * @details CRITICAL: Timer callbacks run from the timer daemon task context.
+ * Performing blocking I2C operations here causes bus collisions with other
+ * tasks (e.g., NetTask SNMP) using the same I2C bus, leading to watchdog
+ * starvation during stress tests. The actual I2C LED toggling is done in
+ * the ButtonTask main loop when s_blink_pending is set.
  */
 static void vBlinkTimerCb(TimerHandle_t xTimer) {
     (void)xTimer;
-    static bool on = false;
 
-    uint32_t now = now_ms();
+    /* Only set the flag - actual I2C work happens in task context */
+    s_blink_pending = true;
+}
 
-    /* Timeout handling */
+/**
+ * @brief Process blink logic in task context (safe for I2C operations).
+ *
+ * @param now Current time in ms.
+ * @return None
+ *
+ * @details Called from ButtonTask main loop to handle selection LED blinking.
+ * This is the safe place to do I2C operations since we're in a proper task
+ * context with correct priority and can properly acquire mutexes.
+ */
+static void process_blink(uint32_t now) {
+    /* Only process if timer fired */
+    if (!s_blink_pending) {
+        return;
+    }
+    s_blink_pending = false;
+
+    /* Rate limit to prevent I2C flooding */
+    if ((now - s_last_blink_ms) < (SELECT_BLINK_MS / 2)) {
+        return;
+    }
+    s_last_blink_ms = now;
+
+    /* Timeout handling - close window if expired */
     if (s_window_active && (now - s_last_press_ms) >= (uint32_t)SELECT_WINDOW_MS) {
         window_close();
-        on = false;
         return;
     }
 
     /* Blink only while window is open */
     if (s_window_active) {
-        on = !on;
-        ButtonDrv_SelectShow(s_selected, on);
+        s_blink_state = !s_blink_state;
+        ButtonDrv_SelectShow(s_selected, s_blink_state);
     } else {
-        on = false;
+        s_blink_state = false;
         ButtonDrv_SelectAllOff();
     }
 }
@@ -236,22 +286,16 @@ static inline bool read_pwr_button(void) { return gpio_get(BUT_PWR) ? true : fal
  * Behavior rules implemented:
  * - PLUS/MINUS: on first valid FALL when idle → open window only (no step).
  * - PLUS/MINUS: when window active → step right/left and refresh window timer.
- * - SET: open window ONLY if the press resolves as SHORT; LONG never opens it.
- * - SET short: toggles output; also opens window if it was idle.
- * - PWR long (in RUN): enter STANDBY mode.
- * - PWR short (in STANDBY): exit STANDBY and return to RUN mode.
- * - All non-PWR buttons are ignored in STANDBY mode.
+ * - SET: short = toggle relay; long = clear error LED.
+ * - PWR: long = enter STANDBY mode; short (in STANDBY) = exit STANDBY mode.
  *
- * @param arg Unused.
+ * @param pvParameters Unused.
  * @return None
  */
-static void vButtonTask(void *arg) {
-    (void)arg;
+static void vButtonTask(void *pvParameters) {
+    (void)pvParameters;
 
-    ButtonDrv_InitGPIO();
-    ECHO("%s Task started\r\n", BUTTON_TASK_TAG);
-
-    /* Initialize PWR button GPIO */
+    /* Initialize GPIO for PWR button (others done by driver init) */
     gpio_init(BUT_PWR);
     gpio_pull_up(BUT_PWR);
     gpio_set_dir(BUT_PWR, false);
@@ -263,9 +307,12 @@ static void vButtonTask(void *arg) {
     deb_init(&s_set, ButtonDrv_ReadSet(), t0);
     deb_init(&s_pwr, read_pwr_button(), t0);
 
-    /* Start with selection LEDs off; blink timer will drive visibility */
+    /* Start with selection LEDs off; blink logic in main loop will drive visibility */
     ButtonDrv_SelectAllOff();
     s_window_active = false;
+    s_blink_pending = false;
+    s_blink_state = false;
+    s_last_blink_ms = t0;
 
     const TickType_t scan_ticks = pdMS_TO_TICKS(BTN_SCAN_PERIOD_MS);
     uint32_t hb_btn_ms = now_ms();
@@ -284,6 +331,9 @@ static void vButtonTask(void *arg) {
 
         /* Query current power state */
         power_state_t pwr_state = Power_GetState();
+
+        /* Process blink logic in task context (safe for I2C) */
+        process_blink(now);
 
         /* Debounce all buttons using current timebase */
         deb_edge_t e_plus = deb_update(&s_plus, ButtonDrv_ReadPlus(), now);
@@ -427,7 +477,9 @@ BaseType_t ButtonTask_Init(bool enable) {
 #if ERRORLOGGER
             uint16_t errorcode =
                 ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_BUTTONTASK, 0x1);
-            ERROR_PRINT_CODE(errorcode, "%s Storage not ready within timeout, cannot start ButtonTask\r\n", BUTTON_TASK_TAG);
+            ERROR_PRINT_CODE(errorcode,
+                             "%s Storage not ready within timeout, cannot start ButtonTask\r\n",
+                             BUTTON_TASK_TAG);
             Storage_EnqueueErrorCode(errorcode);
 #endif
             return pdFAIL;
@@ -452,7 +504,7 @@ BaseType_t ButtonTask_Init(bool enable) {
         }
     }
 
-    /* Create and start blink timer */
+    /* Create and start blink timer - now only sets a flag, no I2C operations */
     if (!s_blink_timer) {
         s_blink_timer =
             xTimerCreate("btn_blink", pdMS_TO_TICKS(SELECT_BLINK_MS), pdTRUE, NULL, vBlinkTimerCb);

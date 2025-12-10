@@ -2,10 +2,12 @@
  * @file src/snmp/snmp_outletCtrl.c
  * @author DvidMakesThings - David Sipos
  *
- * @version 1.0.0
- * @date 2025-11-07
+ * @version 1.2.0
+ * @date 2025-12-10
  *
  * @details Uses RTOS-safe SwitchTask API: query current state and request changes.
+ * All MCP I2C operations are delegated to SwitchTask to prevent watchdog
+ * starvation during SNMP stress testing.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -27,40 +29,32 @@ static inline void write_bool_ascii(void *buf, uint8_t *len, bool v) {
     *len = 1;
 }
 
-// For later use in RTOS queueing or SwitchTask indirection
-/* static inline void getter_n(uint8_t ch, void *buf, uint8_t *len) {
-    bool on = false;
-    (void)Switch_GetState(ch - 1, &on); // channels are 1..8 on OID, 0..7 internal
-    write_bool_ascii(buf, len, on);
-}
-*/
-
-// For later use in RTOS queueing or SwitchTask indirection
-/* static inline void setter_n(uint8_t ch, uint32_t u32) {
-    bool on = (u32 != 0);
-    (void)Switch_RequestSet(ch - 1, on, pdMS_TO_TICKS(200));
-}
-*/
-
 /**
  * @brief SNMP getter for outlet state (channel 1..8) as INTEGER (4 bytes).
  *
  * @param ch   1-based channel index from OID (1..8).
  * @param buf  Output buffer; writes a 32-bit little-endian integer (0 or 1).
  * @param len  Out length; always set to 4.
+ * @note Includes 50ms delay for cooperative scheduling during stress testing.
  */
 static inline void getter_n(uint8_t ch, void *buf, uint8_t *len) {
     int32_t v = 0;
 
     if (ch >= 1 && ch <= 8) {
-        /* Read current channel state and normalize to 0/1 */
-        v = mcp_get_channel_state((uint8_t)(ch - 1)) ? 1 : 0;
+        /* Read current channel state from SwitchTask cache (non-blocking) */
+        bool on = false;
+        if (Switch_GetState((uint8_t)(ch - 1), &on)) {
+            v = on ? 1 : 0;
+        }
     }
 
     /* SNMP INTEGER entries in snmpData are declared with dataLen=4.
        Return a fixed 4-byte value to match the MIB entry. */
     memcpy(buf, &v, 4);
     *len = 4;
+
+    /* Yield to higher-priority tasks (ButtonTask) - safety critical */
+    vTaskDelay(pdMS_TO_TICKS(25));
 }
 
 /**
@@ -69,12 +63,17 @@ static inline void getter_n(uint8_t ch, void *buf, uint8_t *len) {
  * @param ch   1-based channel index from OID (1..8).
  * @param u32  Nonzero -> ON, zero -> OFF.
  * @return None
- * @note Uses direct MCP access (temporary, no RTOS indirection).
+ * @note Uses non-blocking SwitchTask API with timeout=0 (no wait).
+ *       Includes 50ms delay for cooperative scheduling during stress testing.
  */
 static inline void setter_n(uint8_t ch, uint32_t u32) {
     if (ch >= 1 && ch <= 8) {
-        (void)mcp_set_channel_state((uint8_t)(ch - 1), (u32 != 0));
+        /* Enqueue command to SwitchTask (non-blocking, timeout=0) */
+        (void)Switch_SetChannel((uint8_t)(ch - 1), (u32 != 0), 0);
     }
+
+    /* Yield to higher-priority tasks (ButtonTask) - safety critical */
+    vTaskDelay(pdMS_TO_TICKS(25));
 }
 
 /**
@@ -196,14 +195,15 @@ void set_outlet8_State(uint32_t u32) { setter_n(8, u32); }
  * @return None
  */
 void get_allOn(void *buf, uint8_t *len) {
-    bool all_on = true;
-    for (uint8_t i = 0; i < 8; i++) {
-        if (!mcp_get_channel_state(i)) {
-            all_on = false;
-            break;
-        }
+    uint8_t states = 0;
+    if (Switch_GetAllStates(&states)) {
+        /* All ON if all 8 bits are set */
+        bool all_on = (states == 0xFF);
+        write_bool_ascii(buf, len, all_on);
+    } else {
+        write_bool_ascii(buf, len, false);
     }
-    write_bool_ascii(buf, len, all_on);
+    vTaskDelay(pdMS_TO_TICKS(50));
 }
 
 /** @brief SNMP GET callback for ALL OFF
@@ -212,38 +212,43 @@ void get_allOn(void *buf, uint8_t *len) {
  * @return None
  */
 void get_allOff(void *buf, uint8_t *len) {
-    bool all_off = true;
-    for (uint8_t i = 0; i < 8; i++) {
-        if (mcp_get_channel_state(i)) {
-            all_off = false;
-            break;
-        }
+    uint8_t states = 0;
+    if (Switch_GetAllStates(&states)) {
+        /* All OFF if all 8 bits are clear */
+        bool all_off = (states == 0x00);
+        write_bool_ascii(buf, len, all_off);
+    } else {
+        write_bool_ascii(buf, len, false);
     }
-    write_bool_ascii(buf, len, all_off);
+    vTaskDelay(pdMS_TO_TICKS(50));
 }
 
 /** @brief SNMP SET callback for ALL ON
- * @param u32  Nonzero -> ON, zero -> OFF.
+ * @param u32  Nonzero -> turn all ON.
  * @return None
  */
 void set_allOn(uint32_t u32) {
     if (!u32)
         return;
 
-    for (uint8_t i = 0; i < 8; i++) {
-        (void)mcp_set_channel_state(i, 1);
-    }
+    /* Enqueue all-on command to SwitchTask (non-blocking, timeout=0) */
+    (void)Switch_AllOn(0);
+
+    /* Longer delay for bulk operation - allows SwitchTask to process */
+    vTaskDelay(pdMS_TO_TICKS(100));
 }
 
 /** @brief SNMP SET callback for ALL OFF
- * @param u32  Nonzero -> ON, zero -> OFF.
+ * @param u32  Nonzero -> turn all OFF.
  * @return None
  */
 void set_allOff(uint32_t u32) {
     if (!u32)
         return;
 
-    for (uint8_t i = 0; i < 8; i++) {
-        (void)mcp_set_channel_state(i, 0);
-    }
+    /* Enqueue all-off command to SwitchTask (non-blocking, timeout=0) */
+    (void)Switch_AllOff(0);
+
+    /* Longer delay for bulk operation - allows SwitchTask to process */
+    vTaskDelay(pdMS_TO_TICKS(100));
 }

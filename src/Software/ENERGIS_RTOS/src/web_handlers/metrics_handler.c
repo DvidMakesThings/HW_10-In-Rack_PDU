@@ -245,7 +245,8 @@ static int render_metrics(void) {
         return -1;
 
     for (int ch = 0; ch < 8; ch++) {
-        bool state = mcp_get_channel_state((uint8_t)ch);
+        bool state = false;
+        (void)Switch_GetState((uint8_t)ch, &state);
         pos += snprintf(metrics_buffer + pos, bufsize - pos,
                         "energis_channel_state{ch=\"%d\"} %d\n", ch + 1, state ? 1 : 0);
         if (pos >= bufsize) {

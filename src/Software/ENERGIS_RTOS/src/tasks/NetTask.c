@@ -446,7 +446,15 @@ static void NetTask_Function(void *pvParameters) {
         /* 5.4) SNMP service */
         t0 = to_ms_since_boot(get_absolute_time());
         SNMP_Tick10ms();
-        (void)SNMP_Poll(2);
+
+        /* Process SNMP packets with frequent heartbeats to prevent watchdog starvation
+         * during bursts of SNMP traffic */
+        int snmp_processed = SNMP_Poll(2);
+        if (snmp_processed > 0) {
+            /* Send heartbeat immediately after processing SNMP packets */
+            Health_Heartbeat(HEALTH_ID_NET);
+        }
+
         dt = to_ms_since_boot(get_absolute_time()) - t0;
         if (dt > 750U) {
             Health_RecordBlocked("snmp_poll", dt);

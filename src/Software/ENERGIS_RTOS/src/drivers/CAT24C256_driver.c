@@ -47,7 +47,8 @@ void CAT24C256_Init(void) {
 int CAT24C256_WriteByte(uint16_t addr, uint8_t data) {
     uint8_t buffer[3] = {addr >> 8, addr & 0xFF, data};
 
-    int res = i2c_write_blocking(EEPROM_I2C, CAT24C256_I2C_ADDR, buffer, 3, false);
+    /* Use timeout to prevent infinite blocking if I2C bus hangs */
+    int res = i2c_write_timeout_us(EEPROM_I2C, CAT24C256_I2C_ADDR, buffer, 3, false, 50000);
 
     if (res == 3) {
         write_cycle_delay();
@@ -66,8 +67,9 @@ uint8_t CAT24C256_ReadByte(uint16_t addr) {
     uint8_t addr_buf[2] = {addr >> 8, addr & 0xFF};
     uint8_t data = 0xFF;
 
-    int res1 = i2c_write_blocking(EEPROM_I2C, CAT24C256_I2C_ADDR, addr_buf, 2, true);
-    int res2 = i2c_read_blocking(EEPROM_I2C, CAT24C256_I2C_ADDR, &data, 1, false);
+    /* Use timeout to prevent infinite blocking if I2C bus hangs */
+    int res1 = i2c_write_timeout_us(EEPROM_I2C, CAT24C256_I2C_ADDR, addr_buf, 2, true, 50000);
+    int res2 = i2c_read_timeout_us(EEPROM_I2C, CAT24C256_I2C_ADDR, &data, 1, false, 50000);
 
     if (res1 != 2 || res2 != 1) {
 #ifdef ERRORLOGGER
@@ -105,7 +107,9 @@ int CAT24C256_WriteBuffer(uint16_t addr, const uint8_t *data, uint16_t len) {
         memcpy(&buffer[2], data, chunk_size);
 
         /* Write chunk */
-        int res = i2c_write_blocking(EEPROM_I2C, CAT24C256_I2C_ADDR, buffer, chunk_size + 2, false);
+        /* Use timeout to prevent infinite blocking if I2C bus hangs */
+        int res = i2c_write_timeout_us(EEPROM_I2C, CAT24C256_I2C_ADDR, buffer, chunk_size + 2,
+                                       false, 50000);
 
         if (res != (chunk_size + 2)) {
 #ifdef ERRORLOGGER
@@ -141,8 +145,9 @@ void CAT24C256_ReadBuffer(uint16_t addr, uint8_t *buffer, uint32_t len) {
 
     uint8_t addr_buf[2] = {addr >> 8, addr & 0xFF};
 
-    int res1 = i2c_write_blocking(EEPROM_I2C, CAT24C256_I2C_ADDR, addr_buf, 2, true);
-    int res2 = i2c_read_blocking(EEPROM_I2C, CAT24C256_I2C_ADDR, buffer, len, false);
+    /* Use timeout to prevent infinite blocking if I2C bus hangs */
+    int res1 = i2c_write_timeout_us(EEPROM_I2C, CAT24C256_I2C_ADDR, addr_buf, 2, true, 50000);
+    int res2 = i2c_read_timeout_us(EEPROM_I2C, CAT24C256_I2C_ADDR, buffer, len, false, 50000);
 
     if (res1 != 2 || res2 != (int)len) {
 #ifdef ERRORLOGGER

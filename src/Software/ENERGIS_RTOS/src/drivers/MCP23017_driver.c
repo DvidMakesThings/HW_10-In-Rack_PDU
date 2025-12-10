@@ -19,8 +19,14 @@
 #define MCP23017_TAG "[MCPDRV]"
 
 /* ===================== Tunables (safe, conservative) ===================== */
+/* Reduced retries and timeout to fail quickly on dead I2C bus (prevent watchdog starvation)
+ * while still allowing valid operations: 400kHz I2C transaction ~75us, 2ms is very safe */
 #ifndef MCP_I2C_MAX_RETRIES
-#define MCP_I2C_MAX_RETRIES 3
+#define MCP_I2C_MAX_RETRIES 2
+#endif
+
+#ifndef MCP_I2C_TIMEOUT_US
+#define MCP_I2C_TIMEOUT_US 2000
 #endif
 
 #ifndef MCP_I2C_RETRY_DELAY_US
@@ -73,7 +79,8 @@ static mcp23017_t *_find_dev(i2c_inst_t *i2c, uint8_t addr) {
 static bool _i2c_wr(i2c_inst_t *i2c, uint8_t addr, uint8_t reg, uint8_t val) {
     uint8_t buf[2] = {reg, val};
     for (int attempt = 0; attempt < MCP_I2C_MAX_RETRIES; ++attempt) {
-        int n = i2c_write_blocking(i2c, addr, buf, 2, false);
+        /* Use timeout to prevent infinite blocking if I2C bus hangs */
+        int n = i2c_write_timeout_us(i2c, addr, buf, 2, false, MCP_I2C_TIMEOUT_US);
         if (n == 2)
             return true;
         busy_wait_us(MCP_I2C_RETRY_DELAY_US);
@@ -107,9 +114,10 @@ static bool _i2c_rd(i2c_inst_t *i2c, uint8_t addr, uint8_t reg, uint8_t *out) {
         return false;
     }
     for (int attempt = 0; attempt < MCP_I2C_MAX_RETRIES; ++attempt) {
-        int n = i2c_write_blocking(i2c, addr, &reg, 1, true);
+        /* Use timeout to prevent infinite blocking if I2C bus hangs */
+        int n = i2c_write_timeout_us(i2c, addr, &reg, 1, true, MCP_I2C_TIMEOUT_US);
         if (n == 1) {
-            n = i2c_read_blocking(i2c, addr, out, 1, false);
+            n = i2c_read_timeout_us(i2c, addr, out, 1, false, MCP_I2C_TIMEOUT_US);
             if (n == 1)
                 return true;
         }
@@ -157,6 +165,7 @@ mcp23017_t *mcp_register(i2c_inst_t *i2c, uint8_t addr, int8_t rst_gpio) {
     dev->olat_a = 0x00;
     dev->olat_b = 0x00;
     dev->inited = false;
+    dev->consecutive_failures = 0;
 
     dev->mutex = xSemaphoreCreateMutex();
     if (!dev->mutex) {
@@ -236,8 +245,9 @@ bool mcp_write_reg(mcp23017_t *dev, uint8_t reg, uint8_t value) {
 #endif
         return false;
     }
+    /* Don't auto-init - must be initialized at startup */
     if (!dev->inited)
-        mcp_init(dev);
+        return false;
 
     xSemaphoreTake(dev->mutex, portMAX_DELAY);
     if (reg == MCP23017_OLATA)
@@ -245,6 +255,15 @@ bool mcp_write_reg(mcp23017_t *dev, uint8_t reg, uint8_t value) {
     if (reg == MCP23017_OLATB)
         dev->olat_b = value;
     bool ok = _i2c_wr(dev->i2c, dev->addr, reg, value);
+
+    /* Track consecutive failures to detect dead I2C bus */
+    if (!ok) {
+        if (dev->consecutive_failures < 255)
+            dev->consecutive_failures++;
+    } else {
+        dev->consecutive_failures = 0;
+    }
+
     xSemaphoreGive(dev->mutex);
     return ok;
 }
@@ -260,7 +279,7 @@ bool mcp_read_reg(mcp23017_t *dev, uint8_t reg, uint8_t *out) {
         return false;
     }
     if (!dev->inited)
-        mcp_init(dev);
+        return false;
     xSemaphoreTake(dev->mutex, portMAX_DELAY);
     bool ok = _i2c_rd(dev->i2c, dev->addr, reg, out);
     xSemaphoreGive(dev->mutex);
@@ -278,7 +297,7 @@ void mcp_set_direction(mcp23017_t *dev, uint8_t pin, uint8_t direction) {
         return;
     }
     if (!dev->inited)
-        mcp_init(dev);
+        return;
     const bool is_a = (pin < 8);
     const uint8_t bit = pin & 7;
     const uint8_t reg = is_a ? MCP23017_IODIRA : MCP23017_IODIRB;
@@ -305,7 +324,7 @@ void mcp_write_pin(mcp23017_t *dev, uint8_t pin, uint8_t value) {
         return;
     }
     if (!dev->inited)
-        mcp_init(dev);
+        return;
 
     const bool is_a = (pin < 8);
     const uint8_t bit = pin & 7;
@@ -339,7 +358,7 @@ uint8_t mcp_read_pin(mcp23017_t *dev, uint8_t pin) {
         return 0;
     }
     if (!dev->inited)
-        mcp_init(dev);
+        return 0;
     const bool is_a = (pin < 8);
     const uint8_t bit = pin & 7;
     const uint8_t reg = is_a ? MCP23017_GPIOA : MCP23017_GPIOB;
@@ -361,7 +380,7 @@ void mcp_write_mask(mcp23017_t *dev, uint8_t port_ab, uint8_t mask, uint8_t valu
         return;
     }
     if (!dev->inited)
-        mcp_init(dev);
+        return;
     xSemaphoreTake(dev->mutex, portMAX_DELAY);
     if (port_ab == 0) {
         dev->olat_a = (uint8_t)((dev->olat_a & ~mask) | (value_bits & mask));
@@ -383,7 +402,7 @@ void mcp_resync_from_hw(mcp23017_t *dev) {
         return;
     }
     if (!dev->inited)
-        mcp_init(dev);
+        return;
     xSemaphoreTake(dev->mutex, portMAX_DELAY);
     uint8_t a = 0, b = 0;
     (void)_i2c_rd(dev->i2c, dev->addr, MCP23017_OLATA, &a);
@@ -469,9 +488,14 @@ bool mcp_set_channel_state(uint8_t ch, uint8_t value) {
     uint8_t v = value ? 1u : 0u;
     mcp_write_pin(rel, ch, v); /* switch relay */
 
+    /* SAFETY CRITICAL: Display LED MUST follow relay state - operator depends on this!
+     * With reduced I2C timeout (2ms × 2 retries = 4ms per operation), even during
+     * stress testing with dead display I2C bus, accumulated delays are ~256ms instead
+     * of ~1920ms, preventing watchdog starvation while maintaining safety requirement. */
     mcp23017_t *disp = mcp_display();
-    if (disp)
-        mcp_write_pin(disp, ch, v); /* mirror 1=LED ON, 0=LED OFF */
+    if (disp && disp->inited) {
+        mcp_write_pin(disp, ch, v);
+    }
 
     return true;
 }

@@ -2,8 +2,8 @@
  * @file src/drivers/snmp.c
  * @author DvidMakesThings - David Sipos
  *
- * @version 1.0.0
- * @date 2025-11-07
+ * @version 1.1.0
+ * @date 2025-12-10
  *
  * @details  SNMP agent for ENERGIS RTOS. Owns a UDP socket (port 161),
  * parses incoming PDUs and emits responses without blocking the scheduler.
@@ -127,9 +127,21 @@ int SNMP_Poll(int max_packets) {
         max_packets = 1;
     }
 
+    /* Time budget using real-time ticks so SNMP cannot hog the CPU
+     * CRITICAL FIX: Use xTaskGetTickCount() instead of s_tick10ms because s_tick10ms
+     * is only updated once per NetTask cycle, causing budget check to never fire
+     * when processing many queued packets */
+    const TickType_t budget_ticks = pdMS_TO_TICKS(50); /* 50 ms */
+    TickType_t start_tick = xTaskGetTickCount();
+
     int serviced = 0;
 
     while (serviced < max_packets) {
+        /* Respect per call budget to avoid starving HealthTask and others */
+        if ((xTaskGetTickCount() - start_tick) >= budget_ticks) {
+            break;
+        }
+
         uint16_t rsr = getSn_RX_RSR(s_sock_agent);
         if (rsr == 0U) {
             break;
@@ -165,6 +177,13 @@ int SNMP_Poll(int max_packets) {
         }
 
         serviced++;
+
+        /* Yield briefly after each packet to allow other tasks to run
+         * and prevent watchdog starvation during bursts of SNMP traffic
+        if (serviced < max_packets) {
+            taskYIELD();
+        }
+        */
     }
 
     return serviced;
@@ -612,6 +631,12 @@ static int32_t parseSequenceOf(int32_t reqType) {
             return -1;
         }
         content += one;
+
+        /* Yield every 4 OIDs to prevent watchdog starvation during GETBULK/walks
+        if ((idx & 0x03) == 0) {
+            taskYIELD();
+        }
+        */
     }
 
     /* Fix SEQUENCE OF length to content only */
@@ -638,7 +663,7 @@ static int32_t parseRequest(void) {
         return -1;
     }
 
-    /* Copy PDU header; we’ll set its length to content later */
+    /* Copy PDU header */
     seglen = snmpreq.vstart - snmpreq.start;
     respLoc = s_resp.index;
     memcpy(&s_resp.buffer[s_resp.index], &s_req.buffer[snmpreq.start], seglen);

@@ -2,8 +2,8 @@
  * @file src/misc/power_mgr.c
  * @author DvidMakesThings - David Sipos
  *
- * @version 1.0.0
- * @date 2025-11-17
+ * @version 1.2.0
+ * @date 2025-12-10
  *
  * @details Implements centralized power state management for ENERGIS standby mode.
  * Provides atomic state transitions and hardware control for entering/exiting standby.
@@ -24,6 +24,12 @@
 static volatile power_state_t s_power_state = PWR_STATE_RUN;
 
 /**
+ * @brief Tracks current PWR_LED state to avoid redundant I2C writes.
+ * true = LED is ON, false = LED is OFF.
+ */
+static volatile bool s_pwr_led_state = false;
+
+/**
  * @brief Standby LED animation state
  */
 static struct {
@@ -39,15 +45,14 @@ static struct {
 /**
  * @brief Turn off all relay outputs and mirror LEDs.
  *
- * @details Iterates through all 8 channels and sets them to OFF state.
- * This also turns off the corresponding channel LEDs on the display MCP.
+ * @details Uses SwitchTask API to enqueue all-off command.
+ * Non-blocking operation prevents watchdog starvation.
  *
  * @return None
  */
 static void turn_off_all_relays(void) {
-    for (uint8_t ch = 0; ch < 8; ch++) {
-        mcp_set_channel_state(ch, 0);
-    }
+    /* Use non-blocking SwitchTask API with short timeout */
+    (void)Switch_AllOff(pdMS_TO_TICKS(500));
 }
 
 /**
@@ -109,6 +114,19 @@ static void w5500_hold_reset(void) { gpio_put(W5500_RESET, 0); }
  */
 static void w5500_release_reset(void) { gpio_put(W5500_RESET, 1); }
 
+/**
+ * @brief Set PWR_LED state with change tracking to avoid redundant I2C writes.
+ *
+ * @param on true to turn LED ON, false to turn OFF
+ * @return None
+ */
+static void set_pwr_led_tracked(bool on) {
+    if (s_pwr_led_state != on) {
+        setPowerGood(on);
+        s_pwr_led_state = on;
+    }
+}
+
 /* ##################################################################### */
 /*                          Public API Functions                         */
 /* ##################################################################### */
@@ -118,9 +136,13 @@ static void w5500_release_reset(void) { gpio_put(W5500_RESET, 1); }
  */
 void Power_Init(void) {
     s_power_state = PWR_STATE_RUN;
+    s_pwr_led_state = false;
     s_led_anim.last_update_ms = 0;
     s_led_anim.phase = 0;
     s_led_anim.direction = 0;
+
+    /* Set initial PWR_LED state */
+    set_pwr_led_tracked(true);
 
     INFO_PRINT("%s Power manager initialized (state=RUN)\r\n", POWER_MGR_TAG);
 }
@@ -162,7 +184,10 @@ void Power_EnterStandby(void) {
     s_led_anim.phase = 0;
     s_led_anim.direction = 0;
 
-    /* 6) Atomically update power state */
+    /* 6) Track PWR_LED as ON (set by turn_off_leds_except_pwr) */
+    s_pwr_led_state = true;
+
+    /* 7) Atomically update power state */
     s_power_state = PWR_STATE_STANDBY;
 
     INFO_PRINT("%s STANDBY mode active\r\n", POWER_MGR_TAG);
@@ -190,8 +215,8 @@ void Power_ExitStandby(void) {
     /* 1) Release W5500 from reset */
     w5500_release_reset();
 
-    /* 2) Set PWR_LED to solid ON (normal state) */
-    setPowerGood(true);
+    /* 2) Set PWR_LED to solid ON (normal state) - only write if changed */
+    set_pwr_led_tracked(true);
 
     /* 3) ETH_LED will be controlled by NetTask link detection */
     setNetworkLink(false);
@@ -217,8 +242,10 @@ void Power_ExitStandby(void) {
  *
  * @details
  * In RUN mode:
- *  - PWR_LED is kept solid ON via setPowerGood(true).
+ *  - PWR_LED state is maintained (no I2C writes needed - already set).
  *  - PROC_LED (GPIO28) PWM output is forced to 0% duty (off).
+ *  - CRITICAL: This function does NO I2C operations in RUN mode to avoid
+ *    mutex contention with SwitchTask during SNMP stress testing.
  *
  * In STANDBY mode:
  *  - PWR_LED blinks at 0.5 Hz (1 s ON / 1 s OFF, 2 s total period).
@@ -244,32 +271,41 @@ void Power_ServiceStandbyLED(void) {
 
     uint32_t now_ms = to_ms_since_boot(get_absolute_time());
 
-    /* RUN mode: solid PWR_LED, PROC_LED off */
+    /* RUN mode: PWR_LED is already set, PROC_LED off - NO I2C OPERATIONS!
+     *
+     * CRITICAL: Previously this function called setPowerGood(true) every
+     * ButtonTask iteration, requiring the display MCP mutex. During SNMP
+     * stress testing, SwitchTask frequently holds this mutex for display
+     * LED updates, causing ButtonTask to block for 4-6 seconds waiting.
+     *
+     * Fix: PWR_LED is set once during Power_Init() and Power_ExitStandby().
+     * No need to continuously rewrite it. */
     if (s_power_state != PWR_STATE_STANDBY) {
-        setPowerGood(true);
+        /* Reset blink state for next standby entry */
         s_last_toggle_ms = 0;
         s_led_on = true;
 
+        /* Keep PROC_LED off when not in standby (PWM only, no I2C) */
         if (s_pwm_init) {
-            /* Keep PROC_LED off when not in standby */
             pwm_set_gpio_level(PROC_LED, 0);
         }
 
         return;
     }
 
-    /* STANDBY mode */
+    /* STANDBY mode - I2C operations are acceptable here since there's
+     * no SNMP traffic (W5500 is in reset) */
 
     /* 0.5 Hz blink for PWR_LED:
      * toggle every half_period_ms (1 s) → 2 s full cycle. */
     if (s_last_toggle_ms == 0U) {
         s_last_toggle_ms = now_ms;
         s_led_on = true;
-        setPowerGood(true);
+        set_pwr_led_tracked(true);
     } else if ((now_ms - s_last_toggle_ms) >= half_period_ms) {
         s_last_toggle_ms = now_ms;
         s_led_on = !s_led_on;
-        setPowerGood(s_led_on);
+        set_pwr_led_tracked(s_led_on);
     }
 
     /* Lazy init of PWM for PROC_LED (GPIO28) */

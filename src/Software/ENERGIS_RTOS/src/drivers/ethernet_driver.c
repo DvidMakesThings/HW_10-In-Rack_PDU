@@ -2,11 +2,19 @@
  * @file src/drivers/ethernet_driver.c
  * @author DvidMakesThings - David Sipos
  *
- * @version 1.0.0
- * @date 2025-11-06
+ * @version 1.2.0
+ * @date 2025-12-10
  * @details
  * Unified RTOS-compatible W5500 driver combining HAL, SPI, and configuration.
  * Thread-safe with FreeRTOS mutex protection for all SPI operations.
+ *
+ * v1.2.0 Changes:
+ * - CRITICAL: Added timeout protection to w5500_get_tx_fsr() and w5500_get_rx_rsr()
+ *   to prevent infinite loops during heavy network traffic
+ * - PERFORMANCE: Replaced byte-by-byte SPI with bulk transfers using
+ *   spi_write_blocking() and spi_read_blocking() for multi-byte operations
+ * - Added w5500_read_reg16() for efficient 16-bit register reads
+ * - Reduced SPI overhead by ~4x for bulk data transfers
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -24,6 +32,9 @@
 #define W5500_SPI_READ 0x00
 #define W5500_SPI_WRITE 0x04
 #define W5500_SPI_VDM_OP 0x00
+
+/* Maximum retries for FSR/RSR consistency loops (prevents infinite loop) */
+#define MAX_FSR_RSR_RETRIES 10
 
 /******************************************************************************
  *                          PRIVATE VARIABLES                                 *
@@ -91,33 +102,71 @@ static void _w5500_cris_exit(void) {
  *                          W5500 REGISTER ACCESS                             *
  ******************************************************************************/
 
+/**
+ * @brief Read single byte from W5500 register (optimized bulk SPI)
+ * @param addr_sel Register address with block select
+ * @return Register value
+ */
 uint8_t w5500_read_reg(uint32_t addr_sel) {
-    uint8_t ret;
-    uint8_t spi_data[3];
+    uint8_t spi_data[4];
+    uint8_t rx_data[4];
 
     _cris_enter();
     _cs_select();
 
     addr_sel |= (W5500_SPI_READ | W5500_SPI_VDM_OP);
 
-    /* Send address + control phase */
+    /* Prepare address + control phase */
     spi_data[0] = (addr_sel & 0x00FF0000) >> 16;
     spi_data[1] = (addr_sel & 0x0000FF00) >> 8;
     spi_data[2] = (addr_sel & 0x000000FF) >> 0;
+    spi_data[3] = 0xFF; /* Dummy byte for read */
 
-    _spi_write_byte(spi_data[0]);
-    _spi_write_byte(spi_data[1]);
-    _spi_write_byte(spi_data[2]);
-
-    /* Read data phase */
-    ret = _spi_read_byte();
+    /* Single bulk transfer: 3 address bytes + 1 read byte */
+    spi_write_read_blocking(W5500_SPI, spi_data, rx_data, 4);
 
     _cs_deselect();
     _cris_exit();
 
-    return ret;
+    return rx_data[3];
 }
 
+/**
+ * @brief Read 16-bit value from W5500 register (optimized for FSR/RSR)
+ * @param addr_sel Base register address with block select
+ * @return 16-bit register value (big-endian converted)
+ * @note Reads two consecutive bytes in a single SPI transaction
+ */
+static uint16_t w5500_read_reg16(uint32_t addr_sel) {
+    uint8_t spi_data[5];
+    uint8_t rx_data[5];
+
+    _cris_enter();
+    _cs_select();
+
+    addr_sel |= (W5500_SPI_READ | W5500_SPI_VDM_OP);
+
+    /* Prepare address + control phase */
+    spi_data[0] = (addr_sel & 0x00FF0000) >> 16;
+    spi_data[1] = (addr_sel & 0x0000FF00) >> 8;
+    spi_data[2] = (addr_sel & 0x000000FF) >> 0;
+    spi_data[3] = 0xFF; /* Dummy for high byte */
+    spi_data[4] = 0xFF; /* Dummy for low byte */
+
+    /* Single bulk transfer: 3 address bytes + 2 read bytes */
+    spi_write_read_blocking(W5500_SPI, spi_data, rx_data, 5);
+
+    _cs_deselect();
+    _cris_exit();
+
+    return ((uint16_t)rx_data[3] << 8) | rx_data[4];
+}
+
+/**
+ * @brief Write single byte to W5500 register (optimized bulk SPI)
+ * @param addr_sel Register address with block select
+ * @param wb Byte to write
+ */
 void w5500_write_reg(uint32_t addr_sel, uint8_t wb) {
     uint8_t spi_data[4];
 
@@ -126,23 +175,27 @@ void w5500_write_reg(uint32_t addr_sel, uint8_t wb) {
 
     addr_sel |= (W5500_SPI_WRITE | W5500_SPI_VDM_OP);
 
-    /* Send address + control phase */
+    /* Prepare address + control phase + data */
     spi_data[0] = (addr_sel & 0x00FF0000) >> 16;
     spi_data[1] = (addr_sel & 0x0000FF00) >> 8;
     spi_data[2] = (addr_sel & 0x000000FF) >> 0;
     spi_data[3] = wb;
 
-    _spi_write_byte(spi_data[0]);
-    _spi_write_byte(spi_data[1]);
-    _spi_write_byte(spi_data[2]);
-    _spi_write_byte(spi_data[3]);
+    /* Single bulk transfer: 3 address bytes + 1 data byte */
+    spi_write_blocking(W5500_SPI, spi_data, 4);
 
     _cs_deselect();
     _cris_exit();
 }
 
+/**
+ * @brief Read multiple bytes from W5500 (optimized bulk transfer)
+ * @param addr_sel Base address with block select
+ * @param pBuf Destination buffer
+ * @param len Number of bytes to read
+ */
 void w5500_read_buf(uint32_t addr_sel, uint8_t *pBuf, uint16_t len) {
-    uint8_t spi_data[3];
+    uint8_t spi_header[3];
 
     if (!pBuf || len == 0)
         return;
@@ -153,25 +206,27 @@ void w5500_read_buf(uint32_t addr_sel, uint8_t *pBuf, uint16_t len) {
     addr_sel |= (W5500_SPI_READ | W5500_SPI_VDM_OP);
 
     /* Send address + control phase */
-    spi_data[0] = (addr_sel & 0x00FF0000) >> 16;
-    spi_data[1] = (addr_sel & 0x0000FF00) >> 8;
-    spi_data[2] = (addr_sel & 0x000000FF) >> 0;
+    spi_header[0] = (addr_sel & 0x00FF0000) >> 16;
+    spi_header[1] = (addr_sel & 0x0000FF00) >> 8;
+    spi_header[2] = (addr_sel & 0x000000FF) >> 0;
 
-    _spi_write_byte(spi_data[0]);
-    _spi_write_byte(spi_data[1]);
-    _spi_write_byte(spi_data[2]);
+    spi_write_blocking(W5500_SPI, spi_header, 3);
 
-    /* Read data phase */
-    for (uint16_t i = 0; i < len; i++) {
-        pBuf[i] = _spi_read_byte();
-    }
+    /* Bulk read data phase */
+    spi_read_blocking(W5500_SPI, 0xFF, pBuf, len);
 
     _cs_deselect();
     _cris_exit();
 }
 
+/**
+ * @brief Write multiple bytes to W5500 (optimized bulk transfer)
+ * @param addr_sel Base address with block select
+ * @param pBuf Source buffer
+ * @param len Number of bytes to write
+ */
 void w5500_write_buf(uint32_t addr_sel, uint8_t *pBuf, uint16_t len) {
-    uint8_t spi_data[3];
+    uint8_t spi_header[3];
 
     if (!pBuf || len == 0)
         return;
@@ -182,18 +237,14 @@ void w5500_write_buf(uint32_t addr_sel, uint8_t *pBuf, uint16_t len) {
     addr_sel |= (W5500_SPI_WRITE | W5500_SPI_VDM_OP);
 
     /* Send address + control phase */
-    spi_data[0] = (addr_sel & 0x00FF0000) >> 16;
-    spi_data[1] = (addr_sel & 0x0000FF00) >> 8;
-    spi_data[2] = (addr_sel & 0x000000FF) >> 0;
+    spi_header[0] = (addr_sel & 0x00FF0000) >> 16;
+    spi_header[1] = (addr_sel & 0x0000FF00) >> 8;
+    spi_header[2] = (addr_sel & 0x000000FF) >> 0;
 
-    _spi_write_byte(spi_data[0]);
-    _spi_write_byte(spi_data[1]);
-    _spi_write_byte(spi_data[2]);
+    spi_write_blocking(W5500_SPI, spi_header, 3);
 
-    /* Write data phase */
-    for (uint16_t i = 0; i < len; i++) {
-        _spi_write_byte(pBuf[i]);
-    }
+    /* Bulk write data phase */
+    spi_write_blocking(W5500_SPI, pBuf, len);
 
     _cs_deselect();
     _cris_exit();
@@ -243,30 +294,68 @@ uint16_t getSn_DPORT(uint8_t sn) {
     return (uint16_t)((be[0] << 8) | be[1]);
 }
 
+/**
+ * @brief Get socket TX free size register (with timeout protection)
+ * @param sn Socket number
+ * @return TX free buffer size in bytes
+ *
+ * @details
+ * Reads Sn_TX_FSR twice to ensure consistency (W5500 updates this register
+ * asynchronously). If values don't match after MAX_FSR_RSR_RETRIES attempts,
+ * returns the last read value to prevent infinite loop during heavy traffic.
+ *
+ * v1.2.0: Added timeout protection to prevent watchdog starvation during
+ * SNMP stress testing. Uses optimized w5500_read_reg16() for efficiency.
+ */
 uint16_t w5500_get_tx_fsr(uint8_t sn) {
     uint16_t val = 0, val1 = 0;
+    uint8_t retries = 0;
 
     do {
-        val1 = w5500_read_reg(Sn_TX_FSR(sn));
-        val1 = (val1 << 8) + w5500_read_reg(W5500_OFFSET_INC(Sn_TX_FSR(sn), 1));
+        val1 = w5500_read_reg16(Sn_TX_FSR(sn));
         if (val1 != 0) {
-            val = w5500_read_reg(Sn_TX_FSR(sn));
-            val = (val << 8) + w5500_read_reg(W5500_OFFSET_INC(Sn_TX_FSR(sn), 1));
+            val = w5500_read_reg16(Sn_TX_FSR(sn));
+        }
+
+        retries++;
+        if (retries >= MAX_FSR_RSR_RETRIES) {
+            /* Timeout: return last read value to prevent infinite loop.
+             * The value is still valid, just potentially microseconds stale. */
+            return val1;
         }
     } while (val != val1);
 
     return val;
 }
 
+/**
+ * @brief Get socket RX received size register (with timeout protection)
+ * @param sn Socket number
+ * @return RX received data size in bytes
+ *
+ * @details
+ * Reads Sn_RX_RSR twice to ensure consistency (W5500 updates this register
+ * asynchronously). If values don't match after MAX_FSR_RSR_RETRIES attempts,
+ * returns the last read value to prevent infinite loop during heavy traffic.
+ *
+ * v1.2.0: Added timeout protection to prevent watchdog starvation during
+ * SNMP stress testing. Uses optimized w5500_read_reg16() for efficiency.
+ */
 uint16_t w5500_get_rx_rsr(uint8_t sn) {
     uint16_t val = 0, val1 = 0;
+    uint8_t retries = 0;
 
     do {
-        val1 = w5500_read_reg(Sn_RX_RSR(sn));
-        val1 = (val1 << 8) + w5500_read_reg(W5500_OFFSET_INC(Sn_RX_RSR(sn), 1));
+        val1 = w5500_read_reg16(Sn_RX_RSR(sn));
         if (val1 != 0) {
-            val = w5500_read_reg(Sn_RX_RSR(sn));
-            val = (val << 8) + w5500_read_reg(W5500_OFFSET_INC(Sn_RX_RSR(sn), 1));
+            val = w5500_read_reg16(Sn_RX_RSR(sn));
+        }
+
+        retries++;
+        if (retries >= MAX_FSR_RSR_RETRIES) {
+            /* Timeout: return last read value to prevent infinite loop.
+             * The value is still valid, just potentially microseconds stale. */
+            return val1;
         }
     } while (val != val1);
 
@@ -421,7 +510,7 @@ bool w5500_chip_init(w5500_NetConfig *net_info) {
         return false;
     }
 
-    /* Configure socket memory allocation */
+    /* Configure socket buffer sizes */
     setSn_RXBUF_SIZE(0, W5500_RX_SIZE_S0);
     setSn_TXBUF_SIZE(0, W5500_TX_SIZE_S0);
     setSn_RXBUF_SIZE(1, W5500_RX_SIZE_S1);
@@ -439,11 +528,11 @@ bool w5500_chip_init(w5500_NetConfig *net_info) {
     setSn_RXBUF_SIZE(7, W5500_RX_SIZE_S7);
     setSn_TXBUF_SIZE(7, W5500_TX_SIZE_S7);
 
-    /* Configure PHY */
+    /* Configure PHY for auto-negotiation */
     setPHYCFGR(PHYCFGR_OPMD | PHYCFGR_OPMDC_ALLA | PHYCFGR_RST);
     vTaskDelay(pdMS_TO_TICKS(10));
 
-    /* Wait for link up */
+    /* Wait for PHY link */
     uint8_t link_status;
     uint32_t timeout = 0;
     do {

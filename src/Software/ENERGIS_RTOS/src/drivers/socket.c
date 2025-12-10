@@ -196,8 +196,15 @@ int8_t socket(uint8_t sn, uint8_t protocol, uint16_t port, uint8_t flag) {
 
     /* Issue OPEN command */
     setSn_CR(sn, Sn_CR_OPEN);
-    while (getSn_CR(sn))
+
+    /* Wait for command completion with timeout */
+    TickType_t wait_start = xTaskGetTickCount();
+    while (getSn_CR(sn)) {
+        if ((xTaskGetTickCount() - wait_start) >= pdMS_TO_TICKS(5)) {
+            return SOCKERR_TIMEOUT;
+        }
         vTaskDelay(pdMS_TO_TICKS(1));
+    }
 
     /* Clear socket state */
     sock_io_mode &= ~(1 << sn);
@@ -221,12 +228,20 @@ int8_t socket(uint8_t sn, uint8_t protocol, uint16_t port, uint8_t flag) {
  * @return SOCK_OK on success, negative error code on failure
  */
 int8_t closesocket(uint8_t sn) {
+    TickType_t wait_start;
     CHECK_SOCKNUM();
 
     /* Issue CLOSE command */
     setSn_CR(sn, Sn_CR_CLOSE);
-    while (getSn_CR(sn))
+
+    /* Wait for command completion with timeout */
+    wait_start = xTaskGetTickCount();
+    while (getSn_CR(sn)) {
+        if ((xTaskGetTickCount() - wait_start) >= pdMS_TO_TICKS(5)) {
+            return SOCKERR_TIMEOUT;
+        }
         vTaskDelay(pdMS_TO_TICKS(1));
+    }
 
     /* Clear all interrupts */
     setSn_IR(sn, 0xFF);
@@ -252,13 +267,21 @@ int8_t closesocket(uint8_t sn) {
  * @return SOCK_OK on success, negative error code on failure
  */
 int8_t disconnect(uint8_t sn) {
+    TickType_t wait_start;
     CHECK_SOCKNUM();
     CHECK_SOCKMODE(Sn_MR_TCP);
 
     /* Issue DISCON command */
     setSn_CR(sn, Sn_CR_DISCON);
-    while (getSn_CR(sn))
+
+    /* Wait for command completion with timeout */
+    wait_start = xTaskGetTickCount();
+    while (getSn_CR(sn)) {
+        if ((xTaskGetTickCount() - wait_start) >= pdMS_TO_TICKS(5)) {
+            return SOCKERR_TIMEOUT;
+        }
         vTaskDelay(pdMS_TO_TICKS(1));
+    }
 
     sock_is_sending &= ~(1 << sn);
 
@@ -303,14 +326,22 @@ int8_t disconnect(uint8_t sn) {
  * @return SOCK_OK on success, negative error code on failure
  */
 int8_t listen(uint8_t sn) {
+    TickType_t wait_start;
     CHECK_SOCKNUM();
     CHECK_SOCKMODE(Sn_MR_TCP);
     CHECK_SOCKINIT();
 
     /* Issue LISTEN command */
     setSn_CR(sn, Sn_CR_LISTEN);
-    while (getSn_CR(sn))
+
+    /* Wait for command completion with timeout */
+    wait_start = xTaskGetTickCount();
+    while (getSn_CR(sn)) {
+        if ((xTaskGetTickCount() - wait_start) >= pdMS_TO_TICKS(5)) {
+            return SOCKERR_TIMEOUT;
+        }
         vTaskDelay(pdMS_TO_TICKS(1));
+    }
 
     /* Wait for LISTEN with a bounded timeout */
     const TickType_t t_start = xTaskGetTickCount();
@@ -446,8 +477,15 @@ int32_t send(uint8_t sn, uint8_t *buf, uint16_t len) {
 
     /* Issue SEND command */
     setSn_CR(sn, Sn_CR_SEND);
-    while (getSn_CR(sn))
+
+    /* Wait for command completion with timeout */
+    TickType_t wait_start = xTaskGetTickCount();
+    while (getSn_CR(sn)) {
+        if ((xTaskGetTickCount() - wait_start) >= pdMS_TO_TICKS(5)) {
+            return SOCKERR_TIMEOUT;
+        }
         vTaskDelay(pdMS_TO_TICKS(1));
+    }
 
     sock_is_sending |= (1 << sn);
 
@@ -514,8 +552,15 @@ int send_all_blocking(uint8_t sn, const uint8_t *buf, int len) {
 
         /* Kick SEND and wait for SENDOK (or TIMEOUT) */
         setSn_CR(sn, Sn_CR_SEND);
-        while (getSn_CR(sn))
+
+        /* Wait for command completion with timeout */
+        TickType_t wait_start = xTaskGetTickCount();
+        while (getSn_CR(sn)) {
+            if ((xTaskGetTickCount() - wait_start) >= pdMS_TO_TICKS(5)) {
+                return total; /* Return bytes sent so far */
+            }
             vTaskDelay(pdMS_TO_TICKS(1));
+        }
 
         TickType_t ts = xTaskGetTickCount();
         for (;;) {
@@ -618,8 +663,15 @@ int32_t recv(uint8_t sn, uint8_t *buf, uint16_t len) {
 
     /* Notify chip data was consumed */
     setSn_CR(sn, Sn_CR_RECV);
-    while (getSn_CR(sn))
+
+    /* Wait for command completion with timeout */
+    TickType_t wait_start = xTaskGetTickCount();
+    while (getSn_CR(sn)) {
+        if ((xTaskGetTickCount() - wait_start) >= pdMS_TO_TICKS(5)) {
+            return SOCKERR_TIMEOUT;
+        }
         vTaskDelay(pdMS_TO_TICKS(1));
+    }
 
     return (int32_t)len;
 }
@@ -648,6 +700,7 @@ int32_t recv(uint8_t sn, uint8_t *buf, uint16_t len) {
 int32_t sendto(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uint16_t port) {
     uint8_t tmp = 0;
     uint16_t freesize = 0;
+    TickType_t wait_start;
 
     CHECK_SOCKNUM();
     CHECK_SOCKMODE(Sn_MR_UDP);
@@ -735,8 +788,15 @@ int32_t sendto(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uint16_t p
 
     /* Issue SEND command */
     setSn_CR(sn, Sn_CR_SEND);
-    while (getSn_CR(sn))
+
+    /* Wait for command completion with timeout */
+    wait_start = xTaskGetTickCount();
+    while (getSn_CR(sn)) {
+        if ((xTaskGetTickCount() - wait_start) >= pdMS_TO_TICKS(5)) {
+            return SOCKERR_TIMEOUT;
+        }
         vTaskDelay(pdMS_TO_TICKS(1));
+    }
 
     W5500_SOCK_DBG("[Socket %u] Sent %u bytes to %u.%u.%u.%u:%u\r\n", sn, len, addr[0], addr[1],
                    addr[2], addr[3], port);
@@ -849,8 +909,15 @@ int32_t recvfrom(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uint16_t
 
     /* *** Critical fix: flush RX pointer once per full datagram *** */
     setSn_CR(sn, Sn_CR_RECV);
-    while (getSn_CR(sn))
+
+    /* Wait for command completion with timeout */
+    TickType_t wait_start = xTaskGetTickCount();
+    while (getSn_CR(sn)) {
+        if ((xTaskGetTickCount() - wait_start) >= pdMS_TO_TICKS(5)) {
+            return SOCKERR_TIMEOUT;
+        }
         vTaskDelay(pdMS_TO_TICKS(1));
+    }
 
     return (int32_t)to_copy;
 }
@@ -896,8 +963,15 @@ int32_t recvfrom_SNMP(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uin
             /* Read UDP header (8 bytes: IP[4] + port[2] + length[2]) */
             eth_recv_data(sn, head, 8);
             setSn_CR(sn, Sn_CR_RECV);
-            while (getSn_CR(sn))
+
+            /* Wait for command completion with timeout */
+            TickType_t wait_start = xTaskGetTickCount();
+            while (getSn_CR(sn)) {
+                if ((xTaskGetTickCount() - wait_start) >= pdMS_TO_TICKS(5)) {
+                    return SOCKERR_TIMEOUT;
+                }
                 vTaskDelay(pdMS_TO_TICKS(1));
+            }
 
             /* Parse header */
             addr[0] = head[0];
@@ -926,8 +1000,15 @@ int32_t recvfrom_SNMP(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uin
             /* Read IPRAW header (6 bytes: IP[4] + length[2]) */
             eth_recv_data(sn, head, 6);
             setSn_CR(sn, Sn_CR_RECV);
-            while (getSn_CR(sn))
+
+            /* Wait for command completion with timeout */
+            TickType_t wait_start = xTaskGetTickCount();
+            while (getSn_CR(sn)) {
+                if ((xTaskGetTickCount() - wait_start) >= pdMS_TO_TICKS(5)) {
+                    return SOCKERR_TIMEOUT;
+                }
                 vTaskDelay(pdMS_TO_TICKS(1));
+            }
 
             /* Parse header */
             addr[0] = head[0];
@@ -954,8 +1035,15 @@ int32_t recvfrom_SNMP(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uin
             /* Read MACRAW header (2 bytes: length[2]) */
             eth_recv_data(sn, head, 2);
             setSn_CR(sn, Sn_CR_RECV);
-            while (getSn_CR(sn))
-                vTaskDelay(pdMS_TO_TICKS(10));
+
+            /* Wait for command completion with timeout */
+            TickType_t wait_start = xTaskGetTickCount();
+            while (getSn_CR(sn)) {
+                if ((xTaskGetTickCount() - wait_start) >= pdMS_TO_TICKS(5)) {
+                    return SOCKERR_TIMEOUT;
+                }
+                vTaskDelay(pdMS_TO_TICKS(1));
+            }
 
             /* Parse header */
             sock_remained_size[sn] = head[0];
@@ -994,8 +1082,15 @@ int32_t recvfrom_SNMP(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uin
 
     /* Issue RECV command to update pointers */
     setSn_CR(sn, Sn_CR_RECV);
-    while (getSn_CR(sn))
-        vTaskDelay(pdMS_TO_TICKS(10));
+
+    /* Wait for command completion with timeout */
+    TickType_t final_wait_start = xTaskGetTickCount();
+    while (getSn_CR(sn)) {
+        if ((xTaskGetTickCount() - final_wait_start) >= pdMS_TO_TICKS(5)) {
+            return SOCKERR_TIMEOUT;
+        }
+        vTaskDelay(pdMS_TO_TICKS(1));
+    }
 
     /* Update remaining size */
     sock_remained_size[sn] -= pack_len;

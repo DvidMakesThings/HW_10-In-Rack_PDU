@@ -39,6 +39,13 @@
 #define FIRMWARE_VERSION_LITERAL 100
 
 /**
+ * Device hardware version - DO NOT MODIFY THIS FORMAT
+ * This specific format allows the device to be identified
+ */
+#define HARDWARE_VERSION "1.0.0"
+#define HARDWARE_VERSION_LITERAL 100
+
+/**
  * Manufacturing date
  */
 #define MANUFACTURING_DATE __DATE__
