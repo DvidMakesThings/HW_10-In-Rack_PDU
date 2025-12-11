@@ -94,73 +94,61 @@ static void hlw8032_calibration_consume_sample(uint8_t ch);
  *
  * @details
  * - Disables MUX (EN=1) during transition
- * - Sets A/B/C select lines via MCP23017 port B
+ * - Sets A/B/C select lines via SwitchTask -> MCP23017 Port B
  * - Hardware v1.0.0: XORs A and B bits when C=1 (upper 4 channels)
  * - Enables MUX (EN=0)
  * - Uses cooperative vTaskDelay() for settling to prevent watchdog starvation
  *
  * @param ch Logical channel index [0..7]
- *
- * @note FIXED v1.0.3: Uses batch mcp_write_mask() for all MUX pins in ONE I2C
- *       transaction instead of 5 separate mcp_write_pin() calls. This reduces
- *       relay MCP mutex contention from 5 acquire/release cycles to just 2,
- *       preventing watchdog starvation during SNMP stress testing.
- * @note FIXED v1.0.3: Replaced busy_wait_us() with vTaskDelay() to ensure
- *       cooperative scheduling and allow higher-priority tasks to run.
- *
- * @note MUX pins (MUX_A=8, MUX_B=9, MUX_C=10, MUX_EN=11) are on Port B of
- *       the RELAY board MCP23017 @ 0x20 (bits 0-3 of port B).
  */
 static void mux_select(uint8_t ch) {
     ch &= 0x07;
 
-    uint8_t a = (ch >> 0) & 1;
-    uint8_t b = (ch >> 1) & 1;
-    uint8_t c = (ch >> 2) & 1;
+    uint8_t a = (ch >> 0) & 1u;
+    uint8_t b = (ch >> 1) & 1u;
+    uint8_t c = (ch >> 2) & 1u;
 
-#if defined(SW_REV) && (SW_REV == 100)
+#if defined(HW_REV) && (HW_REV == 100)
     /* Hardware v1.0.0: XOR A and B bits when C=1 (upper channels 4-7) */
     if (c) {
-        a ^= 1;
-        b ^= 1;
+        a ^= 1u;
+        b ^= 1u;
     }
 #endif
 
-    mcp23017_t *mcp_mux = mcp_relay();
-    if (mcp_mux == NULL) {
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0x1);
-        ERROR_PRINT_CODE(err_code, "%s mcp_relay() returned NULL\r\n", HLW8032_TAG);
-        return;
-    }
+    /* MUX lines are on Port B bits 0-3 */
+    const uint8_t MUX_MASK = 0x0Fu;
 
-    /*
-     * MUX control pins on Port B (pins 8-11 map to port B bits 0-3):
-     *   MUX_A  = pin 8  = port B bit 0
-     *   MUX_B  = pin 9  = port B bit 1
-     *   MUX_C  = pin 10 = port B bit 2
-     *   MUX_EN = pin 11 = port B bit 3
-     *
-     * Use batch write to set all 4 bits in ONE I2C transaction, reducing
-     * mutex contention from 5 operations to 2.
-     */
-    const uint8_t MUX_MASK = 0x0F; /* bits 0-3 of port B */
-
-    /* Step 1: Disable MUX (EN=1) and set address lines in ONE write */
+    /* Step 1: Disable MUX (EN=1) and set address lines in ONE logical write */
     uint8_t value = (1u << 3) | /* MUX_EN = 1 (disabled, active-low) */
                     (a << 0) |  /* MUX_A */
                     (b << 1) |  /* MUX_B */
                     (c << 2);   /* MUX_C */
 
-    mcp_write_mask(mcp_mux, 1, MUX_MASK, value); /* port_ab=1 for port B */
+    if (!Switch_SetRelayPortBMasked(MUX_MASK, value, 10u)) {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0x1);
+        ERROR_PRINT_CODE(err_code, "%s Switch_SetRelayPortBMasked failed (EN=1)\r\n", HLW8032_TAG);
+        Storage_EnqueueErrorCode(err_code);
+#endif
+        return;
+    }
 
-    /* Cooperative yield for MUX address line settling (replaces busy_wait) */
+    /* Allow MUX lines to settle before enabling */
     vTaskDelay(pdMS_TO_TICKS(1));
 
-    /* Step 2: Enable MUX (clear EN bit) - address lines already set */
-    value &= ~(1u << 3); /* MUX_EN = 0 (enabled) */
-    mcp_write_mask(mcp_mux, 1, MUX_MASK, value);
+    /* Step 2: Enable MUX (EN=0), keep A/B/C as-is */
+    value &= (uint8_t)~(1u << 3); /* clear EN bit -> enable */
 
-    /* Final settle delay with cooperative yield */
+    if (!Switch_SetRelayPortBMasked(MUX_MASK, value, 10u)) {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0x2);
+        ERROR_PRINT_CODE(err_code, "%s Switch_SetRelayPortBMasked failed (EN=0)\r\n", HLW8032_TAG);
+        Storage_EnqueueErrorCode(err_code);
+#endif
+        return;
+    }
+
     vTaskDelay(pdMS_TO_TICKS(1));
 }
 

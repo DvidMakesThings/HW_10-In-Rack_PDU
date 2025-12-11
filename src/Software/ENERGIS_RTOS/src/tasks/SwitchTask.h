@@ -72,12 +72,13 @@
  * @brief Switch control command types
  */
 typedef enum {
-    SWITCH_CMD_SET_CHANNEL,  /**< Set single channel state */
-    SWITCH_CMD_TOGGLE,       /**< Toggle single channel */
-    SWITCH_CMD_ALL_ON,       /**< Turn all channels ON */
-    SWITCH_CMD_ALL_OFF,      /**< Turn all channels OFF */
-    SWITCH_CMD_SET_MASK,     /**< Set multiple channels via bitmask */
-    SWITCH_CMD_SYNC_FROM_HW, /**< Force sync cached state from hardware */
+    SWITCH_CMD_SET_CHANNEL,         /**< Set single channel state */
+    SWITCH_CMD_TOGGLE,              /**< Toggle single channel */
+    SWITCH_CMD_ALL_ON,              /**< Turn all channels ON */
+    SWITCH_CMD_ALL_OFF,             /**< Turn all channels OFF */
+    SWITCH_CMD_SET_MASK,            /**< Set multiple channels via bitmask */
+    SWITCH_CMD_SYNC_FROM_HW,        /**< Force sync cached state from hardware */
+    SWITCH_CMD_SET_RELAY_PORTB_MASK /**< Low-level MCP Port B masked write */
 } switch_cmd_type_t;
 
 /**
@@ -207,6 +208,19 @@ bool Switch_SetMask(uint8_t mask, uint32_t timeout_ms);
  * @return true if command enqueued, false if queue full
  */
 bool Switch_SyncFromHardware(uint32_t timeout_ms);
+
+/**
+ * @brief Queue a masked write to relay MCP Port B (non-blocking).
+ *
+ * Intended for HLW8032 MUX control (Port B bits 0-3). Other bits on Port B
+ * are preserved via mask.
+ *
+ * @param mask Bitmask of Port B bits to modify.
+ * @param value New values for masked bits.
+ * @param timeout_ms Maximum time to wait for queue space (0 = no wait).
+ * @return true if command enqueued, false otherwise.
+ */
+bool Switch_SetRelayPortBMasked(uint8_t mask, uint8_t value, uint32_t timeout_ms);
 
 #endif /* ENERGIS_SWITCHTASK_H */
 

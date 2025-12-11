@@ -136,22 +136,32 @@ The full schematics for each board are available:
 <table>
   <tr>
     <td align="center">
-      <img src="images/ENERGIS_1.0.0/ENERGIS-3D-Rack-PDU_1.1.0_TOP.png" alt="Main Board 3D Top View" style="width: 100%; min-width: 200px; border-radius: 6px;">
+      <img src="images/ENERGIS_1.1.0/PCB/ENERGIS-3D-Rack-PDU_1.1.0_TOP.jpg" alt="Main Board 3D Top View" style="width: 100%; min-width: 200px; border-radius: 6px;">
       <br><b>Main Board Top</b>
     </td>
     <td align="center">
-      <img src="images/ENERGIS_1.0.0/ENERGIS-3D-Rack-PDU_1.1.0_BOT.png" alt="Main Board 3D Bottom View" style="width: 100%; min-width: 200px; border-radius: 6px;">
+      <img src="images/ENERGIS_1.1.0/PCB/ENERGIS-3D-Rack-PDU_1.1.0_BOTTOM.jpg" alt="Main Board 3D Bottom View" style="width: 100%; min-width: 200px; border-radius: 6px;">
       <br><b>Main Board Bottom</b>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="images/ENERGIS_1.0.0/ENERGIS-3D-DispBrd-Rack-PDU_1.1.0_TOP.png" alt="Display Board 3D Top View" style="width: 100%; min-width: 200px; border-radius: 6px;">
+      <img src="images/ENERGIS_1.1.0/PCB/ENERGIS-3D-DispBrd-Rack-PDU_1.1.0_TOP.jpg" alt="Display Board 3D Top View" style="width: 100%; min-width: 200px; border-radius: 6px;">
       <br><b>Display Board Top</b>
     </td>
     <td align="center">
-      <img src="images/ENERGIS_1.0.0/ENERGIS-3D-DispBrd-Rack-PDU_1.1.0_BOT.png" alt="Display Board 3D Bottom View" style="width: 100%; min-width: 200px; border-radius: 6px;">
+      <img src="images/ENERGIS_1.1.0/PCB/ENERGIS-3D-DispBrd-Rack-PDU_1.1.0_BOTTOM.jpg" alt="Display Board 3D Bottom View" style="width: 100%; min-width: 200px; border-radius: 6px;">
       <br><b>Display Board Bottom</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="images/ENERGIS_1.1.0/PCB/ENERGIS-3D-PEM_ADAPTER_1.0.0_TOP.jpg" alt="PEM-Adapter 3D Top View" style="width: 100%; min-width: 200px; border-radius: 6px;">
+      <br><b>PEM Adapter</b>
+    </td>
+    <td align="center">
+      <img src="images/ENERGIS_1.1.0/PCB/ENERGIS-3D-PEM_ADAPTER_1.0.0_BOTTOM.jpg" alt="PEM-Adapter 3D Bottom View" style="width: 100%; min-width: 200px; border-radius: 6px;">
+      <br><b>PEM Adapter</b>
     </td>
   </tr>
 </table>
@@ -170,8 +180,8 @@ Key specifications:
 
 <br></br>
 <div style="display: flex; gap: 24px; justify-content: center; align-items: flex-start; margin-bottom: 24px;">
-  <img src="images/ENERGIS_1.0.0/Assembled-in-case_1.0.0_3D_1.png" alt="PDU 3D View 1" style="max-width: 48%; border-radius: 6px; padding: 8px; background: #fafbfc;">
-  <img src="images/ENERGIS_1.0.0/Assembled-in-case_1.0.0_3D_2.png" alt="PDU 3D View 2" style="max-width: 48%; border-radius: 6px; padding: 8px; background: #fafbfc;">
+  <img src="images/ENERGIS_1.1.0/Enclosure/ENERGIS-1.1.0-Front.jpg" alt="PDU 3D View 1" style="max-width: 48%; border-radius: 6px; padding: 8px; background: #fafbfc;">
+  <img src="images/ENERGIS_1.1.0/Enclosure/ENERGIS-1.1.0-Rear.jpg" alt="PDU 3D View 2" style="max-width: 48%; border-radius: 6px; padding: 8px; background: #fafbfc;">
 </div>
 
 <br></br>
@@ -191,11 +201,11 @@ The ENERGIS now includes a lightweight embedded Web-UI for configuration and con
 <div style="display: flex; gap: 24px; align-items: flex-start; margin-bottom: 24px;">
   <div style="flex: 1; text-align: center;">
     <h4 style="margin-bottom: 8px;">All Channels Off</h4>
-    <img src="images/ENERGIS_1.0.0/Web-UI/Webui_allOff.png" alt="Web-UI All Off" style="max-width: 100%; border-radius: 6px; padding: 8px; background: #fafbfc;">
+    <img src="images/ENERGIS_1.1.0/WEBUI-Control-1.png" alt="Web-UI All Off" style="max-width: 100%; border-radius: 6px; padding: 8px; background: #fafbfc;">
   </div>
   <div style="flex: 1; text-align: center;">
-    <h4 style="margin-bottom: 8px;">Settings Page</h4>
-    <img src="images/ENERGIS_1.0.0/Web-UI/Webui_settings.png" alt="Web-UI Settings" style="max-width: 100%; border-radius: 6px; padding: 8px; background: #fafbfc;">
+    <h4 style="margin-bottom: 8px;">CH1-CH2 ~40W Load</h4>
+    <img src="images/ENERGIS_1.1.0/WEBUI-Control-2.png" alt="Web-UI Settings" style="max-width: 100%; border-radius: 6px; padding: 8px; background: #fafbfc;">
   </div>
 </div>
 

@@ -158,6 +158,30 @@ static void exec_set_mask(uint8_t mask) {
 }
 
 /**
+ * @brief Execute masked write on relay MCP Port B.
+ *
+ * Performs a low-level masked write on Port B of the relay MCP23017.
+ * This is used by the HLW8032 driver to control the MUX A/B/C/EN lines.
+ *
+ * @param mask Bitmask of Port B bits to modify.
+ * @param value New values for the masked bits.
+ * @return None
+ */
+static void exec_set_relay_portb_mask(uint8_t mask, uint8_t value) {
+    if (mask == 0u) {
+        return;
+    }
+
+    mcp23017_t *rel = mcp_relay();
+    if (!rel) {
+        return;
+    }
+
+    /* Port 1 = MCP23017 Port B */
+    mcp_write_mask(rel, 1, mask, value);
+}
+
+/**
  * @brief Process a single command from the queue.
  *
  * @param cmd Pointer to command structure
@@ -193,6 +217,11 @@ static void process_command(const switch_cmd_t *cmd) {
 
     case SWITCH_CMD_SYNC_FROM_HW:
         sync_state_from_hw();
+        break;
+
+    case SWITCH_CMD_SET_RELAY_PORTB_MASK:
+        /* channel unused, state = value, mask = port B mask */
+        exec_set_relay_portb_mask(cmd->mask, cmd->state);
         break;
 
     default:
@@ -515,5 +544,37 @@ bool Switch_SyncFromHardware(uint32_t timeout_ms) {
     switch_cmd_t cmd = {.type = SWITCH_CMD_SYNC_FROM_HW, .channel = 0, .state = 0, .mask = 0};
 
     TickType_t ticks = (timeout_ms == 0) ? 0 : pdMS_TO_TICKS(timeout_ms);
+    return (xQueueSend(s_switch_queue, &cmd, ticks) == pdTRUE);
+}
+
+/**
+ * @brief Queue a masked write to the relay MCP Port B (non-blocking).
+ *
+ * Used by the HLW8032 driver to control the MUX A/B/C/EN lines which are
+ * on Port B bits 0-3. SwitchTask stays the sole owner of the relay MCP,
+ * while the HLW driver keeps the revision-dependent bit mapping logic.
+ *
+ * @param mask Bitmask of Port B bits to modify.
+ * @param value New values for the masked bits (only bits in @p mask matter).
+ * @param timeout_ms Maximum time to wait for queue space (0 = no wait).
+ * @return true if command enqueued, false if queue not ready or full.
+ */
+bool Switch_SetRelayPortBMasked(uint8_t mask, uint8_t value, uint32_t timeout_ms) {
+    if (!s_initialized || !s_switch_queue) {
+        return false;
+    }
+
+    if (mask == 0u) {
+        return true;
+    }
+
+    switch_cmd_t cmd = {
+        .type = SWITCH_CMD_SET_RELAY_PORTB_MASK,
+        .channel = 0u,  /* unused for this command type */
+        .state = value, /* carries Port B value */
+        .mask = mask    /* carries Port B mask */
+    };
+
+    TickType_t ticks = (timeout_ms == 0u) ? 0 : pdMS_TO_TICKS(timeout_ms);
     return (xQueueSend(s_switch_queue, &cmd, ticks) == pdTRUE);
 }
