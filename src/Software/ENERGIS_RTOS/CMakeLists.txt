@@ -73,6 +73,7 @@ add_executable(ENERGIS_RTOS
     src/snmp/snmp_outletCtrl.c
     src/snmp/snmp_powerMon.c
     src/snmp/snmp_voltageMon.c
+    src/tasks/OCP.c
     src/tasks/InitTask.c
     src/tasks/LoggerTask.c
     src/tasks/ConsoleTask.c

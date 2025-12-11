@@ -171,6 +171,8 @@ static void cmd_help(void) {
     ECHO("\nOUTPUT CONTROL AND MEASUREMENT\n");
     ECHO("%-32s %s\n", "SET_CH <ch> <STATE>", "Set channel (1-8) to 0|1|ON|OFF|ALL");
     ECHO("%-32s %s\n", "GET_CH <ch>", "Read current state of channel (1-8|ALL)");
+    ECHO("%-32s %s\n", "OC_STATUS", "Show overcurrent protection status");
+    ECHO("%-32s %s\n", "OC_RESET", "Manually clear overcurrent lockout");
     ECHO("%-32s %s\n", "READ_HLW8032", "Read power data for all channels");
     ECHO("%-32s %s\n", "READ_HLW8032 <ch>", "Read power data for channel (1-8)");
     ECHO("%-32s %s\n", "CALIBRATE <ch> <V> <I>",
@@ -588,6 +590,13 @@ static void cmd_set_ch(const char *args) {
 
     /* Handle ALL channels */
     if (strcmp(ch_str, "ALL") == 0) {
+        /* Check overcurrent before ALL ON */
+        if (val && !Overcurrent_IsSwitchingAllowed()) {
+            ECHO("ERROR: Overcurrent lockout active - cannot turn channels ON\n");
+            ECHO("Use OC_STATUS for details, OC_RESET to clear (after reducing load)\n");
+            return;
+        }
+
         bool success = true;
         for (uint8_t ch_idx = 0; ch_idx < 8; ch_idx++) {
             if (!Switch_SetChannel(ch_idx, val, pdMS_TO_TICKS(200))) {
@@ -621,6 +630,14 @@ static void cmd_set_ch(const char *args) {
     }
 
     uint8_t ch_idx = (uint8_t)(ch - 1);
+
+    /* Check overcurrent before turning ON */
+    if (val && !Overcurrent_IsSwitchingAllowed()) {
+        ECHO("ERROR: Overcurrent lockout active - cannot turn channel %d ON\n", ch);
+        ECHO("Use OC_STATUS for details, OC_RESET to clear (after reducing load)\n");
+        return;
+    }
+
     if (Switch_SetChannel(ch_idx, val, pdMS_TO_TICKS(200))) {
         ECHO("CH%d = %s\n", ch, val ? "ON" : "OFF");
     } else {
@@ -695,6 +712,85 @@ static void cmd_get_ch(const char *args) {
     bool state = false;
     (void)Switch_GetState(ch_idx, &state);
     ECHO("CH%d: %s\r\n", ch, state ? "ON" : "OFF");
+}
+
+/**
+ * @brief Display overcurrent protection status.
+ *
+ * @param args Unused
+ * @return None
+ */
+static void cmd_oc_status(char *args) {
+    (void)args;
+
+    overcurrent_status_t status;
+    if (!Overcurrent_GetStatus(&status)) {
+        ECHO("ERROR: Failed to get overcurrent status\n");
+        return;
+    }
+
+    ECHO("=== Overcurrent Protection Status ===\n");
+
+#if ENERGIS_EU_VERSION
+    ECHO("Region:           EU (IEC/ENEC)\n");
+#else
+    ECHO("Region:           US (UL/CSA)\n");
+#endif
+
+    ECHO("Current Limit:    %.1f A\n", status.limit_a);
+    ECHO("Warning Thresh:   %.2f A (Limit - 1.0A)\n", status.warning_threshold_a);
+    ECHO("Critical Thresh:  %.2f A (Limit - 0.25A)\n", status.critical_threshold_a);
+    ECHO("Recovery Thresh:  %.2f A (Limit - 2.0A)\n", status.recovery_threshold_a);
+    ECHO("\n");
+    ECHO("Total Current:    %.2f A\n", status.total_current_a);
+
+    const char *state_str = "UNKNOWN";
+    switch (status.state) {
+    case OC_STATE_NORMAL:
+        state_str = "NORMAL";
+        break;
+    case OC_STATE_WARNING:
+        state_str = "WARNING";
+        break;
+    case OC_STATE_CRITICAL:
+        state_str = "CRITICAL";
+        break;
+    case OC_STATE_LOCKOUT:
+        state_str = "LOCKOUT";
+        break;
+    }
+    ECHO("Protection State: %s\n", state_str);
+    ECHO("Switching:        %s\n", status.switching_allowed ? "ALLOWED" : "BLOCKED");
+    ECHO("\n");
+    ECHO("Trip Count:       %lu\n", (unsigned long)status.trip_count);
+
+    if (status.last_tripped_channel < 8) {
+        ECHO("Last set CH:     %u\n", (unsigned)(status.last_tripped_channel + 1));
+    }
+
+    if (status.last_trip_timestamp_ms > 0) {
+        uint32_t now = to_ms_since_boot(get_absolute_time());
+        uint32_t ago_s = (now - status.last_trip_timestamp_ms) / 1000;
+        ECHO("Last Trip:        %lu seconds ago\n", (unsigned long)ago_s);
+    }
+    ECHO("\n");
+}
+
+/**
+ * @brief Manually clear overcurrent lockout.
+ *
+ * @param args Unused
+ * @return None
+ */
+static void cmd_oc_reset(char *args) {
+    (void)args;
+
+    if (Overcurrent_ClearLockout()) {
+        ECHO("OK: Overcurrent lockout cleared\n");
+        ECHO("WARNING: Verify load has been reduced before re-enabling channels\n");
+    } else {
+        ECHO("INFO: System is not in lockout state\n");
+    }
 }
 
 /**
@@ -1375,6 +1471,10 @@ static void dispatch_command(const char *line) {
         cmd_set_ch(args ? args : "");
     } else if (strcmp(trimmed, "GET_CH") == 0) {
         cmd_get_ch(args ? args : "");
+    } else if (strcasecmp(trimmed, "OC_STATUS") == 0) {
+        cmd_oc_status(args);
+    } else if (strcasecmp(trimmed, "OC_RESET") == 0) {
+        cmd_oc_reset(args);
     } else if (strcmp(trimmed, "READ_HLW8032") == 0) {
         if (args) {
             cmd_read_hlw8032_ch(args);

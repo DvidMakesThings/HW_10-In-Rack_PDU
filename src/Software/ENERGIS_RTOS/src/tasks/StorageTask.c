@@ -535,6 +535,9 @@ static void process_storage_msg(const storage_msg_t *msg) {
         if (msg->output_ptr) {
             memcpy(msg->output_ptr, &g_cache.preferences, sizeof(userPrefInfo));
         }
+        if (msg->done_sem) {
+            xSemaphoreGive(msg->done_sem);
+        }
         break;
 
     case STORAGE_CMD_WRITE_PREFS:
@@ -1088,15 +1091,29 @@ bool storage_set_network(const networkInfo *net) {
 }
 
 /**
- * @brief Get user preferences.
+ * @brief Get user preferences (synchronous, from RAM cache).
+ *
+ * @param out Pointer to output structure (not NULL).
+ * @return true on success, false on error or timeout.
  */
 bool storage_get_prefs(userPrefInfo *out) {
     if (!out || !eth_netcfg_ready)
         return false;
 
-    storage_msg_t msg = {.cmd = STORAGE_CMD_READ_PREFS, .output_ptr = out, .done_sem = NULL};
+    SemaphoreHandle_t done_sem = xSemaphoreCreateBinary();
+    if (!done_sem)
+        return false;
 
-    return xQueueSend(q_cfg, &msg, pdMS_TO_TICKS(1000)) == pdPASS;
+    storage_msg_t msg = {.cmd = STORAGE_CMD_READ_PREFS, .output_ptr = out, .done_sem = done_sem};
+
+    if (xQueueSend(q_cfg, &msg, pdMS_TO_TICKS(1000)) != pdPASS) {
+        vSemaphoreDelete(done_sem);
+        return false;
+    }
+
+    bool ok = xSemaphoreTake(done_sem, pdMS_TO_TICKS(1000)) == pdPASS;
+    vSemaphoreDelete(done_sem);
+    return ok;
 }
 
 /**

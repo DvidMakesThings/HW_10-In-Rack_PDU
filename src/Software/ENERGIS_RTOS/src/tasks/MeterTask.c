@@ -168,6 +168,12 @@ static void MeterTask_Loop(void *pvParameters) {
         /* Poll next HLW8032 slice */
         hlw8032_poll_once();
 
+        /* Check for completed measurement cycle and update overcurrent protection */
+        if (hlw8032_cycle_complete()) {
+            float total_current = hlw8032_get_total_current();
+            (void)Overcurrent_Update(total_current);
+        }
+
         /* Process channels and publish telemetry */
         uint32_t now_ms = to_ms_since_boot(get_absolute_time());
         for (uint8_t ch = 0; ch < 8; ch++) {
@@ -201,9 +207,6 @@ static void MeterTask_Loop(void *pvParameters) {
                                        .valid = true};
 
             latest_telemetry[ch] = telem;
-            // DEBUG_PRINT("%s latest_telemetry[%u] = V:%.2f I:%.3f\r\n", METER_TASK_TAG,
-            // (unsigned)ch,
-            //             telem.voltage, telem.current);
             sample_count[ch]++;
 
             if ((sample_count[ch] % 5) == 0) {
@@ -349,6 +352,9 @@ BaseType_t MeterTask_Init(bool enable) {
 
     /* Initialize HLW8032 driver */
     hlw8032_init();
+
+    /* Initialize overcurrent protection module */
+    Overcurrent_Init();
 
     /* Initialize ADC ownership here (idempotent) */
     adc_init();

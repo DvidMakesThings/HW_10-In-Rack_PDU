@@ -76,6 +76,10 @@ static bool cached_state[8];
 /* =====================  Polling Helper  ================================== */
 static uint8_t poll_channel = 0;
 
+/* =====================  Total Current Sum (for Overcurrent Protection)  ===== */
+static volatile float s_total_current_sum = 0.0f;
+static volatile bool s_cycle_complete_flag = false;
+
 /* ===================================================================== */
 /*                        Internal Helpers (Static)                      */
 /* ===================================================================== */
@@ -408,6 +412,21 @@ static void apply_calibration(uint8_t ch) {
         last_power = 0.0f;
 }
 
+/**
+ * @brief Compute total current sum from all cached channel currents.
+ * @return Total current in amperes
+ */
+static float compute_total_current(void) {
+    float sum = 0.0f;
+    for (uint8_t ch = 0; ch < 8; ch++) {
+        float i = cached_current[ch];
+        if (i >= 0.0f && i < 100.0f) {
+            sum += i;
+        }
+    }
+    return sum;
+}
+
 /* ===================================================================== */
 /*                        Public API Implementation                       */
 /* ===================================================================== */
@@ -546,6 +565,12 @@ void hlw8032_poll_once(void) {
 
     /* Advance to next channel (round-robin) */
     poll_channel = (poll_channel + 1) & 0x07;
+
+    /* After completing channel 7, update total current sum and set cycle flag */
+    if (ch == 7) {
+        s_total_current_sum = compute_total_current();
+        s_cycle_complete_flag = true;
+    }
 }
 
 void hlw8032_refresh_all(void) {
@@ -564,6 +589,10 @@ void hlw8032_refresh_all(void) {
 
         vTaskDelay(pdMS_TO_TICKS(10));
     }
+
+    /* Update total current sum after completing all channels */
+    s_total_current_sum = compute_total_current();
+    s_cycle_complete_flag = true;
 }
 
 /* ===================================================================== */
@@ -596,6 +625,20 @@ float hlw8032_cached_power(uint8_t ch) {
 uint32_t hlw8032_cached_uptime(uint8_t ch) { return (ch < 8) ? cached_uptime[ch] : 0u; }
 
 bool hlw8032_cached_state(uint8_t ch) { return (ch < 8) ? cached_state[ch] : false; }
+
+/* ===================================================================== */
+/*                    Total Current Sum Accessors                         */
+/* ===================================================================== */
+
+float hlw8032_get_total_current(void) { return s_total_current_sum; }
+
+bool hlw8032_cycle_complete(void) {
+    if (s_cycle_complete_flag) {
+        s_cycle_complete_flag = false;
+        return true;
+    }
+    return false;
+}
 
 /* ===================================================================== */
 /*                           Calibration Section                         */

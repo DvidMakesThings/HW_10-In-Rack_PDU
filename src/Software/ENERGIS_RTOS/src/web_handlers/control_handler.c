@@ -79,6 +79,26 @@ void handle_control_request(uint8_t sock, char *body) {
     (void)Switch_GetAllStates(&current_mask);
     net_beat();
 
+    /* Check overcurrent protection if trying to turn any channels ON */
+    uint8_t turns_on = want_mask & ~current_mask;
+    if (turns_on && !Overcurrent_IsSwitchingAllowed()) {
+        /* Return 503 Service Unavailable with overcurrent error */
+        static const char oc_resp[] =
+            "HTTP/1.1 503 Service Unavailable\r\n"
+            "Content-Type: application/json\r\n"
+            "Content-Length: 62\r\n"
+            "Access-Control-Allow-Origin: *\r\n"
+            "Cache-Control: no-cache\r\n"
+            "Connection: close\r\n"
+            "\r\n"
+            "{\"error\":\"Overcurrent lockout active - reduce load first\"}";
+        send(sock, (uint8_t *)oc_resp, sizeof(oc_resp) - 1);
+        net_beat();
+
+        NETLOG_PRINT("Control: REJECTED due to overcurrent lockout (want=0x%02X)\n", want_mask);
+        return;
+    }
+
     /* Apply relay states using per-channel operations (non-blocking) */
     if (want_mask != current_mask) {
         for (uint8_t ch = 0; ch < 8; ch++) {

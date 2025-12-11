@@ -36,9 +36,11 @@ void handle_settings_request(uint8_t sock) {
                  net.ip[2], net.ip[3], net.gw[0], net.gw[1], net.gw[2], net.gw[3]);
     net_beat();
 
-    /* Load prefs from EEPROM */
+    /* Load prefs from cache (thread-safe) */
     userPrefInfo pref;
-    EEPROM_ReadUserPrefsWithChecksum(&pref);
+    if (!storage_get_prefs(&pref)) {
+        pref = (userPrefInfo){.device_name = "ENERGIS", .location = "Unknown", .temp_unit = 0};
+    }
     NETLOG_PRINT("Prefs EEPROM: device_name=\"%s\"  location=\"%s\"  unit=%u\n", pref.device_name,
                  pref.location, pref.temp_unit);
     net_beat();

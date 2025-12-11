@@ -63,7 +63,7 @@ typedef enum {
 #define ERR_MOD_HEALTH 0x6  /**< HealthTask module */
 #define ERR_MOD_LOGGER 0x7  /**< LoggerTask module */
 #define ERR_MOD_CONSOLE 0x8 /**< ConsoleTask module */
-#define ERR_MOD_RELAY 0x9   /**< Relay Control module */
+#define ERR_MOD_OCP 0x9     /**< Overcurrent Protection module */
 #define ERR_MOD_SWTASK 0xA  /**< SwitchTask module */
 
 /********************************************************************************
@@ -137,8 +137,8 @@ typedef enum {
 #define ERR_FID_CONSOLETASK3 0x2 /**< ConsoleTask.c */
 /* Reserve 0x1..0xF for future console_submodules .c files */
 
-/* ========================= RELAY MODULE (0x9) ============================= */
-#define ERR_FID_RELAY_CTRL 0x0 /**< relay_control.c */
+/* ==================== Overcurrent Protection (0x9) ========================= */
+#define ERR_FID_OVPTASK 0xF /**< OCP.c */
 
 /* ========================= SWITCH MODULE (0xA) ============================= */
 #define ERR_FID_SWITCHTASK 0xF /**< SwitchTask.c */

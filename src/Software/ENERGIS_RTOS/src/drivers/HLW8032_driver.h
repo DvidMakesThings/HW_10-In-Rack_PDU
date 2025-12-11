@@ -9,8 +9,8 @@
  * @ingroup drivers
  * @brief RTOS-safe driver for HLW8032 power measurement IC
  * @{
- * @version 1.0.0
- * @date 2025-12-08
+ * @version 1.1.0
+ * @date 2025-12-11
  *
  * @details RTOS-safe driver for interfacing with HLW8032 power measurement chips.
  * Features:
@@ -19,6 +19,7 @@
  * - Hardware v1.0.0 pin swap compensation
  * - Per-channel calibration with EEPROM persistence
  * - Cached measurements and uptime tracking
+ * - Total current sum for overcurrent protection
  * - Queue-based logging (no direct printf)
  *
  * Hardware Configuration:
@@ -169,10 +170,12 @@ void hlw8032_update_uptime(uint8_t ch, bool state);
  * - Updates uptime for current channel
  * - Reads and caches measurements
  * - Advances to next channel for subsequent call
+ * - Updates total current sum after completing channel 7
  * - Thread-safe (internal mutex locking)
  *
  * @note Designed for periodic calling by MeterTask
  * @note Completes full 8-channel cycle in 8 calls
+ * @note Total current sum is updated at end of each cycle (after CH7)
  */
 void hlw8032_poll_once(void);
 
@@ -181,6 +184,7 @@ void hlw8032_poll_once(void);
  *
  * @details Sequentially polls all channels and updates cache.
  * Blocking operation (takes ~2 seconds at 4800 baud).
+ * Updates total current sum after completing all channels.
  *
  * @note Use sparingly (e.g., on demand or system init)
  * @note Prefer hlw8032_poll_once() for continuous monitoring
@@ -237,6 +241,37 @@ uint32_t hlw8032_cached_uptime(uint8_t ch);
  * @return bool Cached relay state (true=ON, false=OFF)
  */
 bool hlw8032_cached_state(uint8_t ch);
+
+/* =====================  Total Current Sum Accessor  ====================== */
+
+/**
+ * @brief Get the total current sum across all 8 channels.
+ *
+ * @details
+ * Returns the sum of all cached channel currents, updated at the end of
+ * each complete 8-channel measurement cycle. Used by the overcurrent
+ * protection system in MeterTask for real-time monitoring.
+ *
+ * @return float Total current in amperes [0.0 .. 800.0]
+ *
+ * @note Updated by hlw8032_poll_once() after channel 7 completes
+ * @note Updated by hlw8032_refresh_all() after all channels complete
+ * @note Thread-safe read (volatile)
+ */
+float hlw8032_get_total_current(void);
+
+/**
+ * @brief Check if a complete measurement cycle has finished since last check.
+ *
+ * @details
+ * Returns true once per complete 8-channel cycle and clears the flag.
+ * Used by MeterTask to know when to update overcurrent protection.
+ *
+ * @return true if a new cycle completed, false otherwise
+ *
+ * @note Flag is cleared after reading (consume-once semantics)
+ */
+bool hlw8032_cycle_complete(void);
 
 /* =====================  Calibration Functions  =========================== */
 

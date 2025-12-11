@@ -56,4 +56,64 @@
 #define ENERGIS_DEFAULT_GW {192, 168, 0, 1}   // Default IPv4 gateway octets.
 #define ENERGIS_DEFAULT_DNS {8, 8, 8, 8}      // Default IPv4 DNS octets.
 
+/**
+ * @defgroup overcurrent_config Overcurrent Protection Configuration
+ * @brief Regional current limit configuration for overcurrent protection.
+ * @{
+ *
+ * ENERGIS location macros determine maximum current limits:
+ * - EU Version: 10A maximum (IEC/ENEC compliant)
+ * - US Version: 15A maximum (UL/CSA compliant)
+ *
+ * @note Only ONE version should be set to 1, the other must be 0.
+ * @warning Setting both to 1 or both to 0 will cause a compile-time error.
+ */
+
+/** @brief Enable EU version (10A limit, IEC/ENEC compliant) */
+#define ENERGIS_EU_VERSION 1
+
+/** @brief Enable US version (15A limit, UL/CSA compliant) */
+#define ENERGIS_US_VERSION 0
+
+/* Compile-time validation of version selection */
+#if (ENERGIS_EU_VERSION + ENERGIS_US_VERSION) != 1
+#error "Exactly one of ENERGIS_EU_VERSION or ENERGIS_US_VERSION must be set to 1"
+#endif
+
+/**
+ * @brief Maximum total current limit in Amperes.
+ *
+ * @details Derived from regional version selection:
+ * - EU: 10.0A
+ * - US: 15.0A
+ */
+#if ENERGIS_EU_VERSION
+#define ENERGIS_CURRENT_LIMIT_A 10.0f
+#elif ENERGIS_US_VERSION
+#define ENERGIS_CURRENT_LIMIT_A 15.0f
+#endif
+
+/**
+ * @brief Safety threshold margin in Amperes.
+ *
+ * @details Used to define warning and critical thresholds below the hard limit.
+ */
+#define ENERGIS_CURRENT_SAFETY_MARGIN_A 0.25f
+
+/**
+ * @brief Warning threshold offset in Amperes.
+ *
+ * @details ERR_SEV_ERROR raised when total current exceeds (LIMIT - 1.0A).
+ */
+#define ENERGIS_CURRENT_WARNING_OFFSET_A 1.0f
+
+/**
+ * @brief Recovery hysteresis offset in Amperes.
+ *
+ * @details Switch lockout lifted when total current falls below (LIMIT - 2.0A).
+ */
+#define ENERGIS_CURRENT_RECOVERY_OFFSET_A 2.0f
+
+/** @} */ /* End of overcurrent_config group */
+
 #endif /* SERIAL_NUMBER_H */

@@ -97,6 +97,7 @@
 #include "tasks/storage_submodule/storage_common.h"
 #include "tasks/storage_submodule/user_output.h"
 #include "tasks/storage_submodule/user_prefs.h"
+#include "tasks/OCP.h"
 #include "tasks/SwitchTask.h"
 #include "tasks/ConsoleTask.h"
 #include "tasks/ButtonTask.h"

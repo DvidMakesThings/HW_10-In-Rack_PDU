@@ -107,11 +107,12 @@ int EEPROM_WriteUserPrefsWithChecksum(const userPrefInfo *prefs) {
  * @brief Read and verify user preferences with CRC-8.
  *
  * Validates CRC and ensures strings are properly null-terminated for safety.
+ * Detects uninitialized EEPROM (all 0xFF) without generating CRC error.
  *
  * CRITICAL: Must be called with eepromMtx held!
  *
  * @param prefs Pointer to user preferences structure to fill
- * @return 0 if CRC OK, -1 on CRC mismatch or null pointer
+ * @return 0 if CRC OK, -1 on CRC mismatch, empty EEPROM, or null pointer
  */
 int EEPROM_ReadUserPrefsWithChecksum(userPrefInfo *prefs) {
     if (!prefs) {
@@ -127,7 +128,20 @@ int EEPROM_ReadUserPrefsWithChecksum(userPrefInfo *prefs) {
     uint8_t record[66];
     CAT24C256_ReadBuffer(EEPROM_USER_PREF_START, record, 66);
 
-    /* Verify CRC */
+    /* Check for uninitialized EEPROM or read failure (all 0xFF) */
+    bool all_ff = true;
+    for (size_t i = 0; i < 66 && all_ff; i++) {
+        if (record[i] != 0xFF) {
+            all_ff = false;
+        }
+    }
+    if (all_ff) {
+        /* Silent fail - either fresh EEPROM or read already logged error */
+        DEBUG_PRINT("%s EEPROM uninitialized or read failed\r\n", ST_USER_PREF_TAG);
+        return -1;
+    }
+
+    /* Verify CRC only if data looks potentially valid */
     if (calculate_crc8(&record[0], 65) != record[65]) {
 #if ERRORLOGGER
         uint16_t err_code =

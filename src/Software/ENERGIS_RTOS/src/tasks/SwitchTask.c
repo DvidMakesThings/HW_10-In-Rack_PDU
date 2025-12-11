@@ -104,6 +104,8 @@ static bool exec_set_channel(uint8_t channel, uint8_t state) {
     if (ok) {
         if (val) {
             s_channel_states |= (1u << channel);
+            /* Track this channel as last activated for overcurrent trip targeting */
+            Overcurrent_RecordChannelOn(channel);
         } else {
             s_channel_states &= ~(1u << channel);
         }
@@ -190,28 +192,55 @@ static void exec_set_relay_portb_mask(uint8_t mask, uint8_t value) {
 static void process_command(const switch_cmd_t *cmd) {
     switch (cmd->type) {
     case SWITCH_CMD_SET_CHANNEL:
+        /* Check overcurrent protection before turning ON */
+        if (cmd->state && !Overcurrent_IsSwitchingAllowed()) {
+            WARNING_PRINT("[SWITCHTASK] Overcurrent lockout: rejected SET_CHANNEL %u ON\r\n",
+                          (unsigned)cmd->channel);
+            return;
+        }
         exec_set_channel(cmd->channel, cmd->state);
         break;
 
     case SWITCH_CMD_TOGGLE:
-        /* IMPORTANT: cmd->state contains the PRE-COMPUTED desired new state.
-         * Do NOT re-read s_channel_states here - it was already updated by
-         * the optimistic cache update in Switch_Toggle(). Using cmd->state
-         * ensures we set the correct value regardless of timing. */
+        /* Check overcurrent protection before turning ON (toggle to ON) */
+        if (cmd->state && !Overcurrent_IsSwitchingAllowed()) {
+            WARNING_PRINT("[SWITCHTASK] Overcurrent lockout: rejected TOGGLE %u to ON\r\n",
+                          (unsigned)cmd->channel);
+            return;
+        }
         if (cmd->channel < 8) {
             exec_set_channel(cmd->channel, cmd->state);
         }
         break;
 
     case SWITCH_CMD_ALL_ON:
+        /* Check overcurrent protection */
+        if (!Overcurrent_IsSwitchingAllowed()) {
+            WARNING_PRINT("[SWITCHTASK] Overcurrent lockout: rejected ALL_ON\r\n");
+            return;
+        }
         exec_all_on();
         break;
 
     case SWITCH_CMD_ALL_OFF:
+        /* Always allow turning OFF - this is a safety operation */
         exec_all_off();
         break;
 
     case SWITCH_CMD_SET_MASK:
+        /* Check if any channels would be turned ON */
+        {
+            uint8_t current = s_channel_states;
+            uint8_t turns_on = cmd->mask & ~current; /* bits going 0->1 */
+            if (turns_on && !Overcurrent_IsSwitchingAllowed()) {
+                WARNING_PRINT("[SWITCHTASK] Overcurrent lockout: rejected SET_MASK 0x%02X\r\n",
+                              cmd->mask);
+                /* Execute only the OFF operations (allowed for safety) */
+                uint8_t safe_mask = current & ~(cmd->mask ^ current);
+                exec_set_mask(safe_mask);
+                return;
+            }
+        }
         exec_set_mask(cmd->mask);
         break;
 
@@ -220,7 +249,6 @@ static void process_command(const switch_cmd_t *cmd) {
         break;
 
     case SWITCH_CMD_SET_RELAY_PORTB_MASK:
-        /* channel unused, state = value, mask = port B mask */
         exec_set_relay_portb_mask(cmd->mask, cmd->state);
         break;
 
@@ -397,7 +425,7 @@ bool Switch_GetAllStates(uint8_t *out_mask) {
  * @param channel Channel number (0-7)
  * @param state Desired state (true=ON, false=OFF)
  * @param timeout_ms Maximum time to wait for queue space (0 = no wait)
- * @return true if command enqueued, false if queue full or invalid params
+ * @return true if command enqueued, false if queue full, invalid params, or overcurrent lockout
  */
 bool Switch_SetChannel(uint8_t channel, bool state, uint32_t timeout_ms) {
     if (!s_initialized || !s_switch_queue) {
@@ -408,14 +436,17 @@ bool Switch_SetChannel(uint8_t channel, bool state, uint32_t timeout_ms) {
         return false;
     }
 
+    /* Check overcurrent protection before allowing turn-ON */
+    if (state && !Overcurrent_IsSwitchingAllowed()) {
+        return false;
+    }
+
     switch_cmd_t cmd = {
         .type = SWITCH_CMD_SET_CHANNEL, .channel = channel, .state = state ? 1u : 0u, .mask = 0};
 
     TickType_t ticks = (timeout_ms == 0) ? 0 : pdMS_TO_TICKS(timeout_ms);
     if (xQueueSend(s_switch_queue, &cmd, ticks) == pdTRUE) {
-        /* Optimistic cache update: immediately reflect intended state so that
-         * subsequent reads return the expected value (read-your-writes consistency).
-         * This prevents timing issues where SNMP GET returns stale data after SET. */
+        /* Optimistic cache update: immediately reflect intended state */
         if (state) {
             s_channel_states |= (1u << channel);
         } else {
@@ -431,7 +462,7 @@ bool Switch_SetChannel(uint8_t channel, bool state, uint32_t timeout_ms) {
  *
  * @param channel Channel number (0-7)
  * @param timeout_ms Maximum time to wait for queue space (0 = no wait)
- * @return true if command enqueued, false if queue full or invalid params
+ * @return true if command enqueued, false if queue full, invalid params, or overcurrent lockout
  */
 bool Switch_Toggle(uint8_t channel, uint32_t timeout_ms) {
     if (!s_initialized || !s_switch_queue) {
@@ -442,21 +473,21 @@ bool Switch_Toggle(uint8_t channel, uint32_t timeout_ms) {
         return false;
     }
 
-    /* CRITICAL: Compute new state BEFORE optimistic update, store in cmd.state.
-     * This avoids the race condition where process_command() re-reads the
-     * already-toggled cache and inverts the operation. */
+    /* Compute new state BEFORE checking overcurrent */
     uint8_t current = (s_channel_states & (1u << channel)) ? 1u : 0u;
     uint8_t new_state = current ? 0u : 1u;
 
-    switch_cmd_t cmd = {.type = SWITCH_CMD_TOGGLE,
-                        .channel = channel,
-                        .state = new_state, /* Pre-computed desired state */
-                        .mask = 0};
+    /* Check overcurrent protection if toggling to ON */
+    if (new_state && !Overcurrent_IsSwitchingAllowed()) {
+        return false;
+    }
+
+    switch_cmd_t cmd = {
+        .type = SWITCH_CMD_TOGGLE, .channel = channel, .state = new_state, .mask = 0};
 
     TickType_t ticks = (timeout_ms == 0) ? 0 : pdMS_TO_TICKS(timeout_ms);
     if (xQueueSend(s_switch_queue, &cmd, ticks) == pdTRUE) {
-        /* Optimistic cache update: toggle the bit immediately.
-         * This matches the new_state we stored in the command. */
+        /* Optimistic cache update */
         s_channel_states ^= (1u << channel);
         return true;
     }
@@ -467,10 +498,15 @@ bool Switch_Toggle(uint8_t channel, uint32_t timeout_ms) {
  * @brief Turn all relay channels ON (non-blocking).
  *
  * @param timeout_ms Maximum time to wait for queue space (0 = no wait)
- * @return true if command enqueued, false if queue full
+ * @return true if command enqueued, false if queue full or overcurrent lockout
  */
 bool Switch_AllOn(uint32_t timeout_ms) {
     if (!s_initialized || !s_switch_queue) {
+        return false;
+    }
+
+    /* Check overcurrent protection */
+    if (!Overcurrent_IsSwitchingAllowed()) {
         return false;
     }
 
@@ -478,7 +514,7 @@ bool Switch_AllOn(uint32_t timeout_ms) {
 
     TickType_t ticks = (timeout_ms == 0) ? 0 : pdMS_TO_TICKS(timeout_ms);
     if (xQueueSend(s_switch_queue, &cmd, ticks) == pdTRUE) {
-        /* Optimistic cache update: all channels ON */
+        /* Optimistic cache update */
         s_channel_states = 0xFF;
         return true;
     }
@@ -512,10 +548,20 @@ bool Switch_AllOff(uint32_t timeout_ms) {
  *
  * @param mask 8-bit state mask for all channels
  * @param timeout_ms Maximum time to wait for queue space (0 = no wait)
- * @return true if command enqueued, false if queue full
+ * @return true if command enqueued, false if queue full or overcurrent lockout prevents ON
+ * operations
  */
 bool Switch_SetMask(uint8_t mask, uint32_t timeout_ms) {
     if (!s_initialized || !s_switch_queue) {
+        return false;
+    }
+
+    /* Check if any channels would be turned ON */
+    uint8_t current = s_channel_states;
+    uint8_t turns_on = mask & ~current;
+
+    /* Block if trying to turn on channels during overcurrent lockout */
+    if (turns_on && !Overcurrent_IsSwitchingAllowed()) {
         return false;
     }
 
@@ -523,7 +569,7 @@ bool Switch_SetMask(uint8_t mask, uint32_t timeout_ms) {
 
     TickType_t ticks = (timeout_ms == 0) ? 0 : pdMS_TO_TICKS(timeout_ms);
     if (xQueueSend(s_switch_queue, &cmd, ticks) == pdTRUE) {
-        /* Optimistic cache update: set all channels per mask */
+        /* Optimistic cache update */
         s_channel_states = mask;
         return true;
     }
