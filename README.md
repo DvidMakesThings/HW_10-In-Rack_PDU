@@ -5,7 +5,7 @@
 
 ![Sheetmetal enclosure ordered](https://img.shields.io/badge/status-Sheetmetal%20enclosure%20designed,%20ordered,%20assembled-brightgreen)
 
-![PDU 3D View](images/ENERGIS_1.0.0/Assembled-in-case_1.0.0_3D_3.png)
+![PDU 3D View](images/ENERGIS_1.1.0/Enclosure/ENERGIS-1.1.0-Front.jpg)
 
 The **10-Inch Rack PDU (Power Distribution Unit)** is a modular power management system designed for efficient control and monitoring of power in a
 rack-mounted environment. The project includes a Main Board and a display board to handle switching and power management.
