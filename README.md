@@ -195,9 +195,6 @@ Mounting options:
 
 The ENERGIS now includes a lightweight embedded Web-UI for configuration and control.
 
-### All Channels On
-![Web-UI All On](images/ENERGIS_1.0.0/Web-UI/Webui_allOn.png)
-
 <div style="display: flex; gap: 24px; align-items: flex-start; margin-bottom: 24px;">
   <div style="flex: 1; text-align: center;">
     <h4 style="margin-bottom: 8px;">All Channels Off</h4>
