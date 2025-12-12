@@ -738,9 +738,9 @@ static void cmd_oc_status(char *args) {
 #endif
 
     ECHO("Current Limit:    %.1f A\n", status.limit_a);
-    ECHO("Warning Thresh:   %.2f A (Limit - 1.0A)\n", status.warning_threshold_a);
-    ECHO("Critical Thresh:  %.2f A (Limit - 0.25A)\n", status.critical_threshold_a);
-    ECHO("Recovery Thresh:  %.2f A (Limit - 2.0A)\n", status.recovery_threshold_a);
+    ECHO("Warning Thresh:   %.2f A (Limit - %.2f)\n", status.warning_threshold_a, ENERGIS_CURRENT_WARNING_OFFSET_A);
+    ECHO("Critical Thresh:  %.2f A (Limit - %.2f)\n", status.critical_threshold_a, ENERGIS_CURRENT_SAFETY_MARGIN_A);
+    ECHO("Recovery Thresh:  %.2f A (Limit - %.2f)\n", status.recovery_threshold_a, ENERGIS_CURRENT_RECOVERY_OFFSET_A);
     ECHO("\n");
     ECHO("Total Current:    %.2f A\n", status.total_current_a);
 
@@ -765,7 +765,7 @@ static void cmd_oc_status(char *args) {
     ECHO("Trip Count:       %lu\n", (unsigned long)status.trip_count);
 
     if (status.last_tripped_channel < 8) {
-        ECHO("Last set CH:     %u\n", (unsigned)(status.last_tripped_channel + 1));
+        ECHO("Last set CH:      %u\n", (unsigned)(status.last_tripped_channel + 1));
     }
 
     if (status.last_trip_timestamp_ms > 0) {

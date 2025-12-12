@@ -4,7 +4,7 @@
  *
  * @version 1.1.0
  * @date 2025-11-08
- * 
+ *
  * @details Queries the canonical telemetry cache owned by MeterTask.
  *          Uses MeterTask_GetTelemetry() for non-blocking cached reads.
  *
@@ -14,6 +14,7 @@
 
 #include "snmp_powerMon.h"
 #include "../CONFIG.h"
+#include "../tasks/OCP.h"
 
 /**
  * @brief Format float to string buffer with specified format
@@ -129,3 +130,274 @@ GEN_CH(4)
 GEN_CH(5)
 GEN_CH(6)
 GEN_CH(7)
+
+/* ===================================================================== */
+/*                    Overcurrent Protection (OCP) Status                 */
+/* ===================================================================== */
+
+/**
+ * @brief Write a signed 32-bit integer into SNMP response buffer.
+ *
+ * @details
+ * The SNMP agent uses fixed-length 4-byte INTEGER storage for SNMPDTYPE_INTEGER
+ * entries. This helper writes the value as a 32-bit little-endian integer and
+ * reports a fixed length of 4 bytes.
+ *
+ * @param buf  Destination buffer (must be at least 4 bytes).
+ * @param len  Output length; always set to 4.
+ * @param v    Signed 32-bit value to encode.
+ */
+static inline void i32le(void *buf, uint8_t *len, int32_t v) {
+    memcpy(buf, &v, 4);
+    *len = 4;
+}
+
+/**
+ * @brief Write an unsigned 32-bit integer into SNMP response buffer.
+ *
+ * @details
+ * The SNMP agent uses fixed-length 4-byte INTEGER storage for SNMPDTYPE_INTEGER
+ * entries. This helper writes the value as a 32-bit little-endian integer and
+ * reports a fixed length of 4 bytes.
+ *
+ * @param buf  Destination buffer (must be at least 4 bytes).
+ * @param len  Output length; always set to 4.
+ * @param v    Unsigned 32-bit value to encode.
+ */
+static inline void u32le(void *buf, uint8_t *len, uint32_t v) {
+    memcpy(buf, &v, 4);
+    *len = 4;
+}
+
+/**
+ * @brief Read a full overcurrent status snapshot.
+ *
+ * @details
+ * Provides a best-effort atomic snapshot using Overcurrent_GetStatus(). If the
+ * module is not initialized or the snapshot cannot be obtained, this function
+ * returns false.
+ *
+ * @param st Destination for the status snapshot.
+ * @return true if a valid snapshot was written, false otherwise.
+ */
+static inline bool ocp_read_status(overcurrent_status_t *st) {
+    if (st == NULL) {
+        return false;
+    }
+
+    if (!Overcurrent_GetStatus(st)) {
+        return false;
+    }
+
+    return true;
+}
+
+/**
+ * @brief SNMP getter: OCP state (NORMAL/WARNING/CRITICAL/LOCKOUT).
+ *
+ * @param buf Output buffer; writes a 32-bit little-endian INTEGER.
+ * @param len Output length; always set to 4.
+ */
+void get_ocp_STATE(void *buf, uint8_t *len) {
+    overcurrent_status_t st;
+
+    if (!ocp_read_status(&st)) {
+        i32le(buf, len, (int32_t)OC_STATE_NORMAL);
+        return;
+    }
+
+    i32le(buf, len, (int32_t)st.state);
+}
+
+/**
+ * @brief SNMP getter: OCP total current (A).
+ *
+ * @details Encoded as an ASCII string with 3 decimals to match other telemetry.
+ *
+ * @param buf Output buffer (min 16 bytes recommended by table entries).
+ * @param len Output length in bytes.
+ */
+void get_ocp_TOTAL_CURRENT_A(void *buf, uint8_t *len) {
+    overcurrent_status_t st;
+
+    if (!ocp_read_status(&st)) {
+        ftoa(buf, len, 0.0f, "%.3f");
+        return;
+    }
+
+    ftoa(buf, len, st.total_current_a, "%.3f");
+}
+
+/**
+ * @brief SNMP getter: OCP configured current limit (A).
+ *
+ * @param buf Output buffer (min 16 bytes recommended by table entries).
+ * @param len Output length in bytes.
+ */
+void get_ocp_LIMIT_A(void *buf, uint8_t *len) {
+    overcurrent_status_t st;
+
+    if (!ocp_read_status(&st)) {
+        ftoa(buf, len, 0.0f, "%.2f");
+        return;
+    }
+
+    ftoa(buf, len, st.limit_a, "%.2f");
+}
+
+/**
+ * @brief SNMP getter: OCP warning threshold (A).
+ *
+ * @param buf Output buffer (min 16 bytes recommended by table entries).
+ * @param len Output length in bytes.
+ */
+void get_ocp_WARNING_THRESHOLD_A(void *buf, uint8_t *len) {
+    overcurrent_status_t st;
+
+    if (!ocp_read_status(&st)) {
+        ftoa(buf, len, 0.0f, "%.2f");
+        return;
+    }
+
+    ftoa(buf, len, st.warning_threshold_a, "%.2f");
+}
+
+/**
+ * @brief SNMP getter: OCP critical threshold (A).
+ *
+ * @param buf Output buffer (min 16 bytes recommended by table entries).
+ * @param len Output length in bytes.
+ */
+void get_ocp_CRITICAL_THRESHOLD_A(void *buf, uint8_t *len) {
+    overcurrent_status_t st;
+
+    if (!ocp_read_status(&st)) {
+        ftoa(buf, len, 0.0f, "%.2f");
+        return;
+    }
+
+    ftoa(buf, len, st.critical_threshold_a, "%.2f");
+}
+
+/**
+ * @brief SNMP getter: OCP recovery threshold (A).
+ *
+ * @param buf Output buffer (min 16 bytes recommended by table entries).
+ * @param len Output length in bytes.
+ */
+void get_ocp_RECOVERY_THRESHOLD_A(void *buf, uint8_t *len) {
+    overcurrent_status_t st;
+
+    if (!ocp_read_status(&st)) {
+        ftoa(buf, len, 0.0f, "%.2f");
+        return;
+    }
+
+    ftoa(buf, len, st.recovery_threshold_a, "%.2f");
+}
+
+/**
+ * @brief SNMP getter: OCP last tripped channel (1..8), or 0 if none.
+ *
+ * @details
+ * The core module stores the channel as 0-based (0..7) or 0xFF when not known.
+ * This getter converts the output to a user-facing 1-based value (1..8), or 0
+ * when no channel is available.
+ *
+ * @param buf Output buffer; writes a 32-bit little-endian INTEGER.
+ * @param len Output length; always set to 4.
+ */
+void get_ocp_LAST_TRIPPED_CH(void *buf, uint8_t *len) {
+    overcurrent_status_t st;
+    int32_t out = 0;
+
+    if (ocp_read_status(&st)) {
+        if (st.last_tripped_channel < 8u) {
+            out = (int32_t)st.last_tripped_channel + 1;
+        } else {
+            out = 0;
+        }
+    }
+
+    i32le(buf, len, out);
+}
+
+/**
+ * @brief SNMP getter: OCP trip counter since boot.
+ *
+ * @param buf Output buffer; writes a 32-bit little-endian INTEGER.
+ * @param len Output length; always set to 4.
+ */
+void get_ocp_TRIP_COUNT(void *buf, uint8_t *len) {
+    overcurrent_status_t st;
+    uint32_t out = 0;
+
+    if (ocp_read_status(&st)) {
+        out = st.trip_count;
+    }
+
+    u32le(buf, len, out);
+}
+
+/**
+ * @brief SNMP getter: Timestamp of last trip (ms since boot).
+ *
+ * @param buf Output buffer; writes a 32-bit little-endian INTEGER.
+ * @param len Output length; always set to 4.
+ */
+void get_ocp_LAST_TRIP_MS(void *buf, uint8_t *len) {
+    overcurrent_status_t st;
+    uint32_t out = 0;
+
+    if (ocp_read_status(&st)) {
+        out = st.last_trip_timestamp_ms;
+    }
+
+    u32le(buf, len, out);
+}
+
+/**
+ * @brief SNMP getter: Switching allowed flag.
+ *
+ * @details Encoded as INTEGER (0 = not allowed, 1 = allowed).
+ *
+ * @param buf Output buffer; writes a 32-bit little-endian INTEGER.
+ * @param len Output length; always set to 4.
+ */
+void get_ocp_SWITCHING_ALLOWED(void *buf, uint8_t *len) {
+    overcurrent_status_t st;
+    int32_t out = 1;
+
+    if (ocp_read_status(&st)) {
+        out = st.switching_allowed ? 1 : 0;
+    }
+
+    i32le(buf, len, out);
+}
+
+/**
+ * @brief SNMP getter: OCP reset control value.
+ *
+ * @details
+ * This is a write-oriented control OID. The getter returns 0.
+ *
+ * @param buf Output buffer; writes a 32-bit little-endian INTEGER.
+ * @param len Output length; always set to 4.
+ */
+void get_ocp_RESET(void *buf, uint8_t *len) { i32le(buf, len, 0); }
+
+/**
+ * @brief SNMP setter: Clear OCP lockout state.
+ *
+ * @details
+ * A non-zero value triggers Overcurrent_ClearLockout(). This operation does not
+ * validate that the overload condition is resolved and should only be used
+ * after reducing load.
+ *
+ * @param v SNMP INTEGER value written by the client.
+ */
+void set_ocp_RESET(int32_t v) {
+    if (v != 0) {
+        (void)Overcurrent_ClearLockout();
+    }
+}

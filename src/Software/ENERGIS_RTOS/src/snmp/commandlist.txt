@@ -1,0 +1,164 @@
+# -------------------------
+# RFC1213 system group
+# -------------------------
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.2.1.1.1.0   # sysDescr
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.2.1.1.2.0   # sysObjectID
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.2.1.1.3.0   # sysUpTime
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.2.1.1.4.0   # sysContact
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.2.1.1.5.0   # sysName (used for device serial number)
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.2.1.1.6.0   # sysLocation
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.2.1.1.7.0   # sysServices
+
+# -------------------------
+# Test / long-length OIDs
+# -------------------------
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.1.0   # long-length OID Test #1 (string)
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.22210.1.0   # long-length OID Test #2 (string)
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.22210.2.0   # long-length OID Test #3 (objid)
+
+# -------------------------
+# Network (.1.3.6.1.4.1.19865.4.X.0)
+# -------------------------
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.4.1.0   # networkIP
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.4.2.0   # networkMask
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.4.3.0   # networkGateway
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.4.4.0   # networkDNS
+
+# -------------------------
+# Outlet control (.1.3.6.1.4.1.19865.2.N.0)
+# Read states
+# -------------------------
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.1.0   # outlet1_State
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.2.0   # outlet2_State
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.3.0   # outlet3_State
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.4.0   # outlet4_State
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.5.0   # outlet5_State
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.6.0   # outlet6_State
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.7.0   # outlet7_State
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.8.0   # outlet8_State
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.9.0   # allOff
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.10.0  # allOn
+
+# Write (INTEGER: 0=OFF, 1=ON)
+snmpset -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.1.0  i 0   # outlet1 OFF
+snmpset -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.1.0  i 1   # outlet1 ON
+snmpset -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.2.0  i 0   # outlet2 OFF
+snmpset -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.2.0  i 1   # outlet2 ON
+snmpset -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.3.0  i 0   # outlet3 OFF
+snmpset -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.3.0  i 1   # outlet3 ON
+snmpset -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.4.0  i 0   # outlet4 OFF
+snmpset -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.4.0  i 1   # outlet4 ON
+snmpset -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.5.0  i 0   # outlet5 OFF
+snmpset -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.5.0  i 1   # outlet5 ON
+snmpset -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.6.0  i 0   # outlet6 OFF
+snmpset -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.6.0  i 1   # outlet6 ON
+snmpset -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.7.0  i 0   # outlet7 OFF
+snmpset -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.7.0  i 1   # outlet7 ON
+snmpset -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.8.0  i 0   # outlet8 OFF
+snmpset -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.8.0  i 1   # outlet8 ON
+
+# allOff / allOn (INTEGER, typically set to 1 to execute)
+snmpset -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.9.0   i 1   # allOff
+snmpset -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.2.10.0  i 1   # allOn
+
+# -------------------------
+# Voltage / temperature (.1.3.6.1.4.1.19865.3.X.0)
+# -------------------------
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.3.1.0   # tempSensorVoltage
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.3.2.0   # tempSensorTemperature
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.3.3.0   # VSUPPLY
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.3.4.0   # VUSB
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.3.5.0   # VSUPPLY_divider
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.3.6.0   # VUSB_divider
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.3.7.0   # coreVREG
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.3.8.0   # coreVREG_status
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.3.9.0   # bandgapRef
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.3.10.0  # usbPHYrail
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.3.11.0  # ioRail
+
+# -------------------------
+# Power per outlet (.1.3.6.1.4.1.19865.5.<ch>.<metric>.0)
+# metric: 1=Voltage, 2=Current, 3=Watt, 4=PF, 5=kWh, 6=Uptime
+# -------------------------
+
+# CH1
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.1.1.0  # CH1 Voltage
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.1.2.0  # CH1 Current
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.1.3.0  # CH1 Watt
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.1.4.0  # CH1 PF
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.1.5.0  # CH1 kWh
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.1.6.0  # CH1 Uptime
+
+# CH2
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.2.1.0  # CH2 Voltage
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.2.2.0  # CH2 Current
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.2.3.0  # CH2 Watt
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.2.4.0  # CH2 PF
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.2.5.0  # CH2 kWh
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.2.6.0  # CH2 Uptime
+
+# CH3
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.3.1.0  # CH3 Voltage
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.3.2.0  # CH3 Current
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.3.3.0  # CH3 Watt
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.3.4.0  # CH3 PF
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.3.5.0  # CH3 kWh
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.3.6.0  # CH3 Uptime
+
+# CH4
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.4.1.0  # CH4 Voltage
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.4.2.0  # CH4 Current
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.4.3.0  # CH4 Watt
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.4.4.0  # CH4 PF
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.4.5.0  # CH4 kWh
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.4.6.0  # CH4 Uptime
+
+# CH5
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.5.1.0  # CH5 Voltage
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.5.2.0  # CH5 Current
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.5.3.0  # CH5 Watt
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.5.4.0  # CH5 PF
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.5.5.0  # CH5 kWh
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.5.6.0  # CH5 Uptime
+
+# CH6
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.6.1.0  # CH6 Voltage
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.6.2.0  # CH6 Current
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.6.3.0  # CH6 Watt
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.6.4.0  # CH6 PF
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.6.5.0  # CH6 kWh
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.6.6.0  # CH6 Uptime
+
+# CH7
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.7.1.0  # CH7 Voltage
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.7.2.0  # CH7 Current
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.7.3.0  # CH7 Watt
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.7.4.0  # CH7 PF
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.7.5.0  # CH7 kWh
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.7.6.0  # CH7 Uptime
+
+# CH8
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.8.1.0  # CH8 Voltage
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.8.2.0  # CH8 Current
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.8.3.0  # CH8 Watt
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.8.4.0  # CH8 PF
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.8.5.0  # CH8 kWh
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.5.8.6.0  # CH8 Uptime
+
+# -------------------------
+# OCP (.1.3.6.1.4.1.19865.6.x.0)
+# -------------------------
+
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.6.1.0    # ocpState
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.6.2.0    # ocpTotalCurrentA
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.6.3.0    # ocpLimitA
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.6.4.0    # ocpWarningThresholdA
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.6.5.0    # ocpCriticalThresholdA
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.6.6.0    # ocpRecoveryThresholdA
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.6.7.0    # ocpLastTrippedCh
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.6.8.0    # ocpTripCount
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.6.9.0    # ocpLastTripMs
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.6.10.0   # ocpSwitchingAllowed
+
+# reset (SET, any non-zero triggers unlock)
+snmpset -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.6.11.0 i 1  # ocpReset

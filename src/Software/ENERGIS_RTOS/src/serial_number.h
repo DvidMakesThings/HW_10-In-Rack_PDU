@@ -105,7 +105,7 @@
  *
  * @details Used to define warning and critical thresholds below the hard limit.
  */
-#define ENERGIS_CURRENT_SAFETY_MARGIN_A 0.25f
+#define ENERGIS_CURRENT_SAFETY_MARGIN_A 0.5f
 
 /**
  * @brief Warning threshold offset in Amperes.
@@ -119,7 +119,7 @@
  *
  * @details Switch lockout lifted when total current falls below (LIMIT - 2.0A).
  */
-#define ENERGIS_CURRENT_RECOVERY_OFFSET_A 2.0f
+#define ENERGIS_CURRENT_RECOVERY_OFFSET_A 1.5f
 
 /** @} */ /* End of overcurrent_config group */
 

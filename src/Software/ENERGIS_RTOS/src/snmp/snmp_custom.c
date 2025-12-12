@@ -4,7 +4,7 @@
  *
  * @version 1.0.0
  * @date 2025-11-07
- * 
+ *
  * @details Table-only file; logic lives in per-domain modules.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
@@ -147,6 +147,20 @@ snmp_entry_t snmpData[] = {
     {12,{0x2b,6,1,4,1,0x81,0x9b,0x19,0x05,0x08,0x04,0x00},SNMPDTYPE_OCTET_STRING,16,{""},get_power_7_MEAS_PF,NULL},
     {12,{0x2b,6,1,4,1,0x81,0x9b,0x19,0x05,0x08,0x05,0x00},SNMPDTYPE_OCTET_STRING,16,{""},get_power_7_MEAS_KWH,NULL},
     {12,{0x2b,6,1,4,1,0x81,0x9b,0x19,0x05,0x08,0x06,0x00},SNMPDTYPE_OCTET_STRING,16,{""},get_power_7_MEAS_UPTIME,NULL},
+
+    /* overcurrent protection (.1.3.6.1.4.1.19865.6.X.0) */
+    {11, {0x2b,6,1,4,1,0x81,0x9b,0x19,0x06,0x01,0x00}, SNMPDTYPE_INTEGER,      4,  {""}, get_ocp_STATE,                 NULL},                         /* ocpState */
+    {11, {0x2b,6,1,4,1,0x81,0x9b,0x19,0x06,0x02,0x00}, SNMPDTYPE_OCTET_STRING, 16,  {""}, get_ocp_TOTAL_CURRENT_A,       NULL},                         /* ocpTotalCurrentA */
+    {11, {0x2b,6,1,4,1,0x81,0x9b,0x19,0x06,0x03,0x00}, SNMPDTYPE_OCTET_STRING, 16,  {""}, get_ocp_LIMIT_A,               NULL},                         /* ocpLimitA */
+    {11, {0x2b,6,1,4,1,0x81,0x9b,0x19,0x06,0x04,0x00}, SNMPDTYPE_OCTET_STRING, 16,  {""}, get_ocp_WARNING_THRESHOLD_A,   NULL},                         /* ocpWarningThresholdA */
+    {11, {0x2b,6,1,4,1,0x81,0x9b,0x19,0x06,0x05,0x00}, SNMPDTYPE_OCTET_STRING, 16,  {""}, get_ocp_CRITICAL_THRESHOLD_A,  NULL},                         /* ocpCriticalThresholdA */
+    {11, {0x2b,6,1,4,1,0x81,0x9b,0x19,0x06,0x06,0x00}, SNMPDTYPE_OCTET_STRING, 16,  {""}, get_ocp_RECOVERY_THRESHOLD_A,  NULL},                         /* ocpRecoveryThresholdA */
+    {11, {0x2b,6,1,4,1,0x81,0x9b,0x19,0x06,0x07,0x00}, SNMPDTYPE_INTEGER,      4,   {""}, get_ocp_LAST_TRIPPED_CH,        NULL},                         /* ocpLastTrippedCh */
+    {11, {0x2b,6,1,4,1,0x81,0x9b,0x19,0x06,0x08,0x00}, SNMPDTYPE_INTEGER,      4,   {""}, get_ocp_TRIP_COUNT,             NULL},                         /* ocpTripCount */
+    {11, {0x2b,6,1,4,1,0x81,0x9b,0x19,0x06,0x09,0x00}, SNMPDTYPE_INTEGER,      4,   {""}, get_ocp_LAST_TRIP_MS,           NULL},                         /* ocpLastTripMs */
+    {11, {0x2b,6,1,4,1,0x81,0x9b,0x19,0x06,0x0A,0x00}, SNMPDTYPE_INTEGER,      4,   {""}, get_ocp_SWITCHING_ALLOWED,      NULL},                         /* ocpSwitchingAllowed */
+    {11, {0x2b,6,1,4,1,0x81,0x9b,0x19,0x06,0x0B,0x00}, SNMPDTYPE_INTEGER,      4,   {""}, get_ocp_RESET,                 (void (*)(int32_t))set_ocp_RESET}, /* ocpReset */
+
     
 };
 /* clang-format on */

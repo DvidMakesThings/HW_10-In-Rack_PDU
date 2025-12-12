@@ -28,7 +28,7 @@
 /**
  * @brief Static buffer size for metrics rendering (bytes)
  */
-#define METRICS_BUFFER_SIZE 4096
+#define METRICS_BUFFER_SIZE 8192
 
 /* =====================  Metrics Counters Structure  =================== */
 /**

@@ -22,6 +22,7 @@ static inline void net_beat(void) { Health_Heartbeat(HEALTH_ID_NET); }
 
 /* =====================  Global Counters  ============================== */
 metrics_counters_t g_metrics = {0};
+overcurrent_status_t ocp = {0};
 
 /* =====================  Static Buffer  ================================ */
 static char metrics_buffer[METRICS_BUFFER_SIZE];
@@ -450,6 +451,84 @@ static int render_metrics(void) {
             return -1;
         }
     }
+    net_beat();
+
+    /* =====================  Overcurrent Protection ===================== */
+
+    bool ocp_ok = Overcurrent_GetStatus(&ocp);
+
+    pos += snprintf(metrics_buffer + pos, bufsize - pos,
+                    "# HELP energis_ocp_state Overcurrent protection state "
+                    "(0=NORMAL,1=WARNING,2=CRITICAL,3=LOCKOUT)\n"
+                    "# TYPE energis_ocp_state gauge\n"
+                    "energis_ocp_state %d\n",
+                    ocp_ok ? (int)ocp.state : 0);
+    if (pos >= bufsize)
+        return -1;
+
+    pos += snprintf(metrics_buffer + pos, bufsize - pos,
+                    "# HELP energis_ocp_switching_allowed Switching allowed (1=yes,0=no)\n"
+                    "# TYPE energis_ocp_switching_allowed gauge\n"
+                    "energis_ocp_switching_allowed %d\n",
+                    (ocp_ok && ocp.switching_allowed) ? 1 : 0);
+    if (pos >= bufsize)
+        return -1;
+
+    pos += snprintf(metrics_buffer + pos, bufsize - pos,
+                    "# HELP energis_ocp_total_current_amps Total measured current\n"
+                    "# TYPE energis_ocp_total_current_amps gauge\n"
+                    "energis_ocp_total_current_amps %.3f\n",
+                    ocp_ok ? ocp.total_current_a : 0.0f);
+    if (pos >= bufsize)
+        return -1;
+
+    pos += snprintf(metrics_buffer + pos, bufsize - pos,
+                    "# HELP energis_ocp_limit_amps Configured current limit\n"
+                    "# TYPE energis_ocp_limit_amps gauge\n"
+                    "energis_ocp_limit_amps %.3f\n",
+                    ocp_ok ? ocp.limit_a : 0.0f);
+    if (pos >= bufsize)
+        return -1;
+
+    pos += snprintf(metrics_buffer + pos, bufsize - pos,
+                    "# HELP energis_ocp_warning_threshold_amps Warning threshold\n"
+                    "# TYPE energis_ocp_warning_threshold_amps gauge\n"
+                    "energis_ocp_warning_threshold_amps %.3f\n",
+                    ocp_ok ? ocp.warning_threshold_a : 0.0f);
+    if (pos >= bufsize)
+        return -1;
+
+    pos += snprintf(metrics_buffer + pos, bufsize - pos,
+                    "# HELP energis_ocp_critical_threshold_amps Critical threshold\n"
+                    "# TYPE energis_ocp_critical_threshold_amps gauge\n"
+                    "energis_ocp_critical_threshold_amps %.3f\n",
+                    ocp_ok ? ocp.critical_threshold_a : 0.0f);
+    if (pos >= bufsize)
+        return -1;
+
+    pos += snprintf(metrics_buffer + pos, bufsize - pos,
+                    "# HELP energis_ocp_recovery_threshold_amps Recovery threshold\n"
+                    "# TYPE energis_ocp_recovery_threshold_amps gauge\n"
+                    "energis_ocp_recovery_threshold_amps %.3f\n",
+                    ocp_ok ? ocp.recovery_threshold_a : 0.0f);
+    if (pos >= bufsize)
+        return -1;
+
+    pos += snprintf(metrics_buffer + pos, bufsize - pos,
+                    "# HELP energis_ocp_trip_count_total Overcurrent trips since boot\n"
+                    "# TYPE energis_ocp_trip_count_total counter\n"
+                    "energis_ocp_trip_count_total %lu\n",
+                    ocp_ok ? (unsigned long)ocp.trip_count : 0UL);
+    if (pos >= bufsize)
+        return -1;
+
+    pos += snprintf(metrics_buffer + pos, bufsize - pos,
+                    "# HELP energis_ocp_last_trip_ms Timestamp of last trip (ms since boot)\n"
+                    "# TYPE energis_ocp_last_trip_ms gauge\n"
+                    "energis_ocp_last_trip_ms %lu\n",
+                    ocp_ok ? (unsigned long)ocp.last_trip_timestamp_ms : 0UL);
+    if (pos >= bufsize)
+        return -1;
     net_beat();
 
     return pos;

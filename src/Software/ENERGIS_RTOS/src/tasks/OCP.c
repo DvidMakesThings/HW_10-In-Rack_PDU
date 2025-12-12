@@ -66,21 +66,37 @@ static volatile bool s_initialized = false;
 /* ==================== Internal Helpers ==================== */
 
 /**
- * @brief Execute overcurrent trip: turn off last activated channel.
+ * @brief Execute overcurrent trip action.
  *
- * @return Channel that was turned off, or 0xFF if no channel was active
+ * @details
+ * Attempts to disable the last channel that was successfully enabled and recorded
+ * via Overcurrent_RecordChannelOn(). If no valid channel is tracked, all channels
+ * are disabled as a safety fallback.
+ *
+ * Behavior:
+ * - If s_last_activated_channel is in range [0..7], that channel is turned OFF.
+ * - Otherwise, all channels are turned OFF.
+ *
+ * Notes:
+ * - The actual relay switching is delegated to SwitchTask via non-blocking API calls.
+ * - Logging is performed to indicate the applied protective action.
+ *
+ * @return uint8_t
+ * Returns the logical channel index [0..7] that was turned OFF, or 0xFF if the
+ * fallback "all OFF" action was used.
  */
 static uint8_t execute_trip(void) {
+    /* Snapshot current target channel */
     uint8_t tripped_ch = s_last_activated_channel;
 
     if (tripped_ch < 8) {
-        /* Turn off the last activated channel via SwitchTask (non-blocking) */
+        /* Use SwitchTask interface to turn off the targeted channel */
         (void)Switch_SetChannel(tripped_ch, false, 0);
 
         INFO_PRINT("%s TRIP: Turning OFF channel %u due to overcurrent\r\n", OVERCURRENT_TAG,
                    (unsigned)(tripped_ch + 1));
     } else {
-        /* No tracked channel - turn off all as safety fallback */
+        /* No tracked channel available, perform a safety fallback */
         (void)Switch_AllOff(0);
 
         INFO_PRINT("%s TRIP: Turning OFF ALL channels (no last-on tracking)\r\n", OVERCURRENT_TAG);
@@ -92,6 +108,30 @@ static uint8_t execute_trip(void) {
 
 /* ==================== Public API Implementation ==================== */
 
+/**
+ * @brief Initialize the overcurrent protection module.
+ *
+ * @details
+ * Computes state machine thresholds from compile-time configuration and resets
+ * module state. Initialization is required before Overcurrent_Update() will
+ * process measurements, ensuring thresholds are valid.
+ *
+ * Threshold derivation:
+ * - s_limit_a is sourced from ENERGIS_CURRENT_LIMIT_A
+ * - s_warning_threshold_a = s_limit_a - ENERGIS_CURRENT_WARNING_OFFSET_A
+ * - s_critical_threshold_a = s_limit_a - ENERGIS_CURRENT_SAFETY_MARGIN_A
+ * - s_recovery_threshold_a = s_limit_a - ENERGIS_CURRENT_RECOVERY_OFFSET_A
+ *
+ * State initialization:
+ * - Sets state to NORMAL
+ * - Clears current measurement cache and trip bookkeeping
+ * - Enables switching
+ * - Marks the module initialized after all values are set
+ *
+ * @note
+ * The initialized flag is set last to prevent intermediate states from being
+ * observed by other tasks.
+ */
 void Overcurrent_Init(void) {
     /* Compute thresholds from regional configuration */
     s_limit_a = ENERGIS_CURRENT_LIMIT_A;
@@ -122,6 +162,48 @@ void Overcurrent_Init(void) {
 #endif
 }
 
+/**
+ * @brief Update the overcurrent state machine using a new total current sample.
+ *
+ * @details
+ * This function is the evaluation core of the overcurrent protection module.
+ * It is intended to be called periodically (typically once per full measurement
+ * cycle) with the aggregated total current in amperes.
+ *
+ * Processing steps:
+ * 1. Reject processing if the module is not initialized.
+ * 2. Apply a sanity filter to reject invalid measurements.
+ * 3. Store the latest accepted measurement for status reporting.
+ * 4. Evaluate the state machine based on thresholds and hysteresis.
+ * 5. Execute transition side effects:
+ *    - WARNING: log once to avoid repeated messages
+ *    - LOCKOUT: trip action, lock switching, update trip bookkeeping, log error
+ *    - RECOVERY: unlock switching and clear warning latch
+ *
+ * State behavior:
+ * - NORMAL:
+ *   - Enters WARNING when total_current_a >= warning threshold
+ *   - Enters CRITICAL when total_current_a >= critical threshold
+ * - WARNING:
+ *   - Enters CRITICAL when total_current_a >= critical threshold
+ *   - Returns to NORMAL when total_current_a < warning threshold
+ * - CRITICAL:
+ *   - Enters LOCKOUT only if total_current_a is still >= critical threshold
+ *   - Returns to NORMAL if the measurement is below the critical threshold
+ * - LOCKOUT:
+ *   - Returns to NORMAL (recovery) when total_current_a < recovery threshold
+ *
+ * @param total_current_a
+ * The total measured current across all channels in amperes.
+ *
+ * @return overcurrent_state_t
+ * The current state after processing the new sample.
+ *
+ * @note
+ * The sanity range check uses an upper bound of 200A to avoid acting on corrupt
+ * or uninitialized data. This value is selected to be well above any expected
+ * operating regime while still rejecting extreme invalid values.
+ */
 overcurrent_state_t Overcurrent_Update(float total_current_a) {
     /* CRITICAL: Do not process if not initialized - thresholds would be wrong */
     if (!s_initialized) {
@@ -136,12 +218,14 @@ overcurrent_state_t Overcurrent_Update(float total_current_a) {
     /* Store latest measurement */
     s_total_current_a = total_current_a;
 
+    /* Snapshot previous state for transition processing */
     overcurrent_state_t prev_state = s_state;
     overcurrent_state_t new_state = prev_state;
 
     /* State machine evaluation */
     switch (prev_state) {
     case OC_STATE_NORMAL:
+        /* Detect transitions into WARNING or CRITICAL based on thresholds */
         if (total_current_a >= s_critical_threshold_a) {
             /* Jump directly to CRITICAL if current is very high */
             new_state = OC_STATE_CRITICAL;
@@ -151,6 +235,7 @@ overcurrent_state_t Overcurrent_Update(float total_current_a) {
         break;
 
     case OC_STATE_WARNING:
+        /* Escalate to CRITICAL when the critical threshold is reached */
         if (total_current_a >= s_critical_threshold_a) {
             new_state = OC_STATE_CRITICAL;
         } else if (total_current_a < s_warning_threshold_a) {
@@ -161,11 +246,17 @@ overcurrent_state_t Overcurrent_Update(float total_current_a) {
         break;
 
     case OC_STATE_CRITICAL:
-        /* CRITICAL triggers immediate trip and lockout */
-        new_state = OC_STATE_LOCKOUT;
+        /* CRITICAL triggers immediate trip only if still above threshold */
+        if (total_current_a >= s_critical_threshold_a) {
+            new_state = OC_STATE_LOCKOUT;
+        } else {
+            /* Transient excursion cleared prior to executing trip action */
+            new_state = OC_STATE_NORMAL;
+        }
         break;
 
     case OC_STATE_LOCKOUT:
+        /* Recovery hysteresis: remain locked until current is clearly below recovery */
         if (total_current_a < s_recovery_threshold_a) {
             /* Recovery: current has dropped sufficiently */
             new_state = OC_STATE_NORMAL;
@@ -175,10 +266,12 @@ overcurrent_state_t Overcurrent_Update(float total_current_a) {
 
     /* Process state transitions */
     if (new_state != prev_state) {
+        /* Commit new state */
         s_state = new_state;
 
         switch (new_state) {
         case OC_STATE_WARNING:
+            /* Log the warning once per warning episode */
             if (!s_warning_logged) {
 #if ERRORLOGGER
                 uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_OCP, ERR_SEV_ERROR, ERR_FID_OVPTASK, 0xA);
@@ -194,7 +287,11 @@ overcurrent_state_t Overcurrent_Update(float total_current_a) {
         case OC_STATE_LOCKOUT: {
             /* Execute trip and enter lockout */
             s_switching_allowed = false;
+
+            /* Apply protective switching action */
             uint8_t tripped = execute_trip();
+
+            /* Update trip bookkeeping */
             s_trip_count++;
             s_last_trip_timestamp_ms = to_ms_since_boot(get_absolute_time());
 
@@ -211,6 +308,7 @@ overcurrent_state_t Overcurrent_Update(float total_current_a) {
         } break;
 
         case OC_STATE_NORMAL:
+            /* Recovery side effects only apply when leaving LOCKOUT */
             if (prev_state == OC_STATE_LOCKOUT) {
                 /* Recovery from lockout */
                 s_switching_allowed = true;
@@ -222,6 +320,7 @@ overcurrent_state_t Overcurrent_Update(float total_current_a) {
             break;
 
         default:
+            /* No additional side effects required for other transitions */
             break;
         }
     }
@@ -229,6 +328,22 @@ overcurrent_state_t Overcurrent_Update(float total_current_a) {
     return s_state;
 }
 
+/**
+ * @brief Query whether switching actions are currently allowed.
+ *
+ * @details
+ * This function provides the fast-path gate for relay switching requests.
+ * While the module is uninitialized, switching is allowed to avoid blocking
+ * early boot operations. After initialization, switching is allowed only when
+ * the module is not in lockout.
+ *
+ * @return bool
+ * true if switching is allowed, false otherwise.
+ *
+ * @note
+ * The returned state reflects the internal lockout flag rather than the raw
+ * overcurrent state enum to make the decision explicit.
+ */
 bool Overcurrent_IsSwitchingAllowed(void) {
     if (!s_initialized) {
         return true; /* Allow before init completes */
@@ -236,6 +351,27 @@ bool Overcurrent_IsSwitchingAllowed(void) {
     return s_switching_allowed;
 }
 
+/**
+ * @brief Determine whether a specific channel is permitted to be turned ON.
+ *
+ * @details
+ * This function performs a more conservative gate than Overcurrent_IsSwitchingAllowed().
+ * It can be used by control handlers to reject commands early when current headroom is
+ * limited or when the system is in a protective state.
+ *
+ * Current decision logic:
+ * - If module is not initialized, allow.
+ * - If switching is not allowed due to lockout, reject.
+ * - If current state is WARNING or above, reject to preserve headroom.
+ * - Otherwise allow.
+ *
+ * @param channel
+ * Channel index [0..7]. The current implementation does not apply per-channel
+ * policy, but keeps the parameter for future enhancement.
+ *
+ * @return bool
+ * true if the channel may be turned ON, false otherwise.
+ */
 bool Overcurrent_CanTurnOn(uint8_t channel) {
     (void)channel; /* Currently not per-channel, but signature allows future enhancement */
 
@@ -256,12 +392,41 @@ bool Overcurrent_CanTurnOn(uint8_t channel) {
     return true;
 }
 
+/**
+ * @brief Record the last channel that was turned ON.
+ *
+ * @details
+ * Stores the most recently activated channel index, used for targeted trip action.
+ * The module trips the last known activated channel under a lockout event, which is
+ * intended to localize the fault to the most recently added load.
+ *
+ * @param channel
+ * Channel index [0..7] that has been turned ON successfully.
+ */
 void Overcurrent_RecordChannelOn(uint8_t channel) {
+    /* Only accept valid channel indices */
     if (channel < 8) {
         s_last_activated_channel = channel;
     }
 }
 
+/**
+ * @brief Obtain a snapshot of the current protection status.
+ *
+ * @details
+ * Fills the provided status structure with thresholds, state, current measurement,
+ * trip bookkeeping, and switching permission flag.
+ *
+ * The snapshot is intended for diagnostics and control interfaces. Values are copied
+ * from volatile module state. The snapshot is best-effort; it is expected to be read
+ * atomically enough for reporting purposes in this system architecture.
+ *
+ * @param status
+ * Pointer to the destination status structure.
+ *
+ * @return bool
+ * true on success, false if status is NULL.
+ */
 bool Overcurrent_GetStatus(overcurrent_status_t *status) {
     if (status == NULL) {
         return false;
@@ -282,15 +447,49 @@ bool Overcurrent_GetStatus(overcurrent_status_t *status) {
     return true;
 }
 
+/**
+ * @brief Get the current overcurrent protection state.
+ *
+ * @details
+ * Returns the internal state enum representing the current protection level.
+ *
+ * @return overcurrent_state_t
+ * Current protection state.
+ */
 overcurrent_state_t Overcurrent_GetState(void) { return s_state; }
 
+/**
+ * @brief Get the configured current limit.
+ *
+ * @details
+ * Returns the configured hard current limit, typically derived from regional
+ * configuration macros.
+ *
+ * @return float
+ * Current limit in amperes.
+ */
 float Overcurrent_GetLimit(void) { return s_limit_a; }
 
+/**
+ * @brief Clear lockout state manually.
+ *
+ * @details
+ * If the module is currently in LOCKOUT, this function resets the state to NORMAL,
+ * re-enables switching, clears the warning latch, and logs the manual reset.
+ *
+ * Safety note:
+ * - This does not verify that current has fallen below recovery threshold.
+ * - The caller is responsible for verifying that conditions are safe before use.
+ *
+ * @return bool
+ * true if lockout was cleared, false if the module was not in lockout.
+ */
 bool Overcurrent_ClearLockout(void) {
     if (s_state != OC_STATE_LOCKOUT) {
         return false;
     }
 
+    /* Reset protective state and re-enable switching */
     s_state = OC_STATE_NORMAL;
     s_switching_allowed = true;
     s_warning_logged = false;
