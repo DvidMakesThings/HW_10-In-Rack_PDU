@@ -39,13 +39,15 @@
 int EEPROM_WriteSensorCalibration(const uint8_t *data, size_t len) {
     if (len > EEPROM_SENSOR_CAL_SIZE) {
 #if ERRORLOGGER
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0x1);
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0x1);
         ERROR_PRINT_CODE(err_code, "%s  Write Sensor Calibration: Length %d exceeds max %d\r\n",
                          ST_CAL_TAG, len, EEPROM_SENSOR_CAL_SIZE);
         Storage_EnqueueErrorCode(err_code);
 #endif
         return -1;
     }
+
     return CAT24C256_WriteBuffer(EEPROM_SENSOR_CAL_START, data, (uint16_t)len);
 }
 
@@ -62,13 +64,15 @@ int EEPROM_WriteSensorCalibration(const uint8_t *data, size_t len) {
 int EEPROM_ReadSensorCalibration(uint8_t *data, size_t len) {
     if (len > EEPROM_SENSOR_CAL_SIZE) {
 #if ERRORLOGGER
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0x2);
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0x2);
         ERROR_PRINT_CODE(err_code, "%s  Read Sensor Calibration: Length %d exceeds max %d\r\n",
                          ST_CAL_TAG, len, EEPROM_SENSOR_CAL_SIZE);
         Storage_EnqueueErrorCode(err_code);
 #endif
         return -1;
     }
+
     CAT24C256_ReadBuffer(EEPROM_SENSOR_CAL_START, data, (uint32_t)len);
     return 0;
 }
@@ -86,7 +90,8 @@ int EEPROM_ReadSensorCalibration(uint8_t *data, size_t len) {
 int EEPROM_WriteSensorCalibrationForChannel(uint8_t ch, const hlw_calib_t *in) {
     if (ch >= 8 || !in) {
 #if ERRORLOGGER
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0x3);
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0x3);
         ERROR_PRINT_CODE(err_code, "%s Write Sensor Calibration: Invalid channel %d\r\n",
                          ST_CAL_TAG, ch);
         Storage_EnqueueErrorCode(err_code);
@@ -94,6 +99,7 @@ int EEPROM_WriteSensorCalibrationForChannel(uint8_t ch, const hlw_calib_t *in) {
         return -1;
     }
     uint16_t addr = EEPROM_SENSOR_CAL_START + (ch * sizeof(hlw_calib_t));
+
     return CAT24C256_WriteBuffer(addr, (const uint8_t *)in, sizeof(hlw_calib_t));
 }
 
@@ -111,7 +117,8 @@ int EEPROM_WriteSensorCalibrationForChannel(uint8_t ch, const hlw_calib_t *in) {
 int EEPROM_ReadSensorCalibrationForChannel(uint8_t ch, hlw_calib_t *out) {
     if (ch >= 8 || !out) {
 #if ERRORLOGGER
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0x3);
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0x3);
         ERROR_PRINT_CODE(err_code, "%s Read Sensor Calibration: Invalid channel %d\r\n", ST_CAL_TAG,
                          ch);
         Storage_EnqueueErrorCode(err_code);
@@ -120,6 +127,7 @@ int EEPROM_ReadSensorCalibrationForChannel(uint8_t ch, hlw_calib_t *out) {
     }
 
     uint16_t addr = EEPROM_SENSOR_CAL_START + (ch * sizeof(hlw_calib_t));
+
     CAT24C256_ReadBuffer(addr, (uint8_t *)out, sizeof(hlw_calib_t));
 
     if (out->calibrated != 0xCA) {
@@ -237,7 +245,8 @@ static void tempcal_finalize_crc(temp_calib_t *rec) {
 int EEPROM_WriteTempCalibration(const temp_calib_t *cal) {
     if (!cal) {
 #if ERRORLOGGER
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0x4);
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0x4);
         ERROR_PRINT_CODE(err_code, "%s Null pointer was passed to write\r\n", ST_CAL_TAG);
         Storage_EnqueueErrorCode(err_code);
 #endif
@@ -252,7 +261,8 @@ int EEPROM_WriteTempCalibration(const temp_calib_t *cal) {
 
     if (sizeof(copy) > EEPROM_TEMP_CAL_SIZE) {
 #if ERRORLOGGER
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0x5);
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0x5);
         ERROR_PRINT_CODE(err_code, "%s  Calibration size %d exceeds max %d\r\n", ST_CAL_TAG,
                          (int)sizeof(copy), EEPROM_TEMP_CAL_SIZE);
         Storage_EnqueueErrorCode(err_code);
@@ -277,7 +287,8 @@ int EEPROM_WriteTempCalibration(const temp_calib_t *cal) {
 int EEPROM_ReadTempCalibration(temp_calib_t *out) {
     if (!out) {
 #if ERRORLOGGER
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0x6);
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0x6);
         ERROR_PRINT_CODE(err_code, "%s Null pointer was passed to read\r\n", ST_CAL_TAG);
         Storage_EnqueueErrorCode(err_code);
 #endif
@@ -292,7 +303,8 @@ int EEPROM_ReadTempCalibration(temp_calib_t *out) {
     if (!tempcal_is_valid(&tmp)) {
         tempcal_defaults(out);
 #if ERRORLOGGER
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0x7);
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0x7);
         ERROR_PRINT_CODE(
             err_code, "%s Read Temperature calibration: Invalid calibration data\r\n, " ST_CAL_TAG);
         Storage_EnqueueErrorCode(err_code);
@@ -321,7 +333,8 @@ int EEPROM_ReadTempCalibration(temp_calib_t *out) {
 int TempCalibration_ComputeSinglePoint(float ambient_c, uint16_t raw_temp, temp_calib_t *out) {
     if (!out) {
 #if ERRORLOGGER
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0x8);
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0x8);
         ERROR_PRINT_CODE(err_code, "%s Compute Single Point: Null pointer\r\n", ST_CAL_TAG);
         Storage_EnqueueErrorCode(err_code);
 #endif
@@ -360,7 +373,8 @@ int TempCalibration_ComputeTwoPoint(float t1_c, uint16_t raw1, float t2_c, uint1
     if (!out) {
 
 #if ERRORLOGGER
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0x9);
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0x9);
         ERROR_PRINT_CODE(err_code, "%s Compute Two Point: Null pointer\r\n", ST_CAL_TAG);
         Storage_EnqueueErrorCode(err_code);
 #endif
@@ -368,7 +382,8 @@ int TempCalibration_ComputeTwoPoint(float t1_c, uint16_t raw1, float t2_c, uint1
     }
     if (t1_c == t2_c) {
 #if ERRORLOGGER
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0xA);
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0xA);
         ERROR_PRINT_CODE(err_code, "%s Compute Two Point: Identical temperature points %.2f°C\r\n",
                          ST_CAL_TAG, t1_c);
         Storage_EnqueueErrorCode(err_code);
@@ -388,7 +403,8 @@ int TempCalibration_ComputeTwoPoint(float t1_c, uint16_t raw1, float t2_c, uint1
 
     if (!(s_cal > 0.0005f && s_cal < 0.005f)) {
 #if ERRORLOGGER
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0xB);
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0xB);
         ERROR_PRINT_CODE(err_code, "%s Computed two point slope %.6f V/°C out of range\r\n",
                          ST_CAL_TAG, s_cal);
         Storage_EnqueueErrorCode(err_code);
@@ -397,7 +413,8 @@ int TempCalibration_ComputeTwoPoint(float t1_c, uint16_t raw1, float t2_c, uint1
     }
     if (!(v0_cal > 0.60f && v0_cal < 0.85f)) {
 #if ERRORLOGGER
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0xC);
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0xC);
         ERROR_PRINT_CODE(err_code, "%s Computed two point V0 %.6f V out of range\r\n", ST_CAL_TAG,
                          v0_cal);
         Storage_EnqueueErrorCode(err_code);
@@ -427,7 +444,8 @@ int TempCalibration_ComputeTwoPoint(float t1_c, uint16_t raw1, float t2_c, uint1
 int TempCalibration_ApplyToMeterTask(const temp_calib_t *cal) {
     if (!cal) {
 #if ERRORLOGGER
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0xD);
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0xD);
         ERROR_PRINT_CODE(err_code, "%s Apply To MeterTask: Null pointer\r\n", ST_CAL_TAG);
         Storage_EnqueueErrorCode(err_code);
 #endif
@@ -435,7 +453,8 @@ int TempCalibration_ApplyToMeterTask(const temp_calib_t *cal) {
     }
     if (!tempcal_is_valid(cal)) {
 #if ERRORLOGGER
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0xE);
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0xE);
         ERROR_PRINT_CODE(err_code, "%s Apply To MeterTask: Invalid calibration data\r\n",
                          ST_CAL_TAG);
         Storage_EnqueueErrorCode(err_code);

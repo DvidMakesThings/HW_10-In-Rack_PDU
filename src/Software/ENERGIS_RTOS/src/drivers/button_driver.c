@@ -2,14 +2,14 @@
  * @file src/drivers/button_driver.c
  * @author DvidMakesThings - David Sipos
  *
- * @version 1.1.0
+ * @version 1.1.1
  * @date 2025-12-10
  *
  * @details Low-level driver implementation for the front-panel buttons and
  * selection/relay indicators using FreeRTOS.
  *
- * v1.1.0 Changes:
- * - Replaced mcp_set_channel_state with Switch_Toggle for RTOS-cooperative
+ * v1.1.1 Changes:
+ * - Kept Switch_Toggle for RTOS-cooperative
  *   relay control via SwitchTask
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
@@ -28,11 +28,11 @@
  *
  */
 static inline void drv_sel_all_off(void) {
-    mcp23017_t *sel = mcp_selection();
-    if (!sel)
-        return;
-    mcp_write_mask(sel, 0, 0xFFu, 0x00u);
-    mcp_write_mask(sel, 1, 0xFFu, 0x00u);
+    /* Selection MCP I2C operations are owned by SwitchTask.
+     * If SwitchTask is not ready yet (early bring-up), leave LEDs as-is. */
+    if (Switch_IsReady()) {
+        (void)Switch_SelectAllOff(0);
+    }
 }
 
 /* -------------------- Public driver API ------------------------------------ */
@@ -60,22 +60,34 @@ bool ButtonDrv_ReadSet(void) { return gpio_get(BUT_SET) ? true : false; }
 void ButtonDrv_SelectAllOff(void) { drv_sel_all_off(); }
 
 void ButtonDrv_SelectShow(uint8_t index, bool on) {
-    mcp23017_t *sel = mcp_selection();
-    if (!sel) {
+    /* Selection LEDs are driven via SwitchTask to ensure ButtonTask never blocks on I2C. */
+    if (index >= 8u) {
 #if ERRORLOGGER
         uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_BUTTON_DRV, 0x1);
-        ERROR_PRINT_CODE(errorcode,
-                         "%s ButtonDrv_SelectShow: MCP23017 selection device not found\r\n",
+        ERROR_PRINT_CODE(errorcode, "%s ButtonDrv_SelectShow: bad index %u\r\n", BTNDRV_TAG,
+                         (unsigned)index);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+        return;
+    }
+
+    if (!Switch_IsReady()) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_BUTTON_DRV, 0x2);
+        ERROR_PRINT_CODE(errorcode, "%s ButtonDrv_SelectShow: SwitchTask not ready\r\n",
                          BTNDRV_TAG);
         Storage_EnqueueErrorCode(errorcode);
 #endif
         return;
     }
 
-    /* show current only */
-    drv_sel_all_off();
-    if (on) {
-        mcp_write_pin(sel, index & 0x0Fu, 1u);
+    if (!Switch_SelectShow(index, on, 0)) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_BUTTON_DRV, 0x3);
+        ERROR_PRINT_CODE(errorcode, "%s ButtonDrv_SelectShow: enqueue failed\r\n", BTNDRV_TAG);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+        return;
     }
 }
 
@@ -115,15 +127,21 @@ void ButtonDrv_DoSetShort(uint8_t index) {
     /* Use non-blocking Switch_Toggle via SwitchTask
      * This prevents I2C bus contention and watchdog starvation */
     if (index < 8) {
-        (void)Switch_Toggle(index & 0x07u, pdMS_TO_TICKS(100));
+        (void)Switch_Toggle(index & 0x07u);
     }
 }
 
 void ButtonDrv_DoSetLong(void) {
 #ifdef FAULT_LED
-    mcp23017_t *disp = mcp_display();
-    if (disp) {
-        mcp_write_pin(disp, FAULT_LED, 0u);
+    /* Route through SwitchTask to prevent i2c0 bus contention */
+    if (Switch_IsReady()) {
+        Switch_SetFaultLed(false, 0);
+    } else {
+        /* Fallback for early init */
+        mcp23017_t *disp = mcp_display();
+        if (disp) {
+            mcp_write_pin(disp, FAULT_LED, 0u);
+        }
     }
 #endif
 }

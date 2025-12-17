@@ -2,12 +2,16 @@
  * @file src/tasks/OCP.c
  * @author DvidMakesThings - David Sipos
  *
- * @version 1.0.1
- * @date 2025-12-11
+ * @version 2.0.0
+ * @date 2025-12-14
  *
  * @details
  * Implementation of the high-priority overcurrent protection system.
  * Monitors total current draw and implements tiered protection responses.
+ *
+ * Version History:
+ * - v1.x: Compile-time regional current limits via macros
+ * - v2.0: Runtime regional current limits via DeviceIdentity module
  *
  * **State Machine:**
  * ```
@@ -32,7 +36,7 @@
  *
  * @note Initialized to very high defaults to prevent false trips if
  *       Overcurrent_Init() hasn't been called yet. Real values are
- *       set during initialization.
+ *       set during initialization from DeviceIdentity.
  */
 static float s_limit_a = 1000.0f;
 static float s_warning_threshold_a = 999.0f;
@@ -66,6 +70,91 @@ static volatile bool s_initialized = false;
 /* ==================== Internal Helpers ==================== */
 
 /**
+ * @brief Sanitize a current limit value obtained from configuration.
+ *
+ * @details
+ * This module must never operate with an invalid or near-zero limit value, because the
+ * WARNING state triggers when total_current_a >= (limit - offset). If limit is 0 or very
+ * small, the derived thresholds become negative and will produce false WARNING logs even
+ * at 0.00A (all outputs OFF).
+ *
+ * The identity/config layer is expected to provide 10A (EU) or 15A (US). If it does not,
+ * we fall back to a safe regional default.
+ *
+ * @param limit_a  Raw limit value [A] from configuration.
+ * @param region   Region selector from DeviceIdentity.
+ *
+ * @return float
+ * A validated limit in the expected operational range.
+ */
+static float sanitize_limit_a(float limit_a, device_region_t region) {
+    const float expected = (region == DEVICE_REGION_US) ? 15.0f : 10.0f;
+
+    /* Hard bounds: reject zero/negative and unrealistic values */
+    if (!(limit_a > 1.0f && limit_a < 50.0f)) {
+        return expected;
+    }
+
+    /* Region consistency: if region is known, keep it within a reasonable band */
+    if (region == DEVICE_REGION_EU) {
+        if (limit_a < 8.0f || limit_a > 12.0f) {
+            return 10.0f;
+        }
+    } else if (region == DEVICE_REGION_US) {
+        if (limit_a < 13.0f || limit_a > 17.0f) {
+            return 15.0f;
+        }
+    } else {
+        /* Unknown region: still prefer a conservative safe default */
+        return 10.0f;
+    }
+
+    return limit_a;
+}
+
+/**
+ * @brief Clamp and order derived thresholds.
+ *
+ * @details
+ * Ensures the derived thresholds remain sensible even if configuration values or
+ * offsets are changed. The ordering enforced is:
+ * recovery < warning < critical < limit
+ *
+ * This prevents false positives and prevents the state machine from behaving
+ * unexpectedly due to threshold inversion.
+ */
+static void sanitize_thresholds(void) {
+    /* Clamp recovery to non-negative */
+    if (s_recovery_threshold_a < 0.0f) {
+        s_recovery_threshold_a = 0.0f;
+    }
+
+    /* Clamp warning to non-negative */
+    if (s_warning_threshold_a < 0.0f) {
+        s_warning_threshold_a = 0.0f;
+    }
+
+    /* Ensure critical is above warning by a small margin */
+    if (s_critical_threshold_a <= s_warning_threshold_a) {
+        s_critical_threshold_a = s_warning_threshold_a + 0.05f;
+    }
+
+    /* Ensure limit is above critical */
+    if (s_limit_a <= s_critical_threshold_a) {
+        s_limit_a = s_critical_threshold_a + 0.05f;
+    }
+
+    /* Ensure recovery provides hysteresis below warning */
+    if (s_recovery_threshold_a >= s_warning_threshold_a) {
+        if (s_warning_threshold_a > 0.10f) {
+            s_recovery_threshold_a = s_warning_threshold_a - 0.10f;
+        } else {
+            s_recovery_threshold_a = 0.0f;
+        }
+    }
+}
+
+/**
  * @brief Execute overcurrent trip action.
  *
  * @details
@@ -91,13 +180,13 @@ static uint8_t execute_trip(void) {
 
     if (tripped_ch < 8) {
         /* Use SwitchTask interface to turn off the targeted channel */
-        (void)Switch_SetChannel(tripped_ch, false, 0);
+        (void)Switch_SetChannel(tripped_ch, false);
 
         INFO_PRINT("%s TRIP: Turning OFF channel %u due to overcurrent\r\n", OVERCURRENT_TAG,
                    (unsigned)(tripped_ch + 1));
     } else {
         /* No tracked channel available, perform a safety fallback */
-        (void)Switch_AllOff(0);
+        (void)Switch_AllOff();
 
         INFO_PRINT("%s TRIP: Turning OFF ALL channels (no last-on tracking)\r\n", OVERCURRENT_TAG);
         tripped_ch = 0xFF;
@@ -112,12 +201,12 @@ static uint8_t execute_trip(void) {
  * @brief Initialize the overcurrent protection module.
  *
  * @details
- * Computes state machine thresholds from compile-time configuration and resets
- * module state. Initialization is required before Overcurrent_Update() will
- * process measurements, ensuring thresholds are valid.
+ * Computes state machine thresholds from runtime configuration obtained from
+ * the DeviceIdentity module. The region setting in EEPROM determines the
+ * appropriate current limit (10A EU / 15A US).
  *
  * Threshold derivation:
- * - s_limit_a is sourced from ENERGIS_CURRENT_LIMIT_A
+ * - s_limit_a is sourced from DeviceIdentity_GetCurrentLimitA()
  * - s_warning_threshold_a = s_limit_a - ENERGIS_CURRENT_WARNING_OFFSET_A
  * - s_critical_threshold_a = s_limit_a - ENERGIS_CURRENT_SAFETY_MARGIN_A
  * - s_recovery_threshold_a = s_limit_a - ENERGIS_CURRENT_RECOVERY_OFFSET_A
@@ -129,15 +218,22 @@ static uint8_t execute_trip(void) {
  * - Marks the module initialized after all values are set
  *
  * @note
- * The initialized flag is set last to prevent intermediate states from being
- * observed by other tasks.
+ * DeviceIdentity_Init() must be called before this function to ensure the
+ * region setting is available. If DeviceIdentity returns UNKNOWN region,
+ * the safe default (10A) is used.
  */
 void Overcurrent_Init(void) {
-    /* Compute thresholds from regional configuration */
-    s_limit_a = ENERGIS_CURRENT_LIMIT_A;
+    /* Get current limit from device identity (region-dependent) */
+    device_region_t region = DeviceIdentity_GetRegion();
+    s_limit_a = sanitize_limit_a(DeviceIdentity_GetCurrentLimitA(), region);
+
+    /* Compute thresholds from fixed offsets */
     s_warning_threshold_a = s_limit_a - ENERGIS_CURRENT_WARNING_OFFSET_A;
     s_critical_threshold_a = s_limit_a - ENERGIS_CURRENT_SAFETY_MARGIN_A;
     s_recovery_threshold_a = s_limit_a - ENERGIS_CURRENT_RECOVERY_OFFSET_A;
+
+    /* Sanity: keep thresholds ordered and non-negative */
+    sanitize_thresholds();
 
     /* Initialize state */
     s_state = OC_STATE_NORMAL;
@@ -151,15 +247,17 @@ void Overcurrent_Init(void) {
     /* Mark as initialized LAST to ensure all values are set */
     s_initialized = true;
 
-#if ENERGIS_EU_VERSION
-    INFO_PRINT("%s Initialized (EU: %.1fA limit, warn=%.2fA, crit=%.2fA, recv=%.2fA)\r\n",
-               OVERCURRENT_TAG, s_limit_a, s_warning_threshold_a, s_critical_threshold_a,
-               s_recovery_threshold_a);
-#else
-    INFO_PRINT("%s Initialized (US: %.1fA limit, warn=%.2fA, crit=%.2fA, recv=%.2fA)\r\n",
-               OVERCURRENT_TAG, s_limit_a, s_warning_threshold_a, s_critical_threshold_a,
-               s_recovery_threshold_a);
-#endif
+    /* Log initialization with region info */
+    const char *region_str = "UNKNOWN";
+    if (region == DEVICE_REGION_EU) {
+        region_str = "EU";
+    } else if (region == DEVICE_REGION_US) {
+        region_str = "US";
+    }
+
+    INFO_PRINT("%s Initialized (%s: %.1fA limit, warn=%.2fA, crit=%.2fA, recv=%.2fA)\r\n",
+               OVERCURRENT_TAG, region_str, s_limit_a, s_warning_threshold_a,
+               s_critical_threshold_a, s_recovery_threshold_a);
 }
 
 /**
@@ -262,13 +360,16 @@ overcurrent_state_t Overcurrent_Update(float total_current_a) {
             new_state = OC_STATE_NORMAL;
         }
         break;
+
+    default:
+        new_state = OC_STATE_NORMAL;
+        break;
     }
 
-    /* Process state transitions */
-    if (new_state != prev_state) {
-        /* Commit new state */
-        s_state = new_state;
+    /* Update state and execute side effects */
+    s_state = new_state;
 
+    if (new_state != prev_state) {
         switch (new_state) {
         case OC_STATE_WARNING:
             /* Log the warning once per warning episode */
@@ -462,8 +563,8 @@ overcurrent_state_t Overcurrent_GetState(void) { return s_state; }
  * @brief Get the configured current limit.
  *
  * @details
- * Returns the configured hard current limit, typically derived from regional
- * configuration macros.
+ * Returns the configured hard current limit, derived from device identity
+ * region setting at initialization.
  *
  * @return float
  * Current limit in amperes.

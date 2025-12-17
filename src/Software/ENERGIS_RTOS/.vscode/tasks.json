@@ -1,171 +1,268 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "Compile Project",
-            "type": "process",
-            "isBuildCommand": true,
-            "command": "${userHome}/.pico-sdk/ninja/v1.12.1/ninja",
-            "args": [
-                "-C",
-                "${workspaceFolder}/build"
-            ],
-            "group": "build",
-            "presentation": {
-                "reveal": "always",
-                "panel": "dedicated"
-            },
-            "problemMatcher": "$gcc",
-            "windows": {
-                "command": "${env:USERPROFILE}/.pico-sdk/ninja/v1.12.1/ninja.exe"
-            }
-        },
-        {
-            "label": "Run Project",
-            "type": "process",
-            "command": "${env:HOME}/.pico-sdk/picotool/2.2.0-a4/picotool/picotool",
-            "args": [
-                "load",
-                "${command:raspberry-pi-pico.launchTargetPath}",
-                "-fx"
-            ],
-            "presentation": {
-                "reveal": "always",
-                "panel": "dedicated"
-            },
-            "problemMatcher": [],
-            "windows": {
-                "command": "${env:USERPROFILE}/.pico-sdk/picotool/2.2.0-a4/picotool/picotool.exe"
-            }
-        },
-        {
-            "label": "Flash",
-            "type": "process",
-            "command": "${userHome}/.pico-sdk/openocd/0.12.0+dev/openocd.exe",
-            "args": [
-                "-s",
-                "${userHome}/.pico-sdk/openocd/0.12.0+dev/scripts",
-                "-f",
-                "interface/cmsis-dap.cfg",
-                "-f",
-                "target/${command:raspberry-pi-pico.getTarget}.cfg",
-                "-c",
-                "adapter speed 5000; program \"${command:raspberry-pi-pico.launchTargetPath}\" verify reset exit"
-            ],
-            "problemMatcher": [],
-            "windows": {
-                "command": "${env:USERPROFILE}/.pico-sdk/openocd/0.12.0+dev/openocd.exe"
-            }
-        },
-        {
-            "label": "Compile Project",
-            "type": "shell",
-            "command": "${workspaceFolder}/scripts/build.sh",
-            "linux": {
-                "command": "${workspaceFolder}/scripts/build.sh"
-            },
-            "windows": {
-                "command": "powershell.exe",
-                "args": [
-                    "-NoProfile",
-                    "-ExecutionPolicy",
-                    "Bypass",
-                    "-File",
-                    "${workspaceFolder}\\scripts\\build.ps1"
-                ]
-            },
-            "presentation": {
-                "reveal": "always",
-                "panel": "shared"
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "ENERGIS: Upload Only",
-            "type": "shell",
-            "dependsOn": [
-                "Compile Project"
-            ],
-            "linux": {
-                "command": "${workspaceFolder}/scripts/flash_rp2040.sh",
-                "args": []
-            },
-            "windows": {
-                "command": "powershell.exe",
-                "args": [
-                    "-NoProfile",
-                    "-ExecutionPolicy",
-                    "Bypass",
-                    "-File",
-                    "${workspaceFolder}\\scripts\\flash_rp2040.ps1"
-                ]
-            },
-            "osx": {
-                "command": "${workspaceFolder}/scripts/flash_rp2040.sh",
-                "args": []
-            },
-            "presentation": {
-                "reveal": "always",
-                "panel": "shared"
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "ENERGIS: Upload and Serial",
-            "type": "shell",
-            "dependsOn": [
-                "Compile Project"
-            ],
-            "linux": {
-                "command": "${workspaceFolder}/scripts/flash_rp2040_and_serial.sh",
-                "args": []
-            },
-            "windows": {
-                "command": "powershell.exe",
-                "args": [
-                    "-NoProfile",
-                    "-ExecutionPolicy",
-                    "Bypass",
-                    "-File",
-                    "${workspaceFolder}\\scripts\\flash_rp2040_and_serial.ps1"
-                ]
-            },
-            "osx": {
-                "command": "${workspaceFolder}/scripts/flash_rp2040_and_serial.sh",
-                "args": []
-            },
-            "presentation": {
-                "reveal": "always",
-                "panel": "shared"
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "ENERGIS: Serial Only",
-            "type": "shell",
-            "linux": {
-                "command": "${workspaceFolder}/scripts/openSerial.sh",
-                "args": []
-            },
-            "windows": {
-                "command": "powershell.exe",
-                "args": [
-                    "-NoProfile",
-                    "-ExecutionPolicy",
-                    "Bypass",
-                    "-File",
-                    "${workspaceFolder}\\scripts\\openSerial.ps1"
-                ]
-            },
-            "osx": {
-                "command": "${workspaceFolder}/scripts/openSerial.sh",
-                "args": []
-            },
-            "presentation": {
-                "reveal": "always",
-                "panel": "shared"
-            },
-            "problemMatcher": []
-        }
-    ]
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Compile Project",
+			"type": "process",
+			"isBuildCommand": true,
+			"command": "${userHome}/.pico-sdk/ninja/v1.12.1/ninja",
+			"args": [
+				"-C",
+				"${workspaceFolder}/build"
+			],
+			"group": "build",
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			},
+			"problemMatcher": "$gcc",
+			"windows": {
+				"command": "${env:USERPROFILE}/.pico-sdk/ninja/v1.12.1/ninja.exe"
+			}
+		},
+		{
+			"label": "Run Project",
+			"type": "process",
+			"command": "${env:HOME}/.pico-sdk/picotool/2.2.0-a4/picotool/picotool",
+			"args": [
+				"load",
+				"${command:raspberry-pi-pico.launchTargetPath}",
+				"-fx"
+			],
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			},
+			"problemMatcher": [],
+			"windows": {
+				"command": "${env:USERPROFILE}/.pico-sdk/picotool/2.2.0-a4/picotool/picotool.exe"
+			}
+		},
+		{
+			"label": "Flash",
+			"type": "process",
+			"command": "${userHome}/.pico-sdk/openocd/0.12.0+dev/openocd.exe",
+			"args": [
+				"-s",
+				"${userHome}/.pico-sdk/openocd/0.12.0+dev/scripts",
+				"-f",
+				"interface/cmsis-dap.cfg",
+				"-f",
+				"target/${command:raspberry-pi-pico.getTarget}.cfg",
+				"-c",
+				"adapter speed 5000; program \"${command:raspberry-pi-pico.launchTargetPath}\" verify reset exit"
+			],
+			"problemMatcher": [],
+			"windows": {
+				"command": "${env:USERPROFILE}/.pico-sdk/openocd/0.12.0+dev/openocd.exe"
+			}
+		},
+		{
+			"label": "Compile Project",
+			"type": "shell",
+			"command": "${workspaceFolder}/scripts/build.sh",
+			"linux": {
+				"command": "${workspaceFolder}/scripts/build.sh"
+			},
+			"windows": {
+				"command": "powershell.exe",
+				"args": [
+					"-NoProfile",
+					"-ExecutionPolicy",
+					"Bypass",
+					"-File",
+					"${workspaceFolder}\\scripts\\build.ps1"
+				]
+			},
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "ENERGIS: Upload Only",
+			"type": "shell",
+			"dependsOn": [
+				"Compile Project"
+			],
+			"linux": {
+				"command": "${workspaceFolder}/scripts/flash_rp2040.sh",
+				"args": []
+			},
+			"windows": {
+				"command": "powershell.exe",
+				"args": [
+					"-NoProfile",
+					"-ExecutionPolicy",
+					"Bypass",
+					"-File",
+					"${workspaceFolder}\\scripts\\flash_rp2040.ps1"
+				]
+			},
+			"osx": {
+				"command": "${workspaceFolder}/scripts/flash_rp2040.sh",
+				"args": []
+			},
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "ENERGIS: Upload and Serial",
+			"type": "shell",
+			"dependsOn": [
+				"Compile Project"
+			],
+			"linux": {
+				"command": "${workspaceFolder}/scripts/flash_rp2040_and_serial.sh",
+				"args": []
+			},
+			"windows": {
+				"command": "powershell.exe",
+				"args": [
+					"-NoProfile",
+					"-ExecutionPolicy",
+					"Bypass",
+					"-File",
+					"${workspaceFolder}\\scripts\\flash_rp2040_and_serial.ps1"
+				]
+			},
+			"osx": {
+				"command": "${workspaceFolder}/scripts/flash_rp2040_and_serial.sh",
+				"args": []
+			},
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "ENERGIS: Serial Only",
+			"type": "shell",
+			"linux": {
+				"command": "${workspaceFolder}/scripts/openSerial.sh",
+				"args": []
+			},
+			"windows": {
+				"command": "powershell.exe",
+				"args": [
+					"-NoProfile",
+					"-ExecutionPolicy",
+					"Bypass",
+					"-File",
+					"${workspaceFolder}\\scripts\\openSerial.ps1"
+				]
+			},
+			"osx": {
+				"command": "${workspaceFolder}/scripts/openSerial.sh",
+				"args": []
+			},
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Compile Project",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"${workspaceFolder}\\\\scripts\\\\build.ps1"
+			]
+		},
+		{
+			"label": "Compile Project",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"${workspaceFolder}\\\\scripts\\\\build.ps1"
+			]
+		},
+		{
+			"label": "Compile Project",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"${workspaceFolder}\\\\scripts\\\\build.ps1"
+			]
+		},
+		{
+			"label": "Compile Project",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"${workspaceFolder}\\\\scripts\\\\build.ps1"
+			]
+		},
+		{
+			"label": "Compile Project",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"${workspaceFolder}\\\\scripts\\\\build.ps1"
+			]
+		},
+		{
+			"label": "Compile Project",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"${workspaceFolder}\\\\scripts\\\\build.ps1"
+			]
+		},
+		{
+			"label": "Compile Project (manual run)",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-Command",
+				"& \"$env:USERPROFILE/.pico-sdk/ninja/v1.12.1/ninja.exe\" -C \"${env:WORKSPACE}/build\""
+			],
+			"group": "build"
+		},
+		{
+			"label": "Compile Project",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"${workspaceFolder}\\scripts\\build.ps1"
+			]
+		}
+	]
 }

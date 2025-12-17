@@ -454,4 +454,23 @@ EID_NAMES = {
             },
         },
     },
+    0x9: {  # 9 (Overcurrent Protection)
+        0xF: {
+            0x4: {  # ERROR
+                0xA: "WARNING: Total current approaching limit",
+            },
+            0xF: {  # FATAL
+                0xB: "CRITICAL: Overcurrent trip executed; switching locked",
+            },
+        },
+    },
+    0xA: {  # 10 (SWITCH MODULE)
+        0xF: {
+            0x4: {  # ERROR
+                0x1: "Storage not ready within timeout, cannot start SwitchTask",
+                0x2: "Failed to create command queue",
+                0x3: "Task create failed",  
+            },
+        },
+    },
 }

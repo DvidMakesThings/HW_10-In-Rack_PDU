@@ -33,7 +33,8 @@ int EEPROM_WriteUserOutput(const uint8_t *data, size_t len) {
     /* Bounds check */
     if (len > EEPROM_USER_OUTPUT_SIZE) {
 #if ERRORLOGGER
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x1);
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x1);
         ERROR_PRINT_CODE(err_code, "%s Write length exceeds size\r\n", ST_USER_OUTPUT_TAG);
         Storage_EnqueueErrorCode(err_code);
 #endif
@@ -59,7 +60,8 @@ int EEPROM_ReadUserOutput(uint8_t *data, size_t len) {
     /* Bounds check */
     if (len > EEPROM_USER_OUTPUT_SIZE) {
 #if ERRORLOGGER
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x2);
+        uint16_t err_code =
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x2);
         ERROR_PRINT_CODE(err_code, "%s Read length exceeds size\r\n", ST_USER_OUTPUT_TAG);
         Storage_EnqueueErrorCode(err_code);
 #endif

@@ -2,12 +2,21 @@
  * @file src/tasks/storage_submodule/factory_defaults.c
  * @author DvidMakesThings - David Sipos
  *
- * @version 1.0
- * @date 2025-11-14
+ * @version 2.0.0
+ * @date 2025-12-14
  *
- * @details Implementation of factory default management. Handles first-boot detection
- * via magic value check, writes complete default configuration to all EEPROM sections,
+ * @details
+ * Implementation of factory default management. Handles first-boot detection
+ * via magic value check, writes complete default configuration to EEPROM sections,
  * and validates written data.
+ *
+ * Version History:
+ * - v1.x: Wrote compile-time serial number to EEPROM
+ * - v2.0: Serial number managed by device_identity module via provisioning
+ *
+ * @note
+ * Device identity (serial number and region) is NOT written by factory defaults.
+ * These values must be provisioned separately using UART commands after first boot.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -27,8 +36,9 @@ extern SemaphoreHandle_t eepromMtx;
 /**
  * @brief Write factory defaults to all EEPROM sections.
  *
+ * @details
  * Writes default configuration for all system sections:
- * 1. System info (serial number + software version)
+ * 1. System info (firmware version only - serial number managed separately)
  * 2. Relay status (all channels OFF)
  * 3. Network configuration (with CRC and derived MAC)
  * 4. Sensor calibration (default HLW8032 factors for all channels)
@@ -36,22 +46,26 @@ extern SemaphoreHandle_t eepromMtx;
  * 6. Event logs (placeholder zeros)
  * 7. User preferences (default device name and location)
  *
+ * Device identity (serial number, region) is NOT written here.
+ * Use UART provisioning commands to set these values.
+ *
  * CRITICAL: Must be called with eepromMtx held!
  *
- * @return 0 on success, -1 if any write fails
+ * @return 0 on success, -1 if any write fails.
  */
 int EEPROM_WriteFactoryDefaults(void) {
     int status = 0;
 
-    /* 1. Write Serial Number + SWVERSION to System Info section */
+    /* 1. Write firmware version to System Info section (no serial number) */
     char sys_info_buf[64];
-    size_t sn_len = strlen(DEFAULT_SN) + 1;
-    size_t swv_len = strlen(SWVERSION) + 1;
     memset(sys_info_buf, 0, sizeof(sys_info_buf));
-    memcpy(sys_info_buf, DEFAULT_SN, sn_len);
-    memcpy(sys_info_buf + sn_len, SWVERSION, swv_len);
-    status |= EEPROM_WriteSystemInfo((const uint8_t *)sys_info_buf, sn_len + swv_len);
-    INFO_PRINT("%s Serial Number and SWVERSION written\r\n", ST_FACTORY_DEFAULTS_TAG);
+
+    /* Write firmware version string */
+    size_t swv_len = strlen(SWVERSION) + 1;
+    memcpy(sys_info_buf, SWVERSION, swv_len);
+
+    status |= EEPROM_WriteSystemInfo((const uint8_t *)sys_info_buf, swv_len);
+    INFO_PRINT("%s Firmware version written (SN via provisioning)\r\n", ST_FACTORY_DEFAULTS_TAG);
 
     /* 2. Write Relay Status (all OFF) */
     status |= EEPROM_WriteUserOutput(DEFAULT_RELAY_STATUS, sizeof(DEFAULT_RELAY_STATUS));
@@ -60,7 +74,10 @@ int EEPROM_WriteFactoryDefaults(void) {
     /* 3. Write Network Configuration (with CRC and derived MAC) */
     {
         networkInfo defnet = DEFAULT_NETWORK; /* work on a copy */
-        Energis_FillMacFromSerial(defnet.mac);
+
+        /* Derive MAC from device identity (uses cached serial or placeholder) */
+        DeviceIdentity_FillMac(defnet.mac);
+
         status |= EEPROM_WriteUserNetworkWithChecksum(&defnet);
         INFO_PRINT("%s Network Configuration written\r\n", ST_FACTORY_DEFAULTS_TAG);
     }
@@ -97,6 +114,8 @@ int EEPROM_WriteFactoryDefaults(void) {
     /* Report final status */
     if (status == 0) {
         INFO_PRINT("%s Factory defaults written successfully\r\n", ST_FACTORY_DEFAULTS_TAG);
+        INFO_PRINT("%s NOTE: Serial number and region require provisioning\r\n",
+                   ST_FACTORY_DEFAULTS_TAG);
     } else {
 #if ERRORLOGGER
         uint16_t err_code =
@@ -112,25 +131,35 @@ int EEPROM_WriteFactoryDefaults(void) {
 /**
  * @brief Perform basic read-back validation after factory defaulting.
  *
+ * @details
  * Reads and checks critical sections to verify factory defaults were written correctly:
- * - Serial number verification
+ * - Firmware version verification
  * - Network configuration CRC check
  * - Sensor calibration presence check
  *
- * @return 0 on success, -1 on validation failure
+ * Device identity is checked via DeviceIdentity_IsValid().
+ *
+ * @return 0 on success, -1 on validation failure.
  */
 int EEPROM_ReadFactoryDefaults(void) {
-    /* Check Serial Number */
-    char stored_sn[32];
-    EEPROM_ReadSystemInfo((uint8_t *)stored_sn, strlen(DEFAULT_SN) + 1);
-    if (memcmp(stored_sn, DEFAULT_SN, strlen(DEFAULT_SN)) != 0) {
+    /* Check Firmware Version */
+    char stored_fw[32];
+    memset(stored_fw, 0, sizeof(stored_fw));
+    EEPROM_ReadSystemInfo((uint8_t *)stored_fw, strlen(SWVERSION) + 1);
+    if (memcmp(stored_fw, SWVERSION, strlen(SWVERSION)) != 0) {
 #if ERRORLOGGER
         uint16_t err_code =
             ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_WARNING, ERR_FID_ST_FACTORY_DEFS, 0x1);
-        WARNING_PRINT_CODE(err_code, "%s Serial Number mismatch: expected '%s', got '%s'\r\n",
-                           ST_FACTORY_DEFAULTS_TAG, DEFAULT_SN, stored_sn);
+        WARNING_PRINT_CODE(err_code, "%s Firmware version mismatch: expected '%s', got '%s'\r\n",
+                           ST_FACTORY_DEFAULTS_TAG, SWVERSION, stored_fw);
         Storage_EnqueueWarningCode(err_code);
 #endif
+    }
+
+    /* Check Device Identity */
+    if (!DeviceIdentity_IsValid()) {
+        INFO_PRINT("%s Device identity not provisioned (SN/region required)\r\n",
+                   ST_FACTORY_DEFAULTS_TAG);
     }
 
     /* Check Network Configuration (CRC verified) */
@@ -164,16 +193,23 @@ int EEPROM_ReadFactoryDefaults(void) {
 /**
  * @brief Check if factory defaults need to be written (first boot detection).
  *
+ * @details
  * Reads magic value from EEPROM_MAGIC_ADDR. If magic != EEPROM_MAGIC_VAL,
  * this is first boot and factory defaults are written.
  *
- * @return true if defaults were written successfully or already present, false on failure
+ * Also initializes DeviceIdentity module to load any existing provisioning.
+ *
+ * @return true if defaults were written successfully or already present, false on failure.
  */
 bool check_factory_defaults(void) {
     uint16_t magic = 0xFFFF;
 
+    /* Initialize device identity module (loads existing provisioning) */
+    DeviceIdentity_Init();
+
     /* Read magic value to detect first boot */
     xSemaphoreTake(eepromMtx, portMAX_DELAY);
+    INFO_PRINT("%s Factory defaults written successfully\r\n", ST_FACTORY_DEFAULTS_TAG);
     CAT24C256_ReadBuffer(EEPROM_MAGIC_ADDR, (uint8_t *)&magic, sizeof(magic));
     xSemaphoreGive(eepromMtx);
 

@@ -52,6 +52,14 @@ void get_networkGateway(void *ptr, uint8_t *len);
  */
 void get_networkDNS(void *ptr, uint8_t *len);
 
+/**
+ * @brief Get the network MAC address as a string.
+ * @param ptr Pointer to buffer to store the MAC address string.
+ * @param len Pointer to variable to store the length of the string.
+ * @return MAC address string
+ */
+void get_networkMAC(void *ptr, uint8_t *len);
+
 #endif
 
 /** @} */

@@ -1,0 +1,4329 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2025.12.16 23:55:00 =~=~=~=~=~=~=~=~=~=~=~=
+[INFO] [INIT] ===== Phase 1: Hardware Init =====
+
+[INFO] [INIT] GPIO configured
+[INFO] [INIT] I2C buses initialized
+[INFO] [INIT] SPI initialized for W5500
+[INFO] [INIT] ADC initialized
+[INFO] [CAT24DRV] Driver initialized 
+[INFO] [MCP] Initialized device addr=0x20
+[INFO] [MCP] Initialized device addr=0x21
+[INFO] [MCP] Initialized device addr=0x23
+[INFO] [MCP] Init complete: relay=20024D64 display=20024D74 selection=20024D84
+[INFO] Switch_SetPwrLed: entry
+[INFO] Switch_SetPwrLed: if
+[INFO] Switch_SetPwrLed: if (early disp)
+[INFO] Switch_SetPwrLed: mcp_write_pin(PWR_LED,val=1) -> 1
+
+[INFO] [INIT] ===== Phase 2: Peripheral Probing =====
+[INFO] [INIT] Relay MCP23017 detected at 0x20
+[INFO] [INIT] Display MCP23017 detected at 0x21
+[INFO] [INIT] Selection MCP23017 detected at 0x23
+[INFO] [INIT] All MCP23017s detected
+[INFO] [INIT] EEPROM CAT24C256 detected at 0x50
+
+[INFO] [INIT] ===== Phase 3: Subsystem Bring-up (deterministic) =====
+[INFO] [INIT] LoggerTask ready
+[INFO] [Console] Task initialized (polling USB-CDC @ 10ms)
+[INFO] [INIT] ConsoleTask ready
+[INFO] [STORAGE] Task initialized
+	[ECHO] [CONSOLE] Task started
+	[ECHO] [LOGGER] Task started
+	[ECHO] [STORAGE] Task started
+[INFO] [DEV-ID] Loaded: SN=SN-0167663, Region=EU
+[INFO] [ST-FDEF] Magic value verified
+[INFO] [ST-USRPR] Loaded user prefs from EEPROM
+[INFO] [STORAGE] Config loaded from EEPROM
+[INFO] [STORAGE] Config ready
+[INFO] [INIT] StorageTask ready
+[INFO] SwitchTask_Init: entry
+[INFO] SwitchTask_Init: if
+[INFO] mutex_acquire: entry
+[INFO] SwitchTask_Init: if
+[INFO] cache_sync_from_hw: entry
+[INFO] cache_sync_from_hw: for ch=0
+[INFO] hw_read_channel: entry ch=0
+[INFO] hw_read_channel: mcp_read_pin(ch=0) -> 0
+[INFO] cache_sync_from_hw: for ch=1
+[INFO] hw_read_channel: entry ch=1
+[INFO] hw_read_channel: mcp_read_pin(ch=1) -> 0
+[INFO] cache_sync_from_hw: for ch=2
+[INFO] hw_read_channel: entry ch=2
+[INFO] hw_read_channel: mcp_read_pin(ch=2) -> 0
+[INFO] cache_sync_from_hw: for ch=3
+[INFO] hw_read_channel: entry ch=3
+[INFO] hw_read_channel: mcp_read_pin(ch=3) -> 0
+[INFO] cache_sync_from_hw: for ch=4
+[INFO] hw_read_channel: entry ch=4
+[INFO] hw_read_channel: mcp_read_pin(ch=4) -> 0
+[INFO] cache_sync_from_hw: for ch=5
+[INFO] hw_read_channel: entry ch=5
+[INFO] hw_read_channel: mcp_read_pin(ch=5) -> 0
+[INFO] cache_sync_from_hw: for ch=6
+[INFO] hw_read_channel: entry ch=6
+[INFO] hw_read_channel: mcp_read_pin(ch=6) -> 0
+[INFO] cache_sync_from_hw: for ch=7
+[INFO] hw_read_channel: entry ch=7
+[INFO] hw_read_channel: mcp_read_pin(ch=7) -> 0
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] [SWITCHTASK] Initialized (Synchronous v2.0)
+[INFO] Switch_IsReady: entry
+[INFO] Switch_IsReady: entry
+[INFO] [INIT] SwitchTask ready
+[INFO] Switch_SetPwrLed: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SetPwrLed: if (disp ready)
+[INFO] Switch_SetPwrLed: mcp_write_pin(PWR_LED,val=1) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] [PowerMgr] Power manager initialized (state=RUN)
+[INFO] [INIT] ButtonTask ready
+[INFO] [NET] Task created successfully
+[INFO] [INIT] NetTask ready
+[INFO] [HLW8032] Initializing HLW8032 driver v1.0.2...
+[INFO] [HLW8032] Loading calibration from EEPROM...
+[INFO] [HLW8032] Calibration load complete
+[INFO] [HLW8032] Initialization complete
+[INFO] [OC_PROT] Initialized (EU: 10.0A limit, warn=9.00A, crit=9.50A, recv=8.50A)
+[INFO] [MeterTask]  MeterTask started
+[INFO] [INIT] MeterTask ready
+
+[INFO] [INIT] ===== Phase 4: Configuration Load =====
+[INFO] [INIT] Storage config ready
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: entry
+	[ECHO] [MeterTask]  Task started
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x00 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x00) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] [ETH] Hardware initialized (SPI @ 40 MHz)
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=1
+[INFO] hw_read_channel: mcp_read_pin(ch=1) -> 0
+[INFO] Switch_GetState: ch=1 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x09 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x09) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x01 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x01) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+	[ECHO] 
+	[ECHO] === ENERGIS Console Ready ===
+	[ECHO] Type HELP for available commands
+	[ECHO] 
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=2
+[INFO] hw_read_channel: mcp_read_pin(ch=2) -> 0
+[INFO] Switch_GetState: ch=2 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0A timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0A) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x02 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x02) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=3
+[INFO] hw_read_channel: mcp_read_pin(ch=3) -> 0
+[INFO] Switch_GetState: ch=3 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0B timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0B) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x03 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x03) -> 1
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=4
+[INFO] hw_read_channel: mcp_read_pin(ch=4) -> 0
+[INFO] Switch_GetState: ch=4 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0F timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0F) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x07 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x07) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=5
+[INFO] hw_read_channel: mcp_read_pin(ch=5) -> 0
+[INFO] Switch_GetState: ch=5 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0E timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0E) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x06 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x06) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] [ETH] PHY link established
+[INFO] [ETH] Chip initialized
+[INFO] Switch_SetEthLed: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SetEthLed: if (disp ready)
+[INFO] Switch_SetEthLed: mcp_write_pin(ETH_LED,val=1) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetEthLed: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SetEthLed: if (disp ready)
+[INFO] Switch_SetEthLed: mcp_write_pin(ETH_LED,val=1) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] [NET] Initial PHY link detected, ETH LED ON
+[INFO] [NET] Ethernet HW up, starting services
+[INFO] [SERVER] Listening on port 80
+[INFO] [NET] HTTP server initialized
+[INFO] [SNMPDRV] ready on UDP socket 1, port 161
+[INFO] [SNMP] Agent running on UDP/161 (sock 1)
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=6
+[INFO] hw_read_channel: mcp_read_pin(ch=6) -> 0
+[INFO] Switch_GetState: ch=6 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0D timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0D) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x05 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x05) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[WARNING 0x61F1] [HEALTH] GRACE PERIOD ENDED 
+[WARNING 0x61F1] [HEALTH] ARMING WATCHDOG 
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=7
+[INFO] hw_read_channel: mcp_read_pin(ch=7) -> 0
+[INFO] Switch_GetState: ch=7 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0C timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0C) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x04 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x04) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=0
+[INFO] hw_read_channel: mcp_read_pin(ch=0) -> 0
+[INFO] Switch_GetState: ch=0 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x08 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x08) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x00 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x00) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=1
+[INFO] hw_read_channel: mcp_read_pin(ch=1) -> 0
+[INFO] Switch_GetState: ch=1 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x09 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x09) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x01 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x01) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=2
+[INFO] hw_read_channel: mcp_read_pin(ch=2) -> 0
+[INFO] Switch_GetState: ch=2 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0A timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0A) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x02 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x02) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=3
+[INFO] hw_read_channel: mcp_read_pin(ch=3) -> 0
+[INFO] Switch_GetState: ch=3 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0B timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0B) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x03 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x03) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=4
+[INFO] hw_read_channel: mcp_read_pin(ch=4) -> 0
+[INFO] Switch_GetState: ch=4 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0F timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0F) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x07 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x07) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=5
+[INFO] hw_read_channel: mcp_read_pin(ch=5) -> 0
+[INFO] Switch_GetState: ch=5 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0E timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0E) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x06 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x06) -> 1
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=6
+[INFO] hw_read_channel: mcp_read_pin(ch=6) -> 0
+[INFO] Switch_GetState: ch=6 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0D timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0D) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x05 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x05) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=7
+[INFO] hw_read_channel: mcp_read_pin(ch=7) -> 0
+[INFO] Switch_GetState: ch=7 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0C timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0C) -> 1
+[INFO] vSwitchTask: for
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x04 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x04) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: if (periodic sync)
+[INFO] mutex_acquire: entry
+[INFO] vSwitchTask: if (mutex acquired)
+[INFO] cache_sync_from_hw: entry
+[INFO] cache_sync_from_hw: for ch=0
+[INFO] hw_read_channel: entry ch=0
+[INFO] hw_read_channel: mcp_read_pin(ch=0) -> 0
+[INFO] cache_sync_from_hw: for ch=1
+[INFO] hw_read_channel: entry ch=1
+[INFO] hw_read_channel: mcp_read_pin(ch=1) -> 0
+[INFO] cache_sync_from_hw: for ch=2
+[INFO] hw_read_channel: entry ch=2
+[INFO] hw_read_channel: mcp_read_pin(ch=2) -> 0
+[INFO] cache_sync_from_hw: for ch=3
+[INFO] hw_read_channel: entry ch=3
+[INFO] hw_read_channel: mcp_read_pin(ch=3) -> 0
+[INFO] cache_sync_from_hw: for ch=4
+[INFO] hw_read_channel: entry ch=4
+[INFO] hw_read_channel: mcp_read_pin(ch=4) -> 0
+[INFO] cache_sync_from_hw: for ch=5
+[INFO] hw_read_channel: entry ch=5
+[INFO] hw_read_channel: mcp_read_pin(ch=5) -> 0
+[INFO] cache_sync_from_hw: for ch=6
+[INFO] hw_read_channel: entry ch=6
+[INFO] hw_read_channel: mcp_read_pin(ch=6) -> 0
+[INFO] cache_sync_from_hw: for ch=7
+[INFO] hw_read_channel: entry ch=7
+[INFO] hw_read_channel: mcp_read_pin(ch=7) -> 0
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=0
+[INFO] hw_read_channel: mcp_read_pin(ch=0) -> 0
+[INFO] Switch_GetState: ch=0 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x08 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x08) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x00 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x00) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=1
+[INFO] hw_read_channel: mcp_read_pin(ch=1) -> 0
+[INFO] Switch_GetState: ch=1 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x09 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x09) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x01 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x01) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=2
+[INFO] hw_read_channel: mcp_read_pin(ch=2) -> 0
+[INFO] Switch_GetState: ch=2 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0A timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0A) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x02 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x02) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=3
+[INFO] hw_read_channel: mcp_read_pin(ch=3) -> 0
+[INFO] Switch_GetState: ch=3 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0B timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0B) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x03 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x03) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=4
+[INFO] hw_read_channel: mcp_read_pin(ch=4) -> 0
+[INFO] Switch_GetState: ch=4 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0F timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0F) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x07 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x07) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=5
+[INFO] hw_read_channel: mcp_read_pin(ch=5) -> 0
+[INFO] Switch_GetState: ch=5 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0E timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0E) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x06 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x06) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=6
+[INFO] hw_read_channel: mcp_read_pin(ch=6) -> 0
+[INFO] Switch_GetState: ch=6 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0D timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0D) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x05 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x05) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=7
+[INFO] hw_read_channel: mcp_read_pin(ch=7) -> 0
+[INFO] Switch_GetState: ch=7 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0C timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0C) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x04 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x04) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=0
+[INFO] hw_read_channel: mcp_read_pin(ch=0) -> 0
+[INFO] Switch_GetState: ch=0 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x08 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x08) -> 1
+[INFO] vSwitchTask: for
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x00 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x00) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=1
+[INFO] hw_read_channel: mcp_read_pin(ch=1) -> 0
+[INFO] Switch_GetState: ch=1 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x09 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x09) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x01 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x01) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=2
+[INFO] hw_read_channel: mcp_read_pin(ch=2) -> 0
+[INFO] Switch_GetState: ch=2 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0A timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0A) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x02 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x02) -> 1
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=3
+[INFO] hw_read_channel: mcp_read_pin(ch=3) -> 0
+[INFO] Switch_GetState: ch=3 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0B timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0B) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x03 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x03) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=4
+[INFO] hw_read_channel: mcp_read_pin(ch=4) -> 0
+[INFO] Switch_GetState: ch=4 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0F timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0F) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x07 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x07) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=5
+[INFO] hw_read_channel: mcp_read_pin(ch=5) -> 0
+[INFO] Switch_GetState: ch=5 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0E timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0E) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x06 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x06) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=6
+[INFO] hw_read_channel: mcp_read_pin(ch=6) -> 0
+[INFO] Switch_GetState: ch=6 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0D timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0D) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x05 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x05) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: if (periodic sync)
+[INFO] mutex_acquire: entry
+[INFO] vSwitchTask: if (mutex acquired)
+[INFO] cache_sync_from_hw: entry
+[INFO] cache_sync_from_hw: for ch=0
+[INFO] hw_read_channel: entry ch=0
+[INFO] hw_read_channel: mcp_read_pin(ch=0) -> 0
+[INFO] cache_sync_from_hw: for ch=1
+[INFO] hw_read_channel: entry ch=1
+[INFO] hw_read_channel: mcp_read_pin(ch=1) -> 0
+[INFO] cache_sync_from_hw: for ch=2
+[INFO] hw_read_channel: entry ch=2
+[INFO] hw_read_channel: mcp_read_pin(ch=2) -> 0
+[INFO] cache_sync_from_hw: for ch=3
+[INFO] hw_read_channel: entry ch=3
+[INFO] hw_read_channel: mcp_read_pin(ch=3) -> 0
+[INFO] cache_sync_from_hw: for ch=4
+[INFO] hw_read_channel: entry ch=4
+[INFO] hw_read_channel: mcp_read_pin(ch=4) -> 0
+[INFO] cache_sync_from_hw: for ch=5
+[INFO] hw_read_channel: entry ch=5
+[INFO] hw_read_channel: mcp_read_pin(ch=5) -> 0
+[INFO] cache_sync_from_hw: for ch=6
+[INFO] hw_read_channel: entry ch=6
+[INFO] hw_read_channel: mcp_read_pin(ch=6) -> 0
+[INFO] cache_sync_from_hw: for ch=7
+[INFO] hw_read_channel: entry ch=7
+[INFO] hw_read_channel: mcp_read_pin(ch=7) -> 0
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=7
+[INFO] hw_read_channel: mcp_read_pin(ch=7) -> 0
+[INFO] Switch_GetState: ch=7 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0C timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0C) -> 1
+[INFO] vSwitchTask: for
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x04 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x04) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=0
+[INFO] hw_read_channel: mcp_read_pin(ch=0) -> 0
+[INFO] Switch_GetState: ch=0 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x08 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x08) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x00 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x00) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=1
+[INFO] hw_read_channel: mcp_read_pin(ch=1) -> 0
+[INFO] Switch_GetState: ch=1 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x09 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x09) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x01 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x01) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=2
+[INFO] hw_read_channel: mcp_read_pin(ch=2) -> 0
+[INFO] Switch_GetState: ch=2 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0A timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0A) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x02 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x02) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=3
+[INFO] hw_read_channel: mcp_read_pin(ch=3) -> 0
+[INFO] Switch_GetState: ch=3 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0B timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0B) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x03 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x03) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=4
+[INFO] hw_read_channel: mcp_read_pin(ch=4) -> 0
+[INFO] Switch_GetState: ch=4 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0F timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0F) -> 1
+[INFO] vSwitchTask: for
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x07 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x07) -> 1
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=5
+[INFO] hw_read_channel: mcp_read_pin(ch=5) -> 0
+[INFO] Switch_GetState: ch=5 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0E timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0E) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x06 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x06) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=6
+[INFO] hw_read_channel: mcp_read_pin(ch=6) -> 0
+[INFO] Switch_GetState: ch=6 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0D timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0D) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x05 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x05) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=7
+[INFO] hw_read_channel: mcp_read_pin(ch=7) -> 0
+[INFO] Switch_GetState: ch=7 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0C timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0C) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x04 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x04) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=0
+[INFO] hw_read_channel: mcp_read_pin(ch=0) -> 0
+[INFO] Switch_GetState: ch=0 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x08 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x08) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x00 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x00) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=1
+[INFO] hw_read_channel: mcp_read_pin(ch=1) -> 0
+[INFO] Switch_GetState: ch=1 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x09 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x09) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x01 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x01) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=2
+[INFO] hw_read_channel: mcp_read_pin(ch=2) -> 0
+[INFO] Switch_GetState: ch=2 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0A timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0A) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x02 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x02) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=3
+[INFO] hw_read_channel: mcp_read_pin(ch=3) -> 0
+[INFO] Switch_GetState: ch=3 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0B timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0B) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x03 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x03) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=4
+[INFO] hw_read_channel: mcp_read_pin(ch=4) -> 0
+[INFO] Switch_GetState: ch=4 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0F timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0F) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x07 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x07) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=5
+[INFO] hw_read_channel: mcp_read_pin(ch=5) -> 0
+[INFO] Switch_GetState: ch=5 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0E timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0E) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x06 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x06) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=6
+[INFO] hw_read_channel: mcp_read_pin(ch=6) -> 0
+[INFO] Switch_GetState: ch=6 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0D timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0D) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x05 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x05) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: if (periodic sync)
+[INFO] mutex_acquire: entry
+[INFO] vSwitchTask: if (mutex acquired)
+[INFO] cache_sync_from_hw: entry
+[INFO] cache_sync_from_hw: for ch=0
+[INFO] hw_read_channel: entry ch=0
+[INFO] hw_read_channel: mcp_read_pin(ch=0) -> 0
+[INFO] cache_sync_from_hw: for ch=1
+[INFO] hw_read_channel: entry ch=1
+[INFO] hw_read_channel: mcp_read_pin(ch=1) -> 0
+[INFO] cache_sync_from_hw: for ch=2
+[INFO] hw_read_channel: entry ch=2
+[INFO] hw_read_channel: mcp_read_pin(ch=2) -> 0
+[INFO] cache_sync_from_hw: for ch=3
+[INFO] hw_read_channel: entry ch=3
+[INFO] hw_read_channel: mcp_read_pin(ch=3) -> 0
+[INFO] cache_sync_from_hw: for ch=4
+[INFO] hw_read_channel: entry ch=4
+[INFO] hw_read_channel: mcp_read_pin(ch=4) -> 0
+[INFO] cache_sync_from_hw: for ch=5
+[INFO] hw_read_channel: entry ch=5
+[INFO] hw_read_channel: mcp_read_pin(ch=5) -> 0
+[INFO] cache_sync_from_hw: for ch=6
+[INFO] hw_read_channel: entry ch=6
+[INFO] hw_read_channel: mcp_read_pin(ch=6) -> 0
+[INFO] cache_sync_from_hw: for ch=7
+[INFO] hw_read_channel: entry ch=7
+[INFO] hw_read_channel: mcp_read_pin(ch=7) -> 0
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=7
+[INFO] hw_read_channel: mcp_read_pin(ch=7) -> 0
+[INFO] Switch_GetState: ch=7 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0C timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0C) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x04 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x04) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=0
+[INFO] hw_read_channel: mcp_read_pin(ch=0) -> 0
+[INFO] Switch_GetState: ch=0 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x08 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x08) -> 1
+[INFO] vSwitchTask: for
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x00 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x00) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=1
+[INFO] hw_read_channel: mcp_read_pin(ch=1) -> 0
+[INFO] Switch_GetState: ch=1 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x09 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x09) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x01 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x01) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=2
+[INFO] hw_read_channel: mcp_read_pin(ch=2) -> 0
+[INFO] Switch_GetState: ch=2 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0A timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0A) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x02 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x02) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=3
+[INFO] hw_read_channel: mcp_read_pin(ch=3) -> 0
+[INFO] Switch_GetState: ch=3 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0B timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0B) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x03 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x03) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=4
+[INFO] hw_read_channel: mcp_read_pin(ch=4) -> 0
+[INFO] Switch_GetState: ch=4 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0F timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0F) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x07 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x07) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=5
+[INFO] hw_read_channel: mcp_read_pin(ch=5) -> 0
+[INFO] Switch_GetState: ch=5 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0E timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0E) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x06 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x06) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=6
+[INFO] hw_read_channel: mcp_read_pin(ch=6) -> 0
+[INFO] Switch_GetState: ch=6 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0D timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0D) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x05 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x05) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=7
+[INFO] hw_read_channel: mcp_read_pin(ch=7) -> 0
+[INFO] Switch_GetState: ch=7 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0C timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0C) -> 1
+[INFO] vSwitchTask: for
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x04 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x04) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=0
+[INFO] hw_read_channel: mcp_read_pin(ch=0) -> 0
+[INFO] Switch_GetState: ch=0 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x08 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x08) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x00 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x00) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=1
+[INFO] hw_read_channel: mcp_read_pin(ch=1) -> 0
+[INFO] Switch_GetState: ch=1 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x09 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x09) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x01 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x01) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=2
+[INFO] hw_read_channel: mcp_read_pin(ch=2) -> 0
+[INFO] Switch_GetState: ch=2 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0A timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0A) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x02 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x02) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=3
+[INFO] hw_read_channel: mcp_read_pin(ch=3) -> 0
+[INFO] Switch_GetState: ch=3 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0B timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0B) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x03 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x03) -> 1
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=4
+[INFO] hw_read_channel: mcp_read_pin(ch=4) -> 0
+[INFO] Switch_GetState: ch=4 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0F timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0F) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x07 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x07) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_SetChannelCompat: entry ch=0 desired=1 timeout_ms=0
+[INFO] Switch_SetChannel: entry ch=0 desired=1
+[INFO] mutex_acquire: entry
+[INFO] exec_set_channel: entry ch=0 desired=1
+[INFO] hw_write_channel: entry ch=0 desired=1
+[INFO] hw_write_channel: mcp_write_pin(rel,ch=0,val=1) -> 1
+[INFO] hw_write_channel: if (disp mirror)
+[INFO] hw_write_channel: mcp_write_pin(disp,ch=0,val=1) -> 1
+[INFO] hw_verify_channel: entry ch=0 expected=1
+[INFO] hw_read_channel: entry ch=0
+[INFO] hw_read_channel: mcp_read_pin(ch=0) -> 1
+[INFO] hw_verify_channel: actual=1
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: if
+[INFO] exec_set_channel: if (record on)
+[INFO] exec_set_channel: exit result=0
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetChannel: exit result=0
+[INFO] Switch_SetChannelCompat: exit ok=1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetStateCompat: entry
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=0
+[INFO] hw_read_channel: mcp_read_pin(ch=0) -> 1
+[INFO] Switch_GetState: ch=0 state=1
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: if
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_SetChannelCompat: entry ch=0 desired=1 timeout_ms=0
+[INFO] Switch_SetChannel: entry ch=0 desired=1
+[INFO] mutex_acquire: entry
+[INFO] exec_set_channel: entry ch=0 desired=1
+[INFO] hw_write_channel: entry ch=0 desired=1
+[INFO] hw_write_channel: mcp_write_pin(rel,ch=0,val=1) -> 1
+[INFO] hw_write_channel: if (disp mirror)
+[INFO] hw_write_channel: mcp_write_pin(disp,ch=0,val=1) -> 1
+[INFO] hw_verify_channel: entry ch=0 expected=1
+[INFO] hw_read_channel: entry ch=0
+[INFO] hw_read_channel: mcp_read_pin(ch=0) -> 1
+[INFO] hw_verify_channel: actual=1
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: if
+[INFO] exec_set_channel: if (record on)
+[INFO] exec_set_channel: exit result=0
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetChannel: exit result=0
+[INFO] Switch_SetChannelCompat: exit ok=1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] Switch_GetStateCompat: entry
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=0
+[INFO] hw_read_channel: mcp_read_pin(ch=0) -> 1
+[INFO] Switch_GetState: ch=0 state=1
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: if
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=5
+[INFO] hw_read_channel: mcp_read_pin(ch=5) -> 0
+[INFO] Switch_GetState: ch=5 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0E timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0E) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x06 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x06) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: if (periodic sync)
+[INFO] mutex_acquire: entry
+[INFO] vSwitchTask: if (mutex acquired)
+[INFO] cache_sync_from_hw: entry
+[INFO] cache_sync_from_hw: for ch=0
+[INFO] hw_read_channel: entry ch=0
+[INFO] hw_read_channel: mcp_read_pin(ch=0) -> 1
+[INFO] cache_sync_from_hw: if (read==1)
+[INFO] cache_sync_from_hw: for ch=1
+[INFO] hw_read_channel: entry ch=1
+[INFO] hw_read_channel: mcp_read_pin(ch=1) -> 0
+[INFO] cache_sync_from_hw: for ch=2
+[INFO] hw_read_channel: entry ch=2
+[INFO] hw_read_channel: mcp_read_pin(ch=2) -> 0
+[INFO] cache_sync_from_hw: for ch=3
+[INFO] hw_read_channel: entry ch=3
+[INFO] hw_read_channel: mcp_read_pin(ch=3) -> 0
+[INFO] cache_sync_from_hw: for ch=4
+[INFO] hw_read_channel: entry ch=4
+[INFO] hw_read_channel: mcp_read_pin(ch=4) -> 0
+[INFO] cache_sync_from_hw: for ch=5
+[INFO] hw_read_channel: entry ch=5
+[INFO] hw_read_channel: mcp_read_pin(ch=5) -> 0
+[INFO] cache_sync_from_hw: for ch=6
+[INFO] hw_read_channel: entry ch=6
+[INFO] hw_read_channel: mcp_read_pin(ch=6) -> 0
+[INFO] cache_sync_from_hw: for ch=7
+[INFO] hw_read_channel: entry ch=7
+[INFO] hw_read_channel: mcp_read_pin(ch=7) -> 0
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=6
+[INFO] hw_read_channel: mcp_read_pin(ch=6) -> 0
+[INFO] Switch_GetState: ch=6 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0D timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0D) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x05 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x05) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=7
+[INFO] hw_read_channel: mcp_read_pin(ch=7) -> 0
+[INFO] Switch_GetState: ch=7 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0C timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0C) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x04 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x04) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=0
+[INFO] hw_read_channel: mcp_read_pin(ch=0) -> 1
+[INFO] Switch_GetState: ch=0 state=1
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: if
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x08 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x08) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x00 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x00) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=1
+[INFO] hw_read_channel: mcp_read_pin(ch=1) -> 0
+[INFO] Switch_GetState: ch=1 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x09 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x09) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x01 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x01) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_IsReady: entry
+[INFO] Switch_SelectAllOff: entry
+[INFO] mutex_acquire: entry
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=0,mask=0xFF,val=0) -> 1
+[INFO] Switch_SelectAllOff: mcp_write_mask(port=1,mask=0xFF,val=0) -> 1
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] Switch_GetState: entry
+[INFO] mutex_acquire: entry
+[INFO] hw_read_channel: entry ch=2
+[INFO] hw_read_channel: mcp_read_pin(ch=2) -> 0
+[INFO] Switch_GetState: ch=2 state=0
+[INFO] cache_update_channel: entry
+[INFO] cache_update_channel: else
+[INFO] mutex_release: entry
+[INFO] mutex_release: if
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x0A timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x0A) -> 1
+[INFO] Switch_SetRelayPortBMasked: entry mask=0x0F val=0x02 timeout_ms=10
+[INFO] Switch_SetRelayPortBMasked: if (ready)
+[INFO] Switch_SetRelayPortBMasked: if (mutex)
+[INFO] Switch_SetRelayPortBMasked: if (rel ready)
+[INFO] Switch_SetRelayPortBMasked: mcp_write_mask(mask=0x0F,val=0x02) -> 1
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[INFO] vSwitchTask: for
+[

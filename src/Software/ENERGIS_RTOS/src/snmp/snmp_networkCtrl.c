@@ -51,6 +51,21 @@ static inline uint8_t ipfmt(void *ptr, const uint8_t ip[4]) {
     return (uint8_t)snprintf((char *)ptr, 16, "%u.%u.%u.%u", ip[0], ip[1], ip[2], ip[3]);
 }
 
+/**
+ * @brief Format a MAC address to colon-separated hex.
+ *
+ * @param[out] ptr  Destination buffer (must be at least 18 bytes).
+ * @param[in]  mac  Source MAC address as 6 octets.
+ *
+ * @return Number of characters written excluding the null terminator.
+ *
+ * @note The output format is "02:45:4E:0C:7B:1C" and is null-terminated.
+ */
+static inline uint8_t macfmt(void *ptr, const uint8_t mac[6]) {
+    return (uint8_t)snprintf((char *)ptr, 18, "%02X:%02X:%02X:%02X:%02X:%02X", mac[0], mac[1],
+                             mac[2], mac[3], mac[4], mac[5]);
+}
+
 /* ===== SNMP getters (string-typed) ===== */
 
 /**
@@ -111,4 +126,19 @@ void get_networkDNS(void *ptr, uint8_t *len) {
     networkInfo ni;
     load_netcfg(&ni);
     *len = ipfmt(ptr, ni.dns);
+}
+
+/**
+ * @brief Get persisted MAC address (EEPROM) for SNMP.
+ *
+ * @param[out] ptr  Output buffer for the string (>=16 bytes recommended).
+ * @param[out] len  Number of characters written to @p ptr (excluding null).
+ *
+ * @pre Storage helpers are initialized.
+ * @post @p ptr contains the dotted-decimal MAC address; @p len reflects byte count.
+ */
+void get_networkMAC(void *ptr, uint8_t *len) {
+    networkInfo ni;
+    load_netcfg(&ni);
+    *len = macfmt(ptr, ni.mac);
 }

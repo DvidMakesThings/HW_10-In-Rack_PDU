@@ -13,6 +13,7 @@
 
 #include "../CONFIG.h"
 #include "../html/help_gz.h"
+#include "../html/settings_gz.h"
 
 /**
  * @brief HTML content for the Control page.
@@ -22,7 +23,7 @@
  */
 const char control_html[] =
     "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\" /><meta name=\"viewport\" "
-    "content=\"width=device-width,initial-scale=1.0\"><title>ENERGIS 8 Channel Managed PDU - "
+    "content=\"width=device-width,initial-scale=1.0\"><title>ENERGIS 10IN Managed PDU - "
     "Control</title><style>* "
     "{ margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif } body { background: "
     "#1a1d23; color: #e4e4e4 } a { text-decoration: none; color: #aaa } a:hover { color: #fff } "
@@ -65,7 +66,7 @@ const char control_html[] =
     "}) .catch(_ =>updateStatus()); } function setAll(state) { for (let i = 1; i<= 8; i++) { "
     "document.getElementById(`toggle-${i}`).checked = state; toggleChannel(i); } } "
     "window.addEventListener('load', () =>{ updateStatus(); setInterval(updateStatus, 3000); "
-    "});</script></head><body><div class=\"topbar\"><h1>ENERGIS 8 Channel Managed "
+    "});</script></head><body><div class=\"topbar\"><h1>ENERGIS 10IN  Managed "
     "PDU</h1></div><div "
     "class=\"container\"><nav class=\"sidebar\"><ul><li><a "
     "href=\"control.html\">Control</a></li><li><a href=\"settings.html\">Settings</a></li><li><a "
@@ -120,85 +121,16 @@ const char control_html[] =
  *
  * This string contains the HTML markup for the Settings page,
  * allowing users to configure network, device, and temperature unit settings.
+ *
+ * @note The Settings page content is stored as a gzip-compressed blob in settings_gz.h
  */
-const char settings_html[] =
-    "<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" "
-    "content=\"width=device-width,initial-scale=1.0\"><title>ENERGIS 8 Channel Managed PDU - "
-    "Settings</title>"
-    "<style>*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}"
-    "body{background:#1a1d23;color:#e4e4e4}a{color:#aaa;text-decoration:none}"
-    "a:hover{color:#fff}.topbar{width:100%;height:50px;background:#242731;display:flex;"
-    "align-items:center;padding:0 20px}.topbar h1{font-size:1.2rem;color:#fff}"
-    ".container{display:flex;width:100%;height:calc(100vh - 50px)}"
-    ".sidebar{width:220px;background:#2e323c;padding:20px 0}.sidebar ul{list-style:none; "
-    "margin-left: 20px;}"
-    ".sidebar ul li{padding:10px 20px}.sidebar ul li:hover{background:#3b404d}"
-    ".main-content{flex:1;padding:20px;overflow-y:auto}h2{margin-bottom:.5rem}"
-    "hr{border:none;border-top:1px solid #333;margin:1rem 0}"
-    ".form-group{display:flex;align-items:center;margin-bottom:.75rem}"
-    ".form-group label{width:160px;margin-right:10px}"
-    ".form-group input[type=text],.form-group input[type=radio]{padding:8px;"
-    "border:none;border-radius:4px}.form-group input[type=text]{flex:1;"
-    "max-width:200px;margin-right:10px}.btn{background:#3fa7ff;border:none;"
-    "padding:10px 16px;color:#fff;cursor:pointer;border-radius:4px;font-size:.9rem}"
-    ".btn:hover{background:#1f8ae3}.manuals{margin-top:2rem}</style></head>"
-    "<body><div class=\"topbar\"><h1>ENERGIS 8 Channel Managed PDU</h1></div><div "
-    "class=\"container\">"
-    "<nav class=\"sidebar\"><ul>"
-    "<li><a href=\"control.html\">Control</a></li>"
-    "<li><a href=\"settings.html\">Settings</a></li>"
-    "<li><a href=\"help.html\">Help</a></li>"
-    "<li><a href=\"user_manual.html\">User Manual</a></li>"
-    "<li><a href=\"automation_manual.html\">Automation Manual</a></li>"
-    "</ul></nav><main class=\"main-content\">"
-    "<h2>Settings</h2><form method=\"post\" action=\"/api/settings\">"
-    "<h3>Network Settings</h3><hr>"
-    "<div class=\"form-group\"><label for=\"ip\">IP Address:</label>"
-    "<input type=\"text\" id=\"ip\" name=\"ip\" value=\"%s\">"
-    "</div>"
-    "<div class=\"form-group\"><label for=\"gateway\">Default Gateway:</label>"
-    "<input type=\"text\" id=\"gateway\" name=\"gateway\" value=\"%s\">"
-    "</div>"
-    "<div class=\"form-group\"><label for=\"subnet\">Subnet Mask:</label>"
-    "<input type=\"text\" id=\"subnet\" name=\"subnet\" value=\"%s\">"
-    "</div>"
-    "<div class=\"form-group\"><label for=\"dns\">DNS Server:</label>"
-    "<input type=\"text\" id=\"dns\" name=\"dns\" value=\"%s\">"
-    "</div>"
-    "<h3>Device Settings</h3><hr>"
-    "<div class=\"form-group\"><label for=\"device_name\">Device Name:</label>"
-    "<input type=\"text\" id=\"device_name\" name=\"device_name\" value=\"%s\">"
-    "</div>"
-    "<div class=\"form-group\"><label for=\"location\">Device Location:</label>"
-    "<input type=\"text\" id=\"location\" name=\"location\" value=\"%s\">"
-    "</div>"
-    "<h3>Temperature Unit</h3><hr>"
-    "<div class=\"form-group\">"
-    "<input type=\"radio\" id=\"celsius\" name=\"temp_unit\" value=\"celsius\" %s>"
-    "<label for=\"celsius\">Celsius</label>"
-    "</div>"
-    "<div class=\"form-group\">"
-    "<input type=\"radio\" id=\"fahrenheit\" name=\"temp_unit\" value=\"fahrenheit\" %s>"
-    "<label for=\"fahrenheit\">Fahrenheit</label>"
-    "</div>"
-    "<div class=\"form-group\">"
-    "<input type=\"radio\" id=\"kelvin\" name=\"temp_unit\" value=\"kelvin\" %s>"
-    "<label for=\"kelvin\">Kelvin</label>"
-    "</div><br>"
-    "<button type=\"submit\" class=\"btn\">Save Settings</button>"
-    "</form>"
-    "<div class=\"manuals\">"
-    "<h3>Manuals</h3><hr>"
-    "<p><a href=\"user_manual.html\">User Manual</a><br>"
-    "<a href=\"automation_manual.html\">Programming &amp; Interfacing Manual</a></p>"
-    "</div>"
-    "</main></div></body></html>\n";
+// const char settings_html[] =
 
 /**
  * @brief HTML content for the Help page.
  *
  * This string contains the HTML markup for the Help page,
- * providing guidance and links to manuals for the ENERGIS 8 Channel Managed PDU.
+ * providing guidance and links to manuals for the ENERGIS 10IN Managed PDU.
  *
  * @note The Help page content is stored as a gzip-compressed blob in help_gz.h
  */
@@ -213,7 +145,7 @@ const char settings_html[] =
  */
 const char user_manual_html[] =
     "<!DOCTYPE html><html><head><meta charset=\"UTF-8\" /><meta name=\"viewport\" "
-    "content=\"width=device-width, initial-scale=1.0\"><title>ENERGIS 8 Channel Managed PDU - User "
+    "content=\"width=device-width, initial-scale=1.0\"><title>ENERGIS 10IN Managed PDU - User "
     "Manual</title><style>* { margin: 0; padding: 0; box-sizing: border-box; font-family: "
     "sans-serif; } body { background: #1a1d23; color: #e4e4e4; } a { color: #aaa; text-decoration: "
     "none; } a:hover { color: #fff; } .topbar { height: 50px; background: #242731; display: flex; "
@@ -224,7 +156,7 @@ const char user_manual_html[] =
     "padding: 10px 20px; } .sidebar li:hover { background: #3b404d; } .sidebar a { color: #ccc; } "
     ".sidebar a:hover { color: #fff; } .content { flex: 1; display: flex; flex-direction: column; "
     "} .pdf-container { flex: 1; border: 1px solid #444; } .note { padding: 0.5rem; text-align: "
-    "right; font-size: 0.9rem; }</style></head><body><div class=\"topbar\"><h1>ENERGIS 8 Channel "
+    "right; font-size: 0.9rem; }</style></head><body><div class=\"topbar\"><h1>ENERGIS 10IN "
     "Managed PDU</h1></div><div class=\"container\"><div class=\"sidebar\"><ul><li><a "
     "href=\"control.html\">Control</a></li><li><a href=\"settings.html\">Settings</a></li><li><a "
     "href=\"help.html\">Help</a></li><li><a href=\"user_manual.html\">User Manual</a></li><li><a "
@@ -246,7 +178,7 @@ const char user_manual_html[] =
  */
 const char automation_manual_html[] =
     "<!DOCTYPE html><html><head><meta charset=\"UTF-8\" /><meta name=\"viewport\" "
-    "content=\"width=device-width, initial-scale=1.0\"><title>ENERGIS 8 Channel Managed PDU - "
+    "content=\"width=device-width, initial-scale=1.0\"><title>ENERGIS 10IN Managed PDU - "
     "Programming "
     "Manual</title><style>* { margin: 0; padding: 0; box-sizing: border-box; font-family: "
     "sans-serif; } body { background: #1a1d23; color: #e4e4e4; } a { color: #aaa; text-decoration: "
@@ -259,7 +191,7 @@ const char automation_manual_html[] =
     ".sidebar a:hover { color: #fff; } /* Right-side area */ .content { flex: 1; display: flex; "
     "flex-direction: column; } .pdf-container { flex: 1; border: 1px solid #444; } .note { "
     "padding: 0.5rem; text-align: right; font-size: 0.9rem; }</style></head><body><div "
-    "class=\"topbar\"><h1>ENERGIS 8 Channel Managed PDU</h1></div><div class=\"container\"><div "
+    "class=\"topbar\"><h1>ENERGIS 10IN Managed PDU</h1></div><div class=\"container\"><div "
     "class=\"sidebar\"><ul><li><a href=\"control.html\">Control</a></li><li><a "
     "href=\"settings.html\">Settings</a></li><li><a href=\"help.html\">Help</a></li><li><a "
     "href=\"user_manual.html\">User Manual</a></li><li><a "
@@ -281,7 +213,7 @@ const char automation_manual_html[] =
  */
 const char *get_page_content(const char *request) {
     if (strstr(request, "GET /settings.html"))
-        return settings_html;
+        return (const char *)settings_gz;
     else if (strstr(request, "GET /help.html"))
         /* Serve the gzipped help page directly from flash */
         return (const char *)help_gz;
@@ -314,7 +246,9 @@ int get_page_length(const char *request, int *is_gzip) {
         *is_gzip = 0;
 
     if (strstr(request, "GET /settings.html")) {
-        return (int)strlen(settings_html);
+        if (is_gzip)
+            *is_gzip = 1;
+        return (int)settings_gz_len;
     } else if (strstr(request, "GET /help.html")) {
         if (is_gzip)
             *is_gzip = 1;

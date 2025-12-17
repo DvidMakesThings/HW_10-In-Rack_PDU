@@ -105,20 +105,22 @@ static void init_gpio(void) {
  */
 static void init_i2c(void) {
     /* I2C0 (Display + Selection MCP23017s) */
-    i2c_init(i2c0, I2C_SPEED);
+    i2c_init(i2c0, I2C0_SPEED);
     gpio_set_function(I2C0_SDA, GPIO_FUNC_I2C);
     gpio_set_function(I2C0_SCL, GPIO_FUNC_I2C);
     gpio_pull_up(I2C0_SDA);
     gpio_pull_up(I2C0_SCL);
 
     /* I2C1 (Relay MCP23017 + EEPROM) */
-    i2c_init(i2c1, I2C_SPEED);
+    i2c_init(i2c1, I2C1_SPEED);
     gpio_set_function(I2C1_SDA, GPIO_FUNC_I2C);
     gpio_set_function(I2C1_SCL, GPIO_FUNC_I2C);
     gpio_pull_up(I2C1_SDA);
     gpio_pull_up(I2C1_SCL);
 
     vTaskDelay(pdMS_TO_TICKS(10)); /* Allow I2C to stabilize */
+    /* Start global I2C bus manager (FIFO serialization across controllers) */
+    I2C_BusInit();
     INFO_PRINT("%s I2C buses initialized\r\n", INIT_TASK_TAG);
 }
 
@@ -161,7 +163,7 @@ static void init_adc(void) {
  */
 static bool probe_i2c_device(i2c_inst_t *i2c, uint8_t addr, const char *name) {
     uint8_t dummy;
-    int ret = i2c_read_timeout_us(i2c, addr, &dummy, 1, false, 1000);
+    int ret = i2c_bus_read_timeout_us(i2c, addr, &dummy, 1, false, 1000);
     bool present = (ret >= 0);
 
     if (present) {
@@ -253,6 +255,7 @@ static float adc_read_voltage_avg(uint8_t ch) {
  */
 static void InitTask(void *pvParameters) {
     (void)pvParameters;
+    const device_identity_t *id = DeviceIdentity_Get();
 
     /* ===== PHASE 0: Start logger FIRST to avoid USB-CDC stalls ===== */
     LoggerTask_Init(true);
@@ -263,15 +266,6 @@ static void InitTask(void *pvParameters) {
             vTaskDelay(pdMS_TO_TICKS(10));
         }
     }
-
-    /* ===== Banner (after logger is ready; never before) ===== */
-    log_printf("\r\n");
-    INFO_PRINT("========================================\r\n");
-    INFO_PRINT("  ENERGIS PDU - System Bring-Alive\r\n");
-    INFO_PRINT("========================================\r\n");
-    INFO_PRINT("Firmware: %s\r\n", SWVERSION);
-    INFO_PRINT("Serial: %s\r\n", DEFAULT_SN);
-    INFO_PRINT("========================================\r\n\r\n");
 
     /* ===== PHASE 1: Hardware Initialization ===== */
     INFO_PRINT("%s ===== Phase 1: Hardware Init =====\r\n\r\n", INIT_TASK_TAG);
@@ -534,10 +528,16 @@ static void InitTask(void *pvParameters) {
     INFO_PRINT("%s ===================================\r\n\r\n", INIT_TASK_TAG);
     log_printf("\r\n");
 
-    INFO_PRINT("%s System bring-alive complete =====\r\n\r\n", INIT_TASK_TAG);
-    INFO_PRINT("==========================================\r\n");
-    INFO_PRINT("               SYSTEM READY               \r\n");
-    INFO_PRINT("==========================================\r\n\r\n");
+    log_printf("\r\n");
+    INFO_PRINT("========================================\r\n");
+    INFO_PRINT("         ENERGIS 10IN MANAGED PDU       \r\n");
+    INFO_PRINT("========================================\r\n");
+    INFO_PRINT("Firmware: %s\r\n", SWVERSION);
+    INFO_PRINT("Serial: %s\r\n", id->serial_number);
+    INFO_PRINT("========================================\r\n\r\n");
+    INFO_PRINT("========================================\r\n");
+    INFO_PRINT("               SYSTEM READY             \r\n");
+    INFO_PRINT("========================================\r\n\r\n");
 
     vTaskDelete(NULL);
 }

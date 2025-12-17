@@ -166,13 +166,13 @@ int SNMP_Poll(int max_packets) {
         memset(s_resp.buffer, 0, sizeof(s_resp.buffer));
 
 #if _SNMP_DEBUG_
-        dumpCode("[SNMP RX]\r\n", "\r\n", s_req.buffer, s_req.len);
+        dumpCode("\n[SNMP RX]\r\n", "\r\n", s_req.buffer, s_req.len);
 #endif
 
         if (parseSNMPMessage() != -1) {
             (void)sendto(s_sock_agent, s_resp.buffer, (uint16_t)s_resp.index, src_addr, src_port);
 #if _SNMP_DEBUG_
-            dumpCode("[SNMP TX]\r\n", "\r\n", s_resp.buffer, s_resp.index);
+            dumpCode("\n[SNMP TX]\r\n", "\r\n", s_resp.buffer, s_resp.index);
 #endif
         }
 
@@ -882,5 +882,6 @@ static void dumpCode(const char *hdr, const char *tail, const uint8_t *buf, int3
         log_printf("\r\n");
     }
     log_printf("%s", tail);
+    log_printf("\r\n");
 }
 #endif

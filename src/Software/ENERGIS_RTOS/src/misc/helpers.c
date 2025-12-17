@@ -203,7 +203,7 @@ bool ethernet_apply_network_from_storage(const networkInfo *ni) {
 
     /* Optional: print applied configuration */
     // w5500_print_network(&cfg);
-    setNetworkLink(true);
+    Switch_SetEthLed(true, 10);
     return true;
 }
 

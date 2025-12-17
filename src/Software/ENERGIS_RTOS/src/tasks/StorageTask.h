@@ -80,6 +80,7 @@ typedef enum {
     STORAGE_CMD_DUMP_WARNING_LOG,    /**< Dump warning event log region */
     STORAGE_CMD_CLEAR_ERROR_LOG,     /**< Clear error event log region */
     STORAGE_CMD_CLEAR_WARNING_LOG,   /**< Clear warning event log region */
+    STORAGE_CMD_ERASE_ALL,           /**< Incremental full EEPROM erase */
 
     /* SIL Testing Commands */
     STORAGE_CMD_DUMP_FORMATTED, /**< Dump EEPROM in formatted hex (SIL testing) */
@@ -162,18 +163,18 @@ typedef struct {
 bool storage_dump_formatted_async(void);
 
 /**
- * @brief Erase the entire EEPROM via the Storage subsystem.
+ * @brief Start full EEPROM erase (async, watchdog-safe).
  *
- * This helper acquires the EEPROM mutex, invokes EEPROM_EraseAll(), and releases
- * the mutex again. Erase is performed in 32-byte chunks with write-cycle delays
- * inside CAT24C256_WriteBuffer(), so other tasks continue to run and the watchdog
- * is periodically fed.
- *
- * @param timeout_ms Maximum time to wait for the EEPROM mutex in milliseconds.
- *                   If 0, a default of 30000 ms is used.
- * @return true if the erase completed successfully, false on timeout or driver error.
+ * @return true if erase was started, false if storage not ready or already busy.
  */
-bool storage_erase_all(uint32_t timeout_ms);
+bool storage_erase_all_async(void);
+
+/**
+ * @brief Check if EEPROM erase is in progress.
+ *
+ * @return true if erase active.
+ */
+bool storage_erase_all_is_busy(void);
 
 /**
  * @brief Initialize and start the Storage task with a deterministic enable gate.

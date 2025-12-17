@@ -68,7 +68,6 @@ int EEPROM_WriteChannelLabel(uint8_t channel_index, const char *label) {
     for (; n < EEPROM_CH_LABEL_SLOT; ++n)
         buf[n] = 0x00;
 
-    /* Write entire slot to EEPROM */
     return CAT24C256_WriteBuffer(_LabelSlotAddr(channel_index), buf, EEPROM_CH_LABEL_SLOT);
 }
 

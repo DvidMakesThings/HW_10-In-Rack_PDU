@@ -2,19 +2,18 @@
  * @file SwitchTask.c
  * @author DvidMakesThings - David Sipos
  *
- * @version 1.1.1
- * @date 2025-12-10
+ * @version 3.0
+ * @date 2025-11-14
  *
  * @details
- * FreeRTOS task that owns all MCP23017 relay operations. Provides non-blocking
- * API for all other tasks to control relays without causing I2C bus contention
- * or watchdog starvation during network stress testing.
+ * A simple, deterministic implementation for relay control:
+ * - Single mutex serializes all MCP23017 access
+ * - Direct read/write calls to MCP driver (no queues)
+ * - Display LEDs mirror relay states (best-effort with short backoff)
  *
- * Architecture:
- * - Single task ownership of MCP relay hardware (mcp_set_channel_state)
- * - All other tasks use Switch_* API which queues commands
- * - Cached state provides instant reads without I2C access
- * - Periodic hardware sync ensures cache accuracy
+ * Thread-safety:
+ * - All public APIs acquire the SwitchTask mutex and are blocking.
+ * - APIs return immediately with detailed codes for callers (see header).
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -22,605 +21,383 @@
 
 #include "../CONFIG.h"
 
-#define SWITCH_TASK_TAG "[SWITCHTASK]"
+static SemaphoreHandle_t s_mutex = NULL;
+static volatile bool s_inited = false;
+static volatile bool s_manual_active = false;
+/* Cached states for status LEDs to avoid redundant writes */
+static volatile bool s_led_fault = false;
+static volatile bool s_led_pwr = false;
+static volatile bool s_led_eth = false;
+/* Backoff for display writes after a failure */
+static volatile TickType_t s_disp_backoff_until = 0;
 
-/* External storage gate (provided by StorageTask module) */
-extern bool Storage_IsReady(void);
-
-/* ==================== Module State ==================== */
-
-/** @brief Command queue handle */
-static QueueHandle_t s_switch_queue = NULL;
-
-/** @brief Cached channel states (bit N = channel N, 1=ON, 0=OFF) */
-static volatile uint8_t s_channel_states = 0x00;
-
-/** @brief Initialization flag */
-static volatile bool s_initialized = false;
-
-/** @brief Last hardware sync timestamp */
-static volatile uint32_t s_last_hw_sync_ms = 0;
-
-/* ####################### INTERNAL HELPERS ############################# */
-
-/**
- * @brief Get current milliseconds since boot.
- *
- * @return Milliseconds timestamp.
- */
-static inline uint32_t now_ms(void) { return (uint32_t)to_ms_since_boot(get_absolute_time()); }
-
-/**
- * @brief Synchronize cached state from hardware (read all channels).
- *
- * Reads the actual relay state from MCP hardware and updates the cache.
- * This function performs blocking I2C operations and should only be
- * called from SwitchTask context.
- *
- * @return None
- */
-static void sync_state_from_hw(void) {
-    mcp23017_t *rel = mcp_relay();
-    if (!rel) {
-        return;
-    }
-
-    uint8_t new_state = 0x00;
-    for (uint8_t ch = 0; ch < 8; ch++) {
-        uint8_t pin_val = mcp_read_pin(rel, ch);
-        if (pin_val) {
-            new_state |= (1u << ch);
-        }
-    }
-
-    s_channel_states = new_state;
-    s_last_hw_sync_ms = now_ms();
-}
-
-/**
- * @brief Execute a single channel set operation.
- *
- * Performs the actual I2C operation to set the relay state AND immediately
- * updates the display LED. This is SAFETY CRITICAL - the operator depends
- * on display LEDs matching relay state with zero latency.
- *
- * @param channel Channel number (0-7)
- * @param state Desired state (1=ON, 0=OFF)
- * @return true on success, false on failure
- */
-static bool exec_set_channel(uint8_t channel, uint8_t state) {
-    if (channel >= 8) {
+static bool lock(TickType_t ticks) {
+    if (!s_mutex)
         return false;
-    }
-
-    /* Normalize state to 0/1 */
-    uint8_t val = state ? 1u : 0u;
-
-    /* SAFETY CRITICAL: mcp_set_channel_state() updates BOTH relay AND display
-     * LED in one operation - display MUST follow relay with zero latency! */
-    bool ok = mcp_set_channel_state(channel, val);
-
-    /* Update cached state to match what we just wrote to hardware */
-    if (ok) {
-        if (val) {
-            s_channel_states |= (1u << channel);
-            /* Track this channel as last activated for overcurrent trip targeting */
-            Overcurrent_RecordChannelOn(channel);
-        } else {
-            s_channel_states &= ~(1u << channel);
-        }
-    }
-
-    return ok;
+    return xSemaphoreTake(s_mutex, ticks) == pdTRUE;
+}
+static void unlock(void) {
+    if (s_mutex)
+        xSemaphoreGive(s_mutex);
 }
 
-/**
- * @brief Execute all-on operation with pacing.
- *
- * @return None
- */
-static void exec_all_on(void) {
-    for (uint8_t ch = 0; ch < 8; ch++) {
-        exec_set_channel(ch, 1);
-        if (ch < 7) {
-            vTaskDelay(pdMS_TO_TICKS(SWITCH_CMD_PACE_MS));
-        }
+static uint8_t read_relay_mask(mcp23017_t *rel) {
+    uint8_t mask = 0;
+    for (uint8_t ch = 0; ch < 8u; ch++) {
+        if (mcp_read_pin(rel, ch))
+            mask |= (uint8_t)(1u << ch);
     }
+    return mask;
 }
 
-/**
- * @brief Execute all-off operation with pacing.
- *
- * @return None
- */
-static void exec_all_off(void) {
-    for (uint8_t ch = 0; ch < 8; ch++) {
-        exec_set_channel(ch, 0);
-        if (ch < 7) {
-            vTaskDelay(pdMS_TO_TICKS(SWITCH_CMD_PACE_MS));
-        }
-    }
-}
-
-/**
- * @brief Execute set-mask operation with pacing.
- *
- * @param mask Bitmask where bit N = channel N state
- * @return None
- */
-static void exec_set_mask(uint8_t mask) {
-    for (uint8_t ch = 0; ch < 8; ch++) {
-        uint8_t want = (mask & (1u << ch)) ? 1u : 0u;
-        uint8_t have = (s_channel_states & (1u << ch)) ? 1u : 0u;
-        if (want != have) {
-            exec_set_channel(ch, want);
-            vTaskDelay(pdMS_TO_TICKS(SWITCH_CMD_PACE_MS));
-        }
-    }
-}
-
-/**
- * @brief Execute masked write on relay MCP Port B.
- *
- * Performs a low-level masked write on Port B of the relay MCP23017.
- * This is used by the HLW8032 driver to control the MUX A/B/C/EN lines.
- *
- * @param mask Bitmask of Port B bits to modify.
- * @param value New values for the masked bits.
- * @return None
- */
-static void exec_set_relay_portb_mask(uint8_t mask, uint8_t value) {
-    if (mask == 0u) {
-        return;
-    }
-
+static void mirror_display_from_relay(void) {
     mcp23017_t *rel = mcp_relay();
-    if (!rel) {
+    mcp23017_t *disp = mcp_display();
+    if (!rel || !rel->inited || !disp || !disp->inited)
         return;
-    }
-
-    /* Port 1 = MCP23017 Port B */
-    mcp_write_mask(rel, 1, mask, value);
-}
-
-/**
- * @brief Process a single command from the queue.
- *
- * @param cmd Pointer to command structure
- * @return None
- */
-static void process_command(const switch_cmd_t *cmd) {
-    switch (cmd->type) {
-    case SWITCH_CMD_SET_CHANNEL:
-        /* Check overcurrent protection before turning ON */
-        if (cmd->state && !Overcurrent_IsSwitchingAllowed()) {
-            WARNING_PRINT("[SWITCHTASK] Overcurrent lockout: rejected SET_CHANNEL %u ON\r\n",
-                          (unsigned)cmd->channel);
-            return;
-        }
-        exec_set_channel(cmd->channel, cmd->state);
-        break;
-
-    case SWITCH_CMD_TOGGLE:
-        /* Check overcurrent protection before turning ON (toggle to ON) */
-        if (cmd->state && !Overcurrent_IsSwitchingAllowed()) {
-            WARNING_PRINT("[SWITCHTASK] Overcurrent lockout: rejected TOGGLE %u to ON\r\n",
-                          (unsigned)cmd->channel);
-            return;
-        }
-        if (cmd->channel < 8) {
-            exec_set_channel(cmd->channel, cmd->state);
-        }
-        break;
-
-    case SWITCH_CMD_ALL_ON:
-        /* Check overcurrent protection */
-        if (!Overcurrent_IsSwitchingAllowed()) {
-            WARNING_PRINT("[SWITCHTASK] Overcurrent lockout: rejected ALL_ON\r\n");
-            return;
-        }
-        exec_all_on();
-        break;
-
-    case SWITCH_CMD_ALL_OFF:
-        /* Always allow turning OFF - this is a safety operation */
-        exec_all_off();
-        break;
-
-    case SWITCH_CMD_SET_MASK:
-        /* Check if any channels would be turned ON */
-        {
-            uint8_t current = s_channel_states;
-            uint8_t turns_on = cmd->mask & ~current; /* bits going 0->1 */
-            if (turns_on && !Overcurrent_IsSwitchingAllowed()) {
-                WARNING_PRINT("[SWITCHTASK] Overcurrent lockout: rejected SET_MASK 0x%02X\r\n",
-                              cmd->mask);
-                /* Execute only the OFF operations (allowed for safety) */
-                uint8_t safe_mask = current & ~(cmd->mask ^ current);
-                exec_set_mask(safe_mask);
-                return;
-            }
-        }
-        exec_set_mask(cmd->mask);
-        break;
-
-    case SWITCH_CMD_SYNC_FROM_HW:
-        sync_state_from_hw();
-        break;
-
-    case SWITCH_CMD_SET_RELAY_PORTB_MASK:
-        exec_set_relay_portb_mask(cmd->mask, cmd->state);
-        break;
-
-    default:
-        break;
+    TickType_t now = xTaskGetTickCount();
+    if (now < s_disp_backoff_until)
+        return;
+    uint8_t mask = read_relay_mask(rel);
+    if (!mcp_write_mask(disp, 0, 0xFFu, mask)) {
+        s_disp_backoff_until = now + pdMS_TO_TICKS(200);
     }
 }
 
-/* ####################### MAIN TASK FUNCTION ########################### */
-
-/**
- * @brief SwitchTask main loop.
- *
- * Processes queued relay commands and periodically syncs state from hardware.
- *
- * @param param Unused task parameter.
- * @return None (never returns)
- */
-static void vSwitchTask(void *param) {
-    (void)param;
-
-    /* Initial hardware sync */
-    sync_state_from_hw();
-    INFO_PRINT("%s Initial state: 0x%02X\r\n", SWITCH_TASK_TAG, s_channel_states);
-
-    const TickType_t scan_ticks = pdMS_TO_TICKS(SWITCH_TASK_PERIOD_MS);
-    uint32_t hb_switch_ms = now_ms();
-
-    for (;;) {
-        uint32_t now = now_ms();
-
-        /* Heartbeat */
-        if ((now - hb_switch_ms) >= (uint32_t)SWITCH_TASK_PERIOD_MS * 2) {
-            hb_switch_ms = now;
-            Health_Heartbeat(HEALTH_ID_SWITCH);
-        }
-
-        /* Process up to 4 commands per iteration for good responsiveness.
-         * Each command does immediate relay+display update via mcp_set_channel_state().
-         * Small delay between commands for cooperative scheduling. */
-        uint8_t cmds_processed = 0;
-        switch_cmd_t cmd;
-        while (cmds_processed < 4 && xQueueReceive(s_switch_queue, &cmd, 0) == pdTRUE) {
-            process_command(&cmd);
-            cmds_processed++;
-
-            /* Brief yield between commands to let other tasks run */
-            if (cmds_processed < 4 && uxQueueMessagesWaiting(s_switch_queue) > 0) {
-                vTaskDelay(pdMS_TO_TICKS(5));
-            }
-        }
-
-        /* Periodic hardware sync to verify cache accuracy */
-        if ((now - s_last_hw_sync_ms) >= SWITCH_HW_SYNC_INTERVAL_MS) {
-            sync_state_from_hw();
-        }
-
-        vTaskDelay(scan_ticks);
-    }
-}
-
-/* ####################### PUBLIC API IMPLEMENTATION #################### */
-
-/**
- * @brief Initialize and start the SwitchTask.
- *
- * @param enable Set true to create/start; false to skip deterministically.
- * @return pdPASS on success (or when skipped), pdFAIL on error/timeout.
- */
 BaseType_t SwitchTask_Init(bool enable) {
-    s_initialized = false;
-
-    if (!enable) {
+    s_inited = false;
+    if (!enable)
         return pdPASS;
-    }
 
-    /* Bring-up gate: wait for Storage config to be ready */
-    TickType_t t0 = xTaskGetTickCount();
-    const TickType_t to = pdMS_TO_TICKS(SWITCH_WAIT_STORAGE_READY_MS);
-    while (!Storage_IsReady()) {
-        if ((xTaskGetTickCount() - t0) >= to) {
-#if ERRORLOGGER
-            uint16_t errorcode =
-                ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_SWITCHTASK, 0x1);
-            ERROR_PRINT_CODE(errorcode,
-                             "%s Storage not ready within timeout, cannot start SwitchTask\r\n",
-                             SWITCH_TASK_TAG);
-            Storage_EnqueueErrorCode(errorcode);
-#endif
+    if (!s_mutex) {
+        s_mutex = xSemaphoreCreateMutex();
+        if (!s_mutex)
             return pdFAIL;
-        }
-        vTaskDelay(pdMS_TO_TICKS(10));
     }
-
-    /* Create command queue */
-    s_switch_queue = xQueueCreate(SWITCH_CMD_QUEUE_SIZE, sizeof(switch_cmd_t));
-    if (!s_switch_queue) {
-#if ERRORLOGGER
-        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_SWITCHTASK, 0x2);
-        ERROR_PRINT_CODE(errorcode, "%s Failed to create command queue\r\n", SWITCH_TASK_TAG);
-        Storage_EnqueueErrorCode(errorcode);
-#endif
-        return pdFAIL;
-    }
-
-    /* Initialize cached state from hardware */
-    sync_state_from_hw();
-
-    /* Create the task */
-    if (xTaskCreate(vSwitchTask, "SwitchTask", 1024, NULL, SWITCHTASK_PRIORITY, NULL) != pdPASS) {
-#if ERRORLOGGER
-        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_SWITCHTASK, 0x3);
-        ERROR_PRINT_CODE(errorcode, "%s Task create failed\r\n", SWITCH_TASK_TAG);
-        Storage_EnqueueErrorCode(errorcode);
-#endif
-        vQueueDelete(s_switch_queue);
-        s_switch_queue = NULL;
-        return pdFAIL;
-    }
-
-    s_initialized = true;
-    INFO_PRINT("%s Initialized (queue=%u, pace=%ums)\r\n", SWITCH_TASK_TAG, SWITCH_CMD_QUEUE_SIZE,
-               SWITCH_CMD_PACE_MS);
+    s_inited = true;
     return pdPASS;
 }
 
-/**
- * @brief Check if SwitchTask is ready for commands.
- *
- * @return true if initialized and ready, false otherwise.
- */
-bool Switch_IsReady(void) { return s_initialized; }
+bool Switch_IsReady(void) { return (s_inited && s_mutex != NULL); }
 
-/* ---------- Non-blocking State Reads ---------- */
+switch_result_t Switch_GetState(uint8_t channel, bool *out_state) {
+    if (!out_state)
+        return SWITCH_ERR_NULL_PARAM;
+    if (channel >= 8u)
+        return SWITCH_ERR_INVALID_CHANNEL;
+    if (!s_inited)
+        return SWITCH_ERR_NOT_INIT;
+    if (!lock(pdMS_TO_TICKS(SWITCH_MUTEX_TIMEOUT_MS)))
+        return SWITCH_ERR_MUTEX_TIMEOUT;
 
-/**
- * @brief Get current relay channel state (instant, non-blocking).
- *
- * @param channel Channel number (0-7)
- * @param out_state Pointer to receive current state (true=ON, false=OFF)
- * @return true on success, false if channel invalid or out_state is NULL
- */
-bool Switch_GetState(uint8_t channel, bool *out_state) {
-    if (channel >= 8 || !out_state) {
-        return false;
+    mcp23017_t *rel = mcp_relay();
+    if (!rel || !rel->inited) {
+        unlock();
+        return SWITCH_ERR_I2C_FAIL;
     }
-
-    /* Atomic read of cached state (no I2C access) */
-    *out_state = (s_channel_states & (1u << channel)) != 0;
-    return true;
+    *out_state = (mcp_read_pin(rel, channel) != 0);
+    unlock();
+    return SWITCH_OK;
 }
 
-/**
- * @brief Get all 8 channel states as a bitmask (instant, non-blocking).
- *
- * @param out_mask Pointer to receive 8-bit state mask (bit=1 means ON)
- * @return true on success, false if out_mask is NULL
- */
-bool Switch_GetAllStates(uint8_t *out_mask) {
-    if (!out_mask) {
-        return false;
+switch_result_t Switch_GetAllStates(uint8_t *out_mask) {
+    if (!out_mask)
+        return SWITCH_ERR_NULL_PARAM;
+    if (!s_inited)
+        return SWITCH_ERR_NOT_INIT;
+    if (!lock(pdMS_TO_TICKS(SWITCH_MUTEX_TIMEOUT_MS)))
+        return SWITCH_ERR_MUTEX_TIMEOUT;
+    mcp23017_t *rel = mcp_relay();
+    if (!rel || !rel->inited) {
+        unlock();
+        return SWITCH_ERR_I2C_FAIL;
     }
-
-    /* Atomic read of cached state */
-    *out_mask = s_channel_states;
-    return true;
+    *out_mask = read_relay_mask(rel);
+    unlock();
+    return SWITCH_OK;
 }
 
-/* ---------- Non-blocking State Writes ---------- */
+switch_result_t Switch_SetChannel(uint8_t channel, bool state) {
+    if (channel >= 8u)
+        return SWITCH_ERR_INVALID_CHANNEL;
+    if (!s_inited)
+        return SWITCH_ERR_NOT_INIT;
+    if (state && !Overcurrent_IsSwitchingAllowed())
+        return SWITCH_ERR_OVERCURRENT;
+    if (!lock(pdMS_TO_TICKS(SWITCH_MUTEX_TIMEOUT_MS)))
+        return SWITCH_ERR_MUTEX_TIMEOUT;
 
-/**
- * @brief Set single relay channel state (non-blocking).
- *
- * @param channel Channel number (0-7)
- * @param state Desired state (true=ON, false=OFF)
- * @param timeout_ms Maximum time to wait for queue space (0 = no wait)
- * @return true if command enqueued, false if queue full, invalid params, or overcurrent lockout
- */
-bool Switch_SetChannel(uint8_t channel, bool state, uint32_t timeout_ms) {
-    if (!s_initialized || !s_switch_queue) {
-        return false;
+    mcp23017_t *rel = mcp_relay();
+    mcp23017_t *disp = mcp_display();
+    if (!rel || !rel->inited) {
+        unlock();
+        return SWITCH_ERR_I2C_FAIL;
     }
 
-    if (channel >= 8) {
-        return false;
+    if (!mcp_write_pin(rel, channel, state ? 1u : 0u)) {
+        unlock();
+        return SWITCH_ERR_I2C_FAIL;
     }
 
-    /* Check overcurrent protection before allowing turn-ON */
-    if (state && !Overcurrent_IsSwitchingAllowed()) {
-        return false;
+    vTaskDelay(pdMS_TO_TICKS(1));
+
+    if (!mcp_write_pin(disp, channel, state ? 1u : 0u)) {
+        unlock();
+        return SWITCH_ERR_I2C_FAIL;
     }
 
-    switch_cmd_t cmd = {
-        .type = SWITCH_CMD_SET_CHANNEL, .channel = channel, .state = state ? 1u : 0u, .mask = 0};
+    unlock();
+    return SWITCH_OK;
+}
 
-    TickType_t ticks = (timeout_ms == 0) ? 0 : pdMS_TO_TICKS(timeout_ms);
-    if (xQueueSend(s_switch_queue, &cmd, ticks) == pdTRUE) {
-        /* Optimistic cache update: immediately reflect intended state */
-        if (state) {
-            s_channel_states |= (1u << channel);
-        } else {
-            s_channel_states &= ~(1u << channel);
+switch_result_t Switch_Toggle(uint8_t channel) {
+    if (channel >= 8u)
+        return SWITCH_ERR_INVALID_CHANNEL;
+    if (!s_inited)
+        return SWITCH_ERR_NOT_INIT;
+    bool cur = false;
+    switch_result_t r = Switch_GetState(channel, &cur);
+    if (r != SWITCH_OK)
+        return r;
+    return Switch_SetChannel(channel, !cur);
+}
+
+switch_result_t Switch_AllOn(void) {
+    if (!s_inited)
+        return SWITCH_ERR_NOT_INIT;
+    if (!Overcurrent_IsSwitchingAllowed())
+        return SWITCH_ERR_OVERCURRENT;
+    if (!lock(pdMS_TO_TICKS(SWITCH_MUTEX_TIMEOUT_MS)))
+        return SWITCH_ERR_MUTEX_TIMEOUT;
+    mcp23017_t *rel = mcp_relay();
+    if (!rel || !rel->inited) {
+        unlock();
+        return SWITCH_ERR_I2C_FAIL;
+    }
+    for (uint8_t ch = 0; ch < 8u; ch++) {
+        if (!mcp_write_pin(rel, ch, 1u)) {
+            unlock();
+            return SWITCH_ERR_I2C_FAIL;
         }
-        return true;
     }
-    return false;
+    mirror_display_from_relay();
+    unlock();
+    return SWITCH_OK;
 }
 
-/**
- * @brief Toggle single relay channel (non-blocking).
- *
- * @param channel Channel number (0-7)
- * @param timeout_ms Maximum time to wait for queue space (0 = no wait)
- * @return true if command enqueued, false if queue full, invalid params, or overcurrent lockout
- */
-bool Switch_Toggle(uint8_t channel, uint32_t timeout_ms) {
-    if (!s_initialized || !s_switch_queue) {
-        return false;
+switch_result_t Switch_AllOff(void) {
+    if (!s_inited)
+        return SWITCH_ERR_NOT_INIT;
+    if (!lock(pdMS_TO_TICKS(SWITCH_MUTEX_TIMEOUT_MS)))
+        return SWITCH_ERR_MUTEX_TIMEOUT;
+    mcp23017_t *rel = mcp_relay();
+    if (!rel || !rel->inited) {
+        unlock();
+        return SWITCH_ERR_I2C_FAIL;
     }
-
-    if (channel >= 8) {
-        return false;
+    for (uint8_t ch = 0; ch < 8u; ch++) {
+        if (!mcp_write_pin(rel, ch, 0u)) {
+            unlock();
+            return SWITCH_ERR_I2C_FAIL;
+        }
     }
-
-    /* Compute new state BEFORE checking overcurrent */
-    uint8_t current = (s_channel_states & (1u << channel)) ? 1u : 0u;
-    uint8_t new_state = current ? 0u : 1u;
-
-    /* Check overcurrent protection if toggling to ON */
-    if (new_state && !Overcurrent_IsSwitchingAllowed()) {
-        return false;
-    }
-
-    switch_cmd_t cmd = {
-        .type = SWITCH_CMD_TOGGLE, .channel = channel, .state = new_state, .mask = 0};
-
-    TickType_t ticks = (timeout_ms == 0) ? 0 : pdMS_TO_TICKS(timeout_ms);
-    if (xQueueSend(s_switch_queue, &cmd, ticks) == pdTRUE) {
-        /* Optimistic cache update */
-        s_channel_states ^= (1u << channel);
-        return true;
-    }
-    return false;
+    mirror_display_from_relay();
+    unlock();
+    return SWITCH_OK;
 }
 
-/**
- * @brief Turn all relay channels ON (non-blocking).
- *
- * @param timeout_ms Maximum time to wait for queue space (0 = no wait)
- * @return true if command enqueued, false if queue full or overcurrent lockout
- */
-bool Switch_AllOn(uint32_t timeout_ms) {
-    if (!s_initialized || !s_switch_queue) {
-        return false;
+switch_result_t Switch_SetMask(uint8_t mask) {
+    if (!s_inited)
+        return SWITCH_ERR_NOT_INIT;
+    if (!lock(pdMS_TO_TICKS(SWITCH_MUTEX_TIMEOUT_MS)))
+        return SWITCH_ERR_MUTEX_TIMEOUT;
+    mcp23017_t *rel = mcp_relay();
+    if (!rel || !rel->inited) {
+        unlock();
+        return SWITCH_ERR_I2C_FAIL;
     }
-
-    /* Check overcurrent protection */
-    if (!Overcurrent_IsSwitchingAllowed()) {
-        return false;
+    for (uint8_t ch = 0; ch < 8u; ch++) {
+        uint8_t v = (mask & (1u << ch)) ? 1u : 0u;
+        if (!mcp_write_pin(rel, ch, v)) {
+            unlock();
+            return SWITCH_ERR_I2C_FAIL;
+        }
     }
-
-    switch_cmd_t cmd = {.type = SWITCH_CMD_ALL_ON, .channel = 0, .state = 1, .mask = 0xFF};
-
-    TickType_t ticks = (timeout_ms == 0) ? 0 : pdMS_TO_TICKS(timeout_ms);
-    if (xQueueSend(s_switch_queue, &cmd, ticks) == pdTRUE) {
-        /* Optimistic cache update */
-        s_channel_states = 0xFF;
-        return true;
-    }
-    return false;
+    mirror_display_from_relay();
+    unlock();
+    return SWITCH_OK;
 }
 
-/**
- * @brief Turn all relay channels OFF (non-blocking).
- *
- * @param timeout_ms Maximum time to wait for queue space (0 = no wait)
- * @return true if command enqueued, false if queue full
- */
-bool Switch_AllOff(uint32_t timeout_ms) {
-    if (!s_initialized || !s_switch_queue) {
-        return false;
-    }
-
-    switch_cmd_t cmd = {.type = SWITCH_CMD_ALL_OFF, .channel = 0, .state = 0, .mask = 0x00};
-
-    TickType_t ticks = (timeout_ms == 0) ? 0 : pdMS_TO_TICKS(timeout_ms);
-    if (xQueueSend(s_switch_queue, &cmd, ticks) == pdTRUE) {
-        /* Optimistic cache update: all channels OFF */
-        s_channel_states = 0x00;
-        return true;
-    }
-    return false;
+bool Switch_GetStateCompat(uint8_t channel, bool *out_state) {
+    return (Switch_GetState(channel, out_state) == SWITCH_OK);
+}
+bool Switch_SetChannelCompat(uint8_t channel, bool state, uint32_t timeout_ms) {
+    (void)timeout_ms;
+    return (Switch_SetChannel(channel, state) == SWITCH_OK);
+}
+bool Switch_ToggleCompat(uint8_t channel, uint32_t timeout_ms) {
+    (void)timeout_ms;
+    return (Switch_Toggle(channel) == SWITCH_OK);
+}
+bool Switch_AllOnCompat(uint32_t timeout_ms) {
+    (void)timeout_ms;
+    return (Switch_AllOn() == SWITCH_OK);
+}
+bool Switch_AllOffCompat(uint32_t timeout_ms) {
+    (void)timeout_ms;
+    return (Switch_AllOff() == SWITCH_OK);
+}
+bool Switch_SetMaskCompat(uint8_t mask, uint32_t timeout_ms) {
+    (void)timeout_ms;
+    return (Switch_SetMask(mask) == SWITCH_OK);
 }
 
-/**
- * @brief Set multiple channels via bitmask (non-blocking).
- *
- * @param mask 8-bit state mask for all channels
- * @param timeout_ms Maximum time to wait for queue space (0 = no wait)
- * @return true if command enqueued, false if queue full or overcurrent lockout prevents ON
- * operations
- */
-bool Switch_SetMask(uint8_t mask, uint32_t timeout_ms) {
-    if (!s_initialized || !s_switch_queue) {
+bool Switch_SelectAllOff(uint32_t timeout_ms) {
+    (void)timeout_ms;
+    if (!s_inited)
         return false;
-    }
-
-    /* Check if any channels would be turned ON */
-    uint8_t current = s_channel_states;
-    uint8_t turns_on = mask & ~current;
-
-    /* Block if trying to turn on channels during overcurrent lockout */
-    if (turns_on && !Overcurrent_IsSwitchingAllowed()) {
-        return false;
-    }
-
-    switch_cmd_t cmd = {.type = SWITCH_CMD_SET_MASK, .channel = 0, .state = 0, .mask = mask};
-
-    TickType_t ticks = (timeout_ms == 0) ? 0 : pdMS_TO_TICKS(timeout_ms);
-    if (xQueueSend(s_switch_queue, &cmd, ticks) == pdTRUE) {
-        /* Optimistic cache update */
-        s_channel_states = mask;
+    if (!s_manual_active)
         return true;
+    if (!lock(pdMS_TO_TICKS(SWITCH_MUTEX_TIMEOUT_MS)))
+        return false;
+    mcp23017_t *sel = mcp_selection();
+    if (sel && sel->inited) {
+        (void)mcp_write_mask(sel, 0, 0xFFu, 0x00u);
+        (void)mcp_write_mask(sel, 1, 0xFFu, 0x00u);
     }
-    return false;
+    unlock();
+    return true;
 }
 
-/**
- * @brief Force synchronization of cached state from hardware.
- *
- * @param timeout_ms Maximum time to wait for queue space (0 = no wait)
- * @return true if command enqueued, false if queue full
- */
+bool Switch_SelectShow(uint8_t index, bool on, uint32_t timeout_ms) {
+    (void)timeout_ms;
+    if (index >= 8u)
+        return false;
+    if (!s_inited)
+        return false;
+    if (!s_manual_active)
+        return true;
+    if (!lock(pdMS_TO_TICKS(SWITCH_MUTEX_TIMEOUT_MS)))
+        return false;
+    mcp23017_t *sel = mcp_selection();
+    if (sel && sel->inited) {
+        (void)mcp_write_mask(sel, 0, 0xFFu, 0x00u);
+        (void)mcp_write_mask(sel, 1, 0xFFu, 0x00u);
+        if (on)
+            (void)mcp_write_pin(sel, (uint8_t)(index & 0x0Fu), 1u);
+    }
+    unlock();
+    return true;
+}
+
+bool Switch_SetFaultLed(bool state, uint32_t timeout_ms) {
+    (void)timeout_ms;
+    if (!s_inited)
+        return false;
+    if (!lock(pdMS_TO_TICKS(SWITCH_MUTEX_TIMEOUT_MS)))
+        return false;
+    if (s_led_fault == state) {
+        unlock();
+        return true;
+    }
+    mcp23017_t *disp = mcp_display();
+    TickType_t now = xTaskGetTickCount();
+    if (disp && disp->inited && (now >= s_disp_backoff_until)) {
+#ifdef FAULT_LED
+        if (!mcp_write_pin(disp, FAULT_LED, state ? 1u : 0u)) {
+            s_disp_backoff_until = now + pdMS_TO_TICKS(200);
+        }
+#endif
+    }
+    s_led_fault = state;
+    unlock();
+    return true;
+}
+
+bool Switch_SetPwrLed(bool state, uint32_t timeout_ms) {
+    (void)timeout_ms;
+    if (!s_inited)
+        return false;
+    if (!lock(pdMS_TO_TICKS(SWITCH_MUTEX_TIMEOUT_MS)))
+        return false;
+    if (s_led_pwr == state) {
+        unlock();
+        return true;
+    }
+    mcp23017_t *disp = mcp_display();
+    TickType_t now = xTaskGetTickCount();
+    if (disp && disp->inited && (now >= s_disp_backoff_until)) {
+#ifdef PWR_LED
+        if (!mcp_write_pin(disp, PWR_LED, state ? 1u : 0u)) {
+            s_disp_backoff_until = now + pdMS_TO_TICKS(200);
+        }
+#endif
+    }
+    s_led_pwr = state;
+    unlock();
+    return true;
+}
+
+bool Switch_SetEthLed(bool state, uint32_t timeout_ms) {
+    (void)timeout_ms;
+    if (!s_inited)
+        return false;
+    if (!lock(pdMS_TO_TICKS(SWITCH_MUTEX_TIMEOUT_MS)))
+        return false;
+    if (s_led_eth == state) {
+        unlock();
+        return true;
+    }
+    mcp23017_t *disp = mcp_display();
+    TickType_t now = xTaskGetTickCount();
+    if (disp && disp->inited && (now >= s_disp_backoff_until)) {
+#ifdef ETH_LED
+        if (!mcp_write_pin(disp, ETH_LED, state ? 1u : 0u)) {
+            s_disp_backoff_until = now + pdMS_TO_TICKS(200);
+        }
+#endif
+    }
+    s_led_eth = state;
+    unlock();
+    return true;
+}
+
 bool Switch_SyncFromHardware(uint32_t timeout_ms) {
-    if (!s_initialized || !s_switch_queue) {
+    (void)timeout_ms;
+    if (!s_inited)
         return false;
-    }
-
-    switch_cmd_t cmd = {.type = SWITCH_CMD_SYNC_FROM_HW, .channel = 0, .state = 0, .mask = 0};
-
-    TickType_t ticks = (timeout_ms == 0) ? 0 : pdMS_TO_TICKS(timeout_ms);
-    return (xQueueSend(s_switch_queue, &cmd, ticks) == pdTRUE);
+    if (!lock(pdMS_TO_TICKS(SWITCH_MUTEX_TIMEOUT_MS)))
+        return false;
+    mirror_display_from_relay();
+    unlock();
+    return true;
 }
 
-/**
- * @brief Queue a masked write to the relay MCP Port B (non-blocking).
- *
- * Used by the HLW8032 driver to control the MUX A/B/C/EN lines which are
- * on Port B bits 0-3. SwitchTask stays the sole owner of the relay MCP,
- * while the HLW driver keeps the revision-dependent bit mapping logic.
- *
- * @param mask Bitmask of Port B bits to modify.
- * @param value New values for the masked bits (only bits in @p mask matter).
- * @param timeout_ms Maximum time to wait for queue space (0 = no wait).
- * @return true if command enqueued, false if queue not ready or full.
- */
+uint8_t Switch_GetCachedMask(void) {
+    uint8_t mask = 0;
+    if (!s_inited)
+        return 0;
+    if (!lock(pdMS_TO_TICKS(SWITCH_MUTEX_TIMEOUT_MS)))
+        return 0;
+    mcp23017_t *rel = mcp_relay();
+    if (rel && rel->inited)
+        mask = read_relay_mask(rel);
+    unlock();
+    return mask;
+}
+
+void Switch_SetManualPanelActive(bool active) { s_manual_active = active; }
+
 bool Switch_SetRelayPortBMasked(uint8_t mask, uint8_t value, uint32_t timeout_ms) {
-    if (!s_initialized || !s_switch_queue) {
-        return false;
-    }
-
-    if (mask == 0u) {
+    TickType_t wait = (timeout_ms > 0u) ? pdMS_TO_TICKS(timeout_ms) : 0;
+    if (!s_inited)
         return true;
+    if (!lock(wait))
+        return true;
+    mcp23017_t *rel = mcp_relay();
+    if (rel && rel->inited) {
+        (void)mcp_write_mask(rel, 1, mask, value);
     }
-
-    switch_cmd_t cmd = {
-        .type = SWITCH_CMD_SET_RELAY_PORTB_MASK,
-        .channel = 0u,  /* unused for this command type */
-        .state = value, /* carries Port B value */
-        .mask = mask    /* carries Port B mask */
-    };
-
-    TickType_t ticks = (timeout_ms == 0u) ? 0 : pdMS_TO_TICKS(timeout_ms);
-    return (xQueueSend(s_switch_queue, &cmd, ticks) == pdTRUE);
+    unlock();
+    return true;
 }

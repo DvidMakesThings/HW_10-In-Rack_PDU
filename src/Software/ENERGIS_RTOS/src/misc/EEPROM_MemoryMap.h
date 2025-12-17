@@ -10,14 +10,32 @@
  * @brief EEPROM Memory Layout and Data Structures
  * @{
  *
- * @version 2.0
- * @date 2025-11-06
+ * @version 2.1.0
+ * @date 2025-12-14
  *
- * @details RTOS-compatible EEPROM memory map for CAT24C256 (32KB).
+ * @details
+ * RTOS-compatible EEPROM memory map for CAT24C256 (32KB).
  * This file contains ONLY:
  * - Memory address definitions
  * - Data structures
  * - Default values
+ *
+ * Memory Map Overview:
+ * ```
+ * 0x0000 - 0x004F : System Info (firmware version)
+ * 0x0030 - 0x0042 : Device Identity (serial number, region) [within sys info]
+ * 0x0100 - 0x01FF : Factory Defaults (reserved)
+ * 0x0200 - 0x021F : User Output (relay states)
+ * 0x0300 - 0x031F : User Network (IP, MAC, etc.)
+ * 0x0400 - 0x054F : Sensor Calibration
+ * 0x0800 - 0x084F : Temperature Calibration
+ * 0x1500 - 0x15FF : Energy Monitoring
+ * 0x1600 - 0x17FF : Error Event Log
+ * 0x1800 - 0x19FF : Warning Event Log
+ * 0x1A00 - 0x1BFF : Channel Labels
+ * 0x2000 - 0x21FF : User Preferences
+ * 0x7FFE - 0x7FFF : Magic Value
+ * ```
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -31,11 +49,26 @@
 /* =====================  EEPROM MEMORY MAP  ============================ */
 
 /**
- * @name System Info (SN, SW)
+ * @name System Info Block
+ * @brief Contains firmware version and other system information.
  * @{
  */
 #define EEPROM_SYS_INFO_START 0x0000 /**< Start address of system info block. */
-#define EEPROM_SYS_INFO_SIZE 0x0050  /**< Size of system info block in bytes. */
+#define EEPROM_SYS_INFO_SIZE 0x0030  /**< Size of system info block in bytes. */
+/** @} */
+
+/**
+ * @name Device Identity Block
+ * @brief Contains serial number and region (within system info block).
+ * @details
+ * Structure:
+ * - Offset 0x00: Serial number (16 bytes, null-terminated)
+ * - Offset 0x10: Region code (1 byte)
+ * - Offset 0x11: CRC-8 (1 byte)
+ * @{
+ */
+#define EEPROM_DEVICE_IDENTITY_START 0x0030 /**< Start of device identity within sys info. */
+#define EEPROM_DEVICE_IDENTITY_SIZE 0x0013  /**< Size: 16 (SN) + 1 (region) + 1 (CRC) + 1 (pad). */
 /** @} */
 
 /**

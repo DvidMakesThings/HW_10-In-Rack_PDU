@@ -24,7 +24,7 @@ static void get_sysContact(void *buf, uint8_t *len) {
 }
 
 static void get_sysName(void *buf, uint8_t *len) {
-    const char *s = "ENERGIS 8 CHANNEL MANAGED PDU";
+    const char *s = "ENERGIS 10IN MANAGED PDU";
     uint8_t L = (uint8_t)strlen(s);
     memcpy(buf, s, L);
     *len = L;
@@ -38,7 +38,9 @@ static void get_sysLocation(void *buf, uint8_t *len) {
 }
 
 static void get_sysSN(void *buf, uint8_t *len) {
-    const char *s = DEFAULT_SN;
+    const device_identity_t *id = DeviceIdentity_Get();
+
+    const char *s = id->serial_number;
     uint8_t L = (uint8_t)strlen(s);
     memcpy(buf, s, L);
     *len = L;
@@ -65,6 +67,7 @@ snmp_entry_t snmpData[] = {
     {11, {0x2b,6,1,4,1,0x81,0x9b,0x19,0x04,0x02,0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_networkMask, NULL},
     {11, {0x2b,6,1,4,1,0x81,0x9b,0x19,0x04,0x03,0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_networkGateway, NULL},
     {11, {0x2b,6,1,4,1,0x81,0x9b,0x19,0x04,0x04,0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_networkDNS, NULL},
+    {11, {0x2b,6,1,4,1,0x81,0x9b,0x19,0x04,0x05,0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_networkMAC, NULL},
 
     /* outlet control (.1.3.6.1.4.1.19865.2.N.0) */
     {11, {0x2b,6,1,4,1,0x81,0x9b,0x19,0x02,0x01,0x00}, SNMPDTYPE_INTEGER, 4, {""}, get_outlet1_State, (void (*)(int32_t))set_outlet1_State},
@@ -75,8 +78,8 @@ snmp_entry_t snmpData[] = {
     {11, {0x2b,6,1,4,1,0x81,0x9b,0x19,0x02,0x06,0x00}, SNMPDTYPE_INTEGER, 4, {""}, get_outlet6_State, (void (*)(int32_t))set_outlet6_State},
     {11, {0x2b,6,1,4,1,0x81,0x9b,0x19,0x02,0x07,0x00}, SNMPDTYPE_INTEGER, 4, {""}, get_outlet7_State, (void (*)(int32_t))set_outlet7_State},
     {11, {0x2b,6,1,4,1,0x81,0x9b,0x19,0x02,0x08,0x00}, SNMPDTYPE_INTEGER, 4, {""}, get_outlet8_State, (void (*)(int32_t))set_outlet8_State},
-    {11, {0x2b,6,1,4,1,0x81,0x9b,0x19,0x02,0x09,0x00}, SNMPDTYPE_INTEGER, 4, {""}, get_allOff, (void (*)(int32_t))set_allOff},
-    {11, {0x2b,6,1,4,1,0x81,0x9b,0x19,0x02,0x0A,0x00}, SNMPDTYPE_INTEGER, 4, {""}, get_allOn,  (void (*)(int32_t))set_allOn},
+    {11, {0x2b,6,1,4,1,0x81,0x9b,0x19,0x02,0x09,0x00}, SNMPDTYPE_INTEGER, 4, {""}, get_allOff_State, (void (*)(int32_t))set_allOff_State},
+    {11, {0x2b,6,1,4,1,0x81,0x9b,0x19,0x02,0x0A,0x00}, SNMPDTYPE_INTEGER, 4, {""}, get_allOn_State,  (void (*)(int32_t))set_allOn_State},
 
     /* voltage/temperature (.1.3.6.1.4.1.19865.3.X.0) */
     {11, {0x2b,6,1,4,1,0x81,0x9b,0x19,0x03,0x01,0x00}, SNMPDTYPE_OCTET_STRING, 16, {""}, get_tempSensorVoltage, NULL},

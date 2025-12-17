@@ -157,7 +157,7 @@ static char *next_token(char **pptr) {
  * @return None
  */
 static void cmd_help(void) {
-    ECHO("\n=== ENERGIS PDU Console Commands ===\n");
+    ECHO("=== ENERGIS PDU Console Commands ===\n");
 
     ECHO("GENERAL COMMANDS\n");
     ECHO("%-32s %s\n", "HELP", "Show available commands and syntax");
@@ -168,7 +168,7 @@ static void cmd_help(void) {
     ECHO("%-32s %s\n", "CLR_ERR", "Clear all errors");
     ECHO("%-32s %s\n", "RFS", "Restore factory settings");
 
-    ECHO("\nOUTPUT CONTROL AND MEASUREMENT\n");
+    ECHO("OUTPUT CONTROL AND MEASUREMENT\n");
     ECHO("%-32s %s\n", "SET_CH <ch> <STATE>", "Set channel (1-8) to 0|1|ON|OFF|ALL");
     ECHO("%-32s %s\n", "GET_CH <ch>", "Read current state of channel (1-8|ALL)");
     ECHO("%-32s %s\n", "OC_STATUS", "Show overcurrent protection status");
@@ -183,7 +183,7 @@ static void cmd_help(void) {
          "Current-calibrate single channel (requires known load)");
     ECHO("%-32s %s\n", "SHOW_CALIB <ch>", "Show calibration data (1-8|ALL)");
 
-    ECHO("\nNETWORK SETTINGS\n");
+    ECHO("NETWORK SETTINGS\n");
     ECHO("%-32s %s\n", "NETINFO", "Display current IP, subnet mask, gateway and DNS");
     ECHO("%-32s %s\n", "SET_IP <ip>", "Set static IP address (requires reboot)");
     ECHO("%-32s %s\n", "SET_SN <mask>", "Set subnet mask");
@@ -192,10 +192,10 @@ static void cmd_help(void) {
     ECHO("%-32s %s\n", "CONFIG_NETWORK <ip$sn$gw$dns>", "Configure all network settings");
 
     if (DEBUG) {
-        ECHO("\nDEBUG COMMANDS\n");
+        ECHO("DEBUG COMMANDS\n");
         ECHO("%-32s %s\n", "GET_SUPPLY", "Read 12V supply rail");
         ECHO("%-32s %s\n", "GET_USB", "Read USB supply rail");
-        ECHO("%-32s %s\n", "CALIB_TEMP <P1|P2> <T1> <T2> [WAIT]",
+        ECHO("%-32s %s\n", "CALIB_TEMP <1P|2P> <T1> <T2> [WAIT]",
              "Calibrate MCU temperature sensor");
         ECHO("%-32s %s\n", "DUMP_EEPROM", "Enqueue formatted EEPROM dump");
         ECHO("%-32s %s\n", "READ_ERROR", "Dump error event log region");
@@ -203,6 +203,13 @@ static void cmd_help(void) {
         ECHO("%-32s %s\n", "CLEAR_ERROR", "Clear error event log region");
         ECHO("%-32s %s\n", "CLEAR_WARNING", "Clear warning event log region");
         ECHO("%-32s %s\n", "BAADCAFE", "Erase EEPROM (factory wipe; reboot required)");
+        ECHO("PROVISIONING COMMANDS\n");
+        ECHO("%-32s %s\n", "PROV", "Show provisioning commands");
+        ECHO("%-32s %s\n", "PROV UNLOCK <token>", "Unlock provisioning (token=hex string)");
+        ECHO("%-32s %s\n", "PROV LOCK", "Lock provisioning");
+        ECHO("%-32s %s\n", "PROV SET_SN <serial>", "Set device serial number");
+        ECHO("%-32s %s\n", "PROV SET_REGION <EU|US>", "Set device region (10A/15A)");
+        ECHO("%-32s %s\n", "PROV STATUS", "Show provisioning status");
     }
 
     ECHO("===========================================================\n");
@@ -325,90 +332,102 @@ static void cmd_read_hlw8032_all(void) {
 }
 
 /**
- * @brief Print system information (clocks, voltage, FreeRTOS status).
+ * @brief Print system information and health telemetry to the console.
  *
  * @details
- * Uses cached system telemetry from MeterTask (non-blocking) instead of
- * touching ADC hardware directly. MeterTask owns ADC sampling and provides
- * the latest snapshot via MeterTask_GetSystemTelemetry().
+ * Prints:
+ * - Provisioning status (serial/region/current limit)
+ * - Firmware and hardware versions
+ * - Clock frequencies
+ * - I2C0/I2C1 derived bus speeds (from configured SCL high/low count registers)
+ * - SPI0 configured bus speed
+ * - Core voltage
+ * - System telemetry (USB/12V/die temperature)
  *
- * @return None
+ * I2C speeds are derived from the active clk_peri frequency and the I2C
+ * controller's configured fast-mode SCL high/low count registers. This reflects
+ * the current runtime configuration programmed by i2c_set_baudrate().
  */
 static void cmd_sysinfo(void) {
-    /* -------- Get clock frequencies -------- */
-    float sys_freq_mhz = clock_get_hz(clk_sys) / 1000000.0f;
-    float usb_freq_mhz = clock_get_hz(clk_usb) / 1000000.0f;
-    float peri_freq_mhz = clock_get_hz(clk_peri) / 1000000.0f;
-    float adc_freq_mhz = clock_get_hz(clk_adc) / 1000000.0f;
-    float spi_speed_mhz =
-        clock_get_hz(clk_peri) / (2 * (((spi_get_hw(spi0)->cr0 >> 8) & 0xFF) + 1)) / 1000000.0f;
+    const device_identity_t *id = DeviceIdentity_Get();
+
+    system_telemetry_t sys_tele = {0};
+    bool tele_ok = MeterTask_GetSystemTelemetry(&sys_tele);
+    uint32_t peri_hz = clock_get_hz(clk_peri);
+
+    float sys_freq_mhz = clock_get_hz(clk_sys) / 1e6f;
+    float usb_freq_mhz = clock_get_hz(clk_usb) / 1e6f;
+    float peri_freq_mhz = peri_hz / 1e6f;
+    float adc_freq_mhz = clock_get_hz(clk_adc) / 1e6f;
+
+    uintptr_t i2c0_base = (uintptr_t)i2c_get_hw(i2c0);
+    uintptr_t i2c1_base = (uintptr_t)i2c_get_hw(i2c1);
+
+    uint32_t i2c0_hcnt = *((volatile uint32_t *)(i2c0_base + I2C_IC_FS_SCL_HCNT_OFFSET));
+    uint32_t i2c0_lcnt = *((volatile uint32_t *)(i2c0_base + I2C_IC_FS_SCL_LCNT_OFFSET));
+    uint32_t i2c1_hcnt = *((volatile uint32_t *)(i2c1_base + I2C_IC_FS_SCL_HCNT_OFFSET));
+    uint32_t i2c1_lcnt = *((volatile uint32_t *)(i2c1_base + I2C_IC_FS_SCL_LCNT_OFFSET));
+
+    uint32_t i2c0_cycles = i2c0_hcnt + i2c0_lcnt + 2u;
+    uint32_t i2c1_cycles = i2c1_hcnt + i2c1_lcnt + 2u;
+
+    uint32_t i2c0_baud = (i2c0_cycles != 0u) ? (peri_hz / i2c0_cycles) : 0u;
+    uint32_t i2c1_baud = (i2c1_cycles != 0u) ? (peri_hz / i2c1_cycles) : 0u;
+
+    float spi0_baud = spi_get_baudrate(spi0) / 1e6f;
+
+    uint32_t vreg_raw = *((volatile uint32_t *)VREG_BASE);
+    uint32_t vsel = vreg_raw & VREG_VSEL_MASK;
+    float core_v = 1.10f + 0.05f * vsel;
 
     ECHO("=== System Information ===\n");
 
-    /* -------- Read core voltage regulator setting -------- */
-    uint32_t vreg_raw = *((volatile uint32_t *)VREG_BASE);
-    uint vsel = vreg_raw & VREG_VSEL_MASK;
-    float voltage = 1.10f + 0.05f * vsel;
+    /* -------- Device Identity -------- */
+    ECHO("=== Device Identity ===\n");
 
-    /* -------- Read serial & firmware from EEPROM -------- */
-    char serial_buf[64] = {0};
-    char fw_buf[32] = {0};
-    uint8_t sys_area[EEPROM_SYS_INFO_SIZE] = {0};
-    EEPROM_ReadSystemInfo(sys_area, EEPROM_SYS_INFO_SIZE);
-
-    if (sys_area[0] != 0) {
-        size_t s_len = strnlen((const char *)sys_area, EEPROM_SYS_INFO_SIZE);
-        if (s_len > 0 && s_len < sizeof(serial_buf)) {
-            memcpy(serial_buf, sys_area, s_len);
-            serial_buf[s_len] = '\0';
-
-            size_t pos = s_len + 1;
-            if (pos < EEPROM_SYS_INFO_SIZE && sys_area[pos] != 0) {
-                size_t f_len = strnlen((const char *)&sys_area[pos], EEPROM_SYS_INFO_SIZE - pos);
-                if (f_len > 0 && f_len < sizeof(fw_buf)) {
-                    memcpy(fw_buf, &sys_area[pos], f_len);
-                    fw_buf[f_len] = '\0';
-                }
-            }
-        }
-    }
-
-    /* -------- Get cached system telemetry (VUSB, 12V, die temp) -------- */
-    system_telemetry_t sys_tele = {0};
-    bool tele_ok = MeterTask_GetSystemTelemetry(&sys_tele);
-
-    /* --------  Assemble and print info -------- */
-
-    ECHO("=== Device Firmware Info ===\n");
-    ECHO("Device Serial: %s\n", serial_buf);
-    ECHO("Firmware Version: %s\n\n", fw_buf);
-
-    ECHO("=== Hardware Specific Info ===\n");
-    ECHO("Hardware Version: %s\n\n", fw_buf);
-    ECHO("CPU Frequency: %.2f MHz\n", sys_freq_mhz);
-    ECHO("USB Frequency: %.2f MHz\n", usb_freq_mhz);
-    ECHO("PERI Frequency: %.2f MHz\n", peri_freq_mhz);
-    ECHO("ADC Frequency: %.2f MHz\n", adc_freq_mhz);
-    ECHO("SPI0 Speed: %.2f MHz\n\n", spi_speed_mhz);
-    ECHO("FreeRTOS Tick: %lu\n", (unsigned long)xTaskGetTickCount());
-    ECHO("Core voltage: %.2f V (vsel = %u)\n\n", voltage, vsel);
-
-    ECHO("=== Device Voltages ===\n");
-    if (tele_ok) {
-        ECHO("USB Voltage: %.2f V\n", sys_tele.vusb_volts);
-        ECHO("12V Supply: %.2f V\n", sys_tele.vsupply_volts);
+    if (!id->valid) {
+        ECHO("Device Serial: <not provisioned>\n");
+        ECHO("Region:        UNKNOWN\n");
+        ECHO("Provisioned:   No\n\n");
     } else {
-        ECHO("USB Voltage: N/A (no telemetry)\n");
-        ECHO("12V Supply: N/A (no telemetry)\n\n");
+        const char *region_str = (id->region == DEVICE_REGION_EU)   ? "EU"
+                                 : (id->region == DEVICE_REGION_US) ? "US"
+                                                                    : "UNKNOWN";
+
+        ECHO("Device Serial: %s\n", id->serial_number);
+        ECHO("Region:        %s\n", region_str);
+        ECHO("Provisioned:   Yes\n");
+        ECHO("Current Limit: %.1f A\n\n", DeviceIdentity_GetCurrentLimitA());
     }
 
-    ECHO("=== Device Temperature ===\n");
+    /* -------- Firmware -------- */
+    ECHO("=== Firmware Info ===\n");
+    ECHO("Firmware Version: %s\n", FIRMWARE_VERSION);
+    ECHO("Hardware Version: %s\n\n", HARDWARE_VERSION);
+
+    /* -------- Clocks -------- */
+    ECHO("=== Clocks ===\n");
+    ECHO("CPU : %.2f MHz\n", sys_freq_mhz);
+    ECHO("USB : %.2f MHz\n", usb_freq_mhz);
+    ECHO("PERI: %.2f MHz\n", peri_freq_mhz);
+    ECHO("ADC : %.2f MHz\n\n", adc_freq_mhz);
+    ECHO("I2C0 Speed : %.2f MHz\n", (i2c0_baud / 1e6f));
+    ECHO("I2C1 Speed : %.2f MHz\n", (i2c1_baud / 1e6f));
+    ECHO("SPI0 Speed : %.2f MHz\n\n", spi0_baud);
+
+    ECHO("Core Voltage: %.2f V (vsel=%lu)\n\n", core_v, (unsigned long)vsel);
+
+    /* -------- Telemetry -------- */
+    ECHO("=== Telemetry ===\n");
     if (tele_ok) {
-        ECHO("Die Temperature: %.2f°C (ADC raw=%u)\n", sys_tele.die_temp_c, sys_tele.raw_temp);
+        ECHO("USB Voltage : %.2f V\n", sys_tele.vusb_volts);
+        ECHO("12V Supply  : %.2f V\n", sys_tele.vsupply_volts);
+        ECHO("Die Temp    : %.2f C\n", sys_tele.die_temp_c);
     } else {
-        ECHO("Die Temperature: N/A (no telemetry)\n");
+        ECHO("Telemetry not ready\n");
     }
-    ECHO("==========================\n\n");
+
+    ECHO("========================\n\n");
 }
 
 /**
@@ -599,7 +618,7 @@ static void cmd_set_ch(const char *args) {
 
         bool success = true;
         for (uint8_t ch_idx = 0; ch_idx < 8; ch_idx++) {
-            if (!Switch_SetChannel(ch_idx, val, pdMS_TO_TICKS(200))) {
+            if (!Switch_SetChannel(ch_idx, val)) {
 #if ERRORLOGGER
                 uint16_t errorcode =
                     ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK, 0x8);
@@ -638,7 +657,7 @@ static void cmd_set_ch(const char *args) {
         return;
     }
 
-    if (Switch_SetChannel(ch_idx, val, pdMS_TO_TICKS(200))) {
+    if (Switch_SetChannel(ch_idx, val)) {
         ECHO("CH%d = %s\n", ch, val ? "ON" : "OFF");
     } else {
 #if ERRORLOGGER
@@ -738,9 +757,12 @@ static void cmd_oc_status(char *args) {
 #endif
 
     ECHO("Current Limit:    %.1f A\n", status.limit_a);
-    ECHO("Warning Thresh:   %.2f A (Limit - %.2f)\n", status.warning_threshold_a, ENERGIS_CURRENT_WARNING_OFFSET_A);
-    ECHO("Critical Thresh:  %.2f A (Limit - %.2f)\n", status.critical_threshold_a, ENERGIS_CURRENT_SAFETY_MARGIN_A);
-    ECHO("Recovery Thresh:  %.2f A (Limit - %.2f)\n", status.recovery_threshold_a, ENERGIS_CURRENT_RECOVERY_OFFSET_A);
+    ECHO("Warning Thresh:   %.2f A (Limit - %.2f)\n", status.warning_threshold_a,
+         ENERGIS_CURRENT_WARNING_OFFSET_A);
+    ECHO("Critical Thresh:  %.2f A (Limit - %.2f)\n", status.critical_threshold_a,
+         ENERGIS_CURRENT_SAFETY_MARGIN_A);
+    ECHO("Recovery Thresh:  %.2f A (Limit - %.2f)\n", status.recovery_threshold_a,
+         ENERGIS_CURRENT_RECOVERY_OFFSET_A);
     ECHO("\n");
     ECHO("Total Current:    %.2f A\n", status.total_current_a);
 
@@ -799,7 +821,7 @@ static void cmd_oc_reset(char *args) {
  * @return None
  */
 static void cmd_clr_err(void) {
-    setError(false);
+    Switch_SetFaultLed(false, 0);
     ECHO("Error LED cleared\n");
 }
 
@@ -877,7 +899,7 @@ static void cmd_auto_cal_v(const char *args) {
         return;
     }
 
-    ECHO("\n========================================\n");
+    ECHO("========================================\n");
     ECHO("  AUTO VOLTAGE CALIBRATION (ASYNC)\n");
     ECHO("========================================\n");
     ECHO("Calibrating all 8 channels (%.1fV, 0A)\n", ref_voltage);
@@ -1525,17 +1547,15 @@ static void dispatch_command(const char *line) {
         cmd_read_warning_log();
     } else if (strcmp(trimmed, "CLEAR_ERROR") == 0) {
         cmd_clear_error_log();
-        setError(false);
+        Switch_SetFaultLed(false, 0);
     } else if (strcmp(trimmed, "CLEAR_WARNING") == 0) {
         cmd_clear_warning_log();
-        setError(false);
+        Switch_SetFaultLed(false, 0);
     } else if (strcmp(trimmed, "BAADCAFE") == 0) {
         ECHO("Erasing EEPROM... (THIS CANNOT BE UNDONE!)\n");
-        if (storage_erase_all(30000)) {
-            ECHO("EEPROM erased. Reboot required.\n");
-        } else {
-            ERROR_PRINT("EEPROM erase failed or timed out.\n");
-        }
+        storage_erase_all_async();
+    } else if (strcmp(trimmed, "PROV") == 0) {
+        cmd_prov(args ? args : "");
     } else {
         ERROR_PRINT("Unknown command: '%s'. Type HELP for list.\n", trimmed);
     }

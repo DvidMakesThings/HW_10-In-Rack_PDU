@@ -99,6 +99,29 @@
       color: #fff;
     }
 
+    /* Grey out readonly (non-editable) fields */
+    input[readonly],
+    textarea[readonly],
+    select[disabled],
+    input[disabled],
+    textarea[disabled] {
+      background: #232730;
+      color: #9aa3ad;
+      border: 1px solid #3f4450;
+      opacity: 1;
+      cursor: not-allowed;
+    }
+
+    /* Grey out readonly IP-group inputs too (if any are set readonly later) */
+    .ip-input-group input[readonly],
+    .ip-input-group input[disabled] {
+      background: #232730;
+      color: #9aa3ad;
+      border: 1px solid #3f4450;
+      opacity: 1;
+      cursor: not-allowed;
+    }
+
     .btn {
       background-color: #3fa7ff;
       border: none;
@@ -186,7 +209,19 @@
 
     h3 {
       margin: 1.5rem 0 0.5rem 0;
-      color: #3fa7ff;
+      color: #fff;
+    }
+
+    .settings-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    .settings-table td {
+      vertical-align: top;
+      padding: 0 20px 10px 0;
+      width: 50%;
     }
   </style>
   <script>
@@ -233,12 +268,14 @@
       const ip = getIpFromGroup('ip-group');
       const gateway = getIpFromGroup('gateway-group');
       const subnet = getIpFromGroup('subnet-group');
+      const dns = getIpFromGroup('dns-group');
 
       // Prepare form data
       const formData = new FormData(event.target);
       formData.set('ip', ip);
       formData.set('gateway', gateway);
       formData.set('subnet', subnet);
+      formData.set('dns', dns);
 
       // Disable submit button
       const submitBtn = document.querySelector('button[type="submit"]');
@@ -288,11 +325,21 @@
           setIpToGroup('ip-group', settings.ip);
           setIpToGroup('gateway-group', settings.gateway);
           setIpToGroup('subnet-group', settings.subnet);
+          setIpToGroup('dns-group', settings.dns);
+
+          document.getElementById('mac').value = settings.mac || '';
+
+          document.getElementById('serial_number').value = settings.serial_number || '';
+          document.getElementById('firmware_version').value = settings.firmware_version || '';
+          document.getElementById('hardware_version').value = settings.hardware_version || '';
+
+          document.getElementById('device_region').value = settings.device_region || '';
+          document.getElementById('current_limit').value = settings.current_limit || '';
+          document.getElementById('warning_limit').value = settings.warning_limit || '';
+          document.getElementById('critical_limit').value = settings.critical_limit || '';
+
           document.getElementById('device_name').value = settings.device_name;
           document.getElementById('location').value = settings.location;
-          document.getElementById('timezone').value = settings.timezone;
-          document.getElementById('time').value = settings.time;
-          document.getElementById('autologout').value = settings.autologout;
           document.querySelector(`input[name="temp_unit"][value="${settings.temp_unit}"]`).checked = true;
         })
         .catch(error => {
@@ -305,7 +352,7 @@
 
 <body>
   <div class="topbar">
-    <h1>ENERGIS 8 Channel Managed PDU</h1>
+    <h1>ENERGIS 10IN Managed PDU</h1>
   </div>
   <div class="container">
     <div class="sidebar">
@@ -322,81 +369,132 @@
       <div id="status-message" style="display: none;"></div>
 
       <form onsubmit="handleSubmit(event)">
-        <h3>Network Settings</h3>
-        <hr>
 
-        <div class="form-group">
-          <label>IP Address:</label>
-          <div id="ip-group" class="ip-input-group">
-            <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
-            <span>.</span>
-            <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
-            <span>.</span>
-            <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
-            <span>.</span>
-            <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
-          </div>
-        </div>
+        <table class="settings-table">
+          <tr>
+            <td>
+              <h3>Device Settings</h3>
+              <hr>
 
-        <div class="form-group">
-          <label>Gateway:</label>
-          <div id="gateway-group" class="ip-input-group">
-            <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
-            <span>.</span>
-            <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
-            <span>.</span>
-            <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
-            <span>.</span>
-            <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
-          </div>
-        </div>
+              <div class="form-group">
+                <label for="device_name">Device Name:</label>
+                <input type="text" id="device_name" name="device_name" maxlength="32" required>
+              </div>
 
-        <div class="form-group">
-          <label>Subnet Mask:</label>
-          <div id="subnet-group" class="ip-input-group">
-            <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
-            <span>.</span>
-            <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
-            <span>.</span>
-            <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
-            <span>.</span>
-            <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
-          </div>
-        </div>
+              <div class="form-group">
+                <label for="location">Device Location:</label>
+                <input type="text" id="location" name="location" maxlength="32" required>
+              </div>
+            </td>
+            <td>
+              <h3>Network Settings</h3>
+              <hr>
 
-        <h3>Device Settings</h3>
-        <hr>
+              <div class="form-group">
+                <label>MAC Address:</label>
+                <input type="text" id="mac" name="mac" readonly>
+              </div>
 
-        <div class="form-group">
-          <label for="device_name">Device Name:</label>
-          <input type="text" id="device_name" name="device_name" maxlength="32" required>
-        </div>
+              <div class="form-group">
+                <label>IP Address:</label>
+                <div id="ip-group" class="ip-input-group">
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                  <span>.</span>
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                  <span>.</span>
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                  <span>.</span>
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                </div>
+              </div>
 
-        <div class="form-group">
-          <label for="location">Device Location:</label>
-          <input type="text" id="location" name="location" maxlength="32" required>
-        </div>
+              <div class="form-group">
+                <label>Gateway:</label>
+                <div id="gateway-group" class="ip-input-group">
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                  <span>.</span>
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                  <span>.</span>
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                  <span>.</span>
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                </div>
+              </div>
 
-        <h3>Time Settings</h3>
-        <hr>
+              <div class="form-group">
+                <label>Subnet Mask:</label>
+                <div id="subnet-group" class="ip-input-group">
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                  <span>.</span>
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                  <span>.</span>
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                  <span>.</span>
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                </div>
+              </div>
 
-        <div class="form-group">
-          <label for="timezone">Timezone:</label>
-          <input type="text" id="timezone" name="timezone" required>
-        </div>
+              <div class="form-group">
+                <label>DNS Server:</label>
+                <div id="dns-group" class="ip-input-group">
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                  <span>.</span>
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                  <span>.</span>
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                  <span>.</span>
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                </div>
+              </div>
+            </td>
+          </tr>
 
-        <div class="form-group">
-          <label for="time">Time (HH:MM:SS):</label>
-          <input type="text" id="time" name="time" pattern="^([0-1]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$" required>
-        </div>
+          <tr>
+            <td>
+              <h3>Device Identity</h3>
+              <hr>
 
-        <h3>Security Settings</h3>
-        <hr>
+              <div class="form-group">
+                <label for="serial_number">Serial Number:</label>
+                <input type="text" id="serial_number" name="serial_number" readonly>
+              </div>
 
-        <div class="form-group">
-          <label for="autologout">Auto Logout (min):</label>
-          <input type="number" id="autologout" name="autologout" min="0" max="60" required>
-        </div>
+              <div class="form-group">
+                <label for="firmware_version">Firmware Version:</label>
+                <input type="text" id="firmware_version" name="firmware_version" readonly>
+              </div>
+
+              <div class="form-group">
+                <label for="hardware_version">Hardware Version:</label>
+                <input type="text" id="hardware_version" name="hardware_version" readonly>
+              </div>
+            </td>
+            <td>
+              <h3>Location</h3>
+              <hr>
+
+              <div class="form-group">
+                <label for="device_region">Device Region:</label>
+                <input type="text" id="device_region" name="device_region" readonly>
+              </div>
+
+              <div class="form-group">
+                <label for="current_limit">Current Limit:</label>
+                <input type="text" id="current_limit" name="current_limit" readonly>
+              </div>
+
+              <div class="form-group">
+                <label for="warning_limit">Warning Threshold:</label>
+                <input type="text" id="warning_limit" name="warning_limit" readonly>
+              </div>
+
+              <div class="form-group">
+                <label for="critical_limit">Critical Threshold:</label>
+                <input type="text" id="critical_limit" name="critical_limit" readonly>
+              </div>
+            </td>
+          </tr>
+        </table>
 
         <h3>Temperature Unit</h3>
         <hr>

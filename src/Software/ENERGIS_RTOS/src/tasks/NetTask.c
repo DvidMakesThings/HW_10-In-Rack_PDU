@@ -339,12 +339,12 @@ static void NetTask_Function(void *pvParameters) {
     if (s_last_link == PHY_LINK_ON) {
         s_eth_led_blink = false;
         s_eth_led_state = true;
-        setNetworkLink(true);
+        Switch_SetEthLed(true, 10);
         INFO_PRINT("%s Initial PHY link detected, ETH LED ON\r\n", NET_TASK_TAG);
     } else {
         s_eth_led_blink = true;
         s_eth_led_state = false;
-        setNetworkLink(false);
+        Switch_SetEthLed(false, 10);
         s_eth_led_blink_last_ms = to_ms_since_boot(get_absolute_time());
 #if ERRORLOGGER
         uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_WARNING, ERR_FID_NETTASK, 0x5);
@@ -400,7 +400,7 @@ static void NetTask_Function(void *pvParameters) {
                 (void)net_reinit_from_cache();
                 s_eth_led_blink = false;
                 s_eth_led_state = true;
-                setNetworkLink(true);
+                Switch_SetEthLed(true, 10);
             } else {
 #if ERRORLOGGER
                 uint16_t errorcode =
@@ -411,7 +411,7 @@ static void NetTask_Function(void *pvParameters) {
 
                 s_eth_led_blink = true;
                 s_eth_led_state = false;
-                setNetworkLink(false);
+                Switch_SetEthLed(false, 10);
                 s_eth_led_blink_last_ms = now_ms;
             }
             s_last_link = cur_link;
@@ -422,7 +422,7 @@ static void NetTask_Function(void *pvParameters) {
             if ((now_ms - s_eth_led_blink_last_ms) >= 500U) {
                 s_eth_led_blink_last_ms = now_ms;
                 s_eth_led_state = !s_eth_led_state;
-                setNetworkLink(s_eth_led_state);
+                Switch_SetEthLed(s_eth_led_state, 10);
             }
         }
 

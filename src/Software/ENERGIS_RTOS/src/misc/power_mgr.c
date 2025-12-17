@@ -52,46 +52,34 @@ static struct {
  */
 static void turn_off_all_relays(void) {
     /* Use non-blocking SwitchTask API with short timeout */
-    (void)Switch_AllOff(pdMS_TO_TICKS(500));
+    (void)Switch_AllOff();
 }
 
 /**
  * @brief Turn off all display LEDs except PWR_LED.
  *
- * @details Directly manipulates the MCP23017 display port to clear all
- * outputs except the PWR_LED bit. This ensures a clean LED state when
- * entering standby.
+ * @details Uses SwitchTask-controlled display LED APIs instead of direct MCP access.
+ * This guarantees serialized I2C access and avoids bus contention during SNMP stress.
  *
  * @return None
  */
 static void turn_off_leds_except_pwr(void) {
-    mcp23017_t *disp = mcp_display();
-    if (!disp)
-        return;
+    /* FAULT and ETH LEDs OFF */
+    (void)Switch_SetFaultLed(false, 50);
+    (void)Switch_SetEthLed(false, 50);
 
-    /* Port A: channel LEDs 0-7 → all OFF */
-    mcp_write_mask(disp, 0, 0xFFu, 0x00u);
-
-    /* Port B: FAULT_LED, ETH_LED, PWR_LED are bits 0, 1, 2
-     * Keep PWR_LED (bit 2) ON, turn off FAULT_LED and ETH_LED */
-    mcp_write_mask(disp, 1, 0xFFu, (1u << (PWR_LED - 8)));
+    /* PWR LED ON */
+    (void)Switch_SetPwrLed(true, 50);
 }
 
 /**
  * @brief Turn off all selection LEDs.
  *
- * @details Clears all selection indicator LEDs on the selection MCP.
+ * @details Uses SwitchTask API to ensure selection MCP access is serialized.
  *
  * @return None
  */
-static void turn_off_selection_leds(void) {
-    mcp23017_t *sel = mcp_selection();
-    if (!sel)
-        return;
-
-    mcp_write_mask(sel, 0, 0xFFu, 0x00u);
-    mcp_write_mask(sel, 1, 0xFFu, 0x00u);
-}
+static void turn_off_selection_leds(void) { (void)Switch_SelectAllOff(50); }
 
 /**
  * @brief Hold W5500 in reset (drive RESET pin low).
@@ -122,7 +110,8 @@ static void w5500_release_reset(void) { gpio_put(W5500_RESET, 1); }
  */
 static void set_pwr_led_tracked(bool on) {
     if (s_pwr_led_state != on) {
-        setPowerGood(on);
+        /* Routed via MCP driver → SwitchTask when ready */
+        Switch_SetPwrLed(true, 10);
         s_pwr_led_state = on;
     }
 }
@@ -219,7 +208,7 @@ void Power_ExitStandby(void) {
     set_pwr_led_tracked(true);
 
     /* 3) ETH_LED will be controlled by NetTask link detection */
-    setNetworkLink(false);
+    Switch_SetEthLed(false, 10);
 
     /* 4) Atomically update power state */
     s_power_state = PWR_STATE_RUN;
@@ -273,7 +262,7 @@ void Power_ServiceStandbyLED(void) {
 
     /* RUN mode: PWR_LED is already set, PROC_LED off - NO I2C OPERATIONS!
      *
-     * CRITICAL: Previously this function called setPowerGood(true) every
+     * CRITICAL: Previously this function called Switch_SetPwrLed(true) every
      * ButtonTask iteration, requiring the display MCP mutex. During SNMP
      * stress testing, SwitchTask frequently holds this mutex for display
      * LED updates, causing ButtonTask to block for 4-6 seconds waiting.

@@ -11,8 +11,8 @@
  * @brief Configuration header for ENERGIS PDU firmware.
  * @{
  *
- * @version 2.0.0
- * @date 2025-11-08
+ * @version 2.1.0
+ * @date 2025-12-14
  *
  * @details This file contains global configuration settings,
  * peripheral assignments, and logging macros for the ENERGIS PDU
@@ -72,6 +72,7 @@
 #include "misc/rtos_hooks.h"
 #include "misc/power_mgr.h"
 
+#include "drivers/i2c_bus.h"
 #include "drivers/CAT24C256_driver.h"
 #include "drivers/MCP23017_driver.h"
 #include "drivers/button_driver.h"
@@ -90,6 +91,7 @@
 
 #include "tasks/storage_submodule/calibration.h"
 #include "tasks/storage_submodule/channel_labels.h"
+#include "tasks/storage_submodule/device_identity.h"
 #include "tasks/storage_submodule/energy_monitor.h"
 #include "tasks/storage_submodule/event_log.h"
 #include "tasks/storage_submodule/factory_defaults.h"
@@ -97,6 +99,7 @@
 #include "tasks/storage_submodule/storage_common.h"
 #include "tasks/storage_submodule/user_output.h"
 #include "tasks/storage_submodule/user_prefs.h"
+#include "tasks/provisioning_commands.h"
 #include "tasks/OCP.h"
 #include "tasks/SwitchTask.h"
 #include "tasks/ConsoleTask.h"
@@ -116,8 +119,6 @@
 #include "web_handlers/metrics_handler.h"
 /* clang-format on */
 
-#include "serial_number.h"
-
 extern w5500_NetConfig eth_netcfg;
 
 /********************************************************************************
@@ -134,8 +135,103 @@ extern w5500_NetConfig eth_netcfg;
 
 #define POST_GUARD_MS (DEBOUNCE_MS + 10u)
 
-/********************** Feature Enable/Disable Flags ***************************/
+/*********************** Feature Enable/Disable Flags ***************************/
 #define CFG_ENABLE_METRICS 1
+
+/**
+ * Switch/display policy flags
+ * - When 0, relay switching proceeds even if display mirror writes fail.
+ * - When 1, display mirror failures make the overall switch operation fail.
+ * When enabled (1), any failure to mirror the relay state to the display MCP (0x21)
+ * will cause Switch_SetChannel() to fail. When disabled (0), display mirror is
+ * treated as best-effort: failure is logged as a warning but switching proceeds.
+ */
+#ifndef SWITCH_DISPLAY_STRICT
+#define SWITCH_DISPLAY_STRICT 1
+#endif
+
+/***************************** Network Defaults *********************************/
+/**
+ * @brief Default static IPv4 address octets.
+ */
+#define ENERGIS_DEFAULT_IP {192, 168, 0, 22}
+
+/**
+ * @brief Default IPv4 subnet mask octets.
+ */
+#define ENERGIS_DEFAULT_SN {255, 255, 255, 0}
+
+/**
+ * @brief Default IPv4 gateway octets.
+ */
+#define ENERGIS_DEFAULT_GW {192, 168, 0, 1}
+
+/**
+ * @brief Default IPv4 DNS server octets.
+ */
+#define ENERGIS_DEFAULT_DNS {8, 8, 8, 8}
+
+/***************************** Hardware Version *********************************/
+/**
+ * @brief Hardware version string.
+ * @details Format: MAJOR.MINOR.PATCH
+ */
+#define HARDWARE_VERSION "1.0.0"
+
+/**
+ * @brief Hardware version as integer literal.
+ * @details Encoded as: MAJOR*100 + MINOR*10 + PATCH
+ */
+#define HARDWARE_VERSION_LITERAL 100
+
+/***************************** Firmware Version *********************************/
+/**
+ * @brief Firmware version string.
+ * @details Format: MAJOR.MINOR.PATCH
+ */
+#define FIRMWARE_VERSION "1.0.0"
+
+/**
+ * @brief Firmware version as integer literal.
+ * @details Encoded as: MAJOR*100 + MINOR*10 + PATCH
+ */
+#define FIRMWARE_VERSION_LITERAL 100
+
+/******************** Overcurrent Protection Thresholds ************************/
+/**
+ * @defgroup overcurrent_thresholds Overcurrent Protection Thresholds
+ * @brief Fixed threshold offsets for overcurrent state machine.
+ * @{
+ *
+ * @details
+ * These thresholds are fixed offsets applied to the regional current limit.
+ * The actual limit (10A EU / 15A US) is determined at runtime from EEPROM.
+ *
+ * State Machine:
+ * - NORMAL: Current < (LIMIT - WARNING_OFFSET)
+ * - WARNING: Current >= (LIMIT - WARNING_OFFSET)
+ * - CRITICAL: Current >= (LIMIT - SAFETY_MARGIN)
+ * - LOCKOUT: Trip executed, switching disabled
+ * - RECOVERY: Current < (LIMIT - RECOVERY_OFFSET)
+ */
+
+/**
+ * @brief Safety threshold margin in amperes.
+ * @details Offset from limit for CRITICAL threshold.
+ */
+#define ENERGIS_CURRENT_SAFETY_MARGIN_A 0.5f
+
+/**
+ * @brief Warning threshold offset in amperes.
+ * @details Offset from limit for WARNING threshold.
+ */
+#define ENERGIS_CURRENT_WARNING_OFFSET_A 1.0f
+
+/**
+ * @brief Recovery hysteresis offset in amperes.
+ * @details Offset from limit for RECOVERY threshold (exit lockout).
+ */
+#define ENERGIS_CURRENT_RECOVERY_OFFSET_A 1.5f
 
 /********************************************************************************
  *                          GLOBAL CONFIGURATIONS                               *
@@ -143,7 +239,6 @@ extern w5500_NetConfig eth_netcfg;
  ********************************************************************************/
 
 /* ---------- Default values  ---------- */
-#define DEFAULT_SN SERIAL_NUMBER
 #define SWVERSION FIRMWARE_VERSION
 #define SW_REV FIRMWARE_VERSION_LITERAL
 #define HW_REV HARDWARE_VERSION_LITERAL
@@ -166,7 +261,7 @@ extern w5500_NetConfig eth_netcfg;
 
 /* ---------- LOGGING FLAGS ---------- */
 #ifndef DEBUG
-#define DEBUG 0
+#define DEBUG 1
 #endif
 
 #ifndef DEBUG_HEALTH
@@ -218,7 +313,12 @@ extern w5500_NetConfig eth_netcfg;
 #endif
 
 #if ERROR
-#define ERROR_PRINT(...) (setError(true), log_printf_force("[ERROR] " __VA_ARGS__))
+#define ERROR_PRINT(...)                                                                           \
+    (/*Switch_SetFaultLed(true, 10),*/ log_printf_force("[ERROR] " __VA_ARGS__))
+#endif
+
+#if ERROR && DEBUG
+#define ERROR_PRINT_DEBUG(...) log_printf("[ERROR] " __VA_ARGS__)
 #endif
 
 #if WARNING
@@ -247,8 +347,8 @@ extern w5500_NetConfig eth_netcfg;
  *                          PERIPHERAL ASSIGNMENTS                              *
  ********************************************************************************/
 // I2C Peripheral Assignments
-#define I2C_SPEED 400000                            // 400 kHz fast mode
-#define I2C_SPEED2 400000                           // 400 kHz fast mode
+#define I2C0_SPEED 1000000                           // 400 kHz fast mode
+#define I2C1_SPEED 1000000                           // 400 kHz fast mode
 #define EEPROM_I2C i2c1                             // Using I2C1 for EEPROM communication
 #define MCP23017_RELAY_I2C i2c1                     // Using I2C1 for Relay Board MCP23017
 #define MCP23017_DISPLAY_I2C i2c0                   // Using I2C0 for Display Board MCP23017

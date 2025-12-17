@@ -41,6 +41,7 @@ int EEPROM_WriteSystemInfo(const uint8_t *data, size_t len) {
 #endif
         return -1;
     }
+
     return CAT24C256_WriteBuffer(EEPROM_SYS_INFO_START, data, (uint16_t)len);
 }
 
@@ -64,6 +65,7 @@ int EEPROM_ReadSystemInfo(uint8_t *data, size_t len) {
 #endif
         return -1;
     }
+
     CAT24C256_ReadBuffer(EEPROM_SYS_INFO_START, data, (uint32_t)len);
     return 0;
 }
@@ -116,6 +118,7 @@ int EEPROM_ReadSystemInfoWithChecksum(uint8_t *data, size_t len) {
     }
 
     uint8_t buffer[EEPROM_SYS_INFO_SIZE];
+
     CAT24C256_ReadBuffer(EEPROM_SYS_INFO_START, buffer, (uint32_t)(len + 1));
 
     uint8_t crc = calculate_crc8(buffer, len);
@@ -155,6 +158,7 @@ int EEPROM_WriteUserNetwork(const uint8_t *data, size_t len) {
 #endif
         return -1;
     }
+
     return CAT24C256_WriteBuffer(EEPROM_USER_NETWORK_START, data, (uint16_t)len);
 }
 
@@ -177,6 +181,7 @@ int EEPROM_ReadUserNetwork(uint8_t *data, size_t len) {
 #endif
         return -1;
     }
+
     CAT24C256_ReadBuffer(EEPROM_USER_NETWORK_START, data, (uint32_t)len);
     return 0;
 }
@@ -242,6 +247,7 @@ int EEPROM_ReadUserNetworkWithChecksum(networkInfo *net_info) {
     }
 
     uint8_t buffer[24];
+
     CAT24C256_ReadBuffer(EEPROM_USER_NETWORK_START, buffer, 24);
 
     /* Verify CRC */

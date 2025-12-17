@@ -20,6 +20,8 @@ MODULE_NAMES = {
     0x6: "HEALTH",
     0x7: "LOGGER",
     0x8: "CONSOLE",
+    0x9: "OCP",
+    0xA: "SWITCH",
 }
 
 # Severities from error_severity_t
@@ -92,5 +94,11 @@ FID_NAMES = {
         0x0: "ConsoleTask.c",
         0x1: "ConsoleTask.c",
         0x2: "ConsoleTask.c",
+    },
+    0x9: {  # OCP (Overcurrent Protection)
+        0xF: "OCP.c",
+    },
+    0xA: {  # SWITCH
+        0xF: "SwitchTask.c",
     },
 }

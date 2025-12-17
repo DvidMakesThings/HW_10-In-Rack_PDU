@@ -62,7 +62,7 @@ static volatile uint32_t s_last_press_ms = 0;
 /**
  * @brief Blink request flag - set by timer callback, cleared by task after processing.
  * @details This decouples the timer callback from I2C operations. The timer only
- * sets this flag; the main task loop handles the actual I2C LED toggling.
+ * sets this flag; the main task loop queues LED changes via SwitchTask.
  */
 static volatile bool s_blink_pending = false;
 
@@ -190,6 +190,8 @@ static inline void window_open(uint32_t now) {
     s_last_press_ms = now;
     s_blink_state = true;
     s_last_blink_ms = now;
+    /* Enable manual selection activity: allow 0x23 writes during user interaction */
+    Switch_SetManualPanelActive(true);
     ButtonDrv_SelectShow(s_selected, true);
 }
 
@@ -213,6 +215,8 @@ static inline void window_close(void) {
     s_window_active = false;
     s_blink_state = false;
     ButtonDrv_SelectAllOff();
+    /* Disable manual selection activity after clearing LEDs */
+    Switch_SetManualPanelActive(false);
 }
 
 /**
@@ -224,8 +228,8 @@ static inline void window_close(void) {
  * @details CRITICAL: Timer callbacks run from the timer daemon task context.
  * Performing blocking I2C operations here causes bus collisions with other
  * tasks (e.g., NetTask SNMP) using the same I2C bus, leading to watchdog
- * starvation during stress tests. The actual I2C LED toggling is done in
- * the ButtonTask main loop when s_blink_pending is set.
+ * starvation during stress tests. The actual LED update is queued from the ButtonTask main loop
+ * when s_blink_pending is set. SwitchTask performs the MCP23017 I2C operation.
  */
 static void vBlinkTimerCb(TimerHandle_t xTimer) {
     (void)xTimer;
@@ -241,8 +245,8 @@ static void vBlinkTimerCb(TimerHandle_t xTimer) {
  * @return None
  *
  * @details Called from ButtonTask main loop to handle selection LED blinking.
- * This is the safe place to do I2C operations since we're in a proper task
- * context with correct priority and can properly acquire mutexes.
+ * ButtonTask does not perform any I2C operations. LED updates are queued to
+ * SwitchTask which owns the MCP23017 I2C bus operations.
  */
 static void process_blink(uint32_t now) {
     /* Only process if timer fired */
@@ -426,7 +430,7 @@ static void vButtonTask(void *pvParameters) {
                 (void)storage_clear_warning_log_async();
                 Health_Heartbeat(HEALTH_ID_STORAGE);
                 vTaskDelay(pdMS_TO_TICKS(10));
-                setError(false);
+                Switch_SetFaultLed(false, 0);
                 emit(BTN_EV_SET_LONG);
                 window_close();
             }

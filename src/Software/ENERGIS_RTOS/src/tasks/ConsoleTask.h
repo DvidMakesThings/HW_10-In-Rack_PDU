@@ -2,7 +2,7 @@
  * @file src/tasks/ConsoleTask.h
  * @author DvidMakesThings - David Sipos
  *
- * @defgroup tasks04 3. Console Task
+ * @defgroup tasks04 4. Console Task
  * @ingroup tasks
  * @brief UART console task implementation (RTOS version, polling USB-CDC)
  * @{

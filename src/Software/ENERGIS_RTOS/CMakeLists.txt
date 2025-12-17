@@ -56,8 +56,8 @@ add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/lib/FreeRTOS-Kernel ${CMAKE_BINARY_DI
 # ----------------------------- Executable ----------------------------------
 add_executable(ENERGIS_RTOS
     src/ENERGIS_RTOS.c
-    #src/system_startup.c
     src/drivers/button_driver.c
+    src/drivers/i2c_bus.c
     src/drivers/MCP23017_driver.c
     src/drivers/CAT24C256_driver.c
     src/drivers/ethernet_driver.c
@@ -83,6 +83,7 @@ add_executable(ENERGIS_RTOS
     src/tasks/ButtonTask.c
     src/tasks/HealthTask.c
     src/tasks/SwitchTask.c
+    src/tasks/provisioning_commands.c
     src/tasks/storage_submodule/calibration.c
     src/tasks/storage_submodule/channel_labels.c
     src/tasks/storage_submodule/energy_monitor.c
@@ -92,6 +93,7 @@ add_executable(ENERGIS_RTOS
     src/tasks/storage_submodule/storage_common.c
     src/tasks/storage_submodule/user_output.c
     src/tasks/storage_submodule/user_prefs.c
+    src/tasks/storage_submodule/device_identity.c
     src/web_handlers/http_server.c
     src/web_handlers/control_handler.c
     src/web_handlers/settings_handler.c

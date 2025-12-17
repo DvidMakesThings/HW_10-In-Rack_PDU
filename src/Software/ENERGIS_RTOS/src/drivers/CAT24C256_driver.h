@@ -52,7 +52,7 @@
 /**
  * @brief Initialize the CAT24C256 EEPROM driver.
  *
- * Uses CONFIG.h definitions: I2C1_SDA, I2C1_SCL, EEPROM_I2C, I2C_SPEED.
+ * Uses CONFIG.h definitions: I2C1_SDA, I2C1_SCL, EEPROM_I2C, I2C0_SPEED.
  * I2C peripheral already initialized by system_startup_init().
  *
  * RTOS: Safe to call from any task context.

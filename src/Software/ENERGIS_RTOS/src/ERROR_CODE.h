@@ -11,8 +11,8 @@
  * @brief Configuration header for ENERGIS PDU firmware.
  * @{
  *
- * @version 2.0.0
- * @date 2025-11-08
+ * @version 2.1.0
+ * @date 2025-12-14
  *
  * @details This file contains global configuration settings,
  * peripheral assignments, and logging macros for the ENERGIS PDU
@@ -112,6 +112,7 @@ typedef enum {
 #define ERR_FID_ST_STORAGE_COMMON 0x7 /**< storage_common.c */
 #define ERR_FID_ST_USER_OUTPUT 0x8    /**< user_output.c */
 #define ERR_FID_ST_USER_PREFS 0x9     /**< user_prefs.c */
+#define ERR_FID_DEVICE_IDENTITY 0xA   /**< device_identity.c */
 #define ERR_FID_ST_STORAGETASK 0xF    /**< StorageTask.c */
 
 /* ========================= BUTTON MODULE (0x5) ============================ */
@@ -132,16 +133,22 @@ typedef enum {
 #define ERR_FID_LOGGERTASK 0xF /**< LoggerTask.c */
 
 /* ======================== CONSOLE MODULE (0x8) ============================ */
-#define ERR_FID_CONSOLETASK 0x0  /**< ConsoleTask.c */
-#define ERR_FID_CONSOLETASK2 0x1 /**< ConsoleTask.c */
-#define ERR_FID_CONSOLETASK3 0x2 /**< ConsoleTask.c */
-/* Reserve 0x1..0xF for future console_submodules .c files */
+#define ERR_FID_CONSOLETASK 0x0   /**< ConsoleTask.c */
+#define ERR_FID_CONSOLETASK2 0x1  /**< ConsoleTask.c */
+#define ERR_FID_CONSOLETASK3 0x2  /**< ConsoleTask.c */
+#define ERR_FID_PROV_COMMANDS 0x3 /**< provisioning_commands.c */
+/* Reserve 0x4..0xF for future console_submodules .c files */
 
 /* ==================== Overcurrent Protection (0x9) ========================= */
 #define ERR_FID_OVPTASK 0xF /**< OCP.c */
 
 /* ========================= SWITCH MODULE (0xA) ============================= */
-#define ERR_FID_SWITCHTASK 0xF /**< SwitchTask.c */
+#define ERR_FID_SWITCHTASK 0x0  /**< SwitchTask.c */
+#define ERR_FID_SWITCHTASK1 0x1 /**< SwitchTask.c */
+#define ERR_FID_SWITCHTASK2 0x2 /**< SwitchTask.c */
+#define ERR_FID_SWITCHTASK3 0x3 /**< SwitchTask.c */
+#define ERR_FID_SWITCHTASK4 0x4 /**< SwitchTask.c */
+#define ERR_FID_SWITCHTASK5 0x5 /**< SwitchTask.c */
 
 /********************************************************************************
  *                                FUNCTION MACROS                               *
@@ -217,7 +224,7 @@ typedef enum {
 #if ERROR
 #define ERROR_PRINT_CODE(code, fmt, ...)                                                           \
     do {                                                                                           \
-        setError(true);                                                                            \
+        Switch_SetFaultLed(true, 0);                                                               \
         log_printf_force("[ERROR 0x%04X] " fmt, (uint16_t)(code), ##__VA_ARGS__);                  \
     } while (0)
 #else

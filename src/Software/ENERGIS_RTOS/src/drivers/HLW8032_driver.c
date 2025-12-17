@@ -1,11 +1,8 @@
 /**
  * @file HLW8032_driver.c
  * @author DvidMakesThings - David Sipos
- * @defgroup drivers Drivers
- * @brief HAL drivers for the Energis PDU firmware.
- * @{
  *
- * @defgroup driver2 2. HLW8032 Power Measurement Driver
+ * @defgroup driver02 2. HLW8032 Power Measurement Driver
  * @ingroup drivers
  * @brief RTOS-safe driver for HLW8032 power measurement IC
  * @{

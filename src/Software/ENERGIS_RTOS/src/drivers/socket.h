@@ -2,7 +2,7 @@
  * @file src/drivers/socket.h
  * @author DvidMakesThings - David Sipos
  *
- * @defgroup drivers08 8. Ethernet Socket Implementation
+ * @defgroup drivers06 6. Ethernet Socket Implementation
  * @ingroup drivers
  * @brief Header file for BSD-like socket API implementation
  * @{

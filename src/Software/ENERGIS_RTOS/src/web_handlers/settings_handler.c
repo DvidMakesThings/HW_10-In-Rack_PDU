@@ -14,113 +14,88 @@
  */
 
 #include "../CONFIG.h"
+#include "../html/settings_gz.h"
 
 static inline void net_beat(void) { Health_Heartbeat(HEALTH_ID_NET); }
 
 #define SETTINGS_HANDLER_TAG "<Settings Handler>"
 
+#define SETTINGS_MAX_SEND_CHUNK 4096
+
+/**
+ * @brief Sends a buffer in safe chunks to avoid overrunning W5500 TX window.
+ *
+ * @param sock Socket number.
+ * @param data Pointer to buffer.
+ * @param len  Total length to send.
+ *
+ * @return Total bytes sent on success, -1 on send failure.
+ */
+static int settings_send_all(uint8_t sock, const uint8_t *data, int len) {
+    int total_sent = 0;
+
+    while (total_sent < len) {
+        int remaining = len - total_sent;
+        int to_send = (remaining > SETTINGS_MAX_SEND_CHUNK) ? SETTINGS_MAX_SEND_CHUNK : remaining;
+
+        int sent = send(sock, (uint8_t *)(data + total_sent), (uint16_t)to_send);
+        if (sent <= 0) {
+#if ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_SETTINGS, 0x9);
+            ERROR_PRINT_CODE(errorcode, "%s Send failed on socket %u\r\n", SETTINGS_HANDLER_TAG,
+                             sock);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
+            return -1;
+        }
+
+        total_sent += sent;
+        net_beat();
+
+        if (total_sent < len) {
+            vTaskDelay(pdMS_TO_TICKS(5));
+        }
+    }
+
+    return total_sent;
+}
+
 /**
  * @brief Handles the HTTP request for the settings page (HTML)
  * @param sock The socket number
  * @return None
- * @note This function serves the settings page with current configuration values
+ * @note This function serves the settings page (gzipped) from flash
  */
 void handle_settings_request(uint8_t sock) {
     NETLOG_PRINT(">> handle_settings_request()\n");
     net_beat();
 
-    /* Load network from EEPROM */
-    networkInfo net;
-    EEPROM_ReadUserNetworkWithChecksum(&net);
-    NETLOG_PRINT("Network EEPROM: IP=%u.%u.%u.%u  GW=%u.%u.%u.%u\n", net.ip[0], net.ip[1],
-                 net.ip[2], net.ip[3], net.gw[0], net.gw[1], net.gw[2], net.gw[3]);
-    net_beat();
+    const int plen = (int)settings_gz_len;
 
-    /* Load prefs from cache (thread-safe) */
-    userPrefInfo pref;
-    if (!storage_get_prefs(&pref)) {
-        pref = (userPrefInfo){.device_name = "ENERGIS", .location = "Unknown", .temp_unit = 0};
-    }
-    NETLOG_PRINT("Prefs EEPROM: device_name=\"%s\"  location=\"%s\"  unit=%u\n", pref.device_name,
-                 pref.location, pref.temp_unit);
-    net_beat();
-
-    /* Read internal temperature */
-    adc_select_input(4);
-    int raw = adc_read();
-    const float VREF = 3.00f;
-    float voltage = (raw * VREF) / (1 << 12);
-    float temp_c = 27.0f - (voltage - 0.706f) / 0.001721f;
-    net_beat();
-
-    /* Convert to user's unit */
-    float temp_out;
-    const char *unit_suffix;
-    switch (pref.temp_unit) {
-    case 1: /* Fahrenheit */
-        temp_out = temp_c * 9.0f / 5.0f + 32.0f;
-        unit_suffix = "°F";
-        break;
-    case 2: /* Kelvin */
-        temp_out = temp_c + 273.15f;
-        unit_suffix = "K";
-        break;
-    default: /* Celsius */
-        temp_out = temp_c;
-        unit_suffix = "°C";
-    }
-
-    /* Build dotted-decimal strings for network */
-    char ip_s[16], gw_s[16], sn_s[16], dns_s[16];
-    snprintf(ip_s, sizeof(ip_s), "%u.%u.%u.%u", net.ip[0], net.ip[1], net.ip[2], net.ip[3]);
-    snprintf(gw_s, sizeof(gw_s), "%u.%u.%u.%u", net.gw[0], net.gw[1], net.gw[2], net.gw[3]);
-    snprintf(sn_s, sizeof(sn_s), "%u.%u.%u.%u", net.sn[0], net.sn[1], net.sn[2], net.sn[3]);
-    snprintf(dns_s, sizeof(dns_s), "%u.%u.%u.%u", net.dns[0], net.dns[1], net.dns[2], net.dns[3]);
-
-    /* Prepare prefs strings */
-    char name_s[32], loc_s[32];
-    strncpy(name_s, pref.device_name, sizeof(name_s) - 1);
-    name_s[sizeof(name_s) - 1] = '\0';
-    strncpy(loc_s, pref.location, sizeof(loc_s) - 1);
-    loc_s[sizeof(loc_s) - 1] = '\0';
-
-    /* Radio button flags */
-    char c_chk[8] = "", f_chk[8] = "", k_chk[8] = "";
-    switch (pref.temp_unit) {
-    case 0:
-        strcpy(c_chk, "checked");
-        break;
-    case 1:
-        strcpy(f_chk, "checked");
-        break;
-    case 2:
-        strcpy(k_chk, "checked");
-        break;
-    }
-
-    /* Render the HTML template */
-    char page[4096];
-    int len = snprintf(page, sizeof(page), settings_html,
-                       /* network (4) */ ip_s, gw_s, sn_s, dns_s,
-                       /* device prefs (2)*/ name_s, loc_s,
-                       /* radios (3)*/ c_chk, f_chk, k_chk,
-                       /* temp display (2)*/ temp_out, unit_suffix);
-    NETLOG_PRINT("Rendered HTML len=%d\n", len);
-    net_beat();
-
-    /* Send HTTP headers + body */
-    char hdr[128];
+    char hdr[256];
     int hlen = snprintf(hdr, sizeof(hdr),
                         "HTTP/1.1 200 OK\r\n"
                         "Content-Type: text/html\r\n"
+                        "Content-Encoding: gzip\r\n"
                         "Content-Length: %d\r\n"
+                        "Access-Control-Allow-Origin: *\r\n"
+                        "Cache-Control: no-cache\r\n"
+                        "Connection: close\r\n"
                         "\r\n",
-                        len);
-    NETLOG_PRINT("Sending header len=%d\n", hlen);
-    send(sock, (uint8_t *)hdr, hlen);
+                        plen);
+    if (hlen < 0)
+        hlen = 0;
+    if (hlen > (int)sizeof(hdr))
+        hlen = (int)sizeof(hdr);
+
+    (void)settings_send_all(sock, (const uint8_t *)hdr, hlen);
     net_beat();
-    send(sock, (uint8_t *)page, len);
-    net_beat();
+
+    if (plen > 0) {
+        (void)settings_send_all(sock, (const uint8_t *)settings_gz, plen);
+        net_beat();
+    }
 
     NETLOG_PRINT("<< handle_settings_request() done\n");
 }
@@ -131,8 +106,9 @@ void handle_settings_request(uint8_t sock) {
  * @return None
  *
  * @details Returns JSON with network configuration and user preferences:
- *  - ip, gateway, subnet, dns, device_name, location, temp_unit, temperature, timezone, time,
- * autologout
+ *  - ip, gateway, subnet, dns, mac, device_name, location, temp_unit, temperature, serial_number,
+ *    firmware_version, hardware_version, device_region, current_limit, warning_limit,
+ * critical_limit, timezone, time, autologout
  *
  * @http
  * - 200 OK on success with JSON body and Connection: close.
@@ -143,11 +119,15 @@ void handle_settings_api(uint8_t sock) {
 
     /* Load network from EEPROM */
     networkInfo net;
-    EEPROM_ReadUserNetworkWithChecksum(&net);
+    if (!EEPROM_ReadUserNetworkWithChecksum(&net)) {
+        net = LoadUserNetworkConfig();
+    }
 
     /* Load prefs from EEPROM */
     userPrefInfo pref;
-    EEPROM_ReadUserPrefsWithChecksum(&pref);
+    if (!EEPROM_ReadUserPrefsWithChecksum(&pref)) {
+        pref = LoadUserPreferences();
+    }
 
     /* Read internal temp */
     adc_select_input(4);
@@ -174,26 +154,56 @@ void handle_settings_api(uint8_t sock) {
         break;
     }
 
+    /* Device identity and limits */
+    const device_identity_t *id = DeviceIdentity_Get();
+    const char *serial_str = (id && id->valid) ? id->serial_number : "";
+    const char *region_str = "UNKNOWN";
+    if (id && id->valid) {
+        region_str = (id->region == DEVICE_REGION_EU)   ? "EU"
+                     : (id->region == DEVICE_REGION_US) ? "US"
+                                                        : "UNKNOWN";
+    }
+
+    overcurrent_status_t oc = {0};
+    (void)Overcurrent_GetStatus(&oc);
+
+    char mac_s[24];
+    snprintf(mac_s, sizeof(mac_s), "%02X:%02X:%02X:%02X:%02X:%02X", net.mac[0], net.mac[1],
+             net.mac[2], net.mac[3], net.mac[4], net.mac[5]);
+
+    char current_limit_s[32];
+    char warning_limit_s[32];
+    char critical_limit_s[32];
+    snprintf(current_limit_s, sizeof(current_limit_s), "%.1f A", oc.limit_a);
+    snprintf(warning_limit_s, sizeof(warning_limit_s), "%.2f A", oc.warning_threshold_a);
+    snprintf(critical_limit_s, sizeof(critical_limit_s), "%.2f A", oc.critical_threshold_a);
+
     /* Build JSON response */
-    char json[1024];
-    int len =
-        snprintf(json, sizeof(json),
-                 "{"
-                 "\"ip\":\"%u.%u.%u.%u\","
-                 "\"gateway\":\"%u.%u.%u.%u\","
-                 "\"subnet\":\"%u.%u.%u.%u\","
-                 "\"dns\":\"%u.%u.%u.%u\","
-                 "\"device_name\":\"%s\","
-                 "\"location\":\"%s\","
-                 "\"temp_unit\":\"%s\","
-                 "\"temperature\":%.2f,"
-                 "\"timezone\":\"\","
-                 "\"time\":\"00:00:00\","
-                 "\"autologout\":5"
-                 "}",
-                 net.ip[0], net.ip[1], net.ip[2], net.ip[3], net.gw[0], net.gw[1], net.gw[2],
-                 net.gw[3], net.sn[0], net.sn[1], net.sn[2], net.sn[3], net.dns[0], net.dns[1],
-                 net.dns[2], net.dns[3], pref.device_name, pref.location, unit_suffix, temp_out);
+    char json[1400];
+    int len = snprintf(json, sizeof(json),
+                       "{"
+                       "\"ip\":\"%u.%u.%u.%u\","
+                       "\"gateway\":\"%u.%u.%u.%u\","
+                       "\"subnet\":\"%u.%u.%u.%u\","
+                       "\"dns\":\"%u.%u.%u.%u\","
+                       "\"mac\":\"%s\","
+                       "\"device_name\":\"%s\","
+                       "\"location\":\"%s\","
+                       "\"temp_unit\":\"%s\","
+                       "\"temperature\":%.2f,"
+                       "\"serial_number\":\"%s\","
+                       "\"firmware_version\":\"%s\","
+                       "\"hardware_version\":\"%s\","
+                       "\"device_region\":\"%s\","
+                       "\"current_limit\":\"%s\","
+                       "\"warning_limit\":\"%s\","
+                       "\"critical_limit\":\"%s\""
+                       "}",
+                       net.ip[0], net.ip[1], net.ip[2], net.ip[3], net.gw[0], net.gw[1], net.gw[2],
+                       net.gw[3], net.sn[0], net.sn[1], net.sn[2], net.sn[3], net.dns[0],
+                       net.dns[1], net.dns[2], net.dns[3], mac_s, pref.device_name, pref.location,
+                       unit_suffix, temp_out, serial_str, FIRMWARE_VERSION, HARDWARE_VERSION,
+                       region_str, current_limit_s, warning_limit_s, critical_limit_s);
 
     if (len < 0)
         len = 0;
@@ -260,7 +270,10 @@ void handle_settings_post(uint8_t sock, char *body) {
     }
 
     /* Update network config */
-    networkInfo net = LoadUserNetworkConfig();
+    networkInfo net;
+    if (!EEPROM_ReadUserNetworkWithChecksum(&net)) {
+        net = LoadUserNetworkConfig();
+    }
     networkInfo backup_net = net;
     char buf[64];
     char *tmp;
@@ -337,7 +350,10 @@ void handle_settings_post(uint8_t sock, char *body) {
     }
 
     /* Update user preferences */
-    userPrefInfo pref = LoadUserPreferences();
+    userPrefInfo pref;
+    if (!EEPROM_ReadUserPrefsWithChecksum(&pref)) {
+        pref = LoadUserPreferences();
+    }
     userPrefInfo backup_pref = pref;
 
     if ((tmp = get_form_value(body, "device_name"))) {

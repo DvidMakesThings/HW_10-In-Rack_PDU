@@ -1,33 +1,27 @@
 /**
- * @file src/tasks/SwitchTask.h
+ * @file SwitchTask.h
  * @author DvidMakesThings - David Sipos
  *
- * @defgroup tasks09 9. Switch Task
- * @ingroup tasks
- * @brief FreeRTOS-based relay/switch control task for ENERGIS.
+ * @defgroup tasks09  9. Switch Task
+ * @brief Minimal, synchronous relay/display control using MCP23017.
  * @{
- *
- * @version 1.0.0
- * @date 2025-12-10
+ * @version 2.0.0
+ * @date 2025-12-17
  *
  * @details
- * Provides non-blocking, RTOS-cooperative relay control for all 8 channels.
- * SwitchTask owns all MCP23017 relay operations to prevent I2C bus contention
- * and watchdog starvation during SNMP stress testing.
+ * Simple, human-readable C for reliable relay control:
+ * - Single global mutex serializes all MCP23017 access
+ * - Direct calls into MCP driver; no queues
+ * - Display mirror is best-effort with a short backoff on failures
  *
- * Key Features:
- * - Non-blocking command queueing with configurable timeout
- * - Single task ownership of MCP relay hardware
- * - Atomic cached state for instant reads (no I2C access)
- * - Bulk operations for all channels
- * - Toggle support for button interactions
- * - Periodic hardware sync for state verification
+ * Determinism:
+ * - All APIs are synchronous/blocking and return detailed result codes
+ * - SNMP paths call Switch_* and get immediate success/failure
+ * - No hidden work; every operation completes before returning
  *
- * Architecture:
- * - SwitchTask is the SOLE owner of mcp_set_channel_state/mcp_get_channel_state
- * - All other tasks use Switch_* API which queues commands
- * - Reads return cached state immediately (no blocking)
- * - Writes are enqueued and processed by SwitchTask
+ * Thread-safety:
+ * - Mutex protects all public operations
+ * - Selection writes are gated by manual panel activity
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -39,65 +33,67 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#include "FreeRTOS.h"
+#include "task.h"
+
 /* ==================== Configuration Knobs ==================== */
 
-/** @brief Command queue depth (handles bursts of up to 32 commands) */
-#ifndef SWITCH_CMD_QUEUE_SIZE
-#define SWITCH_CMD_QUEUE_SIZE 32
+/**
+ * @brief Maximum time to wait for mutex acquisition (ms).
+ * @details All synchronous operations will fail if mutex cannot be acquired
+ * within this timeout.
+ */
+#ifndef SWITCH_MUTEX_TIMEOUT_MS
+#define SWITCH_MUTEX_TIMEOUT_MS 1000
 #endif
 
-/** @brief Delay between relay command executions (ms) to prevent I2C overload */
-#ifndef SWITCH_CMD_PACE_MS
-#define SWITCH_CMD_PACE_MS 10
-#endif
-
-/** @brief Task scan period when idle (ms) */
+/**
+ * @brief Task maintenance period (ms).
+ * @details SwitchTask runs periodic maintenance (cache sync, health heartbeat).
+ */
 #ifndef SWITCH_TASK_PERIOD_MS
-#define SWITCH_TASK_PERIOD_MS 50
+#define SWITCH_TASK_PERIOD_MS 100
 #endif
 
-/** @brief Periodic hardware sync interval (ms) - verify cache matches hardware */
+/**
+ * @brief Periodic hardware sync interval (ms).
+ * @details How often the background task syncs cache from hardware.
+ */
 #ifndef SWITCH_HW_SYNC_INTERVAL_MS
 #define SWITCH_HW_SYNC_INTERVAL_MS 5000
 #endif
 
-/** @brief Bring-up wait timeout for Storage_IsReady() in milliseconds */
+/**
+ * @brief Bring-up wait timeout for Storage_IsReady() in milliseconds.
+ */
 #ifndef SWITCH_WAIT_STORAGE_READY_MS
 #define SWITCH_WAIT_STORAGE_READY_MS 5000
 #endif
 
-/* ==================== Command Types ==================== */
+/* ==================== Result Codes ==================== */
 
 /**
- * @brief Switch control command types
+ * @brief Switch operation result codes.
+ * @details Provides detailed status for deterministic error handling.
  */
 typedef enum {
-    SWITCH_CMD_SET_CHANNEL,         /**< Set single channel state */
-    SWITCH_CMD_TOGGLE,              /**< Toggle single channel */
-    SWITCH_CMD_ALL_ON,              /**< Turn all channels ON */
-    SWITCH_CMD_ALL_OFF,             /**< Turn all channels OFF */
-    SWITCH_CMD_SET_MASK,            /**< Set multiple channels via bitmask */
-    SWITCH_CMD_SYNC_FROM_HW,        /**< Force sync cached state from hardware */
-    SWITCH_CMD_SET_RELAY_PORTB_MASK /**< Low-level MCP Port B masked write */
-} switch_cmd_type_t;
-
-/**
- * @brief Switch control command structure
- */
-typedef struct {
-    switch_cmd_type_t type; /**< Command type */
-    uint8_t channel;        /**< Channel number (0-7) for single-channel ops */
-    uint8_t state;          /**< Desired state (1=ON, 0=OFF) */
-    uint8_t mask;           /**< Bitmask for SET_MASK command */
-} switch_cmd_t;
+    SWITCH_OK = 0,              /**< Operation successful */
+    SWITCH_ERR_NOT_INIT,        /**< Subsystem not initialized */
+    SWITCH_ERR_INVALID_CHANNEL, /**< Channel out of range (0-7) */
+    SWITCH_ERR_MUTEX_TIMEOUT,   /**< Could not acquire mutex */
+    SWITCH_ERR_I2C_FAIL,        /**< I2C communication failed */
+    SWITCH_ERR_VERIFY_FAIL,     /**< Read-back verification failed */
+    SWITCH_ERR_OVERCURRENT,     /**< Operation rejected due to overcurrent lockout */
+    SWITCH_ERR_NULL_PARAM       /**< NULL parameter provided */
+} switch_result_t;
 
 /* ==================== Public API ==================== */
 
 /**
  * @brief Initialize and start the SwitchTask.
  *
- * Creates the command queue, initializes cached state from hardware,
- * and spawns the SwitchTask. Must be called during system bring-up
+ * Creates the global mutex, initializes hardware state, and spawns the
+ * background maintenance task. Must be called during system bring-up
  * after MCP23017 initialization.
  *
  * @param enable Set true to create/start; false to skip deterministically.
@@ -106,122 +102,261 @@ typedef struct {
 BaseType_t SwitchTask_Init(bool enable);
 
 /**
- * @brief Check if SwitchTask is ready for commands.
+ * @brief Check if SwitchTask is ready for operations.
  *
  * @return true if initialized and ready, false otherwise.
  */
 bool Switch_IsReady(void);
 
-/* ---------- Non-blocking State Reads ---------- */
+/* ---------- Synchronous State Reads (DETERMINISTIC) ---------- */
 
 /**
- * @brief Get current relay channel state (instant, non-blocking).
+ * @brief Get current relay channel state from hardware.
  *
- * Reads the cached channel state without any I2C access. Safe to call
- * from any task context including time-critical paths.
+ * SYNCHRONOUS: Blocks until hardware is read and result returned.
+ * Takes mutex, reads hardware via I2C, releases mutex.
  *
  * @param channel Channel number (0-7)
  * @param out_state Pointer to receive current state (true=ON, false=OFF)
- * @return true on success, false if channel invalid or out_state is NULL
+ * @return SWITCH_OK on success, error code otherwise.
  *
- * @note Returns cached state which is periodically synced from hardware.
- *       May not reflect very recent queued commands that haven't executed yet.
+ * @note This reads DIRECTLY from hardware, not from cache.
  */
-bool Switch_GetState(uint8_t channel, bool *out_state);
+switch_result_t Switch_GetState(uint8_t channel, bool *out_state);
 
 /**
- * @brief Get all 8 channel states as a bitmask (instant, non-blocking).
+ * @brief Get all 8 channel states from hardware.
  *
- * Returns the cached state of all channels in a single byte where
- * bit N represents channel N (bit 0 = channel 0, etc.).
+ * SYNCHRONOUS: Blocks until all hardware states are read.
+ * Returns bitmask where bit N represents channel N (bit=1 means ON).
  *
- * @param out_mask Pointer to receive 8-bit state mask (bit=1 means ON)
- * @return true on success, false if out_mask is NULL
+ * @param out_mask Pointer to receive 8-bit state mask
+ * @return SWITCH_OK on success, error code otherwise.
+ *
+ * @note This reads DIRECTLY from hardware, not from cache.
  */
-bool Switch_GetAllStates(uint8_t *out_mask);
+switch_result_t Switch_GetAllStates(uint8_t *out_mask);
 
-/* ---------- Non-blocking State Writes ---------- */
+/* ---------- Synchronous State Writes (DETERMINISTIC) ---------- */
 
 /**
- * @brief Set single relay channel state (non-blocking).
+ * @brief Set single relay channel state with verification.
  *
- * Enqueues a command to set the specified channel to the desired state.
- * Returns immediately without waiting for hardware operation to complete.
+ * SYNCHRONOUS: Blocks until operation completes and is verified.
+ * 1. Acquires mutex
+ * 2. Checks overcurrent lockout
+ * 3. Writes relay state via I2C
+ * 4. Mirrors state to display LED
+ * 5. Reads back and verifies
+ * 6. Releases mutex
+ * 7. Returns result
  *
  * @param channel Channel number (0-7)
  * @param state Desired state (true=ON, false=OFF)
- * @param timeout_ms Maximum time to wait for queue space (0 = no wait)
- * @return true if command enqueued, false if queue full or invalid params
- *
- * @note For SNMP handlers, use timeout_ms=0 to prevent blocking.
- *       For UI operations, timeout_ms=100 provides good responsiveness.
+ * @return SWITCH_OK on success, error code otherwise.
  */
-bool Switch_SetChannel(uint8_t channel, bool state, uint32_t timeout_ms);
+switch_result_t Switch_SetChannel(uint8_t channel, bool state);
 
 /**
- * @brief Toggle single relay channel (non-blocking).
+ * @brief Toggle single relay channel with verification.
  *
- * Enqueues a command to toggle the specified channel (ON->OFF or OFF->ON).
- * Uses cached state to determine new state.
+ * SYNCHRONOUS: Blocks until operation completes and is verified.
+ * Reads current state, inverts it, writes and verifies.
  *
  * @param channel Channel number (0-7)
- * @param timeout_ms Maximum time to wait for queue space (0 = no wait)
- * @return true if command enqueued, false if queue full or invalid params
+ * @return SWITCH_OK on success, error code otherwise.
  */
-bool Switch_Toggle(uint8_t channel, uint32_t timeout_ms);
+switch_result_t Switch_Toggle(uint8_t channel);
 
 /**
- * @brief Turn all relay channels ON (non-blocking).
+ * @brief Turn all relay channels ON with verification.
  *
- * @param timeout_ms Maximum time to wait for queue space (0 = no wait)
- * @return true if command enqueued, false if queue full
+ * SYNCHRONOUS: Blocks until all channels are set and verified.
+ *
+ * @return SWITCH_OK on success, error code otherwise.
  */
-bool Switch_AllOn(uint32_t timeout_ms);
+switch_result_t Switch_AllOn(void);
 
 /**
- * @brief Turn all relay channels OFF (non-blocking).
+ * @brief Turn all relay channels OFF with verification.
  *
- * @param timeout_ms Maximum time to wait for queue space (0 = no wait)
- * @return true if command enqueued, false if queue full
+ * SYNCHRONOUS: Blocks until all channels are set and verified.
+ *
+ * @return SWITCH_OK on success, error code otherwise.
  */
-bool Switch_AllOff(uint32_t timeout_ms);
+switch_result_t Switch_AllOff(void);
 
 /**
- * @brief Set multiple channels via bitmask (non-blocking).
+ * @brief Set multiple channels via bitmask with verification.
  *
- * Sets each channel to the state indicated by the corresponding bit
- * in the mask. Bit N controls channel N (bit=1 means ON).
+ * SYNCHRONOUS: Blocks until all channels are set and verified.
+ * Bit N controls channel N (bit=1 means ON).
  *
  * @param mask 8-bit state mask for all channels
- * @param timeout_ms Maximum time to wait for queue space (0 = no wait)
- * @return true if command enqueued, false if queue full
+ * @return SWITCH_OK on success, error code otherwise.
  */
-bool Switch_SetMask(uint8_t mask, uint32_t timeout_ms);
+switch_result_t Switch_SetMask(uint8_t mask);
+
+/* ---------- Legacy API Wrappers (for backward compatibility) ---------- */
 
 /**
- * @brief Force synchronization of cached state from hardware.
+ * @brief Legacy wrapper for Switch_GetState.
  *
- * Enqueues a command to re-read all channel states from the MCP hardware
- * and update the cache. Useful after power events or error recovery.
+ * @param channel Channel number (0-7)
+ * @param out_state Pointer to receive state
+ * @return true on success, false on failure.
+ */
+bool Switch_GetStateCompat(uint8_t channel, bool *out_state);
+
+/**
+ * @brief Legacy wrapper for Switch_SetChannel.
+ * @deprecated Use Switch_SetChannel() which returns detailed result code.
  *
- * @param timeout_ms Maximum time to wait for queue space (0 = no wait)
- * @return true if command enqueued, false if queue full
+ * @param channel Channel number (0-7)
+ * @param state Desired state (true=ON, false=OFF)
+ * @param timeout_ms Ignored in v2.0 (kept for API compatibility)
+ * @return true on success, false on failure.
+ */
+bool Switch_SetChannelCompat(uint8_t channel, bool state, uint32_t timeout_ms);
+
+/**
+ * @brief Legacy wrapper for Switch_Toggle.
+ * @deprecated Use Switch_Toggle() which returns detailed result code.
+ */
+bool Switch_ToggleCompat(uint8_t channel, uint32_t timeout_ms);
+
+/**
+ * @brief Legacy wrapper for Switch_AllOn.
+ * @deprecated Use Switch_AllOn() which returns detailed result code.
+ */
+bool Switch_AllOnCompat(uint32_t timeout_ms);
+
+/**
+ * @brief Legacy wrapper for Switch_AllOff.
+ * @deprecated Use Switch_AllOff() which returns detailed result code.
+ */
+bool Switch_AllOffCompat(uint32_t timeout_ms);
+
+/**
+ * @brief Legacy wrapper for Switch_SetMask.
+ * @deprecated Use Switch_SetMask() which returns detailed result code.
+ */
+bool Switch_SetMaskCompat(uint8_t mask, uint32_t timeout_ms);
+
+/* ---------- MUX Control (for HLW8032) ---------- */
+
+/**
+ * @brief Set relay MCP Port B masked bits (MUX control).
+ *
+ * Used by HLW8032 driver for MUX channel selection.
+ * This function is designed to NEVER fail from the caller's perspective:
+ * - If mutex is available: executes immediately
+ * - If mutex busy or not initialized: stores pending request for later
+ *
+ * @param mask Bitmask of Port B bits to modify.
+ * @param value New values for masked bits.
+ * @param timeout_ms Timeout for mutex acquisition (0 = store pending immediately).
+ * @return true always (operation executed or queued).
+ *
+ * @note HLW8032 calls this frequently; coalesced pending ensures no failures.
+ */
+bool Switch_SetRelayPortBMasked(uint8_t mask, uint8_t value, uint32_t timeout_ms);
+
+/* ---------- Selection LED Control ---------- */
+
+/**
+ * @brief Turn off all selection LEDs.
+ *
+ * SYNCHRONOUS: Blocks until operation completes.
+ *
+ * @param timeout_ms Ignored (kept for API compatibility).
+ * @return true on success, false on failure.
+ */
+bool Switch_SelectAllOff(uint32_t timeout_ms);
+
+/**
+ * @brief Show (or hide) the selection LED for a given index.
+ *
+ * SYNCHRONOUS: Blocks until operation completes.
+ *
+ * @param index Selection index (0-7)
+ * @param on True to show selected LED, false to just clear all LEDs.
+ * @param timeout_ms Ignored (kept for API compatibility).
+ * @return true on success, false on failure.
+ */
+bool Switch_SelectShow(uint8_t index, bool on, uint32_t timeout_ms);
+
+/* ---------- Display LED Control ---------- */
+
+/**
+ * @brief Set FAULT LED on display MCP.
+ *
+ * SYNCHRONOUS: Blocks until operation completes.
+ *
+ * @param state true=ON, false=OFF
+ * @param timeout_ms Ignored (kept for API compatibility).
+ * @return true on success, false on failure.
+ */
+bool Switch_SetFaultLed(bool state, uint32_t timeout_ms);
+
+/**
+ * @brief Set POWER GOOD LED on display MCP.
+ *
+ * SYNCHRONOUS: Blocks until operation completes.
+ *
+ * @param state true=ON, false=OFF
+ * @param timeout_ms Ignored (kept for API compatibility).
+ * @return true on success, false on failure.
+ */
+bool Switch_SetPwrLed(bool state, uint32_t timeout_ms);
+
+/**
+ * @brief Set NETWORK LINK LED on display MCP.
+ *
+ * SYNCHRONOUS: Blocks until operation completes.
+ *
+ * @param state true=ON, false=OFF
+ * @param timeout_ms Ignored (kept for API compatibility).
+ * @return true on success, false on failure.
+ */
+bool Switch_SetEthLed(bool state, uint32_t timeout_ms);
+
+/* ---------- Utility Functions ---------- */
+
+/**
+ * @brief Force synchronization of cache from hardware.
+ *
+ * SYNCHRONOUS: Reads all relay states and updates internal cache.
+ *
+ * @param timeout_ms Ignored (kept for API compatibility).
+ * @return true on success, false on failure.
  */
 bool Switch_SyncFromHardware(uint32_t timeout_ms);
 
 /**
- * @brief Queue a masked write to relay MCP Port B (non-blocking).
+ * @brief Get cached state mask (non-blocking, may be stale).
  *
- * Intended for HLW8032 MUX control (Port B bits 0-3). Other bits on Port B
- * are preserved via mask.
+ * @return 8-bit mask of cached relay states.
  *
- * @param mask Bitmask of Port B bits to modify.
- * @param value New values for masked bits.
- * @param timeout_ms Maximum time to wait for queue space (0 = no wait).
- * @return true if command enqueued, false otherwise.
+ * @note For guaranteed current state, use Switch_GetAllStates().
  */
-bool Switch_SetRelayPortBMasked(uint8_t mask, uint8_t value, uint32_t timeout_ms);
+uint8_t Switch_GetCachedMask(void);
+
+/* ---------- Front-Panel Manual Activity Gate ---------- */
+
+/**
+ * @brief Enable/disable front-panel (manual) selection updates.
+ *
+ * When disabled (default), selection MCP (0x23) is not written by
+ * Switch_SelectAllOff/Switch_SelectShow. ButtonTask enables this gate
+ * during an active manual interaction window and disables it when the
+ * window closes, ensuring 0x23 is only addressed on user button actions.
+ *
+ * @param active true to allow selection writes (manual active), false to block.
+ */
+void Switch_SetManualPanelActive(bool active);
 
 #endif /* ENERGIS_SWITCHTASK_H */
 
+/** @} */
 /** @} */

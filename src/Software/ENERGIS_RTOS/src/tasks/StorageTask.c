@@ -75,6 +75,18 @@ static volatile bool eth_netcfg_ready = false;
 
 bool Storage_Config_IsReady(void) { return eth_netcfg_ready; }
 
+/* ==================== EEPROM ERASE STATE ==================== */
+
+/** @brief Incremental full EEPROM erase active flag */
+static bool s_erase_active = false;
+
+/** @brief Next EEPROM address to erase */
+static uint32_t s_erase_next_addr = 0;
+
+#define EEPROM_ERASE_CHUNK_BYTES 32U
+#define EEPROM_ERASE_PAGE_DELAY_MS 6U
+#define EEPROM_ERASE_PROGRESS_BYTES 1024U
+
 /* ====================================================================== */
 /*                        EEPROM DUMP (utility)                           */
 /* ====================================================================== */
@@ -308,6 +320,55 @@ static void storage_clear_event_region(uint16_t base, uint16_t size, uint16_t *o
                    (uint16_t)(base + size - 1U));
         *active = false;
     }
+}
+
+static void storage_erase_step(void) {
+    static uint8_t ff_page[EEPROM_ERASE_CHUNK_BYTES];
+    static bool ff_init = false;
+
+    if (!s_erase_active) {
+        return;
+    }
+
+    if (!ff_init) {
+        memset(ff_page, 0xFF, sizeof(ff_page));
+        ff_init = true;
+    }
+
+    if (s_erase_next_addr >= CAT24C256_TOTAL_SIZE) {
+        s_erase_active = false;
+        INFO_PRINT("[Storage] Erase complete\r\n");
+        return;
+    }
+
+    xSemaphoreTake(eepromMtx, portMAX_DELAY);
+
+    int rc = CAT24C256_WriteBuffer((uint16_t)s_erase_next_addr, ff_page, (uint16_t)sizeof(ff_page));
+
+    xSemaphoreGive(eepromMtx);
+
+    if (rc != 0) {
+        vTaskDelay(pdMS_TO_TICKS(10));
+
+        xSemaphoreTake(eepromMtx, portMAX_DELAY);
+        rc = CAT24C256_WriteBuffer((uint16_t)s_erase_next_addr, ff_page, (uint16_t)sizeof(ff_page));
+        xSemaphoreGive(eepromMtx);
+
+        if (rc != 0) {
+            ERROR_PRINT("[Storage] Erase failed at 0x%04lX\r\n", (unsigned long)s_erase_next_addr);
+            s_erase_active = false;
+            return;
+        }
+    }
+
+    s_erase_next_addr += sizeof(ff_page);
+
+    if ((s_erase_next_addr % EEPROM_ERASE_PROGRESS_BYTES) == 0u) {
+        INFO_PRINT("[Storage] Erased %lu/%u bytes\r\n", (unsigned long)s_erase_next_addr,
+                   CAT24C256_TOTAL_SIZE);
+    }
+
+    vTaskDelay(pdMS_TO_TICKS(EEPROM_ERASE_PAGE_DELAY_MS));
 }
 
 /* ====================================================================== */
@@ -665,6 +726,17 @@ static void process_storage_msg(const storage_msg_t *msg) {
         }
         break;
 
+    case STORAGE_CMD_ERASE_ALL:
+        if (!s_dump_active && !s_err_dump_active && !s_warn_dump_active && !s_err_clear_active &&
+            !s_warn_clear_active && !s_erase_active) {
+
+            s_erase_active = true;
+            s_erase_next_addr = 0;
+
+            INFO_PRINT("[Storage] Erasing EEPROM (%u bytes)...\r\n", CAT24C256_TOTAL_SIZE);
+        }
+        break;
+
     default:
         WARNING_PRINT("%s Unknown command: %d\r\n", STORAGE_TASK_TAG, msg->cmd);
         break;
@@ -724,7 +796,7 @@ static void StorageTask(void *arg) {
 
         /* While any long-running operation is active, poll the queue more often */
         TickType_t wait_ticks = (s_dump_active || s_err_dump_active || s_warn_dump_active ||
-                                 s_err_clear_active || s_warn_clear_active)
+                                 s_err_clear_active || s_warn_clear_active || s_erase_active)
                                     ? pdMS_TO_TICKS(10)
                                     : poll_ticks;
 
@@ -748,6 +820,11 @@ static void StorageTask(void *arg) {
         /* Drive incremental full EEPROM dump, if one is active */
         if (s_dump_active) {
             storage_dump_eeprom_formatted();
+        }
+
+        /* Drive incremental full EEPROM erase, if active */
+        if (s_erase_active) {
+            storage_erase_step();
         }
 
         /* Drive incremental error/warning log dumps, if active */
@@ -930,29 +1007,33 @@ int EEPROM_EraseAll(void) {
 }
 
 /**
- * @brief Erase the entire EEPROM via the Storage subsystem.
- * This helper acquires the EEPROM mutex, invokes EEPROM_EraseAll(), and releases
- * the mutex again. Erase is performed in 32-byte chunks with write-cycle delays
- * inside CAT24C256_WriteBuffer(), so other tasks continue to run and the watchdog
- * is periodically fed.
+ * @brief Asynchronously erase the entire EEPROM.
+ * Enqueues a @ref STORAGE_CMD_ERASE_ALL message to trigger the operation
+ * in StorageTask. Returns immediately without waiting for completion.
+ * @return true if the erase command was successfully enqueued, false otherwise.
  */
-bool storage_erase_all(uint32_t timeout_ms) {
-    if (!eth_netcfg_ready)
-        return false;
+bool storage_erase_all_async(void) {
+    storage_msg_t msg;
 
-    if (timeout_ms == 0) {
-        timeout_ms = 30000;
-    }
-
-    if (xSemaphoreTake(eepromMtx, pdMS_TO_TICKS(timeout_ms)) != pdTRUE) {
+    if (!Storage_IsReady()) {
         return false;
     }
 
-    int res = EEPROM_EraseAll();
-    xSemaphoreGive(eepromMtx);
+    if (s_erase_active) {
+        return false;
+    }
 
-    return (res == 0);
+    memset(&msg, 0, sizeof(msg));
+    msg.cmd = STORAGE_CMD_ERASE_ALL;
+
+    return (xQueueSend(q_cfg, &msg, 0) == pdPASS);
 }
+
+/**
+ * @brief Query if an EEPROM erase-all operation is in progress.
+ * @return true if an erase-all operation is active, false otherwise.
+ */
+bool storage_erase_all_is_busy(void) { return s_erase_active; }
 
 /* ********************************************************************** */
 /*                        FAILURE MEMORY WRITE                            */

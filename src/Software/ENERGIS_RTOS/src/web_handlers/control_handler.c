@@ -107,7 +107,7 @@ void handle_control_request(uint8_t sock, char *body) {
 
             if (want != have) {
                 /* UI path: use ~100ms queue timeout in *milliseconds* */
-                (void)Switch_SetChannel(ch, want, 100u);
+                (void)Switch_SetChannel(ch, want);
             }
 
             if ((ch & 3u) == 0u) {

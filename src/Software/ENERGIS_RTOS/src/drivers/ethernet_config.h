@@ -78,8 +78,8 @@
 
 /** TX buffer sizes per socket (KB) - must sum to 16KB */
 #define W5500_TX_SIZE_S0 8 /**< Socket 0: Primary (TCP server) */
-#define W5500_TX_SIZE_S1 4 /**< Socket 1: SNMP/Additional */
-#define W5500_TX_SIZE_S2 4 /**< Socket 2: SNMP/Additional */
+#define W5500_TX_SIZE_S1 8 /**< Socket 1: SNMP/Additional */
+#define W5500_TX_SIZE_S2 0 /**< Socket 2: SNMP/Additional */
 #define W5500_TX_SIZE_S3 0 /**< Socket 3: Unused */
 #define W5500_TX_SIZE_S4 0 /**< Socket 4: Unused */
 #define W5500_TX_SIZE_S5 0 /**< Socket 5: Unused */
@@ -88,8 +88,8 @@
 
 /** RX buffer sizes per socket (KB) - must sum to 16KB */
 #define W5500_RX_SIZE_S0 8 /**< Socket 0: Primary (TCP server) */
-#define W5500_RX_SIZE_S1 4 /**< Socket 1: SNMP/Additional */
-#define W5500_RX_SIZE_S2 4 /**< Socket 2: SNMP/Additional */
+#define W5500_RX_SIZE_S1 8 /**< Socket 1: SNMP/Additional */
+#define W5500_RX_SIZE_S2 0 /**< Socket 2: SNMP/Additional */
 #define W5500_RX_SIZE_S3 0 /**< Socket 3: Unused */
 #define W5500_RX_SIZE_S4 0 /**< Socket 4: Unused */
 #define W5500_RX_SIZE_S5 0 /**< Socket 5: Unused */

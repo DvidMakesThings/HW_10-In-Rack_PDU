@@ -54,13 +54,14 @@ void metrics_init(void) {
 static int render_metrics(void) {
     int pos = 0;
     const int bufsize = METRICS_BUFFER_SIZE;
+    const device_identity_t *id = DeviceIdentity_Get();
 
     /* Uptime */
     uint32_t uptime_sec = (uint32_t)(to_ms_since_boot(get_absolute_time()) / 1000);
 
     /* Build info */
     const char *version = FIRMWARE_VERSION;
-    const char *serial = SERIAL_NUMBER;
+    const char *serial = id->serial_number;
 
     /* Calibrated system telemetry (owned by MeterTask) */
     system_telemetry_t sys = {0};

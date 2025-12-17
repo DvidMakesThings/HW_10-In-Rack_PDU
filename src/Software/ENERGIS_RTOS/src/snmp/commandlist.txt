@@ -23,6 +23,7 @@ snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.4.1.0   # networkIP
 snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.4.2.0   # networkMask
 snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.4.3.0   # networkGateway
 snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.4.4.0   # networkDNS
+snmpget -v1 -c public 192.168.0.22 1.3.6.1.4.1.19865.4.5.0   # networkMAC
 
 # -------------------------
 # Outlet control (.1.3.6.1.4.1.19865.2.N.0)

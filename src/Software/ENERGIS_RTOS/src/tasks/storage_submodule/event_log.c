@@ -106,7 +106,6 @@ int EEPROM_WriteEventLogs(const uint8_t *data, size_t len) {
 int EEPROM_ReadEventLogs(uint8_t *data, size_t len) {
     if (len > EEPROM_EVENT_ERR_SIZE)
         return -1;
-
     CAT24C256_ReadBuffer(EEPROM_EVENT_ERR_START, data, (uint32_t)len);
     return 0;
 }
