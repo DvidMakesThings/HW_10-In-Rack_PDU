@@ -100,13 +100,13 @@
   <!-- Network Configuration -->
   <rect x="80" y="73" width="62" height="6" fill="none" stroke="#000000" stroke-width="0.5"/>
   <text x="82" y="77.5" font-family="Courier New, monospace" font-size="4">
-    Default IP: 192.168.0.12/24
+    IP: 192.168.0.22/24
   </text>
   
   <!-- Serial Number -->
   <rect x="80" y="80" width="62" height="6" fill="none" stroke="#000000" stroke-width="0.5"/>
   <text x="82" y="84.5" font-family="Courier New, monospace" font-size="4">
-    S/N: SN-0167662
+    S/N: SERIAL_NUMBER
   </text>
   
   <!-- Footer -->

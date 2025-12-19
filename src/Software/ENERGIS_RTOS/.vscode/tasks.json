@@ -87,8 +87,10 @@
 				"Compile Project"
 			],
 			"linux": {
-				"command": "${workspaceFolder}/scripts/flash_rp2040.sh",
-				"args": []
+				"command": "/bin/bash",
+				"args": [
+					"${workspaceFolder}/scripts/flash_rp2040.sh"
+				]
 			},
 			"windows": {
 				"command": "powershell.exe",
@@ -117,8 +119,10 @@
 				"Compile Project"
 			],
 			"linux": {
-				"command": "${workspaceFolder}/scripts/flash_rp2040_and_serial.sh",
-				"args": []
+				"command": "/bin/bash",
+				"args": [
+					"${workspaceFolder}/scripts/flash_rp2040_and_serial.sh"
+				]
 			},
 			"windows": {
 				"command": "powershell.exe",
