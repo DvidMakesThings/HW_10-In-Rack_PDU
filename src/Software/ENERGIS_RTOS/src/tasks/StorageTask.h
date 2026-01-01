@@ -7,13 +7,13 @@
  * @brief EEPROM/Config Storage Task Implementation (RTOS version)
  * @{
  *
- * @version 3.0
- * @date 2025-11-14
+ * @version 3.1.0
+ * @date 2025-01-01
  *
  * @details
  * StorageTask Architecture:
  * - Owns ALL EEPROM access (only this task touches CAT24C256)
- * - Maintains RAM cache of critical config
+ * - Maintains RAM cache of critical config (network, prefs, relay states, labels)
  * - Debounces writes (2 second idle period)
  * - Processes requests from q_cfg queue
  * - Uses modular subcomponents for EEPROM section management
@@ -27,7 +27,7 @@
  * - energy_monitor: Energy logging ring buffer
  * - event_log: Event logging ring buffer
  * - user_prefs: Device name/location/settings
- * - channel_labels: User-defined channel labels
+ * - channel_labels: User-defined channel labels (RAM cached)
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -70,8 +70,8 @@ typedef enum {
     STORAGE_CMD_WRITE_PREFS,         /**< Update prefs in RAM, schedule write */
     STORAGE_CMD_READ_RELAY_STATES,   /**< Read relay states to RAM cache */
     STORAGE_CMD_WRITE_RELAY_STATES,  /**< Update relay states in RAM, schedule write */
-    STORAGE_CMD_READ_CHANNEL_LABEL,  /**< Read one channel label */
-    STORAGE_CMD_WRITE_CHANNEL_LABEL, /**< Write one channel label */
+    STORAGE_CMD_READ_CHANNEL_LABEL,  /**< Read one channel label (from cache) */
+    STORAGE_CMD_WRITE_CHANNEL_LABEL, /**< Write one channel label (cache + EEPROM) */
     STORAGE_CMD_COMMIT,              /**< Force immediate write of pending changes */
     STORAGE_CMD_LOAD_DEFAULTS,       /**< Reset to factory defaults */
     STORAGE_CMD_READ_SENSOR_CAL,     /**< Read sensor calibration for channel */
@@ -254,7 +254,7 @@ bool storage_set_prefs(const userPrefInfo *prefs);
 /**
  * @brief Get relay power-on states (from RAM cache).
  *
- * @param out Pointer to output array (not NULL).
+ * @param out Pointer to output array (not NULL, must be at least 8 bytes).
  * @return true on success, false on error.
  */
 bool storage_get_relay_states(uint8_t *out);
@@ -374,6 +374,19 @@ bool storage_clear_error_log_async(void);
  *         the queue was full.
  */
 bool storage_clear_warning_log_async(void);
+
+/* ##################################################################### */
+/*                    CHANNEL LABEL API FUNCTIONS                        */
+/*        (Declared in channel_labels.h, listed here for reference)      */
+/* ##################################################################### */
+
+/* These functions are declared in channel_labels.h:
+ *
+ * bool storage_get_channel_label(uint8_t channel, char *out, size_t out_len);
+ * bool storage_set_channel_label(uint8_t channel, const char *label);
+ * bool storage_get_all_channel_labels(char labels[ENERGIS_NUM_CHANNELS][26], size_t
+ * label_buf_size);
+ */
 
 #endif /* STORAGE_TASK_H */
 

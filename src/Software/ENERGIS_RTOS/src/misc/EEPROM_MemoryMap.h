@@ -86,7 +86,7 @@
  * @{
  */
 #define EEPROM_USER_OUTPUT_START 0x0200 /**< Start of user output block. */
-#define EEPROM_USER_OUTPUT_SIZE 0x0020  /**< Size of user output block. */
+#define EEPROM_USER_OUTPUT_SIZE 0x0100  /**< Size of user output block. */
 /** @} */
 
 /**

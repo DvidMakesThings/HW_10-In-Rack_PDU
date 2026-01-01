@@ -12,6 +12,7 @@
  */
 
 #include "../CONFIG.h"
+#include "../html/control_gz.h"
 #include "../html/help_gz.h"
 #include "../html/settings_gz.h"
 
@@ -221,11 +222,11 @@ const char *get_page_content(const char *request) {
         return user_manual_html;
     else if (strstr(request, "GET /automation_manual.html"))
         return automation_manual_html;
-    else if (strstr(request, "GET /"))
-        return control_html;
+    else if (strstr(request, "GET /control.html") || strstr(request, "GET /"))
+        return (const char *)control_gz;
 
     /* Default to control page */
-    return control_html;
+    return (const char *)control_gz;
 }
 
 /**
@@ -258,9 +259,13 @@ int get_page_length(const char *request, int *is_gzip) {
         return (int)strlen(user_manual_html);
     } else if (strstr(request, "GET /automation_manual.html")) {
         return (int)strlen(automation_manual_html);
-    } else if (strstr(request, "GET /")) {
-        return (int)strlen(control_html);
+    } else if (strstr(request, "GET /control.html") || strstr(request, "GET /")) {
+        if (is_gzip)
+            *is_gzip = 1;
+        return (int)control_gz_len;
     }
 
-    return (int)strlen(control_html);
+    if (is_gzip)
+        *is_gzip = 1;
+    return (int)control_gz_len;
 }

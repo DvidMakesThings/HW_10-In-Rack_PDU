@@ -1,14 +1,14 @@
 /**
  * @file src/web_handlers/status_handler.c
- * @author
+ * @author DvidMakesThings - David Sipos
  *
- * @version 1.0.1
- * @date 2025-12-10
+ * @version 2.0.0
+ * @date 2025-01-01
  *
  * @details Handles GET requests to /api/status endpoint. Returns JSON with
  * channel states (cached from SwitchTask), voltage/current/power (cached from
- * MeterTask), internal temperature, and system status. Decouples UI
- * immediacy from measurement cadence.
+ * MeterTask), channel labels (from RAM cache), internal temperature, and system status.
+ * Decouples UI immediacy from measurement cadence.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -42,19 +42,73 @@ static const char *oc_state_to_string(overcurrent_state_t state) {
 }
 
 /**
+ * @brief Escape a string for JSON output.
+ *
+ * Handles special characters that need escaping in JSON strings.
+ * Copies src to dst with proper escaping, null-terminates result.
+ *
+ * @param dst Destination buffer
+ * @param dst_len Size of destination buffer
+ * @param src Source string to escape
+ */
+static void json_escape_string(char *dst, size_t dst_len, const char *src) {
+    if (!dst || dst_len == 0)
+        return;
+
+    size_t di = 0;
+    for (size_t si = 0; src[si] != '\0' && di + 1 < dst_len; si++) {
+        char c = src[si];
+        switch (c) {
+        case '"':
+        case '\\':
+            if (di + 2 < dst_len) {
+                dst[di++] = '\\';
+                dst[di++] = c;
+            }
+            break;
+        case '\n':
+            if (di + 2 < dst_len) {
+                dst[di++] = '\\';
+                dst[di++] = 'n';
+            }
+            break;
+        case '\r':
+            if (di + 2 < dst_len) {
+                dst[di++] = '\\';
+                dst[di++] = 'r';
+            }
+            break;
+        case '\t':
+            if (di + 2 < dst_len) {
+                dst[di++] = '\\';
+                dst[di++] = 't';
+            }
+            break;
+        default:
+            /* Only include printable ASCII characters */
+            if (c >= 0x20 && c <= 0x7E) {
+                dst[di++] = c;
+            }
+            break;
+        }
+    }
+    dst[di] = '\0';
+}
+
+/**
  * @brief Handles the HTTP request for the status page (/api/status)
  *
  * @param sock The socket number
- * @return None
  *
  * @details Returns JSON with:
- *  - channels[0..7]: { voltage, current, uptime, power, state }
+ *  - channels[0..7]: { voltage, current, uptime, power, state, label }
  *  - internalTemperature, temperatureUnit ("°C"|"°F"|"K")
  *  - systemStatus ("OK"|"WARNING"|"LOCKOUT")
  *  - overcurrent: { state, total_current_a, limit_a, warning_threshold_a,
  *                   critical_threshold_a, switching_allowed, trip_count, region }
  *
  * Uses cached die temperature from MeterTask (non-blocking). No direct ADC access here.
+ * Channel labels are fetched from RAM cache (non-blocking).
  *
  * @http
  * - 200 OK on success with JSON body and Connection: close.
@@ -117,8 +171,24 @@ void handle_status_request(uint8_t sock) {
 
     net_beat();
 
-    /* Build JSON - use larger buffer to accommodate overcurrent data */
-    char json[1536];
+    /* Get all channel labels from RAM cache (non-blocking) */
+    char labels[8][32];
+    char escaped_labels[8][64];
+    for (uint8_t i = 0; i < 8; i++) {
+        labels[i][0] = '\0';
+        escaped_labels[i][0] = '\0';
+
+        /* Read from RAM cache - no EEPROM access */
+        (void)storage_get_channel_label(i, labels[i], sizeof(labels[i]));
+
+        /* Escape for JSON safety */
+        json_escape_string(escaped_labels[i], sizeof(escaped_labels[i]), labels[i]);
+    }
+
+    net_beat();
+
+    /* Build JSON - use larger buffer to accommodate labels and overcurrent data */
+    char json[2048];
     int pos = 0;
     pos += snprintf(json + pos, sizeof(json) - pos, "{\"channels\":[");
 
@@ -138,8 +208,9 @@ void handle_status_request(uint8_t sock) {
 
         pos += snprintf(json + pos, sizeof(json) - pos,
                         "{\"voltage\":%.2f,\"current\":%.2f,\"uptime\":%lu,"
-                        "\"power\":%.2f,\"state\":%s}%s",
-                        V, I, (unsigned long)up, P, state ? "true" : "false", (i < 7 ? "," : ""));
+                        "\"power\":%.2f,\"state\":%s,\"label\":\"%s\"}%s",
+                        V, I, (unsigned long)up, P, state ? "true" : "false", escaped_labels[i],
+                        (i < 7 ? "," : ""));
         if ((i & 1) == 0)
             net_beat();
     }

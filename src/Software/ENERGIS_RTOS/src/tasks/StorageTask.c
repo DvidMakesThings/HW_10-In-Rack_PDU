@@ -486,6 +486,8 @@ static void load_config_from_eeprom(void) {
             WARNING_PRINT("%s Failed to read calibration for CH%d\r\n", STORAGE_TASK_TAG, ch);
         }
     }
+    /* Load channel labels into RAM cache */
+    ChannelLabels_LoadFromEEPROM();
 
     xSemaphoreGive(eepromMtx);
 
@@ -637,19 +639,19 @@ static void process_storage_msg(const storage_msg_t *msg) {
         }
         break;
 
-    /* Channel label operations (direct EEPROM access, no caching) */
+    /* Channel label operations (RAM cached) */
     case STORAGE_CMD_READ_CHANNEL_LABEL:
         if (msg->data.ch_label.channel < 8 && msg->output_ptr) {
-            xSemaphoreTake(eepromMtx, portMAX_DELAY);
-            EEPROM_ReadChannelLabel(msg->data.ch_label.channel, (char *)msg->output_ptr, 64);
-            xSemaphoreGive(eepromMtx);
+            /* Read from RAM cache - no EEPROM access needed */
+            ChannelLabels_GetCached(msg->data.ch_label.channel, (char *)msg->output_ptr, 64);
         }
         break;
 
     case STORAGE_CMD_WRITE_CHANNEL_LABEL:
         if (msg->data.ch_label.channel < 8) {
             xSemaphoreTake(eepromMtx, portMAX_DELAY);
-            EEPROM_WriteChannelLabel(msg->data.ch_label.channel, msg->data.ch_label.label);
+            /* Updates RAM cache and writes to EEPROM */
+            ChannelLabels_SetAndWrite(msg->data.ch_label.channel, msg->data.ch_label.label);
             xSemaphoreGive(eepromMtx);
         }
         break;

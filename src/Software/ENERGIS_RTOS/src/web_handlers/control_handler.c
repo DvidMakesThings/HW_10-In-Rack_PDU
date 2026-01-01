@@ -2,12 +2,13 @@
  * @file src/web_handlers/control_handler.c
  * @author DvidMakesThings - David Sipos
  *
- * @version 1.1.1
- * @date 2025-12-10
+ * @version 2.0.0
+ * @date 2025-01-01
  *
  * @details Handles POST requests to /api/control endpoint for relay control.
  *          Processes form-encoded channel states and labels, applies changes
  *          using RTOS-cooperative SwitchTask API for non-blocking operation.
+ *          Label updates are performed via storage queue for thread safety.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -21,19 +22,22 @@ static inline void net_beat(void) { Health_Heartbeat(HEALTH_ID_NET); }
 
 /**
  * @brief Handles the HTTP request for the control page (/api/control)
+ *
  * @param sock The socket number
- * @param body Form-encoded POST body (e.g., "channel1=on&channel3=off")
- * @return None
+ * @param body Form-encoded POST body (e.g., "channel1=on&channel3=off&label1=MyDevice")
  *
  * @details
- * - Parses form-urlencoded fields: channelN where N=1..8.
- * - Semantics:
+ * - Parses form-urlencoded fields: channelN and labelN where N=1..8.
+ * - Channel semantics:
  *      "on"  -> relay ON
  *      "off" or missing -> relay OFF
- * - Updates per-channel labels if labelN fields are present.
+ * - Label semantics:
+ *      If labelN field is present, updates the channel label via storage queue.
+ *      Labels are truncated to 25 characters max.
  *
  * @http
  * - 400 Bad Request if body is missing.
+ * - 503 Service Unavailable if overcurrent lockout prevents switching ON.
  * - 200 OK on success with "OK\n" text body.
  */
 void handle_control_request(uint8_t sock, char *body) {
@@ -119,13 +123,18 @@ void handle_control_request(uint8_t sock, char *body) {
     }
     net_beat();
 
-    /* Update channel labels if provided */
+    /* Update channel labels if provided (empty string = clear) */
     for (uint8_t ch = 0; ch < 8; ch++) {
         char key[16];
         snprintf(key, sizeof(key), "label%u", (unsigned)(ch + 1));
         char *val = get_form_value(body, key);
-        if (val) {
-            EEPROM_WriteChannelLabel(ch, val);
+        if (val != NULL) {
+            (void)storage_set_channel_label(ch, val);
+            if (val[0] == '\0') {
+                NETLOG_PRINT("Control: Label CH%u cleared\n", ch + 1);
+            } else {
+                NETLOG_PRINT("Control: Label CH%u set to '%s'\n", ch + 1, val);
+            }
         }
         if ((ch & 1) == 0)
             net_beat();

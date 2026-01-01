@@ -223,6 +223,149 @@
       padding: 0 20px 10px 0;
       width: 50%;
     }
+
+    /* Presets UI */
+    .presets-container {
+      margin-top: 16px;
+      background: #242731;
+      border-radius: 8px;
+      padding: 14px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+      border: 1px solid #3f4450;
+    }
+
+    .presets-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .preset-card {
+      background: #2e323c;
+      border: 1px solid #3f4450;
+      border-radius: 6px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+
+    .preset-card .header {
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .preset-title {
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .startup-badge {
+      font-size: 0.8rem;
+      color: #3fa7ff;
+      margin-left: 6px;
+    }
+
+    .preset-name {
+      width: 100%;
+      max-width: 280px;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #3f4450;
+      background: #1f2229;
+      color: #e4e4e4;
+    }
+
+    .mask-group {
+      display: grid;
+      grid-template-columns: repeat(8, minmax(70px, 1fr));
+      gap: 8px;
+    }
+
+    .mask-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #232730;
+      padding: 8px 10px;
+      border-radius: 4px;
+      border: 1px solid #3f4450;
+      justify-content: center;
+    }
+
+    .preset-actions .btn {
+      margin-left: 6px;
+    }
+
+    .startup-actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-red {
+      background-color: #dc3545;
+    }
+
+    .btn-red:hover {
+      background-color: #c82333;
+    }
+
+    .btn-green {
+      background-color: #28a745;
+    }
+
+    .btn-green:hover {
+      background-color: #218838;
+    }
+
+    .btn-grey {
+      background-color: #666;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      top: 14px;
+      left: 50%;
+      transform: translate(-50%, -10px);
+      padding: 10px 16px;
+      color: #fff;
+      border-radius: 4px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+      z-index: 1000;
+      font-size: .9rem;
+    }
+
+    .toast.success {
+      background: #2e7d32;
+      border: 1px solid #388e3c;
+    }
+
+    .toast.error {
+      background: #b00020;
+      border: 1px solid #cf6679;
+    }
+
+    .toast.info {
+      background: #1976d2;
+      border: 1px solid #2196f3;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    /* Startup dropdown width */
+    #startup-select {
+      width: 30ch;
+    }
   </style>
   <script>
     // Handle IP input validation and auto-advance
@@ -346,7 +489,226 @@
           console.error('Error loading settings:', error);
           showStatus('Failed to load current settings', false);
         });
+
+      // Load presets
+      loadPresets();
     });
+
+    // ===== Presets Management =====
+    let presets = []; // [{id,name,mask}] max 5
+    let startupPreset = null; // id or null
+    let toastTimer = null;
+
+    function showToast(msg, type) {
+      const el = document.getElementById('toast');
+      if (!el) return;
+      let cls = 'success';
+      if (type === 'error') cls = 'error';
+      else if (type === 'info') cls = 'info';
+      el.className = 'toast ' + cls;
+      el.textContent = msg;
+      void el.offsetWidth;
+      el.classList.add('show');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => el.classList.remove('show'), 3000);
+    }
+
+    function maskToArray(mask) {
+      // mask can be number or array of booleans
+      if (Array.isArray(mask)) return mask.map(v => !!v).slice(0, 8).concat(Array(8).fill(false)).slice(0, 8);
+      const out = new Array(8).fill(false);
+      const m = Number(mask) >>> 0;
+      for (let i = 0; i < 8; i++) out[i] = !!(m & (1 << i));
+      return out;
+    }
+
+    function arrayToMask(arr) {
+      let m = 0;
+      for (let i = 0; i < 8; i++) if (arr[i]) m |= (1 << i);
+      return m >>> 0;
+    }
+
+    function renderPresets() {
+      const list = document.getElementById('presets-list');
+      list.innerHTML = '';
+      for (let i = 0; i < 5; i++) {
+        const p = presets.find(x => x.id === i) || { id: i, name: '', mask: 0 };
+        const maskArr = maskToArray(p.mask);
+        const card = document.createElement('div');
+        card.className = 'preset-card';
+
+        const header = document.createElement('div');
+        header.className = 'header';
+        const titleWrap = document.createElement('div');
+        const title = document.createElement('span');
+        title.className = 'preset-title';
+        title.textContent = 'Preset ' + (i + 1);
+        titleWrap.appendChild(title);
+        if (startupPreset === i) {
+          const badge = document.createElement('span');
+          badge.className = 'startup-badge';
+          badge.textContent = 'Startup';
+          titleWrap.appendChild(badge);
+        }
+
+        const nameInp = document.createElement('input');
+        nameInp.className = 'preset-name';
+        nameInp.placeholder = 'Enter name';
+        nameInp.maxLength = 25;
+        nameInp.value = p.name || '';
+        nameInp.id = `preset-name-${i}`;
+
+        const actions = document.createElement('div');
+        actions.className = 'preset-actions';
+        const saveBtn = document.createElement('button');
+        saveBtn.type = 'button';
+        saveBtn.className = 'btn btn-green';
+        saveBtn.textContent = 'Save';
+        saveBtn.onclick = () => savePreset(i);
+        const delBtn = document.createElement('button');
+        delBtn.type = 'button';
+        delBtn.className = 'btn btn-red';
+        delBtn.textContent = 'Delete';
+        delBtn.onclick = () => deletePreset(i);
+        actions.appendChild(saveBtn);
+        actions.appendChild(delBtn);
+
+        header.appendChild(titleWrap);
+        header.appendChild(nameInp);
+        header.appendChild(actions);
+        card.appendChild(header);
+
+        const maskDiv = document.createElement('div');
+        maskDiv.className = 'mask-group';
+        for (let ch = 0; ch < 8; ch++) {
+          const item = document.createElement('div');
+          item.className = 'mask-item';
+          const lbl = document.createElement('label');
+          lbl.textContent = 'CH' + (ch + 1);
+          const cb = document.createElement('input');
+          cb.type = 'checkbox';
+          cb.checked = !!maskArr[ch];
+          cb.id = `preset-${i}-ch-${ch + 1}`;
+          item.appendChild(lbl);
+          item.appendChild(cb);
+          maskDiv.appendChild(item);
+        }
+        card.appendChild(maskDiv);
+        list.appendChild(card);
+      }
+      renderStartupSelect();
+    }
+
+    function collectMaskFromUI(id) {
+      const arr = new Array(8).fill(false);
+      for (let ch = 0; ch < 8; ch++) {
+        const cb = document.getElementById(`preset-${id}-ch-${ch + 1}`);
+        arr[ch] = !!(cb && cb.checked);
+      }
+      return arrayToMask(arr);
+    }
+
+    function loadPresets() {
+      // Render baseline UI immediately so users see the 5 slots
+      renderPresets();
+      fetch('/api/config-presets')
+        .then(r => r.json())
+        .then(data => {
+          presets = (data && Array.isArray(data.presets)) ? data.presets : [];
+          startupPreset = (data && typeof data.startup === 'number') ? data.startup : null;
+          renderPresets();
+        })
+        .catch(_ => {
+          // Fallback to empty presets; still render cards and dropdown with None
+          presets = [];
+          startupPreset = null;
+          renderPresets();
+          showToast('Failed to load presets', 'error');
+        });
+    }
+
+    function savePreset(id) {
+      const name = document.getElementById(`preset-name-${id}`).value.trim();
+      const mask = collectMaskFromUI(id);
+      const body = new URLSearchParams();
+      body.append('action', 'save');
+      body.append('id', String(id));
+      body.append('name', name);
+      body.append('mask', String(mask));
+      fetch('/api/config-presets', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() })
+        .then(r => { if (!r.ok) throw ''; return r.json().catch(() => ({})); })
+        .then(_ => { showToast('Preset saved', 'success'); loadPresets(); })
+        .catch(_ => { showToast('Save failed', 'error'); });
+    }
+
+    function deletePreset(id) {
+      const body = new URLSearchParams();
+      body.append('action', 'delete');
+      body.append('id', String(id));
+      fetch('/api/config-presets', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() })
+        .then(r => { if (!r.ok) throw ''; return r.json().catch(() => ({})); })
+        .then(_ => { showToast('Preset deleted', 'success'); loadPresets(); })
+        .catch(_ => { showToast('Delete failed', 'error'); });
+    }
+
+    function setStartup(id) {
+      const body = new URLSearchParams();
+      body.append('id', String(id));
+      fetch('/api/startup-config', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() })
+        .then(r => { if (!r.ok) throw ''; return r.json().catch(() => ({})); })
+        .then(_ => { showToast('Startup preset set', 'success'); loadPresets(); })
+        .catch(_ => { showToast('Set startup failed', 'error'); });
+    }
+
+    function clearStartup() {
+      const body = new URLSearchParams();
+      body.append('action', 'clear');
+      fetch('/api/startup-config', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() })
+        .then(r => { if (!r.ok) throw ''; return r.json().catch(() => ({})); })
+        .then(_ => { showToast('Startup cleared', 'success'); loadPresets(); })
+        .catch(_ => { showToast('Clear failed', 'error'); });
+    }
+
+    // ===== Startup Dropdown =====
+    function renderStartupSelect() {
+      const wrap = document.getElementById('startup-controls');
+      if (!wrap) return;
+      wrap.innerHTML = '';
+
+      const label = document.createElement('label');
+      label.setAttribute('for', 'startup-select');
+      label.textContent = 'Apply-on-startup:';
+      wrap.appendChild(label);
+
+      const select = document.createElement('select');
+      select.id = 'startup-select';
+      const optNone = document.createElement('option');
+      optNone.value = 'none';
+      optNone.textContent = 'None';
+      select.appendChild(optNone);
+      // fill with saved presets by name
+      for (let i = 0; i < 5; i++) {
+        const p = presets.find(x => x.id === i);
+        if (!p) continue;
+        const opt = document.createElement('option');
+        opt.value = String(i);
+        opt.textContent = p.name && p.name.trim().length ? p.name : ('Preset ' + (i + 1));
+        select.appendChild(opt);
+      }
+      // set selected
+      select.value = (startupPreset == null) ? 'none' : String(startupPreset);
+      // Apply immediately on change; selecting None clears
+      select.onchange = () => {
+        const val = select.value;
+        if (val === 'none') {
+          clearStartup();
+        } else {
+          const id = parseInt(val, 10);
+          if (!isNaN(id)) setStartup(id);
+        }
+      };
+      wrap.appendChild(select);
+    }
   </script>
 </head>
 
@@ -367,6 +729,16 @@
     <div class="main-content">
       <h2>Settings</h2>
       <div id="status-message" style="display: none;"></div>
+
+      <!-- Saved Configurations moved to top -->
+      <h3>Saved Configurations</h3>
+      <hr>
+      <div class="presets-container">
+        <div class="presets-header">
+          <div id="startup-controls"></div>
+        </div>
+        <div id="presets-list"></div>
+      </div>
 
       <form onsubmit="handleSubmit(event)">
 
@@ -517,8 +889,11 @@
         <br>
         <button type="submit" class="btn">Save Settings</button>
       </form>
+
+
     </div>
   </div>
+  <div id="toast" class="toast" aria-live="polite" aria-atomic="true"></div>
 </body>
 
 </html>

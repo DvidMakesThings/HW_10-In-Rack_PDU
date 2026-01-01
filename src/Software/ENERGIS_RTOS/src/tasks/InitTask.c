@@ -2,15 +2,16 @@
  * @file InitTask.c
  * @author DvidMakesThings - David Sipos
  *
- * @version 1.0.0
- * @date 2025-11-08
+ * @version 2.0.0
+ * @date 2025-01-01
  *
  * @details InitTask runs at highest priority during system boot to:
  * 1. Initialize all hardware in proper sequence
  * 2. Probe peripherals to verify communication
  * 3. Create subsystem tasks in dependency order
  * 4. Wait for subsystems to report ready
- * 5. Delete itself when system is fully operational
+ * 5. Apply saved configuration (relay states) on startup
+ * 6. Delete itself when system is fully operational
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -225,6 +226,75 @@ static float adc_read_voltage_avg(uint8_t ch) {
 }
 
 /**
+ * @brief Apply saved relay states on startup.
+ *
+ * Reads saved relay power-on states from storage and applies them to hardware.
+ * Includes delay between channels to avoid inrush current issues.
+ *
+ * @return Number of channels successfully configured
+ */
+static uint8_t apply_saved_relay_states(void) {
+    uint8_t relay_states[8] = {0};
+    uint8_t applied_count = 0;
+
+    /* Read saved relay states from storage */
+    if (!storage_get_relay_states(relay_states)) {
+        WARNING_PRINT("%s Could not read saved relay states\r\n", INIT_TASK_TAG);
+        return 0;
+    }
+
+    INFO_PRINT("%s Applying saved relay states...\r\n", INIT_TASK_TAG);
+
+    /* Apply each channel state with inter-channel delay */
+    for (uint8_t ch = 0; ch < 8; ch++) {
+        bool state = (relay_states[ch] != 0);
+
+        if (state) {
+            /* Only turn ON channels that are configured to be ON */
+            switch_result_t result = Switch_SetChannel(ch, true);
+            if (result == SWITCH_OK) {
+                applied_count++;
+                INFO_PRINT("    CH%u: ON\r\n", ch + 1);
+            } else if (result == SWITCH_ERR_OVERCURRENT) {
+                WARNING_PRINT("    CH%u: Blocked (overcurrent)\r\n", ch + 1);
+            } else {
+                WARNING_PRINT("    CH%u: Failed (err=%d)\r\n", ch + 1, result);
+            }
+
+            /* Small delay between channel activations to limit inrush current */
+            vTaskDelay(pdMS_TO_TICKS(100));
+        }
+    }
+
+    INFO_PRINT("%s Applied %u relay states\r\n", INIT_TASK_TAG, applied_count);
+    return applied_count;
+}
+
+/**
+ * @brief Save current relay states to storage.
+ *
+ * Reads current relay states from hardware and saves them to EEPROM.
+ * This is typically called when user wants to save current configuration.
+ *
+ * @return true on success, false on error
+ */
+bool InitTask_SaveCurrentRelayStates(void) {
+    uint8_t state_mask = 0;
+
+    if (Switch_GetAllStates(&state_mask) != SWITCH_OK) {
+        return false;
+    }
+
+    /* Convert bitmask to byte array */
+    uint8_t relay_states[8];
+    for (uint8_t ch = 0; ch < 8; ch++) {
+        relay_states[ch] = (state_mask & (1u << ch)) ? 1 : 0;
+    }
+
+    return storage_set_relay_states(relay_states);
+}
+
+/**
  * @brief InitTask main routine that performs the full bring-alive sequence.
  *
  * @details
@@ -247,6 +317,7 @@ static float adc_read_voltage_avg(uint8_t ch) {
  *  4) Configuration distribution:
  *     - Wait for StorageTask -> config ready
  *     - Fetch validated network config and passively rely on NetTask to use it
+ *     - Apply saved relay states (power-on configuration)
  *  5) Finalization:
  *     - LEDs to indicate RUNNING
  *     - Log "System bring-alive complete" and self-delete
@@ -460,6 +531,13 @@ static void InitTask(void *pvParameters) {
                    ni.gw[3]);
         INFO_PRINT("                 DNS : %u.%u.%u.%u\r\n", ni.dns[0], ni.dns[1], ni.dns[2],
                    ni.dns[3]);
+    }
+
+    /* Apply saved relay states (power-on configuration) */
+    if (Storage_Config_IsReady() && Switch_IsReady()) {
+        log_printf("\r\n");
+        INFO_PRINT("%s ===== Applying Startup Configuration =====\r\n", INIT_TASK_TAG);
+        (void)apply_saved_relay_states();
     }
 
     /* ===== PHASE 5: Finalization ===== */

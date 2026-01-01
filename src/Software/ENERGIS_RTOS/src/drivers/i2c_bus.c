@@ -33,7 +33,7 @@
  * @brief Only trace transactions to these addresses (0 = all).
  */
 #ifndef I2C_TRACE_ADDR_FILTER
-#define I2C_TRACE_ADDR_FILTER 0x21  /* Display MCP only */
+#define I2C_TRACE_ADDR_FILTER 0x21 /* Display MCP only */
 #endif
 
 typedef enum { I2C_OP_WRITE = 0, I2C_OP_READ = 1, I2C_OP_WRITE_READ = 2 } i2c_op_t;
@@ -130,52 +130,35 @@ void I2C_BusUnlock(i2c_inst_t *i2c) {
 /**
  * @brief Log an I2C write transaction for debugging.
  */
-static void trace_i2c_write(i2c_inst_t *i2c, uint8_t addr, const uint8_t *buf, size_t len, int result) {
+static void trace_i2c_write(i2c_inst_t *i2c, uint8_t addr, const uint8_t *buf, size_t len,
+                            int result) {
     /* Only trace I2C0 */
-    if (i2c != i2c0) return;
-    
+    if (i2c != i2c0)
+        return;
+
     /* Filter by address if configured */
-    if (I2C_TRACE_ADDR_FILTER != 0 && addr != I2C_TRACE_ADDR_FILTER) return;
-    
-    uint32_t now_ms = (uint32_t)to_ms_since_boot(get_absolute_time());
-    
-    if (len >= 2) {
-        /* Register write: buf[0] = reg, buf[1] = value */
-        log_printf("[I2C0 TRACE] %lu ms: WRITE addr=0x%02X reg=0x%02X val=0x%02X rc=%d\r\n",
-                   (unsigned long)now_ms, addr, buf[0], buf[1], result);
-        
-        /* Flag suspicious writes */
-        if (buf[0] == 0x00 && buf[1] == 0xFF) {
-            log_printf("[I2C0 TRACE] !!! SUSPICIOUS: IODIRA=0xFF (reset default) !!!\r\n");
-        }
-        if (buf[0] == 0x01 && buf[1] == 0xFF) {
-            log_printf("[I2C0 TRACE] !!! SUSPICIOUS: IODIRB=0xFF (reset default) !!!\r\n");
-        }
-        if (buf[0] == 0x0A && buf[1] == 0x00) {
-            log_printf("[I2C0 TRACE] !!! SUSPICIOUS: IOCON=0x00 (reset default) !!!\r\n");
-        }
-    } else if (len == 1) {
-        log_printf("[I2C0 TRACE] %lu ms: WRITE addr=0x%02X byte=0x%02X rc=%d\r\n",
-                   (unsigned long)now_ms, addr, buf[0], result);
-    }
+    if (I2C_TRACE_ADDR_FILTER != 0 && addr != I2C_TRACE_ADDR_FILTER)
+        return;
+    (void)buf;
+    (void)len;
+    (void)result;
 }
 
 /**
  * @brief Log an I2C read transaction for debugging.
  */
-static void trace_i2c_read(i2c_inst_t *i2c, uint8_t addr, const uint8_t *buf, size_t len, int result) {
+static void trace_i2c_read(i2c_inst_t *i2c, uint8_t addr, const uint8_t *buf, size_t len,
+                           int result) {
     /* Only trace I2C0 */
-    if (i2c != i2c0) return;
-    
+    if (i2c != i2c0)
+        return;
+
     /* Filter by address if configured */
-    if (I2C_TRACE_ADDR_FILTER != 0 && addr != I2C_TRACE_ADDR_FILTER) return;
-    
-    uint32_t now_ms = (uint32_t)to_ms_since_boot(get_absolute_time());
-    
-    if (len >= 1 && result > 0) {
-        log_printf("[I2C0 TRACE] %lu ms: READ addr=0x%02X val=0x%02X rc=%d\r\n",
-                   (unsigned long)now_ms, addr, buf[0], result);
-    }
+    if (I2C_TRACE_ADDR_FILTER != 0 && addr != I2C_TRACE_ADDR_FILTER)
+        return;
+    (void)buf;
+    (void)len;
+    (void)result;
 }
 
 #else
@@ -213,7 +196,7 @@ static void i2c_bus_task(void *arg) {
                          : i2c_write_timeout_us(reqp->i2c, reqp->addr, buf, len, nostop,
                                                 reqp->timeout_us);
             reqp->result = rc;
-            
+
             /* Trace after operation */
             if (is_read) {
                 trace_i2c_read(reqp->i2c, reqp->addr, buf, len, rc);
