@@ -1,11 +1,11 @@
 /**
  * @file i2c_bus.h
  * @author DvidMakesThings - David Sipos
- * 
+ *
  * @defgroup drivers Drivers
  * @brief HAL drivers for the Energis PDU firmware.
  * @{
- * 
+ *
  * @defgroup drivers01 1. I2C Bus Manager
  * @brief Centralized, serialized I2C access with synchronous wrappers.
  * @{
@@ -65,6 +65,21 @@ int i2c_bus_write_timeout_us(i2c_inst_t *i2c, uint8_t addr, const uint8_t *src, 
  */
 int i2c_bus_read_timeout_us(i2c_inst_t *i2c, uint8_t addr, uint8_t *dst, size_t len, bool nostop,
                             uint32_t timeout_us);
+/**
+ * @brief Atomically perform a write (no stop) followed immediately by a read.
+ * Ensures the repeated-start sequence is not interleaved with other transactions.
+ *
+ * @param i2c I2C controller
+ * @param addr 7-bit I2C address
+ * @param wsrc Write buffer (address phase or register/memory bytes)
+ * @param wlen Length of write buffer
+ * @param rdst Read buffer destination
+ * @param rlen Length of read buffer
+ * @param timeout_us Per-op timeout in microseconds
+ * @return Number of bytes read on success, negative on failure
+ */
+int i2c_bus_write_read(i2c_inst_t *i2c, uint8_t addr, const uint8_t *wsrc, size_t wlen,
+                       uint8_t *rdst, size_t rlen, uint32_t timeout_us);
 
 /* ---------------- High-level register/memory helpers (centralized) --------- */
 /**

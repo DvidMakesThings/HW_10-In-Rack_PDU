@@ -176,26 +176,26 @@ extern w5500_NetConfig eth_netcfg;
  * @brief Hardware version string.
  * @details Format: MAJOR.MINOR.PATCH
  */
-#define HARDWARE_VERSION "1.0.0"
+#define HARDWARE_VERSION "1.1.0"
 
 /**
  * @brief Hardware version as integer literal.
  * @details Encoded as: MAJOR*100 + MINOR*10 + PATCH
  */
-#define HARDWARE_VERSION_LITERAL 100
+#define HARDWARE_VERSION_LITERAL 110
 
 /***************************** Firmware Version *********************************/
 /**
  * @brief Firmware version string.
  * @details Format: MAJOR.MINOR.PATCH
  */
-#define FIRMWARE_VERSION "1.0.0"
+#define FIRMWARE_VERSION "1.1.0"
 
 /**
  * @brief Firmware version as integer literal.
  * @details Encoded as: MAJOR*100 + MINOR*10 + PATCH
  */
-#define FIRMWARE_VERSION_LITERAL 100
+#define FIRMWARE_VERSION_LITERAL 110
 
 /******************** Overcurrent Protection Thresholds ************************/
 /**
@@ -347,8 +347,8 @@ extern w5500_NetConfig eth_netcfg;
  *                          PERIPHERAL ASSIGNMENTS                              *
  ********************************************************************************/
 // I2C Peripheral Assignments
-#define I2C0_SPEED 1000000                           // 400 kHz fast mode
-#define I2C1_SPEED 1000000                           // 400 kHz fast mode
+#define I2C0_SPEED 100000                           // 100 kHz standard mode
+#define I2C1_SPEED 100000                           // 100 kHz standard mode
 #define EEPROM_I2C i2c1                             // Using I2C1 for EEPROM communication
 #define MCP23017_RELAY_I2C i2c1                     // Using I2C1 for Relay Board MCP23017
 #define MCP23017_DISPLAY_I2C i2c0                   // Using I2C0 for Display Board MCP23017
@@ -400,10 +400,10 @@ extern w5500_NetConfig eth_netcfg;
 #define I2C1_SCL 3
 #define I2C0_SDA 4
 #define I2C0_SCL 5
-#define GPIO6 6 // Not used anymore
-#define GPIO7 7 // Not used anymore
-#define UART1_TX 8
-#define UART1_RX 9
+#define GPIO6 6   // Not used anymore
+#define GPIO7 7   // Not used anymore
+#define GPIO8 8   // Not used anymore
+#define GPIO9 9   // Not used anymore
 #define GPIO10 10 // Not used anymore
 #define GPIO11 11 // Not used anymore
 #define KEY_0 12
@@ -420,12 +420,12 @@ extern w5500_NetConfig eth_netcfg;
 #define W5500_MOSI 19
 #define W5500_RESET 20
 #define W5500_INT 21
-#define GPIO22 22 // Not used anymore
+#define FAN_CTRL 22 // Fan control (not used)
 #define MCP_MB_RST 23
 #define MCP_DP_RST 24
 #define VREG_EN 25
 #define ADC_VUSB 26
-#define NC 27
+#define NC 27 // ADC Temp sensor (not used)
 #define PROC_LED 28
 #define ADC_12V_MEA 29
 

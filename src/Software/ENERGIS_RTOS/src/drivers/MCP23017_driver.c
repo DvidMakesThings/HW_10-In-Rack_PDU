@@ -1,7 +1,7 @@
 /**
  * @file MCP23017_driver.c
  * @author DvidMakesThings - David Sipos
- * 
+ *
  * @version 2.0.0
  * @date 2025-12-16
  *
@@ -226,7 +226,6 @@ void mcp_init(mcp23017_t *dev) {
 
     xSemaphoreGive(dev->mutex);
 
-    /* Debug print removed */
 }
 
 bool mcp_recover(mcp23017_t *dev) {

@@ -473,6 +473,9 @@ BaseType_t ButtonTask_Init(bool enable) {
         return pdPASS;
     }
 
+    /* Initialize PLUS/MINUS/SET GPIOs (inputs with pull-ups) */
+    ButtonDrv_InitGPIO();
+
     /* Bring-up gate: wait for Storage config to be ready */
     TickType_t t0 = xTaskGetTickCount();
     const TickType_t to = pdMS_TO_TICKS(BUTTON_WAIT_STORAGE_READY_MS);

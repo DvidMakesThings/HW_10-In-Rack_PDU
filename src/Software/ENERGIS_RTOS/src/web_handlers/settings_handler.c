@@ -117,15 +117,15 @@ void handle_settings_api(uint8_t sock) {
     NETLOG_PRINT(">> handle_settings_api()\n");
     net_beat();
 
-    /* Load network from EEPROM */
+    /* Load network via StorageTask (RAM cache-backed) */
     networkInfo net;
-    if (!EEPROM_ReadUserNetworkWithChecksum(&net)) {
+    if (!storage_get_network(&net)) {
         net = LoadUserNetworkConfig();
     }
 
-    /* Load prefs from EEPROM */
+    /* Load prefs via StorageTask (RAM cache-backed) */
     userPrefInfo pref;
-    if (!EEPROM_ReadUserPrefsWithChecksum(&pref)) {
+    if (!storage_get_prefs(&pref)) {
         pref = LoadUserPreferences();
     }
 
@@ -269,9 +269,9 @@ void handle_settings_post(uint8_t sock, char *body) {
         return;
     }
 
-    /* Update network config */
+    /* Update network config (read from StorageTask cache) */
     networkInfo net;
-    if (!EEPROM_ReadUserNetworkWithChecksum(&net)) {
+    if (!storage_get_network(&net)) {
         net = LoadUserNetworkConfig();
     }
     networkInfo backup_net = net;
@@ -334,7 +334,7 @@ void handle_settings_post(uint8_t sock, char *body) {
 
     /* Write network only if changed */
     if (memcmp(&net, &backup_net, sizeof(net)) != 0) {
-        EEPROM_WriteUserNetworkWithChecksum(&net);
+        (void)storage_set_network(&net);
         vTaskDelay(pdMS_TO_TICKS(10));
         net_beat();
 
@@ -349,9 +349,9 @@ void handle_settings_post(uint8_t sock, char *body) {
         net_beat();
     }
 
-    /* Update user preferences */
+    /* Update user preferences (read from StorageTask cache) */
     userPrefInfo pref;
-    if (!EEPROM_ReadUserPrefsWithChecksum(&pref)) {
+    if (!storage_get_prefs(&pref)) {
         pref = LoadUserPreferences();
     }
     userPrefInfo backup_pref = pref;
@@ -377,7 +377,7 @@ void handle_settings_post(uint8_t sock, char *body) {
     }
 
     if (memcmp(&pref, &backup_pref, sizeof(pref)) != 0) {
-        EEPROM_WriteUserPrefsWithChecksum(&pref);
+        (void)storage_set_prefs(&pref);
         vTaskDelay(pdMS_TO_TICKS(10));
         net_beat();
     }

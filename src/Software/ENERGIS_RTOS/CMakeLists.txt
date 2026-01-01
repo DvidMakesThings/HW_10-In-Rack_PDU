@@ -148,7 +148,7 @@ target_link_options(ENERGIS_RTOS PRIVATE
 
 # ----------------------------- Pico settings -------------------------------
 # Centralized firmware version and base name (update version in ONE place)
-set(FIRMWARE_VERSION "1.0.0")
+set(FIRMWARE_VERSION "1.1.0")
 set(FIRMWARE_BASE_NAME "ENERGIS_firmware_v${FIRMWARE_VERSION}")
 
 # USB / internal descriptors

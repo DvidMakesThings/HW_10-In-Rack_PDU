@@ -23,6 +23,7 @@
  */
 
 #include "../../CONFIG.h"
+#include "calibration.h"
 
 #define ST_FACTORY_DEFAULTS_TAG "[ST-FDEF]"
 
@@ -65,11 +66,11 @@ int EEPROM_WriteFactoryDefaults(void) {
     memcpy(sys_info_buf, SWVERSION, swv_len);
 
     status |= EEPROM_WriteSystemInfo((const uint8_t *)sys_info_buf, swv_len);
-    INFO_PRINT("%s Firmware version written (SN via provisioning)\r\n", ST_FACTORY_DEFAULTS_TAG);
+    DEBUG_PRINT("%s Firmware version written (SN via provisioning)\r\n", ST_FACTORY_DEFAULTS_TAG);
 
     /* 2. Write Relay Status (all OFF) */
     status |= EEPROM_WriteUserOutput(DEFAULT_RELAY_STATUS, sizeof(DEFAULT_RELAY_STATUS));
-    INFO_PRINT("%s Relay Status written\r\n", ST_FACTORY_DEFAULTS_TAG);
+    DEBUG_PRINT("%s Relay Status written\r\n", ST_FACTORY_DEFAULTS_TAG);
 
     /* 3. Write Network Configuration (with CRC and derived MAC) */
     {
@@ -79,7 +80,7 @@ int EEPROM_WriteFactoryDefaults(void) {
         DeviceIdentity_FillMac(defnet.mac);
 
         status |= EEPROM_WriteUserNetworkWithChecksum(&defnet);
-        INFO_PRINT("%s Network Configuration written\r\n", ST_FACTORY_DEFAULTS_TAG);
+        DEBUG_PRINT("%s Network Configuration written\r\n", ST_FACTORY_DEFAULTS_TAG);
     }
 
     /* 4. Write Sensor Calibration (default factors for all channels) */
@@ -97,25 +98,25 @@ int EEPROM_WriteFactoryDefaults(void) {
         zero_cal.channels[i].zero_calibrated = 0xFF;
     }
     status |= EEPROM_WriteSensorCalibration((const uint8_t *)&zero_cal, sizeof(zero_cal));
-    INFO_PRINT("%s Sensor Calibration written\r\n", ST_FACTORY_DEFAULTS_TAG);
+    DEBUG_PRINT("%s Sensor Calibration written\r\n", ST_FACTORY_DEFAULTS_TAG);
 
     /* 5. Write Energy Monitoring Data (placeholder) */
     status |= EEPROM_WriteEnergyMonitoring(DEFAULT_ENERGY_DATA, sizeof(DEFAULT_ENERGY_DATA));
-    INFO_PRINT("%s Energy Monitoring Data written\r\n", ST_FACTORY_DEFAULTS_TAG);
+    DEBUG_PRINT("%s Energy Monitoring Data written\r\n", ST_FACTORY_DEFAULTS_TAG);
 
     /* 6. Write Event Logs (placeholder) */
     status |= EEPROM_WriteEventLogs(DEFAULT_LOG_DATA, sizeof(DEFAULT_LOG_DATA));
-    INFO_PRINT("%s Event Logs written\r\n", ST_FACTORY_DEFAULTS_TAG);
+    DEBUG_PRINT("%s Event Logs written\r\n", ST_FACTORY_DEFAULTS_TAG);
 
     /* 7. Write User Preferences (default name/location with CRC) */
     status |= EEPROM_WriteDefaultNameLocation();
-    INFO_PRINT("%s User Preferences written\r\n", ST_FACTORY_DEFAULTS_TAG);
+    DEBUG_PRINT("%s User Preferences written\r\n", ST_FACTORY_DEFAULTS_TAG);
 
     /* Report final status */
     if (status == 0) {
         INFO_PRINT("%s Factory defaults written successfully\r\n", ST_FACTORY_DEFAULTS_TAG);
-        INFO_PRINT("%s NOTE: Serial number and region require provisioning\r\n",
-                   ST_FACTORY_DEFAULTS_TAG);
+        WARNING_PRINT("%s NOTE: Serial number and region require provisioning\r\n",
+                      ST_FACTORY_DEFAULTS_TAG);
     } else {
 #if ERRORLOGGER
         uint16_t err_code =
@@ -209,18 +210,64 @@ bool check_factory_defaults(void) {
 
     /* Read magic value to detect first boot */
     xSemaphoreTake(eepromMtx, portMAX_DELAY);
-    INFO_PRINT("%s Factory defaults written successfully\r\n", ST_FACTORY_DEFAULTS_TAG);
+    INFO_PRINT("%s Reading EEPROM magic...\r\n", ST_FACTORY_DEFAULTS_TAG);
     CAT24C256_ReadBuffer(EEPROM_MAGIC_ADDR, (uint8_t *)&magic, sizeof(magic));
     xSemaphoreGive(eepromMtx);
+    DEBUG_PRINT("%s Magic read: 0x%04X\r\n", ST_FACTORY_DEFAULTS_TAG, magic);
 
     /* Check if factory init needed */
     if (magic != EEPROM_MAGIC_VAL) {
-        INFO_PRINT("%s First boot detected, writing factory defaults...\r\n",
-                   ST_FACTORY_DEFAULTS_TAG);
+        DEBUG_PRINT("%s First boot detected, writing factory defaults...\r\n",
+                    ST_FACTORY_DEFAULTS_TAG);
 
         /* Write factory defaults with mutex protection */
         xSemaphoreTake(eepromMtx, portMAX_DELAY);
         int ret = EEPROM_WriteFactoryDefaults();
+
+        /* Also write an initial temperature calibration record:
+           mode=1-point, v0=0.706 V, slope=0.001721 V/°C, offset=0.0 °C. */
+        {
+            temp_calib_t tcal;
+            memset(&tcal, 0, sizeof(tcal));
+            tcal.mode = TEMP_CAL_MODE_1PT;
+            tcal.v0_volts_at_27c = 0.706f;
+            tcal.slope_volts_per_deg = 0.001721f;
+            tcal.offset_c = 0.0f;
+            /* magic/version + crc are set by EEPROM_WriteTempCalibration() */
+            ret |= EEPROM_WriteTempCalibration(&tcal);
+
+            /* Read-back verify key fields (magic/version/mode) */
+            temp_calib_t chk;
+            memset(&chk, 0, sizeof(chk));
+            CAT24C256_ReadBuffer(EEPROM_TEMP_CAL_START, (uint8_t *)&chk, (uint32_t)sizeof(chk));
+            DEBUG_PRINT("%s TempCal written\r\n", ST_FACTORY_DEFAULTS_TAG);
+        }
+
+        /* Also write default HLW8032 per-channel calibration for all 8 channels.
+           This mirrors the intent of AUTO_CAL_ZERO but without taking measurements:
+           set default VF/CF and zero offsets, leave flags as not-calibrated (0xFF). */
+        {
+            for (uint8_t ch = 0u; ch < 8u; ch++) {
+                hlw_calib_t c;
+                memset(&c, 0xFF, sizeof(c));
+                c.voltage_factor = HLW8032_VF;
+                c.current_factor = HLW8032_CF;
+                c.r1_actual = 1880000.0f;
+                c.r2_actual = 1000.0f;
+                c.shunt_actual = 0.001f;
+                c.voltage_offset = 0.0f;
+                c.current_offset = 0.0f;
+                c.calibrated = 0xFF;      /* not calibrated */
+                c.zero_calibrated = 0xFF; /* zero-cal not performed */
+                ret |= EEPROM_WriteSensorCalibrationForChannel(ch, &c);
+            }
+
+            /* Briefly read-back CH0 to confirm defaults are present */
+            hlw_calib_t chk0;
+            memset(&chk0, 0, sizeof(chk0));
+            CAT24C256_ReadBuffer(EEPROM_SENSOR_CAL_START, (uint8_t *)&chk0, (uint32_t)sizeof(chk0));
+            DEBUG_PRINT("%s Channel calibration written\r\n", ST_FACTORY_DEFAULTS_TAG);
+        }
         if (ret == 0) {
             /* Mark EEPROM as initialized */
             magic = EEPROM_MAGIC_VAL;
@@ -230,7 +277,7 @@ bool check_factory_defaults(void) {
 
         /* Report result */
         if (ret == 0) {
-            INFO_PRINT("%s Factory defaults written successfully\r\n", ST_FACTORY_DEFAULTS_TAG);
+            DEBUG_PRINT("%s Factory defaults written successfully\r\n", ST_FACTORY_DEFAULTS_TAG);
             return true;
         } else {
 #if ERRORLOGGER

@@ -232,11 +232,13 @@ static void MeterTask_Loop(void *pvParameters) {
 
             if (v_usb < 4.5f) {
 #if ERRORLOGGER
+                // Leaving as warning. If USB is not connected, it's a nice to have
+                // info, but not that critical to log error.
                 uint16_t err_code =
-                    ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_METERTASK, 0x5);
-                ERROR_PRINT_CODE(err_code, "%s CRITICAL: USB supply low: %.2f V\r\n",
-                                 METER_TASK_TAG, v_usb);
-                Storage_EnqueueErrorCode(err_code);
+                    ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_WARNING, ERR_FID_METERTASK, 0x5);
+                WARNING_PRINT_CODE(err_code, "%s CRITICAL: USB supply low: %.2f V\r\n",
+                                   METER_TASK_TAG, v_usb);
+                // Storage_EnqueueErrorCode(err_code);
 #endif
             }
 
@@ -361,7 +363,13 @@ BaseType_t MeterTask_Init(bool enable) {
     adc_set_temp_sensor_enabled(true);
 
     /* Try to load and apply per-device temperature calibration from EEPROM. */
-    (void)TempCalibration_LoadAndApply(NULL);
+    extern SemaphoreHandle_t eepromMtx;
+    if (eepromMtx && xSemaphoreTake(eepromMtx, pdMS_TO_TICKS(250)) == pdTRUE) {
+        (void)TempCalibration_LoadAndApply(NULL);
+        xSemaphoreGive(eepromMtx);
+    } else {
+        (void)TempCalibration_LoadAndApply(NULL);
+    }
 
     /* Init per-channel accumulators and telemetry */
     for (uint8_t ch = 0; ch < 8; ch++) {
@@ -576,7 +584,7 @@ bool MeterTask_GetTempCalibrationInfo(uint8_t *out_mode, float *out_v0, float *o
     /* Tiny epsilons to classify "equal" without noise sensitivity */
     const float EPS_V0 = 0.0005f;     /* 0.5 mV */
     const float EPS_SLOPE = 0.00002f; /* 20 µV/°C */
-    const float EPS_OFFSET = 0.05f;   /* 0.05 °C */
+    const float EPS_OFFSET = 0.005f;  /* 0.005 °C */
 
     uint8_t mode = 2; /* default: looks like 2-point */
 
