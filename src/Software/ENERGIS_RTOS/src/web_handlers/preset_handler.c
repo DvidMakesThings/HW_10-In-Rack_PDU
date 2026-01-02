@@ -86,14 +86,22 @@ void handle_config_presets_get(uint8_t sock) {
     /* Get all presets from cache. */
     user_output_preset_t presets[USER_OUTPUT_MAX_PRESETS];
     if (!UserOutput_GetAllPresets(presets)) {
-        static const char err_resp[] = "HTTP/1.1 500 Internal Server Error\r\n"
-                                       "Content-Type: application/json\r\n"
-                                       "Content-Length: 30\r\n"
-                                       "Access-Control-Allow-Origin: *\r\n"
-                                       "Connection: close\r\n"
-                                       "\r\n"
-                                       "{\"error\":\"Failed to load presets\"}";
-        send(sock, (uint8_t *)err_resp, sizeof(err_resp) - 1);
+        /* Graceful pending response while storage/presets initialize */
+        static const char body[] = "{\"presets\":[],\"startup\":null,\"pending\":true}";
+        char hdr[192];
+        int hlen = snprintf(hdr, sizeof(hdr),
+                            "HTTP/1.1 200 OK\r\n"
+                            "Content-Type: application/json\r\n"
+                            "Content-Length: %d\r\n"
+                            "Access-Control-Allow-Origin: *\r\n"
+                            "Cache-Control: no-cache\r\n"
+                            "Retry-After: 1\r\n"
+                            "Connection: close\r\n"
+                            "\r\n",
+                            (int)(sizeof(body) - 1));
+        send(sock, (uint8_t *)hdr, hlen);
+        net_beat();
+        send(sock, (uint8_t *)body, (int)(sizeof(body) - 1));
         net_beat();
         return;
     }

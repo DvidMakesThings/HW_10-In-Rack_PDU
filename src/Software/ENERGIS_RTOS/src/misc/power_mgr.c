@@ -111,7 +111,7 @@ static void w5500_release_reset(void) { gpio_put(W5500_RESET, 1); }
 static void set_pwr_led_tracked(bool on) {
     if (s_pwr_led_state != on) {
         /* Routed via MCP driver → SwitchTask when ready */
-        Switch_SetPwrLed(true, 10);
+        Switch_SetPwrLed(on, 10);
         s_pwr_led_state = on;
     }
 }
@@ -165,7 +165,11 @@ void Power_EnterStandby(void) {
     /* 3) Turn off all display LEDs except PWR_LED */
     turn_off_leds_except_pwr();
 
-    /* 4) Hold W5500 in reset */
+    /* 4) Atomically update power state BEFORE asserting reset so NetTask
+     * can immediately skip all network operations on its next cycle. */
+    s_power_state = PWR_STATE_STANDBY;
+
+    /* 5) Hold W5500 in reset */
     w5500_hold_reset();
 
     /* 5) Initialize LED animation state */
@@ -175,9 +179,6 @@ void Power_EnterStandby(void) {
 
     /* 6) Track PWR_LED as ON (set by turn_off_leds_except_pwr) */
     s_pwr_led_state = true;
-
-    /* 7) Atomically update power state */
-    s_power_state = PWR_STATE_STANDBY;
 
     INFO_PRINT("%s STANDBY mode active\r\n", POWER_MGR_TAG);
 
@@ -210,14 +211,20 @@ void Power_ExitStandby(void) {
     /* 3) ETH_LED will be controlled by NetTask link detection */
     Switch_SetEthLed(false, 10);
 
+    /* 3a) Apply startup preset if configured (may power external switch)
+     * This ensures any user-selected relay state is restored on wake so
+     * link can come up and NetTask can reinitialize networking. */
+    (void)UserOutput_ApplyStartupPreset();
+
     /* 4) Atomically update power state */
     s_power_state = PWR_STATE_RUN;
 
     INFO_PRINT("%s RUN mode active, network will reinitialize\r\n", POWER_MGR_TAG);
 
-    /* Note: Relays remain OFF; user must explicitly turn them on
-     * NetTask will detect the state change and call net_reinit_from_cache()
-     * when it sees the link come back up */
+    /* Note: Relay state may be restored from a startup preset if configured.
+     * Otherwise, relays remain OFF and the user must turn them on.
+     * NetTask will detect link-up and call net_reinit_from_cache() when the
+     * external network becomes available. */
 
     static uint32_t s_pwm_slice = 0;
     s_pwm_slice = pwm_gpio_to_slice_num(PROC_LED);

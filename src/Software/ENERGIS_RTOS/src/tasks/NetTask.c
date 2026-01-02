@@ -229,8 +229,14 @@ static bool net_reinit_from_cache(void) {
     Health_Heartbeat(HEALTH_ID_NET);
 
     /* Guard: ensure the PHY link is actually up (short, non-fatal wait) */
-    w5500_PhyLink link = wait_for_link_up(1000);
-    if (link != PHY_LINK_ON) {
+    bool link_up = wait_for_link_up(1500);
+    if (!link_up) {
+#if ERRORLOGGER
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_WARNING, ERR_FID_NETTASK, 0x7);
+        WARNING_PRINT_CODE(errorcode, "%s Link did not come up after reset; deferring reinit\r\n",
+                           NET_TASK_TAG);
+        Storage_EnqueueWarningCode(errorcode);
+#endif
         /* Link still down, skip reinit quietly */
         return false;
     }
@@ -372,9 +378,24 @@ static void NetTask_Function(void *pvParameters) {
         if (s_last_power_state == PWR_STATE_STANDBY && cur_pwr_state == PWR_STATE_RUN) {
             INFO_PRINT("%s Exiting STANDBY, reinitializing network\r\n", NET_TASK_TAG);
             /* W5500 RESET was released by Power_ExitStandby(), now reinit */
-            vTaskDelay(pdMS_TO_TICKS(100)); /* Brief delay after reset release */
+            vTaskDelay(pdMS_TO_TICKS(200)); /* Brief delay after reset release */
             (void)net_reinit_from_cache();
             s_last_link = PHY_LINK_OFF; /* Force link redetection */
+
+            /* Immediately set ETH LED mode based on current link after wake.
+             * If link is down (e.g., external switch unpowered), start blinking now.
+             * If link is up, drive solid ON. */
+            w5500_PhyLink cur_link_now = w5500_get_link_status();
+            if (cur_link_now == PHY_LINK_ON) {
+                s_eth_led_blink = false;
+                s_eth_led_state = true;
+                Switch_SetEthLed(true, 10);
+            } else {
+                s_eth_led_blink = true;
+                s_eth_led_state = false;
+                Switch_SetEthLed(false, 10);
+                s_eth_led_blink_last_ms = now_ms; /* seed blink timer */
+            }
         }
         s_last_power_state = cur_pwr_state;
 

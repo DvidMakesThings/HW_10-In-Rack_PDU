@@ -368,6 +368,26 @@
     }
   </style>
   <script>
+    // Lightweight retry helper for slower systems
+    async function fetchWithRetry(url, options = {}, attempts = 5, initialDelayMs = 300) {
+      let delay = initialDelayMs;
+      for (let i = 0; i < attempts; i++) {
+        try {
+          const r = await fetch(url, options);
+          const text = await r.text();
+          let data = null;
+          try { data = JSON.parse(text); } catch (_) { /* ignore parse */ }
+          if (r.ok && data !== null) {
+            return data;
+          }
+          throw new Error((data && data.error) ? data.error : ('HTTP ' + r.status));
+        } catch (e) {
+          if (i === attempts - 1) throw e;
+          await new Promise(res => setTimeout(res, delay));
+          delay = Math.min(2000, delay * 2);
+        }
+      }
+    }
     // Handle IP input validation and auto-advance
     function validateIpInput(input) {
       let value = input.value.replace(/\D/g, '');
@@ -608,31 +628,30 @@
       return arrayToMask(arr);
     }
 
-    function loadPresets() {
+    async function loadPresets() {
       // Render baseline UI immediately so users see the 5 slots
       renderPresets();
-      fetch('/api/config-presets', { headers: { 'Accept': 'application/json' } })
-        .then(async r => {
-          try {
-            const data = await r.json();
-            return data;
-          } catch (e) {
-            const txt = await r.text().catch(() => '');
-            try { return JSON.parse(txt); } catch (_) { throw new Error('parse'); }
-          }
-        })
-        .then(data => {
-          presets = (data && Array.isArray(data.presets)) ? data.presets : [];
-          startupPreset = (data && typeof data.startup === 'number') ? data.startup : null;
-          renderPresets();
-        })
-        .catch(_ => {
-          // Fallback to empty presets; still render cards and dropdown with None
-          presets = [];
-          startupPreset = null;
-          renderPresets();
-          showToast('Failed to load presets', 'error');
-        });
+      showToast('Loading presets...', 'info');
+      try {
+        const data = await fetchWithRetry('/api/config-presets', { headers: { 'Accept': 'application/json' } }, 6, 300);
+        presets = (data && Array.isArray(data.presets)) ? data.presets : [];
+        startupPreset = (data && typeof data.startup === 'number') ? data.startup : null;
+        renderPresets();
+        if (data && data.pending === true) {
+          // Backend indicates presets not ready yet; retry after a short grace period
+          showToast('Presets initializing, retrying...', 'info');
+          setTimeout(loadPresets, 1000);
+        } else {
+          showToast('Presets loaded', 'success');
+        }
+      } catch (err) {
+        // Fallback to empty presets; still render cards and dropdown with None
+        presets = [];
+        startupPreset = null;
+        renderPresets();
+        showToast('Failed to load presets. Retrying...', 'error');
+        setTimeout(loadPresets, 2000);
+      }
     }
 
     function savePreset(id) {

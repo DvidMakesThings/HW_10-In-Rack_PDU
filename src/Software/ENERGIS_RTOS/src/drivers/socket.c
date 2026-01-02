@@ -19,6 +19,20 @@
 #include "../CONFIG.h"
 
 #define SOCK_TAG "[SOCKET]"
+/* Suppress noisy socket-not-connected errors during STANDBY transitions.
+ * When the system enters STANDBY, the W5500 is held in reset and any
+ * in-flight socket operations may momentarily observe invalid states.
+ * NetTask stops calling HTTP/SNMP in STANDBY, but races can produce
+ * occasional errors. Only log these when not in STANDBY. */
+static inline void maybe_log_sock_not_connected(uint8_t sn, uint8_t state, uint16_t errorcode) {
+    if (Power_GetState() != PWR_STATE_STANDBY) {
+#if ERRORLOGGER
+        ERROR_PRINT_CODE(errorcode, "%s Socket %u not connected (state=0x%02X)\r\n", SOCK_TAG, sn,
+                         state);
+        Storage_EnqueueErrorCode(errorcode);
+#endif
+    }
+}
 
 /******************************************************************************
  *                          PRIVATE DEFINITIONS                               *
@@ -404,14 +418,10 @@ int32_t send(uint8_t sn, uint8_t *buf, uint16_t len) {
     /* Check socket state */
     tmp = getSn_SR(sn);
     if (tmp != SOCK_ESTABLISHED && tmp != SOCK_CLOSE_WAIT) {
-
 #if ERRORLOGGER
         uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET, 0xA);
-        ERROR_PRINT_CODE(errorcode, "%s Socket %u not connected (state=0x%02X)\r\n", SOCK_TAG, sn,
-                         tmp);
-        Storage_EnqueueErrorCode(errorcode);
+        maybe_log_sock_not_connected(sn, tmp, errorcode);
 #endif
-
         return SOCKERR_SOCKSTATUS;
     }
 
@@ -451,9 +461,7 @@ int32_t send(uint8_t sn, uint8_t *buf, uint16_t len) {
 #if ERRORLOGGER
                 uint16_t errorcode =
                     ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET, 0xC);
-                ERROR_PRINT_CODE(errorcode, "%s Socket %u not connected (state=0x%02X)\r\n",
-                                 SOCK_TAG, sn, tmp);
-                Storage_EnqueueErrorCode(errorcode);
+                maybe_log_sock_not_connected(sn, tmp, errorcode);
 #endif
                 return SOCKERR_SOCKSTATUS;
             }
@@ -611,9 +619,7 @@ int32_t recv(uint8_t sn, uint8_t *buf, uint16_t len) {
     if (sr != SOCK_ESTABLISHED && sr != SOCK_CLOSE_WAIT) {
 #if ERRORLOGGER
         uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET, 0xF);
-        ERROR_PRINT_CODE(errorcode, "%s Socket %u not connected (state=0x%02X)\r\n", SOCK_TAG, sn,
-                         sr);
-        Storage_EnqueueErrorCode(errorcode);
+        maybe_log_sock_not_connected(sn, sr, errorcode);
 #endif
         return SOCKERR_SOCKSTATUS;
     }
@@ -629,9 +635,7 @@ int32_t recv(uint8_t sn, uint8_t *buf, uint16_t len) {
 #if ERRORLOGGER
                 uint16_t errorcode =
                     ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x01);
-                ERROR_PRINT_CODE(errorcode, "%s Socket %u not connected (state=0x%02X)\r\n",
-                                 SOCK_TAG, sn, sr);
-                Storage_EnqueueErrorCode(errorcode);
+                maybe_log_sock_not_connected(sn, sr, errorcode);
 #endif
                 return SOCKERR_SOCKSTATUS;
             }
