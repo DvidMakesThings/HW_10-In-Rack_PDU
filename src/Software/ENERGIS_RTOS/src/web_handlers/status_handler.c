@@ -207,8 +207,8 @@ void handle_status_request(uint8_t sock) {
         }
 
         pos += snprintf(json + pos, sizeof(json) - pos,
-                        "{\"voltage\":%.2f,\"current\":%.2f,\"uptime\":%lu,"
-                        "\"power\":%.2f,\"state\":%s,\"label\":\"%s\"}%s",
+                        "{\"voltage\":%.8f,\"current\":%.8f,\"uptime\":%lu,"
+                        "\"power\":%.8f,\"state\":%s,\"label\":\"%s\"}%s",
                         V, I, (unsigned long)up, P, state ? "true" : "false", escaped_labels[i],
                         (i < 7 ? "," : ""));
         if ((i & 1) == 0)
@@ -218,12 +218,12 @@ void handle_status_request(uint8_t sock) {
     /* Add temperature, system status, and overcurrent protection status */
     pos +=
         snprintf(json + pos, sizeof(json) - pos,
-                 "],\"internalTemperature\":%.2f,"
+                 "],\"internalTemperature\":%.3f,"
                  "\"temperatureUnit\":\"%s\","
                  "\"systemStatus\":\"%s\","
                  "\"overcurrent\":{"
                  "\"state\":\"%s\","
-                 "\"total_current_a\":%.2f,"
+                 "\"total_current_a\":%.4f,"
                  "\"limit_a\":%.1f,"
                  "\"warning_threshold_a\":%.2f,"
                  "\"critical_threshold_a\":%.2f,"

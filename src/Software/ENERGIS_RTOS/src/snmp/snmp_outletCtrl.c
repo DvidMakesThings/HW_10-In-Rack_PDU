@@ -91,7 +91,7 @@ static inline void setter_n(uint8_t ch, uint32_t u32) {
 #if ERRORLOGGER
         uint16_t errorcode =
             ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SNMP_OUTLETCTRL, 0x01);
-        ERROR_PRINT_DEBUG("0x%x [SNMP OUTLET] Invalid channel index: %u\r\n", errorcode,
+        ERROR_PRINT_CODE("0x%x [SNMP OUTLET] Invalid channel index: %u\r\n", errorcode,
                           (unsigned)ch);
         // Storage_EnqueueErrorCode(errorcode);
 #endif
@@ -105,7 +105,7 @@ static inline void setter_n(uint8_t ch, uint32_t u32) {
 #if ERRORLOGGER
         uint16_t errorcode =
             ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SNMP_OUTLETCTRL, 0x02);
-        ERROR_PRINT_DEBUG("0x%x [SNMP OUTLET] Switch_SetChannelCompat failed: ch=%u state=%u\r\n",
+        ERROR_PRINT_CODE("0x%x [SNMP OUTLET] Switch_SetChannelCompat failed: ch=%u state=%u\r\n",
                           errorcode, (unsigned)ch, (unsigned)(desired ? 1u : 0u));
         // Storage_EnqueueErrorCode(errorcode);
 #endif

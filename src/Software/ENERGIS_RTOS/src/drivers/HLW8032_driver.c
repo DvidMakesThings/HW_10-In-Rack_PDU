@@ -429,7 +429,7 @@ static float compute_total_current(void) {
 /* ===================================================================== */
 
 void hlw8032_init(void) {
-    INFO_PRINT("%s Initializing HLW8032 driver v1.0.2...\r\n", HLW8032_TAG);
+    INFO_PRINT("%s Initializing HLW8032 driver...\r\n", HLW8032_TAG);
 
     /* Create UART mutex */
     uartHlwMtx = xSemaphoreCreateMutex();

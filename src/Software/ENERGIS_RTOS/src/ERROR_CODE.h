@@ -31,13 +31,6 @@
  *                      ERROR CODE SCHEME (16-bit: 0xMSCC)                     *
  ********************************************************************************/
 
-#ifndef ERROR
-#define ERROR 1
-#endif
-#ifndef WARNING
-#define WARNING 1
-#endif
-
 /**
  * @brief Error severity levels for 16-bit error codes.
  *

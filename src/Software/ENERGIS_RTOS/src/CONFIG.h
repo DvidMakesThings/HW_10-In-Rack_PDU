@@ -262,7 +262,7 @@ extern w5500_NetConfig eth_netcfg;
 
 /* ---------- LOGGING FLAGS ---------- */
 #ifndef DEBUG
-#define DEBUG 1
+#define DEBUG 0
 #endif
 
 #ifndef DEBUG_HEALTH
@@ -282,11 +282,21 @@ extern w5500_NetConfig eth_netcfg;
 #endif
 
 #ifndef NETLOG
-#define NETLOG 1
+#define NETLOG 0
 #endif
 
 #ifndef UART_IFACE
 #define UART_IFACE 1
+
+#endif
+
+/* Ensure logging level flags exist even if commented out elsewhere */
+#ifndef ERROR
+#define ERROR 1
+#endif
+
+#ifndef WARNING
+#define WARNING 1
 #endif
 
 #if DEBUG
@@ -316,14 +326,20 @@ extern w5500_NetConfig eth_netcfg;
 #if ERROR
 #define ERROR_PRINT(...)                                                                           \
     (/*Switch_SetFaultLed(true, 10),*/ log_printf_force("[ERROR] " __VA_ARGS__))
+#else
+#define ERROR_PRINT(...) ((void)0)
 #endif
 
 #if ERROR && DEBUG
 #define ERROR_PRINT_DEBUG(...) log_printf("[ERROR] " __VA_ARGS__)
+#else
+#define ERROR_PRINT_DEBUG(...) ((void)0)
 #endif
 
 #if WARNING
 #define WARNING_PRINT(...) log_printf_force("[WARNING] " __VA_ARGS__)
+#else
+#define WARNING_PRINT(...) ((void)0)
 #endif
 
 #if PLOT_EN

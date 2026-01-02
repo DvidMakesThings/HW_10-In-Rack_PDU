@@ -252,9 +252,9 @@
                     data.channels.forEach((ch, i) => {
                         lastStates[i] = !!ch.state;
                         document.getElementById(`voltage-${i + 1}`).innerText = ch.voltage.toFixed(2);
-                        document.getElementById(`current-${i + 1}`).innerText = ch.current.toFixed(2);
+                        document.getElementById(`current-${i + 1}`).innerText = ch.current.toFixed(4);
                         document.getElementById(`uptime-${i + 1}`).innerText = ch.uptime;
-                        document.getElementById(`power-${i + 1}`).innerText = ch.power.toFixed(2);
+                        document.getElementById(`power-${i + 1}`).innerText = ch.power.toFixed(4);
                         if (!pendingChanges.has(i + 1))
                             document.getElementById(`toggle-${i + 1}`).checked = ch.state;
                         if (!pendingLabelChanges.has(i + 1))
