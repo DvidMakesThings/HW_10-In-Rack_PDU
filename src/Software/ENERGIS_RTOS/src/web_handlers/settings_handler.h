@@ -2,7 +2,7 @@
  * @file src/web_handlers/settings_handler.h
  * @author
  *
- * @defgroup webui3 3. Settings Handler
+ * @defgroup webui4 4. Settings Handler
  * @ingroup webhandlers
  * @brief Handler for the page settings.html
  * @{

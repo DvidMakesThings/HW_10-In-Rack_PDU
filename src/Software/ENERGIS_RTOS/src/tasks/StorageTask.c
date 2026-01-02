@@ -739,6 +739,29 @@ static void process_storage_msg(const storage_msg_t *msg) {
         }
         break;
 
+    /* ===== User Output Preset Commands ===== */
+    case STORAGE_CMD_SAVE_USER_OUTPUT_PRESET: {
+        uint8_t idx = msg->data.user_output.index;
+        const char *name = msg->data.user_output.name;
+        uint8_t mask = msg->data.user_output.mask;
+        (void)UserOutput_SavePreset(idx, name, mask);
+        break;
+    }
+    case STORAGE_CMD_DELETE_USER_OUTPUT_PRESET: {
+        uint8_t idx = msg->data.user_output.index;
+        (void)UserOutput_DeletePreset(idx);
+        break;
+    }
+    case STORAGE_CMD_SET_STARTUP_PRESET: {
+        uint8_t idx = msg->data.startup.index;
+        (void)UserOutput_SetStartupPreset(idx);
+        break;
+    }
+    case STORAGE_CMD_CLEAR_STARTUP_PRESET: {
+        (void)UserOutput_ClearStartupPreset();
+        break;
+    }
+
     default:
         WARNING_PRINT("%s Unknown command: %d\r\n", STORAGE_TASK_TAG, msg->cmd);
         break;
@@ -776,6 +799,11 @@ static void StorageTask(void *arg) {
 
     /* Load all config from EEPROM to RAM cache */
     load_config_from_eeprom();
+
+    /* Initialize user output presets subsystem */
+    if (!UserOutput_Init()) {
+        WARNING_PRINT("%s UserOutput init failed, presets unavailable\r\n", STORAGE_TASK_TAG);
+    }
 
     /* Signal that config is ready */
     eth_netcfg_ready = true;
@@ -1344,4 +1372,67 @@ bool storage_dump_formatted(uint32_t timeout_ms) {
 
     vSemaphoreDelete(done_sem);
     return true;
+}
+
+/**
+ * @brief Save a user output preset via StorageTask.
+ * Enqueues a message to perform the save on the StorageTask thread.
+ */
+bool storage_save_preset(uint8_t index, const char *name, uint8_t mask) {
+    if (!Storage_Config_IsReady()) {
+        return false;
+    }
+    storage_msg_t msg;
+    memset(&msg, 0, sizeof(msg));
+    msg.cmd = STORAGE_CMD_SAVE_USER_OUTPUT_PRESET;
+    msg.data.user_output.index = index;
+    msg.data.user_output.mask = mask;
+    if (name) {
+        strncpy(msg.data.user_output.name, name, USER_OUTPUT_NAME_MAX_LEN);
+        msg.data.user_output.name[USER_OUTPUT_NAME_MAX_LEN] = '\0';
+    } else {
+        msg.data.user_output.name[0] = '\0';
+    }
+    return xQueueSend(q_cfg, &msg, 0) == pdPASS;
+}
+
+/**
+ * @brief Delete a user output preset via StorageTask.
+ */
+bool storage_delete_preset(uint8_t index) {
+    if (!Storage_Config_IsReady()) {
+        return false;
+    }
+    storage_msg_t msg;
+    memset(&msg, 0, sizeof(msg));
+    msg.cmd = STORAGE_CMD_DELETE_USER_OUTPUT_PRESET;
+    msg.data.user_output.index = index;
+    return xQueueSend(q_cfg, &msg, 0) == pdPASS;
+}
+
+/**
+ * @brief Set startup preset via StorageTask.
+ */
+bool storage_set_startup_preset(uint8_t index) {
+    if (!Storage_Config_IsReady()) {
+        return false;
+    }
+    storage_msg_t msg;
+    memset(&msg, 0, sizeof(msg));
+    msg.cmd = STORAGE_CMD_SET_STARTUP_PRESET;
+    msg.data.startup.index = index;
+    return xQueueSend(q_cfg, &msg, 0) == pdPASS;
+}
+
+/**
+ * @brief Clear startup preset via StorageTask.
+ */
+bool storage_clear_startup_preset(void) {
+    if (!Storage_Config_IsReady()) {
+        return false;
+    }
+    storage_msg_t msg;
+    memset(&msg, 0, sizeof(msg));
+    msg.cmd = STORAGE_CMD_CLEAR_STARTUP_PRESET;
+    return xQueueSend(q_cfg, &msg, 0) == pdPASS;
 }

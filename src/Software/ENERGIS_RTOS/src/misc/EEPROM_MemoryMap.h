@@ -25,7 +25,7 @@
  * 0x0000 - 0x004F : System Info (firmware version)
  * 0x0030 - 0x0042 : Device Identity (serial number, region) [within sys info]
  * 0x0100 - 0x01FF : Factory Defaults (reserved)
- * 0x0200 - 0x021F : User Output (relay states)
+ * 0x0200 - 0x02FF : User Output Presets (names + masks + CRC)
  * 0x0300 - 0x031F : User Network (IP, MAC, etc.)
  * 0x0400 - 0x054F : Sensor Calibration
  * 0x0800 - 0x084F : Temperature Calibration
@@ -85,8 +85,18 @@
  * @name User Output (relays etc.)
  * @{
  */
-#define EEPROM_USER_OUTPUT_START 0x0200 /**< Start of user output block. */
-#define EEPROM_USER_OUTPUT_SIZE 0x0100  /**< Size of user output block. */
+#define EEPROM_USER_OUTPUT_START 0x0200 /**< Start of user output presets block. */
+#define EEPROM_USER_OUTPUT_SIZE 0x0100  /**< Size of user output presets block. */
+
+/**
+ * @name Legacy Relay Power-On States
+ * @brief 8-byte legacy array for relay power-on states, stored in the tail of
+ *        the user output region to avoid overlapping the presets structure.
+ * @{
+ */
+#define EEPROM_RELAY_STATES_START 0x02F0 /**< Start of 8-byte relay states array. */
+#define EEPROM_RELAY_STATES_SIZE 0x0008  /**< Size of relay states array. */
+/** @} */
 /** @} */
 
 /**

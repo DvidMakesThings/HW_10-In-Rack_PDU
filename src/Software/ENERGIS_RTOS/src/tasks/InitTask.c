@@ -228,46 +228,56 @@ static float adc_read_voltage_avg(uint8_t ch) {
 /**
  * @brief Apply saved relay states on startup.
  *
- * Reads saved relay power-on states from storage and applies them to hardware.
- * Includes delay between channels to avoid inrush current issues.
+ * Uses the UserOutput preset system to apply the designated startup
+ * configuration. If no startup preset is configured, does nothing.
+ * Falls back to legacy relay states if the UserOutput system fails.
  *
- * @return Number of channels successfully configured
+ * @return Number of channels that changed (for logging purposes)
  */
 static uint8_t apply_saved_relay_states(void) {
-    uint8_t relay_states[8] = {0};
-    uint8_t applied_count = 0;
+    INFO_PRINT("%s Checking for startup configuration...\r\n", INIT_TASK_TAG);
 
-    /* Read saved relay states from storage */
-    if (!storage_get_relay_states(relay_states)) {
-        WARNING_PRINT("%s Could not read saved relay states\r\n", INIT_TASK_TAG);
+    /* Try to apply the designated startup preset */
+    uint8_t startup_id = UserOutput_GetStartupPreset();
+
+    if (startup_id == USER_OUTPUT_STARTUP_NONE) {
+        INFO_PRINT("%s No startup preset configured - relays stay OFF\r\n", INIT_TASK_TAG);
         return 0;
     }
 
-    INFO_PRINT("%s Applying saved relay states...\r\n", INIT_TASK_TAG);
+    /* Get the preset to log its details */
+    user_output_preset_t preset;
+    if (!UserOutput_GetPreset(startup_id, &preset)) {
+        WARNING_PRINT("%s Failed to read startup preset %u\r\n", INIT_TASK_TAG, startup_id);
+        return 0;
+    }
 
-    /* Apply each channel state with inter-channel delay */
+    if (preset.valid != USER_OUTPUT_PRESET_VALID) {
+        WARNING_PRINT("%s Startup preset %u is empty\r\n", INIT_TASK_TAG, startup_id);
+        return 0;
+    }
+
+    INFO_PRINT("%s Applying startup preset %u: '%s' (mask=0x%02X)\r\n", INIT_TASK_TAG, startup_id,
+               preset.name, preset.relay_mask);
+
+    /* Apply the preset using the UserOutput system */
+    if (!UserOutput_ApplyPreset(startup_id)) {
+        WARNING_PRINT("%s Failed to apply startup preset\r\n", INIT_TASK_TAG);
+        return 0;
+    }
+
+    /* Count how many channels were turned ON */
+    uint8_t count = 0;
     for (uint8_t ch = 0; ch < 8; ch++) {
-        bool state = (relay_states[ch] != 0);
-
-        if (state) {
-            /* Only turn ON channels that are configured to be ON */
-            switch_result_t result = Switch_SetChannel(ch, true);
-            if (result == SWITCH_OK) {
-                applied_count++;
-                INFO_PRINT("    CH%u: ON\r\n", ch + 1);
-            } else if (result == SWITCH_ERR_OVERCURRENT) {
-                WARNING_PRINT("    CH%u: Blocked (overcurrent)\r\n", ch + 1);
-            } else {
-                WARNING_PRINT("    CH%u: Failed (err=%d)\r\n", ch + 1, result);
-            }
-
-            /* Small delay between channel activations to limit inrush current */
-            vTaskDelay(pdMS_TO_TICKS(100));
+        if (preset.relay_mask & (1u << ch)) {
+            count++;
+            INFO_PRINT("    CH%u: ON\r\n", ch + 1);
+            vTaskDelay(pdMS_TO_TICKS(100)); /* Stagger to limit inrush current */
         }
     }
 
-    INFO_PRINT("%s Applied %u relay states\r\n", INIT_TASK_TAG, applied_count);
-    return applied_count;
+    INFO_PRINT("%s Applied startup configuration (%u channels ON)\r\n", INIT_TASK_TAG, count);
+    return count;
 }
 
 /**

@@ -84,6 +84,12 @@ typedef enum {
 
     /* SIL Testing Commands */
     STORAGE_CMD_DUMP_FORMATTED, /**< Dump EEPROM in formatted hex (SIL testing) */
+
+    /* User Output Preset Commands */
+    STORAGE_CMD_SAVE_USER_OUTPUT_PRESET,   /**< Save preset (index, name, mask) */
+    STORAGE_CMD_DELETE_USER_OUTPUT_PRESET, /**< Delete preset (index) */
+    STORAGE_CMD_SET_STARTUP_PRESET,        /**< Set startup preset (index) */
+    STORAGE_CMD_CLEAR_STARTUP_PRESET       /**< Clear startup preset */
 } storage_cmd_t;
 
 /** Storage request message (posted to q_cfg) */
@@ -118,6 +124,16 @@ typedef struct {
             uint16_t test_addr; /**< Test address for self-test */
             bool *result;       /**< Pointer to result for self-test */
         } sil_test;
+
+        /* For user output presets */
+        struct {
+            uint8_t index;                           /**< Preset index 0-4 */
+            char name[USER_OUTPUT_NAME_MAX_LEN + 1]; /**< Preset name */
+            uint8_t mask;                            /**< Relay mask */
+        } user_output;
+        struct {
+            uint8_t index; /**< Startup preset index */
+        } startup;
     } data;
 
     /** Optional: pointer to output buffer for read operations */
@@ -193,6 +209,12 @@ bool storage_erase_all_is_busy(void);
  * @return None
  */
 void StorageTask_Init(bool enable);
+
+/* ===== User Output Preset API (routed via StorageTask) ===== */
+bool storage_save_preset(uint8_t index, const char *name, uint8_t mask);
+bool storage_delete_preset(uint8_t index);
+bool storage_set_startup_preset(uint8_t index);
+bool storage_clear_startup_preset(void);
 
 /**
  * @brief Storage subsystem readiness query (configuration loaded).

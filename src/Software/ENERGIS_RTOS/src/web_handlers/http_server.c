@@ -2,8 +2,8 @@
  * @file src/web_handlers/http_server.c
  * @author DvidMakesThings - David Sipos
  *
- * @version 1.0.1
- * @date 2025-11-18
+ * @version 1.1.0
+ * @date 2025-01-01
  *
  * @details Main HTTP server implementation using W5500 Ethernet controller.
  *          Handles all HTTP requests and routes to appropriate handlers.
@@ -42,11 +42,16 @@ static int8_t http_sock;
 static char *http_buf;
 
 /**
- * @brief Sends data in chunks that fit within W5500 TX buffer
- * @param sock The socket number
- * @param data Pointer to data to send
- * @param len Total length to send
- * @return Number of bytes sent, or -1 on error
+ * @brief Send data in safe chunks within W5500 TX buffer capacity.
+ *
+ * Splits payload into up to `MAX_SEND_CHUNK` bytes per send to avoid
+ * overflowing the 8KB W5500 TX buffer. Adds small delays between chunks
+ * to allow hardware TX drain.
+ *
+ * @param sock Socket number.
+ * @param data Pointer to data to send.
+ * @param len Total length to send in bytes.
+ * @return Number of bytes sent, or -1 on error.
  */
 static int send_all(uint8_t sock, const uint8_t *data, int len) {
     int total_sent = 0;
@@ -80,12 +85,15 @@ static int send_all(uint8_t sock, const uint8_t *data, int len) {
 }
 
 /**
- * @brief Sends HTTP response with headers and body
- * @param sock The socket number
- * @param content_type Content-Type header value
- * @param body The body of the response
- * @param body_len Length of the body
- * @return None
+ * @brief Send a simple HTTP/1.1 response with headers and body.
+ *
+ * Emits headers with Content-Type and Content-Length, then the body.
+ * Uses `send_all()` for chunked TX safety.
+ *
+ * @param sock Socket number.
+ * @param content_type MIME type (e.g., "application/json").
+ * @param body Pointer to response body (optional).
+ * @param body_len Byte length of body (0 allowed).
  */
 static void send_http_response(uint8_t sock, const char *content_type, const char *body,
                                int body_len) {
@@ -112,10 +120,13 @@ static void send_http_response(uint8_t sock, const char *content_type, const cha
 }
 
 /**
- * @brief Parses Content-Length from HTTP headers
- * @param headers Pointer to the start of the headers
- * @param header_len Length of the headers
- * @return Content-Length value, or 0 if not found
+ * @brief Parse Content-Length from HTTP headers block.
+ *
+ * Scans CRLF-delimited header lines for "Content-Length:" and converts the value.
+ *
+ * @param headers Pointer to the header buffer.
+ * @param header_len Number of bytes containing headers.
+ * @return Parsed Content-Length (>0), or 0 if not found/invalid.
  */
 static int parse_content_length(const char *headers, int header_len) {
     const char *p = headers;
@@ -144,13 +155,17 @@ static int parse_content_length(const char *headers, int header_len) {
 }
 
 /**
- * @brief Reads HTTP request from socket
- * @param sock The socket number
- * @param buf Buffer to store the request
- * @param buflen Buffer length
- * @param body_off Output parameter for body offset
- * @param body_len Output parameter for body length
- * @return Total bytes read, or -1 if headers incomplete
+ * @brief Read an HTTP request into buffer and locate body.
+ *
+ * Reads headers until CRLFCRLF, then reads body based on Content-Length.
+ * Returns total bytes read and sets body offset/length outputs.
+ *
+ * @param sock Socket number.
+ * @param buf Destination buffer for full request.
+ * @param buflen Buffer capacity in bytes.
+ * @param body_off Out: offset to start of body within `buf`.
+ * @param body_len Out: number of bytes in body.
+ * @return Total bytes read, or -1 if headers incomplete.
  */
 static int read_http_request(uint8_t sock, char *buf, int buflen, int *body_off, int *body_len) {
     int total = 0;
@@ -201,14 +216,12 @@ static int read_http_request(uint8_t sock, char *buf, int buflen, int *body_off,
 }
 
 /**
- * @brief Initializes the HTTP server
+ * @brief Initialize and start the HTTP server (socket listen).
  *
- * @return true on success, false on failure
+ * Allocates RX buffer, opens TCP socket on port 80, enables keep-alive,
+ * and begins listening. On failure, logs error and returns false.
  *
- * @details
- * - Allocates the server RX buffer.
- * - Opens a TCP socket and starts listening on HTTP_PORT.
- * - Enables TCP keep-alive timer so idle peers are culled automatically.
+ * @return true on success; false on allocation/socket/listen failure.
  */
 bool http_server_init(void) {
     /* Allocate HTTP buffer */
@@ -266,14 +279,11 @@ bool http_server_init(void) {
 }
 
 /**
- * @brief Processes incoming HTTP connections
+ * @brief Process incoming HTTP connections and route requests.
  *
- * @return None
- *
- * @details
- * - Routes GET and POST to handlers.
- * - Drops stalled peers if TX FSR makes no progress for TX_WINDOW_MS.
- * - Always closes connection after response.
+ * Handles GET/POST routes for status, settings, control, presets, apply/startup config,
+ * and metrics. Serves static pages for other requests. Always closes connection
+ * after responding and re-listens.
  */
 void http_server_process(void) {
     /* TX progress watchdog for idle or stalled peers */
@@ -320,19 +330,46 @@ void http_server_process(void) {
             body_len = 0;
         body_ptr[body_len] = '\0';
 
+        /* ==================== API Route Matching ==================== */
+
+        /* Status API */
         if (!strncmp(http_buf, "GET /api/status", 15)) {
             handle_status_request(http_sock);
-        } else if (!strncmp(http_buf, "GET /api/settings", 17)) {
+        }
+        /* Settings API */
+        else if (!strncmp(http_buf, "GET /api/settings", 17)) {
             handle_settings_api(http_sock);
         } else if (!strncmp(http_buf, "POST /api/settings", 18)) {
             handle_settings_post(http_sock, body_ptr);
-        } else if (!strncmp(http_buf, "POST /api/control", 17)) {
+        }
+        /* Control API */
+        else if (!strncmp(http_buf, "POST /api/control", 17)) {
             handle_control_request(http_sock, body_ptr);
-        } else if (!strncmp(http_buf, "GET /metrics", 12)) {
+        }
+        /* Config Presets API */
+        else if (!strncmp(http_buf, "GET /api/config-presets", 23)) {
+            handle_config_presets_get(http_sock);
+        } else if (!strncmp(http_buf, "POST /api/config-presets", 24)) {
+            handle_config_presets_post(http_sock, body_ptr);
+        }
+        /* Apply Config API */
+        else if (!strncmp(http_buf, "POST /api/apply-config", 22)) {
+            handle_apply_config_post(http_sock, body_ptr);
+        }
+        /* Startup Config API */
+        else if (!strncmp(http_buf, "POST /api/startup-config", 24)) {
+            handle_startup_config_post(http_sock, body_ptr);
+        }
+        /* Metrics endpoint */
+        else if (!strncmp(http_buf, "GET /metrics", 12)) {
             handle_metrics_request(http_sock);
-        } else if (!strncmp(http_buf, "GET /settings.html", 18)) {
+        }
+        /* Settings HTML page */
+        else if (!strncmp(http_buf, "GET /settings.html", 18)) {
             handle_settings_request(http_sock);
-        } else {
+        }
+        /* Default: serve static pages */
+        else {
             int is_gzip = 0;
             const char *page = get_page_content(http_buf);
             int plen = get_page_length(http_buf, &is_gzip);

@@ -31,10 +31,10 @@
 #define CAT24C256_I2C_ADDR 0x50
 
 /**
- * @brief Page size for write operations (128 bytes)
- * @note Write operations must respect page boundaries for proper operation
+ * @brief Page size for write operations (64 bytes)
+ * @note CAT24C256 has 64-byte pages; writes must not cross page boundaries.
  */
-#define CAT24C256_PAGE_SIZE 128
+#define CAT24C256_PAGE_SIZE 64
 
 /**
  * @brief Total memory size of the CAT24C256 EEPROM (32KB)

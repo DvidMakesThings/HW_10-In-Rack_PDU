@@ -114,6 +114,7 @@
 #include "web_handlers/control_handler.h"
 #include "web_handlers/http_server.h"
 #include "web_handlers/page_content.h"
+#include "web_handlers/preset_handler.h"
 #include "web_handlers/settings_handler.h"
 #include "web_handlers/status_handler.h"
 #include "web_handlers/metrics_handler.h"
@@ -281,7 +282,7 @@ extern w5500_NetConfig eth_netcfg;
 #endif
 
 #ifndef NETLOG
-#define NETLOG 0
+#define NETLOG 1
 #endif
 
 #ifndef UART_IFACE
@@ -347,8 +348,8 @@ extern w5500_NetConfig eth_netcfg;
  *                          PERIPHERAL ASSIGNMENTS                              *
  ********************************************************************************/
 // I2C Peripheral Assignments
-#define I2C0_SPEED 100000                           // 100 kHz standard mode
-#define I2C1_SPEED 100000                           // 100 kHz standard mode
+#define I2C0_SPEED 400000                           // 400 kHz fast mode
+#define I2C1_SPEED 400000                           // 400 kHz fast mode
 #define EEPROM_I2C i2c1                             // Using I2C1 for EEPROM communication
 #define MCP23017_RELAY_I2C i2c1                     // Using I2C1 for Relay Board MCP23017
 #define MCP23017_DISPLAY_I2C i2c0                   // Using I2C0 for Display Board MCP23017

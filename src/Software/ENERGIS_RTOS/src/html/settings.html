@@ -611,8 +611,16 @@
     function loadPresets() {
       // Render baseline UI immediately so users see the 5 slots
       renderPresets();
-      fetch('/api/config-presets')
-        .then(r => r.json())
+      fetch('/api/config-presets', { headers: { 'Accept': 'application/json' } })
+        .then(async r => {
+          try {
+            const data = await r.json();
+            return data;
+          } catch (e) {
+            const txt = await r.text().catch(() => '');
+            try { return JSON.parse(txt); } catch (_) { throw new Error('parse'); }
+          }
+        })
         .then(data => {
           presets = (data && Array.isArray(data.presets)) ? data.presets : [];
           startupPreset = (data && typeof data.startup === 'number') ? data.startup : null;
@@ -628,45 +636,98 @@
     }
 
     function savePreset(id) {
-      const name = document.getElementById(`preset-name-${id}`).value.trim();
-      const mask = collectMaskFromUI(id);
+      const nameEl = document.getElementById(`preset-name-${id}`);
+      const name = (nameEl ? nameEl.value : '').trim();
+      if (!name) { showToast('Enter preset name (1-25 chars)', 'error'); return; }
+      if (name.length > 25) { showToast('Name too long (max 25)', 'error'); return; }
+      let mask = collectMaskFromUI(id) & 0xFF;
+
       const body = new URLSearchParams();
       body.append('action', 'save');
       body.append('id', String(id));
       body.append('name', name);
       body.append('mask', String(mask));
-      fetch('/api/config-presets', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() })
-        .then(r => { if (!r.ok) throw ''; return r.json().catch(() => ({})); })
+      body.append('relay_mask', String(mask)); // backend compatibility
+      fetch('/api/config-presets', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body.toString()
+      })
+        .then(async r => {
+          let data = null;
+          try { data = await r.json(); } catch (e) { /* ignore parse */ }
+          if (!r.ok || (data && data.error)) {
+            const msg = (data && data.error) ? data.error : 'Save failed';
+            throw new Error(msg);
+          }
+          return data;
+        })
         .then(_ => { showToast('Preset saved', 'success'); loadPresets(); })
-        .catch(_ => { showToast('Save failed', 'error'); });
+        .catch(err => { showToast(err && err.message ? err.message : 'Save failed', 'error'); });
     }
 
     function deletePreset(id) {
       const body = new URLSearchParams();
       body.append('action', 'delete');
       body.append('id', String(id));
-      fetch('/api/config-presets', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() })
-        .then(r => { if (!r.ok) throw ''; return r.json().catch(() => ({})); })
+      fetch('/api/config-presets', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' }, body: body.toString() })
+        .then(async r => {
+          try {
+            const data = await r.json();
+            if (!r.ok || (data && data.error)) throw new Error(data && data.error ? data.error : 'Delete failed');
+            return data;
+          } catch (e) {
+            if (!r.ok) {
+              const txt = await r.text().catch(() => '');
+              throw new Error(txt || 'Delete failed');
+            }
+            return {};
+          }
+        })
         .then(_ => { showToast('Preset deleted', 'success'); loadPresets(); })
-        .catch(_ => { showToast('Delete failed', 'error'); });
+        .catch(err => { showToast(err && err.message ? err.message : 'Delete failed', 'error'); });
     }
 
     function setStartup(id) {
       const body = new URLSearchParams();
       body.append('id', String(id));
-      fetch('/api/startup-config', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() })
-        .then(r => { if (!r.ok) throw ''; return r.json().catch(() => ({})); })
+      fetch('/api/startup-config', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' }, body: body.toString() })
+        .then(async r => {
+          try {
+            const data = await r.json();
+            if (!r.ok || (data && data.error)) throw new Error(data && data.error ? data.error : 'Set startup failed');
+            return data;
+          } catch (e) {
+            if (!r.ok) {
+              const txt = await r.text().catch(() => '');
+              throw new Error(txt || 'Set startup failed');
+            }
+            return {};
+          }
+        })
         .then(_ => { showToast('Startup preset set', 'success'); loadPresets(); })
-        .catch(_ => { showToast('Set startup failed', 'error'); });
+        .catch(err => { showToast(err && err.message ? err.message : 'Set startup failed', 'error'); });
     }
 
     function clearStartup() {
       const body = new URLSearchParams();
       body.append('action', 'clear');
-      fetch('/api/startup-config', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() })
-        .then(r => { if (!r.ok) throw ''; return r.json().catch(() => ({})); })
+      fetch('/api/startup-config', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' }, body: body.toString() })
+        .then(async r => {
+          try {
+            const data = await r.json();
+            if (!r.ok || (data && data.error)) throw new Error(data && data.error ? data.error : 'Clear failed');
+            return data;
+          } catch (e) {
+            if (!r.ok) {
+              const txt = await r.text().catch(() => '');
+              throw new Error(txt || 'Clear failed');
+            }
+            return {};
+          }
+        })
         .then(_ => { showToast('Startup cleared', 'success'); loadPresets(); })
-        .catch(_ => { showToast('Clear failed', 'error'); });
+        .catch(err => { showToast(err && err.message ? err.message : 'Clear failed', 'error'); });
     }
 
     // ===== Startup Dropdown =====
