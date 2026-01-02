@@ -1,9 +1,7 @@
 # ENERGIS - The Managed PDU Project for 10-Inch Rack
 
 ## Overview
-![Firmware Development Status](https://img.shields.io/badge/status-Ongoing%20testing%20%26%20debugging-brightgreen)
-
-![Sheetmetal enclosure ordered](https://img.shields.io/badge/status-Sheetmetal%20enclosure%20designed,%20ordered,%20assembled-brightgreen)
+![Firmware Development Status](https://img.shields.io/badge/status-Ongoing%20testing%20%26%20debugging-orange)
 
 ![PDU 3D View](images/ENERGIS_1.1.0/Enclosure/ENERGIS-1.1.0-Front.jpg)
 
@@ -15,51 +13,50 @@ the USB-C version of ENERGIS with USB PD Source functionality: [PDNode-600 Pro](
 
 ## Progress and news
 
-## Hardware Development Phases
-| Phase                                | Status   |
-| ------------------------------------ | -------- |
-| **PCB Design for Rev1.0**            | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Enclosure Design**                 | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Order PCB**                        | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Prototyping and Hardware Testing** | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Implementing Rev2.0**              | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Implementing Relay Board Rev2.1**  | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Initial Firmware Development**     | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Final PCB Revision**               | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Enclosure Testing & Ventilation**  | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Power Monitoring**                 | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Production Optimization**          | ![Planned](https://img.shields.io/badge/status-planned-blue) |
+### Latest Features
 
-## Firmware Development Phases
-| Phase                                | Status   |
-| ------------------------------------ | -------- |
-| **CONFIG file for HW description**   | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **ILI4988 TFT LCD Driver**           | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **MCP23017 Display-Board Driver**    | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **MCP23017 Relay-Board Driver**      | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **W5500 Ethernet Driver**            | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **CAT24C512 512K EEPROM Driver**     | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Version Control and EEPROM Data**  | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Display Functions**                | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **System Startup Script**            | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Multicore processing and RTOS**    | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Pushbutton control**               | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **HLW8032 Power Monitor Dirver**     | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Make Everything work together**    | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **HTML Server Implementation**       | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Software debugging**               | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) |
-| **Ethernet based firmware update**   | ![Not Possible](https://img.shields.io/badge/status-not%20possible-red) |
+| Feature                   | Description                                                           | Status | Note |
+| ---                       | ---                                                                   | --- | --- |
+| Renamebable Channels      | Channels are marked as 1–8; add label functionality                   | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) | See: [Control page](#control-page) |
+| Preset features           | ENERGIS now offers 5 programmable presets to apply on output          | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) | See: [Settings page](#settings-page) |
+| Apply-On-Startup feature  | A saved preset can be set to be auto-applied on device startup        | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) | See: [Settings page](#settings-page) |
+| Offset Calibration        | Implement off-state auto-zero for 0.75–0.77V and 0.02–0.05A offsets   | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) | - |
+| Safety features           | Software based current limit and restricion policy implemented        | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) | - |
+| Sheet metal enclosure     | Manufacturing and assembly ready. No future revision for enclosure    | ![Completed](https://img.shields.io/badge/status-completed-brightgreen) | - |
 
-Development doesn’t stop here. Planned improvements include:
-- **Production optimization** → finalize assembly workflow and cost reduction.  
-- **Extended testing** → expand automated test coverage (I²C, SPI, long-term soak tests).  
-- **Community feedback** → incorporate suggestions and adapt design for wider use cases.  
-- **And even more more more debugging** → It survived the 24h test, but you can never test enough
-- **Enclosure manufacturing** → evaluate and contact sheet-metal manufacturers for a professional case. 3D printed PLA case is nice, but it's not very professional
 
-Planned features (the list will be appended as I find more development possibilities):
-- **Renamebable Channels** Currently channels are marked as 1, 2 ... 8. I'm planning to add some label functionality
-- **Offset Calibration** Channels have 0.75V-0.77V and 0.02-0.05A offset. Some off-state offset auto-zero function will be implemented
+### Currently working on
+
+| Improvement               | Description                                                       | Status |
+| ---                       | ---                                                               | --- |
+| Production optimization   | Finalize assembly workflow and cost reduction                     | ![In Progress](https://img.shields.io/badge/status-in%20progress-orange) |
+| Extended testing          | Expand automated test coverage (I²C, SPI, long-term soak tests)   | ![In Progress](https://img.shields.io/badge/status-in%20progress-orange) |
+| Community feedback        | Incorporate suggestions and adapt design for wider use cases      | ![Open](https://img.shields.io/badge/status-Open-orange) |
+| And even more debugging   | It survived the 24h test, but you can never test enough           | ![In Progress](https://img.shields.io/badge/status-in%20progress-orange) |
+
+### Development Phases (Hardware + Firmware)
+
+| Hardware Phase                          | Status         | Firmware Phase                         | Status         |
+| --------------------------------------- | -------------- | -------------------------------------- | -------------- |
+| PCB Design for Rev1.0                   | ✅ Completed    | CONFIG file for HW description         | ✅ Completed    |
+| Enclosure Design                        | ✅ Completed    | ILI4988 TFT LCD Driver                 | ✅ Completed    |
+| Order PCB                               | ✅ Completed    | MCP23017 Display-Board Driver          | ✅ Completed    |
+| Prototyping and Hardware Testing        | ✅ Completed    | MCP23017 Relay-Board Driver            | ✅ Completed    |
+| Implementing Rev2.0                     | ✅ Completed    | W5500 Ethernet Driver                  | ✅ Completed    |
+| Implementing Relay Board Rev2.1         | ✅ Completed    | CAT24C512 512K EEPROM Driver           | ✅ Completed    |
+| Initial Firmware Development            | ✅ Completed    | Version Control and EEPROM Data        | ✅ Completed    |
+| Final PCB Revision                      | ✅ Completed    | Display Functions                      | ✅ Completed    |
+| Enclosure Testing & Ventilation         | ✅ Completed    | System Startup Script                  | ✅ Completed    |
+| Power Monitoring                        | ✅ Completed    | Multicore processing and RTOS          | ✅ Completed    |
+| Production Optimization                 | 🔵 Planned      | Pushbutton control                     | ✅ Completed    |
+| -                                       | -               | HLW8032 Power Monitor Dirver           | ✅ Completed    |
+| -                                       | -               | Make Everything work together          | ✅ Completed    |
+| -                                       | -               | HTML Server Implementation             | ✅ Completed    |
+| -                                       | -               | Software debugging                     | ✅ Completed    |
+| -                                       | -               | Ethernet based firmware update         | ❌ Not Possible |
+
+
+
 
 ---
 
@@ -76,9 +73,9 @@ Planned features (the list will be appended as I find more development possibili
 
 ### Relay Output Ratings
 
-* **Common AC Trace Handling:** 16 A max
-* **Per-Relay Trace Rating:** 16 A max
-* **Relay Contact Rating:** 16 A max
+* **Common AC Trace Handling:** 16A max
+* **Per-Relay Trace Rating:** 16A max
+* **Relay Contact Rating:** 16A max
 
 ### Control and Driving Circuit
 
@@ -195,16 +192,12 @@ Mounting options:
 
 The ENERGIS now includes a lightweight embedded Web-UI for configuration and control.
 
-<div style="display: flex; gap: 24px; align-items: flex-start; margin-bottom: 24px;">
-  <div style="flex: 1; text-align: center;">
-    <h4 style="margin-bottom: 8px;">All Channels Off</h4>
-    <img src="images/ENERGIS_1.1.0/WEBUI-Control-1.png" alt="Web-UI All Off" style="max-width: 100%; border-radius: 6px; padding: 8px; background: #fafbfc;">
-  </div>
-  <div style="flex: 1; text-align: center;">
-    <h4 style="margin-bottom: 8px;">CH1-CH2 ~40W Load</h4>
-    <img src="images/ENERGIS_1.1.0/WEBUI-Control-2.png" alt="Web-UI Settings" style="max-width: 100%; border-radius: 6px; padding: 8px; background: #fafbfc;">
-  </div>
-</div>
+## Control page
+<img src="images/ENERGIS_1.1.0/WEBUI-Control.jpg" alt="Web-UI" style="max-width: 80%; border-radius: 2px; padding: 2px; background: #fafbfc;">
+
+## Settings page
+<img src="images/ENERGIS_1.1.0/WEBUI-Settings.jpg" alt="Web-UI Settings" style="max-width: 80%; border-radius: 2px; padding: 2px; background: #fafbfc;">
+
 
 ---
 
