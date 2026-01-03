@@ -15,6 +15,7 @@
 
 #include "../CONFIG.h"
 #include "../html/settings_gz.h"
+#include "../tasks/StorageTask.h"
 
 static inline void net_beat(void) { Health_Heartbeat(HEALTH_ID_NET); }
 
@@ -382,7 +383,7 @@ void handle_settings_post(uint8_t sock, char *body) {
         net_beat();
     }
 
-    /* 204 No Content (then reboot) */
+    /* 204 No Content, then force EEPROM commit (which will reboot) */
     {
         static const char resp[] = "HTTP/1.1 204 No Content\r\n"
                                    "Access-Control-Allow-Origin: *\r\n"
@@ -393,7 +394,6 @@ void handle_settings_post(uint8_t sock, char *body) {
         net_beat();
     }
 
-    vTaskDelay(pdMS_TO_TICKS(100));
-    net_beat();
-    Health_RebootNow("HTTP settings applied");
+    /* Ensure changes persist: commit immediately via StorageTask */
+    (void)storage_commit_now(5000);
 }
