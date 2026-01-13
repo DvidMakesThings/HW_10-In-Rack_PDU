@@ -1,0 +1,17 @@
+<map id="w5500_hw_init" name="w5500_hw_init">
+<area shape="rect" id="Node000001" title="Initialize W5500 hardware (SPI, GPIOs, chip reset)" alt="" coords="5,157,113,184"/>
+<area shape="rect" id="Node000002" href="$ethernet__driver_8c.html#a4b86c813b7a496740ce778899eab89f8" title="Critical section enter (acquire mutex)" alt="" coords="187,5,318,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="65,155,100,100,127,69,159,42,171,35,174,39,162,46,131,73,105,103,70,158"/>
+<area shape="rect" id="Node000003" href="$ethernet__driver_8c.html#a55dd06c3dcd66f4304561203faf465bb" title="Critical section exit (release mutex)" alt="" coords="191,56,314,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="73,155,110,124,159,92,175,85,177,90,162,97,114,128,76,159"/>
+<area shape="rect" id="Node000004" href="$ethernet__driver_8c.html#aae72fb2b203b11e6ea9270c6330328b4" title="CS deselect (pull CS high)" alt="" coords="181,107,324,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="112,154,184,135,185,140,114,159"/>
+<area shape="rect" id="Node000005" href="$ethernet__driver_8c.html#ab42948f652d714f130eebcb5e05a832b" title="CS select (pull CS low)" alt="" coords="188,157,317,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="113,168,172,168,172,173,113,173"/>
+<area shape="rect" id="Node000006" href="$ethernet__driver_8c.html#a40b7eeef5902a429763d4c7f03730854" title="SPI read single byte." alt="" coords="191,208,314,235"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="114,182,185,201,184,206,112,187"/>
+<area shape="rect" id="Node000007" href="$ethernet__driver_8c.html#a91d8245b26a8e36d6635f72d4115d17f" title="SPI write single byte." alt="" coords="190,259,315,285"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="76,182,114,213,162,244,176,251,174,256,159,249,110,218,73,186"/>
+<area shape="rect" id="Node000008" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="161,309,344,336"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="70,183,105,238,131,269,162,295,171,300,168,305,159,300,127,273,100,241,65,186"/>
+</map>

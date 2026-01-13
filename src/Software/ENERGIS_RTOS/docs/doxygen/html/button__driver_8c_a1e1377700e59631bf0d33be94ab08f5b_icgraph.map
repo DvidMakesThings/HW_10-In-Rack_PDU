@@ -1,0 +1,25 @@
+<map id="drv_sel_all_off" name="drv_sel_all_off">
+<area shape="rect" id="Node000001" title="Turn off all selection LEDs via SwitchTask." alt="" coords="1269,56,1373,83"/>
+<area shape="rect" id="Node000002" href="$group__driver01.html#gac22126e540828f671a4440c6649bdf55" title="Initialize button GPIO pins and selection LED hardware." alt="" coords="878,5,1017,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1253,63,1017,31,1017,25,1254,58"/>
+<area shape="rect" id="Node000007" href="$group__driver01.html#gac5901ff1bb130ab17484230d894cc54e" title="Turn off all eight channel selection LEDs." alt="" coords="1065,81,1221,108"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="1254,82,1222,86,1221,81,1253,76"/>
+<area shape="rect" id="Node000003" href="$group__tasks01.html#ga66ab3f6fa24432c008c6ea7b0ccddb5f" title="Initialize and start the button handling task." alt="" coords="426,56,539,83"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="863,30,540,66,539,61,863,25"/>
+<area shape="rect" id="Node000004" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,56,378,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="411,72,379,72,379,67,411,67"/>
+<area shape="rect" id="Node000005" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,56,263,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="295,72,263,72,263,67,295,67"/>
+<area shape="rect" id="Node000006" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,56,102,83"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="134,72,102,72,102,67,134,67"/>
+<area shape="rect" id="Node000008" href="$_button_task_8c.html#a55d32bf8c265acac02fafc64c218564c" title="Process LED blink logic and window timeout." alt="" coords="729,107,830,133"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="1049,104,831,119,830,114,1049,98"/>
+<area shape="rect" id="Node000009" href="$_button_task_8c.html#ac8adec5c9e99b51c4884034cf2e41275" title="Main button scanning and event processing task." alt="" coords="587,81,681,108"/>
+<area shape="poly" id="edge10_Node000007_Node000009" title=" " alt="" coords="1090,116,1018,136,927,153,878,159,828,160,777,157,728,148,687,131,653,111,655,106,689,127,730,143,778,152,828,155,878,153,927,148,1017,131,1088,111"/>
+<area shape="rect" id="Node000010" href="$_button_task_8c.html#ac582a6e2100c0837f272a315955aedcc" title="Deactivate selection window and disable LED feedback." alt="" coords="896,56,999,83"/>
+<area shape="poly" id="edge11_Node000007_Node000010" title=" " alt="" coords="1049,85,999,79,1000,73,1050,80"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="713,111,681,105,682,100,714,106"/>
+<area shape="poly" id="edge9_Node000009_Node000003" title=" " alt="" coords="571,87,538,81,539,76,572,82"/>
+<area shape="poly" id="edge12_Node000010_Node000008" title=" " alt="" coords="887,90,827,109,826,104,885,85"/>
+<area shape="poly" id="edge13_Node000010_Node000009" title=" " alt="" coords="881,77,681,94,681,88,880,72"/>
+</map>

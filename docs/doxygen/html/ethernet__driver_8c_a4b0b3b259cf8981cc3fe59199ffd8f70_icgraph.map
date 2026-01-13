@@ -1,0 +1,7 @@
+<map id="w5500_read_reg16" name="w5500_read_reg16">
+<area shape="rect" id="Node000001" title="Read 16&#45;bit value from W5500 register (optimized for FSR/RSR)" alt="" coords="178,31,308,57"/>
+<area shape="rect" id="Node000002" href="$group__drivers03.html#gad4b8fcc33da68070ad8208da41838d4c" title="Get socket RX received size register (with timeout protection)" alt="" coords="5,5,130,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="162,35,130,30,131,25,163,30"/>
+<area shape="rect" id="Node000003" href="$group__drivers03.html#gaddeb179a48abf7a94ba651742d77c24d" title="Get socket TX free size register (with timeout protection)" alt="" coords="5,56,130,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="163,58,131,63,130,58,162,53"/>
+</map>

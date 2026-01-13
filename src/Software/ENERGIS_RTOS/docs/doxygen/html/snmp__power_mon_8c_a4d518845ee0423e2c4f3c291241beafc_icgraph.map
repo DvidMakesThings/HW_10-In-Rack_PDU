@@ -1,0 +1,12 @@
+<map id="i32le" name="i32le">
+<area shape="rect" id="Node000001" title="Write a signed 32&#45;bit integer into SNMP response buffer." alt="" coords="278,81,326,108"/>
+<area shape="poly" id="edge5_Node000001_Node000001" title=" " alt="" coords="334,73,333,68,328,64,302,60,281,62,271,68,271,74,279,83,275,86,265,76,267,65,280,57,302,55,330,59,337,65,339,72"/>
+<area shape="rect" id="Node000002" href="$group__snmp04.html#ga4f79c8b9c7d28d59cff221808b47f082" title="SNMP getter for last tripped channel." alt="" coords="17,5,218,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="272,74,229,46,197,35,199,30,231,42,275,69"/>
+<area shape="rect" id="Node000003" href="$group__snmp04.html#gade7b106ecfdbb74b00cd434f7d23104b" title="SNMP getter for OCP reset control value." alt="" coords="58,56,177,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="262,92,177,80,178,75,263,87"/>
+<area shape="rect" id="Node000004" href="$group__snmp04.html#gac66c88289a827019e9d7d2fd52c8a25d" title="SNMP getter for overcurrent protection state." alt="" coords="60,107,175,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="262,103,176,115,175,109,262,97"/>
+<area shape="rect" id="Node000005" href="$group__snmp04.html#ga397cba4cff16c21da10f1da4a86235d2" title="SNMP getter for switching&#45;allowed flag." alt="" coords="5,157,230,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="275,120,231,148,199,159,197,154,229,143,272,116"/>
+</map>

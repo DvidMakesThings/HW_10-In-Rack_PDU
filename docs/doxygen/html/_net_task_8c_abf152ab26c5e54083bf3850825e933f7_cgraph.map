@@ -1,0 +1,9 @@
+<map id="wait_for_link_up" name="wait_for_link_up">
+<area shape="rect" id="Node000001" title="Wait until PHY link is up or timeout expires." alt="" coords="5,31,121,57"/>
+<area shape="rect" id="Node000002" href="$group__tasks03.html#ga4f7298bb6ff71177639ba837e4068eb1" title="Record a heartbeat from a registered task." alt="" coords="184,5,308,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,33,168,27,169,32,121,39"/>
+<area shape="rect" id="Node000004" href="$group__drivers03.html#gafc4a24de4907644bb37647d9afa7f69d" title="Get PHY link status." alt="" coords="169,56,323,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="121,49,154,54,153,59,120,55"/>
+<area shape="rect" id="Node000003" href="$_health_task_8c.html#a50503dee6a29e98e633b16b1b8b550bc" title="Get current monotonic time in milliseconds." alt="" coords="371,5,441,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="308,16,356,16,356,21,308,21"/>
+</map>

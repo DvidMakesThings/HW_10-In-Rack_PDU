@@ -1,0 +1,7 @@
+<map id="rtos_now_ms" name="rtos_now_ms">
+<area shape="rect" id="Node000001" title="Convert FreeRTOS tick count to milliseconds." alt="" coords="198,31,297,57"/>
+<area shape="rect" id="Node000002" href="$group__misc4.html#ga931071cb29c290b70b5d74a9150d4ab8" title="Snapshot the current RTOS time in milliseconds." alt="" coords="20,5,135,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,37,135,30,135,25,183,32"/>
+<area shape="rect" id="Node000003" href="$group__misc4.html#ga97fd430f36f8b065226e2bff9bad1de5" title="FreeRTOS Idle hook. Increments the scheduler canary and records time." alt="" coords="5,56,150,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="182,56,150,61,149,56,182,51"/>
+</map>

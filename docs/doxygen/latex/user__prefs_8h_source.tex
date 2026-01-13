@@ -1,0 +1,27 @@
+\doxysection{user\+\_\+prefs.\+h}
+\hypertarget{user__prefs_8h_source}{}\label{user__prefs_8h_source}\index{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/user\_prefs.h@{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/user\_prefs.h}}
+\mbox{\hyperlink{user__prefs_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#ifndef\ USER\_PREFS\_H}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#define\ USER\_PREFS\_H}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_o_n_f_i_g_8h}{../../CONFIG.h}}"{}}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00133\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage11_ga2df7072b6a21ee4c6a1008be0c0d2808}{EEPROM\_WriteUserPreferences}}(\textcolor{keyword}{const}\ uint8\_t\ *data,\ \textcolor{keywordtype}{size\_t}\ len);}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00160\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage11_ga9f082445c1a6ae5112beee80a6074d97}{EEPROM\_ReadUserPreferences}}(uint8\_t\ *data,\ \textcolor{keywordtype}{size\_t}\ len);}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00197\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage11_gaffd968de2dd26c2a571f3057dc72f2dc}{EEPROM\_WriteUserPrefsWithChecksum}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structuser_pref_info}{userPrefInfo}}\ *prefs);}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00233\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage11_ga708039b6b7c8a2535429849aaf0bef39}{EEPROM\_ReadUserPrefsWithChecksum}}(\mbox{\hyperlink{structuser_pref_info}{userPrefInfo}}\ *prefs);}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00270\ \mbox{\hyperlink{structuser_pref_info}{userPrefInfo}}\ \mbox{\hyperlink{group__storage11_gada0abcfc99e366656030e908187d6d6d}{LoadUserPreferences}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00295\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage11_ga89e7b743f0d87d2f8658c42cbaf1990d}{EEPROM\_WriteDefaultNameLocation}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ USER\_PREFS\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00298\ }
+
+\end{DoxyCode}

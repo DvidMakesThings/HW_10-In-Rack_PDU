@@ -1,0 +1,5 @@
+<map id="hlw8032_print_calibration" name="hlw8032_print_calibration">
+<area shape="rect" id="Node000001" title="Print calibration data for a channel to log." alt="" coords="5,5,173,32"/>
+<area shape="rect" id="Node000002" href="$group__tasks05.html#ga2473a4441580b27bdc14f48e2d2fff8e" title="Log formatted message to output." alt="" coords="221,5,295,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,16,205,16,205,21,173,21"/>
+</map>

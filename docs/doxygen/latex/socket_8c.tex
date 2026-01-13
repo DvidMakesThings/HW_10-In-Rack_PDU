@@ -1,0 +1,231 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/drivers/socket.c File Reference}
+\hypertarget{socket_8c}{}\label{socket_8c}\index{src/Software/ENERGIS\_RTOS/src/drivers/socket.c@{src/Software/ENERGIS\_RTOS/src/drivers/socket.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for socket.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{socket_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{socket_8c_a203ed3151fbd2f5c0ec791b3e19054b6}{SOCK\+\_\+\+TAG}}~"{}\mbox{[}SOCKET\mbox{]}"{}
+\item 
+\#define \mbox{\hyperlink{socket_8c_a80bab3a987b736830d92983e0eae58fd}{SOCK\+\_\+\+ANY\+\_\+\+PORT\+\_\+\+NUM}}~0x\+C000
+\item 
+\#define \mbox{\hyperlink{socket_8c_afe447840d18ed02ec5ca66e3e197b749}{CHECK\+\_\+\+SOCKNUM}}()
+\begin{DoxyCompactList}\small\item\em Check if socket number is valid. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{socket_8c_aef140525633e96efc06dc2b03f71f5fa}{CHECK\+\_\+\+SOCKMODE}}(mode)
+\begin{DoxyCompactList}\small\item\em Check if socket mode matches expected mode. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{socket_8c_a89d4949e11620ee89de6ea32497bc0a5}{CHECK\+\_\+\+SOCKINIT}}()
+\begin{DoxyCompactList}\small\item\em Check if socket is initialized (SOCK\+\_\+\+INIT state for TCP) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{socket_8c_a4de733d12d951cb93d5ec3adb9fe92a2}{CHECK\+\_\+\+SOCKDATA}}()
+\begin{DoxyCompactList}\small\item\em Check if data length is valid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{socket_8c_a3e134a526306c29a2594a8615c328607}{maybe\+\_\+log\+\_\+sock\+\_\+not\+\_\+connected}} (uint8\+\_\+t sn, uint8\+\_\+t state, uint16\+\_\+t errorcode)
+\item 
+int8\+\_\+t \mbox{\hyperlink{group__drivers08_ga8cc0a2074b3aae98a132c1ae3c51188f}{socket}} (uint8\+\_\+t sn, uint8\+\_\+t protocol, uint16\+\_\+t port, uint8\+\_\+t flag)
+\begin{DoxyCompactList}\small\item\em Create and initialize a socket. \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{group__drivers08_ga025710a2709097be7824f0564f89a461}{closesocket}} (uint8\+\_\+t sn)
+\begin{DoxyCompactList}\small\item\em Close a socket. \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{group__drivers08_ga0230efb936b222a0cbc7680e2c39c994}{disconnect}} (uint8\+\_\+t sn)
+\begin{DoxyCompactList}\small\item\em Disconnect a TCP socket. \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{group__drivers08_ga58ae959798d5d874ac5ea796da90db8c}{listen}} (uint8\+\_\+t sn)
+\begin{DoxyCompactList}\small\item\em Put socket into listen mode (TCP server) \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{group__drivers08_gacd77c3cc60e87d09a5714932506d7c4b}{send}} (uint8\+\_\+t sn, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Send data over TCP socket. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__drivers08_gafbf5f9d6f92a7ad4811b3c4f211f3672}{send\+\_\+all\+\_\+blocking}} (uint8\+\_\+t sn, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, int len)
+\begin{DoxyCompactList}\small\item\em Send all data over TCP socket in blocking mode. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{group__drivers08_ga4cfb66f7440a1dd9ac0ee0b933a38c59}{recv}} (uint8\+\_\+t sn, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Receive data from a TCP socket (cooperative, bounded wait) \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{group__drivers08_ga30fc77ba1005733b501994818bde12f8}{sendto}} (uint8\+\_\+t sn, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t len, uint8\+\_\+t \texorpdfstring{$\ast$}{*}addr, uint16\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Send datagram over UDP socket. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{group__drivers08_gae580bd099f9bcbeca63a3145c0015e62}{recvfrom}} (uint8\+\_\+t sn, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t len, uint8\+\_\+t \texorpdfstring{$\ast$}{*}addr, uint16\+\_\+t \texorpdfstring{$\ast$}{*}port)
+\begin{DoxyCompactList}\small\item\em Receive datagram from a UDP socket (cooperative, bounded wait) \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{group__drivers08_gaa2d7390eb4454dd102f39caf47829065}{recvfrom\+\_\+\+SNMP}} (uint8\+\_\+t sn, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t len, uint8\+\_\+t \texorpdfstring{$\ast$}{*}addr, uint16\+\_\+t \texorpdfstring{$\ast$}{*}port)
+\begin{DoxyCompactList}\small\item\em Receive datagram from UDP socket. \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{group__drivers08_gae2f94d7d4ce040f6bf68779e064d224e}{ctlsocket}} (uint8\+\_\+t sn, \mbox{\hyperlink{group__drivers08_ga3a77339a724cf087b366b8710aa683e6}{ctlsock\+\_\+type}} cstype, void \texorpdfstring{$\ast$}{*}arg)
+\begin{DoxyCompactList}\small\item\em Control socket options. \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{group__drivers08_ga0111e4784e20d97dacd5aaf54cb48ef1}{setsockopt}} (uint8\+\_\+t sn, \mbox{\hyperlink{group__drivers08_ga2f86b7ad233f3b8d6ae0af3ee91e9944}{sockopt\+\_\+type}} sotype, void \texorpdfstring{$\ast$}{*}arg)
+\begin{DoxyCompactList}\small\item\em Set socket option. \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{group__drivers08_ga631998ae17cbf099b0071f20c88ce5cf}{getsockopt}} (uint8\+\_\+t sn, \mbox{\hyperlink{group__drivers08_ga2f86b7ad233f3b8d6ae0af3ee91e9944}{sockopt\+\_\+type}} sotype, void \texorpdfstring{$\ast$}{*}arg)
+\begin{DoxyCompactList}\small\item\em Get socket option. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static uint16\+\_\+t \mbox{\hyperlink{socket_8c_ad99b4e91d22b37e09d5967166344f598}{sock\+\_\+any\+\_\+port}} = \mbox{\hyperlink{socket_8c_a80bab3a987b736830d92983e0eae58fd}{SOCK\+\_\+\+ANY\+\_\+\+PORT\+\_\+\+NUM}}
+\item 
+static uint16\+\_\+t \mbox{\hyperlink{socket_8c_a9a748e469561a428795fba8e69439514}{sock\+\_\+io\+\_\+mode}} = 0
+\item 
+static uint16\+\_\+t \mbox{\hyperlink{socket_8c_afe8c33b16763130f2323694c5244bda3}{sock\+\_\+is\+\_\+sending}} = 0
+\item 
+static uint16\+\_\+t \mbox{\hyperlink{socket_8c_acdcc51da0e7270aabbf32216329d774a}{sock\+\_\+remained\+\_\+size}} \mbox{[}\mbox{\hyperlink{group___w5500___m_e_m_ga397c217a9bfdf60b22be602a9da74178}{W5500\+\_\+\+SOCKET\+\_\+\+COUNT}}\mbox{]} = \{0\}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__drivers08_ga3c3689958c5f3bf2f9fcf1a44f9ad941}{sock\+\_\+pack\+\_\+info}} \mbox{[}\mbox{\hyperlink{group___w5500___m_e_m_ga397c217a9bfdf60b22be602a9da74178}{W5500\+\_\+\+SOCKET\+\_\+\+COUNT}}\mbox{]} = \{0\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/07
+\end{DoxyDate}
+Thread-\/safe BSD socket-\/like API for W5500. Key Features\+:
+\begin{DoxyItemize}
+\item Thread-\/safe operation via w5500\+\_\+spi\+\_\+mutex
+\item Blocking and non-\/blocking I/O modes
+\item TCP, UDP, IPRAW, MACRAW protocol support
+\end{DoxyItemize}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{socket_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{socket_8c_a4de733d12d951cb93d5ec3adb9fe92a2}\index{socket.c@{socket.c}!CHECK\_SOCKDATA@{CHECK\_SOCKDATA}}
+\index{CHECK\_SOCKDATA@{CHECK\_SOCKDATA}!socket.c@{socket.c}}
+\doxysubsubsection{\texorpdfstring{CHECK\_SOCKDATA}{CHECK\_SOCKDATA}}
+{\footnotesize\ttfamily \label{socket_8c_a4de733d12d951cb93d5ec3adb9fe92a2} 
+\#define CHECK\+\_\+\+SOCKDATA(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{do}\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ (len\ ==\ 0)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{group__drivers08_ga6c4165b7c48a4e986b94e6ac4d5a88fe}{SOCKERR\_DATALEN}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \textcolor{keywordflow}{while}\ (0)}
+
+\end{DoxyCode}
+
+
+Check if data length is valid. 
+
+\Hypertarget{socket_8c_a89d4949e11620ee89de6ea32497bc0a5}\index{socket.c@{socket.c}!CHECK\_SOCKINIT@{CHECK\_SOCKINIT}}
+\index{CHECK\_SOCKINIT@{CHECK\_SOCKINIT}!socket.c@{socket.c}}
+\doxysubsubsection{\texorpdfstring{CHECK\_SOCKINIT}{CHECK\_SOCKINIT}}
+{\footnotesize\ttfamily \label{socket_8c_a89d4949e11620ee89de6ea32497bc0a5} 
+\#define CHECK\+\_\+\+SOCKINIT(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{do}\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ ((\mbox{\hyperlink{group__drivers03_ga14066bffe9453001e246b1d7b0d375c7}{getSn\_SR}}(sn)\ !=\ \mbox{\hyperlink{group__config03_gaa3ecdc449468d915c67d4a0323a5d21d}{SOCK\_INIT}}))\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{group__drivers08_ga4cd6d7ca2165fc20977a855ca8ef5efc}{SOCKERR\_SOCKINIT}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \textcolor{keywordflow}{while}\ (0)}
+
+\end{DoxyCode}
+
+
+Check if socket is initialized (SOCK\+\_\+\+INIT state for TCP) 
+
+\Hypertarget{socket_8c_aef140525633e96efc06dc2b03f71f5fa}\index{socket.c@{socket.c}!CHECK\_SOCKMODE@{CHECK\_SOCKMODE}}
+\index{CHECK\_SOCKMODE@{CHECK\_SOCKMODE}!socket.c@{socket.c}}
+\doxysubsubsection{\texorpdfstring{CHECK\_SOCKMODE}{CHECK\_SOCKMODE}}
+{\footnotesize\ttfamily \label{socket_8c_aef140525633e96efc06dc2b03f71f5fa} 
+\#define CHECK\+\_\+\+SOCKMODE(\begin{DoxyParamCaption}\item[{}]{mode}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{do}\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ ((\mbox{\hyperlink{group__drivers03_gaa2b3835a45b353c5f9501201edcce157}{getSn\_MR}}(sn)\ \&\ 0x0F)\ !=\ mode)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{group__drivers08_ga6971dab6af9ec3f511a08f7944e04c85}{SOCKERR\_SOCKMODE}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \textcolor{keywordflow}{while}\ (0)}
+
+\end{DoxyCode}
+
+
+Check if socket mode matches expected mode. 
+
+\Hypertarget{socket_8c_afe447840d18ed02ec5ca66e3e197b749}\index{socket.c@{socket.c}!CHECK\_SOCKNUM@{CHECK\_SOCKNUM}}
+\index{CHECK\_SOCKNUM@{CHECK\_SOCKNUM}!socket.c@{socket.c}}
+\doxysubsubsection{\texorpdfstring{CHECK\_SOCKNUM}{CHECK\_SOCKNUM}}
+{\footnotesize\ttfamily \label{socket_8c_afe447840d18ed02ec5ca66e3e197b749} 
+\#define CHECK\+\_\+\+SOCKNUM(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{do}\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ (sn\ >=\ \mbox{\hyperlink{group___w5500___m_e_m_ga397c217a9bfdf60b22be602a9da74178}{W5500\_SOCKET\_COUNT}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{group__drivers08_gaf6ef7a97c9bef95e6a0520a0f41b2923}{SOCKERR\_SOCKNUM}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \textcolor{keywordflow}{while}\ (0)}
+
+\end{DoxyCode}
+
+
+Check if socket number is valid. 
+
+\Hypertarget{socket_8c_a80bab3a987b736830d92983e0eae58fd}\index{socket.c@{socket.c}!SOCK\_ANY\_PORT\_NUM@{SOCK\_ANY\_PORT\_NUM}}
+\index{SOCK\_ANY\_PORT\_NUM@{SOCK\_ANY\_PORT\_NUM}!socket.c@{socket.c}}
+\doxysubsubsection{\texorpdfstring{SOCK\_ANY\_PORT\_NUM}{SOCK\_ANY\_PORT\_NUM}}
+{\footnotesize\ttfamily \label{socket_8c_a80bab3a987b736830d92983e0eae58fd} 
+\#define SOCK\+\_\+\+ANY\+\_\+\+PORT\+\_\+\+NUM~0x\+C000}
+
+Starting port number for auto-\/assigned ports \Hypertarget{socket_8c_a203ed3151fbd2f5c0ec791b3e19054b6}\index{socket.c@{socket.c}!SOCK\_TAG@{SOCK\_TAG}}
+\index{SOCK\_TAG@{SOCK\_TAG}!socket.c@{socket.c}}
+\doxysubsubsection{\texorpdfstring{SOCK\_TAG}{SOCK\_TAG}}
+{\footnotesize\ttfamily \label{socket_8c_a203ed3151fbd2f5c0ec791b3e19054b6} 
+\#define SOCK\+\_\+\+TAG~"{}\mbox{[}SOCKET\mbox{]}"{}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{socket_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{socket_8c_a3e134a526306c29a2594a8615c328607}\index{socket.c@{socket.c}!maybe\_log\_sock\_not\_connected@{maybe\_log\_sock\_not\_connected}}
+\index{maybe\_log\_sock\_not\_connected@{maybe\_log\_sock\_not\_connected}!socket.c@{socket.c}}
+\doxysubsubsection{\texorpdfstring{maybe\_log\_sock\_not\_connected()}{maybe\_log\_sock\_not\_connected()}}
+{\footnotesize\ttfamily \label{socket_8c_a3e134a526306c29a2594a8615c328607} 
+void maybe\+\_\+log\+\_\+sock\+\_\+not\+\_\+connected (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{, }\item[{uint8\+\_\+t}]{state}{, }\item[{uint16\+\_\+t}]{errorcode}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{socket_8c_a3e134a526306c29a2594a8615c328607_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{socket_8c_a3e134a526306c29a2594a8615c328607_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{socket_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{socket_8c_ad99b4e91d22b37e09d5967166344f598}\index{socket.c@{socket.c}!sock\_any\_port@{sock\_any\_port}}
+\index{sock\_any\_port@{sock\_any\_port}!socket.c@{socket.c}}
+\doxysubsubsection{\texorpdfstring{sock\_any\_port}{sock\_any\_port}}
+{\footnotesize\ttfamily \label{socket_8c_ad99b4e91d22b37e09d5967166344f598} 
+uint16\+\_\+t sock\+\_\+any\+\_\+port = \mbox{\hyperlink{socket_8c_a80bab3a987b736830d92983e0eae58fd}{SOCK\+\_\+\+ANY\+\_\+\+PORT\+\_\+\+NUM}}\hspace{0.3cm}{\ttfamily [static]}}
+
+Socket state tracking \Hypertarget{socket_8c_a9a748e469561a428795fba8e69439514}\index{socket.c@{socket.c}!sock\_io\_mode@{sock\_io\_mode}}
+\index{sock\_io\_mode@{sock\_io\_mode}!socket.c@{socket.c}}
+\doxysubsubsection{\texorpdfstring{sock\_io\_mode}{sock\_io\_mode}}
+{\footnotesize\ttfamily \label{socket_8c_a9a748e469561a428795fba8e69439514} 
+uint16\+\_\+t sock\+\_\+io\+\_\+mode = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{socket_8c_afe8c33b16763130f2323694c5244bda3}\index{socket.c@{socket.c}!sock\_is\_sending@{sock\_is\_sending}}
+\index{sock\_is\_sending@{sock\_is\_sending}!socket.c@{socket.c}}
+\doxysubsubsection{\texorpdfstring{sock\_is\_sending}{sock\_is\_sending}}
+{\footnotesize\ttfamily \label{socket_8c_afe8c33b16763130f2323694c5244bda3} 
+uint16\+\_\+t sock\+\_\+is\+\_\+sending = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{socket_8c_acdcc51da0e7270aabbf32216329d774a}\index{socket.c@{socket.c}!sock\_remained\_size@{sock\_remained\_size}}
+\index{sock\_remained\_size@{sock\_remained\_size}!socket.c@{socket.c}}
+\doxysubsubsection{\texorpdfstring{sock\_remained\_size}{sock\_remained\_size}}
+{\footnotesize\ttfamily \label{socket_8c_acdcc51da0e7270aabbf32216329d774a} 
+uint16\+\_\+t sock\+\_\+remained\+\_\+size\mbox{[}\mbox{\hyperlink{group___w5500___m_e_m_ga397c217a9bfdf60b22be602a9da74178}{W5500\+\_\+\+SOCKET\+\_\+\+COUNT}}\mbox{]} = \{0\}\hspace{0.3cm}{\ttfamily [static]}}
+

@@ -1,0 +1,19 @@
+<map id="DeviceIdentity_GetSerialNumber" name="DeviceIdentity_GetSerialNumber">
+<area shape="rect" id="Node000001" title="Get the cached serial number string." alt="" coords="1191,5,1357,48"/>
+<area shape="rect" id="Node000002" href="$provisioning__commands_8c.html#a4c16305d49fe29984f44a8fa139d3858" title="Handle PROV SET_SN &lt;serial&gt; command." alt="" coords="1051,13,1143,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1175,29,1143,29,1143,24,1175,24"/>
+<area shape="rect" id="Node000003" href="$group__tasks09.html#ga20d378f18cee6529bae6a4ec665fe155" title="Main PROV command dispatcher and help provider." alt="" coords="924,13,1003,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1035,29,1003,29,1003,24,1035,24"/>
+<area shape="rect" id="Node000004" href="$_console_task_8c.html#a2d3b7ff8346f8d10aa45609664940712" title="Parse and dispatch command line to handler function." alt="" coords="742,13,876,40"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="909,29,876,29,876,24,909,24"/>
+<area shape="rect" id="Node000005" href="$_console_task_8c.html#a216857df22446940ad58d505886b0d7c" title="Main console task function." alt="" coords="597,13,694,40"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="726,29,694,29,694,24,726,24"/>
+<area shape="rect" id="Node000006" href="$group__tasks02.html#gad45ca7c142e8c2764d52b3d554ffcdeb" title="Initialize and start the console task." alt="" coords="426,13,549,40"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="581,29,549,29,549,24,581,24"/>
+<area shape="rect" id="Node000007" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,13,378,40"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="411,29,379,29,379,24,411,24"/>
+<area shape="rect" id="Node000008" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,13,263,40"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="295,29,263,29,263,24,295,24"/>
+<area shape="rect" id="Node000009" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,13,102,40"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="134,29,102,29,102,24,134,24"/>
+</map>

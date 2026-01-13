@@ -1,0 +1,699 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item RTOS Configuration 
+\end{DoxyEnumerate}}
+\hypertarget{group__config05}{}\label{group__config05}\index{5. RTOS Configuration@{5. RTOS Configuration}}
+
+
+Free\+RTOS Configuration Header.  
+
+
+Collaboration diagram for 5. RTOS Configuration\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{group__config05}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config05_gab8bb705d9bf22494812bc21b8900b11a}{HEALTHTASK\+\_\+\+PRIORITY}}~(\mbox{\hyperlink{group__config05_ga9a78f5ac61e6cb172dadf2a51f11db38}{config\+MAX\+\_\+\+PRIORITIES}} -\/ 1)
+\item 
+\#define \mbox{\hyperlink{group__config05_ga7e7d702961a27fb97a00c2657fda0fa1}{INITTASK\+\_\+\+PRIORITY}}~(\mbox{\hyperlink{group__config05_ga9a78f5ac61e6cb172dadf2a51f11db38}{config\+MAX\+\_\+\+PRIORITIES}} -\/ 2)
+\item 
+\#define \mbox{\hyperlink{group__config05_gadda1c2ab2611064c357320bbc2a4d0a2}{BUTTONTASK\+\_\+\+PRIORITY}}~(tsk\+IDLE\+\_\+\+PRIORITY + 6)
+\item 
+\#define \mbox{\hyperlink{group__config05_gaeb02214610057554934ebc985bab1a71}{SWITCHTASK\+\_\+\+PRIORITY}}~(tsk\+IDLE\+\_\+\+PRIORITY + 5)
+\item 
+\#define \mbox{\hyperlink{group__config05_ga7b811b5471aa9e64b1b57ec2bc607620}{NETTASK\+\_\+\+PRIORITY}}~(tsk\+IDLE\+\_\+\+PRIORITY + 4)
+\item 
+\#define \mbox{\hyperlink{group__config05_gab43a9f1c2431c5f2880248763d5daf8e}{CONSOLETASK\+\_\+\+PRIORITY}}~(tsk\+IDLE\+\_\+\+PRIORITY + 3)
+\item 
+\#define \mbox{\hyperlink{group__config05_ga1fdeff5b2a58d26bba2a91fa3e4d50f4}{STORAGETASK\+\_\+\+PRIORITY}}~(tsk\+IDLE\+\_\+\+PRIORITY + 3)
+\item 
+\#define \mbox{\hyperlink{group__config05_ga1f1df9d85cf82871f167af882f21d498}{LOGTASK\+\_\+\+PRIORITY}}~(tsk\+IDLE\+\_\+\+PRIORITY + 2)
+\item 
+\#define \mbox{\hyperlink{group__config05_gad76bafafb20e37f32f9b7d7a0b1372e4}{METERTASK\+\_\+\+PRIORITY}}~(tsk\+IDLE\+\_\+\+PRIORITY + 2)
+\item 
+\#define \mbox{\hyperlink{group__config05_gad43047b3ea0a146673e30637488bf754}{v\+Port\+SVCHandler}}~isr\+\_\+svcall
+\item 
+\#define \mbox{\hyperlink{group__config05_ga6f30022da7d797dd31f1b8a11cae9a35}{x\+Port\+Pend\+SVHandler}}~isr\+\_\+pendsv
+\item 
+\#define \mbox{\hyperlink{group__config05_gae42e6318b5d564e44f97f8c765859448}{x\+Port\+Sys\+Tick\+Handler}}~isr\+\_\+systick
+\item 
+\#define \mbox{\hyperlink{group__config05_gadde83486022745409c40605922b0bdd6}{config\+USE\+\_\+\+PREEMPTION}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga493c5763eb7a39bd80779a1c58de0d82}{config\+USE\+\_\+\+TIME\+\_\+\+SLICING}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gaebb8c3a87d591f60f974772be0ee798d}{config\+USE\+\_\+\+PORT\+\_\+\+OPTIMISED\+\_\+\+TASK\+\_\+\+SELECTION}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_gaa19d69387b32a94d79ea52bb2c6f2649}{config\+USE\+\_\+\+TICKLESS\+\_\+\+IDLE}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_gaa68082df879e6fc96bcb9b26513639e7}{config\+CPU\+\_\+\+CLOCK\+\_\+\+HZ}}~200000000\+UL
+\item 
+\#define \mbox{\hyperlink{group__config05_ga2f0258dd1e3b877e5bc013be54c2db6a}{config\+TICK\+\_\+\+RATE\+\_\+\+HZ}}~((Tick\+Type\+\_\+t)1000)
+\item 
+\#define \mbox{\hyperlink{group__config05_ga9a78f5ac61e6cb172dadf2a51f11db38}{config\+MAX\+\_\+\+PRIORITIES}}~24
+\item 
+\#define \mbox{\hyperlink{group__config05_ga6c534a6cf8a00528fe0be42083484f9a}{config\+MINIMAL\+\_\+\+STACK\+\_\+\+SIZE}}~((\mbox{\hyperlink{group__config05_gae4e85bffd36d76cf2796092f0ccd784a}{config\+STACK\+\_\+\+DEPTH\+\_\+\+TYPE}})512)
+\item 
+\#define \mbox{\hyperlink{group__config05_gaac311ed9b9e5ae4d2d9648b33a24acce}{config\+USE\+\_\+16\+\_\+\+BIT\+\_\+\+TICKS}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_gad6a5061a742fee450ac455e4ad0f4b6c}{config\+IDLE\+\_\+\+SHOULD\+\_\+\+YIELD}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gac388dc4041aab6997348828eb27fc1a8}{config\+MAX\+\_\+\+TASK\+\_\+\+NAME\+\_\+\+LEN}}~16
+\item 
+\#define \mbox{\hyperlink{group__config05_ga5413143d3773c8e31f305805f4cad871}{config\+TASK\+\_\+\+NOTIFICATION\+\_\+\+ARRAY\+\_\+\+ENTRIES}}~3
+\item 
+\#define \mbox{\hyperlink{group__config05_ga543bf3c79008974cc1d36bab51d94fbf}{config\+USE\+\_\+\+MUTEXES}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga9fe02d866cb1c4fbaa0c3de79f53d42d}{config\+USE\+\_\+\+RECURSIVE\+\_\+\+MUTEXES}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_ga55778995203c57369d2fbfb10224943d}{config\+USE\+\_\+\+COUNTING\+\_\+\+SEMAPHORES}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gaca14daeac974218ce2497f12d614fb6b}{config\+USE\+\_\+\+TASK\+\_\+\+NOTIFICATIONS}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga7bfbcca89aaa971f59fe9233772cc33d}{config\+USE\+\_\+\+QUEUE\+\_\+\+SETS}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_gaa4b5138c4e42a180f0abd4f2455f90fb}{config\+QUEUE\+\_\+\+REGISTRY\+\_\+\+SIZE}}~10
+\item 
+\#define \mbox{\hyperlink{group__config05_gacf3616a8cbe15687f6000cefcca84bbd}{config\+USE\+\_\+\+NEWLIB\+\_\+\+REENTRANT}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_ga815d63f3e973f88335f639b03786e37f}{config\+ENABLE\+\_\+\+BACKWARD\+\_\+\+COMPATIBILITY}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_ga8d32b5f74e55dfd12c5aa3415e16d75e}{config\+NUM\+\_\+\+THREAD\+\_\+\+LOCAL\+\_\+\+STORAGE\+\_\+\+POINTERS}}~5
+\item 
+\#define \mbox{\hyperlink{group__config05_gae4e85bffd36d76cf2796092f0ccd784a}{config\+STACK\+\_\+\+DEPTH\+\_\+\+TYPE}}~uint32\+\_\+t
+\item 
+\#define \mbox{\hyperlink{group__config05_ga019c8bfcdd8eca676c7b9993bda95967}{config\+MESSAGE\+\_\+\+BUFFER\+\_\+\+LENGTH\+\_\+\+TYPE}}~size\+\_\+t
+\item 
+\#define \mbox{\hyperlink{group__config05_ga1d6797a53b62d501b095f964036a7ac4}{config\+SUPPORT\+\_\+\+STATIC\+\_\+\+ALLOCATION}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_gafa3f8d6510699d972c9af08fa41f66dc}{config\+SUPPORT\+\_\+\+DYNAMIC\+\_\+\+ALLOCATION}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gae1a85802d42764830d47abe43a3d9a5e}{config\+APPLICATION\+\_\+\+ALLOCATED\+\_\+\+HEAP}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_ga9f213227674effff0122a75d94d87938}{config\+TOTAL\+\_\+\+HEAP\+\_\+\+SIZE}}~(128 \texorpdfstring{$\ast$}{*} 1024)
+\item 
+\#define \mbox{\hyperlink{group__config05_gac637ae45863c19fa2e919db0ed49301f}{config\+USE\+\_\+\+IDLE\+\_\+\+HOOK}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga23c5922c077106fad3f70b54d9071466}{config\+USE\+\_\+\+TICK\+\_\+\+HOOK}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_ga847511ee433494b1e32c90602c967ae7}{config\+CHECK\+\_\+\+FOR\+\_\+\+STACK\+\_\+\+OVERFLOW}}~2
+\item 
+\#define \mbox{\hyperlink{group__config05_gabdf48e7c9cf513f083aa9cbed0dd7cd7}{config\+USE\+\_\+\+MALLOC\+\_\+\+FAILED\+\_\+\+HOOK}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga0415288d8efe664e0b05a7b53fbfaa33}{config\+USE\+\_\+\+DAEMON\+\_\+\+TASK\+\_\+\+STARTUP\+\_\+\+HOOK}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_gad8081822f3ebc7c917b63bd7bdd7bc58}{config\+GENERATE\+\_\+\+RUN\+\_\+\+TIME\+\_\+\+STATS}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_ga27f5ee137dc9f125681a31f0b0a4b3be}{config\+USE\+\_\+\+TRACE\+\_\+\+FACILITY}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_ga5b7fae1e2f6d4fe42104ed8d28a0569d}{config\+USE\+\_\+\+STATS\+\_\+\+FORMATTING\+\_\+\+FUNCTIONS}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_ga57990715eb06402474b8b47e1d562616}{config\+USE\+\_\+\+CO\+\_\+\+ROUTINES}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_gae8f3fd645e6e78dfeb8a6e874af6195a}{config\+MAX\+\_\+\+CO\+\_\+\+ROUTINE\+\_\+\+PRIORITIES}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gac342ae309b0c53828d2ecad3e6de355b}{config\+USE\+\_\+\+TIMERS}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga05c75ff9029ba3f0ab5bde9196f1e873}{config\+TIMER\+\_\+\+TASK\+\_\+\+PRIORITY}}~(tsk\+IDLE\+\_\+\+PRIORITY + 2)
+\item 
+\#define \mbox{\hyperlink{group__config05_gabb9aa0f31c1f3b14a15083a3c6120918}{config\+TIMER\+\_\+\+QUEUE\+\_\+\+LENGTH}}~10
+\item 
+\#define \mbox{\hyperlink{group__config05_gaed7c7ebcdee603583a55e8ce04e55841}{config\+TIMER\+\_\+\+TASK\+\_\+\+STACK\+\_\+\+DEPTH}}~1024
+\item 
+\#define \mbox{\hyperlink{group__config05_ga2e6be5989dcd0c70aa688c83da8ee7e7}{config\+SUPPORT\+\_\+\+PICO\+\_\+\+SYNC\+\_\+\+INTEROP}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga523964dcaea103ff50481aa05af9729e}{config\+SUPPORT\+\_\+\+PICO\+\_\+\+TIME\+\_\+\+INTEROP}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga228c70cd48927d6ab730ed1a6dfbe35f}{config\+ASSERT}}(x)
+\item 
+\#define \mbox{\hyperlink{group__config05_gad6858ac8aaf726007fd19752956ef1bd}{INCLUDE\+\_\+v\+Task\+Priority\+Set}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga1279eb797355460aeeec06aa524e91df}{INCLUDE\+\_\+ux\+Task\+Priority\+Get}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga5ae1434fdf995108dc749ff9329f53bd}{INCLUDE\+\_\+v\+Task\+Delete}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gaef8fbb97819ad3d962f334ac298206d1}{INCLUDE\+\_\+v\+Task\+Suspend}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gae8459bfd5b428319bb10de9f504a53aa}{INCLUDE\+\_\+v\+Task\+Delay\+Until}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga24361a6eb816a965f1ee4e2e08e364f8}{INCLUDE\+\_\+v\+Task\+Delay}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga9ed60ede556830584e6bfd4a3ab4f9de}{INCLUDE\+\_\+x\+Task\+Get\+Scheduler\+State}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gac96b6a6e70667f266db4278be71cbd78}{INCLUDE\+\_\+x\+Task\+Get\+Current\+Task\+Handle}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga23c7b4b41fe9b575cf2329c7cbe78b86}{INCLUDE\+\_\+ux\+Task\+Get\+Stack\+High\+Water\+Mark}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gaae20dbc3e4e870003109dcf121cbaee8}{INCLUDE\+\_\+ux\+Task\+Get\+Stack\+High\+Water\+Mark2}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gae8811def4dd6983011fed9ef8686f18f}{INCLUDE\+\_\+x\+Task\+Get\+Idle\+Task\+Handle}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga4fd1d67d54044ac86e8ffc890180f9f6}{INCLUDE\+\_\+e\+Task\+Get\+State}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gac54efb28edcc1d3b9d0844005ea20674}{INCLUDE\+\_\+x\+Task\+Abort\+Delay}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga33733d2bbe005751ec3a417e5ac373bf}{INCLUDE\+\_\+x\+Task\+Get\+Handle}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga85e3dae9f3daa26f24e679cb6793811e}{INCLUDE\+\_\+x\+Task\+Resume\+From\+ISR}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga4e2902143b6abf777065c15940321911}{INCLUDE\+\_\+x\+Queue\+Get\+Mutex\+Holder}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gac99d9c3ef7d5fdeb24375ddeb9602b55}{INCLUDE\+\_\+x\+Resume\+From\+ISR}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gaf93b5ef191e3e4bbf050119dacbd148b}{INCLUDE\+\_\+x\+Event\+Group\+Set\+Bit\+From\+ISR}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga4b4336acd61a8e513ca2376be84326b5}{INCLUDE\+\_\+x\+Timer\+Pend\+Function\+Call}}~1
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__config05_ga20f7d031e5579a7e413468a721166881}{v\+Assert\+Called}} (const char \texorpdfstring{$\ast$}{*}file, int line)
+\begin{DoxyCompactList}\small\item\em Free\+RTOS assertion failure hook with context capture. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Free\+RTOS Configuration Header. 
+
+\begin{DoxyVersion}{Version}
+2.\+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/12-\/10
+\end{DoxyDate}
+Free\+RTOS configuration settings for the Energis PDU firmware. This file defines various parameters that control the behavior of the Free\+RTOS kernel, including task priorities, memory allocation, and system hooks.
+
+v2.\+1.\+0 Changes\+:
+\begin{DoxyItemize}
+\item Updated config\+CPU\+\_\+\+CLOCK\+\_\+\+HZ to 200MHz for improved network performance during SNMP stress testing and heavy traffic scenarios
+\end{DoxyItemize}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{group__config05_doc-define-members}
+\doxysubsubsection{Macro Definition Documentation}
+\Hypertarget{group__config05_gadda1c2ab2611064c357320bbc2a4d0a2}\index{5. RTOS Configuration@{5. RTOS Configuration}!BUTTONTASK\_PRIORITY@{BUTTONTASK\_PRIORITY}}
+\index{BUTTONTASK\_PRIORITY@{BUTTONTASK\_PRIORITY}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{BUTTONTASK\_PRIORITY}{BUTTONTASK\_PRIORITY}}
+{\footnotesize\ttfamily \label{group__config05_gadda1c2ab2611064c357320bbc2a4d0a2} 
+\#define BUTTONTASK\+\_\+\+PRIORITY~(tsk\+IDLE\+\_\+\+PRIORITY + 6)}
+
+\Hypertarget{group__config05_gae1a85802d42764830d47abe43a3d9a5e}\index{5. RTOS Configuration@{5. RTOS Configuration}!configAPPLICATION\_ALLOCATED\_HEAP@{configAPPLICATION\_ALLOCATED\_HEAP}}
+\index{configAPPLICATION\_ALLOCATED\_HEAP@{configAPPLICATION\_ALLOCATED\_HEAP}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configAPPLICATION\_ALLOCATED\_HEAP}{configAPPLICATION\_ALLOCATED\_HEAP}}
+{\footnotesize\ttfamily \label{group__config05_gae1a85802d42764830d47abe43a3d9a5e} 
+\#define config\+APPLICATION\+\_\+\+ALLOCATED\+\_\+\+HEAP~0}
+
+\Hypertarget{group__config05_ga228c70cd48927d6ab730ed1a6dfbe35f}\index{5. RTOS Configuration@{5. RTOS Configuration}!configASSERT@{configASSERT}}
+\index{configASSERT@{configASSERT}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configASSERT}{configASSERT}}
+{\footnotesize\ttfamily \label{group__config05_ga228c70cd48927d6ab730ed1a6dfbe35f} 
+\#define config\+ASSERT(\begin{DoxyParamCaption}\item[{}]{x}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ ((x)\ ==\ 0)\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ vAssertCalled(\_\_FILE\_\_,\ \_\_LINE\_\_);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{group__config05_ga847511ee433494b1e32c90602c967ae7}\index{5. RTOS Configuration@{5. RTOS Configuration}!configCHECK\_FOR\_STACK\_OVERFLOW@{configCHECK\_FOR\_STACK\_OVERFLOW}}
+\index{configCHECK\_FOR\_STACK\_OVERFLOW@{configCHECK\_FOR\_STACK\_OVERFLOW}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configCHECK\_FOR\_STACK\_OVERFLOW}{configCHECK\_FOR\_STACK\_OVERFLOW}}
+{\footnotesize\ttfamily \label{group__config05_ga847511ee433494b1e32c90602c967ae7} 
+\#define config\+CHECK\+\_\+\+FOR\+\_\+\+STACK\+\_\+\+OVERFLOW~2}
+
+\Hypertarget{group__config05_gaa68082df879e6fc96bcb9b26513639e7}\index{5. RTOS Configuration@{5. RTOS Configuration}!configCPU\_CLOCK\_HZ@{configCPU\_CLOCK\_HZ}}
+\index{configCPU\_CLOCK\_HZ@{configCPU\_CLOCK\_HZ}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configCPU\_CLOCK\_HZ}{configCPU\_CLOCK\_HZ}}
+{\footnotesize\ttfamily \label{group__config05_gaa68082df879e6fc96bcb9b26513639e7} 
+\#define config\+CPU\+\_\+\+CLOCK\+\_\+\+HZ~200000000\+UL}
+
+\Hypertarget{group__config05_ga815d63f3e973f88335f639b03786e37f}\index{5. RTOS Configuration@{5. RTOS Configuration}!configENABLE\_BACKWARD\_COMPATIBILITY@{configENABLE\_BACKWARD\_COMPATIBILITY}}
+\index{configENABLE\_BACKWARD\_COMPATIBILITY@{configENABLE\_BACKWARD\_COMPATIBILITY}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configENABLE\_BACKWARD\_COMPATIBILITY}{configENABLE\_BACKWARD\_COMPATIBILITY}}
+{\footnotesize\ttfamily \label{group__config05_ga815d63f3e973f88335f639b03786e37f} 
+\#define config\+ENABLE\+\_\+\+BACKWARD\+\_\+\+COMPATIBILITY~0}
+
+\Hypertarget{group__config05_gad8081822f3ebc7c917b63bd7bdd7bc58}\index{5. RTOS Configuration@{5. RTOS Configuration}!configGENERATE\_RUN\_TIME\_STATS@{configGENERATE\_RUN\_TIME\_STATS}}
+\index{configGENERATE\_RUN\_TIME\_STATS@{configGENERATE\_RUN\_TIME\_STATS}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configGENERATE\_RUN\_TIME\_STATS}{configGENERATE\_RUN\_TIME\_STATS}}
+{\footnotesize\ttfamily \label{group__config05_gad8081822f3ebc7c917b63bd7bdd7bc58} 
+\#define config\+GENERATE\+\_\+\+RUN\+\_\+\+TIME\+\_\+\+STATS~0}
+
+\Hypertarget{group__config05_gad6a5061a742fee450ac455e4ad0f4b6c}\index{5. RTOS Configuration@{5. RTOS Configuration}!configIDLE\_SHOULD\_YIELD@{configIDLE\_SHOULD\_YIELD}}
+\index{configIDLE\_SHOULD\_YIELD@{configIDLE\_SHOULD\_YIELD}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configIDLE\_SHOULD\_YIELD}{configIDLE\_SHOULD\_YIELD}}
+{\footnotesize\ttfamily \label{group__config05_gad6a5061a742fee450ac455e4ad0f4b6c} 
+\#define config\+IDLE\+\_\+\+SHOULD\+\_\+\+YIELD~1}
+
+\Hypertarget{group__config05_gae8f3fd645e6e78dfeb8a6e874af6195a}\index{5. RTOS Configuration@{5. RTOS Configuration}!configMAX\_CO\_ROUTINE\_PRIORITIES@{configMAX\_CO\_ROUTINE\_PRIORITIES}}
+\index{configMAX\_CO\_ROUTINE\_PRIORITIES@{configMAX\_CO\_ROUTINE\_PRIORITIES}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configMAX\_CO\_ROUTINE\_PRIORITIES}{configMAX\_CO\_ROUTINE\_PRIORITIES}}
+{\footnotesize\ttfamily \label{group__config05_gae8f3fd645e6e78dfeb8a6e874af6195a} 
+\#define config\+MAX\+\_\+\+CO\+\_\+\+ROUTINE\+\_\+\+PRIORITIES~1}
+
+\Hypertarget{group__config05_ga9a78f5ac61e6cb172dadf2a51f11db38}\index{5. RTOS Configuration@{5. RTOS Configuration}!configMAX\_PRIORITIES@{configMAX\_PRIORITIES}}
+\index{configMAX\_PRIORITIES@{configMAX\_PRIORITIES}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configMAX\_PRIORITIES}{configMAX\_PRIORITIES}}
+{\footnotesize\ttfamily \label{group__config05_ga9a78f5ac61e6cb172dadf2a51f11db38} 
+\#define config\+MAX\+\_\+\+PRIORITIES~24}
+
+\Hypertarget{group__config05_gac388dc4041aab6997348828eb27fc1a8}\index{5. RTOS Configuration@{5. RTOS Configuration}!configMAX\_TASK\_NAME\_LEN@{configMAX\_TASK\_NAME\_LEN}}
+\index{configMAX\_TASK\_NAME\_LEN@{configMAX\_TASK\_NAME\_LEN}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configMAX\_TASK\_NAME\_LEN}{configMAX\_TASK\_NAME\_LEN}}
+{\footnotesize\ttfamily \label{group__config05_gac388dc4041aab6997348828eb27fc1a8} 
+\#define config\+MAX\+\_\+\+TASK\+\_\+\+NAME\+\_\+\+LEN~16}
+
+\Hypertarget{group__config05_ga019c8bfcdd8eca676c7b9993bda95967}\index{5. RTOS Configuration@{5. RTOS Configuration}!configMESSAGE\_BUFFER\_LENGTH\_TYPE@{configMESSAGE\_BUFFER\_LENGTH\_TYPE}}
+\index{configMESSAGE\_BUFFER\_LENGTH\_TYPE@{configMESSAGE\_BUFFER\_LENGTH\_TYPE}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configMESSAGE\_BUFFER\_LENGTH\_TYPE}{configMESSAGE\_BUFFER\_LENGTH\_TYPE}}
+{\footnotesize\ttfamily \label{group__config05_ga019c8bfcdd8eca676c7b9993bda95967} 
+\#define config\+MESSAGE\+\_\+\+BUFFER\+\_\+\+LENGTH\+\_\+\+TYPE~size\+\_\+t}
+
+\Hypertarget{group__config05_ga6c534a6cf8a00528fe0be42083484f9a}\index{5. RTOS Configuration@{5. RTOS Configuration}!configMINIMAL\_STACK\_SIZE@{configMINIMAL\_STACK\_SIZE}}
+\index{configMINIMAL\_STACK\_SIZE@{configMINIMAL\_STACK\_SIZE}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configMINIMAL\_STACK\_SIZE}{configMINIMAL\_STACK\_SIZE}}
+{\footnotesize\ttfamily \label{group__config05_ga6c534a6cf8a00528fe0be42083484f9a} 
+\#define config\+MINIMAL\+\_\+\+STACK\+\_\+\+SIZE~((\mbox{\hyperlink{group__config05_gae4e85bffd36d76cf2796092f0ccd784a}{config\+STACK\+\_\+\+DEPTH\+\_\+\+TYPE}})512)}
+
+\Hypertarget{group__config05_ga8d32b5f74e55dfd12c5aa3415e16d75e}\index{5. RTOS Configuration@{5. RTOS Configuration}!configNUM\_THREAD\_LOCAL\_STORAGE\_POINTERS@{configNUM\_THREAD\_LOCAL\_STORAGE\_POINTERS}}
+\index{configNUM\_THREAD\_LOCAL\_STORAGE\_POINTERS@{configNUM\_THREAD\_LOCAL\_STORAGE\_POINTERS}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configNUM\_THREAD\_LOCAL\_STORAGE\_POINTERS}{configNUM\_THREAD\_LOCAL\_STORAGE\_POINTERS}}
+{\footnotesize\ttfamily \label{group__config05_ga8d32b5f74e55dfd12c5aa3415e16d75e} 
+\#define config\+NUM\+\_\+\+THREAD\+\_\+\+LOCAL\+\_\+\+STORAGE\+\_\+\+POINTERS~5}
+
+\Hypertarget{group__config05_gaa4b5138c4e42a180f0abd4f2455f90fb}\index{5. RTOS Configuration@{5. RTOS Configuration}!configQUEUE\_REGISTRY\_SIZE@{configQUEUE\_REGISTRY\_SIZE}}
+\index{configQUEUE\_REGISTRY\_SIZE@{configQUEUE\_REGISTRY\_SIZE}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configQUEUE\_REGISTRY\_SIZE}{configQUEUE\_REGISTRY\_SIZE}}
+{\footnotesize\ttfamily \label{group__config05_gaa4b5138c4e42a180f0abd4f2455f90fb} 
+\#define config\+QUEUE\+\_\+\+REGISTRY\+\_\+\+SIZE~10}
+
+\Hypertarget{group__config05_gae4e85bffd36d76cf2796092f0ccd784a}\index{5. RTOS Configuration@{5. RTOS Configuration}!configSTACK\_DEPTH\_TYPE@{configSTACK\_DEPTH\_TYPE}}
+\index{configSTACK\_DEPTH\_TYPE@{configSTACK\_DEPTH\_TYPE}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configSTACK\_DEPTH\_TYPE}{configSTACK\_DEPTH\_TYPE}}
+{\footnotesize\ttfamily \label{group__config05_gae4e85bffd36d76cf2796092f0ccd784a} 
+\#define config\+STACK\+\_\+\+DEPTH\+\_\+\+TYPE~uint32\+\_\+t}
+
+\Hypertarget{group__config05_gafa3f8d6510699d972c9af08fa41f66dc}\index{5. RTOS Configuration@{5. RTOS Configuration}!configSUPPORT\_DYNAMIC\_ALLOCATION@{configSUPPORT\_DYNAMIC\_ALLOCATION}}
+\index{configSUPPORT\_DYNAMIC\_ALLOCATION@{configSUPPORT\_DYNAMIC\_ALLOCATION}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configSUPPORT\_DYNAMIC\_ALLOCATION}{configSUPPORT\_DYNAMIC\_ALLOCATION}}
+{\footnotesize\ttfamily \label{group__config05_gafa3f8d6510699d972c9af08fa41f66dc} 
+\#define config\+SUPPORT\+\_\+\+DYNAMIC\+\_\+\+ALLOCATION~1}
+
+\Hypertarget{group__config05_ga2e6be5989dcd0c70aa688c83da8ee7e7}\index{5. RTOS Configuration@{5. RTOS Configuration}!configSUPPORT\_PICO\_SYNC\_INTEROP@{configSUPPORT\_PICO\_SYNC\_INTEROP}}
+\index{configSUPPORT\_PICO\_SYNC\_INTEROP@{configSUPPORT\_PICO\_SYNC\_INTEROP}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configSUPPORT\_PICO\_SYNC\_INTEROP}{configSUPPORT\_PICO\_SYNC\_INTEROP}}
+{\footnotesize\ttfamily \label{group__config05_ga2e6be5989dcd0c70aa688c83da8ee7e7} 
+\#define config\+SUPPORT\+\_\+\+PICO\+\_\+\+SYNC\+\_\+\+INTEROP~1}
+
+\Hypertarget{group__config05_ga523964dcaea103ff50481aa05af9729e}\index{5. RTOS Configuration@{5. RTOS Configuration}!configSUPPORT\_PICO\_TIME\_INTEROP@{configSUPPORT\_PICO\_TIME\_INTEROP}}
+\index{configSUPPORT\_PICO\_TIME\_INTEROP@{configSUPPORT\_PICO\_TIME\_INTEROP}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configSUPPORT\_PICO\_TIME\_INTEROP}{configSUPPORT\_PICO\_TIME\_INTEROP}}
+{\footnotesize\ttfamily \label{group__config05_ga523964dcaea103ff50481aa05af9729e} 
+\#define config\+SUPPORT\+\_\+\+PICO\+\_\+\+TIME\+\_\+\+INTEROP~1}
+
+\Hypertarget{group__config05_ga1d6797a53b62d501b095f964036a7ac4}\index{5. RTOS Configuration@{5. RTOS Configuration}!configSUPPORT\_STATIC\_ALLOCATION@{configSUPPORT\_STATIC\_ALLOCATION}}
+\index{configSUPPORT\_STATIC\_ALLOCATION@{configSUPPORT\_STATIC\_ALLOCATION}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configSUPPORT\_STATIC\_ALLOCATION}{configSUPPORT\_STATIC\_ALLOCATION}}
+{\footnotesize\ttfamily \label{group__config05_ga1d6797a53b62d501b095f964036a7ac4} 
+\#define config\+SUPPORT\+\_\+\+STATIC\+\_\+\+ALLOCATION~0}
+
+\Hypertarget{group__config05_ga5413143d3773c8e31f305805f4cad871}\index{5. RTOS Configuration@{5. RTOS Configuration}!configTASK\_NOTIFICATION\_ARRAY\_ENTRIES@{configTASK\_NOTIFICATION\_ARRAY\_ENTRIES}}
+\index{configTASK\_NOTIFICATION\_ARRAY\_ENTRIES@{configTASK\_NOTIFICATION\_ARRAY\_ENTRIES}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configTASK\_NOTIFICATION\_ARRAY\_ENTRIES}{configTASK\_NOTIFICATION\_ARRAY\_ENTRIES}}
+{\footnotesize\ttfamily \label{group__config05_ga5413143d3773c8e31f305805f4cad871} 
+\#define config\+TASK\+\_\+\+NOTIFICATION\+\_\+\+ARRAY\+\_\+\+ENTRIES~3}
+
+\Hypertarget{group__config05_ga2f0258dd1e3b877e5bc013be54c2db6a}\index{5. RTOS Configuration@{5. RTOS Configuration}!configTICK\_RATE\_HZ@{configTICK\_RATE\_HZ}}
+\index{configTICK\_RATE\_HZ@{configTICK\_RATE\_HZ}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configTICK\_RATE\_HZ}{configTICK\_RATE\_HZ}}
+{\footnotesize\ttfamily \label{group__config05_ga2f0258dd1e3b877e5bc013be54c2db6a} 
+\#define config\+TICK\+\_\+\+RATE\+\_\+\+HZ~((Tick\+Type\+\_\+t)1000)}
+
+\Hypertarget{group__config05_gabb9aa0f31c1f3b14a15083a3c6120918}\index{5. RTOS Configuration@{5. RTOS Configuration}!configTIMER\_QUEUE\_LENGTH@{configTIMER\_QUEUE\_LENGTH}}
+\index{configTIMER\_QUEUE\_LENGTH@{configTIMER\_QUEUE\_LENGTH}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configTIMER\_QUEUE\_LENGTH}{configTIMER\_QUEUE\_LENGTH}}
+{\footnotesize\ttfamily \label{group__config05_gabb9aa0f31c1f3b14a15083a3c6120918} 
+\#define config\+TIMER\+\_\+\+QUEUE\+\_\+\+LENGTH~10}
+
+\Hypertarget{group__config05_ga05c75ff9029ba3f0ab5bde9196f1e873}\index{5. RTOS Configuration@{5. RTOS Configuration}!configTIMER\_TASK\_PRIORITY@{configTIMER\_TASK\_PRIORITY}}
+\index{configTIMER\_TASK\_PRIORITY@{configTIMER\_TASK\_PRIORITY}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configTIMER\_TASK\_PRIORITY}{configTIMER\_TASK\_PRIORITY}}
+{\footnotesize\ttfamily \label{group__config05_ga05c75ff9029ba3f0ab5bde9196f1e873} 
+\#define config\+TIMER\+\_\+\+TASK\+\_\+\+PRIORITY~(tsk\+IDLE\+\_\+\+PRIORITY + 2)}
+
+\Hypertarget{group__config05_gaed7c7ebcdee603583a55e8ce04e55841}\index{5. RTOS Configuration@{5. RTOS Configuration}!configTIMER\_TASK\_STACK\_DEPTH@{configTIMER\_TASK\_STACK\_DEPTH}}
+\index{configTIMER\_TASK\_STACK\_DEPTH@{configTIMER\_TASK\_STACK\_DEPTH}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configTIMER\_TASK\_STACK\_DEPTH}{configTIMER\_TASK\_STACK\_DEPTH}}
+{\footnotesize\ttfamily \label{group__config05_gaed7c7ebcdee603583a55e8ce04e55841} 
+\#define config\+TIMER\+\_\+\+TASK\+\_\+\+STACK\+\_\+\+DEPTH~1024}
+
+\Hypertarget{group__config05_ga9f213227674effff0122a75d94d87938}\index{5. RTOS Configuration@{5. RTOS Configuration}!configTOTAL\_HEAP\_SIZE@{configTOTAL\_HEAP\_SIZE}}
+\index{configTOTAL\_HEAP\_SIZE@{configTOTAL\_HEAP\_SIZE}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configTOTAL\_HEAP\_SIZE}{configTOTAL\_HEAP\_SIZE}}
+{\footnotesize\ttfamily \label{group__config05_ga9f213227674effff0122a75d94d87938} 
+\#define config\+TOTAL\+\_\+\+HEAP\+\_\+\+SIZE~(128 \texorpdfstring{$\ast$}{*} 1024)}
+
+\Hypertarget{group__config05_gaac311ed9b9e5ae4d2d9648b33a24acce}\index{5. RTOS Configuration@{5. RTOS Configuration}!configUSE\_16\_BIT\_TICKS@{configUSE\_16\_BIT\_TICKS}}
+\index{configUSE\_16\_BIT\_TICKS@{configUSE\_16\_BIT\_TICKS}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configUSE\_16\_BIT\_TICKS}{configUSE\_16\_BIT\_TICKS}}
+{\footnotesize\ttfamily \label{group__config05_gaac311ed9b9e5ae4d2d9648b33a24acce} 
+\#define config\+USE\+\_\+16\+\_\+\+BIT\+\_\+\+TICKS~0}
+
+\Hypertarget{group__config05_ga57990715eb06402474b8b47e1d562616}\index{5. RTOS Configuration@{5. RTOS Configuration}!configUSE\_CO\_ROUTINES@{configUSE\_CO\_ROUTINES}}
+\index{configUSE\_CO\_ROUTINES@{configUSE\_CO\_ROUTINES}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configUSE\_CO\_ROUTINES}{configUSE\_CO\_ROUTINES}}
+{\footnotesize\ttfamily \label{group__config05_ga57990715eb06402474b8b47e1d562616} 
+\#define config\+USE\+\_\+\+CO\+\_\+\+ROUTINES~0}
+
+\Hypertarget{group__config05_ga55778995203c57369d2fbfb10224943d}\index{5. RTOS Configuration@{5. RTOS Configuration}!configUSE\_COUNTING\_SEMAPHORES@{configUSE\_COUNTING\_SEMAPHORES}}
+\index{configUSE\_COUNTING\_SEMAPHORES@{configUSE\_COUNTING\_SEMAPHORES}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configUSE\_COUNTING\_SEMAPHORES}{configUSE\_COUNTING\_SEMAPHORES}}
+{\footnotesize\ttfamily \label{group__config05_ga55778995203c57369d2fbfb10224943d} 
+\#define config\+USE\+\_\+\+COUNTING\+\_\+\+SEMAPHORES~1}
+
+\Hypertarget{group__config05_ga0415288d8efe664e0b05a7b53fbfaa33}\index{5. RTOS Configuration@{5. RTOS Configuration}!configUSE\_DAEMON\_TASK\_STARTUP\_HOOK@{configUSE\_DAEMON\_TASK\_STARTUP\_HOOK}}
+\index{configUSE\_DAEMON\_TASK\_STARTUP\_HOOK@{configUSE\_DAEMON\_TASK\_STARTUP\_HOOK}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configUSE\_DAEMON\_TASK\_STARTUP\_HOOK}{configUSE\_DAEMON\_TASK\_STARTUP\_HOOK}}
+{\footnotesize\ttfamily \label{group__config05_ga0415288d8efe664e0b05a7b53fbfaa33} 
+\#define config\+USE\+\_\+\+DAEMON\+\_\+\+TASK\+\_\+\+STARTUP\+\_\+\+HOOK~0}
+
+\Hypertarget{group__config05_gac637ae45863c19fa2e919db0ed49301f}\index{5. RTOS Configuration@{5. RTOS Configuration}!configUSE\_IDLE\_HOOK@{configUSE\_IDLE\_HOOK}}
+\index{configUSE\_IDLE\_HOOK@{configUSE\_IDLE\_HOOK}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configUSE\_IDLE\_HOOK}{configUSE\_IDLE\_HOOK}}
+{\footnotesize\ttfamily \label{group__config05_gac637ae45863c19fa2e919db0ed49301f} 
+\#define config\+USE\+\_\+\+IDLE\+\_\+\+HOOK~1}
+
+\Hypertarget{group__config05_gabdf48e7c9cf513f083aa9cbed0dd7cd7}\index{5. RTOS Configuration@{5. RTOS Configuration}!configUSE\_MALLOC\_FAILED\_HOOK@{configUSE\_MALLOC\_FAILED\_HOOK}}
+\index{configUSE\_MALLOC\_FAILED\_HOOK@{configUSE\_MALLOC\_FAILED\_HOOK}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configUSE\_MALLOC\_FAILED\_HOOK}{configUSE\_MALLOC\_FAILED\_HOOK}}
+{\footnotesize\ttfamily \label{group__config05_gabdf48e7c9cf513f083aa9cbed0dd7cd7} 
+\#define config\+USE\+\_\+\+MALLOC\+\_\+\+FAILED\+\_\+\+HOOK~1}
+
+\Hypertarget{group__config05_ga543bf3c79008974cc1d36bab51d94fbf}\index{5. RTOS Configuration@{5. RTOS Configuration}!configUSE\_MUTEXES@{configUSE\_MUTEXES}}
+\index{configUSE\_MUTEXES@{configUSE\_MUTEXES}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configUSE\_MUTEXES}{configUSE\_MUTEXES}}
+{\footnotesize\ttfamily \label{group__config05_ga543bf3c79008974cc1d36bab51d94fbf} 
+\#define config\+USE\+\_\+\+MUTEXES~1}
+
+\Hypertarget{group__config05_gacf3616a8cbe15687f6000cefcca84bbd}\index{5. RTOS Configuration@{5. RTOS Configuration}!configUSE\_NEWLIB\_REENTRANT@{configUSE\_NEWLIB\_REENTRANT}}
+\index{configUSE\_NEWLIB\_REENTRANT@{configUSE\_NEWLIB\_REENTRANT}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configUSE\_NEWLIB\_REENTRANT}{configUSE\_NEWLIB\_REENTRANT}}
+{\footnotesize\ttfamily \label{group__config05_gacf3616a8cbe15687f6000cefcca84bbd} 
+\#define config\+USE\+\_\+\+NEWLIB\+\_\+\+REENTRANT~0}
+
+\Hypertarget{group__config05_gaebb8c3a87d591f60f974772be0ee798d}\index{5. RTOS Configuration@{5. RTOS Configuration}!configUSE\_PORT\_OPTIMISED\_TASK\_SELECTION@{configUSE\_PORT\_OPTIMISED\_TASK\_SELECTION}}
+\index{configUSE\_PORT\_OPTIMISED\_TASK\_SELECTION@{configUSE\_PORT\_OPTIMISED\_TASK\_SELECTION}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configUSE\_PORT\_OPTIMISED\_TASK\_SELECTION}{configUSE\_PORT\_OPTIMISED\_TASK\_SELECTION}}
+{\footnotesize\ttfamily \label{group__config05_gaebb8c3a87d591f60f974772be0ee798d} 
+\#define config\+USE\+\_\+\+PORT\+\_\+\+OPTIMISED\+\_\+\+TASK\+\_\+\+SELECTION~0}
+
+\Hypertarget{group__config05_gadde83486022745409c40605922b0bdd6}\index{5. RTOS Configuration@{5. RTOS Configuration}!configUSE\_PREEMPTION@{configUSE\_PREEMPTION}}
+\index{configUSE\_PREEMPTION@{configUSE\_PREEMPTION}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configUSE\_PREEMPTION}{configUSE\_PREEMPTION}}
+{\footnotesize\ttfamily \label{group__config05_gadde83486022745409c40605922b0bdd6} 
+\#define config\+USE\+\_\+\+PREEMPTION~1}
+
+\Hypertarget{group__config05_ga7bfbcca89aaa971f59fe9233772cc33d}\index{5. RTOS Configuration@{5. RTOS Configuration}!configUSE\_QUEUE\_SETS@{configUSE\_QUEUE\_SETS}}
+\index{configUSE\_QUEUE\_SETS@{configUSE\_QUEUE\_SETS}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configUSE\_QUEUE\_SETS}{configUSE\_QUEUE\_SETS}}
+{\footnotesize\ttfamily \label{group__config05_ga7bfbcca89aaa971f59fe9233772cc33d} 
+\#define config\+USE\+\_\+\+QUEUE\+\_\+\+SETS~0}
+
+\Hypertarget{group__config05_ga9fe02d866cb1c4fbaa0c3de79f53d42d}\index{5. RTOS Configuration@{5. RTOS Configuration}!configUSE\_RECURSIVE\_MUTEXES@{configUSE\_RECURSIVE\_MUTEXES}}
+\index{configUSE\_RECURSIVE\_MUTEXES@{configUSE\_RECURSIVE\_MUTEXES}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configUSE\_RECURSIVE\_MUTEXES}{configUSE\_RECURSIVE\_MUTEXES}}
+{\footnotesize\ttfamily \label{group__config05_ga9fe02d866cb1c4fbaa0c3de79f53d42d} 
+\#define config\+USE\+\_\+\+RECURSIVE\+\_\+\+MUTEXES~0}
+
+\Hypertarget{group__config05_ga5b7fae1e2f6d4fe42104ed8d28a0569d}\index{5. RTOS Configuration@{5. RTOS Configuration}!configUSE\_STATS\_FORMATTING\_FUNCTIONS@{configUSE\_STATS\_FORMATTING\_FUNCTIONS}}
+\index{configUSE\_STATS\_FORMATTING\_FUNCTIONS@{configUSE\_STATS\_FORMATTING\_FUNCTIONS}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configUSE\_STATS\_FORMATTING\_FUNCTIONS}{configUSE\_STATS\_FORMATTING\_FUNCTIONS}}
+{\footnotesize\ttfamily \label{group__config05_ga5b7fae1e2f6d4fe42104ed8d28a0569d} 
+\#define config\+USE\+\_\+\+STATS\+\_\+\+FORMATTING\+\_\+\+FUNCTIONS~0}
+
+\Hypertarget{group__config05_gaca14daeac974218ce2497f12d614fb6b}\index{5. RTOS Configuration@{5. RTOS Configuration}!configUSE\_TASK\_NOTIFICATIONS@{configUSE\_TASK\_NOTIFICATIONS}}
+\index{configUSE\_TASK\_NOTIFICATIONS@{configUSE\_TASK\_NOTIFICATIONS}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configUSE\_TASK\_NOTIFICATIONS}{configUSE\_TASK\_NOTIFICATIONS}}
+{\footnotesize\ttfamily \label{group__config05_gaca14daeac974218ce2497f12d614fb6b} 
+\#define config\+USE\+\_\+\+TASK\+\_\+\+NOTIFICATIONS~1}
+
+\Hypertarget{group__config05_ga23c5922c077106fad3f70b54d9071466}\index{5. RTOS Configuration@{5. RTOS Configuration}!configUSE\_TICK\_HOOK@{configUSE\_TICK\_HOOK}}
+\index{configUSE\_TICK\_HOOK@{configUSE\_TICK\_HOOK}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configUSE\_TICK\_HOOK}{configUSE\_TICK\_HOOK}}
+{\footnotesize\ttfamily \label{group__config05_ga23c5922c077106fad3f70b54d9071466} 
+\#define config\+USE\+\_\+\+TICK\+\_\+\+HOOK~0}
+
+\Hypertarget{group__config05_gaa19d69387b32a94d79ea52bb2c6f2649}\index{5. RTOS Configuration@{5. RTOS Configuration}!configUSE\_TICKLESS\_IDLE@{configUSE\_TICKLESS\_IDLE}}
+\index{configUSE\_TICKLESS\_IDLE@{configUSE\_TICKLESS\_IDLE}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configUSE\_TICKLESS\_IDLE}{configUSE\_TICKLESS\_IDLE}}
+{\footnotesize\ttfamily \label{group__config05_gaa19d69387b32a94d79ea52bb2c6f2649} 
+\#define config\+USE\+\_\+\+TICKLESS\+\_\+\+IDLE~0}
+
+\Hypertarget{group__config05_ga493c5763eb7a39bd80779a1c58de0d82}\index{5. RTOS Configuration@{5. RTOS Configuration}!configUSE\_TIME\_SLICING@{configUSE\_TIME\_SLICING}}
+\index{configUSE\_TIME\_SLICING@{configUSE\_TIME\_SLICING}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configUSE\_TIME\_SLICING}{configUSE\_TIME\_SLICING}}
+{\footnotesize\ttfamily \label{group__config05_ga493c5763eb7a39bd80779a1c58de0d82} 
+\#define config\+USE\+\_\+\+TIME\+\_\+\+SLICING~1}
+
+\Hypertarget{group__config05_gac342ae309b0c53828d2ecad3e6de355b}\index{5. RTOS Configuration@{5. RTOS Configuration}!configUSE\_TIMERS@{configUSE\_TIMERS}}
+\index{configUSE\_TIMERS@{configUSE\_TIMERS}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configUSE\_TIMERS}{configUSE\_TIMERS}}
+{\footnotesize\ttfamily \label{group__config05_gac342ae309b0c53828d2ecad3e6de355b} 
+\#define config\+USE\+\_\+\+TIMERS~1}
+
+\Hypertarget{group__config05_ga27f5ee137dc9f125681a31f0b0a4b3be}\index{5. RTOS Configuration@{5. RTOS Configuration}!configUSE\_TRACE\_FACILITY@{configUSE\_TRACE\_FACILITY}}
+\index{configUSE\_TRACE\_FACILITY@{configUSE\_TRACE\_FACILITY}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{configUSE\_TRACE\_FACILITY}{configUSE\_TRACE\_FACILITY}}
+{\footnotesize\ttfamily \label{group__config05_ga27f5ee137dc9f125681a31f0b0a4b3be} 
+\#define config\+USE\+\_\+\+TRACE\+\_\+\+FACILITY~0}
+
+\Hypertarget{group__config05_gab43a9f1c2431c5f2880248763d5daf8e}\index{5. RTOS Configuration@{5. RTOS Configuration}!CONSOLETASK\_PRIORITY@{CONSOLETASK\_PRIORITY}}
+\index{CONSOLETASK\_PRIORITY@{CONSOLETASK\_PRIORITY}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{CONSOLETASK\_PRIORITY}{CONSOLETASK\_PRIORITY}}
+{\footnotesize\ttfamily \label{group__config05_gab43a9f1c2431c5f2880248763d5daf8e} 
+\#define CONSOLETASK\+\_\+\+PRIORITY~(tsk\+IDLE\+\_\+\+PRIORITY + 3)}
+
+\Hypertarget{group__config05_gab8bb705d9bf22494812bc21b8900b11a}\index{5. RTOS Configuration@{5. RTOS Configuration}!HEALTHTASK\_PRIORITY@{HEALTHTASK\_PRIORITY}}
+\index{HEALTHTASK\_PRIORITY@{HEALTHTASK\_PRIORITY}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{HEALTHTASK\_PRIORITY}{HEALTHTASK\_PRIORITY}}
+{\footnotesize\ttfamily \label{group__config05_gab8bb705d9bf22494812bc21b8900b11a} 
+\#define HEALTHTASK\+\_\+\+PRIORITY~(\mbox{\hyperlink{group__config05_ga9a78f5ac61e6cb172dadf2a51f11db38}{config\+MAX\+\_\+\+PRIORITIES}} -\/ 1)}
+
+\Hypertarget{group__config05_ga4fd1d67d54044ac86e8ffc890180f9f6}\index{5. RTOS Configuration@{5. RTOS Configuration}!INCLUDE\_eTaskGetState@{INCLUDE\_eTaskGetState}}
+\index{INCLUDE\_eTaskGetState@{INCLUDE\_eTaskGetState}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{INCLUDE\_eTaskGetState}{INCLUDE\_eTaskGetState}}
+{\footnotesize\ttfamily \label{group__config05_ga4fd1d67d54044ac86e8ffc890180f9f6} 
+\#define INCLUDE\+\_\+e\+Task\+Get\+State~1}
+
+\Hypertarget{group__config05_ga23c7b4b41fe9b575cf2329c7cbe78b86}\index{5. RTOS Configuration@{5. RTOS Configuration}!INCLUDE\_uxTaskGetStackHighWaterMark@{INCLUDE\_uxTaskGetStackHighWaterMark}}
+\index{INCLUDE\_uxTaskGetStackHighWaterMark@{INCLUDE\_uxTaskGetStackHighWaterMark}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{INCLUDE\_uxTaskGetStackHighWaterMark}{INCLUDE\_uxTaskGetStackHighWaterMark}}
+{\footnotesize\ttfamily \label{group__config05_ga23c7b4b41fe9b575cf2329c7cbe78b86} 
+\#define INCLUDE\+\_\+ux\+Task\+Get\+Stack\+High\+Water\+Mark~1}
+
+\Hypertarget{group__config05_gaae20dbc3e4e870003109dcf121cbaee8}\index{5. RTOS Configuration@{5. RTOS Configuration}!INCLUDE\_uxTaskGetStackHighWaterMark2@{INCLUDE\_uxTaskGetStackHighWaterMark2}}
+\index{INCLUDE\_uxTaskGetStackHighWaterMark2@{INCLUDE\_uxTaskGetStackHighWaterMark2}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{INCLUDE\_uxTaskGetStackHighWaterMark2}{INCLUDE\_uxTaskGetStackHighWaterMark2}}
+{\footnotesize\ttfamily \label{group__config05_gaae20dbc3e4e870003109dcf121cbaee8} 
+\#define INCLUDE\+\_\+ux\+Task\+Get\+Stack\+High\+Water\+Mark2~1}
+
+\Hypertarget{group__config05_ga1279eb797355460aeeec06aa524e91df}\index{5. RTOS Configuration@{5. RTOS Configuration}!INCLUDE\_uxTaskPriorityGet@{INCLUDE\_uxTaskPriorityGet}}
+\index{INCLUDE\_uxTaskPriorityGet@{INCLUDE\_uxTaskPriorityGet}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{INCLUDE\_uxTaskPriorityGet}{INCLUDE\_uxTaskPriorityGet}}
+{\footnotesize\ttfamily \label{group__config05_ga1279eb797355460aeeec06aa524e91df} 
+\#define INCLUDE\+\_\+ux\+Task\+Priority\+Get~1}
+
+\Hypertarget{group__config05_ga24361a6eb816a965f1ee4e2e08e364f8}\index{5. RTOS Configuration@{5. RTOS Configuration}!INCLUDE\_vTaskDelay@{INCLUDE\_vTaskDelay}}
+\index{INCLUDE\_vTaskDelay@{INCLUDE\_vTaskDelay}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{INCLUDE\_vTaskDelay}{INCLUDE\_vTaskDelay}}
+{\footnotesize\ttfamily \label{group__config05_ga24361a6eb816a965f1ee4e2e08e364f8} 
+\#define INCLUDE\+\_\+v\+Task\+Delay~1}
+
+\Hypertarget{group__config05_gae8459bfd5b428319bb10de9f504a53aa}\index{5. RTOS Configuration@{5. RTOS Configuration}!INCLUDE\_vTaskDelayUntil@{INCLUDE\_vTaskDelayUntil}}
+\index{INCLUDE\_vTaskDelayUntil@{INCLUDE\_vTaskDelayUntil}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{INCLUDE\_vTaskDelayUntil}{INCLUDE\_vTaskDelayUntil}}
+{\footnotesize\ttfamily \label{group__config05_gae8459bfd5b428319bb10de9f504a53aa} 
+\#define INCLUDE\+\_\+v\+Task\+Delay\+Until~1}
+
+\Hypertarget{group__config05_ga5ae1434fdf995108dc749ff9329f53bd}\index{5. RTOS Configuration@{5. RTOS Configuration}!INCLUDE\_vTaskDelete@{INCLUDE\_vTaskDelete}}
+\index{INCLUDE\_vTaskDelete@{INCLUDE\_vTaskDelete}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{INCLUDE\_vTaskDelete}{INCLUDE\_vTaskDelete}}
+{\footnotesize\ttfamily \label{group__config05_ga5ae1434fdf995108dc749ff9329f53bd} 
+\#define INCLUDE\+\_\+v\+Task\+Delete~1}
+
+\Hypertarget{group__config05_gad6858ac8aaf726007fd19752956ef1bd}\index{5. RTOS Configuration@{5. RTOS Configuration}!INCLUDE\_vTaskPrioritySet@{INCLUDE\_vTaskPrioritySet}}
+\index{INCLUDE\_vTaskPrioritySet@{INCLUDE\_vTaskPrioritySet}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{INCLUDE\_vTaskPrioritySet}{INCLUDE\_vTaskPrioritySet}}
+{\footnotesize\ttfamily \label{group__config05_gad6858ac8aaf726007fd19752956ef1bd} 
+\#define INCLUDE\+\_\+v\+Task\+Priority\+Set~1}
+
+\Hypertarget{group__config05_gaef8fbb97819ad3d962f334ac298206d1}\index{5. RTOS Configuration@{5. RTOS Configuration}!INCLUDE\_vTaskSuspend@{INCLUDE\_vTaskSuspend}}
+\index{INCLUDE\_vTaskSuspend@{INCLUDE\_vTaskSuspend}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{INCLUDE\_vTaskSuspend}{INCLUDE\_vTaskSuspend}}
+{\footnotesize\ttfamily \label{group__config05_gaef8fbb97819ad3d962f334ac298206d1} 
+\#define INCLUDE\+\_\+v\+Task\+Suspend~1}
+
+\Hypertarget{group__config05_gaf93b5ef191e3e4bbf050119dacbd148b}\index{5. RTOS Configuration@{5. RTOS Configuration}!INCLUDE\_xEventGroupSetBitFromISR@{INCLUDE\_xEventGroupSetBitFromISR}}
+\index{INCLUDE\_xEventGroupSetBitFromISR@{INCLUDE\_xEventGroupSetBitFromISR}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{INCLUDE\_xEventGroupSetBitFromISR}{INCLUDE\_xEventGroupSetBitFromISR}}
+{\footnotesize\ttfamily \label{group__config05_gaf93b5ef191e3e4bbf050119dacbd148b} 
+\#define INCLUDE\+\_\+x\+Event\+Group\+Set\+Bit\+From\+ISR~1}
+
+\Hypertarget{group__config05_ga4e2902143b6abf777065c15940321911}\index{5. RTOS Configuration@{5. RTOS Configuration}!INCLUDE\_xQueueGetMutexHolder@{INCLUDE\_xQueueGetMutexHolder}}
+\index{INCLUDE\_xQueueGetMutexHolder@{INCLUDE\_xQueueGetMutexHolder}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{INCLUDE\_xQueueGetMutexHolder}{INCLUDE\_xQueueGetMutexHolder}}
+{\footnotesize\ttfamily \label{group__config05_ga4e2902143b6abf777065c15940321911} 
+\#define INCLUDE\+\_\+x\+Queue\+Get\+Mutex\+Holder~1}
+
+\Hypertarget{group__config05_gac99d9c3ef7d5fdeb24375ddeb9602b55}\index{5. RTOS Configuration@{5. RTOS Configuration}!INCLUDE\_xResumeFromISR@{INCLUDE\_xResumeFromISR}}
+\index{INCLUDE\_xResumeFromISR@{INCLUDE\_xResumeFromISR}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{INCLUDE\_xResumeFromISR}{INCLUDE\_xResumeFromISR}}
+{\footnotesize\ttfamily \label{group__config05_gac99d9c3ef7d5fdeb24375ddeb9602b55} 
+\#define INCLUDE\+\_\+x\+Resume\+From\+ISR~1}
+
+\Hypertarget{group__config05_gac54efb28edcc1d3b9d0844005ea20674}\index{5. RTOS Configuration@{5. RTOS Configuration}!INCLUDE\_xTaskAbortDelay@{INCLUDE\_xTaskAbortDelay}}
+\index{INCLUDE\_xTaskAbortDelay@{INCLUDE\_xTaskAbortDelay}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{INCLUDE\_xTaskAbortDelay}{INCLUDE\_xTaskAbortDelay}}
+{\footnotesize\ttfamily \label{group__config05_gac54efb28edcc1d3b9d0844005ea20674} 
+\#define INCLUDE\+\_\+x\+Task\+Abort\+Delay~1}
+
+\Hypertarget{group__config05_gac96b6a6e70667f266db4278be71cbd78}\index{5. RTOS Configuration@{5. RTOS Configuration}!INCLUDE\_xTaskGetCurrentTaskHandle@{INCLUDE\_xTaskGetCurrentTaskHandle}}
+\index{INCLUDE\_xTaskGetCurrentTaskHandle@{INCLUDE\_xTaskGetCurrentTaskHandle}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{INCLUDE\_xTaskGetCurrentTaskHandle}{INCLUDE\_xTaskGetCurrentTaskHandle}}
+{\footnotesize\ttfamily \label{group__config05_gac96b6a6e70667f266db4278be71cbd78} 
+\#define INCLUDE\+\_\+x\+Task\+Get\+Current\+Task\+Handle~1}
+
+\Hypertarget{group__config05_ga33733d2bbe005751ec3a417e5ac373bf}\index{5. RTOS Configuration@{5. RTOS Configuration}!INCLUDE\_xTaskGetHandle@{INCLUDE\_xTaskGetHandle}}
+\index{INCLUDE\_xTaskGetHandle@{INCLUDE\_xTaskGetHandle}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{INCLUDE\_xTaskGetHandle}{INCLUDE\_xTaskGetHandle}}
+{\footnotesize\ttfamily \label{group__config05_ga33733d2bbe005751ec3a417e5ac373bf} 
+\#define INCLUDE\+\_\+x\+Task\+Get\+Handle~1}
+
+\Hypertarget{group__config05_gae8811def4dd6983011fed9ef8686f18f}\index{5. RTOS Configuration@{5. RTOS Configuration}!INCLUDE\_xTaskGetIdleTaskHandle@{INCLUDE\_xTaskGetIdleTaskHandle}}
+\index{INCLUDE\_xTaskGetIdleTaskHandle@{INCLUDE\_xTaskGetIdleTaskHandle}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{INCLUDE\_xTaskGetIdleTaskHandle}{INCLUDE\_xTaskGetIdleTaskHandle}}
+{\footnotesize\ttfamily \label{group__config05_gae8811def4dd6983011fed9ef8686f18f} 
+\#define INCLUDE\+\_\+x\+Task\+Get\+Idle\+Task\+Handle~1}
+
+\Hypertarget{group__config05_ga9ed60ede556830584e6bfd4a3ab4f9de}\index{5. RTOS Configuration@{5. RTOS Configuration}!INCLUDE\_xTaskGetSchedulerState@{INCLUDE\_xTaskGetSchedulerState}}
+\index{INCLUDE\_xTaskGetSchedulerState@{INCLUDE\_xTaskGetSchedulerState}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{INCLUDE\_xTaskGetSchedulerState}{INCLUDE\_xTaskGetSchedulerState}}
+{\footnotesize\ttfamily \label{group__config05_ga9ed60ede556830584e6bfd4a3ab4f9de} 
+\#define INCLUDE\+\_\+x\+Task\+Get\+Scheduler\+State~1}
+
+\Hypertarget{group__config05_ga85e3dae9f3daa26f24e679cb6793811e}\index{5. RTOS Configuration@{5. RTOS Configuration}!INCLUDE\_xTaskResumeFromISR@{INCLUDE\_xTaskResumeFromISR}}
+\index{INCLUDE\_xTaskResumeFromISR@{INCLUDE\_xTaskResumeFromISR}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{INCLUDE\_xTaskResumeFromISR}{INCLUDE\_xTaskResumeFromISR}}
+{\footnotesize\ttfamily \label{group__config05_ga85e3dae9f3daa26f24e679cb6793811e} 
+\#define INCLUDE\+\_\+x\+Task\+Resume\+From\+ISR~1}
+
+\Hypertarget{group__config05_ga4b4336acd61a8e513ca2376be84326b5}\index{5. RTOS Configuration@{5. RTOS Configuration}!INCLUDE\_xTimerPendFunctionCall@{INCLUDE\_xTimerPendFunctionCall}}
+\index{INCLUDE\_xTimerPendFunctionCall@{INCLUDE\_xTimerPendFunctionCall}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{INCLUDE\_xTimerPendFunctionCall}{INCLUDE\_xTimerPendFunctionCall}}
+{\footnotesize\ttfamily \label{group__config05_ga4b4336acd61a8e513ca2376be84326b5} 
+\#define INCLUDE\+\_\+x\+Timer\+Pend\+Function\+Call~1}
+
+\Hypertarget{group__config05_ga7e7d702961a27fb97a00c2657fda0fa1}\index{5. RTOS Configuration@{5. RTOS Configuration}!INITTASK\_PRIORITY@{INITTASK\_PRIORITY}}
+\index{INITTASK\_PRIORITY@{INITTASK\_PRIORITY}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{INITTASK\_PRIORITY}{INITTASK\_PRIORITY}}
+{\footnotesize\ttfamily \label{group__config05_ga7e7d702961a27fb97a00c2657fda0fa1} 
+\#define INITTASK\+\_\+\+PRIORITY~(\mbox{\hyperlink{group__config05_ga9a78f5ac61e6cb172dadf2a51f11db38}{config\+MAX\+\_\+\+PRIORITIES}} -\/ 2)}
+
+\Hypertarget{group__config05_ga1f1df9d85cf82871f167af882f21d498}\index{5. RTOS Configuration@{5. RTOS Configuration}!LOGTASK\_PRIORITY@{LOGTASK\_PRIORITY}}
+\index{LOGTASK\_PRIORITY@{LOGTASK\_PRIORITY}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{LOGTASK\_PRIORITY}{LOGTASK\_PRIORITY}}
+{\footnotesize\ttfamily \label{group__config05_ga1f1df9d85cf82871f167af882f21d498} 
+\#define LOGTASK\+\_\+\+PRIORITY~(tsk\+IDLE\+\_\+\+PRIORITY + 2)}
+
+\Hypertarget{group__config05_gad76bafafb20e37f32f9b7d7a0b1372e4}\index{5. RTOS Configuration@{5. RTOS Configuration}!METERTASK\_PRIORITY@{METERTASK\_PRIORITY}}
+\index{METERTASK\_PRIORITY@{METERTASK\_PRIORITY}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{METERTASK\_PRIORITY}{METERTASK\_PRIORITY}}
+{\footnotesize\ttfamily \label{group__config05_gad76bafafb20e37f32f9b7d7a0b1372e4} 
+\#define METERTASK\+\_\+\+PRIORITY~(tsk\+IDLE\+\_\+\+PRIORITY + 2)}
+
+\Hypertarget{group__config05_ga7b811b5471aa9e64b1b57ec2bc607620}\index{5. RTOS Configuration@{5. RTOS Configuration}!NETTASK\_PRIORITY@{NETTASK\_PRIORITY}}
+\index{NETTASK\_PRIORITY@{NETTASK\_PRIORITY}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{NETTASK\_PRIORITY}{NETTASK\_PRIORITY}}
+{\footnotesize\ttfamily \label{group__config05_ga7b811b5471aa9e64b1b57ec2bc607620} 
+\#define NETTASK\+\_\+\+PRIORITY~(tsk\+IDLE\+\_\+\+PRIORITY + 4)}
+
+\Hypertarget{group__config05_ga1fdeff5b2a58d26bba2a91fa3e4d50f4}\index{5. RTOS Configuration@{5. RTOS Configuration}!STORAGETASK\_PRIORITY@{STORAGETASK\_PRIORITY}}
+\index{STORAGETASK\_PRIORITY@{STORAGETASK\_PRIORITY}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{STORAGETASK\_PRIORITY}{STORAGETASK\_PRIORITY}}
+{\footnotesize\ttfamily \label{group__config05_ga1fdeff5b2a58d26bba2a91fa3e4d50f4} 
+\#define STORAGETASK\+\_\+\+PRIORITY~(tsk\+IDLE\+\_\+\+PRIORITY + 3)}
+
+\Hypertarget{group__config05_gaeb02214610057554934ebc985bab1a71}\index{5. RTOS Configuration@{5. RTOS Configuration}!SWITCHTASK\_PRIORITY@{SWITCHTASK\_PRIORITY}}
+\index{SWITCHTASK\_PRIORITY@{SWITCHTASK\_PRIORITY}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{SWITCHTASK\_PRIORITY}{SWITCHTASK\_PRIORITY}}
+{\footnotesize\ttfamily \label{group__config05_gaeb02214610057554934ebc985bab1a71} 
+\#define SWITCHTASK\+\_\+\+PRIORITY~(tsk\+IDLE\+\_\+\+PRIORITY + 5)}
+
+\Hypertarget{group__config05_gad43047b3ea0a146673e30637488bf754}\index{5. RTOS Configuration@{5. RTOS Configuration}!vPortSVCHandler@{vPortSVCHandler}}
+\index{vPortSVCHandler@{vPortSVCHandler}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{vPortSVCHandler}{vPortSVCHandler}}
+{\footnotesize\ttfamily \label{group__config05_gad43047b3ea0a146673e30637488bf754} 
+\#define v\+Port\+SVCHandler~isr\+\_\+svcall}
+
+\Hypertarget{group__config05_ga6f30022da7d797dd31f1b8a11cae9a35}\index{5. RTOS Configuration@{5. RTOS Configuration}!xPortPendSVHandler@{xPortPendSVHandler}}
+\index{xPortPendSVHandler@{xPortPendSVHandler}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{xPortPendSVHandler}{xPortPendSVHandler}}
+{\footnotesize\ttfamily \label{group__config05_ga6f30022da7d797dd31f1b8a11cae9a35} 
+\#define x\+Port\+Pend\+SVHandler~isr\+\_\+pendsv}
+
+\Hypertarget{group__config05_gae42e6318b5d564e44f97f8c765859448}\index{5. RTOS Configuration@{5. RTOS Configuration}!xPortSysTickHandler@{xPortSysTickHandler}}
+\index{xPortSysTickHandler@{xPortSysTickHandler}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{xPortSysTickHandler}{xPortSysTickHandler}}
+{\footnotesize\ttfamily \label{group__config05_gae42e6318b5d564e44f97f8c765859448} 
+\#define x\+Port\+Sys\+Tick\+Handler~isr\+\_\+systick}
+
+
+
+\label{doc-func-members}
+\Hypertarget{group__config05_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__config05_ga20f7d031e5579a7e413468a721166881}\index{5. RTOS Configuration@{5. RTOS Configuration}!vAssertCalled@{vAssertCalled}}
+\index{vAssertCalled@{vAssertCalled}!5. RTOS Configuration@{5. RTOS Configuration}}
+\doxysubsubsubsection{\texorpdfstring{vAssertCalled()}{vAssertCalled()}}
+{\footnotesize\ttfamily \label{group__config05_ga20f7d031e5579a7e413468a721166881} 
+void v\+Assert\+Called (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{file}{, }\item[{int}]{line}{}\end{DoxyParamCaption})}
+
+
+
+Free\+RTOS assertion failure hook with context capture. 
+
+Called when a Free\+RTOS assertion fails (via config\+ASSERT macro). Captures diagnostic context and initiates reboot.
+
+Fault signature format in watchdog scratch registers\+:
+\begin{DoxyItemize}
+\item scratch\mbox{[}0\mbox{]}\+: 0x\+BEEF0000 \texorpdfstring{$\vert$}{|} 0x\+F4 (Assert signature)
+\item scratch\mbox{[}1\mbox{]}\+: Function return address
+\item scratch\mbox{[}2\mbox{]}\+: Source line number where assertion failed
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & Source file name (unused, may be invalid after crash) \\
+\hline
+{\em line} & Line number where assertion failed\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None (function does not return; system reboots)
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Requires \doxylink{group__config05_ga228c70cd48927d6ab730ed1a6dfbe35f}{config\+ASSERT()} macro defined in \doxylink{_free_r_t_o_s_config_8h}{Free\+RTOSConfig.\+h} 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__config05_ga20f7d031e5579a7e413468a721166881_cgraph}
+\end{center}
+\end{figure}

@@ -6,7 +6,7 @@
  * @brief Configuration files for the Energis PDU firmware.
  * @{
  *
- * @defgroup config01 1. RTOS Configuration
+ * @defgroup config04 4. Error Coding Configuration
  * @ingroup config
  * @brief Configuration header for ENERGIS PDU firmware.
  * @{
@@ -36,6 +36,7 @@
  *
  * Severity occupies bits 11..8 of the error code.
  */
+/** @enum error_severity_t */
 typedef enum {
     ERR_SEV_INFO = 0x1,    /**< Informational event (bits 11..8 = 0x1) */
     ERR_SEV_WARNING = 0x2, /**< Warning condition (bits 11..8 = 0x2) */
@@ -48,6 +49,8 @@ typedef enum {
  *
  * Module ID occupies bits 15..12 of the error code.
  */
+/** @name Module IDs
+ * @{ */
 #define ERR_MOD_INIT 0x1    /**< InitTask module */
 #define ERR_MOD_NET 0x2     /**< NetTask module */
 #define ERR_MOD_METER 0x3   /**< MeterTask module */
@@ -58,12 +61,15 @@ typedef enum {
 #define ERR_MOD_CONSOLE 0x8 /**< ConsoleTask module */
 #define ERR_MOD_OCP 0x9     /**< Overcurrent Protection module */
 #define ERR_MOD_SWTASK 0xA  /**< SwitchTask module */
+/** @} */
 
 /********************************************************************************
  *                       FILE IDs (FID) PER MODULE / FILE                       *
  *                  Used in ERR_MAKE_CODE(module, severity, FID, EID)          *
  ********************************************************************************/
 
+/** @name File IDs per Module
+ * @{ */
 /* =========================== INIT MODULE (0x1) ============================ */
 /* Files:
  *   src/ENERGIS_RTOS.c
@@ -142,12 +148,15 @@ typedef enum {
 #define ERR_FID_SWITCHTASK3 0x3 /**< SwitchTask.c */
 #define ERR_FID_SWITCHTASK4 0x4 /**< SwitchTask.c */
 #define ERR_FID_SWITCHTASK5 0x5 /**< SwitchTask.c */
+/** @} */
 
 /********************************************************************************
  *                                FUNCTION MACROS                               *
  *                                                                              *
  ********************************************************************************/
 
+/** @name Error Code Helpers
+ * @{ */
 /**
  * @brief File ID and Error ID helpers for the CC byte.
  *
@@ -206,6 +215,7 @@ typedef enum {
  * @return Severity (bits 11..8)
  */
 #define ERR_GET_SEVERITY(code) ((uint8_t)(((code) >> 8) & 0x0F))
+/** @} */
 
 /**
  * @brief Error-aware logging macros with 16-bit error codes.
@@ -214,6 +224,8 @@ typedef enum {
  * perform EEPROM access. EEPROM writes must be done separately by calling
  * EEPROM_AppendEventLog() with eepromMtx held.
  */
+/** @name Logging Macros
+ * @{ */
 #if ERROR
 #define ERROR_PRINT_CODE(code, fmt, ...)                                                           \
     do {                                                                                           \
@@ -230,3 +242,7 @@ typedef enum {
 #else
 #define WARNING_PRINT_CODE(code, fmt, ...) ((void)0)
 #endif
+/** @} */
+
+/** @} */
+/** @} */

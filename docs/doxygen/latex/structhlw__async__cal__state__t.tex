@@ -1,0 +1,145 @@
+\doxysection{hlw\+\_\+async\+\_\+cal\+\_\+state\+\_\+t Struct Reference}
+\hypertarget{structhlw__async__cal__state__t}{}\label{structhlw__async__cal__state__t}\index{hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}}
+
+
+Internal state for the asynchronous HLW8032 auto-\/calibration engine.  
+
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_h_l_w8032__driver_8c_ad4993df493d6258f580dda849ec226c2}{hlw\+\_\+cal\+\_\+mode\+\_\+t}} \mbox{\hyperlink{structhlw__async__cal__state__t_a151a4bdf4ad40c0706c0ff59b0e6609d}{mode}}
+\item 
+bool \mbox{\hyperlink{structhlw__async__cal__state__t_a3f16bc6eb0d8b88765a9bdd3b59a3bbd}{running}}
+\item 
+float \mbox{\hyperlink{structhlw__async__cal__state__t_a931604d11f0107e2c36f2a5136c38e03}{ref\+\_\+voltage}}
+\item 
+float \mbox{\hyperlink{structhlw__async__cal__state__t_a9bd9480208cbbf83d2189c108f6f79bf}{ref\+\_\+current}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structhlw__async__cal__state__t_ac9e07b4e1cd09fe974964c887080c708}{current\+\_\+channel}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structhlw__async__cal__state__t_a66ccf75a652c46dbd2cfe0c539707782}{total\+\_\+channels}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structhlw__async__cal__state__t_aef6826e7eee0a598e78f2c1435c5aec0}{samples\+\_\+target}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structhlw__async__cal__state__t_a7b9892bd4bc581b5f851ab26735775f0}{samples\+\_\+collected}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structhlw__async__cal__state__t_a85a69938719d14049b61a4471abdbc23}{valid\+\_\+samples}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structhlw__async__cal__state__t_ac982cb494ece56356b53d945779d4d50}{vpar\+\_\+sum}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structhlw__async__cal__state__t_a6cc91a0cc7f9771b2eca272949b7caa6}{vdat\+\_\+sum}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structhlw__async__cal__state__t_ad812c87e9ee38782da4a9eb86d59c83e}{cpar\+\_\+sum}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structhlw__async__cal__state__t_a9eb1519c8d556eec3f9b54010d2d4456}{cdat\+\_\+sum}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structhlw__async__cal__state__t_ad0bad0c921c3719c14f654e2015e898d}{ok\+\_\+channels}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structhlw__async__cal__state__t_aa426f159d4b753213f2572adc89d3341}{failed\+\_\+channels}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Internal state for the asynchronous HLW8032 auto-\/calibration engine. 
+
+This state is driven cooperatively from normal polling via \doxylink{group__drivers04_gaf9b4059456656d1620a19fa771086a2d}{hlw8032\+\_\+read()}, so calibration runs without blocking any single task or starving the WD. 
+
+\label{doc-variable-members}
+\Hypertarget{structhlw__async__cal__state__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structhlw__async__cal__state__t_a9eb1519c8d556eec3f9b54010d2d4456}\index{hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}!cdat\_sum@{cdat\_sum}}
+\index{cdat\_sum@{cdat\_sum}!hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}}
+\doxysubsubsection{\texorpdfstring{cdat\_sum}{cdat\_sum}}
+{\footnotesize\ttfamily \label{structhlw__async__cal__state__t_a9eb1519c8d556eec3f9b54010d2d4456} 
+uint32\+\_\+t hlw\+\_\+async\+\_\+cal\+\_\+state\+\_\+t\+::cdat\+\_\+sum}
+
+Accumulated Cur\+Data over valid samples. \Hypertarget{structhlw__async__cal__state__t_ad812c87e9ee38782da4a9eb86d59c83e}\index{hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}!cpar\_sum@{cpar\_sum}}
+\index{cpar\_sum@{cpar\_sum}!hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}}
+\doxysubsubsection{\texorpdfstring{cpar\_sum}{cpar\_sum}}
+{\footnotesize\ttfamily \label{structhlw__async__cal__state__t_ad812c87e9ee38782da4a9eb86d59c83e} 
+uint32\+\_\+t hlw\+\_\+async\+\_\+cal\+\_\+state\+\_\+t\+::cpar\+\_\+sum}
+
+Accumulated Cur\+Par over valid samples. \Hypertarget{structhlw__async__cal__state__t_ac9e07b4e1cd09fe974964c887080c708}\index{hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}!current\_channel@{current\_channel}}
+\index{current\_channel@{current\_channel}!hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}}
+\doxysubsubsection{\texorpdfstring{current\_channel}{current\_channel}}
+{\footnotesize\ttfamily \label{structhlw__async__cal__state__t_ac9e07b4e1cd09fe974964c887080c708} 
+uint8\+\_\+t hlw\+\_\+async\+\_\+cal\+\_\+state\+\_\+t\+::current\+\_\+channel}
+
+Channel currently being calibrated \mbox{[}0..7\mbox{]}. \Hypertarget{structhlw__async__cal__state__t_aa426f159d4b753213f2572adc89d3341}\index{hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}!failed\_channels@{failed\_channels}}
+\index{failed\_channels@{failed\_channels}!hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}}
+\doxysubsubsection{\texorpdfstring{failed\_channels}{failed\_channels}}
+{\footnotesize\ttfamily \label{structhlw__async__cal__state__t_aa426f159d4b753213f2572adc89d3341} 
+uint8\+\_\+t hlw\+\_\+async\+\_\+cal\+\_\+state\+\_\+t\+::failed\+\_\+channels}
+
+Number of channels that failed calibration. \Hypertarget{structhlw__async__cal__state__t_a151a4bdf4ad40c0706c0ff59b0e6609d}\index{hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}!mode@{mode}}
+\index{mode@{mode}!hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}}
+\doxysubsubsection{\texorpdfstring{mode}{mode}}
+{\footnotesize\ttfamily \label{structhlw__async__cal__state__t_a151a4bdf4ad40c0706c0ff59b0e6609d} 
+\mbox{\hyperlink{_h_l_w8032__driver_8c_ad4993df493d6258f580dda849ec226c2}{hlw\+\_\+cal\+\_\+mode\+\_\+t}} hlw\+\_\+async\+\_\+cal\+\_\+state\+\_\+t\+::mode}
+
+Current calibration mode. \Hypertarget{structhlw__async__cal__state__t_ad0bad0c921c3719c14f654e2015e898d}\index{hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}!ok\_channels@{ok\_channels}}
+\index{ok\_channels@{ok\_channels}!hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}}
+\doxysubsubsection{\texorpdfstring{ok\_channels}{ok\_channels}}
+{\footnotesize\ttfamily \label{structhlw__async__cal__state__t_ad0bad0c921c3719c14f654e2015e898d} 
+uint8\+\_\+t hlw\+\_\+async\+\_\+cal\+\_\+state\+\_\+t\+::ok\+\_\+channels}
+
+Number of channels calibrated successfully. \Hypertarget{structhlw__async__cal__state__t_a9bd9480208cbbf83d2189c108f6f79bf}\index{hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}!ref\_current@{ref\_current}}
+\index{ref\_current@{ref\_current}!hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}}
+\doxysubsubsection{\texorpdfstring{ref\_current}{ref\_current}}
+{\footnotesize\ttfamily \label{structhlw__async__cal__state__t_a9bd9480208cbbf83d2189c108f6f79bf} 
+float hlw\+\_\+async\+\_\+cal\+\_\+state\+\_\+t\+::ref\+\_\+current}
+
+Reference current in amps (for CURR mode). \Hypertarget{structhlw__async__cal__state__t_a931604d11f0107e2c36f2a5136c38e03}\index{hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}!ref\_voltage@{ref\_voltage}}
+\index{ref\_voltage@{ref\_voltage}!hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}}
+\doxysubsubsection{\texorpdfstring{ref\_voltage}{ref\_voltage}}
+{\footnotesize\ttfamily \label{structhlw__async__cal__state__t_a931604d11f0107e2c36f2a5136c38e03} 
+float hlw\+\_\+async\+\_\+cal\+\_\+state\+\_\+t\+::ref\+\_\+voltage}
+
+Reference voltage in volts (for VOLT mode). \Hypertarget{structhlw__async__cal__state__t_a3f16bc6eb0d8b88765a9bdd3b59a3bbd}\index{hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}!running@{running}}
+\index{running@{running}!hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}}
+\doxysubsubsection{\texorpdfstring{running}{running}}
+{\footnotesize\ttfamily \label{structhlw__async__cal__state__t_a3f16bc6eb0d8b88765a9bdd3b59a3bbd} 
+bool hlw\+\_\+async\+\_\+cal\+\_\+state\+\_\+t\+::running}
+
+True while a calibration sequence is active. \Hypertarget{structhlw__async__cal__state__t_a7b9892bd4bc581b5f851ab26735775f0}\index{hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}!samples\_collected@{samples\_collected}}
+\index{samples\_collected@{samples\_collected}!hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}}
+\doxysubsubsection{\texorpdfstring{samples\_collected}{samples\_collected}}
+{\footnotesize\ttfamily \label{structhlw__async__cal__state__t_a7b9892bd4bc581b5f851ab26735775f0} 
+uint8\+\_\+t hlw\+\_\+async\+\_\+cal\+\_\+state\+\_\+t\+::samples\+\_\+collected}
+
+Total samples collected on current channel. \Hypertarget{structhlw__async__cal__state__t_aef6826e7eee0a598e78f2c1435c5aec0}\index{hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}!samples\_target@{samples\_target}}
+\index{samples\_target@{samples\_target}!hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}}
+\doxysubsubsection{\texorpdfstring{samples\_target}{samples\_target}}
+{\footnotesize\ttfamily \label{structhlw__async__cal__state__t_aef6826e7eee0a598e78f2c1435c5aec0} 
+uint8\+\_\+t hlw\+\_\+async\+\_\+cal\+\_\+state\+\_\+t\+::samples\+\_\+target}
+
+Required number of samples per channel. \Hypertarget{structhlw__async__cal__state__t_a66ccf75a652c46dbd2cfe0c539707782}\index{hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}!total\_channels@{total\_channels}}
+\index{total\_channels@{total\_channels}!hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}}
+\doxysubsubsection{\texorpdfstring{total\_channels}{total\_channels}}
+{\footnotesize\ttfamily \label{structhlw__async__cal__state__t_a66ccf75a652c46dbd2cfe0c539707782} 
+uint8\+\_\+t hlw\+\_\+async\+\_\+cal\+\_\+state\+\_\+t\+::total\+\_\+channels}
+
+Number of channels in sequence (normally 8). \Hypertarget{structhlw__async__cal__state__t_a85a69938719d14049b61a4471abdbc23}\index{hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}!valid\_samples@{valid\_samples}}
+\index{valid\_samples@{valid\_samples}!hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}}
+\doxysubsubsection{\texorpdfstring{valid\_samples}{valid\_samples}}
+{\footnotesize\ttfamily \label{structhlw__async__cal__state__t_a85a69938719d14049b61a4471abdbc23} 
+uint8\+\_\+t hlw\+\_\+async\+\_\+cal\+\_\+state\+\_\+t\+::valid\+\_\+samples}
+
+Valid samples counted for current channel. \Hypertarget{structhlw__async__cal__state__t_a6cc91a0cc7f9771b2eca272949b7caa6}\index{hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}!vdat\_sum@{vdat\_sum}}
+\index{vdat\_sum@{vdat\_sum}!hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}}
+\doxysubsubsection{\texorpdfstring{vdat\_sum}{vdat\_sum}}
+{\footnotesize\ttfamily \label{structhlw__async__cal__state__t_a6cc91a0cc7f9771b2eca272949b7caa6} 
+uint32\+\_\+t hlw\+\_\+async\+\_\+cal\+\_\+state\+\_\+t\+::vdat\+\_\+sum}
+
+Accumulated Vol\+Data over valid samples. \Hypertarget{structhlw__async__cal__state__t_ac982cb494ece56356b53d945779d4d50}\index{hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}!vpar\_sum@{vpar\_sum}}
+\index{vpar\_sum@{vpar\_sum}!hlw\_async\_cal\_state\_t@{hlw\_async\_cal\_state\_t}}
+\doxysubsubsection{\texorpdfstring{vpar\_sum}{vpar\_sum}}
+{\footnotesize\ttfamily \label{structhlw__async__cal__state__t_ac982cb494ece56356b53d945779d4d50} 
+uint32\+\_\+t hlw\+\_\+async\+\_\+cal\+\_\+state\+\_\+t\+::vpar\+\_\+sum}
+
+Accumulated Vol\+Par over valid samples. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/drivers/\mbox{\hyperlink{_h_l_w8032__driver_8c}{HLW8032\+\_\+driver.\+c}}\end{DoxyCompactItemize}

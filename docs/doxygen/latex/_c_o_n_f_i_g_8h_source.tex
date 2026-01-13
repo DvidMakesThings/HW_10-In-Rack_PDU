@@ -1,0 +1,421 @@
+\doxysection{CONFIG.\+h}
+\hypertarget{_c_o_n_f_i_g_8h_source}{}\label{_c_o_n_f_i_g_8h_source}\index{src/Software/ENERGIS\_RTOS/src/CONFIG.h@{src/Software/ENERGIS\_RTOS/src/CONFIG.h}}
+\mbox{\hyperlink{_c_o_n_f_i_g_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#ifndef\ CONFIG\_H}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ CONFIG\_H}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ "{}FreeRTOS.h"{}}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ "{}event\_groups.h"{}}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ "{}pico/bootrom.h"{}}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ "{}pico/multicore.h"{}}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ "{}pico/stdlib.h"{}}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ "{}queue.h"{}}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ "{}semphr.h"{}}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ "{}task.h"{}}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ "{}timers.h"{}}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#include\ <ctype.h>}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ <stdarg.h>}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_e_r_r_o_r___c_o_d_e_8h}{ERROR\_CODE.h}}"{}}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ "{}hardware/adc.h"{}}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#include\ "{}hardware/clocks.h"{}}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#include\ "{}hardware/gpio.h"{}}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#include\ "{}hardware/i2c.h"{}}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#include\ "{}hardware/irq.h"{}}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#include\ "{}hardware/pwm.h"{}}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#include\ "{}hardware/spi.h"{}}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#include\ "{}hardware/structs/vreg\_and\_chip\_reset.h"{}}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#include\ "{}hardware/structs/watchdog.h"{}}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#include\ "{}hardware/sync.h"{}}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#include\ "{}hardware/uart.h"{}}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#include\ "{}hardware/watchdog.h"{}}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{comment}{/*\ clang-\/format\ off\ */}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h}{misc/EEPROM\_MemoryMap.h}}"{}}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{helpers_8h}{misc/helpers.h}}"{}}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{crashlog_8h}{misc/crashlog.h}}"{}}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{rtos__hooks_8h}{misc/rtos\_hooks.h}}"{}}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{power__mgr_8h}{misc/power\_mgr.h}}"{}}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{i2c__bus_8h}{drivers/i2c\_bus.h}}"{}}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_a_t24_c256__driver_8h}{drivers/CAT24C256\_driver.h}}"{}}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_m_c_p23017__driver_8h}{drivers/MCP23017\_driver.h}}"{}}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{button__driver_8h}{drivers/button\_driver.h}}"{}}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_h_l_w8032__driver_8h}{drivers/HLW8032\_driver.h}}"{}}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ethernet__config_8h}{drivers/ethernet\_config.h}}"{}}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ethernet__driver_8h}{drivers/ethernet\_driver.h}}"{}}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ethernet__w5500regs_8h}{drivers/ethernet\_w5500regs.h}}"{}}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{snmp_8h}{drivers/snmp.h}}"{}}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{socket_8h}{drivers/socket.h}}"{}}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{snmp__custom_8h}{snmp/snmp\_custom.h}}"{}}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{snmp__network_ctrl_8h}{snmp/snmp\_networkCtrl.h}}"{}}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{snmp__outlet_ctrl_8h}{snmp/snmp\_outletCtrl.h}}"{}}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{snmp__power_mon_8h}{snmp/snmp\_powerMon.h}}"{}}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{snmp__voltage_mon_8h}{snmp/snmp\_voltageMon.h}}"{}}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{calibration_8h}{tasks/storage\_submodule/calibration.h}}"{}}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{channel__labels_8h}{tasks/storage\_submodule/channel\_labels.h}}"{}}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{device__identity_8h}{tasks/storage\_submodule/device\_identity.h}}"{}}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{energy__monitor_8h}{tasks/storage\_submodule/energy\_monitor.h}}"{}}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{event__log_8h}{tasks/storage\_submodule/event\_log.h}}"{}}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{factory__defaults_8h}{tasks/storage\_submodule/factory\_defaults.h}}"{}}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{network_8h}{tasks/storage\_submodule/network.h}}"{}}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{storage__common_8h}{tasks/storage\_submodule/storage\_common.h}}"{}}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{user__output_8h}{tasks/storage\_submodule/user\_output.h}}"{}}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{user__prefs_8h}{tasks/storage\_submodule/user\_prefs.h}}"{}}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{provisioning__commands_8h}{tasks/provisioning\_commands.h}}"{}}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_o_c_p_8h}{tasks/OCP.h}}"{}}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_switch_task_8h}{tasks/SwitchTask.h}}"{}}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_console_task_8h}{tasks/ConsoleTask.h}}"{}}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_button_task_8h}{tasks/ButtonTask.h}}"{}}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_logger_task_8h}{tasks/LoggerTask.h}}"{}}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_net_task_8h}{tasks/NetTask.h}}"{}}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_storage_task_8h}{tasks/StorageTask.h}}"{}}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_meter_task_8h}{tasks/MeterTask.h}}"{}}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_init_task_8h}{tasks/InitTask.h}}"{}}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_health_task_8h}{tasks/HealthTask.h}}"{}}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{control__handler_8h}{web\_handlers/control\_handler.h}}"{}}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{http__server_8h}{web\_handlers/http\_server.h}}"{}}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{page__content_8h}{web\_handlers/page\_content.h}}"{}}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{preset__handler_8h}{web\_handlers/preset\_handler.h}}"{}}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{settings__handler_8h}{web\_handlers/settings\_handler.h}}"{}}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{status__handler_8h}{web\_handlers/status\_handler.h}}"{}}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{metrics__handler_8h}{web\_handlers/metrics\_handler.h}}"{}}}
+\DoxyCodeLine{00118\ \textcolor{comment}{/*\ clang-\/format\ on\ */}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structw5500___net_config}{w5500\_NetConfig}}\ \mbox{\hyperlink{group__config01_ga15954630fff2dc163fcf19ad1de6898f}{eth\_netcfg}};}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{comment}{/********************************************************************************}}
+\DoxyCodeLine{00123\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GLOBAL\ CONFIGURATIONS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00124\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CONFIGURABLE\ BY\ USER\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00125\ \textcolor{comment}{\ ********************************************************************************/}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{comment}{/**********************\ Button\ behavior\ for\ press\ durations\ *********************/}}
+\DoxyCodeLine{00128\ \textcolor{comment}{//\ Button\ longpress\ duration\ thresholds}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#define\ LONGPRESS\_DT\ 2500}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{comment}{/*************************\ Debounce\ and\ Guard\ Timers\ ****************************/}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#define\ DEBOUNCE\_MS\ 100u}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#define\ POST\_GUARD\_MS\ (DEBOUNCE\_MS\ +\ 10u)}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{comment}{/***********************\ Feature\ Enable/Disable\ Flags\ ***************************/}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#define\ CFG\_ENABLE\_METRICS\ 1}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#ifndef\ SWITCH\_DISPLAY\_STRICT}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#define\ SWITCH\_DISPLAY\_STRICT\ 1}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \textcolor{comment}{/*****************************\ Network\ Defaults\ *********************************/}}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\#define\ ENERGIS\_DEFAULT\_IP\ \{192,\ 168,\ 0,\ 22\}}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\#define\ ENERGIS\_DEFAULT\_SN\ \{255,\ 255,\ 255,\ 0\}}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\#define\ ENERGIS\_DEFAULT\_GW\ \{192,\ 168,\ 0,\ 1\}}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\#define\ ENERGIS\_DEFAULT\_DNS\ \{8,\ 8,\ 8,\ 8\}}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \textcolor{comment}{/*****************************\ Hardware\ Version\ *********************************/}}
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\#define\ HARDWARE\_VERSION\ "{}1.1.0"{}}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\#define\ HARDWARE\_VERSION\_LITERAL\ 110}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \textcolor{comment}{/*****************************\ Firmware\ Version\ *********************************/}}
+\DoxyCodeLine{00190\ \textcolor{preprocessor}{\#define\ FIRMWARE\_VERSION\ "{}1.1.0"{}}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00196\ \textcolor{preprocessor}{\#define\ FIRMWARE\_VERSION\_LITERAL\ 110}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{comment}{/********************\ Overcurrent\ Protection\ Thresholds\ ************************/}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00220\ \textcolor{preprocessor}{\#define\ ENERGIS\_CURRENT\_SAFETY\_MARGIN\_A\ 0.5f}}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00226\ \textcolor{preprocessor}{\#define\ ENERGIS\_CURRENT\_WARNING\_OFFSET\_A\ 1.0f}}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00232\ \textcolor{preprocessor}{\#define\ ENERGIS\_CURRENT\_RECOVERY\_OFFSET\_A\ 1.5f}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \textcolor{comment}{/********************************************************************************}}
+\DoxyCodeLine{00235\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GLOBAL\ CONFIGURATIONS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00236\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DO\ NOT\ TOUCH\ PART\ FROM\ HERE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00237\ \textcolor{comment}{\ ********************************************************************************/}}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Default\ values\ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00240\ \textcolor{preprocessor}{\#define\ SWVERSION\ FIRMWARE\_VERSION}}
+\DoxyCodeLine{00241\ \textcolor{preprocessor}{\#define\ SW\_REV\ FIRMWARE\_VERSION\_LITERAL}}
+\DoxyCodeLine{00242\ \textcolor{preprocessor}{\#define\ HW\_REV\ HARDWARE\_VERSION\_LITERAL}}
+\DoxyCodeLine{00243\ \textcolor{preprocessor}{\#define\ DEFAULT\_NAME\ "{}ENERGIS-\/"{}\ FIRMWARE\_VERSION}}
+\DoxyCodeLine{00244\ \textcolor{preprocessor}{\#define\ DEFAULT\_LOCATION\ "{}Location"{}}}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ SYSTEM\ CONSTANTS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00247\ \textcolor{preprocessor}{\#define\ EEPROM\_SIZE\ 0x8000}}
+\DoxyCodeLine{00248\ \textcolor{preprocessor}{\#define\ LOGGER\_STACK\_SIZE\ 1024}}
+\DoxyCodeLine{00249\ \textcolor{preprocessor}{\#define\ LOGGER\_QUEUE\_LEN\ 64}}
+\DoxyCodeLine{00250\ \textcolor{preprocessor}{\#define\ LOGGER\_MSG\_MAX\ 128}}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00253\ \textcolor{preprocessor}{\#define\ ENERGIS\_DEFAULT\_DHCP\ EEPROM\_NETINFO\_STATIC}}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00256\ \textcolor{preprocessor}{\#define\ ENERGIS\_MAC\_PREFIX0\ 0x02\ }\textcolor{comment}{/*\ local,\ unicast\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00257\ \textcolor{preprocessor}{\#define\ ENERGIS\_MAC\_PREFIX1\ 0x45\ }\textcolor{comment}{/*\ 'E'\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00258\ \textcolor{preprocessor}{\#define\ ENERGIS\_MAC\_PREFIX2\ 0x4E\ }\textcolor{comment}{/*\ 'N'\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ LOGGING\ FLAGS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00261\ \textcolor{preprocessor}{\#ifndef\ DEBUG}}
+\DoxyCodeLine{00262\ \textcolor{preprocessor}{\#define\ DEBUG\ 0}}
+\DoxyCodeLine{00263\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \textcolor{preprocessor}{\#ifndef\ DEBUG\_HEALTH}}
+\DoxyCodeLine{00266\ \textcolor{preprocessor}{\#define\ DEBUG\_HEALTH\ 0}}
+\DoxyCodeLine{00267\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \textcolor{preprocessor}{\#ifndef\ INFO}}
+\DoxyCodeLine{00270\ \textcolor{preprocessor}{\#define\ INFO\ 1}}
+\DoxyCodeLine{00271\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \textcolor{preprocessor}{\#ifndef\ INFO\_HEALTH}}
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\#define\ INFO\_HEALTH\ 0}}
+\DoxyCodeLine{00275\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \textcolor{preprocessor}{\#ifndef\ PLOT\_EN}}
+\DoxyCodeLine{00278\ \textcolor{preprocessor}{\#define\ PLOT\_EN\ 0}}
+\DoxyCodeLine{00279\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \textcolor{preprocessor}{\#ifndef\ NETLOG}}
+\DoxyCodeLine{00282\ \textcolor{preprocessor}{\#define\ NETLOG\ 0}}
+\DoxyCodeLine{00283\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \textcolor{preprocessor}{\#ifndef\ UART\_IFACE}}
+\DoxyCodeLine{00286\ \textcolor{preprocessor}{\#define\ UART\_IFACE\ 1}}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \textcolor{comment}{/*\ Ensure\ logging\ level\ flags\ exist\ even\ if\ commented\ out\ elsewhere\ */}}
+\DoxyCodeLine{00291\ \textcolor{preprocessor}{\#ifndef\ ERROR}}
+\DoxyCodeLine{00292\ \textcolor{preprocessor}{\#define\ ERROR\ 1}}
+\DoxyCodeLine{00293\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \textcolor{preprocessor}{\#ifndef\ WARNING}}
+\DoxyCodeLine{00296\ \textcolor{preprocessor}{\#define\ WARNING\ 1}}
+\DoxyCodeLine{00297\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \textcolor{preprocessor}{\#if\ DEBUG}}
+\DoxyCodeLine{00300\ \textcolor{preprocessor}{\#define\ DEBUG\_PRINT(...)\ log\_printf("{}\(\backslash\)t[DEBUG]\ "{}\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00301\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00302\ \textcolor{preprocessor}{\#define\ DEBUG\_PRINT(...)\ ((void)0)}}
+\DoxyCodeLine{00303\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \textcolor{preprocessor}{\#if\ DEBUG\_HEALTH}}
+\DoxyCodeLine{00306\ \textcolor{preprocessor}{\#define\ DEBUG\_PRINT\_HEALTH(...)\ log\_printf("{}\(\backslash\)t[HEALTH]\ "{}\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00307\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00308\ \textcolor{preprocessor}{\#define\ DEBUG\_PRINT\_HEALTH(...)\ ((void)0)}}
+\DoxyCodeLine{00309\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \textcolor{preprocessor}{\#if\ INFO\_HEALTH}}
+\DoxyCodeLine{00312\ \textcolor{preprocessor}{\#define\ HEALTH\_INFO(...)\ log\_printf("{}[INFO]\ "{}\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00313\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00314\ \textcolor{preprocessor}{\#define\ HEALTH\_INFO(...)\ ((void)0)}}
+\DoxyCodeLine{00315\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \textcolor{preprocessor}{\#if\ INFO}}
+\DoxyCodeLine{00318\ \textcolor{preprocessor}{\#define\ INFO\_PRINT(...)\ log\_printf("{}[INFO]\ "{}\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00319\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00320\ \textcolor{preprocessor}{\#define\ INFO\_PRINT(...)\ ((void)0)}}
+\DoxyCodeLine{00321\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00323\ \textcolor{preprocessor}{\#if\ ERROR}}
+\DoxyCodeLine{00324\ \textcolor{preprocessor}{\#define\ ERROR\_PRINT(...)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00325\ \textcolor{preprocessor}{\ \ \ \ (}\textcolor{comment}{/*Switch\_SetFaultLed(true,\ 10),*/}\textcolor{preprocessor}{\ log\_printf\_force("{}[ERROR]\ "{}\ \_\_VA\_ARGS\_\_))}}
+\DoxyCodeLine{00326\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00327\ \textcolor{preprocessor}{\#define\ ERROR\_PRINT(...)\ ((void)0)}}
+\DoxyCodeLine{00328\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ \textcolor{preprocessor}{\#if\ ERROR\ \&\&\ DEBUG}}
+\DoxyCodeLine{00331\ \textcolor{preprocessor}{\#define\ ERROR\_PRINT\_DEBUG(...)\ log\_printf("{}[ERROR]\ "{}\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00332\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00333\ \textcolor{preprocessor}{\#define\ ERROR\_PRINT\_DEBUG(...)\ ((void)0)}}
+\DoxyCodeLine{00334\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00336\ \textcolor{preprocessor}{\#if\ WARNING}}
+\DoxyCodeLine{00337\ \textcolor{preprocessor}{\#define\ WARNING\_PRINT(...)\ log\_printf\_force("{}[WARNING]\ "{}\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00338\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00339\ \textcolor{preprocessor}{\#define\ WARNING\_PRINT(...)\ ((void)0)}}
+\DoxyCodeLine{00340\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \textcolor{preprocessor}{\#if\ PLOT\_EN}}
+\DoxyCodeLine{00343\ \textcolor{preprocessor}{\#define\ PLOT(...)\ log\_printf("{}\(\backslash\)t[PLOT]\ "{}\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00344\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00345\ \textcolor{preprocessor}{\#define\ PLOT(...)\ ((void)0)}}
+\DoxyCodeLine{00346\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \textcolor{preprocessor}{\#if\ NETLOG}}
+\DoxyCodeLine{00349\ \textcolor{preprocessor}{\#define\ NETLOG\_PRINT(...)\ log\_printf("{}[NETLOG]\ "{}\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00350\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00351\ \textcolor{preprocessor}{\#define\ NETLOG\_PRINT(...)\ ((void)0)}}
+\DoxyCodeLine{00352\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \textcolor{preprocessor}{\#if\ UART\_IFACE}}
+\DoxyCodeLine{00355\ \textcolor{preprocessor}{\#define\ ECHO(...)\ log\_printf("{}\(\backslash\)t[ECHO]\ "{}\ \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00356\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00357\ \textcolor{preprocessor}{\#define\ ECHO(...)\ ((void)0)}}
+\DoxyCodeLine{00358\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \textcolor{comment}{/********************************************************************************}}
+\DoxyCodeLine{00361\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PERIPHERAL\ ASSIGNMENTS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00362\ \textcolor{comment}{\ ********************************************************************************/}}
+\DoxyCodeLine{00363\ \textcolor{comment}{//\ I2C\ Peripheral\ Assignments}}
+\DoxyCodeLine{00364\ \textcolor{preprocessor}{\#define\ I2C0\_SPEED\ 400000\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ 400\ kHz\ fast\ mode}}
+\DoxyCodeLine{00365\ \textcolor{preprocessor}{\#define\ I2C1\_SPEED\ 400000\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ 400\ kHz\ fast\ mode}}
+\DoxyCodeLine{00366\ \textcolor{preprocessor}{\#define\ EEPROM\_I2C\ i2c1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Using\ I2C1\ for\ EEPROM\ communication}}
+\DoxyCodeLine{00367\ \textcolor{preprocessor}{\#define\ MCP23017\_RELAY\_I2C\ i2c1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Using\ I2C1\ for\ Relay\ Board\ MCP23017}}
+\DoxyCodeLine{00368\ \textcolor{preprocessor}{\#define\ MCP23017\_DISPLAY\_I2C\ i2c0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Using\ I2C0\ for\ Display\ Board\ MCP23017}}
+\DoxyCodeLine{00369\ \textcolor{preprocessor}{\#define\ MCP23017\_SELECTION\_I2C\ MCP23017\_DISPLAY\_I2C\ }\textcolor{comment}{//\ Using\ I2C0\ for\ Selection\ Row\ MCP23017}}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \textcolor{comment}{//\ SPI\ Peripheral\ Assignments}}
+\DoxyCodeLine{00372\ \textcolor{preprocessor}{\#define\ SPI\_SPEED\_W5500\ 40000000\ }\textcolor{comment}{//\ 40\ MHz}}
+\DoxyCodeLine{00373\ \textcolor{preprocessor}{\#define\ W5500\_SPI\_INSTANCE\ spi0\ \ }\textcolor{comment}{//\ SPI0\ for\ Ethernet}}
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00375\ \textcolor{comment}{/********************************************************************************}}
+\DoxyCodeLine{00376\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CONSOLE\ CONFIGURATIONS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00377\ \textcolor{comment}{\ ********************************************************************************/}}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00379\ \textcolor{preprocessor}{\#define\ UART\_ID\ uart1}}
+\DoxyCodeLine{00380\ \textcolor{preprocessor}{\#define\ BAUD\_RATE\ 115200}}
+\DoxyCodeLine{00381\ \textcolor{preprocessor}{\#define\ UART\_CMD\_BUF\_LEN\ 1024}}
+\DoxyCodeLine{00382\ \textcolor{preprocessor}{\#define\ UART\_MAX\_LINES\ 4}}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00384\ \textcolor{comment}{/********************************************************************************}}
+\DoxyCodeLine{00385\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HLW8032\ UART\ CHANNELS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00386\ \textcolor{comment}{\ ********************************************************************************/}}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \textcolor{preprocessor}{\#define\ HLW8032\_UART\_ID\ uart0}}
+\DoxyCodeLine{00389\ \textcolor{preprocessor}{\#define\ HLW8032\_BAUDRATE\ 4800}}
+\DoxyCodeLine{00390\ \textcolor{preprocessor}{\#define\ HLW8032\_FRAME\_LENGTH\ 24}}
+\DoxyCodeLine{00391\ \textcolor{preprocessor}{\#define\ NUM\_CHANNELS\ 8}}
+\DoxyCodeLine{00392\ \textcolor{preprocessor}{\#define\ POLL\_INTERVAL\_MS\ 6000u}}
+\DoxyCodeLine{00393\ \textcolor{preprocessor}{\#define\ TX\_CH1\ 0}}
+\DoxyCodeLine{00394\ \textcolor{preprocessor}{\#define\ TX\_CH2\ 1}}
+\DoxyCodeLine{00395\ \textcolor{preprocessor}{\#define\ TX\_CH3\ 2}}
+\DoxyCodeLine{00396\ \textcolor{preprocessor}{\#define\ TX\_CH4\ 3}}
+\DoxyCodeLine{00397\ \textcolor{preprocessor}{\#define\ TX\_CH5\ 4}}
+\DoxyCodeLine{00398\ \textcolor{preprocessor}{\#define\ TX\_CH6\ 5}}
+\DoxyCodeLine{00399\ \textcolor{preprocessor}{\#define\ TX\_CH7\ 6}}
+\DoxyCodeLine{00400\ \textcolor{preprocessor}{\#define\ TX\_CH8\ 7}}
+\DoxyCodeLine{00401\ }
+\DoxyCodeLine{00402\ \textcolor{comment}{/********************************************************************************}}
+\DoxyCodeLine{00403\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MCU\ SPECIFIC\ DEFINES\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00404\ \textcolor{comment}{\ ********************************************************************************/}}
+\DoxyCodeLine{00405\ \textcolor{preprocessor}{\#define\ VREG\_BASE\ 0x40064000}}
+\DoxyCodeLine{00406\ \textcolor{preprocessor}{\#define\ VREG\_VSEL\_MASK\ 0x7}}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00408\ \textcolor{comment}{/********************************************************************************}}
+\DoxyCodeLine{00409\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RP2040\ GPIO\ PIN\ ASSIGNMENTS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00410\ \textcolor{comment}{\ ********************************************************************************/}}
+\DoxyCodeLine{00411\ \textcolor{preprocessor}{\#define\ UART0\_RX\ 0}}
+\DoxyCodeLine{00412\ \textcolor{preprocessor}{\#define\ UART0\_TX\ 1}}
+\DoxyCodeLine{00413\ \textcolor{preprocessor}{\#define\ I2C1\_SDA\ 2}}
+\DoxyCodeLine{00414\ \textcolor{preprocessor}{\#define\ I2C1\_SCL\ 3}}
+\DoxyCodeLine{00415\ \textcolor{preprocessor}{\#define\ I2C0\_SDA\ 4}}
+\DoxyCodeLine{00416\ \textcolor{preprocessor}{\#define\ I2C0\_SCL\ 5}}
+\DoxyCodeLine{00417\ \textcolor{preprocessor}{\#define\ GPIO6\ 6\ \ \ }\textcolor{comment}{//\ Not\ used\ anymore}}
+\DoxyCodeLine{00418\ \textcolor{preprocessor}{\#define\ GPIO7\ 7\ \ \ }\textcolor{comment}{//\ Not\ used\ anymore}}
+\DoxyCodeLine{00419\ \textcolor{preprocessor}{\#define\ GPIO8\ 8\ \ \ }\textcolor{comment}{//\ Not\ used\ anymore}}
+\DoxyCodeLine{00420\ \textcolor{preprocessor}{\#define\ GPIO9\ 9\ \ \ }\textcolor{comment}{//\ Not\ used\ anymore}}
+\DoxyCodeLine{00421\ \textcolor{preprocessor}{\#define\ GPIO10\ 10\ }\textcolor{comment}{//\ Not\ used\ anymore}}
+\DoxyCodeLine{00422\ \textcolor{preprocessor}{\#define\ GPIO11\ 11\ }\textcolor{comment}{//\ Not\ used\ anymore}}
+\DoxyCodeLine{00423\ \textcolor{preprocessor}{\#define\ KEY\_0\ 12}}
+\DoxyCodeLine{00424\ \textcolor{preprocessor}{\#define\ KEY\_1\ 13}}
+\DoxyCodeLine{00425\ \textcolor{preprocessor}{\#define\ KEY\_2\ 14}}
+\DoxyCodeLine{00426\ \textcolor{preprocessor}{\#define\ KEY\_3\ 15}}
+\DoxyCodeLine{00427\ \textcolor{preprocessor}{\#define\ BUT\_PLUS\ KEY\_1}}
+\DoxyCodeLine{00428\ \textcolor{preprocessor}{\#define\ BUT\_MINUS\ KEY\_0}}
+\DoxyCodeLine{00429\ \textcolor{preprocessor}{\#define\ BUT\_SET\ KEY\_2}}
+\DoxyCodeLine{00430\ \textcolor{preprocessor}{\#define\ BUT\_PWR\ KEY\_3}}
+\DoxyCodeLine{00431\ \textcolor{preprocessor}{\#define\ W5500\_MISO\ 16}}
+\DoxyCodeLine{00432\ \textcolor{preprocessor}{\#define\ W5500\_CS\ 17}}
+\DoxyCodeLine{00433\ \textcolor{preprocessor}{\#define\ W5500\_SCK\ 18}}
+\DoxyCodeLine{00434\ \textcolor{preprocessor}{\#define\ W5500\_MOSI\ 19}}
+\DoxyCodeLine{00435\ \textcolor{preprocessor}{\#define\ W5500\_RESET\ 20}}
+\DoxyCodeLine{00436\ \textcolor{preprocessor}{\#define\ W5500\_INT\ 21}}
+\DoxyCodeLine{00437\ \textcolor{preprocessor}{\#define\ FAN\_CTRL\ 22\ }\textcolor{comment}{//\ Fan\ control\ (not\ used)}}
+\DoxyCodeLine{00438\ \textcolor{preprocessor}{\#define\ MCP\_MB\_RST\ 23}}
+\DoxyCodeLine{00439\ \textcolor{preprocessor}{\#define\ MCP\_DP\_RST\ 24}}
+\DoxyCodeLine{00440\ \textcolor{preprocessor}{\#define\ VREG\_EN\ 25}}
+\DoxyCodeLine{00441\ \textcolor{preprocessor}{\#define\ ADC\_VUSB\ 26}}
+\DoxyCodeLine{00442\ \textcolor{preprocessor}{\#define\ NC\ 27\ }\textcolor{comment}{//\ ADC\ Temp\ sensor\ (not\ used)}}
+\DoxyCodeLine{00443\ \textcolor{preprocessor}{\#define\ PROC\_LED\ 28}}
+\DoxyCodeLine{00444\ \textcolor{preprocessor}{\#define\ ADC\_12V\_MEA\ 29}}
+\DoxyCodeLine{00445\ }
+\DoxyCodeLine{00446\ \textcolor{comment}{/********************************************************************************}}
+\DoxyCodeLine{00447\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ADC\ CHANNEL\ ASSIGNMENTS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00448\ \textcolor{comment}{\ ********************************************************************************/}}
+\DoxyCodeLine{00449\ \textcolor{preprocessor}{\#define\ ADC\_VREF\ 3.0f}}
+\DoxyCodeLine{00450\ \textcolor{preprocessor}{\#define\ ADC\_MAX\ 4096.0f}}
+\DoxyCodeLine{00451\ \textcolor{preprocessor}{\#define\ ADC\_TOL\ 1.005f\ }\textcolor{comment}{//\ +0.5\%\ correction\ factor}}
+\DoxyCodeLine{00452\ \textcolor{preprocessor}{\#define\ V\_USB\ 0}}
+\DoxyCodeLine{00453\ \textcolor{preprocessor}{\#define\ V\_SUPPLY\ 3}}
+\DoxyCodeLine{00454\ \textcolor{preprocessor}{\#define\ TEMP\_SENSOR\ 4}}
+\DoxyCodeLine{00455\ \textcolor{preprocessor}{\#define\ VBUS\_DIVIDER\ 2.0f}}
+\DoxyCodeLine{00456\ \textcolor{preprocessor}{\#define\ SUPPLY\_DIVIDER\ 11.0f}}
+\DoxyCodeLine{00457\ }
+\DoxyCodeLine{00458\ \textcolor{comment}{/********************************************************************************}}
+\DoxyCodeLine{00459\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MCP23017\ RELAY\ BOARD\ CONFIGURATIONS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00460\ \textcolor{comment}{\ ********************************************************************************/}}
+\DoxyCodeLine{00461\ \textcolor{preprocessor}{\#define\ MCP\_RELAY\_ADDR\ 0x20\ }\textcolor{comment}{//\ 0b0100000}}
+\DoxyCodeLine{00462\ \textcolor{preprocessor}{\#define\ REL\_0\ 0}}
+\DoxyCodeLine{00463\ \textcolor{preprocessor}{\#define\ REL\_1\ 1}}
+\DoxyCodeLine{00464\ \textcolor{preprocessor}{\#define\ REL\_2\ 2}}
+\DoxyCodeLine{00465\ \textcolor{preprocessor}{\#define\ REL\_3\ 3}}
+\DoxyCodeLine{00466\ \textcolor{preprocessor}{\#define\ REL\_4\ 4}}
+\DoxyCodeLine{00467\ \textcolor{preprocessor}{\#define\ REL\_5\ 5}}
+\DoxyCodeLine{00468\ \textcolor{preprocessor}{\#define\ REL\_6\ 6}}
+\DoxyCodeLine{00469\ \textcolor{preprocessor}{\#define\ REL\_7\ 7}}
+\DoxyCodeLine{00470\ \textcolor{preprocessor}{\#define\ MUX\_A\ 8}}
+\DoxyCodeLine{00471\ \textcolor{preprocessor}{\#define\ MUX\_B\ 9}}
+\DoxyCodeLine{00472\ \textcolor{preprocessor}{\#define\ MUX\_C\ 10}}
+\DoxyCodeLine{00473\ \textcolor{preprocessor}{\#define\ MUX\_EN\ 11}}
+\DoxyCodeLine{00474\ }
+\DoxyCodeLine{00475\ \textcolor{comment}{/********************************************************************************}}
+\DoxyCodeLine{00476\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MCP23017\ DISPLAY\ BOARD\ CONFIGURATIONS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00477\ \textcolor{comment}{\ ********************************************************************************/}}
+\DoxyCodeLine{00478\ \textcolor{preprocessor}{\#define\ MCP\_DISPLAY\_ADDR\ 0x21\ }\textcolor{comment}{//\ 0b0100001}}
+\DoxyCodeLine{00479\ \textcolor{preprocessor}{\#define\ OUT\_1\ 0}}
+\DoxyCodeLine{00480\ \textcolor{preprocessor}{\#define\ OUT\_2\ 1}}
+\DoxyCodeLine{00481\ \textcolor{preprocessor}{\#define\ OUT\_3\ 2}}
+\DoxyCodeLine{00482\ \textcolor{preprocessor}{\#define\ OUT\_4\ 3}}
+\DoxyCodeLine{00483\ \textcolor{preprocessor}{\#define\ OUT\_5\ 4}}
+\DoxyCodeLine{00484\ \textcolor{preprocessor}{\#define\ OUT\_6\ 5}}
+\DoxyCodeLine{00485\ \textcolor{preprocessor}{\#define\ OUT\_7\ 6}}
+\DoxyCodeLine{00486\ \textcolor{preprocessor}{\#define\ OUT\_8\ 7}}
+\DoxyCodeLine{00487\ \textcolor{preprocessor}{\#define\ FAULT\_LED\ 8}}
+\DoxyCodeLine{00488\ \textcolor{preprocessor}{\#define\ ETH\_LED\ 9}}
+\DoxyCodeLine{00489\ \textcolor{preprocessor}{\#define\ PWR\_LED\ 10}}
+\DoxyCodeLine{00490\ }
+\DoxyCodeLine{00491\ \textcolor{comment}{/********************************************************************************}}
+\DoxyCodeLine{00492\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MCP23017\ SELECTION\ ROW\ CONFIGURATIONS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00493\ \textcolor{comment}{\ ********************************************************************************/}}
+\DoxyCodeLine{00494\ }
+\DoxyCodeLine{00495\ \textcolor{preprocessor}{\#define\ MCP\_SELECTION\_ADDR\ 0x23}}
+\DoxyCodeLine{00496\ \textcolor{preprocessor}{\#define\ SEL\_1\ 0}}
+\DoxyCodeLine{00497\ \textcolor{preprocessor}{\#define\ SEL\_2\ 1}}
+\DoxyCodeLine{00498\ \textcolor{preprocessor}{\#define\ SEL\_3\ 2}}
+\DoxyCodeLine{00499\ \textcolor{preprocessor}{\#define\ SEL\_4\ 3}}
+\DoxyCodeLine{00500\ \textcolor{preprocessor}{\#define\ SEL\_5\ 4}}
+\DoxyCodeLine{00501\ \textcolor{preprocessor}{\#define\ SEL\_6\ 5}}
+\DoxyCodeLine{00502\ \textcolor{preprocessor}{\#define\ SEL\_7\ 6}}
+\DoxyCodeLine{00503\ \textcolor{preprocessor}{\#define\ SEL\_8\ 7}}
+\DoxyCodeLine{00504\ }
+\DoxyCodeLine{00505\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ CONFIG\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00506\ }
+
+\end{DoxyCode}

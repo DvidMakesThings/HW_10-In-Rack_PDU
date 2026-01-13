@@ -1,0 +1,166 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/\+Free\+RTOSConfig.h File Reference}
+\hypertarget{_free_r_t_o_s_config_8h}{}\label{_free_r_t_o_s_config_8h}\index{src/Software/ENERGIS\_RTOS/src/FreeRTOSConfig.h@{src/Software/ENERGIS\_RTOS/src/FreeRTOSConfig.h}}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config05_gab8bb705d9bf22494812bc21b8900b11a}{HEALTHTASK\+\_\+\+PRIORITY}}~(\mbox{\hyperlink{group__config05_ga9a78f5ac61e6cb172dadf2a51f11db38}{config\+MAX\+\_\+\+PRIORITIES}} -\/ 1)
+\item 
+\#define \mbox{\hyperlink{group__config05_ga7e7d702961a27fb97a00c2657fda0fa1}{INITTASK\+\_\+\+PRIORITY}}~(\mbox{\hyperlink{group__config05_ga9a78f5ac61e6cb172dadf2a51f11db38}{config\+MAX\+\_\+\+PRIORITIES}} -\/ 2)
+\item 
+\#define \mbox{\hyperlink{group__config05_gadda1c2ab2611064c357320bbc2a4d0a2}{BUTTONTASK\+\_\+\+PRIORITY}}~(tsk\+IDLE\+\_\+\+PRIORITY + 6)
+\item 
+\#define \mbox{\hyperlink{group__config05_gaeb02214610057554934ebc985bab1a71}{SWITCHTASK\+\_\+\+PRIORITY}}~(tsk\+IDLE\+\_\+\+PRIORITY + 5)
+\item 
+\#define \mbox{\hyperlink{group__config05_ga7b811b5471aa9e64b1b57ec2bc607620}{NETTASK\+\_\+\+PRIORITY}}~(tsk\+IDLE\+\_\+\+PRIORITY + 4)
+\item 
+\#define \mbox{\hyperlink{group__config05_gab43a9f1c2431c5f2880248763d5daf8e}{CONSOLETASK\+\_\+\+PRIORITY}}~(tsk\+IDLE\+\_\+\+PRIORITY + 3)
+\item 
+\#define \mbox{\hyperlink{group__config05_ga1fdeff5b2a58d26bba2a91fa3e4d50f4}{STORAGETASK\+\_\+\+PRIORITY}}~(tsk\+IDLE\+\_\+\+PRIORITY + 3)
+\item 
+\#define \mbox{\hyperlink{group__config05_ga1f1df9d85cf82871f167af882f21d498}{LOGTASK\+\_\+\+PRIORITY}}~(tsk\+IDLE\+\_\+\+PRIORITY + 2)
+\item 
+\#define \mbox{\hyperlink{group__config05_gad76bafafb20e37f32f9b7d7a0b1372e4}{METERTASK\+\_\+\+PRIORITY}}~(tsk\+IDLE\+\_\+\+PRIORITY + 2)
+\item 
+\#define \mbox{\hyperlink{group__config05_gad43047b3ea0a146673e30637488bf754}{v\+Port\+SVCHandler}}~isr\+\_\+svcall
+\item 
+\#define \mbox{\hyperlink{group__config05_ga6f30022da7d797dd31f1b8a11cae9a35}{x\+Port\+Pend\+SVHandler}}~isr\+\_\+pendsv
+\item 
+\#define \mbox{\hyperlink{group__config05_gae42e6318b5d564e44f97f8c765859448}{x\+Port\+Sys\+Tick\+Handler}}~isr\+\_\+systick
+\item 
+\#define \mbox{\hyperlink{group__config05_gadde83486022745409c40605922b0bdd6}{config\+USE\+\_\+\+PREEMPTION}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga493c5763eb7a39bd80779a1c58de0d82}{config\+USE\+\_\+\+TIME\+\_\+\+SLICING}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gaebb8c3a87d591f60f974772be0ee798d}{config\+USE\+\_\+\+PORT\+\_\+\+OPTIMISED\+\_\+\+TASK\+\_\+\+SELECTION}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_gaa19d69387b32a94d79ea52bb2c6f2649}{config\+USE\+\_\+\+TICKLESS\+\_\+\+IDLE}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_gaa68082df879e6fc96bcb9b26513639e7}{config\+CPU\+\_\+\+CLOCK\+\_\+\+HZ}}~200000000\+UL
+\item 
+\#define \mbox{\hyperlink{group__config05_ga2f0258dd1e3b877e5bc013be54c2db6a}{config\+TICK\+\_\+\+RATE\+\_\+\+HZ}}~((Tick\+Type\+\_\+t)1000)
+\item 
+\#define \mbox{\hyperlink{group__config05_ga9a78f5ac61e6cb172dadf2a51f11db38}{config\+MAX\+\_\+\+PRIORITIES}}~24
+\item 
+\#define \mbox{\hyperlink{group__config05_ga6c534a6cf8a00528fe0be42083484f9a}{config\+MINIMAL\+\_\+\+STACK\+\_\+\+SIZE}}~((\mbox{\hyperlink{group__config05_gae4e85bffd36d76cf2796092f0ccd784a}{config\+STACK\+\_\+\+DEPTH\+\_\+\+TYPE}})512)
+\item 
+\#define \mbox{\hyperlink{group__config05_gaac311ed9b9e5ae4d2d9648b33a24acce}{config\+USE\+\_\+16\+\_\+\+BIT\+\_\+\+TICKS}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_gad6a5061a742fee450ac455e4ad0f4b6c}{config\+IDLE\+\_\+\+SHOULD\+\_\+\+YIELD}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gac388dc4041aab6997348828eb27fc1a8}{config\+MAX\+\_\+\+TASK\+\_\+\+NAME\+\_\+\+LEN}}~16
+\item 
+\#define \mbox{\hyperlink{group__config05_ga5413143d3773c8e31f305805f4cad871}{config\+TASK\+\_\+\+NOTIFICATION\+\_\+\+ARRAY\+\_\+\+ENTRIES}}~3
+\item 
+\#define \mbox{\hyperlink{group__config05_ga543bf3c79008974cc1d36bab51d94fbf}{config\+USE\+\_\+\+MUTEXES}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga9fe02d866cb1c4fbaa0c3de79f53d42d}{config\+USE\+\_\+\+RECURSIVE\+\_\+\+MUTEXES}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_ga55778995203c57369d2fbfb10224943d}{config\+USE\+\_\+\+COUNTING\+\_\+\+SEMAPHORES}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gaca14daeac974218ce2497f12d614fb6b}{config\+USE\+\_\+\+TASK\+\_\+\+NOTIFICATIONS}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga7bfbcca89aaa971f59fe9233772cc33d}{config\+USE\+\_\+\+QUEUE\+\_\+\+SETS}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_gaa4b5138c4e42a180f0abd4f2455f90fb}{config\+QUEUE\+\_\+\+REGISTRY\+\_\+\+SIZE}}~10
+\item 
+\#define \mbox{\hyperlink{group__config05_gacf3616a8cbe15687f6000cefcca84bbd}{config\+USE\+\_\+\+NEWLIB\+\_\+\+REENTRANT}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_ga815d63f3e973f88335f639b03786e37f}{config\+ENABLE\+\_\+\+BACKWARD\+\_\+\+COMPATIBILITY}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_ga8d32b5f74e55dfd12c5aa3415e16d75e}{config\+NUM\+\_\+\+THREAD\+\_\+\+LOCAL\+\_\+\+STORAGE\+\_\+\+POINTERS}}~5
+\item 
+\#define \mbox{\hyperlink{group__config05_gae4e85bffd36d76cf2796092f0ccd784a}{config\+STACK\+\_\+\+DEPTH\+\_\+\+TYPE}}~uint32\+\_\+t
+\item 
+\#define \mbox{\hyperlink{group__config05_ga019c8bfcdd8eca676c7b9993bda95967}{config\+MESSAGE\+\_\+\+BUFFER\+\_\+\+LENGTH\+\_\+\+TYPE}}~size\+\_\+t
+\item 
+\#define \mbox{\hyperlink{group__config05_ga1d6797a53b62d501b095f964036a7ac4}{config\+SUPPORT\+\_\+\+STATIC\+\_\+\+ALLOCATION}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_gafa3f8d6510699d972c9af08fa41f66dc}{config\+SUPPORT\+\_\+\+DYNAMIC\+\_\+\+ALLOCATION}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gae1a85802d42764830d47abe43a3d9a5e}{config\+APPLICATION\+\_\+\+ALLOCATED\+\_\+\+HEAP}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_ga9f213227674effff0122a75d94d87938}{config\+TOTAL\+\_\+\+HEAP\+\_\+\+SIZE}}~(128 \texorpdfstring{$\ast$}{*} 1024)
+\item 
+\#define \mbox{\hyperlink{group__config05_gac637ae45863c19fa2e919db0ed49301f}{config\+USE\+\_\+\+IDLE\+\_\+\+HOOK}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga23c5922c077106fad3f70b54d9071466}{config\+USE\+\_\+\+TICK\+\_\+\+HOOK}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_ga847511ee433494b1e32c90602c967ae7}{config\+CHECK\+\_\+\+FOR\+\_\+\+STACK\+\_\+\+OVERFLOW}}~2
+\item 
+\#define \mbox{\hyperlink{group__config05_gabdf48e7c9cf513f083aa9cbed0dd7cd7}{config\+USE\+\_\+\+MALLOC\+\_\+\+FAILED\+\_\+\+HOOK}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga0415288d8efe664e0b05a7b53fbfaa33}{config\+USE\+\_\+\+DAEMON\+\_\+\+TASK\+\_\+\+STARTUP\+\_\+\+HOOK}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_gad8081822f3ebc7c917b63bd7bdd7bc58}{config\+GENERATE\+\_\+\+RUN\+\_\+\+TIME\+\_\+\+STATS}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_ga27f5ee137dc9f125681a31f0b0a4b3be}{config\+USE\+\_\+\+TRACE\+\_\+\+FACILITY}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_ga5b7fae1e2f6d4fe42104ed8d28a0569d}{config\+USE\+\_\+\+STATS\+\_\+\+FORMATTING\+\_\+\+FUNCTIONS}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_ga57990715eb06402474b8b47e1d562616}{config\+USE\+\_\+\+CO\+\_\+\+ROUTINES}}~0
+\item 
+\#define \mbox{\hyperlink{group__config05_gae8f3fd645e6e78dfeb8a6e874af6195a}{config\+MAX\+\_\+\+CO\+\_\+\+ROUTINE\+\_\+\+PRIORITIES}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gac342ae309b0c53828d2ecad3e6de355b}{config\+USE\+\_\+\+TIMERS}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga05c75ff9029ba3f0ab5bde9196f1e873}{config\+TIMER\+\_\+\+TASK\+\_\+\+PRIORITY}}~(tsk\+IDLE\+\_\+\+PRIORITY + 2)
+\item 
+\#define \mbox{\hyperlink{group__config05_gabb9aa0f31c1f3b14a15083a3c6120918}{config\+TIMER\+\_\+\+QUEUE\+\_\+\+LENGTH}}~10
+\item 
+\#define \mbox{\hyperlink{group__config05_gaed7c7ebcdee603583a55e8ce04e55841}{config\+TIMER\+\_\+\+TASK\+\_\+\+STACK\+\_\+\+DEPTH}}~1024
+\item 
+\#define \mbox{\hyperlink{group__config05_ga2e6be5989dcd0c70aa688c83da8ee7e7}{config\+SUPPORT\+\_\+\+PICO\+\_\+\+SYNC\+\_\+\+INTEROP}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga523964dcaea103ff50481aa05af9729e}{config\+SUPPORT\+\_\+\+PICO\+\_\+\+TIME\+\_\+\+INTEROP}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga228c70cd48927d6ab730ed1a6dfbe35f}{config\+ASSERT}}(x)
+\item 
+\#define \mbox{\hyperlink{group__config05_gad6858ac8aaf726007fd19752956ef1bd}{INCLUDE\+\_\+v\+Task\+Priority\+Set}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga1279eb797355460aeeec06aa524e91df}{INCLUDE\+\_\+ux\+Task\+Priority\+Get}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga5ae1434fdf995108dc749ff9329f53bd}{INCLUDE\+\_\+v\+Task\+Delete}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gaef8fbb97819ad3d962f334ac298206d1}{INCLUDE\+\_\+v\+Task\+Suspend}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gae8459bfd5b428319bb10de9f504a53aa}{INCLUDE\+\_\+v\+Task\+Delay\+Until}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga24361a6eb816a965f1ee4e2e08e364f8}{INCLUDE\+\_\+v\+Task\+Delay}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga9ed60ede556830584e6bfd4a3ab4f9de}{INCLUDE\+\_\+x\+Task\+Get\+Scheduler\+State}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gac96b6a6e70667f266db4278be71cbd78}{INCLUDE\+\_\+x\+Task\+Get\+Current\+Task\+Handle}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga23c7b4b41fe9b575cf2329c7cbe78b86}{INCLUDE\+\_\+ux\+Task\+Get\+Stack\+High\+Water\+Mark}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gaae20dbc3e4e870003109dcf121cbaee8}{INCLUDE\+\_\+ux\+Task\+Get\+Stack\+High\+Water\+Mark2}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gae8811def4dd6983011fed9ef8686f18f}{INCLUDE\+\_\+x\+Task\+Get\+Idle\+Task\+Handle}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga4fd1d67d54044ac86e8ffc890180f9f6}{INCLUDE\+\_\+e\+Task\+Get\+State}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gac54efb28edcc1d3b9d0844005ea20674}{INCLUDE\+\_\+x\+Task\+Abort\+Delay}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga33733d2bbe005751ec3a417e5ac373bf}{INCLUDE\+\_\+x\+Task\+Get\+Handle}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga85e3dae9f3daa26f24e679cb6793811e}{INCLUDE\+\_\+x\+Task\+Resume\+From\+ISR}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga4e2902143b6abf777065c15940321911}{INCLUDE\+\_\+x\+Queue\+Get\+Mutex\+Holder}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gac99d9c3ef7d5fdeb24375ddeb9602b55}{INCLUDE\+\_\+x\+Resume\+From\+ISR}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_gaf93b5ef191e3e4bbf050119dacbd148b}{INCLUDE\+\_\+x\+Event\+Group\+Set\+Bit\+From\+ISR}}~1
+\item 
+\#define \mbox{\hyperlink{group__config05_ga4b4336acd61a8e513ca2376be84326b5}{INCLUDE\+\_\+x\+Timer\+Pend\+Function\+Call}}~1
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__config05_ga20f7d031e5579a7e413468a721166881}{v\+Assert\+Called}} (const char \texorpdfstring{$\ast$}{*}file, int line)
+\begin{DoxyCompactList}\small\item\em Free\+RTOS assertion failure hook with context capture. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

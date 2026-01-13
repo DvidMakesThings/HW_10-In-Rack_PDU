@@ -1,0 +1,7 @@
+<map id="probe_i2c_device" name="probe_i2c_device">
+<area shape="rect" id="Node000001" title="Probe I2C device at given address." alt="" coords="5,5,128,32"/>
+<area shape="rect" id="Node000002" href="$group__drivers05.html#ga5caa937abd50ec32925c6283a37ef7da" title="Queue a read on the specified I2C controller and wait synchronously. Mirrors Pico SDK i2c_read_timeou..." alt="" coords="176,5,345,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="128,16,160,16,160,21,128,21"/>
+<area shape="rect" id="Node000003" href="$i2c__bus_8c.html#afbaa64f79bdd1fa39c8fa5b7a9c2717b" title=" " alt="" coords="393,5,550,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="345,16,377,16,377,21,345,21"/>
+</map>

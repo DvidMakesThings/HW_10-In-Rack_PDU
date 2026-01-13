@@ -1,0 +1,107 @@
+\doxysection{overcurrent\+\_\+status\+\_\+t Struct Reference}
+\hypertarget{structovercurrent__status__t}{}\label{structovercurrent__status__t}\index{overcurrent\_status\_t@{overcurrent\_status\_t}}
+
+
+Overcurrent protection status snapshot.  
+
+
+
+
+{\ttfamily \#include $<$OCP.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}{overcurrent\+\_\+state\+\_\+t}} \mbox{\hyperlink{structovercurrent__status__t_a8bb90b786df948ca0eef8904aea0ff24}{state}}
+\item 
+float \mbox{\hyperlink{structovercurrent__status__t_a03fedd96755db2de562bf443e2962e70}{total\+\_\+current\+\_\+a}}
+\item 
+float \mbox{\hyperlink{structovercurrent__status__t_a7ba74c18764a17439f5de9b96d9dfa71}{limit\+\_\+a}}
+\item 
+float \mbox{\hyperlink{structovercurrent__status__t_a6ff192627045f06647152322f2a55c52}{warning\+\_\+threshold\+\_\+a}}
+\item 
+float \mbox{\hyperlink{structovercurrent__status__t_ab393c744a55110d119d59f04bd4548d0}{critical\+\_\+threshold\+\_\+a}}
+\item 
+float \mbox{\hyperlink{structovercurrent__status__t_a04b4726ace68f6715f32c0df8ca53984}{recovery\+\_\+threshold\+\_\+a}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structovercurrent__status__t_a30f7251df34c379d1707413a45062fbb}{last\+\_\+tripped\+\_\+channel}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structovercurrent__status__t_a2826ad1a457bd2c0518ff1063f31b236}{trip\+\_\+count}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structovercurrent__status__t_a52f500fa88e427140926781cff09e600}{last\+\_\+trip\+\_\+timestamp\+\_\+ms}}
+\item 
+bool \mbox{\hyperlink{structovercurrent__status__t_a7549f181161076c1637839725cef64fa}{switching\+\_\+allowed}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Overcurrent protection status snapshot. 
+
+\label{doc-variable-members}
+\Hypertarget{structovercurrent__status__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structovercurrent__status__t_ab393c744a55110d119d59f04bd4548d0}\index{overcurrent\_status\_t@{overcurrent\_status\_t}!critical\_threshold\_a@{critical\_threshold\_a}}
+\index{critical\_threshold\_a@{critical\_threshold\_a}!overcurrent\_status\_t@{overcurrent\_status\_t}}
+\doxysubsubsection{\texorpdfstring{critical\_threshold\_a}{critical\_threshold\_a}}
+{\footnotesize\ttfamily \label{structovercurrent__status__t_ab393c744a55110d119d59f04bd4548d0} 
+float overcurrent\+\_\+status\+\_\+t\+::critical\+\_\+threshold\+\_\+a}
+
+Critical threshold \mbox{[}A\mbox{]} \Hypertarget{structovercurrent__status__t_a52f500fa88e427140926781cff09e600}\index{overcurrent\_status\_t@{overcurrent\_status\_t}!last\_trip\_timestamp\_ms@{last\_trip\_timestamp\_ms}}
+\index{last\_trip\_timestamp\_ms@{last\_trip\_timestamp\_ms}!overcurrent\_status\_t@{overcurrent\_status\_t}}
+\doxysubsubsection{\texorpdfstring{last\_trip\_timestamp\_ms}{last\_trip\_timestamp\_ms}}
+{\footnotesize\ttfamily \label{structovercurrent__status__t_a52f500fa88e427140926781cff09e600} 
+uint32\+\_\+t overcurrent\+\_\+status\+\_\+t\+::last\+\_\+trip\+\_\+timestamp\+\_\+ms}
+
+Timestamp of last trip \mbox{[}ms since boot\mbox{]} \Hypertarget{structovercurrent__status__t_a30f7251df34c379d1707413a45062fbb}\index{overcurrent\_status\_t@{overcurrent\_status\_t}!last\_tripped\_channel@{last\_tripped\_channel}}
+\index{last\_tripped\_channel@{last\_tripped\_channel}!overcurrent\_status\_t@{overcurrent\_status\_t}}
+\doxysubsubsection{\texorpdfstring{last\_tripped\_channel}{last\_tripped\_channel}}
+{\footnotesize\ttfamily \label{structovercurrent__status__t_a30f7251df34c379d1707413a45062fbb} 
+uint8\+\_\+t overcurrent\+\_\+status\+\_\+t\+::last\+\_\+tripped\+\_\+channel}
+
+Channel turned off on trip (0x\+FF if none) \Hypertarget{structovercurrent__status__t_a7ba74c18764a17439f5de9b96d9dfa71}\index{overcurrent\_status\_t@{overcurrent\_status\_t}!limit\_a@{limit\_a}}
+\index{limit\_a@{limit\_a}!overcurrent\_status\_t@{overcurrent\_status\_t}}
+\doxysubsubsection{\texorpdfstring{limit\_a}{limit\_a}}
+{\footnotesize\ttfamily \label{structovercurrent__status__t_a7ba74c18764a17439f5de9b96d9dfa71} 
+float overcurrent\+\_\+status\+\_\+t\+::limit\+\_\+a}
+
+Configured current limit \mbox{[}A\mbox{]} \Hypertarget{structovercurrent__status__t_a04b4726ace68f6715f32c0df8ca53984}\index{overcurrent\_status\_t@{overcurrent\_status\_t}!recovery\_threshold\_a@{recovery\_threshold\_a}}
+\index{recovery\_threshold\_a@{recovery\_threshold\_a}!overcurrent\_status\_t@{overcurrent\_status\_t}}
+\doxysubsubsection{\texorpdfstring{recovery\_threshold\_a}{recovery\_threshold\_a}}
+{\footnotesize\ttfamily \label{structovercurrent__status__t_a04b4726ace68f6715f32c0df8ca53984} 
+float overcurrent\+\_\+status\+\_\+t\+::recovery\+\_\+threshold\+\_\+a}
+
+Recovery threshold \mbox{[}A\mbox{]} \Hypertarget{structovercurrent__status__t_a8bb90b786df948ca0eef8904aea0ff24}\index{overcurrent\_status\_t@{overcurrent\_status\_t}!state@{state}}
+\index{state@{state}!overcurrent\_status\_t@{overcurrent\_status\_t}}
+\doxysubsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily \label{structovercurrent__status__t_a8bb90b786df948ca0eef8904aea0ff24} 
+\mbox{\hyperlink{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}{overcurrent\+\_\+state\+\_\+t}} overcurrent\+\_\+status\+\_\+t\+::state}
+
+Current protection state \Hypertarget{structovercurrent__status__t_a7549f181161076c1637839725cef64fa}\index{overcurrent\_status\_t@{overcurrent\_status\_t}!switching\_allowed@{switching\_allowed}}
+\index{switching\_allowed@{switching\_allowed}!overcurrent\_status\_t@{overcurrent\_status\_t}}
+\doxysubsubsection{\texorpdfstring{switching\_allowed}{switching\_allowed}}
+{\footnotesize\ttfamily \label{structovercurrent__status__t_a7549f181161076c1637839725cef64fa} 
+bool overcurrent\+\_\+status\+\_\+t\+::switching\+\_\+allowed}
+
+True if channel switching is permitted \Hypertarget{structovercurrent__status__t_a03fedd96755db2de562bf443e2962e70}\index{overcurrent\_status\_t@{overcurrent\_status\_t}!total\_current\_a@{total\_current\_a}}
+\index{total\_current\_a@{total\_current\_a}!overcurrent\_status\_t@{overcurrent\_status\_t}}
+\doxysubsubsection{\texorpdfstring{total\_current\_a}{total\_current\_a}}
+{\footnotesize\ttfamily \label{structovercurrent__status__t_a03fedd96755db2de562bf443e2962e70} 
+float overcurrent\+\_\+status\+\_\+t\+::total\+\_\+current\+\_\+a}
+
+Total measured current \mbox{[}A\mbox{]} \Hypertarget{structovercurrent__status__t_a2826ad1a457bd2c0518ff1063f31b236}\index{overcurrent\_status\_t@{overcurrent\_status\_t}!trip\_count@{trip\_count}}
+\index{trip\_count@{trip\_count}!overcurrent\_status\_t@{overcurrent\_status\_t}}
+\doxysubsubsection{\texorpdfstring{trip\_count}{trip\_count}}
+{\footnotesize\ttfamily \label{structovercurrent__status__t_a2826ad1a457bd2c0518ff1063f31b236} 
+uint32\+\_\+t overcurrent\+\_\+status\+\_\+t\+::trip\+\_\+count}
+
+Total trip events since boot \Hypertarget{structovercurrent__status__t_a6ff192627045f06647152322f2a55c52}\index{overcurrent\_status\_t@{overcurrent\_status\_t}!warning\_threshold\_a@{warning\_threshold\_a}}
+\index{warning\_threshold\_a@{warning\_threshold\_a}!overcurrent\_status\_t@{overcurrent\_status\_t}}
+\doxysubsubsection{\texorpdfstring{warning\_threshold\_a}{warning\_threshold\_a}}
+{\footnotesize\ttfamily \label{structovercurrent__status__t_a6ff192627045f06647152322f2a55c52} 
+float overcurrent\+\_\+status\+\_\+t\+::warning\+\_\+threshold\+\_\+a}
+
+Warning threshold \mbox{[}A\mbox{]} 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\mbox{\hyperlink{_o_c_p_8h}{OCP.\+h}}\end{DoxyCompactItemize}

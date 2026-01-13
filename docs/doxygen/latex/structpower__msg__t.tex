@@ -1,0 +1,53 @@
+\doxysection{power\+\_\+msg\+\_\+t Struct Reference}
+\hypertarget{structpower__msg__t}{}\label{structpower__msg__t}\index{power\_msg\_t@{power\_msg\_t}}
+
+
+Message for power/relay control operations.  
+
+
+
+
+{\ttfamily \#include $<$Console\+Task.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__tasks02_gab2fcb31273a6ffa0e884123cc5943095}{power\+\_\+cmd\+\_\+kind\+\_\+t}} \mbox{\hyperlink{structpower__msg__t_a790c7cef8d0b304736634fad88dcbe2e}{kind}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structpower__msg__t_a88db7831ed22bea234879eff5952d23d}{channel}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structpower__msg__t_a8f3e6d9ee7207cd97654deac77ba1f90}{value}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Message for power/relay control operations. 
+
+Sent on {\ttfamily q\+\_\+power} to set/query relay states, including target channel and desired on/off value. 
+
+\label{doc-variable-members}
+\Hypertarget{structpower__msg__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structpower__msg__t_a88db7831ed22bea234879eff5952d23d}\index{power\_msg\_t@{power\_msg\_t}!channel@{channel}}
+\index{channel@{channel}!power\_msg\_t@{power\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{channel}{channel}}
+{\footnotesize\ttfamily \label{structpower__msg__t_a88db7831ed22bea234879eff5952d23d} 
+uint8\+\_\+t power\+\_\+msg\+\_\+t\+::channel}
+
+Target output channel (0-\/7). \Hypertarget{structpower__msg__t_a790c7cef8d0b304736634fad88dcbe2e}\index{power\_msg\_t@{power\_msg\_t}!kind@{kind}}
+\index{kind@{kind}!power\_msg\_t@{power\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{kind}{kind}}
+{\footnotesize\ttfamily \label{structpower__msg__t_a790c7cef8d0b304736634fad88dcbe2e} 
+\mbox{\hyperlink{group__tasks02_gab2fcb31273a6ffa0e884123cc5943095}{power\+\_\+cmd\+\_\+kind\+\_\+t}} power\+\_\+msg\+\_\+t\+::kind}
+
+Type of power command to execute. \Hypertarget{structpower__msg__t_a8f3e6d9ee7207cd97654deac77ba1f90}\index{power\_msg\_t@{power\_msg\_t}!value@{value}}
+\index{value@{value}!power\_msg\_t@{power\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily \label{structpower__msg__t_a8f3e6d9ee7207cd97654deac77ba1f90} 
+uint8\+\_\+t power\+\_\+msg\+\_\+t\+::value}
+
+Desired state\+: 0=off, 1=on (used for SET commands). 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\mbox{\hyperlink{_console_task_8h}{Console\+Task.\+h}}\end{DoxyCompactItemize}

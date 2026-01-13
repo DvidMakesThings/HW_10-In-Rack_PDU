@@ -1,0 +1,5 @@
+<map id="cmd_oc_reset" name="cmd_oc_reset">
+<area shape="rect" id="Node000001" title="Manually clear overcurrent lockout." alt="" coords="5,5,109,32"/>
+<area shape="rect" id="Node000002" href="$group__tasks08.html#gadc9a057a3aef40a2ec56e65c2e55daab" title="Clear lockout state manually." alt="" coords="157,5,330,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,16,141,16,141,21,109,21"/>
+</map>

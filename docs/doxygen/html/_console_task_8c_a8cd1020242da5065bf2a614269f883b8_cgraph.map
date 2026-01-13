@@ -1,0 +1,12 @@
+<map id="cmd_set_gw" name="cmd_set_gw">
+<area shape="rect" id="Node000001" title="Set gateway address." alt="" coords="5,81,101,108"/>
+<area shape="rect" id="Node000002" href="$_console_task_8c.html#ae86dc7efac53d19e22f864a9d0742343" title="Parse IP address from dotted decimal string." alt="" coords="185,5,255,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,78,148,48,173,37,175,41,150,53,85,83"/>
+<area shape="rect" id="Node000003" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="339,31,522,57"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="101,86,323,56,324,61,101,91"/>
+<area shape="rect" id="Node000004" href="$group__tasks10.html#ga422389bc6e9270118a931e58981753f9" title="Get network configuration." alt="" coords="149,107,291,133"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="101,99,134,104,133,109,101,104"/>
+<area shape="rect" id="Node000005" href="$group__tasks10.html#gabe45ebb96c320636c4a5e969e59a9f4a" title="Set network configuration." alt="" coords="149,157,291,184"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="79,106,150,143,164,149,162,154,148,148,77,111"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="256,20,324,29,323,34,255,25"/>
+</map>

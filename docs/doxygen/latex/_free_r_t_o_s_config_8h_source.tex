@@ -1,0 +1,121 @@
+\doxysection{Free\+RTOSConfig.\+h}
+\hypertarget{_free_r_t_o_s_config_8h_source}{}\label{_free_r_t_o_s_config_8h_source}\index{src/Software/ENERGIS\_RTOS/src/FreeRTOSConfig.h@{src/Software/ENERGIS\_RTOS/src/FreeRTOSConfig.h}}
+\mbox{\hyperlink{_free_r_t_o_s_config_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#ifndef\ FREERTOS\_CONFIG\_H}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ FREERTOS\_CONFIG\_H}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{/*\ clang-\/format\ off\ */}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ Task\ priorities}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ HEALTHTASK\_PRIORITY\ \ \ \ \ \ \ \ (configMAX\_PRIORITIES\ -\/\ 1)}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ INITTASK\_PRIORITY\ \ \ \ \ \ \ \ \ \ (configMAX\_PRIORITIES\ -\/\ 2)}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ BUTTONTASK\_PRIORITY\ \ \ \ \ \ \ \ (tskIDLE\_PRIORITY\ +\ 6)}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ SWITCHTASK\_PRIORITY\ \ \ \ \ \ \ \ (tskIDLE\_PRIORITY\ +\ 5)}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ NETTASK\_PRIORITY\ \ \ \ \ \ \ \ \ \ \ (tskIDLE\_PRIORITY\ +\ 4)}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ CONSOLETASK\_PRIORITY\ \ \ \ \ \ \ (tskIDLE\_PRIORITY\ +\ 3)}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ STORAGETASK\_PRIORITY\ \ \ \ \ \ \ (tskIDLE\_PRIORITY\ +\ 3)}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ LOGTASK\_PRIORITY\ \ \ \ \ \ \ \ \ \ \ (tskIDLE\_PRIORITY\ +\ 2)}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ METERTASK\_PRIORITY\ \ \ \ \ \ \ \ \ (tskIDLE\_PRIORITY\ +\ 2)}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{comment}{/*\ Use\ Pico\ SDK\ ISR\ handlers\ */}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ vPortSVCHandler\ \ \ \ \ \ \ \ \ \ \ \ isr\_svcall}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ xPortPendSVHandler\ \ \ \ \ \ \ \ \ isr\_pendsv}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ xPortSysTickHandler\ \ \ \ \ \ \ \ isr\_systick}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{comment}{/*\ Scheduler\ Related\ */}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ configUSE\_PREEMPTION\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ configUSE\_TIME\_SLICING\ \ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ configUSE\_PORT\_OPTIMISED\_TASK\_SELECTION\ 0}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ configUSE\_TICKLESS\_IDLE\ \ \ \ \ \ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ configCPU\_CLOCK\_HZ\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 200000000UL\ }\textcolor{comment}{//\ 200\ MHz}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ configTICK\_RATE\_HZ\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((TickType\_t)1000)}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ configMAX\_PRIORITIES\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 24}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ configMINIMAL\_STACK\_SIZE\ \ \ \ \ \ \ \ \ \ \ ((configSTACK\_DEPTH\_TYPE)512)}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ configUSE\_16\_BIT\_TICKS\ \ \ \ \ \ \ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ configIDLE\_SHOULD\_YIELD\ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ configMAX\_TASK\_NAME\_LEN\ \ \ \ \ \ \ \ \ \ \ \ 16}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ configTASK\_NOTIFICATION\_ARRAY\_ENTRIES\ 3}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{comment}{/*\ Synchronization\ Related\ */}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ configUSE\_MUTEXES\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ configUSE\_RECURSIVE\_MUTEXES\ \ \ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ configUSE\_COUNTING\_SEMAPHORES\ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ configUSE\_TASK\_NOTIFICATIONS\ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ configUSE\_QUEUE\_SETS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ configQUEUE\_REGISTRY\_SIZE\ \ \ \ \ \ \ \ \ \ \ 10}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ configUSE\_NEWLIB\_REENTRANT\ \ \ \ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ configENABLE\_BACKWARD\_COMPATIBILITY\ 0}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ configNUM\_THREAD\_LOCAL\_STORAGE\_POINTERS\ 5}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{comment}{/*\ System\ */}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ configSTACK\_DEPTH\_TYPE\ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ configMESSAGE\_BUFFER\_LENGTH\_TYPE\ \ \ \ size\_t}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{comment}{/*\ Memory\ allocation\ */}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ configSUPPORT\_STATIC\_ALLOCATION\ \ \ \ \ 0}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ configSUPPORT\_DYNAMIC\_ALLOCATION\ \ \ \ 1}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ configAPPLICATION\_ALLOCATED\_HEAP\ \ \ \ 0}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ configTOTAL\_HEAP\_SIZE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (128\ *\ 1024)}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{comment}{/*\ Hooks\ */}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ configUSE\_IDLE\_HOOK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ configUSE\_TICK\_HOOK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ configCHECK\_FOR\_STACK\_OVERFLOW\ \ \ \ \ \ 2}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ configUSE\_MALLOC\_FAILED\_HOOK\ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ configUSE\_DAEMON\_TASK\_STARTUP\_HOOK\ \ 0}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{comment}{/*\ Runtime\ stats\ /\ trace\ */}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ configGENERATE\_RUN\_TIME\_STATS\ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#define\ configUSE\_TRACE\_FACILITY\ \ \ \ \ \ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#define\ configUSE\_STATS\_FORMATTING\_FUNCTIONS\ 0}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{comment}{/*\ Co-\/routines\ */}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#define\ configUSE\_CO\_ROUTINES\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ configMAX\_CO\_ROUTINE\_PRIORITIES\ \ \ \ \ 1}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{comment}{/*\ Software\ timers\ */}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#define\ configUSE\_TIMERS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#define\ configTIMER\_TASK\_PRIORITY\ \ \ \ \ \ \ \ \ \ \ (tskIDLE\_PRIORITY\ +\ 2)}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#define\ configTIMER\_QUEUE\_LENGTH\ \ \ \ \ \ \ \ \ \ \ \ 10}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#define\ configTIMER\_TASK\_STACK\_DEPTH\ \ \ \ \ \ \ \ 1024}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{comment}{/*\ RP2040\ specific\ */}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#define\ configSUPPORT\_PICO\_SYNC\_INTEROP\ \ \ \ \ \ 1}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#define\ configSUPPORT\_PICO\_TIME\_INTEROP\ \ \ \ \ \ 1}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{comment}{/*\ Assert\ */}}
+\DoxyCodeLine{00107\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__config05_ga20f7d031e5579a7e413468a721166881}{vAssertCalled}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *file,\ \textcolor{keywordtype}{int}\ line);}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#define\ configASSERT(x)\ \(\backslash\)}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\ \ \ \ if\ ((x)\ ==\ 0)\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ vAssertCalled(\_\_FILE\_\_,\ \_\_LINE\_\_);\ \(\backslash\)}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{comment}{/*\ Optional\ functions\ */}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#define\ INCLUDE\_vTaskPrioritySet\ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#define\ INCLUDE\_uxTaskPriorityGet\ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#define\ INCLUDE\_vTaskDelete\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#define\ INCLUDE\_vTaskSuspend\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#define\ INCLUDE\_vTaskDelayUntil\ \ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#define\ INCLUDE\_vTaskDelay\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#define\ INCLUDE\_xTaskGetSchedulerState\ \ \ \ \ \ 1}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#define\ INCLUDE\_xTaskGetCurrentTaskHandle\ \ \ 1}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#define\ INCLUDE\_uxTaskGetStackHighWaterMark\ 1}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#define\ INCLUDE\_uxTaskGetStackHighWaterMark2\ 1}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#define\ INCLUDE\_xTaskGetIdleTaskHandle\ \ \ \ \ \ 1}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#define\ INCLUDE\_eTaskGetState\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#define\ INCLUDE\_xTaskAbortDelay\ \ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#define\ INCLUDE\_xTaskGetHandle\ \ \ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#define\ INCLUDE\_xTaskResumeFromISR\ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#define\ INCLUDE\_xQueueGetMutexHolder\ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#define\ INCLUDE\_xResumeFromISR\ \ \ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#define\ INCLUDE\_xEventGroupSetBitFromISR\ \ \ \ 1}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#define\ INCLUDE\_xTimerPendFunctionCall\ \ \ \ \ \ 1}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \textcolor{comment}{/*\ clang-\/format\ on\ */}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ FREERTOS\_CONFIG\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00137\ }
+
+\end{DoxyCode}

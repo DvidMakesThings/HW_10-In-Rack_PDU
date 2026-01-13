@@ -1,0 +1,109 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item W5500 Ethernet Configuration 
+\end{DoxyEnumerate}}
+\hypertarget{group__config02}{}\label{group__config02}\index{2. W5500 Ethernet Configuration@{2. W5500 Ethernet Configuration}}
+
+
+Centralized configuration parameters for W5500 Ethernet controller.  
+
+
+Collaboration diagram for 2. W5500 Ethernet Configuration\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__config02}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Topics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group___w5500___h_w}{Hardware Pin Configuration}}
+\begin{DoxyCompactList}\small\item\em SPI peripheral and GPIO pin assignments from \doxylink{_c_o_n_f_i_g_8h}{CONFIG.\+h}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group___w5500___m_e_m}{Socket Memory Allocation}}
+\begin{DoxyCompactList}\small\item\em TX/\+RX buffer sizes for each socket (total 16KB per direction) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group___w5500___n_e_t}{Network Configuration Defaults}}
+\begin{DoxyCompactList}\small\item\em Default network parameters (overrideable at runtime) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group___w5500___p_r_o_t_o}{Protocol Support Flags}}
+\begin{DoxyCompactList}\small\item\em Enable/disable protocol features. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group___w5500___r_t_o_s}{RTOS Integration Parameters}}
+\begin{DoxyCompactList}\small\item\em Free\+RTOS task and synchronization settings. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group___w5500___a_d_v}{Advanced TCP/\+IP Tuning}}
+\begin{DoxyCompactList}\small\item\em Expert-\/level configuration parameters. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group___w5500___d_b_g}{Debug and Logging}}
+\begin{DoxyCompactList}\small\item\em Debugging output control. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Compile-\/\+Time Validation}
+Compile-\/time validation of socket buffer allocation
+
+Ensures total TX and RX buffer allocations do not exceed W5500 hardware limits. W5500 provides exactly 16KB for TX buffers and 16KB for RX buffers across all sockets. \begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config02_gaa3bed5e237703f71f601c4c83e0e3ecf}{\+\_\+\+W5500\+\_\+\+TX\+\_\+\+TOTAL}}
+\item 
+\#define \mbox{\hyperlink{group__config02_ga9953436d763b0b46708055f785891b11}{\+\_\+\+W5500\+\_\+\+RX\+\_\+\+TOTAL}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Centralized configuration parameters for W5500 Ethernet controller. 
+
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/06
+\end{DoxyDate}
+This file centralizes all configuration for the W5500 Ethernet controller used in the ENERGIS PDU. Configuration includes\+:
+\begin{DoxyItemize}
+\item Hardware pin assignments and SPI settings
+\item Socket memory buffer allocation (16KB TX + 16KB RX total)
+\item Network parameters (IP, MAC, gateway, subnet)
+\item Protocol support flags (TCP, UDP, SNMP, ICMP)
+\item RTOS task and synchronization parameters
+\item Advanced TCP/\+IP tuning parameters
+\end{DoxyItemize}
+
+Socket Buffer Strategy\+: The W5500 provides 16KB each for TX and RX buffers, distributed across 8 sockets. Current allocation prioritizes HTTP server (Socket 0) and SNMP (Socket 1).
+
+Configuration Philosophy\+:
+\begin{DoxyItemize}
+\item All hardware-\/specific values come from \doxylink{_c_o_n_f_i_g_8h}{CONFIG.\+h}
+\item Runtime-\/changeable parameters (IP, MAC) have defaults
+\item Compile-\/time validation prevents buffer overallocation
+\end{DoxyItemize}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{group__config02_doc-define-members}
+\doxysubsubsection{Macro Definition Documentation}
+\Hypertarget{group__config02_ga9953436d763b0b46708055f785891b11}\index{2. W5500 Ethernet Configuration@{2. W5500 Ethernet Configuration}!\_W5500\_RX\_TOTAL@{\_W5500\_RX\_TOTAL}}
+\index{\_W5500\_RX\_TOTAL@{\_W5500\_RX\_TOTAL}!2. W5500 Ethernet Configuration@{2. W5500 Ethernet Configuration}}
+\doxysubsubsubsection{\texorpdfstring{\_W5500\_RX\_TOTAL}{\_W5500\_RX\_TOTAL}}
+{\footnotesize\ttfamily \label{group__config02_ga9953436d763b0b46708055f785891b11} 
+\#define \+\_\+\+W5500\+\_\+\+RX\+\_\+\+TOTAL}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ (\mbox{\hyperlink{group___w5500___m_e_m_gaba4a27670972b8c4d30cf16fc382990c}{W5500\_RX\_SIZE\_S0}}\ +\ \mbox{\hyperlink{group___w5500___m_e_m_ga63725c390e9fa17fc4f1f7b621e61dce}{W5500\_RX\_SIZE\_S1}}\ +\ \mbox{\hyperlink{group___w5500___m_e_m_ga92b0a7ae11d113cb5130e0cacece1a44}{W5500\_RX\_SIZE\_S2}}\ +\ \mbox{\hyperlink{group___w5500___m_e_m_ga76f4b9aab5893d607c78241b65aa001e}{W5500\_RX\_SIZE\_S3}}\ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \mbox{\hyperlink{group___w5500___m_e_m_ga36d2890fb9805f39493bf3a6515bbb47}{W5500\_RX\_SIZE\_S4}}\ +\ \mbox{\hyperlink{group___w5500___m_e_m_ga19eb0f78c37a5217e397c0c6573593c0}{W5500\_RX\_SIZE\_S5}}\ +\ \mbox{\hyperlink{group___w5500___m_e_m_gadaf5558743dd18aee8dcd60eb3463e2d}{W5500\_RX\_SIZE\_S6}}\ +\ \mbox{\hyperlink{group___w5500___m_e_m_ga104b9c0750365c4da4856418c81de8b9}{W5500\_RX\_SIZE\_S7}})}
+
+\end{DoxyCode}
+\Hypertarget{group__config02_gaa3bed5e237703f71f601c4c83e0e3ecf}\index{2. W5500 Ethernet Configuration@{2. W5500 Ethernet Configuration}!\_W5500\_TX\_TOTAL@{\_W5500\_TX\_TOTAL}}
+\index{\_W5500\_TX\_TOTAL@{\_W5500\_TX\_TOTAL}!2. W5500 Ethernet Configuration@{2. W5500 Ethernet Configuration}}
+\doxysubsubsubsection{\texorpdfstring{\_W5500\_TX\_TOTAL}{\_W5500\_TX\_TOTAL}}
+{\footnotesize\ttfamily \label{group__config02_gaa3bed5e237703f71f601c4c83e0e3ecf} 
+\#define \+\_\+\+W5500\+\_\+\+TX\+\_\+\+TOTAL}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ (\mbox{\hyperlink{group___w5500___m_e_m_gaf53182de234fde349104d639e27a6cf1}{W5500\_TX\_SIZE\_S0}}\ +\ \mbox{\hyperlink{group___w5500___m_e_m_ga0314948cf82d3357ceccffb95878f411}{W5500\_TX\_SIZE\_S1}}\ +\ \mbox{\hyperlink{group___w5500___m_e_m_gaab31a56c4de1033958e372b5d871cfa0}{W5500\_TX\_SIZE\_S2}}\ +\ \mbox{\hyperlink{group___w5500___m_e_m_gae872cbc38720e33a38562cecf2a71a57}{W5500\_TX\_SIZE\_S3}}\ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \mbox{\hyperlink{group___w5500___m_e_m_ga34e85984c9aeccff7bba76c5e521d299}{W5500\_TX\_SIZE\_S4}}\ +\ \mbox{\hyperlink{group___w5500___m_e_m_ga52ed3145ea4340bcbc522b570273354b}{W5500\_TX\_SIZE\_S5}}\ +\ \mbox{\hyperlink{group___w5500___m_e_m_ga3b19a8d2ad4b13a5594de48ab81e30da}{W5500\_TX\_SIZE\_S6}}\ +\ \mbox{\hyperlink{group___w5500___m_e_m_ga782cee82b3c1574039a7ed09d2d3d153}{W5500\_TX\_SIZE\_S7}})}
+
+\end{DoxyCode}
+\input{group___w5500___h_w}
+\input{group___w5500___m_e_m}
+\input{group___w5500___n_e_t}
+\input{group___w5500___p_r_o_t_o}
+\input{group___w5500___r_t_o_s}
+\input{group___w5500___a_d_v}
+\input{group___w5500___d_b_g}

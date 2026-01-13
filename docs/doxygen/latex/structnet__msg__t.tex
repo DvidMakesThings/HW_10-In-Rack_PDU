@@ -1,0 +1,45 @@
+\doxysection{net\+\_\+msg\+\_\+t Struct Reference}
+\hypertarget{structnet__msg__t}{}\label{structnet__msg__t}\index{net\_msg\_t@{net\_msg\_t}}
+
+
+Network operation message for Net\+Task.  
+
+
+
+
+{\ttfamily \#include $<$Console\+Task.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structnet__msg__t_a66753b38c7116921daaea2688aeabbb9}{action}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structnet__msg__t_a4795fd3def3e6b3bcab4657d4ed8f3b0}{ip}} \mbox{[}4\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Network operation message for Net\+Task. 
+
+Reserved for future network parameter updates; sent via {\ttfamily q\+\_\+net}. 
+
+\label{doc-variable-members}
+\Hypertarget{structnet__msg__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structnet__msg__t_a66753b38c7116921daaea2688aeabbb9}\index{net\_msg\_t@{net\_msg\_t}!action@{action}}
+\index{action@{action}!net\_msg\_t@{net\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{action}{action}}
+{\footnotesize\ttfamily \label{structnet__msg__t_a66753b38c7116921daaea2688aeabbb9} 
+uint8\+\_\+t net\+\_\+msg\+\_\+t\+::action}
+
+Operation\+: 0=set\+\_\+ip, 1=set\+\_\+subnet, 2=set\+\_\+gateway, 3=set\+\_\+dns. \Hypertarget{structnet__msg__t_a4795fd3def3e6b3bcab4657d4ed8f3b0}\index{net\_msg\_t@{net\_msg\_t}!ip@{ip}}
+\index{ip@{ip}!net\_msg\_t@{net\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{ip}{ip}}
+{\footnotesize\ttfamily \label{structnet__msg__t_a4795fd3def3e6b3bcab4657d4ed8f3b0} 
+uint8\+\_\+t net\+\_\+msg\+\_\+t\+::ip\mbox{[}4\mbox{]}}
+
+IP address octets. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\mbox{\hyperlink{_console_task_8h}{Console\+Task.\+h}}\end{DoxyCompactItemize}

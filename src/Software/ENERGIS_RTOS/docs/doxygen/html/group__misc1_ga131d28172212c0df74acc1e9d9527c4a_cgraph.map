@@ -1,0 +1,19 @@
+<map id="CrashLog_CaptureResetReasonEarly" name="CrashLog_CaptureResetReasonEarly">
+<area shape="rect" id="Node000001" title="Capture reset cause at early boot before RTOS initialization." alt="" coords="5,124,216,167"/>
+<area shape="rect" id="Node000002" href="$crashlog_8c.html#a2f312735a33853d79a3bc2fb7c2add92" title="Clamp watchdog feed ring buffer indices to safe bounds." alt="" coords="317,5,440,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,121,192,80,263,42,301,29,302,34,265,46,195,85,140,126"/>
+<area shape="rect" id="Node000003" href="$crashlog_8c.html#a9207dc5d61cc94ea574ba706f3195453" title="Initialize retained crash log structure to clean state." alt="" coords="322,56,435,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="186,121,263,99,312,85,314,90,264,104,188,126"/>
+<area shape="rect" id="Node000004" href="$crashlog_8c.html#a50f52af1f76175e818dad1ef9f2bc3eb" title="Recompute and store updated CRC32 for the crash log structure." alt="" coords="554,107,679,133"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="216,137,539,121,539,127,216,143"/>
+<area shape="rect" id="Node000006" href="$crashlog_8c.html#a19fbb6b4d2a38070175773953f6fb5db" title="Validate retained crash log header and CRC32 checksum." alt="" coords="541,157,692,184"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="216,148,526,163,525,169,216,153"/>
+<area shape="rect" id="Node000007" href="$group__misc1.html#ga41cf871cde075031b39beae132e7c13d" title="Platform hook to decode raw reset bits into standardized reason enum." alt="" coords="286,208,471,251"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="182,165,294,200,292,205,180,170"/>
+<area shape="rect" id="Node000008" href="$group__misc1.html#gaed84e69b9c69051cc7be2c213183e109" title="Platform hook to read raw reset&#45;cause bits from hardware." alt="" coords="264,275,493,301"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="135,165,191,214,227,239,265,260,281,267,279,272,263,265,224,243,188,218,132,169"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="436,79,540,101,539,106,435,84"/>
+<area shape="rect" id="Node000005" href="$crashlog_8c.html#ae55aac5d65874421d290cce57ce04ed5" title="Compute CRC32 checksum using standard polynomial 0xEDB88320." alt="" coords="740,132,833,159"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="680,127,725,134,725,139,679,132"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="692,157,724,152,725,157,693,162"/>
+</map>

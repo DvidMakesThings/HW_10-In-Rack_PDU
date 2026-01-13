@@ -1,0 +1,48 @@
+\doxysection{i2c\+\_\+bus.\+h}
+\hypertarget{i2c__bus_8h_source}{}\label{i2c__bus_8h_source}\index{src/Software/ENERGIS\_RTOS/src/drivers/i2c\_bus.h@{src/Software/ENERGIS\_RTOS/src/drivers/i2c\_bus.h}}
+\mbox{\hyperlink{i2c__bus_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_o_n_f_i_g_8h}{../CONFIG.h}}"{}}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00035\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers05_ga9c76037250f6dc0a30507d349e7248e1}{I2C\_BusLock}}(i2c\_inst\_t\ *i2c);}
+\DoxyCodeLine{00043\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers05_gaf26d164f7fc711b6c91d9a4b397daea3}{I2C\_BusUnlock}}(i2c\_inst\_t\ *i2c);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ I2C\ Bus\ Manager\ (FIFO,\ single\ owner)\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00050\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers05_ga8bf0403f2c78483c3afc9ffea67c425f}{I2C\_BusInit}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00056\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__drivers05_ga170d6c4ff97ddc2d314f0a7a0054f283}{i2c\_bus\_write\_timeout\_us}}(i2c\_inst\_t\ *i2c,\ uint8\_t\ addr,\ \textcolor{keyword}{const}\ uint8\_t\ *src,\ \textcolor{keywordtype}{size\_t}\ len,}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ nostop,\ uint32\_t\ timeout\_us);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00063\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__drivers05_ga5caa937abd50ec32925c6283a37ef7da}{i2c\_bus\_read\_timeout\_us}}(i2c\_inst\_t\ *i2c,\ uint8\_t\ addr,\ uint8\_t\ *dst,\ \textcolor{keywordtype}{size\_t}\ len,\ \textcolor{keywordtype}{bool}\ nostop,}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ timeout\_us);}
+\DoxyCodeLine{00078\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__drivers05_ga417adf0354f9f45105255aa06562fc90}{i2c\_bus\_write\_read}}(i2c\_inst\_t\ *i2c,\ uint8\_t\ addr,\ \textcolor{keyword}{const}\ uint8\_t\ *wsrc,\ \textcolor{keywordtype}{size\_t}\ wlen,}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ *rdst,\ \textcolor{keywordtype}{size\_t}\ rlen,\ uint32\_t\ timeout\_us);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ High-\/level\ register/memory\ helpers\ (centralized)\ -\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00086\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers05_gab7b4aa096ded6cebd93256e5b5994e42}{i2c\_bus\_write\_reg8}}(i2c\_inst\_t\ *i2c,\ uint8\_t\ addr,\ uint8\_t\ reg,\ uint8\_t\ value,}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ timeout\_us);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00093\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers05_ga0e406d50e8948e593649a11c729acd9b}{i2c\_bus\_read\_reg8}}(i2c\_inst\_t\ *i2c,\ uint8\_t\ addr,\ uint8\_t\ reg,\ uint8\_t\ *out,}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ timeout\_us);}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00100\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers05_ga77ca38d627119d534873e177c5f4a667}{i2c\_bus\_write\_mem16}}(i2c\_inst\_t\ *i2c,\ uint8\_t\ addr,\ uint16\_t\ mem,\ \textcolor{keyword}{const}\ uint8\_t\ *src,}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ len,\ uint32\_t\ timeout\_us);}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00107\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers05_ga66ae4c7028f764a3770cabe101dba8bf}{i2c\_bus\_read\_mem16}}(i2c\_inst\_t\ *i2c,\ uint8\_t\ addr,\ uint16\_t\ mem,\ uint8\_t\ *dst,\ \textcolor{keywordtype}{size\_t}\ len,}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ timeout\_us);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00113\ \}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00115\ }
+
+\end{DoxyCode}

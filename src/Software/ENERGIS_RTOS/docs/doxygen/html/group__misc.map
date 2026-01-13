@@ -1,0 +1,7 @@
+<map id="Miscellaneous Utilities" name="Miscellaneous Utilities">
+<area shape="rect" id="Node000001" title="Miscellaneous utility functions and modules." alt="" coords="5,81,158,108"/>
+<area shape="rect" id="Node000002" href="$group__misc1.html" title="Crash log and fault diagnostics module." alt="" coords="221,5,364,32"/>
+<area shape="rect" id="Node000003" href="$group__misc2.html" title="System&#45;wide helper utilities and diagnostics." alt="" coords="229,56,356,83"/>
+<area shape="rect" id="Node000004" href="$group__misc3.html" title="Centralized power state management and standby mode control." alt="" coords="206,107,379,133"/>
+<area shape="rect" id="Node000005" href="$group__misc4.html" title="FreeRTOS hook implementations and scheduler diagnostics." alt="" coords="212,157,372,184"/>
+</map>

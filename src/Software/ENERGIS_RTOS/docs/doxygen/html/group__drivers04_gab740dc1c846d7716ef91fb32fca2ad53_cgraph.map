@@ -1,0 +1,5 @@
+<map id="hlw8032_calibration_start_current_all" name="hlw8032_calibration_start_current_all">
+<area shape="rect" id="Node000001" title="Start asynchronous current calibration for all channels." alt="" coords="5,5,141,48"/>
+<area shape="rect" id="Node000002" href="$_h_l_w8032__driver_8c.html#acc3dced2405146bb247c8d852e88e56f" title="Reset sample accumulators for the current async calibration channel." alt="" coords="189,5,331,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="141,24,173,24,173,29,141,29"/>
+</map>

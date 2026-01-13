@@ -1,0 +1,11 @@
+<map id="ipfmt" name="ipfmt">
+<area shape="rect" id="Node000001" title="Format IPv4 address as dotted&#45;decimal string." alt="" coords="198,81,248,108"/>
+<area shape="rect" id="Node000002" href="$group__snmp02.html#ga627509df7abbb7ecc5928d9e5ccfb488" title="SNMP getter for DNS server address." alt="" coords="17,5,138,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,74,148,46,122,35,125,30,151,42,194,69"/>
+<area shape="rect" id="Node000003" href="$group__snmp02.html#ga3795c4048a3466dc0e10450be2dfc4e4" title="SNMP getter for gateway address." alt="" coords="5,56,150,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="182,90,149,85,150,79,183,85"/>
+<area shape="rect" id="Node000004" href="$group__snmp02.html#gad27ee84f180b6b9c90fe62588f4d2022" title="SNMP getter for device IP address." alt="" coords="25,107,130,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="183,104,131,113,130,108,182,99"/>
+<area shape="rect" id="Node000005" href="$group__snmp02.html#ga741d94202ff45e3f45147913bb42b059" title="SNMP getter for subnet mask." alt="" coords="15,157,140,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="194,120,151,148,125,159,122,154,148,143,191,116"/>
+</map>

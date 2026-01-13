@@ -1,0 +1,162 @@
+\doxysection{socket.\+h}
+\hypertarget{socket_8h_source}{}\label{socket_8h_source}\index{src/Software/ENERGIS\_RTOS/src/drivers/socket.h@{src/Software/ENERGIS\_RTOS/src/drivers/socket.h}}
+\mbox{\hyperlink{socket_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#ifndef\ ETH\_SOCKET\_H}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ ETH\_SOCKET\_H}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_o_n_f_i_g_8h}{../CONFIG.h}}"{}}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TYPE\ DEFINITIONS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{typedef}\ uint8\_t\ \mbox{\hyperlink{group__drivers08_ga2b3f978d539175d112fb6ebaa7efc0f0}{SOCKET}};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SOCKET\ OPERATION\ RESULT\ CODES\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ SOCK\_OK\ 1\ \ \ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ SOCK\_BUSY\ 0\ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ SOCK\_FATAL\ -\/1000\ }\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ SOCK\_ERROR\ 0}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ SOCKERR\_SOCKNUM\ (SOCK\_ERROR\ -\/\ 1)\ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ SOCKERR\_SOCKOPT\ (SOCK\_ERROR\ -\/\ 2)\ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ SOCKERR\_SOCKINIT\ (SOCK\_ERROR\ -\/\ 3)\ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ SOCKERR\_SOCKCLOSED\ (SOCK\_ERROR\ -\/\ 4)\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ SOCKERR\_SOCKMODE\ (SOCK\_ERROR\ -\/\ 5)\ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ SOCKERR\_SOCKFLAG\ (SOCK\_ERROR\ -\/\ 6)\ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ SOCKERR\_SOCKSTATUS\ (SOCK\_ERROR\ -\/\ 7)\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ SOCKERR\_ARG\ (SOCK\_ERROR\ -\/\ 10)\ \ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ SOCKERR\_PORTZERO\ (SOCK\_ERROR\ -\/\ 11)\ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ SOCKERR\_IPINVALID\ (SOCK\_ERROR\ -\/\ 12)\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ SOCKERR\_TIMEOUT\ (SOCK\_ERROR\ -\/\ 13)\ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ SOCKERR\_DATALEN\ (SOCK\_ERROR\ -\/\ 14)\ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ SOCKERR\_BUFFER\ (SOCK\_ERROR\ -\/\ 15)\ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ SOCKFATAL\_PACKLEN\ (SOCK\_FATAL\ -\/\ 1)\ \ }\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00074\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SOCKET\ FLAGS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00075\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ SF\_ETHER\_OWN\ (Sn\_MR\_MFEN)\ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ SF\_IGMP\_VER2\ (Sn\_MR\_MC)\ \ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ SF\_TCP\_NODELAY\ (Sn\_MR\_ND)\ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ SF\_MULTI\_ENABLE\ (Sn\_MR\_MULTI)\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ SF\_IO\_NONBLOCK\ 0x01\ \ \ \ \ \ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ SF\_IO\_BLOCK\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ SF\_UNI\_BLOCK\ (Sn\_MR\_UCASTB)\ \ \ }\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00091\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UDP\ \&\ MACRAW\ PACKET\ INFO\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00092\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#define\ PACK\_FIRST\ 0x80\ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#define\ PACK\_REMAINED\ 0x01\ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#define\ PACK\_COMPLETED\ 0x00\ }\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00107\ \textcolor{keyword}{extern}\ uint8\_t\ \mbox{\hyperlink{group__drivers08_ga3c3689958c5f3bf2f9fcf1a44f9ad941}{sock\_pack\_info}}[\mbox{\hyperlink{group__config03_ga5322fda8c75b38b8c84a677103387d07}{W5500\_SOCKNUM}}];}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00110\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SOCKET\ INTERRUPT\ KINDS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00111\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00120\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \mbox{\hyperlink{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49ca572b5fc4792b828241e3cb59c95d8162}{SIK\_CONNECTED}}\ =\ (1\ <<\ 0),\ \ \ \ }
+\DoxyCodeLine{00122\ \ \ \ \ \mbox{\hyperlink{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49ca9680dba91346657e5ace550b548e078b}{SIK\_DISCONNECTED}}\ =\ (1\ <<\ 1),\ }
+\DoxyCodeLine{00123\ \ \ \ \ \mbox{\hyperlink{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49ca083fdc9e4e60122e9430e00cea78ecba}{SIK\_RECEIVED}}\ =\ (1\ <<\ 2),\ \ \ \ \ }
+\DoxyCodeLine{00124\ \ \ \ \ \mbox{\hyperlink{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49ca9932f0ef330402b0f60a08073fd5a753}{SIK\_TIMEOUT}}\ =\ (1\ <<\ 3),\ \ \ \ \ \ }
+\DoxyCodeLine{00125\ \ \ \ \ \mbox{\hyperlink{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49ca263f2ee924ce301138f6ff041d539bd2}{SIK\_SENT}}\ =\ (1\ <<\ 4),\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00126\ \ \ \ \ \mbox{\hyperlink{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49cab047934b1869746fbc0f144b5a750235}{SIK\_ALL}}\ =\ 0x1F\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00127\ \}\ \mbox{\hyperlink{group__drivers08_gaa9d536c54137cd7b425c4c1e3cbfd49c}{sockint\_kind}};}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00131\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SOCKET\ CONTROL\ TYPES\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00132\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00141\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \mbox{\hyperlink{group__drivers08_gga3a77339a724cf087b366b8710aa683e6ab3ec317b2f9cb2df881dedd576500f2f}{CS\_SET\_IOMODE}},\ \ \ \ }
+\DoxyCodeLine{00143\ \ \ \ \ \mbox{\hyperlink{group__drivers08_gga3a77339a724cf087b366b8710aa683e6af7caa802f7e7242ca70ce5640a9b8e85}{CS\_GET\_IOMODE}},\ \ \ \ }
+\DoxyCodeLine{00144\ \ \ \ \ \mbox{\hyperlink{group__drivers08_gga3a77339a724cf087b366b8710aa683e6a9f3ee6f21891b62bdf724135151e9e59}{CS\_GET\_MAXTXBUF}},\ \ }
+\DoxyCodeLine{00145\ \ \ \ \ \mbox{\hyperlink{group__drivers08_gga3a77339a724cf087b366b8710aa683e6abb1c8779447ef09aa57c88c71186ca1e}{CS\_GET\_MAXRXBUF}},\ \ }
+\DoxyCodeLine{00146\ \ \ \ \ \mbox{\hyperlink{group__drivers08_gga3a77339a724cf087b366b8710aa683e6aef32fa8c2e9399355ed769ec77729f8e}{CS\_CLR\_INTERRUPT}},\ }
+\DoxyCodeLine{00147\ \ \ \ \ \mbox{\hyperlink{group__drivers08_gga3a77339a724cf087b366b8710aa683e6a7e9faa71bdd2cf508fbf5cc9f7e83ccc}{CS\_GET\_INTERRUPT}},\ }
+\DoxyCodeLine{00148\ \ \ \ \ \mbox{\hyperlink{group__drivers08_gga3a77339a724cf087b366b8710aa683e6a2ad38020bf3c84479f0e5552929747be}{CS\_SET\_INTMASK}},\ \ \ }
+\DoxyCodeLine{00149\ \ \ \ \ \mbox{\hyperlink{group__drivers08_gga3a77339a724cf087b366b8710aa683e6abdad4e84a9a5a8084e9662d4d8587f18}{CS\_GET\_INTMASK}}\ \ \ \ }
+\DoxyCodeLine{00150\ \}\ \mbox{\hyperlink{group__drivers08_ga3a77339a724cf087b366b8710aa683e6}{ctlsock\_type}};}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00154\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SOCKET\ OPTION\ TYPES\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00155\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00164\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944af21c9fec4a305d9504e0487f7ae7fc26}{SO\_FLAG}},\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00166\ \ \ \ \ \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a69762968a8cae82544deffe1c3ac32cf}{SO\_TTL}},\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00167\ \ \ \ \ \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944afef2289d3bfeecda602214576b0a42e3}{SO\_TOS}},\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00168\ \ \ \ \ \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944ae7f6aaf2aaef0519a813b3e26ef9c4fd}{SO\_MSS}},\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00169\ \ \ \ \ \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944aedcfb91978540124a81e0302c58bb6d7}{SO\_DESTIP}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00170\ \ \ \ \ \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a3429f41e7099b4badca2630c7a5e4f1c}{SO\_DESTPORT}},\ \ \ \ \ \ }
+\DoxyCodeLine{00171\ \ \ \ \ \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a2bf80fd82c7e9231c427cd62a5d62cf0}{SO\_KEEPALIVESEND}},\ }
+\DoxyCodeLine{00172\ \ \ \ \ \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a779fa4480ecb9a4b247bd6130c25647f}{SO\_KEEPALIVEAUTO}},\ }
+\DoxyCodeLine{00173\ \ \ \ \ \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a1b0e150a176b12a227d6ab7c294fc05a}{SO\_SENDBUF}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00174\ \ \ \ \ \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944ab30861739974726fb7a170bbac572c22}{SO\_RECVBUF}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00175\ \ \ \ \ \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a3f76c1b04cfc969826bed37a3c4cff06}{SO\_STATUS}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00176\ \ \ \ \ \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944ac8e0d12b5a8ee43e5ebe37a39b31988a}{SO\_REMAINSIZE}},\ \ \ \ }
+\DoxyCodeLine{00177\ \ \ \ \ \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944af1a89a6cfe6fce7381f825553de1a905}{SO\_PACKINFO}}\ \ \ \ \ \ \ }
+\DoxyCodeLine{00178\ \}\ \mbox{\hyperlink{group__drivers08_ga2f86b7ad233f3b8d6ae0af3ee91e9944}{sockopt\_type}};}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00182\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SOCKET\ MANAGEMENT\ FUNCTIONS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00183\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00211\ int8\_t\ \mbox{\hyperlink{group__drivers08_ga8cc0a2074b3aae98a132c1ae3c51188f}{socket}}(uint8\_t\ sn,\ uint8\_t\ protocol,\ uint16\_t\ port,\ uint8\_t\ flag);}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00224\ int8\_t\ \mbox{\hyperlink{group__drivers08_ga025710a2709097be7824f0564f89a461}{closesocket}}(uint8\_t\ sn);}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00238\ int8\_t\ \mbox{\hyperlink{group__drivers08_ga0230efb936b222a0cbc7680e2c39c994}{disconnect}}(uint8\_t\ sn);}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00258\ int8\_t\ \mbox{\hyperlink{group__drivers08_gae2f94d7d4ce040f6bf68779e064d224e}{ctlsocket}}(uint8\_t\ sn,\ \mbox{\hyperlink{group__drivers08_ga3a77339a724cf087b366b8710aa683e6}{ctlsock\_type}}\ cstype,\ \textcolor{keywordtype}{void}\ *arg);}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00277\ int8\_t\ \mbox{\hyperlink{group__drivers08_ga0111e4784e20d97dacd5aaf54cb48ef1}{setsockopt}}(uint8\_t\ sn,\ \mbox{\hyperlink{group__drivers08_ga2f86b7ad233f3b8d6ae0af3ee91e9944}{sockopt\_type}}\ sotype,\ \textcolor{keywordtype}{void}\ *arg);}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00301\ int8\_t\ \mbox{\hyperlink{group__drivers08_ga631998ae17cbf099b0071f20c88ce5cf}{getsockopt}}(uint8\_t\ sn,\ \mbox{\hyperlink{group__drivers08_ga2f86b7ad233f3b8d6ae0af3ee91e9944}{sockopt\_type}}\ sotype,\ \textcolor{keywordtype}{void}\ *arg);}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00304\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TCP\ FUNCTIONS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00305\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00319\ int8\_t\ \mbox{\hyperlink{group__drivers08_ga58ae959798d5d874ac5ea796da90db8c}{listen}}(uint8\_t\ sn);}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00336\ int8\_t\ \mbox{\hyperlink{group__drivers08_gaf7ab832f4201ef0f04eefcac063b998e}{connect}}(uint8\_t\ sn,\ uint8\_t\ *addr,\ uint16\_t\ port);}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00354\ int32\_t\ \mbox{\hyperlink{group__drivers08_gacd77c3cc60e87d09a5714932506d7c4b}{send}}(uint8\_t\ sn,\ uint8\_t\ *buf,\ uint16\_t\ len);}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00364\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__drivers08_gafbf5f9d6f92a7ad4811b3c4f211f3672}{send\_all\_blocking}}(uint8\_t\ sn,\ \textcolor{keyword}{const}\ uint8\_t\ *buf,\ \textcolor{keywordtype}{int}\ len);}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00381\ int32\_t\ \mbox{\hyperlink{group__drivers08_ga4cfb66f7440a1dd9ac0ee0b933a38c59}{recv}}(uint8\_t\ sn,\ uint8\_t\ *buf,\ uint16\_t\ len);}
+\DoxyCodeLine{00382\ }
+\DoxyCodeLine{00383\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00384\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UDP\ FUNCTIONS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00385\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00404\ int32\_t\ \mbox{\hyperlink{group__drivers08_ga30fc77ba1005733b501994818bde12f8}{sendto}}(uint8\_t\ sn,\ uint8\_t\ *buf,\ uint16\_t\ len,\ uint8\_t\ *addr,\ uint16\_t\ port);}
+\DoxyCodeLine{00405\ }
+\DoxyCodeLine{00431\ int32\_t\ \mbox{\hyperlink{group__drivers08_gae580bd099f9bcbeca63a3145c0015e62}{recvfrom}}(uint8\_t\ sn,\ uint8\_t\ *buf,\ uint16\_t\ len,\ uint8\_t\ *addr,\ uint16\_t\ *port);}
+\DoxyCodeLine{00432\ }
+\DoxyCodeLine{00443\ int32\_t\ \mbox{\hyperlink{group__drivers08_gaa2d7390eb4454dd102f39caf47829065}{recvfrom\_SNMP}}(uint8\_t\ sn,\ uint8\_t\ *buf,\ uint16\_t\ len,\ uint8\_t\ *addr,\ uint16\_t\ *port);}
+\DoxyCodeLine{00445\ }
+\DoxyCodeLine{00446\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00447\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ USAGE\ EXAMPLES\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00448\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00449\ }
+\DoxyCodeLine{00485\ }
+\DoxyCodeLine{00518\ }
+\DoxyCodeLine{00548\ }
+\DoxyCodeLine{00549\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ ETH\_SOCKET\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00550\ }
+
+\end{DoxyCode}

@@ -1,0 +1,5 @@
+<map id="ocp_read_status" name="ocp_read_status">
+<area shape="rect" id="Node000001" title="Read overcurrent protection status snapshot." alt="" coords="5,5,123,32"/>
+<area shape="rect" id="Node000002" href="$group__tasks08.html#gaa9aab2a7bfb3274872c5f4f162af177e" title="Obtain a snapshot of the current protection status." alt="" coords="171,5,326,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,16,155,16,155,21,123,21"/>
+</map>

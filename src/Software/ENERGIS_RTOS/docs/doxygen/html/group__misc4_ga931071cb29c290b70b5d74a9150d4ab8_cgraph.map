@@ -1,0 +1,5 @@
+<map id="RTOS_TicksMs" name="RTOS_TicksMs">
+<area shape="rect" id="Node000001" title="Get current RTOS time in milliseconds." alt="" coords="5,5,120,32"/>
+<area shape="rect" id="Node000002" href="$rtos__hooks_8c.html#af8fd46040ba1315de2ea5941a863ffb4" title="Convert FreeRTOS tick count to milliseconds." alt="" coords="168,5,267,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,16,152,16,152,21,120,21"/>
+</map>

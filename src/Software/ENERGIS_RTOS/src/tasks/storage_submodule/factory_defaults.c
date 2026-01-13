@@ -36,23 +36,7 @@ extern SemaphoreHandle_t eepromMtx;
 
 /**
  * @brief Write factory defaults to all EEPROM sections.
- *
- * @details
- * Writes default configuration for all system sections:
- * 1. System info (firmware version only - serial number managed separately)
- * 2. Relay status (all channels OFF)
- * 3. Network configuration (with CRC and derived MAC)
- * 4. Sensor calibration (default HLW8032 factors for all channels)
- * 5. Energy monitoring data (placeholder zeros)
- * 6. Event logs (placeholder zeros)
- * 7. User preferences (default device name and location)
- *
- * Device identity (serial number, region) is NOT written here.
- * Use UART provisioning commands to set these values.
- *
- * CRITICAL: Must be called with eepromMtx held!
- *
- * @return 0 on success, -1 if any write fails.
+ * @details See factory_defaults.h for full API documentation.
  */
 int EEPROM_WriteFactoryDefaults(void) {
     int status = 0;
@@ -131,16 +115,7 @@ int EEPROM_WriteFactoryDefaults(void) {
 
 /**
  * @brief Perform basic read-back validation after factory defaulting.
- *
- * @details
- * Reads and checks critical sections to verify factory defaults were written correctly:
- * - Firmware version verification
- * - Network configuration CRC check
- * - Sensor calibration presence check
- *
- * Device identity is checked via DeviceIdentity_IsValid().
- *
- * @return 0 on success, -1 on validation failure.
+ * @details See factory_defaults.h for full API documentation.
  */
 int EEPROM_ReadFactoryDefaults(void) {
     /* Check Firmware Version */
@@ -193,14 +168,7 @@ int EEPROM_ReadFactoryDefaults(void) {
 
 /**
  * @brief Check if factory defaults need to be written (first boot detection).
- *
- * @details
- * Reads magic value from EEPROM_MAGIC_ADDR. If magic != EEPROM_MAGIC_VAL,
- * this is first boot and factory defaults are written.
- *
- * Also initializes DeviceIdentity module to load any existing provisioning.
- *
- * @return true if defaults were written successfully or already present, false on failure.
+ * @details See factory_defaults.h for full API documentation.
  */
 bool check_factory_defaults(void) {
     uint16_t magic = 0xFFFF;

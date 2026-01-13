@@ -1,0 +1,9 @@
+<map id="Health_PreBarkCheck" name="Health_PreBarkCheck">
+<area shape="rect" id="Node000001" title="Emit a one&#45;shot warning when remaining time is below a margin." alt="" coords="5,31,157,57"/>
+<area shape="rect" id="Node000002" href="$_button_task_8c.html#a50503dee6a29e98e633b16b1b8b550bc" title="Get current system time in milliseconds." alt="" coords="261,5,332,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,32,246,22,246,27,158,38"/>
+<area shape="rect" id="Node000004" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="205,56,388,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="158,50,189,54,189,59,157,56"/>
+<area shape="rect" id="Node000003" href="$group__driver01.html#ga038e6418532b3e07206ada073cf02f22" title="Get monotonic millisecond timestamp since boot." alt="" coords="436,5,568,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="332,16,420,16,420,21,332,21"/>
+</map>

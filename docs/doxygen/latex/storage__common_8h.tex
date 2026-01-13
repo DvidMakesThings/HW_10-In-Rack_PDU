@@ -1,0 +1,32 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/storage\+\_\+submodule/storage\+\_\+common.h File Reference}
+\hypertarget{storage__common_8h}{}\label{storage__common_8h}\index{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/storage\_common.h@{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/storage\_common.h}}
+{\ttfamily \#include "{}../../\+CONFIG.\+h"{}}\newline
+Include dependency graph for storage\+\_\+common.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{storage__common_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{storage__common_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__storage08_gaae57a92db26b8a63b7584fd2f3407077}{calculate\+\_\+crc8}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Calculate CRC-\/8 checksum for data integrity verification. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__storage08_gad5fac108da78e4ddeb0cf70283a0a5dc}{Energis\+\_\+\+Fill\+Mac\+From\+Serial}} (uint8\+\_\+t mac\mbox{[}6\mbox{]})
+\begin{DoxyCompactList}\small\item\em Generate MAC address from device serial number. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage08_ga09214f477c63d362bbc5146830c33d8c}{Energis\+\_\+\+Repair\+Mac}} (\mbox{\hyperlink{structnetwork_info}{network\+Info}} \texorpdfstring{$\ast$}{*}n)
+\begin{DoxyCompactList}\small\item\em Validate and repair corrupted MAC address. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

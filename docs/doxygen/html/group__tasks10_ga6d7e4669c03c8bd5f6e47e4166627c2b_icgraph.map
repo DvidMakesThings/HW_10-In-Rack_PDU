@@ -1,0 +1,30 @@
+<map id="Switch_AllOff" name="Switch_AllOff">
+<area shape="rect" id="Node000001" title="Turn all relay channels OFF with verification." alt="" coords="1139,56,1239,83"/>
+<area shape="rect" id="Node000002" href="$_o_c_p_8c.html#ae8d60a50e6a32ee1f355ee379407a4c9" title="Execute overcurrent trip action." alt="" coords="971,5,1064,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1126,54,1063,35,1065,30,1127,48"/>
+<area shape="rect" id="Node000009" href="$group__tasks10.html#gae3abe0a8fcbfd0f0f5659784f8529d0a" title="Legacy wrapper for Switch_AllOff." alt="" coords="944,56,1091,83"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1123,72,1091,72,1091,67,1123,67"/>
+<area shape="rect" id="Node000011" href="$power__mgr_8c.html#acf3f068b9c2b4714ec8b7b1eb2eff1e9" title="Disable all relay outputs using SwitchTask API." alt="" coords="954,107,1081,133"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="1127,90,1066,109,1064,104,1126,85"/>
+<area shape="rect" id="Node000003" href="$group__tasks08.html#gabb9789239f4931927587b1b236b1e315" title="Update the overcurrent state machine using a new total current sample." alt="" coords="755,5,893,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="956,21,894,21,894,16,956,16"/>
+<area shape="rect" id="Node000004" href="$_meter_task_8c.html#addb3656d7dd28b5f2537e286d9da7b66" title="Main Meter Task loop." alt="" coords="587,9,704,36"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="740,23,704,24,704,19,740,18"/>
+<area shape="rect" id="Node000005" href="$group__tasks06.html#ga33bd9742d865d9e98a4b81d443f69837" title="Create and start the Meter Task with a deterministic enable gate." alt="" coords="429,12,536,39"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="571,27,537,27,537,22,571,21"/>
+<area shape="rect" id="Node000006" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,44,378,71"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="414,44,379,52,378,47,413,39"/>
+<area shape="rect" id="Node000007" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,44,263,71"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="295,60,263,60,263,55,295,55"/>
+<area shape="rect" id="Node000008" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,44,102,71"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="134,60,102,60,102,55,134,55"/>
+<area shape="rect" id="Node000010" href="$group__snmp03.html#gaa9d7ab1af4a671e1eb027aab9c6c467f" title="SNMP setter for All OFF bulk operation." alt="" coords="767,56,881,83"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="929,72,882,72,882,67,929,67"/>
+<area shape="rect" id="Node000012" href="$group__misc3.html#ga40de5935f9ba85f9141a9243b4d02c87" title="Enter standby mode." alt="" coords="752,107,896,133"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="938,123,897,123,897,117,938,117"/>
+<area shape="rect" id="Node000013" href="$_button_task_8c.html#ac8adec5c9e99b51c4884034cf2e41275" title="Main button scanning and event processing task." alt="" coords="598,81,692,108"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="736,110,692,104,693,99,737,105"/>
+<area shape="rect" id="Node000014" href="$group__tasks01.html#ga66ab3f6fa24432c008c6ea7b0ccddb5f" title="Initialize and start the button handling task." alt="" coords="426,69,539,96"/>
+<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="582,93,539,89,539,84,583,87"/>
+<area shape="poly" id="edge14_Node000014_Node000006" title=" " alt="" coords="410,72,379,66,379,61,411,67"/>
+</map>

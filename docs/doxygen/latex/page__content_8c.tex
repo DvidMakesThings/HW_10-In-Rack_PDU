@@ -1,0 +1,44 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/web\+\_\+handlers/page\+\_\+content.c File Reference}
+\hypertarget{page__content_8c}{}\label{page__content_8c}\index{src/Software/ENERGIS\_RTOS/src/web\_handlers/page\_content.c@{src/Software/ENERGIS\_RTOS/src/web\_handlers/page\_content.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+{\ttfamily \#include "{}../html/control\+\_\+gz.\+h"{}}\newline
+{\ttfamily \#include "{}../html/help\+\_\+gz.\+h"{}}\newline
+{\ttfamily \#include "{}../html/settings\+\_\+gz.\+h"{}}\newline
+Include dependency graph for page\+\_\+content.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{page__content_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__webui04_ga60e051c53a61100294f1cc857e73daf0}{get\+\_\+page\+\_\+content}} (const char \texorpdfstring{$\ast$}{*}request)
+\begin{DoxyCompactList}\small\item\em Route HTTP request to appropriate HTML page content. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__webui04_ga50ef0aad6146999a05d9a34b3b5c4e32}{get\+\_\+page\+\_\+length}} (const char \texorpdfstring{$\ast$}{*}request, int \texorpdfstring{$\ast$}{*}is\+\_\+gzip)
+\begin{DoxyCompactList}\small\item\em Get content length and encoding for a requested HTML page. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char \mbox{\hyperlink{group__webui04_gad882226f97c172525ecabab87380591e}{control\+\_\+html}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em HTML content for the Control page. \end{DoxyCompactList}\item 
+const char \mbox{\hyperlink{group__webui04_gaad2d54794c452b589adb75c7a835a445}{user\+\_\+manual\+\_\+html}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em HTML content for the Settings page. \end{DoxyCompactList}\item 
+const char \mbox{\hyperlink{group__webui04_gaf8a378d29df41f3c814a6aa343988fa6}{automation\+\_\+manual\+\_\+html}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em HTML content for the Automation Manual page. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/07
+\end{DoxyDate}
+Implementation of HTML page content routing and storage management. Provides simple string matching to map HTTP request paths to flash-\/stored HTML content. Uses gzipped blobs for frequently accessed pages to reduce transfer size.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 

@@ -1,0 +1,5 @@
+<map id="CrashLog_Platform_ReadResetBits" name="CrashLog_Platform_ReadResetBits">
+<area shape="rect" id="Node000001" title="Platform hook to read raw reset&#45;cause bits from hardware." alt="" coords="264,13,493,40"/>
+<area shape="rect" id="Node000002" href="$group__misc1.html#ga131d28172212c0df74acc1e9d9527c4a" title="Capture reset cause at early boot before RTOS initialization." alt="" coords="5,5,216,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="248,29,216,29,216,24,248,24"/>
+</map>

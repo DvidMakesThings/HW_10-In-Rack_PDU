@@ -1,0 +1,103 @@
+\doxysection{snmp\+\_\+entry\+\_\+t Struct Reference}
+\hypertarget{structsnmp__entry__t}{}\label{structsnmp__entry__t}\index{snmp\_entry\_t@{snmp\_entry\_t}}
+
+
+OID entry descriptor used by the agent’s MIB callbacks.  
+
+
+
+
+{\ttfamily \#include $<$snmp.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structsnmp__entry__t_af754658399d998f4fd0a66048dbac5ab}{oidlen}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structsnmp__entry__t_a18e1675b2fb8616f254b49d88ebb0151}{oid}} \mbox{[}\mbox{\hyperlink{group__drivers07_gaa1247060563b5496faabb3101c94c0fe}{SNMP\+\_\+\+MAX\+\_\+\+OID}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structsnmp__entry__t_af2eb0898a3492f09dfe922f7fa394b29}{data\+Type}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structsnmp__entry__t_a74a84e6feacd53ad5a522db7a5d125aa}{data\+Len}}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>uint8\_t \mbox{\hyperlink{structsnmp__entry__t_ac73b7af7a73b3c97545e507ce6e1fd07}{octetstring}} \mbox{[}\mbox{\hyperlink{group__drivers07_ga7eabbff7225d69d858fbae9fd92d84dc}{SNMP\_MAX\_STRING}}\mbox{]}\\
+\>uint32\_t \mbox{\hyperlink{structsnmp__entry__t_a59c131b61d935f8568f33052d75eaa94}{intval}}\\
+\} \mbox{\hyperlink{structsnmp__entry__t_a8ff5bba8694851d143fc06485cd85546}{u}}\\
+
+\end{tabbing}\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsnmp__entry__t_ac2f9269cb36bb3adb029fbcd9b608c9c}{getfunction}} )(void \texorpdfstring{$\ast$}{*}ptr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsnmp__entry__t_a2ea89391893c3ed8f57946778fc98a62}{setfunction}} )(int32\+\_\+t v)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+OID entry descriptor used by the agent’s MIB callbacks. 
+
+LONG DESCRIPTION 
+
+\label{doc-variable-members}
+\Hypertarget{structsnmp__entry__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structsnmp__entry__t_a74a84e6feacd53ad5a522db7a5d125aa}\index{snmp\_entry\_t@{snmp\_entry\_t}!dataLen@{dataLen}}
+\index{dataLen@{dataLen}!snmp\_entry\_t@{snmp\_entry\_t}}
+\doxysubsubsection{\texorpdfstring{dataLen}{dataLen}}
+{\footnotesize\ttfamily \label{structsnmp__entry__t_a74a84e6feacd53ad5a522db7a5d125aa} 
+uint8\+\_\+t snmp\+\_\+entry\+\_\+t\+::data\+Len}
+
+Length of current value. \Hypertarget{structsnmp__entry__t_af2eb0898a3492f09dfe922f7fa394b29}\index{snmp\_entry\_t@{snmp\_entry\_t}!dataType@{dataType}}
+\index{dataType@{dataType}!snmp\_entry\_t@{snmp\_entry\_t}}
+\doxysubsubsection{\texorpdfstring{dataType}{dataType}}
+{\footnotesize\ttfamily \label{structsnmp__entry__t_af2eb0898a3492f09dfe922f7fa394b29} 
+uint8\+\_\+t snmp\+\_\+entry\+\_\+t\+::data\+Type}
+
+ASN.\+1 type of the value. \Hypertarget{structsnmp__entry__t_ac2f9269cb36bb3adb029fbcd9b608c9c}\index{snmp\_entry\_t@{snmp\_entry\_t}!getfunction@{getfunction}}
+\index{getfunction@{getfunction}!snmp\_entry\_t@{snmp\_entry\_t}}
+\doxysubsubsection{\texorpdfstring{getfunction}{getfunction}}
+{\footnotesize\ttfamily \label{structsnmp__entry__t_ac2f9269cb36bb3adb029fbcd9b608c9c} 
+void(\texorpdfstring{$\ast$}{*} snmp\+\_\+entry\+\_\+t\+::getfunction) (void \texorpdfstring{$\ast$}{*}ptr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)}
+
+Optional getter callback. \Hypertarget{structsnmp__entry__t_a59c131b61d935f8568f33052d75eaa94}\index{snmp\_entry\_t@{snmp\_entry\_t}!intval@{intval}}
+\index{intval@{intval}!snmp\_entry\_t@{snmp\_entry\_t}}
+\doxysubsubsection{\texorpdfstring{intval}{intval}}
+{\footnotesize\ttfamily \label{structsnmp__entry__t_a59c131b61d935f8568f33052d75eaa94} 
+uint32\+\_\+t snmp\+\_\+entry\+\_\+t\+::intval}
+
+\Hypertarget{structsnmp__entry__t_ac73b7af7a73b3c97545e507ce6e1fd07}\index{snmp\_entry\_t@{snmp\_entry\_t}!octetstring@{octetstring}}
+\index{octetstring@{octetstring}!snmp\_entry\_t@{snmp\_entry\_t}}
+\doxysubsubsection{\texorpdfstring{octetstring}{octetstring}}
+{\footnotesize\ttfamily \label{structsnmp__entry__t_ac73b7af7a73b3c97545e507ce6e1fd07} 
+uint8\+\_\+t snmp\+\_\+entry\+\_\+t\+::octetstring\mbox{[}\mbox{\hyperlink{group__drivers07_ga7eabbff7225d69d858fbae9fd92d84dc}{SNMP\+\_\+\+MAX\+\_\+\+STRING}}\mbox{]}}
+
+\Hypertarget{structsnmp__entry__t_a18e1675b2fb8616f254b49d88ebb0151}\index{snmp\_entry\_t@{snmp\_entry\_t}!oid@{oid}}
+\index{oid@{oid}!snmp\_entry\_t@{snmp\_entry\_t}}
+\doxysubsubsection{\texorpdfstring{oid}{oid}}
+{\footnotesize\ttfamily \label{structsnmp__entry__t_a18e1675b2fb8616f254b49d88ebb0151} 
+uint8\+\_\+t snmp\+\_\+entry\+\_\+t\+::oid\mbox{[}\mbox{\hyperlink{group__drivers07_gaa1247060563b5496faabb3101c94c0fe}{SNMP\+\_\+\+MAX\+\_\+\+OID}}\mbox{]}}
+
+OID components. \Hypertarget{structsnmp__entry__t_af754658399d998f4fd0a66048dbac5ab}\index{snmp\_entry\_t@{snmp\_entry\_t}!oidlen@{oidlen}}
+\index{oidlen@{oidlen}!snmp\_entry\_t@{snmp\_entry\_t}}
+\doxysubsubsection{\texorpdfstring{oidlen}{oidlen}}
+{\footnotesize\ttfamily \label{structsnmp__entry__t_af754658399d998f4fd0a66048dbac5ab} 
+uint8\+\_\+t snmp\+\_\+entry\+\_\+t\+::oidlen}
+
+Number of OID components. \Hypertarget{structsnmp__entry__t_a2ea89391893c3ed8f57946778fc98a62}\index{snmp\_entry\_t@{snmp\_entry\_t}!setfunction@{setfunction}}
+\index{setfunction@{setfunction}!snmp\_entry\_t@{snmp\_entry\_t}}
+\doxysubsubsection{\texorpdfstring{setfunction}{setfunction}}
+{\footnotesize\ttfamily \label{structsnmp__entry__t_a2ea89391893c3ed8f57946778fc98a62} 
+void(\texorpdfstring{$\ast$}{*} snmp\+\_\+entry\+\_\+t\+::setfunction) (int32\+\_\+t v)}
+
+Optional setter callback. \Hypertarget{structsnmp__entry__t_a8ff5bba8694851d143fc06485cd85546}\index{snmp\_entry\_t@{snmp\_entry\_t}!u@{u}}
+\index{u@{u}!snmp\_entry\_t@{snmp\_entry\_t}}
+\doxysubsubsection{\texorpdfstring{[union]}{[union]}}
+{\footnotesize\ttfamily \label{structsnmp__entry__t_a8ff5bba8694851d143fc06485cd85546} 
+union  \{ ... \}  snmp\+\_\+entry\+\_\+t\+::u}
+
+Backing storage for value. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/drivers/\mbox{\hyperlink{snmp_8h}{snmp.\+h}}\end{DoxyCompactItemize}

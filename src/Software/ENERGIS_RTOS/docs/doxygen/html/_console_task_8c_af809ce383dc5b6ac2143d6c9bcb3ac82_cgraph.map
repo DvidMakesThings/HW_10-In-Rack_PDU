@@ -1,0 +1,14 @@
+<map id="cmd_auto_cal_i" name="cmd_auto_cal_i">
+<area shape="rect" id="Node000001" title="Auto&#45;calibrate current gain for a single channel (async)." alt="" coords="5,113,118,140"/>
+<area shape="rect" id="Node000002" href="$group__drivers04.html#ga2fabec2f7c0a743f2fd172d233fabb0a" title="Query whether an asynchronous calibration sequence is currently running." alt="" coords="190,5,325,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,111,118,85,164,58,176,52,178,57,167,62,121,89,83,115"/>
+<area shape="rect" id="Node000003" href="$group__drivers04.html#gab740dc1c846d7716ef91fb32fca2ad53" title="Start asynchronous current calibration (Iref) for all channels." alt="" coords="190,72,325,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="118,114,174,105,175,110,119,120"/>
+<area shape="rect" id="Node000005" href="$group__drivers04.html#ga22bc351ab1444202e6adfd69ed60cfc7" title="Start asynchronous current calibration (Iref) for a single channel." alt="" coords="186,139,328,181"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="119,134,171,143,171,148,118,139"/>
+<area shape="rect" id="Node000006" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="166,205,349,232"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="82,138,120,165,167,191,183,197,181,202,165,196,117,169,79,143"/>
+<area shape="rect" id="Node000004" href="$_h_l_w8032__driver_8c.html#acc3dced2405146bb247c8d852e88e56f" title="Reset sample accumulators for the current async calibration channel." alt="" coords="397,105,539,148"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="326,101,382,110,381,116,325,107"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="329,146,381,138,382,143,330,151"/>
+</map>

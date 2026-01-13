@@ -1,0 +1,33 @@
+\doxysection{network.\+h}
+\hypertarget{network_8h_source}{}\label{network_8h_source}\index{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/network.h@{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/network.h}}
+\mbox{\hyperlink{network_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#ifndef\ NETWORK\_H}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#define\ NETWORK\_H}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_o_n_f_i_g_8h}{../../CONFIG.h}}"{}}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00136\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage07_gaf37b38d193b54bcce8d8bbd38407dafc}{EEPROM\_WriteUserNetwork}}(\textcolor{keyword}{const}\ uint8\_t\ *data,\ \textcolor{keywordtype}{size\_t}\ len);}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00163\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage07_ga36caebd539c36be02e805af5d1278ed5}{EEPROM\_ReadUserNetwork}}(uint8\_t\ *data,\ \textcolor{keywordtype}{size\_t}\ len);}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00197\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage07_ga3c1fef9aa93f898978387328a8a6e33d}{EEPROM\_WriteUserNetworkWithChecksum}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structnetwork_info}{networkInfo}}\ *net\_info);}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00231\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage07_gaef5b120a12ff3e275706067ea3cf7e46}{EEPROM\_ReadUserNetworkWithChecksum}}(\mbox{\hyperlink{structnetwork_info}{networkInfo}}\ *net\_info);}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00276\ \mbox{\hyperlink{structnetwork_info}{networkInfo}}\ \mbox{\hyperlink{group__storage07_ga37c460b3ea58fd130cea86904b06f7b1}{LoadUserNetworkConfig}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00302\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage07_ga6e3a05e108d6081a55378ffe3e817f43}{EEPROM\_WriteSystemInfo}}(\textcolor{keyword}{const}\ uint8\_t\ *data,\ \textcolor{keywordtype}{size\_t}\ len);}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00327\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage07_gab6868e2a26481771ef8ed81d4e909814}{EEPROM\_ReadSystemInfo}}(uint8\_t\ *data,\ \textcolor{keywordtype}{size\_t}\ len);}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00357\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage07_ga45b5a1959fd75b07c11591fcc92f89c4}{EEPROM\_WriteSystemInfoWithChecksum}}(\textcolor{keyword}{const}\ uint8\_t\ *data,\ \textcolor{keywordtype}{size\_t}\ len);}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00386\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage07_ga781ad4b6b12005f76e0742e107443083}{EEPROM\_ReadSystemInfoWithChecksum}}(uint8\_t\ *data,\ \textcolor{keywordtype}{size\_t}\ len);}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ NETWORK\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00389\ }
+
+\end{DoxyCode}

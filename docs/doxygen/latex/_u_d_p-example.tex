@@ -1,0 +1,35 @@
+\doxysection{UDP}
+\hypertarget{_u_d_p-example}{}\label{_u_d_p-example}Example 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Create\ UDP\ socket\ on\ port\ 5000}}
+\DoxyCodeLine{int8\_t\ sn\ =\ \mbox{\hyperlink{group__drivers08_ga8cc0a2074b3aae98a132c1ae3c51188f}{socket}}(0,\ \mbox{\hyperlink{group__config03_ga1a31c891ae1c9cf808542b96ae8fdeb8}{Sn\_MR\_UDP}},\ 5000,\ 0);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (sn\ <\ 0)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Send\ UDP\ datagram}}
+\DoxyCodeLine{uint8\_t\ dest\_ip[]\ =\ \{192,\ 168,\ 1,\ 255\};\ \textcolor{comment}{//\ Broadcast}}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *msg\ =\ \textcolor{stringliteral}{"{}Hello,\ World!"{}};}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers08_ga30fc77ba1005733b501994818bde12f8}{sendto}}(sn,\ (uint8\_t*)msg,\ strlen(msg),\ dest\_ip,\ 5000);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Receive\ UDP\ datagram}}
+\DoxyCodeLine{uint8\_t\ buf[512];}
+\DoxyCodeLine{uint8\_t\ src\_ip[4];}
+\DoxyCodeLine{uint16\_t\ src\_port;}
+\DoxyCodeLine{int32\_t\ len\ =\ \mbox{\hyperlink{group__drivers08_gae580bd099f9bcbeca63a3145c0015e62}{recvfrom}}(sn,\ buf,\ \textcolor{keyword}{sizeof}(buf),\ src\_ip,\ \&src\_port);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (len\ >\ 0)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Process\ received\ datagram}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__tasks05_ga2473a4441580b27bdc14f48e2d2fff8e}{log\_printf}}(\textcolor{stringliteral}{"{}Received\ \%ld\ bytes\ from\ \%d.\%d.\%d.\%d:\%d\(\backslash\)n"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ len,\ src\_ip[0],\ src\_ip[1],\ src\_ip[2],\ src\_ip[3],\ src\_port);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers08_ga025710a2709097be7824f0564f89a461}{closesocket}}(sn);}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ 

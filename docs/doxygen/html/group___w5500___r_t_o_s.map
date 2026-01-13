@@ -1,0 +1,4 @@
+<map id="RTOS Integration Parameters" name="RTOS Integration Parameters">
+<area shape="rect" id="Node000001" title="FreeRTOS task and synchronization settings." alt="" coords="265,5,458,32"/>
+<area shape="rect" id="Node000002" href="$group__config02.html" title="Centralized configuration parameters for W5500 Ethernet controller." alt="" coords="5,5,217,32"/>
+</map>

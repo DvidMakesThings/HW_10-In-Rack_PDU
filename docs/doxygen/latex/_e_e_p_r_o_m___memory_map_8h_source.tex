@@ -1,0 +1,114 @@
+\doxysection{EEPROM\+\_\+\+Memory\+Map.\+h}
+\hypertarget{_e_e_p_r_o_m___memory_map_8h_source}{}\label{_e_e_p_r_o_m___memory_map_8h_source}\index{src/Software/ENERGIS\_RTOS/src/misc/EEPROM\_MemoryMap.h@{src/Software/ENERGIS\_RTOS/src/misc/EEPROM\_MemoryMap.h}}
+\mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \textcolor{preprocessor}{\#ifndef\ EEPROM\_MEMORY\_MAP\_H}}
+\DoxyCodeLine{00233\ \textcolor{preprocessor}{\#define\ EEPROM\_MEMORY\_MAP\_H}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_o_n_f_i_g_8h}{../CONFIG.h}}"{}}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \textcolor{comment}{/*\ =====================\ \ EEPROM\ MEMORY\ MAP\ \ ============================\ */}}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00261\ \textcolor{preprocessor}{\#define\ EEPROM\_SYS\_INFO\_START\ 0x0000\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00262\ \textcolor{preprocessor}{\#define\ EEPROM\_SYS\_INFO\_SIZE\ 0x0030\ \ }\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00312\ \textcolor{preprocessor}{\#define\ EEPROM\_DEVICE\_IDENTITY\_START\ 0x0030\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00313\ \textcolor{preprocessor}{\#define\ EEPROM\_DEVICE\_IDENTITY\_SIZE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00314\ \textcolor{preprocessor}{\ \ \ \ 0x0013\ }\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00338\ \textcolor{preprocessor}{\#define\ EEPROM\_FACTORY\_DEFAULTS\_START\ 0x0100\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00339\ \textcolor{preprocessor}{\#define\ EEPROM\_FACTORY\_DEFAULTS\_SIZE\ 0x0100\ \ }\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00379\ \textcolor{preprocessor}{\#define\ EEPROM\_USER\_OUTPUT\_START\ 0x0200\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00380\ \textcolor{preprocessor}{\#define\ EEPROM\_USER\_OUTPUT\_SIZE\ 0x0100\ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00400\ \textcolor{preprocessor}{\#define\ EEPROM\_RELAY\_STATES\_START\ 0x02F0\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00401\ \textcolor{preprocessor}{\#define\ EEPROM\_RELAY\_STATES\_SIZE\ 0x0008\ \ }\textcolor{preprocessor}{}\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00450\ \textcolor{preprocessor}{\#define\ EEPROM\_USER\_NETWORK\_START\ 0x0300\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00451\ \textcolor{preprocessor}{\#define\ EEPROM\_USER\_NETWORK\_SIZE\ 0x0020\ \ }\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00460\ \textcolor{preprocessor}{\#define\ EEPROM\_SENSOR\_CAL\_START\ 0x0400\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00461\ \textcolor{preprocessor}{\#define\ EEPROM\_SENSOR\_CAL\_SIZE\ 0x0150\ \ }\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00463\ }
+\DoxyCodeLine{00469\ \textcolor{preprocessor}{\#define\ EEPROM\_TEMP\_CAL\_START\ 0x0800\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00470\ \textcolor{preprocessor}{\#define\ EEPROM\_TEMP\_CAL\_SIZE\ 0x0050\ \ }\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00472\ }
+\DoxyCodeLine{00479\ \textcolor{preprocessor}{\#define\ EEPROM\_ENERGY\_MON\_START\ 0x1500\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00480\ \textcolor{preprocessor}{\#define\ EEPROM\_ENERGY\_MON\_SIZE\ 0x0100\ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00481\ \textcolor{preprocessor}{\#define\ ENERGY\_MON\_POINTER\_SIZE\ 2\ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00482\ \textcolor{preprocessor}{\#define\ ENERGY\_RECORD\_SIZE\ 16\ \ \ \ \ \ \ \ \ \ }\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00484\ }
+\DoxyCodeLine{00489\ \textcolor{preprocessor}{\#define\ EEPROM\_EVENT\_ERR\_START\ 0x1600\ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00490\ \textcolor{preprocessor}{\#define\ EEPROM\_EVENT\_ERR\_SIZE\ 0x0200\ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00491\ \textcolor{preprocessor}{\#define\ EEPROM\_EVENT\_WARN\_START\ 0x1800\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00492\ \textcolor{preprocessor}{\#define\ EEPROM\_EVENT\_WARN\_SIZE\ 0x0200\ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00493\ \textcolor{preprocessor}{\#define\ EVENT\_LOG\_POINTER\_SIZE\ 2u\ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00494\ \textcolor{preprocessor}{\#define\ EVENT\_LOG\_ENTRY\_SIZE\ 2u\ \ \ \ \ \ \ \ }\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00496\ }
+\DoxyCodeLine{00501\ \textcolor{preprocessor}{\#define\ EEPROM\_USER\_PREF\_START\ 0x2000\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00502\ \textcolor{preprocessor}{\#define\ EEPROM\_USER\_PREF\_SIZE\ 0x0200\ \ }\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00504\ }
+\DoxyCodeLine{00509\ \textcolor{preprocessor}{\#define\ EEPROM\_CH\_LABEL\_START\ 0x1A00\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00510\ \textcolor{preprocessor}{\#define\ EEPROM\_CH\_LABEL\_SIZE\ 0x0200\ \ }\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00512\ }
+\DoxyCodeLine{00517\ \textcolor{preprocessor}{\#define\ EEPROM\_RESERVED\_START\ 0x8000\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00518\ \textcolor{preprocessor}{\#define\ EEPROM\_RESERVED\_SIZE\ (EEPROM\_SIZE\ -\/\ EEPROM\_RESERVED\_START)\ }\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00520\ }
+\DoxyCodeLine{00525\ \textcolor{preprocessor}{\#define\ EEPROM\_MAGIC\_ADDR\ 0x7FFE\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00526\ \textcolor{preprocessor}{\#define\ EEPROM\_MAGIC\_VAL\ 0xA55A\ \ }\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00528\ }
+\DoxyCodeLine{00529\ \textcolor{comment}{/*\ =====================\ \ Data\ Structures\ \ ==============================\ */}}
+\DoxyCodeLine{00530\ }
+\DoxyCodeLine{00558\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00560\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{group__config06_ga509450ef64eb0c83902d8bf0cf66a498}{mac}}[6];\ }
+\DoxyCodeLine{00561\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structnetwork_info_a18bd704e41860c3931b19094c0b67f48}{ip}}[4];\ \ }
+\DoxyCodeLine{00562\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structnetwork_info_a915d444075cf547c9dcdbe2833ab0a33}{sn}}[4];\ \ }
+\DoxyCodeLine{00563\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structnetwork_info_a517f0ca9bb857599e551093b1668bdfd}{gw}}[4];\ \ }
+\DoxyCodeLine{00564\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structnetwork_info_a12cd3a05d5d417fc97e2f3f56106b456}{dns}}[4];\ }
+\DoxyCodeLine{00565\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structnetwork_info_a66f66026d6cefa31f1446bb9914cbb60}{dhcp}};\ \ \ }
+\DoxyCodeLine{00566\ \}\ \mbox{\hyperlink{structnetwork_info}{networkInfo}};}
+\DoxyCodeLine{00567\ }
+\DoxyCodeLine{00610\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00612\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{group__config06_ga9d2b9acc4ecae77e01440a5143a61446}{device\_name}}[32];\ }
+\DoxyCodeLine{00613\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structuser_pref_info_a00adf96c6e20b5170a8e988ae0b37dda}{location}}[32];\ \ \ \ }
+\DoxyCodeLine{00614\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structuser_pref_info_ab401582a1a0cf34c9ff0d28871d1417b}{temp\_unit}};\ \ \ \ }
+\DoxyCodeLine{00615\ \}\ \mbox{\hyperlink{structuser_pref_info}{userPrefInfo}};}
+\DoxyCodeLine{00616\ }
+\DoxyCodeLine{00668\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00670\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{group__config06_ga9f32a01fdc7a70ae83fc9d2ec9a57116}{voltage\_factor}};\ \ \ \ }
+\DoxyCodeLine{00671\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhlw__calib__t_a0eb9e9cb473fc1784468a64a7a04fd72}{current\_factor}};\ \ \ \ }
+\DoxyCodeLine{00672\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhlw__calib__t_a5017a8dade5307b845d46c80d36602fd}{voltage\_offset}};\ \ \ \ }
+\DoxyCodeLine{00673\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhlw__calib__t_a637e5487c49ed6c1a8b0ea1442404d48}{current\_offset}};\ \ \ \ }
+\DoxyCodeLine{00674\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhlw__calib__t_a0d17aead26967383dbfa3ada72d301ea}{r1\_actual}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00675\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhlw__calib__t_a7304281de5d7f031f6cb30679657a341}{r2\_actual}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00676\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhlw__calib__t_a2bdc7f9f9d3f1eddd5ccfdfd79a9239c}{shunt\_actual}};\ \ \ \ \ \ }
+\DoxyCodeLine{00677\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structhlw__calib__t_a0a21aa49bcabca9beb3df82e92f7f22f}{calibrated}};\ \ \ \ \ \ }
+\DoxyCodeLine{00678\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structhlw__calib__t_a2374580965d708e1b8d63a69b418b853}{zero\_calibrated}};\ }
+\DoxyCodeLine{00679\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structhlw__calib__t_a795c9b41d2557573b7f5939f20269b58}{reserved}}[5];\ \ \ \ \ }
+\DoxyCodeLine{00680\ \}\ \mbox{\hyperlink{structhlw__calib__t}{hlw\_calib\_t}};}
+\DoxyCodeLine{00681\ }
+\DoxyCodeLine{00710\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00712\ \ \ \ \ \mbox{\hyperlink{structhlw__calib__t}{hlw\_calib\_t}}\ \mbox{\hyperlink{group__config06_ga8aee9e38a38b5a84c448b3fa64b1b86d}{channels}}[8];\ }
+\DoxyCodeLine{00713\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structhlw__calib__data__t_a3689f04080b0f1242459f59b27d11d8e}{crc}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00714\ \}\ \mbox{\hyperlink{structhlw__calib__data__t}{hlw\_calib\_data\_t}};}
+\DoxyCodeLine{00715\ }
+\DoxyCodeLine{00716\ \textcolor{comment}{/*\ =====================\ \ Constants\ \ ====================================\ */}}
+\DoxyCodeLine{00717\ }
+\DoxyCodeLine{00723\ }
+\DoxyCodeLine{00725\ \textcolor{preprocessor}{\#define\ EEPROM\_NETINFO\_STATIC\ 0}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00727\ \textcolor{preprocessor}{\#define\ EEPROM\_NETINFO\_DHCP\ 1}}
+\DoxyCodeLine{00728\ }
+\DoxyCodeLine{00733\ \textcolor{preprocessor}{\#ifndef\ ENERGIS\_NUM\_CHANNELS}}
+\DoxyCodeLine{00734\ \textcolor{preprocessor}{\#define\ ENERGIS\_NUM\_CHANNELS\ 8u}}
+\DoxyCodeLine{00735\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00736\ }
+\DoxyCodeLine{00741\ \textcolor{preprocessor}{\#define\ EEPROM\_CH\_LABEL\_SLOT\ (EEPROM\_CH\_LABEL\_SIZE\ /\ ENERGIS\_NUM\_CHANNELS)}}
+\DoxyCodeLine{00742\ }
+\DoxyCodeLine{00744\ }
+\DoxyCodeLine{00745\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ EEPROM\_MEMORY\_MAP\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00746\ }
+
+\end{DoxyCode}

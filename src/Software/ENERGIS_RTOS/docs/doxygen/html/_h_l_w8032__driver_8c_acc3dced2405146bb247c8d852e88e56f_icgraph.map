@@ -1,0 +1,53 @@
+<map id="hlw8032_calibration_reset_accumulators" name="hlw8032_calibration_reset_accumulators">
+<area shape="rect" id="Node000001" title="Reset sample accumulators for the current async calibration channel." alt="" coords="1354,205,1496,248"/>
+<area shape="rect" id="Node000002" href="$_h_l_w8032__driver_8c.html#a757e5e7d8ecf5674a26fbd19c063353b" title="Feed one fresh HLW8032 sample into the async calibration engine." alt="" coords="1166,5,1302,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1404,193,1363,127,1336,93,1304,62,1288,51,1291,46,1308,58,1340,89,1367,124,1408,190"/>
+<area shape="rect" id="Node000012" href="$group__drivers04.html#gab740dc1c846d7716ef91fb32fca2ad53" title="Start asynchronous current calibration (Iref) for all channels." alt="" coords="1166,72,1302,115"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="1389,196,1350,162,1305,129,1285,118,1287,113,1307,124,1353,158,1393,192"/>
+<area shape="rect" id="Node000017" href="$group__drivers04.html#ga22bc351ab1444202e6adfd69ed60cfc7" title="Start asynchronous current calibration (Iref) for a single channel." alt="" coords="1163,139,1305,181"/>
+<area shape="poly" id="edge17_Node000001_Node000017" title=" " alt="" coords="1347,202,1296,184,1298,179,1349,197"/>
+<area shape="rect" id="Node000018" href="$group__drivers04.html#gac3fd97d9d666bdf1a910b34170d0c38d" title="Start asynchronous voltage calibration (Vref/0A) for all channels." alt="" coords="1166,205,1302,248"/>
+<area shape="poly" id="edge19_Node000001_Node000018" title=" " alt="" coords="1338,229,1302,229,1302,224,1338,224"/>
+<area shape="rect" id="Node000020" href="$group__drivers04.html#ga1f792103cb278ba55286ca036e96a17c" title="Start asynchronous voltage calibration (Vref/0A) for a single channel." alt="" coords="1162,272,1306,315"/>
+<area shape="poly" id="edge22_Node000001_Node000020" title=" " alt="" coords="1349,256,1298,274,1296,269,1347,251"/>
+<area shape="rect" id="Node000021" href="$group__drivers04.html#ga643d63b42087b4dd4b336571eb9b6d18" title="Start asynchronous zero calibration (0V/0A) for all channels." alt="" coords="1166,339,1302,381"/>
+<area shape="poly" id="edge24_Node000001_Node000021" title=" " alt="" coords="1393,261,1353,295,1307,329,1287,340,1285,336,1305,324,1350,291,1389,257"/>
+<area shape="rect" id="Node000023" href="$group__drivers04.html#ga599fb8b7a58451f236d4e7807bb17078" title="Start asynchronous zero calibration (0V/0A) for a single channel." alt="" coords="1166,405,1302,448"/>
+<area shape="poly" id="edge27_Node000001_Node000023" title=" " alt="" coords="1408,263,1367,329,1340,364,1308,395,1291,407,1288,403,1304,391,1336,360,1363,326,1404,260"/>
+<area shape="rect" id="Node000003" href="$group__drivers04.html#gaf9b4059456656d1620a19fa771086a2d" title="Read power measurements from a specific channel." alt="" coords="996,55,1097,81"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1152,47,1098,59,1097,54,1151,42"/>
+<area shape="rect" id="Node000004" href="$group__drivers04.html#ga0b3a5c410541deaf144c3e33d4b65175" title="Poll one channel and cache results (round&#45;robin)." alt="" coords="798,55,929,81"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="980,71,929,71,929,65,980,65"/>
+<area shape="rect" id="Node000010" href="$group__drivers04.html#ga76f09e4482db113563628126492d3200" title="Read and cache measurements for all 8 channels." alt="" coords="795,105,931,132"/>
+<area shape="poly" id="edge9_Node000003_Node000010" title=" " alt="" coords="981,89,915,107,913,102,980,84"/>
+<area shape="rect" id="Node000005" href="$_meter_task_8c.html#addb3656d7dd28b5f2537e286d9da7b66" title="Main Meter Task loop." alt="" coords="613,55,730,81"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="782,71,731,71,731,65,782,65"/>
+<area shape="rect" id="Node000006" href="$group__tasks06.html#ga33bd9742d865d9e98a4b81d443f69837" title="Create and start the Meter Task with a deterministic enable gate." alt="" coords="434,76,541,103"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="598,79,542,86,541,81,597,74"/>
+<area shape="rect" id="Node000007" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,113,378,140"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="420,110,379,121,378,115,419,105"/>
+<area shape="rect" id="Node000008" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,113,263,140"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="295,129,263,129,263,124,295,124"/>
+<area shape="rect" id="Node000009" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,113,102,140"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="134,129,102,129,102,124,134,124"/>
+<area shape="rect" id="Node000011" href="$group__tasks06.html#gae6a0acceca7a3a35f63bba05a7cd1826" title="Request immediate refresh of all channels (blocking)." alt="" coords="597,105,747,132"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="780,121,747,121,747,116,780,116"/>
+<area shape="rect" id="Node000013" href="$_console_task_8c.html#af809ce383dc5b6ac2143d6c9bcb3ac82" title="Auto&#45;calibrate current gain for a single channel (async)." alt="" coords="990,147,1103,173"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="1159,123,1087,149,1085,144,1157,118"/>
+<area shape="rect" id="Node000014" href="$_console_task_8c.html#a2d3b7ff8346f8d10aa45609664940712" title="Parse and dispatch command line to handler function." alt="" coords="796,209,930,236"/>
+<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="992,181,905,211,904,206,990,176"/>
+<area shape="rect" id="Node000015" href="$_console_task_8c.html#a216857df22446940ad58d505886b0d7c" title="Main console task function." alt="" coords="623,164,720,191"/>
+<area shape="poly" id="edge14_Node000014_Node000015" title=" " alt="" coords="788,208,720,191,721,186,790,203"/>
+<area shape="rect" id="Node000016" href="$group__tasks02.html#gad45ca7c142e8c2764d52b3d554ffcdeb" title="Initialize and start the console task." alt="" coords="426,139,549,165"/>
+<area shape="poly" id="edge15_Node000015_Node000016" title=" " alt="" coords="608,171,549,163,550,158,608,166"/>
+<area shape="poly" id="edge16_Node000016_Node000007" title=" " alt="" coords="411,141,378,135,379,130,412,136"/>
+<area shape="poly" id="edge18_Node000017_Node000013" title=" " alt="" coords="1147,163,1103,163,1103,157,1147,157"/>
+<area shape="rect" id="Node000019" href="$_console_task_8c.html#a0d8e587e5768e03b92507df84c90e261" title="Auto&#45;calibrate voltage for a single channel or ALL (async)." alt="" coords="988,213,1105,240"/>
+<area shape="poly" id="edge20_Node000018_Node000019" title=" " alt="" coords="1151,229,1105,229,1105,224,1151,224"/>
+<area shape="poly" id="edge21_Node000019_Node000014" title=" " alt="" coords="973,228,931,227,931,221,973,222"/>
+<area shape="poly" id="edge23_Node000020_Node000019" title=" " alt="" coords="1157,269,1085,243,1087,238,1159,264"/>
+<area shape="rect" id="Node000022" href="$_console_task_8c.html#a5105a396699c462b61d50bd687fc783a" title="Auto&#45;calibrate zero point (0V, 0A) for a single channel or ALL (async)." alt="" coords="979,347,1114,373"/>
+<area shape="poly" id="edge25_Node000021_Node000022" title=" " alt="" coords="1151,363,1114,363,1114,357,1151,357"/>
+<area shape="poly" id="edge26_Node000022_Node000014" title=" " alt="" coords="1013,339,881,239,884,235,1016,335"/>
+<area shape="poly" id="edge28_Node000023_Node000022" title=" " alt="" coords="1157,402,1085,376,1087,371,1159,397"/>
+</map>

@@ -1,0 +1,18 @@
+<map id="trim" name="trim">
+<area shape="rect" id="Node000001" title="Trim whitespace from both ends of string." alt="" coords="1107,31,1150,57"/>
+<area shape="rect" id="Node000002" href="$_console_task_8c.html#a5105a396699c462b61d50bd687fc783a" title="Auto&#45;calibrate zero point (0V, 0A) for a single channel or ALL (async)." alt="" coords="924,5,1059,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1091,40,1058,34,1059,29,1092,35"/>
+<area shape="rect" id="Node000003" href="$_console_task_8c.html#a2d3b7ff8346f8d10aa45609664940712" title="Parse and dispatch command line to handler function." alt="" coords="742,31,876,57"/>
+<area shape="poly" id="edge8_Node000001_Node000003" title=" " alt="" coords="1091,47,877,47,877,41,1091,41"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="909,33,877,37,876,32,908,28"/>
+<area shape="rect" id="Node000004" href="$_console_task_8c.html#a216857df22446940ad58d505886b0d7c" title="Main console task function." alt="" coords="597,31,694,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="726,47,694,47,694,41,726,41"/>
+<area shape="rect" id="Node000005" href="$group__tasks02.html#gad45ca7c142e8c2764d52b3d554ffcdeb" title="Initialize and start the console task." alt="" coords="426,31,549,57"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="581,47,549,47,549,41,581,41"/>
+<area shape="rect" id="Node000006" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,31,378,57"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="411,47,379,47,379,41,411,41"/>
+<area shape="rect" id="Node000007" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,31,263,57"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="295,47,263,47,263,41,295,41"/>
+<area shape="rect" id="Node000008" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,31,102,57"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="134,47,102,47,102,41,134,41"/>
+</map>

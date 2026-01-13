@@ -1,0 +1,117 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/storage\+\_\+submodule/factory\+\_\+defaults.c File Reference}
+\hypertarget{factory__defaults_8c}{}\label{factory__defaults_8c}\index{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/factory\_defaults.c@{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/factory\_defaults.c}}
+{\ttfamily \#include "{}../../\+CONFIG.\+h"{}}\newline
+{\ttfamily \#include "{}calibration.\+h"{}}\newline
+Include dependency graph for factory\+\_\+defaults.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{factory__defaults_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{factory__defaults_8c_aa2f17cca1d3e25b6baa9823f8a609c11}{ST\+\_\+\+FACTORY\+\_\+\+DEFAULTS\+\_\+\+TAG}}~"{}\mbox{[}ST-\/FDEF\mbox{]}"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__storage06_ga6dadd32bf70e8ea2569da7d4bbb02e0a}{EEPROM\+\_\+\+Write\+Factory\+Defaults}} (void)
+\begin{DoxyCompactList}\small\item\em Write factory defaults to all EEPROM sections. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage06_ga997f3d6e141a711fa6f969fc16edc7ce}{EEPROM\+\_\+\+Read\+Factory\+Defaults}} (void)
+\begin{DoxyCompactList}\small\item\em Perform basic read-\/back validation after factory defaulting. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage06_gaf16478f016f685e6139892aed390ac3e}{check\+\_\+factory\+\_\+defaults}} (void)
+\begin{DoxyCompactList}\small\item\em Check if factory defaults need to be written (first boot detection). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{factory__defaults_8c_aedc5a9058d8b845fca6177c74454d9d0}{DEFAULT\+\_\+\+RELAY\+\_\+\+STATUS}} \mbox{[}8\mbox{]}
+\begin{DoxyCompactList}\small\item\em Default relay status array (all OFF). \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structnetwork_info}{network\+Info}} \mbox{\hyperlink{factory__defaults_8c_a798988c99534b7d96891fece90178e8f}{DEFAULT\+\_\+\+NETWORK}}
+\begin{DoxyCompactList}\small\item\em Default network configuration (MAC suffix filled at runtime). \end{DoxyCompactList}\item 
+const uint8\+\_\+t \mbox{\hyperlink{factory__defaults_8c_af4cacafb77fdb05221b76712d72bc2c4}{DEFAULT\+\_\+\+ENERGY\+\_\+\+DATA}} \mbox{[}64\mbox{]}
+\begin{DoxyCompactList}\small\item\em Default energy data (placeholder). \end{DoxyCompactList}\item 
+const uint8\+\_\+t \mbox{\hyperlink{factory__defaults_8c_a404935045ff6fed58a6466f385f2947c}{DEFAULT\+\_\+\+LOG\+\_\+\+DATA}} \mbox{[}64\mbox{]}
+\begin{DoxyCompactList}\small\item\em Default event log data (placeholder). \end{DoxyCompactList}\item 
+Semaphore\+Handle\+\_\+t \mbox{\hyperlink{group__tasks10_gaf015228821869529545d62856625c224}{eeprom\+Mtx}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+2.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/12-\/14
+\end{DoxyDate}
+Implementation of factory default management. Handles first-\/boot detection via magic value check, writes complete default configuration to EEPROM sections, and validates written data.
+
+Version History\+:
+\begin{DoxyItemize}
+\item v1.\+x\+: Wrote compile-\/time serial number to EEPROM
+\item v2.\+0\+: Serial number managed by device\+\_\+identity module via provisioning
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Device identity (serial number and region) is NOT written by factory defaults. These values must be provisioned separately using UART commands after first boot.
+\end{DoxyNote}
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{factory__defaults_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{factory__defaults_8c_aa2f17cca1d3e25b6baa9823f8a609c11}\index{factory\_defaults.c@{factory\_defaults.c}!ST\_FACTORY\_DEFAULTS\_TAG@{ST\_FACTORY\_DEFAULTS\_TAG}}
+\index{ST\_FACTORY\_DEFAULTS\_TAG@{ST\_FACTORY\_DEFAULTS\_TAG}!factory\_defaults.c@{factory\_defaults.c}}
+\doxysubsubsection{\texorpdfstring{ST\_FACTORY\_DEFAULTS\_TAG}{ST\_FACTORY\_DEFAULTS\_TAG}}
+{\footnotesize\ttfamily \label{factory__defaults_8c_aa2f17cca1d3e25b6baa9823f8a609c11} 
+\#define ST\+\_\+\+FACTORY\+\_\+\+DEFAULTS\+\_\+\+TAG~"{}\mbox{[}ST-\/FDEF\mbox{]}"{}}
+
+
+
+\label{doc-var-members}
+\Hypertarget{factory__defaults_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{factory__defaults_8c_af4cacafb77fdb05221b76712d72bc2c4}\index{factory\_defaults.c@{factory\_defaults.c}!DEFAULT\_ENERGY\_DATA@{DEFAULT\_ENERGY\_DATA}}
+\index{DEFAULT\_ENERGY\_DATA@{DEFAULT\_ENERGY\_DATA}!factory\_defaults.c@{factory\_defaults.c}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_ENERGY\_DATA}{DEFAULT\_ENERGY\_DATA}}
+{\footnotesize\ttfamily \label{factory__defaults_8c_af4cacafb77fdb05221b76712d72bc2c4} 
+const uint8\+\_\+t DEFAULT\+\_\+\+ENERGY\+\_\+\+DATA\mbox{[}64\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Default energy data (placeholder). 
+
+\Hypertarget{factory__defaults_8c_a404935045ff6fed58a6466f385f2947c}\index{factory\_defaults.c@{factory\_defaults.c}!DEFAULT\_LOG\_DATA@{DEFAULT\_LOG\_DATA}}
+\index{DEFAULT\_LOG\_DATA@{DEFAULT\_LOG\_DATA}!factory\_defaults.c@{factory\_defaults.c}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_LOG\_DATA}{DEFAULT\_LOG\_DATA}}
+{\footnotesize\ttfamily \label{factory__defaults_8c_a404935045ff6fed58a6466f385f2947c} 
+const uint8\+\_\+t DEFAULT\+\_\+\+LOG\+\_\+\+DATA\mbox{[}64\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Default event log data (placeholder). 
+
+\Hypertarget{factory__defaults_8c_a798988c99534b7d96891fece90178e8f}\index{factory\_defaults.c@{factory\_defaults.c}!DEFAULT\_NETWORK@{DEFAULT\_NETWORK}}
+\index{DEFAULT\_NETWORK@{DEFAULT\_NETWORK}!factory\_defaults.c@{factory\_defaults.c}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_NETWORK}{DEFAULT\_NETWORK}}
+{\footnotesize\ttfamily \label{factory__defaults_8c_a798988c99534b7d96891fece90178e8f} 
+const \mbox{\hyperlink{structnetwork_info}{network\+Info}} DEFAULT\+\_\+\+NETWORK\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Default network configuration (MAC suffix filled at runtime). 
+
+\Hypertarget{factory__defaults_8c_aedc5a9058d8b845fca6177c74454d9d0}\index{factory\_defaults.c@{factory\_defaults.c}!DEFAULT\_RELAY\_STATUS@{DEFAULT\_RELAY\_STATUS}}
+\index{DEFAULT\_RELAY\_STATUS@{DEFAULT\_RELAY\_STATUS}!factory\_defaults.c@{factory\_defaults.c}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_RELAY\_STATUS}{DEFAULT\_RELAY\_STATUS}}
+{\footnotesize\ttfamily \label{factory__defaults_8c_aedc5a9058d8b845fca6177c74454d9d0} 
+const uint8\+\_\+t DEFAULT\+\_\+\+RELAY\+\_\+\+STATUS\mbox{[}8\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Default relay status array (all OFF). 
+

@@ -1,0 +1,437 @@
+\doxysubsubsection{
+\begin{DoxyEnumerate}
+\item Channel Labels 
+\end{DoxyEnumerate}}
+\hypertarget{group__storage02}{}\label{group__storage02}\index{2. Channel Labels@{2. Channel Labels}}
+
+
+User-\/defined labels for output channels.  
+
+
+Collaboration diagram for 2. Channel Labels\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=300pt]{group__storage02}
+\end{center}
+\end{figure}
+\doxysubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__storage02_ga6398fe537889dbfbfa6d9d64c4d7db88}{EEPROM\+\_\+\+Write\+Channel\+Label}} (uint8\+\_\+t channel\+\_\+index, const char \texorpdfstring{$\ast$}{*}label)
+\begin{DoxyCompactList}\small\item\em Write null-\/terminated label string for a channel (stored in fixed slot). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage02_ga32e401468db1696835d3afe7d799c23b}{EEPROM\+\_\+\+Read\+Channel\+Label}} (uint8\+\_\+t channel\+\_\+index, char \texorpdfstring{$\ast$}{*}out, size\+\_\+t out\+\_\+len)
+\begin{DoxyCompactList}\small\item\em Read label string for a channel. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage02_gaf78531bf7a49a1b100af4fe0a8a1e2dd}{EEPROM\+\_\+\+Clear\+Channel\+Label}} (uint8\+\_\+t channel\+\_\+index)
+\begin{DoxyCompactList}\small\item\em Clear one channel label slot (fills with zeros). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage02_ga67a2dd3f4c5ce4b35fcc26bf85f7d886}{EEPROM\+\_\+\+Clear\+All\+Channel\+Labels}} (void)
+\begin{DoxyCompactList}\small\item\em Clear all channel label slots. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__storage02_gad1cb7f9e0fd0395902ffd198dd6f2ee0}{Channel\+Labels\+\_\+\+Load\+From\+EEPROM}} (void)
+\begin{DoxyCompactList}\small\item\em Load all channel labels from EEPROM into RAM cache. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage02_ga99ae818723cc95ffd9af13c54cd7a352}{Channel\+Labels\+\_\+\+Get\+Cached}} (uint8\+\_\+t channel, char \texorpdfstring{$\ast$}{*}out, size\+\_\+t out\+\_\+len)
+\begin{DoxyCompactList}\small\item\em Get label from RAM cache (non-\/blocking). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage02_gaee4d746ce522f44d4c8d6d4c12216248}{Channel\+Labels\+\_\+\+Set\+And\+Write}} (uint8\+\_\+t channel, const char \texorpdfstring{$\ast$}{*}label)
+\begin{DoxyCompactList}\small\item\em Update label in cache and write to EEPROM. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage02_ga9b748e74135c13df21595e6db035de95}{storage\+\_\+get\+\_\+channel\+\_\+label}} (uint8\+\_\+t channel, char \texorpdfstring{$\ast$}{*}out, size\+\_\+t out\+\_\+len)
+\begin{DoxyCompactList}\small\item\em Read channel label from RAM cache (thread-\/safe, non-\/blocking). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage02_ga9019937f0e528616251b6c085b7245a9}{storage\+\_\+set\+\_\+channel\+\_\+label}} (uint8\+\_\+t channel, const char \texorpdfstring{$\ast$}{*}label)
+\begin{DoxyCompactList}\small\item\em Write channel label via storage queue (thread-\/safe). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage02_gad3ee11180cd1b8d9e0f174b2607ab429}{storage\+\_\+get\+\_\+all\+\_\+channel\+\_\+labels}} (char labels\mbox{[}ENERGIS\+\_\+\+NUM\+\_\+\+CHANNELS\mbox{]}\mbox{[}26\mbox{]}, size\+\_\+t label\+\_\+buf\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Read all channel labels from RAM cache (thread-\/safe, non-\/blocking). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+User-\/defined labels for output channels. 
+
+\begin{DoxyVersion}{Version}
+2.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/01-\/01
+\end{DoxyDate}
+Manages user-\/defined text labels for all 8 output channels. Each channel has a fixed-\/size slot (64 bytes) in EEPROM for storing null-\/terminated label strings. Maximum label length is 25 characters.
+
+Labels are cached in RAM for fast access. EEPROM is only read on startup (via Channel\+Labels\+\_\+\+Load\+From\+EEPROM) and written when labels change.
+
+EEPROM Layout (0x1\+A00 -\/ 0x1\+BFF, 512 bytes total)\+:
+\begin{DoxyItemize}
+\item Channel 0\+: 0x1\+A00 -\/ 0x1\+A3F (64 bytes)
+\item Channel 1\+: 0x1\+A40 -\/ 0x1\+A7F (64 bytes)
+\item Channel 2\+: 0x1\+A80 -\/ 0x1\+ABF (64 bytes)
+\item Channel 3\+: 0x1\+AC0 -\/ 0x1\+AFF (64 bytes)
+\item Channel 4\+: 0x1\+B00 -\/ 0x1\+B3F (64 bytes)
+\item Channel 5\+: 0x1\+B40 -\/ 0x1\+B7F (64 bytes)
+\item Channel 6\+: 0x1\+B80 -\/ 0x1\+BBF (64 bytes)
+\item Channel 7\+: 0x1\+BC0 -\/ 0x1\+BFF (64 bytes)
+\end{DoxyItemize}
+
+Thread Safety\+:
+\begin{DoxyItemize}
+\item Low-\/level EEPROM\+\_\+\texorpdfstring{$\ast$}{*} functions require eeprom\+Mtx to be held by caller
+\item Channel\+Labels\+\_\+\texorpdfstring{$\ast$}{*} cache functions are called by Storage\+Task
+\item High-\/level storage\+\_\+\texorpdfstring{$\ast$}{*} functions are fully thread-\/safe
+\end{DoxyItemize}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-func-members}
+\Hypertarget{group__storage02_doc-func-members}
+\doxysubsubsubsection{Function Documentation}
+\Hypertarget{group__storage02_ga99ae818723cc95ffd9af13c54cd7a352}\index{2. Channel Labels@{2. Channel Labels}!ChannelLabels\_GetCached@{ChannelLabels\_GetCached}}
+\index{ChannelLabels\_GetCached@{ChannelLabels\_GetCached}!2. Channel Labels@{2. Channel Labels}}
+\doxysubsubsubsubsection{\texorpdfstring{ChannelLabels\_GetCached()}{ChannelLabels\_GetCached()}}
+{\footnotesize\ttfamily \label{group__storage02_ga99ae818723cc95ffd9af13c54cd7a352} 
+int Channel\+Labels\+\_\+\+Get\+Cached (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{channel}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{out}{, }\item[{size\+\_\+t}]{out\+\_\+len}{}\end{DoxyParamCaption})}
+
+
+
+Get label from RAM cache (non-\/blocking). 
+
+Returns cached label without EEPROM access.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Channel index \mbox{[}0..7\mbox{]} \\
+\hline
+{\em out} & Destination buffer \\
+\hline
+{\em out\+\_\+len} & Size of destination buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on invalid parameters or cache not loaded
+\end{DoxyReturn}
+Get label from RAM cache (non-\/blocking). Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage02_ga99ae818723cc95ffd9af13c54cd7a352_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage02_gad1cb7f9e0fd0395902ffd198dd6f2ee0}\index{2. Channel Labels@{2. Channel Labels}!ChannelLabels\_LoadFromEEPROM@{ChannelLabels\_LoadFromEEPROM}}
+\index{ChannelLabels\_LoadFromEEPROM@{ChannelLabels\_LoadFromEEPROM}!2. Channel Labels@{2. Channel Labels}}
+\doxysubsubsubsubsection{\texorpdfstring{ChannelLabels\_LoadFromEEPROM()}{ChannelLabels\_LoadFromEEPROM()}}
+{\footnotesize\ttfamily \label{group__storage02_gad1cb7f9e0fd0395902ffd198dd6f2ee0} 
+void Channel\+Labels\+\_\+\+Load\+From\+EEPROM (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Load all channel labels from EEPROM into RAM cache. 
+
+Called once during Storage\+Task initialization. After this, all reads are served from cache.
+
+\begin{DoxyWarning}{Warning}
+Must be called with eeprom\+Mtx held by the caller.
+\end{DoxyWarning}
+Load all channel labels from EEPROM into RAM cache. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage02_gad1cb7f9e0fd0395902ffd198dd6f2ee0_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage02_gad1cb7f9e0fd0395902ffd198dd6f2ee0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage02_gaee4d746ce522f44d4c8d6d4c12216248}\index{2. Channel Labels@{2. Channel Labels}!ChannelLabels\_SetAndWrite@{ChannelLabels\_SetAndWrite}}
+\index{ChannelLabels\_SetAndWrite@{ChannelLabels\_SetAndWrite}!2. Channel Labels@{2. Channel Labels}}
+\doxysubsubsubsubsection{\texorpdfstring{ChannelLabels\_SetAndWrite()}{ChannelLabels\_SetAndWrite()}}
+{\footnotesize\ttfamily \label{group__storage02_gaee4d746ce522f44d4c8d6d4c12216248} 
+int Channel\+Labels\+\_\+\+Set\+And\+Write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{channel}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{label}{}\end{DoxyParamCaption})}
+
+
+
+Update label in cache and write to EEPROM. 
+
+Updates the RAM cache immediately and writes to EEPROM.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Channel index \mbox{[}0..7\mbox{]} \\
+\hline
+{\em label} & New label string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+Must be called with eeprom\+Mtx held by the caller. 
+\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on error
+\end{DoxyReturn}
+Update label in cache and write to EEPROM. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage02_gaee4d746ce522f44d4c8d6d4c12216248_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage02_gaee4d746ce522f44d4c8d6d4c12216248_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage02_ga67a2dd3f4c5ce4b35fcc26bf85f7d886}\index{2. Channel Labels@{2. Channel Labels}!EEPROM\_ClearAllChannelLabels@{EEPROM\_ClearAllChannelLabels}}
+\index{EEPROM\_ClearAllChannelLabels@{EEPROM\_ClearAllChannelLabels}!2. Channel Labels@{2. Channel Labels}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_ClearAllChannelLabels()}{EEPROM\_ClearAllChannelLabels()}}
+{\footnotesize\ttfamily \label{group__storage02_ga67a2dd3f4c5ce4b35fcc26bf85f7d886} 
+int EEPROM\+\_\+\+Clear\+All\+Channel\+Labels (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Clear all channel label slots. 
+
+Iterates through all channels and clears their label slots.
+
+\begin{DoxyWarning}{Warning}
+Must be called with eeprom\+Mtx held by the caller. 
+\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on write error
+\end{DoxyReturn}
+Clear all channel label slots. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage02_ga67a2dd3f4c5ce4b35fcc26bf85f7d886_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage02_gaf78531bf7a49a1b100af4fe0a8a1e2dd}\index{2. Channel Labels@{2. Channel Labels}!EEPROM\_ClearChannelLabel@{EEPROM\_ClearChannelLabel}}
+\index{EEPROM\_ClearChannelLabel@{EEPROM\_ClearChannelLabel}!2. Channel Labels@{2. Channel Labels}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_ClearChannelLabel()}{EEPROM\_ClearChannelLabel()}}
+{\footnotesize\ttfamily \label{group__storage02_gaf78531bf7a49a1b100af4fe0a8a1e2dd} 
+int EEPROM\+\_\+\+Clear\+Channel\+Label (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{channel\+\_\+index}{}\end{DoxyParamCaption})}
+
+
+
+Clear one channel label slot (fills with zeros). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel\+\_\+index} & Channel index \mbox{[}0..ENERGIS\+\_\+\+NUM\+\_\+\+CHANNELS-\/1\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+Must be called with eeprom\+Mtx held by the caller. 
+\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on invalid channel or write error
+\end{DoxyReturn}
+Clear one channel label slot (fills with zeros). Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage02_gaf78531bf7a49a1b100af4fe0a8a1e2dd_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage02_gaf78531bf7a49a1b100af4fe0a8a1e2dd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage02_ga32e401468db1696835d3afe7d799c23b}\index{2. Channel Labels@{2. Channel Labels}!EEPROM\_ReadChannelLabel@{EEPROM\_ReadChannelLabel}}
+\index{EEPROM\_ReadChannelLabel@{EEPROM\_ReadChannelLabel}!2. Channel Labels@{2. Channel Labels}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_ReadChannelLabel()}{EEPROM\_ReadChannelLabel()}}
+{\footnotesize\ttfamily \label{group__storage02_ga32e401468db1696835d3afe7d799c23b} 
+int EEPROM\+\_\+\+Read\+Channel\+Label (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{channel\+\_\+index}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{out}{, }\item[{size\+\_\+t}]{out\+\_\+len}{}\end{DoxyParamCaption})}
+
+
+
+Read label string for a channel. 
+
+Reads from channel\textquotesingle{}s fixed EEPROM slot and ensures output is null-\/terminated.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel\+\_\+index} & Channel index \mbox{[}0..ENERGIS\+\_\+\+NUM\+\_\+\+CHANNELS-\/1\mbox{]} \\
+\hline
+{\em out} & Destination buffer for label (26 bytes recommended) \\
+\hline
+{\em out\+\_\+len} & Size of destination buffer in bytes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+Must be called with eeprom\+Mtx held by the caller. 
+\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on invalid channel or null/zero-\/sized buffer
+\end{DoxyReturn}
+Read label string for a channel. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage02_ga32e401468db1696835d3afe7d799c23b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage02_ga32e401468db1696835d3afe7d799c23b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage02_ga6398fe537889dbfbfa6d9d64c4d7db88}\index{2. Channel Labels@{2. Channel Labels}!EEPROM\_WriteChannelLabel@{EEPROM\_WriteChannelLabel}}
+\index{EEPROM\_WriteChannelLabel@{EEPROM\_WriteChannelLabel}!2. Channel Labels@{2. Channel Labels}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_WriteChannelLabel()}{EEPROM\_WriteChannelLabel()}}
+{\footnotesize\ttfamily \label{group__storage02_ga6398fe537889dbfbfa6d9d64c4d7db88} 
+int EEPROM\+\_\+\+Write\+Channel\+Label (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{channel\+\_\+index}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{label}{}\end{DoxyParamCaption})}
+
+
+
+Write null-\/terminated label string for a channel (stored in fixed slot). 
+
+Each channel has EEPROM\+\_\+\+CH\+\_\+\+LABEL\+\_\+\+SLOT bytes allocated. Label is copied and padded with zeros to fill the slot completely. Max 25 characters.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel\+\_\+index} & Channel index \mbox{[}0..ENERGIS\+\_\+\+NUM\+\_\+\+CHANNELS-\/1\mbox{]} \\
+\hline
+{\em label} & Null-\/terminated label string (max 25 chars) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+Must be called with eeprom\+Mtx held by the caller. 
+\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on invalid channel or null input
+\end{DoxyReturn}
+Write null-\/terminated label string for a channel (stored in fixed slot).
+
+Copies label string to buffer, null-\/terminates, and pads remaining bytes with zeros to fill the entire slot. Label is truncated to CHANNEL\+\_\+\+LABEL\+\_\+\+MAX\+\_\+\+LEN.
+
+CRITICAL\+: Must be called with eeprom\+Mtx held!
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel\+\_\+index} & Channel index \mbox{[}0..7\mbox{]} \\
+\hline
+{\em label} & Null-\/terminated label string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on invalid channel or null label 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage02_ga6398fe537889dbfbfa6d9d64c4d7db88_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage02_ga6398fe537889dbfbfa6d9d64c4d7db88_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage02_gad3ee11180cd1b8d9e0f174b2607ab429}\index{2. Channel Labels@{2. Channel Labels}!storage\_get\_all\_channel\_labels@{storage\_get\_all\_channel\_labels}}
+\index{storage\_get\_all\_channel\_labels@{storage\_get\_all\_channel\_labels}!2. Channel Labels@{2. Channel Labels}}
+\doxysubsubsubsubsection{\texorpdfstring{storage\_get\_all\_channel\_labels()}{storage\_get\_all\_channel\_labels()}}
+{\footnotesize\ttfamily \label{group__storage02_gad3ee11180cd1b8d9e0f174b2607ab429} 
+bool storage\+\_\+get\+\_\+all\+\_\+channel\+\_\+labels (\begin{DoxyParamCaption}\item[{char}]{labels}{\mbox{[}\+ENERGIS\+\_\+\+NUM\+\_\+\+CHANNELS\mbox{]}\mbox{[}26\mbox{]}, }\item[{size\+\_\+t}]{label\+\_\+buf\+\_\+size}{}\end{DoxyParamCaption})}
+
+
+
+Read all channel labels from RAM cache (thread-\/safe, non-\/blocking). 
+
+Convenience function to read all 8 channel labels at once from cache.
+
+
+\begin{DoxyParams}{Parameters}
+{\em labels} & Array of 8 label buffers, each at least 26 bytes \\
+\hline
+{\em label\+\_\+buf\+\_\+size} & Size of each label buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if all labels read successfully, false on any error
+\end{DoxyReturn}
+Read all channel labels from RAM cache (thread-\/safe, non-\/blocking). Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage02_gad3ee11180cd1b8d9e0f174b2607ab429_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage02_ga9b748e74135c13df21595e6db035de95}\index{2. Channel Labels@{2. Channel Labels}!storage\_get\_channel\_label@{storage\_get\_channel\_label}}
+\index{storage\_get\_channel\_label@{storage\_get\_channel\_label}!2. Channel Labels@{2. Channel Labels}}
+\doxysubsubsubsubsection{\texorpdfstring{storage\_get\_channel\_label()}{storage\_get\_channel\_label()}}
+{\footnotesize\ttfamily \label{group__storage02_ga9b748e74135c13df21595e6db035de95} 
+bool storage\+\_\+get\+\_\+channel\+\_\+label (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{channel}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{out}{, }\item[{size\+\_\+t}]{out\+\_\+len}{}\end{DoxyParamCaption})}
+
+
+
+Read channel label from RAM cache (thread-\/safe, non-\/blocking). 
+
+Returns cached label without storage queue or EEPROM access. Safe to call from any task context including web handlers.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Channel index \mbox{[}0..7\mbox{]} \\
+\hline
+{\em out} & Destination buffer (minimum 26 bytes recommended) \\
+\hline
+{\em out\+\_\+len} & Size of destination buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success, false on error
+\end{DoxyReturn}
+Read channel label from RAM cache (thread-\/safe, non-\/blocking). Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage02_ga9b748e74135c13df21595e6db035de95_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage02_ga9b748e74135c13df21595e6db035de95_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage02_ga9019937f0e528616251b6c085b7245a9}\index{2. Channel Labels@{2. Channel Labels}!storage\_set\_channel\_label@{storage\_set\_channel\_label}}
+\index{storage\_set\_channel\_label@{storage\_set\_channel\_label}!2. Channel Labels@{2. Channel Labels}}
+\doxysubsubsubsubsection{\texorpdfstring{storage\_set\_channel\_label()}{storage\_set\_channel\_label()}}
+{\footnotesize\ttfamily \label{group__storage02_ga9019937f0e528616251b6c085b7245a9} 
+bool storage\+\_\+set\+\_\+channel\+\_\+label (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{channel}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{label}{}\end{DoxyParamCaption})}
+
+
+
+Write channel label via storage queue (thread-\/safe). 
+
+Enqueues a write request to Storage\+Task. The write updates the RAM cache and writes to EEPROM.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Channel index \mbox{[}0..7\mbox{]} \\
+\hline
+{\em label} & Label string (max 25 characters, truncated if longer) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if request was queued, false on error
+\end{DoxyReturn}
+Write channel label via storage queue (thread-\/safe). Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{group__storage02_ga9019937f0e528616251b6c085b7245a9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage02_ga9019937f0e528616251b6c085b7245a9_icgraph}
+\end{center}
+\end{figure}

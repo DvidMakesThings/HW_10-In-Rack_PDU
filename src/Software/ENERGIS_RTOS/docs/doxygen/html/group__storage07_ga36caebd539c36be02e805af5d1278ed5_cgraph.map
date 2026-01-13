@@ -1,0 +1,14 @@
+<map id="EEPROM_ReadUserNetwork" name="EEPROM_ReadUserNetwork">
+<area shape="rect" id="Node000001" title="Read raw network configuration block without CRC validation." alt="" coords="5,56,200,83"/>
+<area shape="rect" id="Node000002" href="$group__driver02.html#ga622a6736c8384f9e1921a1bda2a84df9" title="Read buffer from EEPROM." alt="" coords="248,31,412,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,56,232,52,232,58,200,61"/>
+<area shape="rect" id="Node000006" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="460,81,643,108"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="200,72,445,86,444,91,200,77"/>
+<area shape="rect" id="Node000003" href="$group__drivers05.html#ga66ae4c7028f764a3770cabe101dba8bf" title="Read from 16&#45;bit memory address: write [mem_hi, mem_lo] (no stop), then read len bytes." alt="" coords="478,31,626,57"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="412,41,462,41,462,47,412,47"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="392,55,476,75,475,80,391,61"/>
+<area shape="rect" id="Node000004" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="720,5,842,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="626,33,704,24,705,30,626,38"/>
+<area shape="rect" id="Node000005" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="691,56,871,83"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="626,50,676,55,676,60,626,55"/>
+</map>

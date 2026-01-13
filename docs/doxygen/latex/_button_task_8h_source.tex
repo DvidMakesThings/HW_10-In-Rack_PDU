@@ -1,0 +1,54 @@
+\doxysection{Button\+Task.\+h}
+\hypertarget{_button_task_8h_source}{}\label{_button_task_8h_source}\index{src/Software/ENERGIS\_RTOS/src/tasks/ButtonTask.h@{src/Software/ENERGIS\_RTOS/src/tasks/ButtonTask.h}}
+\mbox{\hyperlink{_button_task_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#ifndef\ ENERGIS\_BUTTONTASK\_H}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ ENERGIS\_BUTTONTASK\_H}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_o_n_f_i_g_8h}{../CONFIG.h}}"{}}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#ifndef\ BTN\_SCAN\_PERIOD\_MS}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ BTN\_SCAN\_PERIOD\_MS\ 10u}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#ifndef\ SELECT\_BLINK\_MS}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ SELECT\_BLINK\_MS\ 250u}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#ifndef\ SELECT\_WINDOW\_MS}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ SELECT\_WINDOW\_MS\ 10000u}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#ifndef\ BUTTON\_WAIT\_STORAGE\_READY\_MS}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ BUTTON\_WAIT\_STORAGE\_READY\_MS\ 5000u}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#endif}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00107\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aa05e67b3cb5e00b70f9cd5ee7cf2d9c29}{BTN\_EV\_PLUS\_FALL}}\ =\ 1u,\ \ }
+\DoxyCodeLine{00114\ \ \ \ \ \mbox{\hyperlink{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aa87f1f018ce130f39d6b2c8377fb42484}{BTN\_EV\_PLUS\_RISE}}\ =\ 2u,\ \ }
+\DoxyCodeLine{00115\ \ \ \ \ \mbox{\hyperlink{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aaa5a6cba1ff19287c45c423816348153e}{BTN\_EV\_MINUS\_FALL}}\ =\ 3u,\ }
+\DoxyCodeLine{00116\ \ \ \ \ \mbox{\hyperlink{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aa1e1e8c44257ec3b52d84db2b947b0ec0}{BTN\_EV\_MINUS\_RISE}}\ =\ 4u,\ }
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00124\ \ \ \ \ \mbox{\hyperlink{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aa7a0000ee3caa99136466a72581e0e8b5}{BTN\_EV\_SET\_SHORT}}\ =\ 5u,\ }
+\DoxyCodeLine{00125\ \ \ \ \ \mbox{\hyperlink{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aab3a546c531e811b4697fe981a2072843}{BTN\_EV\_SET\_LONG}}\ =\ 6u\ \ \ }
+\DoxyCodeLine{00127\ \}\ \mbox{\hyperlink{group__tasks01_ga5f3c716f66dc5610b621b0f68059707a}{btn\_event\_kind\_t}};}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00137\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00138\ \ \ \ \ \mbox{\hyperlink{group__tasks01_ga5f3c716f66dc5610b621b0f68059707a}{btn\_event\_kind\_t}}\ \mbox{\hyperlink{structbtn__event__t_a601d1115d7637d8ad448df18aac41fd9}{kind}};\ }
+\DoxyCodeLine{00139\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structbtn__event__t_a63b7c1f57ed6b49a62b28681305c10d4}{t\_ms}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00140\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structbtn__event__t_a3badb4b8b50db5c5c3b68e69b5881a0b}{sel}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00141\ \}\ \mbox{\hyperlink{structbtn__event__t}{btn\_event\_t}};}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00151\ \textcolor{keyword}{extern}\ QueueHandle\_t\ \mbox{\hyperlink{group__tasks01_ga4f858b0945b86e1932ecb297d91c7878}{q\_btn}};}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00177\ BaseType\_t\ \mbox{\hyperlink{group__tasks01_ga66ab3f6fa24432c008c6ea7b0ccddb5f}{ButtonTask\_Init}}(\textcolor{keywordtype}{bool}\ enable);}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00192\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks01_ga10ed3ecf4c7563fe0fd3a2324b9260e1}{Button\_IsReady}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ ENERGIS\_BUTTONTASK\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00195\ }
+
+\end{DoxyCode}

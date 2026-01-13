@@ -1,0 +1,11 @@
+<map id="init_i2c" name="init_i2c">
+<area shape="rect" id="Node000001" title="Initialize I2C buses." alt="" coords="5,31,68,57"/>
+<area shape="rect" id="Node000002" href="$group__drivers05.html#ga8bf0403f2c78483c3afc9ffea67c425f" title="Initialize the global I2C bus manager task and queue. Must be called once after hardware i2c_init() a..." alt="" coords="116,31,206,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="68,41,100,41,100,47,68,47"/>
+<area shape="rect" id="Node000003" href="$i2c__bus_8c.html#a85d0ad3cfc81f9c7d92057fdd385d438" title=" " alt="" coords="254,31,352,57"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="206,41,238,41,238,47,206,47"/>
+<area shape="rect" id="Node000004" href="$i2c__bus_8c.html#a190f3a662c3c5a54b4aa02a76d6a3b0c" title="Log an I2C read transaction for debugging." alt="" coords="402,5,508,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="352,33,386,27,387,33,353,38"/>
+<area shape="rect" id="Node000005" href="$i2c__bus_8c.html#a6d7fcd61b1d45be7a35ad0ecf0db2613" title="Log an I2C write transaction for debugging." alt="" coords="400,56,510,83"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="353,50,385,55,384,60,352,55"/>
+</map>

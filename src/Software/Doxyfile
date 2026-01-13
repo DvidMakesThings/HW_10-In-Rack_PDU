@@ -74,7 +74,7 @@ PROJECT_ICON           =
 # entered, it will be relative to the location where Doxygen was started. If
 # left blank the current directory will be used.
 
-OUTPUT_DIRECTORY       = ENERGIS/docs
+OUTPUT_DIRECTORY       = ENERGIS_RTOS/docs/doxygen
 
 # If the CREATE_SUBDIRS tag is set to YES then Doxygen will create up to 4096
 # sub-directories (in 2 levels) under the output directory of each output format
@@ -190,7 +190,7 @@ FULL_PATH_NAMES        = YES
 # will be relative from the directory where Doxygen is started.
 # This tag requires that the tag FULL_PATH_NAMES is set to YES.
 
-STRIP_FROM_PATH        =
+STRIP_FROM_PATH        = ../../
 
 # The STRIP_FROM_INC_PATH tag can be used to strip a user-defined part of the
 # path mentioned in the documentation of a class, which tells the reader which
@@ -991,7 +991,7 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = ENERGIS ENERGIS/drivers ENERGIS/html ENERGIS/misc ENERGIS/utils ENERGIS/web_handlers ENERGIS/docs
+INPUT      = ENERGIS_RTOS/src ENERGIS_RTOS/docs/mainpage.dox
 
 # This tag can be used to specify the character encoding of the source files
 # that Doxygen parses. Internally Doxygen uses the UTF-8 encoding. Doxygen uses
@@ -1063,7 +1063,12 @@ EXCLUDE_SYMLINKS       = NO
 # Note that the wildcards are matched against the file with absolute path, so to
 # exclude all test directories for example use the pattern */test/*
 
-EXCLUDE_PATTERNS       =
+EXCLUDE_PATTERNS       = */build/* \
+EXCLUDE_PATTERNS += ENERGIS_RTOS/docs/doxygen/*
+                         */pico-sdk/* \
+                         */generated/* \
+                         */lib/* \
+                         */freertos_kernel/*
 
 # The EXCLUDE_SYMBOLS tag can be used to specify one or more symbol names
 # (namespaces, classes, functions, etc.) that should be excluded from the
@@ -1097,7 +1102,7 @@ EXAMPLE_RECURSIVE      = NO
 # that contain images that are to be included in the documentation (see the
 # \image command).
 
-IMAGE_PATH             =
+IMAGE_PATH = ENERGIS_RTOS/docs
 
 # The INPUT_FILTER tag can be used to specify a program that Doxygen should
 # invoke to filter for each input file. Doxygen will invoke the filter program
@@ -1430,7 +1435,8 @@ HTML_EXTRA_FILES += _SoftwareTest/Reports/tc_serial/tc_serial_results_report.htm
 # The default value is: AUTO_LIGHT.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_COLORSTYLE        = AUTO_LIGHT
+HTML_COLORSTYLE        = LIGHT
+LATEX_EXTRA_PACKAGES = xcolor
 
 # The HTML_COLORSTYLE_HUE tag controls the color of the HTML output. Doxygen
 # will adjust the colors in the style sheet and background images according to
@@ -2033,7 +2039,7 @@ LATEX_OUTPUT           = latex
 # the output language.
 # This tag requires that the tag GENERATE_LATEX is set to YES.
 
-LATEX_CMD_NAME         =
+LATEX_CMD_NAME         = pdflatex
 
 # The MAKEINDEX_CMD_NAME tag can be used to specify the command name to generate
 # index for LaTeX.
@@ -2082,7 +2088,7 @@ PAPER_TYPE             = a4
 # If left blank no extra packages will be included.
 # This tag requires that the tag GENERATE_LATEX is set to YES.
 
-EXTRA_PACKAGES         =
+EXTRA_PACKAGES         = enumitem
 
 # The LATEX_HEADER tag can be used to specify a user-defined LaTeX header for
 # the generated LaTeX document. The header should contain everything until the
@@ -2099,7 +2105,7 @@ EXTRA_PACKAGES         =
 # description of the possible markers and block names see the documentation.
 # This tag requires that the tag GENERATE_LATEX is set to YES.
 
-LATEX_HEADER           =
+LATEX_HEADER           = 
 
 # The LATEX_FOOTER tag can be used to specify a user-defined LaTeX footer for
 # the generated LaTeX document. The footer should contain everything after the
@@ -2111,7 +2117,7 @@ LATEX_HEADER           =
 # doing!
 # This tag requires that the tag GENERATE_LATEX is set to YES.
 
-LATEX_FOOTER           =
+LATEX_FOOTER           = 
 
 # The LATEX_EXTRA_STYLESHEET tag can be used to specify additional user-defined
 # LaTeX style sheets that are included after the standard style sheets created
@@ -2164,7 +2170,7 @@ USE_PDFLATEX           = YES
 # The default value is: NO.
 # This tag requires that the tag GENERATE_LATEX is set to YES.
 
-LATEX_BATCHMODE        = YES
+LATEX_BATCHMODE        = NO
 
 # If the LATEX_HIDE_INDICES tag is set to YES then Doxygen will not include the
 # index chapters (such as File Index, Compound Index, etc.) in the output.
@@ -2607,7 +2613,8 @@ DOT_EDGE_ATTR          = "labelfontname=Helvetica,labelfontsize=10"
 # The default value is: shape=box,height=0.2,width=0.4.
 # This tag requires that the tag HAVE_DOT is set to YES.
 
-DOT_NODE_ATTR          = "shape=box,height=0.2,width=0.4"
+DOT_NODE_ATTR       = "shape=plaintext"
+DOT_NODE_ATTR       = "shape=box"
 
 # You can set the path where dot can find font specified with fontname in
 # DOT_COMMON_ATTR and others dot attributes.
@@ -2804,7 +2811,7 @@ DIR_GRAPH_MAX_DEPTH    = 1
 # The default value is: png.
 # This tag requires that the tag HAVE_DOT is set to YES.
 
-DOT_IMAGE_FORMAT       = png
+DOT_IMAGE_FORMAT       = svg
 
 # If DOT_IMAGE_FORMAT is set to svg or svg:svg or svg:svg:core, then this option
 # can be set to YES to enable generation of interactive SVG images that allow
@@ -2818,7 +2825,7 @@ DOT_IMAGE_FORMAT       = png
 # The default value is: NO.
 # This tag requires that the tag HAVE_DOT is set to YES.
 
-INTERACTIVE_SVG        = NO
+INTERACTIVE_SVG        = YES
 
 # The DOT_PATH tag can be used to specify the path where the dot tool can be
 # found. If left blank, it is assumed the dot tool can be found in the path.
@@ -2893,6 +2900,7 @@ DOT_GRAPH_MAX_NODES    = 50
 # This tag requires that the tag HAVE_DOT is set to YES.
 
 MAX_DOT_GRAPH_DEPTH    = 0
+DOT_TRANSPARENT     = YES
 
 # Set the DOT_MULTI_TARGETS tag to YES to allow dot to generate multiple output
 # files in one run (i.e. multiple -o and -T options on the command line). This

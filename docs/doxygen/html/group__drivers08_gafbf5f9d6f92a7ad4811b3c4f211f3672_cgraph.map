@@ -1,0 +1,12 @@
+<map id="send_all_blocking" name="send_all_blocking">
+<area shape="rect" id="Node000001" title="Send all data over TCP socket in blocking mode." alt="" coords="5,56,130,83"/>
+<area shape="rect" id="Node000002" href="$group__drivers03.html#gaeaef8ee772ea9b4a5c6ba7702a1c9b52" title="Send data to socket TX buffer." alt="" coords="216,31,322,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="130,59,201,50,202,55,131,64"/>
+<area shape="rect" id="Node000005" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="178,81,361,108"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="131,74,163,79,162,84,130,80"/>
+<area shape="rect" id="Node000003" href="$group__drivers03.html#ga35f04740974b2f6a16c4744f1641fd47" title="Set socket TX write pointer (Sn_TX_WR) in big&#45;endian." alt="" coords="409,5,518,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="323,34,393,25,394,30,323,40"/>
+<area shape="rect" id="Node000004" href="$group__drivers03.html#ga8e525d27915365abbe8086dc3363055f" title="Write multiple bytes to W5500 (optimized bulk transfer)" alt="" coords="566,31,686,57"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="323,41,550,41,550,47,323,47"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="519,25,552,30,551,35,518,30"/>
+</map>

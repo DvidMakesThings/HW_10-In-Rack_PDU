@@ -1,0 +1,49 @@
+<map id="process_blink" name="process_blink">
+<area shape="rect" id="Node000001" title="Process LED blink logic and window timeout." alt="" coords="5,56,107,83"/>
+<area shape="rect" id="Node000002" href="$group__driver01.html#gac5901ff1bb130ab17484230d894cc54e" title="Turn off all eight channel selection LEDs." alt="" coords="328,5,484,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,53,154,41,235,30,313,22,313,27,236,35,155,47,106,58"/>
+<area shape="rect" id="Node000015" href="$group__driver01.html#gabe577d3f3ce0d1daffbfc739aaaba34a" title="Control visibility of a single channel selection LED." alt="" coords="554,107,712,133"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="104,81,155,92,257,105,360,112,539,118,539,123,360,118,257,110,154,97,102,86"/>
+<area shape="rect" id="Node000019" href="$_button_task_8c.html#ac582a6e2100c0837f272a315955aedcc" title="Deactivate selection window and disable LED feedback." alt="" coords="155,56,258,83"/>
+<area shape="poly" id="edge25_Node000001_Node000019" title=" " alt="" coords="107,67,139,67,139,72,107,72"/>
+<area shape="rect" id="Node000003" href="$button__driver_8c.html#a1e1377700e59631bf0d33be94ab08f5b" title="Turn off all selection LEDs via SwitchTask." alt="" coords="581,5,685,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="485,16,565,16,565,21,485,21"/>
+<area shape="rect" id="Node000004" href="$group__tasks11.html#gaadad543913d4fa9faefda9082b0b7c91" title="Check if SwitchTask is ready for operations." alt="" coords="793,56,910,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="686,28,778,50,777,55,685,33"/>
+<area shape="rect" id="Node000005" href="$group__tasks11.html#ga422f1d39bad24719818ed9a06ba7d8e7" title="Turn off all selection LEDs." alt="" coords="783,5,920,32"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="685,16,767,16,767,21,685,21"/>
+<area shape="rect" id="Node000006" href="$_switch_task_8c.html#a2a7f01bd659f5eea0a4a131d8c57c207" title=" " alt="" coords="1028,5,1074,32"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="921,16,1013,16,1013,21,921,21"/>
+<area shape="rect" id="Node000007" href="$group__drivers06.html#gae6acbfdd05b6bdd8877262ce03f77eeb" title="Get selection MCP23017 device context." alt="" coords="998,107,1104,133"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="920,30,944,42,960,54,970,67,979,80,993,93,1000,97,997,102,989,97,975,83,965,70,956,58,942,46,917,35"/>
+<area shape="rect" id="Node000008" href="$group__drivers06.html#ga0dfecc1e56ba649b3a89936c6206c9e2" title="Atomic masked write to a port." alt="" coords="991,56,1111,83"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="908,30,982,49,980,54,906,35"/>
+<area shape="rect" id="Node000014" href="$_switch_task_8c.html#abb7cc7eb4e959fda6a43c8dd85f20090" title=" " alt="" coords="1022,157,1081,184"/>
+<area shape="poly" id="edge13_Node000005_Node000014" title=" " alt="" coords="922,28,945,42,957,55,964,68,970,93,976,118,993,143,1009,155,1006,159,989,147,971,120,965,94,959,70,952,58,941,46,919,33"/>
+<area shape="rect" id="Node000009" href="$group__drivers05.html#gab7b4aa096ded6cebd93256e5b5994e42" title="Write 8&#45;bit register with 8&#45;bit value: [reg, value]." alt="" coords="1171,81,1304,108"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="1112,75,1156,81,1155,86,1111,80"/>
+<area shape="rect" id="Node000013" href="$_m_c_p23017__driver_8c.html#a0ff45ad384852ba5f69f0fd781c2f46a" title=" " alt="" coords="1159,157,1316,184"/>
+<area shape="poly" id="edge12_Node000008_Node000013" title=" " alt="" coords="1088,81,1113,92,1204,146,1202,151,1110,97,1086,86"/>
+<area shape="rect" id="Node000010" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="1389,56,1510,83"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="1304,84,1373,76,1374,81,1305,89"/>
+<area shape="rect" id="Node000011" href="$group__drivers05.html#ga170d6c4ff97ddc2d314f0a7a0054f283" title="Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK i2c_write_time..." alt="" coords="1364,107,1536,133"/>
+<area shape="poly" id="edge10_Node000009_Node000011" title=" " alt="" coords="1305,100,1349,105,1348,111,1304,105"/>
+<area shape="rect" id="Node000012" href="$i2c__bus_8c.html#afbaa64f79bdd1fa39c8fa5b7a9c2717b" title=" " alt="" coords="1584,107,1741,133"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="1537,117,1568,117,1568,123,1537,123"/>
+<area shape="poly" id="edge16_Node000015_Node000004" title=" " alt="" coords="693,103,777,84,778,89,694,109"/>
+<area shape="rect" id="Node000016" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="760,107,943,133"/>
+<area shape="poly" id="edge15_Node000015_Node000016" title=" " alt="" coords="712,117,744,117,744,123,712,123"/>
+<area shape="rect" id="Node000017" href="$group__tasks11.html#ga350ee69c82fbab2a27ec7bb3a723806f" title="Show (or hide) the selection LED for a given index." alt="" coords="782,157,920,184"/>
+<area shape="poly" id="edge17_Node000015_Node000017" title=" " alt="" coords="694,131,776,151,775,156,693,137"/>
+<area shape="poly" id="edge18_Node000017_Node000006" title=" " alt="" coords="920,156,941,143,952,132,959,120,965,95,971,69,989,42,1013,27,1016,31,993,46,976,71,970,96,964,122,957,135,945,147,922,161"/>
+<area shape="poly" id="edge19_Node000017_Node000007" title=" " alt="" coords="906,154,983,134,984,140,908,159"/>
+<area shape="poly" id="edge20_Node000017_Node000008" title=" " alt="" coords="917,154,942,143,956,131,965,119,975,106,989,93,997,88,1000,92,993,97,979,110,970,122,960,135,944,148,920,159"/>
+<area shape="poly" id="edge24_Node000017_Node000014" title=" " alt="" coords="921,168,1006,168,1006,173,921,173"/>
+<area shape="rect" id="Node000018" href="$group__drivers06.html#ga8b8bc528b75e419262e7663ee669dc31" title="Write a logic level to a pin." alt="" coords="998,208,1104,235"/>
+<area shape="poly" id="edge21_Node000017_Node000018" title=" " alt="" coords="908,182,984,202,983,207,906,187"/>
+<area shape="poly" id="edge22_Node000018_Node000009" title=" " alt="" coords="1090,205,1110,194,1124,182,1134,170,1158,143,1198,115,1201,119,1161,147,1138,173,1128,185,1113,198,1092,210"/>
+<area shape="poly" id="edge23_Node000018_Node000013" title=" " alt="" coords="1102,205,1171,186,1172,191,1104,210"/>
+<area shape="poly" id="edge26_Node000019_Node000002" title=" " alt="" coords="258,54,305,41,335,34,336,39,307,47,259,59"/>
+<area shape="rect" id="Node000020" href="$group__tasks11.html#gab96571983d5766b065d2f4452bd023f1" title="Enable/disable front&#45;panel (manual) selection updates." alt="" coords="306,56,506,83"/>
+<area shape="poly" id="edge27_Node000019_Node000020" title=" " alt="" coords="258,67,290,67,290,72,258,72"/>
+</map>

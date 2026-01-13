@@ -1,0 +1,33 @@
+<map id="handle_config_presets_get" name="handle_config_presets_get">
+<area shape="rect" id="Node000001" title="Handle GET request for /api/config&#45;presets." alt="" coords="5,107,182,133"/>
+<area shape="rect" id="Node000002" href="$preset__handler_8c.html#afbfb89004b7821413a0e3422eed78788" title="Escape a string for safe JSON output." alt="" coords="281,5,375,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="114,104,165,73,229,42,265,29,267,35,231,46,168,78,117,108"/>
+<area shape="rect" id="Node000003" href="$preset__handler_8c.html#a8c210587f97cbef60c84dc0bfba63c2f" title=" " alt="" coords="292,56,364,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="158,103,276,78,277,83,159,109"/>
+<area shape="rect" id="Node000006" href="$group__drivers08.html#gacd77c3cc60e87d09a5714932506d7c4b" title="Send data over TCP socket." alt="" coords="303,107,352,133"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="182,117,288,117,288,123,182,123"/>
+<area shape="rect" id="Node000014" href="$group__storage09.html#ga21a7d214a0524abc04ae28e27ef944d3" title="Copy all presets from RAM cache." alt="" coords="240,157,416,184"/>
+<area shape="poly" id="edge15_Node000001_Node000014" title=" " alt="" coords="159,131,249,151,247,156,158,137"/>
+<area shape="rect" id="Node000015" href="$group__storage09.html#ga256c864690ce5f7015f2f610f33441f8" title="Get the startup preset selection from cache." alt="" coords="230,208,426,235"/>
+<area shape="poly" id="edge16_Node000001_Node000015" title=" " alt="" coords="117,132,168,162,231,194,250,201,248,206,229,198,165,167,114,136"/>
+<area shape="rect" id="Node000004" href="$group__tasks03.html#ga4f7298bb6ff71177639ba837e4068eb1" title="Record a heartbeat from a registered task." alt="" coords="484,5,608,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="363,59,470,33,471,39,364,64"/>
+<area shape="rect" id="Node000005" href="$_health_task_8c.html#a50503dee6a29e98e633b16b1b8b550bc" title="Get current monotonic time in milliseconds." alt="" coords="723,5,793,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="608,16,707,16,707,21,608,21"/>
+<area shape="rect" id="Node000007" href="$group__drivers08.html#ga025710a2709097be7824f0564f89a461" title="Close a socket." alt="" coords="500,56,592,83"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="352,112,485,81,486,86,354,117"/>
+<area shape="rect" id="Node000008" href="$group__drivers03.html#gaeaef8ee772ea9b4a5c6ba7702a1c9b52" title="Send data to socket TX buffer." alt="" coords="493,107,599,133"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="353,117,477,117,477,123,353,123"/>
+<area shape="rect" id="Node000011" href="$socket_8c.html#a3e134a526306c29a2594a8615c328607" title=" " alt="" coords="474,157,618,200"/>
+<area shape="poly" id="edge11_Node000006_Node000011" title=" " alt="" coords="354,124,427,143,460,152,459,157,425,148,352,129"/>
+<area shape="rect" id="Node000013" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="666,220,850,247"/>
+<area shape="poly" id="edge14_Node000006_Node000013" title=" " alt="" coords="353,119,390,126,428,143,444,160,452,179,459,195,475,210,517,228,562,238,607,243,651,243,651,249,607,248,561,243,515,233,473,214,455,199,447,181,439,163,424,148,388,131,352,124"/>
+<area shape="rect" id="Node000009" href="$group__drivers03.html#ga35f04740974b2f6a16c4744f1641fd47" title="Set socket TX write pointer (Sn_TX_WR) in big&#45;endian." alt="" coords="703,60,813,87"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="599,106,688,86,689,91,600,111"/>
+<area shape="rect" id="Node000010" href="$group__drivers03.html#ga8e525d27915365abbe8086dc3363055f" title="Write multiple bytes to W5500 (optimized bulk transfer)" alt="" coords="898,85,1017,112"/>
+<area shape="poly" id="edge10_Node000008_Node000010" title=" " alt="" coords="600,115,882,100,882,105,600,120"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="813,78,883,87,882,92,813,83"/>
+<area shape="rect" id="Node000012" href="$group__misc3.html#gad3252fba1863d278f2611cad531177f5" title="Query the current system power state." alt="" coords="699,165,817,192"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="619,176,684,176,684,181,619,181"/>
+<area shape="poly" id="edge13_Node000011_Node000013" title=" " alt="" coords="620,195,690,213,688,218,618,200"/>
+</map>

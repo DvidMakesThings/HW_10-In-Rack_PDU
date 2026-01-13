@@ -1,0 +1,4 @@
+<map id="3. Device Identity Module" name="3. Device Identity Module">
+<area shape="rect" id="Node000001" title="Serial Number and Region Management with EEPROM Persistence." alt="" coords="173,5,297,48"/>
+<area shape="rect" id="Node000002" href="$group__tasks10.html" title="Persistent configuration manager with CAT24C256 EEPROM and queue&#45;based access." alt="" coords="5,13,125,40"/>
+</map>

@@ -1,0 +1,17 @@
+<map id="Switch_Toggle" name="Switch_Toggle">
+<area shape="rect" id="Node000001" title="Toggle single relay channel with verification." alt="" coords="932,31,1039,57"/>
+<area shape="rect" id="Node000002" href="$group__driver01.html#gafe1594ae8ba586d579964b90a2ddd5ff" title="Execute short&#45;press action for SET button on specified channel." alt="" coords="729,5,884,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="916,37,884,32,885,27,917,32"/>
+<area shape="rect" id="Node000008" href="$group__tasks11.html#ga5668cd5c93cc64bb2d551bb9ab90d610" title="Legacy wrapper for Switch_Toggle." alt="" coords="730,56,883,83"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="917,56,884,61,883,56,916,51"/>
+<area shape="rect" id="Node000003" href="$_button_task_8c.html#ac8adec5c9e99b51c4884034cf2e41275" title="Main button scanning and event processing task." alt="" coords="587,5,681,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="714,21,682,21,682,16,714,16"/>
+<area shape="rect" id="Node000004" href="$group__tasks01.html#ga66ab3f6fa24432c008c6ea7b0ccddb5f" title="Initialize and start the button handling task." alt="" coords="426,5,539,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="571,21,539,21,539,16,571,16"/>
+<area shape="rect" id="Node000005" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,5,378,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="411,21,379,21,379,16,411,16"/>
+<area shape="rect" id="Node000006" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,5,263,32"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="295,21,263,21,263,16,295,16"/>
+<area shape="rect" id="Node000007" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,5,102,32"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="134,21,102,21,102,16,134,16"/>
+</map>

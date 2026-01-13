@@ -1,0 +1,33 @@
+<map id="setSn_PORT" name="setSn_PORT">
+<area shape="rect" id="Node000001" title="Set the local TCP/UDP port (big&#45;endian)" alt="" coords="1744,61,1842,88"/>
+<area shape="rect" id="Node000002" href="$group__drivers06.html#ga8cc0a2074b3aae98a132c1ae3c51188f" title="Create and initialize a socket." alt="" coords="1636,61,1696,88"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1728,77,1696,77,1696,72,1728,72"/>
+<area shape="rect" id="Node000003" href="$group__webui1.html#ga2dd3bba639b08c3907dcb43527b74858" title="Initialize and start the HTTP server (socket listen)." alt="" coords="1306,86,1416,113"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1621,81,1417,98,1416,93,1620,76"/>
+<area shape="rect" id="Node000011" href="$group__webui1.html#ga52702a4dcaff4540a9ddd10e4d5f4525" title="Process incoming HTTP connections and route requests." alt="" coords="1119,137,1258,164"/>
+<area shape="poly" id="edge11_Node000002_Node000011" title=" " alt="" coords="1621,90,1588,98,1500,116,1411,130,1259,147,1258,142,1410,124,1499,111,1587,93,1620,85"/>
+<area shape="rect" id="Node000012" href="$group__drivers07.html#gaceddc5a84a3d118c49268cfb5ba8c0bb" title="Initialize SNMP agent UDP transport and core." alt="" coords="1146,36,1231,62"/>
+<area shape="poly" id="edge13_Node000002_Node000012" title=" " alt="" coords="1636,54,1613,38,1587,26,1539,15,1489,10,1390,12,1301,24,1232,40,1231,35,1300,19,1390,7,1490,5,1540,10,1589,21,1616,33,1639,49"/>
+<area shape="rect" id="Node000013" href="$group__drivers07.html#gaface68bc44083fa16ce731bc1a8f5014" title="Send an SNMP trap to a manager." alt="" coords="1464,36,1588,62"/>
+<area shape="poly" id="edge15_Node000002_Node000013" title=" " alt="" coords="1620,69,1588,63,1589,58,1620,64"/>
+<area shape="rect" id="Node000004" href="$_net_task_8c.html#a76bdf14764cc2c6156cd241278735824" title="Start all IP&#45;based services (HTTP server + SNMP agent)." alt="" coords="942,61,1071,88"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1290,97,1071,82,1071,76,1291,92"/>
+<area shape="rect" id="Node000005" href="$_net_task_8c.html#a69d051e31c6438ed93d21deb141e4795" title="Reinitialize W5500 using cached network configuration on link&#45;up." alt="" coords="745,86,894,113"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="927,88,895,92,894,87,927,83"/>
+<area shape="rect" id="Node000006" href="$_net_task_8c.html#a80f30ff31d5f0d4f6696af42d015bce6" title="Network task main function." alt="" coords="570,86,697,113"/>
+<area shape="poly" id="edge10_Node000004_Node000006" title=" " alt="" coords="927,73,839,72,745,77,685,89,684,83,745,72,839,66,927,67"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="729,102,697,102,697,97,729,97"/>
+<area shape="rect" id="Node000007" href="$group__tasks06.html#ga3bb13f092e9d7a8e15776e5e8bf8e8c3" title="Create and start the Network Task with a deterministic enable gate." alt="" coords="426,86,522,113"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="554,102,522,102,522,97,554,97"/>
+<area shape="rect" id="Node000008" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,86,378,113"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="411,102,379,102,379,97,411,97"/>
+<area shape="rect" id="Node000009" href="$group__tasks01.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,86,263,113"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="295,102,263,102,263,97,295,97"/>
+<area shape="rect" id="Node000010" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,86,102,113"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="134,102,102,102,102,97,134,97"/>
+<area shape="poly" id="edge12_Node000011_Node000006" title=" " alt="" coords="1103,153,937,146,840,139,745,128,687,116,688,111,745,123,841,134,937,141,1103,147"/>
+<area shape="poly" id="edge14_Node000012_Node000004" title=" " alt="" coords="1131,60,1072,68,1071,63,1130,55"/>
+<area shape="rect" id="Node000014" href="$group__drivers07.html#ga01e7036f2bce7c2647b681dcfe2b3731" title="Perform initial trap setup with manager/agent IP (in snmp_custom.c)." alt="" coords="1319,36,1403,62"/>
+<area shape="poly" id="edge16_Node000013_Node000014" title=" " alt="" coords="1449,52,1404,52,1404,46,1449,46"/>
+<area shape="poly" id="edge17_Node000014_Node000012" title=" " alt="" coords="1303,52,1232,52,1232,46,1303,46"/>
+</map>

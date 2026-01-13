@@ -1,0 +1,61 @@
+\doxysection{snmp\+\_\+tlv\+\_\+t Struct Reference}
+\hypertarget{structsnmp__tlv__t}{}\label{structsnmp__tlv__t}\index{snmp\_tlv\_t@{snmp\_tlv\_t}}
+
+
+TLV cursor describing a parsed element in an SNMP message.  
+
+
+
+
+{\ttfamily \#include $<$snmp.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int32\+\_\+t \mbox{\hyperlink{structsnmp__tlv__t_a4bed53f6902e5d1168051a81415eab31}{start}}
+\item 
+int32\+\_\+t \mbox{\hyperlink{structsnmp__tlv__t_a45662f13bb6490c55197fffea0582e0a}{len}}
+\item 
+int32\+\_\+t \mbox{\hyperlink{structsnmp__tlv__t_a8300b267d4a2692e19555cff64f09297}{vstart}}
+\item 
+int32\+\_\+t \mbox{\hyperlink{structsnmp__tlv__t_afe752759cf1c233a1523638c39a31fc3}{nstart}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+TLV cursor describing a parsed element in an SNMP message. 
+
+LONG DESCRIPTION 
+
+\label{doc-variable-members}
+\Hypertarget{structsnmp__tlv__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structsnmp__tlv__t_a45662f13bb6490c55197fffea0582e0a}\index{snmp\_tlv\_t@{snmp\_tlv\_t}!len@{len}}
+\index{len@{len}!snmp\_tlv\_t@{snmp\_tlv\_t}}
+\doxysubsubsection{\texorpdfstring{len}{len}}
+{\footnotesize\ttfamily \label{structsnmp__tlv__t_a45662f13bb6490c55197fffea0582e0a} 
+int32\+\_\+t snmp\+\_\+tlv\+\_\+t\+::len}
+
+L-\/length value (decoded). \Hypertarget{structsnmp__tlv__t_afe752759cf1c233a1523638c39a31fc3}\index{snmp\_tlv\_t@{snmp\_tlv\_t}!nstart@{nstart}}
+\index{nstart@{nstart}!snmp\_tlv\_t@{snmp\_tlv\_t}}
+\doxysubsubsection{\texorpdfstring{nstart}{nstart}}
+{\footnotesize\ttfamily \label{structsnmp__tlv__t_afe752759cf1c233a1523638c39a31fc3} 
+int32\+\_\+t snmp\+\_\+tlv\+\_\+t\+::nstart}
+
+Absolute index of the next TLV following this one. \Hypertarget{structsnmp__tlv__t_a4bed53f6902e5d1168051a81415eab31}\index{snmp\_tlv\_t@{snmp\_tlv\_t}!start@{start}}
+\index{start@{start}!snmp\_tlv\_t@{snmp\_tlv\_t}}
+\doxysubsubsection{\texorpdfstring{start}{start}}
+{\footnotesize\ttfamily \label{structsnmp__tlv__t_a4bed53f6902e5d1168051a81415eab31} 
+int32\+\_\+t snmp\+\_\+tlv\+\_\+t\+::start}
+
+Absolute index of the TLV tag. \Hypertarget{structsnmp__tlv__t_a8300b267d4a2692e19555cff64f09297}\index{snmp\_tlv\_t@{snmp\_tlv\_t}!vstart@{vstart}}
+\index{vstart@{vstart}!snmp\_tlv\_t@{snmp\_tlv\_t}}
+\doxysubsubsection{\texorpdfstring{vstart}{vstart}}
+{\footnotesize\ttfamily \label{structsnmp__tlv__t_a8300b267d4a2692e19555cff64f09297} 
+int32\+\_\+t snmp\+\_\+tlv\+\_\+t\+::vstart}
+
+Absolute index of the TLV value. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/drivers/\mbox{\hyperlink{snmp_8h}{snmp.\+h}}\end{DoxyCompactItemize}

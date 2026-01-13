@@ -1,0 +1,147 @@
+\doxysection{i2c\+\_\+bus\+\_\+request\+\_\+t Struct Reference}
+\hypertarget{structi2c__bus__request__t}{}\label{structi2c__bus__request__t}\index{i2c\_bus\_request\_t@{i2c\_bus\_request\_t}}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structi2c__bus__request__t_a48d3a757c323ef8e62f961a51fed5e8d}{i2c}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structi2c__bus__request__t_abd4b8093ec641eb2b0f7b73e87b3f54f}{addr}}
+\item 
+Task\+Handle\+\_\+t \mbox{\hyperlink{structi2c__bus__request__t_a6d7a131bc4227159900be86faea7e974}{caller}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structi2c__bus__request__t_a8961f2a6ccbc0e2a9397e1692071779d}{timeout\+\_\+us}}
+\item 
+int \mbox{\hyperlink{structi2c__bus__request__t_a6af82e260a2a4330e9d0a4300fda33e3}{result}}
+\item 
+\mbox{\hyperlink{i2c__bus_8c_aa10597e57fac67ce9b7ab1fec041df5b}{i2c\+\_\+op\+\_\+t}} \mbox{\hyperlink{structi2c__bus__request__t_a53a21c67057d4ff100b720e5780a5559}{op}}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>struct \{\\
+\>\>uint8\_t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structi2c__bus__request__t_afeca9b91c9c5186b78acd25cfb09c9e5}{buf}}\\
+\>\>size\_t \mbox{\hyperlink{structi2c__bus__request__t_a7c1c8c0828a9412b45a013a6ef5e3dfd}{len}}\\
+\>\>bool \mbox{\hyperlink{structi2c__bus__request__t_a07eafd17d39cc060a0d179d426922bb7}{nostop}}\\
+\>\>bool \mbox{\hyperlink{structi2c__bus__request__t_a0397b8702c37a0998185b8ad2eb69a37}{is\_read}}\\
+\>\} \mbox{\hyperlink{structi2c__bus__request__t_aebeb1b3825adf358d3fc6efc7d151cb4}{simple}}\\
+\>struct \{\\
+\>\>const uint8\_t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structi2c__bus__request__t_a7f7ca73ffe387290215901094a34952b}{wbuf}}\\
+\>\>size\_t \mbox{\hyperlink{structi2c__bus__request__t_ad3b6501b7f5f01c4fde15a183cb4c3d4}{wlen}}\\
+\>\>uint8\_t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structi2c__bus__request__t_a67f1498809ddeef72a7344ed671197a0}{rbuf}}\\
+\>\>size\_t \mbox{\hyperlink{structi2c__bus__request__t_a44e970cf8a64a2ae4726b29b3e61de4d}{rlen}}\\
+\>\} \mbox{\hyperlink{structi2c__bus__request__t_a6fe3001f7e6279d42a5f871d316d020c}{wr}}\\
+\} \mbox{\hyperlink{structi2c__bus__request__t_a8e0179393628d7d517b75524ca02f17f}{u}}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\label{doc-variable-members}
+\Hypertarget{structi2c__bus__request__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structi2c__bus__request__t_abd4b8093ec641eb2b0f7b73e87b3f54f}\index{i2c\_bus\_request\_t@{i2c\_bus\_request\_t}!addr@{addr}}
+\index{addr@{addr}!i2c\_bus\_request\_t@{i2c\_bus\_request\_t}}
+\doxysubsubsection{\texorpdfstring{addr}{addr}}
+{\footnotesize\ttfamily \label{structi2c__bus__request__t_abd4b8093ec641eb2b0f7b73e87b3f54f} 
+uint8\+\_\+t i2c\+\_\+bus\+\_\+request\+\_\+t\+::addr}
+
+\Hypertarget{structi2c__bus__request__t_afeca9b91c9c5186b78acd25cfb09c9e5}\index{i2c\_bus\_request\_t@{i2c\_bus\_request\_t}!buf@{buf}}
+\index{buf@{buf}!i2c\_bus\_request\_t@{i2c\_bus\_request\_t}}
+\doxysubsubsection{\texorpdfstring{buf}{buf}}
+{\footnotesize\ttfamily \label{structi2c__bus__request__t_afeca9b91c9c5186b78acd25cfb09c9e5} 
+uint8\+\_\+t\texorpdfstring{$\ast$}{*} i2c\+\_\+bus\+\_\+request\+\_\+t\+::buf}
+
+\Hypertarget{structi2c__bus__request__t_a6d7a131bc4227159900be86faea7e974}\index{i2c\_bus\_request\_t@{i2c\_bus\_request\_t}!caller@{caller}}
+\index{caller@{caller}!i2c\_bus\_request\_t@{i2c\_bus\_request\_t}}
+\doxysubsubsection{\texorpdfstring{caller}{caller}}
+{\footnotesize\ttfamily \label{structi2c__bus__request__t_a6d7a131bc4227159900be86faea7e974} 
+Task\+Handle\+\_\+t i2c\+\_\+bus\+\_\+request\+\_\+t\+::caller}
+
+\Hypertarget{structi2c__bus__request__t_a48d3a757c323ef8e62f961a51fed5e8d}\index{i2c\_bus\_request\_t@{i2c\_bus\_request\_t}!i2c@{i2c}}
+\index{i2c@{i2c}!i2c\_bus\_request\_t@{i2c\_bus\_request\_t}}
+\doxysubsubsection{\texorpdfstring{i2c}{i2c}}
+{\footnotesize\ttfamily \label{structi2c__bus__request__t_a48d3a757c323ef8e62f961a51fed5e8d} 
+i2c\+\_\+inst\+\_\+t\texorpdfstring{$\ast$}{*} i2c\+\_\+bus\+\_\+request\+\_\+t\+::i2c}
+
+\Hypertarget{structi2c__bus__request__t_a0397b8702c37a0998185b8ad2eb69a37}\index{i2c\_bus\_request\_t@{i2c\_bus\_request\_t}!is\_read@{is\_read}}
+\index{is\_read@{is\_read}!i2c\_bus\_request\_t@{i2c\_bus\_request\_t}}
+\doxysubsubsection{\texorpdfstring{is\_read}{is\_read}}
+{\footnotesize\ttfamily \label{structi2c__bus__request__t_a0397b8702c37a0998185b8ad2eb69a37} 
+bool i2c\+\_\+bus\+\_\+request\+\_\+t\+::is\+\_\+read}
+
+\Hypertarget{structi2c__bus__request__t_a7c1c8c0828a9412b45a013a6ef5e3dfd}\index{i2c\_bus\_request\_t@{i2c\_bus\_request\_t}!len@{len}}
+\index{len@{len}!i2c\_bus\_request\_t@{i2c\_bus\_request\_t}}
+\doxysubsubsection{\texorpdfstring{len}{len}}
+{\footnotesize\ttfamily \label{structi2c__bus__request__t_a7c1c8c0828a9412b45a013a6ef5e3dfd} 
+size\+\_\+t i2c\+\_\+bus\+\_\+request\+\_\+t\+::len}
+
+\Hypertarget{structi2c__bus__request__t_a07eafd17d39cc060a0d179d426922bb7}\index{i2c\_bus\_request\_t@{i2c\_bus\_request\_t}!nostop@{nostop}}
+\index{nostop@{nostop}!i2c\_bus\_request\_t@{i2c\_bus\_request\_t}}
+\doxysubsubsection{\texorpdfstring{nostop}{nostop}}
+{\footnotesize\ttfamily \label{structi2c__bus__request__t_a07eafd17d39cc060a0d179d426922bb7} 
+bool i2c\+\_\+bus\+\_\+request\+\_\+t\+::nostop}
+
+\Hypertarget{structi2c__bus__request__t_a53a21c67057d4ff100b720e5780a5559}\index{i2c\_bus\_request\_t@{i2c\_bus\_request\_t}!op@{op}}
+\index{op@{op}!i2c\_bus\_request\_t@{i2c\_bus\_request\_t}}
+\doxysubsubsection{\texorpdfstring{op}{op}}
+{\footnotesize\ttfamily \label{structi2c__bus__request__t_a53a21c67057d4ff100b720e5780a5559} 
+\mbox{\hyperlink{i2c__bus_8c_aa10597e57fac67ce9b7ab1fec041df5b}{i2c\+\_\+op\+\_\+t}} i2c\+\_\+bus\+\_\+request\+\_\+t\+::op}
+
+\Hypertarget{structi2c__bus__request__t_a67f1498809ddeef72a7344ed671197a0}\index{i2c\_bus\_request\_t@{i2c\_bus\_request\_t}!rbuf@{rbuf}}
+\index{rbuf@{rbuf}!i2c\_bus\_request\_t@{i2c\_bus\_request\_t}}
+\doxysubsubsection{\texorpdfstring{rbuf}{rbuf}}
+{\footnotesize\ttfamily \label{structi2c__bus__request__t_a67f1498809ddeef72a7344ed671197a0} 
+uint8\+\_\+t\texorpdfstring{$\ast$}{*} i2c\+\_\+bus\+\_\+request\+\_\+t\+::rbuf}
+
+\Hypertarget{structi2c__bus__request__t_a6af82e260a2a4330e9d0a4300fda33e3}\index{i2c\_bus\_request\_t@{i2c\_bus\_request\_t}!result@{result}}
+\index{result@{result}!i2c\_bus\_request\_t@{i2c\_bus\_request\_t}}
+\doxysubsubsection{\texorpdfstring{result}{result}}
+{\footnotesize\ttfamily \label{structi2c__bus__request__t_a6af82e260a2a4330e9d0a4300fda33e3} 
+int i2c\+\_\+bus\+\_\+request\+\_\+t\+::result}
+
+\Hypertarget{structi2c__bus__request__t_a44e970cf8a64a2ae4726b29b3e61de4d}\index{i2c\_bus\_request\_t@{i2c\_bus\_request\_t}!rlen@{rlen}}
+\index{rlen@{rlen}!i2c\_bus\_request\_t@{i2c\_bus\_request\_t}}
+\doxysubsubsection{\texorpdfstring{rlen}{rlen}}
+{\footnotesize\ttfamily \label{structi2c__bus__request__t_a44e970cf8a64a2ae4726b29b3e61de4d} 
+size\+\_\+t i2c\+\_\+bus\+\_\+request\+\_\+t\+::rlen}
+
+\Hypertarget{structi2c__bus__request__t_aebeb1b3825adf358d3fc6efc7d151cb4}\index{i2c\_bus\_request\_t@{i2c\_bus\_request\_t}!simple@{simple}}
+\index{simple@{simple}!i2c\_bus\_request\_t@{i2c\_bus\_request\_t}}
+\doxysubsubsection{\texorpdfstring{[struct]}{[struct]}}
+{\footnotesize\ttfamily \label{structi2c__bus__request__t_aebeb1b3825adf358d3fc6efc7d151cb4} 
+struct  \{ ... \}  i2c\+\_\+bus\+\_\+request\+\_\+t\+::simple}
+
+\Hypertarget{structi2c__bus__request__t_a8961f2a6ccbc0e2a9397e1692071779d}\index{i2c\_bus\_request\_t@{i2c\_bus\_request\_t}!timeout\_us@{timeout\_us}}
+\index{timeout\_us@{timeout\_us}!i2c\_bus\_request\_t@{i2c\_bus\_request\_t}}
+\doxysubsubsection{\texorpdfstring{timeout\_us}{timeout\_us}}
+{\footnotesize\ttfamily \label{structi2c__bus__request__t_a8961f2a6ccbc0e2a9397e1692071779d} 
+uint32\+\_\+t i2c\+\_\+bus\+\_\+request\+\_\+t\+::timeout\+\_\+us}
+
+\Hypertarget{structi2c__bus__request__t_a8e0179393628d7d517b75524ca02f17f}\index{i2c\_bus\_request\_t@{i2c\_bus\_request\_t}!u@{u}}
+\index{u@{u}!i2c\_bus\_request\_t@{i2c\_bus\_request\_t}}
+\doxysubsubsection{\texorpdfstring{[union]}{[union]}}
+{\footnotesize\ttfamily \label{structi2c__bus__request__t_a8e0179393628d7d517b75524ca02f17f} 
+union  \{ ... \}  i2c\+\_\+bus\+\_\+request\+\_\+t\+::u}
+
+\Hypertarget{structi2c__bus__request__t_a7f7ca73ffe387290215901094a34952b}\index{i2c\_bus\_request\_t@{i2c\_bus\_request\_t}!wbuf@{wbuf}}
+\index{wbuf@{wbuf}!i2c\_bus\_request\_t@{i2c\_bus\_request\_t}}
+\doxysubsubsection{\texorpdfstring{wbuf}{wbuf}}
+{\footnotesize\ttfamily \label{structi2c__bus__request__t_a7f7ca73ffe387290215901094a34952b} 
+const uint8\+\_\+t\texorpdfstring{$\ast$}{*} i2c\+\_\+bus\+\_\+request\+\_\+t\+::wbuf}
+
+\Hypertarget{structi2c__bus__request__t_ad3b6501b7f5f01c4fde15a183cb4c3d4}\index{i2c\_bus\_request\_t@{i2c\_bus\_request\_t}!wlen@{wlen}}
+\index{wlen@{wlen}!i2c\_bus\_request\_t@{i2c\_bus\_request\_t}}
+\doxysubsubsection{\texorpdfstring{wlen}{wlen}}
+{\footnotesize\ttfamily \label{structi2c__bus__request__t_ad3b6501b7f5f01c4fde15a183cb4c3d4} 
+size\+\_\+t i2c\+\_\+bus\+\_\+request\+\_\+t\+::wlen}
+
+\Hypertarget{structi2c__bus__request__t_a6fe3001f7e6279d42a5f871d316d020c}\index{i2c\_bus\_request\_t@{i2c\_bus\_request\_t}!wr@{wr}}
+\index{wr@{wr}!i2c\_bus\_request\_t@{i2c\_bus\_request\_t}}
+\doxysubsubsection{\texorpdfstring{[struct]}{[struct]}}
+{\footnotesize\ttfamily \label{structi2c__bus__request__t_a6fe3001f7e6279d42a5f871d316d020c} 
+struct  \{ ... \}  i2c\+\_\+bus\+\_\+request\+\_\+t\+::wr}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/drivers/\mbox{\hyperlink{i2c__bus_8c}{i2c\+\_\+bus.\+c}}\end{DoxyCompactItemize}

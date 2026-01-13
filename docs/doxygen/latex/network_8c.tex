@@ -1,0 +1,81 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/storage\+\_\+submodule/network.c File Reference}
+\hypertarget{network_8c}{}\label{network_8c}\index{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/network.c@{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/network.c}}
+{\ttfamily \#include "{}network.\+h"{}}\newline
+Include dependency graph for network.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{network_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{network_8c_a1f801e152184e596c9b30e6edcfa7f68}{ST\+\_\+\+NETWORK\+\_\+\+TAG}}~"{}\mbox{[}ST-\/NET\mbox{]}"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__storage07_ga6e3a05e108d6081a55378ffe3e817f43}{EEPROM\+\_\+\+Write\+System\+Info}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write system information block without CRC validation. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage07_gab6868e2a26481771ef8ed81d4e909814}{EEPROM\+\_\+\+Read\+System\+Info}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Read system information block without CRC validation. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage07_ga45b5a1959fd75b07c11591fcc92f89c4}{EEPROM\+\_\+\+Write\+System\+Info\+With\+Checksum}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write system information with CRC-\/8 validation appended. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage07_ga781ad4b6b12005f76e0742e107443083}{EEPROM\+\_\+\+Read\+System\+Info\+With\+Checksum}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Read and verify system information with CRC-\/8 validation. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage07_gaf37b38d193b54bcce8d8bbd38407dafc}{EEPROM\+\_\+\+Write\+User\+Network}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write raw network configuration block without CRC validation. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage07_ga36caebd539c36be02e805af5d1278ed5}{EEPROM\+\_\+\+Read\+User\+Network}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Read raw network configuration block without CRC validation. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage07_ga3c1fef9aa93f898978387328a8a6e33d}{EEPROM\+\_\+\+Write\+User\+Network\+With\+Checksum}} (const \mbox{\hyperlink{structnetwork_info}{network\+Info}} \texorpdfstring{$\ast$}{*}net\+\_\+info)
+\begin{DoxyCompactList}\small\item\em Write network configuration with CRC-\/8 validation appended. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage07_gaef5b120a12ff3e275706067ea3cf7e46}{EEPROM\+\_\+\+Read\+User\+Network\+With\+Checksum}} (\mbox{\hyperlink{structnetwork_info}{network\+Info}} \texorpdfstring{$\ast$}{*}net\+\_\+info)
+\begin{DoxyCompactList}\small\item\em Read and verify network configuration with CRC-\/8 validation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structnetwork_info}{network\+Info}} \mbox{\hyperlink{group__storage07_ga37c460b3ea58fd130cea86904b06f7b1}{Load\+User\+Network\+Config}} (void)
+\begin{DoxyCompactList}\small\item\em Load network configuration from EEPROM with automatic fallback and MAC repair. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structnetwork_info}{network\+Info}} \mbox{\hyperlink{network_8c_a798988c99534b7d96891fece90178e8f}{DEFAULT\+\_\+\+NETWORK}}
+\begin{DoxyCompactList}\small\item\em Default network configuration (MAC suffix filled at runtime). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/14
+\end{DoxyDate}
+Implementation of network configuration management with CRC validation. Handles IP, MAC, gateway, DNS settings with automatic MAC repair for corrupted values.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{network_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{network_8c_a1f801e152184e596c9b30e6edcfa7f68}\index{network.c@{network.c}!ST\_NETWORK\_TAG@{ST\_NETWORK\_TAG}}
+\index{ST\_NETWORK\_TAG@{ST\_NETWORK\_TAG}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{ST\_NETWORK\_TAG}{ST\_NETWORK\_TAG}}
+{\footnotesize\ttfamily \label{network_8c_a1f801e152184e596c9b30e6edcfa7f68} 
+\#define ST\+\_\+\+NETWORK\+\_\+\+TAG~"{}\mbox{[}ST-\/NET\mbox{]}"{}}
+
+
+
+\label{doc-var-members}
+\Hypertarget{network_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{network_8c_a798988c99534b7d96891fece90178e8f}\index{network.c@{network.c}!DEFAULT\_NETWORK@{DEFAULT\_NETWORK}}
+\index{DEFAULT\_NETWORK@{DEFAULT\_NETWORK}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_NETWORK}{DEFAULT\_NETWORK}}
+{\footnotesize\ttfamily \label{network_8c_a798988c99534b7d96891fece90178e8f} 
+const \mbox{\hyperlink{structnetwork_info}{network\+Info}} DEFAULT\+\_\+\+NETWORK\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Default network configuration (MAC suffix filled at runtime). 
+

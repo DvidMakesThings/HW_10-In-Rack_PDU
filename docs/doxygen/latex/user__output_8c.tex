@@ -1,0 +1,226 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/storage\+\_\+submodule/user\+\_\+output.c File Reference}
+\hypertarget{user__output_8c}{}\label{user__output_8c}\index{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/user\_output.c@{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/user\_output.c}}
+{\ttfamily \#include "{}../../\+CONFIG.\+h"{}}\newline
+Include dependency graph for user\+\_\+output.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{user__output_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{user__output_8c_ac9c78fd0c110e331a962bbe0f37cd2f9}{ST\+\_\+\+USER\+\_\+\+OUTPUT\+\_\+\+TAG}}~"{}\mbox{[}ST-\/USRO\mbox{]}"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static uint16\+\_\+t \mbox{\hyperlink{user__output_8c_a072416fc52711c1dd3db90d4e8cd261b}{user\+\_\+output\+\_\+crc16}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Compute CRC16-\/\+CCITT over a buffer. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{user__output_8c_aff987a96e3562eb52e2850e8f985cb54}{user\+\_\+output\+\_\+init\+\_\+defaults}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize RAM cache with empty defaults. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{user__output_8c_a4a2fedd43a7bcd0f98aeb04d1e320be0}{user\+\_\+output\+\_\+write\+\_\+eeprom}} (void)
+\begin{DoxyCompactList}\small\item\em Persist current cache to EEPROM (atomic block). \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{user__output_8c_a6895ccccd1a5b9d955b2ff3cd5a67c0a}{user\+\_\+output\+\_\+read\+\_\+eeprom}} (void)
+\begin{DoxyCompactList}\small\item\em Load configuration block from EEPROM into cache and validate. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage09_ga5727076845e0fe2135c108d8317704a2}{User\+Output\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the User Output subsystem and load presets. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage09_ga21a7d214a0524abc04ae28e27ef944d3}{User\+Output\+\_\+\+Get\+All\+Presets}} (\mbox{\hyperlink{structuser__output__preset__t}{user\+\_\+output\+\_\+preset\+\_\+t}} out\mbox{[}\mbox{\hyperlink{group__storage09_ga046749104e0d3ed1c5d14777e32dba42}{USER\+\_\+\+OUTPUT\+\_\+\+MAX\+\_\+\+PRESETS}}\mbox{]})
+\begin{DoxyCompactList}\small\item\em Copy all presets from RAM cache. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage09_ga5f0640ed65cd2801c9c2b8774fbd9774}{User\+Output\+\_\+\+Get\+Preset}} (uint8\+\_\+t index, \mbox{\hyperlink{structuser__output__preset__t}{user\+\_\+output\+\_\+preset\+\_\+t}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Get a single preset from RAM cache. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage09_gad6fa0b01aa77b8a8d3ad8a949793ee28}{User\+Output\+\_\+\+Save\+Preset}} (uint8\+\_\+t index, const char \texorpdfstring{$\ast$}{*}name, uint8\+\_\+t relay\+\_\+mask)
+\begin{DoxyCompactList}\small\item\em Save or update a preset in cache and commit to EEPROM. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage09_ga2b79ea5da2b1810668e743da2a1dcf69}{User\+Output\+\_\+\+Delete\+Preset}} (uint8\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Delete a preset from cache and commit to EEPROM. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__storage09_ga256c864690ce5f7015f2f610f33441f8}{User\+Output\+\_\+\+Get\+Startup\+Preset}} (void)
+\begin{DoxyCompactList}\small\item\em Get the startup preset selection from cache. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage09_ga386208413b1b0046b3ff03ade368e250}{User\+Output\+\_\+\+Set\+Startup\+Preset}} (uint8\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Set the startup preset selection and commit to EEPROM. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage09_ga6a93dd22bec3564db3ef13032a5d3e87}{User\+Output\+\_\+\+Clear\+Startup\+Preset}} (void)
+\begin{DoxyCompactList}\small\item\em Clear the startup preset selection and commit to EEPROM. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage09_ga2b42208cc6b557303cf0db15e24b687b}{User\+Output\+\_\+\+Apply\+Preset}} (uint8\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Apply the specified preset\textquotesingle{}s relay mask immediately. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage09_ga9995f76491a71a41beba203375da42c9}{User\+Output\+\_\+\+Apply\+Startup\+Preset}} (void)
+\begin{DoxyCompactList}\small\item\em Apply the configured startup preset, if any. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage09_ga14e941dd659a1a734d8bf360cbbe6444}{User\+Output\+\_\+\+Is\+Preset\+Valid}} (uint8\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Check whether a preset slot contains valid data. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage09_ga737c93ab5e7648d81175b6d5fd05ce6d}{EEPROM\+\_\+\+Write\+User\+Output}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Legacy\+: Write raw relay states to EEPROM relay section. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage09_ga25688db788c627b0458f2fd63711af25}{EEPROM\+\_\+\+Read\+User\+Output}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Legacy\+: Read raw relay states from EEPROM relay section. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{structuser__output__data__t}{user\+\_\+output\+\_\+data\+\_\+t}} \mbox{\hyperlink{user__output_8c_afbd42b36b433917ff40668eec5f8073f}{s\+\_\+cache}}
+\item 
+static bool \mbox{\hyperlink{user__output_8c_a3c81d9e918db23d715830e23d0818960}{s\+\_\+cache\+\_\+valid}} = false
+\item 
+static Semaphore\+Handle\+\_\+t \mbox{\hyperlink{user__output_8c_a1154cc6358cd1ced14ec310bdb66c037}{s\+\_\+cache\+Mtx}} = NULL
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+2.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/01-\/01
+\end{DoxyDate}
+Implementation of user output configuration presets and apply-\/on-\/startup. Manages up to 5 relay configuration presets in EEPROM with RAM caching for fast access without blocking CPU on EEPROM reads.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{user__output_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{user__output_8c_ac9c78fd0c110e331a962bbe0f37cd2f9}\index{user\_output.c@{user\_output.c}!ST\_USER\_OUTPUT\_TAG@{ST\_USER\_OUTPUT\_TAG}}
+\index{ST\_USER\_OUTPUT\_TAG@{ST\_USER\_OUTPUT\_TAG}!user\_output.c@{user\_output.c}}
+\doxysubsubsection{\texorpdfstring{ST\_USER\_OUTPUT\_TAG}{ST\_USER\_OUTPUT\_TAG}}
+{\footnotesize\ttfamily \label{user__output_8c_ac9c78fd0c110e331a962bbe0f37cd2f9} 
+\#define ST\+\_\+\+USER\+\_\+\+OUTPUT\+\_\+\+TAG~"{}\mbox{[}ST-\/USRO\mbox{]}"{}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{user__output_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{user__output_8c_a072416fc52711c1dd3db90d4e8cd261b}\index{user\_output.c@{user\_output.c}!user\_output\_crc16@{user\_output\_crc16}}
+\index{user\_output\_crc16@{user\_output\_crc16}!user\_output.c@{user\_output.c}}
+\doxysubsubsection{\texorpdfstring{user\_output\_crc16()}{user\_output\_crc16()}}
+{\footnotesize\ttfamily \label{user__output_8c_a072416fc52711c1dd3db90d4e8cd261b} 
+uint16\+\_\+t user\+\_\+output\+\_\+crc16 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{size\+\_\+t}]{len}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Compute CRC16-\/\+CCITT over a buffer. 
+
+Polynomial 0x1021, initial value 0x\+FFFF, byte-\/wise processing. Used to protect {\ttfamily \doxylink{structuser__output__data__t}{user\+\_\+output\+\_\+data\+\_\+t}} header+presets region.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Pointer to input buffer. \\
+\hline
+{\em len} & Number of bytes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+16-\/bit CRC value. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{user__output_8c_a072416fc52711c1dd3db90d4e8cd261b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{user__output_8c_aff987a96e3562eb52e2850e8f985cb54}\index{user\_output.c@{user\_output.c}!user\_output\_init\_defaults@{user\_output\_init\_defaults}}
+\index{user\_output\_init\_defaults@{user\_output\_init\_defaults}!user\_output.c@{user\_output.c}}
+\doxysubsubsection{\texorpdfstring{user\_output\_init\_defaults()}{user\_output\_init\_defaults()}}
+{\footnotesize\ttfamily \label{user__output_8c_aff987a96e3562eb52e2850e8f985cb54} 
+void user\+\_\+output\+\_\+init\+\_\+defaults (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Initialize RAM cache with empty defaults. 
+
+Sets header magic, clears presets and startup selection, and computes CRC over header+presets (excluding the CRC field). Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{user__output_8c_aff987a96e3562eb52e2850e8f985cb54_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{user__output_8c_aff987a96e3562eb52e2850e8f985cb54_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{user__output_8c_a6895ccccd1a5b9d955b2ff3cd5a67c0a}\index{user\_output.c@{user\_output.c}!user\_output\_read\_eeprom@{user\_output\_read\_eeprom}}
+\index{user\_output\_read\_eeprom@{user\_output\_read\_eeprom}!user\_output.c@{user\_output.c}}
+\doxysubsubsection{\texorpdfstring{user\_output\_read\_eeprom()}{user\_output\_read\_eeprom()}}
+{\footnotesize\ttfamily \label{user__output_8c_a6895ccccd1a5b9d955b2ff3cd5a67c0a} 
+bool user\+\_\+output\+\_\+read\+\_\+eeprom (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Load configuration block from EEPROM into cache and validate. 
+
+Validates header magic, CRC, and startup preset bounds/validity. On any validation failure, returns false so defaults can be initialized and saved.
+
+\begin{DoxyReturn}{Returns}
+true if valid data was loaded; false if defaults should be used. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{user__output_8c_a6895ccccd1a5b9d955b2ff3cd5a67c0a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{user__output_8c_a6895ccccd1a5b9d955b2ff3cd5a67c0a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{user__output_8c_a4a2fedd43a7bcd0f98aeb04d1e320be0}\index{user\_output.c@{user\_output.c}!user\_output\_write\_eeprom@{user\_output\_write\_eeprom}}
+\index{user\_output\_write\_eeprom@{user\_output\_write\_eeprom}!user\_output.c@{user\_output.c}}
+\doxysubsubsection{\texorpdfstring{user\_output\_write\_eeprom()}{user\_output\_write\_eeprom()}}
+{\footnotesize\ttfamily \label{user__output_8c_a4a2fedd43a7bcd0f98aeb04d1e320be0} 
+bool user\+\_\+output\+\_\+write\+\_\+eeprom (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Persist current cache to EEPROM (atomic block). 
+
+Recomputes CRC, writes in page-\/aligned chunks, and performs a full read-\/back verification. Must be called with {\ttfamily eeprom\+Mtx} held by the caller (Storage\+Task).
+
+\begin{DoxyReturn}{Returns}
+true on success; false on write or verify failure. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{user__output_8c_a4a2fedd43a7bcd0f98aeb04d1e320be0_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{user__output_8c_a4a2fedd43a7bcd0f98aeb04d1e320be0_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{user__output_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{user__output_8c_afbd42b36b433917ff40668eec5f8073f}\index{user\_output.c@{user\_output.c}!s\_cache@{s\_cache}}
+\index{s\_cache@{s\_cache}!user\_output.c@{user\_output.c}}
+\doxysubsubsection{\texorpdfstring{s\_cache}{s\_cache}}
+{\footnotesize\ttfamily \label{user__output_8c_afbd42b36b433917ff40668eec5f8073f} 
+\mbox{\hyperlink{structuser__output__data__t}{user\+\_\+output\+\_\+data\+\_\+t}} s\+\_\+cache\hspace{0.3cm}{\ttfamily [static]}}
+
+RAM cache for user output configuration. \Hypertarget{user__output_8c_a3c81d9e918db23d715830e23d0818960}\index{user\_output.c@{user\_output.c}!s\_cache\_valid@{s\_cache\_valid}}
+\index{s\_cache\_valid@{s\_cache\_valid}!user\_output.c@{user\_output.c}}
+\doxysubsubsection{\texorpdfstring{s\_cache\_valid}{s\_cache\_valid}}
+{\footnotesize\ttfamily \label{user__output_8c_a3c81d9e918db23d715830e23d0818960} 
+bool s\+\_\+cache\+\_\+valid = false\hspace{0.3cm}{\ttfamily [static]}}
+
+Cache initialized flag. \Hypertarget{user__output_8c_a1154cc6358cd1ced14ec310bdb66c037}\index{user\_output.c@{user\_output.c}!s\_cacheMtx@{s\_cacheMtx}}
+\index{s\_cacheMtx@{s\_cacheMtx}!user\_output.c@{user\_output.c}}
+\doxysubsubsection{\texorpdfstring{s\_cacheMtx}{s\_cacheMtx}}
+{\footnotesize\ttfamily \label{user__output_8c_a1154cc6358cd1ced14ec310bdb66c037} 
+Semaphore\+Handle\+\_\+t s\+\_\+cache\+Mtx = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+Mutex for cache access (uses global eeprom\+Mtx for EEPROM ops). 

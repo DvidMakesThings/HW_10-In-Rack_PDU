@@ -1,0 +1,11 @@
+<map id="__wrap_abort" name="__wrap_abort">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,105,83"/>
+<area shape="rect" id="Node000002" href="$wrap__watchdog_8c.html#aebb1ae196e0497d33aa76b6f7967bc52" title=" " alt="" coords="169,5,229,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,53,153,32,155,37,96,58"/>
+<area shape="rect" id="Node000004" href="$wrap__watchdog_8c.html#a6f12bfe00064237eb14acd5149583789" title=" " alt="" coords="176,56,222,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="105,67,160,67,160,72,105,72"/>
+<area shape="rect" id="Node000005" href="$wrap__watchdog_8c.html#a1a4601eac39bff5f6bb00e750ef8d190" title=" " alt="" coords="153,107,245,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="96,81,146,99,144,104,94,86"/>
+<area shape="rect" id="Node000003" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="293,5,476,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="230,16,278,16,278,21,230,21"/>
+</map>

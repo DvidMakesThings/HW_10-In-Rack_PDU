@@ -1,0 +1,304 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/drivers/ethernet\+\_\+w5500regs.h File Reference}
+\hypertarget{ethernet__w5500regs_8h}{}\label{ethernet__w5500regs_8h}\index{src/Software/ENERGIS\_RTOS/src/drivers/ethernet\_w5500regs.h@{src/Software/ENERGIS\_RTOS/src/drivers/ethernet\_w5500regs.h}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for ethernet\+\_\+w5500regs.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ethernet__w5500regs_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ethernet__w5500regs_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{Indent}\textbf{ Chip Definitions}\par
+{\em Constants and helpers describing W5500 chip-\/level attributes. }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config03_ga292705523e9cf5d60dcf2bbd4e3bcb10}{W5500\+\_\+\+IOBASE}}~0x00000000
+\item 
+\#define \mbox{\hyperlink{group__config03_ga5322fda8c75b38b8c84a677103387d07}{W5500\+\_\+\+SOCKNUM}}~8
+\item 
+\#define \mbox{\hyperlink{group__config03_ga8ba30fe1dc1592d80e9cc0af1870e8a3}{\+\_\+\+W5500\+\_\+\+SPI\+\_\+\+READ\+\_\+}}~(0x00 $<$$<$ 2)
+\item 
+\#define \mbox{\hyperlink{group__config03_ga67797240dfc3f66cabc0e242dc13888b}{\+\_\+\+W5500\+\_\+\+SPI\+\_\+\+WRITE\+\_\+}}~(0x01 $<$$<$ 2)
+\item 
+\#define \mbox{\hyperlink{group__config03_gaa8bff37e0e9cafc30ac92dd883bb6d58}{W5500\+\_\+\+CREG\+\_\+\+BLOCK}}~0x00
+\item 
+\#define \mbox{\hyperlink{group__config03_ga6865aca3b3e900fa438a6d4f4ea8287f}{W5500\+\_\+\+SREG\+\_\+\+BLOCK}}(N)
+\item 
+\#define \mbox{\hyperlink{group__config03_ga667f3d13e0bc176d549daaacb115de5a}{W5500\+\_\+\+TXBUF\+\_\+\+BLOCK}}(N)
+\item 
+\#define \mbox{\hyperlink{group__config03_ga98aa186b9a45736cc3a3ce5f04eb6ac4}{W5500\+\_\+\+RXBUF\+\_\+\+BLOCK}}(N)
+\item 
+\#define \mbox{\hyperlink{group__config03_ga3aafa6ac78df1dd4e85e186a374a764e}{W5500\+\_\+\+OFFSET\+\_\+\+INC}}(ADDR,  N)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Common Registers}\par
+{\em Base registers applicable across the W5500 device. }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config03_ga9ecbd9f86f95534f1bcf71015d5ae81a}{MR}}~(\mbox{\hyperlink{group__config03_ga292705523e9cf5d60dcf2bbd4e3bcb10}{W5500\+\_\+\+IOBASE}} + (0x0000 $<$$<$ 8) + (\mbox{\hyperlink{group__config03_gaa8bff37e0e9cafc30ac92dd883bb6d58}{W5500\+\_\+\+CREG\+\_\+\+BLOCK}} $<$$<$ 3))
+\item 
+\#define \mbox{\hyperlink{group__config03_ga4949d98617f16809c74f2382ebe9e2c8}{GAR}}~(\mbox{\hyperlink{group__config03_ga292705523e9cf5d60dcf2bbd4e3bcb10}{W5500\+\_\+\+IOBASE}} + (0x0001 $<$$<$ 8) + (\mbox{\hyperlink{group__config03_gaa8bff37e0e9cafc30ac92dd883bb6d58}{W5500\+\_\+\+CREG\+\_\+\+BLOCK}} $<$$<$ 3))
+\item 
+\#define \mbox{\hyperlink{group__config03_ga49fe7cfa44021aa3ad5ba1f15f7809eb}{SUBR}}~(\mbox{\hyperlink{group__config03_ga292705523e9cf5d60dcf2bbd4e3bcb10}{W5500\+\_\+\+IOBASE}} + (0x0005 $<$$<$ 8) + (\mbox{\hyperlink{group__config03_gaa8bff37e0e9cafc30ac92dd883bb6d58}{W5500\+\_\+\+CREG\+\_\+\+BLOCK}} $<$$<$ 3))
+\item 
+\#define \mbox{\hyperlink{group__config03_ga2786df906e3569b2b578ecebfaabde15}{SHAR}}~(\mbox{\hyperlink{group__config03_ga292705523e9cf5d60dcf2bbd4e3bcb10}{W5500\+\_\+\+IOBASE}} + (0x0009 $<$$<$ 8) + (\mbox{\hyperlink{group__config03_gaa8bff37e0e9cafc30ac92dd883bb6d58}{W5500\+\_\+\+CREG\+\_\+\+BLOCK}} $<$$<$ 3))
+\item 
+\#define \mbox{\hyperlink{group__config03_gac1017606925e844389f81ccc7fc7799b}{SIPR}}~(\mbox{\hyperlink{group__config03_ga292705523e9cf5d60dcf2bbd4e3bcb10}{W5500\+\_\+\+IOBASE}} + (0x000F $<$$<$ 8) + (\mbox{\hyperlink{group__config03_gaa8bff37e0e9cafc30ac92dd883bb6d58}{W5500\+\_\+\+CREG\+\_\+\+BLOCK}} $<$$<$ 3))
+\item 
+\#define \mbox{\hyperlink{group__config03_ga44cf25d713df4e47aa2e2129a80d2d81}{INTLEVEL}}~(\mbox{\hyperlink{group__config03_ga292705523e9cf5d60dcf2bbd4e3bcb10}{W5500\+\_\+\+IOBASE}} + (0x0013 $<$$<$ 8) + (\mbox{\hyperlink{group__config03_gaa8bff37e0e9cafc30ac92dd883bb6d58}{W5500\+\_\+\+CREG\+\_\+\+BLOCK}} $<$$<$ 3))
+\item 
+\#define \mbox{\hyperlink{group__config03_ga68e22635ff207d8ca10459833856bd75}{IR}}~(\mbox{\hyperlink{group__config03_ga292705523e9cf5d60dcf2bbd4e3bcb10}{W5500\+\_\+\+IOBASE}} + (0x0015 $<$$<$ 8) + (\mbox{\hyperlink{group__config03_gaa8bff37e0e9cafc30ac92dd883bb6d58}{W5500\+\_\+\+CREG\+\_\+\+BLOCK}} $<$$<$ 3))
+\item 
+\#define \mbox{\hyperlink{group__config03_ga59d7d4b2fe43cce08b67aa1afcf1dce5}{\+\_\+\+IMR\+\_\+}}~(\mbox{\hyperlink{group__config03_ga292705523e9cf5d60dcf2bbd4e3bcb10}{W5500\+\_\+\+IOBASE}} + (0x0016 $<$$<$ 8) + (\mbox{\hyperlink{group__config03_gaa8bff37e0e9cafc30ac92dd883bb6d58}{W5500\+\_\+\+CREG\+\_\+\+BLOCK}} $<$$<$ 3))
+\item 
+\#define \mbox{\hyperlink{group__config03_ga3afb7d25f6248e33771faa1bff574d4a}{SIR}}~(\mbox{\hyperlink{group__config03_ga292705523e9cf5d60dcf2bbd4e3bcb10}{W5500\+\_\+\+IOBASE}} + (0x0017 $<$$<$ 8) + (\mbox{\hyperlink{group__config03_gaa8bff37e0e9cafc30ac92dd883bb6d58}{W5500\+\_\+\+CREG\+\_\+\+BLOCK}} $<$$<$ 3))
+\item 
+\#define \mbox{\hyperlink{group__config03_gaf08cda69b65a0f84ca02edfb131ac82a}{SIMR}}~(\mbox{\hyperlink{group__config03_ga292705523e9cf5d60dcf2bbd4e3bcb10}{W5500\+\_\+\+IOBASE}} + (0x0018 $<$$<$ 8) + (\mbox{\hyperlink{group__config03_gaa8bff37e0e9cafc30ac92dd883bb6d58}{W5500\+\_\+\+CREG\+\_\+\+BLOCK}} $<$$<$ 3))
+\item 
+\#define \mbox{\hyperlink{group__config03_ga14fd22108c55f8cf86bf05e4418ba326}{\+\_\+\+RTR\+\_\+}}~(\mbox{\hyperlink{group__config03_ga292705523e9cf5d60dcf2bbd4e3bcb10}{W5500\+\_\+\+IOBASE}} + (0x0019 $<$$<$ 8) + (\mbox{\hyperlink{group__config03_gaa8bff37e0e9cafc30ac92dd883bb6d58}{W5500\+\_\+\+CREG\+\_\+\+BLOCK}} $<$$<$ 3))
+\item 
+\#define \mbox{\hyperlink{group__config03_gaf2db79579ab7a897bf3a4cc0694f8da3}{\+\_\+\+RCR\+\_\+}}~(\mbox{\hyperlink{group__config03_ga292705523e9cf5d60dcf2bbd4e3bcb10}{W5500\+\_\+\+IOBASE}} + (0x001B $<$$<$ 8) + (\mbox{\hyperlink{group__config03_gaa8bff37e0e9cafc30ac92dd883bb6d58}{W5500\+\_\+\+CREG\+\_\+\+BLOCK}} $<$$<$ 3))
+\item 
+\#define \mbox{\hyperlink{group__config03_ga29dd564a4c90f2efa7cc7ee03ddba7d5}{PTIMER}}~(\mbox{\hyperlink{group__config03_ga292705523e9cf5d60dcf2bbd4e3bcb10}{W5500\+\_\+\+IOBASE}} + (0x001C $<$$<$ 8) + (\mbox{\hyperlink{group__config03_gaa8bff37e0e9cafc30ac92dd883bb6d58}{W5500\+\_\+\+CREG\+\_\+\+BLOCK}} $<$$<$ 3))
+\item 
+\#define \mbox{\hyperlink{group__config03_ga162ee07110c2c639f7fa2de585d65e23}{PMAGIC}}~(\mbox{\hyperlink{group__config03_ga292705523e9cf5d60dcf2bbd4e3bcb10}{W5500\+\_\+\+IOBASE}} + (0x001D $<$$<$ 8) + (\mbox{\hyperlink{group__config03_gaa8bff37e0e9cafc30ac92dd883bb6d58}{W5500\+\_\+\+CREG\+\_\+\+BLOCK}} $<$$<$ 3))
+\item 
+\#define \mbox{\hyperlink{group__config03_ga3ed5558b8cfbba78bf63fb2b8c907c38}{PHAR}}~(\mbox{\hyperlink{group__config03_ga292705523e9cf5d60dcf2bbd4e3bcb10}{W5500\+\_\+\+IOBASE}} + (0x001E $<$$<$ 8) + (\mbox{\hyperlink{group__config03_gaa8bff37e0e9cafc30ac92dd883bb6d58}{W5500\+\_\+\+CREG\+\_\+\+BLOCK}} $<$$<$ 3))
+\item 
+\#define \mbox{\hyperlink{group__config03_ga0220d54b2e7b00e196a7010a1cb25a58}{PSID}}~(\mbox{\hyperlink{group__config03_ga292705523e9cf5d60dcf2bbd4e3bcb10}{W5500\+\_\+\+IOBASE}} + (0x0024 $<$$<$ 8) + (\mbox{\hyperlink{group__config03_gaa8bff37e0e9cafc30ac92dd883bb6d58}{W5500\+\_\+\+CREG\+\_\+\+BLOCK}} $<$$<$ 3))
+\item 
+\#define \mbox{\hyperlink{group__config03_ga5d3d5eb120bed5e04464780d82ca5f2e}{PMRU}}~(\mbox{\hyperlink{group__config03_ga292705523e9cf5d60dcf2bbd4e3bcb10}{W5500\+\_\+\+IOBASE}} + (0x0026 $<$$<$ 8) + (\mbox{\hyperlink{group__config03_gaa8bff37e0e9cafc30ac92dd883bb6d58}{W5500\+\_\+\+CREG\+\_\+\+BLOCK}} $<$$<$ 3))
+\item 
+\#define \mbox{\hyperlink{group__config03_ga6ce7e2945cd7d83c6f8c7f97bd9c27b0}{UIPR}}~(\mbox{\hyperlink{group__config03_ga292705523e9cf5d60dcf2bbd4e3bcb10}{W5500\+\_\+\+IOBASE}} + (0x0028 $<$$<$ 8) + (\mbox{\hyperlink{group__config03_gaa8bff37e0e9cafc30ac92dd883bb6d58}{W5500\+\_\+\+CREG\+\_\+\+BLOCK}} $<$$<$ 3))
+\item 
+\#define \mbox{\hyperlink{group__config03_gaab2aaf717d74299303b89630ee2c7ecb}{UPORTR}}~(\mbox{\hyperlink{group__config03_ga292705523e9cf5d60dcf2bbd4e3bcb10}{W5500\+\_\+\+IOBASE}} + (0x002C $<$$<$ 8) + (\mbox{\hyperlink{group__config03_gaa8bff37e0e9cafc30ac92dd883bb6d58}{W5500\+\_\+\+CREG\+\_\+\+BLOCK}} $<$$<$ 3))
+\item 
+\#define \mbox{\hyperlink{group__config03_ga7cc24f47ca8dcb311ade3a0bcbd74eaf}{PHYCFGR}}~(\mbox{\hyperlink{group__config03_ga292705523e9cf5d60dcf2bbd4e3bcb10}{W5500\+\_\+\+IOBASE}} + (0x002E $<$$<$ 8) + (\mbox{\hyperlink{group__config03_gaa8bff37e0e9cafc30ac92dd883bb6d58}{W5500\+\_\+\+CREG\+\_\+\+BLOCK}} $<$$<$ 3))
+\item 
+\#define \mbox{\hyperlink{group__config03_ga4e029565150c3aca3ba16b2ae3ea8b4e}{VERSIONR}}~(\mbox{\hyperlink{group__config03_ga292705523e9cf5d60dcf2bbd4e3bcb10}{W5500\+\_\+\+IOBASE}} + (0x0039 $<$$<$ 8) + (\mbox{\hyperlink{group__config03_gaa8bff37e0e9cafc30ac92dd883bb6d58}{W5500\+\_\+\+CREG\+\_\+\+BLOCK}} $<$$<$ 3))
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Socket Registers}\par
+{\em Per-\/socket control and data path registers. }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config03_ga9d485719088a4f1a18e29a0f9be921a4}{Sn\+\_\+\+MR}}(N)
+\item 
+\#define \mbox{\hyperlink{group__config03_gadb581db7f2124487bedbb7c61453540a}{Sn\+\_\+\+CR}}(N)
+\item 
+\#define \mbox{\hyperlink{group__config03_ga49cb8b15ab6bbf2c41223aa9f9188af1}{Sn\+\_\+\+IR}}(N)
+\item 
+\#define \mbox{\hyperlink{group__config03_ga958511984021889fe9d54d7a704d4957}{Sn\+\_\+\+SR}}(N)
+\item 
+\#define \mbox{\hyperlink{group__config03_gad2a011202c09a7f21d0e59b0fb3e796d}{Sn\+\_\+\+PORT}}(N)
+\item 
+\#define \mbox{\hyperlink{group__config03_ga9365097160096e747cdd94a633051286}{Sn\+\_\+\+DHAR}}(N)
+\item 
+\#define \mbox{\hyperlink{group__config03_ga07db81e43763069a0a59acc54d4d347b}{Sn\+\_\+\+DIPR}}(N)
+\item 
+\#define \mbox{\hyperlink{group__config03_ga912f0add3b86fe80c0f35d88dcaad972}{Sn\+\_\+\+DPORT}}(N)
+\item 
+\#define \mbox{\hyperlink{group__config03_gaafca4e6d08b7ba632bcf56348ad0c2a9}{Sn\+\_\+\+MSSR}}(N)
+\item 
+\#define \mbox{\hyperlink{group__config03_ga9e1ff4191d71d893ef657e9bc1b32072}{Sn\+\_\+\+TOS}}(N)
+\item 
+\#define \mbox{\hyperlink{group__config03_gae03714ed66656a8fa5fcb23280aefcbc}{Sn\+\_\+\+TTL}}(N)
+\item 
+\#define \mbox{\hyperlink{group__config03_gae4131b33d899ce3cd35061e7c68b7187}{Sn\+\_\+\+RXBUF\+\_\+\+SIZE}}(N)
+\item 
+\#define \mbox{\hyperlink{group__config03_ga6172c53b2254f7e4f2720589f0c2e982}{Sn\+\_\+\+TXBUF\+\_\+\+SIZE}}(N)
+\item 
+\#define \mbox{\hyperlink{group__config03_ga64d1348f67a8ede134bd181527d23acb}{Sn\+\_\+\+TX\+\_\+\+FSR}}(N)
+\item 
+\#define \mbox{\hyperlink{group__config03_gaa080f81d611b21749de7e463b6b3060b}{Sn\+\_\+\+TX\+\_\+\+RD}}(N)
+\item 
+\#define \mbox{\hyperlink{group__config03_gae0de0822d78274f53cbed5aea9718371}{Sn\+\_\+\+TX\+\_\+\+WR}}(N)
+\item 
+\#define \mbox{\hyperlink{group__config03_ga829fa770582f59f596c6bc88c591aaff}{Sn\+\_\+\+RX\+\_\+\+RSR}}(N)
+\item 
+\#define \mbox{\hyperlink{group__config03_gad0bffc9ad3fc9039e1258696a2556df7}{Sn\+\_\+\+RX\+\_\+\+RD}}(N)
+\item 
+\#define \mbox{\hyperlink{group__config03_gaf901a72769de81cca29ccd219cf0bf3f}{Sn\+\_\+\+RX\+\_\+\+WR}}(N)
+\item 
+\#define \mbox{\hyperlink{group__config03_ga98959aecefdcdc8f241104d3fd35940e}{Sn\+\_\+\+IMR}}(N)
+\item 
+\#define \mbox{\hyperlink{group__config03_ga750ec1fbef9a19e403999e53b67d1dab}{Sn\+\_\+\+FRAG}}(N)
+\item 
+\#define \mbox{\hyperlink{group__config03_ga3a5d07b1fcf6e9f9441c69146e479114}{Sn\+\_\+\+KPALVTR}}(N)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Mode Register Bits (MR)}\par
+{\em Bit masks for the common Mode Register. }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config03_ga7bdda1c276c8b2818b91667e363a5245}{MR\+\_\+\+RST}}~0x80   /\texorpdfstring{$\ast$}{*} Software reset \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga879ae2c8148119e79607337735d78f37}{MR\+\_\+\+WOL}}~0x20   /\texorpdfstring{$\ast$}{*} Wake on LAN \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_gab6cf8eea2f492464f992bfe1ba97c67a}{MR\+\_\+\+PB}}~0x10    /\texorpdfstring{$\ast$}{*} Ping block \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_gaf2716528cbcb6eaebd57e952d64ef978}{MR\+\_\+\+PPPOE}}~0x08 /\texorpdfstring{$\ast$}{*} PPPoE mode \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga1a533a5a873851cd3276fd461c189004}{MR\+\_\+\+FARP}}~0x02  /\texorpdfstring{$\ast$}{*} Force ARP \texorpdfstring{$\ast$}{*}/
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ PHY Configuration Bits (PHYCFGR)}\par
+{\em Bit masks for PHY configuration and status. }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config03_gafc35a2e0245e6cff16128d497fda2b9e}{PHYCFGR\+\_\+\+RST}}~0x80         /\texorpdfstring{$\ast$}{*} PHY reset \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga3a482b1a21805366995edc6a99f375bf}{PHYCFGR\+\_\+\+OPMD}}~0x40        /\texorpdfstring{$\ast$}{*} Operation mode \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_gabc39e3f85e53d41bcdf7d014d4b009bc}{PHYCFGR\+\_\+\+OPMDC\+\_\+\+ALLA}}~0x38  /\texorpdfstring{$\ast$}{*} All auto-\/negotiation \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga6e7b105c90b7f417fb50352421becd1a}{PHYCFGR\+\_\+\+OPMDC\+\_\+\+PDOWN}}~0x30 /\texorpdfstring{$\ast$}{*} Power down \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga01666281a1a2d08e2d5d9b5e6863b234}{PHYCFGR\+\_\+\+OPMDC\+\_\+\+NA}}~0x20    /\texorpdfstring{$\ast$}{*} Auto-\/negotiation disabled \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga875af21b682f0f7aaccc230f849cf42d}{PHYCFGR\+\_\+\+OPMDC\+\_\+100\+FA}}~0x18 /\texorpdfstring{$\ast$}{*} 100\+BASE-\/TX full-\/duplex \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_gab03a9ebd19cc923c3062abae670f90ed}{PHYCFGR\+\_\+\+OPMDC\+\_\+100H}}~0x10  /\texorpdfstring{$\ast$}{*} 100\+BASE-\/TX half-\/duplex \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_gaefa0e914c5821ff310d11d10386d2ef5}{PHYCFGR\+\_\+\+OPMDC\+\_\+10\+FA}}~0x08  /\texorpdfstring{$\ast$}{*} 10\+BASE-\/T full-\/duplex \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_gaebe634009218c629eabb5aeaf69abadb}{PHYCFGR\+\_\+\+OPMDC\+\_\+10H}}~0x00   /\texorpdfstring{$\ast$}{*} 10\+BASE-\/T half-\/duplex \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga1bc25130f45d248cfdc7ff84986b9c17}{PHYCFGR\+\_\+\+DPX\+\_\+\+FULL}}~0x04    /\texorpdfstring{$\ast$}{*} Full duplex \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga005718e74f17bcdff506d15e51510c9e}{PHYCFGR\+\_\+\+SPD\+\_\+100}}~0x02     /\texorpdfstring{$\ast$}{*} 100\+Mbps \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga21cd816513c3e7b7e92ec79f23bad42e}{PHYCFGR\+\_\+\+LNK\+\_\+\+ON}}~0x01      /\texorpdfstring{$\ast$}{*} Link up \texorpdfstring{$\ast$}{*}/
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Socket Mode Register Values}\par
+{\em Values for {\ttfamily Sn\+\_\+\+MR} to select socket type. }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config03_ga80e8e39522a1df333f5ebee0873ac878}{Sn\+\_\+\+MR\+\_\+\+CLOSE}}~0x00  /\texorpdfstring{$\ast$}{*} Closed \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga111a5f7d5eb14054bd5a895dabad372d}{Sn\+\_\+\+MR\+\_\+\+TCP}}~0x01    /\texorpdfstring{$\ast$}{*} TCP mode \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga1a31c891ae1c9cf808542b96ae8fdeb8}{Sn\+\_\+\+MR\+\_\+\+UDP}}~0x02    /\texorpdfstring{$\ast$}{*} UDP mode \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_gae2eb5ec5fdac56d474184b34db00d92a}{Sn\+\_\+\+MR\+\_\+\+IPRAW}}~0x03  /\texorpdfstring{$\ast$}{*} IP raw mode \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga8426a69a5d58f909bb1c7ce12afad0a5}{Sn\+\_\+\+MR\+\_\+\+MACRAW}}~0x04 /\texorpdfstring{$\ast$}{*} MAC raw mode \texorpdfstring{$\ast$}{*}/
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Socket Mode Flags}\par
+{\em Flags modifying {\ttfamily Sn\+\_\+\+MR} behavior across modes. }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config03_gac786108aec4528dd98cf6fb7ebae4841}{Sn\+\_\+\+MR\+\_\+\+UCASTB}}~0x10 /\texorpdfstring{$\ast$}{*} Unicast block (UDP multicast) \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_gaf2435aff8e3542dda4a3ec221764db15}{Sn\+\_\+\+MR\+\_\+\+MIP6B}}~0x10  /\texorpdfstring{$\ast$}{*} IPv6 block (MACRAW) \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga175a42a86f410e78af2c7680da96bb4b}{Sn\+\_\+\+MR\+\_\+\+MMB}}~0x20    /\texorpdfstring{$\ast$}{*} Multicast block (MACRAW) \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_gad2c82b1542634881a497c398e68ab9f9}{Sn\+\_\+\+MR\+\_\+\+BCASTB}}~0x20 /\texorpdfstring{$\ast$}{*} Broadcast block (UDP) \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_gaffbdfabc2d0bb33ef649d916506f040e}{Sn\+\_\+\+MR\+\_\+\+ND}}~0x20     /\texorpdfstring{$\ast$}{*} No delayed ACK (TCP) \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_gab15c83d6d0b4bd06c697c14c6f716977}{Sn\+\_\+\+MR\+\_\+\+MC}}~0x20     /\texorpdfstring{$\ast$}{*} IGMP version (UDP multicast) \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga9045e26eee8663753dbf02919f313c2a}{Sn\+\_\+\+MR\+\_\+\+MFEN}}~0x80   /\texorpdfstring{$\ast$}{*} MAC filter (MACRAW) \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_gac93105c327d64a318d7388c31ccb5075}{Sn\+\_\+\+MR\+\_\+\+MULTI}}~0x80  /\texorpdfstring{$\ast$}{*} Multicast (UDP) \texorpdfstring{$\ast$}{*}/
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Socket Command Register Values}\par
+{\em Commands written to {\ttfamily Sn\+\_\+\+CR} to control socket state. }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config03_ga3f4044fe5c1bf9e70b31805212bf5474}{Sn\+\_\+\+CR\+\_\+\+OPEN}}~0x01      /\texorpdfstring{$\ast$}{*} Open \mbox{\hyperlink{group__drivers08_ga8cc0a2074b3aae98a132c1ae3c51188f}{socket}} \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_gad51efeaeeaa7262f9d20b0dc2a6a3fa0}{Sn\+\_\+\+CR\+\_\+\+LISTEN}}~0x02    /\texorpdfstring{$\ast$}{*} Listen (TCP server) \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga7a2f5db2ee176886bb12065f91be2973}{Sn\+\_\+\+CR\+\_\+\+CONNECT}}~0x04   /\texorpdfstring{$\ast$}{*} Connect (TCP client) \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_gaccca8838cb8d1b4d859fc34f6e8ea605}{Sn\+\_\+\+CR\+\_\+\+DISCON}}~0x08    /\texorpdfstring{$\ast$}{*} Disconnect \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga5a404e5aa37ab05315c465c7902a4134}{Sn\+\_\+\+CR\+\_\+\+CLOSE}}~0x10     /\texorpdfstring{$\ast$}{*} Close \mbox{\hyperlink{group__drivers08_ga8cc0a2074b3aae98a132c1ae3c51188f}{socket}} \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga77bad5ce966d13306653a83b47a3caed}{Sn\+\_\+\+CR\+\_\+\+SEND}}~0x20      /\texorpdfstring{$\ast$}{*} Send data \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_gaf610323614efc4011feff02ede392939}{Sn\+\_\+\+CR\+\_\+\+SEND\+\_\+\+MAC}}~0x21  /\texorpdfstring{$\ast$}{*} Send MAC (UDP) \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga2f256f6b27ce37836cc08d4f7f36ab62}{Sn\+\_\+\+CR\+\_\+\+SEND\+\_\+\+KEEP}}~0x22 /\texorpdfstring{$\ast$}{*} Send keep-\/alive (TCP) \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga282df6e5d976e94953d4f9f32f182827}{Sn\+\_\+\+CR\+\_\+\+RECV}}~0x40      /\texorpdfstring{$\ast$}{*} Receive data \texorpdfstring{$\ast$}{*}/
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Socket Interrupt Register Bits}\par
+{\em Bit masks for {\ttfamily Sn\+\_\+\+IR} interrupt sources. }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config03_ga8973589ea9a777133aa1bec1c03298c9}{Sn\+\_\+\+IR\+\_\+\+SENDOK}}~0x10  /\texorpdfstring{$\ast$}{*} Send OK \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_gad6824296c8047b1f8963e20ea8283b02}{Sn\+\_\+\+IR\+\_\+\+TIMEOUT}}~0x08 /\texorpdfstring{$\ast$}{*} Timeout \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga16ff1d53b8a4f4021169224008d4bad1}{Sn\+\_\+\+IR\+\_\+\+RECV}}~0x04    /\texorpdfstring{$\ast$}{*} Receive \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga8a702b3d763f3f9ac1c4ea316d605308}{Sn\+\_\+\+IR\+\_\+\+DISCON}}~0x02  /\texorpdfstring{$\ast$}{*} Disconnected \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_gaab062cd504413d28bab4ddb338f6ff35}{Sn\+\_\+\+IR\+\_\+\+CON}}~0x01     /\texorpdfstring{$\ast$}{*} Connected \texorpdfstring{$\ast$}{*}/
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Socket Status Register Values}\par
+{\em Values read from {\ttfamily Sn\+\_\+\+SR} representing socket states. }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config03_ga8e14b15b210852d2812514526de5c004}{SOCK\+\_\+\+CLOSED}}~0x00      /\texorpdfstring{$\ast$}{*} Socket closed \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_gaa3ecdc449468d915c67d4a0323a5d21d}{SOCK\+\_\+\+INIT}}~0x13        /\texorpdfstring{$\ast$}{*} Socket initialized (TCP) \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga912ab8726f570d29f6285d80ec130425}{SOCK\+\_\+\+LISTEN}}~0x14      /\texorpdfstring{$\ast$}{*} Socket listening (TCP server) \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga7428968f08071a5ebd9ecf1f05e6e823}{SOCK\+\_\+\+SYNSENT}}~0x15     /\texorpdfstring{$\ast$}{*} SYN sent (TCP client connecting) \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga46a0f9a9fa055fa586a36d7f6606aaac}{SOCK\+\_\+\+SYNRECV}}~0x16     /\texorpdfstring{$\ast$}{*} SYN received \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga9cdcdeddeeb7b7bf82bbc5eb415f677c}{SOCK\+\_\+\+ESTABLISHED}}~0x17 /\texorpdfstring{$\ast$}{*} Connection established (TCP) \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga3b15a9f2533a519938c870c70bc32a25}{SOCK\+\_\+\+FIN\+\_\+\+WAIT}}~0x18    /\texorpdfstring{$\ast$}{*} FIN wait \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga03809cd0a5ed29fd444de609381e9d96}{SOCK\+\_\+\+CLOSING}}~0x1A     /\texorpdfstring{$\ast$}{*} Closing \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_gad4b1ed26ba978cbd8fa4bbbd52e1cbf6}{SOCK\+\_\+\+TIME\+\_\+\+WAIT}}~0x1B   /\texorpdfstring{$\ast$}{*} Time wait \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga9375ae181e82024c1ed2d44b4b51a2a6}{SOCK\+\_\+\+CLOSE\+\_\+\+WAIT}}~0x1C  /\texorpdfstring{$\ast$}{*} Close wait \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga2fe071fc2718917f051cedf9b2c582d3}{SOCK\+\_\+\+LAST\+\_\+\+ACK}}~0x1D    /\texorpdfstring{$\ast$}{*} Last ACK \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_gaed90ae30cba33085bfc6a7212356c33a}{SOCK\+\_\+\+UDP}}~0x22         /\texorpdfstring{$\ast$}{*} UDP \mbox{\hyperlink{group__drivers08_ga8cc0a2074b3aae98a132c1ae3c51188f}{socket}} \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga4d12a3b266e7b5d8ce806f27aaf3a46b}{SOCK\+\_\+\+IPRAW}}~0x32       /\texorpdfstring{$\ast$}{*} IP raw \mbox{\hyperlink{group__drivers08_ga8cc0a2074b3aae98a132c1ae3c51188f}{socket}} \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_gaaa1a6ffb014a972dbbe82a7fc8b4673b}{SOCK\+\_\+\+MACRAW}}~0x42      /\texorpdfstring{$\ast$}{*} MAC raw \mbox{\hyperlink{group__drivers08_ga8cc0a2074b3aae98a132c1ae3c51188f}{socket}} \texorpdfstring{$\ast$}{*}/
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ PHY Configuration Values}\par
+{\em Enumerated meanings for PHY configuration via software. }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config03_ga041ee84835137a0e9b44195c59094058}{PHY\+\_\+\+CONFBY\+\_\+\+HW}}~0     /\texorpdfstring{$\ast$}{*} Configure by hardware \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga2c4dfff024962b4a520a0f64c5b482c7}{PHY\+\_\+\+CONFBY\+\_\+\+SW}}~1     /\texorpdfstring{$\ast$}{*} Configure by software \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_gada95bdaad545f87518e3d60760345eba}{PHY\+\_\+\+MODE\+\_\+\+MANUAL}}~0   /\texorpdfstring{$\ast$}{*} Manual mode \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga0fec3063a62bbbc9ed44004fe8d565ad}{PHY\+\_\+\+MODE\+\_\+\+AUTONEGO}}~1 /\texorpdfstring{$\ast$}{*} Auto-\/negotiation \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_gae18a71e8a9558b4cead60cee7a438cf1}{PHY\+\_\+\+SPEED\+\_\+10}}~0      /\texorpdfstring{$\ast$}{*} 10\+Mbps \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_gad5fdd2d68e54573c921a7e790c541d70}{PHY\+\_\+\+SPEED\+\_\+100}}~1     /\texorpdfstring{$\ast$}{*} 100\+Mbps \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga9e54992dd7df699ba0a6b8846c4bd503}{PHY\+\_\+\+DUPLEX\+\_\+\+HALF}}~0   /\texorpdfstring{$\ast$}{*} Half-\/duplex \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__config03_ga917f75644ef5f928c69d70f66883a4fa}{PHY\+\_\+\+DUPLEX\+\_\+\+FULL}}~1   /\texorpdfstring{$\ast$}{*} Full-\/duplex \texorpdfstring{$\ast$}{*}/
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

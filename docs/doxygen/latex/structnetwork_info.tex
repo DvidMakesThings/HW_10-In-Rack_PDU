@@ -1,0 +1,98 @@
+\doxysection{network\+Info Struct Reference}
+\hypertarget{structnetwork_info}{}\label{structnetwork_info}\index{networkInfo@{networkInfo}}
+
+
+Network configuration data structure for EEPROM storage.  
+
+
+
+
+{\ttfamily \#include $<$EEPROM\+\_\+\+Memory\+Map.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__config06_ga509450ef64eb0c83902d8bf0cf66a498}{mac}} \mbox{[}6\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structnetwork_info_a18bd704e41860c3931b19094c0b67f48}{ip}} \mbox{[}4\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structnetwork_info_a915d444075cf547c9dcdbe2833ab0a33}{sn}} \mbox{[}4\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structnetwork_info_a517f0ca9bb857599e551093b1668bdfd}{gw}} \mbox{[}4\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structnetwork_info_a12cd3a05d5d417fc97e2f3f56106b456}{dns}} \mbox{[}4\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structnetwork_info_a66f66026d6cefa31f1446bb9914cbb60}{dhcp}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Network configuration data structure for EEPROM storage. 
+
+Packs all network parameters into a compact structure for EEPROM persistence. Used with CRC-\/8 checksum for data integrity validation. MAC address automatically derived from device serial number and repaired if corrupted.
+
+Fields\+:
+\begin{DoxyItemize}
+\item mac\+: 6-\/byte hardware address (ENERGIS\+\_\+\+MAC\+\_\+\+PREFIX + FNV-\/1a hash of serial)
+\item ip\+: 4-\/byte IPv4 address in network byte order
+\item sn\+: 4-\/byte subnet mask in network byte order
+\item gw\+: 4-\/byte default gateway address in network byte order
+\item dns\+: 4-\/byte DNS server address in network byte order
+\item dhcp\+: 1-\/byte flag (0=static IP, 1=DHCP client mode)
+\end{DoxyItemize}
+
+Usage\+:
+\begin{DoxyItemize}
+\item Populated from EEPROM on boot via \doxylink{group__storage07_ga37c460b3ea58fd130cea86904b06f7b1}{Load\+User\+Network\+Config()}
+\item Passed to W5500 Ethernet driver for chip configuration
+\item Modified via web interface, SNMP, or console commands
+\item Persisted to EEPROM with CRC-\/8 via \doxylink{group__storage07_ga3c1fef9aa93f898978387328a8a6e33d}{EEPROM\+\_\+\+Write\+User\+Network\+With\+Checksum()}
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Structure size\+: 23 bytes (before CRC appended). 
+
+CRC-\/8 calculated over entire structure and stored separately. 
+
+MAC address repaired automatically if corrupted. 
+\end{DoxyNote}
+
+
+\label{doc-variable-members}
+\Hypertarget{structnetwork_info_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structnetwork_info_a66f66026d6cefa31f1446bb9914cbb60}\index{networkInfo@{networkInfo}!dhcp@{dhcp}}
+\index{dhcp@{dhcp}!networkInfo@{networkInfo}}
+\doxysubsubsection{\texorpdfstring{dhcp}{dhcp}}
+{\footnotesize\ttfamily \label{structnetwork_info_a66f66026d6cefa31f1446bb9914cbb60} 
+uint8\+\_\+t network\+Info\+::dhcp}
+
+DHCP mode\+: 0=static, 1=DHCP (1 byte). \Hypertarget{structnetwork_info_a12cd3a05d5d417fc97e2f3f56106b456}\index{networkInfo@{networkInfo}!dns@{dns}}
+\index{dns@{dns}!networkInfo@{networkInfo}}
+\doxysubsubsection{\texorpdfstring{dns}{dns}}
+{\footnotesize\ttfamily \label{structnetwork_info_a12cd3a05d5d417fc97e2f3f56106b456} 
+uint8\+\_\+t network\+Info\+::dns\mbox{[}4\mbox{]}}
+
+DNS server (4 bytes). \Hypertarget{structnetwork_info_a517f0ca9bb857599e551093b1668bdfd}\index{networkInfo@{networkInfo}!gw@{gw}}
+\index{gw@{gw}!networkInfo@{networkInfo}}
+\doxysubsubsection{\texorpdfstring{gw}{gw}}
+{\footnotesize\ttfamily \label{structnetwork_info_a517f0ca9bb857599e551093b1668bdfd} 
+uint8\+\_\+t network\+Info\+::gw\mbox{[}4\mbox{]}}
+
+Default gateway (4 bytes). \Hypertarget{structnetwork_info_a18bd704e41860c3931b19094c0b67f48}\index{networkInfo@{networkInfo}!ip@{ip}}
+\index{ip@{ip}!networkInfo@{networkInfo}}
+\doxysubsubsection{\texorpdfstring{ip}{ip}}
+{\footnotesize\ttfamily \label{structnetwork_info_a18bd704e41860c3931b19094c0b67f48} 
+uint8\+\_\+t network\+Info\+::ip\mbox{[}4\mbox{]}}
+
+IPv4 address (4 bytes). \Hypertarget{structnetwork_info_a915d444075cf547c9dcdbe2833ab0a33}\index{networkInfo@{networkInfo}!sn@{sn}}
+\index{sn@{sn}!networkInfo@{networkInfo}}
+\doxysubsubsection{\texorpdfstring{sn}{sn}}
+{\footnotesize\ttfamily \label{structnetwork_info_a915d444075cf547c9dcdbe2833ab0a33} 
+uint8\+\_\+t network\+Info\+::sn\mbox{[}4\mbox{]}}
+
+Subnet mask (4 bytes). 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/misc/\mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h}{EEPROM\+\_\+\+Memory\+Map.\+h}}\end{DoxyCompactItemize}

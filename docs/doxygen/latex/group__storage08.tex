@@ -1,0 +1,242 @@
+\doxysubsubsection{
+\begin{DoxyEnumerate}
+\item Storage Common 
+\end{DoxyEnumerate}}
+\hypertarget{group__storage08}{}\label{group__storage08}\index{8. Storage Common@{8. Storage Common}}
+
+
+Shared utility functions for EEPROM data integrity and MAC address management.  
+
+
+Collaboration diagram for 8. Storage Common\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=309pt]{group__storage08}
+\end{center}
+\end{figure}
+\doxysubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__storage08_gaae57a92db26b8a63b7584fd2f3407077}{calculate\+\_\+crc8}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Calculate CRC-\/8 checksum for data integrity verification. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__storage08_gad5fac108da78e4ddeb0cf70283a0a5dc}{Energis\+\_\+\+Fill\+Mac\+From\+Serial}} (uint8\+\_\+t mac\mbox{[}6\mbox{]})
+\begin{DoxyCompactList}\small\item\em Generate MAC address from device serial number. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage08_ga09214f477c63d362bbc5146830c33d8c}{Energis\+\_\+\+Repair\+Mac}} (\mbox{\hyperlink{structnetwork_info}{network\+Info}} \texorpdfstring{$\ast$}{*}n)
+\begin{DoxyCompactList}\small\item\em Validate and repair corrupted MAC address. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+Shared utility functions for EEPROM data integrity and MAC address management. 
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/14
+\end{DoxyDate}
+This module provides common utility functions used across all storage submodules for data integrity verification and network hardware addressing. It serves as the foundation layer for EEPROM configuration management.
+
+Key Features\+:
+\begin{DoxyItemize}
+\item CRC-\/8 checksum calculation for data integrity verification
+\item MAC address derivation from device serial number via FNV-\/1a hash
+\item MAC address validation and automatic repair for corrupted values
+\item Integration with Device\+Identity module for provisioned device support
+\end{DoxyItemize}
+
+CRC-\/8 Algorithm\+:
+\begin{DoxyItemize}
+\item Polynomial\+: 0x07
+\item Initial value\+: 0x00
+\item Used by\+: network config, user preferences, device identity
+\item Detects single-\/bit errors and most multi-\/bit errors
+\item Fast computation suitable for embedded systems
+\end{DoxyItemize}
+
+MAC Address Management\+:
+\begin{DoxyItemize}
+\item Format\+: ENERGIS\+\_\+\+MAC\+\_\+\+PREFIX (3 bytes) + FNV-\/1a hash (3 bytes)
+\item Prefix\+: Fixed vendor-\/specific OUI for ENERGIS devices
+\item Suffix\+: Derived from device serial number for uniqueness
+\item Hash algorithm\+: FNV-\/1a provides good distribution
+\item Validation\+: Detects corrupted prefix or invalid suffix patterns
+\item Auto-\/repair\+: Regenerates MAC from serial when corruption detected
+\end{DoxyItemize}
+
+Provisioning Integration\+:
+\begin{DoxyItemize}
+\item Unprovisioned devices use placeholder serial number
+\item After provisioning, MAC automatically updated to match new serial
+\item \doxylink{group__storage08_ga09214f477c63d362bbc5146830c33d8c}{Energis\+\_\+\+Repair\+Mac()} enforces serial-\/\+MAC consistency
+\item Ensures unique MAC addresses across production devices
+\end{DoxyItemize}
+
+Usage Pattern\+:
+\begin{DoxyEnumerate}
+\item \doxylink{group__storage08_gaae57a92db26b8a63b7584fd2f3407077}{calculate\+\_\+crc8()} called by submodules before EEPROM writes
+\item CRC verified on reads to detect corruption
+\item \doxylink{group__storage08_gad5fac108da78e4ddeb0cf70283a0a5dc}{Energis\+\_\+\+Fill\+Mac\+From\+Serial()} populates MAC in network config
+\item \doxylink{group__storage08_ga09214f477c63d362bbc5146830c33d8c}{Energis\+\_\+\+Repair\+Mac()} called on boot to fix any corruption
+\end{DoxyEnumerate}
+
+Integration Points\+:
+\begin{DoxyItemize}
+\item Device\+Identity\+: Provides serial number and provisioning status
+\item Network submodule\+: Uses MAC functions for Ethernet configuration
+\item All storage submodules\+: Use CRC-\/8 for data integrity
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+CRC-\/8 provides error detection but not correction; corrupted data must be reloaded. 
+
+MAC address uniqueness depends on unique device serial numbers. 
+
+\doxylink{group__storage08_ga09214f477c63d362bbc5146830c33d8c}{Energis\+\_\+\+Repair\+Mac()} modifies \doxylink{structnetwork_info}{network\+Info} structure in place.
+\end{DoxyNote}
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-func-members}
+\Hypertarget{group__storage08_doc-func-members}
+\doxysubsubsubsection{Function Documentation}
+\Hypertarget{group__storage08_gaae57a92db26b8a63b7584fd2f3407077}\index{8. Storage Common@{8. Storage Common}!calculate\_crc8@{calculate\_crc8}}
+\index{calculate\_crc8@{calculate\_crc8}!8. Storage Common@{8. Storage Common}}
+\doxysubsubsubsubsection{\texorpdfstring{calculate\_crc8()}{calculate\_crc8()}}
+{\footnotesize\ttfamily \label{group__storage08_gaae57a92db26b8a63b7584fd2f3407077} 
+uint8\+\_\+t calculate\+\_\+crc8 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{size\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Calculate CRC-\/8 checksum for data integrity verification. 
+
+Computes CRC-\/8 checksum using polynomial 0x07 with initial value 0x00. Used by storage submodules to detect data corruption in EEPROM. The CRC is typically stored alongside the data and verified on read operations.
+
+Algorithm Properties\+:
+\begin{DoxyItemize}
+\item Detects all single-\/bit errors
+\item Detects most multi-\/bit errors
+\item Fast computation suitable for embedded systems
+\item 8-\/bit output suitable for constrained EEPROM space
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em data} & Pointer to input buffer to calculate CRC over. \\
+\hline
+\mbox{\texttt{in}}  & {\em len} & Length of input buffer in bytes.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Calculated 8-\/bit CRC checksum value.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Returns 0x00 for zero-\/length input. 
+
+Caller must ensure data pointer is valid for len bytes. 
+
+Not cryptographically secure; used only for error detection.
+\end{DoxyNote}
+See \doxylink{storage__common_8h}{storage\+\_\+common.\+h} for full API documentation. \Hypertarget{group__storage08_gad5fac108da78e4ddeb0cf70283a0a5dc}\index{8. Storage Common@{8. Storage Common}!Energis\_FillMacFromSerial@{Energis\_FillMacFromSerial}}
+\index{Energis\_FillMacFromSerial@{Energis\_FillMacFromSerial}!8. Storage Common@{8. Storage Common}}
+\doxysubsubsubsubsection{\texorpdfstring{Energis\_FillMacFromSerial()}{Energis\_FillMacFromSerial()}}
+{\footnotesize\ttfamily \label{group__storage08_gad5fac108da78e4ddeb0cf70283a0a5dc} 
+void Energis\+\_\+\+Fill\+Mac\+From\+Serial (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{mac}{\mbox{[}6\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Generate MAC address from device serial number. 
+
+Populates MAC address buffer with ENERGIS vendor prefix and serial-\/derived suffix. Delegates to \doxylink{group__storage03_ga461c49efb137c6fcc9871867b974c326}{Device\+Identity\+\_\+\+Fill\+Mac()} which uses FNV-\/1a hash of the device serial number to generate the last 3 bytes.
+
+MAC Address Format\+:
+\begin{DoxyItemize}
+\item Bytes 0-\/2\+: ENERGIS\+\_\+\+MAC\+\_\+\+PREFIX (vendor OUI)
+\item Bytes 3-\/5\+: FNV-\/1a hash of serial number (uniqueness)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{out}}  & {\em mac} & 6-\/byte buffer to receive generated MAC address.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Requires Device\+Identity module to be initialized. 
+
+Unprovisioned devices use placeholder serial for hash. 
+
+MAC changes after device provisioning with new serial number. 
+
+Caller must provide buffer with at least 6 bytes capacity.
+\end{DoxyNote}
+See \doxylink{storage__common_8h}{storage\+\_\+common.\+h} for full API documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage08_gad5fac108da78e4ddeb0cf70283a0a5dc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage08_gad5fac108da78e4ddeb0cf70283a0a5dc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage08_ga09214f477c63d362bbc5146830c33d8c}\index{8. Storage Common@{8. Storage Common}!Energis\_RepairMac@{Energis\_RepairMac}}
+\index{Energis\_RepairMac@{Energis\_RepairMac}!8. Storage Common@{8. Storage Common}}
+\doxysubsubsubsubsection{\texorpdfstring{Energis\_RepairMac()}{Energis\_RepairMac()}}
+{\footnotesize\ttfamily \label{group__storage08_ga09214f477c63d362bbc5146830c33d8c} 
+bool Energis\+\_\+\+Repair\+Mac (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structnetwork_info}{network\+Info}} \texorpdfstring{$\ast$}{*}}]{n}{}\end{DoxyParamCaption})}
+
+
+
+Validate and repair corrupted MAC address. 
+
+Checks MAC address for common corruption patterns and repairs if invalid. Detects wrong vendor prefix, all-\/zero suffix, all-\/0x\+FF suffix, and serial-\/\+MAC mismatch on provisioned devices. Repairs by regenerating MAC from current device serial number.
+
+Validation Checks\+:
+\begin{DoxyEnumerate}
+\item Prefix matches ENERGIS\+\_\+\+MAC\+\_\+\+PREFIX (vendor OUI)
+\item Suffix not all zeros (invalid EEPROM initialization)
+\item Suffix not all 0x\+FF (erased EEPROM pattern)
+\item MAC matches serial-\/derived value (post-\/provisioning enforcement)
+\end{DoxyEnumerate}
+
+Repair Action\+:
+\begin{DoxyItemize}
+\item Calls \doxylink{group__storage03_ga461c49efb137c6fcc9871867b974c326}{Device\+Identity\+\_\+\+Fill\+Mac()} to regenerate from current serial
+\item Overwrites corrupted MAC in \doxylink{structnetwork_info}{network\+Info} structure
+\item Ensures consistency between serial number and MAC address
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in,out}}  & {\em n} & Pointer to \doxylink{structnetwork_info}{network\+Info} structure containing MAC to validate/repair.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if MAC was repaired (corruption detected). 
+
+false if MAC was already valid (no repair needed).
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Modifies \doxylink{structnetwork_info}{network\+Info} structure in place if repair needed. 
+
+Caller should commit repaired config to EEPROM after return. 
+
+Post-\/provisioning, enforces MAC matches new serial number.
+\end{DoxyNote}
+See \doxylink{storage__common_8h}{storage\+\_\+common.\+h} for full API documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=333pt]{group__storage08_ga09214f477c63d362bbc5146830c33d8c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage08_ga09214f477c63d362bbc5146830c33d8c_icgraph}
+\end{center}
+\end{figure}

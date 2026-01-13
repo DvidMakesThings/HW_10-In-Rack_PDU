@@ -1,0 +1,116 @@
+<map id="__attribute__" name="__attribute__">
+<area shape="rect" id="Node000001" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,233,102,260"/>
+<area shape="rect" id="Node000002" href="$group__misc2.html#ga2481802ac87dc386890d49a5b9f61e0f" title="Capture early boot reset snapshot into retained memory." alt="" coords="150,81,335,108"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="65,231,101,193,148,150,201,114,204,118,151,154,104,197,69,235"/>
+<area shape="rect" id="Node000006" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="186,664,299,691"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="63,259,232,649,227,651,58,262"/>
+<area shape="rect" id="Node000041" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="872,917,1056,944"/>
+<area shape="poly" id="edge64_Node000001_Node000041" title=" " alt="" coords="102,244,262,246,476,259,584,271,683,289,763,314,795,329,820,346,838,377,857,434,898,597,935,773,960,901,955,902,930,774,893,598,852,436,833,379,816,350,792,333,762,319,681,295,584,277,476,264,262,251,102,249"/>
+<area shape="rect" id="Node000190" href="$group__tasks05.html#ga2473a4441580b27bdc14f48e2d2fff8e" title="Log formatted message to output." alt="" coords="1150,1069,1224,1096"/>
+<area shape="poly" id="edge63_Node000001_Node000190" title=" " alt="" coords="99,230,170,211,261,191,363,175,468,168,712,168,895,161,947,162,995,167,1035,177,1064,194,1087,222,1107,260,1124,307,1138,360,1161,483,1176,617,1184,753,1189,878,1189,1054,1184,1054,1183,878,1179,753,1170,618,1156,484,1133,362,1119,309,1102,263,1082,225,1060,198,1033,182,994,172,947,167,895,166,712,173,468,173,364,180,262,196,171,216,101,235"/>
+<area shape="rect" id="Node000003" href="$helpers_8c.html#add43331fd1dff608bcc6fdb69d099db6" title="Clear boot snapshot structure to zero." alt="" coords="390,5,548,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="279,78,382,41,404,34,406,40,384,47,281,83"/>
+<area shape="rect" id="Node000004" href="$helpers_8c.html#a07d51ad787e9d99a3a90ab70cf69337d" title="Copy watchdog scratch registers to destination buffer." alt="" coords="383,56,555,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="335,82,367,78,368,83,336,87"/>
+<area shape="rect" id="Node000005" href="$helpers_8c.html#ae691976c69cc3e362923ae7d95664327" title="Read platform reset reason bits from hardware." alt="" coords="390,107,549,133"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="336,102,375,107,374,112,335,108"/>
+<area shape="rect" id="Node000007" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="436,993,503,1020"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="255,690,452,979,448,982,251,693"/>
+<area shape="rect" id="Node000008" href="$_init_task_8c.html#a45698d967d7693e166eeb3bc92c7ef19" title="Read voltage from the selected ADC channel with averaging." alt="" coords="635,715,786,741"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="471,992,484,946,508,881,547,811,572,779,602,751,619,741,622,745,605,755,576,782,551,814,513,883,489,948,476,994"/>
+<area shape="rect" id="Node000009" href="$_init_task_8c.html#ad4e552a62b6a29e14ea997265cb7ef25" title="Apply saved relay states on startup." alt="" coords="624,81,797,108"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="469,993,482,849,508,614,527,488,548,369,573,268,601,195,616,171,635,149,674,115,678,119,639,153,621,174,606,197,578,270,554,370,532,489,514,615,487,850,474,993"/>
+<area shape="rect" id="Node000031" href="$group__tasks01.html#ga10ed3ecf4c7563fe0fd3a2324b9260e1" title="Query button task readiness status." alt="" coords="653,816,768,843"/>
+<area shape="poly" id="edge13_Node000007_Node000031" title=" " alt="" coords="477,991,525,928,561,891,602,859,637,843,639,848,605,864,564,895,529,931,481,994"/>
+<area shape="rect" id="Node000032" href="$group__tasks01.html#ga66ab3f6fa24432c008c6ea7b0ccddb5f" title="Initialize and start the button handling task." alt="" coords="654,208,767,235"/>
+<area shape="poly" id="edge14_Node000007_Node000032" title=" " alt="" coords="468,993,476,854,497,632,515,513,537,404,566,314,583,278,601,252,618,237,638,228,641,233,621,242,605,255,587,281,571,316,542,405,520,514,503,632,481,855,474,993"/>
+<area shape="poly" id="edge55_Node000007_Node000041" title=" " alt="" coords="481,991,530,945,564,921,602,903,642,892,682,887,764,886,840,896,904,910,903,915,840,901,764,892,683,892,643,898,604,908,567,925,533,949,485,995"/>
+<area shape="rect" id="Node000042" href="$group__tasks10.html#gadff2b57dc3c074453ee1393d0f6f3623" title="Storage subsystem readiness query (configuration loaded)." alt="" coords="903,411,1025,437"/>
+<area shape="poly" id="edge57_Node000007_Node000042" title=" " alt="" coords="468,993,476,868,496,670,514,567,536,472,565,396,582,367,602,346,629,327,655,315,680,309,706,309,758,321,819,346,835,357,845,371,853,384,867,396,889,407,887,412,864,401,849,388,840,373,832,361,816,350,757,326,705,314,681,314,656,320,631,331,605,350,587,370,570,398,541,474,519,568,502,671,481,868,474,993"/>
+<area shape="rect" id="Node000089" href="$group__driver02.html#gaa20b40f13c003ce354ce5a163374ac90" title="Initialize CAT24C256 EEPROM driver." alt="" coords="652,1323,769,1349"/>
+<area shape="poly" id="edge21_Node000007_Node000089" title=" " alt="" coords="475,1020,486,1073,509,1149,526,1190,548,1231,574,1269,605,1302,638,1321,636,1326,602,1306,570,1272,543,1234,521,1193,504,1151,481,1074,470,1021"/>
+<area shape="rect" id="Node000090" href="$group__tasks02.html#gab2d019f35eb9844ccb157488ed577f8f" title="Query console task readiness status." alt="" coords="901,1399,1026,1425"/>
+<area shape="poly" id="edge22_Node000007_Node000090" title=" " alt="" coords="474,1020,479,1083,498,1176,515,1227,538,1276,567,1321,605,1359,625,1371,653,1380,726,1394,809,1403,886,1408,886,1413,808,1408,725,1400,652,1385,623,1375,602,1363,563,1325,533,1279,510,1229,493,1178,474,1084,468,1021"/>
+<area shape="rect" id="Node000091" href="$group__tasks02.html#gad45ca7c142e8c2764d52b3d554ffcdeb" title="Initialize and start the console task." alt="" coords="649,1069,772,1096"/>
+<area shape="poly" id="edge23_Node000007_Node000091" title=" " alt="" coords="504,1018,604,1055,635,1063,634,1069,603,1060,502,1023"/>
+<area shape="poly" id="edge38_Node000007_Node000190" title=" " alt="" coords="476,1020,488,1065,512,1127,530,1159,551,1190,575,1217,605,1239,645,1256,700,1268,763,1275,831,1278,900,1276,964,1270,1019,1259,1061,1244,1100,1217,1131,1180,1156,1142,1172,1109,1177,1111,1160,1145,1136,1184,1103,1221,1063,1249,1020,1264,965,1275,900,1281,831,1283,763,1281,699,1273,644,1261,602,1244,572,1221,546,1193,525,1162,508,1129,483,1067,471,1021"/>
+<area shape="rect" id="Node000196" href="$group__tasks05.html#gafb5047430fb4b265c7eb140436b4d6cd" title="Query logger task readiness status." alt="" coords="906,1132,1022,1159"/>
+<area shape="poly" id="edge39_Node000007_Node000196" title=" " alt="" coords="480,1019,497,1050,525,1089,561,1127,582,1143,604,1156,642,1170,681,1178,722,1182,762,1182,838,1174,902,1161,904,1166,839,1179,762,1187,721,1187,681,1183,640,1175,602,1161,579,1148,557,1131,520,1092,493,1053,475,1022"/>
+<area shape="rect" id="Node000163" href="$group__storage03.html#gad79ee3ecce363eec976ed7616906c27d" title="Get pointer to the device identity RAM cache." alt="" coords="644,1475,777,1501"/>
+<area shape="poly" id="edge28_Node000007_Node000163" title=" " alt="" coords="473,1020,474,1097,479,1153,488,1216,504,1282,528,1347,561,1408,605,1461,631,1476,628,1481,602,1465,557,1411,523,1350,499,1284,483,1217,473,1154,469,1098,467,1020"/>
+<area shape="rect" id="Node000197" href="$group__tasks03.html#ga39ec0ac355c1ecd9f7b42602beceaab9" title="Register a task with Health supervision." alt="" coords="639,1525,782,1552"/>
+<area shape="poly" id="edge29_Node000007_Node000197" title=" " alt="" coords="475,1020,489,1118,516,1267,534,1344,555,1415,579,1473,605,1511,626,1525,623,1530,601,1515,574,1476,550,1417,529,1346,511,1268,484,1119,470,1021"/>
+<area shape="rect" id="Node000199" href="$group__tasks03.html#gaaa57b8a364b1e80fdbcbd231b80ee70d" title="Start the Health supervision task." alt="" coords="649,1576,772,1603"/>
+<area shape="poly" id="edge32_Node000007_Node000199" title=" " alt="" coords="474,1020,487,1126,513,1290,531,1376,552,1455,577,1519,591,1544,605,1562,619,1573,636,1580,634,1585,617,1577,601,1566,586,1547,572,1522,547,1457,526,1377,508,1291,482,1127,469,1021"/>
+<area shape="rect" id="Node000216" href="$group__misc2.html#ga1224bdfc48804ed50a3c65f98208f8a6" title="Print the early boot snapshot and clear transient diagnostics." alt="" coords="603,1627,818,1653"/>
+<area shape="poly" id="edge33_Node000007_Node000216" title=" " alt="" coords="474,1020,485,1135,510,1314,528,1408,549,1495,575,1566,590,1593,605,1613,608,1616,605,1619,601,1616,585,1596,570,1568,544,1497,522,1410,505,1315,480,1136,469,1021"/>
+<area shape="rect" id="Node000217" href="$_init_task_8c.html#a58741f53e3e22ec8db7e66ded93d3b79" title="Initialize ADC for voltage/temperature sensing." alt="" coords="677,1677,744,1704"/>
+<area shape="poly" id="edge34_Node000007_Node000217" title=" " alt="" coords="474,1020,484,1143,507,1338,524,1441,546,1535,573,1612,589,1642,605,1663,632,1680,662,1688,661,1693,629,1685,602,1667,584,1644,568,1614,541,1536,519,1442,501,1339,478,1144,469,1021"/>
+<area shape="rect" id="Node000218" href="$_init_task_8c.html#a7850b1e4409c8324ed9ad29de28348d4" title="Initialize GPIO pins for all peripherals." alt="" coords="676,1728,745,1755"/>
+<area shape="poly" id="edge35_Node000007_Node000218" title=" " alt="" coords="474,1020,482,1151,504,1362,521,1472,543,1575,571,1658,588,1690,605,1714,631,1731,661,1738,660,1743,629,1736,602,1718,583,1693,566,1660,538,1576,516,1473,498,1362,477,1152,468,1020"/>
+<area shape="rect" id="Node000219" href="$_init_task_8c.html#a8790b90a7c218ea77e5def273c955166" title="Initialize I2C buses." alt="" coords="679,1779,742,1805"/>
+<area shape="poly" id="edge36_Node000007_Node000219" title=" " alt="" coords="474,1020,481,1161,501,1386,518,1505,540,1615,569,1705,587,1739,605,1765,618,1775,632,1782,665,1789,663,1795,631,1787,615,1779,601,1769,582,1742,565,1707,535,1616,513,1506,495,1386,475,1161,468,1021"/>
+<area shape="rect" id="Node000224" href="$_init_task_8c.html#a94bfbc05f30f704d8b26931233f22419" title="Initialize SPI for W5500." alt="" coords="679,1829,742,1856"/>
+<area shape="poly" id="edge37_Node000007_Node000224" title=" " alt="" coords="473,1020,479,1168,498,1409,514,1536,537,1654,568,1751,585,1788,605,1816,618,1826,632,1833,664,1840,663,1845,630,1838,615,1830,601,1819,581,1791,563,1753,532,1655,509,1537,492,1409,474,1168,468,1020"/>
+<area shape="rect" id="Node000225" href="$group__tasks05.html#gaae3080c72dfa5993e5e495fd767e32c9" title="Initialize and start the logger task." alt="" coords="654,968,767,995"/>
+<area shape="poly" id="edge40_Node000007_Node000225" title=" " alt="" coords="503,1001,639,986,639,991,503,1006"/>
+<area shape="rect" id="Node000227" href="$group__drivers06.html#ga443377619e6d82e31b58ffc269b64936" title="Initialize all MCP23017 devices for the ENERGIS PDU." alt="" coords="658,360,763,387"/>
+<area shape="poly" id="edge42_Node000007_Node000227" title=" " alt="" coords="469,993,480,878,505,698,522,604,544,517,570,445,585,418,601,397,620,383,642,375,644,380,623,388,605,401,590,421,575,448,549,518,528,605,510,699,485,878,474,993"/>
+<area shape="rect" id="Node000232" href="$group__tasks06.html#gaacb98f39434e19bddfcdc0e0b555bd50" title="Query meter subsystem readiness status." alt="" coords="655,461,766,488"/>
+<area shape="poly" id="edge43_Node000007_Node000232" title=" " alt="" coords="470,993,484,895,511,746,529,668,550,596,574,538,601,498,619,485,639,478,641,482,622,490,605,502,579,540,555,598,534,669,516,747,489,895,475,993"/>
+<area shape="rect" id="Node000233" href="$group__tasks06.html#ga33bd9742d865d9e98a4b81d443f69837" title="Create and start the Meter Task with a deterministic enable gate." alt="" coords="657,1120,764,1147"/>
+<area shape="poly" id="edge44_Node000007_Node000233" title=" " alt="" coords="486,1018,536,1062,569,1085,604,1106,643,1119,641,1124,602,1110,566,1090,533,1066,483,1022"/>
+<area shape="rect" id="Node000267" href="$group__tasks07.html#gac238017e1130a6a762cf67cf3d8228e4" title="Network subsystem readiness query." alt="" coords="915,1208,1013,1235"/>
+<area shape="poly" id="edge47_Node000007_Node000267" title=" " alt="" coords="478,1019,494,1055,521,1102,558,1150,580,1171,605,1188,640,1205,679,1218,758,1231,834,1233,899,1228,899,1234,834,1238,757,1236,677,1223,639,1210,602,1193,576,1175,554,1154,516,1105,489,1058,473,1021"/>
+<area shape="rect" id="Node000274" href="$group__tasks07.html#ga3bb13f092e9d7a8e15776e5e8bf8e8c3" title="Create and start the Network Task with a deterministic enable gate." alt="" coords="663,411,758,437"/>
+<area shape="poly" id="edge48_Node000007_Node000274" title=" " alt="" coords="469,993,482,886,508,722,526,636,547,557,572,492,586,466,602,447,623,433,647,425,648,430,625,438,605,451,591,469,577,494,552,558,531,637,513,723,487,887,474,993"/>
+<area shape="rect" id="Node000385" href="$_init_task_8c.html#ad111fa8c3ef4e0bc10a9aa62218489de" title="Probe EEPROM." alt="" coords="659,512,762,539"/>
+<area shape="poly" id="edge51_Node000007_Node000385" title=" " alt="" coords="467,993,469,916,473,859,483,796,499,730,523,664,557,602,602,549,621,535,643,527,644,532,623,540,605,553,561,605,528,666,504,731,488,797,479,860,474,916,473,993"/>
+<area shape="rect" id="Node000388" href="$_init_task_8c.html#a1a4684086ac7fe379f9dda25b8f6b107" title="Probe all MCP23017 devices." alt="" coords="664,1019,757,1045"/>
+<area shape="poly" id="edge52_Node000007_Node000388" title=" " alt="" coords="503,1007,649,1023,649,1028,503,1013"/>
+<area shape="rect" id="Node000085" href="$group__tasks10.html#gaad6cb463ba1647fe51faeea5f08268da" title="Check if config is loaded and ready." alt="" coords="627,563,794,589"/>
+<area shape="poly" id="edge54_Node000007_Node000085" title=" " alt="" coords="468,993,472,923,478,873,489,817,506,758,529,700,561,646,602,599,611,592,615,596,605,603,565,649,534,703,511,760,494,818,484,874,477,924,473,993"/>
+<area shape="rect" id="Node000122" href="$group__tasks10.html#ga422389bc6e9270118a931e58981753f9" title="Get network configuration." alt="" coords="639,613,782,640"/>
+<area shape="poly" id="edge56_Node000007_Node000122" title=" " alt="" coords="469,993,476,930,496,838,512,787,535,737,565,690,602,650,623,636,626,641,605,654,569,694,540,739,517,789,501,839,481,931,474,993"/>
+<area shape="rect" id="Node000384" href="$group__tasks10.html#gafeb6e0067e67c68af21f0eeae1d1279a" title="Wait for config to be loaded from EEPROM." alt="" coords="643,664,778,691"/>
+<area shape="poly" id="edge58_Node000007_Node000384" title=" " alt="" coords="470,993,479,938,502,859,519,816,541,774,568,735,602,701,628,686,631,690,605,705,573,738,546,777,524,818,507,861,485,940,475,994"/>
+<area shape="rect" id="Node000389" href="$group__tasks10.html#ga26dbdabce55a139cf536e8469373b7c4" title="Initialize and start the Storage task with a deterministic enable gate. Creates mutex,..." alt="" coords="651,1424,770,1451"/>
+<area shape="poly" id="edge59_Node000007_Node000389" title=" " alt="" coords="473,1020,479,1088,497,1191,513,1248,536,1304,567,1357,605,1403,620,1415,637,1423,635,1428,617,1419,601,1407,562,1360,532,1307,508,1250,492,1192,473,1089,468,1021"/>
+<area shape="rect" id="Node000035" href="$group__tasks11.html#gaadad543913d4fa9faefda9082b0b7c91" title="Check if SwitchTask is ready for operations." alt="" coords="652,765,769,792"/>
+<area shape="poly" id="edge61_Node000007_Node000035" title=" " alt="" coords="473,992,489,954,516,902,553,848,576,823,602,802,636,786,638,791,605,806,580,827,557,851,520,905,494,956,478,994"/>
+<area shape="rect" id="Node000429" href="$group__tasks11.html#gadb05f16c80e367211f6a0bef7cedfc1f" title="Initialize and start the SwitchTask." alt="" coords="653,917,768,944"/>
+<area shape="poly" id="edge62_Node000007_Node000429" title=" " alt="" coords="502,990,603,953,637,944,639,949,604,959,504,995"/>
+<area shape="rect" id="Node000010" href="$group__storage09.html#ga2b42208cc6b557303cf0db15e24b687b" title="Apply the specified preset&#39;s relay mask immediately." alt="" coords="881,56,1047,83"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="797,83,865,77,865,82,797,89"/>
+<area shape="rect" id="Node000029" href="$group__storage09.html#ga5f0640ed65cd2801c9c2b8774fbd9774" title="Get a single preset from RAM cache." alt="" coords="1110,31,1264,57"/>
+<area shape="poly" id="edge11_Node000009_Node000029" title=" " alt="" coords="743,78,799,58,865,41,924,34,985,32,1095,34,1095,39,985,37,925,40,866,47,801,63,745,83"/>
+<area shape="rect" id="Node000030" href="$group__storage09.html#ga256c864690ce5f7015f2f610f33441f8" title="Get the startup preset selection from cache." alt="" coords="866,107,1062,133"/>
+<area shape="poly" id="edge12_Node000009_Node000030" title=" " alt="" coords="797,101,850,106,850,111,797,106"/>
+<area shape="poly" id="edge10_Node000010_Node000029" title=" " alt="" coords="1047,57,1094,52,1095,57,1048,63"/>
+<area shape="rect" id="Node000033" href="$group__driver01.html#gac22126e540828f671a4440c6649bdf55" title="Initialize button GPIO pins and selection LED hardware." alt="" coords="895,360,1033,387"/>
+<area shape="poly" id="edge15_Node000032_Node000033" title=" " alt="" coords="768,227,795,236,819,251,831,263,838,276,844,300,850,324,857,335,867,346,882,355,879,360,864,350,852,338,845,326,839,302,833,278,826,266,816,255,792,241,766,232"/>
+<area shape="rect" id="Node000038" href="$group__misc3.html#ga83454e7bafa44edd5acce76b7aa91e0b" title="Initialize the power manager subsystem." alt="" coords="922,208,1006,235"/>
+<area shape="poly" id="edge16_Node000032_Node000038" title=" " alt="" coords="767,219,906,219,906,224,767,224"/>
+<area shape="poly" id="edge17_Node000032_Node000041" title=" " alt="" coords="740,233,782,261,802,280,820,303,835,339,853,403,894,579,960,902,954,903,889,580,848,404,830,341,815,305,799,284,778,265,737,237"/>
+<area shape="poly" id="edge18_Node000032_Node000042" title=" " alt="" coords="768,225,795,235,819,251,834,270,841,289,844,326,847,362,854,380,867,397,890,411,887,415,864,401,849,382,841,364,839,327,836,290,829,273,816,255,793,240,766,230"/>
+<area shape="rect" id="Node000043" href="$_button_task_8c.html#af38f8f598c769e263c3090fa7a821246" title="Blink timer callback function." alt="" coords="910,259,1018,285"/>
+<area shape="poly" id="edge19_Node000032_Node000043" title=" " alt="" coords="767,230,895,256,894,261,766,235"/>
+<area shape="rect" id="Node000044" href="$_button_task_8c.html#ac8adec5c9e99b51c4884034cf2e41275" title="Main button scanning and event processing task." alt="" coords="917,309,1011,336"/>
+<area shape="poly" id="edge20_Node000032_Node000044" title=" " alt="" coords="768,231,819,251,834,262,844,274,853,285,867,295,903,309,901,314,864,300,849,289,840,277,830,266,816,256,766,235"/>
+<area shape="poly" id="edge27_Node000091_Node000041" title=" " alt="" coords="771,1071,817,1055,853,1032,887,1006,939,954,943,958,890,1010,856,1037,819,1060,773,1076"/>
+<area shape="rect" id="Node000092" href="$_console_task_8c.html#a216857df22446940ad58d505886b0d7c" title="Main console task function." alt="" coords="915,1069,1012,1096"/>
+<area shape="poly" id="edge24_Node000091_Node000092" title=" " alt="" coords="772,1080,900,1080,900,1085,772,1085"/>
+<area shape="poly" id="edge26_Node000091_Node000196" title=" " alt="" coords="771,1094,818,1105,895,1125,894,1130,817,1111,770,1099"/>
+<area shape="poly" id="edge25_Node000092_Node000190" title=" " alt="" coords="1013,1080,1135,1080,1135,1085,1013,1085"/>
+<area shape="rect" id="Node000198" href="$_health_task_8c.html#a8213bf3a8e666885c3d45b1d5d8fb85c" title="Check if a health ID is in the required mask." alt="" coords="913,1500,1014,1527"/>
+<area shape="poly" id="edge30_Node000197_Node000198" title=" " alt="" coords="782,1529,897,1517,898,1523,783,1534"/>
+<area shape="rect" id="Node000064" href="$_health_task_8c.html#a50503dee6a29e98e633b16b1b8b550bc" title="Get current monotonic time in milliseconds." alt="" coords="929,1551,999,1577"/>
+<area shape="poly" id="edge31_Node000197_Node000064" title=" " alt="" coords="783,1543,914,1556,913,1562,782,1548"/>
+<area shape="poly" id="edge41_Node000225_Node000041" title=" " alt="" coords="767,967,878,945,879,950,768,973"/>
+<area shape="poly" id="edge46_Node000233_Node000041" title=" " alt="" coords="764,1125,791,1118,816,1106,837,1085,871,1044,941,954,945,957,875,1047,841,1088,819,1110,793,1123,765,1130"/>
+<area shape="poly" id="edge45_Node000233_Node000267" title=" " alt="" coords="752,1145,910,1200,908,1205,751,1150"/>
+<area shape="poly" id="edge49_Node000274_Node000041" title=" " alt="" coords="759,422,791,430,819,447,864,500,899,560,925,625,943,691,955,755,962,813,966,902,960,902,956,814,950,756,938,692,920,627,894,563,860,503,816,451,789,435,758,428"/>
+<area shape="poly" id="edge50_Node000274_Node000042" title=" " alt="" coords="758,421,887,421,887,427,758,427"/>
+<area shape="poly" id="edge53_Node000388_Node000041" title=" " alt="" coords="756,1021,817,1004,875,978,926,950,929,955,878,983,819,1009,758,1026"/>
+<area shape="poly" id="edge60_Node000389_Node000090" title=" " alt="" coords="770,1429,885,1417,886,1422,771,1434"/>
+</map>

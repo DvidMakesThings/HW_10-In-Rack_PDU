@@ -1,0 +1,11 @@
+<map id="2. W5500 Ethernet Configuration" name="2. W5500 Ethernet Configuration">
+<area shape="rect" id="Node000008" href="$group___w5500___a_d_v.html" title="Expert&#45;level configuration parameters." alt="" coords="456,5,624,32"/>
+<area shape="rect" id="Node000009" href="$group___w5500___d_b_g.html" title="Debugging output control." alt="" coords="473,56,606,83"/>
+<area shape="rect" id="Node000003" href="$group___w5500___h_w.html" title="SPI peripheral and GPIO pin assignments from CONFIG.h." alt="" coords="449,107,630,133"/>
+<area shape="rect" id="Node000004" href="$group___w5500___m_e_m.html" title="TX/RX buffer sizes for each socket (total 16KB per direction)" alt="" coords="453,157,626,184"/>
+<area shape="rect" id="Node000005" href="$group___w5500___n_e_t.html" title="Default network parameters (overrideable at runtime)" alt="" coords="464,208,615,251"/>
+<area shape="rect" id="Node000006" href="$group___w5500___p_r_o_t_o.html" title="Enable/disable protocol features." alt="" coords="462,275,617,301"/>
+<area shape="rect" id="Node000007" href="$group___w5500___r_t_o_s.html" title="FreeRTOS task and synchronization settings." alt="" coords="443,325,636,352"/>
+<area shape="rect" id="Node000002" href="$group__config.html" title="Configuration files for the Energis PDU firmware." alt="" coords="5,157,136,184"/>
+<area shape="rect" id="Node000001" title="Centralized configuration parameters for W5500 Ethernet controller." alt="" coords="184,157,395,184"/>
+</map>

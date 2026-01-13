@@ -1,0 +1,5 @@
+<map id="SNMP_GetUptime" name="SNMP_GetUptime">
+<area shape="rect" id="Node000001" title="Populate current uptime (TimeTicks) for the systemUpTime OID." alt="" coords="5,5,136,32"/>
+<area shape="rect" id="Node000002" href="$group__drivers07.html#ga8b18137382d90ca77a5391a0b927a6b3" title="Return the agent tick counter (in 10 ms units)." alt="" coords="184,5,329,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,16,168,16,168,21,136,21"/>
+</map>

@@ -1,0 +1,139 @@
+\doxysection{MCP23017\+\_\+driver.\+h}
+\hypertarget{_m_c_p23017__driver_8h_source}{}\label{_m_c_p23017__driver_8h_source}\index{src/Software/ENERGIS\_RTOS/src/drivers/MCP23017\_driver.h@{src/Software/ENERGIS\_RTOS/src/drivers/MCP23017\_driver.h}}
+\mbox{\hyperlink{_m_c_p23017__driver_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#ifndef\ MCP23017\_DRIVER\_H}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ MCP23017\_DRIVER\_H}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{comment}{/*\ ====================\ MCP23017\ Register\ Map\ ====================\ */}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfaff196b20f60d0d869ae4f4ba9b82fef2}{MCP23017\_IODIRA}}\ =\ 0x00,\ \ \ }
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfab143752e2335aab9b8adfb174fca661a}{MCP23017\_IODIRB}}\ =\ 0x01,\ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa70651fc7aa02961aef334b927f477609}{MCP23017\_IPOLA}}\ =\ 0x02,\ \ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfae4a1c553e545531dae4ea79c5fe069cd}{MCP23017\_IPOLB}}\ =\ 0x03,\ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa3194ea8e063908f7a2ec5812d1527820}{MCP23017\_GPINTENA}}\ =\ 0x04,\ }
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa9586bd3d22780ec90bf201be346159e6}{MCP23017\_GPINTENB}}\ =\ 0x05,\ }
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa8fb1506d888fa5afddb2a168c3ba3184}{MCP23017\_DEFVALA}}\ =\ 0x06,\ \ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfaab35f56ba43581aa58c3d74c3e49fb7b}{MCP23017\_DEFVALB}}\ =\ 0x07,\ \ }
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfad372a07dc741b63cbfa0119c33669b61}{MCP23017\_INTCONA}}\ =\ 0x08,\ \ }
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa1ca12f19f543953808a080ea79c4eb90}{MCP23017\_INTCONB}}\ =\ 0x09,\ \ }
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfab9368d55494e0488c55fa5443f30f5fa}{MCP23017\_IOCON}}\ =\ 0x0A,\ \ \ \ }
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfaf215e406bd96cca356a639c6927769f4}{MCP23017\_IOCONB}}\ =\ 0x0B,\ \ \ }
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfac502aa0f54a5b41a761c120e665da27b}{MCP23017\_GPPUA}}\ =\ 0x0C,\ \ \ \ }
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfadccc42f206cc7af95ec25c07c6cf48b4}{MCP23017\_GPPUB}}\ =\ 0x0D,\ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa49e2535f9b490c064d85152d8e9efc04}{MCP23017\_INTFA}}\ =\ 0x0E,\ \ \ \ }
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa79b0bfcfc88489c89fad266e2c9cf459}{MCP23017\_INTFB}}\ =\ 0x0F,\ \ \ \ }
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfac9b9ec9f18ff7ad436574b18ed8e14f6}{MCP23017\_INTCAPA}}\ =\ 0x10,\ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfaf97e8423ea050872e63b854d9975149d}{MCP23017\_INTCAPB}}\ =\ 0x11,\ \ }
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa4b5694ccf89d415b3a4f7734c0dc821c}{MCP23017\_GPIOA}}\ =\ 0x12,\ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa519ffdeaa44b2010fc26367f13a297c9}{MCP23017\_GPIOB}}\ =\ 0x13,\ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa71e94f58edc954fa5085d31cc7432bce}{MCP23017\_OLATA}}\ =\ 0x14,\ \ \ \ }
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfabe2c3e1f499629565afee65dd51a4f1f}{MCP23017\_OLATB}}\ =\ 0x15\ \ \ \ \ }
+\DoxyCodeLine{00077\ \}\ \mbox{\hyperlink{group__drivers06_gaa9b0dc57c9fbeb1cd61e7b7252bfeddf}{mcp23017\_reg\_t}};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{comment}{/*\ ====================\ Configuration\ ====================\ */}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#ifndef\ MCP\_I2C\_MAX\_RETRIES}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#define\ MCP\_I2C\_MAX\_RETRIES\ 3}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#ifndef\ MCP\_I2C\_TIMEOUT\_US}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#define\ MCP\_I2C\_TIMEOUT\_US\ 5000}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#ifndef\ MCP\_I2C\_RETRY\_DELAY\_US}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#define\ MCP\_I2C\_RETRY\_DELAY\_US\ 200}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#ifndef\ MCP\_RESET\_PULSE\_MS}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#define\ MCP\_RESET\_PULSE\_MS\ 5}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#ifndef\ MCP\_POST\_RESET\_MS}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#define\ MCP\_POST\_RESET\_MS\ 10}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#ifndef\ MCP\_MAX\_DEVICES}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#define\ MCP\_MAX\_DEVICES\ 8}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#endif}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{comment}{/*\ ====================\ Device\ Context\ ====================\ */}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00140\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00141\ \ \ \ \ i2c\_inst\_t\ *\mbox{\hyperlink{structmcp23017__t_ac8707404a5056d684e995c89ecba0f28}{i2c}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00142\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structmcp23017__t_a04f42f2123f549a4bae8b9dcf4760a55}{addr}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00143\ \ \ \ \ int8\_t\ \mbox{\hyperlink{structmcp23017__t_a70723a7eda3f10b14d3f95c8205e39fe}{rst\_gpio}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \mbox{\hyperlink{structmcp23017__t_ac6afe5a4c4bb0f3f5e75d67818c374ec}{olat\_a}};\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \mbox{\hyperlink{structmcp23017__t_ab119b1a3c2a33e6ebb936fbf12724d0f}{olat\_b}};\ }
+\DoxyCodeLine{00146\ \ \ \ \ SemaphoreHandle\_t\ \mbox{\hyperlink{structmcp23017__t_af08150f358f6cb99ee68c6d4847b09d8}{mutex}};\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structmcp23017__t_a251e2bc9d8cda8a48401a3fb7c799bca}{inited}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00148\ \}\ \mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}};}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{comment}{/*\ ====================\ Device\ Registration\ ====================\ */}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00164\ \mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *\mbox{\hyperlink{group__drivers06_gafcca317840825e3def57a977e4ea2cf2}{mcp\_register}}(i2c\_inst\_t\ *i2c,\ uint8\_t\ addr,\ int8\_t\ rst\_gpio);}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00178\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers06_gae6663d4602384300fc9b9b12480c21fe}{mcp\_init}}(\mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *dev);}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \textcolor{comment}{/*\ ====================\ Register\ Operations\ ====================\ */}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00193\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers06_ga645c359c52df805555051e80c83fc495}{mcp\_write\_reg}}(\mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *dev,\ uint8\_t\ reg,\ uint8\_t\ value);}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00205\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers06_ga4d99b3ea65704c98455cdd5da4fbeaad}{mcp\_read\_reg}}(\mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *dev,\ uint8\_t\ reg,\ uint8\_t\ *out);}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \textcolor{comment}{/*\ ====================\ Pin\ Operations\ ====================\ */}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00218\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers06_ga8ce6b811dfb85d4ca1b02ed7e61b6079}{mcp\_set\_direction}}(\mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *dev,\ uint8\_t\ pin,\ uint8\_t\ \mbox{\hyperlink{power__mgr_8c_ac6116d5235e13e059e591879c46d7174}{direction}});}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00231\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers06_ga8b8bc528b75e419262e7663ee669dc31}{mcp\_write\_pin}}(\mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *dev,\ uint8\_t\ pin,\ uint8\_t\ value);}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00242\ uint8\_t\ \mbox{\hyperlink{group__drivers06_ga2e6de484edec28d8c39620a364ce5b92}{mcp\_read\_pin}}(\mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *dev,\ uint8\_t\ pin);}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00256\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers06_ga0dfecc1e56ba649b3a89936c6206c9e2}{mcp\_write\_mask}}(\mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *dev,\ uint8\_t\ port\_ab,\ uint8\_t\ mask,\ uint8\_t\ value\_bits);}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00266\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers06_gad0f920b57a523cbf561692c26e810819}{mcp\_resync\_from\_hw}}(\mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *dev);}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \textcolor{comment}{/*\ ====================\ Board-\/Specific\ Functions\ ====================\ */}}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00281\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers06_ga443377619e6d82e31b58ffc269b64936}{MCP2017\_Init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00287\ \mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *\mbox{\hyperlink{group__drivers06_ga6568742c79ce5190216e5185238229ba}{mcp\_relay}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00293\ \mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *\mbox{\hyperlink{group__drivers06_ga7634eca518e2158ba0e636a3f03f3928}{mcp\_display}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00299\ \mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *\mbox{\hyperlink{group__drivers06_gae6acbfdd05b6bdd8877262ce03f77eeb}{mcp\_selection}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \textcolor{comment}{/*\ Attempt\ soft\ recovery\ by\ reprogramming\ key\ registers\ without\ hardware\ reset.\ */}}
+\DoxyCodeLine{00302\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers06_gae7d0a5e24723238e6466e5b5f0c49e41}{mcp\_recover}}(\mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *dev);}
+\DoxyCodeLine{00306\ \textcolor{comment}{/*\ Device\ Registration\ */}}
+\DoxyCodeLine{00307\ \mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *\mbox{\hyperlink{group__drivers06_gafcca317840825e3def57a977e4ea2cf2}{mcp\_register}}(i2c\_inst\_t\ *i2c,\ uint8\_t\ addr,\ int8\_t\ rst\_gpio);}
+\DoxyCodeLine{00308\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers06_gae6663d4602384300fc9b9b12480c21fe}{mcp\_init}}(\mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *dev);}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \textcolor{comment}{/*\ Register\ Operations\ */}}
+\DoxyCodeLine{00311\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers06_ga645c359c52df805555051e80c83fc495}{mcp\_write\_reg}}(\mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *dev,\ uint8\_t\ reg,\ uint8\_t\ value);}
+\DoxyCodeLine{00312\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers06_ga4d99b3ea65704c98455cdd5da4fbeaad}{mcp\_read\_reg}}(\mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *dev,\ uint8\_t\ reg,\ uint8\_t\ *out);}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \textcolor{comment}{/*\ Pin\ Operations\ */}}
+\DoxyCodeLine{00315\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers06_ga8ce6b811dfb85d4ca1b02ed7e61b6079}{mcp\_set\_direction}}(\mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *dev,\ uint8\_t\ pin,\ uint8\_t\ \mbox{\hyperlink{power__mgr_8c_ac6116d5235e13e059e591879c46d7174}{direction}});}
+\DoxyCodeLine{00316\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers06_ga8b8bc528b75e419262e7663ee669dc31}{mcp\_write\_pin}}(\mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *dev,\ uint8\_t\ pin,\ uint8\_t\ value);}
+\DoxyCodeLine{00317\ uint8\_t\ \mbox{\hyperlink{group__drivers06_ga2e6de484edec28d8c39620a364ce5b92}{mcp\_read\_pin}}(\mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *dev,\ uint8\_t\ pin);}
+\DoxyCodeLine{00318\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers06_ga0dfecc1e56ba649b3a89936c6206c9e2}{mcp\_write\_mask}}(\mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *dev,\ uint8\_t\ port\_ab,\ uint8\_t\ mask,\ uint8\_t\ value\_bits);}
+\DoxyCodeLine{00319\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers06_gad0f920b57a523cbf561692c26e810819}{mcp\_resync\_from\_hw}}(\mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *dev);}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \textcolor{comment}{/*\ Board-\/Specific\ Functions\ */}}
+\DoxyCodeLine{00322\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers06_ga443377619e6d82e31b58ffc269b64936}{MCP2017\_Init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00323\ \mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *\mbox{\hyperlink{group__drivers06_ga6568742c79ce5190216e5185238229ba}{mcp\_relay}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00324\ \mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *\mbox{\hyperlink{group__drivers06_ga7634eca518e2158ba0e636a3f03f3928}{mcp\_display}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00325\ \mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *\mbox{\hyperlink{group__drivers06_gae6acbfdd05b6bdd8877262ce03f77eeb}{mcp\_selection}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00326\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers06_gae7d0a5e24723238e6466e5b5f0c49e41}{mcp\_recover}}(\mbox{\hyperlink{structmcp23017__t}{mcp23017\_t}}\ *dev);}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00329\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ MCP23017\_DRIVER\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00330\ }
+
+\end{DoxyCode}

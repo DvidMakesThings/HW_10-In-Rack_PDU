@@ -1,0 +1,219 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/misc/helpers.c File Reference}
+\hypertarget{helpers_8c}{}\label{helpers_8c}\index{src/Software/ENERGIS\_RTOS/src/misc/helpers.c@{src/Software/ENERGIS\_RTOS/src/misc/helpers.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for helpers.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{helpers_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structhelpers__boot__snapshot__t}{helpers\+\_\+boot\+\_\+snapshot\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Retained early-\/boot snapshot persisted in noinit RAM. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{helpers_8c_a225d6871213285b2c31b94b7019441bf}{HELPERS\+\_\+\+TAG}}~"{}\mbox{[}HELPERS\mbox{]}"{}
+\item 
+\#define \mbox{\hyperlink{helpers_8c_a57fa203ca2fbfa5c40105d599acd494d}{HELPERS\+\_\+\+SNAPSHOT\+\_\+\+MAGIC}}~(0x534\+E4150u) /\texorpdfstring{$\ast$}{*} \textquotesingle{}SNAP\textquotesingle{} \texorpdfstring{$\ast$}{*}/
+\begin{DoxyCompactList}\small\item\em Magic tag to validate retained snapshot content. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{helpers_8c_ab45288ba205a29a1c2ad6b882edfa316}{HELPERS\+\_\+\+SNAPSHOT\+\_\+\+VERSION}}~(0x0001u)
+\begin{DoxyCompactList}\small\item\em Snapshot format version. Increase if layout changes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{helpers_8c_ac58fba3086187a4058024eb333db525e}{hexval}} (char c)
+\begin{DoxyCompactList}\small\item\em Convert hexadecimal character to integer value. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__misc2_gaeb4007c2c85c659d737d6fd89a270f5e}{get\+\_\+form\+\_\+value}} (const char \texorpdfstring{$\ast$}{*}body, const char \texorpdfstring{$\ast$}{*}key)
+\begin{DoxyCompactList}\small\item\em Extract key=value from URL-\/encoded body (in-\/place), returns NULL if missing. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc2_ga493994a6707f3269e63a5006d8e409a1}{urldecode}} (char \texorpdfstring{$\ast$}{*}s)
+\begin{DoxyCompactList}\small\item\em Decode \textquotesingle{}+\textquotesingle{} to \textquotesingle{} \textquotesingle{} and "{}\%\+XX"{} to char, in-\/place. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__misc2_ga94392e9ee8263660e4b9065f0e6d501a}{ethernet\+\_\+apply\+\_\+network\+\_\+from\+\_\+storage}} (const \mbox{\hyperlink{structnetwork_info}{network\+Info}} \texorpdfstring{$\ast$}{*}ni)
+\begin{DoxyCompactList}\small\item\em Apply Storage\+Task \doxylink{structnetwork_info}{network\+Info} into W5500 and initialize the chip. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc2_gaca2ea273167ca7fe990deec4aa069964}{Boot\+\_\+\+Log\+Reset\+Cause}} (void)
+\begin{DoxyCompactList}\small\item\em Print detailed reset cause diagnostics with hardware register decode. \end{DoxyCompactList}\item 
+static uint32\+\_\+t \mbox{\hyperlink{helpers_8c_ae691976c69cc3e362923ae7d95664327}{helpers\+\_\+read\+\_\+reset\+\_\+bits}} (void)
+\begin{DoxyCompactList}\small\item\em Read platform reset reason bits from hardware. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{helpers_8c_a07d51ad787e9d99a3a90ab70cf69337d}{helpers\+\_\+copy\+\_\+wd\+\_\+scratch}} (uint32\+\_\+t dst\mbox{[}8\mbox{]})
+\begin{DoxyCompactList}\small\item\em Copy watchdog scratch registers to destination buffer. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{helpers_8c_add43331fd1dff608bcc6fdb69d099db6}{helpers\+\_\+clear\+\_\+snapshot}} (\mbox{\hyperlink{structhelpers__boot__snapshot__t}{helpers\+\_\+boot\+\_\+snapshot\+\_\+t}} \texorpdfstring{$\ast$}{*}s)
+\begin{DoxyCompactList}\small\item\em Clear boot snapshot structure to zero. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc2_ga2481802ac87dc386890d49a5b9f61e0f}{Helpers\+\_\+\+Early\+Boot\+Snapshot}} (void)
+\begin{DoxyCompactList}\small\item\em Capture early boot reset snapshot into retained memory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc2_ga1224bdfc48804ed50a3c65f98208f8a6}{Helpers\+\_\+\+Late\+Boot\+Dump\+And\+Clear}} (void)
+\begin{DoxyCompactList}\small\item\em Print the early boot snapshot and clear transient diagnostics. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{structhelpers__boot__snapshot__t}{helpers\+\_\+boot\+\_\+snapshot\+\_\+t}} \mbox{\hyperlink{helpers_8c_a1b0ed432fe3a8fe5b08a30c9d74955e6}{s\+\_\+bootsnap}}
+\begin{DoxyCompactList}\small\item\em Retained snapshot buffer in non-\/initialized memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/06
+\end{DoxyDate}
+Implementation of system-\/wide utility functions including URL parsing, network configuration bridging, and early boot diagnostics. This module provides helper functions that support multiple subsystems without belonging to a specific domain.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{helpers_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{helpers_8c_a57fa203ca2fbfa5c40105d599acd494d}\index{helpers.c@{helpers.c}!HELPERS\_SNAPSHOT\_MAGIC@{HELPERS\_SNAPSHOT\_MAGIC}}
+\index{HELPERS\_SNAPSHOT\_MAGIC@{HELPERS\_SNAPSHOT\_MAGIC}!helpers.c@{helpers.c}}
+\doxysubsubsection{\texorpdfstring{HELPERS\_SNAPSHOT\_MAGIC}{HELPERS\_SNAPSHOT\_MAGIC}}
+{\footnotesize\ttfamily \label{helpers_8c_a57fa203ca2fbfa5c40105d599acd494d} 
+\#define HELPERS\+\_\+\+SNAPSHOT\+\_\+\+MAGIC~(0x534\+E4150u) /\texorpdfstring{$\ast$}{*} \textquotesingle{}SNAP\textquotesingle{} \texorpdfstring{$\ast$}{*}/}
+
+
+
+Magic tag to validate retained snapshot content. 
+
+\Hypertarget{helpers_8c_ab45288ba205a29a1c2ad6b882edfa316}\index{helpers.c@{helpers.c}!HELPERS\_SNAPSHOT\_VERSION@{HELPERS\_SNAPSHOT\_VERSION}}
+\index{HELPERS\_SNAPSHOT\_VERSION@{HELPERS\_SNAPSHOT\_VERSION}!helpers.c@{helpers.c}}
+\doxysubsubsection{\texorpdfstring{HELPERS\_SNAPSHOT\_VERSION}{HELPERS\_SNAPSHOT\_VERSION}}
+{\footnotesize\ttfamily \label{helpers_8c_ab45288ba205a29a1c2ad6b882edfa316} 
+\#define HELPERS\+\_\+\+SNAPSHOT\+\_\+\+VERSION~(0x0001u)}
+
+
+
+Snapshot format version. Increase if layout changes. 
+
+\Hypertarget{helpers_8c_a225d6871213285b2c31b94b7019441bf}\index{helpers.c@{helpers.c}!HELPERS\_TAG@{HELPERS\_TAG}}
+\index{HELPERS\_TAG@{HELPERS\_TAG}!helpers.c@{helpers.c}}
+\doxysubsubsection{\texorpdfstring{HELPERS\_TAG}{HELPERS\_TAG}}
+{\footnotesize\ttfamily \label{helpers_8c_a225d6871213285b2c31b94b7019441bf} 
+\#define HELPERS\+\_\+\+TAG~"{}\mbox{[}HELPERS\mbox{]}"{}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{helpers_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{helpers_8c_add43331fd1dff608bcc6fdb69d099db6}\index{helpers.c@{helpers.c}!helpers\_clear\_snapshot@{helpers\_clear\_snapshot}}
+\index{helpers\_clear\_snapshot@{helpers\_clear\_snapshot}!helpers.c@{helpers.c}}
+\doxysubsubsection{\texorpdfstring{helpers\_clear\_snapshot()}{helpers\_clear\_snapshot()}}
+{\footnotesize\ttfamily \label{helpers_8c_add43331fd1dff608bcc6fdb69d099db6} 
+void helpers\+\_\+clear\+\_\+snapshot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhelpers__boot__snapshot__t}{helpers\+\_\+boot\+\_\+snapshot\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{s}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Clear boot snapshot structure to zero. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Pointer to snapshot structure\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{helpers_8c_add43331fd1dff608bcc6fdb69d099db6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{helpers_8c_a07d51ad787e9d99a3a90ab70cf69337d}\index{helpers.c@{helpers.c}!helpers\_copy\_wd\_scratch@{helpers\_copy\_wd\_scratch}}
+\index{helpers\_copy\_wd\_scratch@{helpers\_copy\_wd\_scratch}!helpers.c@{helpers.c}}
+\doxysubsubsection{\texorpdfstring{helpers\_copy\_wd\_scratch()}{helpers\_copy\_wd\_scratch()}}
+{\footnotesize\ttfamily \label{helpers_8c_a07d51ad787e9d99a3a90ab70cf69337d} 
+void helpers\+\_\+copy\+\_\+wd\+\_\+scratch (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{dst}{\mbox{[}8\mbox{]}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Copy watchdog scratch registers to destination buffer. 
+
+Reads all 8 watchdog scratch registers into the provided array. For non-\/\+RP platforms, fills the buffer with zeros.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dst} & Destination array of 8 uint32\+\_\+t values\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{helpers_8c_a07d51ad787e9d99a3a90ab70cf69337d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{helpers_8c_ae691976c69cc3e362923ae7d95664327}\index{helpers.c@{helpers.c}!helpers\_read\_reset\_bits@{helpers\_read\_reset\_bits}}
+\index{helpers\_read\_reset\_bits@{helpers\_read\_reset\_bits}!helpers.c@{helpers.c}}
+\doxysubsubsection{\texorpdfstring{helpers\_read\_reset\_bits()}{helpers\_read\_reset\_bits()}}
+{\footnotesize\ttfamily \label{helpers_8c_ae691976c69cc3e362923ae7d95664327} 
+uint32\+\_\+t helpers\+\_\+read\+\_\+reset\+\_\+bits (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Read platform reset reason bits from hardware. 
+
+Platform-\/specific function to read raw reset cause bits. For RP2040/\+RP2350, reads the watchdog reason register.
+
+\begin{DoxyReturn}{Returns}
+Raw reset bits, platform-\/specific encoding 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{helpers_8c_ae691976c69cc3e362923ae7d95664327_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{helpers_8c_ac58fba3086187a4058024eb333db525e}\index{helpers.c@{helpers.c}!hexval@{hexval}}
+\index{hexval@{hexval}!helpers.c@{helpers.c}}
+\doxysubsubsection{\texorpdfstring{hexval()}{hexval()}}
+{\footnotesize\ttfamily \label{helpers_8c_ac58fba3086187a4058024eb333db525e} 
+int hexval (\begin{DoxyParamCaption}\item[{char}]{c}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Convert hexadecimal character to integer value. 
+
+Converts a single hex digit character to its numeric value. Supports both uppercase and lowercase hex digits.
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & Hexadecimal character (\textquotesingle{}0\textquotesingle{}-\/\textquotesingle{}9\textquotesingle{}, \textquotesingle{}A\textquotesingle{}-\/\textquotesingle{}F\textquotesingle{}, \textquotesingle{}a\textquotesingle{}-\/\textquotesingle{}f\textquotesingle{})\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Integer value 0-\/15 for valid hex digits, -\/1 for invalid characters 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{helpers_8c_ac58fba3086187a4058024eb333db525e_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{helpers_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{helpers_8c_a1b0ed432fe3a8fe5b08a30c9d74955e6}\index{helpers.c@{helpers.c}!s\_bootsnap@{s\_bootsnap}}
+\index{s\_bootsnap@{s\_bootsnap}!helpers.c@{helpers.c}}
+\doxysubsubsection{\texorpdfstring{s\_bootsnap}{s\_bootsnap}}
+{\footnotesize\ttfamily \label{helpers_8c_a1b0ed432fe3a8fe5b08a30c9d74955e6} 
+\mbox{\hyperlink{structhelpers__boot__snapshot__t}{helpers\+\_\+boot\+\_\+snapshot\+\_\+t}} s\+\_\+bootsnap\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Retained snapshot buffer in non-\/initialized memory. 
+
+Placed in a noinit section so its content survives across soft resets. On first power-\/on it will contain random data until initialized by \doxylink{group__misc2_ga2481802ac87dc386890d49a5b9f61e0f}{Helpers\+\_\+\+Early\+Boot\+Snapshot()}. 

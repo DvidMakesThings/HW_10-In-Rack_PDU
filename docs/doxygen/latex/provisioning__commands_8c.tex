@@ -1,0 +1,285 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/provisioning\+\_\+commands.c File Reference}
+\hypertarget{provisioning__commands_8c}{}\label{provisioning__commands_8c}\index{src/Software/ENERGIS\_RTOS/src/tasks/provisioning\_commands.c@{src/Software/ENERGIS\_RTOS/src/tasks/provisioning\_commands.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for provisioning\+\_\+commands.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{provisioning__commands_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{provisioning__commands_8c_a46eed4b719add3e40a70b68da90428be}{PROV\+\_\+\+TAG}}~"{}\mbox{[}PROV\mbox{]}"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{provisioning__commands_8c_aefcdc2446ee6295fa79a99db012a1c8c}{skip\+\_\+ws}} (const char \texorpdfstring{$\ast$}{*}s)
+\begin{DoxyCompactList}\small\item\em Skip leading whitespace. \end{DoxyCompactList}\item 
+static char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{provisioning__commands_8c_a0b35a835cd23f0d4f1564ab342db0109}{trim\+\_\+ws\+\_\+inplace}} (char \texorpdfstring{$\ast$}{*}s)
+\begin{DoxyCompactList}\small\item\em Trim leading and trailing whitespace/control chars in-\/place. \end{DoxyCompactList}\item 
+static char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{provisioning__commands_8c_a52796a6a4ee60641c8620c6b2bf438bd}{next\+\_\+tok}} (char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pptr)
+\begin{DoxyCompactList}\small\item\em Extract next token (whitespace-\/delimited). \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{provisioning__commands_8c_a06cf1191f3362c994389d37206fc58ef}{prov\+\_\+unlock}} (const char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Handle PROV UNLOCK $<$token$>$ command. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{provisioning__commands_8c_a5dc50fd427bac0f08107dc3607255dd3}{prov\+\_\+lock}} (void)
+\begin{DoxyCompactList}\small\item\em Handle PROV LOCK command. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{provisioning__commands_8c_a4c16305d49fe29984f44a8fa139d3858}{prov\+\_\+set\+\_\+sn}} (const char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Handle PROV SET\+\_\+\+SN $<$serial$>$ command. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{provisioning__commands_8c_a5357e0fb4f9cba285912eeb0210df465}{prov\+\_\+set\+\_\+region}} (const char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Handle PROV SET\+\_\+\+REGION \texorpdfstring{$<$}{<}EU\texorpdfstring{$\vert$}{|}\+US\texorpdfstring{$>$}{>} command. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{provisioning__commands_8c_a97bf2d4d55aef376104d20be24726f3f}{prov\+\_\+status}} (void)
+\begin{DoxyCompactList}\small\item\em Handle PROV STATUS command. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks09_ga20d378f18cee6529bae6a4ec665fe155}{cmd\+\_\+prov}} (const char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Main PROV command dispatcher and help provider. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/12-\/14
+\end{DoxyDate}
+Implementation of UART command handlers for device provisioning. Provides secure mechanism to set serial number and region on universal firmware.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{provisioning__commands_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{provisioning__commands_8c_a46eed4b719add3e40a70b68da90428be}\index{provisioning\_commands.c@{provisioning\_commands.c}!PROV\_TAG@{PROV\_TAG}}
+\index{PROV\_TAG@{PROV\_TAG}!provisioning\_commands.c@{provisioning\_commands.c}}
+\doxysubsubsection{\texorpdfstring{PROV\_TAG}{PROV\_TAG}}
+{\footnotesize\ttfamily \label{provisioning__commands_8c_a46eed4b719add3e40a70b68da90428be} 
+\#define PROV\+\_\+\+TAG~"{}\mbox{[}PROV\mbox{]}"{}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{provisioning__commands_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{provisioning__commands_8c_a52796a6a4ee60641c8620c6b2bf438bd}\index{provisioning\_commands.c@{provisioning\_commands.c}!next\_tok@{next\_tok}}
+\index{next\_tok@{next\_tok}!provisioning\_commands.c@{provisioning\_commands.c}}
+\doxysubsubsection{\texorpdfstring{next\_tok()}{next\_tok()}}
+{\footnotesize\ttfamily \label{provisioning__commands_8c_a52796a6a4ee60641c8620c6b2bf438bd} 
+char \texorpdfstring{$\ast$}{*} next\+\_\+tok (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{pptr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Extract next token (whitespace-\/delimited). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pptr} & Pointer to string pointer (advanced past token). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to token start, or NULL if none. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{provisioning__commands_8c_a52796a6a4ee60641c8620c6b2bf438bd_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{provisioning__commands_8c_a52796a6a4ee60641c8620c6b2bf438bd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{provisioning__commands_8c_a5dc50fd427bac0f08107dc3607255dd3}\index{provisioning\_commands.c@{provisioning\_commands.c}!prov\_lock@{prov\_lock}}
+\index{prov\_lock@{prov\_lock}!provisioning\_commands.c@{provisioning\_commands.c}}
+\doxysubsubsection{\texorpdfstring{prov\_lock()}{prov\_lock()}}
+{\footnotesize\ttfamily \label{provisioning__commands_8c_a5dc50fd427bac0f08107dc3607255dd3} 
+void prov\+\_\+lock (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handle PROV LOCK command. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=279pt]{provisioning__commands_8c_a5dc50fd427bac0f08107dc3607255dd3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{provisioning__commands_8c_a5dc50fd427bac0f08107dc3607255dd3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{provisioning__commands_8c_a5357e0fb4f9cba285912eeb0210df465}\index{provisioning\_commands.c@{provisioning\_commands.c}!prov\_set\_region@{prov\_set\_region}}
+\index{prov\_set\_region@{prov\_set\_region}!provisioning\_commands.c@{provisioning\_commands.c}}
+\doxysubsubsection{\texorpdfstring{prov\_set\_region()}{prov\_set\_region()}}
+{\footnotesize\ttfamily \label{provisioning__commands_8c_a5357e0fb4f9cba285912eeb0210df465} 
+void prov\+\_\+set\+\_\+region (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handle PROV SET\+\_\+\+REGION \texorpdfstring{$<$}{<}EU\texorpdfstring{$\vert$}{|}\+US\texorpdfstring{$>$}{>} command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Region string ("{}\+EU"{} or "{}\+US"{}). \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{provisioning__commands_8c_a5357e0fb4f9cba285912eeb0210df465_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{provisioning__commands_8c_a5357e0fb4f9cba285912eeb0210df465_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{provisioning__commands_8c_a4c16305d49fe29984f44a8fa139d3858}\index{provisioning\_commands.c@{provisioning\_commands.c}!prov\_set\_sn@{prov\_set\_sn}}
+\index{prov\_set\_sn@{prov\_set\_sn}!provisioning\_commands.c@{provisioning\_commands.c}}
+\doxysubsubsection{\texorpdfstring{prov\_set\_sn()}{prov\_set\_sn()}}
+{\footnotesize\ttfamily \label{provisioning__commands_8c_a4c16305d49fe29984f44a8fa139d3858} 
+void prov\+\_\+set\+\_\+sn (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handle PROV SET\+\_\+\+SN $<$serial$>$ command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Serial number string. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{provisioning__commands_8c_a4c16305d49fe29984f44a8fa139d3858_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{provisioning__commands_8c_a4c16305d49fe29984f44a8fa139d3858_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{provisioning__commands_8c_a97bf2d4d55aef376104d20be24726f3f}\index{provisioning\_commands.c@{provisioning\_commands.c}!prov\_status@{prov\_status}}
+\index{prov\_status@{prov\_status}!provisioning\_commands.c@{provisioning\_commands.c}}
+\doxysubsubsection{\texorpdfstring{prov\_status()}{prov\_status()}}
+{\footnotesize\ttfamily \label{provisioning__commands_8c_a97bf2d4d55aef376104d20be24726f3f} 
+void prov\+\_\+status (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handle PROV STATUS command. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{provisioning__commands_8c_a97bf2d4d55aef376104d20be24726f3f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{provisioning__commands_8c_a97bf2d4d55aef376104d20be24726f3f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{provisioning__commands_8c_a06cf1191f3362c994389d37206fc58ef}\index{provisioning\_commands.c@{provisioning\_commands.c}!prov\_unlock@{prov\_unlock}}
+\index{prov\_unlock@{prov\_unlock}!provisioning\_commands.c@{provisioning\_commands.c}}
+\doxysubsubsection{\texorpdfstring{prov\_unlock()}{prov\_unlock()}}
+{\footnotesize\ttfamily \label{provisioning__commands_8c_a06cf1191f3362c994389d37206fc58ef} 
+void prov\+\_\+unlock (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handle PROV UNLOCK $<$token$>$ command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Token string. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=300pt]{provisioning__commands_8c_a06cf1191f3362c994389d37206fc58ef_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{provisioning__commands_8c_a06cf1191f3362c994389d37206fc58ef_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{provisioning__commands_8c_aefcdc2446ee6295fa79a99db012a1c8c}\index{provisioning\_commands.c@{provisioning\_commands.c}!skip\_ws@{skip\_ws}}
+\index{skip\_ws@{skip\_ws}!provisioning\_commands.c@{provisioning\_commands.c}}
+\doxysubsubsection{\texorpdfstring{skip\_ws()}{skip\_ws()}}
+{\footnotesize\ttfamily \label{provisioning__commands_8c_aefcdc2446ee6295fa79a99db012a1c8c} 
+const char \texorpdfstring{$\ast$}{*} skip\+\_\+ws (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{s}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Skip leading whitespace. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Input string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to first non-\/whitespace character. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{provisioning__commands_8c_aefcdc2446ee6295fa79a99db012a1c8c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{provisioning__commands_8c_a0b35a835cd23f0d4f1564ab342db0109}\index{provisioning\_commands.c@{provisioning\_commands.c}!trim\_ws\_inplace@{trim\_ws\_inplace}}
+\index{trim\_ws\_inplace@{trim\_ws\_inplace}!provisioning\_commands.c@{provisioning\_commands.c}}
+\doxysubsubsection{\texorpdfstring{trim\_ws\_inplace()}{trim\_ws\_inplace()}}
+{\footnotesize\ttfamily \label{provisioning__commands_8c_a0b35a835cd23f0d4f1564ab342db0109} 
+char \texorpdfstring{$\ast$}{*} trim\+\_\+ws\+\_\+inplace (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{s}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Trim leading and trailing whitespace/control chars in-\/place. 
+
+UART/\+USB-\/\+CDC command lines typically end with "{}\textbackslash{}r\textbackslash{}n"{}. The Device\+Identity validation is intentionally strict and rejects whitespace/control chars. Therefore, provisioning subcommand arguments must be trimmed before use.
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Mutable string buffer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to trimmed string start (inside the same buffer). 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{provisioning__commands_8c_a0b35a835cd23f0d4f1564ab342db0109_icgraph}
+\end{center}
+\end{figure}

@@ -1,0 +1,5 @@
+<map id="i2c_bus_write_read" name="i2c_bus_write_read">
+<area shape="rect" id="Node000001" title="Atomically perform a write (no stop) followed immediately by a read. Ensures the repeated&#45;start seque..." alt="" coords="5,5,139,32"/>
+<area shape="rect" id="Node000002" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="187,5,366,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,16,171,16,171,21,139,21"/>
+</map>

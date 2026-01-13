@@ -1,0 +1,196 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/snmp/snmp\+\_\+outlet\+Ctrl.c File Reference}
+\hypertarget{snmp__outlet_ctrl_8c}{}\label{snmp__outlet_ctrl_8c}\index{src/Software/ENERGIS\_RTOS/src/snmp/snmp\_outletCtrl.c@{src/Software/ENERGIS\_RTOS/src/snmp/snmp\_outletCtrl.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for snmp\+\_\+outlet\+Ctrl.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp__outlet_ctrl_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{snmp__outlet_ctrl_8c_aae9111624ead3d3f32f8ec6f54c84363}{getter\+\_\+n}} (uint8\+\_\+t ch, void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em Generic SNMP getter for outlet state. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{snmp__outlet_ctrl_8c_a5259faefc9f865c528fc6cfe0ec51d1b}{setter\+\_\+n}} (uint8\+\_\+t ch, uint32\+\_\+t u32)
+\begin{DoxyCompactList}\small\item\em Generic SNMP setter for outlet state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp03_gade7df1ea335261e38c6b1c2a61ed2ded}{get\+\_\+outlet1\+\_\+\+State}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for outlet 1 state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp03_gabbff421a9229e31a0cb05761892eec6e}{get\+\_\+outlet2\+\_\+\+State}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for outlet 2 state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp03_gae617a671308e5f001c463b793cfe7a03}{get\+\_\+outlet3\+\_\+\+State}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for outlet 3 state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp03_gac540752940c1f251d408f0954c14364d}{get\+\_\+outlet4\+\_\+\+State}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for outlet 4 state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp03_ga03c6e3cdf72aa5de6d3b9c1fc220add0}{get\+\_\+outlet5\+\_\+\+State}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for outlet 5 state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp03_ga62abeab3df59bba29de074d147e280f2}{get\+\_\+outlet6\+\_\+\+State}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for outlet 6 state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp03_ga45aa10db7cd7f4c2a207b81312c7a95f}{get\+\_\+outlet7\+\_\+\+State}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for outlet 7 state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp03_ga219cf7f985467e92225ffcd452f81464}{get\+\_\+outlet8\+\_\+\+State}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for outlet 8 state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp03_gaeb1e1a68625f8f1e0c9e9d45078bab6e}{set\+\_\+outlet1\+\_\+\+State}} (int32\+\_\+t size, uint8\+\_\+t data\+Type, void \texorpdfstring{$\ast$}{*}val)
+\begin{DoxyCompactList}\small\item\em SNMP setter for outlet 1 state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp03_gab68ea66467ff1be94f6a0cfb6b4040b2}{set\+\_\+outlet2\+\_\+\+State}} (int32\+\_\+t size, uint8\+\_\+t data\+Type, void \texorpdfstring{$\ast$}{*}val)
+\begin{DoxyCompactList}\small\item\em SNMP setter for outlet 2 state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp03_gaf0dbea4fd6498a286326a20df003162e}{set\+\_\+outlet3\+\_\+\+State}} (int32\+\_\+t size, uint8\+\_\+t data\+Type, void \texorpdfstring{$\ast$}{*}val)
+\begin{DoxyCompactList}\small\item\em SNMP setter for outlet 3 state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp03_gac04e8be3eaf0fd8142b28611c8172c65}{set\+\_\+outlet4\+\_\+\+State}} (int32\+\_\+t size, uint8\+\_\+t data\+Type, void \texorpdfstring{$\ast$}{*}val)
+\begin{DoxyCompactList}\small\item\em SNMP setter for outlet 4 state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp03_gaedf4eb1f7b13dd73c2730fc6baefd662}{set\+\_\+outlet5\+\_\+\+State}} (int32\+\_\+t size, uint8\+\_\+t data\+Type, void \texorpdfstring{$\ast$}{*}val)
+\begin{DoxyCompactList}\small\item\em SNMP setter for outlet 5 state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp03_gab61435faf444645956dcf4fcee762806}{set\+\_\+outlet6\+\_\+\+State}} (int32\+\_\+t size, uint8\+\_\+t data\+Type, void \texorpdfstring{$\ast$}{*}val)
+\begin{DoxyCompactList}\small\item\em SNMP setter for outlet 6 state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp03_gaa8f38a83211851f4fdf276e6973f064f}{set\+\_\+outlet7\+\_\+\+State}} (int32\+\_\+t size, uint8\+\_\+t data\+Type, void \texorpdfstring{$\ast$}{*}val)
+\begin{DoxyCompactList}\small\item\em SNMP setter for outlet 7 state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp03_ga3e150d0e1496d5a202a5e8f2cc900bb0}{set\+\_\+outlet8\+\_\+\+State}} (int32\+\_\+t size, uint8\+\_\+t data\+Type, void \texorpdfstring{$\ast$}{*}val)
+\begin{DoxyCompactList}\small\item\em SNMP setter for outlet 8 state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp03_gaa63451c2565116c1d1770a7c6275bf84}{get\+\_\+all\+On\+\_\+\+State}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for All ON trigger state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp03_ga2f6d66138053f23ba063a2a22ffb91c6}{set\+\_\+all\+On\+\_\+\+State}} (int32\+\_\+t size, uint8\+\_\+t data\+Type, void \texorpdfstring{$\ast$}{*}val)
+\begin{DoxyCompactList}\small\item\em SNMP setter for All ON bulk operation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp03_ga951946657e89af7d58d15c82df49adf0}{get\+\_\+all\+Off\+\_\+\+State}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for All OFF trigger state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp03_gaa9d7ab1af4a671e1eb027aab9c6c467f}{set\+\_\+all\+Off\+\_\+\+State}} (int32\+\_\+t size, uint8\+\_\+t data\+Type, void \texorpdfstring{$\ast$}{*}val)
+\begin{DoxyCompactList}\small\item\em SNMP setter for All OFF bulk operation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+2.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/12-\/16
+\end{DoxyDate}
+Implementation of SNMP outlet control callbacks using the synchronous Switch\+Task API v2.\+0. Provides deterministic GET/\+SET operations with hardware verification.
+
+Design Principles\+:
+\begin{DoxyItemize}
+\item All operations are deterministic and synchronous
+\item GET operations read directly from hardware (no cache)
+\item SET operations block until hardware write is verified
+\item Detailed error codes enable accurate SNMP response
+\end{DoxyItemize}
+
+SNMP SET Flow\+:
+\begin{DoxyEnumerate}
+\item SET request arrives from SNMP agent
+\item \doxylink{snmp__outlet_ctrl_8c_a5259faefc9f865c528fc6cfe0ec51d1b}{setter\+\_\+n()} decodes and validates requested state
+\item \doxylink{group__tasks11_gaef7818ff67a4d2235b897909f9fe6744}{Switch\+\_\+\+Set\+Channel\+Compat()} called (blocking)
+\item Switch\+Task acquires mutex, executes I2C write
+\item Hardware read-\/back verifies the write (up to 500ms polling)
+\item Result returned and SNMP response sent with correct status
+\end{DoxyEnumerate}
+
+SNMP GET Flow\+:
+\begin{DoxyEnumerate}
+\item GET request arrives from SNMP agent
+\item \doxylink{snmp__outlet_ctrl_8c_aae9111624ead3d3f32f8ec6f54c84363}{getter\+\_\+n()} calls \doxylink{group__tasks11_ga19c6dbf15503e4ca3c985e5acd42c278}{Switch\+\_\+\+Get\+State\+Compat()} (blocking)
+\item Hardware read executed with mutex protection
+\item Actual hardware state returned as 4-\/byte INTEGER
+\item SNMP response sent with current value
+\end{DoxyEnumerate}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-func-members}
+\Hypertarget{snmp__outlet_ctrl_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{snmp__outlet_ctrl_8c_aae9111624ead3d3f32f8ec6f54c84363}\index{snmp\_outletCtrl.c@{snmp\_outletCtrl.c}!getter\_n@{getter\_n}}
+\index{getter\_n@{getter\_n}!snmp\_outletCtrl.c@{snmp\_outletCtrl.c}}
+\doxysubsubsection{\texorpdfstring{getter\_n()}{getter\_n()}}
+{\footnotesize\ttfamily \label{snmp__outlet_ctrl_8c_aae9111624ead3d3f32f8ec6f54c84363} 
+void getter\+\_\+n (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Generic SNMP getter for outlet state. 
+
+Reads the current state of a specified outlet from hardware and encodes the result as a 4-\/byte little-\/endian INTEGER (0=OFF, 1=ON). Uses synchronous Switch\+Task API with mutex protection.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ch} & 1-\/based channel index from SNMP OID (1..8) \\
+\hline
+{\em buf} & Output buffer; minimum 4 bytes required \\
+\hline
+{\em len} & Pointer to receive length; always set to 4\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Returns 0 if channel out of range or hardware read fails. 
+
+Blocks briefly during hardware I2C read operation. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp__outlet_ctrl_8c_aae9111624ead3d3f32f8ec6f54c84363_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=260pt]{snmp__outlet_ctrl_8c_aae9111624ead3d3f32f8ec6f54c84363_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snmp__outlet_ctrl_8c_a5259faefc9f865c528fc6cfe0ec51d1b}\index{snmp\_outletCtrl.c@{snmp\_outletCtrl.c}!setter\_n@{setter\_n}}
+\index{setter\_n@{setter\_n}!snmp\_outletCtrl.c@{snmp\_outletCtrl.c}}
+\doxysubsubsection{\texorpdfstring{setter\_n()}{setter\_n()}}
+{\footnotesize\ttfamily \label{snmp__outlet_ctrl_8c_a5259faefc9f865c528fc6cfe0ec51d1b} 
+void setter\+\_\+n (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch}{, }\item[{uint32\+\_\+t}]{u32}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Generic SNMP setter for outlet state. 
+
+Sets the desired state of a specified outlet via synchronous Switch\+Task API. Implements strict "{}write-\/then-\/verify"{} semantics with active hardware polling.
+
+Operation sequence\+:
+\begin{DoxyEnumerate}
+\item Decode and validate requested state (0=OFF, non-\/zero=ON)
+\item Validate channel range (1..8)
+\item Execute synchronous switch via \doxylink{group__tasks11_gaef7818ff67a4d2235b897909f9fe6744}{Switch\+\_\+\+Set\+Channel\+Compat()} (blocking)
+\item Switch\+Task polls MCP23017 relay GPIO up to 500ms until state matches
+\item Log error if channel invalid, switch fails, or timeout/mismatch occurs
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}{Parameters}
+{\em ch} & 1-\/based channel index from SNMP OID (1..8) \\
+\hline
+{\em u32} & Desired state (0=OFF, non-\/zero=ON)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Blocking operation with up to 500ms hardware verification. 
+
+Logs structured error codes for diagnostics. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp__outlet_ctrl_8c_a5259faefc9f865c528fc6cfe0ec51d1b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=260pt]{snmp__outlet_ctrl_8c_a5259faefc9f865c528fc6cfe0ec51d1b_icgraph}
+\end{center}
+\end{figure}

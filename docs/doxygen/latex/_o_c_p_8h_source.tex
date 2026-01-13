@@ -1,0 +1,61 @@
+\doxysection{OCP.\+h}
+\hypertarget{_o_c_p_8h_source}{}\label{_o_c_p_8h_source}\index{src/Software/ENERGIS\_RTOS/src/tasks/OCP.h@{src/Software/ENERGIS\_RTOS/src/tasks/OCP.h}}
+\mbox{\hyperlink{_o_c_p_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#ifndef\ OVERCURRENT\_H}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ OVERCURRENT\_H}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_o_n_f_i_g_8h}{../CONFIG.h}}"{}}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{comment}{/*\ ====================\ Overcurrent\ State\ Enumeration\ ====================\ */}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{group__tasks08_gga5fece384d5a09708e5d58632d565f1eda04b503ade97db147ebde7367339b8079}{OC\_STATE\_NORMAL}}\ =\ 0,\ }
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{group__tasks08_gga5fece384d5a09708e5d58632d565f1edad71568499048d4fcc9154061c05048db}{OC\_STATE\_WARNING}},\ \ \ \ }
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{group__tasks08_gga5fece384d5a09708e5d58632d565f1eda0aa318f855c67136cdaf8de3c44da5cd}{OC\_STATE\_CRITICAL}},\ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{group__tasks08_gga5fece384d5a09708e5d58632d565f1eda4e7efb0775a0eb8c255a5c39450ea6fc}{OC\_STATE\_LOCKOUT}}\ \ \ \ \ }
+\DoxyCodeLine{00053\ \}\ \mbox{\hyperlink{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}{overcurrent\_state\_t}};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{comment}{/*\ ====================\ Overcurrent\ Status\ Structure\ ====================\ */}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}{overcurrent\_state\_t}}\ \mbox{\hyperlink{structovercurrent__status__t_a8bb90b786df948ca0eef8904aea0ff24}{state}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structovercurrent__status__t_a03fedd96755db2de562bf443e2962e70}{total\_current\_a}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structovercurrent__status__t_a7ba74c18764a17439f5de9b96d9dfa71}{limit\_a}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structovercurrent__status__t_a6ff192627045f06647152322f2a55c52}{warning\_threshold\_a}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structovercurrent__status__t_ab393c744a55110d119d59f04bd4548d0}{critical\_threshold\_a}};\ \ \ \ \ \ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structovercurrent__status__t_a04b4726ace68f6715f32c0df8ca53984}{recovery\_threshold\_a}};\ \ \ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structovercurrent__status__t_a30f7251df34c379d1707413a45062fbb}{last\_tripped\_channel}};\ \ \ \ }
+\DoxyCodeLine{00070\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structovercurrent__status__t_a2826ad1a457bd2c0518ff1063f31b236}{trip\_count}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00071\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structovercurrent__status__t_a52f500fa88e427140926781cff09e600}{last\_trip\_timestamp\_ms}};\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structovercurrent__status__t_a7549f181161076c1637839725cef64fa}{switching\_allowed}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00073\ \}\ \mbox{\hyperlink{structovercurrent__status__t}{overcurrent\_status\_t}};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{comment}{/*\ ====================\ Public\ API\ ====================\ */}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00093\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__tasks08_gabaeebc1f043da757f96bac70bb8ac8ba}{Overcurrent\_Init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00111\ \mbox{\hyperlink{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}{overcurrent\_state\_t}}\ \mbox{\hyperlink{group__tasks08_gabb9789239f4931927587b1b236b1e315}{Overcurrent\_Update}}(\textcolor{keywordtype}{float}\ total\_current\_a);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00125\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks08_ga4bf47606df6e10c610300fdf1a2573b5}{Overcurrent\_IsSwitchingAllowed}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00140\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks08_ga49359b42016742671b8c5ff517c8687c}{Overcurrent\_CanTurnOn}}(uint8\_t\ channel);}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00154\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__tasks08_ga05298731bbc499e043d911ec1ca59879}{Overcurrent\_RecordChannelOn}}(uint8\_t\ channel);}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00169\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks08_gaa9aab2a7bfb3274872c5f4f162af177e}{Overcurrent\_GetStatus}}(\mbox{\hyperlink{structovercurrent__status__t}{overcurrent\_status\_t}}\ *status);}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00179\ \mbox{\hyperlink{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}{overcurrent\_state\_t}}\ \mbox{\hyperlink{group__tasks08_ga01d97571c761ab643753f677d3088684}{Overcurrent\_GetState}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00189\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{group__tasks08_ga1fdf004c7e21b587d490854fcc9505ff}{Overcurrent\_GetLimit}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00204\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks08_gadc9a057a3aef40a2ec56e65c2e55daab}{Overcurrent\_ClearLockout}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ OVERCURRENT\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00209\ }
+
+\end{DoxyCode}

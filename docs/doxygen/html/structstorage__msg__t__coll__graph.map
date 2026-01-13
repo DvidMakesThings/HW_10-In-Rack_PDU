@@ -1,0 +1,9 @@
+<map id="storage_msg_t" name="storage_msg_t">
+<area shape="rect" id="Node000001" title="Storage request message (posted to q_cfg)" alt="" coords="111,104,218,131"/>
+<area shape="rect" id="Node000002" href="$structnetwork_info.html" title="Network configuration data structure for EEPROM storage." alt="" coords="5,5,95,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="71,42,107,78,142,101,139,106,104,82,67,46"/>
+<area shape="rect" id="Node000003" href="$structuser_pref_info.html" title="User preferences data structure for device identification and display settings." alt="" coords="118,5,211,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="167,48,167,104,162,104,162,48"/>
+<area shape="rect" id="Node000004" href="$structhlw__calib__t.html" title="Per&#45;channel calibration parameters for HLW8032 power meter IC." alt="" coords="235,5,321,32"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="268,47,256,65,241,82,222,96,202,106,199,101,219,91,238,78,252,62,263,44"/>
+</map>

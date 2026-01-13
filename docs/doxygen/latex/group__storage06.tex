@@ -1,0 +1,343 @@
+\doxysubsubsection{
+\begin{DoxyEnumerate}
+\item Factory Defaults 
+\end{DoxyEnumerate}}
+\hypertarget{group__storage06}{}\label{group__storage06}\index{6. Factory Defaults@{6. Factory Defaults}}
+
+
+Factory defaults write/verify and first-\/boot detection.  
+
+
+Collaboration diagram for 6. Factory Defaults\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{group__storage06}
+\end{center}
+\end{figure}
+\doxysubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{group__storage06_gaf16478f016f685e6139892aed390ac3e}{check\+\_\+factory\+\_\+defaults}} (void)
+\begin{DoxyCompactList}\small\item\em Check if factory defaults need to be written (first boot detection). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage06_ga6dadd32bf70e8ea2569da7d4bbb02e0a}{EEPROM\+\_\+\+Write\+Factory\+Defaults}} (void)
+\begin{DoxyCompactList}\small\item\em Write factory defaults to all EEPROM sections. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage06_ga997f3d6e141a711fa6f969fc16edc7ce}{EEPROM\+\_\+\+Read\+Factory\+Defaults}} (void)
+\begin{DoxyCompactList}\small\item\em Perform basic read-\/back validation after factory defaulting. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+Factory defaults write/verify and first-\/boot detection. 
+
+\begin{DoxyVersion}{Version}
+2.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/12-\/14
+\end{DoxyDate}
+This module handles first-\/boot detection and initialization of all EEPROM configuration sections with factory default values. It ensures that a newly flashed device or one with erased EEPROM boots successfully with valid configuration data.
+
+Key Features\+:
+\begin{DoxyItemize}
+\item First-\/boot detection via magic value verification
+\item Complete EEPROM initialization with default configuration
+\item Post-\/write validation to verify data integrity
+\item Deferred provisioning for device-\/specific identity parameters
+\end{DoxyItemize}
+
+First-\/\+Boot Detection\+:
+\begin{DoxyItemize}
+\item Reads magic value from EEPROM\+\_\+\+MAGIC\+\_\+\+ADDR
+\item Magic value EEPROM\+\_\+\+MAGIC\+\_\+\+VAL indicates initialized EEPROM
+\item Missing or mismatched magic triggers factory default write
+\item Magic written only after successful initialization
+\item Prevents repeated initialization on subsequent boots
+\end{DoxyItemize}
+
+Configuration Sections Written\+:
+\begin{DoxyEnumerate}
+\item System Info\+: Firmware version string (SWVERSION)
+\item Relay Status\+: All channels OFF (safe default state)
+\item Network Config\+: Default IP/gateway/\+DNS with derived MAC address
+\item Sensor Calibration\+: Default HLW8032 voltage/current factors per channel
+\item Temperature Calibration\+: Default 1-\/point calibration (0.\+706V@27°C, 0.\+001721V/°C)
+\item Energy Monitoring\+: Placeholder zeros (no historical data)
+\item Event Logs\+: Placeholder zeros (no historical events)
+\item User Preferences\+: Default device name and location with CRC
+\end{DoxyEnumerate}
+
+Device Identity Management\+:
+\begin{DoxyItemize}
+\item Serial number and region NOT written by factory defaults
+\item \doxylink{group__storage03_ga8a44399536e0b86e0b543df9f1962c17}{Device\+Identity\+\_\+\+Init()} called to load existing provisioning if present
+\item Unprovisioned devices use placeholder "{}\+UNPROVISIONED"{} serial
+\item MAC address derived from current serial (placeholder or provisioned)
+\item After UART provisioning, MAC automatically updated on next boot
+\end{DoxyItemize}
+
+Calibration Initialization\+:
+\begin{DoxyItemize}
+\item HLW8032 per-\/channel\+: Default voltage/current factors, zero offsets
+\item Calibration flags set to 0x\+FF (not calibrated)
+\item Temperature\+: Default 1-\/point linear model (RP2040 internal sensor)
+\item Actual calibration performed later via UART commands
+\end{DoxyItemize}
+
+Thread Safety\+:
+\begin{DoxyItemize}
+\item \doxylink{group__storage06_ga6dadd32bf70e8ea2569da7d4bbb02e0a}{EEPROM\+\_\+\+Write\+Factory\+Defaults()} requires eeprom\+Mtx held by caller
+\item \doxylink{group__storage06_gaf16478f016f685e6139892aed390ac3e}{check\+\_\+factory\+\_\+defaults()} manages mutex internally for read/write
+\item Single-\/threaded initialization during Init\+Task prevents races
+\end{DoxyItemize}
+
+Boot Sequence Integration\+:
+\begin{DoxyItemize}
+\item Called early in Init\+Task before other subsystems initialize
+\item Ensures valid configuration exists before Net\+Task/\+Meter\+Task start
+\item Device\+Identity loaded before network MAC generation
+\item Validation performed before transitioning to normal operation
+\end{DoxyItemize}
+
+Version History\+:
+\begin{DoxyItemize}
+\item v1.\+x\+: Wrote compile-\/time SERIAL\+\_\+\+NUMBER macro to device identity
+\item v2.\+0\+: Serial number deferred to UART provisioning commands
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Device identity (serial/region) requires UART provisioning after first boot. 
+
+Factory defaults safe for immediate power-\/on but not fully functional. 
+
+Magic value write is atomic checkpoint -\/ failure leaves EEPROM incomplete.
+\end{DoxyNote}
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-func-members}
+\Hypertarget{group__storage06_doc-func-members}
+\doxysubsubsubsection{Function Documentation}
+\Hypertarget{group__storage06_gaf16478f016f685e6139892aed390ac3e}\index{6. Factory Defaults@{6. Factory Defaults}!check\_factory\_defaults@{check\_factory\_defaults}}
+\index{check\_factory\_defaults@{check\_factory\_defaults}!6. Factory Defaults@{6. Factory Defaults}}
+\doxysubsubsubsubsection{\texorpdfstring{check\_factory\_defaults()}{check\_factory\_defaults()}}
+{\footnotesize\ttfamily \label{group__storage06_gaf16478f016f685e6139892aed390ac3e} 
+bool check\+\_\+factory\+\_\+defaults (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Check if factory defaults need to be written (first boot detection). 
+
+Performs first-\/boot detection by reading the magic value from EEPROM\+\_\+\+MAGIC\+\_\+\+ADDR. If the magic value does not match EEPROM\+\_\+\+MAGIC\+\_\+\+VAL, this is the first boot and complete factory default configuration is written to all EEPROM sections. Also initializes the Device\+Identity module to load any existing provisioning data.
+
+Initialization Sequence\+:
+\begin{DoxyEnumerate}
+\item Call \doxylink{group__storage03_ga8a44399536e0b86e0b543df9f1962c17}{Device\+Identity\+\_\+\+Init()} to load serial/region if present
+\item Read magic value with mutex protection
+\item If magic mismatch (first boot)\+: a. Write all factory default sections with mutex held b. Write temperature calibration defaults c. Write per-\/channel HLW8032 calibration defaults d. Write magic value to mark initialization complete
+\item If magic matches, EEPROM already initialized
+\end{DoxyEnumerate}
+
+Factory Default Sections\+:
+\begin{DoxyItemize}
+\item System info (firmware version)
+\item Relay status (all OFF)
+\item Network config (default IP with MAC derived from serial)
+\item Sensor calibration (default factors for all 8 channels)
+\item Temperature calibration (1-\/point linear model)
+\item Energy monitoring (placeholder zeros)
+\item Event logs (placeholder zeros)
+\item User preferences (default name/location)
+\end{DoxyItemize}
+
+MAC Address Handling\+:
+\begin{DoxyItemize}
+\item MAC derived from Device\+Identity (placeholder or provisioned serial)
+\item Unprovisioned devices get MAC from "{}\+UNPROVISIONED"{} placeholder
+\item After UART provisioning, MAC regenerated from new serial on next boot
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+true if defaults were successfully written OR already present. 
+
+false if factory default write operation failed.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Manages eeprom\+Mtx internally for thread-\/safe EEPROM access. 
+
+Called during Init\+Task before other subsystems start. 
+
+Magic value written last as atomic checkpoint of successful init. 
+
+Failure leaves EEPROM in incomplete state requiring reflash.
+\end{DoxyNote}
+See \doxylink{factory__defaults_8h}{factory\+\_\+defaults.\+h} for full API documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage06_gaf16478f016f685e6139892aed390ac3e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage06_gaf16478f016f685e6139892aed390ac3e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage06_ga997f3d6e141a711fa6f969fc16edc7ce}\index{6. Factory Defaults@{6. Factory Defaults}!EEPROM\_ReadFactoryDefaults@{EEPROM\_ReadFactoryDefaults}}
+\index{EEPROM\_ReadFactoryDefaults@{EEPROM\_ReadFactoryDefaults}!6. Factory Defaults@{6. Factory Defaults}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_ReadFactoryDefaults()}{EEPROM\_ReadFactoryDefaults()}}
+{\footnotesize\ttfamily \label{group__storage06_ga997f3d6e141a711fa6f969fc16edc7ce} 
+int EEPROM\+\_\+\+Read\+Factory\+Defaults (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Perform basic read-\/back validation after factory defaulting. 
+
+Validates that factory defaults were written correctly to EEPROM by reading back and checking critical configuration sections. Detects write failures, corruption, or incomplete initialization. Does not modify EEPROM; read-\/only verification.
+
+Validation Checks\+:
+\begin{DoxyEnumerate}
+\item Firmware Version\+:
+\begin{DoxyItemize}
+\item Read from EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+START
+\item Compare with compile-\/time SWVERSION string
+\item Mismatch logged as ERR\+\_\+\+SEV\+\_\+\+WARNING
+\end{DoxyItemize}
+\item Device Identity\+:
+\begin{DoxyItemize}
+\item Call \doxylink{group__storage03_ga6a8334a56f37167d1e857260bb262902}{Device\+Identity\+\_\+\+Is\+Valid()} to check provisioning state
+\item Informational message if not provisioned (expected after factory init)
+\item No error raised since provisioning is deferred to UART commands
+\end{DoxyItemize}
+\item Network Configuration\+:
+\begin{DoxyItemize}
+\item Read via \doxylink{group__storage07_gaef5b120a12ff3e275706067ea3cf7e46}{EEPROM\+\_\+\+Read\+User\+Network\+With\+Checksum()}
+\item Verify CRC-\/8 checksum matches stored value
+\item CRC mismatch logged as ERR\+\_\+\+SEV\+\_\+\+WARNING
+\end{DoxyItemize}
+\item Sensor Calibration\+:
+\begin{DoxyItemize}
+\item Read calibration data structure from EEPROM
+\item Verify read operation succeeds
+\item Read failure logged as ERR\+\_\+\+SEV\+\_\+\+WARNING
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+Error Reporting\+:
+\begin{DoxyItemize}
+\item All validation failures logged with unique error codes
+\item Error codes enqueued to event log if ERRORLOGGER enabled
+\item Function completes all checks even if some fail
+\item Always returns 0 (informational validation)
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+0 always (validation results logged, not returned).
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Does not write to EEPROM; read-\/only verification. 
+
+Called immediately after \doxylink{group__storage06_ga6dadd32bf70e8ea2569da7d4bbb02e0a}{EEPROM\+\_\+\+Write\+Factory\+Defaults()} by \doxylink{group__storage06_gaf16478f016f685e6139892aed390ac3e}{check\+\_\+factory\+\_\+defaults()}. 
+
+Device identity not provisioned is expected and not treated as error. 
+
+Validation warnings indicate potential EEPROM write issues.
+\end{DoxyNote}
+See \doxylink{factory__defaults_8h}{factory\+\_\+defaults.\+h} for full API documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage06_ga997f3d6e141a711fa6f969fc16edc7ce_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage06_ga6dadd32bf70e8ea2569da7d4bbb02e0a}\index{6. Factory Defaults@{6. Factory Defaults}!EEPROM\_WriteFactoryDefaults@{EEPROM\_WriteFactoryDefaults}}
+\index{EEPROM\_WriteFactoryDefaults@{EEPROM\_WriteFactoryDefaults}!6. Factory Defaults@{6. Factory Defaults}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_WriteFactoryDefaults()}{EEPROM\_WriteFactoryDefaults()}}
+{\footnotesize\ttfamily \label{group__storage06_ga6dadd32bf70e8ea2569da7d4bbb02e0a} 
+int EEPROM\+\_\+\+Write\+Factory\+Defaults (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Write factory defaults to all EEPROM sections. 
+
+Writes default configuration values to all EEPROM sections in sequence. Does NOT write device identity (serial number, region) which must be provisioned separately via UART commands. Uses mutex protection provided by caller to ensure atomic writes.
+
+Configuration Sections Written\+:
+\begin{DoxyEnumerate}
+\item System Info (EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+START)\+:
+\begin{DoxyItemize}
+\item Firmware version string (SWVERSION)
+\item Serial number NOT written (provisioned separately)
+\end{DoxyItemize}
+\item Relay Status (via EEPROM\+\_\+\+Write\+User\+Output)\+:
+\begin{DoxyItemize}
+\item All 8 channels set to OFF (safe default)
+\item Prevents unexpected power-\/on of connected equipment
+\end{DoxyItemize}
+\item Network Configuration (via EEPROM\+\_\+\+Write\+User\+Network\+With\+Checksum)\+:
+\begin{DoxyItemize}
+\item Default IP address, subnet, gateway, DNS from DEFAULT\+\_\+\+NETWORK
+\item MAC address derived from Device\+Identity (placeholder or provisioned)
+\item CRC-\/8 checksum calculated and stored for validation
+\end{DoxyItemize}
+\item Sensor Calibration (via EEPROM\+\_\+\+Write\+Sensor\+Calibration)\+:
+\begin{DoxyItemize}
+\item Default voltage factor (HLW8032\+\_\+\+VF) for all 8 channels
+\item Default current factor (HLW8032\+\_\+\+CF) for all 8 channels
+\item Default resistor divider values (R1=1880kΩ, R2=1kΩ)
+\item Default shunt resistance (0.\+001Ω)
+\item Zero offsets (0.\+0V, 0.\+0A)
+\item Calibration flags set to 0x\+FF (not calibrated)
+\end{DoxyItemize}
+\item Energy Monitoring (via EEPROM\+\_\+\+Write\+Energy\+Monitoring)\+:
+\begin{DoxyItemize}
+\item Placeholder zeros (no historical energy data)
+\end{DoxyItemize}
+\item Event Logs (via EEPROM\+\_\+\+Write\+Event\+Logs)\+:
+\begin{DoxyItemize}
+\item Placeholder zeros (no historical events)
+\end{DoxyItemize}
+\item User Preferences (via EEPROM\+\_\+\+Write\+Default\+Name\+Location)\+:
+\begin{DoxyItemize}
+\item Default device name and location strings
+\item CRC-\/8 checksum for validation
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+Error Handling\+:
+\begin{DoxyItemize}
+\item Each write operation returns status code
+\item Status codes ORed together to detect any failures
+\item Failed writes logged via ERROR\+\_\+\+PRINT\+\_\+\+CODE
+\item Error codes enqueued to event log if enabled
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+0 if all sections written successfully. 
+
+-\/1 if any section write failed (bitwise OR of all failures).
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+
+Does NOT write magic value; caller responsible for checkpoint. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Device identity (serial/region) requires UART provisioning after init. 
+
+All channels default to OFF for safety.
+\end{DoxyNote}
+See \doxylink{factory__defaults_8h}{factory\+\_\+defaults.\+h} for full API documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage06_ga6dadd32bf70e8ea2569da7d4bbb02e0a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage06_ga6dadd32bf70e8ea2569da7d4bbb02e0a_icgraph}
+\end{center}
+\end{figure}

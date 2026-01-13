@@ -1,0 +1,73 @@
+\doxysection{helpers\+\_\+boot\+\_\+snapshot\+\_\+t Struct Reference}
+\hypertarget{structhelpers__boot__snapshot__t}{}\label{structhelpers__boot__snapshot__t}\index{helpers\_boot\_snapshot\_t@{helpers\_boot\_snapshot\_t}}
+
+
+Retained early-\/boot snapshot persisted in noinit RAM.  
+
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structhelpers__boot__snapshot__t_afbfb1515ec1ffcc4f46136e3df920858}{magic}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structhelpers__boot__snapshot__t_a04414a5fa2cc4dd1e7d18cc98841c546}{version}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structhelpers__boot__snapshot__t_a341311038630c5eb871fe42597ba4977}{reserved}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structhelpers__boot__snapshot__t_a94211df5b3802cec1daaf914c2b4173f}{boots}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structhelpers__boot__snapshot__t_a55416d560fb1f3a131067fab34500917}{reset\+\_\+raw\+\_\+bits}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structhelpers__boot__snapshot__t_af9037abd9647f4b93da58bb9b155f958}{wd\+\_\+scratch}} \mbox{[}8\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Retained early-\/boot snapshot persisted in noinit RAM. 
+
+The structure is intentionally simple and self-\/contained so it can be written before any subsystem is up. It captures information that is useful to diagnose watchdog bites and reset causes without relying on the logger at that time. 
+
+\label{doc-variable-members}
+\Hypertarget{structhelpers__boot__snapshot__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structhelpers__boot__snapshot__t_a94211df5b3802cec1daaf914c2b4173f}\index{helpers\_boot\_snapshot\_t@{helpers\_boot\_snapshot\_t}!boots@{boots}}
+\index{boots@{boots}!helpers\_boot\_snapshot\_t@{helpers\_boot\_snapshot\_t}}
+\doxysubsubsection{\texorpdfstring{boots}{boots}}
+{\footnotesize\ttfamily \label{structhelpers__boot__snapshot__t_a94211df5b3802cec1daaf914c2b4173f} 
+uint32\+\_\+t helpers\+\_\+boot\+\_\+snapshot\+\_\+t\+::boots}
+
+Monotonic boot counter since first initialization. \Hypertarget{structhelpers__boot__snapshot__t_afbfb1515ec1ffcc4f46136e3df920858}\index{helpers\_boot\_snapshot\_t@{helpers\_boot\_snapshot\_t}!magic@{magic}}
+\index{magic@{magic}!helpers\_boot\_snapshot\_t@{helpers\_boot\_snapshot\_t}}
+\doxysubsubsection{\texorpdfstring{magic}{magic}}
+{\footnotesize\ttfamily \label{structhelpers__boot__snapshot__t_afbfb1515ec1ffcc4f46136e3df920858} 
+uint32\+\_\+t helpers\+\_\+boot\+\_\+snapshot\+\_\+t\+::magic}
+
+Magic tag set to HELPERS\+\_\+\+SNAPSHOT\+\_\+\+MAGIC when valid. \Hypertarget{structhelpers__boot__snapshot__t_a341311038630c5eb871fe42597ba4977}\index{helpers\_boot\_snapshot\_t@{helpers\_boot\_snapshot\_t}!reserved@{reserved}}
+\index{reserved@{reserved}!helpers\_boot\_snapshot\_t@{helpers\_boot\_snapshot\_t}}
+\doxysubsubsection{\texorpdfstring{reserved}{reserved}}
+{\footnotesize\ttfamily \label{structhelpers__boot__snapshot__t_a341311038630c5eb871fe42597ba4977} 
+uint16\+\_\+t helpers\+\_\+boot\+\_\+snapshot\+\_\+t\+::reserved}
+
+Reserved for alignment and future use. \Hypertarget{structhelpers__boot__snapshot__t_a55416d560fb1f3a131067fab34500917}\index{helpers\_boot\_snapshot\_t@{helpers\_boot\_snapshot\_t}!reset\_raw\_bits@{reset\_raw\_bits}}
+\index{reset\_raw\_bits@{reset\_raw\_bits}!helpers\_boot\_snapshot\_t@{helpers\_boot\_snapshot\_t}}
+\doxysubsubsection{\texorpdfstring{reset\_raw\_bits}{reset\_raw\_bits}}
+{\footnotesize\ttfamily \label{structhelpers__boot__snapshot__t_a55416d560fb1f3a131067fab34500917} 
+uint32\+\_\+t helpers\+\_\+boot\+\_\+snapshot\+\_\+t\+::reset\+\_\+raw\+\_\+bits}
+
+Platform specific raw reset reason bits at entry. \Hypertarget{structhelpers__boot__snapshot__t_a04414a5fa2cc4dd1e7d18cc98841c546}\index{helpers\_boot\_snapshot\_t@{helpers\_boot\_snapshot\_t}!version@{version}}
+\index{version@{version}!helpers\_boot\_snapshot\_t@{helpers\_boot\_snapshot\_t}}
+\doxysubsubsection{\texorpdfstring{version}{version}}
+{\footnotesize\ttfamily \label{structhelpers__boot__snapshot__t_a04414a5fa2cc4dd1e7d18cc98841c546} 
+uint16\+\_\+t helpers\+\_\+boot\+\_\+snapshot\+\_\+t\+::version}
+
+Structure version set to HELPERS\+\_\+\+SNAPSHOT\+\_\+\+VERSION. \Hypertarget{structhelpers__boot__snapshot__t_af9037abd9647f4b93da58bb9b155f958}\index{helpers\_boot\_snapshot\_t@{helpers\_boot\_snapshot\_t}!wd\_scratch@{wd\_scratch}}
+\index{wd\_scratch@{wd\_scratch}!helpers\_boot\_snapshot\_t@{helpers\_boot\_snapshot\_t}}
+\doxysubsubsection{\texorpdfstring{wd\_scratch}{wd\_scratch}}
+{\footnotesize\ttfamily \label{structhelpers__boot__snapshot__t_af9037abd9647f4b93da58bb9b155f958} 
+uint32\+\_\+t helpers\+\_\+boot\+\_\+snapshot\+\_\+t\+::wd\+\_\+scratch\mbox{[}8\mbox{]}}
+
+Copy of watchdog scratch\mbox{[}0..7\mbox{]} at entry. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/misc/\mbox{\hyperlink{helpers_8c}{helpers.\+c}}\end{DoxyCompactItemize}

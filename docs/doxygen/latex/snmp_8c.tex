@@ -1,0 +1,451 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/drivers/snmp.c File Reference}
+\hypertarget{snmp_8c}{}\label{snmp_8c}\index{src/Software/ENERGIS\_RTOS/src/drivers/snmp.c@{src/Software/ENERGIS\_RTOS/src/drivers/snmp.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for snmp.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{snmp_8c_a43562a7f535af18a0c5105b730b34788}{SNMP\+\_\+\+TAG}}~"{}\mbox{[}SNMPDRV\mbox{]}"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int32\+\_\+t \mbox{\hyperlink{snmp_8c_aa4a7ad42d69ddc84979da555ceafd1ba}{find\+Entry}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}oid, int32\+\_\+t len)
+\item 
+static int32\+\_\+t \mbox{\hyperlink{snmp_8c_afb834cf08b1dc009024fd323d0f76618}{get\+OID}} (int32\+\_\+t id, uint8\+\_\+t \texorpdfstring{$\ast$}{*}oid, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+static int32\+\_\+t \mbox{\hyperlink{snmp_8c_a2377de9a3820124d9c7b67925288496e}{get\+Value}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}vptr, int32\+\_\+t vlen)
+\item 
+static int32\+\_\+t \mbox{\hyperlink{snmp_8c_a98e48ce6dca59478794c8bce28d0efcf}{get\+Entry}} (int32\+\_\+t id, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data\+Type, void \texorpdfstring{$\ast$}{*}ptr, int32\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+static int32\+\_\+t \mbox{\hyperlink{snmp_8c_a986ed61ecbb07a88cb6ff6595da32e59}{set\+Entry}} (int32\+\_\+t id, const void \texorpdfstring{$\ast$}{*}val, int32\+\_\+t vlen, uint8\+\_\+t data\+Type, int32\+\_\+t index)
+\item 
+static int32\+\_\+t \mbox{\hyperlink{snmp_8c_ab754dedb8ad71242d39aa41efe1787fa}{parse\+SNMPMessage}} (void)
+\item 
+static int32\+\_\+t \mbox{\hyperlink{snmp_8c_a97c249c5f001d3789e07b8d6af7bae09}{parse\+Version}} (void)
+\item 
+static int32\+\_\+t \mbox{\hyperlink{snmp_8c_afdb4fc7e8938913ef014d06aeed43ffa}{parse\+Community}} (void)
+\item 
+static int32\+\_\+t \mbox{\hyperlink{snmp_8c_ab0c13136abdc439b0bc176cb98df70f2}{parse\+Request}} (void)
+\item 
+static int32\+\_\+t \mbox{\hyperlink{snmp_8c_a35c562232bf5c7d54579c83920b12b76}{parse\+Sequence\+Of}} (int32\+\_\+t req\+Type)
+\item 
+static int32\+\_\+t \mbox{\hyperlink{snmp_8c_afb39017f4741a315af2b17fb40100546}{parse\+Sequence}} (int32\+\_\+t req\+Type, int32\+\_\+t index)
+\item 
+static int32\+\_\+t \mbox{\hyperlink{snmp_8c_a1aa171236d9aa7f23701802d32ef8685}{parse\+Var\+Bind}} (int32\+\_\+t req\+Type, int32\+\_\+t index)
+\item 
+static int32\+\_\+t \mbox{\hyperlink{snmp_8c_a7d85f599f8a1f5861cc7ed6053358453}{parse\+Length}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}msg, int32\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+static int32\+\_\+t \mbox{\hyperlink{snmp_8c_a7d0c60ba400627a704c52ffb5a4f0b92}{parse\+TLV}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}msg, int32\+\_\+t index, \mbox{\hyperlink{structsnmp__tlv__t}{snmp\+\_\+tlv\+\_\+t}} \texorpdfstring{$\ast$}{*}tlv)
+\item 
+static void \mbox{\hyperlink{snmp_8c_aca188474e2e7f8667ccca7c1190f4971}{insert\+Resp\+Len}} (int32\+\_\+t req\+Start, int32\+\_\+t resp\+Start, int32\+\_\+t size)
+\item 
+static void \mbox{\hyperlink{snmp_8c_a2860b50fc2780ee952f5e94dd6a6b05d}{ip\+To\+Byte\+Array}} (const int8\+\_\+t \texorpdfstring{$\ast$}{*}ip, uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+Des)
+\item 
+bool \mbox{\hyperlink{group__drivers07_gaceddc5a84a3d118c49268cfb5ba8c0bb}{SNMP\+\_\+\+Init}} (uint8\+\_\+t sock\+\_\+agent, uint16\+\_\+t local\+\_\+port, uint8\+\_\+t sock\+\_\+trap)
+\begin{DoxyCompactList}\small\item\em Initialize SNMP agent UDP transport and core. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__drivers07_ga972f694c4faddc6acac860a71a1382cd}{SNMP\+\_\+\+Poll}} (int max\+\_\+packets)
+\begin{DoxyCompactList}\small\item\em Poll and service pending SNMP packets on the agent UDP socket. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers07_gaf6784b34d0637f242ccbde5945d27ca9}{SNMP\+\_\+\+Tick10ms}} (void)
+\begin{DoxyCompactList}\small\item\em 10 ms periodic tick for SNMP timing (called from Net\+Task). \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__drivers07_ga8b18137382d90ca77a5391a0b927a6b3}{SNMP\+\_\+\+Get\+Tick10ms}} (void)
+\begin{DoxyCompactList}\small\item\em Return the agent tick counter (in 10 ms units). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers07_gaccfeccce705940cdb923c673b67db35d}{SNMP\+\_\+\+Get\+Uptime}} (void \texorpdfstring{$\ast$}{*}ptr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em Populate current uptime (Time\+Ticks) for the system\+Up\+Time OID. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{group__drivers07_gaface68bc44083fa16ce731bc1a8f5014}{SNMP\+\_\+\+Send\+Trap}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}manager\+IP, uint8\+\_\+t \texorpdfstring{$\ast$}{*}agent\+IP, int8\+\_\+t \texorpdfstring{$\ast$}{*}community, \mbox{\hyperlink{structsnmp__entry__t}{snmp\+\_\+entry\+\_\+t}} enterprise\+\_\+oid, uint32\+\_\+t generic\+Trap, uint32\+\_\+t specific\+Trap, uint32\+\_\+t va\+\_\+count,...)
+\begin{DoxyCompactList}\small\item\em Send an SNMP trap to a manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{structsnmp__msg__t}{snmp\+\_\+msg\+\_\+t}} \mbox{\hyperlink{snmp_8c_ae45ad491f58ac63a0b74382197c3b1c1}{s\+\_\+req}}
+\item 
+static \mbox{\hyperlink{structsnmp__msg__t}{snmp\+\_\+msg\+\_\+t}} \mbox{\hyperlink{snmp_8c_a5f264124c2ff6e8861d3c7e06a3591d2}{s\+\_\+resp}}
+\item 
+static volatile uint32\+\_\+t \mbox{\hyperlink{snmp_8c_a4f64eb89bc8eb3ce2a23591bd096dee1}{s\+\_\+tick10ms}} = 0
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{snmp_8c_a035c28a6a811348c1cfd778835a7ff84}{s\+\_\+sock\+\_\+agent}} = 1
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{snmp_8c_a02717e7887697c432308dff61bbe22c7}{s\+\_\+sock\+\_\+trap}} = 2
+\item 
+static uint16\+\_\+t \mbox{\hyperlink{snmp_8c_abeddc4aeb7dd244ac5eed9b70ce07c07}{s\+\_\+local\+\_\+port}} = \mbox{\hyperlink{group__drivers07_ga6357aa42d6d95d68c734570c3d3c8fd4}{SNMP\+\_\+\+PORT\+\_\+\+AGENT}}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{snmp_8c_aa4dfc665b5489ba11c2781a5acf64f18}{s\+\_\+trap\+\_\+buf}} \mbox{[}\mbox{\hyperlink{group__drivers07_ga5dd325e447b3096138d7d4f13da21090}{SNMP\+\_\+\+MAX\+\_\+\+TRAP}}\mbox{]}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{snmp_8c_afd979cb7b9e5d5eb80df44168a3f7fda}{s\+\_\+error\+Status}} = 0
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{snmp_8c_a7a3b66c10af91bddc6df5a43519576c9}{s\+\_\+error\+Index}} = 0
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{snmp_8c_a7245a7991c36bcea7e43f7dafb9b529a}{s\+\_\+start\+Tick10ms}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/12-\/10
+\end{DoxyDate}
+SNMP agent for ENERGIS RTOS. Owns a UDP socket (port 161), parses incoming PDUs and emits responses without blocking the scheduler. Time base is 10 ms via \doxylink{group__drivers07_gaf6784b34d0637f242ccbde5945d27ca9}{SNMP\+\_\+\+Tick10ms()}, used for Time\+Ticks.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{snmp_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{snmp_8c_a43562a7f535af18a0c5105b730b34788}\index{snmp.c@{snmp.c}!SNMP\_TAG@{SNMP\_TAG}}
+\index{SNMP\_TAG@{SNMP\_TAG}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{SNMP\_TAG}{SNMP\_TAG}}
+{\footnotesize\ttfamily \label{snmp_8c_a43562a7f535af18a0c5105b730b34788} 
+\#define SNMP\+\_\+\+TAG~"{}\mbox{[}SNMPDRV\mbox{]}"{}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{snmp_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{snmp_8c_aa4a7ad42d69ddc84979da555ceafd1ba}\index{snmp.c@{snmp.c}!findEntry@{findEntry}}
+\index{findEntry@{findEntry}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{findEntry()}{findEntry()}}
+{\footnotesize\ttfamily \label{snmp_8c_aa4a7ad42d69ddc84979da555ceafd1ba} 
+int32\+\_\+t find\+Entry (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{oid}{, }\item[{int32\+\_\+t}]{len}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp_8c_aa4a7ad42d69ddc84979da555ceafd1ba_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snmp_8c_a98e48ce6dca59478794c8bce28d0efcf}\index{snmp.c@{snmp.c}!getEntry@{getEntry}}
+\index{getEntry@{getEntry}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{getEntry()}{getEntry()}}
+{\footnotesize\ttfamily \label{snmp_8c_a98e48ce6dca59478794c8bce28d0efcf} 
+int32\+\_\+t get\+Entry (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{id}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data\+Type}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{ptr}{, }\item[{int32\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{snmp_8c_a98e48ce6dca59478794c8bce28d0efcf_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp_8c_a98e48ce6dca59478794c8bce28d0efcf_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snmp_8c_afb834cf08b1dc009024fd323d0f76618}\index{snmp.c@{snmp.c}!getOID@{getOID}}
+\index{getOID@{getOID}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{getOID()}{getOID()}}
+{\footnotesize\ttfamily \label{snmp_8c_afb834cf08b1dc009024fd323d0f76618} 
+int32\+\_\+t get\+OID (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{id}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{oid}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp_8c_afb834cf08b1dc009024fd323d0f76618_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snmp_8c_a2377de9a3820124d9c7b67925288496e}\index{snmp.c@{snmp.c}!getValue@{getValue}}
+\index{getValue@{getValue}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
+{\footnotesize\ttfamily \label{snmp_8c_a2377de9a3820124d9c7b67925288496e} 
+int32\+\_\+t get\+Value (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{vptr}{, }\item[{int32\+\_\+t}]{vlen}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp_8c_a2377de9a3820124d9c7b67925288496e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snmp_8c_aca188474e2e7f8667ccca7c1190f4971}\index{snmp.c@{snmp.c}!insertRespLen@{insertRespLen}}
+\index{insertRespLen@{insertRespLen}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{insertRespLen()}{insertRespLen()}}
+{\footnotesize\ttfamily \label{snmp_8c_aca188474e2e7f8667ccca7c1190f4971} 
+void insert\+Resp\+Len (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{req\+Start}{, }\item[{int32\+\_\+t}]{resp\+Start}{, }\item[{int32\+\_\+t}]{size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp_8c_aca188474e2e7f8667ccca7c1190f4971_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snmp_8c_a2860b50fc2780ee952f5e94dd6a6b05d}\index{snmp.c@{snmp.c}!ipToByteArray@{ipToByteArray}}
+\index{ipToByteArray@{ipToByteArray}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{ipToByteArray()}{ipToByteArray()}}
+{\footnotesize\ttfamily \label{snmp_8c_a2860b50fc2780ee952f5e94dd6a6b05d} 
+void ip\+To\+Byte\+Array (\begin{DoxyParamCaption}\item[{const int8\+\_\+t \texorpdfstring{$\ast$}{*}}]{ip}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+Des}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{snmp_8c_afdb4fc7e8938913ef014d06aeed43ffa}\index{snmp.c@{snmp.c}!parseCommunity@{parseCommunity}}
+\index{parseCommunity@{parseCommunity}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{parseCommunity()}{parseCommunity()}}
+{\footnotesize\ttfamily \label{snmp_8c_afdb4fc7e8938913ef014d06aeed43ffa} 
+int32\+\_\+t parse\+Community (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp_8c_afdb4fc7e8938913ef014d06aeed43ffa_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp_8c_afdb4fc7e8938913ef014d06aeed43ffa_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snmp_8c_a7d85f599f8a1f5861cc7ed6053358453}\index{snmp.c@{snmp.c}!parseLength@{parseLength}}
+\index{parseLength@{parseLength}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{parseLength()}{parseLength()}}
+{\footnotesize\ttfamily \label{snmp_8c_a7d85f599f8a1f5861cc7ed6053358453} 
+int32\+\_\+t parse\+Length (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{msg}{, }\item[{int32\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp_8c_a7d85f599f8a1f5861cc7ed6053358453_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snmp_8c_ab0c13136abdc439b0bc176cb98df70f2}\index{snmp.c@{snmp.c}!parseRequest@{parseRequest}}
+\index{parseRequest@{parseRequest}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{parseRequest()}{parseRequest()}}
+{\footnotesize\ttfamily \label{snmp_8c_ab0c13136abdc439b0bc176cb98df70f2} 
+int32\+\_\+t parse\+Request (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp_8c_ab0c13136abdc439b0bc176cb98df70f2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp_8c_ab0c13136abdc439b0bc176cb98df70f2_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snmp_8c_afb39017f4741a315af2b17fb40100546}\index{snmp.c@{snmp.c}!parseSequence@{parseSequence}}
+\index{parseSequence@{parseSequence}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{parseSequence()}{parseSequence()}}
+{\footnotesize\ttfamily \label{snmp_8c_afb39017f4741a315af2b17fb40100546} 
+int32\+\_\+t parse\+Sequence (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{req\+Type}{, }\item[{int32\+\_\+t}]{index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp_8c_afb39017f4741a315af2b17fb40100546_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp_8c_afb39017f4741a315af2b17fb40100546_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snmp_8c_a35c562232bf5c7d54579c83920b12b76}\index{snmp.c@{snmp.c}!parseSequenceOf@{parseSequenceOf}}
+\index{parseSequenceOf@{parseSequenceOf}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{parseSequenceOf()}{parseSequenceOf()}}
+{\footnotesize\ttfamily \label{snmp_8c_a35c562232bf5c7d54579c83920b12b76} 
+int32\+\_\+t parse\+Sequence\+Of (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{req\+Type}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp_8c_a35c562232bf5c7d54579c83920b12b76_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp_8c_a35c562232bf5c7d54579c83920b12b76_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snmp_8c_ab754dedb8ad71242d39aa41efe1787fa}\index{snmp.c@{snmp.c}!parseSNMPMessage@{parseSNMPMessage}}
+\index{parseSNMPMessage@{parseSNMPMessage}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{parseSNMPMessage()}{parseSNMPMessage()}}
+{\footnotesize\ttfamily \label{snmp_8c_ab754dedb8ad71242d39aa41efe1787fa} 
+int32\+\_\+t parse\+SNMPMessage (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp_8c_ab754dedb8ad71242d39aa41efe1787fa_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp_8c_ab754dedb8ad71242d39aa41efe1787fa_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snmp_8c_a7d0c60ba400627a704c52ffb5a4f0b92}\index{snmp.c@{snmp.c}!parseTLV@{parseTLV}}
+\index{parseTLV@{parseTLV}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{parseTLV()}{parseTLV()}}
+{\footnotesize\ttfamily \label{snmp_8c_a7d0c60ba400627a704c52ffb5a4f0b92} 
+int32\+\_\+t parse\+TLV (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{msg}{, }\item[{int32\+\_\+t}]{index}{, }\item[{\mbox{\hyperlink{structsnmp__tlv__t}{snmp\+\_\+tlv\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{tlv}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=243pt]{snmp_8c_a7d0c60ba400627a704c52ffb5a4f0b92_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp_8c_a7d0c60ba400627a704c52ffb5a4f0b92_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snmp_8c_a1aa171236d9aa7f23701802d32ef8685}\index{snmp.c@{snmp.c}!parseVarBind@{parseVarBind}}
+\index{parseVarBind@{parseVarBind}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{parseVarBind()}{parseVarBind()}}
+{\footnotesize\ttfamily \label{snmp_8c_a1aa171236d9aa7f23701802d32ef8685} 
+int32\+\_\+t parse\+Var\+Bind (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{req\+Type}{, }\item[{int32\+\_\+t}]{index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp_8c_a1aa171236d9aa7f23701802d32ef8685_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp_8c_a1aa171236d9aa7f23701802d32ef8685_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snmp_8c_a97c249c5f001d3789e07b8d6af7bae09}\index{snmp.c@{snmp.c}!parseVersion@{parseVersion}}
+\index{parseVersion@{parseVersion}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{parseVersion()}{parseVersion()}}
+{\footnotesize\ttfamily \label{snmp_8c_a97c249c5f001d3789e07b8d6af7bae09} 
+int32\+\_\+t parse\+Version (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp_8c_a97c249c5f001d3789e07b8d6af7bae09_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp_8c_a97c249c5f001d3789e07b8d6af7bae09_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snmp_8c_a986ed61ecbb07a88cb6ff6595da32e59}\index{snmp.c@{snmp.c}!setEntry@{setEntry}}
+\index{setEntry@{setEntry}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{setEntry()}{setEntry()}}
+{\footnotesize\ttfamily \label{snmp_8c_a986ed61ecbb07a88cb6ff6595da32e59} 
+int32\+\_\+t set\+Entry (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{id}{, }\item[{const void \texorpdfstring{$\ast$}{*}}]{val}{, }\item[{int32\+\_\+t}]{vlen}{, }\item[{uint8\+\_\+t}]{data\+Type}{, }\item[{int32\+\_\+t}]{index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{snmp_8c_a986ed61ecbb07a88cb6ff6595da32e59_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp_8c_a986ed61ecbb07a88cb6ff6595da32e59_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{snmp_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{snmp_8c_a7a3b66c10af91bddc6df5a43519576c9}\index{snmp.c@{snmp.c}!s\_errorIndex@{s\_errorIndex}}
+\index{s\_errorIndex@{s\_errorIndex}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{s\_errorIndex}{s\_errorIndex}}
+{\footnotesize\ttfamily \label{snmp_8c_a7a3b66c10af91bddc6df5a43519576c9} 
+uint8\+\_\+t s\+\_\+error\+Index = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{snmp_8c_afd979cb7b9e5d5eb80df44168a3f7fda}\index{snmp.c@{snmp.c}!s\_errorStatus@{s\_errorStatus}}
+\index{s\_errorStatus@{s\_errorStatus}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{s\_errorStatus}{s\_errorStatus}}
+{\footnotesize\ttfamily \label{snmp_8c_afd979cb7b9e5d5eb80df44168a3f7fda} 
+uint8\+\_\+t s\+\_\+error\+Status = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{snmp_8c_abeddc4aeb7dd244ac5eed9b70ce07c07}\index{snmp.c@{snmp.c}!s\_local\_port@{s\_local\_port}}
+\index{s\_local\_port@{s\_local\_port}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{s\_local\_port}{s\_local\_port}}
+{\footnotesize\ttfamily \label{snmp_8c_abeddc4aeb7dd244ac5eed9b70ce07c07} 
+uint16\+\_\+t s\+\_\+local\+\_\+port = \mbox{\hyperlink{group__drivers07_ga6357aa42d6d95d68c734570c3d3c8fd4}{SNMP\+\_\+\+PORT\+\_\+\+AGENT}}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{snmp_8c_ae45ad491f58ac63a0b74382197c3b1c1}\index{snmp.c@{snmp.c}!s\_req@{s\_req}}
+\index{s\_req@{s\_req}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{s\_req}{s\_req}}
+{\footnotesize\ttfamily \label{snmp_8c_ae45ad491f58ac63a0b74382197c3b1c1} 
+\mbox{\hyperlink{structsnmp__msg__t}{snmp\+\_\+msg\+\_\+t}} s\+\_\+req\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{snmp_8c_a5f264124c2ff6e8861d3c7e06a3591d2}\index{snmp.c@{snmp.c}!s\_resp@{s\_resp}}
+\index{s\_resp@{s\_resp}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{s\_resp}{s\_resp}}
+{\footnotesize\ttfamily \label{snmp_8c_a5f264124c2ff6e8861d3c7e06a3591d2} 
+\mbox{\hyperlink{structsnmp__msg__t}{snmp\+\_\+msg\+\_\+t}} s\+\_\+resp\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{snmp_8c_a035c28a6a811348c1cfd778835a7ff84}\index{snmp.c@{snmp.c}!s\_sock\_agent@{s\_sock\_agent}}
+\index{s\_sock\_agent@{s\_sock\_agent}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{s\_sock\_agent}{s\_sock\_agent}}
+{\footnotesize\ttfamily \label{snmp_8c_a035c28a6a811348c1cfd778835a7ff84} 
+uint8\+\_\+t s\+\_\+sock\+\_\+agent = 1\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{snmp_8c_a02717e7887697c432308dff61bbe22c7}\index{snmp.c@{snmp.c}!s\_sock\_trap@{s\_sock\_trap}}
+\index{s\_sock\_trap@{s\_sock\_trap}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{s\_sock\_trap}{s\_sock\_trap}}
+{\footnotesize\ttfamily \label{snmp_8c_a02717e7887697c432308dff61bbe22c7} 
+uint8\+\_\+t s\+\_\+sock\+\_\+trap = 2\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{snmp_8c_a7245a7991c36bcea7e43f7dafb9b529a}\index{snmp.c@{snmp.c}!s\_startTick10ms@{s\_startTick10ms}}
+\index{s\_startTick10ms@{s\_startTick10ms}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{s\_startTick10ms}{s\_startTick10ms}}
+{\footnotesize\ttfamily \label{snmp_8c_a7245a7991c36bcea7e43f7dafb9b529a} 
+uint32\+\_\+t s\+\_\+start\+Tick10ms = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{snmp_8c_a4f64eb89bc8eb3ce2a23591bd096dee1}\index{snmp.c@{snmp.c}!s\_tick10ms@{s\_tick10ms}}
+\index{s\_tick10ms@{s\_tick10ms}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{s\_tick10ms}{s\_tick10ms}}
+{\footnotesize\ttfamily \label{snmp_8c_a4f64eb89bc8eb3ce2a23591bd096dee1} 
+volatile uint32\+\_\+t s\+\_\+tick10ms = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{snmp_8c_aa4dfc665b5489ba11c2781a5acf64f18}\index{snmp.c@{snmp.c}!s\_trap\_buf@{s\_trap\_buf}}
+\index{s\_trap\_buf@{s\_trap\_buf}!snmp.c@{snmp.c}}
+\doxysubsubsection{\texorpdfstring{s\_trap\_buf}{s\_trap\_buf}}
+{\footnotesize\ttfamily \label{snmp_8c_aa4dfc665b5489ba11c2781a5acf64f18} 
+uint8\+\_\+t s\+\_\+trap\+\_\+buf\mbox{[}\mbox{\hyperlink{group__drivers07_ga5dd325e447b3096138d7d4f13da21090}{SNMP\+\_\+\+MAX\+\_\+\+TRAP}}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+

@@ -1,0 +1,201 @@
+\doxysection{storage\+\_\+msg\+\_\+t Struct Reference}
+\hypertarget{structstorage__msg__t}{}\label{structstorage__msg__t}\index{storage\_msg\_t@{storage\_msg\_t}}
+
+
+Storage request message (posted to q\+\_\+cfg)  
+
+
+
+
+{\ttfamily \#include $<$Storage\+Task.\+h$>$}
+
+
+
+Collaboration diagram for storage\+\_\+msg\+\_\+t\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=317pt]{structstorage__msg__t__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__tasks10_ga5ba5cfc55a0c0ff9a7f58f6a9802e226}{storage\+\_\+cmd\+\_\+t}} \mbox{\hyperlink{structstorage__msg__t_a206a22320a3de65f15d7295101b0aac3}{cmd}}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>\mbox{\hyperlink{structnetwork_info}{networkInfo}} \mbox{\hyperlink{structstorage__msg__t_a42b787634d528868098ab35845ccafb0}{net\_info}}\\
+\>\mbox{\hyperlink{structuser_pref_info}{userPrefInfo}} \mbox{\hyperlink{structstorage__msg__t_a945fbe778f17eeab307acb11f21d6612}{user\_prefs}}\\
+\>struct \{\\
+\>\>uint8\_t \mbox{\hyperlink{structstorage__msg__t_a422317e9a6d9365443deb61dbda2f491}{states}} \mbox{[}8\mbox{]}\\
+\>\} \mbox{\hyperlink{structstorage__msg__t_a55192b99f32e0cc81dea6f9f9f800771}{relay}}\\
+\>struct \{\\
+\>\>uint8\_t \mbox{\hyperlink{structstorage__msg__t_aec503e5bd3aee9e583b949c55777d3a4}{channel}}\\
+\>\>char \mbox{\hyperlink{structstorage__msg__t_ae501a582a110422634b940e29ffcfa8a}{label}} \mbox{[}64\mbox{]}\\
+\>\} \mbox{\hyperlink{structstorage__msg__t_a1218dd1b900dac941c67db494045e23b}{ch\_label}}\\
+\>struct \{\\
+\>\>uint8\_t \mbox{\hyperlink{structstorage__msg__t_aec503e5bd3aee9e583b949c55777d3a4}{channel}}\\
+\>\>\mbox{\hyperlink{structhlw__calib__t}{hlw\_calib\_t}} \mbox{\hyperlink{structstorage__msg__t_a2c2a0be6b36bc7129cb95c648b5fc101}{calib}}\\
+\>\} \mbox{\hyperlink{structstorage__msg__t_a57b45de0a47bdc72ada5b01e52077ff5}{sensor\_cal}}\\
+\>struct \{\\
+\>\>uint16\_t \mbox{\hyperlink{structstorage__msg__t_a45f7a9cb74968808ce8999609c36d6ec}{test\_addr}}\\
+\>\>bool \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structstorage__msg__t_adaf455d82f46baac57bb81c4043959cb}{result}}\\
+\>\} \mbox{\hyperlink{structstorage__msg__t_a687ff8ce2a61f3bd8a0d1bd5d38f63ec}{sil\_test}}\\
+\>struct \{\\
+\>\>uint8\_t \mbox{\hyperlink{structstorage__msg__t_add2f8632021ee0549e1feb0c5e5f6480}{index}}\\
+\>\>char \mbox{\hyperlink{structstorage__msg__t_ad8a16c8f561e854396e57fdb71255a70}{name}} \mbox{[}\mbox{\hyperlink{group__storage09_gab51a15ea684e163433ede2f7f69257ab}{USER\_OUTPUT\_NAME\_MAX\_LEN}}+1\mbox{]}\\
+\>\>uint8\_t \mbox{\hyperlink{structstorage__msg__t_aac682d5b8e7327b04da48178cb0e3de8}{mask}}\\
+\>\} \mbox{\hyperlink{structstorage__msg__t_a2dab54117d73bad6e9bcd367d350a3c6}{user\_output}}\\
+\>struct \{\\
+\>\>uint8\_t \mbox{\hyperlink{structstorage__msg__t_add2f8632021ee0549e1feb0c5e5f6480}{index}}\\
+\>\} \mbox{\hyperlink{structstorage__msg__t_abc9ab6218491ed92f687b4b6bb475302}{startup}}\\
+\} \mbox{\hyperlink{structstorage__msg__t_a7fbf05f810e9012570ce416951303a07}{data}}\\
+
+\end{tabbing}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structstorage__msg__t_add8a9b4139ed187a6e7deab8492db167}{output\+\_\+ptr}}
+\item 
+Semaphore\+Handle\+\_\+t \mbox{\hyperlink{structstorage__msg__t_aae8a030bccfbd535570d8ad2bbee6995}{done\+\_\+sem}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Storage request message (posted to q\+\_\+cfg) 
+
+\label{doc-variable-members}
+\Hypertarget{structstorage__msg__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structstorage__msg__t_a2c2a0be6b36bc7129cb95c648b5fc101}\index{storage\_msg\_t@{storage\_msg\_t}!calib@{calib}}
+\index{calib@{calib}!storage\_msg\_t@{storage\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{calib}{calib}}
+{\footnotesize\ttfamily \label{structstorage__msg__t_a2c2a0be6b36bc7129cb95c648b5fc101} 
+\mbox{\hyperlink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t}} storage\+\_\+msg\+\_\+t\+::calib}
+
+Calibration data \Hypertarget{structstorage__msg__t_a1218dd1b900dac941c67db494045e23b}\index{storage\_msg\_t@{storage\_msg\_t}!ch\_label@{ch\_label}}
+\index{ch\_label@{ch\_label}!storage\_msg\_t@{storage\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{[struct]}{[struct]}}
+{\footnotesize\ttfamily \label{structstorage__msg__t_a1218dd1b900dac941c67db494045e23b} 
+struct  \{ ... \}  storage\+\_\+msg\+\_\+t\+::ch\+\_\+label}
+
+\Hypertarget{structstorage__msg__t_aec503e5bd3aee9e583b949c55777d3a4}\index{storage\_msg\_t@{storage\_msg\_t}!channel@{channel}}
+\index{channel@{channel}!storage\_msg\_t@{storage\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{channel}{channel}}
+{\footnotesize\ttfamily \label{structstorage__msg__t_aec503e5bd3aee9e583b949c55777d3a4} 
+uint8\+\_\+t storage\+\_\+msg\+\_\+t\+::channel}
+
+Channel index 0-\/7 \Hypertarget{structstorage__msg__t_a206a22320a3de65f15d7295101b0aac3}\index{storage\_msg\_t@{storage\_msg\_t}!cmd@{cmd}}
+\index{cmd@{cmd}!storage\_msg\_t@{storage\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{cmd}{cmd}}
+{\footnotesize\ttfamily \label{structstorage__msg__t_a206a22320a3de65f15d7295101b0aac3} 
+\mbox{\hyperlink{group__tasks10_ga5ba5cfc55a0c0ff9a7f58f6a9802e226}{storage\+\_\+cmd\+\_\+t}} storage\+\_\+msg\+\_\+t\+::cmd}
+
+Command type \Hypertarget{structstorage__msg__t_a7fbf05f810e9012570ce416951303a07}\index{storage\_msg\_t@{storage\_msg\_t}!data@{data}}
+\index{data@{data}!storage\_msg\_t@{storage\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{[union]}{[union]}}
+{\footnotesize\ttfamily \label{structstorage__msg__t_a7fbf05f810e9012570ce416951303a07} 
+union  \{ ... \}  storage\+\_\+msg\+\_\+t\+::data}
+
+\Hypertarget{structstorage__msg__t_aae8a030bccfbd535570d8ad2bbee6995}\index{storage\_msg\_t@{storage\_msg\_t}!done\_sem@{done\_sem}}
+\index{done\_sem@{done\_sem}!storage\_msg\_t@{storage\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{done\_sem}{done\_sem}}
+{\footnotesize\ttfamily \label{structstorage__msg__t_aae8a030bccfbd535570d8ad2bbee6995} 
+Semaphore\+Handle\+\_\+t storage\+\_\+msg\+\_\+t\+::done\+\_\+sem}
+
+Optional\+: semaphore to signal completion \Hypertarget{structstorage__msg__t_add2f8632021ee0549e1feb0c5e5f6480}\index{storage\_msg\_t@{storage\_msg\_t}!index@{index}}
+\index{index@{index}!storage\_msg\_t@{storage\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{index}{index}}
+{\footnotesize\ttfamily \label{structstorage__msg__t_add2f8632021ee0549e1feb0c5e5f6480} 
+uint8\+\_\+t storage\+\_\+msg\+\_\+t\+::index}
+
+Preset index 0-\/4
+
+Startup preset index \Hypertarget{structstorage__msg__t_ae501a582a110422634b940e29ffcfa8a}\index{storage\_msg\_t@{storage\_msg\_t}!label@{label}}
+\index{label@{label}!storage\_msg\_t@{storage\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{label}{label}}
+{\footnotesize\ttfamily \label{structstorage__msg__t_ae501a582a110422634b940e29ffcfa8a} 
+char storage\+\_\+msg\+\_\+t\+::label\mbox{[}64\mbox{]}}
+
+Label string (null-\/terminated) \Hypertarget{structstorage__msg__t_aac682d5b8e7327b04da48178cb0e3de8}\index{storage\_msg\_t@{storage\_msg\_t}!mask@{mask}}
+\index{mask@{mask}!storage\_msg\_t@{storage\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{mask}{mask}}
+{\footnotesize\ttfamily \label{structstorage__msg__t_aac682d5b8e7327b04da48178cb0e3de8} 
+uint8\+\_\+t storage\+\_\+msg\+\_\+t\+::mask}
+
+Relay mask \Hypertarget{structstorage__msg__t_ad8a16c8f561e854396e57fdb71255a70}\index{storage\_msg\_t@{storage\_msg\_t}!name@{name}}
+\index{name@{name}!storage\_msg\_t@{storage\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily \label{structstorage__msg__t_ad8a16c8f561e854396e57fdb71255a70} 
+char storage\+\_\+msg\+\_\+t\+::name\mbox{[}\mbox{\hyperlink{group__storage09_gab51a15ea684e163433ede2f7f69257ab}{USER\+\_\+\+OUTPUT\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+LEN}}+1\mbox{]}}
+
+Preset name \Hypertarget{structstorage__msg__t_a42b787634d528868098ab35845ccafb0}\index{storage\_msg\_t@{storage\_msg\_t}!net\_info@{net\_info}}
+\index{net\_info@{net\_info}!storage\_msg\_t@{storage\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{net\_info}{net\_info}}
+{\footnotesize\ttfamily \label{structstorage__msg__t_a42b787634d528868098ab35845ccafb0} 
+\mbox{\hyperlink{structnetwork_info}{network\+Info}} storage\+\_\+msg\+\_\+t\+::net\+\_\+info}
+
+\Hypertarget{structstorage__msg__t_add8a9b4139ed187a6e7deab8492db167}\index{storage\_msg\_t@{storage\_msg\_t}!output\_ptr@{output\_ptr}}
+\index{output\_ptr@{output\_ptr}!storage\_msg\_t@{storage\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{output\_ptr}{output\_ptr}}
+{\footnotesize\ttfamily \label{structstorage__msg__t_add8a9b4139ed187a6e7deab8492db167} 
+void\texorpdfstring{$\ast$}{*} storage\+\_\+msg\+\_\+t\+::output\+\_\+ptr}
+
+Optional\+: pointer to output buffer for read operations \Hypertarget{structstorage__msg__t_a55192b99f32e0cc81dea6f9f9f800771}\index{storage\_msg\_t@{storage\_msg\_t}!relay@{relay}}
+\index{relay@{relay}!storage\_msg\_t@{storage\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{[struct]}{[struct]}}
+{\footnotesize\ttfamily \label{structstorage__msg__t_a55192b99f32e0cc81dea6f9f9f800771} 
+struct  \{ ... \}  storage\+\_\+msg\+\_\+t\+::relay}
+
+\Hypertarget{structstorage__msg__t_adaf455d82f46baac57bb81c4043959cb}\index{storage\_msg\_t@{storage\_msg\_t}!result@{result}}
+\index{result@{result}!storage\_msg\_t@{storage\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{result}{result}}
+{\footnotesize\ttfamily \label{structstorage__msg__t_adaf455d82f46baac57bb81c4043959cb} 
+bool\texorpdfstring{$\ast$}{*} storage\+\_\+msg\+\_\+t\+::result}
+
+Pointer to result for self-\/test \Hypertarget{structstorage__msg__t_a57b45de0a47bdc72ada5b01e52077ff5}\index{storage\_msg\_t@{storage\_msg\_t}!sensor\_cal@{sensor\_cal}}
+\index{sensor\_cal@{sensor\_cal}!storage\_msg\_t@{storage\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{[struct]}{[struct]}}
+{\footnotesize\ttfamily \label{structstorage__msg__t_a57b45de0a47bdc72ada5b01e52077ff5} 
+struct  \{ ... \}  storage\+\_\+msg\+\_\+t\+::sensor\+\_\+cal}
+
+\Hypertarget{structstorage__msg__t_a687ff8ce2a61f3bd8a0d1bd5d38f63ec}\index{storage\_msg\_t@{storage\_msg\_t}!sil\_test@{sil\_test}}
+\index{sil\_test@{sil\_test}!storage\_msg\_t@{storage\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{[struct]}{[struct]}}
+{\footnotesize\ttfamily \label{structstorage__msg__t_a687ff8ce2a61f3bd8a0d1bd5d38f63ec} 
+struct  \{ ... \}  storage\+\_\+msg\+\_\+t\+::sil\+\_\+test}
+
+\Hypertarget{structstorage__msg__t_abc9ab6218491ed92f687b4b6bb475302}\index{storage\_msg\_t@{storage\_msg\_t}!startup@{startup}}
+\index{startup@{startup}!storage\_msg\_t@{storage\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{[struct]}{[struct]}}
+{\footnotesize\ttfamily \label{structstorage__msg__t_abc9ab6218491ed92f687b4b6bb475302} 
+struct  \{ ... \}  storage\+\_\+msg\+\_\+t\+::startup}
+
+\Hypertarget{structstorage__msg__t_a422317e9a6d9365443deb61dbda2f491}\index{storage\_msg\_t@{storage\_msg\_t}!states@{states}}
+\index{states@{states}!storage\_msg\_t@{storage\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{states}{states}}
+{\footnotesize\ttfamily \label{structstorage__msg__t_a422317e9a6d9365443deb61dbda2f491} 
+uint8\+\_\+t storage\+\_\+msg\+\_\+t\+::states\mbox{[}8\mbox{]}}
+
+Relay states 0=off, 1=on \Hypertarget{structstorage__msg__t_a45f7a9cb74968808ce8999609c36d6ec}\index{storage\_msg\_t@{storage\_msg\_t}!test\_addr@{test\_addr}}
+\index{test\_addr@{test\_addr}!storage\_msg\_t@{storage\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{test\_addr}{test\_addr}}
+{\footnotesize\ttfamily \label{structstorage__msg__t_a45f7a9cb74968808ce8999609c36d6ec} 
+uint16\+\_\+t storage\+\_\+msg\+\_\+t\+::test\+\_\+addr}
+
+Test address for self-\/test \Hypertarget{structstorage__msg__t_a2dab54117d73bad6e9bcd367d350a3c6}\index{storage\_msg\_t@{storage\_msg\_t}!user\_output@{user\_output}}
+\index{user\_output@{user\_output}!storage\_msg\_t@{storage\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{[struct]}{[struct]}}
+{\footnotesize\ttfamily \label{structstorage__msg__t_a2dab54117d73bad6e9bcd367d350a3c6} 
+struct  \{ ... \}  storage\+\_\+msg\+\_\+t\+::user\+\_\+output}
+
+\Hypertarget{structstorage__msg__t_a945fbe778f17eeab307acb11f21d6612}\index{storage\_msg\_t@{storage\_msg\_t}!user\_prefs@{user\_prefs}}
+\index{user\_prefs@{user\_prefs}!storage\_msg\_t@{storage\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{user\_prefs}{user\_prefs}}
+{\footnotesize\ttfamily \label{structstorage__msg__t_a945fbe778f17eeab307acb11f21d6612} 
+\mbox{\hyperlink{structuser_pref_info}{user\+Pref\+Info}} storage\+\_\+msg\+\_\+t\+::user\+\_\+prefs}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\mbox{\hyperlink{_storage_task_8h}{Storage\+Task.\+h}}\end{DoxyCompactItemize}

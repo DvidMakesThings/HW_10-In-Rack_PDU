@@ -1,0 +1,202 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/web\+\_\+handlers/metrics\+\_\+handler.c File Reference}
+\hypertarget{metrics__handler_8c}{}\label{metrics__handler_8c}\index{src/Software/ENERGIS\_RTOS/src/web\_handlers/metrics\_handler.c@{src/Software/ENERGIS\_RTOS/src/web\_handlers/metrics\_handler.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for metrics\+\_\+handler.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{metrics__handler_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{metrics__handler_8c_a29360e13b16b3c58367df003efd53754}{METRICS\+\_\+\+HANDLER\+\_\+\+TAG}}~"{}$<$Metrics Handler$>$"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{metrics__handler_8c_a8c210587f97cbef60c84dc0bfba63c2f}{net\+\_\+beat}} (void)
+\item 
+void \mbox{\hyperlink{group__webui03_ga4286615087febd89409af560bfc1a869}{metrics\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize metrics subsystem. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{metrics__handler_8c_aa1bfbf45c38a0802fc8ca3ea2d9e5ce7}{render\+\_\+metrics}} (void)
+\begin{DoxyCompactList}\small\item\em Render Open\+Metrics exposition format to static buffer. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{metrics__handler_8c_aae6eb33455e34bdaacb63467f3137c39}{send\+\_\+404}} (uint8\+\_\+t sock)
+\begin{DoxyCompactList}\small\item\em Send 404 Not Found response. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{metrics__handler_8c_a82e5f6b47f82f83d983eb785ee246fab}{send\+\_\+503}} (uint8\+\_\+t sock)
+\begin{DoxyCompactList}\small\item\em Send 503 Service Unavailable response. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__webui03_gad0f01d3921a7ce18c26c85f120a43411}{handle\+\_\+metrics\+\_\+request}} (uint8\+\_\+t sock)
+\begin{DoxyCompactList}\small\item\em Handle HTTP GET request to /metrics endpoint. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structmetrics__counters__t}{metrics\+\_\+counters\+\_\+t}} \mbox{\hyperlink{group__webui03_ga09a1a47a166a99dd7fe9dbcf77d8a314}{g\+\_\+metrics}} = \{0\}
+\begin{DoxyCompactList}\small\item\em Global metrics counters instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structovercurrent__status__t}{overcurrent\+\_\+status\+\_\+t}} \mbox{\hyperlink{metrics__handler_8c_ac6b2888052f1970cba121c217b38dbc1}{ocp}} = \{0\}
+\item 
+static char \mbox{\hyperlink{metrics__handler_8c_a58560bd56767fb632e5050bf89f5b849}{metrics\+\_\+buffer}} \mbox{[}\mbox{\hyperlink{group__webui03_ga21fcadb850e6619541fa5036805753cf}{METRICS\+\_\+\+BUFFER\+\_\+\+SIZE}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/15
+\end{DoxyDate}
+Implements /metrics HTTP endpoint that exposes ENERGIS runtime data in Open\+Metrics/\+Prometheus text format. Renders system health gauges, monotonic counters, and per-\/channel power telemetry. No heap allocation, no blocking operations, reads only from cached snapshots.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{metrics__handler_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{metrics__handler_8c_a29360e13b16b3c58367df003efd53754}\index{metrics\_handler.c@{metrics\_handler.c}!METRICS\_HANDLER\_TAG@{METRICS\_HANDLER\_TAG}}
+\index{METRICS\_HANDLER\_TAG@{METRICS\_HANDLER\_TAG}!metrics\_handler.c@{metrics\_handler.c}}
+\doxysubsubsection{\texorpdfstring{METRICS\_HANDLER\_TAG}{METRICS\_HANDLER\_TAG}}
+{\footnotesize\ttfamily \label{metrics__handler_8c_a29360e13b16b3c58367df003efd53754} 
+\#define METRICS\+\_\+\+HANDLER\+\_\+\+TAG~"{}$<$Metrics Handler$>$"{}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{metrics__handler_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{metrics__handler_8c_a8c210587f97cbef60c84dc0bfba63c2f}\index{metrics\_handler.c@{metrics\_handler.c}!net\_beat@{net\_beat}}
+\index{net\_beat@{net\_beat}!metrics\_handler.c@{metrics\_handler.c}}
+\doxysubsubsection{\texorpdfstring{net\_beat()}{net\_beat()}}
+{\footnotesize\ttfamily \label{metrics__handler_8c_a8c210587f97cbef60c84dc0bfba63c2f} 
+void net\+\_\+beat (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{metrics__handler_8c_a8c210587f97cbef60c84dc0bfba63c2f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{metrics__handler_8c_a8c210587f97cbef60c84dc0bfba63c2f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{metrics__handler_8c_aa1bfbf45c38a0802fc8ca3ea2d9e5ce7}\index{metrics\_handler.c@{metrics\_handler.c}!render\_metrics@{render\_metrics}}
+\index{render\_metrics@{render\_metrics}!metrics\_handler.c@{metrics\_handler.c}}
+\doxysubsubsection{\texorpdfstring{render\_metrics()}{render\_metrics()}}
+{\footnotesize\ttfamily \label{metrics__handler_8c_aa1bfbf45c38a0802fc8ca3ea2d9e5ce7} 
+int render\+\_\+metrics (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Render Open\+Metrics exposition format to static buffer. 
+
+\begin{DoxyReturn}{Returns}
+Length of rendered text in bytes, or -\/1 on buffer overflow
+\end{DoxyReturn}
+Formats all system metrics according to Open\+Metrics 0.\+0.\+4 specification. Uses snprintf to prevent buffer overruns. Reads from cached telemetry and global counters without blocking.
+
+\begin{DoxyNote}{Note}
+Buffer overflow is handled gracefully by truncating output 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{metrics__handler_8c_aa1bfbf45c38a0802fc8ca3ea2d9e5ce7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{metrics__handler_8c_aa1bfbf45c38a0802fc8ca3ea2d9e5ce7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{metrics__handler_8c_aae6eb33455e34bdaacb63467f3137c39}\index{metrics\_handler.c@{metrics\_handler.c}!send\_404@{send\_404}}
+\index{send\_404@{send\_404}!metrics\_handler.c@{metrics\_handler.c}}
+\doxysubsubsection{\texorpdfstring{send\_404()}{send\_404()}}
+{\footnotesize\ttfamily \label{metrics__handler_8c_aae6eb33455e34bdaacb63467f3137c39} 
+void send\+\_\+404 (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sock}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Send 404 Not Found response. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & Socket number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+Used when metrics feature is disabled or not available. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{metrics__handler_8c_aae6eb33455e34bdaacb63467f3137c39_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{metrics__handler_8c_aae6eb33455e34bdaacb63467f3137c39_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{metrics__handler_8c_a82e5f6b47f82f83d983eb785ee246fab}\index{metrics\_handler.c@{metrics\_handler.c}!send\_503@{send\_503}}
+\index{send\_503@{send\_503}!metrics\_handler.c@{metrics\_handler.c}}
+\doxysubsubsection{\texorpdfstring{send\_503()}{send\_503()}}
+{\footnotesize\ttfamily \label{metrics__handler_8c_a82e5f6b47f82f83d983eb785ee246fab} 
+void send\+\_\+503 (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sock}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Send 503 Service Unavailable response. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & Socket number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+Used when rendering fails (e.\+g., buffer overflow) to hint retry. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{metrics__handler_8c_a82e5f6b47f82f83d983eb785ee246fab_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{metrics__handler_8c_a82e5f6b47f82f83d983eb785ee246fab_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{metrics__handler_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{metrics__handler_8c_a58560bd56767fb632e5050bf89f5b849}\index{metrics\_handler.c@{metrics\_handler.c}!metrics\_buffer@{metrics\_buffer}}
+\index{metrics\_buffer@{metrics\_buffer}!metrics\_handler.c@{metrics\_handler.c}}
+\doxysubsubsection{\texorpdfstring{metrics\_buffer}{metrics\_buffer}}
+{\footnotesize\ttfamily \label{metrics__handler_8c_a58560bd56767fb632e5050bf89f5b849} 
+char metrics\+\_\+buffer\mbox{[}\mbox{\hyperlink{group__webui03_ga21fcadb850e6619541fa5036805753cf}{METRICS\+\_\+\+BUFFER\+\_\+\+SIZE}}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{metrics__handler_8c_ac6b2888052f1970cba121c217b38dbc1}\index{metrics\_handler.c@{metrics\_handler.c}!ocp@{ocp}}
+\index{ocp@{ocp}!metrics\_handler.c@{metrics\_handler.c}}
+\doxysubsubsection{\texorpdfstring{ocp}{ocp}}
+{\footnotesize\ttfamily \label{metrics__handler_8c_ac6b2888052f1970cba121c217b38dbc1} 
+\mbox{\hyperlink{structovercurrent__status__t}{overcurrent\+\_\+status\+\_\+t}} ocp = \{0\}}
+

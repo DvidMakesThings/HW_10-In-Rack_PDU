@@ -1,0 +1,5 @@
+<map id="Energis_FillMacFromSerial" name="Energis_FillMacFromSerial">
+<area shape="rect" id="Node000001" title="Generate MAC address from device serial number." alt="" coords="5,5,183,32"/>
+<area shape="rect" id="Node000002" href="$group__storage03.html#ga461c49efb137c6fcc9871867b974c326" title="Derive MAC address from the cached serial number." alt="" coords="231,5,385,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,16,215,16,215,21,183,21"/>
+</map>

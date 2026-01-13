@@ -1,0 +1,5 @@
+<map id="vApplicationIdleHook" name="vApplicationIdleHook">
+<area shape="rect" id="Node000001" title="FreeRTOS Idle task hook for scheduler liveness monitoring." alt="" coords="5,5,150,32"/>
+<area shape="rect" id="Node000002" href="$rtos__hooks_8c.html#af8fd46040ba1315de2ea5941a863ffb4" title="Convert FreeRTOS tick count to milliseconds." alt="" coords="198,5,297,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,16,182,16,182,21,150,21"/>
+</map>

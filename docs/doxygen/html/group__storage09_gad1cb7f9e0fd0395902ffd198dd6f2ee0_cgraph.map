@@ -1,0 +1,18 @@
+<map id="ChannelLabels_LoadFromEEPROM" name="ChannelLabels_LoadFromEEPROM">
+<area shape="rect" id="Node000001" title="Load all channel labels from EEPROM into RAM cache." alt="" coords="5,56,236,83"/>
+<area shape="rect" id="Node000002" href="$group__storage09.html#ga32e401468db1696835d3afe7d799c23b" title="Read channel label from EEPROM. See channel_labels.h." alt="" coords="284,56,480,83"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,67,268,67,268,72,236,72"/>
+<area shape="rect" id="Node000003" href="$channel__labels_8c.html#a1aaf00bf844e024f39c0c26829aaa5c4" title="Calculate EEPROM address for a channel&#39;s label slot." alt="" coords="556,5,665,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="445,53,540,31,541,37,446,58"/>
+<area shape="rect" id="Node000004" href="$group__driver02.html#ga622a6736c8384f9e1921a1bda2a84df9" title="Read buffer from EEPROM." alt="" coords="528,56,692,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="480,67,512,67,512,72,480,72"/>
+<area shape="rect" id="Node000008" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="740,107,924,133"/>
+<area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="456,81,528,92,725,111,724,116,528,97,455,86"/>
+<area shape="rect" id="Node000005" href="$group__drivers05.html#ga66ae4c7028f764a3770cabe101dba8bf" title="Read from 16&#45;bit memory address: write [mem_hi, mem_lo] (no stop), then read len bytes." alt="" coords="758,56,906,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="692,67,742,67,742,72,692,72"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="673,81,756,100,755,105,671,86"/>
+<area shape="rect" id="Node000006" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="1001,31,1122,57"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="906,59,985,50,985,55,907,64"/>
+<area shape="rect" id="Node000007" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="972,81,1151,108"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="907,75,957,80,956,86,906,80"/>
+</map>

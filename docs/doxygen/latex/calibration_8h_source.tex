@@ -1,0 +1,72 @@
+\doxysection{calibration.\+h}
+\hypertarget{calibration_8h_source}{}\label{calibration_8h_source}\index{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/calibration.h@{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/calibration.h}}
+\mbox{\hyperlink{calibration_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#ifndef\ CALIBRATION\_H}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#define\ CALIBRATION\_H}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_o_n_f_i_g_8h}{../../CONFIG.h}}"{}}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#define\ TEMP\_CAL\_MAGIC\ ((uint16\_t)(('T'\ <<\ 8)\ |\ 'C'))}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#define\ TEMP\_CAL\_VERSION\ (0x0001u)}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00127\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \mbox{\hyperlink{group__storage01_gga545df4a8b3ff70d5c24352e94595aef2ad83450dfec571e919836cb1c5b7cf347}{TEMP\_CAL\_FLAG\_VALID}}\ =\ 1u\ <<\ 0,\ \ }
+\DoxyCodeLine{00129\ \ \ \ \ \mbox{\hyperlink{group__storage01_gga545df4a8b3ff70d5c24352e94595aef2a96e7d3210cdf212589ee3ed109387eb8}{TEMP\_CAL\_FLAG\_TWO\_PT}}\ =\ 1u\ <<\ 1,\ }
+\DoxyCodeLine{00130\ \};}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00135\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00136\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structtemp__calib__t_ae40508226b413c6cbc76cb4b4ec2c514}{magic}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00137\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structtemp__calib__t_a83793273590bd1225a8d821a5686150f}{version}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00138\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structtemp__calib__t_a6e93f4264e8f9745d4dc0c12460cba26}{mode}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structtemp__calib__t_aa78debf46048160bf37300516b83175c}{v0\_volts\_at\_27c}};\ \ \ \ \ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structtemp__calib__t_a2dbe8b9a795f39a4b7335ed86878dadf}{slope\_volts\_per\_deg}};\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structtemp__calib__t_aca2498c90716bfd0d440416eafc4973a}{offset\_c}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00142\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structtemp__calib__t_ae79f9bd63e1ae0d79d56e717e6db45a3}{reserved0}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00143\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structtemp__calib__t_a5e5e9b85c481dd86ecd986b5c4db0af4}{reserved1}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00144\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structtemp__calib__t_a2eea7b648a9114222338bf552f8f03ed}{reserved2}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00145\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structtemp__calib__t_af0c7021b7c14182a4e87c978a3befc3e}{crc32}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00146\ \}\ \mbox{\hyperlink{structtemp__calib__t}{temp\_calib\_t}};}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \mbox{\hyperlink{group__storage01_gga8c6878800e86fa5968286d14291c03c9afaafc760636677bdccbd75a0ade4e868}{TEMP\_CAL\_MODE\_NONE}}\ =\ 0,\ }
+\DoxyCodeLine{00150\ \ \ \ \ \mbox{\hyperlink{group__storage01_gga8c6878800e86fa5968286d14291c03c9a9e5eeeb58b780130e9ba647f850eac35}{TEMP\_CAL\_MODE\_1PT}}\ =\ 1,\ \ }
+\DoxyCodeLine{00151\ \ \ \ \ \mbox{\hyperlink{group__storage01_gga8c6878800e86fa5968286d14291c03c9abf1d6d146c10f96025ffbc33f464152e}{TEMP\_CAL\_MODE\_2PT}}\ =\ 2\ \ \ }
+\DoxyCodeLine{00152\ \}\ \mbox{\hyperlink{group__storage01_ga8c6878800e86fa5968286d14291c03c9}{temp\_cal\_mode\_t}};}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \textcolor{comment}{/*\ ==========================================================================\ */}}
+\DoxyCodeLine{00155\ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HLW8032\ CALIBRATION\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00156\ \textcolor{comment}{/*\ ==========================================================================\ */}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00181\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage01_ga32076a8416bb992b9406dec24567cf71}{EEPROM\_WriteSensorCalibration}}(\textcolor{keyword}{const}\ uint8\_t\ *data,\ \textcolor{keywordtype}{size\_t}\ len);}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00205\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage01_ga7182e6e053685a9aac34eee5097a7416}{EEPROM\_ReadSensorCalibration}}(uint8\_t\ *data,\ \textcolor{keywordtype}{size\_t}\ len);}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00242\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage01_ga6fba2dcfc28ba004e71997f93c6b3d39}{EEPROM\_WriteSensorCalibrationForChannel}}(uint8\_t\ ch,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structhlw__calib__t}{hlw\_calib\_t}}\ *in);}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00268\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage01_gaa3b6f1341ad447d7f7f95d1be802b1e7}{EEPROM\_ReadSensorCalibrationForChannel}}(uint8\_t\ ch,\ \mbox{\hyperlink{structhlw__calib__t}{hlw\_calib\_t}}\ *out);}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \textcolor{comment}{/*\ ==========================================================================\ */}}
+\DoxyCodeLine{00271\ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RP2040\ TEMP\ CALIBRATION\ BLOCK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00272\ \textcolor{comment}{/*\ ==========================================================================\ */}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00305\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage01_gabc289be7b0cdbb53e52f48a0a10701ac}{EEPROM\_WriteTempCalibration}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structtemp__calib__t}{temp\_calib\_t}}\ *cal);}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00339\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage01_gac5ff91b753d7b36b811a2d75068006ed}{EEPROM\_ReadTempCalibration}}(\mbox{\hyperlink{structtemp__calib__t}{temp\_calib\_t}}\ *out);}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00377\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage01_ga73504452f7a1b317e752b7f668694a3d}{TempCalibration\_ComputeSinglePoint}}(\textcolor{keywordtype}{float}\ ambient\_c,\ uint16\_t\ raw\_temp,\ \mbox{\hyperlink{structtemp__calib__t}{temp\_calib\_t}}\ *out);}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00421\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage01_ga655669ab4b049b7ef9bcf70ea3d06ec6}{TempCalibration\_ComputeTwoPoint}}(\textcolor{keywordtype}{float}\ t1\_c,\ uint16\_t\ raw1,\ \textcolor{keywordtype}{float}\ t2\_c,\ uint16\_t\ raw2,}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtemp__calib__t}{temp\_calib\_t}}\ *out);}
+\DoxyCodeLine{00423\ }
+\DoxyCodeLine{00449\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage01_ga7796a67e219e367ba5424202cff756ae}{TempCalibration\_ApplyToMeterTask}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structtemp__calib__t}{temp\_calib\_t}}\ *cal);}
+\DoxyCodeLine{00450\ }
+\DoxyCodeLine{00482\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage01_ga1a4a0e2917c171c09500b674b6f2911f}{TempCalibration\_LoadAndApply}}(\mbox{\hyperlink{structtemp__calib__t}{temp\_calib\_t}}\ *out);}
+\DoxyCodeLine{00483\ }
+\DoxyCodeLine{00484\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ CALIBRATION\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00485\ }
+
+\end{DoxyCode}

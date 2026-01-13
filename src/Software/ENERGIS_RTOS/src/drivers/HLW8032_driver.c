@@ -2,10 +2,6 @@
  * @file HLW8032_driver.c
  * @author DvidMakesThings - David Sipos
  *
- * @defgroup driver02 2. HLW8032 Power Measurement Driver
- * @ingroup drivers
- * @brief RTOS-safe driver for HLW8032 power measurement IC
- * @{
  * @version 1.0.4
  * @date 2025-12-10
  *
@@ -91,6 +87,14 @@ static volatile bool s_cycle_complete_flag = false;
 static void hlw8032_calibration_consume_sample(uint8_t ch);
 
 /**
+ * @brief Helper to query if calibration is running and fetch active channel.
+ *
+ * @param out_ch Pointer to receive current channel if running (optional)
+ * @return true if a calibration is running, false otherwise
+ */
+static bool hlw8032_calibration_get_active_channel(uint8_t *out_ch);
+
+/**
  * @brief Select HLW8032 channel via multiplexer.
  *
  * @details
@@ -128,7 +132,7 @@ static void mux_select(uint8_t ch) {
 
     if (!Switch_SetRelayPortBMasked(MUX_MASK, value, 10u)) {
 #if ERRORLOGGER
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0x1);
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0x0);
         ERROR_PRINT_CODE(err_code, "%s Switch_SetRelayPortBMasked failed (EN=1)\r\n", HLW8032_TAG);
         Storage_EnqueueErrorCode(err_code);
 #endif
@@ -143,7 +147,7 @@ static void mux_select(uint8_t ch) {
 
     if (!Switch_SetRelayPortBMasked(MUX_MASK, value, 10u)) {
 #if ERRORLOGGER
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0x2);
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0x1);
         ERROR_PRINT_CODE(err_code, "%s Switch_SetRelayPortBMasked failed (EN=0)\r\n", HLW8032_TAG);
         Storage_EnqueueErrorCode(err_code);
 #endif
@@ -434,7 +438,7 @@ void hlw8032_init(void) {
     /* Create UART mutex */
     uartHlwMtx = xSemaphoreCreateMutex();
     if (uartHlwMtx == NULL) {
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0x2);
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0x3);
         ERROR_PRINT_CODE(err_code, "%s Failed to create UART mutex\r\n", HLW8032_TAG);
         Storage_EnqueueErrorCode(err_code);
         return;
@@ -467,7 +471,7 @@ void hlw8032_init(void) {
 
 bool hlw8032_read(uint8_t ch) {
     if (ch >= 8) {
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0x4);
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0x2);
         ERROR_PRINT_CODE(err_code, "%s Invalid channel %u\r\n", HLW8032_TAG, (unsigned)ch);
         Storage_EnqueueErrorCode(err_code);
         return false;
@@ -544,6 +548,15 @@ void hlw8032_update_uptime(uint8_t ch, bool state) {
 void hlw8032_poll_once(void) {
     uint8_t ch = poll_channel;
 
+    /* During async calibration, focus polling on the active channel to
+       accelerate sample collection and avoid unnecessary MUX hopping. */
+    uint8_t active_ch = 0;
+    bool cal_running = hlw8032_calibration_get_active_channel(&active_ch);
+    if (cal_running) {
+        ch = active_ch;
+        poll_channel = ch; /* pin the round-robin to current channel */
+    }
+
     /* Get relay state from MCP driver */
     bool state = false;
     (void)Switch_GetState(ch, &state);
@@ -560,8 +573,12 @@ void hlw8032_poll_once(void) {
         cached_power[ch] = last_power;
     }
 
-    /* Advance to next channel (round-robin) */
-    poll_channel = (poll_channel + 1) & 0x07;
+    /* Advance to next channel only if no calibration is running */
+    if (!cal_running) {
+        poll_channel = (poll_channel + 1) & 0x07;
+    } else {
+        poll_channel = ch;
+    }
 
     /* After completing channel 7, update total current sum and set cycle flag */
     if (ch == 7) {
@@ -687,10 +704,11 @@ void hlw8032_load_calibration(void) {
  * @brief Asynchronous HLW8032 auto-calibration mode.
  */
 typedef enum {
-    HLW_CAL_MODE_IDLE = 0, /**< No calibration in progress. */
-    HLW_CAL_MODE_ZERO_ALL, /**< Zero-point auto calibration (0V, 0A). */
-    HLW_CAL_MODE_VOLT_ALL, /**< Voltage auto calibration (Vref, 0A). */
-    HLW_CAL_MODE_CURR_ALL  /**< Current gain calibration (Iref, with load). */
+    HLW_CAL_MODE_IDLE = 0,    /**< No calibration in progress. */
+    HLW_CAL_MODE_ZERO_ALL,    /**< Zero-point auto calibration (0V, 0A). */
+    HLW_CAL_MODE_VOLT_ALL,    /**< Voltage auto calibration (Vref, 0A). */
+    HLW_CAL_MODE_CURR_SINGLE, /**< Current gain calibration for one channel. */
+    HLW_CAL_MODE_CURR_ALL     /**< Current gain calibration for all channels. */
 } hlw_cal_mode_t;
 
 /**
@@ -758,6 +776,22 @@ static void hlw8032_calibration_reset_accumulators(void) {
 }
 
 /**
+ * @brief Helper to query if calibration is running and fetch active channel.
+ *
+ * @param out_ch Pointer to receive current channel if running (optional)
+ * @return true if a calibration is running, false otherwise
+ */
+static bool hlw8032_calibration_get_active_channel(uint8_t *out_ch) {
+    if (s_hlw_cal_state.running) {
+        if (out_ch) {
+            *out_ch = s_hlw_cal_state.current_channel;
+        }
+        return true;
+    }
+    return false;
+}
+
+/**
  * @brief Finish calibration for the current channel using accumulated samples.
  *
  * @return true if calibration for the current channel succeeded.
@@ -769,7 +803,7 @@ static bool hlw8032_calibration_finish_current_channel(void) {
     const int valid = (int)s_hlw_cal_state.valid_samples;
 
     if (channel >= 8u) {
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0x5);
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0x4);
         ERROR_PRINT_CODE(err_code, "%s Async calib invalid channel %u\r\n", HLW8032_TAG,
                          (unsigned)channel);
         return false;
@@ -827,7 +861,8 @@ static bool hlw8032_calibration_finish_current_channel(void) {
                                HLW8032_TAG, (unsigned)channel);
             return false;
         }
-    } else if (s_hlw_cal_state.mode == HLW_CAL_MODE_CURR_ALL) {
+    } else if (s_hlw_cal_state.mode == HLW_CAL_MODE_CURR_ALL ||
+               s_hlw_cal_state.mode == HLW_CAL_MODE_CURR_SINGLE) {
         /* Current calibration: compute current scale factor, keep offsets */
         const float ref_current = s_hlw_cal_state.ref_current;
 
@@ -856,7 +891,7 @@ static bool hlw8032_calibration_finish_current_channel(void) {
                    HLW8032_TAG, (unsigned)channel, cf, ref_current, ioff);
     } else {
         /* Should not happen */
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0xB);
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0x9);
         ERROR_PRINT_CODE(err_code, "%s Async calib in invalid mode\r\n", HLW8032_TAG);
         return false;
     }
@@ -878,15 +913,17 @@ static bool hlw8032_calibration_finish_current_channel(void) {
     channel_calib[channel].zero_calibrated =
         did_zero ? 0xCA : channel_calib[channel].zero_calibrated;
 
-    /* Persist to EEPROM */
-    if (EEPROM_WriteSensorCalibrationForChannel(channel, &channel_calib[channel]) != 0) {
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0x8);
-        ERROR_PRINT_CODE(err_code, "%s Async calib failed to write EEPROM for CH%u\r\n",
-                         HLW8032_TAG, (unsigned)channel);
-        return false;
+    /* Persist via StorageTask (non-blocking, debounced) */
+    if (!storage_set_sensor_cal(channel, &channel_calib[channel])) {
+#if ERRORLOGGER
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_WARNING, ERR_FID_HLW8032, 0x5);
+        WARNING_PRINT_CODE(err_code, "%s Async calib: queue save failed for CH%u \r\n", HLW8032_TAG,
+                           (unsigned)channel);
+#endif
+        /* Continue without failing calibration; RAM updated, persistence deferred */
     }
 
-    INFO_PRINT("%s CH%u async calibration complete and saved\r\n", HLW8032_TAG, (unsigned)channel);
+    INFO_PRINT("%s CH%u async calibration complete\r\n", HLW8032_TAG, (unsigned)channel);
     return true;
 }
 
@@ -933,7 +970,9 @@ static void hlw8032_calibration_consume_sample(uint8_t ch) {
         else if (s_hlw_cal_state.mode == HLW_CAL_MODE_VOLT_ALL)
             mode_str = "voltage";
         else if (s_hlw_cal_state.mode == HLW_CAL_MODE_CURR_ALL)
-            mode_str = "current";
+            mode_str = "current(all)";
+        else if (s_hlw_cal_state.mode == HLW_CAL_MODE_CURR_SINGLE)
+            mode_str = "current(single)";
 
         INFO_PRINT("%s Async %s calibration complete: %u ok, %u failed\r\n", HLW8032_TAG, mode_str,
                    (unsigned)s_hlw_cal_state.ok_channels,
@@ -978,6 +1017,45 @@ bool hlw8032_calibration_start_zero_all(void) {
 }
 
 /**
+ * @brief Start asynchronous zero calibration (0V/0A) for a single channel.
+ *
+ * @param channel Channel index [0..7]
+ * @return true if calibration sequence successfully started
+ * @return false if another calibration is running or channel invalid
+ */
+bool hlw8032_calibration_start_zero_single(uint8_t channel) {
+    if (channel >= 8u) {
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0xD);
+        ERROR_PRINT_CODE(err_code, "%s Invalid channel for zero calibration: %u\r\n", HLW8032_TAG,
+                         (unsigned)channel);
+        return false;
+    }
+
+    if (s_hlw_cal_state.running) {
+        WARNING_PRINT("%s Async calibration already in progress\r\n", HLW8032_TAG);
+        return false;
+    }
+
+    /* Reuse ZERO_ALL mode but limit window to a single channel */
+    s_hlw_cal_state.mode = HLW_CAL_MODE_ZERO_ALL;
+    s_hlw_cal_state.running = true;
+    s_hlw_cal_state.ref_voltage = 0.0f;
+    s_hlw_cal_state.ref_current = 0.0f;
+    s_hlw_cal_state.current_channel = channel;
+    s_hlw_cal_state.total_channels = (uint8_t)(channel + 1u);
+    s_hlw_cal_state.samples_target = HLW_CAL_SAMPLES_PER_CH;
+    s_hlw_cal_state.ok_channels = 0u;
+    s_hlw_cal_state.failed_channels = 0u;
+    hlw8032_calibration_reset_accumulators();
+
+    INFO_PRINT("%s Async zero calibration started for CH%u (0V/0A)\r\n", HLW8032_TAG,
+               (unsigned)channel);
+    INFO_PRINT("%s Ensure channel %u is OFF and unloaded\r\n", HLW8032_TAG, (unsigned)channel);
+
+    return true;
+}
+
+/**
  * @brief Start asynchronous voltage calibration (Vref/0A) for all channels.
  *
  * @param ref_voltage Reference voltage in volts (must be > 0.0f)
@@ -986,7 +1064,7 @@ bool hlw8032_calibration_start_zero_all(void) {
  */
 bool hlw8032_calibration_start_voltage_all(float ref_voltage) {
     if (ref_voltage <= 0.0f) {
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0xA);
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0x6);
         ERROR_PRINT_CODE(err_code, "%s Invalid reference voltage: %.3f\r\n", HLW8032_TAG,
                          ref_voltage);
         return false;
@@ -1016,6 +1094,54 @@ bool hlw8032_calibration_start_voltage_all(float ref_voltage) {
 }
 
 /**
+ * @brief Start asynchronous voltage calibration (Vref/0A) for a single channel.
+ *
+ * @param channel     Channel index [0..7]
+ * @param ref_voltage Reference voltage in volts (must be > 0.0f)
+ * @return true if calibration sequence successfully started
+ * @return false if another calibration is running or parameters invalid
+ */
+bool hlw8032_calibration_start_voltage_single(uint8_t channel, float ref_voltage) {
+    if (channel >= 8u) {
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0xB);
+        ERROR_PRINT_CODE(err_code, "%s Invalid channel for voltage calibration: %u\r\n",
+                         HLW8032_TAG, (unsigned)channel);
+        return false;
+    }
+
+    if (ref_voltage <= 0.0f) {
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0xC);
+        ERROR_PRINT_CODE(err_code, "%s Invalid reference voltage: %.3f\r\n", HLW8032_TAG,
+                         ref_voltage);
+        return false;
+    }
+
+    if (s_hlw_cal_state.running) {
+        WARNING_PRINT("%s Async calibration already in progress\r\n", HLW8032_TAG);
+        return false;
+    }
+
+    /* Reuse VOLT_ALL mode but limit window to a single channel */
+    s_hlw_cal_state.mode = HLW_CAL_MODE_VOLT_ALL;
+    s_hlw_cal_state.running = true;
+    s_hlw_cal_state.ref_voltage = ref_voltage;
+    s_hlw_cal_state.ref_current = 0.0f;
+    s_hlw_cal_state.current_channel = channel;
+    s_hlw_cal_state.total_channels = (uint8_t)(channel + 1u);
+    s_hlw_cal_state.samples_target = HLW_CAL_SAMPLES_PER_CH;
+    s_hlw_cal_state.ok_channels = 0u;
+    s_hlw_cal_state.failed_channels = 0u;
+    hlw8032_calibration_reset_accumulators();
+
+    INFO_PRINT("%s Async voltage calibration started for CH%u (%.1fV, 0A)\r\n", HLW8032_TAG,
+               (unsigned)channel, ref_voltage);
+    INFO_PRINT("%s Ensure channel %u sees stable mains voltage\r\n", HLW8032_TAG,
+               (unsigned)channel);
+
+    return true;
+}
+
+/**
  * @brief Start asynchronous current calibration (Iref) for a single channel.
  *
  * @param channel     Channel index [0..7] to be calibrated.
@@ -1027,16 +1153,16 @@ bool hlw8032_calibration_start_voltage_all(float ref_voltage) {
  * @note Requires that the selected channel carries the known current (use a DMM).
  * @note Assumes voltage & zero calibration have already been run.
  */
-bool hlw8032_calibration_start_current_all(uint8_t channel, float ref_current) {
+bool hlw8032_calibration_start_current_single(uint8_t channel, float ref_current) {
     if (channel >= 8u) {
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0xC);
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0x7);
         ERROR_PRINT_CODE(err_code, "%s Invalid channel for current calibration: %u\r\n",
                          HLW8032_TAG, (unsigned)channel);
         return false;
     }
 
     if (ref_current <= 0.0f) {
-        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0xD);
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0x8);
         ERROR_PRINT_CODE(err_code, "%s Invalid reference current: %.3f\r\n", HLW8032_TAG,
                          ref_current);
         return false;
@@ -1047,7 +1173,7 @@ bool hlw8032_calibration_start_current_all(uint8_t channel, float ref_current) {
         return false;
     }
 
-    s_hlw_cal_state.mode = HLW_CAL_MODE_CURR_ALL;
+    s_hlw_cal_state.mode = HLW_CAL_MODE_CURR_SINGLE;
     s_hlw_cal_state.running = true;
     s_hlw_cal_state.ref_voltage = 0.0f;
     s_hlw_cal_state.ref_current = ref_current;
@@ -1062,6 +1188,47 @@ bool hlw8032_calibration_start_current_all(uint8_t channel, float ref_current) {
                (unsigned)channel, ref_current);
     INFO_PRINT("%s Ensure channel %u has the measured load current\r\n", HLW8032_TAG,
                (unsigned)channel);
+
+    return true;
+}
+
+/**
+ * @brief Start asynchronous current calibration (Iref) for all channels.
+ *
+ * @param ref_current Reference current in amps (must be > 0.0f)
+ * @return true if calibration sequence successfully started
+ * @return false if another calibration is running or ref_current invalid
+ *
+ * @note Requires that each channel, when selected by the engine, carries the
+ *       known current. Follow the console prompts/logs during the sequence.
+ */
+bool hlw8032_calibration_start_current_all(float ref_current) {
+    if (ref_current <= 0.0f) {
+        uint16_t err_code = ERR_MAKE_CODE(ERR_MOD_METER, ERR_SEV_ERROR, ERR_FID_HLW8032, 0x9);
+        ERROR_PRINT_CODE(err_code, "%s Invalid reference current: %.3f\r\n", HLW8032_TAG,
+                         ref_current);
+        return false;
+    }
+
+    if (s_hlw_cal_state.running) {
+        WARNING_PRINT("%s Async calibration already in progress\r\n", HLW8032_TAG);
+        return false;
+    }
+
+    s_hlw_cal_state.mode = HLW_CAL_MODE_CURR_ALL;
+    s_hlw_cal_state.running = true;
+    s_hlw_cal_state.ref_voltage = 0.0f;
+    s_hlw_cal_state.ref_current = ref_current;
+    s_hlw_cal_state.current_channel = 0u;
+    s_hlw_cal_state.total_channels = 8u; /* iterate all channels */
+    s_hlw_cal_state.samples_target = HLW_CAL_SAMPLES_PER_CH;
+    s_hlw_cal_state.ok_channels = 0u;
+    s_hlw_cal_state.failed_channels = 0u;
+    hlw8032_calibration_reset_accumulators();
+
+    INFO_PRINT("%s Async current calibration started for ALL channels (Iref=%.3fA)\r\n",
+               HLW8032_TAG, ref_current);
+    INFO_PRINT("%s Ensure each channel has the measured current when prompted\r\n", HLW8032_TAG);
 
     return true;
 }
@@ -1094,6 +1261,3 @@ void hlw8032_print_calibration(uint8_t channel) {
     log_printf("  Calibrated=%s ZeroCal=%s\r\n", (c->calibrated == 0xCA) ? "YES" : "NO",
                (c->zero_calibrated == 0xCA) ? "YES" : "NO");
 }
-
-/** @} */
-/** @} */

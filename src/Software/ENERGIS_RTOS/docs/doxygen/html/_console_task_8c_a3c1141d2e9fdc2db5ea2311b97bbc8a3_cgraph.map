@@ -1,0 +1,7 @@
+<map id="cmd_get_usb" name="cmd_get_usb">
+<area shape="rect" id="Node000001" title="Read USB supply voltage (cached, no ADC access)." alt="" coords="5,5,105,32"/>
+<area shape="rect" id="Node000002" href="$group__tasks06.html#ga909c8be3f0ce184e2cd1045bc29e0e30" title="Get the latest system ADC telemetry snapshot (non&#45;blocking)." alt="" coords="153,5,365,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,16,137,16,137,21,105,21"/>
+<area shape="rect" id="Node000003" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="413,5,596,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="365,16,397,16,397,21,365,21"/>
+</map>

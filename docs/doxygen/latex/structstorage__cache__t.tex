@@ -1,0 +1,108 @@
+\doxysection{storage\+\_\+cache\+\_\+t Struct Reference}
+\hypertarget{structstorage__cache__t}{}\label{structstorage__cache__t}\index{storage\_cache\_t@{storage\_cache\_t}}
+
+
+RAM cache structure (owned by Storage\+Task)  
+
+
+
+
+{\ttfamily \#include $<$Storage\+Task.\+h$>$}
+
+
+
+Collaboration diagram for storage\+\_\+cache\+\_\+t\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{structstorage__cache__t__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structnetwork_info}{network\+Info}} \mbox{\hyperlink{structstorage__cache__t_a84e7d5c6b7a66f746dfb7f9ec7f429d9}{network}}
+\item 
+\mbox{\hyperlink{structuser_pref_info}{user\+Pref\+Info}} \mbox{\hyperlink{structstorage__cache__t_ae066049958bbf65bb10a4e5e47e5e179}{preferences}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structstorage__cache__t_a26f67e17adfcc23fe06f7e3b6b59b7b7}{relay\+\_\+states}} \mbox{[}8\mbox{]}
+\item 
+\mbox{\hyperlink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t}} \mbox{\hyperlink{structstorage__cache__t_a0098637a404cc7c8e40246195e0ffaf7}{sensor\+\_\+cal}} \mbox{[}8\mbox{]}
+\item 
+bool \mbox{\hyperlink{structstorage__cache__t_ad6531646d5ede7e836bb61bdf6564199}{network\+\_\+dirty}}
+\item 
+bool \mbox{\hyperlink{structstorage__cache__t_a2a71ea8ae0dda9de947b70ed72711757}{prefs\+\_\+dirty}}
+\item 
+bool \mbox{\hyperlink{structstorage__cache__t_aa48e403751c9f623edd70aa57d6c4d99}{relay\+\_\+dirty}}
+\item 
+bool \mbox{\hyperlink{structstorage__cache__t_a32dc02a092fb9ab4641e493b691fbdce}{sensor\+\_\+cal\+\_\+dirty}} \mbox{[}8\mbox{]}
+\item 
+Tick\+Type\+\_\+t \mbox{\hyperlink{structstorage__cache__t_a871105f6c0821cf4e9bba6971a855b93}{last\+\_\+change\+\_\+tick}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+RAM cache structure (owned by Storage\+Task) 
+
+\label{doc-variable-members}
+\Hypertarget{structstorage__cache__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structstorage__cache__t_a871105f6c0821cf4e9bba6971a855b93}\index{storage\_cache\_t@{storage\_cache\_t}!last\_change\_tick@{last\_change\_tick}}
+\index{last\_change\_tick@{last\_change\_tick}!storage\_cache\_t@{storage\_cache\_t}}
+\doxysubsubsection{\texorpdfstring{last\_change\_tick}{last\_change\_tick}}
+{\footnotesize\ttfamily \label{structstorage__cache__t_a871105f6c0821cf4e9bba6971a855b93} 
+Tick\+Type\+\_\+t storage\+\_\+cache\+\_\+t\+::last\+\_\+change\+\_\+tick}
+
+Timestamp of last change (for debouncing) \Hypertarget{structstorage__cache__t_a84e7d5c6b7a66f746dfb7f9ec7f429d9}\index{storage\_cache\_t@{storage\_cache\_t}!network@{network}}
+\index{network@{network}!storage\_cache\_t@{storage\_cache\_t}}
+\doxysubsubsection{\texorpdfstring{network}{network}}
+{\footnotesize\ttfamily \label{structstorage__cache__t_a84e7d5c6b7a66f746dfb7f9ec7f429d9} 
+\mbox{\hyperlink{structnetwork_info}{network\+Info}} storage\+\_\+cache\+\_\+t\+::network}
+
+Network configuration \Hypertarget{structstorage__cache__t_ad6531646d5ede7e836bb61bdf6564199}\index{storage\_cache\_t@{storage\_cache\_t}!network\_dirty@{network\_dirty}}
+\index{network\_dirty@{network\_dirty}!storage\_cache\_t@{storage\_cache\_t}}
+\doxysubsubsection{\texorpdfstring{network\_dirty}{network\_dirty}}
+{\footnotesize\ttfamily \label{structstorage__cache__t_ad6531646d5ede7e836bb61bdf6564199} 
+bool storage\+\_\+cache\+\_\+t\+::network\+\_\+dirty}
+
+Dirty flags for debounced writes \Hypertarget{structstorage__cache__t_ae066049958bbf65bb10a4e5e47e5e179}\index{storage\_cache\_t@{storage\_cache\_t}!preferences@{preferences}}
+\index{preferences@{preferences}!storage\_cache\_t@{storage\_cache\_t}}
+\doxysubsubsection{\texorpdfstring{preferences}{preferences}}
+{\footnotesize\ttfamily \label{structstorage__cache__t_ae066049958bbf65bb10a4e5e47e5e179} 
+\mbox{\hyperlink{structuser_pref_info}{user\+Pref\+Info}} storage\+\_\+cache\+\_\+t\+::preferences}
+
+User preferences \Hypertarget{structstorage__cache__t_a2a71ea8ae0dda9de947b70ed72711757}\index{storage\_cache\_t@{storage\_cache\_t}!prefs\_dirty@{prefs\_dirty}}
+\index{prefs\_dirty@{prefs\_dirty}!storage\_cache\_t@{storage\_cache\_t}}
+\doxysubsubsection{\texorpdfstring{prefs\_dirty}{prefs\_dirty}}
+{\footnotesize\ttfamily \label{structstorage__cache__t_a2a71ea8ae0dda9de947b70ed72711757} 
+bool storage\+\_\+cache\+\_\+t\+::prefs\+\_\+dirty}
+
+\Hypertarget{structstorage__cache__t_aa48e403751c9f623edd70aa57d6c4d99}\index{storage\_cache\_t@{storage\_cache\_t}!relay\_dirty@{relay\_dirty}}
+\index{relay\_dirty@{relay\_dirty}!storage\_cache\_t@{storage\_cache\_t}}
+\doxysubsubsection{\texorpdfstring{relay\_dirty}{relay\_dirty}}
+{\footnotesize\ttfamily \label{structstorage__cache__t_aa48e403751c9f623edd70aa57d6c4d99} 
+bool storage\+\_\+cache\+\_\+t\+::relay\+\_\+dirty}
+
+\Hypertarget{structstorage__cache__t_a26f67e17adfcc23fe06f7e3b6b59b7b7}\index{storage\_cache\_t@{storage\_cache\_t}!relay\_states@{relay\_states}}
+\index{relay\_states@{relay\_states}!storage\_cache\_t@{storage\_cache\_t}}
+\doxysubsubsection{\texorpdfstring{relay\_states}{relay\_states}}
+{\footnotesize\ttfamily \label{structstorage__cache__t_a26f67e17adfcc23fe06f7e3b6b59b7b7} 
+uint8\+\_\+t storage\+\_\+cache\+\_\+t\+::relay\+\_\+states\mbox{[}8\mbox{]}}
+
+Relay power-\/on states \Hypertarget{structstorage__cache__t_a0098637a404cc7c8e40246195e0ffaf7}\index{storage\_cache\_t@{storage\_cache\_t}!sensor\_cal@{sensor\_cal}}
+\index{sensor\_cal@{sensor\_cal}!storage\_cache\_t@{storage\_cache\_t}}
+\doxysubsubsection{\texorpdfstring{sensor\_cal}{sensor\_cal}}
+{\footnotesize\ttfamily \label{structstorage__cache__t_a0098637a404cc7c8e40246195e0ffaf7} 
+\mbox{\hyperlink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t}} storage\+\_\+cache\+\_\+t\+::sensor\+\_\+cal\mbox{[}8\mbox{]}}
+
+Sensor calibration per channel \Hypertarget{structstorage__cache__t_a32dc02a092fb9ab4641e493b691fbdce}\index{storage\_cache\_t@{storage\_cache\_t}!sensor\_cal\_dirty@{sensor\_cal\_dirty}}
+\index{sensor\_cal\_dirty@{sensor\_cal\_dirty}!storage\_cache\_t@{storage\_cache\_t}}
+\doxysubsubsection{\texorpdfstring{sensor\_cal\_dirty}{sensor\_cal\_dirty}}
+{\footnotesize\ttfamily \label{structstorage__cache__t_a32dc02a092fb9ab4641e493b691fbdce} 
+bool storage\+\_\+cache\+\_\+t\+::sensor\+\_\+cal\+\_\+dirty\mbox{[}8\mbox{]}}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\mbox{\hyperlink{_storage_task_8h}{Storage\+Task.\+h}}\end{DoxyCompactItemize}

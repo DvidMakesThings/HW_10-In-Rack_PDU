@@ -1,0 +1,37 @@
+<map id="SNMP_Init" name="SNMP_Init">
+<area shape="rect" id="Node000001" title="Initialize SNMP agent UDP transport and core." alt="" coords="5,183,91,209"/>
+<area shape="rect" id="Node000002" href="$group__drivers08.html#ga025710a2709097be7824f0564f89a461" title="Close a socket." alt="" coords="658,5,749,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="55,180,86,136,110,112,137,92,202,63,271,41,342,26,412,16,541,8,642,11,642,16,541,14,412,21,343,31,273,46,204,68,140,97,113,116,91,139,59,184"/>
+<area shape="rect" id="Node000003" href="$group__drivers07.html#ga01e7036f2bce7c2647b681dcfe2b3731" title="Perform initial trap setup with manager/agent IP (in snmp_custom.c)." alt="" coords="169,107,254,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="76,180,138,150,163,138,165,143,140,154,78,184"/>
+<area shape="rect" id="Node000010" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="612,208,795,235"/>
+<area shape="poly" id="edge21_Node000001_Node000010" title=" " alt="" coords="91,195,596,215,596,220,91,200"/>
+<area shape="rect" id="Node000011" href="$group__drivers08.html#ga8cc0a2074b3aae98a132c1ae3c51188f" title="Create and initialize a socket." alt="" coords="503,157,564,184"/>
+<area shape="poly" id="edge20_Node000001_Node000011" title=" " alt="" coords="91,191,488,170,488,176,91,196"/>
+<area shape="rect" id="Node000013" href="$group__drivers07.html#ga4d3d68fdba21b44efc30f71a40efa7ed" title="Initialize OID table and agent community (implemented in snmp_custom.c)." alt="" coords="177,259,246,285"/>
+<area shape="poly" id="edge18_Node000001_Node000013" title=" " alt="" coords="78,208,140,238,165,249,163,254,138,242,76,212"/>
+<area shape="rect" id="Node000014" href="$group__drivers07.html#ga8b18137382d90ca77a5391a0b927a6b3" title="Return the agent tick counter (in 10 ms units)." alt="" coords="139,309,284,336"/>
+<area shape="poly" id="edge19_Node000001_Node000014" title=" " alt="" coords="60,208,92,251,115,275,140,295,148,300,145,305,137,300,111,278,88,254,56,211"/>
+<area shape="rect" id="Node000004" href="$group__drivers07.html#gaface68bc44083fa16ce731bc1a8f5014" title="Send an SNMP trap to a manager." alt="" coords="332,107,455,133"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="254,117,316,117,316,123,254,123"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="436,104,645,35,646,40,438,109"/>
+<area shape="rect" id="Node000005" href="$group__drivers08.html#ga30fc77ba1005733b501994818bde12f8" title="Send datagram over UDP socket." alt="" coords="503,107,564,133"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="456,117,488,117,488,123,456,123"/>
+<area shape="poly" id="edge13_Node000004_Node000011" title=" " alt="" coords="434,131,489,152,488,157,432,136"/>
+<area shape="rect" id="Node000006" href="$group__drivers03.html#gaeaef8ee772ea9b4a5c6ba7702a1c9b52" title="Send data to socket TX buffer." alt="" coords="650,107,756,133"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="564,117,634,117,634,123,564,123"/>
+<area shape="rect" id="Node000009" href="$group__drivers03.html#ga2266fd45d5dc208a9ac11f084d476188" title="Set the destination TCP/UDP port (big&#45;endian)" alt="" coords="844,31,952,57"/>
+<area shape="poly" id="edge10_Node000005_Node000009" title=" " alt="" coords="563,107,611,92,725,68,828,51,828,56,726,73,612,97,565,112"/>
+<area shape="poly" id="edge12_Node000005_Node000010" title=" " alt="" coords="559,132,668,197,665,202,556,136"/>
+<area shape="rect" id="Node000007" href="$group__drivers03.html#ga35f04740974b2f6a16c4744f1641fd47" title="Set socket TX write pointer (Sn_TX_WR) in big&#45;endian." alt="" coords="843,81,952,108"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="757,110,827,101,828,106,757,116"/>
+<area shape="rect" id="Node000008" href="$group__drivers03.html#ga8e525d27915365abbe8086dc3363055f" title="Write multiple bytes to W5500 (optimized bulk transfer)" alt="" coords="1000,107,1120,133"/>
+<area shape="poly" id="edge9_Node000006_Node000008" title=" " alt="" coords="757,117,984,117,984,123,757,123"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="953,101,986,106,985,111,952,106"/>
+<area shape="poly" id="edge11_Node000009_Node000008" title=" " alt="" coords="929,56,953,67,1017,97,1015,102,951,72,927,60"/>
+<area shape="poly" id="edge14_Node000011_Node000002" title=" " alt="" coords="549,155,562,143,610,93,671,40,675,44,614,97,566,147,553,159"/>
+<area shape="poly" id="edge17_Node000011_Node000010" title=" " alt="" coords="565,177,642,200,641,206,563,182"/>
+<area shape="rect" id="Node000012" href="$group__drivers03.html#gab5067ea57282ddde48ecb150943ece32" title="Set the local TCP/UDP port (big&#45;endian)" alt="" coords="848,183,947,209"/>
+<area shape="poly" id="edge15_Node000011_Node000012" title=" " alt="" coords="564,170,833,189,833,194,564,175"/>
+<area shape="poly" id="edge16_Node000012_Node000008" title=" " alt="" coords="927,180,1015,138,1017,143,929,184"/>
+</map>

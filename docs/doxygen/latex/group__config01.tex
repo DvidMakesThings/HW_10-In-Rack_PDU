@@ -1,0 +1,200 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item Hardware Configuration 
+\end{DoxyEnumerate}}
+\hypertarget{group__config01}{}\label{group__config01}\index{1. Hardware Configuration@{1. Hardware Configuration}}
+
+
+Configuration header for ENERGIS PDU firmware.  
+
+
+Collaboration diagram for 1. Hardware Configuration\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__config01}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Topics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__overcurrent__thresholds}{Overcurrent Protection Thresholds}}
+\begin{DoxyCompactList}\small\item\em Fixed threshold offsets for overcurrent state machine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config01_ga57fbf159f49d738b40cfac0e287c83ec}{LONGPRESS\+\_\+\+DT}}~2500
+\item 
+\#define \mbox{\hyperlink{group__config01_gadd56dedbc09f82766e39588e01978e7d}{DEBOUNCE\+\_\+\+MS}}~100u
+\item 
+\#define \mbox{\hyperlink{group__config01_gab869822392873fc3922eaa44b4c6facc}{POST\+\_\+\+GUARD\+\_\+\+MS}}~(\mbox{\hyperlink{group__config01_gadd56dedbc09f82766e39588e01978e7d}{DEBOUNCE\+\_\+\+MS}} + 10u)
+\item 
+\#define \mbox{\hyperlink{group__config01_gab10245e2290b2b4c2e52cc4272189d1a}{CFG\+\_\+\+ENABLE\+\_\+\+METRICS}}~1
+\item 
+\#define \mbox{\hyperlink{group__config01_ga4bbca2618ef9c4c953213c4993f9b3b4}{SWITCH\+\_\+\+DISPLAY\+\_\+\+STRICT}}~1
+\item 
+\#define \mbox{\hyperlink{group__config01_ga6bcec64b544b74e628a348846e546941}{ENERGIS\+\_\+\+DEFAULT\+\_\+\+IP}}~\{192, 168, 0, 22\}
+\begin{DoxyCompactList}\small\item\em Default static IPv4 address octets. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__config01_ga80cb3abbba38b19472099f25027a6b65}{ENERGIS\+\_\+\+DEFAULT\+\_\+\+SN}}~\{255, 255, 255, 0\}
+\begin{DoxyCompactList}\small\item\em Default IPv4 subnet mask octets. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__config01_ga61b0c1d2f442d39fc54989d6ade0d870}{ENERGIS\+\_\+\+DEFAULT\+\_\+\+GW}}~\{192, 168, 0, 1\}
+\begin{DoxyCompactList}\small\item\em Default IPv4 gateway octets. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__config01_ga8bdcc7005183fa45002f248740a0446b}{ENERGIS\+\_\+\+DEFAULT\+\_\+\+DNS}}~\{8, 8, 8, 8\}
+\begin{DoxyCompactList}\small\item\em Default IPv4 DNS server octets. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__config01_ga7c770e481dd85c7ffb40e3b3edb0beb5}{HARDWARE\+\_\+\+VERSION}}~"{}1.\+1.\+0"{}
+\begin{DoxyCompactList}\small\item\em Hardware version string. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__config01_ga5bc6a8d3eec56bfb3c3c0b0ab0fe8aad}{HARDWARE\+\_\+\+VERSION\+\_\+\+LITERAL}}~110
+\begin{DoxyCompactList}\small\item\em Hardware version as integer literal. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__config01_gaa14dc39d52ab121ceb570f1a265385e0}{FIRMWARE\+\_\+\+VERSION}}~"{}1.\+1.\+0"{}
+\begin{DoxyCompactList}\small\item\em Firmware version string. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__config01_ga97f713d703f40938e4e87f331757b7b3}{FIRMWARE\+\_\+\+VERSION\+\_\+\+LITERAL}}~110
+\begin{DoxyCompactList}\small\item\em Firmware version as integer literal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structw5500___net_config}{w5500\+\_\+\+Net\+Config}} \mbox{\hyperlink{group__config01_ga15954630fff2dc163fcf19ad1de6898f}{eth\+\_\+netcfg}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Configuration header for ENERGIS PDU firmware. 
+
+\begin{DoxyVersion}{Version}
+2.\+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/12-\/14
+\end{DoxyDate}
+This file contains global configuration settings, peripheral assignments, and logging macros for the ENERGIS PDU firmware project. It contains user-\/configurable options as well as system constants. It describes GPIO pin assignments, I2\+C/\+SPI peripheral usage, ADC channel assignments, and other peripheral configurations.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{group__config01_doc-define-members}
+\doxysubsubsection{Macro Definition Documentation}
+\Hypertarget{group__config01_gab10245e2290b2b4c2e52cc4272189d1a}\index{1. Hardware Configuration@{1. Hardware Configuration}!CFG\_ENABLE\_METRICS@{CFG\_ENABLE\_METRICS}}
+\index{CFG\_ENABLE\_METRICS@{CFG\_ENABLE\_METRICS}!1. Hardware Configuration@{1. Hardware Configuration}}
+\doxysubsubsubsection{\texorpdfstring{CFG\_ENABLE\_METRICS}{CFG\_ENABLE\_METRICS}}
+{\footnotesize\ttfamily \label{group__config01_gab10245e2290b2b4c2e52cc4272189d1a} 
+\#define CFG\+\_\+\+ENABLE\+\_\+\+METRICS~1}
+
+\Hypertarget{group__config01_gadd56dedbc09f82766e39588e01978e7d}\index{1. Hardware Configuration@{1. Hardware Configuration}!DEBOUNCE\_MS@{DEBOUNCE\_MS}}
+\index{DEBOUNCE\_MS@{DEBOUNCE\_MS}!1. Hardware Configuration@{1. Hardware Configuration}}
+\doxysubsubsubsection{\texorpdfstring{DEBOUNCE\_MS}{DEBOUNCE\_MS}}
+{\footnotesize\ttfamily \label{group__config01_gadd56dedbc09f82766e39588e01978e7d} 
+\#define DEBOUNCE\+\_\+\+MS~100u}
+
+\Hypertarget{group__config01_ga8bdcc7005183fa45002f248740a0446b}\index{1. Hardware Configuration@{1. Hardware Configuration}!ENERGIS\_DEFAULT\_DNS@{ENERGIS\_DEFAULT\_DNS}}
+\index{ENERGIS\_DEFAULT\_DNS@{ENERGIS\_DEFAULT\_DNS}!1. Hardware Configuration@{1. Hardware Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ENERGIS\_DEFAULT\_DNS}{ENERGIS\_DEFAULT\_DNS}}
+{\footnotesize\ttfamily \label{group__config01_ga8bdcc7005183fa45002f248740a0446b} 
+\#define ENERGIS\+\_\+\+DEFAULT\+\_\+\+DNS~\{8, 8, 8, 8\}}
+
+
+
+Default IPv4 DNS server octets. 
+
+\Hypertarget{group__config01_ga61b0c1d2f442d39fc54989d6ade0d870}\index{1. Hardware Configuration@{1. Hardware Configuration}!ENERGIS\_DEFAULT\_GW@{ENERGIS\_DEFAULT\_GW}}
+\index{ENERGIS\_DEFAULT\_GW@{ENERGIS\_DEFAULT\_GW}!1. Hardware Configuration@{1. Hardware Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ENERGIS\_DEFAULT\_GW}{ENERGIS\_DEFAULT\_GW}}
+{\footnotesize\ttfamily \label{group__config01_ga61b0c1d2f442d39fc54989d6ade0d870} 
+\#define ENERGIS\+\_\+\+DEFAULT\+\_\+\+GW~\{192, 168, 0, 1\}}
+
+
+
+Default IPv4 gateway octets. 
+
+\Hypertarget{group__config01_ga6bcec64b544b74e628a348846e546941}\index{1. Hardware Configuration@{1. Hardware Configuration}!ENERGIS\_DEFAULT\_IP@{ENERGIS\_DEFAULT\_IP}}
+\index{ENERGIS\_DEFAULT\_IP@{ENERGIS\_DEFAULT\_IP}!1. Hardware Configuration@{1. Hardware Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ENERGIS\_DEFAULT\_IP}{ENERGIS\_DEFAULT\_IP}}
+{\footnotesize\ttfamily \label{group__config01_ga6bcec64b544b74e628a348846e546941} 
+\#define ENERGIS\+\_\+\+DEFAULT\+\_\+\+IP~\{192, 168, 0, 22\}}
+
+
+
+Default static IPv4 address octets. 
+
+\Hypertarget{group__config01_ga80cb3abbba38b19472099f25027a6b65}\index{1. Hardware Configuration@{1. Hardware Configuration}!ENERGIS\_DEFAULT\_SN@{ENERGIS\_DEFAULT\_SN}}
+\index{ENERGIS\_DEFAULT\_SN@{ENERGIS\_DEFAULT\_SN}!1. Hardware Configuration@{1. Hardware Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ENERGIS\_DEFAULT\_SN}{ENERGIS\_DEFAULT\_SN}}
+{\footnotesize\ttfamily \label{group__config01_ga80cb3abbba38b19472099f25027a6b65} 
+\#define ENERGIS\+\_\+\+DEFAULT\+\_\+\+SN~\{255, 255, 255, 0\}}
+
+
+
+Default IPv4 subnet mask octets. 
+
+\Hypertarget{group__config01_gaa14dc39d52ab121ceb570f1a265385e0}\index{1. Hardware Configuration@{1. Hardware Configuration}!FIRMWARE\_VERSION@{FIRMWARE\_VERSION}}
+\index{FIRMWARE\_VERSION@{FIRMWARE\_VERSION}!1. Hardware Configuration@{1. Hardware Configuration}}
+\doxysubsubsubsection{\texorpdfstring{FIRMWARE\_VERSION}{FIRMWARE\_VERSION}}
+{\footnotesize\ttfamily \label{group__config01_gaa14dc39d52ab121ceb570f1a265385e0} 
+\#define FIRMWARE\+\_\+\+VERSION~"{}1.\+1.\+0"{}}
+
+
+
+Firmware version string. 
+
+Format\+: MAJOR.\+MINOR.\+PATCH \Hypertarget{group__config01_ga97f713d703f40938e4e87f331757b7b3}\index{1. Hardware Configuration@{1. Hardware Configuration}!FIRMWARE\_VERSION\_LITERAL@{FIRMWARE\_VERSION\_LITERAL}}
+\index{FIRMWARE\_VERSION\_LITERAL@{FIRMWARE\_VERSION\_LITERAL}!1. Hardware Configuration@{1. Hardware Configuration}}
+\doxysubsubsubsection{\texorpdfstring{FIRMWARE\_VERSION\_LITERAL}{FIRMWARE\_VERSION\_LITERAL}}
+{\footnotesize\ttfamily \label{group__config01_ga97f713d703f40938e4e87f331757b7b3} 
+\#define FIRMWARE\+\_\+\+VERSION\+\_\+\+LITERAL~110}
+
+
+
+Firmware version as integer literal. 
+
+Encoded as\+: MAJOR\texorpdfstring{$\ast$}{*}100 + MINOR\texorpdfstring{$\ast$}{*}10 + PATCH \Hypertarget{group__config01_ga7c770e481dd85c7ffb40e3b3edb0beb5}\index{1. Hardware Configuration@{1. Hardware Configuration}!HARDWARE\_VERSION@{HARDWARE\_VERSION}}
+\index{HARDWARE\_VERSION@{HARDWARE\_VERSION}!1. Hardware Configuration@{1. Hardware Configuration}}
+\doxysubsubsubsection{\texorpdfstring{HARDWARE\_VERSION}{HARDWARE\_VERSION}}
+{\footnotesize\ttfamily \label{group__config01_ga7c770e481dd85c7ffb40e3b3edb0beb5} 
+\#define HARDWARE\+\_\+\+VERSION~"{}1.\+1.\+0"{}}
+
+
+
+Hardware version string. 
+
+Format\+: MAJOR.\+MINOR.\+PATCH \Hypertarget{group__config01_ga5bc6a8d3eec56bfb3c3c0b0ab0fe8aad}\index{1. Hardware Configuration@{1. Hardware Configuration}!HARDWARE\_VERSION\_LITERAL@{HARDWARE\_VERSION\_LITERAL}}
+\index{HARDWARE\_VERSION\_LITERAL@{HARDWARE\_VERSION\_LITERAL}!1. Hardware Configuration@{1. Hardware Configuration}}
+\doxysubsubsubsection{\texorpdfstring{HARDWARE\_VERSION\_LITERAL}{HARDWARE\_VERSION\_LITERAL}}
+{\footnotesize\ttfamily \label{group__config01_ga5bc6a8d3eec56bfb3c3c0b0ab0fe8aad} 
+\#define HARDWARE\+\_\+\+VERSION\+\_\+\+LITERAL~110}
+
+
+
+Hardware version as integer literal. 
+
+Encoded as\+: MAJOR\texorpdfstring{$\ast$}{*}100 + MINOR\texorpdfstring{$\ast$}{*}10 + PATCH \Hypertarget{group__config01_ga57fbf159f49d738b40cfac0e287c83ec}\index{1. Hardware Configuration@{1. Hardware Configuration}!LONGPRESS\_DT@{LONGPRESS\_DT}}
+\index{LONGPRESS\_DT@{LONGPRESS\_DT}!1. Hardware Configuration@{1. Hardware Configuration}}
+\doxysubsubsubsection{\texorpdfstring{LONGPRESS\_DT}{LONGPRESS\_DT}}
+{\footnotesize\ttfamily \label{group__config01_ga57fbf159f49d738b40cfac0e287c83ec} 
+\#define LONGPRESS\+\_\+\+DT~2500}
+
+\Hypertarget{group__config01_gab869822392873fc3922eaa44b4c6facc}\index{1. Hardware Configuration@{1. Hardware Configuration}!POST\_GUARD\_MS@{POST\_GUARD\_MS}}
+\index{POST\_GUARD\_MS@{POST\_GUARD\_MS}!1. Hardware Configuration@{1. Hardware Configuration}}
+\doxysubsubsubsection{\texorpdfstring{POST\_GUARD\_MS}{POST\_GUARD\_MS}}
+{\footnotesize\ttfamily \label{group__config01_gab869822392873fc3922eaa44b4c6facc} 
+\#define POST\+\_\+\+GUARD\+\_\+\+MS~(\mbox{\hyperlink{group__config01_gadd56dedbc09f82766e39588e01978e7d}{DEBOUNCE\+\_\+\+MS}} + 10u)}
+
+\Hypertarget{group__config01_ga4bbca2618ef9c4c953213c4993f9b3b4}\index{1. Hardware Configuration@{1. Hardware Configuration}!SWITCH\_DISPLAY\_STRICT@{SWITCH\_DISPLAY\_STRICT}}
+\index{SWITCH\_DISPLAY\_STRICT@{SWITCH\_DISPLAY\_STRICT}!1. Hardware Configuration@{1. Hardware Configuration}}
+\doxysubsubsubsection{\texorpdfstring{SWITCH\_DISPLAY\_STRICT}{SWITCH\_DISPLAY\_STRICT}}
+{\footnotesize\ttfamily \label{group__config01_ga4bbca2618ef9c4c953213c4993f9b3b4} 
+\#define SWITCH\+\_\+\+DISPLAY\+\_\+\+STRICT~1}
+
+Switch/display policy flags
+\begin{DoxyItemize}
+\item When 0, relay switching proceeds even if display mirror writes fail.
+\item When 1, display mirror failures make the overall switch operation fail. When enabled (1), any failure to mirror the relay state to the display MCP (0x21) will cause \doxylink{group__tasks11_gabd8f13f37bd62b267259ae2d027bda28}{Switch\+\_\+\+Set\+Channel()} to fail. When disabled (0), display mirror is treated as best-\/effort\+: failure is logged as a warning but switching proceeds. 
+\end{DoxyItemize}
+
+\label{doc-var-members}
+\Hypertarget{group__config01_doc-var-members}
+\doxysubsubsection{Variable Documentation}
+\Hypertarget{group__config01_ga15954630fff2dc163fcf19ad1de6898f}\index{1. Hardware Configuration@{1. Hardware Configuration}!eth\_netcfg@{eth\_netcfg}}
+\index{eth\_netcfg@{eth\_netcfg}!1. Hardware Configuration@{1. Hardware Configuration}}
+\doxysubsubsubsection{\texorpdfstring{eth\_netcfg}{eth\_netcfg}}
+{\footnotesize\ttfamily \label{group__config01_ga15954630fff2dc163fcf19ad1de6898f} 
+\mbox{\hyperlink{structw5500___net_config}{w5500\+\_\+\+Net\+Config}} eth\+\_\+netcfg\hspace{0.3cm}{\ttfamily [extern]}}
+
+\input{group__overcurrent__thresholds}

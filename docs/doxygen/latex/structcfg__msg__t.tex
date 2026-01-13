@@ -1,0 +1,53 @@
+\doxysection{cfg\+\_\+msg\+\_\+t Struct Reference}
+\hypertarget{structcfg__msg__t}{}\label{structcfg__msg__t}\index{cfg\_msg\_t@{cfg\_msg\_t}}
+
+
+Configuration storage message for Storage\+Task.  
+
+
+
+
+{\ttfamily \#include $<$Console\+Task.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structcfg__msg__t_a4b4d7871d36d760a1dff2b9fe8bf47d5}{action}}
+\item 
+char \mbox{\hyperlink{structcfg__msg__t_a9134a758dcbfa52fab734a94b62e4f8e}{key}} \mbox{[}32\mbox{]}
+\item 
+char \mbox{\hyperlink{structcfg__msg__t_a0c18991efb8ecef615346998eae363d0}{val}} \mbox{[}64\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Configuration storage message for Storage\+Task. 
+
+Supports read, write, commit, and factory defaults operations; used on {\ttfamily q\+\_\+cfg} to route persistent configuration changes. 
+
+\label{doc-variable-members}
+\Hypertarget{structcfg__msg__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structcfg__msg__t_a4b4d7871d36d760a1dff2b9fe8bf47d5}\index{cfg\_msg\_t@{cfg\_msg\_t}!action@{action}}
+\index{action@{action}!cfg\_msg\_t@{cfg\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{action}{action}}
+{\footnotesize\ttfamily \label{structcfg__msg__t_a4b4d7871d36d760a1dff2b9fe8bf47d5} 
+uint8\+\_\+t cfg\+\_\+msg\+\_\+t\+::action}
+
+Operation\+: 0=read, 1=write, 2=commit, 3=load defaults. \Hypertarget{structcfg__msg__t_a9134a758dcbfa52fab734a94b62e4f8e}\index{cfg\_msg\_t@{cfg\_msg\_t}!key@{key}}
+\index{key@{key}!cfg\_msg\_t@{cfg\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{key}{key}}
+{\footnotesize\ttfamily \label{structcfg__msg__t_a9134a758dcbfa52fab734a94b62e4f8e} 
+char cfg\+\_\+msg\+\_\+t\+::key\mbox{[}32\mbox{]}}
+
+Configuration parameter name. \Hypertarget{structcfg__msg__t_a0c18991efb8ecef615346998eae363d0}\index{cfg\_msg\_t@{cfg\_msg\_t}!val@{val}}
+\index{val@{val}!cfg\_msg\_t@{cfg\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{val}{val}}
+{\footnotesize\ttfamily \label{structcfg__msg__t_a0c18991efb8ecef615346998eae363d0} 
+char cfg\+\_\+msg\+\_\+t\+::val\mbox{[}64\mbox{]}}
+
+Configuration parameter value. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\mbox{\hyperlink{_console_task_8h}{Console\+Task.\+h}}\end{DoxyCompactItemize}

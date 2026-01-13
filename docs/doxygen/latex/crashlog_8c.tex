@@ -1,0 +1,259 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/misc/crashlog.c File Reference}
+\hypertarget{crashlog_8c}{}\label{crashlog_8c}\index{src/Software/ENERGIS\_RTOS/src/misc/crashlog.c@{src/Software/ENERGIS\_RTOS/src/misc/crashlog.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for crashlog.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{crashlog_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{crashlog_8c_a225e1331d1785920b30d21a33c580b1b}{CRASH\+\_\+\+LOG}}(...)
+\item 
+\#define \mbox{\hyperlink{crashlog_8c_adb131b212dfd1a8768cdb2c1d9818737}{CRASH\+\_\+\+HDR\+\_\+\+MAGIC}}~0x43524\+C47u /\texorpdfstring{$\ast$}{*} \textquotesingle{}CRLG\textquotesingle{} \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{crashlog_8c_a9d5b3dd1088c11400273c72871705c27}{CRASH\+\_\+\+HDR\+\_\+\+VER}}~0x0002u
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{crashlog_8c_ae55aac5d65874421d290cce57ce04ed5}{crash\+\_\+crc32}} (const void \texorpdfstring{$\ast$}{*}p, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Compute CRC32 checksum using standard polynomial 0x\+EDB88320. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{crashlog_8c_a19fbb6b4d2a38070175773953f6fb5db}{crash\+\_\+validate\+\_\+header}} (void)
+\begin{DoxyCompactList}\small\item\em Validate retained crash log header and CRC32 checksum. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{crashlog_8c_a50f52af1f76175e818dad1ef9f2bc3eb}{crash\+\_\+update\+\_\+crc}} (void)
+\begin{DoxyCompactList}\small\item\em Recompute and store updated CRC32 for the crash log structure. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{crashlog_8c_a9207dc5d61cc94ea574ba706f3195453}{crash\+\_\+fresh\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize retained crash log structure to clean state. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{crashlog_8c_a2f312735a33853d79a3bc2fb7c2add92}{crash\+\_\+clamp\+\_\+ring}} (void)
+\begin{DoxyCompactList}\small\item\em Clamp watchdog feed ring buffer indices to safe bounds. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc1_ga1a04e8bbf9617464ae676b6b4d89241c}{Crash\+Log\+\_\+\+On\+Hard\+Fault}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}sp)
+\begin{DoxyCompactList}\small\item\em Hard\+Fault handler C bridge that captures exception context. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc1_ga131d28172212c0df74acc1e9d9527c4a}{Crash\+Log\+\_\+\+Capture\+Reset\+Reason\+Early}} (void)
+\begin{DoxyCompactList}\small\item\em Capture reset cause at early boot before RTOS initialization. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc1_ga8dac22c0f05ce9e997b99d9179a2bf5f}{Crash\+Log\+\_\+\+Record\+Wdt\+Feed}} (uint32\+\_\+t \mbox{\hyperlink{_button_task_8c_a50503dee6a29e98e633b16b1b8b550bc}{now\+\_\+ms}})
+\begin{DoxyCompactList}\small\item\em Record a hardware watchdog feed timestamp for telemetry tracking. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc1_ga28f2af805f9b4954b888151007f862a3}{Crash\+Log\+\_\+\+Record\+Software\+Reboot\+Tag}} (const char \texorpdfstring{$\ast$}{*}tag)
+\begin{DoxyCompactList}\small\item\em Tag an intentional software reboot with a descriptive reason string. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc1_ga040d161613770d2656d3350134445684}{Crash\+Log\+\_\+\+Print\+And\+Clear\+On\+Boot}} (void)
+\begin{DoxyCompactList}\small\item\em Print last crash diagnostics and reset reason, then clear Hard\+Fault fields. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{crashlog_8c_af9aace1b44b73111e15aa39f06f43456}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} ((weak))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{structcrashlog__t}{crashlog\+\_\+t}} \mbox{\hyperlink{crashlog_8c_ab10b9ff199f1fadd7063f9090b92991f}{s\+\_\+crash}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/06
+\end{DoxyDate}
+Implementation of crash logging system with retained RAM storage and CRC integrity. This module maintains a crash log structure in non-\/initialized RAM section that survives across resets, enabling post-\/mortem diagnostics of fault conditions.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{crashlog_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{crashlog_8c_adb131b212dfd1a8768cdb2c1d9818737}\index{crashlog.c@{crashlog.c}!CRASH\_HDR\_MAGIC@{CRASH\_HDR\_MAGIC}}
+\index{CRASH\_HDR\_MAGIC@{CRASH\_HDR\_MAGIC}!crashlog.c@{crashlog.c}}
+\doxysubsubsection{\texorpdfstring{CRASH\_HDR\_MAGIC}{CRASH\_HDR\_MAGIC}}
+{\footnotesize\ttfamily \label{crashlog_8c_adb131b212dfd1a8768cdb2c1d9818737} 
+\#define CRASH\+\_\+\+HDR\+\_\+\+MAGIC~0x43524\+C47u /\texorpdfstring{$\ast$}{*} \textquotesingle{}CRLG\textquotesingle{} \texorpdfstring{$\ast$}{*}/}
+
+\Hypertarget{crashlog_8c_a9d5b3dd1088c11400273c72871705c27}\index{crashlog.c@{crashlog.c}!CRASH\_HDR\_VER@{CRASH\_HDR\_VER}}
+\index{CRASH\_HDR\_VER@{CRASH\_HDR\_VER}!crashlog.c@{crashlog.c}}
+\doxysubsubsection{\texorpdfstring{CRASH\_HDR\_VER}{CRASH\_HDR\_VER}}
+{\footnotesize\ttfamily \label{crashlog_8c_a9d5b3dd1088c11400273c72871705c27} 
+\#define CRASH\+\_\+\+HDR\+\_\+\+VER~0x0002u}
+
+\Hypertarget{crashlog_8c_a225e1331d1785920b30d21a33c580b1b}\index{crashlog.c@{crashlog.c}!CRASH\_LOG@{CRASH\_LOG}}
+\index{CRASH\_LOG@{CRASH\_LOG}!crashlog.c@{crashlog.c}}
+\doxysubsubsection{\texorpdfstring{CRASH\_LOG}{CRASH\_LOG}}
+{\footnotesize\ttfamily \label{crashlog_8c_a225e1331d1785920b30d21a33c580b1b} 
+\#define CRASH\+\_\+\+LOG(\begin{DoxyParamCaption}\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__overcurrent__thresholds_gae1cb3e9a56747aa0a7e58b387628c8db}{ERROR\_PRINT}}(\_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}
+
+
+\label{doc-func-members}
+\Hypertarget{crashlog_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{crashlog_8c_af9aace1b44b73111e15aa39f06f43456}\index{crashlog.c@{crashlog.c}!\_\_attribute\_\_@{\_\_attribute\_\_}}
+\index{\_\_attribute\_\_@{\_\_attribute\_\_}!crashlog.c@{crashlog.c}}
+\doxysubsubsection{\texorpdfstring{\_\_attribute\_\_()}{\_\_attribute\_\_()}}
+{\footnotesize\ttfamily \label{crashlog_8c_af9aace1b44b73111e15aa39f06f43456} 
+\+\_\+\+\_\+attribute\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{(weak)}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{crashlog_8c_a2f312735a33853d79a3bc2fb7c2add92}\index{crashlog.c@{crashlog.c}!crash\_clamp\_ring@{crash\_clamp\_ring}}
+\index{crash\_clamp\_ring@{crash\_clamp\_ring}!crashlog.c@{crashlog.c}}
+\doxysubsubsection{\texorpdfstring{crash\_clamp\_ring()}{crash\_clamp\_ring()}}
+{\footnotesize\ttfamily \label{crashlog_8c_a2f312735a33853d79a3bc2fb7c2add92} 
+void crash\+\_\+clamp\+\_\+ring (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Clamp watchdog feed ring buffer indices to safe bounds. 
+
+Ensures that ring buffer indices and count remain within valid ranges after potential corruption or overflow conditions. Prevents array access violations.
+
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{crashlog_8c_a2f312735a33853d79a3bc2fb7c2add92_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{crashlog_8c_ae55aac5d65874421d290cce57ce04ed5}\index{crashlog.c@{crashlog.c}!crash\_crc32@{crash\_crc32}}
+\index{crash\_crc32@{crash\_crc32}!crashlog.c@{crashlog.c}}
+\doxysubsubsection{\texorpdfstring{crash\_crc32()}{crash\_crc32()}}
+{\footnotesize\ttfamily \label{crashlog_8c_ae55aac5d65874421d290cce57ce04ed5} 
+uint32\+\_\+t crash\+\_\+crc32 (\begin{DoxyParamCaption}\item[{const void \texorpdfstring{$\ast$}{*}}]{p}{, }\item[{size\+\_\+t}]{len}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Compute CRC32 checksum using standard polynomial 0x\+EDB88320. 
+
+Calculates a 32-\/bit CRC checksum over the provided data buffer using the standard CRC-\/32 polynomial (Ethernet/\+ZIP). The implementation uses a bit-\/by-\/bit algorithm suitable for embedded systems without lookup tables.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Pointer to data buffer to checksum \\
+\hline
+{\em len} & Length of data buffer in bytes\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+32-\/bit CRC checksum value
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This is a private helper function used for crash log integrity validation. 
+\end{DoxyNote}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{crashlog_8c_ae55aac5d65874421d290cce57ce04ed5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{crashlog_8c_a9207dc5d61cc94ea574ba706f3195453}\index{crashlog.c@{crashlog.c}!crash\_fresh\_init@{crash\_fresh\_init}}
+\index{crash\_fresh\_init@{crash\_fresh\_init}!crashlog.c@{crashlog.c}}
+\doxysubsubsection{\texorpdfstring{crash\_fresh\_init()}{crash\_fresh\_init()}}
+{\footnotesize\ttfamily \label{crashlog_8c_a9207dc5d61cc94ea574ba706f3195453} 
+void crash\+\_\+fresh\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Initialize retained crash log structure to clean state. 
+
+Zeros the entire crash log structure and initializes the header with current magic value, version, and size. Sets all diagnostic fields to default values and computes initial CRC32 checksum.
+
+This function is called on first boot or when header validation fails due to corruption or version mismatch.
+
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{crashlog_8c_a9207dc5d61cc94ea574ba706f3195453_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{crashlog_8c_a9207dc5d61cc94ea574ba706f3195453_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{crashlog_8c_a50f52af1f76175e818dad1ef9f2bc3eb}\index{crashlog.c@{crashlog.c}!crash\_update\_crc@{crash\_update\_crc}}
+\index{crash\_update\_crc@{crash\_update\_crc}!crashlog.c@{crashlog.c}}
+\doxysubsubsection{\texorpdfstring{crash\_update\_crc()}{crash\_update\_crc()}}
+{\footnotesize\ttfamily \label{crashlog_8c_a50f52af1f76175e818dad1ef9f2bc3eb} 
+void crash\+\_\+update\+\_\+crc (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Recompute and store updated CRC32 for the crash log structure. 
+
+Recalculates the CRC32 checksum over the entire crash log structure and updates the hdr\+\_\+crc32 field. Should be called after any modification to the crash log contents.
+
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=279pt]{crashlog_8c_a50f52af1f76175e818dad1ef9f2bc3eb_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{crashlog_8c_a50f52af1f76175e818dad1ef9f2bc3eb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{crashlog_8c_a19fbb6b4d2a38070175773953f6fb5db}\index{crashlog.c@{crashlog.c}!crash\_validate\_header@{crash\_validate\_header}}
+\index{crash\_validate\_header@{crash\_validate\_header}!crashlog.c@{crashlog.c}}
+\doxysubsubsection{\texorpdfstring{crash\_validate\_header()}{crash\_validate\_header()}}
+{\footnotesize\ttfamily \label{crashlog_8c_a19fbb6b4d2a38070175773953f6fb5db} 
+bool crash\+\_\+validate\+\_\+header (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Validate retained crash log header and CRC32 checksum. 
+
+Checks the crash log structure header for correct magic value, version, and size fields. If basic header validation passes, computes and verifies the CRC32 checksum of the entire structure.
+
+\begin{DoxyReturn}{Returns}
+true if header and CRC are valid, false if initialization needed
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+CRC validation temporarily zeros the hdr\+\_\+crc32 field during computation. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=299pt]{crashlog_8c_a19fbb6b4d2a38070175773953f6fb5db_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{crashlog_8c_a19fbb6b4d2a38070175773953f6fb5db_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{crashlog_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{crashlog_8c_ab10b9ff199f1fadd7063f9090b92991f}\index{crashlog.c@{crashlog.c}!s\_crash@{s\_crash}}
+\index{s\_crash@{s\_crash}!crashlog.c@{crashlog.c}}
+\doxysubsubsection{\texorpdfstring{s\_crash}{s\_crash}}
+{\footnotesize\ttfamily \label{crashlog_8c_ab10b9ff199f1fadd7063f9090b92991f} 
+\mbox{\hyperlink{structcrashlog__t}{crashlog\+\_\+t}} s\+\_\+crash\hspace{0.3cm}{\ttfamily [static]}}
+

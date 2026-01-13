@@ -1,0 +1,40 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\+Logger\+Task.h File Reference}
+\hypertarget{_logger_task_8h}{}\label{_logger_task_8h}\index{src/Software/ENERGIS\_RTOS/src/tasks/LoggerTask.h@{src/Software/ENERGIS\_RTOS/src/tasks/LoggerTask.h}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for Logger\+Task.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_logger_task_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_logger_task_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{Indent}\textbf{ Public API}\par
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{group__tasks05_gafb5047430fb4b265c7eb140436b4d6cd}{Logger\+\_\+\+Is\+Ready}} (void)
+\begin{DoxyCompactList}\small\item\em Query logger task readiness status. \end{DoxyCompactList}\item 
+Base\+Type\+\_\+t \mbox{\hyperlink{group__tasks05_gaae3080c72dfa5993e5e495fd767e32c9}{Logger\+Task\+\_\+\+Init}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Initialize and start the logger task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks05_ga2473a4441580b27bdc14f48e2d2fff8e}{log\+\_\+printf}} (const char \texorpdfstring{$\ast$}{*}fmt,...)
+\begin{DoxyCompactList}\small\item\em Log formatted message to output. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks05_gafc11bbe1cbc3f91b4eec771974d1cc22}{Logger\+\_\+\+Mute\+Push}} (void)
+\begin{DoxyCompactList}\small\item\em Enter logger mute section. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks05_gae9f5d60f97cc58b03ddaf0578bdba99b}{Logger\+\_\+\+Mute\+Pop}} (void)
+\begin{DoxyCompactList}\small\item\em Exit logger mute section. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks05_ga36194a3f790c1e727f3b9ab3c0ab38ba}{log\+\_\+printf\+\_\+force}} (const char \texorpdfstring{$\ast$}{*}fmt,...)
+\begin{DoxyCompactList}\small\item\em Log message bypassing mute state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

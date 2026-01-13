@@ -1,0 +1,369 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\+Meter\+Task.c File Reference}
+\hypertarget{_meter_task_8c}{}\label{_meter_task_8c}\index{src/Software/ENERGIS\_RTOS/src/tasks/MeterTask.c@{src/Software/ENERGIS\_RTOS/src/tasks/MeterTask.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for Meter\+Task.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_meter_task_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_meter_task_8c_a051d8beed8f8dc61ae8a9d8328c55e83}{METER\+\_\+\+TASK\+\_\+\+TAG}}~"{}\mbox{[}Meter\+Task\mbox{]} "{}
+\item 
+\#define \mbox{\hyperlink{_meter_task_8c_acf139cf8ae13680fc83524711cb9b56b}{METER\+\_\+\+READY}}()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static float \mbox{\hyperlink{_meter_task_8c_ac813b666061cf4dd0ff7bd15f385eb34}{adc\+\_\+raw\+\_\+to\+\_\+die\+\_\+temp\+\_\+c}} (uint16\+\_\+t raw)
+\begin{DoxyCompactList}\small\item\em Convert ADC raw code to RP2040 die temperature using per-\/device calibration. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_meter_task_8c_aa944612215bcc302f972c3dfbf2d811b}{update\+\_\+energy}} (uint8\+\_\+t ch, float power, uint32\+\_\+t \mbox{\hyperlink{_button_task_8c_a50503dee6a29e98e633b16b1b8b550bc}{now\+\_\+ms}})
+\begin{DoxyCompactList}\small\item\em Update energy accumulation for a channel. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_meter_task_8c_ad6e0a2bab0856d8c05588f7f2d9ac2b1}{publish\+\_\+telemetry}} (const \mbox{\hyperlink{structmeter__telemetry__t}{meter\+\_\+telemetry\+\_\+t}} \texorpdfstring{$\ast$}{*}telem)
+\begin{DoxyCompactList}\small\item\em Publish telemetry sample to queue (non-\/blocking). \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_meter_task_8c_addb3656d7dd28b5f2537e286d9da7b66}{Meter\+Task\+\_\+\+Loop}} (void \texorpdfstring{$\ast$}{*}pv\+Parameters)
+\begin{DoxyCompactList}\small\item\em Main Meter Task loop. \end{DoxyCompactList}\item 
+Base\+Type\+\_\+t \mbox{\hyperlink{group__tasks06_ga33bd9742d865d9e98a4b81d443f69837}{Meter\+Task\+\_\+\+Init}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Create and start the Meter Task with a deterministic enable gate. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks06_gaacb98f39434e19bddfcdc0e0b555bd50}{Meter\+\_\+\+Is\+Ready}} (void)
+\begin{DoxyCompactList}\small\item\em Query meter subsystem readiness status. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks06_ga18b328d88256e730d39d6a33ea78d399}{Meter\+Task\+\_\+\+Get\+Telemetry}} (uint8\+\_\+t channel, \mbox{\hyperlink{structmeter__telemetry__t}{meter\+\_\+telemetry\+\_\+t}} \texorpdfstring{$\ast$}{*}telem)
+\begin{DoxyCompactList}\small\item\em Get latest cached telemetry for a specific channel (non-\/blocking). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks06_gae6a0acceca7a3a35f63bba05a7cd1826}{Meter\+Task\+\_\+\+Refresh\+All}} (void)
+\begin{DoxyCompactList}\small\item\em Request immediate refresh of all channels (blocking). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks06_ga909c8be3f0ce184e2cd1045bc29e0e30}{Meter\+Task\+\_\+\+Get\+System\+Telemetry}} (\mbox{\hyperlink{structsystem__telemetry__t}{system\+\_\+telemetry\+\_\+t}} \texorpdfstring{$\ast$}{*}sys)
+\begin{DoxyCompactList}\small\item\em Get the latest system ADC telemetry snapshot (non-\/blocking). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks06_gab0a72837aa90a24179f30788894fc8d6}{Meter\+Task\+\_\+\+Temp\+Calibration\+\_\+\+Single\+Point\+Compute}} (float ambient\+\_\+c, uint16\+\_\+t raw\+\_\+temp, float \texorpdfstring{$\ast$}{*}out\+\_\+v0, float \texorpdfstring{$\ast$}{*}out\+\_\+slope, float \texorpdfstring{$\ast$}{*}out\+\_\+offset)
+\begin{DoxyCompactList}\small\item\em Compute single-\/point temperature calibration (offset only). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks06_ga0f880913779ddddeb13c63ff028eb4a9}{Meter\+Task\+\_\+\+Temp\+Calibration\+\_\+\+Two\+Point\+Compute}} (float t1\+\_\+c, uint16\+\_\+t raw1, float t2\+\_\+c, uint16\+\_\+t raw2, float \texorpdfstring{$\ast$}{*}out\+\_\+v0, float \texorpdfstring{$\ast$}{*}out\+\_\+slope, float \texorpdfstring{$\ast$}{*}out\+\_\+offset)
+\begin{DoxyCompactList}\small\item\em Compute two-\/point temperature calibration (slope + intercept, zero offset). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks06_ga3f1131031850b69b057eeb4f8db3a4b9}{Meter\+Task\+\_\+\+Set\+Temp\+Calibration}} (float v0\+\_\+volts\+\_\+at\+\_\+27c, float slope\+\_\+volts\+\_\+per\+\_\+deg, float offset\+\_\+c)
+\begin{DoxyCompactList}\small\item\em Apply per-\/device temperature calibration parameters. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks06_ga3e47111bb4b1227f43106ee888c45902}{Meter\+Task\+\_\+\+Get\+Temp\+Calibration\+Info}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}out\+\_\+mode, float \texorpdfstring{$\ast$}{*}out\+\_\+v0, float \texorpdfstring{$\ast$}{*}out\+\_\+slope, float \texorpdfstring{$\ast$}{*}out\+\_\+offset)
+\begin{DoxyCompactList}\small\item\em Query active temperature calibration parameters and inferred mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{group__tasks06_ga7c05890110d34f76bc337fe1dd88ed2e}{q\+\_\+meter\+\_\+telemetry}} = NULL
+\begin{DoxyCompactList}\small\item\em Telemetry queue handle for publishing measurements. \end{DoxyCompactList}\item 
+static Task\+Handle\+\_\+t \mbox{\hyperlink{_meter_task_8c_af4db70526cc9f3529fbdd8494961b717}{meter\+Task\+Handle}} = NULL
+\item 
+static \mbox{\hyperlink{structmeter__telemetry__t}{meter\+\_\+telemetry\+\_\+t}} \mbox{\hyperlink{_meter_task_8c_aef903a50ce41262a8c0d9cf64f2752b4}{latest\+\_\+telemetry}} \mbox{[}8\mbox{]}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{_meter_task_8c_a7618b4687a84dec17220692558b9d0b1}{sample\+\_\+count}} \mbox{[}8\mbox{]} = \{0\}
+\item 
+static float \mbox{\hyperlink{_meter_task_8c_afab595d9187fd56c783a22f45c86521e}{energy\+\_\+accum\+\_\+kwh}} \mbox{[}8\mbox{]} = \{0\}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{_meter_task_8c_adea9bb4c487124cb1eb50b54ee235467}{last\+\_\+energy\+\_\+update\+\_\+ms}} \mbox{[}8\mbox{]} = \{0\}
+\item 
+static \mbox{\hyperlink{structsystem__telemetry__t}{system\+\_\+telemetry\+\_\+t}} \mbox{\hyperlink{_meter_task_8c_adf02a7e9fe1db280221c0ab6c89adf88}{s\+\_\+sys}} = \{0\}
+\item 
+static float \mbox{\hyperlink{_meter_task_8c_a854b8381469130469176ff4ae3800f5b}{s\+\_\+temp\+\_\+v0\+\_\+cal}} = 0.\+706f
+\begin{DoxyCompactList}\small\item\em Calibrated temperature model parameters. \end{DoxyCompactList}\item 
+static float \mbox{\hyperlink{_meter_task_8c_a7ce4aa2c56a96feb3dc1b5f5037286a5}{s\+\_\+temp\+\_\+slope\+\_\+cal}} = 0.\+001721f
+\begin{DoxyCompactList}\small\item\em Sensor slope \mbox{[}V/°C\mbox{]} (positive magnitude). \end{DoxyCompactList}\item 
+static float \mbox{\hyperlink{_meter_task_8c_adcb09388ec5ec4ed0ce445dd511c2bcf}{s\+\_\+temp\+\_\+offset\+\_\+c}} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em Additional °C offset after linear model. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+2.\+3 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/12-\/08
+\end{DoxyDate}
+Meter\+Task implementation for power monitoring and system telemetry collection. This task is the exclusive owner of the HLW8032 power measurement peripheral and the RP2040 ADC subsystem. It polls all 8 power channels in round-\/robin fashion at 25 Hz and samples system ADC telemetry at 5 Hz.
+
+Power Measurement Flow\+:
+\begin{DoxyItemize}
+\item Polls HLW8032 once per 40ms task period (25 Hz)
+\item HLW8032 driver handles internal round-\/robin across 8 channels
+\item Retrieves cached instantaneous values (voltage, current, power) per channel
+\item Computes power factor from active power and apparent power
+\item Integrates energy accumulation using power × time (k\+Wh)
+\item Publishes telemetry to queue every 5th sample (\texorpdfstring{$\sim$}{\string~}200ms)
+\end{DoxyItemize}
+
+System Telemetry Flow\+:
+\begin{DoxyItemize}
+\item Samples ADC every 200ms for die temperature, VUSB, and 12V supply
+\item Uses oversampling\+: 16× for voltage rails, 32× for temperature sensor
+\item Applies calibrated temperature model with per-\/device parameters
+\item Clamps temperature readings to plausible range (-\/20 to 120 °C)
+\item Logs critical warnings if voltages or temperature out of safe range
+\item Updates cached snapshot accessible via \doxylink{group__tasks06_ga909c8be3f0ce184e2cd1045bc29e0e30}{Meter\+Task\+\_\+\+Get\+System\+Telemetry()}
+\end{DoxyItemize}
+
+Standby Mode Behavior\+:
+\begin{DoxyItemize}
+\item Detects power state via \doxylink{group__misc3_gad3252fba1863d278f2611cad531177f5}{Power\+\_\+\+Get\+State()} each iteration
+\item In STANDBY\+: skips all HLW8032 polling and ADC sampling
+\item Maintains reduced heartbeat (500ms) to keep watchdog satisfied
+\item Uses long delay (300ms) to minimize CPU usage during standby
+\item Automatically resumes normal operation on transition back to RUN
+\end{DoxyItemize}
+
+Energy Accumulation\+:
+\begin{DoxyItemize}
+\item Tracks energy in k\+Wh with millisecond-\/resolution integration
+\item Formula\+: delta\+\_\+k\+Wh = (power\+\_\+watts / 1000) × (delta\+\_\+ms / 3600000)
+\item Accumulates only when relay is ON and power \texorpdfstring{$>$}{>} 0
+\item Persists during runtime; resets to zero at boot
+\end{DoxyItemize}
+
+Temperature Calibration\+:
+\begin{DoxyItemize}
+\item Supports three modes\+: NONE (typicals), 1PT (offset), 2PT (slope+intercept)
+\item Default model uses RP2040 typical values (V0=0.\+706V, S=0.\+001721V/°C)
+\item Calibration parameters loaded from EEPROM at task init
+\item Applied in \doxylink{_meter_task_8c_ac813b666061cf4dd0ff7bd15f385eb34}{adc\+\_\+raw\+\_\+to\+\_\+die\+\_\+temp\+\_\+c()} for all temperature conversions
+\end{DoxyItemize}
+
+Version History\+:
+\begin{DoxyItemize}
+\item v1.\+2.\+3\+: Removed rolling filter; now uses instantaneous HLW8032 values
+\end{DoxyItemize}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{_meter_task_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_meter_task_8c_acf139cf8ae13680fc83524711cb9b56b}\index{MeterTask.c@{MeterTask.c}!METER\_READY@{METER\_READY}}
+\index{METER\_READY@{METER\_READY}!MeterTask.c@{MeterTask.c}}
+\doxysubsubsection{\texorpdfstring{METER\_READY}{METER\_READY}}
+{\footnotesize\ttfamily \label{_meter_task_8c_acf139cf8ae13680fc83524711cb9b56b} 
+\#define METER\+\_\+\+READY(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(ready\_val)}
+
+\end{DoxyCode}
+\Hypertarget{_meter_task_8c_a051d8beed8f8dc61ae8a9d8328c55e83}\index{MeterTask.c@{MeterTask.c}!METER\_TASK\_TAG@{METER\_TASK\_TAG}}
+\index{METER\_TASK\_TAG@{METER\_TASK\_TAG}!MeterTask.c@{MeterTask.c}}
+\doxysubsubsection{\texorpdfstring{METER\_TASK\_TAG}{METER\_TASK\_TAG}}
+{\footnotesize\ttfamily \label{_meter_task_8c_a051d8beed8f8dc61ae8a9d8328c55e83} 
+\#define METER\+\_\+\+TASK\+\_\+\+TAG~"{}\mbox{[}Meter\+Task\mbox{]} "{}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{_meter_task_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_meter_task_8c_ac813b666061cf4dd0ff7bd15f385eb34}\index{MeterTask.c@{MeterTask.c}!adc\_raw\_to\_die\_temp\_c@{adc\_raw\_to\_die\_temp\_c}}
+\index{adc\_raw\_to\_die\_temp\_c@{adc\_raw\_to\_die\_temp\_c}!MeterTask.c@{MeterTask.c}}
+\doxysubsubsection{\texorpdfstring{adc\_raw\_to\_die\_temp\_c()}{adc\_raw\_to\_die\_temp\_c()}}
+{\footnotesize\ttfamily \label{_meter_task_8c_ac813b666061cf4dd0ff7bd15f385eb34} 
+float adc\+\_\+raw\+\_\+to\+\_\+die\+\_\+temp\+\_\+c (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{raw}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Convert ADC raw code to RP2040 die temperature using per-\/device calibration. 
+
+Applies the calibrated linear temperature model to convert a raw 12-\/bit ADC reading from the RP2040 internal die sensor (AINSEL=4) to temperature in °C.
+
+Calibration Model\+: T\mbox{[}°C\mbox{]} = 27 -\/ (V -\/ V0) / S + OFFSET
+
+Where\+:
+\begin{DoxyItemize}
+\item V = raw × (ADC\+\_\+\+VREF / ADC\+\_\+\+MAX) \mbox{[}voltage from ADC code\mbox{]}
+\item V0 = s\+\_\+temp\+\_\+v0\+\_\+cal \mbox{[}intercept at 27 °C, default 0.\+706V\mbox{]}
+\item S = s\+\_\+temp\+\_\+slope\+\_\+cal \mbox{[}slope, default 0.\+001721 V/°C\mbox{]}
+\item OFFSET = s\+\_\+temp\+\_\+offset\+\_\+c \mbox{[}residual offset, default 0 °C\mbox{]}
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em raw} & Raw 12-\/bit ADC code from die temperature sensor.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Temperature in degrees Celsius. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_meter_task_8c_ac813b666061cf4dd0ff7bd15f385eb34_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_meter_task_8c_addb3656d7dd28b5f2537e286d9da7b66}\index{MeterTask.c@{MeterTask.c}!MeterTask\_Loop@{MeterTask\_Loop}}
+\index{MeterTask\_Loop@{MeterTask\_Loop}!MeterTask.c@{MeterTask.c}}
+\doxysubsubsection{\texorpdfstring{MeterTask\_Loop()}{MeterTask\_Loop()}}
+{\footnotesize\ttfamily \label{_meter_task_8c_addb3656d7dd28b5f2537e286d9da7b66} 
+void Meter\+Task\+\_\+\+Loop (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Parameters}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Main Meter Task loop. 
+
+In normal RUN mode, polls HLW8032 at 25 Hz, updates energy accumulation, samples ADC telemetry every 200ms, and publishes data to the queue.
+
+In STANDBY mode, skips all hardware operations and only feeds heartbeat at a reduced rate with long delays to minimize CPU usage.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & Unused. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_meter_task_8c_addb3656d7dd28b5f2537e286d9da7b66_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_meter_task_8c_addb3656d7dd28b5f2537e286d9da7b66_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_meter_task_8c_ad6e0a2bab0856d8c05588f7f2d9ac2b1}\index{MeterTask.c@{MeterTask.c}!publish\_telemetry@{publish\_telemetry}}
+\index{publish\_telemetry@{publish\_telemetry}!MeterTask.c@{MeterTask.c}}
+\doxysubsubsection{\texorpdfstring{publish\_telemetry()}{publish\_telemetry()}}
+{\footnotesize\ttfamily \label{_meter_task_8c_ad6e0a2bab0856d8c05588f7f2d9ac2b1} 
+void publish\+\_\+telemetry (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structmeter__telemetry__t}{meter\+\_\+telemetry\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{telem}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Publish telemetry sample to queue (non-\/blocking). 
+
+Sends a telemetry sample to the global queue for consumption by Net\+Task, Console\+Task, or other interested consumers. Uses non-\/blocking send with zero timeout; if queue is full, the sample is dropped to prevent blocking the measurement loop.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em telem} & Pointer to telemetry sample to publish. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_meter_task_8c_ad6e0a2bab0856d8c05588f7f2d9ac2b1_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_meter_task_8c_aa944612215bcc302f972c3dfbf2d811b}\index{MeterTask.c@{MeterTask.c}!update\_energy@{update\_energy}}
+\index{update\_energy@{update\_energy}!MeterTask.c@{MeterTask.c}}
+\doxysubsubsection{\texorpdfstring{update\_energy()}{update\_energy()}}
+{\footnotesize\ttfamily \label{_meter_task_8c_aa944612215bcc302f972c3dfbf2d811b} 
+void update\+\_\+energy (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch}{, }\item[{float}]{power}{, }\item[{uint32\+\_\+t}]{now\+\_\+ms}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Update energy accumulation for a channel. 
+
+Integrates power over time to compute accumulated energy in k\+Wh. Uses millisecond-\/resolution timestamps for accurate integration even at short polling intervals. Energy accumulates only when power is positive.
+
+Integration Formula\+: delta\+\_\+k\+Wh = (power\+\_\+watts / 1000) × (delta\+\_\+ms / 3600000)
+
+On first call for a channel (last\+\_\+energy\+\_\+update\+\_\+ms == 0), the timestamp is initialized without accumulating energy.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em ch} & Channel index 0..7. \\
+\hline
+\mbox{\texttt{in}}  & {\em power} & Current active power measurement \mbox{[}W\mbox{]}. \\
+\hline
+\mbox{\texttt{in}}  & {\em now\+\_\+ms} & Current timestamp \mbox{[}ms since boot\mbox{]}. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_meter_task_8c_aa944612215bcc302f972c3dfbf2d811b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_meter_task_8c_aa944612215bcc302f972c3dfbf2d811b_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{_meter_task_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{_meter_task_8c_afab595d9187fd56c783a22f45c86521e}\index{MeterTask.c@{MeterTask.c}!energy\_accum\_kwh@{energy\_accum\_kwh}}
+\index{energy\_accum\_kwh@{energy\_accum\_kwh}!MeterTask.c@{MeterTask.c}}
+\doxysubsubsection{\texorpdfstring{energy\_accum\_kwh}{energy\_accum\_kwh}}
+{\footnotesize\ttfamily \label{_meter_task_8c_afab595d9187fd56c783a22f45c86521e} 
+float energy\+\_\+accum\+\_\+kwh\mbox{[}8\mbox{]} = \{0\}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_meter_task_8c_adea9bb4c487124cb1eb50b54ee235467}\index{MeterTask.c@{MeterTask.c}!last\_energy\_update\_ms@{last\_energy\_update\_ms}}
+\index{last\_energy\_update\_ms@{last\_energy\_update\_ms}!MeterTask.c@{MeterTask.c}}
+\doxysubsubsection{\texorpdfstring{last\_energy\_update\_ms}{last\_energy\_update\_ms}}
+{\footnotesize\ttfamily \label{_meter_task_8c_adea9bb4c487124cb1eb50b54ee235467} 
+uint32\+\_\+t last\+\_\+energy\+\_\+update\+\_\+ms\mbox{[}8\mbox{]} = \{0\}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_meter_task_8c_aef903a50ce41262a8c0d9cf64f2752b4}\index{MeterTask.c@{MeterTask.c}!latest\_telemetry@{latest\_telemetry}}
+\index{latest\_telemetry@{latest\_telemetry}!MeterTask.c@{MeterTask.c}}
+\doxysubsubsection{\texorpdfstring{latest\_telemetry}{latest\_telemetry}}
+{\footnotesize\ttfamily \label{_meter_task_8c_aef903a50ce41262a8c0d9cf64f2752b4} 
+\mbox{\hyperlink{structmeter__telemetry__t}{meter\+\_\+telemetry\+\_\+t}} latest\+\_\+telemetry\mbox{[}8\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_meter_task_8c_af4db70526cc9f3529fbdd8494961b717}\index{MeterTask.c@{MeterTask.c}!meterTaskHandle@{meterTaskHandle}}
+\index{meterTaskHandle@{meterTaskHandle}!MeterTask.c@{MeterTask.c}}
+\doxysubsubsection{\texorpdfstring{meterTaskHandle}{meterTaskHandle}}
+{\footnotesize\ttfamily \label{_meter_task_8c_af4db70526cc9f3529fbdd8494961b717} 
+Task\+Handle\+\_\+t meter\+Task\+Handle = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_meter_task_8c_adf02a7e9fe1db280221c0ab6c89adf88}\index{MeterTask.c@{MeterTask.c}!s\_sys@{s\_sys}}
+\index{s\_sys@{s\_sys}!MeterTask.c@{MeterTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_sys}{s\_sys}}
+{\footnotesize\ttfamily \label{_meter_task_8c_adf02a7e9fe1db280221c0ab6c89adf88} 
+\mbox{\hyperlink{structsystem__telemetry__t}{system\+\_\+telemetry\+\_\+t}} s\+\_\+sys = \{0\}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_meter_task_8c_adcb09388ec5ec4ed0ce445dd511c2bcf}\index{MeterTask.c@{MeterTask.c}!s\_temp\_offset\_c@{s\_temp\_offset\_c}}
+\index{s\_temp\_offset\_c@{s\_temp\_offset\_c}!MeterTask.c@{MeterTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_temp\_offset\_c}{s\_temp\_offset\_c}}
+{\footnotesize\ttfamily \label{_meter_task_8c_adcb09388ec5ec4ed0ce445dd511c2bcf} 
+float s\+\_\+temp\+\_\+offset\+\_\+c = 0.\+0f\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Additional °C offset after linear model. 
+
+\Hypertarget{_meter_task_8c_a7ce4aa2c56a96feb3dc1b5f5037286a5}\index{MeterTask.c@{MeterTask.c}!s\_temp\_slope\_cal@{s\_temp\_slope\_cal}}
+\index{s\_temp\_slope\_cal@{s\_temp\_slope\_cal}!MeterTask.c@{MeterTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_temp\_slope\_cal}{s\_temp\_slope\_cal}}
+{\footnotesize\ttfamily \label{_meter_task_8c_a7ce4aa2c56a96feb3dc1b5f5037286a5} 
+float s\+\_\+temp\+\_\+slope\+\_\+cal = 0.\+001721f\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Sensor slope \mbox{[}V/°C\mbox{]} (positive magnitude). 
+
+\Hypertarget{_meter_task_8c_a854b8381469130469176ff4ae3800f5b}\index{MeterTask.c@{MeterTask.c}!s\_temp\_v0\_cal@{s\_temp\_v0\_cal}}
+\index{s\_temp\_v0\_cal@{s\_temp\_v0\_cal}!MeterTask.c@{MeterTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_temp\_v0\_cal}{s\_temp\_v0\_cal}}
+{\footnotesize\ttfamily \label{_meter_task_8c_a854b8381469130469176ff4ae3800f5b} 
+float s\+\_\+temp\+\_\+v0\+\_\+cal = 0.\+706f\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Calibrated temperature model parameters. 
+
+Linear model\+: T\mbox{[}°C\mbox{]} = 27 -\/ (V -\/ s\+\_\+temp\+\_\+v0\+\_\+cal) / s\+\_\+temp\+\_\+slope\+\_\+cal + s\+\_\+temp\+\_\+offset\+\_\+c, where V = raw \texorpdfstring{$\ast$}{*} (ADC\+\_\+\+VREF / ADC\+\_\+\+MAX). Defaults reflect RP2040 typical values; callers may override at runtime via \doxylink{group__tasks06_ga3f1131031850b69b057eeb4f8db3a4b9}{Meter\+Task\+\_\+\+Set\+Temp\+Calibration()} after loading from EEPROM.
+
+Voltage \mbox{[}V\mbox{]} at 27 °C (intercept). \Hypertarget{_meter_task_8c_a7618b4687a84dec17220692558b9d0b1}\index{MeterTask.c@{MeterTask.c}!sample\_count@{sample\_count}}
+\index{sample\_count@{sample\_count}!MeterTask.c@{MeterTask.c}}
+\doxysubsubsection{\texorpdfstring{sample\_count}{sample\_count}}
+{\footnotesize\ttfamily \label{_meter_task_8c_a7618b4687a84dec17220692558b9d0b1} 
+uint32\+\_\+t sample\+\_\+count\mbox{[}8\mbox{]} = \{0\}\hspace{0.3cm}{\ttfamily [static]}}
+

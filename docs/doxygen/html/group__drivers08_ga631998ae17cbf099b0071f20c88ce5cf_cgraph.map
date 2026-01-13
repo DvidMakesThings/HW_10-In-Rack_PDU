@@ -1,0 +1,9 @@
+<map id="getsockopt" name="getsockopt">
+<area shape="rect" id="Node000001" title="Get socket option." alt="" coords="5,31,91,57"/>
+<area shape="rect" id="Node000002" href="$group__drivers03.html#ga63cf3a1380ecdfc60d1a0e2ac5478bb7" title="Get the destination TCP/UDP port (big&#45;endian)" alt="" coords="176,5,284,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,35,160,26,161,31,91,41"/>
+<area shape="rect" id="Node000004" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="139,56,322,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="91,47,124,52,123,57,91,53"/>
+<area shape="rect" id="Node000003" href="$group__drivers03.html#ga720712f243385daced1e173642f23f3f" title="Read multiple bytes from W5500 (optimized bulk transfer)" alt="" coords="370,5,486,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="285,16,355,16,355,21,285,21"/>
+</map>

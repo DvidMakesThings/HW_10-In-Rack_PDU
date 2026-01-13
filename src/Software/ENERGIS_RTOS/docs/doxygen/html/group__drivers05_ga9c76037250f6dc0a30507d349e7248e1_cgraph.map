@@ -1,0 +1,5 @@
+<map id="I2C_BusLock" name="I2C_BusLock">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,106,32"/>
+<area shape="rect" id="Node000002" href="$i2c__bus_8c.html#ae100fae6a0e784df2c8a601c9df58947" title=" " alt="" coords="154,5,253,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,16,138,16,138,21,106,21"/>
+</map>

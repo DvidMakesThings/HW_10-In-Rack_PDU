@@ -1,0 +1,1273 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item Ethernet Socket Implementation 
+\end{DoxyEnumerate}}
+\hypertarget{group__drivers08}{}\label{group__drivers08}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+
+
+Header file for BSD-\/like socket API implementation.  
+
+
+Collaboration diagram for 8. Ethernet Socket Implementation\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=261pt]{group__drivers08}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint8\+\_\+t \mbox{\hyperlink{group__drivers08_ga2b3f978d539175d112fb6ebaa7efc0f0}{SOCKET}}
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__drivers08_ga7bde883229057ef5a2fd615e99eeb43e}{sock\+\_\+pack\+\_\+info}} \mbox{[}\mbox{\hyperlink{group__config03_ga5322fda8c75b38b8c84a677103387d07}{W5500\+\_\+\+SOCKNUM}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__drivers08_ga3c3689958c5f3bf2f9fcf1a44f9ad941}{sock\+\_\+pack\+\_\+info}} \mbox{[}\mbox{\hyperlink{group___w5500___m_e_m_ga397c217a9bfdf60b22be602a9da74178}{W5500\+\_\+\+SOCKET\+\_\+\+COUNT}}\mbox{]} = \{0\}
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Socket Interrupt Flags}
+Socket interrupt kinds \begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__drivers08_gaa9d536c54137cd7b425c4c1e3cbfd49c}{sockint\+\_\+kind}} \{ \newline
+\mbox{\hyperlink{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49ca572b5fc4792b828241e3cb59c95d8162}{SIK\+\_\+\+CONNECTED}} = (1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 0)
+, \mbox{\hyperlink{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49ca9680dba91346657e5ace550b548e078b}{SIK\+\_\+\+DISCONNECTED}} = (1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 1)
+, \mbox{\hyperlink{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49ca083fdc9e4e60122e9430e00cea78ecba}{SIK\+\_\+\+RECEIVED}} = (1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 2)
+, \mbox{\hyperlink{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49ca9932f0ef330402b0f60a08073fd5a753}{SIK\+\_\+\+TIMEOUT}} = (1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 3)
+, \newline
+\mbox{\hyperlink{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49ca263f2ee924ce301138f6ff041d539bd2}{SIK\+\_\+\+SENT}} = (1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 4)
+, \mbox{\hyperlink{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49cab047934b1869746fbc0f144b5a750235}{SIK\+\_\+\+ALL}} = 0x1F
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Socket Control Types}
+Socket control types (for ctlsocket) \begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__drivers08_ga3a77339a724cf087b366b8710aa683e6}{ctlsock\+\_\+type}} \{ \newline
+\mbox{\hyperlink{group__drivers08_gga3a77339a724cf087b366b8710aa683e6ab3ec317b2f9cb2df881dedd576500f2f}{CS\+\_\+\+SET\+\_\+\+IOMODE}}
+, \mbox{\hyperlink{group__drivers08_gga3a77339a724cf087b366b8710aa683e6af7caa802f7e7242ca70ce5640a9b8e85}{CS\+\_\+\+GET\+\_\+\+IOMODE}}
+, \mbox{\hyperlink{group__drivers08_gga3a77339a724cf087b366b8710aa683e6a9f3ee6f21891b62bdf724135151e9e59}{CS\+\_\+\+GET\+\_\+\+MAXTXBUF}}
+, \mbox{\hyperlink{group__drivers08_gga3a77339a724cf087b366b8710aa683e6abb1c8779447ef09aa57c88c71186ca1e}{CS\+\_\+\+GET\+\_\+\+MAXRXBUF}}
+, \newline
+\mbox{\hyperlink{group__drivers08_gga3a77339a724cf087b366b8710aa683e6aef32fa8c2e9399355ed769ec77729f8e}{CS\+\_\+\+CLR\+\_\+\+INTERRUPT}}
+, \mbox{\hyperlink{group__drivers08_gga3a77339a724cf087b366b8710aa683e6a7e9faa71bdd2cf508fbf5cc9f7e83ccc}{CS\+\_\+\+GET\+\_\+\+INTERRUPT}}
+, \mbox{\hyperlink{group__drivers08_gga3a77339a724cf087b366b8710aa683e6a2ad38020bf3c84479f0e5552929747be}{CS\+\_\+\+SET\+\_\+\+INTMASK}}
+, \mbox{\hyperlink{group__drivers08_gga3a77339a724cf087b366b8710aa683e6abdad4e84a9a5a8084e9662d4d8587f18}{CS\+\_\+\+GET\+\_\+\+INTMASK}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Socket Option Types}
+Socket option types (for setsockopt/getsockopt) \begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__drivers08_ga2f86b7ad233f3b8d6ae0af3ee91e9944}{sockopt\+\_\+type}} \{ \newline
+\mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944af21c9fec4a305d9504e0487f7ae7fc26}{SO\+\_\+\+FLAG}}
+, \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a69762968a8cae82544deffe1c3ac32cf}{SO\+\_\+\+TTL}}
+, \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944afef2289d3bfeecda602214576b0a42e3}{SO\+\_\+\+TOS}}
+, \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944ae7f6aaf2aaef0519a813b3e26ef9c4fd}{SO\+\_\+\+MSS}}
+, \newline
+\mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944aedcfb91978540124a81e0302c58bb6d7}{SO\+\_\+\+DESTIP}}
+, \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a3429f41e7099b4badca2630c7a5e4f1c}{SO\+\_\+\+DESTPORT}}
+, \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a2bf80fd82c7e9231c427cd62a5d62cf0}{SO\+\_\+\+KEEPALIVESEND}}
+, \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a779fa4480ecb9a4b247bd6130c25647f}{SO\+\_\+\+KEEPALIVEAUTO}}
+, \newline
+\mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a1b0e150a176b12a227d6ab7c294fc05a}{SO\+\_\+\+SENDBUF}}
+, \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944ab30861739974726fb7a170bbac572c22}{SO\+\_\+\+RECVBUF}}
+, \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a3f76c1b04cfc969826bed37a3c4cff06}{SO\+\_\+\+STATUS}}
+, \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944ac8e0d12b5a8ee43e5ebe37a39b31988a}{SO\+\_\+\+REMAINSIZE}}
+, \newline
+\mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944af1a89a6cfe6fce7381f825553de1a905}{SO\+\_\+\+PACKINFO}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Public API}
+Create and initialize a socket
+
+Creates a new socket with the specified protocol and port. For TCP, the socket is put into SOCK\+\_\+\+INIT state. For UDP, the socket is put into SOCK\+\_\+\+UDP state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number (0-\/7) \\
+\hline
+{\em protocol} & Protocol type\+:
+\begin{DoxyItemize}
+\item Sn\+\_\+\+MR\+\_\+\+TCP\+: TCP socket
+\item Sn\+\_\+\+MR\+\_\+\+UDP\+: UDP socket
+\item Sn\+\_\+\+MR\+\_\+\+IPRAW\+: IP raw socket
+\item Sn\+\_\+\+MR\+\_\+\+MACRAW\+: MAC raw socket 
+\end{DoxyItemize}\\
+\hline
+{\em port} & Local port number (0 = auto-\/assign from 0x\+C000) \\
+\hline
+{\em flag} & Socket flags (SF\+\_\+xxx combinations)\+:
+\begin{DoxyItemize}
+\item TCP\+: SF\+\_\+\+TCP\+\_\+\+NODELAY, SF\+\_\+\+IO\+\_\+\+NONBLOCK
+\item UDP\+: SF\+\_\+\+IGMP\+\_\+\+VER2, SF\+\_\+\+MULTI\+\_\+\+ENABLE, SF\+\_\+\+UNI\+\_\+\+BLOCK, SF\+\_\+\+IO\+\_\+\+NONBLOCK
+\item MACRAW\+: SF\+\_\+\+ETHER\+\_\+\+OWN 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Socket number (sn) on success, negative error code on failure
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+TCP sockets require IP address to be configured 
+
+Port 0 triggers auto-\/assignment starting from 0x\+C000 
+\end{DoxyNote}
+\begin{DoxyCompactItemize}
+\item 
+int8\+\_\+t \mbox{\hyperlink{group__drivers08_ga8cc0a2074b3aae98a132c1ae3c51188f}{socket}} (uint8\+\_\+t sn, uint8\+\_\+t protocol, uint16\+\_\+t port, uint8\+\_\+t flag)
+\begin{DoxyCompactList}\small\item\em Create and initialize a socket. \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{group__drivers08_ga025710a2709097be7824f0564f89a461}{closesocket}} (uint8\+\_\+t sn)
+\begin{DoxyCompactList}\small\item\em Close a socket. \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{group__drivers08_ga0230efb936b222a0cbc7680e2c39c994}{disconnect}} (uint8\+\_\+t sn)
+\begin{DoxyCompactList}\small\item\em Disconnect a TCP socket. \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{group__drivers08_gae2f94d7d4ce040f6bf68779e064d224e}{ctlsocket}} (uint8\+\_\+t sn, \mbox{\hyperlink{group__drivers08_ga3a77339a724cf087b366b8710aa683e6}{ctlsock\+\_\+type}} cstype, void \texorpdfstring{$\ast$}{*}arg)
+\begin{DoxyCompactList}\small\item\em Control socket options. \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{group__drivers08_ga0111e4784e20d97dacd5aaf54cb48ef1}{setsockopt}} (uint8\+\_\+t sn, \mbox{\hyperlink{group__drivers08_ga2f86b7ad233f3b8d6ae0af3ee91e9944}{sockopt\+\_\+type}} sotype, void \texorpdfstring{$\ast$}{*}arg)
+\begin{DoxyCompactList}\small\item\em Set socket option. \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{group__drivers08_ga631998ae17cbf099b0071f20c88ce5cf}{getsockopt}} (uint8\+\_\+t sn, \mbox{\hyperlink{group__drivers08_ga2f86b7ad233f3b8d6ae0af3ee91e9944}{sockopt\+\_\+type}} sotype, void \texorpdfstring{$\ast$}{*}arg)
+\begin{DoxyCompactList}\small\item\em Get socket option. \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{group__drivers08_ga58ae959798d5d874ac5ea796da90db8c}{listen}} (uint8\+\_\+t sn)
+\begin{DoxyCompactList}\small\item\em Put socket into listen mode (TCP server) \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{group__drivers08_gaf7ab832f4201ef0f04eefcac063b998e}{connect}} (uint8\+\_\+t sn, uint8\+\_\+t \texorpdfstring{$\ast$}{*}addr, uint16\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Connect to remote server (TCP client) \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{group__drivers08_gacd77c3cc60e87d09a5714932506d7c4b}{send}} (uint8\+\_\+t sn, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Send data over TCP socket. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__drivers08_gafbf5f9d6f92a7ad4811b3c4f211f3672}{send\+\_\+all\+\_\+blocking}} (uint8\+\_\+t sn, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, int len)
+\begin{DoxyCompactList}\small\item\em Send all data over TCP socket in blocking mode. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{group__drivers08_ga4cfb66f7440a1dd9ac0ee0b933a38c59}{recv}} (uint8\+\_\+t sn, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Receive data from TCP socket. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{group__drivers08_ga30fc77ba1005733b501994818bde12f8}{sendto}} (uint8\+\_\+t sn, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t len, uint8\+\_\+t \texorpdfstring{$\ast$}{*}addr, uint16\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Send datagram over UDP socket. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{group__drivers08_gae580bd099f9bcbeca63a3145c0015e62}{recvfrom}} (uint8\+\_\+t sn, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t len, uint8\+\_\+t \texorpdfstring{$\ast$}{*}addr, uint16\+\_\+t \texorpdfstring{$\ast$}{*}port)
+\begin{DoxyCompactList}\small\item\em Receive datagram from UDP socket. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{group__drivers08_gaa2d7390eb4454dd102f39caf47829065}{recvfrom\+\_\+\+SNMP}} (uint8\+\_\+t sn, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t len, uint8\+\_\+t \texorpdfstring{$\ast$}{*}addr, uint16\+\_\+t \texorpdfstring{$\ast$}{*}port)
+\begin{DoxyCompactList}\small\item\em Receive datagram from UDP socket. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Socket Result Codes}
+Socket operation result codes \begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga43761c46fde2eb998247950b5a735cbf}{SOCK\+\_\+\+OK}}~1
+\item 
+\#define \mbox{\hyperlink{group__drivers08_gaf338f8defd644d00125c76201a38ce74}{SOCK\+\_\+\+BUSY}}~0
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga3692681cc0dc13c8e8df68868785f894}{SOCK\+\_\+\+FATAL}}~-\/1000
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Socket Error Codes}
+Socket error codes \begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}}~0
+\item 
+\#define \mbox{\hyperlink{group__drivers08_gaf6ef7a97c9bef95e6a0520a0f41b2923}{SOCKERR\+\_\+\+SOCKNUM}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 1)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga9445babb7a4c392d0fe0aa8cefb162af}{SOCKERR\+\_\+\+SOCKOPT}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 2)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga4cd6d7ca2165fc20977a855ca8ef5efc}{SOCKERR\+\_\+\+SOCKINIT}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 3)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_gae202798313c7d68a56d5253f9e364ac7}{SOCKERR\+\_\+\+SOCKCLOSED}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 4)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga6971dab6af9ec3f511a08f7944e04c85}{SOCKERR\+\_\+\+SOCKMODE}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 5)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_gabaab5024537ee2bcfe81a78e1d65d739}{SOCKERR\+\_\+\+SOCKFLAG}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 6)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_gafa51a4ca35e3dde8100252b9bdb32de2}{SOCKERR\+\_\+\+SOCKSTATUS}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 7)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_gacfaf9e9da5a7bd9846052975871cb488}{SOCKERR\+\_\+\+ARG}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 10)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_gaf6282af0917498ec1560d934a73103b5}{SOCKERR\+\_\+\+PORTZERO}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 11)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga6a6dd25815b319d08e09382ccb798795}{SOCKERR\+\_\+\+IPINVALID}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 12)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga8d293d23a00072c794547d2fccfa5a6e}{SOCKERR\+\_\+\+TIMEOUT}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 13)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga6c4165b7c48a4e986b94e6ac4d5a88fe}{SOCKERR\+\_\+\+DATALEN}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 14)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga1b458bac22c1408dd9f8bc7628cb6113}{SOCKERR\+\_\+\+BUFFER}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 15)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga381abf0c05f627dfe0ed9876106cb34c}{SOCKFATAL\+\_\+\+PACKLEN}}~(\mbox{\hyperlink{group__drivers08_ga3692681cc0dc13c8e8df68868785f894}{SOCK\+\_\+\+FATAL}} -\/ 1)
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Socket Flags}
+Socket flags (for \doxylink{group__drivers08_ga8cc0a2074b3aae98a132c1ae3c51188f}{socket()} call) \begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga49117ce7d884321865f4db6b139107c4}{SF\+\_\+\+ETHER\+\_\+\+OWN}}~(\mbox{\hyperlink{group__config03_ga9045e26eee8663753dbf02919f313c2a}{Sn\+\_\+\+MR\+\_\+\+MFEN}})
+\item 
+\#define \mbox{\hyperlink{group__drivers08_gacd337681c4ef4fbf02a4ff4ca493f58a}{SF\+\_\+\+IGMP\+\_\+\+VER2}}~(\mbox{\hyperlink{group__config03_gab15c83d6d0b4bd06c697c14c6f716977}{Sn\+\_\+\+MR\+\_\+\+MC}})
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga73908595a4322a54ab879938f1f9e263}{SF\+\_\+\+TCP\+\_\+\+NODELAY}}~(\mbox{\hyperlink{group__config03_gaffbdfabc2d0bb33ef649d916506f040e}{Sn\+\_\+\+MR\+\_\+\+ND}})
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga62356ecd96a5545441134262d88c3cc2}{SF\+\_\+\+MULTI\+\_\+\+ENABLE}}~(\mbox{\hyperlink{group__config03_gac93105c327d64a318d7388c31ccb5075}{Sn\+\_\+\+MR\+\_\+\+MULTI}})
+\item 
+\#define \mbox{\hyperlink{group__drivers08_gae9bc25736822c8937e783714525b5dcd}{SF\+\_\+\+IO\+\_\+\+NONBLOCK}}~0x01
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga87077f4a5c6f873ae954994b3ce0da78}{SF\+\_\+\+IO\+\_\+\+BLOCK}}~0x00
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga0a3656cb954d39bb1df851da40e82d53}{SF\+\_\+\+UNI\+\_\+\+BLOCK}}~(\mbox{\hyperlink{group__config03_gac786108aec4528dd98cf6fb7ebae4841}{Sn\+\_\+\+MR\+\_\+\+UCASTB}})
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{UDP \& MACRAW Packet Info}
+UDP \& MACRAW Packet Information Flags \begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga970d74802b0e51a57d2036ada9f956fd}{PACK\+\_\+\+FIRST}}~0x80
+\item 
+\#define \mbox{\hyperlink{group__drivers08_gac562b74bdfbd701536d2bd0be62f5280}{PACK\+\_\+\+REMAINED}}~0x01
+\item 
+\#define \mbox{\hyperlink{group__drivers08_gae06c5dba7f49f92040308a7219f0b891}{PACK\+\_\+\+COMPLETED}}~0x00
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Header file for BSD-\/like socket API implementation. 
+
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/07
+\end{DoxyDate}
+Thread-\/safe BSD socket-\/like API for W5500. Key Features\+:
+\begin{DoxyItemize}
+\item Thread-\/safe operation via w5500\+\_\+spi\+\_\+mutex
+\item Blocking and non-\/blocking I/O modes
+\item TCP, UDP, IPRAW, MACRAW protocol support
+\end{DoxyItemize}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{group__drivers08_doc-define-members}
+\doxysubsubsection{Macro Definition Documentation}
+\Hypertarget{group__drivers08_gae06c5dba7f49f92040308a7219f0b891}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!PACK\_COMPLETED@{PACK\_COMPLETED}}
+\index{PACK\_COMPLETED@{PACK\_COMPLETED}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{PACK\_COMPLETED}{PACK\_COMPLETED}}
+{\footnotesize\ttfamily \label{group__drivers08_gae06c5dba7f49f92040308a7219f0b891} 
+\#define PACK\+\_\+\+COMPLETED~0x00}
+
+Packet receive completed \Hypertarget{group__drivers08_ga970d74802b0e51a57d2036ada9f956fd}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!PACK\_FIRST@{PACK\_FIRST}}
+\index{PACK\_FIRST@{PACK\_FIRST}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{PACK\_FIRST}{PACK\_FIRST}}
+{\footnotesize\ttfamily \label{group__drivers08_ga970d74802b0e51a57d2036ada9f956fd} 
+\#define PACK\+\_\+\+FIRST~0x80}
+
+Start receiving a packet \Hypertarget{group__drivers08_gac562b74bdfbd701536d2bd0be62f5280}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!PACK\_REMAINED@{PACK\_REMAINED}}
+\index{PACK\_REMAINED@{PACK\_REMAINED}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{PACK\_REMAINED}{PACK\_REMAINED}}
+{\footnotesize\ttfamily \label{group__drivers08_gac562b74bdfbd701536d2bd0be62f5280} 
+\#define PACK\+\_\+\+REMAINED~0x01}
+
+Packet remains to be received \Hypertarget{group__drivers08_ga49117ce7d884321865f4db6b139107c4}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SF\_ETHER\_OWN@{SF\_ETHER\_OWN}}
+\index{SF\_ETHER\_OWN@{SF\_ETHER\_OWN}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SF\_ETHER\_OWN}{SF\_ETHER\_OWN}}
+{\footnotesize\ttfamily \label{group__drivers08_ga49117ce7d884321865f4db6b139107c4} 
+\#define SF\+\_\+\+ETHER\+\_\+\+OWN~(\mbox{\hyperlink{group__config03_ga9045e26eee8663753dbf02919f313c2a}{Sn\+\_\+\+MR\+\_\+\+MFEN}})}
+
+MACRAW\+: receive own packets \Hypertarget{group__drivers08_gacd337681c4ef4fbf02a4ff4ca493f58a}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SF\_IGMP\_VER2@{SF\_IGMP\_VER2}}
+\index{SF\_IGMP\_VER2@{SF\_IGMP\_VER2}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SF\_IGMP\_VER2}{SF\_IGMP\_VER2}}
+{\footnotesize\ttfamily \label{group__drivers08_gacd337681c4ef4fbf02a4ff4ca493f58a} 
+\#define SF\+\_\+\+IGMP\+\_\+\+VER2~(\mbox{\hyperlink{group__config03_gab15c83d6d0b4bd06c697c14c6f716977}{Sn\+\_\+\+MR\+\_\+\+MC}})}
+
+UDP\+: IGMP version 2 \Hypertarget{group__drivers08_ga87077f4a5c6f873ae954994b3ce0da78}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SF\_IO\_BLOCK@{SF\_IO\_BLOCK}}
+\index{SF\_IO\_BLOCK@{SF\_IO\_BLOCK}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SF\_IO\_BLOCK}{SF\_IO\_BLOCK}}
+{\footnotesize\ttfamily \label{group__drivers08_ga87077f4a5c6f873ae954994b3ce0da78} 
+\#define SF\+\_\+\+IO\+\_\+\+BLOCK~0x00}
+
+Blocking I/O mode \Hypertarget{group__drivers08_gae9bc25736822c8937e783714525b5dcd}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SF\_IO\_NONBLOCK@{SF\_IO\_NONBLOCK}}
+\index{SF\_IO\_NONBLOCK@{SF\_IO\_NONBLOCK}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SF\_IO\_NONBLOCK}{SF\_IO\_NONBLOCK}}
+{\footnotesize\ttfamily \label{group__drivers08_gae9bc25736822c8937e783714525b5dcd} 
+\#define SF\+\_\+\+IO\+\_\+\+NONBLOCK~0x01}
+
+Non-\/blocking I/O mode \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{_t_c_p-example}{TCP}}.\end{Desc}
+\Hypertarget{group__drivers08_ga62356ecd96a5545441134262d88c3cc2}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SF\_MULTI\_ENABLE@{SF\_MULTI\_ENABLE}}
+\index{SF\_MULTI\_ENABLE@{SF\_MULTI\_ENABLE}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SF\_MULTI\_ENABLE}{SF\_MULTI\_ENABLE}}
+{\footnotesize\ttfamily \label{group__drivers08_ga62356ecd96a5545441134262d88c3cc2} 
+\#define SF\+\_\+\+MULTI\+\_\+\+ENABLE~(\mbox{\hyperlink{group__config03_gac93105c327d64a318d7388c31ccb5075}{Sn\+\_\+\+MR\+\_\+\+MULTI}})}
+
+UDP\+: enable multicast \Hypertarget{group__drivers08_ga73908595a4322a54ab879938f1f9e263}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SF\_TCP\_NODELAY@{SF\_TCP\_NODELAY}}
+\index{SF\_TCP\_NODELAY@{SF\_TCP\_NODELAY}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SF\_TCP\_NODELAY}{SF\_TCP\_NODELAY}}
+{\footnotesize\ttfamily \label{group__drivers08_ga73908595a4322a54ab879938f1f9e263} 
+\#define SF\+\_\+\+TCP\+\_\+\+NODELAY~(\mbox{\hyperlink{group__config03_gaffbdfabc2d0bb33ef649d916506f040e}{Sn\+\_\+\+MR\+\_\+\+ND}})}
+
+TCP\+: disable Nagle\textquotesingle{}s algorithm \Hypertarget{group__drivers08_ga0a3656cb954d39bb1df851da40e82d53}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SF\_UNI\_BLOCK@{SF\_UNI\_BLOCK}}
+\index{SF\_UNI\_BLOCK@{SF\_UNI\_BLOCK}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SF\_UNI\_BLOCK}{SF\_UNI\_BLOCK}}
+{\footnotesize\ttfamily \label{group__drivers08_ga0a3656cb954d39bb1df851da40e82d53} 
+\#define SF\+\_\+\+UNI\+\_\+\+BLOCK~(\mbox{\hyperlink{group__config03_gac786108aec4528dd98cf6fb7ebae4841}{Sn\+\_\+\+MR\+\_\+\+UCASTB}})}
+
+UDP\+: unicast blocking \Hypertarget{group__drivers08_gaf338f8defd644d00125c76201a38ce74}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SOCK\_BUSY@{SOCK\_BUSY}}
+\index{SOCK\_BUSY@{SOCK\_BUSY}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SOCK\_BUSY}{SOCK\_BUSY}}
+{\footnotesize\ttfamily \label{group__drivers08_gaf338f8defd644d00125c76201a38ce74} 
+\#define SOCK\+\_\+\+BUSY~0}
+
+Socket busy (non-\/blocking mode) \Hypertarget{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SOCK\_ERROR@{SOCK\_ERROR}}
+\index{SOCK\_ERROR@{SOCK\_ERROR}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SOCK\_ERROR}{SOCK\_ERROR}}
+{\footnotesize\ttfamily \label{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e} 
+\#define SOCK\+\_\+\+ERROR~0}
+
+\Hypertarget{group__drivers08_ga3692681cc0dc13c8e8df68868785f894}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SOCK\_FATAL@{SOCK\_FATAL}}
+\index{SOCK\_FATAL@{SOCK\_FATAL}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SOCK\_FATAL}{SOCK\_FATAL}}
+{\footnotesize\ttfamily \label{group__drivers08_ga3692681cc0dc13c8e8df68868785f894} 
+\#define SOCK\+\_\+\+FATAL~-\/1000}
+
+Fatal error \Hypertarget{group__drivers08_ga43761c46fde2eb998247950b5a735cbf}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SOCK\_OK@{SOCK\_OK}}
+\index{SOCK\_OK@{SOCK\_OK}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SOCK\_OK}{SOCK\_OK}}
+{\footnotesize\ttfamily \label{group__drivers08_ga43761c46fde2eb998247950b5a735cbf} 
+\#define SOCK\+\_\+\+OK~1}
+
+Operation successful \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{_t_c_p-example}{TCP}}.\end{Desc}
+\Hypertarget{group__drivers08_gacfaf9e9da5a7bd9846052975871cb488}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SOCKERR\_ARG@{SOCKERR\_ARG}}
+\index{SOCKERR\_ARG@{SOCKERR\_ARG}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SOCKERR\_ARG}{SOCKERR\_ARG}}
+{\footnotesize\ttfamily \label{group__drivers08_gacfaf9e9da5a7bd9846052975871cb488} 
+\#define SOCKERR\+\_\+\+ARG~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 10)}
+
+Invalid argument \Hypertarget{group__drivers08_ga1b458bac22c1408dd9f8bc7628cb6113}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SOCKERR\_BUFFER@{SOCKERR\_BUFFER}}
+\index{SOCKERR\_BUFFER@{SOCKERR\_BUFFER}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SOCKERR\_BUFFER}{SOCKERR\_BUFFER}}
+{\footnotesize\ttfamily \label{group__drivers08_ga1b458bac22c1408dd9f8bc7628cb6113} 
+\#define SOCKERR\+\_\+\+BUFFER~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 15)}
+
+Buffer full \Hypertarget{group__drivers08_ga6c4165b7c48a4e986b94e6ac4d5a88fe}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SOCKERR\_DATALEN@{SOCKERR\_DATALEN}}
+\index{SOCKERR\_DATALEN@{SOCKERR\_DATALEN}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SOCKERR\_DATALEN}{SOCKERR\_DATALEN}}
+{\footnotesize\ttfamily \label{group__drivers08_ga6c4165b7c48a4e986b94e6ac4d5a88fe} 
+\#define SOCKERR\+\_\+\+DATALEN~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 14)}
+
+Invalid data length \Hypertarget{group__drivers08_ga6a6dd25815b319d08e09382ccb798795}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SOCKERR\_IPINVALID@{SOCKERR\_IPINVALID}}
+\index{SOCKERR\_IPINVALID@{SOCKERR\_IPINVALID}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SOCKERR\_IPINVALID}{SOCKERR\_IPINVALID}}
+{\footnotesize\ttfamily \label{group__drivers08_ga6a6dd25815b319d08e09382ccb798795} 
+\#define SOCKERR\+\_\+\+IPINVALID~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 12)}
+
+Invalid IP address \Hypertarget{group__drivers08_gaf6282af0917498ec1560d934a73103b5}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SOCKERR\_PORTZERO@{SOCKERR\_PORTZERO}}
+\index{SOCKERR\_PORTZERO@{SOCKERR\_PORTZERO}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SOCKERR\_PORTZERO}{SOCKERR\_PORTZERO}}
+{\footnotesize\ttfamily \label{group__drivers08_gaf6282af0917498ec1560d934a73103b5} 
+\#define SOCKERR\+\_\+\+PORTZERO~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 11)}
+
+Port number is zero \Hypertarget{group__drivers08_gae202798313c7d68a56d5253f9e364ac7}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SOCKERR\_SOCKCLOSED@{SOCKERR\_SOCKCLOSED}}
+\index{SOCKERR\_SOCKCLOSED@{SOCKERR\_SOCKCLOSED}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SOCKERR\_SOCKCLOSED}{SOCKERR\_SOCKCLOSED}}
+{\footnotesize\ttfamily \label{group__drivers08_gae202798313c7d68a56d5253f9e364ac7} 
+\#define SOCKERR\+\_\+\+SOCKCLOSED~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 4)}
+
+Socket closed unexpectedly \Hypertarget{group__drivers08_gabaab5024537ee2bcfe81a78e1d65d739}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SOCKERR\_SOCKFLAG@{SOCKERR\_SOCKFLAG}}
+\index{SOCKERR\_SOCKFLAG@{SOCKERR\_SOCKFLAG}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SOCKERR\_SOCKFLAG}{SOCKERR\_SOCKFLAG}}
+{\footnotesize\ttfamily \label{group__drivers08_gabaab5024537ee2bcfe81a78e1d65d739} 
+\#define SOCKERR\+\_\+\+SOCKFLAG~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 6)}
+
+Invalid socket flag \Hypertarget{group__drivers08_ga4cd6d7ca2165fc20977a855ca8ef5efc}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SOCKERR\_SOCKINIT@{SOCKERR\_SOCKINIT}}
+\index{SOCKERR\_SOCKINIT@{SOCKERR\_SOCKINIT}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SOCKERR\_SOCKINIT}{SOCKERR\_SOCKINIT}}
+{\footnotesize\ttfamily \label{group__drivers08_ga4cd6d7ca2165fc20977a855ca8ef5efc} 
+\#define SOCKERR\+\_\+\+SOCKINIT~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 3)}
+
+Socket not initialized \Hypertarget{group__drivers08_ga6971dab6af9ec3f511a08f7944e04c85}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SOCKERR\_SOCKMODE@{SOCKERR\_SOCKMODE}}
+\index{SOCKERR\_SOCKMODE@{SOCKERR\_SOCKMODE}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SOCKERR\_SOCKMODE}{SOCKERR\_SOCKMODE}}
+{\footnotesize\ttfamily \label{group__drivers08_ga6971dab6af9ec3f511a08f7944e04c85} 
+\#define SOCKERR\+\_\+\+SOCKMODE~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 5)}
+
+Invalid socket mode \Hypertarget{group__drivers08_gaf6ef7a97c9bef95e6a0520a0f41b2923}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SOCKERR\_SOCKNUM@{SOCKERR\_SOCKNUM}}
+\index{SOCKERR\_SOCKNUM@{SOCKERR\_SOCKNUM}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SOCKERR\_SOCKNUM}{SOCKERR\_SOCKNUM}}
+{\footnotesize\ttfamily \label{group__drivers08_gaf6ef7a97c9bef95e6a0520a0f41b2923} 
+\#define SOCKERR\+\_\+\+SOCKNUM~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 1)}
+
+Invalid socket number \Hypertarget{group__drivers08_ga9445babb7a4c392d0fe0aa8cefb162af}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SOCKERR\_SOCKOPT@{SOCKERR\_SOCKOPT}}
+\index{SOCKERR\_SOCKOPT@{SOCKERR\_SOCKOPT}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SOCKERR\_SOCKOPT}{SOCKERR\_SOCKOPT}}
+{\footnotesize\ttfamily \label{group__drivers08_ga9445babb7a4c392d0fe0aa8cefb162af} 
+\#define SOCKERR\+\_\+\+SOCKOPT~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 2)}
+
+Invalid socket option \Hypertarget{group__drivers08_gafa51a4ca35e3dde8100252b9bdb32de2}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SOCKERR\_SOCKSTATUS@{SOCKERR\_SOCKSTATUS}}
+\index{SOCKERR\_SOCKSTATUS@{SOCKERR\_SOCKSTATUS}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SOCKERR\_SOCKSTATUS}{SOCKERR\_SOCKSTATUS}}
+{\footnotesize\ttfamily \label{group__drivers08_gafa51a4ca35e3dde8100252b9bdb32de2} 
+\#define SOCKERR\+\_\+\+SOCKSTATUS~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 7)}
+
+Invalid socket status \Hypertarget{group__drivers08_ga8d293d23a00072c794547d2fccfa5a6e}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SOCKERR\_TIMEOUT@{SOCKERR\_TIMEOUT}}
+\index{SOCKERR\_TIMEOUT@{SOCKERR\_TIMEOUT}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SOCKERR\_TIMEOUT}{SOCKERR\_TIMEOUT}}
+{\footnotesize\ttfamily \label{group__drivers08_ga8d293d23a00072c794547d2fccfa5a6e} 
+\#define SOCKERR\+\_\+\+TIMEOUT~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 13)}
+
+Timeout occurred \Hypertarget{group__drivers08_ga381abf0c05f627dfe0ed9876106cb34c}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SOCKFATAL\_PACKLEN@{SOCKFATAL\_PACKLEN}}
+\index{SOCKFATAL\_PACKLEN@{SOCKFATAL\_PACKLEN}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SOCKFATAL\_PACKLEN}{SOCKFATAL\_PACKLEN}}
+{\footnotesize\ttfamily \label{group__drivers08_ga381abf0c05f627dfe0ed9876106cb34c} 
+\#define SOCKFATAL\+\_\+\+PACKLEN~(\mbox{\hyperlink{group__drivers08_ga3692681cc0dc13c8e8df68868785f894}{SOCK\+\_\+\+FATAL}} -\/ 1)}
+
+Invalid packet length (fatal) 
+
+\label{doc-typedef-members}
+\Hypertarget{group__drivers08_doc-typedef-members}
+\doxysubsubsection{Typedef Documentation}
+\Hypertarget{group__drivers08_ga2b3f978d539175d112fb6ebaa7efc0f0}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SOCKET@{SOCKET}}
+\index{SOCKET@{SOCKET}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{SOCKET}{SOCKET}}
+{\footnotesize\ttfamily \label{group__drivers08_ga2b3f978d539175d112fb6ebaa7efc0f0} 
+typedef uint8\+\_\+t \mbox{\hyperlink{group__drivers08_ga2b3f978d539175d112fb6ebaa7efc0f0}{SOCKET}}}
+
+Socket type definition 
+
+\label{doc-enum-members}
+\Hypertarget{group__drivers08_doc-enum-members}
+\doxysubsubsection{Enumeration Type Documentation}
+\Hypertarget{group__drivers08_ga3a77339a724cf087b366b8710aa683e6}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!ctlsock\_type@{ctlsock\_type}}
+\index{ctlsock\_type@{ctlsock\_type}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{ctlsock\_type}{ctlsock\_type}}
+{\footnotesize\ttfamily \label{group__drivers08_ga3a77339a724cf087b366b8710aa683e6} 
+enum \mbox{\hyperlink{group__drivers08_ga3a77339a724cf087b366b8710aa683e6}{ctlsock\+\_\+type}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CS\_SET\_IOMODE@{CS\_SET\_IOMODE}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!CS\_SET\_IOMODE@{CS\_SET\_IOMODE}}}\Hypertarget{group__drivers08_gga3a77339a724cf087b366b8710aa683e6ab3ec317b2f9cb2df881dedd576500f2f}\label{group__drivers08_gga3a77339a724cf087b366b8710aa683e6ab3ec317b2f9cb2df881dedd576500f2f} 
+CS\+\_\+\+SET\+\_\+\+IOMODE&Set I/O mode (blocking/non-\/blocking) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CS\_GET\_IOMODE@{CS\_GET\_IOMODE}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!CS\_GET\_IOMODE@{CS\_GET\_IOMODE}}}\Hypertarget{group__drivers08_gga3a77339a724cf087b366b8710aa683e6af7caa802f7e7242ca70ce5640a9b8e85}\label{group__drivers08_gga3a77339a724cf087b366b8710aa683e6af7caa802f7e7242ca70ce5640a9b8e85} 
+CS\+\_\+\+GET\+\_\+\+IOMODE&Get I/O mode \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CS\_GET\_MAXTXBUF@{CS\_GET\_MAXTXBUF}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!CS\_GET\_MAXTXBUF@{CS\_GET\_MAXTXBUF}}}\Hypertarget{group__drivers08_gga3a77339a724cf087b366b8710aa683e6a9f3ee6f21891b62bdf724135151e9e59}\label{group__drivers08_gga3a77339a724cf087b366b8710aa683e6a9f3ee6f21891b62bdf724135151e9e59} 
+CS\+\_\+\+GET\+\_\+\+MAXTXBUF&Get TX buffer size \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CS\_GET\_MAXRXBUF@{CS\_GET\_MAXRXBUF}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!CS\_GET\_MAXRXBUF@{CS\_GET\_MAXRXBUF}}}\Hypertarget{group__drivers08_gga3a77339a724cf087b366b8710aa683e6abb1c8779447ef09aa57c88c71186ca1e}\label{group__drivers08_gga3a77339a724cf087b366b8710aa683e6abb1c8779447ef09aa57c88c71186ca1e} 
+CS\+\_\+\+GET\+\_\+\+MAXRXBUF&Get RX buffer size \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CS\_CLR\_INTERRUPT@{CS\_CLR\_INTERRUPT}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!CS\_CLR\_INTERRUPT@{CS\_CLR\_INTERRUPT}}}\Hypertarget{group__drivers08_gga3a77339a724cf087b366b8710aa683e6aef32fa8c2e9399355ed769ec77729f8e}\label{group__drivers08_gga3a77339a724cf087b366b8710aa683e6aef32fa8c2e9399355ed769ec77729f8e} 
+CS\+\_\+\+CLR\+\_\+\+INTERRUPT&Clear interrupt flags \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CS\_GET\_INTERRUPT@{CS\_GET\_INTERRUPT}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!CS\_GET\_INTERRUPT@{CS\_GET\_INTERRUPT}}}\Hypertarget{group__drivers08_gga3a77339a724cf087b366b8710aa683e6a7e9faa71bdd2cf508fbf5cc9f7e83ccc}\label{group__drivers08_gga3a77339a724cf087b366b8710aa683e6a7e9faa71bdd2cf508fbf5cc9f7e83ccc} 
+CS\+\_\+\+GET\+\_\+\+INTERRUPT&Get interrupt flags \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CS\_SET\_INTMASK@{CS\_SET\_INTMASK}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!CS\_SET\_INTMASK@{CS\_SET\_INTMASK}}}\Hypertarget{group__drivers08_gga3a77339a724cf087b366b8710aa683e6a2ad38020bf3c84479f0e5552929747be}\label{group__drivers08_gga3a77339a724cf087b366b8710aa683e6a2ad38020bf3c84479f0e5552929747be} 
+CS\+\_\+\+SET\+\_\+\+INTMASK&Set interrupt mask \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CS\_GET\_INTMASK@{CS\_GET\_INTMASK}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!CS\_GET\_INTMASK@{CS\_GET\_INTMASK}}}\Hypertarget{group__drivers08_gga3a77339a724cf087b366b8710aa683e6abdad4e84a9a5a8084e9662d4d8587f18}\label{group__drivers08_gga3a77339a724cf087b366b8710aa683e6abdad4e84a9a5a8084e9662d4d8587f18} 
+CS\+\_\+\+GET\+\_\+\+INTMASK&Get interrupt mask \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{group__drivers08_gaa9d536c54137cd7b425c4c1e3cbfd49c}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!sockint\_kind@{sockint\_kind}}
+\index{sockint\_kind@{sockint\_kind}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{sockint\_kind}{sockint\_kind}}
+{\footnotesize\ttfamily \label{group__drivers08_gaa9d536c54137cd7b425c4c1e3cbfd49c} 
+enum \mbox{\hyperlink{group__drivers08_gaa9d536c54137cd7b425c4c1e3cbfd49c}{sockint\+\_\+kind}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SIK\_CONNECTED@{SIK\_CONNECTED}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SIK\_CONNECTED@{SIK\_CONNECTED}}}\Hypertarget{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49ca572b5fc4792b828241e3cb59c95d8162}\label{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49ca572b5fc4792b828241e3cb59c95d8162} 
+SIK\+\_\+\+CONNECTED&TCP connection established \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SIK\_DISCONNECTED@{SIK\_DISCONNECTED}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SIK\_DISCONNECTED@{SIK\_DISCONNECTED}}}\Hypertarget{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49ca9680dba91346657e5ace550b548e078b}\label{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49ca9680dba91346657e5ace550b548e078b} 
+SIK\+\_\+\+DISCONNECTED&TCP connection closed \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SIK\_RECEIVED@{SIK\_RECEIVED}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SIK\_RECEIVED@{SIK\_RECEIVED}}}\Hypertarget{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49ca083fdc9e4e60122e9430e00cea78ecba}\label{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49ca083fdc9e4e60122e9430e00cea78ecba} 
+SIK\+\_\+\+RECEIVED&Data received \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SIK\_TIMEOUT@{SIK\_TIMEOUT}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SIK\_TIMEOUT@{SIK\_TIMEOUT}}}\Hypertarget{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49ca9932f0ef330402b0f60a08073fd5a753}\label{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49ca9932f0ef330402b0f60a08073fd5a753} 
+SIK\+\_\+\+TIMEOUT&Timeout occurred \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SIK\_SENT@{SIK\_SENT}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SIK\_SENT@{SIK\_SENT}}}\Hypertarget{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49ca263f2ee924ce301138f6ff041d539bd2}\label{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49ca263f2ee924ce301138f6ff041d539bd2} 
+SIK\+\_\+\+SENT&Data sent completely \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SIK\_ALL@{SIK\_ALL}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SIK\_ALL@{SIK\_ALL}}}\Hypertarget{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49cab047934b1869746fbc0f144b5a750235}\label{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49cab047934b1869746fbc0f144b5a750235} 
+SIK\+\_\+\+ALL&All interrupts \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{group__drivers08_ga2f86b7ad233f3b8d6ae0af3ee91e9944}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!sockopt\_type@{sockopt\_type}}
+\index{sockopt\_type@{sockopt\_type}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{sockopt\_type}{sockopt\_type}}
+{\footnotesize\ttfamily \label{group__drivers08_ga2f86b7ad233f3b8d6ae0af3ee91e9944} 
+enum \mbox{\hyperlink{group__drivers08_ga2f86b7ad233f3b8d6ae0af3ee91e9944}{sockopt\+\_\+type}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SO\_FLAG@{SO\_FLAG}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SO\_FLAG@{SO\_FLAG}}}\Hypertarget{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944af21c9fec4a305d9504e0487f7ae7fc26}\label{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944af21c9fec4a305d9504e0487f7ae7fc26} 
+SO\+\_\+\+FLAG&Get socket flags (read-\/only) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SO\_TTL@{SO\_TTL}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SO\_TTL@{SO\_TTL}}}\Hypertarget{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a69762968a8cae82544deffe1c3ac32cf}\label{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a69762968a8cae82544deffe1c3ac32cf} 
+SO\+\_\+\+TTL&Set/\+Get Time-\/\+To-\/\+Live \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SO\_TOS@{SO\_TOS}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SO\_TOS@{SO\_TOS}}}\Hypertarget{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944afef2289d3bfeecda602214576b0a42e3}\label{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944afef2289d3bfeecda602214576b0a42e3} 
+SO\+\_\+\+TOS&Set/\+Get Type-\/\+Of-\/\+Service \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SO\_MSS@{SO\_MSS}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SO\_MSS@{SO\_MSS}}}\Hypertarget{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944ae7f6aaf2aaef0519a813b3e26ef9c4fd}\label{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944ae7f6aaf2aaef0519a813b3e26ef9c4fd} 
+SO\+\_\+\+MSS&Set/\+Get Maximum Segment Size \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SO\_DESTIP@{SO\_DESTIP}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SO\_DESTIP@{SO\_DESTIP}}}\Hypertarget{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944aedcfb91978540124a81e0302c58bb6d7}\label{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944aedcfb91978540124a81e0302c58bb6d7} 
+SO\+\_\+\+DESTIP&Set/\+Get destination IP \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SO\_DESTPORT@{SO\_DESTPORT}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SO\_DESTPORT@{SO\_DESTPORT}}}\Hypertarget{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a3429f41e7099b4badca2630c7a5e4f1c}\label{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a3429f41e7099b4badca2630c7a5e4f1c} 
+SO\+\_\+\+DESTPORT&Set/\+Get destination port \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SO\_KEEPALIVESEND@{SO\_KEEPALIVESEND}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SO\_KEEPALIVESEND@{SO\_KEEPALIVESEND}}}\Hypertarget{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a2bf80fd82c7e9231c427cd62a5d62cf0}\label{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a2bf80fd82c7e9231c427cd62a5d62cf0} 
+SO\+\_\+\+KEEPALIVESEND&Send keep-\/alive packet (TCP) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SO\_KEEPALIVEAUTO@{SO\_KEEPALIVEAUTO}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SO\_KEEPALIVEAUTO@{SO\_KEEPALIVEAUTO}}}\Hypertarget{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a779fa4480ecb9a4b247bd6130c25647f}\label{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a779fa4480ecb9a4b247bd6130c25647f} 
+SO\+\_\+\+KEEPALIVEAUTO&Set keep-\/alive timer (TCP) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SO\_SENDBUF@{SO\_SENDBUF}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SO\_SENDBUF@{SO\_SENDBUF}}}\Hypertarget{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a1b0e150a176b12a227d6ab7c294fc05a}\label{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a1b0e150a176b12a227d6ab7c294fc05a} 
+SO\+\_\+\+SENDBUF&Get free TX buffer size (read-\/only) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SO\_RECVBUF@{SO\_RECVBUF}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SO\_RECVBUF@{SO\_RECVBUF}}}\Hypertarget{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944ab30861739974726fb7a170bbac572c22}\label{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944ab30861739974726fb7a170bbac572c22} 
+SO\+\_\+\+RECVBUF&Get received data size (read-\/only) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SO\_STATUS@{SO\_STATUS}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SO\_STATUS@{SO\_STATUS}}}\Hypertarget{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a3f76c1b04cfc969826bed37a3c4cff06}\label{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a3f76c1b04cfc969826bed37a3c4cff06} 
+SO\+\_\+\+STATUS&Get socket status (read-\/only) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SO\_REMAINSIZE@{SO\_REMAINSIZE}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SO\_REMAINSIZE@{SO\_REMAINSIZE}}}\Hypertarget{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944ac8e0d12b5a8ee43e5ebe37a39b31988a}\label{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944ac8e0d12b5a8ee43e5ebe37a39b31988a} 
+SO\+\_\+\+REMAINSIZE&Get remaining packet size (UDP) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SO\_PACKINFO@{SO\_PACKINFO}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!SO\_PACKINFO@{SO\_PACKINFO}}}\Hypertarget{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944af1a89a6cfe6fce7381f825553de1a905}\label{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944af1a89a6cfe6fce7381f825553de1a905} 
+SO\+\_\+\+PACKINFO&Get packet info (UDP) \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{group__drivers08_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__drivers08_ga025710a2709097be7824f0564f89a461}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!closesocket@{closesocket}}
+\index{closesocket@{closesocket}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{closesocket()}{closesocket()}}
+{\footnotesize\ttfamily \label{group__drivers08_ga025710a2709097be7824f0564f89a461} 
+int8\+\_\+t closesocket (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{}\end{DoxyParamCaption})}
+
+
+
+Close a socket. 
+
+Closes the socket and releases all resources. Waits for socket to reach SOCK\+\_\+\+CLOSED state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+SOCK\+\_\+\+OK on success, negative error code on failure
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Thread-\/safe, blocks until socket is closed
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+SOCK\+\_\+\+OK on success, negative error code on failure 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers08_ga025710a2709097be7824f0564f89a461_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers08_gaf7ab832f4201ef0f04eefcac063b998e}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!connect@{connect}}
+\index{connect@{connect}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{connect()}{connect()}}
+{\footnotesize\ttfamily \label{group__drivers08_gaf7ab832f4201ef0f04eefcac063b998e} 
+int8\+\_\+t connect (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{addr}{, }\item[{uint16\+\_\+t}]{port}{}\end{DoxyParamCaption})}
+
+
+
+Connect to remote server (TCP client) 
+
+Initiates a TCP connection to the specified remote address and port. In blocking mode, waits for connection to be established. In non-\/blocking mode, returns SOCK\+\_\+\+BUSY immediately.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+{\em addr} & Remote IP address (4 bytes) \\
+\hline
+{\em port} & Remote port number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+SOCK\+\_\+\+OK on success, SOCK\+\_\+\+BUSY if non-\/blocking, negative on error
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Socket must be in SOCK\+\_\+\+INIT state 
+
+Connection timeout handled by W5500 hardware (configurable) 
+\end{DoxyNote}
+\Hypertarget{group__drivers08_gae2f94d7d4ce040f6bf68779e064d224e}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!ctlsocket@{ctlsocket}}
+\index{ctlsocket@{ctlsocket}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{ctlsocket()}{ctlsocket()}}
+{\footnotesize\ttfamily \label{group__drivers08_gae2f94d7d4ce040f6bf68779e064d224e} 
+int8\+\_\+t ctlsocket (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{, }\item[{\mbox{\hyperlink{group__drivers08_ga3a77339a724cf087b366b8710aa683e6}{ctlsock\+\_\+type}}}]{cstype}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{arg}{}\end{DoxyParamCaption})}
+
+
+
+Control socket options. 
+
+Set or get various socket control parameters.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+{\em cstype} & Control type (CS\+\_\+xxx) \\
+\hline
+{\em arg} & Pointer to control argument\+:
+\begin{DoxyItemize}
+\item CS\+\_\+\+SET\+\_\+\+IOMODE\+: uint8\+\_\+t\texorpdfstring{$\ast$}{*} (SOCK\+\_\+\+IO\+\_\+\+BLOCK or SOCK\+\_\+\+IO\+\_\+\+NONBLOCK)
+\item CS\+\_\+\+GET\+\_\+\+IOMODE\+: uint8\+\_\+t\texorpdfstring{$\ast$}{*} (output)
+\item CS\+\_\+\+GET\+\_\+\+MAXTXBUF\+: uint16\+\_\+t\texorpdfstring{$\ast$}{*} (output)
+\item CS\+\_\+\+GET\+\_\+\+MAXRXBUF\+: uint16\+\_\+t\texorpdfstring{$\ast$}{*} (output)
+\item CS\+\_\+\+CLR\+\_\+\+INTERRUPT\+: uint8\+\_\+t\texorpdfstring{$\ast$}{*} (SIK\+\_\+xxx flags)
+\item CS\+\_\+\+GET\+\_\+\+INTERRUPT\+: uint8\+\_\+t\texorpdfstring{$\ast$}{*} (output)
+\item CS\+\_\+\+SET\+\_\+\+INTMASK\+: uint8\+\_\+t\texorpdfstring{$\ast$}{*} (SIK\+\_\+xxx flags)
+\item CS\+\_\+\+GET\+\_\+\+INTMASK\+: uint8\+\_\+t\texorpdfstring{$\ast$}{*} (output) 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+SOCK\+\_\+\+OK on success, negative error code on failure
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+{\em cstype} & Control type \\
+\hline
+{\em arg} & Pointer to control argument (type depends on cstype) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+SOCK\+\_\+\+OK on success, negative error code on failure 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=309pt]{group__drivers08_gae2f94d7d4ce040f6bf68779e064d224e_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers08_ga0230efb936b222a0cbc7680e2c39c994}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!disconnect@{disconnect}}
+\index{disconnect@{disconnect}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{disconnect()}{disconnect()}}
+{\footnotesize\ttfamily \label{group__drivers08_ga0230efb936b222a0cbc7680e2c39c994} 
+int8\+\_\+t disconnect (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{}\end{DoxyParamCaption})}
+
+
+
+Disconnect a TCP socket. 
+
+Gracefully closes a TCP connection by sending FIN packet. In blocking mode, waits for disconnect to complete. In non-\/blocking mode, returns SOCK\+\_\+\+BUSY immediately.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+SOCK\+\_\+\+OK on success, SOCK\+\_\+\+BUSY if non-\/blocking, negative on error
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Only for TCP sockets in ESTABLISHED or CLOSE\+\_\+\+WAIT state
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+SOCK\+\_\+\+OK on success, negative error code on failure 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=331pt]{group__drivers08_ga0230efb936b222a0cbc7680e2c39c994_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers08_ga0230efb936b222a0cbc7680e2c39c994_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers08_ga631998ae17cbf099b0071f20c88ce5cf}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!getsockopt@{getsockopt}}
+\index{getsockopt@{getsockopt}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getsockopt()}{getsockopt()}}
+{\footnotesize\ttfamily \label{group__drivers08_ga631998ae17cbf099b0071f20c88ce5cf} 
+int8\+\_\+t getsockopt (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{, }\item[{\mbox{\hyperlink{group__drivers08_ga2f86b7ad233f3b8d6ae0af3ee91e9944}{sockopt\+\_\+type}}}]{sotype}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{arg}{}\end{DoxyParamCaption})}
+
+
+
+Get socket option. 
+
+Retrieve socket-\/specific parameters.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+{\em sotype} & Option type (SO\+\_\+xxx) \\
+\hline
+{\em arg} & Pointer to buffer for option value\+:
+\begin{DoxyItemize}
+\item SO\+\_\+\+FLAG\+: uint8\+\_\+t\texorpdfstring{$\ast$}{*} (socket flags, read-\/only)
+\item SO\+\_\+\+TTL\+: uint8\+\_\+t\texorpdfstring{$\ast$}{*} (Time-\/\+To-\/\+Live value)
+\item SO\+\_\+\+TOS\+: uint8\+\_\+t\texorpdfstring{$\ast$}{*} (Type-\/\+Of-\/\+Service value)
+\item SO\+\_\+\+MSS\+: uint16\+\_\+t\texorpdfstring{$\ast$}{*} (Maximum Segment Size)
+\item SO\+\_\+\+DESTIP\+: uint8\+\_\+t\mbox{[}4\mbox{]} (Destination IP)
+\item SO\+\_\+\+DESTPORT\+: uint16\+\_\+t\texorpdfstring{$\ast$}{*} (Destination port)
+\item SO\+\_\+\+KEEPALIVEAUTO\+: uint16\+\_\+t\texorpdfstring{$\ast$}{*} (auto keep-\/alive timer)
+\item SO\+\_\+\+SENDBUF\+: uint16\+\_\+t\texorpdfstring{$\ast$}{*} (free TX buffer, read-\/only)
+\item SO\+\_\+\+RECVBUF\+: uint16\+\_\+t\texorpdfstring{$\ast$}{*} (received data size, read-\/only)
+\item SO\+\_\+\+STATUS\+: uint8\+\_\+t\texorpdfstring{$\ast$}{*} (socket status, read-\/only)
+\item SO\+\_\+\+REMAINSIZE\+: uint16\+\_\+t\texorpdfstring{$\ast$}{*} (remaining packet size, read-\/only)
+\item SO\+\_\+\+PACKINFO\+: uint8\+\_\+t\texorpdfstring{$\ast$}{*} (packet info, read-\/only, UDP only) 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+SOCK\+\_\+\+OK on success, negative error code on failure
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+{\em sotype} & Option type \\
+\hline
+{\em arg} & Pointer to buffer for option value (type depends on sotype) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+SOCK\+\_\+\+OK on success, negative error code on failure 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers08_ga631998ae17cbf099b0071f20c88ce5cf_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers08_ga58ae959798d5d874ac5ea796da90db8c}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!listen@{listen}}
+\index{listen@{listen}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{listen()}{listen()}}
+{\footnotesize\ttfamily \label{group__drivers08_ga58ae959798d5d874ac5ea796da90db8c} 
+int8\+\_\+t listen (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{}\end{DoxyParamCaption})}
+
+
+
+Put socket into listen mode (TCP server) 
+
+Transitions a TCP socket from SOCK\+\_\+\+INIT to SOCK\+\_\+\+LISTEN state. After calling \doxylink{group__drivers08_ga58ae959798d5d874ac5ea796da90db8c}{listen()}, the socket can accept incoming connections.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+SOCK\+\_\+\+OK on success, negative error code on failure
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Socket must be in SOCK\+\_\+\+INIT state (after \doxylink{group__drivers08_ga8cc0a2074b3aae98a132c1ae3c51188f}{socket()} call) 
+
+Socket will remain in LISTEN state until connection or close
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+SOCK\+\_\+\+OK on success, negative error code on failure 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=293pt]{group__drivers08_ga58ae959798d5d874ac5ea796da90db8c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers08_ga58ae959798d5d874ac5ea796da90db8c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers08_ga4cfb66f7440a1dd9ac0ee0b933a38c59}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!recv@{recv}}
+\index{recv@{recv}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{recv()}{recv()}}
+{\footnotesize\ttfamily \label{group__drivers08_ga4cfb66f7440a1dd9ac0ee0b933a38c59} 
+int32\+\_\+t recv (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint16\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Receive data from TCP socket. 
+
+Receives data from an established TCP connection. In blocking mode, waits for data if RX buffer empty. In non-\/blocking mode, returns SOCK\+\_\+\+BUSY if no data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+{\em buf} & Pointer to receive buffer \\
+\hline
+{\em len} & Maximum number of bytes to receive \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of bytes received, SOCK\+\_\+\+BUSY, or negative error code
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Socket must be in SOCK\+\_\+\+ESTABLISHED or SOCK\+\_\+\+CLOSE\+\_\+\+WAIT state 
+
+Returns SOCKERR\+\_\+\+SOCKCLOSED if remote closed connection
+\end{DoxyNote}
+Receive data from TCP socket.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+{\em buf} & Destination buffer \\
+\hline
+{\em len} & Maximum number of bytes to read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of bytes read (\texorpdfstring{$>$}{>}0), 0 if no data available (non-\/blocking mode), or negative error code on failure (SOCKERR\+\_\+\texorpdfstring{$\ast$}{*}, SOCK\+\_\+\+BUSY when bounded wait elapsed).
+\end{DoxyReturn}
+Reads up to {\ttfamily len} bytes from the socket RX buffer. If no data is currently available, this function waits only for a short, bounded slice to avoid stalling the caller. After the slice expires, it returns \doxylink{group__drivers08_gaf338f8defd644d00125c76201a38ce74}{SOCK\+\_\+\+BUSY} so upper layers can yield and retry. This prevents long idle connections from starving the scheduler and the Health\+Task. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers08_ga4cfb66f7440a1dd9ac0ee0b933a38c59_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers08_ga4cfb66f7440a1dd9ac0ee0b933a38c59_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers08_gae580bd099f9bcbeca63a3145c0015e62}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!recvfrom@{recvfrom}}
+\index{recvfrom@{recvfrom}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{recvfrom()}{recvfrom()}}
+{\footnotesize\ttfamily \label{group__drivers08_gae580bd099f9bcbeca63a3145c0015e62} 
+int32\+\_\+t recvfrom (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint16\+\_\+t}]{len}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{addr}{, }\item[{uint16\+\_\+t \texorpdfstring{$\ast$}{*}}]{port}{}\end{DoxyParamCaption})}
+
+
+
+Receive datagram from UDP socket. 
+
+Receives a UDP datagram with source address and port. In blocking mode, waits for data if RX buffer empty. In non-\/blocking mode, returns SOCK\+\_\+\+BUSY if no data.
+
+Supports fragmented packet reception\+:
+\begin{DoxyItemize}
+\item PACK\+\_\+\+FIRST\+: First call for a new packet
+\item PACK\+\_\+\+REMAINED\+: More data remains in current packet
+\item PACK\+\_\+\+COMPLETED\+: All packet data received
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+{\em buf} & Pointer to receive buffer \\
+\hline
+{\em len} & Maximum number of bytes to receive \\
+\hline
+{\em addr} & Pointer to buffer for source IP address (4 bytes, output) \\
+\hline
+{\em port} & Pointer to buffer for source port number (output) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of bytes received, SOCK\+\_\+\+BUSY, or negative error code
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Socket must be in SOCK\+\_\+\+UDP, SOCK\+\_\+\+IPRAW, or SOCK\+\_\+\+MACRAW state 
+
+For UDP\+: includes 8-\/byte header (IP\mbox{[}4\mbox{]} + port\mbox{[}2\mbox{]} + length\mbox{[}2\mbox{]}) 
+
+For IPRAW\+: includes 6-\/byte header (IP\mbox{[}4\mbox{]} + length\mbox{[}2\mbox{]}) 
+
+For MACRAW\+: includes 2-\/byte header (length\mbox{[}2\mbox{]}) 
+
+Use SO\+\_\+\+PACKINFO to check packet completion status
+\end{DoxyNote}
+Receive datagram from UDP socket.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+{\em buf} & Destination buffer \\
+\hline
+{\em len} & Maximum bytes to receive \\
+\hline
+{\em addr} & OUT\+: source IPv4 address (4 bytes) \\
+\hline
+{\em port} & OUT\+: source UDP port \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of bytes read (\texorpdfstring{$>$}{>}0), 0 if no data available (non-\/blocking mode), or negative error code on failure (SOCKERR\+\_\+\texorpdfstring{$\ast$}{*}, SOCK\+\_\+\+BUSY when bounded wait elapsed).
+\end{DoxyReturn}
+Waits briefly for a datagram, then returns \doxylink{group__drivers08_gaf338f8defd644d00125c76201a38ce74}{SOCK\+\_\+\+BUSY} so the caller can yield and retry. Prevents long stalls when no UDP data is pending (e.\+g., idle SNMP). This implementation reads and consumes the 8-\/byte UDP header first, then the payload. If {\ttfamily len} is smaller than the payload, the remainder is read into a small throwaway buffer to advance the RX pointer, and then \doxylink{group__config03_ga282df6e5d976e94953d4f9f32f182827}{Sn\+\_\+\+CR\+\_\+\+RECV} is issued once to commit consumption.
+
+Receive datagram from a UDP socket (cooperative, bounded wait)
+
+Reads one complete UDP datagram (header + payload) from the W5500 socket. Properly flushes the chip RX pointer with Sn\+\_\+\+CR\+\_\+\+RECV once the datagram is fully consumed, preventing stale header bytes from contaminating the next read. Non-\/blocking and bounded for cooperative multitasking. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers08_gae580bd099f9bcbeca63a3145c0015e62_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers08_gaa2d7390eb4454dd102f39caf47829065}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!recvfrom\_SNMP@{recvfrom\_SNMP}}
+\index{recvfrom\_SNMP@{recvfrom\_SNMP}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{recvfrom\_SNMP()}{recvfrom\_SNMP()}}
+{\footnotesize\ttfamily \label{group__drivers08_gaa2d7390eb4454dd102f39caf47829065} 
+int32\+\_\+t recvfrom\+\_\+\+SNMP (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint16\+\_\+t}]{len}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{addr}{, }\item[{uint16\+\_\+t \texorpdfstring{$\ast$}{*}}]{port}{}\end{DoxyParamCaption})}
+
+
+
+Receive datagram from UDP socket. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+{\em buf} & Pointer to receive buffer \\
+\hline
+{\em len} & Maximum number of bytes to receive \\
+\hline
+{\em addr} & Pointer to buffer for source IP address (4 bytes) \\
+\hline
+{\em port} & Pointer to buffer for source port number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of bytes received, or negative error code 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers08_gaa2d7390eb4454dd102f39caf47829065_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers08_gaa2d7390eb4454dd102f39caf47829065_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers08_gacd77c3cc60e87d09a5714932506d7c4b}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!send@{send}}
+\index{send@{send}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{send()}{send()}}
+{\footnotesize\ttfamily \label{group__drivers08_gacd77c3cc60e87d09a5714932506d7c4b} 
+int32\+\_\+t send (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint16\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Send data over TCP socket. 
+
+Sends data over an established TCP connection. In blocking mode, waits for TX buffer space if needed. In non-\/blocking mode, returns SOCK\+\_\+\+BUSY if buffer full.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+{\em buf} & Pointer to data buffer \\
+\hline
+{\em len} & Number of bytes to send (limited by TX buffer size) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of bytes queued for sending, or negative error code
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Socket must be in SOCK\+\_\+\+ESTABLISHED or SOCK\+\_\+\+CLOSE\+\_\+\+WAIT state 
+
+Actual transmission handled by W5500 hardware 
+
+Check Sn\+\_\+\+IR\+\_\+\+SENDOK interrupt to confirm transmission completion
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+{\em buf} & Pointer to data buffer \\
+\hline
+{\em len} & Number of bytes to send \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of bytes sent, or negative error code
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Sends up to {\ttfamily len} bytes on a connected TCP socket.
+\item Preserves blocking semantics when TX space becomes available within a short, bounded slice.
+\item If TX space does not become available quickly, returns \doxylink{group__drivers08_gaf338f8defd644d00125c76201a38ce74}{SOCK\+\_\+\+BUSY} so upper layers can yield and retry.
+\item Never waits unbounded for remote window growth; avoids long stalls when the peer is idle. 
+\end{DoxyItemize}Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers08_gacd77c3cc60e87d09a5714932506d7c4b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers08_gacd77c3cc60e87d09a5714932506d7c4b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers08_gafbf5f9d6f92a7ad4811b3c4f211f3672}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!send\_all\_blocking@{send\_all\_blocking}}
+\index{send\_all\_blocking@{send\_all\_blocking}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{send\_all\_blocking()}{send\_all\_blocking()}}
+{\footnotesize\ttfamily \label{group__drivers08_gafbf5f9d6f92a7ad4811b3c4f211f3672} 
+int send\+\_\+all\+\_\+blocking (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{, }\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{int}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Send all data over TCP socket in blocking mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+{\em buf} & Pointer to data buffer \\
+\hline
+{\em len} & Number of bytes to send \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Total number of bytes sent 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers08_gafbf5f9d6f92a7ad4811b3c4f211f3672_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers08_ga30fc77ba1005733b501994818bde12f8}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!sendto@{sendto}}
+\index{sendto@{sendto}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{sendto()}{sendto()}}
+{\footnotesize\ttfamily \label{group__drivers08_ga30fc77ba1005733b501994818bde12f8} 
+int32\+\_\+t sendto (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint16\+\_\+t}]{len}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{addr}{, }\item[{uint16\+\_\+t}]{port}{}\end{DoxyParamCaption})}
+
+
+
+Send datagram over UDP socket. 
+
+Sends a UDP datagram to the specified destination. In blocking mode, waits for TX buffer space if needed. In non-\/blocking mode, returns SOCK\+\_\+\+BUSY if buffer full.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+{\em buf} & Pointer to data buffer \\
+\hline
+{\em len} & Number of bytes to send (limited by TX buffer size) \\
+\hline
+{\em addr} & Destination IP address (4 bytes) \\
+\hline
+{\em port} & Destination port number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of bytes sent, or negative error code
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Socket must be in SOCK\+\_\+\+UDP state 
+
+Maximum datagram size depends on MTU (typically 1472 bytes)
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+{\em buf} & Pointer to data buffer \\
+\hline
+{\em len} & Number of bytes to send \\
+\hline
+{\em addr} & Destination IP address (4 bytes) \\
+\hline
+{\em port} & Destination port number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of bytes sent, or negative error code
+\end{DoxyReturn}
+Sends a single UDP datagram. The W5500 requires the full datagram to fit into the socket\textquotesingle{}s TX buffer in one shot; this implementation waits for TX free space only for a short, bounded slice. If sufficient space does not become available quickly, the function returns \doxylink{group__drivers08_gaf338f8defd644d00125c76201a38ce74}{SOCK\+\_\+\+BUSY} so the caller can yield and retry on a later tick. No datagram fragmentation is attempted. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers08_ga30fc77ba1005733b501994818bde12f8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers08_ga30fc77ba1005733b501994818bde12f8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers08_ga0111e4784e20d97dacd5aaf54cb48ef1}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!setsockopt@{setsockopt}}
+\index{setsockopt@{setsockopt}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{setsockopt()}{setsockopt()}}
+{\footnotesize\ttfamily \label{group__drivers08_ga0111e4784e20d97dacd5aaf54cb48ef1} 
+int8\+\_\+t setsockopt (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{, }\item[{\mbox{\hyperlink{group__drivers08_ga2f86b7ad233f3b8d6ae0af3ee91e9944}{sockopt\+\_\+type}}}]{sotype}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{arg}{}\end{DoxyParamCaption})}
+
+
+
+Set socket option. 
+
+Configure socket-\/specific parameters.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+{\em sotype} & Option type (SO\+\_\+xxx) \\
+\hline
+{\em arg} & Pointer to option value\+:
+\begin{DoxyItemize}
+\item SO\+\_\+\+TTL\+: uint8\+\_\+t\texorpdfstring{$\ast$}{*} (Time-\/\+To-\/\+Live value)
+\item SO\+\_\+\+TOS\+: uint8\+\_\+t\texorpdfstring{$\ast$}{*} (Type-\/\+Of-\/\+Service value)
+\item SO\+\_\+\+MSS\+: uint16\+\_\+t\texorpdfstring{$\ast$}{*} (Maximum Segment Size)
+\item SO\+\_\+\+DESTIP\+: uint8\+\_\+t\mbox{[}4\mbox{]} (Destination IP)
+\item SO\+\_\+\+DESTPORT\+: uint16\+\_\+t\texorpdfstring{$\ast$}{*} (Destination port)
+\item SO\+\_\+\+KEEPALIVESEND\+: NULL (send keep-\/alive now)
+\item SO\+\_\+\+KEEPALIVEAUTO\+: uint8\+\_\+t\texorpdfstring{$\ast$}{*} (auto keep-\/alive timer) 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+SOCK\+\_\+\+OK on success, negative error code on failure
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+{\em sotype} & Option type \\
+\hline
+{\em arg} & Pointer to option value (type depends on sotype) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+SOCK\+\_\+\+OK on success, negative error code on failure 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers08_ga0111e4784e20d97dacd5aaf54cb48ef1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers08_ga0111e4784e20d97dacd5aaf54cb48ef1_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers08_ga8cc0a2074b3aae98a132c1ae3c51188f}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!socket@{socket}}
+\index{socket@{socket}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{socket()}{socket()}}
+{\footnotesize\ttfamily \label{group__drivers08_ga8cc0a2074b3aae98a132c1ae3c51188f} 
+int8\+\_\+t socket (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{, }\item[{uint8\+\_\+t}]{protocol}{, }\item[{uint16\+\_\+t}]{port}{, }\item[{uint8\+\_\+t}]{flag}{}\end{DoxyParamCaption})}
+
+
+
+Create and initialize a socket. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number (0-\/7) \\
+\hline
+{\em protocol} & Protocol type (Sn\+\_\+\+MR\+\_\+\+TCP, Sn\+\_\+\+MR\+\_\+\+UDP, Sn\+\_\+\+MR\+\_\+\+IPRAW, Sn\+\_\+\+MR\+\_\+\+MACRAW) \\
+\hline
+{\em port} & Local port number (0 = auto-\/assign) \\
+\hline
+{\em flag} & Socket flags (SF\+\_\+xxx) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Socket number (sn) on success, negative error code on failure 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers08_ga8cc0a2074b3aae98a132c1ae3c51188f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers08_ga8cc0a2074b3aae98a132c1ae3c51188f_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{group__drivers08_doc-var-members}
+\doxysubsubsection{Variable Documentation}
+\Hypertarget{group__drivers08_ga3c3689958c5f3bf2f9fcf1a44f9ad941}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!sock\_pack\_info@{sock\_pack\_info}}
+\index{sock\_pack\_info@{sock\_pack\_info}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{sock\_pack\_info}{sock\_pack\_info}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{group__drivers08_ga3c3689958c5f3bf2f9fcf1a44f9ad941} 
+uint8\+\_\+t sock\+\_\+pack\+\_\+info\mbox{[}\mbox{\hyperlink{group___w5500___m_e_m_ga397c217a9bfdf60b22be602a9da74178}{W5500\+\_\+\+SOCKET\+\_\+\+COUNT}}\mbox{]} = \{0\}}
+
+Packet info storage (used by recvfrom) \Hypertarget{group__drivers08_ga7bde883229057ef5a2fd615e99eeb43e}\index{8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}!sock\_pack\_info@{sock\_pack\_info}}
+\index{sock\_pack\_info@{sock\_pack\_info}!8. Ethernet Socket Implementation@{8. Ethernet Socket Implementation}}
+\doxysubsubsubsection{\texorpdfstring{sock\_pack\_info}{sock\_pack\_info}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{group__drivers08_ga7bde883229057ef5a2fd615e99eeb43e} 
+uint8\+\_\+t sock\+\_\+pack\+\_\+info\mbox{[}\mbox{\hyperlink{group__config03_ga5322fda8c75b38b8c84a677103387d07}{W5500\+\_\+\+SOCKNUM}}\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+Packet info storage (used by recvfrom) 

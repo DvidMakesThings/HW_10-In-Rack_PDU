@@ -1,0 +1,12 @@
+<map id="w5500_chip_init" name="w5500_chip_init">
+<area shape="rect" id="Node000001" title="Initialize the W5500 chip and bring link up." alt="" coords="5,54,120,80"/>
+<area shape="rect" id="Node000002" href="$group__tasks05.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="418,28,601,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,51,121,30,167,14,239,4,312,4,381,12,440,22,439,27,380,17,312,10,239,9,168,19,124,35,86,55"/>
+<area shape="rect" id="Node000003" href="$group__tasks05.html#gac25626a70e6fe0baeaa167d47bed33d1" title="Enqueue a warning code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="168,28,370,55"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="120,57,152,53,152,59,120,63"/>
+<area shape="rect" id="Node000004" href="$group__drivers05.html#ga8aef3e5f959b806f9890722dee066782" title="Set network configuration (MAC, IP, subnet, gateway)" alt="" coords="200,79,338,106"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="120,71,185,79,184,85,120,77"/>
+<area shape="rect" id="Node000005" href="$group__drivers05.html#ga9bd16b5a58852d08dd22d052bfaf1d05" title="Write single byte to W5500 register (optimized bulk SPI)" alt="" coords="209,130,328,156"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="90,79,169,115,195,124,194,129,167,120,88,83"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="335,76,427,56,429,61,336,81"/>
+</map>

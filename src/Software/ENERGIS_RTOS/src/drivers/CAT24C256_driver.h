@@ -2,16 +2,36 @@
  * @file src/drivers/CAT24C256_driver.h
  * @author DvidMakesThings - David Sipos
  *
- * @defgroup drivers02 2. CAT24C256 EEPROM Driver Implementation
+ * @defgroup driver02 2. EEPROM Driver
  * @ingroup drivers
- * @brief Header file for CAT24C256 I2C EEPROM driver
+ * @brief I2C driver for CAT24C256 32KB EEPROM with page-aware write operations.
  * @{
  *
  * @version 1.1.0
  * @date 2025-11-06
  *
  * @details
- * RTOS-compatible implementation for CAT24C256 EEPROM.
+ * Provides thread-safe access to the CAT24C256 serial EEPROM used for non-volatile
+ * parameter storage in the ENERGIS PDU. The driver handles:
+ * - 64-byte page boundary management for writes
+ * - Mandatory write cycle delays per datasheet timing
+ * - 16-bit address space (0x0000 - 0x7FFF, 32KB total)
+ * - I2C bus arbitration via centralized bus manager
+ *
+ * Key Features:
+ * - Page-aware buffered writes prevent page boundary corruption
+ * - Automatic write cycle delays (5ms per page)
+ * - Sequential multi-byte reads without page restrictions
+ * - Self-test function for hardware validation
+ *
+ * Thread Safety:
+ * - All operations must be called from StorageTask with eepromMtx protection
+ * - Uses i2c_bus_* wrappers for serialized I2C access
+ *
+ * Hardware Configuration:
+ * - I2C address: 0x50 (7-bit)
+ * - Bus: I2C1 (configurable via CONFIG.h)
+ * - Speed: Typically 100-400 kHz
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -22,127 +42,170 @@
 
 #include "../CONFIG.h"
 
-/* ==================== CAT24C256 Constants ==================== */
+/** @name EEPROM Constants
+ *  @ingroup driver02
+ *  @{ */
 
 /**
- * @brief Default I2C device address for CAT24C256 (7-bit address)
- * @note Address can be modified by hardware address pins A0-A2 if available on the device
+ * @brief I2C device address for CAT24C256 (7-bit).
+ * @note Hardware address pins A0-A2 can modify this if available on device
  */
 #define CAT24C256_I2C_ADDR 0x50
 
 /**
- * @brief Page size for write operations (64 bytes)
- * @note CAT24C256 has 64-byte pages; writes must not cross page boundaries.
+ * @brief EEPROM page size in bytes for write operations.
+ * @note Writes must not cross 64-byte page boundaries per datasheet
  */
 #define CAT24C256_PAGE_SIZE 64
 
 /**
- * @brief Total memory size of the CAT24C256 EEPROM (32KB)
+ * @brief Total EEPROM capacity in bytes (32KB).
  */
 #define CAT24C256_TOTAL_SIZE EEPROM_SIZE
 
 /**
- * @brief Write cycle time in milliseconds (typical: 5ms max)
- * @note This delay is required after each write operation to ensure data integrity
+ * @brief Mandatory write cycle delay in milliseconds.
+ * @note Per datasheet: 5ms typical, 10ms maximum
  */
 #define CAT24C256_WRITE_CYCLE_MS 5
-
-/* ==================== Function Prototypes ==================== */
+/** @} */
 
 /**
- * @brief Initialize the CAT24C256 EEPROM driver.
+ * @brief Initialize CAT24C256 EEPROM driver.
  *
- * Uses CONFIG.h definitions: I2C1_SDA, I2C1_SCL, EEPROM_I2C, I2C0_SPEED.
- * I2C peripheral already initialized by system_startup_init().
+ * @details
+ * Configures I2C GPIO pins with proper function assignment and pull-ups.
+ * The I2C peripheral must already be initialized by system_startup_init()
+ * before calling this function.
  *
- * RTOS: Safe to call from any task context.
- */
-/**
- * @brief Initializes the CAT24C256 EEPROM hardware interface
- *
- * Sets up the I2C interface pins (SDA and SCL) with proper function assignments and pull-up
- * resistors. The I2C peripheral must be previously initialized by system_startup_init().
+ * Pin Configuration:
+ * - SDA: GPIO function + internal pull-up
+ * - SCL: GPIO function + internal pull-up
  *
  * @param None
  * @return None
- * @note Thread-safe: Can be called from any task context
+ *
+ * @note Call once during system initialization after I2C peripheral init
+ * @note Thread-safe, can be called from any task context
  */
 void CAT24C256_Init(void);
 
+/** @name Public API
+ *  @ingroup driver02
+ *  @{ */
+
 /**
- * @brief Writes a single byte to a specific EEPROM address
+ * @brief Write single byte to EEPROM.
  *
- * Performs an atomic write operation of one byte to the specified memory address.
- * Automatically handles the required write cycle delay after the operation.
+ * @details
+ * Performs atomic single-byte write with automatic write cycle delay.
+ * Operation blocks for write cycle time after I2C transaction completes.
  *
- * @param addr Memory address between 0x0000 and 0xFFFF
- * @param data 8-bit value to write to the specified address
- * @return 0 on successful write, -1 if I2C communication fails
- * @note Thread-safety: Must only be called from StorageTask with eepromMtx protection
+ * @param addr Memory address [0x0000 - 0x7FFF]
+ * @param data Byte value to write
+ *
+ * @return 0 on success
+ * @return -1 on I2C communication failure
+ *
+ * @note Thread-safety: Must be called from StorageTask with eepromMtx held
+ * @note Blocks for CAT24C256_WRITE_CYCLE_MS after write
  */
 int CAT24C256_WriteByte(uint16_t addr, uint8_t data);
 
 /**
- * @brief Reads a single byte from the specified EEPROM address
+ * @brief Read single byte from EEPROM.
  *
- * Performs a two-part I2C transaction:
- * 1. Write address bytes with repeated start
- * 2. Read one byte of data
+ * @details
+ * Performs two-phase I2C transaction:
+ * 1. Write 16-bit address with repeated start
+ * 2. Read one data byte
  *
- * @param addr Source memory address (0x0000 - 0xFFFF)
- * @return Read byte value, 0xFF if read operation fails
+ * @param addr Memory address [0x0000 - 0x7FFF]
+ *
+ * @return Byte value read from EEPROM
+ * @return 0xFF on I2C communication failure
+ *
+ * @note Thread-safety: Must be called from StorageTask with eepromMtx held
  */
 uint8_t CAT24C256_ReadByte(uint16_t addr);
 
 /**
- * @brief Writes a contiguous block of data to EEPROM with page boundary handling
+ * @brief Write buffer to EEPROM with automatic page boundary handling.
  *
- * Implements automatic page-aware write operations that respect the 128-byte
- * page boundaries of the CAT24C256. Write operations that cross page boundaries
- * are automatically split into multiple page-aligned chunks.
+ * @details
+ * Writes data in page-aligned chunks to prevent page boundary corruption.
+ * Automatically splits writes that cross 64-byte page boundaries into
+ * multiple operations with proper write cycle delays between each.
  *
- * @param addr Starting memory address (0x0000 - 0xFFFF)
- * @param data Pointer to source data buffer
+ * Page Boundary Example:
+ * - Write 100 bytes starting at 0x0020:
+ *   - Chunk 1: 0x0020-0x003F (32 bytes to page boundary)
+ *   - Delay 5ms
+ *   - Chunk 2: 0x0040-0x007F (64 bytes, full page)
+ *   - Delay 5ms
+ *   - Chunk 3: 0x0080-0x0083 (4 bytes remaining)
+ *   - Delay 5ms
+ *
+ * @param addr Starting memory address [0x0000 - 0x7FFF]
+ * @param data Source buffer pointer
  * @param len Number of bytes to write
- * @return 0 if all writes successful, -1 on NULL pointer or any I2C error
- * @note Includes write cycle delays between each page write operation
+ *
+ * @return 0 on complete success
+ * @return -1 on NULL pointer or any I2C error
+ *
+ * @note Thread-safety: Must be called from StorageTask with eepromMtx held
+ * @note Total operation time: (number_of_pages × 5ms) + I2C transfer time
  */
 int CAT24C256_WriteBuffer(uint16_t addr, const uint8_t *data, uint16_t len);
 
 /**
- * @brief Reads a contiguous block of data from EEPROM
+ * @brief Read buffer from EEPROM.
  *
- * Performs a sequential read operation starting at the specified address.
- * Uses the EEPROM's auto-increment feature for efficient multi-byte reads.
- * On error, fills the destination buffer with 0xFF.
+ * @details
+ * Performs sequential read using EEPROM auto-increment feature.
+ * Can read across page boundaries without restriction. On error,
+ * fills destination buffer with 0xFF to indicate invalid data.
  *
- * @param addr Starting memory address (0x0000 - 0xFFFF)
- * @param buffer Pointer to destination buffer
+ * @param addr Starting memory address [0x0000 - 0x7FFF]
+ * @param buffer Destination buffer pointer
  * @param len Number of bytes to read
+ *
  * @return None
- * @note Supports reads across page boundaries without special handling
+ *
+ * @note Thread-safety: Must be called from StorageTask with eepromMtx held
+ * @note Buffer filled with 0xFF on I2C communication failure
  */
 void CAT24C256_ReadBuffer(uint16_t addr, uint8_t *buffer, uint32_t len);
 
 /**
- * @brief Performs a comprehensive self-test of EEPROM functionality
+ * @brief Execute comprehensive EEPROM self-test.
  *
- * Validates EEPROM operation by:
- * 1. Writing a test pattern with alternating bits and edge cases
- * 2. Reading back the pattern to verify data integrity
- * 3. Comparing written and read data byte-by-byte
+ * @details
+ * Validates EEPROM functionality by writing and reading back a test
+ * pattern designed to detect common failure modes:
  *
- * Test pattern: 0xAA, 0x55, 0xCC, 0x33, 0xF0, 0x0F, 0x00, 0xFF
- * - Tests alternating bits (0xAA, 0x55)
- * - Tests paired bits (0xCC, 0x33)
- * - Tests half-byte patterns (0xF0, 0x0F)
- * - Tests extreme values (0x00, 0xFF)
+ * Test Pattern (8 bytes):
+ * - 0xAA, 0x55: Alternating bit patterns (detects stuck bits)
+ * - 0xCC, 0x33: Adjacent bit pairs (detects crosstalk)
+ * - 0xF0, 0x0F: Nibble patterns (detects partial byte errors)
+ * - 0x00, 0xFF: Extreme values (detects threshold issues)
  *
- * @param test_addr Starting address for test pattern
- * @return true if test passes, false on any error
- * @note Modifies 8 bytes of EEPROM content starting at test_addr
+ * Procedure:
+ * 1. Write test pattern to specified address
+ * 2. Wait 10ms for write completion
+ * 3. Read back pattern
+ * 4. Compare byte-by-byte with expected values
+ *
+ * @param test_addr Starting address for test (modifies 8 bytes)
+ *
+ * @return true if all bytes match expected pattern
+ * @return false on write failure, read failure, or data mismatch
+ *
+ * @warning Overwrites 8 bytes at test_addr
+ * @note Thread-safety: Must be called from StorageTask with eepromMtx held
  */
 bool CAT24C256_SelfTest(uint16_t test_addr);
+/** @} */
 
 #endif /* CAT24C256_DRIVER_H */
 

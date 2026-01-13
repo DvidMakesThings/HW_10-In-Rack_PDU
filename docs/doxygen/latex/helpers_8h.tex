@@ -1,0 +1,42 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/misc/helpers.h File Reference}
+\hypertarget{helpers_8h}{}\label{helpers_8h}\index{src/Software/ENERGIS\_RTOS/src/misc/helpers.h@{src/Software/ENERGIS\_RTOS/src/misc/helpers.h}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for helpers.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{helpers_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{helpers_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{Indent}\textbf{ Public API}\par
+\begin{DoxyCompactItemize}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__misc2_gaeb4007c2c85c659d737d6fd89a270f5e}{get\+\_\+form\+\_\+value}} (const char \texorpdfstring{$\ast$}{*}body, const char \texorpdfstring{$\ast$}{*}key)
+\begin{DoxyCompactList}\small\item\em Extract value for a given key from URL-\/encoded form data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc2_ga493994a6707f3269e63a5006d8e409a1}{urldecode}} (char \texorpdfstring{$\ast$}{*}s)
+\begin{DoxyCompactList}\small\item\em Decode URL-\/encoded string in-\/place. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__misc2_ga7429c45bd6a0f11e4a997bf71a74cb48}{get\+\_\+\+Voltage}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Read voltage from specified ADC channel. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__misc2_ga94392e9ee8263660e4b9065f0e6d501a}{ethernet\+\_\+apply\+\_\+network\+\_\+from\+\_\+storage}} (const \mbox{\hyperlink{structnetwork_info}{network\+Info}} \texorpdfstring{$\ast$}{*}ni)
+\begin{DoxyCompactList}\small\item\em Apply network configuration from storage to W5500 Ethernet controller. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc2_gaca2ea273167ca7fe990deec4aa069964}{Boot\+\_\+\+Log\+Reset\+Cause}} (void)
+\begin{DoxyCompactList}\small\item\em Log detailed reset cause information at boot. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc2_ga2481802ac87dc386890d49a5b9f61e0f}{Helpers\+\_\+\+Early\+Boot\+Snapshot}} (void)
+\begin{DoxyCompactList}\small\item\em Capture early boot reset snapshot into retained memory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc2_ga1224bdfc48804ed50a3c65f98208f8a6}{Helpers\+\_\+\+Late\+Boot\+Dump\+And\+Clear}} (void)
+\begin{DoxyCompactList}\small\item\em Print the early boot snapshot and clear transient diagnostics. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

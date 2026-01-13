@@ -1,0 +1,9 @@
+<map id="cmd_read_error_log" name="cmd_read_error_log">
+<area shape="rect" id="Node000001" title="Asynchronously dump the error event log region." alt="" coords="5,43,141,69"/>
+<area shape="rect" id="Node000002" href="$group__tasks10.html#ga423080bfa834046c228f9b5e7a83999e" title="Asynchronously dump the error event log region in hex format." alt="" coords="212,5,348,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="140,44,197,36,197,41,141,49"/>
+<area shape="rect" id="Node000004" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="189,72,372,99"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="141,63,174,68,173,73,140,68"/>
+<area shape="rect" id="Node000003" href="$group__tasks10.html#gaad6cb463ba1647fe51faeea5f08268da" title="Check if config is loaded and ready." alt="" coords="420,13,587,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="349,24,405,24,405,29,349,29"/>
+</map>

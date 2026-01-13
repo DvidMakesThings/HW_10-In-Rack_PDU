@@ -1,0 +1,829 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/drivers/\+HLW8032\+\_\+driver.c File Reference}
+\hypertarget{_h_l_w8032__driver_8c}{}\label{_h_l_w8032__driver_8c}\index{src/Software/ENERGIS\_RTOS/src/drivers/HLW8032\_driver.c@{src/Software/ENERGIS\_RTOS/src/drivers/HLW8032\_driver.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for HLW8032\+\_\+driver.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_h_l_w8032__driver_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structhlw__async__cal__state__t}{hlw\+\_\+async\+\_\+cal\+\_\+state\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Internal state for the asynchronous HLW8032 auto-\/calibration engine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_h_l_w8032__driver_8c_ab4123cbd38ba7801e098d72750d9ecf9}{HLW8032\+\_\+\+TAG}}~"{}\mbox{[}HLW8032\mbox{]}"{}
+\item 
+\#define \mbox{\hyperlink{_h_l_w8032__driver_8c_a8a254784f748ae5a34828e6c016fe130}{NOMINAL\+\_\+\+R1}}~1880000.\+0f /\texorpdfstring{$\ast$}{*} 1880 kohm high-\/side divider \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{_h_l_w8032__driver_8c_a13f0829c54b3b1cac4883daa17ae9983}{NOMINAL\+\_\+\+R2}}~1000.\+0f    /\texorpdfstring{$\ast$}{*} 1 kohm low-\/side divider \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{_h_l_w8032__driver_8c_a25c462d9613f9b1fce6487ef2922a044}{NOMINAL\+\_\+\+SHUNT}}~0.\+001f  /\texorpdfstring{$\ast$}{*} 1 mohm shunt resistor \texorpdfstring{$\ast$}{*}/
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_h_l_w8032__driver_8c_ad4993df493d6258f580dda849ec226c2}{hlw\+\_\+cal\+\_\+mode\+\_\+t}} \{ \mbox{\hyperlink{_h_l_w8032__driver_8c_ad4993df493d6258f580dda849ec226c2a6b59287c682abfde57f156ea403eeef6}{HLW\+\_\+\+CAL\+\_\+\+MODE\+\_\+\+IDLE}} = 0
+, \mbox{\hyperlink{_h_l_w8032__driver_8c_ad4993df493d6258f580dda849ec226c2aa6478d7bac0bb1e74b3ba6bd3bd331ea}{HLW\+\_\+\+CAL\+\_\+\+MODE\+\_\+\+ZERO\+\_\+\+ALL}}
+, \mbox{\hyperlink{_h_l_w8032__driver_8c_ad4993df493d6258f580dda849ec226c2a2994657f690920f968eb9a77efa8666b}{HLW\+\_\+\+CAL\+\_\+\+MODE\+\_\+\+VOLT\+\_\+\+ALL}}
+, \mbox{\hyperlink{_h_l_w8032__driver_8c_ad4993df493d6258f580dda849ec226c2a9ec1c30f871bfd96a11529d645ec00d1}{HLW\+\_\+\+CAL\+\_\+\+MODE\+\_\+\+CURR\+\_\+\+ALL}}
+ \}
+\begin{DoxyCompactList}\small\item\em Asynchronous HLW8032 auto-\/calibration mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{_h_l_w8032__driver_8c_a757e5e7d8ecf5674a26fbd19c063353b}{hlw8032\+\_\+calibration\+\_\+consume\+\_\+sample}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Feed one fresh HLW8032 sample into the async calibration engine. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_h_l_w8032__driver_8c_a317577d37ad844a15b55a8f5e55126f3}{mux\+\_\+select}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Select HLW8032 channel via multiplexer. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{_h_l_w8032__driver_8c_a8c3364fbeb1899ae2c744c1c78ea30be}{checksum\+\_\+ok}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}f)
+\begin{DoxyCompactList}\small\item\em Validate HLW8032 frame checksum. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{_h_l_w8032__driver_8c_ac110831a99259d71aaec153a9a194438}{state\+\_\+reg\+\_\+valid}} (uint8\+\_\+t state)
+\begin{DoxyCompactList}\small\item\em Check if HLW8032 State REG indicates a valid frame. \end{DoxyCompactList}\item 
+static uint32\+\_\+t \mbox{\hyperlink{_h_l_w8032__driver_8c_a633e83653e2eabb77d79ea3725c7f458}{extract\+\_\+u24}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}f)
+\begin{DoxyCompactList}\small\item\em Safely extract uint24\+\_\+t (big-\/endian) from frame. \end{DoxyCompactList}\item 
+static uint16\+\_\+t \mbox{\hyperlink{_h_l_w8032__driver_8c_a647afe01364a59d5afbe6c9788559da9}{extract\+\_\+u16}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}f)
+\begin{DoxyCompactList}\small\item\em Safely extract uint16\+\_\+t (big-\/endian) from frame. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{_h_l_w8032__driver_8c_a1cdae985fb0d22061b8e24fa8c175acc}{read\+\_\+frame}} (void)
+\begin{DoxyCompactList}\small\item\em Read one valid 24-\/byte HLW8032 frame from UART. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_h_l_w8032__driver_8c_a799e80fb388177bbb679caf2767dacf4}{parse\+\_\+frame}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}f)
+\begin{DoxyCompactList}\small\item\em Parse HLW8032 frame and extract raw register values. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_h_l_w8032__driver_8c_a1014a92e163cf6095bc8ab27cbc74500}{apply\+\_\+calibration}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Apply calibration and compute scaled measurements. \end{DoxyCompactList}\item 
+static float \mbox{\hyperlink{_h_l_w8032__driver_8c_a23deda9220b5477c45e2d2a78d62ef42}{compute\+\_\+total\+\_\+current}} (void)
+\begin{DoxyCompactList}\small\item\em Compute total current sum from all cached channel currents. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers04_gac1bd84c5a254283faacc776489f36625}{hlw8032\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize HLW8032 driver subsystem. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers04_gaf9b4059456656d1620a19fa771086a2d}{hlw8032\+\_\+read}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Read power measurements from a specific channel. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__drivers04_ga6fb634639b04ca4cfd297f7c48a0c181}{hlw8032\+\_\+get\+\_\+voltage}} (void)
+\begin{DoxyCompactList}\small\item\em Get last voltage reading from previous \doxylink{group__drivers04_gaf9b4059456656d1620a19fa771086a2d}{hlw8032\+\_\+read()}. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__drivers04_ga2688ff6d07f74455d95d323ff3c2a0dd}{hlw8032\+\_\+get\+\_\+current}} (void)
+\begin{DoxyCompactList}\small\item\em Get last current reading from previous \doxylink{group__drivers04_gaf9b4059456656d1620a19fa771086a2d}{hlw8032\+\_\+read()}. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__drivers04_gaaa960776be4d3e02a4606c524dc5316b}{hlw8032\+\_\+get\+\_\+power}} (void)
+\begin{DoxyCompactList}\small\item\em Get last power reading from previous \doxylink{group__drivers04_gaf9b4059456656d1620a19fa771086a2d}{hlw8032\+\_\+read()}. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__drivers04_ga3e3e299137c4b5355cd17f94ddc24899}{hlw8032\+\_\+get\+\_\+uptime}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Get channel uptime in seconds. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers04_gacfd84777ef919c041f40ea955f672d5e}{hlw8032\+\_\+update\+\_\+uptime}} (uint8\+\_\+t ch, bool state)
+\begin{DoxyCompactList}\small\item\em Update channel uptime based on current relay state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers04_ga0b3a5c410541deaf144c3e33d4b65175}{hlw8032\+\_\+poll\+\_\+once}} (void)
+\begin{DoxyCompactList}\small\item\em Poll one channel and cache results (round-\/robin). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers04_ga76f09e4482db113563628126492d3200}{hlw8032\+\_\+refresh\+\_\+all}} (void)
+\begin{DoxyCompactList}\small\item\em Read and cache measurements for all 8 channels. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__drivers04_ga3fd1465bd8f5106879ee5677d0d551da}{hlw8032\+\_\+cached\+\_\+voltage}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Get cached voltage for a channel. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__drivers04_gad2a10b704d2588035bde43ff6b941ea7}{hlw8032\+\_\+cached\+\_\+current}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Get cached current for a channel. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__drivers04_ga5b03a8561efc81ded185e88ffc1574a9}{hlw8032\+\_\+cached\+\_\+power}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Get cached power for a channel (computed from V\texorpdfstring{$\ast$}{*}I). \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__drivers04_ga33d4652f0a85150f7dcba9f702b9893b}{hlw8032\+\_\+cached\+\_\+uptime}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Get cached uptime for a channel. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers04_ga01cdcd0497f8134e1ecb93331474dbdb}{hlw8032\+\_\+cached\+\_\+state}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Get cached relay state for a channel. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__drivers04_ga4824aa9f5ece25a68111e4097e62311e}{hlw8032\+\_\+get\+\_\+total\+\_\+current}} (void)
+\begin{DoxyCompactList}\small\item\em Get the total current sum across all 8 channels. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers04_ga8813e14d94b16a9cc2229159c8fdd6c1}{hlw8032\+\_\+cycle\+\_\+complete}} (void)
+\begin{DoxyCompactList}\small\item\em Check if a complete measurement cycle has finished since last check. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers04_ga76954a7035d4f2fad1ec9fba75e62b6c}{hlw8032\+\_\+load\+\_\+calibration}} (void)
+\begin{DoxyCompactList}\small\item\em Load calibration data from EEPROM for all channels. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_h_l_w8032__driver_8c_acc3dced2405146bb247c8d852e88e56f}{hlw8032\+\_\+calibration\+\_\+reset\+\_\+accumulators}} (void)
+\begin{DoxyCompactList}\small\item\em Reset sample accumulators for the current async calibration channel. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{_h_l_w8032__driver_8c_aad15d8e17ce424d4f8a6fd4eb64c53bb}{hlw8032\+\_\+calibration\+\_\+finish\+\_\+current\+\_\+channel}} (void)
+\begin{DoxyCompactList}\small\item\em Finish calibration for the current channel using accumulated samples. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers04_ga643d63b42087b4dd4b336571eb9b6d18}{hlw8032\+\_\+calibration\+\_\+start\+\_\+zero\+\_\+all}} (void)
+\begin{DoxyCompactList}\small\item\em Start asynchronous zero calibration (0V/0A) for all channels. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers04_gac3fd97d9d666bdf1a910b34170d0c38d}{hlw8032\+\_\+calibration\+\_\+start\+\_\+voltage\+\_\+all}} (float ref\+\_\+voltage)
+\begin{DoxyCompactList}\small\item\em Start asynchronous voltage calibration (Vref/0A) for all channels. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers04_gabacd90abd2475b3fb2dfe2efcd8e4f6a}{hlw8032\+\_\+calibration\+\_\+start\+\_\+current\+\_\+all}} (uint8\+\_\+t channel, float ref\+\_\+current)
+\begin{DoxyCompactList}\small\item\em Start asynchronous current calibration (Iref) for a single channel. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers04_ga2fabec2f7c0a743f2fd172d233fabb0a}{hlw8032\+\_\+calibration\+\_\+is\+\_\+running}} (void)
+\begin{DoxyCompactList}\small\item\em Query whether an asynchronous calibration sequence is currently running. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers04_ga9ab9b6a4d7f948c4bfd0bad1b1866a1b}{hlw8032\+\_\+get\+\_\+calibration}} (uint8\+\_\+t channel, \mbox{\hyperlink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}calib)
+\begin{DoxyCompactList}\small\item\em Retrieve calibration data for a channel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers04_gada8bbee8b1136d3d493ce67c266942da}{hlw8032\+\_\+print\+\_\+calibration}} (uint8\+\_\+t channel)
+\begin{DoxyCompactList}\small\item\em Print calibration data for a channel to log. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Semaphore\+Handle\+\_\+t \mbox{\hyperlink{group__drivers04_ga44f0e457365b1d578cbb01ee9f15af0c}{uart\+Hlw\+Mtx}} = NULL
+\begin{DoxyCompactList}\small\item\em UART mutex for HLW8032 communication (extern, defined in .c) \end{DoxyCompactList}\item 
+static uint8\+\_\+t \mbox{\hyperlink{_h_l_w8032__driver_8c_ae5eff8c0847716df84bebd4b4eed4ce0}{frame}} \mbox{[}\mbox{\hyperlink{group__overcurrent__thresholds_gada5ed028f3ce7bdfbe8fe23827b9b493}{HLW8032\+\_\+\+FRAME\+\_\+\+LENGTH}}\mbox{]}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{_h_l_w8032__driver_8c_a71f9c126ad863dbe69877813ad1a3092}{rx\+\_\+buf}} \mbox{[}\mbox{\hyperlink{group__drivers04_gae2ffdc964c3e8df6a8ebf772f03fba13}{MAX\+\_\+\+RX\+\_\+\+BYTES}}\mbox{]}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{_h_l_w8032__driver_8c_a790cd8552c0d4039453fb0afa09aba81}{channel\+\_\+uptime}} \mbox{[}8\mbox{]} = \{0\}
+\item 
+static absolute\+\_\+time\+\_\+t \mbox{\hyperlink{_h_l_w8032__driver_8c_a433a3ce956516f75006c888ead72e00d}{channel\+\_\+last\+\_\+on}} \mbox{[}8\mbox{]}
+\item 
+static \mbox{\hyperlink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t}} \mbox{\hyperlink{_h_l_w8032__driver_8c_a7ea32c65cc61b7ef13b914a93ecb3fd8}{channel\+\_\+calib}} \mbox{[}8\mbox{]}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{_h_l_w8032__driver_8c_a08cd0fc8d7d9c5e3a71ebb2b5caed1fc}{Vol\+Par}}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{_h_l_w8032__driver_8c_a97815d40a4bc549e6a9fa18ce1808c0f}{Vol\+Data}}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{_h_l_w8032__driver_8c_ad1c36e17e4c59087ed7b441f725ca823}{Cur\+Par}}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{_h_l_w8032__driver_8c_a1c169957ef1dfebca639a0eafcf9ecb7}{Cur\+Data}}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{_h_l_w8032__driver_8c_a0c7c518bf278f337eb58dd7d25928352}{Pow\+Par}}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{_h_l_w8032__driver_8c_a9eef43327283b572dd7b4582dc30a10f}{Pow\+Data}}
+\item 
+static uint16\+\_\+t \mbox{\hyperlink{_h_l_w8032__driver_8c_a0e83257fc55bfbfd29f0b1e8dfa46258}{PF}}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{_h_l_w8032__driver_8c_a93bc4334bbc37e441ce5ad4618ebfef1}{PF\+\_\+\+Count}} = 1
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{_h_l_w8032__driver_8c_a394d6186aa55858eaec59f593624f3f7}{last\+\_\+channel\+\_\+read}} = 0x\+FF
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{_h_l_w8032__driver_8c_a03d910fafc4f985231cc3ec5e8f16913}{last\+\_\+state\+\_\+reg}} = 0x55
+\item 
+static float \mbox{\hyperlink{_h_l_w8032__driver_8c_abe6c80c69a1c9865acdd7844392d2d97}{last\+\_\+voltage}} = 0.\+0f
+\item 
+static float \mbox{\hyperlink{_h_l_w8032__driver_8c_a98c848a20dba7cc003020b1c42cd742c}{last\+\_\+current}} = 0.\+0f
+\item 
+static float \mbox{\hyperlink{_h_l_w8032__driver_8c_ad3c020358ff7347ff2efff64b793bf3d}{last\+\_\+power}} = 0.\+0f
+\item 
+static float \mbox{\hyperlink{_h_l_w8032__driver_8c_a80aeccbfd233d006354952af7ff66665}{cached\+\_\+voltage}} \mbox{[}8\mbox{]}
+\item 
+static float \mbox{\hyperlink{_h_l_w8032__driver_8c_a1d7a96191316d9fa9bdc443ec4543c7c}{cached\+\_\+current}} \mbox{[}8\mbox{]}
+\item 
+static float \mbox{\hyperlink{_h_l_w8032__driver_8c_a910c659dfcdb6bf3d2b0250cf86bdcc0}{cached\+\_\+power}} \mbox{[}8\mbox{]}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{_h_l_w8032__driver_8c_a6edc82babd1a9ad7d9adbdf6a17e2ca7}{cached\+\_\+uptime}} \mbox{[}8\mbox{]}
+\item 
+static bool \mbox{\hyperlink{_h_l_w8032__driver_8c_a0575226af452d6c350688e398738bbb7}{cached\+\_\+state}} \mbox{[}8\mbox{]}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{_h_l_w8032__driver_8c_ac73022164f169c2d9d5a0798cdc65795}{poll\+\_\+channel}} = 0
+\item 
+static volatile float \mbox{\hyperlink{_h_l_w8032__driver_8c_aa0d4e51d608b6cae99de98fbfe5a55f6}{s\+\_\+total\+\_\+current\+\_\+sum}} = 0.\+0f
+\item 
+static volatile bool \mbox{\hyperlink{_h_l_w8032__driver_8c_a5268d0d2446acd4311e93873ff1bd48d}{s\+\_\+cycle\+\_\+complete\+\_\+flag}} = false
+\item 
+static \mbox{\hyperlink{structhlw__async__cal__state__t}{hlw\+\_\+async\+\_\+cal\+\_\+state\+\_\+t}} \mbox{\hyperlink{_h_l_w8032__driver_8c_a83e8941423ab915335a5273cae7136b8}{s\+\_\+hlw\+\_\+cal\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em Global async calibration engine state. \end{DoxyCompactList}\item 
+static const uint8\+\_\+t \mbox{\hyperlink{_h_l_w8032__driver_8c_a6b7049ae23c52f1d47fb855fe51bd898}{HLW\+\_\+\+CAL\+\_\+\+SAMPLES\+\_\+\+PER\+\_\+\+CH}} = 10u
+\begin{DoxyCompactList}\small\item\em Number of HLW8032 samples per channel used during auto-\/calibration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+4 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/12-\/10
+\end{DoxyDate}
+RTOS-\/safe driver providing power measurement via HLW8032 ICs.
+
+Features\+:
+\begin{DoxyItemize}
+\item Thread-\/safe UART access via Free\+RTOS mutex
+\item Hardware v1.\+0.\+0 pin swap compensation
+\item Per-\/channel calibration from EEPROM
+\item Cached measurements with uptime tracking
+\item Queue-\/based logging (no direct UART printf)
+\end{DoxyItemize}
+
+Architecture\+:
+\begin{DoxyItemize}
+\item Meter\+Task is the sole owner of this driver
+\item All blocking operations use v\+Task\+Delay() for RTOS cooperation
+\item Multiplexer control delegates to MCP23017 driver
+\item No ISRs -\/ pure task-\/based polling
+\end{DoxyItemize}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{_h_l_w8032__driver_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_h_l_w8032__driver_8c_ab4123cbd38ba7801e098d72750d9ecf9}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!HLW8032\_TAG@{HLW8032\_TAG}}
+\index{HLW8032\_TAG@{HLW8032\_TAG}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{HLW8032\_TAG}{HLW8032\_TAG}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_ab4123cbd38ba7801e098d72750d9ecf9} 
+\#define HLW8032\+\_\+\+TAG~"{}\mbox{[}HLW8032\mbox{]}"{}}
+
+\Hypertarget{_h_l_w8032__driver_8c_a8a254784f748ae5a34828e6c016fe130}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!NOMINAL\_R1@{NOMINAL\_R1}}
+\index{NOMINAL\_R1@{NOMINAL\_R1}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{NOMINAL\_R1}{NOMINAL\_R1}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a8a254784f748ae5a34828e6c016fe130} 
+\#define NOMINAL\+\_\+\+R1~1880000.\+0f /\texorpdfstring{$\ast$}{*} 1880 kohm high-\/side divider \texorpdfstring{$\ast$}{*}/}
+
+\Hypertarget{_h_l_w8032__driver_8c_a13f0829c54b3b1cac4883daa17ae9983}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!NOMINAL\_R2@{NOMINAL\_R2}}
+\index{NOMINAL\_R2@{NOMINAL\_R2}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{NOMINAL\_R2}{NOMINAL\_R2}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a13f0829c54b3b1cac4883daa17ae9983} 
+\#define NOMINAL\+\_\+\+R2~1000.\+0f    /\texorpdfstring{$\ast$}{*} 1 kohm low-\/side divider \texorpdfstring{$\ast$}{*}/}
+
+\Hypertarget{_h_l_w8032__driver_8c_a25c462d9613f9b1fce6487ef2922a044}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!NOMINAL\_SHUNT@{NOMINAL\_SHUNT}}
+\index{NOMINAL\_SHUNT@{NOMINAL\_SHUNT}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{NOMINAL\_SHUNT}{NOMINAL\_SHUNT}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a25c462d9613f9b1fce6487ef2922a044} 
+\#define NOMINAL\+\_\+\+SHUNT~0.\+001f  /\texorpdfstring{$\ast$}{*} 1 mohm shunt resistor \texorpdfstring{$\ast$}{*}/}
+
+
+
+\label{doc-enum-members}
+\Hypertarget{_h_l_w8032__driver_8c_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{_h_l_w8032__driver_8c_ad4993df493d6258f580dda849ec226c2}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!hlw\_cal\_mode\_t@{hlw\_cal\_mode\_t}}
+\index{hlw\_cal\_mode\_t@{hlw\_cal\_mode\_t}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{hlw\_cal\_mode\_t}{hlw\_cal\_mode\_t}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_ad4993df493d6258f580dda849ec226c2} 
+enum \mbox{\hyperlink{_h_l_w8032__driver_8c_ad4993df493d6258f580dda849ec226c2}{hlw\+\_\+cal\+\_\+mode\+\_\+t}}}
+
+
+
+Asynchronous HLW8032 auto-\/calibration mode. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HLW\_CAL\_MODE\_IDLE@{HLW\_CAL\_MODE\_IDLE}!HLW8032\_driver.c@{HLW8032\_driver.c}}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!HLW\_CAL\_MODE\_IDLE@{HLW\_CAL\_MODE\_IDLE}}}\Hypertarget{_h_l_w8032__driver_8c_ad4993df493d6258f580dda849ec226c2a6b59287c682abfde57f156ea403eeef6}\label{_h_l_w8032__driver_8c_ad4993df493d6258f580dda849ec226c2a6b59287c682abfde57f156ea403eeef6} 
+HLW\+\_\+\+CAL\+\_\+\+MODE\+\_\+\+IDLE&No calibration in progress. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HLW\_CAL\_MODE\_ZERO\_ALL@{HLW\_CAL\_MODE\_ZERO\_ALL}!HLW8032\_driver.c@{HLW8032\_driver.c}}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!HLW\_CAL\_MODE\_ZERO\_ALL@{HLW\_CAL\_MODE\_ZERO\_ALL}}}\Hypertarget{_h_l_w8032__driver_8c_ad4993df493d6258f580dda849ec226c2aa6478d7bac0bb1e74b3ba6bd3bd331ea}\label{_h_l_w8032__driver_8c_ad4993df493d6258f580dda849ec226c2aa6478d7bac0bb1e74b3ba6bd3bd331ea} 
+HLW\+\_\+\+CAL\+\_\+\+MODE\+\_\+\+ZERO\+\_\+\+ALL&Zero-\/point auto calibration (0V, 0A). \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HLW\_CAL\_MODE\_VOLT\_ALL@{HLW\_CAL\_MODE\_VOLT\_ALL}!HLW8032\_driver.c@{HLW8032\_driver.c}}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!HLW\_CAL\_MODE\_VOLT\_ALL@{HLW\_CAL\_MODE\_VOLT\_ALL}}}\Hypertarget{_h_l_w8032__driver_8c_ad4993df493d6258f580dda849ec226c2a2994657f690920f968eb9a77efa8666b}\label{_h_l_w8032__driver_8c_ad4993df493d6258f580dda849ec226c2a2994657f690920f968eb9a77efa8666b} 
+HLW\+\_\+\+CAL\+\_\+\+MODE\+\_\+\+VOLT\+\_\+\+ALL&Voltage auto calibration (Vref, 0A). \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HLW\_CAL\_MODE\_CURR\_ALL@{HLW\_CAL\_MODE\_CURR\_ALL}!HLW8032\_driver.c@{HLW8032\_driver.c}}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!HLW\_CAL\_MODE\_CURR\_ALL@{HLW\_CAL\_MODE\_CURR\_ALL}}}\Hypertarget{_h_l_w8032__driver_8c_ad4993df493d6258f580dda849ec226c2a9ec1c30f871bfd96a11529d645ec00d1}\label{_h_l_w8032__driver_8c_ad4993df493d6258f580dda849ec226c2a9ec1c30f871bfd96a11529d645ec00d1} 
+HLW\+\_\+\+CAL\+\_\+\+MODE\+\_\+\+CURR\+\_\+\+ALL&Current gain calibration (Iref, with load). \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{_h_l_w8032__driver_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_h_l_w8032__driver_8c_a1014a92e163cf6095bc8ab27cbc74500}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!apply\_calibration@{apply\_calibration}}
+\index{apply\_calibration@{apply\_calibration}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{apply\_calibration()}{apply\_calibration()}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a1014a92e163cf6095bc8ab27cbc74500} 
+void apply\+\_\+calibration (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Apply calibration and compute scaled measurements. 
+
+Per HLW8032 datasheet (pages 15-\/16)\+:
+\begin{DoxyItemize}
+\item Voltage = (Voltage\+\_\+\+Parameter\+\_\+\+REG / Voltage\+\_\+\+REG) x Voltage\+\_\+coefficient
+\item Current = (Current\+\_\+\+Parameter\+\_\+\+REG / Current\+\_\+\+REG) x Current\+\_\+coefficient
+\item Power = (Power\+\_\+\+Parameter\+\_\+\+REG / Power\+\_\+\+REG) x V\+\_\+coeff x I\+\_\+coeff
+\end{DoxyItemize}
+
+Overflow handling per State REG\+:
+\begin{DoxyItemize}
+\item Bit 3 = 1\+: Voltage REG overflow (voltage 0)
+\item Bit 2 = 1\+: Current REG overflow (current 0)
+\item Bit 1 = 1\+: Power REG overflow (power 0)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em ch} & Channel index \mbox{[}0..7\mbox{]} for calibration lookup\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Updates global last\+\_\+voltage, last\+\_\+current, last\+\_\+power 
+
+Clamps invalid results to 0.\+0 
+\end{DoxyNote}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_h_l_w8032__driver_8c_a1014a92e163cf6095bc8ab27cbc74500_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_h_l_w8032__driver_8c_a8c3364fbeb1899ae2c744c1c78ea30be}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!checksum\_ok@{checksum\_ok}}
+\index{checksum\_ok@{checksum\_ok}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{checksum\_ok()}{checksum\_ok()}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a8c3364fbeb1899ae2c744c1c78ea30be} 
+bool checksum\+\_\+ok (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{f}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Validate HLW8032 frame checksum. 
+
+Checksum = sum of bytes \mbox{[}2..22\mbox{]} (inclusive). Expected to match byte \mbox{[}23\mbox{]}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Pointer to 24-\/byte frame buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if checksum valid 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_h_l_w8032__driver_8c_a8c3364fbeb1899ae2c744c1c78ea30be_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_h_l_w8032__driver_8c_a23deda9220b5477c45e2d2a78d62ef42}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!compute\_total\_current@{compute\_total\_current}}
+\index{compute\_total\_current@{compute\_total\_current}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{compute\_total\_current()}{compute\_total\_current()}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a23deda9220b5477c45e2d2a78d62ef42} 
+float compute\+\_\+total\+\_\+current (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Compute total current sum from all cached channel currents. 
+
+\begin{DoxyReturn}{Returns}
+Total current in amperes 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_h_l_w8032__driver_8c_a23deda9220b5477c45e2d2a78d62ef42_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_h_l_w8032__driver_8c_a647afe01364a59d5afbe6c9788559da9}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!extract\_u16@{extract\_u16}}
+\index{extract\_u16@{extract\_u16}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{extract\_u16()}{extract\_u16()}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a647afe01364a59d5afbe6c9788559da9} 
+uint16\+\_\+t extract\+\_\+u16 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{f}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Safely extract uint16\+\_\+t (big-\/endian) from frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Pointer to first byte \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint16\+\_\+t 16-\/bit value 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_h_l_w8032__driver_8c_a647afe01364a59d5afbe6c9788559da9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_h_l_w8032__driver_8c_a633e83653e2eabb77d79ea3725c7f458}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!extract\_u24@{extract\_u24}}
+\index{extract\_u24@{extract\_u24}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{extract\_u24()}{extract\_u24()}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a633e83653e2eabb77d79ea3725c7f458} 
+uint32\+\_\+t extract\+\_\+u24 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{f}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Safely extract uint24\+\_\+t (big-\/endian) from frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Pointer to first byte \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t 24-\/bit value as 32-\/bit integer 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_h_l_w8032__driver_8c_a633e83653e2eabb77d79ea3725c7f458_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_h_l_w8032__driver_8c_a757e5e7d8ecf5674a26fbd19c063353b}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!hlw8032\_calibration\_consume\_sample@{hlw8032\_calibration\_consume\_sample}}
+\index{hlw8032\_calibration\_consume\_sample@{hlw8032\_calibration\_consume\_sample}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{hlw8032\_calibration\_consume\_sample()}{hlw8032\_calibration\_consume\_sample()}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a757e5e7d8ecf5674a26fbd19c063353b} 
+void hlw8032\+\_\+calibration\+\_\+consume\+\_\+sample (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Feed one fresh HLW8032 sample into the async calibration engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ch} & Channel index \mbox{[}0..7\mbox{]} that has just been read successfully. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_h_l_w8032__driver_8c_a757e5e7d8ecf5674a26fbd19c063353b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_h_l_w8032__driver_8c_a757e5e7d8ecf5674a26fbd19c063353b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_h_l_w8032__driver_8c_aad15d8e17ce424d4f8a6fd4eb64c53bb}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!hlw8032\_calibration\_finish\_current\_channel@{hlw8032\_calibration\_finish\_current\_channel}}
+\index{hlw8032\_calibration\_finish\_current\_channel@{hlw8032\_calibration\_finish\_current\_channel}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{hlw8032\_calibration\_finish\_current\_channel()}{hlw8032\_calibration\_finish\_current\_channel()}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_aad15d8e17ce424d4f8a6fd4eb64c53bb} 
+bool hlw8032\+\_\+calibration\+\_\+finish\+\_\+current\+\_\+channel (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Finish calibration for the current channel using accumulated samples. 
+
+\begin{DoxyReturn}{Returns}
+true if calibration for the current channel succeeded. 
+
+false if there were insufficient valid samples or EEPROM write failed. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_h_l_w8032__driver_8c_aad15d8e17ce424d4f8a6fd4eb64c53bb_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_h_l_w8032__driver_8c_aad15d8e17ce424d4f8a6fd4eb64c53bb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_h_l_w8032__driver_8c_acc3dced2405146bb247c8d852e88e56f}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!hlw8032\_calibration\_reset\_accumulators@{hlw8032\_calibration\_reset\_accumulators}}
+\index{hlw8032\_calibration\_reset\_accumulators@{hlw8032\_calibration\_reset\_accumulators}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{hlw8032\_calibration\_reset\_accumulators()}{hlw8032\_calibration\_reset\_accumulators()}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_acc3dced2405146bb247c8d852e88e56f} 
+void hlw8032\+\_\+calibration\+\_\+reset\+\_\+accumulators (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Reset sample accumulators for the current async calibration channel. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_h_l_w8032__driver_8c_acc3dced2405146bb247c8d852e88e56f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_h_l_w8032__driver_8c_a317577d37ad844a15b55a8f5e55126f3}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!mux\_select@{mux\_select}}
+\index{mux\_select@{mux\_select}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{mux\_select()}{mux\_select()}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a317577d37ad844a15b55a8f5e55126f3} 
+void mux\+\_\+select (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Select HLW8032 channel via multiplexer. 
+
+
+\begin{DoxyItemize}
+\item Disables MUX (EN=1) during transition
+\item Sets A/\+B/C select lines via Switch\+Task -\/\texorpdfstring{$>$}{>} MCP23017 Port B
+\item Hardware v1.\+0.\+0\+: XORs A and B bits when C=1 (upper 4 channels)
+\item Enables MUX (EN=0)
+\item Uses cooperative v\+Task\+Delay() for settling to prevent watchdog starvation
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em ch} & Logical channel index \mbox{[}0..7\mbox{]} \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_h_l_w8032__driver_8c_a317577d37ad844a15b55a8f5e55126f3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_h_l_w8032__driver_8c_a317577d37ad844a15b55a8f5e55126f3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_h_l_w8032__driver_8c_a799e80fb388177bbb679caf2767dacf4}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!parse\_frame@{parse\_frame}}
+\index{parse\_frame@{parse\_frame}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{parse\_frame()}{parse\_frame()}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a799e80fb388177bbb679caf2767dacf4} 
+void parse\+\_\+frame (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{f}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Parse HLW8032 frame and extract raw register values. 
+
+Frame structure (24 bytes) per HLW8032 datasheet\+: \mbox{[}0\mbox{]}\+: State REG -\/ data validity flags \mbox{[}1\mbox{]}\+: Check REG -\/ always 0x5A \mbox{[}2-\/4\mbox{]}\+: Voltage Parameter REG (factory calibration constant) \mbox{[}5-\/7\mbox{]}\+: Voltage REG (measurement) \mbox{[}8-\/10\mbox{]}\+: Current Parameter REG (factory calibration constant) \mbox{[}11-\/13\mbox{]}\+: Current REG (measurement) \mbox{[}14-\/16\mbox{]}\+: Power Parameter REG (factory calibration constant) \mbox{[}17-\/19\mbox{]}\+: Power REG (measurement) \mbox{[}20\mbox{]}\+: Data Update REG \mbox{[}21-\/22\mbox{]}\+: PF REG
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Pointer to 24-\/byte frame buffer\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Updates global raw register variables 
+
+Saves State REG for overflow detection 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{_h_l_w8032__driver_8c_a799e80fb388177bbb679caf2767dacf4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_h_l_w8032__driver_8c_a799e80fb388177bbb679caf2767dacf4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_h_l_w8032__driver_8c_a1cdae985fb0d22061b8e24fa8c175acc}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!read\_frame@{read\_frame}}
+\index{read\_frame@{read\_frame}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{read\_frame()}{read\_frame()}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a1cdae985fb0d22061b8e24fa8c175acc} 
+bool read\+\_\+frame (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Read one valid 24-\/byte HLW8032 frame from UART. 
+
+
+\begin{DoxyItemize}
+\item Reads up to MAX\+\_\+\+RX\+\_\+\+BYTES to capture at least one complete frame
+\item Searches for valid State REG (0x55 or 0x\+Fx) followed by Check REG 0x5A
+\item Validates frame length and checksum
+\item Stores valid frame in global \textquotesingle{}frame\textquotesingle{} buffer
+\item Uses v\+Task\+Delay() for RTOS cooperation during waits
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+true if valid frame received 
+
+false on timeout or validation failure
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Blocks up to HLW\+\_\+\+UART\+\_\+\+TIMEOUT\+\_\+\+US
+
+FIXED v1.\+0.\+2\+: Frame header search now accepts State REG = 0x55 OR 0x\+Fx. Previously only 0x55 was accepted, causing frames to be rejected when overflow flags were set (normal for low/no load conditions). 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=263pt]{_h_l_w8032__driver_8c_a1cdae985fb0d22061b8e24fa8c175acc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_h_l_w8032__driver_8c_a1cdae985fb0d22061b8e24fa8c175acc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_h_l_w8032__driver_8c_ac110831a99259d71aaec153a9a194438}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!state\_reg\_valid@{state\_reg\_valid}}
+\index{state\_reg\_valid@{state\_reg\_valid}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{state\_reg\_valid()}{state\_reg\_valid()}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_ac110831a99259d71aaec153a9a194438} 
+bool state\+\_\+reg\+\_\+valid (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{state}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Check if HLW8032 State REG indicates a valid frame. 
+
+Per HLW8032 datasheet (page 12)\+:
+\begin{DoxyItemize}
+\item 0x55\+: Normal operation, all registers valid, no overflow
+\item 0x\+Fx (0x\+F0-\/0x\+FF)\+: Normal operation, some registers overflow (value approaches 0)
+\item 0x\+AA\+: Chip error correction failed, parameters unusable
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & State REG value (byte 0 of frame) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if State REG indicates valid data 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_h_l_w8032__driver_8c_ac110831a99259d71aaec153a9a194438_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{_h_l_w8032__driver_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{_h_l_w8032__driver_8c_a1d7a96191316d9fa9bdc443ec4543c7c}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!cached\_current@{cached\_current}}
+\index{cached\_current@{cached\_current}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{cached\_current}{cached\_current}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a1d7a96191316d9fa9bdc443ec4543c7c} 
+float cached\+\_\+current\mbox{[}8\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_h_l_w8032__driver_8c_a910c659dfcdb6bf3d2b0250cf86bdcc0}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!cached\_power@{cached\_power}}
+\index{cached\_power@{cached\_power}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{cached\_power}{cached\_power}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a910c659dfcdb6bf3d2b0250cf86bdcc0} 
+float cached\+\_\+power\mbox{[}8\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_h_l_w8032__driver_8c_a0575226af452d6c350688e398738bbb7}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!cached\_state@{cached\_state}}
+\index{cached\_state@{cached\_state}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{cached\_state}{cached\_state}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a0575226af452d6c350688e398738bbb7} 
+bool cached\+\_\+state\mbox{[}8\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_h_l_w8032__driver_8c_a6edc82babd1a9ad7d9adbdf6a17e2ca7}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!cached\_uptime@{cached\_uptime}}
+\index{cached\_uptime@{cached\_uptime}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{cached\_uptime}{cached\_uptime}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a6edc82babd1a9ad7d9adbdf6a17e2ca7} 
+uint32\+\_\+t cached\+\_\+uptime\mbox{[}8\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_h_l_w8032__driver_8c_a80aeccbfd233d006354952af7ff66665}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!cached\_voltage@{cached\_voltage}}
+\index{cached\_voltage@{cached\_voltage}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{cached\_voltage}{cached\_voltage}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a80aeccbfd233d006354952af7ff66665} 
+float cached\+\_\+voltage\mbox{[}8\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_h_l_w8032__driver_8c_a7ea32c65cc61b7ef13b914a93ecb3fd8}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!channel\_calib@{channel\_calib}}
+\index{channel\_calib@{channel\_calib}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{channel\_calib}{channel\_calib}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a7ea32c65cc61b7ef13b914a93ecb3fd8} 
+\mbox{\hyperlink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t}} channel\+\_\+calib\mbox{[}8\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_h_l_w8032__driver_8c_a433a3ce956516f75006c888ead72e00d}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!channel\_last\_on@{channel\_last\_on}}
+\index{channel\_last\_on@{channel\_last\_on}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{channel\_last\_on}{channel\_last\_on}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a433a3ce956516f75006c888ead72e00d} 
+absolute\+\_\+time\+\_\+t channel\+\_\+last\+\_\+on\mbox{[}8\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_h_l_w8032__driver_8c_a790cd8552c0d4039453fb0afa09aba81}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!channel\_uptime@{channel\_uptime}}
+\index{channel\_uptime@{channel\_uptime}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{channel\_uptime}{channel\_uptime}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a790cd8552c0d4039453fb0afa09aba81} 
+uint32\+\_\+t channel\+\_\+uptime\mbox{[}8\mbox{]} = \{0\}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_h_l_w8032__driver_8c_a1c169957ef1dfebca639a0eafcf9ecb7}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!CurData@{CurData}}
+\index{CurData@{CurData}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{CurData}{CurData}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a1c169957ef1dfebca639a0eafcf9ecb7} 
+uint32\+\_\+t Cur\+Data\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_h_l_w8032__driver_8c_ad1c36e17e4c59087ed7b441f725ca823}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!CurPar@{CurPar}}
+\index{CurPar@{CurPar}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{CurPar}{CurPar}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_ad1c36e17e4c59087ed7b441f725ca823} 
+uint32\+\_\+t Cur\+Par\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_h_l_w8032__driver_8c_ae5eff8c0847716df84bebd4b4eed4ce0}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!frame@{frame}}
+\index{frame@{frame}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{frame}{frame}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_ae5eff8c0847716df84bebd4b4eed4ce0} 
+uint8\+\_\+t frame\mbox{[}\mbox{\hyperlink{group__overcurrent__thresholds_gada5ed028f3ce7bdfbe8fe23827b9b493}{HLW8032\+\_\+\+FRAME\+\_\+\+LENGTH}}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_h_l_w8032__driver_8c_a6b7049ae23c52f1d47fb855fe51bd898}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!HLW\_CAL\_SAMPLES\_PER\_CH@{HLW\_CAL\_SAMPLES\_PER\_CH}}
+\index{HLW\_CAL\_SAMPLES\_PER\_CH@{HLW\_CAL\_SAMPLES\_PER\_CH}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{HLW\_CAL\_SAMPLES\_PER\_CH}{HLW\_CAL\_SAMPLES\_PER\_CH}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a6b7049ae23c52f1d47fb855fe51bd898} 
+const uint8\+\_\+t HLW\+\_\+\+CAL\+\_\+\+SAMPLES\+\_\+\+PER\+\_\+\+CH = 10u\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Number of HLW8032 samples per channel used during auto-\/calibration. 
+
+\Hypertarget{_h_l_w8032__driver_8c_a394d6186aa55858eaec59f593624f3f7}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!last\_channel\_read@{last\_channel\_read}}
+\index{last\_channel\_read@{last\_channel\_read}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{last\_channel\_read}{last\_channel\_read}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a394d6186aa55858eaec59f593624f3f7} 
+uint8\+\_\+t last\+\_\+channel\+\_\+read = 0x\+FF\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_h_l_w8032__driver_8c_a98c848a20dba7cc003020b1c42cd742c}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!last\_current@{last\_current}}
+\index{last\_current@{last\_current}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{last\_current}{last\_current}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a98c848a20dba7cc003020b1c42cd742c} 
+float last\+\_\+current = 0.\+0f\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_h_l_w8032__driver_8c_ad3c020358ff7347ff2efff64b793bf3d}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!last\_power@{last\_power}}
+\index{last\_power@{last\_power}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{last\_power}{last\_power}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_ad3c020358ff7347ff2efff64b793bf3d} 
+float last\+\_\+power = 0.\+0f\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_h_l_w8032__driver_8c_a03d910fafc4f985231cc3ec5e8f16913}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!last\_state\_reg@{last\_state\_reg}}
+\index{last\_state\_reg@{last\_state\_reg}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{last\_state\_reg}{last\_state\_reg}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a03d910fafc4f985231cc3ec5e8f16913} 
+uint8\+\_\+t last\+\_\+state\+\_\+reg = 0x55\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_h_l_w8032__driver_8c_abe6c80c69a1c9865acdd7844392d2d97}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!last\_voltage@{last\_voltage}}
+\index{last\_voltage@{last\_voltage}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{last\_voltage}{last\_voltage}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_abe6c80c69a1c9865acdd7844392d2d97} 
+float last\+\_\+voltage = 0.\+0f\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_h_l_w8032__driver_8c_a0e83257fc55bfbfd29f0b1e8dfa46258}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!PF@{PF}}
+\index{PF@{PF}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{PF}{PF}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a0e83257fc55bfbfd29f0b1e8dfa46258} 
+uint16\+\_\+t PF\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_h_l_w8032__driver_8c_a93bc4334bbc37e441ce5ad4618ebfef1}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!PF\_Count@{PF\_Count}}
+\index{PF\_Count@{PF\_Count}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{PF\_Count}{PF\_Count}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a93bc4334bbc37e441ce5ad4618ebfef1} 
+uint32\+\_\+t PF\+\_\+\+Count = 1\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_h_l_w8032__driver_8c_ac73022164f169c2d9d5a0798cdc65795}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!poll\_channel@{poll\_channel}}
+\index{poll\_channel@{poll\_channel}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{poll\_channel}{poll\_channel}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_ac73022164f169c2d9d5a0798cdc65795} 
+uint8\+\_\+t poll\+\_\+channel = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_h_l_w8032__driver_8c_a9eef43327283b572dd7b4582dc30a10f}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!PowData@{PowData}}
+\index{PowData@{PowData}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{PowData}{PowData}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a9eef43327283b572dd7b4582dc30a10f} 
+uint32\+\_\+t Pow\+Data\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_h_l_w8032__driver_8c_a0c7c518bf278f337eb58dd7d25928352}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!PowPar@{PowPar}}
+\index{PowPar@{PowPar}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{PowPar}{PowPar}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a0c7c518bf278f337eb58dd7d25928352} 
+uint32\+\_\+t Pow\+Par\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_h_l_w8032__driver_8c_a71f9c126ad863dbe69877813ad1a3092}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!rx\_buf@{rx\_buf}}
+\index{rx\_buf@{rx\_buf}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{rx\_buf}{rx\_buf}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a71f9c126ad863dbe69877813ad1a3092} 
+uint8\+\_\+t rx\+\_\+buf\mbox{[}\mbox{\hyperlink{group__drivers04_gae2ffdc964c3e8df6a8ebf772f03fba13}{MAX\+\_\+\+RX\+\_\+\+BYTES}}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_h_l_w8032__driver_8c_a5268d0d2446acd4311e93873ff1bd48d}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!s\_cycle\_complete\_flag@{s\_cycle\_complete\_flag}}
+\index{s\_cycle\_complete\_flag@{s\_cycle\_complete\_flag}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{s\_cycle\_complete\_flag}{s\_cycle\_complete\_flag}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a5268d0d2446acd4311e93873ff1bd48d} 
+volatile bool s\+\_\+cycle\+\_\+complete\+\_\+flag = false\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_h_l_w8032__driver_8c_a83e8941423ab915335a5273cae7136b8}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!s\_hlw\_cal\_state@{s\_hlw\_cal\_state}}
+\index{s\_hlw\_cal\_state@{s\_hlw\_cal\_state}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{s\_hlw\_cal\_state}{s\_hlw\_cal\_state}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a83e8941423ab915335a5273cae7136b8} 
+\mbox{\hyperlink{structhlw__async__cal__state__t}{hlw\+\_\+async\+\_\+cal\+\_\+state\+\_\+t}} s\+\_\+hlw\+\_\+cal\+\_\+state\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{.mode\ =\ \mbox{\hyperlink{_h_l_w8032__driver_8c_ad4993df493d6258f580dda849ec226c2a6b59287c682abfde57f156ea403eeef6}{HLW\_CAL\_MODE\_IDLE}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .running\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ref\_voltage\ =\ 0.0f,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ref\_current\ =\ 0.0f,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .current\_channel\ =\ 0u,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .total\_channels\ =\ 0u,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .samples\_target\ =\ 0u,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .samples\_collected\ =\ 0u,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .valid\_samples\ =\ 0u,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .vpar\_sum\ =\ 0u,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .vdat\_sum\ =\ 0u,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .cpar\_sum\ =\ 0u,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .cdat\_sum\ =\ 0u,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ok\_channels\ =\ 0u,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .failed\_channels\ =\ 0u\}}
+
+\end{DoxyCode}
+
+
+Global async calibration engine state. 
+
+\Hypertarget{_h_l_w8032__driver_8c_aa0d4e51d608b6cae99de98fbfe5a55f6}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!s\_total\_current\_sum@{s\_total\_current\_sum}}
+\index{s\_total\_current\_sum@{s\_total\_current\_sum}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{s\_total\_current\_sum}{s\_total\_current\_sum}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_aa0d4e51d608b6cae99de98fbfe5a55f6} 
+volatile float s\+\_\+total\+\_\+current\+\_\+sum = 0.\+0f\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_h_l_w8032__driver_8c_a97815d40a4bc549e6a9fa18ce1808c0f}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!VolData@{VolData}}
+\index{VolData@{VolData}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{VolData}{VolData}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a97815d40a4bc549e6a9fa18ce1808c0f} 
+uint32\+\_\+t Vol\+Data\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_h_l_w8032__driver_8c_a08cd0fc8d7d9c5e3a71ebb2b5caed1fc}\index{HLW8032\_driver.c@{HLW8032\_driver.c}!VolPar@{VolPar}}
+\index{VolPar@{VolPar}!HLW8032\_driver.c@{HLW8032\_driver.c}}
+\doxysubsubsection{\texorpdfstring{VolPar}{VolPar}}
+{\footnotesize\ttfamily \label{_h_l_w8032__driver_8c_a08cd0fc8d7d9c5e3a71ebb2b5caed1fc} 
+uint32\+\_\+t Vol\+Par\hspace{0.3cm}{\ttfamily [static]}}
+

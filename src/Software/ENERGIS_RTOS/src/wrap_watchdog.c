@@ -116,7 +116,7 @@ void __wrap_invalid_params(const char *func, const char *msg) {
     stall_forever();
 }
 
-/* reset_usb_boot() – if anything sneaks this in, we’ll see it */
+/* reset_usb_boot() - if anything sneaks this in, we’ll see it */
 void __real_reset_usb_boot(uint32_t, uint32_t);
 void __wrap_reset_usb_boot(uint32_t a, uint32_t b) {
 #if ERRORLOGGER

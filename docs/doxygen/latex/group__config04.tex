@@ -1,0 +1,820 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item Error Coding Configuration 
+\end{DoxyEnumerate}}
+\hypertarget{group__config04}{}\label{group__config04}\index{4. Error Coding Configuration@{4. Error Coding Configuration}}
+
+
+Configuration header for ENERGIS PDU firmware.  
+
+
+Collaboration diagram for 4. Error Coding Configuration\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__config04}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config04_ga8fec95976c50700c38dbdc5e2a5ab932}{ERRORLOGGER}}~1
+\item 
+\#define \mbox{\hyperlink{group__config04_ga2d316af9a77c2b5460ddb6cf19ef99a4}{ERR\+\_\+\+MOD\+\_\+\+INIT}}~0x1
+\begin{DoxyCompactList}\small\item\em Module IDs for 16-\/bit error codes. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__config04_gaab99f2ca5504759f887304ab6566f8fc}{ERR\+\_\+\+MOD\+\_\+\+NET}}~0x2
+\item 
+\#define \mbox{\hyperlink{group__config04_gaccfbd6b5c88af47b9c8e49ca31331101}{ERR\+\_\+\+MOD\+\_\+\+METER}}~0x3
+\item 
+\#define \mbox{\hyperlink{group__config04_ga73ccce4d36cf6bed1c6fcd481f7117be}{ERR\+\_\+\+MOD\+\_\+\+STORAGE}}~0x4
+\item 
+\#define \mbox{\hyperlink{group__config04_gada8b64c2e1a2527458dcfd57160e1482}{ERR\+\_\+\+MOD\+\_\+\+BUTTON}}~0x5
+\item 
+\#define \mbox{\hyperlink{group__config04_ga0ea96c98b55944ab7cb28eabc53a533a}{ERR\+\_\+\+MOD\+\_\+\+HEALTH}}~0x6
+\item 
+\#define \mbox{\hyperlink{group__config04_ga5d980d09c898aed277543271499b3a0d}{ERR\+\_\+\+MOD\+\_\+\+LOGGER}}~0x7
+\item 
+\#define \mbox{\hyperlink{group__config04_gae0f3767db917aa111484b05579fac164}{ERR\+\_\+\+MOD\+\_\+\+CONSOLE}}~0x8
+\item 
+\#define \mbox{\hyperlink{group__config04_ga47421efa20257c42d310444f653d0f7f}{ERR\+\_\+\+MOD\+\_\+\+OCP}}~0x9
+\item 
+\#define \mbox{\hyperlink{group__config04_gae705d8e7660a2c11186fd348aebc5248}{ERR\+\_\+\+MOD\+\_\+\+SWTASK}}~0xA
+\item 
+\#define \mbox{\hyperlink{group__config04_gaaa5d17e178b41b54d13360233d8b0add}{ERR\+\_\+\+FID\+\_\+\+INIT\+\_\+\+MAIN}}~0x0
+\item 
+\#define \mbox{\hyperlink{group__config04_gad3af6f26a402dd0d1bdf205a5340e182}{ERR\+\_\+\+FID\+\_\+\+INITTASK}}~0xF
+\item 
+\#define \mbox{\hyperlink{group__config04_ga8e2b0a6696f57324dc2fa8d6713f99c1}{ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+HTTP\+\_\+\+CONTROL}}~0x0
+\item 
+\#define \mbox{\hyperlink{group__config04_ga3a8eadf1a27a4124ef52964ce3282ee9}{ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+HTTP\+\_\+\+SERVER}}~0x1
+\item 
+\#define \mbox{\hyperlink{group__config04_ga6de586b4923e8fd62aefe80ef0bda0c7}{ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+HTTP\+\_\+\+METRICS}}~0x2
+\item 
+\#define \mbox{\hyperlink{group__config04_gab1f0cf592b4142b7ab9b89e92ca5e926}{ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+HTTP\+\_\+\+PAGE\+\_\+\+CONTENT}}~0x3
+\item 
+\#define \mbox{\hyperlink{group__config04_ga1076a7edad9f6f58bc35313b6aaa2c4f}{ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+HTTP\+\_\+\+SETTINGS}}~0x4
+\item 
+\#define \mbox{\hyperlink{group__config04_ga8729e36a80a95be2e4a3eed62c100f1a}{ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+HTTP\+\_\+\+STATUS}}~0x5
+\item 
+\#define \mbox{\hyperlink{group__config04_ga0c00f27fa3b6c11edabc5eac2aeb67e2}{ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+SNMP\+\_\+\+CUSTOM}}~0x6
+\item 
+\#define \mbox{\hyperlink{group__config04_gab35e9069ff67dde0e4f6d0ff84ed2d59}{ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+SNMP\+\_\+\+NETCTRL}}~0x7
+\item 
+\#define \mbox{\hyperlink{group__config04_ga9e846857fb24effeaa6e7a3cc7cfd92b}{ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+SNMP\+\_\+\+OUTLETCTRL}}~0x8
+\item 
+\#define \mbox{\hyperlink{group__config04_gad1a51242b98a87e87e3ecb867bbe72fa}{ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+SNMP\+\_\+\+POWERMON}}~0x9
+\item 
+\#define \mbox{\hyperlink{group__config04_gab80cf709486f6c899abac7a5723332e4}{ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+SNMP\+\_\+\+VOLTAGEMON}}~0xA
+\item 
+\#define \mbox{\hyperlink{group__config04_ga1b4f5b4cc7a308a51f182c714fa48908}{ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+ETHERNET}}~0xB
+\item 
+\#define \mbox{\hyperlink{group__config04_ga8911840d2c95c08333ae427c52fc780c}{ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+SOCKET}}~0xC
+\item 
+\#define \mbox{\hyperlink{group__config04_gaaf7d2f369513b77ec2122b0250dbbbbc}{ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+SOCKET2}}~0xD
+\item 
+\#define \mbox{\hyperlink{group__config04_gae1ed254b004125572410564605c8b69f}{ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+SNMP}}~0xE
+\item 
+\#define \mbox{\hyperlink{group__config04_gaf7a5ef927b336b64926adca615320dda}{ERR\+\_\+\+FID\+\_\+\+NETTASK}}~0xF
+\item 
+\#define \mbox{\hyperlink{group__config04_ga3fab15623c3140747316462ba767df4e}{ERR\+\_\+\+FID\+\_\+\+HLW8032}}~0x0
+\item 
+\#define \mbox{\hyperlink{group__config04_gac2582761392569a2ad07757e9d7c5612}{ERR\+\_\+\+FID\+\_\+\+METERTASK}}~0xF
+\item 
+\#define \mbox{\hyperlink{group__config04_ga6c6629c75a6d222b9f01c10721f97fbc}{ERR\+\_\+\+FID\+\_\+\+ST\+\_\+\+CALIBRATION}}~0x0
+\item 
+\#define \mbox{\hyperlink{group__config04_gad46422e34291ed41b1631c1fe3e684e8}{ERR\+\_\+\+FID\+\_\+\+ST\+\_\+\+CHANNEL\+\_\+\+LBL}}~0x1
+\item 
+\#define \mbox{\hyperlink{group__config04_ga06dd2dddc2bbe4c7bb059d69f499f219}{ERR\+\_\+\+FID\+\_\+\+ST\+\_\+\+ENERGY\+\_\+\+MON}}~0x2
+\item 
+\#define \mbox{\hyperlink{group__config04_gaa60bc4b42b38a858c5e9e3a10732aa1f}{ERR\+\_\+\+FID\+\_\+\+ST\+\_\+\+EVENT\+\_\+\+LOG}}~0x3
+\item 
+\#define \mbox{\hyperlink{group__config04_ga5e049fb8804f0a8e2c59e076bbb1cf7f}{ERR\+\_\+\+FID\+\_\+\+ST\+\_\+\+FACTORY\+\_\+\+DEFS}}~0x4
+\item 
+\#define \mbox{\hyperlink{group__config04_ga558c49db43ae33fc613f5c982f990469}{ERR\+\_\+\+FID\+\_\+\+ST\+\_\+\+CAT24}}~0x5
+\item 
+\#define \mbox{\hyperlink{group__config04_ga09b9c1e99c67cbb994abedc4e1455b66}{ERR\+\_\+\+FID\+\_\+\+ST\+\_\+\+NETWORK\+\_\+\+CFG}}~0x6
+\item 
+\#define \mbox{\hyperlink{group__config04_ga08beb3f6a47c48ffd329fa6d8573a5dd}{ERR\+\_\+\+FID\+\_\+\+ST\+\_\+\+STORAGE\+\_\+\+COMMON}}~0x7
+\item 
+\#define \mbox{\hyperlink{group__config04_ga3f93d8ddc8285f8c1151584284b8ffc7}{ERR\+\_\+\+FID\+\_\+\+ST\+\_\+\+USER\+\_\+\+OUTPUT}}~0x8
+\item 
+\#define \mbox{\hyperlink{group__config04_ga05b17d48dff10f3416927b4fdef5cb5e}{ERR\+\_\+\+FID\+\_\+\+ST\+\_\+\+USER\+\_\+\+PREFS}}~0x9
+\item 
+\#define \mbox{\hyperlink{group__config04_gaa872921aaddc09e47cb100a400a76023}{ERR\+\_\+\+FID\+\_\+\+DEVICE\+\_\+\+IDENTITY}}~0xA
+\item 
+\#define \mbox{\hyperlink{group__config04_ga358d61a0bb3e4ec1adf177519620302f}{ERR\+\_\+\+FID\+\_\+\+ST\+\_\+\+STORAGETASK}}~0xF
+\item 
+\#define \mbox{\hyperlink{group__config04_ga55bbfb206cf1bf3b81337f3f655606f6}{ERR\+\_\+\+FID\+\_\+\+BUTTON\+\_\+\+DRV}}~0x0
+\item 
+\#define \mbox{\hyperlink{group__config04_ga67480ed7b80cebbce321dad2301f9458}{ERR\+\_\+\+FID\+\_\+\+MCP23017}}~0x1
+\item 
+\#define \mbox{\hyperlink{group__config04_gaa41421599ba69c8ccca5fab37503fa87}{ERR\+\_\+\+FID\+\_\+\+MCP23017\+\_\+2}}~0x2
+\item 
+\#define \mbox{\hyperlink{group__config04_ga5b99ee1aa17a0edcd9ddd7ec1f71bd11}{ERR\+\_\+\+FID\+\_\+\+BUTTONTASK}}~0xF
+\item 
+\#define \mbox{\hyperlink{group__config04_ga1d1fb9df382bd1899f9cbd69b886482c}{ERR\+\_\+\+FID\+\_\+\+CRASHLOG}}~0x0
+\item 
+\#define \mbox{\hyperlink{group__config04_ga3595b0783298c7068ed7864920da864b}{ERR\+\_\+\+FID\+\_\+\+POWER\+\_\+\+MGR}}~0x1
+\item 
+\#define \mbox{\hyperlink{group__config04_ga4d7bbb47e4b18e12dab85174d6eec9b9}{ERR\+\_\+\+FID\+\_\+\+RTOS\+\_\+\+HOOKS}}~0x2
+\item 
+\#define \mbox{\hyperlink{group__config04_ga2b2b1a4ce21a24b6ff75f83bda9a77f2}{ERR\+\_\+\+FID\+\_\+\+WATCHDOG\+\_\+\+WRAP}}~0x3
+\item 
+\#define \mbox{\hyperlink{group__config04_gaa130c59cdddef5e69b123f547587f5e0}{ERR\+\_\+\+FID\+\_\+\+HEALTHTASK}}~0xF
+\item 
+\#define \mbox{\hyperlink{group__config04_gae5911daa12c73c16814f7879478ab805}{ERR\+\_\+\+FID\+\_\+\+HELPERS}}~0x0
+\item 
+\#define \mbox{\hyperlink{group__config04_gadc287b56bb84fd47a621c8b5d6b0b97c}{ERR\+\_\+\+FID\+\_\+\+LOGGERTASK}}~0xF
+\item 
+\#define \mbox{\hyperlink{group__config04_gaa489f7333019dbcc32da59996ee0fbac}{ERR\+\_\+\+FID\+\_\+\+CONSOLETASK}}~0x0
+\item 
+\#define \mbox{\hyperlink{group__config04_gaabfdc1ef9d7eb0910dd19d9a63091e14}{ERR\+\_\+\+FID\+\_\+\+CONSOLETASK2}}~0x1
+\item 
+\#define \mbox{\hyperlink{group__config04_ga5cc6f18987af2551efba00653bb912d0}{ERR\+\_\+\+FID\+\_\+\+CONSOLETASK3}}~0x2
+\item 
+\#define \mbox{\hyperlink{group__config04_ga632a8eab61d7a718430ed2a376970c03}{ERR\+\_\+\+FID\+\_\+\+PROV\+\_\+\+COMMANDS}}~0x3
+\item 
+\#define \mbox{\hyperlink{group__config04_ga5c5c69505f782bc2c2cd879966e16089}{ERR\+\_\+\+FID\+\_\+\+OVPTASK}}~0xF
+\item 
+\#define \mbox{\hyperlink{group__config04_gafc41ccf62872b10ba3ed6ffde1083132}{ERR\+\_\+\+FID\+\_\+\+SWITCHTASK}}~0x0
+\item 
+\#define \mbox{\hyperlink{group__config04_gaa884ef19deb8a0ee592dbd00505a4878}{ERR\+\_\+\+FID\+\_\+\+SWITCHTASK1}}~0x1
+\item 
+\#define \mbox{\hyperlink{group__config04_gaf5b8e4f3840e72cb49c88ab27ba59e72}{ERR\+\_\+\+FID\+\_\+\+SWITCHTASK2}}~0x2
+\item 
+\#define \mbox{\hyperlink{group__config04_ga64b9e5c6d7c5bdc726eb13e0642cbc9e}{ERR\+\_\+\+FID\+\_\+\+SWITCHTASK3}}~0x3
+\item 
+\#define \mbox{\hyperlink{group__config04_ga02a93d8244c830d04a4f00f89adf6f2b}{ERR\+\_\+\+FID\+\_\+\+SWITCHTASK4}}~0x4
+\item 
+\#define \mbox{\hyperlink{group__config04_ga59531d41321c33856e3d3f2a1d92be18}{ERR\+\_\+\+FID\+\_\+\+SWITCHTASK5}}~0x5
+\item 
+\#define \mbox{\hyperlink{group__config04_gab0c28580f426ee4c44fe697b729fb09b}{ERR\+\_\+\+FID}}(fid)
+\begin{DoxyCompactList}\small\item\em File ID and Error ID helpers for the CC byte. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__config04_ga304e6c01c57de3846c1c9ee734e538bc}{ERR\+\_\+\+EID}}(eid)
+\item 
+\#define \mbox{\hyperlink{group__config04_ga09239bc7608c97b7fa6ba861e72d234b}{ERR\+\_\+\+CC}}(fid,  eid)
+\item 
+\#define \mbox{\hyperlink{group__config04_ga745daff0f1f8857ec240cab3479908d5}{ERR\+\_\+\+MAKE\+\_\+\+CODE}}(module,  severity,  fid,  eid)
+\begin{DoxyCompactList}\small\item\em Construct a 16-\/bit error code from module, severity, file ID, and error ID. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__config04_ga73267b568ed75728d188ec13b3d86c11}{ERR\+\_\+\+GET\+\_\+\+FID}}(code)
+\begin{DoxyCompactList}\small\item\em Extract File ID from error code. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__config04_ga38e793573992d4f6f9ab4e5028fcf7ae}{ERR\+\_\+\+GET\+\_\+\+EID}}(code)
+\begin{DoxyCompactList}\small\item\em Extract Error ID from error code. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__config04_ga360c57f3f52440a4176fb34909f9c983}{ERR\+\_\+\+GET\+\_\+\+MODULE}}(code)
+\begin{DoxyCompactList}\small\item\em Extract Module ID from error code. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__config04_ga7ac5d07828fe8ae20fdac5e89f962cf5}{ERR\+\_\+\+GET\+\_\+\+SEVERITY}}(code)
+\begin{DoxyCompactList}\small\item\em Extract Severity from error code. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__config04_ga981a46fb0e61e00150a50130235c1987}{ERROR\+\_\+\+PRINT\+\_\+\+CODE}}(code,  fmt, ...)
+\begin{DoxyCompactList}\small\item\em Error-\/aware logging macros with 16-\/bit error codes. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__config04_gad2004b463e64ae6413248852d2c0f8b3}{WARNING\+\_\+\+PRINT\+\_\+\+CODE}}(code,  fmt, ...)
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__config04_ga8e48d8cd53b1718d1d4f1419b72e3d41}{error\+\_\+severity\+\_\+t}} \{ \mbox{\hyperlink{group__config04_gga8e48d8cd53b1718d1d4f1419b72e3d41a805db7a2df0314826a7654be3ba24402}{ERR\+\_\+\+SEV\+\_\+\+INFO}} = 0x1
+, \mbox{\hyperlink{group__config04_gga8e48d8cd53b1718d1d4f1419b72e3d41a1f5f367f42f5b538f36b02a512882b77}{ERR\+\_\+\+SEV\+\_\+\+WARNING}} = 0x2
+, \mbox{\hyperlink{group__config04_gga8e48d8cd53b1718d1d4f1419b72e3d41a3ba5b0701279ef186b78b42c2ad7a87c}{ERR\+\_\+\+SEV\+\_\+\+ERROR}} = 0x4
+, \mbox{\hyperlink{group__config04_gga8e48d8cd53b1718d1d4f1419b72e3d41aaf0891fe33f6c79509f16c26af4d4b1a}{ERR\+\_\+\+FATAL\+\_\+\+ERROR}} = 0xF
+ \}
+\begin{DoxyCompactList}\small\item\em Error severity levels for 16-\/bit error codes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Configuration header for ENERGIS PDU firmware. 
+
+\begin{DoxyVersion}{Version}
+2.\+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/12-\/14
+\end{DoxyDate}
+This file contains global configuration settings, peripheral assignments, and logging macros for the ENERGIS PDU firmware project. It contains user-\/configurable options as well as system constants. It describes GPIO pin assignments, I2\+C/\+SPI peripheral usage, ADC channel assignments, and other peripheral configurations.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{group__config04_doc-define-members}
+\doxysubsubsection{Macro Definition Documentation}
+\Hypertarget{group__config04_ga09239bc7608c97b7fa6ba861e72d234b}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_CC@{ERR\_CC}}
+\index{ERR\_CC@{ERR\_CC}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_CC}{ERR\_CC}}
+{\footnotesize\ttfamily \label{group__config04_ga09239bc7608c97b7fa6ba861e72d234b} 
+\#define ERR\+\_\+\+CC(\begin{DoxyParamCaption}\item[{}]{fid}{, }\item[{}]{eid}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((uint8\_t)((\mbox{\hyperlink{group__config04_gab0c28580f426ee4c44fe697b729fb09b}{ERR\_FID}}(fid)\ <<\ 4)\ |\ \mbox{\hyperlink{group__config04_ga304e6c01c57de3846c1c9ee734e538bc}{ERR\_EID}}(eid)))}
+
+\end{DoxyCode}
+\Hypertarget{group__config04_ga304e6c01c57de3846c1c9ee734e538bc}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_EID@{ERR\_EID}}
+\index{ERR\_EID@{ERR\_EID}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_EID}{ERR\_EID}}
+{\footnotesize\ttfamily \label{group__config04_ga304e6c01c57de3846c1c9ee734e538bc} 
+\#define ERR\+\_\+\+EID(\begin{DoxyParamCaption}\item[{}]{eid}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((uint8\_t)((eid)\ \&\ 0x0F))}
+
+\end{DoxyCode}
+\Hypertarget{group__config04_gab0c28580f426ee4c44fe697b729fb09b}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID@{ERR\_FID}}
+\index{ERR\_FID@{ERR\_FID}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID}{ERR\_FID}}
+{\footnotesize\ttfamily \label{group__config04_gab0c28580f426ee4c44fe697b729fb09b} 
+\#define ERR\+\_\+\+FID(\begin{DoxyParamCaption}\item[{}]{fid}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((uint8\_t)((fid)\ \&\ 0x0F))}
+
+\end{DoxyCode}
+
+
+File ID and Error ID helpers for the CC byte. 
+
+The CC byte (bits 7..0) is split into\+:
+\begin{DoxyItemize}
+\item FID (bits 7..4)\+: File ID within module (0x0-\/0xF)
+\item EID (bits 3..0)\+: Error ID within that file (0x0-\/0xF) 
+\end{DoxyItemize}\Hypertarget{group__config04_ga55bbfb206cf1bf3b81337f3f655606f6}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_BUTTON\_DRV@{ERR\_FID\_BUTTON\_DRV}}
+\index{ERR\_FID\_BUTTON\_DRV@{ERR\_FID\_BUTTON\_DRV}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_BUTTON\_DRV}{ERR\_FID\_BUTTON\_DRV}}
+{\footnotesize\ttfamily \label{group__config04_ga55bbfb206cf1bf3b81337f3f655606f6} 
+\#define ERR\+\_\+\+FID\+\_\+\+BUTTON\+\_\+\+DRV~0x0}
+
+\doxylink{button__driver_8c}{button\+\_\+driver.\+c} \Hypertarget{group__config04_ga5b99ee1aa17a0edcd9ddd7ec1f71bd11}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_BUTTONTASK@{ERR\_FID\_BUTTONTASK}}
+\index{ERR\_FID\_BUTTONTASK@{ERR\_FID\_BUTTONTASK}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_BUTTONTASK}{ERR\_FID\_BUTTONTASK}}
+{\footnotesize\ttfamily \label{group__config04_ga5b99ee1aa17a0edcd9ddd7ec1f71bd11} 
+\#define ERR\+\_\+\+FID\+\_\+\+BUTTONTASK~0xF}
+
+\doxylink{_button_task_8c}{Button\+Task.\+c} \Hypertarget{group__config04_gaa489f7333019dbcc32da59996ee0fbac}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_CONSOLETASK@{ERR\_FID\_CONSOLETASK}}
+\index{ERR\_FID\_CONSOLETASK@{ERR\_FID\_CONSOLETASK}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_CONSOLETASK}{ERR\_FID\_CONSOLETASK}}
+{\footnotesize\ttfamily \label{group__config04_gaa489f7333019dbcc32da59996ee0fbac} 
+\#define ERR\+\_\+\+FID\+\_\+\+CONSOLETASK~0x0}
+
+\doxylink{_console_task_8c}{Console\+Task.\+c} \Hypertarget{group__config04_gaabfdc1ef9d7eb0910dd19d9a63091e14}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_CONSOLETASK2@{ERR\_FID\_CONSOLETASK2}}
+\index{ERR\_FID\_CONSOLETASK2@{ERR\_FID\_CONSOLETASK2}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_CONSOLETASK2}{ERR\_FID\_CONSOLETASK2}}
+{\footnotesize\ttfamily \label{group__config04_gaabfdc1ef9d7eb0910dd19d9a63091e14} 
+\#define ERR\+\_\+\+FID\+\_\+\+CONSOLETASK2~0x1}
+
+\doxylink{_console_task_8c}{Console\+Task.\+c} \Hypertarget{group__config04_ga5cc6f18987af2551efba00653bb912d0}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_CONSOLETASK3@{ERR\_FID\_CONSOLETASK3}}
+\index{ERR\_FID\_CONSOLETASK3@{ERR\_FID\_CONSOLETASK3}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_CONSOLETASK3}{ERR\_FID\_CONSOLETASK3}}
+{\footnotesize\ttfamily \label{group__config04_ga5cc6f18987af2551efba00653bb912d0} 
+\#define ERR\+\_\+\+FID\+\_\+\+CONSOLETASK3~0x2}
+
+\doxylink{_console_task_8c}{Console\+Task.\+c} \Hypertarget{group__config04_ga1d1fb9df382bd1899f9cbd69b886482c}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_CRASHLOG@{ERR\_FID\_CRASHLOG}}
+\index{ERR\_FID\_CRASHLOG@{ERR\_FID\_CRASHLOG}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_CRASHLOG}{ERR\_FID\_CRASHLOG}}
+{\footnotesize\ttfamily \label{group__config04_ga1d1fb9df382bd1899f9cbd69b886482c} 
+\#define ERR\+\_\+\+FID\+\_\+\+CRASHLOG~0x0}
+
+\doxylink{crashlog_8c}{crashlog.\+c} \Hypertarget{group__config04_gaa872921aaddc09e47cb100a400a76023}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_DEVICE\_IDENTITY@{ERR\_FID\_DEVICE\_IDENTITY}}
+\index{ERR\_FID\_DEVICE\_IDENTITY@{ERR\_FID\_DEVICE\_IDENTITY}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_DEVICE\_IDENTITY}{ERR\_FID\_DEVICE\_IDENTITY}}
+{\footnotesize\ttfamily \label{group__config04_gaa872921aaddc09e47cb100a400a76023} 
+\#define ERR\+\_\+\+FID\+\_\+\+DEVICE\+\_\+\+IDENTITY~0xA}
+
+\doxylink{device__identity_8c}{device\+\_\+identity.\+c} \Hypertarget{group__config04_gaa130c59cdddef5e69b123f547587f5e0}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_HEALTHTASK@{ERR\_FID\_HEALTHTASK}}
+\index{ERR\_FID\_HEALTHTASK@{ERR\_FID\_HEALTHTASK}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_HEALTHTASK}{ERR\_FID\_HEALTHTASK}}
+{\footnotesize\ttfamily \label{group__config04_gaa130c59cdddef5e69b123f547587f5e0} 
+\#define ERR\+\_\+\+FID\+\_\+\+HEALTHTASK~0xF}
+
+\doxylink{_health_task_8c}{Health\+Task.\+c} \Hypertarget{group__config04_gae5911daa12c73c16814f7879478ab805}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_HELPERS@{ERR\_FID\_HELPERS}}
+\index{ERR\_FID\_HELPERS@{ERR\_FID\_HELPERS}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_HELPERS}{ERR\_FID\_HELPERS}}
+{\footnotesize\ttfamily \label{group__config04_gae5911daa12c73c16814f7879478ab805} 
+\#define ERR\+\_\+\+FID\+\_\+\+HELPERS~0x0}
+
+\doxylink{helpers_8c}{helpers.\+c} \Hypertarget{group__config04_ga3fab15623c3140747316462ba767df4e}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_HLW8032@{ERR\_FID\_HLW8032}}
+\index{ERR\_FID\_HLW8032@{ERR\_FID\_HLW8032}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_HLW8032}{ERR\_FID\_HLW8032}}
+{\footnotesize\ttfamily \label{group__config04_ga3fab15623c3140747316462ba767df4e} 
+\#define ERR\+\_\+\+FID\+\_\+\+HLW8032~0x0}
+
+\doxylink{_h_l_w8032__driver_8c}{HLW8032\+\_\+driver.\+c} \Hypertarget{group__config04_gaaa5d17e178b41b54d13360233d8b0add}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_INIT\_MAIN@{ERR\_FID\_INIT\_MAIN}}
+\index{ERR\_FID\_INIT\_MAIN@{ERR\_FID\_INIT\_MAIN}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_INIT\_MAIN}{ERR\_FID\_INIT\_MAIN}}
+{\footnotesize\ttfamily \label{group__config04_gaaa5d17e178b41b54d13360233d8b0add} 
+\#define ERR\+\_\+\+FID\+\_\+\+INIT\+\_\+\+MAIN~0x0}
+
+\doxylink{_e_n_e_r_g_i_s___r_t_o_s_8c}{ENERGIS\+\_\+\+RTOS.\+c} (main entry) \Hypertarget{group__config04_gad3af6f26a402dd0d1bdf205a5340e182}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_INITTASK@{ERR\_FID\_INITTASK}}
+\index{ERR\_FID\_INITTASK@{ERR\_FID\_INITTASK}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_INITTASK}{ERR\_FID\_INITTASK}}
+{\footnotesize\ttfamily \label{group__config04_gad3af6f26a402dd0d1bdf205a5340e182} 
+\#define ERR\+\_\+\+FID\+\_\+\+INITTASK~0xF}
+
+\doxylink{_init_task_8c}{Init\+Task.\+c} \Hypertarget{group__config04_gadc287b56bb84fd47a621c8b5d6b0b97c}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_LOGGERTASK@{ERR\_FID\_LOGGERTASK}}
+\index{ERR\_FID\_LOGGERTASK@{ERR\_FID\_LOGGERTASK}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_LOGGERTASK}{ERR\_FID\_LOGGERTASK}}
+{\footnotesize\ttfamily \label{group__config04_gadc287b56bb84fd47a621c8b5d6b0b97c} 
+\#define ERR\+\_\+\+FID\+\_\+\+LOGGERTASK~0xF}
+
+\doxylink{_logger_task_8c}{Logger\+Task.\+c} \Hypertarget{group__config04_ga67480ed7b80cebbce321dad2301f9458}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_MCP23017@{ERR\_FID\_MCP23017}}
+\index{ERR\_FID\_MCP23017@{ERR\_FID\_MCP23017}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_MCP23017}{ERR\_FID\_MCP23017}}
+{\footnotesize\ttfamily \label{group__config04_ga67480ed7b80cebbce321dad2301f9458} 
+\#define ERR\+\_\+\+FID\+\_\+\+MCP23017~0x1}
+
+\doxylink{_m_c_p23017__driver_8c}{MCP23017\+\_\+driver.\+c} \Hypertarget{group__config04_gaa41421599ba69c8ccca5fab37503fa87}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_MCP23017\_2@{ERR\_FID\_MCP23017\_2}}
+\index{ERR\_FID\_MCP23017\_2@{ERR\_FID\_MCP23017\_2}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_MCP23017\_2}{ERR\_FID\_MCP23017\_2}}
+{\footnotesize\ttfamily \label{group__config04_gaa41421599ba69c8ccca5fab37503fa87} 
+\#define ERR\+\_\+\+FID\+\_\+\+MCP23017\+\_\+2~0x2}
+
+\doxylink{_m_c_p23017__driver_8c}{MCP23017\+\_\+driver.\+c} \Hypertarget{group__config04_gac2582761392569a2ad07757e9d7c5612}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_METERTASK@{ERR\_FID\_METERTASK}}
+\index{ERR\_FID\_METERTASK@{ERR\_FID\_METERTASK}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_METERTASK}{ERR\_FID\_METERTASK}}
+{\footnotesize\ttfamily \label{group__config04_gac2582761392569a2ad07757e9d7c5612} 
+\#define ERR\+\_\+\+FID\+\_\+\+METERTASK~0xF}
+
+\doxylink{_meter_task_8c}{Meter\+Task.\+c} \Hypertarget{group__config04_ga1b4f5b4cc7a308a51f182c714fa48908}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_NET\_ETHERNET@{ERR\_FID\_NET\_ETHERNET}}
+\index{ERR\_FID\_NET\_ETHERNET@{ERR\_FID\_NET\_ETHERNET}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_NET\_ETHERNET}{ERR\_FID\_NET\_ETHERNET}}
+{\footnotesize\ttfamily \label{group__config04_ga1b4f5b4cc7a308a51f182c714fa48908} 
+\#define ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+ETHERNET~0xB}
+
+\doxylink{ethernet__driver_8c}{ethernet\+\_\+driver.\+c} \Hypertarget{group__config04_ga8e2b0a6696f57324dc2fa8d6713f99c1}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_NET\_HTTP\_CONTROL@{ERR\_FID\_NET\_HTTP\_CONTROL}}
+\index{ERR\_FID\_NET\_HTTP\_CONTROL@{ERR\_FID\_NET\_HTTP\_CONTROL}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_NET\_HTTP\_CONTROL}{ERR\_FID\_NET\_HTTP\_CONTROL}}
+{\footnotesize\ttfamily \label{group__config04_ga8e2b0a6696f57324dc2fa8d6713f99c1} 
+\#define ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+HTTP\+\_\+\+CONTROL~0x0}
+
+\doxylink{control__handler_8c}{control\+\_\+handler.\+c} \Hypertarget{group__config04_ga6de586b4923e8fd62aefe80ef0bda0c7}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_NET\_HTTP\_METRICS@{ERR\_FID\_NET\_HTTP\_METRICS}}
+\index{ERR\_FID\_NET\_HTTP\_METRICS@{ERR\_FID\_NET\_HTTP\_METRICS}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_NET\_HTTP\_METRICS}{ERR\_FID\_NET\_HTTP\_METRICS}}
+{\footnotesize\ttfamily \label{group__config04_ga6de586b4923e8fd62aefe80ef0bda0c7} 
+\#define ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+HTTP\+\_\+\+METRICS~0x2}
+
+\doxylink{metrics__handler_8c}{metrics\+\_\+handler.\+c} \Hypertarget{group__config04_gab1f0cf592b4142b7ab9b89e92ca5e926}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_NET\_HTTP\_PAGE\_CONTENT@{ERR\_FID\_NET\_HTTP\_PAGE\_CONTENT}}
+\index{ERR\_FID\_NET\_HTTP\_PAGE\_CONTENT@{ERR\_FID\_NET\_HTTP\_PAGE\_CONTENT}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_NET\_HTTP\_PAGE\_CONTENT}{ERR\_FID\_NET\_HTTP\_PAGE\_CONTENT}}
+{\footnotesize\ttfamily \label{group__config04_gab1f0cf592b4142b7ab9b89e92ca5e926} 
+\#define ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+HTTP\+\_\+\+PAGE\+\_\+\+CONTENT~0x3}
+
+\doxylink{page__content_8c}{page\+\_\+content.\+c} \Hypertarget{group__config04_ga3a8eadf1a27a4124ef52964ce3282ee9}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_NET\_HTTP\_SERVER@{ERR\_FID\_NET\_HTTP\_SERVER}}
+\index{ERR\_FID\_NET\_HTTP\_SERVER@{ERR\_FID\_NET\_HTTP\_SERVER}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_NET\_HTTP\_SERVER}{ERR\_FID\_NET\_HTTP\_SERVER}}
+{\footnotesize\ttfamily \label{group__config04_ga3a8eadf1a27a4124ef52964ce3282ee9} 
+\#define ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+HTTP\+\_\+\+SERVER~0x1}
+
+\doxylink{http__server_8c}{http\+\_\+server.\+c} \Hypertarget{group__config04_ga1076a7edad9f6f58bc35313b6aaa2c4f}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_NET\_HTTP\_SETTINGS@{ERR\_FID\_NET\_HTTP\_SETTINGS}}
+\index{ERR\_FID\_NET\_HTTP\_SETTINGS@{ERR\_FID\_NET\_HTTP\_SETTINGS}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_NET\_HTTP\_SETTINGS}{ERR\_FID\_NET\_HTTP\_SETTINGS}}
+{\footnotesize\ttfamily \label{group__config04_ga1076a7edad9f6f58bc35313b6aaa2c4f} 
+\#define ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+HTTP\+\_\+\+SETTINGS~0x4}
+
+\doxylink{settings__handler_8c}{settings\+\_\+handler.\+c} \Hypertarget{group__config04_ga8729e36a80a95be2e4a3eed62c100f1a}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_NET\_HTTP\_STATUS@{ERR\_FID\_NET\_HTTP\_STATUS}}
+\index{ERR\_FID\_NET\_HTTP\_STATUS@{ERR\_FID\_NET\_HTTP\_STATUS}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_NET\_HTTP\_STATUS}{ERR\_FID\_NET\_HTTP\_STATUS}}
+{\footnotesize\ttfamily \label{group__config04_ga8729e36a80a95be2e4a3eed62c100f1a} 
+\#define ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+HTTP\+\_\+\+STATUS~0x5}
+
+\doxylink{status__handler_8c}{status\+\_\+handler.\+c} \Hypertarget{group__config04_gae1ed254b004125572410564605c8b69f}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_NET\_SNMP@{ERR\_FID\_NET\_SNMP}}
+\index{ERR\_FID\_NET\_SNMP@{ERR\_FID\_NET\_SNMP}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_NET\_SNMP}{ERR\_FID\_NET\_SNMP}}
+{\footnotesize\ttfamily \label{group__config04_gae1ed254b004125572410564605c8b69f} 
+\#define ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+SNMP~0xE}
+
+\doxylink{snmp_8c}{drivers/snmp.\+c} \Hypertarget{group__config04_ga0c00f27fa3b6c11edabc5eac2aeb67e2}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_NET\_SNMP\_CUSTOM@{ERR\_FID\_NET\_SNMP\_CUSTOM}}
+\index{ERR\_FID\_NET\_SNMP\_CUSTOM@{ERR\_FID\_NET\_SNMP\_CUSTOM}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_NET\_SNMP\_CUSTOM}{ERR\_FID\_NET\_SNMP\_CUSTOM}}
+{\footnotesize\ttfamily \label{group__config04_ga0c00f27fa3b6c11edabc5eac2aeb67e2} 
+\#define ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+SNMP\+\_\+\+CUSTOM~0x6}
+
+\doxylink{snmp__custom_8c}{snmp\+\_\+custom.\+c} \Hypertarget{group__config04_gab35e9069ff67dde0e4f6d0ff84ed2d59}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_NET\_SNMP\_NETCTRL@{ERR\_FID\_NET\_SNMP\_NETCTRL}}
+\index{ERR\_FID\_NET\_SNMP\_NETCTRL@{ERR\_FID\_NET\_SNMP\_NETCTRL}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_NET\_SNMP\_NETCTRL}{ERR\_FID\_NET\_SNMP\_NETCTRL}}
+{\footnotesize\ttfamily \label{group__config04_gab35e9069ff67dde0e4f6d0ff84ed2d59} 
+\#define ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+SNMP\+\_\+\+NETCTRL~0x7}
+
+\doxylink{snmp__network_ctrl_8c}{snmp\+\_\+network\+Ctrl.\+c} \Hypertarget{group__config04_ga9e846857fb24effeaa6e7a3cc7cfd92b}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_NET\_SNMP\_OUTLETCTRL@{ERR\_FID\_NET\_SNMP\_OUTLETCTRL}}
+\index{ERR\_FID\_NET\_SNMP\_OUTLETCTRL@{ERR\_FID\_NET\_SNMP\_OUTLETCTRL}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_NET\_SNMP\_OUTLETCTRL}{ERR\_FID\_NET\_SNMP\_OUTLETCTRL}}
+{\footnotesize\ttfamily \label{group__config04_ga9e846857fb24effeaa6e7a3cc7cfd92b} 
+\#define ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+SNMP\+\_\+\+OUTLETCTRL~0x8}
+
+\doxylink{snmp__outlet_ctrl_8c}{snmp\+\_\+outlet\+Ctrl.\+c} \Hypertarget{group__config04_gad1a51242b98a87e87e3ecb867bbe72fa}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_NET\_SNMP\_POWERMON@{ERR\_FID\_NET\_SNMP\_POWERMON}}
+\index{ERR\_FID\_NET\_SNMP\_POWERMON@{ERR\_FID\_NET\_SNMP\_POWERMON}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_NET\_SNMP\_POWERMON}{ERR\_FID\_NET\_SNMP\_POWERMON}}
+{\footnotesize\ttfamily \label{group__config04_gad1a51242b98a87e87e3ecb867bbe72fa} 
+\#define ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+SNMP\+\_\+\+POWERMON~0x9}
+
+\doxylink{snmp__power_mon_8c}{snmp\+\_\+power\+Mon.\+c} \Hypertarget{group__config04_gab80cf709486f6c899abac7a5723332e4}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_NET\_SNMP\_VOLTAGEMON@{ERR\_FID\_NET\_SNMP\_VOLTAGEMON}}
+\index{ERR\_FID\_NET\_SNMP\_VOLTAGEMON@{ERR\_FID\_NET\_SNMP\_VOLTAGEMON}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_NET\_SNMP\_VOLTAGEMON}{ERR\_FID\_NET\_SNMP\_VOLTAGEMON}}
+{\footnotesize\ttfamily \label{group__config04_gab80cf709486f6c899abac7a5723332e4} 
+\#define ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+SNMP\+\_\+\+VOLTAGEMON~0xA}
+
+\doxylink{snmp__voltage_mon_8c}{snmp\+\_\+voltage\+Mon.\+c} \Hypertarget{group__config04_ga8911840d2c95c08333ae427c52fc780c}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_NET\_SOCKET@{ERR\_FID\_NET\_SOCKET}}
+\index{ERR\_FID\_NET\_SOCKET@{ERR\_FID\_NET\_SOCKET}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_NET\_SOCKET}{ERR\_FID\_NET\_SOCKET}}
+{\footnotesize\ttfamily \label{group__config04_ga8911840d2c95c08333ae427c52fc780c} 
+\#define ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+SOCKET~0xC}
+
+\doxylink{socket_8c}{socket.\+c} \Hypertarget{group__config04_gaaf7d2f369513b77ec2122b0250dbbbbc}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_NET\_SOCKET2@{ERR\_FID\_NET\_SOCKET2}}
+\index{ERR\_FID\_NET\_SOCKET2@{ERR\_FID\_NET\_SOCKET2}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_NET\_SOCKET2}{ERR\_FID\_NET\_SOCKET2}}
+{\footnotesize\ttfamily \label{group__config04_gaaf7d2f369513b77ec2122b0250dbbbbc} 
+\#define ERR\+\_\+\+FID\+\_\+\+NET\+\_\+\+SOCKET2~0xD}
+
+\doxylink{socket_8c}{socket.\+c} \Hypertarget{group__config04_gaf7a5ef927b336b64926adca615320dda}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_NETTASK@{ERR\_FID\_NETTASK}}
+\index{ERR\_FID\_NETTASK@{ERR\_FID\_NETTASK}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_NETTASK}{ERR\_FID\_NETTASK}}
+{\footnotesize\ttfamily \label{group__config04_gaf7a5ef927b336b64926adca615320dda} 
+\#define ERR\+\_\+\+FID\+\_\+\+NETTASK~0xF}
+
+\doxylink{_net_task_8c}{Net\+Task.\+c} \Hypertarget{group__config04_ga5c5c69505f782bc2c2cd879966e16089}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_OVPTASK@{ERR\_FID\_OVPTASK}}
+\index{ERR\_FID\_OVPTASK@{ERR\_FID\_OVPTASK}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_OVPTASK}{ERR\_FID\_OVPTASK}}
+{\footnotesize\ttfamily \label{group__config04_ga5c5c69505f782bc2c2cd879966e16089} 
+\#define ERR\+\_\+\+FID\+\_\+\+OVPTASK~0xF}
+
+\doxylink{_o_c_p_8c}{OCP.\+c} \Hypertarget{group__config04_ga3595b0783298c7068ed7864920da864b}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_POWER\_MGR@{ERR\_FID\_POWER\_MGR}}
+\index{ERR\_FID\_POWER\_MGR@{ERR\_FID\_POWER\_MGR}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_POWER\_MGR}{ERR\_FID\_POWER\_MGR}}
+{\footnotesize\ttfamily \label{group__config04_ga3595b0783298c7068ed7864920da864b} 
+\#define ERR\+\_\+\+FID\+\_\+\+POWER\+\_\+\+MGR~0x1}
+
+\doxylink{power__mgr_8c}{power\+\_\+mgr.\+c} \Hypertarget{group__config04_ga632a8eab61d7a718430ed2a376970c03}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_PROV\_COMMANDS@{ERR\_FID\_PROV\_COMMANDS}}
+\index{ERR\_FID\_PROV\_COMMANDS@{ERR\_FID\_PROV\_COMMANDS}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_PROV\_COMMANDS}{ERR\_FID\_PROV\_COMMANDS}}
+{\footnotesize\ttfamily \label{group__config04_ga632a8eab61d7a718430ed2a376970c03} 
+\#define ERR\+\_\+\+FID\+\_\+\+PROV\+\_\+\+COMMANDS~0x3}
+
+\doxylink{provisioning__commands_8c}{provisioning\+\_\+commands.\+c} \Hypertarget{group__config04_ga4d7bbb47e4b18e12dab85174d6eec9b9}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_RTOS\_HOOKS@{ERR\_FID\_RTOS\_HOOKS}}
+\index{ERR\_FID\_RTOS\_HOOKS@{ERR\_FID\_RTOS\_HOOKS}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_RTOS\_HOOKS}{ERR\_FID\_RTOS\_HOOKS}}
+{\footnotesize\ttfamily \label{group__config04_ga4d7bbb47e4b18e12dab85174d6eec9b9} 
+\#define ERR\+\_\+\+FID\+\_\+\+RTOS\+\_\+\+HOOKS~0x2}
+
+\doxylink{rtos__hooks_8c}{rtos\+\_\+hooks.\+c} \Hypertarget{group__config04_ga6c6629c75a6d222b9f01c10721f97fbc}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_ST\_CALIBRATION@{ERR\_FID\_ST\_CALIBRATION}}
+\index{ERR\_FID\_ST\_CALIBRATION@{ERR\_FID\_ST\_CALIBRATION}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_ST\_CALIBRATION}{ERR\_FID\_ST\_CALIBRATION}}
+{\footnotesize\ttfamily \label{group__config04_ga6c6629c75a6d222b9f01c10721f97fbc} 
+\#define ERR\+\_\+\+FID\+\_\+\+ST\+\_\+\+CALIBRATION~0x0}
+
+\doxylink{calibration_8c}{calibration.\+c} \Hypertarget{group__config04_ga558c49db43ae33fc613f5c982f990469}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_ST\_CAT24@{ERR\_FID\_ST\_CAT24}}
+\index{ERR\_FID\_ST\_CAT24@{ERR\_FID\_ST\_CAT24}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_ST\_CAT24}{ERR\_FID\_ST\_CAT24}}
+{\footnotesize\ttfamily \label{group__config04_ga558c49db43ae33fc613f5c982f990469} 
+\#define ERR\+\_\+\+FID\+\_\+\+ST\+\_\+\+CAT24~0x5}
+
+\doxylink{_c_a_t24_c256__driver_8c}{CAT24\+C256\+\_\+driver.\+c} \Hypertarget{group__config04_gad46422e34291ed41b1631c1fe3e684e8}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_ST\_CHANNEL\_LBL@{ERR\_FID\_ST\_CHANNEL\_LBL}}
+\index{ERR\_FID\_ST\_CHANNEL\_LBL@{ERR\_FID\_ST\_CHANNEL\_LBL}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_ST\_CHANNEL\_LBL}{ERR\_FID\_ST\_CHANNEL\_LBL}}
+{\footnotesize\ttfamily \label{group__config04_gad46422e34291ed41b1631c1fe3e684e8} 
+\#define ERR\+\_\+\+FID\+\_\+\+ST\+\_\+\+CHANNEL\+\_\+\+LBL~0x1}
+
+\doxylink{channel__labels_8c}{channel\+\_\+labels.\+c} \Hypertarget{group__config04_ga06dd2dddc2bbe4c7bb059d69f499f219}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_ST\_ENERGY\_MON@{ERR\_FID\_ST\_ENERGY\_MON}}
+\index{ERR\_FID\_ST\_ENERGY\_MON@{ERR\_FID\_ST\_ENERGY\_MON}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_ST\_ENERGY\_MON}{ERR\_FID\_ST\_ENERGY\_MON}}
+{\footnotesize\ttfamily \label{group__config04_ga06dd2dddc2bbe4c7bb059d69f499f219} 
+\#define ERR\+\_\+\+FID\+\_\+\+ST\+\_\+\+ENERGY\+\_\+\+MON~0x2}
+
+\doxylink{energy__monitor_8c}{energy\+\_\+monitor.\+c} \Hypertarget{group__config04_gaa60bc4b42b38a858c5e9e3a10732aa1f}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_ST\_EVENT\_LOG@{ERR\_FID\_ST\_EVENT\_LOG}}
+\index{ERR\_FID\_ST\_EVENT\_LOG@{ERR\_FID\_ST\_EVENT\_LOG}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_ST\_EVENT\_LOG}{ERR\_FID\_ST\_EVENT\_LOG}}
+{\footnotesize\ttfamily \label{group__config04_gaa60bc4b42b38a858c5e9e3a10732aa1f} 
+\#define ERR\+\_\+\+FID\+\_\+\+ST\+\_\+\+EVENT\+\_\+\+LOG~0x3}
+
+\doxylink{event__log_8c}{event\+\_\+log.\+c} \Hypertarget{group__config04_ga5e049fb8804f0a8e2c59e076bbb1cf7f}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_ST\_FACTORY\_DEFS@{ERR\_FID\_ST\_FACTORY\_DEFS}}
+\index{ERR\_FID\_ST\_FACTORY\_DEFS@{ERR\_FID\_ST\_FACTORY\_DEFS}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_ST\_FACTORY\_DEFS}{ERR\_FID\_ST\_FACTORY\_DEFS}}
+{\footnotesize\ttfamily \label{group__config04_ga5e049fb8804f0a8e2c59e076bbb1cf7f} 
+\#define ERR\+\_\+\+FID\+\_\+\+ST\+\_\+\+FACTORY\+\_\+\+DEFS~0x4}
+
+\doxylink{factory__defaults_8c}{factory\+\_\+defaults.\+c} \Hypertarget{group__config04_ga09b9c1e99c67cbb994abedc4e1455b66}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_ST\_NETWORK\_CFG@{ERR\_FID\_ST\_NETWORK\_CFG}}
+\index{ERR\_FID\_ST\_NETWORK\_CFG@{ERR\_FID\_ST\_NETWORK\_CFG}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_ST\_NETWORK\_CFG}{ERR\_FID\_ST\_NETWORK\_CFG}}
+{\footnotesize\ttfamily \label{group__config04_ga09b9c1e99c67cbb994abedc4e1455b66} 
+\#define ERR\+\_\+\+FID\+\_\+\+ST\+\_\+\+NETWORK\+\_\+\+CFG~0x6}
+
+\doxylink{network_8c}{network.\+c} (storage\+\_\+submodule) \Hypertarget{group__config04_ga08beb3f6a47c48ffd329fa6d8573a5dd}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_ST\_STORAGE\_COMMON@{ERR\_FID\_ST\_STORAGE\_COMMON}}
+\index{ERR\_FID\_ST\_STORAGE\_COMMON@{ERR\_FID\_ST\_STORAGE\_COMMON}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_ST\_STORAGE\_COMMON}{ERR\_FID\_ST\_STORAGE\_COMMON}}
+{\footnotesize\ttfamily \label{group__config04_ga08beb3f6a47c48ffd329fa6d8573a5dd} 
+\#define ERR\+\_\+\+FID\+\_\+\+ST\+\_\+\+STORAGE\+\_\+\+COMMON~0x7}
+
+\doxylink{storage__common_8c}{storage\+\_\+common.\+c} \Hypertarget{group__config04_ga358d61a0bb3e4ec1adf177519620302f}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_ST\_STORAGETASK@{ERR\_FID\_ST\_STORAGETASK}}
+\index{ERR\_FID\_ST\_STORAGETASK@{ERR\_FID\_ST\_STORAGETASK}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_ST\_STORAGETASK}{ERR\_FID\_ST\_STORAGETASK}}
+{\footnotesize\ttfamily \label{group__config04_ga358d61a0bb3e4ec1adf177519620302f} 
+\#define ERR\+\_\+\+FID\+\_\+\+ST\+\_\+\+STORAGETASK~0xF}
+
+\doxylink{_storage_task_8c}{Storage\+Task.\+c} \Hypertarget{group__config04_ga3f93d8ddc8285f8c1151584284b8ffc7}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_ST\_USER\_OUTPUT@{ERR\_FID\_ST\_USER\_OUTPUT}}
+\index{ERR\_FID\_ST\_USER\_OUTPUT@{ERR\_FID\_ST\_USER\_OUTPUT}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_ST\_USER\_OUTPUT}{ERR\_FID\_ST\_USER\_OUTPUT}}
+{\footnotesize\ttfamily \label{group__config04_ga3f93d8ddc8285f8c1151584284b8ffc7} 
+\#define ERR\+\_\+\+FID\+\_\+\+ST\+\_\+\+USER\+\_\+\+OUTPUT~0x8}
+
+\doxylink{user__output_8c}{user\+\_\+output.\+c} \Hypertarget{group__config04_ga05b17d48dff10f3416927b4fdef5cb5e}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_ST\_USER\_PREFS@{ERR\_FID\_ST\_USER\_PREFS}}
+\index{ERR\_FID\_ST\_USER\_PREFS@{ERR\_FID\_ST\_USER\_PREFS}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_ST\_USER\_PREFS}{ERR\_FID\_ST\_USER\_PREFS}}
+{\footnotesize\ttfamily \label{group__config04_ga05b17d48dff10f3416927b4fdef5cb5e} 
+\#define ERR\+\_\+\+FID\+\_\+\+ST\+\_\+\+USER\+\_\+\+PREFS~0x9}
+
+\doxylink{user__prefs_8c}{user\+\_\+prefs.\+c} \Hypertarget{group__config04_gafc41ccf62872b10ba3ed6ffde1083132}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_SWITCHTASK@{ERR\_FID\_SWITCHTASK}}
+\index{ERR\_FID\_SWITCHTASK@{ERR\_FID\_SWITCHTASK}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_SWITCHTASK}{ERR\_FID\_SWITCHTASK}}
+{\footnotesize\ttfamily \label{group__config04_gafc41ccf62872b10ba3ed6ffde1083132} 
+\#define ERR\+\_\+\+FID\+\_\+\+SWITCHTASK~0x0}
+
+\doxylink{_switch_task_8c}{Switch\+Task.\+c} \Hypertarget{group__config04_gaa884ef19deb8a0ee592dbd00505a4878}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_SWITCHTASK1@{ERR\_FID\_SWITCHTASK1}}
+\index{ERR\_FID\_SWITCHTASK1@{ERR\_FID\_SWITCHTASK1}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_SWITCHTASK1}{ERR\_FID\_SWITCHTASK1}}
+{\footnotesize\ttfamily \label{group__config04_gaa884ef19deb8a0ee592dbd00505a4878} 
+\#define ERR\+\_\+\+FID\+\_\+\+SWITCHTASK1~0x1}
+
+\doxylink{_switch_task_8c}{Switch\+Task.\+c} \Hypertarget{group__config04_gaf5b8e4f3840e72cb49c88ab27ba59e72}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_SWITCHTASK2@{ERR\_FID\_SWITCHTASK2}}
+\index{ERR\_FID\_SWITCHTASK2@{ERR\_FID\_SWITCHTASK2}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_SWITCHTASK2}{ERR\_FID\_SWITCHTASK2}}
+{\footnotesize\ttfamily \label{group__config04_gaf5b8e4f3840e72cb49c88ab27ba59e72} 
+\#define ERR\+\_\+\+FID\+\_\+\+SWITCHTASK2~0x2}
+
+\doxylink{_switch_task_8c}{Switch\+Task.\+c} \Hypertarget{group__config04_ga64b9e5c6d7c5bdc726eb13e0642cbc9e}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_SWITCHTASK3@{ERR\_FID\_SWITCHTASK3}}
+\index{ERR\_FID\_SWITCHTASK3@{ERR\_FID\_SWITCHTASK3}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_SWITCHTASK3}{ERR\_FID\_SWITCHTASK3}}
+{\footnotesize\ttfamily \label{group__config04_ga64b9e5c6d7c5bdc726eb13e0642cbc9e} 
+\#define ERR\+\_\+\+FID\+\_\+\+SWITCHTASK3~0x3}
+
+\doxylink{_switch_task_8c}{Switch\+Task.\+c} \Hypertarget{group__config04_ga02a93d8244c830d04a4f00f89adf6f2b}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_SWITCHTASK4@{ERR\_FID\_SWITCHTASK4}}
+\index{ERR\_FID\_SWITCHTASK4@{ERR\_FID\_SWITCHTASK4}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_SWITCHTASK4}{ERR\_FID\_SWITCHTASK4}}
+{\footnotesize\ttfamily \label{group__config04_ga02a93d8244c830d04a4f00f89adf6f2b} 
+\#define ERR\+\_\+\+FID\+\_\+\+SWITCHTASK4~0x4}
+
+\doxylink{_switch_task_8c}{Switch\+Task.\+c} \Hypertarget{group__config04_ga59531d41321c33856e3d3f2a1d92be18}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_SWITCHTASK5@{ERR\_FID\_SWITCHTASK5}}
+\index{ERR\_FID\_SWITCHTASK5@{ERR\_FID\_SWITCHTASK5}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_SWITCHTASK5}{ERR\_FID\_SWITCHTASK5}}
+{\footnotesize\ttfamily \label{group__config04_ga59531d41321c33856e3d3f2a1d92be18} 
+\#define ERR\+\_\+\+FID\+\_\+\+SWITCHTASK5~0x5}
+
+\doxylink{_switch_task_8c}{Switch\+Task.\+c} \Hypertarget{group__config04_ga2b2b1a4ce21a24b6ff75f83bda9a77f2}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FID\_WATCHDOG\_WRAP@{ERR\_FID\_WATCHDOG\_WRAP}}
+\index{ERR\_FID\_WATCHDOG\_WRAP@{ERR\_FID\_WATCHDOG\_WRAP}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_FID\_WATCHDOG\_WRAP}{ERR\_FID\_WATCHDOG\_WRAP}}
+{\footnotesize\ttfamily \label{group__config04_ga2b2b1a4ce21a24b6ff75f83bda9a77f2} 
+\#define ERR\+\_\+\+FID\+\_\+\+WATCHDOG\+\_\+\+WRAP~0x3}
+
+\doxylink{wrap__watchdog_8c}{wrap\+\_\+watchdog.\+c} \Hypertarget{group__config04_ga38e793573992d4f6f9ab4e5028fcf7ae}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_GET\_EID@{ERR\_GET\_EID}}
+\index{ERR\_GET\_EID@{ERR\_GET\_EID}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_GET\_EID}{ERR\_GET\_EID}}
+{\footnotesize\ttfamily \label{group__config04_ga38e793573992d4f6f9ab4e5028fcf7ae} 
+\#define ERR\+\_\+\+GET\+\_\+\+EID(\begin{DoxyParamCaption}\item[{}]{code}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((uint8\_t)((code)\ \&\ 0x0F))}
+
+\end{DoxyCode}
+
+
+Extract Error ID from error code. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & 16-\/bit error code \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Error ID (bits 3..0) 
+\end{DoxyReturn}
+\Hypertarget{group__config04_ga73267b568ed75728d188ec13b3d86c11}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_GET\_FID@{ERR\_GET\_FID}}
+\index{ERR\_GET\_FID@{ERR\_GET\_FID}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_GET\_FID}{ERR\_GET\_FID}}
+{\footnotesize\ttfamily \label{group__config04_ga73267b568ed75728d188ec13b3d86c11} 
+\#define ERR\+\_\+\+GET\+\_\+\+FID(\begin{DoxyParamCaption}\item[{}]{code}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((uint8\_t)(((code)\ >>\ 4)\ \&\ 0x0F))}
+
+\end{DoxyCode}
+
+
+Extract File ID from error code. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & 16-\/bit error code \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+File ID (bits 7..4) 
+\end{DoxyReturn}
+\Hypertarget{group__config04_ga360c57f3f52440a4176fb34909f9c983}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_GET\_MODULE@{ERR\_GET\_MODULE}}
+\index{ERR\_GET\_MODULE@{ERR\_GET\_MODULE}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_GET\_MODULE}{ERR\_GET\_MODULE}}
+{\footnotesize\ttfamily \label{group__config04_ga360c57f3f52440a4176fb34909f9c983} 
+\#define ERR\+\_\+\+GET\+\_\+\+MODULE(\begin{DoxyParamCaption}\item[{}]{code}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((uint8\_t)(((code)\ >>\ 12)\ \&\ 0x0F))}
+
+\end{DoxyCode}
+
+
+Extract Module ID from error code. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & 16-\/bit error code \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Module ID (bits 15..12) 
+\end{DoxyReturn}
+\Hypertarget{group__config04_ga7ac5d07828fe8ae20fdac5e89f962cf5}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_GET\_SEVERITY@{ERR\_GET\_SEVERITY}}
+\index{ERR\_GET\_SEVERITY@{ERR\_GET\_SEVERITY}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_GET\_SEVERITY}{ERR\_GET\_SEVERITY}}
+{\footnotesize\ttfamily \label{group__config04_ga7ac5d07828fe8ae20fdac5e89f962cf5} 
+\#define ERR\+\_\+\+GET\+\_\+\+SEVERITY(\begin{DoxyParamCaption}\item[{}]{code}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((uint8\_t)(((code)\ >>\ 8)\ \&\ 0x0F))}
+
+\end{DoxyCode}
+
+
+Extract Severity from error code. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & 16-\/bit error code \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Severity (bits 11..8) 
+\end{DoxyReturn}
+\Hypertarget{group__config04_ga745daff0f1f8857ec240cab3479908d5}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_MAKE\_CODE@{ERR\_MAKE\_CODE}}
+\index{ERR\_MAKE\_CODE@{ERR\_MAKE\_CODE}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_MAKE\_CODE}{ERR\_MAKE\_CODE}}
+{\footnotesize\ttfamily \label{group__config04_ga745daff0f1f8857ec240cab3479908d5} 
+\#define ERR\+\_\+\+MAKE\+\_\+\+CODE(\begin{DoxyParamCaption}\item[{}]{module}{, }\item[{}]{severity}{, }\item[{}]{fid}{, }\item[{}]{eid}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ ((uint16\_t)((((module)\ \&\ 0x0F)\ <<\ 12)\ |\ (((severity)\ \&\ 0x0F)\ <<\ 8)\ |\ \mbox{\hyperlink{group__config04_ga09239bc7608c97b7fa6ba861e72d234b}{ERR\_CC}}(fid,\ eid)))}
+
+\end{DoxyCode}
+
+
+Construct a 16-\/bit error code from module, severity, file ID, and error ID. 
+
+Format\+: 0x\+MSCC where CC = (FID \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 4 \texorpdfstring{$\vert$}{|} EID)
+\begin{DoxyItemize}
+\item M (bits 15..12)\+: Module ID (0x1-\/0x8)
+\item S (bits 11..8)\+: Severity (0x1=INFO, 0x2=WARNING, 0xF=ERROR)
+\item FID (bits 7..4)\+: File ID within module (0x0-\/0xF)
+\item EID (bits 3..0)\+: Error ID within that file (0x0-\/0xF)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em module} & Module ID (4 bits) \\
+\hline
+{\em severity} & Severity level (4 bits) \\
+\hline
+{\em fid} & File ID within module (4 bits) \\
+\hline
+{\em eid} & Error ID within file (4 bits) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+16-\/bit error code
+\end{DoxyReturn}
+Example\+: \doxylink{group__config04_ga745daff0f1f8857ec240cab3479908d5}{ERR\+\_\+\+MAKE\+\_\+\+CODE(\+ERR\+\_\+\+MOD\+\_\+\+NET, ERR\+\_\+\+SEV\+\_\+\+ERROR, 0x1, 0x3)} = 0x2\+F13 \Hypertarget{group__config04_gada8b64c2e1a2527458dcfd57160e1482}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_MOD\_BUTTON@{ERR\_MOD\_BUTTON}}
+\index{ERR\_MOD\_BUTTON@{ERR\_MOD\_BUTTON}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_MOD\_BUTTON}{ERR\_MOD\_BUTTON}}
+{\footnotesize\ttfamily \label{group__config04_gada8b64c2e1a2527458dcfd57160e1482} 
+\#define ERR\+\_\+\+MOD\+\_\+\+BUTTON~0x5}
+
+Button\+Task module \Hypertarget{group__config04_gae0f3767db917aa111484b05579fac164}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_MOD\_CONSOLE@{ERR\_MOD\_CONSOLE}}
+\index{ERR\_MOD\_CONSOLE@{ERR\_MOD\_CONSOLE}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_MOD\_CONSOLE}{ERR\_MOD\_CONSOLE}}
+{\footnotesize\ttfamily \label{group__config04_gae0f3767db917aa111484b05579fac164} 
+\#define ERR\+\_\+\+MOD\+\_\+\+CONSOLE~0x8}
+
+Console\+Task module \Hypertarget{group__config04_ga0ea96c98b55944ab7cb28eabc53a533a}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_MOD\_HEALTH@{ERR\_MOD\_HEALTH}}
+\index{ERR\_MOD\_HEALTH@{ERR\_MOD\_HEALTH}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_MOD\_HEALTH}{ERR\_MOD\_HEALTH}}
+{\footnotesize\ttfamily \label{group__config04_ga0ea96c98b55944ab7cb28eabc53a533a} 
+\#define ERR\+\_\+\+MOD\+\_\+\+HEALTH~0x6}
+
+Health\+Task module \Hypertarget{group__config04_ga2d316af9a77c2b5460ddb6cf19ef99a4}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_MOD\_INIT@{ERR\_MOD\_INIT}}
+\index{ERR\_MOD\_INIT@{ERR\_MOD\_INIT}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_MOD\_INIT}{ERR\_MOD\_INIT}}
+{\footnotesize\ttfamily \label{group__config04_ga2d316af9a77c2b5460ddb6cf19ef99a4} 
+\#define ERR\+\_\+\+MOD\+\_\+\+INIT~0x1}
+
+
+
+Module IDs for 16-\/bit error codes. 
+
+Module ID occupies bits 15..12 of the error code. Init\+Task module \Hypertarget{group__config04_ga5d980d09c898aed277543271499b3a0d}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_MOD\_LOGGER@{ERR\_MOD\_LOGGER}}
+\index{ERR\_MOD\_LOGGER@{ERR\_MOD\_LOGGER}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_MOD\_LOGGER}{ERR\_MOD\_LOGGER}}
+{\footnotesize\ttfamily \label{group__config04_ga5d980d09c898aed277543271499b3a0d} 
+\#define ERR\+\_\+\+MOD\+\_\+\+LOGGER~0x7}
+
+Logger\+Task module \Hypertarget{group__config04_gaccfbd6b5c88af47b9c8e49ca31331101}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_MOD\_METER@{ERR\_MOD\_METER}}
+\index{ERR\_MOD\_METER@{ERR\_MOD\_METER}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_MOD\_METER}{ERR\_MOD\_METER}}
+{\footnotesize\ttfamily \label{group__config04_gaccfbd6b5c88af47b9c8e49ca31331101} 
+\#define ERR\+\_\+\+MOD\+\_\+\+METER~0x3}
+
+Meter\+Task module \Hypertarget{group__config04_gaab99f2ca5504759f887304ab6566f8fc}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_MOD\_NET@{ERR\_MOD\_NET}}
+\index{ERR\_MOD\_NET@{ERR\_MOD\_NET}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_MOD\_NET}{ERR\_MOD\_NET}}
+{\footnotesize\ttfamily \label{group__config04_gaab99f2ca5504759f887304ab6566f8fc} 
+\#define ERR\+\_\+\+MOD\+\_\+\+NET~0x2}
+
+Net\+Task module \Hypertarget{group__config04_ga47421efa20257c42d310444f653d0f7f}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_MOD\_OCP@{ERR\_MOD\_OCP}}
+\index{ERR\_MOD\_OCP@{ERR\_MOD\_OCP}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_MOD\_OCP}{ERR\_MOD\_OCP}}
+{\footnotesize\ttfamily \label{group__config04_ga47421efa20257c42d310444f653d0f7f} 
+\#define ERR\+\_\+\+MOD\+\_\+\+OCP~0x9}
+
+Overcurrent Protection module \Hypertarget{group__config04_ga73ccce4d36cf6bed1c6fcd481f7117be}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_MOD\_STORAGE@{ERR\_MOD\_STORAGE}}
+\index{ERR\_MOD\_STORAGE@{ERR\_MOD\_STORAGE}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_MOD\_STORAGE}{ERR\_MOD\_STORAGE}}
+{\footnotesize\ttfamily \label{group__config04_ga73ccce4d36cf6bed1c6fcd481f7117be} 
+\#define ERR\+\_\+\+MOD\+\_\+\+STORAGE~0x4}
+
+Storage\+Task module \Hypertarget{group__config04_gae705d8e7660a2c11186fd348aebc5248}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_MOD\_SWTASK@{ERR\_MOD\_SWTASK}}
+\index{ERR\_MOD\_SWTASK@{ERR\_MOD\_SWTASK}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERR\_MOD\_SWTASK}{ERR\_MOD\_SWTASK}}
+{\footnotesize\ttfamily \label{group__config04_gae705d8e7660a2c11186fd348aebc5248} 
+\#define ERR\+\_\+\+MOD\+\_\+\+SWTASK~0xA}
+
+Switch\+Task module \Hypertarget{group__config04_ga981a46fb0e61e00150a50130235c1987}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERROR\_PRINT\_CODE@{ERROR\_PRINT\_CODE}}
+\index{ERROR\_PRINT\_CODE@{ERROR\_PRINT\_CODE}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERROR\_PRINT\_CODE}{ERROR\_PRINT\_CODE}}
+{\footnotesize\ttfamily \label{group__config04_ga981a46fb0e61e00150a50130235c1987} 
+\#define ERROR\+\_\+\+PRINT\+\_\+\+CODE(\begin{DoxyParamCaption}\item[{}]{code}{, }\item[{}]{fmt}{, }\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((void)0)}
+
+\end{DoxyCode}
+
+
+Error-\/aware logging macros with 16-\/bit error codes. 
+
+These macros format and print log messages with error codes but do NOT perform EEPROM access. EEPROM writes must be done separately by calling EEPROM\+\_\+\+Append\+Event\+Log() with eeprom\+Mtx held. \Hypertarget{group__config04_ga8fec95976c50700c38dbdc5e2a5ab932}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERRORLOGGER@{ERRORLOGGER}}
+\index{ERRORLOGGER@{ERRORLOGGER}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{ERRORLOGGER}{ERRORLOGGER}}
+{\footnotesize\ttfamily \label{group__config04_ga8fec95976c50700c38dbdc5e2a5ab932} 
+\#define ERRORLOGGER~1}
+
+\Hypertarget{group__config04_gad2004b463e64ae6413248852d2c0f8b3}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!WARNING\_PRINT\_CODE@{WARNING\_PRINT\_CODE}}
+\index{WARNING\_PRINT\_CODE@{WARNING\_PRINT\_CODE}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{WARNING\_PRINT\_CODE}{WARNING\_PRINT\_CODE}}
+{\footnotesize\ttfamily \label{group__config04_gad2004b463e64ae6413248852d2c0f8b3} 
+\#define WARNING\+\_\+\+PRINT\+\_\+\+CODE(\begin{DoxyParamCaption}\item[{}]{code}{, }\item[{}]{fmt}{, }\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((void)0)}
+
+\end{DoxyCode}
+
+
+\label{doc-enum-members}
+\Hypertarget{group__config04_doc-enum-members}
+\doxysubsubsection{Enumeration Type Documentation}
+\Hypertarget{group__config04_ga8e48d8cd53b1718d1d4f1419b72e3d41}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!error\_severity\_t@{error\_severity\_t}}
+\index{error\_severity\_t@{error\_severity\_t}!4. Error Coding Configuration@{4. Error Coding Configuration}}
+\doxysubsubsubsection{\texorpdfstring{error\_severity\_t}{error\_severity\_t}}
+{\footnotesize\ttfamily \label{group__config04_ga8e48d8cd53b1718d1d4f1419b72e3d41} 
+enum \mbox{\hyperlink{group__config04_ga8e48d8cd53b1718d1d4f1419b72e3d41}{error\+\_\+severity\+\_\+t}}}
+
+
+
+Error severity levels for 16-\/bit error codes. 
+
+Severity occupies bits 11..8 of the error code. \begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ERR\_SEV\_INFO@{ERR\_SEV\_INFO}!4. Error Coding Configuration@{4. Error Coding Configuration}}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_SEV\_INFO@{ERR\_SEV\_INFO}}}\Hypertarget{group__config04_gga8e48d8cd53b1718d1d4f1419b72e3d41a805db7a2df0314826a7654be3ba24402}\label{group__config04_gga8e48d8cd53b1718d1d4f1419b72e3d41a805db7a2df0314826a7654be3ba24402} 
+ERR\+\_\+\+SEV\+\_\+\+INFO&Informational event (bits 11..8 = 0x1) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ERR\_SEV\_WARNING@{ERR\_SEV\_WARNING}!4. Error Coding Configuration@{4. Error Coding Configuration}}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_SEV\_WARNING@{ERR\_SEV\_WARNING}}}\Hypertarget{group__config04_gga8e48d8cd53b1718d1d4f1419b72e3d41a1f5f367f42f5b538f36b02a512882b77}\label{group__config04_gga8e48d8cd53b1718d1d4f1419b72e3d41a1f5f367f42f5b538f36b02a512882b77} 
+ERR\+\_\+\+SEV\+\_\+\+WARNING&Warning condition (bits 11..8 = 0x2) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ERR\_SEV\_ERROR@{ERR\_SEV\_ERROR}!4. Error Coding Configuration@{4. Error Coding Configuration}}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_SEV\_ERROR@{ERR\_SEV\_ERROR}}}\Hypertarget{group__config04_gga8e48d8cd53b1718d1d4f1419b72e3d41a3ba5b0701279ef186b78b42c2ad7a87c}\label{group__config04_gga8e48d8cd53b1718d1d4f1419b72e3d41a3ba5b0701279ef186b78b42c2ad7a87c} 
+ERR\+\_\+\+SEV\+\_\+\+ERROR&Error condition (bits 11..8 = 0x4) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ERR\_FATAL\_ERROR@{ERR\_FATAL\_ERROR}!4. Error Coding Configuration@{4. Error Coding Configuration}}\index{4. Error Coding Configuration@{4. Error Coding Configuration}!ERR\_FATAL\_ERROR@{ERR\_FATAL\_ERROR}}}\Hypertarget{group__config04_gga8e48d8cd53b1718d1d4f1419b72e3d41aaf0891fe33f6c79509f16c26af4d4b1a}\label{group__config04_gga8e48d8cd53b1718d1d4f1419b72e3d41aaf0891fe33f6c79509f16c26af4d4b1a} 
+ERR\+\_\+\+FATAL\+\_\+\+ERROR&Fatal error condition (bits 11..8 = 0xF) \\
+\hline
+
+\end{DoxyEnumFields}

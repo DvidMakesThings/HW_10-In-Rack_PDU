@@ -1,0 +1,385 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\+Net\+Task.c File Reference}
+\hypertarget{_net_task_8c}{}\label{_net_task_8c}\index{src/Software/ENERGIS\_RTOS/src/tasks/NetTask.c@{src/Software/ENERGIS\_RTOS/src/tasks/NetTask.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for Net\+Task.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_net_task_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_net_task_8c_ae88651eb8d8dddec13781febf7630d3b}{NET\+\_\+\+TASK\+\_\+\+TAG}}~"{}\mbox{[}NET\mbox{]}"{}
+\item 
+\#define \mbox{\hyperlink{_net_task_8c_a169ca1801ac94e6b7680372b5a32c070}{HTTP\+\_\+\+SOCKET\+\_\+\+NUM}}~(0u)
+\begin{DoxyCompactList}\small\item\em Socket index used by the HTTP server. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_net_task_8c_ace75fa37dde83fccf4155a3c2e4799ce}{SNMP\+\_\+\+SOCKET\+\_\+\+NUM}}~(1u)
+\begin{DoxyCompactList}\small\item\em Socket index used by the SNMP agent. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_net_task_8c_aeafe27d82bd2a5846d2f15ea5e6e6081}{TRAP\+\_\+\+SOCKET\+\_\+\+NUM}}~(2u)
+\begin{DoxyCompactList}\small\item\em Socket index used by the SNMP trap sender. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_net_task_8c_a4771679c4be78a9a52e2fddc6d719f96}{NET\+\_\+\+READY}}()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{_net_task_8c_abf152ab26c5e54083bf3850825e933f7}{wait\+\_\+for\+\_\+link\+\_\+up}} (uint32\+\_\+t timeout\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Wait until PHY link is up or timeout expires. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{_net_task_8c_ac076a1d5b76a8da4a222f9b53543a181}{net\+\_\+apply\+\_\+config\+\_\+and\+\_\+init}} (const \mbox{\hyperlink{structnetwork_info}{network\+Info}} \texorpdfstring{$\ast$}{*}ni)
+\begin{DoxyCompactList}\small\item\em Convert Storage\+Task \doxylink{structnetwork_info}{network\+Info} into driver configuration and init HW. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_net_task_8c_a76bdf14764cc2c6156cd241278735824}{net\+\_\+start\+\_\+services}} (void)
+\begin{DoxyCompactList}\small\item\em Start all IP-\/based services (HTTP server + SNMP agent). \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{_net_task_8c_a69d051e31c6438ed93d21deb141e4795}{net\+\_\+reinit\+\_\+from\+\_\+cache}} (void)
+\begin{DoxyCompactList}\small\item\em Reinitialize W5500 using cached network configuration on link-\/up. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_net_task_8c_a80f30ff31d5f0d4f6696af42d015bce6}{Net\+Task\+\_\+\+Function}} (void \texorpdfstring{$\ast$}{*}pv\+Parameters)
+\begin{DoxyCompactList}\small\item\em Network task main function. \end{DoxyCompactList}\item 
+Base\+Type\+\_\+t \mbox{\hyperlink{group__tasks07_ga3bb13f092e9d7a8e15776e5e8bf8e8c3}{Net\+Task\+\_\+\+Init}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Create and start the Network Task with a deterministic enable gate. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks07_gac238017e1130a6a762cf67cf3d8228e4}{Net\+\_\+\+Is\+Ready}} (void)
+\begin{DoxyCompactList}\small\item\em Network subsystem readiness query. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static Task\+Handle\+\_\+t \mbox{\hyperlink{_net_task_8c_ab99c23868f602c0868021ced9458caec}{net\+Task\+Handle}} = NULL
+\begin{DoxyCompactList}\small\item\em Handle to the network Free\+RTOS task. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structnetwork_info}{network\+Info}} \mbox{\hyperlink{_net_task_8c_a61f206e0704c2d5b2287d1df8903b3f5}{s\+\_\+net\+\_\+cfg}}
+\begin{DoxyCompactList}\small\item\em Cached network configuration for W5500 reinitialization. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{group__drivers03_gacef8050f9ef67107f3847653577da34f}{w5500\+\_\+\+Phy\+Link}} \mbox{\hyperlink{_net_task_8c_a3e90a05d6451fc35a3de76570544f671}{s\+\_\+last\+\_\+link}} = \mbox{\hyperlink{group__drivers03_ggacef8050f9ef67107f3847653577da34fae2760211c2bb5d3d92d4844e70659521}{PHY\+\_\+\+LINK\+\_\+\+OFF}}
+\begin{DoxyCompactList}\small\item\em Last observed PHY link status. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{_net_task_8c_afb0bf580ce239c74cf9ce9a8af063b4c}{s\+\_\+eth\+\_\+led\+\_\+blink}} = false
+\begin{DoxyCompactList}\small\item\em Flag indicating whether ETH LED should blink (link down). \end{DoxyCompactList}\item 
+static uint32\+\_\+t \mbox{\hyperlink{_net_task_8c_ad8970c22f0b84c57f9abbfb7b4ad6160}{s\+\_\+eth\+\_\+led\+\_\+blink\+\_\+last\+\_\+ms}} = 0
+\begin{DoxyCompactList}\small\item\em Timestamp of last ETH LED toggle for blinking (ms since boot). \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{_net_task_8c_a2078367663c2dd0632223fe9951491a5}{s\+\_\+eth\+\_\+led\+\_\+state}} = false
+\begin{DoxyCompactList}\small\item\em Current software state of ETH LED (true = ON, false = OFF). \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{group__misc3_gacd64982bf58e213a07ae1fe0f2235cb9}{power\+\_\+state\+\_\+t}} \mbox{\hyperlink{_net_task_8c_ae82abc838d223e06f01d2be78570be33}{s\+\_\+last\+\_\+power\+\_\+state}} = \mbox{\hyperlink{group__misc3_ggacd64982bf58e213a07ae1fe0f2235cb9a63a8aa4bf635f74171bbfe8f145dd1cf}{PWR\+\_\+\+STATE\+\_\+\+RUN}}
+\begin{DoxyCompactList}\small\item\em Last observed power state for transition detection. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+3.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/17
+\end{DoxyDate}
+Net\+Task owns all W5500 operations. It waits for Storage\+Task to signal that configuration is ready, reads the network config, brings up the W5500, then runs the web server loop.
+
+The task is explicitly robust against missing or interrupted Ethernet link\+:
+\begin{DoxyItemize}
+\item If the PDU boots without a cable, the rest of the system still runs.
+\item ETH LED blinks while there is no PHY link.
+\item On each link-\/up transition, the W5500 is fully reinitialized and all IP-\/based services (HTTP + SNMP) are restarted to avoid ERR\+\_\+\+CONNECTION\+\_\+\+REFUSED.
+\end{DoxyItemize}
+
+Standby mode support\+:
+\begin{DoxyItemize}
+\item When system enters STANDBY mode (via \doxylink{group__misc3_ga40de5935f9ba85f9141a9243b4d02c87}{Power\+\_\+\+Enter\+Standby()}), Net\+Task stops all W5500 access, HTTP, and SNMP processing.
+\item The W5500 is held in hardware reset by \doxylink{group__misc3_ga40de5935f9ba85f9141a9243b4d02c87}{Power\+\_\+\+Enter\+Standby()}.
+\item Net\+Task continues running but only feeds heartbeat and delays.
+\item On exit from STANDBY (via \doxylink{group__misc3_gafa726e9d0fc140faa3f54c6905ac2520}{Power\+\_\+\+Exit\+Standby()}), Net\+Task detects the state transition and calls \doxylink{_net_task_8c_a69d051e31c6438ed93d21deb141e4795}{net\+\_\+reinit\+\_\+from\+\_\+cache()} to restore network.
+\end{DoxyItemize}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{_net_task_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_net_task_8c_a169ca1801ac94e6b7680372b5a32c070}\index{NetTask.c@{NetTask.c}!HTTP\_SOCKET\_NUM@{HTTP\_SOCKET\_NUM}}
+\index{HTTP\_SOCKET\_NUM@{HTTP\_SOCKET\_NUM}!NetTask.c@{NetTask.c}}
+\doxysubsubsection{\texorpdfstring{HTTP\_SOCKET\_NUM}{HTTP\_SOCKET\_NUM}}
+{\footnotesize\ttfamily \label{_net_task_8c_a169ca1801ac94e6b7680372b5a32c070} 
+\#define HTTP\+\_\+\+SOCKET\+\_\+\+NUM~(0u)}
+
+
+
+Socket index used by the HTTP server. 
+
+\Hypertarget{_net_task_8c_a4771679c4be78a9a52e2fddc6d719f96}\index{NetTask.c@{NetTask.c}!NET\_READY@{NET\_READY}}
+\index{NET\_READY@{NET\_READY}!NetTask.c@{NetTask.c}}
+\doxysubsubsection{\texorpdfstring{NET\_READY}{NET\_READY}}
+{\footnotesize\ttfamily \label{_net_task_8c_a4771679c4be78a9a52e2fddc6d719f96} 
+\#define NET\+\_\+\+READY(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(ready\_val)}
+
+\end{DoxyCode}
+\Hypertarget{_net_task_8c_ae88651eb8d8dddec13781febf7630d3b}\index{NetTask.c@{NetTask.c}!NET\_TASK\_TAG@{NET\_TASK\_TAG}}
+\index{NET\_TASK\_TAG@{NET\_TASK\_TAG}!NetTask.c@{NetTask.c}}
+\doxysubsubsection{\texorpdfstring{NET\_TASK\_TAG}{NET\_TASK\_TAG}}
+{\footnotesize\ttfamily \label{_net_task_8c_ae88651eb8d8dddec13781febf7630d3b} 
+\#define NET\+\_\+\+TASK\+\_\+\+TAG~"{}\mbox{[}NET\mbox{]}"{}}
+
+\Hypertarget{_net_task_8c_ace75fa37dde83fccf4155a3c2e4799ce}\index{NetTask.c@{NetTask.c}!SNMP\_SOCKET\_NUM@{SNMP\_SOCKET\_NUM}}
+\index{SNMP\_SOCKET\_NUM@{SNMP\_SOCKET\_NUM}!NetTask.c@{NetTask.c}}
+\doxysubsubsection{\texorpdfstring{SNMP\_SOCKET\_NUM}{SNMP\_SOCKET\_NUM}}
+{\footnotesize\ttfamily \label{_net_task_8c_ace75fa37dde83fccf4155a3c2e4799ce} 
+\#define SNMP\+\_\+\+SOCKET\+\_\+\+NUM~(1u)}
+
+
+
+Socket index used by the SNMP agent. 
+
+\Hypertarget{_net_task_8c_aeafe27d82bd2a5846d2f15ea5e6e6081}\index{NetTask.c@{NetTask.c}!TRAP\_SOCKET\_NUM@{TRAP\_SOCKET\_NUM}}
+\index{TRAP\_SOCKET\_NUM@{TRAP\_SOCKET\_NUM}!NetTask.c@{NetTask.c}}
+\doxysubsubsection{\texorpdfstring{TRAP\_SOCKET\_NUM}{TRAP\_SOCKET\_NUM}}
+{\footnotesize\ttfamily \label{_net_task_8c_aeafe27d82bd2a5846d2f15ea5e6e6081} 
+\#define TRAP\+\_\+\+SOCKET\+\_\+\+NUM~(2u)}
+
+
+
+Socket index used by the SNMP trap sender. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{_net_task_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_net_task_8c_ac076a1d5b76a8da4a222f9b53543a181}\index{NetTask.c@{NetTask.c}!net\_apply\_config\_and\_init@{net\_apply\_config\_and\_init}}
+\index{net\_apply\_config\_and\_init@{net\_apply\_config\_and\_init}!NetTask.c@{NetTask.c}}
+\doxysubsubsection{\texorpdfstring{net\_apply\_config\_and\_init()}{net\_apply\_config\_and\_init()}}
+{\footnotesize\ttfamily \label{_net_task_8c_ac076a1d5b76a8da4a222f9b53543a181} 
+bool net\+\_\+apply\+\_\+config\+\_\+and\+\_\+init (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structnetwork_info}{network\+Info}} \texorpdfstring{$\ast$}{*}}]{ni}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Convert Storage\+Task \doxylink{structnetwork_info}{network\+Info} into driver configuration and init HW. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ni} & Pointer to \doxylink{structnetwork_info}{network\+Info} loaded from EEPROM or defaults. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success, false on unrecoverable hardware failure.
+\end{DoxyReturn}
+This helper applies IP, subnet, gateway, DNS, MAC and DHCP/static mode into the W5500 driver and performs the low-\/level hardware bring-\/up.
+
+Link presence is {\itshape not} treated as fatal\+:
+\begin{DoxyItemize}
+\item If W5500 hardware init fails, the function returns false and Net\+Task enters a safe loop.
+\item If network application (ethernet\+\_\+apply\+\_\+network\+\_\+from\+\_\+storage) fails due to missing PHY link, the error is logged but the function still returns true so the rest of the PDU can operate without Ethernet. 
+\end{DoxyItemize}Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_net_task_8c_ac076a1d5b76a8da4a222f9b53543a181_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_net_task_8c_ac076a1d5b76a8da4a222f9b53543a181_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_net_task_8c_a69d051e31c6438ed93d21deb141e4795}\index{NetTask.c@{NetTask.c}!net\_reinit\_from\_cache@{net\_reinit\_from\_cache}}
+\index{net\_reinit\_from\_cache@{net\_reinit\_from\_cache}!NetTask.c@{NetTask.c}}
+\doxysubsubsection{\texorpdfstring{net\_reinit\_from\_cache()}{net\_reinit\_from\_cache()}}
+{\footnotesize\ttfamily \label{_net_task_8c_a69d051e31c6438ed93d21deb141e4795} 
+bool net\+\_\+reinit\+\_\+from\+\_\+cache (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Reinitialize W5500 using cached network configuration on link-\/up. 
+
+\begin{DoxyReturn}{Returns}
+true on success, false on failure.
+\end{DoxyReturn}
+Triggered when a PHY link-\/up event is detected. Performs a software reset of the W5500, waits briefly for link confirmation, reapplies the cached network configuration and restarts all IP-\/based services.
+
+This guarantees a clean link, socket and server state after any interruption, preventing ERR\+\_\+\+CONNECTION\+\_\+\+REFUSED when the cable is unplugged and replugged. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_net_task_8c_a69d051e31c6438ed93d21deb141e4795_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_net_task_8c_a69d051e31c6438ed93d21deb141e4795_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_net_task_8c_a76bdf14764cc2c6156cd241278735824}\index{NetTask.c@{NetTask.c}!net\_start\_services@{net\_start\_services}}
+\index{net\_start\_services@{net\_start\_services}!NetTask.c@{NetTask.c}}
+\doxysubsubsection{\texorpdfstring{net\_start\_services()}{net\_start\_services()}}
+{\footnotesize\ttfamily \label{_net_task_8c_a76bdf14764cc2c6156cd241278735824} 
+void net\+\_\+start\+\_\+services (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Start all IP-\/based services (HTTP server + SNMP agent). 
+
+\begin{DoxyReturn}{Returns}
+None.
+\end{DoxyReturn}
+This function (re)opens all sockets on the W5500 side by calling the HTTP server and SNMP initialization entry points. It is safe to call after a chip reset and is used both at initial bring-\/up and after each link-\/up-\/triggered reinitialization. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_net_task_8c_a76bdf14764cc2c6156cd241278735824_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_net_task_8c_a76bdf14764cc2c6156cd241278735824_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_net_task_8c_a80f30ff31d5f0d4f6696af42d015bce6}\index{NetTask.c@{NetTask.c}!NetTask\_Function@{NetTask\_Function}}
+\index{NetTask\_Function@{NetTask\_Function}!NetTask.c@{NetTask.c}}
+\doxysubsubsection{\texorpdfstring{NetTask\_Function()}{NetTask\_Function()}}
+{\footnotesize\ttfamily \label{_net_task_8c_a80f30ff31d5f0d4f6696af42d015bce6} 
+void Net\+Task\+\_\+\+Function (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Parameters}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Network task main function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & Unused. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None (task function never returns).
+\end{DoxyReturn}
+Boot sequence\+: 1) Wait for Storage\+Task to signal CFG\+\_\+\+READY. 2) Fetch \doxylink{structnetwork_info}{network\+Info} via storage\+\_\+get\+\_\+network and cache it in s\+\_\+net\+\_\+cfg. 3) Bring up W5500 with that config (independent of link presence). 4) Start HTTP server and SNMP agent. 5) Run service loop with\+:
+\begin{DoxyItemize}
+\item Power state supervision (detect STANDBY mode).
+\item Link supervision (detect plug/unplug).
+\item ETH LED control (steady ON when linked, blinking when no link).
+\item Full W5500 + service reinitialization on each link-\/up event.
+\item HTTP + SNMP processing with health monitoring.
+\item In STANDBY\+: skip all W5500/\+HTTP/\+SNMP operations, only heartbeat. 
+\end{DoxyItemize}Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_net_task_8c_a80f30ff31d5f0d4f6696af42d015bce6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_net_task_8c_a80f30ff31d5f0d4f6696af42d015bce6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_net_task_8c_abf152ab26c5e54083bf3850825e933f7}\index{NetTask.c@{NetTask.c}!wait\_for\_link\_up@{wait\_for\_link\_up}}
+\index{wait\_for\_link\_up@{wait\_for\_link\_up}!NetTask.c@{NetTask.c}}
+\doxysubsubsection{\texorpdfstring{wait\_for\_link\_up()}{wait\_for\_link\_up()}}
+{\footnotesize\ttfamily \label{_net_task_8c_abf152ab26c5e54083bf3850825e933f7} 
+bool wait\+\_\+for\+\_\+link\+\_\+up (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{timeout\+\_\+ms}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Wait until PHY link is up or timeout expires. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em timeout\+\_\+ms} & Timeout in milliseconds. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if link is up before timeout, false if timeout occurred.
+\end{DoxyReturn}
+Polls the W5500 PHY link status at 100 ms cadence, feeding Net\+Task\textquotesingle{}s health heartbeat while waiting. Intended for short guards around reinit, not long blocking waits. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_net_task_8c_abf152ab26c5e54083bf3850825e933f7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_net_task_8c_abf152ab26c5e54083bf3850825e933f7_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{_net_task_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{_net_task_8c_ab99c23868f602c0868021ced9458caec}\index{NetTask.c@{NetTask.c}!netTaskHandle@{netTaskHandle}}
+\index{netTaskHandle@{netTaskHandle}!NetTask.c@{NetTask.c}}
+\doxysubsubsection{\texorpdfstring{netTaskHandle}{netTaskHandle}}
+{\footnotesize\ttfamily \label{_net_task_8c_ab99c23868f602c0868021ced9458caec} 
+Task\+Handle\+\_\+t net\+Task\+Handle = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handle to the network Free\+RTOS task. 
+
+\Hypertarget{_net_task_8c_afb0bf580ce239c74cf9ce9a8af063b4c}\index{NetTask.c@{NetTask.c}!s\_eth\_led\_blink@{s\_eth\_led\_blink}}
+\index{s\_eth\_led\_blink@{s\_eth\_led\_blink}!NetTask.c@{NetTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_eth\_led\_blink}{s\_eth\_led\_blink}}
+{\footnotesize\ttfamily \label{_net_task_8c_afb0bf580ce239c74cf9ce9a8af063b4c} 
+bool s\+\_\+eth\+\_\+led\+\_\+blink = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Flag indicating whether ETH LED should blink (link down). 
+
+When true, Net\+Task toggles ETH LED at a fixed rate while no PHY link is present. When false, ETH LED is driven solid according to s\+\_\+eth\+\_\+led\+\_\+state. \Hypertarget{_net_task_8c_ad8970c22f0b84c57f9abbfb7b4ad6160}\index{NetTask.c@{NetTask.c}!s\_eth\_led\_blink\_last\_ms@{s\_eth\_led\_blink\_last\_ms}}
+\index{s\_eth\_led\_blink\_last\_ms@{s\_eth\_led\_blink\_last\_ms}!NetTask.c@{NetTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_eth\_led\_blink\_last\_ms}{s\_eth\_led\_blink\_last\_ms}}
+{\footnotesize\ttfamily \label{_net_task_8c_ad8970c22f0b84c57f9abbfb7b4ad6160} 
+uint32\+\_\+t s\+\_\+eth\+\_\+led\+\_\+blink\+\_\+last\+\_\+ms = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Timestamp of last ETH LED toggle for blinking (ms since boot). 
+
+\Hypertarget{_net_task_8c_a2078367663c2dd0632223fe9951491a5}\index{NetTask.c@{NetTask.c}!s\_eth\_led\_state@{s\_eth\_led\_state}}
+\index{s\_eth\_led\_state@{s\_eth\_led\_state}!NetTask.c@{NetTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_eth\_led\_state}{s\_eth\_led\_state}}
+{\footnotesize\ttfamily \label{_net_task_8c_a2078367663c2dd0632223fe9951491a5} 
+bool s\+\_\+eth\+\_\+led\+\_\+state = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Current software state of ETH LED (true = ON, false = OFF). 
+
+\Hypertarget{_net_task_8c_a3e90a05d6451fc35a3de76570544f671}\index{NetTask.c@{NetTask.c}!s\_last\_link@{s\_last\_link}}
+\index{s\_last\_link@{s\_last\_link}!NetTask.c@{NetTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_last\_link}{s\_last\_link}}
+{\footnotesize\ttfamily \label{_net_task_8c_a3e90a05d6451fc35a3de76570544f671} 
+\mbox{\hyperlink{group__drivers03_gacef8050f9ef67107f3847653577da34f}{w5500\+\_\+\+Phy\+Link}} s\+\_\+last\+\_\+link = \mbox{\hyperlink{group__drivers03_ggacef8050f9ef67107f3847653577da34fae2760211c2bb5d3d92d4844e70659521}{PHY\+\_\+\+LINK\+\_\+\+OFF}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Last observed PHY link status. 
+
+Used to detect link-\/up and link-\/down transitions; changes in this value drive ETH LED mode and W5500 reinitialization. \Hypertarget{_net_task_8c_ae82abc838d223e06f01d2be78570be33}\index{NetTask.c@{NetTask.c}!s\_last\_power\_state@{s\_last\_power\_state}}
+\index{s\_last\_power\_state@{s\_last\_power\_state}!NetTask.c@{NetTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_last\_power\_state}{s\_last\_power\_state}}
+{\footnotesize\ttfamily \label{_net_task_8c_ae82abc838d223e06f01d2be78570be33} 
+\mbox{\hyperlink{group__misc3_gacd64982bf58e213a07ae1fe0f2235cb9}{power\+\_\+state\+\_\+t}} s\+\_\+last\+\_\+power\+\_\+state = \mbox{\hyperlink{group__misc3_ggacd64982bf58e213a07ae1fe0f2235cb9a63a8aa4bf635f74171bbfe8f145dd1cf}{PWR\+\_\+\+STATE\+\_\+\+RUN}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Last observed power state for transition detection. 
+
+\Hypertarget{_net_task_8c_a61f206e0704c2d5b2287d1df8903b3f5}\index{NetTask.c@{NetTask.c}!s\_net\_cfg@{s\_net\_cfg}}
+\index{s\_net\_cfg@{s\_net\_cfg}!NetTask.c@{NetTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_net\_cfg}{s\_net\_cfg}}
+{\footnotesize\ttfamily \label{_net_task_8c_a61f206e0704c2d5b2287d1df8903b3f5} 
+\mbox{\hyperlink{structnetwork_info}{network\+Info}} s\+\_\+net\+\_\+cfg\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Cached network configuration for W5500 reinitialization. 
+
+Once Storage\+Task provides the persistent network configuration, it is stored in this global so that any later PHY link-\/up event can trigger a full W5500 reconfiguration without re-\/querying Storage\+Task. 

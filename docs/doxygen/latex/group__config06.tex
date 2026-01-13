@@ -1,0 +1,566 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item EEPROM Memory Map 
+\end{DoxyEnumerate}}
+\hypertarget{group__config06}{}\label{group__config06}\index{6. EEPROM Memory Map@{6. EEPROM Memory Map}}
+
+
+EEPROM Memory Layout and Data Structures.  
+
+
+Collaboration diagram for 6. EEPROM Memory Map\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{group__config06}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__config06_ga509450ef64eb0c83902d8bf0cf66a498}{network\+Info\+::mac}} \mbox{[}6\mbox{]}
+\item 
+char \mbox{\hyperlink{group__config06_ga9d2b9acc4ecae77e01440a5143a61446}{user\+Pref\+Info\+::device\+\_\+name}} \mbox{[}32\mbox{]}
+\item 
+float \mbox{\hyperlink{group__config06_ga9f32a01fdc7a70ae83fc9d2ec9a57116}{hlw\+\_\+calib\+\_\+t\+::voltage\+\_\+factor}}
+\item 
+\mbox{\hyperlink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t}} \mbox{\hyperlink{group__config06_ga8aee9e38a38b5a84c448b3fa64b1b86d}{hlw\+\_\+calib\+\_\+data\+\_\+t\+::channels}} \mbox{[}8\mbox{]}
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{System Info Block}
+Firmware version identification and system metadata storage.
+
+Stores the firmware version string at the beginning of EEPROM for easy identification. The version string is read from SWVERSION compile-\/time constant and written during factory defaults initialization. Used for firmware update validation and diagnostics.
+
+Contents\+:
+\begin{DoxyItemize}
+\item Firmware version string (SWVERSION from \doxylink{_c_o_n_f_i_g_8h}{config.\+h})
+\item Format\+: Null-\/terminated ASCII string
+\item Example\+: "{}\+ENERGIS\+\_\+v2.\+1.\+0\+\_\+2025-\/12-\/14"{}
+\item Updated\+: During firmware updates or factory reset
+\end{DoxyItemize}
+
+Access Pattern\+:
+\begin{DoxyItemize}
+\item Written\+: Factory defaults, firmware update
+\item Read\+: Boot diagnostics, web interface, SNMP sys\+Descr
+\item Frequency\+: Write once per firmware update, read on boot 
+\end{DoxyItemize}\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config06_ga1504cb0ffe3e86d5878f0603980a2831}{EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+START}}~0x0000
+\item 
+\#define \mbox{\hyperlink{group__config06_ga87e6567c8befdab78603e65a617e9b9d}{EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+SIZE}}~0x0030
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Device Identity Block}
+Unique device identification and region configuration storage.
+
+Stores device-\/specific parameters that uniquely identify each PDU unit and determine its operational region (EU/\+US). This block resides within the system info region but is managed separately via UART provisioning commands.
+
+Structure Layout (19 bytes total)\+:
+\begin{DoxyItemize}
+\item Offset 0x00\+: Serial number (16 bytes, null-\/terminated string)
+\item Offset 0x10\+: Region code (1 byte, DEVICE\+\_\+\+REGION\+\_\+\+EU or DEVICE\+\_\+\+REGION\+\_\+\+US)
+\item Offset 0x11\+: CRC-\/8 checksum (1 byte, validates serial + region)
+\item Offset 0x12\+: Reserved padding (1 byte, for alignment)
+\end{DoxyItemize}
+
+Serial Number Format\+:
+\begin{DoxyItemize}
+\item Up to 15 ASCII characters + null terminator
+\item Typically\+: "{}\+ENR"{} + year + production sequence
+\item Example\+: "{}\+ENR2025\+A001234"{}
+\item Must be unique per device for MAC address derivation
+\end{DoxyItemize}
+
+Region Codes\+:
+\begin{DoxyItemize}
+\item DEVICE\+\_\+\+REGION\+\_\+\+EU (0x45, \textquotesingle{}E\textquotesingle{})\+: 10A current limit (IEC/\+ENEC)
+\item DEVICE\+\_\+\+REGION\+\_\+\+US (0x55, \textquotesingle{}U\textquotesingle{})\+: 15A current limit (UL/\+CSA)
+\item DEVICE\+\_\+\+REGION\+\_\+\+UNKNOWN (0x00)\+: Unprovisioned device
+\end{DoxyItemize}
+
+Provisioning Workflow\+:
+\begin{DoxyEnumerate}
+\item Device ships with placeholder "{}\+UNPROVISIONED"{} serial
+\item Factory uses UART commands to unlock provisioning window
+\item Serial number and region written via PROV commands
+\item CRC-\/8 calculated and stored for validation
+\item MAC address automatically derived from new serial
+\end{DoxyEnumerate}
+
+CRC Validation\+:
+\begin{DoxyItemize}
+\item Polynomial\+: 0x07 (via calculate\+\_\+crc8)
+\item Input\+: Serial number (16 bytes) + Region (1 byte)
+\item Stored at offset 0x11
+\item Validated on boot and before MAC generation
+\end{DoxyItemize}
+
+Integration\+:
+\begin{DoxyItemize}
+\item MAC address generation\+: Uses FNV-\/1a hash of serial number
+\item Overcurrent protection\+: Region determines current limit
+\item Web interface\+: Displays serial number for identification
+\item SNMP\+: Serial exposed via custom OID 
+\end{DoxyItemize}\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config06_ga0b0b03d61ed2b7c416e0e8665598eb3f}{EEPROM\+\_\+\+DEVICE\+\_\+\+IDENTITY\+\_\+\+START}}~0x0030
+\item 
+\#define \mbox{\hyperlink{group__config06_ga226676d435b8ea7dc26213a892abc464}{EEPROM\+\_\+\+DEVICE\+\_\+\+IDENTITY\+\_\+\+SIZE}}~    0x0013
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Factory Defaults Block (Reserved)}
+Reserved region for future factory configuration data.
+
+This 256-\/byte region is allocated but currently unused. Reserved for future expansion of factory-\/specific data that should not be user-\/modifiable.
+
+Intended Future Use\+:
+\begin{DoxyItemize}
+\item Manufacturing test results and QA data
+\item Hardware revision and BOM variant identifiers
+\item Factory calibration certificates
+\item Production date and facility codes
+\item Tamper-\/evident checksums
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Currently not used by any module. 
+
+Write access reserved for factory provisioning tools. 
+
+User firmware should treat this region as read-\/only. 
+\end{DoxyNote}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config06_ga24bf72707e45e45ffa416fc603071e70}{EEPROM\+\_\+\+FACTORY\+\_\+\+DEFAULTS\+\_\+\+START}}~0x0100
+\item 
+\#define \mbox{\hyperlink{group__config06_gad4fd93ca413ff5525f791fcf177ee978}{EEPROM\+\_\+\+FACTORY\+\_\+\+DEFAULTS\+\_\+\+SIZE}}~0x0100
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{User Output Presets Block}
+User-\/configurable relay configuration presets with apply-\/on-\/startup feature.
+
+Allows users to save up to 5 named relay configurations for quick recall. One preset can be designated to apply automatically on device startup. Includes header with magic value and CRC16 for data integrity.
+
+Structure Layout (256 bytes total)\+:
+\begin{DoxyItemize}
+\item Header (4 bytes)\+:
+\begin{DoxyItemize}
+\item Magic byte (0x\+C5)\+: Data validity marker
+\item Startup preset ID (0-\/4 or 0x\+FF for none)
+\item Reserved (2 bytes)\+: Future expansion
+\end{DoxyItemize}
+\item Presets array (140 bytes = 5 × 28 bytes)\+:
+\begin{DoxyItemize}
+\item Each preset\+: Name (26 bytes) + Relay mask (1 byte) + Valid flag (1 byte)
+\end{DoxyItemize}
+\item CRC16 (2 bytes)\+: Checksum over header + presets (144 bytes)
+\end{DoxyItemize}
+
+Preset Structure (28 bytes each)\+:
+\begin{DoxyItemize}
+\item Name\+: 25-\/character null-\/terminated string
+\item Null terminator\+: Byte 26
+\item Relay mask\+: 8-\/bit mask (bit N = channel N state, 1=ON 0=OFF)
+\item Valid flag\+: 0x\+A5 if preset used, else empty slot
+\end{DoxyItemize}
+
+Apply-\/on-\/\+Startup Feature\+:
+\begin{DoxyItemize}
+\item Startup preset ID specifies which preset to apply after boot
+\item Value 0-\/4\+: Apply corresponding preset
+\item Value 0x\+FF\+: No automatic application (use last saved states)
+\item Applied before normal operation begins
+\end{DoxyItemize}
+
+Access Pattern\+:
+\begin{DoxyItemize}
+\item Written\+: Web interface preset save/delete, console commands
+\item Read\+: Boot time (apply-\/on-\/startup), web interface preset list
+\item Frequency\+: Occasional user configuration changes 
+\end{DoxyItemize}\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config06_ga5a5d270e769e9440f8136fb39602e167}{EEPROM\+\_\+\+USER\+\_\+\+OUTPUT\+\_\+\+START}}~0x0200
+\item 
+\#define \mbox{\hyperlink{group__config06_gac0ede4ad8ea0b7b3abd06f025be9eaf6}{EEPROM\+\_\+\+USER\+\_\+\+OUTPUT\+\_\+\+SIZE}}~0x0100
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Legacy Relay Power-\/\+On States}
+Backward compatibility storage for older firmware versions.
+
+8-\/byte array storing per-\/channel power-\/on states for compatibility with firmware versions prior to preset implementation. Located at tail of user output region to avoid conflict with preset structure.
+
+Structure Layout (8 bytes)\+:
+\begin{DoxyItemize}
+\item Byte 0-\/7\+: Power-\/on state for channels 0-\/7 (0=OFF, 1=ON)
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Deprecated\+: New firmware uses preset system. 
+
+Location chosen to avoid overlap with preset structure. 
+
+Read during firmware migration for preset conversion. 
+\end{DoxyNote}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config06_ga9a68d3553d94287fd761df12d8091962}{EEPROM\+\_\+\+RELAY\+\_\+\+STATES\+\_\+\+START}}~0x02\+F0
+\item 
+\#define \mbox{\hyperlink{group__config06_ga4a0b5e7999add681533fd38f2d8c3896}{EEPROM\+\_\+\+RELAY\+\_\+\+STATES\+\_\+\+SIZE}}~0x0008
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+EEPROM Memory Layout and Data Structures. 
+
+\begin{DoxyVersion}{Version}
+2.\+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/12-\/14
+\end{DoxyDate}
+This file serves as the single authoritative source for all EEPROM memory layout definitions, address assignments, and data structures. It provides a centralized memory map for the CAT24\+C256 32KB I2C EEPROM used in the ENERGIS PDU system.
+
+Key Features\+:
+\begin{DoxyItemize}
+\item Single source of truth for all EEPROM addresses
+\item Hierarchical memory block organization
+\item Data structure definitions for all EEPROM regions
+\item Constants for network, calibration, and logging parameters
+\item Version tracking for memory map evolution
+\end{DoxyItemize}
+
+Design Principles\+:
+\begin{DoxyItemize}
+\item NO MODULE may define EEPROM addresses locally
+\item ALL address definitions MUST be in this file
+\item Memory regions allocated with gaps for future expansion
+\item Page alignment considerations for CAT24\+C256 (64-\/byte pages)
+\item Ring buffer regions include pointer storage
+\item CRC validation integrated into critical sections
+\end{DoxyItemize}
+
+EEPROM Hardware Specifications\+:
+\begin{DoxyItemize}
+\item Device\+: CAT24\+C256 (Microchip/\+On Semi)
+\item Capacity\+: 32KB (32,768 bytes)
+\item Address range\+: 0x0000 -\/ 0x7\+FFF
+\item Page size\+: 64 bytes
+\item Write cycle time\+: 5ms typical
+\item Endurance\+: 1,000,000 write cycles
+\item Data retention\+: 200 years
+\item I2C address\+: Configurable via A0-\/\+A2 pins
+\end{DoxyItemize}
+
+Memory Map Visual Overview\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{┌─────────────────────────────────────────────────────────────────┐}
+\DoxyCodeLine{│\ 0x0000\ -\/\ 0x002F\ \ System\ Info\ (48\ bytes)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Firmware\ version\ \textcolor{keywordtype}{string}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{├─────────────────────────────────────────────────────────────────┤}
+\DoxyCodeLine{│\ 0x0030\ -\/\ 0x0042\ \ Device\ Identity\ (19\ bytes,\ within\ sys\ info)\ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial\ number\ (16)\ +\ Region\ (1)\ +\ CRC\ (1)\ +1\ \ \ │}
+\DoxyCodeLine{├─────────────────────────────────────────────────────────────────┤}
+\DoxyCodeLine{│\ 0x0043\ -\/\ 0x00FF\ \ [Gap\ \textcolor{keywordflow}{for}\ System\ Info\ expansion]\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{├─────────────────────────────────────────────────────────────────┤}
+\DoxyCodeLine{│\ 0x0100\ -\/\ 0x01FF\ \ Factory\ Defaults\ (256\ bytes,\ reserved)\ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{├─────────────────────────────────────────────────────────────────┤}
+\DoxyCodeLine{│\ 0x0200\ -\/\ 0x02EF\ \ User\ Output\ Presets\ (240\ bytes)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 5\ presets\ ×\ 28\ bytes\ +\ header\ +\ CRC16\ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{├─────────────────────────────────────────────────────────────────┤}
+\DoxyCodeLine{│\ 0x02F0\ -\/\ 0x02F7\ \ Legacy\ Relay\ States\ (8\ bytes)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{├─────────────────────────────────────────────────────────────────┤}
+\DoxyCodeLine{│\ 0x02F8\ -\/\ 0x02FF\ \ [Gap\ \textcolor{keywordflow}{for}\ User\ Output\ expansion]\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{├─────────────────────────────────────────────────────────────────┤}
+\DoxyCodeLine{│\ 0x0300\ -\/\ 0x031F\ \ User\ Network\ (32\ bytes)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MAC(6)\ +\ IP(4)\ +\ Subnet(4)\ +\ GW(4)\ +\ DNS(4)\ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ DHCP(1)\ +\ CRC8(1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{├─────────────────────────────────────────────────────────────────┤}
+\DoxyCodeLine{│\ 0x0320\ -\/\ 0x03FF\ \ [Gap\ for\ Network\ expansion]\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{├─────────────────────────────────────────────────────────────────┤}
+\DoxyCodeLine{│\ 0x0400\ -\/\ 0x054F\ \ Sensor\ Calibration\ (336\ bytes)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 8\ channels\ ×\ \mbox{\hyperlink{structhlw__calib__t}{hlw\_calib\_t}}\ (41\ bytes)\ +\ CRC\ \ \ \ \ \ │}
+\DoxyCodeLine{├─────────────────────────────────────────────────────────────────┤}
+\DoxyCodeLine{│\ 0x0550\ -\/\ 0x07FF\ \ [Gap\ for\ Sensor\ expansion]\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{├─────────────────────────────────────────────────────────────────┤}
+\DoxyCodeLine{│\ 0x0800\ -\/\ 0x084F\ \ Temperature\ Calibration\ (80\ bytes)\ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtemp__calib__t}{temp\_calib\_t}}\ with\ magic\ +\ version\ +\ CRC32\ \ \ \ \ \ │}
+\DoxyCodeLine{├─────────────────────────────────────────────────────────────────┤}
+\DoxyCodeLine{│\ 0x0850\ -\/\ 0x14FF\ \ [Gap\ for\ Calibration\ expansion]\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{├─────────────────────────────────────────────────────────────────┤}
+\DoxyCodeLine{│\ 0x1500\ -\/\ 0x15FF\ \ Energy\ Monitoring\ (256\ bytes)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Ring\ buffer:\ Pointer(2)\ +\ Records(254)\ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{├─────────────────────────────────────────────────────────────────┤}
+\DoxyCodeLine{│\ 0x1600\ -\/\ 0x17FF\ \ Error\ Event\ Log\ (512\ bytes)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Ring\ buffer:\ Pointer(2)\ +\ Entries(510)\ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{├─────────────────────────────────────────────────────────────────┤}
+\DoxyCodeLine{│\ 0x1800\ -\/\ 0x19FF\ \ Warning\ Event\ Log\ (512\ bytes)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Ring\ buffer:\ Pointer(2)\ +\ Entries(510)\ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{├─────────────────────────────────────────────────────────────────┤}
+\DoxyCodeLine{│\ 0x1A00\ -\/\ 0x1BFF\ \ Channel\ Labels\ (512\ bytes)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 8\ channels\ ×\ 64\ bytes\ per\ label\ slot\ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{├─────────────────────────────────────────────────────────────────┤}
+\DoxyCodeLine{│\ 0x1C00\ -\/\ 0x1FFF\ \ [Gap\ for\ Logging/Labels\ expansion]\ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{├─────────────────────────────────────────────────────────────────┤}
+\DoxyCodeLine{│\ 0x2000\ -\/\ 0x21FF\ \ User\ Preferences\ (512\ bytes)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Device\ name(32)\ +\ Location(32)\ +\ Unit(1)\ +CRC\ \ │}
+\DoxyCodeLine{├─────────────────────────────────────────────────────────────────┤}
+\DoxyCodeLine{│\ 0x2200\ -\/\ 0x7FFD\ \ [Reserved\ for\ Future\ Use]\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{├─────────────────────────────────────────────────────────────────┤}
+\DoxyCodeLine{│\ 0x7FFE\ -\/\ 0x7FFF\ \ Magic\ Value\ (2\ bytes)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0xA55A\ indicates\ factory\ init\ complete\ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{└─────────────────────────────────────────────────────────────────┘}
+\DoxyCodeLine{Total\ Used:\ \string~9KB\ /\ 32KB\ (72\%\ available\ for\ expansion)}
+
+\end{DoxyCode}
+
+
+Memory Region Details\+:
+
+
+\begin{DoxyEnumerate}
+\item System Info (0x0000-\/0x002F, 48 bytes)\+:
+\begin{DoxyItemize}
+\item Purpose\+: Firmware version identification
+\item Contents\+: SWVERSION string from \doxylink{_c_o_n_f_i_g_8h}{config.\+h}
+\item Format\+: Null-\/terminated ASCII string
+\item Updated\+: During firmware updates
+\end{DoxyItemize}
+\item Device Identity (0x0030-\/0x0042, 19 bytes)\+:
+\begin{DoxyItemize}
+\item Purpose\+: Unique device identification and region setting
+\item Contents\+: Serial number (16) + Region (1) + CRC-\/8 (1) + Pad (1)
+\item Protection\+: CRC-\/8 validation
+\item Provisioning\+: Written via UART commands after manufacture
+\end{DoxyItemize}
+\item Factory Defaults (0x0100-\/0x01\+FF, 256 bytes)\+:
+\begin{DoxyItemize}
+\item Purpose\+: Reserved for future factory configuration storage
+\item Status\+: Currently unused
+\item Intended use\+: Manufacturing test results, hardware revision
+\end{DoxyItemize}
+\item User Output Presets (0x0200-\/0x02\+FF, 256 bytes)\+:
+\begin{DoxyItemize}
+\item Purpose\+: User-\/defined relay configuration presets
+\item Contents\+: Header + 5 presets (28 bytes each) + CRC16
+\item Features\+: Apply-\/on-\/startup configuration
+\item Format\+: Header magic + startup ID + preset array + CRC16
+\end{DoxyItemize}
+\item Legacy Relay States (0x02\+F0-\/0x02\+F7, 8 bytes)\+:
+\begin{DoxyItemize}
+\item Purpose\+: Backward compatibility with older firmware
+\item Contents\+: 8-\/byte array for relay power-\/on states
+\item Location\+: Tail of user output region to avoid overlap
+\end{DoxyItemize}
+\item User Network (0x0300-\/0x031F, 32 bytes)\+:
+\begin{DoxyItemize}
+\item Purpose\+: Network configuration parameters
+\item Contents\+: MAC address + IPv4 settings + DHCP flag + CRC-\/8
+\item Protection\+: CRC-\/8 validation, MAC repair on corruption
+\item Updates\+: Web interface, SNMP, console commands
+\end{DoxyItemize}
+\item Sensor Calibration (0x0400-\/0x054F, 336 bytes)\+:
+\begin{DoxyItemize}
+\item Purpose\+: HLW8032 power meter calibration per channel
+\item Contents\+: 8 × \doxylink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t} structures + CRC
+\item Updates\+: UART calibration workflow
+\item Factors\+: Voltage factor, current factor, offsets, resistor values
+\end{DoxyItemize}
+\item Temperature Calibration (0x0800-\/0x084F, 80 bytes)\+:
+\begin{DoxyItemize}
+\item Purpose\+: RP2040 internal temperature sensor calibration
+\item Contents\+: \doxylink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t} with magic + version + CRC32
+\item Modes\+: 1-\/point (offset) or 2-\/point (slope + intercept)
+\item Updates\+: UART calibration commands
+\end{DoxyItemize}
+\item Energy Monitoring (0x1500-\/0x15\+FF, 256 bytes)\+:
+\begin{DoxyItemize}
+\item Purpose\+: Historical energy consumption logging
+\item Structure\+: Ring buffer with write pointer
+\item Layout\+: Pointer (2 bytes) + Records (16 bytes each)
+\item Capacity\+: 15 energy records
+\end{DoxyItemize}
+\item Error Event Log (0x1600-\/0x17\+FF, 512 bytes)\+:
+\begin{DoxyItemize}
+\item Purpose\+: Critical error event history
+\item Structure\+: Ring buffer with write pointer
+\item Layout\+: Pointer (2 bytes) + Entries (2 bytes each)
+\item Capacity\+: 255 error codes
+\end{DoxyItemize}
+\item Warning Event Log (0x1800-\/0x19\+FF, 512 bytes)\+:
+\begin{DoxyItemize}
+\item Purpose\+: Non-\/critical warning event history
+\item Structure\+: Ring buffer with write pointer
+\item Layout\+: Pointer (2 bytes) + Entries (2 bytes each)
+\item Capacity\+: 255 warning codes
+\end{DoxyItemize}
+\item Channel Labels (0x1\+A00-\/0x1\+BFF, 512 bytes)\+:
+\begin{DoxyItemize}
+\item Purpose\+: User-\/defined text labels for output channels
+\item Structure\+: 8 fixed-\/size slots (64 bytes each)
+\item Format\+: Null-\/terminated strings (max 25 characters)
+\item Caching\+: Loaded to RAM on startup
+\end{DoxyItemize}
+\item User Preferences (0x2000-\/0x21\+FF, 512 bytes)\+:
+\begin{DoxyItemize}
+\item Purpose\+: Device name, location, temperature unit
+\item Contents\+: Device name (32) + Location (32) + Unit (1) + CRC-\/8 (1)
+\item Protection\+: CRC-\/8 validation, split writes for page safety
+\item Display\+: Web interface, SNMP sys\+Name/sys\+Location
+\end{DoxyItemize}
+\item Magic Value (0x7\+FFE-\/0x7\+FFF, 2 bytes)\+:
+\begin{DoxyItemize}
+\item Purpose\+: Factory initialization completion marker
+\item Value\+: 0x\+A55A indicates all defaults written
+\item Check\+: Performed on first boot to trigger factory default write
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+Memory Allocation Strategy\+:
+\begin{DoxyItemize}
+\item Frequently updated regions (event logs, energy) isolated from static config
+\item Large gaps between regions allow for growth without relocation
+\item Magic value at end prevents accidental detection from blank EEPROM
+\item Page-\/aligned writes where possible to maximize CAT24\+C256 efficiency
+\item Critical config protected with CRC-\/8 or CRC16
+\end{DoxyItemize}
+
+Page Alignment Considerations\+:
+\begin{DoxyItemize}
+\item CAT24\+C256 has 64-\/byte pages (addresses 0x00-\/0x3F, 0x40-\/0x7F, etc.)
+\item Writes spanning page boundary require multiple write cycles
+\item Large structures written in page-\/aligned chunks when possible
+\item Split-\/write strategy used for user preferences to respect boundaries
+\end{DoxyItemize}
+
+Version History\+:
+\begin{DoxyItemize}
+\item v1.\+x\+: Original memory map with compile-\/time serial number
+\item v2.\+0\+: Serial number moved to UART provisioning
+\item v2.\+1\+: User output presets added, relay states moved to legacy region
+\end{DoxyItemize}
+
+Thread Safety\+:
+\begin{DoxyItemize}
+\item All EEPROM access requires eeprom\+Mtx held by caller
+\item Managed by Storage\+Task and storage submodules
+\item Prevents concurrent read/modify/write races
+\end{DoxyItemize}
+
+Integration Points\+:
+\begin{DoxyItemize}
+\item storage\+\_\+submodule/\texorpdfstring{$\ast$}{*}\+: Use address definitions for all I/O
+\item factory\+\_\+defaults\+: Initializes all regions on first boot
+\item Storage\+Task\+: Coordinates access via eeprom\+Mtx
+\item CAT24\+C256 driver\+: Low-\/level I2C read/write operations
+\end{DoxyItemize}
+
+Usage Rules\+:
+\begin{DoxyItemize}
+\item Include this file in all modules requiring EEPROM access
+\item NEVER hardcode EEPROM addresses in other files
+\item Use defined constants exclusively
+\item Proposal for new regions requires memory map update here first
+\item Document all address changes in version history
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+This file contains ONLY definitions and structures, NO function implementations. 
+
+All address definitions are in hexadecimal for readability. 
+
+Memory regions include expansion gaps to avoid future relocation. 
+
+Ring buffers include 2-\/byte pointer at start of each region.
+\end{DoxyNote}
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{group__config06_doc-define-members}
+\doxysubsubsection{Macro Definition Documentation}
+\Hypertarget{group__config06_ga226676d435b8ea7dc26213a892abc464}\index{6. EEPROM Memory Map@{6. EEPROM Memory Map}!EEPROM\_DEVICE\_IDENTITY\_SIZE@{EEPROM\_DEVICE\_IDENTITY\_SIZE}}
+\index{EEPROM\_DEVICE\_IDENTITY\_SIZE@{EEPROM\_DEVICE\_IDENTITY\_SIZE}!6. EEPROM Memory Map@{6. EEPROM Memory Map}}
+\doxysubsubsubsection{\texorpdfstring{EEPROM\_DEVICE\_IDENTITY\_SIZE}{EEPROM\_DEVICE\_IDENTITY\_SIZE}}
+{\footnotesize\ttfamily \label{group__config06_ga226676d435b8ea7dc26213a892abc464} 
+\#define EEPROM\+\_\+\+DEVICE\+\_\+\+IDENTITY\+\_\+\+SIZE~    0x0013}
+
+Size\+: 16 (SN) + 1 (region) + 1 (CRC) + 1 (pad) = 19 bytes. \Hypertarget{group__config06_ga0b0b03d61ed2b7c416e0e8665598eb3f}\index{6. EEPROM Memory Map@{6. EEPROM Memory Map}!EEPROM\_DEVICE\_IDENTITY\_START@{EEPROM\_DEVICE\_IDENTITY\_START}}
+\index{EEPROM\_DEVICE\_IDENTITY\_START@{EEPROM\_DEVICE\_IDENTITY\_START}!6. EEPROM Memory Map@{6. EEPROM Memory Map}}
+\doxysubsubsubsection{\texorpdfstring{EEPROM\_DEVICE\_IDENTITY\_START}{EEPROM\_DEVICE\_IDENTITY\_START}}
+{\footnotesize\ttfamily \label{group__config06_ga0b0b03d61ed2b7c416e0e8665598eb3f} 
+\#define EEPROM\+\_\+\+DEVICE\+\_\+\+IDENTITY\+\_\+\+START~0x0030}
+
+Start of device identity within sys info. \Hypertarget{group__config06_gad4fd93ca413ff5525f791fcf177ee978}\index{6. EEPROM Memory Map@{6. EEPROM Memory Map}!EEPROM\_FACTORY\_DEFAULTS\_SIZE@{EEPROM\_FACTORY\_DEFAULTS\_SIZE}}
+\index{EEPROM\_FACTORY\_DEFAULTS\_SIZE@{EEPROM\_FACTORY\_DEFAULTS\_SIZE}!6. EEPROM Memory Map@{6. EEPROM Memory Map}}
+\doxysubsubsubsection{\texorpdfstring{EEPROM\_FACTORY\_DEFAULTS\_SIZE}{EEPROM\_FACTORY\_DEFAULTS\_SIZE}}
+{\footnotesize\ttfamily \label{group__config06_gad4fd93ca413ff5525f791fcf177ee978} 
+\#define EEPROM\+\_\+\+FACTORY\+\_\+\+DEFAULTS\+\_\+\+SIZE~0x0100}
+
+Size of factory defaults block (256 bytes). \Hypertarget{group__config06_ga24bf72707e45e45ffa416fc603071e70}\index{6. EEPROM Memory Map@{6. EEPROM Memory Map}!EEPROM\_FACTORY\_DEFAULTS\_START@{EEPROM\_FACTORY\_DEFAULTS\_START}}
+\index{EEPROM\_FACTORY\_DEFAULTS\_START@{EEPROM\_FACTORY\_DEFAULTS\_START}!6. EEPROM Memory Map@{6. EEPROM Memory Map}}
+\doxysubsubsubsection{\texorpdfstring{EEPROM\_FACTORY\_DEFAULTS\_START}{EEPROM\_FACTORY\_DEFAULTS\_START}}
+{\footnotesize\ttfamily \label{group__config06_ga24bf72707e45e45ffa416fc603071e70} 
+\#define EEPROM\+\_\+\+FACTORY\+\_\+\+DEFAULTS\+\_\+\+START~0x0100}
+
+Start of factory defaults block. \Hypertarget{group__config06_ga4a0b5e7999add681533fd38f2d8c3896}\index{6. EEPROM Memory Map@{6. EEPROM Memory Map}!EEPROM\_RELAY\_STATES\_SIZE@{EEPROM\_RELAY\_STATES\_SIZE}}
+\index{EEPROM\_RELAY\_STATES\_SIZE@{EEPROM\_RELAY\_STATES\_SIZE}!6. EEPROM Memory Map@{6. EEPROM Memory Map}}
+\doxysubsubsubsection{\texorpdfstring{EEPROM\_RELAY\_STATES\_SIZE}{EEPROM\_RELAY\_STATES\_SIZE}}
+{\footnotesize\ttfamily \label{group__config06_ga4a0b5e7999add681533fd38f2d8c3896} 
+\#define EEPROM\+\_\+\+RELAY\+\_\+\+STATES\+\_\+\+SIZE~0x0008}
+
+Size of relay states array (8 bytes). \Hypertarget{group__config06_ga9a68d3553d94287fd761df12d8091962}\index{6. EEPROM Memory Map@{6. EEPROM Memory Map}!EEPROM\_RELAY\_STATES\_START@{EEPROM\_RELAY\_STATES\_START}}
+\index{EEPROM\_RELAY\_STATES\_START@{EEPROM\_RELAY\_STATES\_START}!6. EEPROM Memory Map@{6. EEPROM Memory Map}}
+\doxysubsubsubsection{\texorpdfstring{EEPROM\_RELAY\_STATES\_START}{EEPROM\_RELAY\_STATES\_START}}
+{\footnotesize\ttfamily \label{group__config06_ga9a68d3553d94287fd761df12d8091962} 
+\#define EEPROM\+\_\+\+RELAY\+\_\+\+STATES\+\_\+\+START~0x02\+F0}
+
+Start of 8-\/byte relay states array. \Hypertarget{group__config06_ga87e6567c8befdab78603e65a617e9b9d}\index{6. EEPROM Memory Map@{6. EEPROM Memory Map}!EEPROM\_SYS\_INFO\_SIZE@{EEPROM\_SYS\_INFO\_SIZE}}
+\index{EEPROM\_SYS\_INFO\_SIZE@{EEPROM\_SYS\_INFO\_SIZE}!6. EEPROM Memory Map@{6. EEPROM Memory Map}}
+\doxysubsubsubsection{\texorpdfstring{EEPROM\_SYS\_INFO\_SIZE}{EEPROM\_SYS\_INFO\_SIZE}}
+{\footnotesize\ttfamily \label{group__config06_ga87e6567c8befdab78603e65a617e9b9d} 
+\#define EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+SIZE~0x0030}
+
+Size of system info block (48 bytes). \Hypertarget{group__config06_ga1504cb0ffe3e86d5878f0603980a2831}\index{6. EEPROM Memory Map@{6. EEPROM Memory Map}!EEPROM\_SYS\_INFO\_START@{EEPROM\_SYS\_INFO\_START}}
+\index{EEPROM\_SYS\_INFO\_START@{EEPROM\_SYS\_INFO\_START}!6. EEPROM Memory Map@{6. EEPROM Memory Map}}
+\doxysubsubsubsection{\texorpdfstring{EEPROM\_SYS\_INFO\_START}{EEPROM\_SYS\_INFO\_START}}
+{\footnotesize\ttfamily \label{group__config06_ga1504cb0ffe3e86d5878f0603980a2831} 
+\#define EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+START~0x0000}
+
+Start address of system info block. \Hypertarget{group__config06_gac0ede4ad8ea0b7b3abd06f025be9eaf6}\index{6. EEPROM Memory Map@{6. EEPROM Memory Map}!EEPROM\_USER\_OUTPUT\_SIZE@{EEPROM\_USER\_OUTPUT\_SIZE}}
+\index{EEPROM\_USER\_OUTPUT\_SIZE@{EEPROM\_USER\_OUTPUT\_SIZE}!6. EEPROM Memory Map@{6. EEPROM Memory Map}}
+\doxysubsubsubsection{\texorpdfstring{EEPROM\_USER\_OUTPUT\_SIZE}{EEPROM\_USER\_OUTPUT\_SIZE}}
+{\footnotesize\ttfamily \label{group__config06_gac0ede4ad8ea0b7b3abd06f025be9eaf6} 
+\#define EEPROM\+\_\+\+USER\+\_\+\+OUTPUT\+\_\+\+SIZE~0x0100}
+
+Size of user output presets block (256 bytes). \Hypertarget{group__config06_ga5a5d270e769e9440f8136fb39602e167}\index{6. EEPROM Memory Map@{6. EEPROM Memory Map}!EEPROM\_USER\_OUTPUT\_START@{EEPROM\_USER\_OUTPUT\_START}}
+\index{EEPROM\_USER\_OUTPUT\_START@{EEPROM\_USER\_OUTPUT\_START}!6. EEPROM Memory Map@{6. EEPROM Memory Map}}
+\doxysubsubsubsection{\texorpdfstring{EEPROM\_USER\_OUTPUT\_START}{EEPROM\_USER\_OUTPUT\_START}}
+{\footnotesize\ttfamily \label{group__config06_ga5a5d270e769e9440f8136fb39602e167} 
+\#define EEPROM\+\_\+\+USER\+\_\+\+OUTPUT\+\_\+\+START~0x0200}
+
+Start of user output presets block. 
+
+\label{doc-var-members}
+\Hypertarget{group__config06_doc-var-members}
+\doxysubsubsection{Variable Documentation}
+\Hypertarget{group__config06_ga8aee9e38a38b5a84c448b3fa64b1b86d}\index{6. EEPROM Memory Map@{6. EEPROM Memory Map}!channels@{channels}}
+\index{channels@{channels}!6. EEPROM Memory Map@{6. EEPROM Memory Map}}
+\doxysubsubsubsection{\texorpdfstring{channels}{channels}}
+{\footnotesize\ttfamily \label{group__config06_ga8aee9e38a38b5a84c448b3fa64b1b86d} 
+\mbox{\hyperlink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t}} hlw\+\_\+calib\+\_\+data\+\_\+t\+::channels\mbox{[}8\mbox{]}}
+
+Per-\/channel calibration records (8 × 41 = 328 bytes). \Hypertarget{group__config06_ga9d2b9acc4ecae77e01440a5143a61446}\index{6. EEPROM Memory Map@{6. EEPROM Memory Map}!device\_name@{device\_name}}
+\index{device\_name@{device\_name}!6. EEPROM Memory Map@{6. EEPROM Memory Map}}
+\doxysubsubsubsection{\texorpdfstring{device\_name}{device\_name}}
+{\footnotesize\ttfamily \label{group__config06_ga9d2b9acc4ecae77e01440a5143a61446} 
+char user\+Pref\+Info\+::device\+\_\+name\mbox{[}32\mbox{]}}
+
+Device name (32 bytes, null-\/terminated). \Hypertarget{group__config06_ga509450ef64eb0c83902d8bf0cf66a498}\index{6. EEPROM Memory Map@{6. EEPROM Memory Map}!mac@{mac}}
+\index{mac@{mac}!6. EEPROM Memory Map@{6. EEPROM Memory Map}}
+\doxysubsubsubsection{\texorpdfstring{mac}{mac}}
+{\footnotesize\ttfamily \label{group__config06_ga509450ef64eb0c83902d8bf0cf66a498} 
+uint8\+\_\+t network\+Info\+::mac\mbox{[}6\mbox{]}}
+
+MAC address (6 bytes). \Hypertarget{group__config06_ga9f32a01fdc7a70ae83fc9d2ec9a57116}\index{6. EEPROM Memory Map@{6. EEPROM Memory Map}!voltage\_factor@{voltage\_factor}}
+\index{voltage\_factor@{voltage\_factor}!6. EEPROM Memory Map@{6. EEPROM Memory Map}}
+\doxysubsubsubsection{\texorpdfstring{voltage\_factor}{voltage\_factor}}
+{\footnotesize\ttfamily \label{group__config06_ga9f32a01fdc7a70ae83fc9d2ec9a57116} 
+float hlw\+\_\+calib\+\_\+t\+::voltage\+\_\+factor}
+
+VF calibration factor (default\+: 0.\+596). 

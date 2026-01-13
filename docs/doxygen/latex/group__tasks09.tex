@@ -1,0 +1,178 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item Provisioning Command Handlers Header 
+\end{DoxyEnumerate}}
+\hypertarget{group__tasks09}{}\label{group__tasks09}\index{9. Provisioning Command Handlers Header@{9. Provisioning Command Handlers Header}}
+
+
+Factory provisioning commands for device identity configuration via UART.  
+
+
+Collaboration diagram for 9. Provisioning Command Handlers Header\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=287pt]{group__tasks09}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public API}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__tasks09_ga20d378f18cee6529bae6a4ec665fe155}{cmd\+\_\+prov}} (const char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Main PROV command dispatcher and help provider. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Factory provisioning commands for device identity configuration via UART. 
+
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/12-\/14
+\end{DoxyDate}
+This module provides secure UART-\/based command handlers for factory provisioning of device identity parameters. Enables single universal firmware to be customized per-\/device during manufacturing by setting serial number and regulatory region.
+
+Architecture\+:
+\begin{DoxyItemize}
+\item Token-\/based unlock mechanism prevents unauthorized provisioning
+\item Time-\/limited write window (auto-\/closes after timeout)
+\item UART/\+USB-\/\+CDC only (no network access for security)
+\item Integrates with Device\+Identity module for persistent storage
+\item Parameters written to EEPROM and survive reboots
+\end{DoxyItemize}
+
+Provisioning Workflow\+:
+\begin{DoxyEnumerate}
+\item Factory operator connects via UART/\+USB-\/\+CDC
+\item Issues PROV UNLOCK $<$token$>$ with secret firmware token
+\item Write window opens for limited time (configurable timeout)
+\item Operator sets serial number via PROV SET\+\_\+\+SN $<$serial$>$
+\item Operator sets region via PROV SET\+\_\+\+REGION \texorpdfstring{$<$}{<}EU\texorpdfstring{$\vert$}{|}\+US\texorpdfstring{$>$}{>}
+\item Window auto-\/closes after timeout or manual PROV LOCK
+\item Device reboots to apply MAC address and OCP thresholds
+\end{DoxyEnumerate}
+
+Available Commands\+:
+\begin{DoxyItemize}
+\item PROV UNLOCK $<$token$>$ \+: Authenticate and open write window
+\item PROV LOCK \+: Close write window immediately
+\item PROV SET\+\_\+\+SN $<$serial$>$ \+: Set device serial number (alphanumeric + hyphen)
+\item PROV SET\+\_\+\+REGION \texorpdfstring{$<$}{<}EU\texorpdfstring{$\vert$}{|}\+US\texorpdfstring{$>$}{>} \+: Set regulatory region (affects current limit)
+\item PROV STATUS \+: Display current provisioning state and parameters
+\end{DoxyItemize}
+
+Serial Number Format\+:
+\begin{DoxyItemize}
+\item Maximum length\+: DEVICE\+\_\+\+SN\+\_\+\+MAX\+\_\+\+LEN characters
+\item Allowed characters\+: A-\/Z, a-\/z, 0-\/9, hyphen (-\/)
+\item Validated by Device\+Identity module before accepting
+\item Used to derive unique MAC address for Ethernet controller
+\end{DoxyItemize}
+
+Region Configuration\+:
+\begin{DoxyItemize}
+\item EU\+: 10A current limit (IEC/\+ENEC regulatory compliance)
+\item US\+: 15A current limit (UL/\+CSA regulatory compliance)
+\item Affects overcurrent protection thresholds
+\item Requires reboot to reconfigure OCP module
+\end{DoxyItemize}
+
+Security Model\+:
+\begin{DoxyItemize}
+\item Unlock token is compile-\/time constant embedded in firmware
+\item Token must be known to operator (not discoverable via protocol)
+\item Write window timeout prevents indefinite provisioning access
+\item UART-\/only access (no remote provisioning via network)
+\item Provisioned values immutable during normal operation
+\end{DoxyItemize}
+
+Error Handling\+:
+\begin{DoxyItemize}
+\item Invalid token\+: unlock fails, window remains closed
+\item Invalid serial format\+: rejected with format guidance
+\item Invalid region\+: rejected with valid options listed
+\item EEPROM errors\+: reported with diagnostic codes
+\item All operations provide immediate user feedback
+\end{DoxyItemize}
+
+Integration\+:
+\begin{DoxyItemize}
+\item Called by Console\+Task command dispatcher
+\item Uses Device\+Identity module for storage and validation
+\item Cooperates with EEPROM mutex for thread-\/safe writes
+\item Parameters affect Net\+Task (MAC), OCP (thresholds), displays
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Provisioning should be performed only during manufacturing. 
+
+Changing region after field deployment may violate regulatory compliance. 
+
+Serial number changes affect MAC address and require network reconfiguration. 
+
+Keep unlock token secret; do not expose in documentation or user manuals.
+\end{DoxyNote}
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-func-members}
+\Hypertarget{group__tasks09_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__tasks09_ga20d378f18cee6529bae6a4ec665fe155}\index{9. Provisioning Command Handlers Header@{9. Provisioning Command Handlers Header}!cmd\_prov@{cmd\_prov}}
+\index{cmd\_prov@{cmd\_prov}!9. Provisioning Command Handlers Header@{9. Provisioning Command Handlers Header}}
+\doxysubsubsubsection{\texorpdfstring{cmd\_prov()}{cmd\_prov()}}
+{\footnotesize\ttfamily \label{group__tasks09_ga20d378f18cee6529bae6a4ec665fe155} 
+void cmd\+\_\+prov (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})}
+
+
+
+Main PROV command dispatcher and help provider. 
+
+Entry point for all provisioning commands from Console\+Task. Parses the subcommand token and dispatches to appropriate handler function. Provides help text when called without arguments.
+
+Supported Subcommands\+:
+\begin{DoxyItemize}
+\item UNLOCK $<$token$>$ \+: Unlock provisioning with authentication token
+\item LOCK \+: Lock provisioning and close write window
+\item SET\+\_\+\+SN $<$serial$>$ \+: Set device serial number
+\item SET\+\_\+\+REGION \texorpdfstring{$<$}{<}EU\texorpdfstring{$\vert$}{|}\+US\texorpdfstring{$>$}{>} \+: Set regulatory region
+\item STATUS \+: Display current provisioning state
+\end{DoxyItemize}
+
+Command Processing\+:
+\begin{DoxyEnumerate}
+\item Extract subcommand token from arguments
+\item Normalize to uppercase for case-\/insensitive matching
+\item Extract remaining arguments for subcommand handler
+\item Dispatch to appropriate handler based on subcommand
+\item Provide immediate user feedback for all operations
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em args} & Full argument string after "{}\+PROV"{} command keyword. May be NULL or empty to display help text.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+All output goes directly to console via ECHO macro. 
+
+Whitespace and control characters are trimmed before processing. 
+
+Unknown subcommands display error message and suggest help. 
+
+Thread-\/safe\+: called from Console\+Task context only. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks09_ga20d378f18cee6529bae6a4ec665fe155_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks09_ga20d378f18cee6529bae6a4ec665fe155_icgraph}
+\end{center}
+\end{figure}

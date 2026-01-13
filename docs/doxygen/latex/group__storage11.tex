@@ -1,0 +1,586 @@
+\doxysubsubsection{
+\begin{DoxyEnumerate}
+\item User Preferences 
+\end{DoxyEnumerate}}
+\hypertarget{group__storage11}{}\label{group__storage11}\index{11. User Preferences@{11. User Preferences}}
+
+
+Device name, location, and display settings with CRC-\/8 validation.  
+
+
+Collaboration diagram for 11. User Preferences\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=314pt]{group__storage11}
+\end{center}
+\end{figure}
+\doxysubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__storage11_ga2df7072b6a21ee4c6a1008be0c0d2808}{EEPROM\+\_\+\+Write\+User\+Preferences}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write raw user preferences block without CRC validation. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage11_ga9f082445c1a6ae5112beee80a6074d97}{EEPROM\+\_\+\+Read\+User\+Preferences}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Read raw user preferences block without CRC validation. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage11_gaffd968de2dd26c2a571f3057dc72f2dc}{EEPROM\+\_\+\+Write\+User\+Prefs\+With\+Checksum}} (const \mbox{\hyperlink{structuser_pref_info}{user\+Pref\+Info}} \texorpdfstring{$\ast$}{*}prefs)
+\begin{DoxyCompactList}\small\item\em Write user preferences with CRC-\/8 validation appended. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage11_ga708039b6b7c8a2535429849aaf0bef39}{EEPROM\+\_\+\+Read\+User\+Prefs\+With\+Checksum}} (\mbox{\hyperlink{structuser_pref_info}{user\+Pref\+Info}} \texorpdfstring{$\ast$}{*}prefs)
+\begin{DoxyCompactList}\small\item\em Read and verify user preferences with CRC-\/8 validation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structuser_pref_info}{user\+Pref\+Info}} \mbox{\hyperlink{group__storage11_gada0abcfc99e366656030e908187d6d6d}{Load\+User\+Preferences}} (void)
+\begin{DoxyCompactList}\small\item\em Load user preferences from EEPROM with automatic fallback to defaults. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage11_ga89e7b743f0d87d2f8658c42cbaf1990d}{EEPROM\+\_\+\+Write\+Default\+Name\+Location}} (void)
+\begin{DoxyCompactList}\small\item\em Write default device name and location to preferences with CRC-\/8. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+Device name, location, and display settings with CRC-\/8 validation. 
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/14
+\end{DoxyDate}
+This module manages user-\/configurable preferences stored in EEPROM with CRC-\/8 data integrity protection. Includes device identification strings and display settings with automatic fallback to defaults on corruption.
+
+Key Features\+:
+\begin{DoxyItemize}
+\item Device name customization (up to 31 characters)
+\item Physical location string (up to 31 characters)
+\item Temperature unit selection (Celsius/\+Fahrenheit)
+\item CRC-\/8 validation for data integrity
+\item Automatic fallback to built-\/in defaults
+\item Split-\/write protection for EEPROM page boundaries
+\end{DoxyItemize}
+
+EEPROM Memory Layout (EEPROM\+\_\+\+USER\+\_\+\+PREF\+\_\+\+START, 66 bytes total)\+:
+\begin{DoxyItemize}
+\item Offset 0-\/31\+: Device name string (null-\/terminated)
+\item Offset 32-\/63\+: Location string (null-\/terminated)
+\item Offset 64\+: Temperature unit (0=Celsius, 1=Fahrenheit)
+\item Offset 65\+: CRC-\/8 checksum
+\end{DoxyItemize}
+
+Data Structure\+:
+\begin{DoxyItemize}
+\item Device Name\+: 32-\/byte field for user-\/defined device name
+\begin{DoxyItemize}
+\item Default\+: "{}\+ENERGIS PDU"{}
+\item Used in SNMP sys\+Name and web interface
+\item Automatically null-\/terminated
+\end{DoxyItemize}
+\item Location\+: 32-\/byte field for physical location
+\begin{DoxyItemize}
+\item Default\+: "{}\+Unknown"{}
+\item Used in SNMP sys\+Location and web interface
+\item Automatically null-\/terminated
+\end{DoxyItemize}
+\item Temperature Unit\+: 1-\/byte enum
+\begin{DoxyItemize}
+\item 0 = Celsius (default)
+\item 1 = Fahrenheit
+\item Applied to web interface and SNMP OID output
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+CRC-\/8 Validation\+:
+\begin{DoxyItemize}
+\item Polynomial\+: 0x07 (via \doxylink{device__identity_8c_aae57a92db26b8a63b7584fd2f3407077}{calculate\+\_\+crc8()})
+\item Calculated over first 65 bytes (name + location + temp\+\_\+unit)
+\item Stored in byte 66
+\item Read operations fail on CRC mismatch
+\item Failed reads trigger fallback to defaults
+\end{DoxyItemize}
+
+Split-\/\+Write Protection\+:
+\begin{DoxyItemize}
+\item \doxylink{group__storage11_gaffd968de2dd26c2a571f3057dc72f2dc}{EEPROM\+\_\+\+Write\+User\+Prefs\+With\+Checksum()} uses split writes
+\item Prevents corruption from writes spanning page boundaries
+\item First 64 bytes (strings)\+: single 64-\/byte write
+\item Last 2 bytes (temp\+\_\+unit + CRC)\+: separate 2-\/byte write
+\item CAT24\+C256 has 64-\/byte page size requiring alignment
+\end{DoxyItemize}
+
+Load Operation Flow\+:
+\begin{DoxyEnumerate}
+\item \doxylink{group__storage11_gada0abcfc99e366656030e908187d6d6d}{Load\+User\+Preferences()} reads from EEPROM with CRC validation
+\item If CRC valid\+: a. Return validated configuration b. Ensure strings are null-\/terminated
+\item If CRC invalid or EEPROM empty\+: a. Load DEFAULT\+\_\+\+USER\+\_\+\+PREFS structure b. Persist defaults to EEPROM for future boots c. Return default configuration
+\end{DoxyEnumerate}
+
+Default Configuration\+:
+\begin{DoxyItemize}
+\item Device name\+: "{}\+ENERGIS PDU"{}
+\item Location\+: "{}\+Unknown"{}
+\item Temperature unit\+: Celsius (0)
+\item Used on first boot or EEPROM corruption
+\end{DoxyItemize}
+
+Thread Safety\+:
+\begin{DoxyItemize}
+\item All read/write functions require eeprom\+Mtx held by caller
+\item \doxylink{group__storage11_gada0abcfc99e366656030e908187d6d6d}{Load\+User\+Preferences()} manages mutex internally
+\item Prevents concurrent access corruption
+\end{DoxyItemize}
+
+Integration Points\+:
+\begin{DoxyItemize}
+\item storage\+\_\+common\+: CRC-\/8 calculation
+\item Storage\+Task\+: Provides DEFAULT\+\_\+\+USER\+\_\+\+PREFS and eeprom\+Mtx
+\item Net\+Task\+: Reads device name for SNMP sys\+Name
+\item Web interface\+: Displays device name and location
+\item Meter\+Task\+: Applies temperature unit to sensor readings
+\end{DoxyItemize}
+
+API Layers\+:
+\begin{DoxyItemize}
+\item Raw APIs\+: Direct EEPROM access without CRC (for legacy/debug)
+\item CRC APIs\+: Recommended for production use with integrity checking
+\item Load API\+: High-\/level with defaults and automatic fallback
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Always prefer CRC-\/verified APIs for production code. 
+
+\doxylink{group__storage11_gada0abcfc99e366656030e908187d6d6d}{Load\+User\+Preferences()} is the recommended high-\/level interface. 
+
+Strings are always null-\/terminated on read operations. 
+
+Split writes required to respect CAT24\+C256 page boundaries.
+\end{DoxyNote}
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-func-members}
+\Hypertarget{group__storage11_doc-func-members}
+\doxysubsubsubsection{Function Documentation}
+\Hypertarget{group__storage11_ga9f082445c1a6ae5112beee80a6074d97}\index{11. User Preferences@{11. User Preferences}!EEPROM\_ReadUserPreferences@{EEPROM\_ReadUserPreferences}}
+\index{EEPROM\_ReadUserPreferences@{EEPROM\_ReadUserPreferences}!11. User Preferences@{11. User Preferences}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_ReadUserPreferences()}{EEPROM\_ReadUserPreferences()}}
+{\footnotesize\ttfamily \label{group__storage11_ga9f082445c1a6ae5112beee80a6074d97} 
+int EEPROM\+\_\+\+Read\+User\+Preferences (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{size\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Read raw user preferences block without CRC validation. 
+
+Low-\/level read operation that directly reads buffer from EEPROM user preferences section without CRC verification. Provided for legacy compatibility and debug access. Production code should use \doxylink{group__storage11_ga708039b6b7c8a2535429849aaf0bef39}{EEPROM\+\_\+\+Read\+User\+Prefs\+With\+Checksum()} instead.
+
+EEPROM Layout\+:
+\begin{DoxyItemize}
+\item Start address\+: EEPROM\+\_\+\+USER\+\_\+\+PREF\+\_\+\+SIZE
+\item Maximum size\+: EEPROM\+\_\+\+USER\+\_\+\+PREF\+\_\+\+SIZE bytes
+\item No CRC verified
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{out}}  & {\em data} & Destination buffer for user preferences. \\
+\hline
+\mbox{\texttt{in}}  & {\em len} & Number of bytes to read. Must be \texorpdfstring{$<$}{<}= EEPROM\+\_\+\+USER\+\_\+\+PREF\+\_\+\+SIZE.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if read successful. 
+
+-\/1 if length exceeds EEPROM\+\_\+\+USER\+\_\+\+PREF\+\_\+\+SIZE.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+
+No CRC verification performed on read data. 
+
+Prefer \doxylink{group__storage11_ga708039b6b7c8a2535429849aaf0bef39}{EEPROM\+\_\+\+Read\+User\+Prefs\+With\+Checksum()} for production code. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Bounds checking performed before read operation. 
+
+Read failures logged as ERR\+\_\+\+SEV\+\_\+\+ERROR if ERRORLOGGER enabled. 
+
+Caller responsible for validating data integrity.
+\end{DoxyNote}
+Read raw user preferences block without CRC validation.
+
+CRITICAL\+: Must be called with eeprom\+Mtx held!
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Destination buffer \\
+\hline
+{\em len} & Number of bytes to read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on bounds check failure 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage11_ga9f082445c1a6ae5112beee80a6074d97_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage11_ga708039b6b7c8a2535429849aaf0bef39}\index{11. User Preferences@{11. User Preferences}!EEPROM\_ReadUserPrefsWithChecksum@{EEPROM\_ReadUserPrefsWithChecksum}}
+\index{EEPROM\_ReadUserPrefsWithChecksum@{EEPROM\_ReadUserPrefsWithChecksum}!11. User Preferences@{11. User Preferences}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_ReadUserPrefsWithChecksum()}{EEPROM\_ReadUserPrefsWithChecksum()}}
+{\footnotesize\ttfamily \label{group__storage11_ga708039b6b7c8a2535429849aaf0bef39} 
+int EEPROM\+\_\+\+Read\+User\+Prefs\+With\+Checksum (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structuser_pref_info}{user\+Pref\+Info}} \texorpdfstring{$\ast$}{*}}]{prefs}{}\end{DoxyParamCaption})}
+
+
+
+Read and verify user preferences with CRC-\/8 validation. 
+
+Recommended read operation for production code. Reads 66-\/byte EEPROM user preferences and verifies CRC-\/8 checksum. Unpacks buffer into \doxylink{structuser_pref_info}{user\+Pref\+Info} structure only if CRC validation passes. Ensures strings are null-\/terminated.
+
+EEPROM Layout (66 bytes total)\+:
+\begin{DoxyItemize}
+\item Offset 0-\/31\+: Device name string (32 bytes, null-\/terminated)
+\item Offset 32-\/63\+: Location string (32 bytes, null-\/terminated)
+\item Offset 64\+: Temperature unit (1 byte, 0=Celsius 1=Fahrenheit)
+\item Offset 65\+: CRC-\/8 checksum (1 byte)
+\end{DoxyItemize}
+
+CRC Validation\+:
+\begin{DoxyItemize}
+\item Calculate CRC-\/8 over bytes 0-\/64
+\item Compare with stored CRC in byte 65
+\item Fail if mismatch detected
+\end{DoxyItemize}
+
+String Safety\+:
+\begin{DoxyItemize}
+\item Device name and location forcibly null-\/terminated
+\item Prevents buffer overruns from corrupted EEPROM data
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{out}}  & {\em prefs} & Pointer to \doxylink{structuser_pref_info}{user\+Pref\+Info} structure to receive preferences.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if CRC validation passed and structure populated. 
+
+-\/1 if prefs is NULL or CRC mismatch detected.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Null pointer check performed before read operation. 
+
+CRC mismatch logged as ERR\+\_\+\+SEV\+\_\+\+ERROR if ERRORLOGGER enabled. 
+
+Strings forcibly null-\/terminated for safety. 
+
+Caller should use \doxylink{group__storage11_gada0abcfc99e366656030e908187d6d6d}{Load\+User\+Preferences()} for automatic fallback to defaults. 
+
+This is the recommended API for production user prefs reads.
+\end{DoxyNote}
+Read and verify user preferences with CRC-\/8 validation.
+
+Validates CRC and ensures strings are properly null-\/terminated for safety. Detects uninitialized EEPROM (all 0x\+FF) without generating CRC error.
+
+CRITICAL\+: Must be called with eeprom\+Mtx held!
+
+
+\begin{DoxyParams}{Parameters}
+{\em prefs} & Pointer to user preferences structure to fill \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if CRC OK, -\/1 on CRC mismatch, empty EEPROM, or null pointer 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage11_ga708039b6b7c8a2535429849aaf0bef39_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage11_ga708039b6b7c8a2535429849aaf0bef39_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage11_ga89e7b743f0d87d2f8658c42cbaf1990d}\index{11. User Preferences@{11. User Preferences}!EEPROM\_WriteDefaultNameLocation@{EEPROM\_WriteDefaultNameLocation}}
+\index{EEPROM\_WriteDefaultNameLocation@{EEPROM\_WriteDefaultNameLocation}!11. User Preferences@{11. User Preferences}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_WriteDefaultNameLocation()}{EEPROM\_WriteDefaultNameLocation()}}
+{\footnotesize\ttfamily \label{group__storage11_ga89e7b743f0d87d2f8658c42cbaf1990d} 
+int EEPROM\+\_\+\+Write\+Default\+Name\+Location (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Write default device name and location to preferences with CRC-\/8. 
+
+Writes factory default user preferences to EEPROM with CRC-\/8 validation. Used during first-\/boot initialization to establish baseline configuration.
+
+Default Values Written\+:
+\begin{DoxyItemize}
+\item Device name\+: "{}\+ENERGIS PDU"{}
+\item Location\+: "{}\+Unknown"{}
+\item Temperature unit\+: Celsius (0)
+\end{DoxyItemize}
+
+CRC Calculation\+:
+\begin{DoxyItemize}
+\item CRC-\/8 calculated over default values
+\item Stored in byte 65 of preferences block
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+0 if write successful. 
+
+-\/1 if write operation fails.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Used by \doxylink{group__storage06_ga6dadd32bf70e8ea2569da7d4bbb02e0a}{EEPROM\+\_\+\+Write\+Factory\+Defaults()} during first boot. 
+
+Write failures logged as ERR\+\_\+\+SEV\+\_\+\+ERROR if ERRORLOGGER enabled. 
+
+Establishes known-\/good configuration for fresh devices.
+\end{DoxyNote}
+Write default device name and location to preferences with CRC-\/8.
+
+Used during factory defaults initialization to set\+:
+\begin{DoxyItemize}
+\item Device name from DEFAULT\+\_\+\+NAME
+\item Location from DEFAULT\+\_\+\+LOCATION
+\item Temperature unit\+: Celsius (0)
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on write error 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage11_ga89e7b743f0d87d2f8658c42cbaf1990d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage11_ga89e7b743f0d87d2f8658c42cbaf1990d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage11_ga2df7072b6a21ee4c6a1008be0c0d2808}\index{11. User Preferences@{11. User Preferences}!EEPROM\_WriteUserPreferences@{EEPROM\_WriteUserPreferences}}
+\index{EEPROM\_WriteUserPreferences@{EEPROM\_WriteUserPreferences}!11. User Preferences@{11. User Preferences}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_WriteUserPreferences()}{EEPROM\_WriteUserPreferences()}}
+{\footnotesize\ttfamily \label{group__storage11_ga2df7072b6a21ee4c6a1008be0c0d2808} 
+int EEPROM\+\_\+\+Write\+User\+Preferences (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{size\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Write raw user preferences block without CRC validation. 
+
+Low-\/level write operation that directly writes buffer to EEPROM user preferences section without CRC generation. Provided for legacy compatibility and debug access. Production code should use \doxylink{group__storage11_gaffd968de2dd26c2a571f3057dc72f2dc}{EEPROM\+\_\+\+Write\+User\+Prefs\+With\+Checksum()} instead.
+
+EEPROM Layout\+:
+\begin{DoxyItemize}
+\item Start address\+: EEPROM\+\_\+\+USER\+\_\+\+PREF\+\_\+\+START
+\item Maximum size\+: EEPROM\+\_\+\+USER\+\_\+\+PREF\+\_\+\+SIZE bytes
+\item No CRC appended or validated
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em data} & Pointer to source buffer containing user preferences. \\
+\hline
+\mbox{\texttt{in}}  & {\em len} & Number of bytes to write. Must be \texorpdfstring{$<$}{<}= EEPROM\+\_\+\+USER\+\_\+\+PREF\+\_\+\+SIZE.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if write successful. 
+
+-\/1 if length exceeds EEPROM\+\_\+\+USER\+\_\+\+PREF\+\_\+\+SIZE or I2C write fails.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+
+No CRC generation or validation performed. 
+
+Prefer \doxylink{group__storage11_gaffd968de2dd26c2a571f3057dc72f2dc}{EEPROM\+\_\+\+Write\+User\+Prefs\+With\+Checksum()} for production code. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Bounds checking performed before write operation. 
+
+Write failures logged as ERR\+\_\+\+SEV\+\_\+\+ERROR if ERRORLOGGER enabled.
+\end{DoxyNote}
+Write raw user preferences block without CRC validation.
+
+CRITICAL\+: Must be called with eeprom\+Mtx held!
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Source buffer containing preferences data \\
+\hline
+{\em len} & Number of bytes to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on bounds check failure or I2C error 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage11_ga2df7072b6a21ee4c6a1008be0c0d2808_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage11_gaffd968de2dd26c2a571f3057dc72f2dc}\index{11. User Preferences@{11. User Preferences}!EEPROM\_WriteUserPrefsWithChecksum@{EEPROM\_WriteUserPrefsWithChecksum}}
+\index{EEPROM\_WriteUserPrefsWithChecksum@{EEPROM\_WriteUserPrefsWithChecksum}!11. User Preferences@{11. User Preferences}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_WriteUserPrefsWithChecksum()}{EEPROM\_WriteUserPrefsWithChecksum()}}
+{\footnotesize\ttfamily \label{group__storage11_gaffd968de2dd26c2a571f3057dc72f2dc} 
+int EEPROM\+\_\+\+Write\+User\+Prefs\+With\+Checksum (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structuser_pref_info}{user\+Pref\+Info}} \texorpdfstring{$\ast$}{*}}]{prefs}{}\end{DoxyParamCaption})}
+
+
+
+Write user preferences with CRC-\/8 validation appended. 
+
+Recommended write operation for production code. Packs \doxylink{structuser_pref_info}{user\+Pref\+Info} structure into 66-\/byte EEPROM layout with CRC-\/8 checksum appended for integrity verification. Uses split writes to respect CAT24\+C256 page boundaries and prevent corruption.
+
+EEPROM Layout (66 bytes total)\+:
+\begin{DoxyItemize}
+\item Offset 0-\/31\+: Device name string (32 bytes, null-\/terminated)
+\item Offset 32-\/63\+: Location string (32 bytes, null-\/terminated)
+\item Offset 64\+: Temperature unit (1 byte, 0=Celsius 1=Fahrenheit)
+\item Offset 65\+: CRC-\/8 checksum (1 byte)
+\end{DoxyItemize}
+
+Split-\/\+Write Strategy\+:
+\begin{DoxyItemize}
+\item First write\+: Bytes 0-\/63 (device name + location)
+\item Second write\+: Bytes 64-\/65 (temp\+\_\+unit + CRC)
+\item Prevents corruption from writes spanning 64-\/byte page boundaries
+\end{DoxyItemize}
+
+CRC Calculation\+:
+\begin{DoxyItemize}
+\item Algorithm\+: CRC-\/8 polynomial 0x07 via \doxylink{device__identity_8c_aae57a92db26b8a63b7584fd2f3407077}{calculate\+\_\+crc8()}
+\item Input\+: Bytes 0-\/64 (device name + location + temp\+\_\+unit)
+\item Output\+: Stored in byte 65
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em prefs} & Pointer to \doxylink{structuser_pref_info}{user\+Pref\+Info} structure containing preferences.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if write successful. 
+
+-\/1 if prefs is NULL or I2C write fails.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Null pointer check performed before write operation. 
+
+CRC automatically calculated and appended. 
+
+Split writes prevent page boundary corruption. 
+
+Write failures logged as ERR\+\_\+\+SEV\+\_\+\+ERROR if ERRORLOGGER enabled. 
+
+This is the recommended API for production user prefs writes.
+\end{DoxyNote}
+Write user preferences with CRC-\/8 validation appended.
+
+Layout\+: device\+\_\+name(32) + location(32) + temp\+\_\+unit(1) + CRC(1) = 66 bytes Uses split writes to avoid page boundary issues with CAT24\+C256.
+
+CRITICAL\+: Must be called with eeprom\+Mtx held!
+
+
+\begin{DoxyParams}{Parameters}
+{\em prefs} & Pointer to user preferences structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on null pointer or I2C error 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage11_gaffd968de2dd26c2a571f3057dc72f2dc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage11_gaffd968de2dd26c2a571f3057dc72f2dc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage11_gada0abcfc99e366656030e908187d6d6d}\index{11. User Preferences@{11. User Preferences}!LoadUserPreferences@{LoadUserPreferences}}
+\index{LoadUserPreferences@{LoadUserPreferences}!11. User Preferences@{11. User Preferences}}
+\doxysubsubsubsubsection{\texorpdfstring{LoadUserPreferences()}{LoadUserPreferences()}}
+{\footnotesize\ttfamily \label{group__storage11_gada0abcfc99e366656030e908187d6d6d} 
+\mbox{\hyperlink{structuser_pref_info}{user\+Pref\+Info}} Load\+User\+Preferences (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Load user preferences from EEPROM with automatic fallback to defaults. 
+
+High-\/level interface for loading user preferences. Attempts EEPROM read with CRC validation. On success, returns validated configuration. On failure, returns default configuration and persists defaults to EEPROM. Manages eeprom\+Mtx internally for thread-\/safe operation.
+
+Operation Flow\+:
+\begin{DoxyEnumerate}
+\item Acquire eeprom\+Mtx for thread-\/safe access
+\item Call \doxylink{group__storage11_ga708039b6b7c8a2535429849aaf0bef39}{EEPROM\+\_\+\+Read\+User\+Prefs\+With\+Checksum()} to read with CRC validation
+\item If CRC valid\+: a. Return validated preferences
+\item If CRC invalid or EEPROM empty\+: a. Load DEFAULT\+\_\+\+USER\+\_\+\+PREFS structure from Storage\+Task b. Persist defaults to EEPROM for future boots c. Log fallback event as ERR\+\_\+\+SEV\+\_\+\+WARNING d. Return default preferences
+\item Release eeprom\+Mtx
+\end{DoxyEnumerate}
+
+Default Configuration\+:
+\begin{DoxyItemize}
+\item Device name\+: "{}\+ENERGIS PDU"{}
+\item Location\+: "{}\+Unknown"{}
+\item Temperature unit\+: Celsius (0)
+\item Safe fallback for first boot or EEPROM corruption
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+\doxylink{structuser_pref_info}{user\+Pref\+Info} structure containing valid user preferences. Always returns valid data, never fails.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This is the recommended high-\/level API for loading user preferences. 
+
+Manages eeprom\+Mtx internally; caller should NOT hold mutex. 
+
+Always returns valid configuration via fallback to defaults. 
+
+Default configs automatically persisted to EEPROM. 
+
+Called by web interface and SNMP handlers during initialization.
+\end{DoxyNote}
+Load user preferences from EEPROM with automatic fallback to defaults.
+
+Attempts to read preferences with CRC validation. If successful, returns stored values. On failure, returns built-\/in defaults.
+
+\begin{DoxyReturn}{Returns}
+Valid \doxylink{structuser_pref_info}{user\+Pref\+Info} structure (either from EEPROM or defaults) 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage11_gada0abcfc99e366656030e908187d6d6d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage11_gada0abcfc99e366656030e908187d6d6d_icgraph}
+\end{center}
+\end{figure}

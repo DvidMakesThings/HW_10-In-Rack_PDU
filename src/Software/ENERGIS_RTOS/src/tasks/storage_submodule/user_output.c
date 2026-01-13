@@ -96,7 +96,7 @@ static bool user_output_write_eeprom(void) {
     if (sizeof(user_output_data_t) > EEPROM_USER_OUTPUT_SIZE) {
 #if ERRORLOGGER
         uint16_t err_code =
-            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x10);
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x0);
         ERROR_PRINT_CODE(err_code, "%s Data size exceeds EEPROM block\r\n", ST_USER_OUTPUT_TAG);
         Storage_EnqueueErrorCode(err_code);
 #endif
@@ -118,7 +118,7 @@ static bool user_output_write_eeprom(void) {
         if (wrc != 0) {
 #if ERRORLOGGER
             uint16_t err_code =
-                ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x11);
+                ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x1);
             ERROR_PRINT_CODE(err_code, "%s EEPROM write failed at 0x%04X (len=%u)\r\n",
                              ST_USER_OUTPUT_TAG, addr, (unsigned)chunk);
             Storage_EnqueueErrorCode(err_code);
@@ -135,7 +135,7 @@ static bool user_output_write_eeprom(void) {
     if (memcmp(verify_buf, &s_cache, sizeof(user_output_data_t)) != 0) {
 #if ERRORLOGGER
         uint16_t err_code =
-            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x12);
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x2);
         ERROR_PRINT_CODE(err_code, "%s EEPROM verify mismatch\r\n", ST_USER_OUTPUT_TAG);
         Storage_EnqueueErrorCode(err_code);
 #endif
@@ -215,7 +215,7 @@ bool UserOutput_Init(void) {
         if (s_cacheMtx == NULL) {
 #if ERRORLOGGER
             uint16_t err_code =
-                ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x01);
+                ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x3);
             ERROR_PRINT_CODE(err_code, "%s Mutex creation failed\r\n", ST_USER_OUTPUT_TAG);
             Storage_EnqueueErrorCode(err_code);
 #endif
@@ -227,7 +227,7 @@ bool UserOutput_Init(void) {
     if (xSemaphoreTake(eepromMtx, pdMS_TO_TICKS(1000)) != pdTRUE) {
 #if ERRORLOGGER
         uint16_t err_code =
-            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x02);
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x4);
         ERROR_PRINT_CODE(err_code, "%s EEPROM mutex timeout on init\r\n", ST_USER_OUTPUT_TAG);
         Storage_EnqueueErrorCode(err_code);
 #endif
@@ -329,7 +329,7 @@ bool UserOutput_SavePreset(uint8_t index, const char *name, uint8_t relay_mask) 
     if (xSemaphoreTake(eepromMtx, pdMS_TO_TICKS(1000)) != pdTRUE) {
 #if ERRORLOGGER
         uint16_t err_code =
-            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x20);
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x5);
         ERROR_PRINT_CODE(err_code, "%s EEPROM mutex timeout on save\r\n", ST_USER_OUTPUT_TAG);
         Storage_EnqueueErrorCode(err_code);
 #endif
@@ -377,7 +377,7 @@ bool UserOutput_DeletePreset(uint8_t index) {
     if (xSemaphoreTake(eepromMtx, pdMS_TO_TICKS(1000)) != pdTRUE) {
 #if ERRORLOGGER
         uint16_t err_code =
-            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x30);
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x6);
         ERROR_PRINT_CODE(err_code, "%s EEPROM mutex timeout on delete\r\n", ST_USER_OUTPUT_TAG);
         Storage_EnqueueErrorCode(err_code);
 #endif
@@ -442,7 +442,7 @@ bool UserOutput_SetStartupPreset(uint8_t index) {
     if (xSemaphoreTake(eepromMtx, pdMS_TO_TICKS(1000)) != pdTRUE) {
 #if ERRORLOGGER
         uint16_t err_code =
-            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x40);
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x7);
         ERROR_PRINT_CODE(err_code, "%s EEPROM mutex timeout on set startup\r\n",
                          ST_USER_OUTPUT_TAG);
         Storage_EnqueueErrorCode(err_code);
@@ -480,7 +480,7 @@ bool UserOutput_ClearStartupPreset(void) {
     if (xSemaphoreTake(eepromMtx, pdMS_TO_TICKS(1000)) != pdTRUE) {
 #if ERRORLOGGER
         uint16_t err_code =
-            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x50);
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x8);
         ERROR_PRINT_CODE(err_code, "%s EEPROM mutex timeout on clear startup\r\n",
                          ST_USER_OUTPUT_TAG);
         Storage_EnqueueErrorCode(err_code);
@@ -523,7 +523,7 @@ bool UserOutput_ApplyPreset(uint8_t index) {
     if (result != SWITCH_OK) {
 #if ERRORLOGGER
         uint16_t err_code =
-            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_WARNING, ERR_FID_ST_USER_OUTPUT, 0x60);
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_WARNING, ERR_FID_ST_USER_OUTPUT, 0x0);
         ERROR_PRINT_CODE(err_code, "%s Apply preset %u failed (switch err=%d)\r\n",
                          ST_USER_OUTPUT_TAG, index, result);
         Storage_EnqueueWarningCode(err_code);
@@ -588,7 +588,7 @@ int EEPROM_WriteUserOutput(const uint8_t *data, size_t len) {
     if (len > EEPROM_RELAY_STATES_SIZE) {
 #if ERRORLOGGER
         uint16_t err_code =
-            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x1);
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x9);
         ERROR_PRINT_CODE(err_code, "%s Relay write length exceeds size\r\n", ST_USER_OUTPUT_TAG);
         Storage_EnqueueErrorCode(err_code);
 #endif
@@ -611,7 +611,7 @@ int EEPROM_ReadUserOutput(uint8_t *data, size_t len) {
     if (len > EEPROM_RELAY_STATES_SIZE) {
 #if ERRORLOGGER
         uint16_t err_code =
-            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0x2);
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_USER_OUTPUT, 0xA);
         ERROR_PRINT_CODE(err_code, "%s Relay read length exceeds size\r\n", ST_USER_OUTPUT_TAG);
         Storage_EnqueueErrorCode(err_code);
 #endif

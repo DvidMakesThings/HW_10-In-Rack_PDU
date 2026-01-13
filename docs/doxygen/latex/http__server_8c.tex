@@ -1,0 +1,331 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/web\+\_\+handlers/http\+\_\+server.c File Reference}
+\hypertarget{http__server_8c}{}\label{http__server_8c}\index{src/Software/ENERGIS\_RTOS/src/web\_handlers/http\_server.c@{src/Software/ENERGIS\_RTOS/src/web\_handlers/http\_server.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for http\+\_\+server.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{http__server_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{http__server_8c_a0906dae4a42c1fef9ec0cd0a5212ed4a}{HTTP\+\_\+\+PORT}}~80
+\item 
+\#define \mbox{\hyperlink{http__server_8c_a75b1a1ef17d00affddc93c4621fe5a9f}{HTTP\+\_\+\+BUF\+\_\+\+SIZE}}~2048
+\item 
+\#define \mbox{\hyperlink{http__server_8c_a9a827d01adb4b7a937b29aee37da0c3e}{HTTP\+\_\+\+SOCK\+\_\+\+NUM}}~0
+\item 
+\#define \mbox{\hyperlink{http__server_8c_a565a8d3c2e84542ca9d1ca828cc49b19}{HTTP\+\_\+\+SERVER\+\_\+\+TAG}}~"{}\mbox{[}SERVER\mbox{]}"{}
+\item 
+\#define \mbox{\hyperlink{http__server_8c_ae1ff3ef303381ab63950657748a0d267}{TX\+\_\+\+WINDOW\+\_\+\+MS}}~1200
+\item 
+\#define \mbox{\hyperlink{http__server_8c_affdd7f753647296ec4ccb98b625b83b0}{MAX\+\_\+\+SEND\+\_\+\+CHUNK}}~4096 /\texorpdfstring{$\ast$}{*} Send in 4KB chunks to stay safe within 8KB TX buffer \texorpdfstring{$\ast$}{*}/
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{http__server_8c_a60e051c53a61100294f1cc857e73daf0}{get\+\_\+page\+\_\+content}} (const char \texorpdfstring{$\ast$}{*}request)
+\begin{DoxyCompactList}\small\item\em Route HTTP request to appropriate HTML page content. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{http__server_8c_a50ef0aad6146999a05d9a34b3b5c4e32}{get\+\_\+page\+\_\+length}} (const char \texorpdfstring{$\ast$}{*}request, int \texorpdfstring{$\ast$}{*}is\+\_\+gzip)
+\begin{DoxyCompactList}\small\item\em Get content length and encoding for a requested HTML page. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{http__server_8c_a8c210587f97cbef60c84dc0bfba63c2f}{net\+\_\+beat}} (void)
+\item 
+static int \mbox{\hyperlink{http__server_8c_a279630c7631c85f4f9d4a64fafe0933a}{send\+\_\+all}} (uint8\+\_\+t sock, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, int len)
+\begin{DoxyCompactList}\small\item\em Send data in safe chunks within W5500 TX buffer capacity. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{http__server_8c_ade9bf7f7c976eb2001e30778a36fe4a6}{send\+\_\+http\+\_\+response}} (uint8\+\_\+t sock, const char \texorpdfstring{$\ast$}{*}content\+\_\+type, const char \texorpdfstring{$\ast$}{*}body, int body\+\_\+len)
+\begin{DoxyCompactList}\small\item\em Send a simple HTTP/1.\+1 response with headers and body. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{http__server_8c_a6c3d6b960017124010e02627ad9e4af8}{parse\+\_\+content\+\_\+length}} (const char \texorpdfstring{$\ast$}{*}headers, int header\+\_\+len)
+\begin{DoxyCompactList}\small\item\em Parse Content-\/\+Length from HTTP headers block. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{http__server_8c_ac96a361786e5e3422fde6790cc3945a4}{read\+\_\+http\+\_\+request}} (uint8\+\_\+t sock, char \texorpdfstring{$\ast$}{*}buf, int buflen, int \texorpdfstring{$\ast$}{*}body\+\_\+off, int \texorpdfstring{$\ast$}{*}body\+\_\+len)
+\begin{DoxyCompactList}\small\item\em Read an HTTP request into buffer and locate body. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__webui02_ga2dd3bba639b08c3907dcb43527b74858}{http\+\_\+server\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize and start the HTTP server (socket listen). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__webui02_ga52702a4dcaff4540a9ddd10e4d5f4525}{http\+\_\+server\+\_\+process}} (void)
+\begin{DoxyCompactList}\small\item\em Process incoming HTTP connections and route requests. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static int8\+\_\+t \mbox{\hyperlink{http__server_8c_aaccad4b227141cf89acb2fafeb8befce}{http\+\_\+sock}}
+\item 
+static char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{http__server_8c_ad6a8914c6083d7fe7e2fce225a3c0b45}{http\+\_\+buf}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/01-\/01
+\end{DoxyDate}
+Implementation of HTTP/1.\+1 server with route-\/based dispatching and chunked transfer. Provides web interface and REST API access with TX watchdog protection.
+
+Key implementation\+: chunked sending breaks large responses into 4KB chunks with delays to avoid overflowing W5500\textquotesingle{}s 8KB TX buffer. Gzipped pages reduce transfer size.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{http__server_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{http__server_8c_a75b1a1ef17d00affddc93c4621fe5a9f}\index{http\_server.c@{http\_server.c}!HTTP\_BUF\_SIZE@{HTTP\_BUF\_SIZE}}
+\index{HTTP\_BUF\_SIZE@{HTTP\_BUF\_SIZE}!http\_server.c@{http\_server.c}}
+\doxysubsubsection{\texorpdfstring{HTTP\_BUF\_SIZE}{HTTP\_BUF\_SIZE}}
+{\footnotesize\ttfamily \label{http__server_8c_a75b1a1ef17d00affddc93c4621fe5a9f} 
+\#define HTTP\+\_\+\+BUF\+\_\+\+SIZE~2048}
+
+\Hypertarget{http__server_8c_a0906dae4a42c1fef9ec0cd0a5212ed4a}\index{http\_server.c@{http\_server.c}!HTTP\_PORT@{HTTP\_PORT}}
+\index{HTTP\_PORT@{HTTP\_PORT}!http\_server.c@{http\_server.c}}
+\doxysubsubsection{\texorpdfstring{HTTP\_PORT}{HTTP\_PORT}}
+{\footnotesize\ttfamily \label{http__server_8c_a0906dae4a42c1fef9ec0cd0a5212ed4a} 
+\#define HTTP\+\_\+\+PORT~80}
+
+\Hypertarget{http__server_8c_a565a8d3c2e84542ca9d1ca828cc49b19}\index{http\_server.c@{http\_server.c}!HTTP\_SERVER\_TAG@{HTTP\_SERVER\_TAG}}
+\index{HTTP\_SERVER\_TAG@{HTTP\_SERVER\_TAG}!http\_server.c@{http\_server.c}}
+\doxysubsubsection{\texorpdfstring{HTTP\_SERVER\_TAG}{HTTP\_SERVER\_TAG}}
+{\footnotesize\ttfamily \label{http__server_8c_a565a8d3c2e84542ca9d1ca828cc49b19} 
+\#define HTTP\+\_\+\+SERVER\+\_\+\+TAG~"{}\mbox{[}SERVER\mbox{]}"{}}
+
+\Hypertarget{http__server_8c_a9a827d01adb4b7a937b29aee37da0c3e}\index{http\_server.c@{http\_server.c}!HTTP\_SOCK\_NUM@{HTTP\_SOCK\_NUM}}
+\index{HTTP\_SOCK\_NUM@{HTTP\_SOCK\_NUM}!http\_server.c@{http\_server.c}}
+\doxysubsubsection{\texorpdfstring{HTTP\_SOCK\_NUM}{HTTP\_SOCK\_NUM}}
+{\footnotesize\ttfamily \label{http__server_8c_a9a827d01adb4b7a937b29aee37da0c3e} 
+\#define HTTP\+\_\+\+SOCK\+\_\+\+NUM~0}
+
+\Hypertarget{http__server_8c_affdd7f753647296ec4ccb98b625b83b0}\index{http\_server.c@{http\_server.c}!MAX\_SEND\_CHUNK@{MAX\_SEND\_CHUNK}}
+\index{MAX\_SEND\_CHUNK@{MAX\_SEND\_CHUNK}!http\_server.c@{http\_server.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_SEND\_CHUNK}{MAX\_SEND\_CHUNK}}
+{\footnotesize\ttfamily \label{http__server_8c_affdd7f753647296ec4ccb98b625b83b0} 
+\#define MAX\+\_\+\+SEND\+\_\+\+CHUNK~4096 /\texorpdfstring{$\ast$}{*} Send in 4KB chunks to stay safe within 8KB TX buffer \texorpdfstring{$\ast$}{*}/}
+
+\Hypertarget{http__server_8c_ae1ff3ef303381ab63950657748a0d267}\index{http\_server.c@{http\_server.c}!TX\_WINDOW\_MS@{TX\_WINDOW\_MS}}
+\index{TX\_WINDOW\_MS@{TX\_WINDOW\_MS}!http\_server.c@{http\_server.c}}
+\doxysubsubsection{\texorpdfstring{TX\_WINDOW\_MS}{TX\_WINDOW\_MS}}
+{\footnotesize\ttfamily \label{http__server_8c_ae1ff3ef303381ab63950657748a0d267} 
+\#define TX\+\_\+\+WINDOW\+\_\+\+MS~1200}
+
+
+
+\label{doc-func-members}
+\Hypertarget{http__server_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{http__server_8c_a60e051c53a61100294f1cc857e73daf0}\index{http\_server.c@{http\_server.c}!get\_page\_content@{get\_page\_content}}
+\index{get\_page\_content@{get\_page\_content}!http\_server.c@{http\_server.c}}
+\doxysubsubsection{\texorpdfstring{get\_page\_content()}{get\_page\_content()}}
+{\footnotesize\ttfamily \label{http__server_8c_a60e051c53a61100294f1cc857e73daf0} 
+const char \texorpdfstring{$\ast$}{*} get\+\_\+page\+\_\+content (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Route HTTP request to appropriate HTML page content. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{page__content_8h}{page\+\_\+content.\+h} for detailed documentation. 
+\end{DoxySeeAlso}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{http__server_8c_a60e051c53a61100294f1cc857e73daf0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{http__server_8c_a50ef0aad6146999a05d9a34b3b5c4e32}\index{http\_server.c@{http\_server.c}!get\_page\_length@{get\_page\_length}}
+\index{get\_page\_length@{get\_page\_length}!http\_server.c@{http\_server.c}}
+\doxysubsubsection{\texorpdfstring{get\_page\_length()}{get\_page\_length()}}
+{\footnotesize\ttfamily \label{http__server_8c_a50ef0aad6146999a05d9a34b3b5c4e32} 
+int get\+\_\+page\+\_\+length (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{request}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{is\+\_\+gzip}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Get content length and encoding for a requested HTML page. 
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{page__content_8h}{page\+\_\+content.\+h} for detailed documentation. 
+\end{DoxySeeAlso}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{http__server_8c_a50ef0aad6146999a05d9a34b3b5c4e32_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{http__server_8c_a8c210587f97cbef60c84dc0bfba63c2f}\index{http\_server.c@{http\_server.c}!net\_beat@{net\_beat}}
+\index{net\_beat@{net\_beat}!http\_server.c@{http\_server.c}}
+\doxysubsubsection{\texorpdfstring{net\_beat()}{net\_beat()}}
+{\footnotesize\ttfamily \label{http__server_8c_a8c210587f97cbef60c84dc0bfba63c2f} 
+void net\+\_\+beat (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{http__server_8c_a8c210587f97cbef60c84dc0bfba63c2f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{http__server_8c_a8c210587f97cbef60c84dc0bfba63c2f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{http__server_8c_a6c3d6b960017124010e02627ad9e4af8}\index{http\_server.c@{http\_server.c}!parse\_content\_length@{parse\_content\_length}}
+\index{parse\_content\_length@{parse\_content\_length}!http\_server.c@{http\_server.c}}
+\doxysubsubsection{\texorpdfstring{parse\_content\_length()}{parse\_content\_length()}}
+{\footnotesize\ttfamily \label{http__server_8c_a6c3d6b960017124010e02627ad9e4af8} 
+int parse\+\_\+content\+\_\+length (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{headers}{, }\item[{int}]{header\+\_\+len}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Parse Content-\/\+Length from HTTP headers block. 
+
+Scans CRLF-\/delimited header lines for "{}\+Content-\/\+Length\+:"{} and converts the value.
+
+
+\begin{DoxyParams}{Parameters}
+{\em headers} & Pointer to the header buffer. \\
+\hline
+{\em header\+\_\+len} & Number of bytes containing headers. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Parsed Content-\/\+Length (\texorpdfstring{$>$}{>}0), or 0 if not found/invalid. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{http__server_8c_a6c3d6b960017124010e02627ad9e4af8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{http__server_8c_ac96a361786e5e3422fde6790cc3945a4}\index{http\_server.c@{http\_server.c}!read\_http\_request@{read\_http\_request}}
+\index{read\_http\_request@{read\_http\_request}!http\_server.c@{http\_server.c}}
+\doxysubsubsection{\texorpdfstring{read\_http\_request()}{read\_http\_request()}}
+{\footnotesize\ttfamily \label{http__server_8c_ac96a361786e5e3422fde6790cc3945a4} 
+int read\+\_\+http\+\_\+request (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sock}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{int}]{buflen}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{body\+\_\+off}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{body\+\_\+len}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Read an HTTP request into buffer and locate body. 
+
+Reads headers until CRLFCRLF, then reads body based on Content-\/\+Length. Returns total bytes read and sets body offset/length outputs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & Socket number. \\
+\hline
+{\em buf} & Destination buffer for full request. \\
+\hline
+{\em buflen} & Buffer capacity in bytes. \\
+\hline
+{\em body\+\_\+off} & Out\+: offset to start of body within {\ttfamily buf}. \\
+\hline
+{\em body\+\_\+len} & Out\+: number of bytes in body. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Total bytes read, or -\/1 if headers incomplete. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{http__server_8c_ac96a361786e5e3422fde6790cc3945a4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{http__server_8c_ac96a361786e5e3422fde6790cc3945a4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{http__server_8c_a279630c7631c85f4f9d4a64fafe0933a}\index{http\_server.c@{http\_server.c}!send\_all@{send\_all}}
+\index{send\_all@{send\_all}!http\_server.c@{http\_server.c}}
+\doxysubsubsection{\texorpdfstring{send\_all()}{send\_all()}}
+{\footnotesize\ttfamily \label{http__server_8c_a279630c7631c85f4f9d4a64fafe0933a} 
+int send\+\_\+all (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sock}{, }\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{int}]{len}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Send data in safe chunks within W5500 TX buffer capacity. 
+
+Splits payload into up to {\ttfamily MAX\+\_\+\+SEND\+\_\+\+CHUNK} bytes per send to avoid overflowing the 8KB W5500 TX buffer. Adds small delays between chunks to allow hardware TX drain.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & Socket number. \\
+\hline
+{\em data} & Pointer to data to send. \\
+\hline
+{\em len} & Total length to send in bytes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of bytes sent, or -\/1 on error. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{http__server_8c_a279630c7631c85f4f9d4a64fafe0933a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{http__server_8c_a279630c7631c85f4f9d4a64fafe0933a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{http__server_8c_ade9bf7f7c976eb2001e30778a36fe4a6}\index{http\_server.c@{http\_server.c}!send\_http\_response@{send\_http\_response}}
+\index{send\_http\_response@{send\_http\_response}!http\_server.c@{http\_server.c}}
+\doxysubsubsection{\texorpdfstring{send\_http\_response()}{send\_http\_response()}}
+{\footnotesize\ttfamily \label{http__server_8c_ade9bf7f7c976eb2001e30778a36fe4a6} 
+void send\+\_\+http\+\_\+response (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sock}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{content\+\_\+type}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{body}{, }\item[{int}]{body\+\_\+len}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Send a simple HTTP/1.\+1 response with headers and body. 
+
+Emits headers with Content-\/\+Type and Content-\/\+Length, then the body. Uses {\ttfamily \doxylink{http__server_8c_a279630c7631c85f4f9d4a64fafe0933a}{send\+\_\+all()}} for chunked TX safety.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & Socket number. \\
+\hline
+{\em content\+\_\+type} & MIME type (e.\+g., "{}application/json"{}). \\
+\hline
+{\em body} & Pointer to response body (optional). \\
+\hline
+{\em body\+\_\+len} & Byte length of body (0 allowed). \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{http__server_8c_ade9bf7f7c976eb2001e30778a36fe4a6_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{http__server_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{http__server_8c_ad6a8914c6083d7fe7e2fce225a3c0b45}\index{http\_server.c@{http\_server.c}!http\_buf@{http\_buf}}
+\index{http\_buf@{http\_buf}!http\_server.c@{http\_server.c}}
+\doxysubsubsection{\texorpdfstring{http\_buf}{http\_buf}}
+{\footnotesize\ttfamily \label{http__server_8c_ad6a8914c6083d7fe7e2fce225a3c0b45} 
+char\texorpdfstring{$\ast$}{*} http\+\_\+buf\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{http__server_8c_aaccad4b227141cf89acb2fafeb8befce}\index{http\_server.c@{http\_server.c}!http\_sock@{http\_sock}}
+\index{http\_sock@{http\_sock}!http\_server.c@{http\_server.c}}
+\doxysubsubsection{\texorpdfstring{http\_sock}{http\_sock}}
+{\footnotesize\ttfamily \label{http__server_8c_aaccad4b227141cf89acb2fafeb8befce} 
+int8\+\_\+t http\+\_\+sock\hspace{0.3cm}{\ttfamily [static]}}
+

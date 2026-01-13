@@ -1,0 +1,54 @@
+<map id="Overcurrent_Update" name="Overcurrent_Update">
+<area shape="rect" id="Node000001" title="Update overcurrent protection with new total current measurement." alt="" coords="5,221,144,247"/>
+<area shape="rect" id="Node000002" href="$_o_c_p_8c.html#ae8d60a50e6a32ee1f355ee379407a4c9" title="Execute overcurrent trip action." alt="" coords="237,195,330,222"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,223,221,214,222,219,144,228"/>
+<area shape="rect" id="Node000022" href="$group__tasks05.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="192,246,375,273"/>
+<area shape="poly" id="edge30_Node000001_Node000022" title=" " alt="" coords="144,240,177,244,176,249,144,245"/>
+<area shape="rect" id="Node000003" href="$group__tasks09.html#ga6d7e4669c03c8bd5f6e47e4166627c2b" title="Turn all relay channels OFF with verification." alt="" coords="441,271,541,298"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="331,218,376,232,449,262,447,267,374,237,329,223"/>
+<area shape="rect" id="Node000020" href="$group__tasks09.html#gabd8f13f37bd62b267259ae2d027bda28" title="Set single relay channel state with verification." alt="" coords="423,145,559,171"/>
+<area shape="poly" id="edge23_Node000002_Node000020" title=" " alt="" coords="329,195,418,173,419,178,330,200"/>
+<area shape="rect" id="Node000004" href="$_switch_task_8c.html#a2a7f01bd659f5eea0a4a131d8c57c207" title=" " alt="" coords="690,195,735,222"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="519,268,606,232,674,214,675,219,608,237,521,273"/>
+<area shape="rect" id="Node000005" href="$group__drivers06.html#ga6568742c79ce5190216e5185238229ba" title="Get relay MCP23017 device context." alt="" coords="885,347,966,374"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="542,291,871,349,870,354,541,296"/>
+<area shape="rect" id="Node000006" href="$group__drivers06.html#ga8b8bc528b75e419262e7663ee669dc31" title="Write a logic level to a pin." alt="" coords="873,246,978,273"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="542,286,667,290,742,288,817,282,861,274,862,280,818,287,743,293,667,295,542,291"/>
+<area shape="rect" id="Node000012" href="$_switch_task_8c.html#a4f736068a28c331df25cda27cb3a80c0" title=" " alt="" coords="645,398,780,441"/>
+<area shape="poly" id="edge11_Node000003_Node000012" title=" " alt="" coords="508,297,551,336,609,377,632,389,630,394,606,382,548,340,504,301"/>
+<area shape="rect" id="Node000019" href="$_switch_task_8c.html#abb7cc7eb4e959fda6a43c8dd85f20090" title=" " alt="" coords="683,246,742,273"/>
+<area shape="poly" id="edge22_Node000003_Node000019" title=" " alt="" coords="541,276,667,262,668,267,542,282"/>
+<area shape="rect" id="Node000007" href="$group__drivers05.html#gab7b4aa096ded6cebd93256e5b5994e42" title="Write 8&#45;bit register with 8&#45;bit value: [reg, value]." alt="" coords="1046,373,1179,399"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="965,271,987,283,1084,360,1080,365,985,287,962,276"/>
+<area shape="rect" id="Node000011" href="$_m_c_p23017__driver_8c.html#a0ff45ad384852ba5f69f0fd781c2f46a" title=" " alt="" coords="1034,285,1190,311"/>
+<area shape="poly" id="edge10_Node000006_Node000011" title=" " alt="" coords="979,268,1030,278,1029,284,978,273"/>
+<area shape="rect" id="Node000008" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="1488,398,1609,425"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="1179,387,1473,404,1472,410,1179,393"/>
+<area shape="rect" id="Node000009" href="$group__drivers05.html#ga170d6c4ff97ddc2d314f0a7a0054f283" title="Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK i2c_write_time..." alt="" coords="1238,347,1411,374"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="1179,376,1223,370,1223,376,1180,381"/>
+<area shape="rect" id="Node000010" href="$i2c__bus_8c.html#afbaa64f79bdd1fa39c8fa5b7a9c2717b" title=" " alt="" coords="1470,347,1627,374"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="1411,358,1454,358,1454,363,1411,363"/>
+<area shape="poly" id="edge13_Node000012_Node000005" title=" " alt="" coords="780,398,869,373,871,379,781,403"/>
+<area shape="rect" id="Node000013" href="$group__drivers06.html#ga7634eca518e2158ba0e636a3f03f3928" title="Get display MCP23017 device context." alt="" coords="879,297,973,323"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="749,395,864,333,876,328,878,333,867,338,752,400"/>
+<area shape="rect" id="Node000014" href="$group__drivers06.html#ga0dfecc1e56ba649b3a89936c6206c9e2" title="Atomic masked write to a port." alt="" coords="866,398,986,425"/>
+<area shape="poly" id="edge14_Node000012_Node000014" title=" " alt="" coords="780,414,850,412,850,417,781,420"/>
+<area shape="rect" id="Node000015" href="$_switch_task_8c.html#acc0c2f9409d734ff983b3d0f0cdf8444" title=" " alt="" coords="866,449,986,475"/>
+<area shape="poly" id="edge17_Node000012_Node000015" title=" " alt="" coords="781,430,851,445,850,450,780,436"/>
+<area shape="poly" id="edge15_Node000014_Node000007" title=" " alt="" coords="986,401,1030,395,1031,400,987,406"/>
+<area shape="poly" id="edge16_Node000014_Node000011" title=" " alt="" coords="961,395,985,384,1036,351,1080,319,1083,323,1039,356,987,388,964,400"/>
+<area shape="rect" id="Node000016" href="$group__drivers06.html#ga2e6de484edec28d8c39620a364ce5b92" title="Read a logic level from a pin." alt="" coords="1061,449,1163,475"/>
+<area shape="poly" id="edge18_Node000015_Node000016" title=" " alt="" coords="986,459,1045,459,1045,465,986,465"/>
+<area shape="rect" id="Node000017" href="$group__drivers05.html#ga0e406d50e8948e593649a11c729acd9b" title="Read 8&#45;bit register: write [reg] (no stop), then read 1 byte." alt="" coords="1259,449,1390,475"/>
+<area shape="poly" id="edge19_Node000016_Node000017" title=" " alt="" coords="1164,459,1244,459,1244,465,1164,465"/>
+<area shape="poly" id="edge20_Node000017_Node000008" title=" " alt="" coords="1386,446,1472,426,1473,431,1387,451"/>
+<area shape="rect" id="Node000018" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="1459,449,1638,475"/>
+<area shape="poly" id="edge21_Node000017_Node000018" title=" " alt="" coords="1390,459,1443,459,1443,465,1390,465"/>
+<area shape="poly" id="edge24_Node000020_Node000004" title=" " alt="" coords="553,170,675,198,674,203,552,175"/>
+<area shape="poly" id="edge26_Node000020_Node000005" title=" " alt="" coords="520,142,580,119,659,99,701,96,743,99,783,110,819,131,840,154,850,178,852,204,849,229,846,256,846,282,852,308,868,334,874,340,870,344,864,337,847,310,841,282,841,255,844,229,846,203,845,179,836,157,816,135,781,115,742,104,701,101,660,105,582,124,522,147"/>
+<area shape="poly" id="edge27_Node000020_Node000006" title=" " alt="" coords="498,143,539,88,570,58,606,36,665,13,715,3,739,4,764,9,819,36,843,55,864,78,894,131,913,186,923,231,918,232,908,187,889,133,859,81,840,59,816,40,763,15,739,9,715,8,666,18,609,41,573,62,543,91,503,146"/>
+<area shape="poly" id="edge25_Node000020_Node000013" title=" " alt="" coords="507,142,550,112,577,97,606,86,667,68,718,55,743,54,767,58,792,69,819,87,840,109,849,133,851,157,849,182,846,233,852,258,868,283,870,285,866,289,864,286,847,260,841,233,844,182,846,157,844,134,835,112,816,91,790,74,766,64,742,60,719,60,669,73,608,91,580,102,553,117,510,147"/>
+<area shape="poly" id="edge29_Node000020_Node000019" title=" " alt="" coords="511,170,554,201,608,232,668,250,667,255,606,237,551,206,508,174"/>
+<area shape="rect" id="Node000021" href="$group__tasks10.html#ga4bf47606df6e10c610300fdf1a2573b5" title="Query whether switching actions are currently allowed." alt="" coords="607,145,818,171"/>
+<area shape="poly" id="edge28_Node000020_Node000021" title=" " alt="" coords="560,155,592,155,592,161,560,161"/>
+</map>

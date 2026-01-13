@@ -1,0 +1,53 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\+Button\+Task.h File Reference}
+\hypertarget{_button_task_8h}{}\label{_button_task_8h}\index{src/Software/ENERGIS\_RTOS/src/tasks/ButtonTask.h@{src/Software/ENERGIS\_RTOS/src/tasks/ButtonTask.h}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for Button\+Task.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_button_task_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_button_task_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structbtn__event__t}{btn\+\_\+event\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Button event message published to the queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__tasks01_ga5f3c716f66dc5610b621b0f68059707a}{btn\+\_\+event\+\_\+kind\+\_\+t}} \{ \newline
+\mbox{\hyperlink{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aa05e67b3cb5e00b70f9cd5ee7cf2d9c29}{BTN\+\_\+\+EV\+\_\+\+PLUS\+\_\+\+FALL}} = 1u
+, \mbox{\hyperlink{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aa87f1f018ce130f39d6b2c8377fb42484}{BTN\+\_\+\+EV\+\_\+\+PLUS\+\_\+\+RISE}} = 2u
+, \mbox{\hyperlink{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aaa5a6cba1ff19287c45c423816348153e}{BTN\+\_\+\+EV\+\_\+\+MINUS\+\_\+\+FALL}} = 3u
+, \mbox{\hyperlink{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aa1e1e8c44257ec3b52d84db2b947b0ec0}{BTN\+\_\+\+EV\+\_\+\+MINUS\+\_\+\+RISE}} = 4u
+, \newline
+\mbox{\hyperlink{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aa7a0000ee3caa99136466a72581e0e8b5}{BTN\+\_\+\+EV\+\_\+\+SET\+\_\+\+SHORT}} = 5u
+, \mbox{\hyperlink{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aab3a546c531e811b4697fe981a2072843}{BTN\+\_\+\+EV\+\_\+\+SET\+\_\+\+LONG}} = 6u
+ \}
+\begin{DoxyCompactList}\small\item\em Button scanning period in milliseconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Base\+Type\+\_\+t \mbox{\hyperlink{group__tasks01_ga66ab3f6fa24432c008c6ea7b0ccddb5f}{Button\+Task\+\_\+\+Init}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Initialize and start the button handling task. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks01_ga10ed3ecf4c7563fe0fd3a2324b9260e1}{Button\+\_\+\+Is\+Ready}} (void)
+\begin{DoxyCompactList}\small\item\em Query button task readiness status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{group__tasks01_ga4f858b0945b86e1932ecb297d91c7878}{q\+\_\+btn}}
+\begin{DoxyCompactList}\small\item\em Global queue for button event distribution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

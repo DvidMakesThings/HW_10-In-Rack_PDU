@@ -1,0 +1,101 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/drivers/\+HLW8032\+\_\+driver.h File Reference}
+\hypertarget{_h_l_w8032__driver_8h}{}\label{_h_l_w8032__driver_8h}\index{src/Software/ENERGIS\_RTOS/src/drivers/HLW8032\_driver.h@{src/Software/ENERGIS\_RTOS/src/drivers/HLW8032\_driver.h}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for HLW8032\+\_\+driver.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_h_l_w8032__driver_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_h_l_w8032__driver_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{Indent}\textbf{ HLW8032 Constants}\par
+{\em HLW8032 nominal voltage calibration factor (volts) }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__drivers04_gad932e9114863299db7ccf7734fa3d384}{HLW8032\+\_\+\+VF}}~1.\+88f
+\item 
+\#define \mbox{\hyperlink{group__drivers04_gaebe7d2d06bc26b3ecabcfa943eea8542}{HLW8032\+\_\+\+CF}}~1.\+0f
+\begin{DoxyCompactList}\small\item\em HLW8032 nominal current calibration factor (amps) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__drivers04_gae2ffdc964c3e8df6a8ebf772f03fba13}{MAX\+\_\+\+RX\+\_\+\+BYTES}}~128
+\begin{DoxyCompactList}\small\item\em Maximum number of bytes to read during frame sync. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__drivers04_ga2205f920fe4a1621f1ba9fa7137dc54c}{HLW\+\_\+\+UART\+\_\+\+TIMEOUT\+\_\+\+US}}~250000\+ULL
+\begin{DoxyCompactList}\small\item\em UART read timeout in microseconds. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__drivers04_gae59cc3c57b510020113e91f32c9a7cda}{MUX\+\_\+\+SETTLE\+\_\+\+US}}~1000
+\begin{DoxyCompactList}\small\item\em Hardware settling time after MUX change (microseconds) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef hlw\+\_\+calib\+\_\+t \mbox{\hyperlink{group__drivers04_ga44c9ea596494d029a9d1de5f7986f2f7}{hlw\+\_\+calib\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Per-\/channel calibration data structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{Indent}\textbf{ Public API}\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__drivers04_gac1bd84c5a254283faacc776489f36625}{hlw8032\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize HLW8032 driver subsystem. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers04_gaf9b4059456656d1620a19fa771086a2d}{hlw8032\+\_\+read}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Read power measurements from a specific channel. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__drivers04_ga6fb634639b04ca4cfd297f7c48a0c181}{hlw8032\+\_\+get\+\_\+voltage}} (void)
+\begin{DoxyCompactList}\small\item\em Get last voltage reading from previous \doxylink{group__drivers04_gaf9b4059456656d1620a19fa771086a2d}{hlw8032\+\_\+read()}. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__drivers04_ga2688ff6d07f74455d95d323ff3c2a0dd}{hlw8032\+\_\+get\+\_\+current}} (void)
+\begin{DoxyCompactList}\small\item\em Get last current reading from previous \doxylink{group__drivers04_gaf9b4059456656d1620a19fa771086a2d}{hlw8032\+\_\+read()}. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__drivers04_gaaa960776be4d3e02a4606c524dc5316b}{hlw8032\+\_\+get\+\_\+power}} (void)
+\begin{DoxyCompactList}\small\item\em Get last power reading from previous \doxylink{group__drivers04_gaf9b4059456656d1620a19fa771086a2d}{hlw8032\+\_\+read()}. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__drivers04_ga3e3e299137c4b5355cd17f94ddc24899}{hlw8032\+\_\+get\+\_\+uptime}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Get channel uptime in seconds. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers04_gacfd84777ef919c041f40ea955f672d5e}{hlw8032\+\_\+update\+\_\+uptime}} (uint8\+\_\+t ch, bool state)
+\begin{DoxyCompactList}\small\item\em Update channel uptime based on current relay state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers04_ga0b3a5c410541deaf144c3e33d4b65175}{hlw8032\+\_\+poll\+\_\+once}} (void)
+\begin{DoxyCompactList}\small\item\em Poll one channel and cache results (round-\/robin). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers04_ga76f09e4482db113563628126492d3200}{hlw8032\+\_\+refresh\+\_\+all}} (void)
+\begin{DoxyCompactList}\small\item\em Read and cache measurements for all 8 channels. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__drivers04_ga3fd1465bd8f5106879ee5677d0d551da}{hlw8032\+\_\+cached\+\_\+voltage}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Get cached voltage for a channel. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__drivers04_gad2a10b704d2588035bde43ff6b941ea7}{hlw8032\+\_\+cached\+\_\+current}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Get cached current for a channel. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__drivers04_ga5b03a8561efc81ded185e88ffc1574a9}{hlw8032\+\_\+cached\+\_\+power}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Get cached power for a channel (computed from V\texorpdfstring{$\ast$}{*}I). \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__drivers04_ga33d4652f0a85150f7dcba9f702b9893b}{hlw8032\+\_\+cached\+\_\+uptime}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Get cached uptime for a channel. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers04_ga01cdcd0497f8134e1ecb93331474dbdb}{hlw8032\+\_\+cached\+\_\+state}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Get cached relay state for a channel. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__drivers04_ga4824aa9f5ece25a68111e4097e62311e}{hlw8032\+\_\+get\+\_\+total\+\_\+current}} (void)
+\begin{DoxyCompactList}\small\item\em Get the total current sum across all 8 channels. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers04_ga8813e14d94b16a9cc2229159c8fdd6c1}{hlw8032\+\_\+cycle\+\_\+complete}} (void)
+\begin{DoxyCompactList}\small\item\em Check if a complete measurement cycle has finished since last check. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers04_gabacd90abd2475b3fb2dfe2efcd8e4f6a}{hlw8032\+\_\+calibration\+\_\+start\+\_\+current\+\_\+all}} (uint8\+\_\+t channel, float ref\+\_\+current)
+\begin{DoxyCompactList}\small\item\em Start asynchronous current calibration for all channels. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers04_ga76954a7035d4f2fad1ec9fba75e62b6c}{hlw8032\+\_\+load\+\_\+calibration}} (void)
+\begin{DoxyCompactList}\small\item\em Load calibration data from EEPROM for all channels. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers04_ga643d63b42087b4dd4b336571eb9b6d18}{hlw8032\+\_\+calibration\+\_\+start\+\_\+zero\+\_\+all}} (void)
+\begin{DoxyCompactList}\small\item\em Start asynchronous zero calibration (0V/0A) for all channels. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers04_gac3fd97d9d666bdf1a910b34170d0c38d}{hlw8032\+\_\+calibration\+\_\+start\+\_\+voltage\+\_\+all}} (float ref\+\_\+voltage)
+\begin{DoxyCompactList}\small\item\em Start asynchronous voltage calibration for all channels. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers04_ga2fabec2f7c0a743f2fd172d233fabb0a}{hlw8032\+\_\+calibration\+\_\+is\+\_\+running}} (void)
+\begin{DoxyCompactList}\small\item\em Query whether an asynchronous calibration sequence is currently running. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers04_ga9ab9b6a4d7f948c4bfd0bad1b1866a1b}{hlw8032\+\_\+get\+\_\+calibration}} (uint8\+\_\+t channel, \mbox{\hyperlink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}calib)
+\begin{DoxyCompactList}\small\item\em Retrieve calibration data for a channel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers04_gada8bbee8b1136d3d493ce67c266942da}{hlw8032\+\_\+print\+\_\+calibration}} (uint8\+\_\+t channel)
+\begin{DoxyCompactList}\small\item\em Print calibration data for a channel to log. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers04_ga6113ad3cf2b9bc5dad22805412ae8150}{hlw8032\+\_\+dump\+\_\+cache}} (void)
+\begin{DoxyCompactList}\small\item\em Diagnostic\+: Dump all cached channel values to log. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Semaphore\+Handle\+\_\+t \mbox{\hyperlink{group__drivers04_ga44f0e457365b1d578cbb01ee9f15af0c}{uart\+Hlw\+Mtx}}
+\begin{DoxyCompactList}\small\item\em UART mutex for HLW8032 communication (extern, defined in .c) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

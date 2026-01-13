@@ -1,0 +1,11 @@
+<map id="mcp_register" name="mcp_register">
+<area shape="rect" id="Node000001" title="Register or retrieve an MCP23017 device context." alt="" coords="579,5,675,32"/>
+<area shape="rect" id="Node000002" href="$group__drivers06.html#ga443377619e6d82e31b58ffc269b64936" title="Initialize all MCP23017 devices for the ENERGIS PDU." alt="" coords="426,5,531,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="563,21,531,21,531,16,563,16"/>
+<area shape="rect" id="Node000003" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,5,378,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="411,21,379,21,379,16,411,16"/>
+<area shape="rect" id="Node000004" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,5,263,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="295,21,263,21,263,16,295,16"/>
+<area shape="rect" id="Node000005" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,5,102,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="134,21,102,21,102,16,134,16"/>
+</map>

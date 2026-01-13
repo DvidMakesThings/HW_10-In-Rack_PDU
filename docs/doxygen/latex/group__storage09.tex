@@ -1,0 +1,712 @@
+\doxysubsubsection{
+\begin{DoxyEnumerate}
+\item User Output 
+\end{DoxyEnumerate}}
+\hypertarget{group__storage09}{}\label{group__storage09}\index{9. User Output@{9. User Output}}
+
+
+User output configuration presets and apply-\/on-\/startup persistence.  
+
+
+Collaboration diagram for 9. User Output\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=286pt]{group__storage09}
+\end{center}
+\end{figure}
+\doxysubsubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structuser__output__preset__t}{user\+\_\+output\+\_\+preset\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Single configuration preset entry. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structuser__output__data__t}{user\+\_\+output\+\_\+data\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Complete user output configuration block. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__storage09_ga046749104e0d3ed1c5d14777e32dba42}{USER\+\_\+\+OUTPUT\+\_\+\+MAX\+\_\+\+PRESETS}}~5u
+\item 
+\#define \mbox{\hyperlink{group__storage09_gab51a15ea684e163433ede2f7f69257ab}{USER\+\_\+\+OUTPUT\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+LEN}}~25u
+\item 
+\#define \mbox{\hyperlink{group__storage09_ga2a29a16eb58b8c54a7c1eebb6309b3ab}{USER\+\_\+\+OUTPUT\+\_\+\+PRESET\+\_\+\+VALID}}~0x\+A5u
+\item 
+\#define \mbox{\hyperlink{group__storage09_gac43e67b3c05b4ca28975acd09f501227}{USER\+\_\+\+OUTPUT\+\_\+\+HEADER\+\_\+\+MAGIC}}~0x\+C5u
+\item 
+\#define \mbox{\hyperlink{group__storage09_ga7b01d315464ba8da1eb77670b5bb70a8}{USER\+\_\+\+OUTPUT\+\_\+\+STARTUP\+\_\+\+NONE}}~0x\+FFu
+\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{group__storage09_gab898071398b359603a35c202e9c65f3b}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} ((packed))
+\item 
+bool \mbox{\hyperlink{group__storage09_ga5727076845e0fe2135c108d8317704a2}{User\+Output\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize user output subsystem and load presets from EEPROM. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage09_ga21a7d214a0524abc04ae28e27ef944d3}{User\+Output\+\_\+\+Get\+All\+Presets}} (\mbox{\hyperlink{structuser__output__preset__t}{user\+\_\+output\+\_\+preset\+\_\+t}} out\mbox{[}\mbox{\hyperlink{group__storage09_ga046749104e0d3ed1c5d14777e32dba42}{USER\+\_\+\+OUTPUT\+\_\+\+MAX\+\_\+\+PRESETS}}\mbox{]})
+\begin{DoxyCompactList}\small\item\em Get all presets (from RAM cache). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage09_ga5f0640ed65cd2801c9c2b8774fbd9774}{User\+Output\+\_\+\+Get\+Preset}} (uint8\+\_\+t index, \mbox{\hyperlink{structuser__output__preset__t}{user\+\_\+output\+\_\+preset\+\_\+t}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Get a single preset by index (from RAM cache). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage09_gad6fa0b01aa77b8a8d3ad8a949793ee28}{User\+Output\+\_\+\+Save\+Preset}} (uint8\+\_\+t index, const char \texorpdfstring{$\ast$}{*}name, uint8\+\_\+t relay\+\_\+mask)
+\begin{DoxyCompactList}\small\item\em Save a preset at specified index. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage09_ga2b79ea5da2b1810668e743da2a1dcf69}{User\+Output\+\_\+\+Delete\+Preset}} (uint8\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Delete (clear) a preset at specified index. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__storage09_ga256c864690ce5f7015f2f610f33441f8}{User\+Output\+\_\+\+Get\+Startup\+Preset}} (void)
+\begin{DoxyCompactList}\small\item\em Get the startup preset index. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage09_ga386208413b1b0046b3ff03ade368e250}{User\+Output\+\_\+\+Set\+Startup\+Preset}} (uint8\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Set the startup preset index. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage09_ga6a93dd22bec3564db3ef13032a5d3e87}{User\+Output\+\_\+\+Clear\+Startup\+Preset}} (void)
+\begin{DoxyCompactList}\small\item\em Clear the startup preset selection. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage09_ga2b42208cc6b557303cf0db15e24b687b}{User\+Output\+\_\+\+Apply\+Preset}} (uint8\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Apply a preset\textquotesingle{}s relay configuration immediately. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage09_ga9995f76491a71a41beba203375da42c9}{User\+Output\+\_\+\+Apply\+Startup\+Preset}} (void)
+\begin{DoxyCompactList}\small\item\em Apply the startup preset if configured. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage09_ga14e941dd659a1a734d8bf360cbbe6444}{User\+Output\+\_\+\+Is\+Preset\+Valid}} (uint8\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Check if a preset slot is valid (contains data). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage09_ga737c93ab5e7648d81175b6d5fd05ce6d}{EEPROM\+\_\+\+Write\+User\+Output}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write relay states to EEPROM user output section (legacy). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage09_ga25688db788c627b0458f2fd63711af25}{EEPROM\+\_\+\+Read\+User\+Output}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Read relay states from EEPROM user output section (legacy). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__storage09_gae30695c5f848b6d16d77ffe322ea3817}{user\+\_\+output\+\_\+preset\+\_\+t}}
+\item 
+\mbox{\hyperlink{group__storage09_gabbe2613a6d83bcc91acd7d88d177f515}{user\+\_\+output\+\_\+data\+\_\+t}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+User output configuration presets and apply-\/on-\/startup persistence. 
+
+\begin{DoxyVersion}{Version}
+2.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/01-\/01
+\end{DoxyDate}
+Manages up to 5 saveable relay configuration presets in EEPROM. Each preset contains a user-\/defined name (max 25 chars) and an 8-\/bit relay state mask. One preset can be designated as "{}apply-\/on-\/startup"{} to automatically configure relay states after device boot.
+
+Memory Layout (0x0200-\/0x02\+FF, 256 bytes)\+:
+\begin{DoxyItemize}
+\item Byte 0\+: Header magic (0x\+C5)
+\item Byte 1\+: Startup preset ID (0-\/4) or 0x\+FF for none
+\item Bytes 2-\/3\+: Reserved
+\item Bytes 4-\/143\+: 5 presets × 28 bytes each
+\begin{DoxyItemize}
+\item Bytes 0-\/24\+: Name (25 chars)
+\item Byte 25\+: Null terminator
+\item Byte 26\+: Relay mask (bit N = channel N state)
+\item Byte 27\+: Valid flag (0x\+A5 = valid, else empty)
+\end{DoxyItemize}
+\item Bytes 144-\/145\+: CRC16 over bytes 0-\/143
+\end{DoxyItemize}
+
+RAM Caching\+:
+\begin{DoxyItemize}
+\item Presets are loaded into RAM on startup
+\item API functions operate on RAM cache
+\item EEPROM is written only on changes
+\item Thread-\/safe via eeprom\+Mtx
+\end{DoxyItemize}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{group__storage09_doc-define-members}
+\doxysubsubsubsection{Macro Definition Documentation}
+\Hypertarget{group__storage09_gac43e67b3c05b4ca28975acd09f501227}\index{9. User Output@{9. User Output}!USER\_OUTPUT\_HEADER\_MAGIC@{USER\_OUTPUT\_HEADER\_MAGIC}}
+\index{USER\_OUTPUT\_HEADER\_MAGIC@{USER\_OUTPUT\_HEADER\_MAGIC}!9. User Output@{9. User Output}}
+\doxysubsubsubsubsection{\texorpdfstring{USER\_OUTPUT\_HEADER\_MAGIC}{USER\_OUTPUT\_HEADER\_MAGIC}}
+{\footnotesize\ttfamily \label{group__storage09_gac43e67b3c05b4ca28975acd09f501227} 
+\#define USER\+\_\+\+OUTPUT\+\_\+\+HEADER\+\_\+\+MAGIC~0x\+C5u}
+
+Header magic byte for data integrity check. \Hypertarget{group__storage09_ga046749104e0d3ed1c5d14777e32dba42}\index{9. User Output@{9. User Output}!USER\_OUTPUT\_MAX\_PRESETS@{USER\_OUTPUT\_MAX\_PRESETS}}
+\index{USER\_OUTPUT\_MAX\_PRESETS@{USER\_OUTPUT\_MAX\_PRESETS}!9. User Output@{9. User Output}}
+\doxysubsubsubsubsection{\texorpdfstring{USER\_OUTPUT\_MAX\_PRESETS}{USER\_OUTPUT\_MAX\_PRESETS}}
+{\footnotesize\ttfamily \label{group__storage09_ga046749104e0d3ed1c5d14777e32dba42} 
+\#define USER\+\_\+\+OUTPUT\+\_\+\+MAX\+\_\+\+PRESETS~5u}
+
+Maximum number of user-\/configurable presets. \Hypertarget{group__storage09_gab51a15ea684e163433ede2f7f69257ab}\index{9. User Output@{9. User Output}!USER\_OUTPUT\_NAME\_MAX\_LEN@{USER\_OUTPUT\_NAME\_MAX\_LEN}}
+\index{USER\_OUTPUT\_NAME\_MAX\_LEN@{USER\_OUTPUT\_NAME\_MAX\_LEN}!9. User Output@{9. User Output}}
+\doxysubsubsubsubsection{\texorpdfstring{USER\_OUTPUT\_NAME\_MAX\_LEN}{USER\_OUTPUT\_NAME\_MAX\_LEN}}
+{\footnotesize\ttfamily \label{group__storage09_gab51a15ea684e163433ede2f7f69257ab} 
+\#define USER\+\_\+\+OUTPUT\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+LEN~25u}
+
+Maximum preset name length (excluding null terminator). \Hypertarget{group__storage09_ga2a29a16eb58b8c54a7c1eebb6309b3ab}\index{9. User Output@{9. User Output}!USER\_OUTPUT\_PRESET\_VALID@{USER\_OUTPUT\_PRESET\_VALID}}
+\index{USER\_OUTPUT\_PRESET\_VALID@{USER\_OUTPUT\_PRESET\_VALID}!9. User Output@{9. User Output}}
+\doxysubsubsubsubsection{\texorpdfstring{USER\_OUTPUT\_PRESET\_VALID}{USER\_OUTPUT\_PRESET\_VALID}}
+{\footnotesize\ttfamily \label{group__storage09_ga2a29a16eb58b8c54a7c1eebb6309b3ab} 
+\#define USER\+\_\+\+OUTPUT\+\_\+\+PRESET\+\_\+\+VALID~0x\+A5u}
+
+Preset valid marker byte. \Hypertarget{group__storage09_ga7b01d315464ba8da1eb77670b5bb70a8}\index{9. User Output@{9. User Output}!USER\_OUTPUT\_STARTUP\_NONE@{USER\_OUTPUT\_STARTUP\_NONE}}
+\index{USER\_OUTPUT\_STARTUP\_NONE@{USER\_OUTPUT\_STARTUP\_NONE}!9. User Output@{9. User Output}}
+\doxysubsubsubsubsection{\texorpdfstring{USER\_OUTPUT\_STARTUP\_NONE}{USER\_OUTPUT\_STARTUP\_NONE}}
+{\footnotesize\ttfamily \label{group__storage09_ga7b01d315464ba8da1eb77670b5bb70a8} 
+\#define USER\+\_\+\+OUTPUT\+\_\+\+STARTUP\+\_\+\+NONE~0x\+FFu}
+
+Value indicating no startup preset is configured. 
+
+\label{doc-func-members}
+\Hypertarget{group__storage09_doc-func-members}
+\doxysubsubsubsection{Function Documentation}
+\Hypertarget{group__storage09_gab898071398b359603a35c202e9c65f3b}\index{9. User Output@{9. User Output}!\_\_attribute\_\_@{\_\_attribute\_\_}}
+\index{\_\_attribute\_\_@{\_\_attribute\_\_}!9. User Output@{9. User Output}}
+\doxysubsubsubsubsection{\texorpdfstring{\_\_attribute\_\_()}{\_\_attribute\_\_()}}
+{\footnotesize\ttfamily \label{group__storage09_gab898071398b359603a35c202e9c65f3b} 
+struct \+\_\+\+\_\+attribute\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{(packed)}]{}{}\end{DoxyParamCaption})}
+
+\texorpdfstring{$<$}{<} Preset name, null-\/terminated.
+
+\texorpdfstring{$<$}{<} Bit mask\+: bit N = channel N ON.
+
+\texorpdfstring{$<$}{<} 0x\+A5 if valid, else empty slot.
+
+\texorpdfstring{$<$}{<} Header magic (0x\+C5).
+
+\texorpdfstring{$<$}{<} Startup preset ID (0-\/4) or 0x\+FF.
+
+\texorpdfstring{$<$}{<} Reserved for future use.
+
+\texorpdfstring{$<$}{<} Preset array.
+
+\texorpdfstring{$<$}{<} CRC16 over header+presets.\Hypertarget{group__storage09_ga25688db788c627b0458f2fd63711af25}\index{9. User Output@{9. User Output}!EEPROM\_ReadUserOutput@{EEPROM\_ReadUserOutput}}
+\index{EEPROM\_ReadUserOutput@{EEPROM\_ReadUserOutput}!9. User Output@{9. User Output}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_ReadUserOutput()}{EEPROM\_ReadUserOutput()}}
+{\footnotesize\ttfamily \label{group__storage09_ga25688db788c627b0458f2fd63711af25} 
+int EEPROM\+\_\+\+Read\+User\+Output (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{size\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Read relay states from EEPROM user output section (legacy). 
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000004}{Deprecated}}]Use \doxylink{group__storage09_ga5f0640ed65cd2801c9c2b8774fbd9774}{User\+Output\+\_\+\+Get\+Preset()} instead.\end{DoxyRefDesc}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Destination buffer for relay states. \\
+\hline
+{\em len} & Number of bytes to read. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on error.
+\end{DoxyReturn}
+Read relay states from EEPROM user output section (legacy).
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000002}{Deprecated}}]Use {\ttfamily \doxylink{group__storage09_ga5f0640ed65cd2801c9c2b8774fbd9774}{User\+Output\+\_\+\+Get\+Preset()}} for structured presets. \end{DoxyRefDesc}
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Destination buffer. \\
+\hline
+{\em len} & Number of bytes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success; -\/1 on error. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage09_ga25688db788c627b0458f2fd63711af25_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage09_ga25688db788c627b0458f2fd63711af25_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage09_ga737c93ab5e7648d81175b6d5fd05ce6d}\index{9. User Output@{9. User Output}!EEPROM\_WriteUserOutput@{EEPROM\_WriteUserOutput}}
+\index{EEPROM\_WriteUserOutput@{EEPROM\_WriteUserOutput}!9. User Output@{9. User Output}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_WriteUserOutput()}{EEPROM\_WriteUserOutput()}}
+{\footnotesize\ttfamily \label{group__storage09_ga737c93ab5e7648d81175b6d5fd05ce6d} 
+int EEPROM\+\_\+\+Write\+User\+Output (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{size\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Write relay states to EEPROM user output section (legacy). 
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000003}{Deprecated}}]Use \doxylink{group__storage09_gad6fa0b01aa77b8a8d3ad8a949793ee28}{User\+Output\+\_\+\+Save\+Preset()} instead.\end{DoxyRefDesc}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Pointer to relay state array. \\
+\hline
+{\em len} & Number of bytes to write. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on error.
+\end{DoxyReturn}
+Write relay states to EEPROM user output section (legacy).
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000001}{Deprecated}}]Use {\ttfamily \doxylink{group__storage09_gad6fa0b01aa77b8a8d3ad8a949793ee28}{User\+Output\+\_\+\+Save\+Preset()}} for structured presets. \end{DoxyRefDesc}
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Pointer to relay states (\texorpdfstring{$<$}{<}= {\ttfamily EEPROM\+\_\+\+RELAY\+\_\+\+STATES\+\_\+\+SIZE}). \\
+\hline
+{\em len} & Number of bytes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success; -\/1 on error. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage09_ga737c93ab5e7648d81175b6d5fd05ce6d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage09_ga737c93ab5e7648d81175b6d5fd05ce6d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage09_ga2b42208cc6b557303cf0db15e24b687b}\index{9. User Output@{9. User Output}!UserOutput\_ApplyPreset@{UserOutput\_ApplyPreset}}
+\index{UserOutput\_ApplyPreset@{UserOutput\_ApplyPreset}!9. User Output@{9. User Output}}
+\doxysubsubsubsubsection{\texorpdfstring{UserOutput\_ApplyPreset()}{UserOutput\_ApplyPreset()}}
+{\footnotesize\ttfamily \label{group__storage09_ga2b42208cc6b557303cf0db15e24b687b} 
+bool User\+Output\+\_\+\+Apply\+Preset (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{index}{}\end{DoxyParamCaption})}
+
+
+
+Apply a preset\textquotesingle{}s relay configuration immediately. 
+
+Reads the preset from RAM cache and applies its relay mask using \doxylink{group__tasks11_gac03ed713c1c6d4402e28852482171290}{Switch\+\_\+\+Set\+Mask()}. Does not affect startup selection.
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Preset index (0-\/4). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success, false if preset doesn\textquotesingle{}t exist or switch error.
+\end{DoxyReturn}
+Apply a preset\textquotesingle{}s relay configuration immediately.
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Preset index. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success; false if empty or switch error. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage09_ga2b42208cc6b557303cf0db15e24b687b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage09_ga2b42208cc6b557303cf0db15e24b687b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage09_ga9995f76491a71a41beba203375da42c9}\index{9. User Output@{9. User Output}!UserOutput\_ApplyStartupPreset@{UserOutput\_ApplyStartupPreset}}
+\index{UserOutput\_ApplyStartupPreset@{UserOutput\_ApplyStartupPreset}!9. User Output@{9. User Output}}
+\doxysubsubsubsubsection{\texorpdfstring{UserOutput\_ApplyStartupPreset()}{UserOutput\_ApplyStartupPreset()}}
+{\footnotesize\ttfamily \label{group__storage09_ga9995f76491a71a41beba203375da42c9} 
+bool User\+Output\+\_\+\+Apply\+Startup\+Preset (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Apply the startup preset if configured. 
+
+Called during system boot after Switch\+Task is ready. If a valid startup preset is configured, applies its relay mask.
+
+\begin{DoxyReturn}{Returns}
+true if startup preset was applied (or none configured), false on error.
+\end{DoxyReturn}
+Apply the startup preset if configured.
+
+\begin{DoxyReturn}{Returns}
+true if applied or none configured; false on error. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage09_ga9995f76491a71a41beba203375da42c9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage09_ga9995f76491a71a41beba203375da42c9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage09_ga6a93dd22bec3564db3ef13032a5d3e87}\index{9. User Output@{9. User Output}!UserOutput\_ClearStartupPreset@{UserOutput\_ClearStartupPreset}}
+\index{UserOutput\_ClearStartupPreset@{UserOutput\_ClearStartupPreset}!9. User Output@{9. User Output}}
+\doxysubsubsubsubsection{\texorpdfstring{UserOutput\_ClearStartupPreset()}{UserOutput\_ClearStartupPreset()}}
+{\footnotesize\ttfamily \label{group__storage09_ga6a93dd22bec3564db3ef13032a5d3e87} 
+bool User\+Output\+\_\+\+Clear\+Startup\+Preset (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Clear the startup preset selection. 
+
+After clearing, no preset will be applied automatically on boot. Updates RAM cache and schedules EEPROM write.
+
+\begin{DoxyReturn}{Returns}
+true on success, false on EEPROM write error.
+\end{DoxyReturn}
+Clear the startup preset selection.
+
+\begin{DoxyReturn}{Returns}
+true on success; false on mutex or EEPROM error. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage09_ga6a93dd22bec3564db3ef13032a5d3e87_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage09_ga6a93dd22bec3564db3ef13032a5d3e87_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage09_ga2b79ea5da2b1810668e743da2a1dcf69}\index{9. User Output@{9. User Output}!UserOutput\_DeletePreset@{UserOutput\_DeletePreset}}
+\index{UserOutput\_DeletePreset@{UserOutput\_DeletePreset}!9. User Output@{9. User Output}}
+\doxysubsubsubsubsection{\texorpdfstring{UserOutput\_DeletePreset()}{UserOutput\_DeletePreset()}}
+{\footnotesize\ttfamily \label{group__storage09_ga2b79ea5da2b1810668e743da2a1dcf69} 
+bool User\+Output\+\_\+\+Delete\+Preset (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{index}{}\end{DoxyParamCaption})}
+
+
+
+Delete (clear) a preset at specified index. 
+
+Marks the preset as invalid in RAM cache and schedules EEPROM write. If the deleted preset was the startup preset, clears startup selection.
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Preset index (0-\/4). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success, false on invalid index or EEPROM write error.
+\end{DoxyReturn}
+Delete (clear) a preset at specified index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Preset index. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success; false on invalid index or EEPROM error. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage09_ga2b79ea5da2b1810668e743da2a1dcf69_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage09_ga2b79ea5da2b1810668e743da2a1dcf69_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage09_ga21a7d214a0524abc04ae28e27ef944d3}\index{9. User Output@{9. User Output}!UserOutput\_GetAllPresets@{UserOutput\_GetAllPresets}}
+\index{UserOutput\_GetAllPresets@{UserOutput\_GetAllPresets}!9. User Output@{9. User Output}}
+\doxysubsubsubsubsection{\texorpdfstring{UserOutput\_GetAllPresets()}{UserOutput\_GetAllPresets()}}
+{\footnotesize\ttfamily \label{group__storage09_ga21a7d214a0524abc04ae28e27ef944d3} 
+bool User\+Output\+\_\+\+Get\+All\+Presets (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structuser__output__preset__t}{user\+\_\+output\+\_\+preset\+\_\+t}}}]{out}{\mbox{[}\+USER\+\_\+\+OUTPUT\+\_\+\+MAX\+\_\+\+PRESETS\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Get all presets (from RAM cache). 
+
+Copies current preset array to caller\textquotesingle{}s buffer. Non-\/blocking, operates on RAM cache.
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & Array to receive presets (must hold USER\+\_\+\+OUTPUT\+\_\+\+MAX\+\_\+\+PRESETS entries). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success, false if out is NULL.
+\end{DoxyReturn}
+Get all presets (from RAM cache).
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & Destination array for {\ttfamily USER\+\_\+\+OUTPUT\+\_\+\+MAX\+\_\+\+PRESETS} entries. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success; false on NULL or cache not valid. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage09_ga21a7d214a0524abc04ae28e27ef944d3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage09_ga5f0640ed65cd2801c9c2b8774fbd9774}\index{9. User Output@{9. User Output}!UserOutput\_GetPreset@{UserOutput\_GetPreset}}
+\index{UserOutput\_GetPreset@{UserOutput\_GetPreset}!9. User Output@{9. User Output}}
+\doxysubsubsubsubsection{\texorpdfstring{UserOutput\_GetPreset()}{UserOutput\_GetPreset()}}
+{\footnotesize\ttfamily \label{group__storage09_ga5f0640ed65cd2801c9c2b8774fbd9774} 
+bool User\+Output\+\_\+\+Get\+Preset (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{index}{, }\item[{\mbox{\hyperlink{structuser__output__preset__t}{user\+\_\+output\+\_\+preset\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{out}{}\end{DoxyParamCaption})}
+
+
+
+Get a single preset by index (from RAM cache). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Preset index (0-\/4). \\
+\hline
+{\em out} & Pointer to receive preset data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success, false if index invalid or out is NULL.
+\end{DoxyReturn}
+Get a single preset by index (from RAM cache).
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Preset index \mbox{[}0..USER\+\_\+\+OUTPUT\+\_\+\+MAX\+\_\+\+PRESETS-\/1\mbox{]}. \\
+\hline
+{\em out} & Destination for preset. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success; false on bad index/\+NULL/not valid. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage09_ga5f0640ed65cd2801c9c2b8774fbd9774_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage09_ga256c864690ce5f7015f2f610f33441f8}\index{9. User Output@{9. User Output}!UserOutput\_GetStartupPreset@{UserOutput\_GetStartupPreset}}
+\index{UserOutput\_GetStartupPreset@{UserOutput\_GetStartupPreset}!9. User Output@{9. User Output}}
+\doxysubsubsubsubsection{\texorpdfstring{UserOutput\_GetStartupPreset()}{UserOutput\_GetStartupPreset()}}
+{\footnotesize\ttfamily \label{group__storage09_ga256c864690ce5f7015f2f610f33441f8} 
+uint8\+\_\+t User\+Output\+\_\+\+Get\+Startup\+Preset (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Get the startup preset index. 
+
+\begin{DoxyReturn}{Returns}
+Startup preset index (0-\/4), or USER\+\_\+\+OUTPUT\+\_\+\+STARTUP\+\_\+\+NONE (0x\+FF) if none.
+\end{DoxyReturn}
+Get the startup preset index.
+
+\begin{DoxyReturn}{Returns}
+Preset index or {\ttfamily USER\+\_\+\+OUTPUT\+\_\+\+STARTUP\+\_\+\+NONE} if none. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage09_ga256c864690ce5f7015f2f610f33441f8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage09_ga5727076845e0fe2135c108d8317704a2}\index{9. User Output@{9. User Output}!UserOutput\_Init@{UserOutput\_Init}}
+\index{UserOutput\_Init@{UserOutput\_Init}!9. User Output@{9. User Output}}
+\doxysubsubsubsubsection{\texorpdfstring{UserOutput\_Init()}{UserOutput\_Init()}}
+{\footnotesize\ttfamily \label{group__storage09_ga5727076845e0fe2135c108d8317704a2} 
+bool User\+Output\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Initialize user output subsystem and load presets from EEPROM. 
+
+Reads the user output configuration block from EEPROM into RAM cache. If data is invalid or corrupted, initializes with empty defaults.
+
+\begin{DoxyNote}{Note}
+Called by Storage\+Task during boot. Thread-\/safe (uses eeprom\+Mtx). 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+true on success, false on EEPROM read error.
+\end{DoxyReturn}
+Initialize user output subsystem and load presets from EEPROM.
+
+Creates local cache mutex, takes {\ttfamily eeprom\+Mtx} to read EEPROM, and loads configuration via {\ttfamily \doxylink{user__output_8c_a6895ccccd1a5b9d955b2ff3cd5a67c0a}{user\+\_\+output\+\_\+read\+\_\+eeprom()}}. If invalid, initializes defaults and writes them to EEPROM. Marks cache valid on success.
+
+\begin{DoxyReturn}{Returns}
+true on success (cache valid); false if EEPROM mutex timed-\/out. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage09_ga5727076845e0fe2135c108d8317704a2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage09_ga5727076845e0fe2135c108d8317704a2_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage09_ga14e941dd659a1a734d8bf360cbbe6444}\index{9. User Output@{9. User Output}!UserOutput\_IsPresetValid@{UserOutput\_IsPresetValid}}
+\index{UserOutput\_IsPresetValid@{UserOutput\_IsPresetValid}!9. User Output@{9. User Output}}
+\doxysubsubsubsubsection{\texorpdfstring{UserOutput\_IsPresetValid()}{UserOutput\_IsPresetValid()}}
+{\footnotesize\ttfamily \label{group__storage09_ga14e941dd659a1a734d8bf360cbbe6444} 
+bool User\+Output\+\_\+\+Is\+Preset\+Valid (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{index}{}\end{DoxyParamCaption})}
+
+
+
+Check if a preset slot is valid (contains data). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Preset index (0-\/4). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if preset is valid, false if empty or invalid index.
+\end{DoxyReturn}
+Check if a preset slot is valid (contains data).
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Preset index. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if valid; false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{group__storage09_gad6fa0b01aa77b8a8d3ad8a949793ee28}\index{9. User Output@{9. User Output}!UserOutput\_SavePreset@{UserOutput\_SavePreset}}
+\index{UserOutput\_SavePreset@{UserOutput\_SavePreset}!9. User Output@{9. User Output}}
+\doxysubsubsubsubsection{\texorpdfstring{UserOutput\_SavePreset()}{UserOutput\_SavePreset()}}
+{\footnotesize\ttfamily \label{group__storage09_gad6fa0b01aa77b8a8d3ad8a949793ee28} 
+bool User\+Output\+\_\+\+Save\+Preset (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{index}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{, }\item[{uint8\+\_\+t}]{relay\+\_\+mask}{}\end{DoxyParamCaption})}
+
+
+
+Save a preset at specified index. 
+
+Updates RAM cache and schedules EEPROM write.
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Preset index (0-\/4). \\
+\hline
+{\em name} & Preset name (max 25 chars, will be truncated). \\
+\hline
+{\em relay\+\_\+mask} & 8-\/bit relay state mask. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success, false on invalid index or EEPROM write error.
+\end{DoxyReturn}
+Save a preset at specified index.
+
+Thread-\/safe\+: takes cache mutex, then {\ttfamily eeprom\+Mtx} for commit. 
+\begin{DoxyParams}{Parameters}
+{\em index} & Preset index. \\
+\hline
+{\em name} & Preset name (truncated to max length; may be NULL). \\
+\hline
+{\em relay\+\_\+mask} & Bitmask of relay states. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success; false on mutex timeout or EEPROM error. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage09_gad6fa0b01aa77b8a8d3ad8a949793ee28_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage09_gad6fa0b01aa77b8a8d3ad8a949793ee28_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage09_ga386208413b1b0046b3ff03ade368e250}\index{9. User Output@{9. User Output}!UserOutput\_SetStartupPreset@{UserOutput\_SetStartupPreset}}
+\index{UserOutput\_SetStartupPreset@{UserOutput\_SetStartupPreset}!9. User Output@{9. User Output}}
+\doxysubsubsubsubsection{\texorpdfstring{UserOutput\_SetStartupPreset()}{UserOutput\_SetStartupPreset()}}
+{\footnotesize\ttfamily \label{group__storage09_ga386208413b1b0046b3ff03ade368e250} 
+bool User\+Output\+\_\+\+Set\+Startup\+Preset (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{index}{}\end{DoxyParamCaption})}
+
+
+
+Set the startup preset index. 
+
+Updates RAM cache and schedules EEPROM write. The specified preset must exist (be valid), otherwise the operation fails.
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Preset index (0-\/4) to apply on startup. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success, false if preset doesn\textquotesingle{}t exist or EEPROM write error.
+\end{DoxyReturn}
+Set the startup preset index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Preset index to use on startup. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success; false if preset invalid or EEPROM error. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage09_ga386208413b1b0046b3ff03ade368e250_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage09_ga386208413b1b0046b3ff03ade368e250_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{group__storage09_doc-var-members}
+\doxysubsubsubsection{Variable Documentation}
+\Hypertarget{group__storage09_gabbe2613a6d83bcc91acd7d88d177f515}\index{9. User Output@{9. User Output}!user\_output\_data\_t@{user\_output\_data\_t}}
+\index{user\_output\_data\_t@{user\_output\_data\_t}!9. User Output@{9. User Output}}
+\doxysubsubsubsubsection{\texorpdfstring{user\_output\_data\_t}{user\_output\_data\_t}}
+{\footnotesize\ttfamily \label{group__storage09_gabbe2613a6d83bcc91acd7d88d177f515} 
+user\+\_\+output\+\_\+data\+\_\+t}
+
+\Hypertarget{group__storage09_gae30695c5f848b6d16d77ffe322ea3817}\index{9. User Output@{9. User Output}!user\_output\_preset\_t@{user\_output\_preset\_t}}
+\index{user\_output\_preset\_t@{user\_output\_preset\_t}!9. User Output@{9. User Output}}
+\doxysubsubsubsubsection{\texorpdfstring{user\_output\_preset\_t}{user\_output\_preset\_t}}
+{\footnotesize\ttfamily \label{group__storage09_gae30695c5f848b6d16d77ffe322ea3817} 
+user\+\_\+output\+\_\+preset\+\_\+t}
+

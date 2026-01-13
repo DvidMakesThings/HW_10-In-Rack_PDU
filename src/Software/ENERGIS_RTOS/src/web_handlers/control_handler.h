@@ -2,7 +2,11 @@
  * @file src/web_handlers/control_handler.h
  * @author DvidMakesThings - David Sipos
  *
- * @defgroup webui2 2. Control Handler
+ * @defgroup webhandlers Web-UI Handlers
+ * @brief HTTP server and web interface handlers for ENERGIS PDU
+ * @{
+ *
+ * @defgroup webui01 1. Control Handler
  * @ingroup webhandlers
  * @brief Handler for the page control.html
  * @{
@@ -24,6 +28,9 @@
 
 #include "../CONFIG.h"
 
+/** @name Public API
+ * @{
+ */
 /**
  * @brief Handles the HTTP request for the control page
  *
@@ -40,6 +47,8 @@
  * - 200 OK: Success with "OK\n" body
  */
 void handle_control_request(uint8_t sock, char *body);
+
+/** @} */
 
 #endif // CONTROL_HANDLER_H
 

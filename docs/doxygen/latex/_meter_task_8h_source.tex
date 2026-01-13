@@ -1,0 +1,71 @@
+\doxysection{Meter\+Task.\+h}
+\hypertarget{_meter_task_8h_source}{}\label{_meter_task_8h_source}\index{src/Software/ENERGIS\_RTOS/src/tasks/MeterTask.h@{src/Software/ENERGIS\_RTOS/src/tasks/MeterTask.h}}
+\mbox{\hyperlink{_meter_task_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#ifndef\ METER\_TASK\_H}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ METER\_TASK\_H}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_o_n_f_i_g_8h}{../CONFIG.h}}"{}}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{comment}{/*\ =====================\ \ Telemetry\ Data\ Structures\ \ ====================\ */}}
+\DoxyCodeLine{00098\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00099\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structmeter__telemetry__t_afbca8d5a20861e19ac695a01152a9baf}{channel}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structmeter__telemetry__t_af19ae91d0498716ecc183a9d4ac08b92}{voltage}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structmeter__telemetry__t_a7a48abb7b7f84085586d22d00898b5e3}{current}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structmeter__telemetry__t_a64d5d4c858f56df80bbe788aa16d8d38}{power}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structmeter__telemetry__t_a76cd4e68f9a67f6e42aa3c62625cd944}{power\_factor}};\ \ \ \ }
+\DoxyCodeLine{00104\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structmeter__telemetry__t_a7af4cb4120affaf20bde0064a1127892}{uptime}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structmeter__telemetry__t_a6a2bd8c7560f57bb473b3ad9edf012af}{energy\_kwh}};\ \ \ \ \ \ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structmeter__telemetry__t_a3838ee062921bbdc71a19cefb4f4e73e}{relay\_state}};\ \ \ \ \ \ }
+\DoxyCodeLine{00107\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structmeter__telemetry__t_ae6b30090b1fc5c9cc617bf30a224adc1}{timestamp\_ms}};\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structmeter__telemetry__t_a54b76744dd51362eb1fa441baacf15df}{valid}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00109\ \}\ \mbox{\hyperlink{structmeter__telemetry__t}{meter\_telemetry\_t}};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00116\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structsystem__telemetry__t_a58b6130a815dd4d70cec15bf5ec17c8e}{die\_temp\_c}};\ \ \ \ \ \ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structsystem__telemetry__t_a8f7e83cf46184558455b6bb8c7469e5e}{vusb\_volts}};\ \ \ \ \ \ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structsystem__telemetry__t_ae9e26dae8269b2e578fbdb71cf35a9e0}{vsupply\_volts}};\ \ \ }
+\DoxyCodeLine{00120\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structsystem__telemetry__t_a797cafb9b9307cb803889c566cd9869a}{raw\_temp}};\ \ \ \ \ }
+\DoxyCodeLine{00121\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structsystem__telemetry__t_ab10de6723bc25a35d130f308cf62928d}{raw\_vusb}};\ \ \ \ \ }
+\DoxyCodeLine{00122\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structsystem__telemetry__t_a833ea68652152e26d7023735b5c08b52}{raw\_vsupply}};\ \ }
+\DoxyCodeLine{00123\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structsystem__telemetry__t_ae411654fcca0e07a5cc71eb75344763b}{timestamp\_ms}};\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structsystem__telemetry__t_afe871dc8ce702e7cf4cfe6ea43d25ef8}{valid}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00125\ \}\ \mbox{\hyperlink{structsystem__telemetry__t}{system\_telemetry\_t}};}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{comment}{/*\ =====================\ \ Task\ Configuration\ \ ===========================\ */}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#define\ METER\_TASK\_STACK\_SIZE\ 512}}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#define\ METER\_POLL\_RATE\_HZ\ 25\ \ \ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#define\ METER\_AVERAGE\_WINDOW\_MS\ 1000\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#define\ METER\_TELEMETRY\_QUEUE\_LEN\ 16\ }\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{comment}{/*\ =====================\ \ Global\ Queue\ Handle\ \ ==========================\ */}}
+\DoxyCodeLine{00146\ \textcolor{keyword}{extern}\ QueueHandle\_t\ \mbox{\hyperlink{group__tasks06_ga7c05890110d34f76bc337fe1dd88ed2e}{q\_meter\_telemetry}};}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \textcolor{comment}{/*\ =====================\ \ Task\ API\ \ =====================================\ */}}
+\DoxyCodeLine{00184\ BaseType\_t\ \mbox{\hyperlink{group__tasks06_ga33bd9742d865d9e98a4b81d443f69837}{MeterTask\_Init}}(\textcolor{keywordtype}{bool}\ enable);}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00201\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks06_gaacb98f39434e19bddfcdc0e0b555bd50}{Meter\_IsReady}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00224\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks06_ga18b328d88256e730d39d6a33ea78d399}{MeterTask\_GetTelemetry}}(uint8\_t\ channel,\ \mbox{\hyperlink{structmeter__telemetry__t}{meter\_telemetry\_t}}\ *telem);}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00244\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__tasks06_gae6a0acceca7a3a35f63bba05a7cd1826}{MeterTask\_RefreshAll}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00274\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks06_ga909c8be3f0ce184e2cd1045bc29e0e30}{MeterTask\_GetSystemTelemetry}}(\mbox{\hyperlink{structsystem__telemetry__t}{system\_telemetry\_t}}\ *sys);}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00310\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks06_gab0a72837aa90a24179f30788894fc8d6}{MeterTask\_TempCalibration\_SinglePointCompute}}(\textcolor{keywordtype}{float}\ ambient\_c,\ uint16\_t\ raw\_temp,\ \textcolor{keywordtype}{float}\ *out\_v0,}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ *out\_slope,\ \textcolor{keywordtype}{float}\ *out\_offset);}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00355\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks06_ga0f880913779ddddeb13c63ff028eb4a9}{MeterTask\_TempCalibration\_TwoPointCompute}}(\textcolor{keywordtype}{float}\ t1\_c,\ uint16\_t\ raw1,\ \textcolor{keywordtype}{float}\ t2\_c,\ uint16\_t\ raw2,}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ *out\_v0,\ \textcolor{keywordtype}{float}\ *out\_slope,\ \textcolor{keywordtype}{float}\ *out\_offset);}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00387\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks06_ga3f1131031850b69b057eeb4f8db3a4b9}{MeterTask\_SetTempCalibration}}(\textcolor{keywordtype}{float}\ v0\_volts\_at\_27c,\ \textcolor{keywordtype}{float}\ slope\_volts\_per\_deg,\ \textcolor{keywordtype}{float}\ offset\_c);}
+\DoxyCodeLine{00388\ }
+\DoxyCodeLine{00419\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks06_ga3e47111bb4b1227f43106ee888c45902}{MeterTask\_GetTempCalibrationInfo}}(uint8\_t\ *out\_mode,\ \textcolor{keywordtype}{float}\ *out\_v0,\ \textcolor{keywordtype}{float}\ *out\_slope,}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ *out\_offset);}
+\DoxyCodeLine{00422\ }
+\DoxyCodeLine{00423\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ METER\_TASK\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00424\ }
+
+\end{DoxyCode}

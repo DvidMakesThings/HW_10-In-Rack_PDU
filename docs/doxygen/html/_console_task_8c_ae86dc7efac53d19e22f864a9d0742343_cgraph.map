@@ -1,0 +1,5 @@
+<map id="parse_ip" name="parse_ip">
+<area shape="rect" id="Node000001" title="Parse IP address from dotted decimal string." alt="" coords="5,5,76,32"/>
+<area shape="rect" id="Node000002" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="124,5,307,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="76,16,108,16,108,21,76,21"/>
+</map>

@@ -1,0 +1,20 @@
+<map id="recvfrom_SNMP" name="recvfrom_SNMP">
+<area shape="rect" id="Node000001" title="Receive datagram from UDP socket." alt="" coords="5,81,124,108"/>
+<area shape="rect" id="Node000002" href="$group__drivers08.html#ga025710a2709097be7824f0564f89a461" title="Close a socket." alt="" coords="183,5,274,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,78,171,42,182,36,184,41,173,46,96,83"/>
+<area shape="rect" id="Node000003" href="$group__drivers03.html#ga4a5d2efe0640661e215b4e1f3d918dbd" title="Receive data from socket RX buffer." alt="" coords="177,56,280,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="124,83,161,77,162,82,124,88"/>
+<area shape="rect" id="Node000006" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="333,132,516,159"/>
+<area shape="poly" id="edge10_Node000001_Node000006" title=" " alt="" coords="89,106,127,127,172,143,245,153,318,153,317,158,245,158,171,148,125,131,86,111"/>
+<area shape="rect" id="Node000008" href="$group__drivers03.html#ga5944e5f356542e598f515b7f0196d1a3" title="Ignore (discard) received data." alt="" coords="172,107,285,133"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="124,101,157,106,156,111,124,106"/>
+<area shape="rect" id="Node000004" href="$group__drivers03.html#ga63c2ca3d8006105cbac360261ec27404" title="Set socket RX read pointer (Sn_RX_RD) in big&#45;endian." alt="" coords="370,81,479,108"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="281,73,356,83,355,88,280,79"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="262,81,286,92,334,118,353,124,351,129,332,122,284,97,260,86"/>
+<area shape="rect" id="Node000007" href="$group__drivers03.html#ga720712f243385daced1e173642f23f3f" title="Read multiple bytes from W5500 (optimized bulk transfer)" alt="" coords="366,31,483,57"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="280,60,351,51,351,56,281,65"/>
+<area shape="rect" id="Node000005" href="$group__drivers03.html#ga8e525d27915365abbe8086dc3363055f" title="Write multiple bytes to W5500 (optimized bulk transfer)" alt="" coords="564,81,684,108"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="479,92,549,92,549,97,479,97"/>
+<area shape="poly" id="edge8_Node000008_Node000004" title=" " alt="" coords="285,110,355,101,356,106,286,115"/>
+<area shape="poly" id="edge9_Node000008_Node000006" title=" " alt="" coords="286,125,318,129,317,134,285,130"/>
+</map>

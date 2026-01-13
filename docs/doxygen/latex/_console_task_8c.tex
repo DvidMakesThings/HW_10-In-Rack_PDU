@@ -1,0 +1,1224 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\+Console\+Task.c File Reference}
+\hypertarget{_console_task_8c}{}\label{_console_task_8c}\index{src/Software/ENERGIS\_RTOS/src/tasks/ConsoleTask.c@{src/Software/ENERGIS\_RTOS/src/tasks/ConsoleTask.c}}
+
+
+Console task implementation with USB-\/\+CDC polling and command dispatch.  
+
+
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for Console\+Task.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_console_task_8c_a88337e219983b83646202d785e83e544}{CONSOLE\+\_\+\+TASK\+\_\+\+TAG}}~"{}\mbox{[}CONSOLE\mbox{]}"{}
+\item 
+\#define \mbox{\hyperlink{_console_task_8c_a7aff5d16b9585c2a4e92b076b4dd778a}{LINE\+\_\+\+BUF\+\_\+\+SIZE}}~128
+\item 
+\#define \mbox{\hyperlink{_console_task_8c_ad5e0b424878a7df4a2139effcf34042b}{CONSOLE\+\_\+\+POLL\+\_\+\+MS}}~10
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_console_task_8c_ae3fa85d0ce445e937670de85f9af490a}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} ((section("{}.uninitialized\+\_\+data"{})))
+\begin{DoxyCompactList}\small\item\em Skip leading whitespace in string. \end{DoxyCompactList}\item 
+static char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_console_task_8c_a561a6132ad4e7cd399313cfcf0ec4b05}{trim}} (char \texorpdfstring{$\ast$}{*}str)
+\begin{DoxyCompactList}\small\item\em Trim whitespace from both ends of string. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{_console_task_8c_ae86dc7efac53d19e22f864a9d0742343}{parse\+\_\+ip}} (const char \texorpdfstring{$\ast$}{*}str, uint8\+\_\+t ip\mbox{[}4\mbox{]})
+\begin{DoxyCompactList}\small\item\em Parse IP address from dotted decimal string. \end{DoxyCompactList}\item 
+static char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_console_task_8c_ac5b36e86f739f1249fd54253b5f62e8e}{next\+\_\+token}} (char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pptr)
+\begin{DoxyCompactList}\small\item\em Extract next whitespace-\/delimited token from string. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_a6dff31ee4789340df2661d51566b8d32}{cmd\+\_\+help}} (void)
+\begin{DoxyCompactList}\small\item\em Individual command implementation functions. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_a8dd4553251d0df8084c5e577f59f7fdb}{cmd\+\_\+bootsel}} (void)
+\begin{DoxyCompactList}\small\item\em Enter BOOTSEL (USB ROM bootloader) now, robustly. Flush CDC, stop scheduling, disconnect USB, then jump. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_a77acaff274ceded6be5a02bac7564212}{cmd\+\_\+reboot}} (void)
+\begin{DoxyCompactList}\small\item\em Reboot system via watchdog. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_afba7e3313a1c3e6671370e2abfbf6543}{cmd\+\_\+read\+\_\+hlw8032\+\_\+ch}} (const char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Read power data from HLW8032 for a specific channel. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_a294853f6f498050ef6873332ed43ff36}{cmd\+\_\+read\+\_\+hlw8032\+\_\+all}} (void)
+\begin{DoxyCompactList}\small\item\em Read power data from HLW8032 for all channels. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_a2fdaee030ce7c670740397a7853d0159}{cmd\+\_\+sysinfo}} (void)
+\begin{DoxyCompactList}\small\item\em Print system information and health telemetry to the console. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_ad9bba0b26dcd7a357fb045e27e9a8b84}{cmd\+\_\+get\+\_\+temp}} (void)
+\begin{DoxyCompactList}\small\item\em Read and print RP2040 die temperature from cached telemetry. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_a05b2618d7fb383d2e3e64220ae18b64f}{cmd\+\_\+calib\+\_\+temp}} (const char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Calibrate RP2040 die temperature sensor and persist to EEPROM. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_a7aa01a6fcc3370b20b304e73b3830318}{cmd\+\_\+set\+\_\+ch}} (const char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Set relay channel state. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_a4939561f3838f8c7fdd8a213ea27d52a}{cmd\+\_\+get\+\_\+ch}} (const char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Get relay channel state(s). \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_a63487c03ad93724c7d23efab606b01fa}{cmd\+\_\+oc\+\_\+status}} (char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Display overcurrent protection status. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_a0d5e02eb01ff1d44e10d306bd308e247}{cmd\+\_\+oc\+\_\+reset}} (char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Manually clear overcurrent lockout. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_a03fc4d00d9a82992876fb2cb87bade44}{cmd\+\_\+clr\+\_\+err}} (void)
+\begin{DoxyCompactList}\small\item\em Clear error LED on display board. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_ab35c3eebd4024e51ebf2872c85fd1dd0}{cmd\+\_\+calibrate}} (const char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Calibrate a single HLW8032 channel (deprecated). \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_acbbd222e2cb0d6934bceb1d38024264b}{cmd\+\_\+auto\+\_\+cal\+\_\+zero}} (void)
+\begin{DoxyCompactList}\small\item\em Auto-\/calibrate zero point (0V, 0A) for all channels (async). \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_a0d8e587e5768e03b92507df84c90e261}{cmd\+\_\+auto\+\_\+cal\+\_\+v}} (const char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Auto-\/calibrate voltage for all channels (async). \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_af809ce383dc5b6ac2143d6c9bcb3ac82}{cmd\+\_\+auto\+\_\+cal\+\_\+i}} (const char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Auto-\/calibrate current gain for a single channel (async). \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_a51dd9940ef335025afc0875bd5bf8543}{cmd\+\_\+show\+\_\+calib}} (const char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Show calibration data for one or all channels. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_a90f4fe95464bf6ca1b258e5c0e435839}{cmd\+\_\+set\+\_\+ip}} (const char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Set IP address. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_a0f6f61a07bd6f06135e7d566867144fa}{cmd\+\_\+set\+\_\+sn}} (const char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Set subnet mask. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_a8cd1020242da5065bf2a614269f883b8}{cmd\+\_\+set\+\_\+gw}} (const char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Set gateway address. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_a77fb192d5194de041d5e8ae1a05477fa}{cmd\+\_\+set\+\_\+dns}} (const char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Set DNS server address. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_aac8555eb5b2f76507f0ec587126f7e36}{cmd\+\_\+config\+\_\+network}} (const char \texorpdfstring{$\ast$}{*}args)
+\begin{DoxyCompactList}\small\item\em Configure all network settings at once. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_a7dc7bbff6e5db53bf64b8e6aed947dfd}{cmd\+\_\+netinfo}} (void)
+\begin{DoxyCompactList}\small\item\em Display network information. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_a8e38607dcb0ccf8d67c20c04ec180e2c}{cmd\+\_\+get\+\_\+supply}} (void)
+\begin{DoxyCompactList}\small\item\em Read 12V supply voltage (cached, no ADC access). \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_a3c1141d2e9fdc2db5ea2311b97bbc8a3}{cmd\+\_\+get\+\_\+usb}} (void)
+\begin{DoxyCompactList}\small\item\em Read USB supply voltage (cached, no ADC access). \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_a6d0cd7c4becc9c09202fb0410a151358}{cmd\+\_\+read\+\_\+error\+\_\+log}} (void)
+\begin{DoxyCompactList}\small\item\em Asynchronously dump the error event log region. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_ad20074bf7395fb147a6c78eef186f101}{cmd\+\_\+read\+\_\+warning\+\_\+log}} (void)
+\begin{DoxyCompactList}\small\item\em Asynchronously dump the warning event log region. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_a71caf917a52e067a11ae2c836247af41}{cmd\+\_\+clear\+\_\+error\+\_\+log}} (void)
+\begin{DoxyCompactList}\small\item\em Asynchronously clear the error event log region. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_a134228a08494ed1e3121aa8719b6bd87}{cmd\+\_\+clear\+\_\+warning\+\_\+log}} (void)
+\begin{DoxyCompactList}\small\item\em Asynchronously clear the warning event log region. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_a2d3b7ff8346f8d10aa45609664940712}{dispatch\+\_\+command}} (const char \texorpdfstring{$\ast$}{*}line)
+\begin{DoxyCompactList}\small\item\em Parse and dispatch command line to handler function. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_console_task_8c_a216857df22446940ad58d505886b0d7c}{Console\+Task}} (void \texorpdfstring{$\ast$}{*}arg)
+\begin{DoxyCompactList}\small\item\em Main console task function. \end{DoxyCompactList}\item 
+Base\+Type\+\_\+t \mbox{\hyperlink{group__tasks02_gad45ca7c142e8c2764d52b3d554ffcdeb}{Console\+Task\+\_\+\+Init}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Initialize and start the console task. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks02_gab2d019f35eb9844ccb157488ed577f8f}{Console\+\_\+\+Is\+Ready}} (void)
+\begin{DoxyCompactList}\small\item\em Query console task readiness status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Console task implementation with USB-\/\+CDC polling and command dispatch. 
+
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+2.\+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/17
+\end{DoxyDate}
+
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{_console_task_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_console_task_8c_ad5e0b424878a7df4a2139effcf34042b}\index{ConsoleTask.c@{ConsoleTask.c}!CONSOLE\_POLL\_MS@{CONSOLE\_POLL\_MS}}
+\index{CONSOLE\_POLL\_MS@{CONSOLE\_POLL\_MS}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{CONSOLE\_POLL\_MS}{CONSOLE\_POLL\_MS}}
+{\footnotesize\ttfamily \label{_console_task_8c_ad5e0b424878a7df4a2139effcf34042b} 
+\#define CONSOLE\+\_\+\+POLL\+\_\+\+MS~10}
+
+\Hypertarget{_console_task_8c_a88337e219983b83646202d785e83e544}\index{ConsoleTask.c@{ConsoleTask.c}!CONSOLE\_TASK\_TAG@{CONSOLE\_TASK\_TAG}}
+\index{CONSOLE\_TASK\_TAG@{CONSOLE\_TASK\_TAG}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{CONSOLE\_TASK\_TAG}{CONSOLE\_TASK\_TAG}}
+{\footnotesize\ttfamily \label{_console_task_8c_a88337e219983b83646202d785e83e544} 
+\#define CONSOLE\+\_\+\+TASK\+\_\+\+TAG~"{}\mbox{[}CONSOLE\mbox{]}"{}}
+
+\Hypertarget{_console_task_8c_a7aff5d16b9585c2a4e92b076b4dd778a}\index{ConsoleTask.c@{ConsoleTask.c}!LINE\_BUF\_SIZE@{LINE\_BUF\_SIZE}}
+\index{LINE\_BUF\_SIZE@{LINE\_BUF\_SIZE}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{LINE\_BUF\_SIZE}{LINE\_BUF\_SIZE}}
+{\footnotesize\ttfamily \label{_console_task_8c_a7aff5d16b9585c2a4e92b076b4dd778a} 
+\#define LINE\+\_\+\+BUF\+\_\+\+SIZE~128}
+
+
+
+\label{doc-func-members}
+\Hypertarget{_console_task_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_console_task_8c_ae3fa85d0ce445e937670de85f9af490a}\index{ConsoleTask.c@{ConsoleTask.c}!\_\_attribute\_\_@{\_\_attribute\_\_}}
+\index{\_\_attribute\_\_@{\_\_attribute\_\_}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{\_\_attribute\_\_()}{\_\_attribute\_\_()}}
+{\footnotesize\ttfamily \label{_console_task_8c_ae3fa85d0ce445e937670de85f9af490a} 
+\+\_\+\+\_\+attribute\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{(section("{}.uninitialized\+\_\+data"{}))}]{}{}\end{DoxyParamCaption})}
+
+
+
+Skip leading whitespace in string. 
+
+Bootloader trigger magic value stored in uninitialized RAM. Set before reboot to indicate bootloader entry request. 
+
+Advances pointer past any leading space or tab characters.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em s} & Input string pointer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to first non-\/whitespace character. 
+\end{DoxyReturn}
+\Hypertarget{_console_task_8c_af809ce383dc5b6ac2143d6c9bcb3ac82}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_auto\_cal\_i@{cmd\_auto\_cal\_i}}
+\index{cmd\_auto\_cal\_i@{cmd\_auto\_cal\_i}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_auto\_cal\_i()}{cmd\_auto\_cal\_i()}}
+{\footnotesize\ttfamily \label{_console_task_8c_af809ce383dc5b6ac2143d6c9bcb3ac82} 
+void cmd\+\_\+auto\+\_\+cal\+\_\+i (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Auto-\/calibrate current gain for a single channel (async). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Command arguments\+: "{}$<$current\+\_\+\+A$>$ $<$channel$>$"{}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Console uses 1-\/based channel indices (1..8). Internally the driver uses 0-\/based indices (0..7). 
+
+Requires a known current flowing through the selected channel. Use an external DMM as reference. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_af809ce383dc5b6ac2143d6c9bcb3ac82_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_af809ce383dc5b6ac2143d6c9bcb3ac82_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a0d8e587e5768e03b92507df84c90e261}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_auto\_cal\_v@{cmd\_auto\_cal\_v}}
+\index{cmd\_auto\_cal\_v@{cmd\_auto\_cal\_v}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_auto\_cal\_v()}{cmd\_auto\_cal\_v()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a0d8e587e5768e03b92507df84c90e261} 
+void cmd\+\_\+auto\+\_\+cal\+\_\+v (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Auto-\/calibrate voltage for all channels (async). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Command arguments\+: "{}$<$voltage$>$"{} (optional, defaults to 230V) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a0d8e587e5768e03b92507df84c90e261_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a0d8e587e5768e03b92507df84c90e261_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_acbbd222e2cb0d6934bceb1d38024264b}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_auto\_cal\_zero@{cmd\_auto\_cal\_zero}}
+\index{cmd\_auto\_cal\_zero@{cmd\_auto\_cal\_zero}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_auto\_cal\_zero()}{cmd\_auto\_cal\_zero()}}
+{\footnotesize\ttfamily \label{_console_task_8c_acbbd222e2cb0d6934bceb1d38024264b} 
+void cmd\+\_\+auto\+\_\+cal\+\_\+zero (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Auto-\/calibrate zero point (0V, 0A) for all channels (async). 
+
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_acbbd222e2cb0d6934bceb1d38024264b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_acbbd222e2cb0d6934bceb1d38024264b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a8dd4553251d0df8084c5e577f59f7fdb}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_bootsel@{cmd\_bootsel}}
+\index{cmd\_bootsel@{cmd\_bootsel}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_bootsel()}{cmd\_bootsel()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a8dd4553251d0df8084c5e577f59f7fdb} 
+void cmd\+\_\+bootsel (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Enter BOOTSEL (USB ROM bootloader) now, robustly. Flush CDC, stop scheduling, disconnect USB, then jump. 
+
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a8dd4553251d0df8084c5e577f59f7fdb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a05b2618d7fb383d2e3e64220ae18b64f}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_calib\_temp@{cmd\_calib\_temp}}
+\index{cmd\_calib\_temp@{cmd\_calib\_temp}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_calib\_temp()}{cmd\_calib\_temp()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a05b2618d7fb383d2e3e64220ae18b64f} 
+void cmd\+\_\+calib\+\_\+temp (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Calibrate RP2040 die temperature sensor and persist to EEPROM. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Expected formats\+: "{}1\+P $<$\+T1\+\_\+\+C$>$"{} "{}2\+P $<$\+T1\+\_\+\+C$>$ $<$\+T2\+\_\+\+C$>$ \mbox{[}delay\+\_\+ms\mbox{]}"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a05b2618d7fb383d2e3e64220ae18b64f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a05b2618d7fb383d2e3e64220ae18b64f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_ab35c3eebd4024e51ebf2872c85fd1dd0}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_calibrate@{cmd\_calibrate}}
+\index{cmd\_calibrate@{cmd\_calibrate}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_calibrate()}{cmd\_calibrate()}}
+{\footnotesize\ttfamily \label{_console_task_8c_ab35c3eebd4024e51ebf2872c85fd1dd0} 
+void cmd\+\_\+calibrate (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Calibrate a single HLW8032 channel (deprecated). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Command arguments\+: "{}$<$ch$>$ $<$voltage$>$ $<$current$>$"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Legacy blocking calibration is no longer supported. Use AUTO\+\_\+\+CAL\+\_\+\+ZERO and AUTO\+\_\+\+CAL\+\_\+V instead, which run cooperatively in the background. 
+\end{DoxyNote}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_ab35c3eebd4024e51ebf2872c85fd1dd0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a71caf917a52e067a11ae2c836247af41}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_clear\_error\_log@{cmd\_clear\_error\_log}}
+\index{cmd\_clear\_error\_log@{cmd\_clear\_error\_log}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_clear\_error\_log()}{cmd\_clear\_error\_log()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a71caf917a52e067a11ae2c836247af41} 
+void cmd\+\_\+clear\+\_\+error\+\_\+log (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Asynchronously clear the error event log region. 
+
+Requests Storage\+Task to erase the error event log region in small chunks. The operation runs in the background; this command returns immediately. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a71caf917a52e067a11ae2c836247af41_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a71caf917a52e067a11ae2c836247af41_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a134228a08494ed1e3121aa8719b6bd87}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_clear\_warning\_log@{cmd\_clear\_warning\_log}}
+\index{cmd\_clear\_warning\_log@{cmd\_clear\_warning\_log}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_clear\_warning\_log()}{cmd\_clear\_warning\_log()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a134228a08494ed1e3121aa8719b6bd87} 
+void cmd\+\_\+clear\+\_\+warning\+\_\+log (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Asynchronously clear the warning event log region. 
+
+Requests Storage\+Task to erase the warning event log region in small chunks. The operation runs in the background; this command returns immediately. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a134228a08494ed1e3121aa8719b6bd87_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a134228a08494ed1e3121aa8719b6bd87_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a03fc4d00d9a82992876fb2cb87bade44}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_clr\_err@{cmd\_clr\_err}}
+\index{cmd\_clr\_err@{cmd\_clr\_err}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_clr\_err()}{cmd\_clr\_err()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a03fc4d00d9a82992876fb2cb87bade44} 
+void cmd\+\_\+clr\+\_\+err (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Clear error LED on display board. 
+
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a03fc4d00d9a82992876fb2cb87bade44_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a03fc4d00d9a82992876fb2cb87bade44_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_aac8555eb5b2f76507f0ec587126f7e36}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_config\_network@{cmd\_config\_network}}
+\index{cmd\_config\_network@{cmd\_config\_network}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_config\_network()}{cmd\_config\_network()}}
+{\footnotesize\ttfamily \label{_console_task_8c_aac8555eb5b2f76507f0ec587126f7e36} 
+void cmd\+\_\+config\+\_\+network (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Configure all network settings at once. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Command arguments\+: "{}$<$ip\$sn\$gw\$dns$>$"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_aac8555eb5b2f76507f0ec587126f7e36_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_aac8555eb5b2f76507f0ec587126f7e36_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a4939561f3838f8c7fdd8a213ea27d52a}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_get\_ch@{cmd\_get\_ch}}
+\index{cmd\_get\_ch@{cmd\_get\_ch}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_get\_ch()}{cmd\_get\_ch()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a4939561f3838f8c7fdd8a213ea27d52a} 
+void cmd\+\_\+get\+\_\+ch (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get relay channel state(s). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Command arguments\+: "{}$<$ch$>$"{} where ch=1-\/8 or "{}\+ALL"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a4939561f3838f8c7fdd8a213ea27d52a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a4939561f3838f8c7fdd8a213ea27d52a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a8e38607dcb0ccf8d67c20c04ec180e2c}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_get\_supply@{cmd\_get\_supply}}
+\index{cmd\_get\_supply@{cmd\_get\_supply}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_get\_supply()}{cmd\_get\_supply()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a8e38607dcb0ccf8d67c20c04ec180e2c} 
+void cmd\+\_\+get\+\_\+supply (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Read 12V supply voltage (cached, no ADC access). 
+
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a8e38607dcb0ccf8d67c20c04ec180e2c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a8e38607dcb0ccf8d67c20c04ec180e2c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_ad9bba0b26dcd7a357fb045e27e9a8b84}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_get\_temp@{cmd\_get\_temp}}
+\index{cmd\_get\_temp@{cmd\_get\_temp}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_get\_temp()}{cmd\_get\_temp()}}
+{\footnotesize\ttfamily \label{_console_task_8c_ad9bba0b26dcd7a357fb045e27e9a8b84} 
+void cmd\+\_\+get\+\_\+temp (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Read and print RP2040 die temperature from cached telemetry. 
+
+Meter\+Task owns the ADC. This command reads the latest cached value (non-\/blocking). If telemetry isn\textquotesingle{}t ready yet, it prints N/A.
+
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_ad9bba0b26dcd7a357fb045e27e9a8b84_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_ad9bba0b26dcd7a357fb045e27e9a8b84_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a3c1141d2e9fdc2db5ea2311b97bbc8a3}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_get\_usb@{cmd\_get\_usb}}
+\index{cmd\_get\_usb@{cmd\_get\_usb}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_get\_usb()}{cmd\_get\_usb()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a3c1141d2e9fdc2db5ea2311b97bbc8a3} 
+void cmd\+\_\+get\+\_\+usb (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Read USB supply voltage (cached, no ADC access). 
+
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a3c1141d2e9fdc2db5ea2311b97bbc8a3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a3c1141d2e9fdc2db5ea2311b97bbc8a3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a6dff31ee4789340df2661d51566b8d32}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_help@{cmd\_help}}
+\index{cmd\_help@{cmd\_help}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_help()}{cmd\_help()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a6dff31ee4789340df2661d51566b8d32} 
+void cmd\+\_\+help (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Individual command implementation functions. 
+
+Each command handler function implements a specific console command. Handlers parse arguments, validate inputs, execute operations, and provide user feedback. Error conditions are logged and reported to user. Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a6dff31ee4789340df2661d51566b8d32_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a7dc7bbff6e5db53bf64b8e6aed947dfd}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_netinfo@{cmd\_netinfo}}
+\index{cmd\_netinfo@{cmd\_netinfo}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_netinfo()}{cmd\_netinfo()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a7dc7bbff6e5db53bf64b8e6aed947dfd} 
+void cmd\+\_\+netinfo (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Display network information. 
+
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a7dc7bbff6e5db53bf64b8e6aed947dfd_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a7dc7bbff6e5db53bf64b8e6aed947dfd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a0d5e02eb01ff1d44e10d306bd308e247}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_oc\_reset@{cmd\_oc\_reset}}
+\index{cmd\_oc\_reset@{cmd\_oc\_reset}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_oc\_reset()}{cmd\_oc\_reset()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a0d5e02eb01ff1d44e10d306bd308e247} 
+void cmd\+\_\+oc\+\_\+reset (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Manually clear overcurrent lockout. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Unused \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{_console_task_8c_a0d5e02eb01ff1d44e10d306bd308e247_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a0d5e02eb01ff1d44e10d306bd308e247_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a63487c03ad93724c7d23efab606b01fa}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_oc\_status@{cmd\_oc\_status}}
+\index{cmd\_oc\_status@{cmd\_oc\_status}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_oc\_status()}{cmd\_oc\_status()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a63487c03ad93724c7d23efab606b01fa} 
+void cmd\+\_\+oc\+\_\+status (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Display overcurrent protection status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Unused \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{_console_task_8c_a63487c03ad93724c7d23efab606b01fa_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a63487c03ad93724c7d23efab606b01fa_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a6d0cd7c4becc9c09202fb0410a151358}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_read\_error\_log@{cmd\_read\_error\_log}}
+\index{cmd\_read\_error\_log@{cmd\_read\_error\_log}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_read\_error\_log()}{cmd\_read\_error\_log()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a6d0cd7c4becc9c09202fb0410a151358} 
+void cmd\+\_\+read\+\_\+error\+\_\+log (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Asynchronously dump the error event log region. 
+
+Issues a non-\/blocking request to Storage\+Task to print the error event log region in the same formatted hex layout as the full EEPROM dump, but limited to the error log address range. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a6d0cd7c4becc9c09202fb0410a151358_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a6d0cd7c4becc9c09202fb0410a151358_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a294853f6f498050ef6873332ed43ff36}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_read\_hlw8032\_all@{cmd\_read\_hlw8032\_all}}
+\index{cmd\_read\_hlw8032\_all@{cmd\_read\_hlw8032\_all}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_read\_hlw8032\_all()}{cmd\_read\_hlw8032\_all()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a294853f6f498050ef6873332ed43ff36} 
+void cmd\+\_\+read\+\_\+hlw8032\+\_\+all (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Read power data from HLW8032 for all channels. 
+
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a294853f6f498050ef6873332ed43ff36_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a294853f6f498050ef6873332ed43ff36_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_afba7e3313a1c3e6671370e2abfbf6543}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_read\_hlw8032\_ch@{cmd\_read\_hlw8032\_ch}}
+\index{cmd\_read\_hlw8032\_ch@{cmd\_read\_hlw8032\_ch}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_read\_hlw8032\_ch()}{cmd\_read\_hlw8032\_ch()}}
+{\footnotesize\ttfamily \label{_console_task_8c_afba7e3313a1c3e6671370e2abfbf6543} 
+void cmd\+\_\+read\+\_\+hlw8032\+\_\+ch (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Read power data from HLW8032 for a specific channel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Command arguments (channel number 1-\/8) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_afba7e3313a1c3e6671370e2abfbf6543_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_afba7e3313a1c3e6671370e2abfbf6543_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_ad20074bf7395fb147a6c78eef186f101}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_read\_warning\_log@{cmd\_read\_warning\_log}}
+\index{cmd\_read\_warning\_log@{cmd\_read\_warning\_log}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_read\_warning\_log()}{cmd\_read\_warning\_log()}}
+{\footnotesize\ttfamily \label{_console_task_8c_ad20074bf7395fb147a6c78eef186f101} 
+void cmd\+\_\+read\+\_\+warning\+\_\+log (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Asynchronously dump the warning event log region. 
+
+Issues a non-\/blocking request to Storage\+Task to print the warning event log region in the same formatted hex layout as the full EEPROM dump, but limited to the warning log address range. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_ad20074bf7395fb147a6c78eef186f101_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_ad20074bf7395fb147a6c78eef186f101_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a77acaff274ceded6be5a02bac7564212}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_reboot@{cmd\_reboot}}
+\index{cmd\_reboot@{cmd\_reboot}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_reboot()}{cmd\_reboot()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a77acaff274ceded6be5a02bac7564212} 
+void cmd\+\_\+reboot (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Reboot system via watchdog. 
+
+Flushes console output, waits 100ms, then triggers a software watchdog reset. This ensures all pending messages are sent before rebooting.
+
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a77acaff274ceded6be5a02bac7564212_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a77acaff274ceded6be5a02bac7564212_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a7aa01a6fcc3370b20b304e73b3830318}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_set\_ch@{cmd\_set\_ch}}
+\index{cmd\_set\_ch@{cmd\_set\_ch}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_set\_ch()}{cmd\_set\_ch()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a7aa01a6fcc3370b20b304e73b3830318} 
+void cmd\+\_\+set\+\_\+ch (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Set relay channel state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Command arguments\+: "{}$<$ch$>$ $<$0\texorpdfstring{$\vert$}{|}1\texorpdfstring{$\vert$}{|}\+ON\texorpdfstring{$\vert$}{|}\+OFF$>$"{} where ch=1-\/8 or ALL \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a7aa01a6fcc3370b20b304e73b3830318_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a7aa01a6fcc3370b20b304e73b3830318_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a77fb192d5194de041d5e8ae1a05477fa}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_set\_dns@{cmd\_set\_dns}}
+\index{cmd\_set\_dns@{cmd\_set\_dns}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_set\_dns()}{cmd\_set\_dns()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a77fb192d5194de041d5e8ae1a05477fa} 
+void cmd\+\_\+set\+\_\+dns (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Set DNS server address. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Command arguments\+: "{}$<$dns$>$"{} e.\+g., "{}8.\+8.\+8.\+8"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a77fb192d5194de041d5e8ae1a05477fa_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a77fb192d5194de041d5e8ae1a05477fa_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a8cd1020242da5065bf2a614269f883b8}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_set\_gw@{cmd\_set\_gw}}
+\index{cmd\_set\_gw@{cmd\_set\_gw}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_set\_gw()}{cmd\_set\_gw()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a8cd1020242da5065bf2a614269f883b8} 
+void cmd\+\_\+set\+\_\+gw (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Set gateway address. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Command arguments\+: "{}$<$gw$>$"{} e.\+g., "{}192.\+168.\+1.\+1"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a8cd1020242da5065bf2a614269f883b8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a8cd1020242da5065bf2a614269f883b8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a90f4fe95464bf6ca1b258e5c0e435839}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_set\_ip@{cmd\_set\_ip}}
+\index{cmd\_set\_ip@{cmd\_set\_ip}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_set\_ip()}{cmd\_set\_ip()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a90f4fe95464bf6ca1b258e5c0e435839} 
+void cmd\+\_\+set\+\_\+ip (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Set IP address. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Command arguments\+: "{}$<$ip$>$"{} e.\+g., "{}192.\+168.\+1.\+100"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a90f4fe95464bf6ca1b258e5c0e435839_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a90f4fe95464bf6ca1b258e5c0e435839_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a0f6f61a07bd6f06135e7d566867144fa}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_set\_sn@{cmd\_set\_sn}}
+\index{cmd\_set\_sn@{cmd\_set\_sn}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_set\_sn()}{cmd\_set\_sn()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a0f6f61a07bd6f06135e7d566867144fa} 
+void cmd\+\_\+set\+\_\+sn (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Set subnet mask. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Command arguments\+: "{}$<$mask$>$"{} e.\+g., "{}255.\+255.\+255.\+0"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a0f6f61a07bd6f06135e7d566867144fa_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a0f6f61a07bd6f06135e7d566867144fa_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a51dd9940ef335025afc0875bd5bf8543}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_show\_calib@{cmd\_show\_calib}}
+\index{cmd\_show\_calib@{cmd\_show\_calib}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_show\_calib()}{cmd\_show\_calib()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a51dd9940ef335025afc0875bd5bf8543} 
+void cmd\+\_\+show\+\_\+calib (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{args}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Show calibration data for one or all channels. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Command arguments\+: "{}$<$ch$>$"{} where ch=1-\/8, or empty for ALL \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a51dd9940ef335025afc0875bd5bf8543_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a51dd9940ef335025afc0875bd5bf8543_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a2fdaee030ce7c670740397a7853d0159}\index{ConsoleTask.c@{ConsoleTask.c}!cmd\_sysinfo@{cmd\_sysinfo}}
+\index{cmd\_sysinfo@{cmd\_sysinfo}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_sysinfo()}{cmd\_sysinfo()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a2fdaee030ce7c670740397a7853d0159} 
+void cmd\+\_\+sysinfo (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Print system information and health telemetry to the console. 
+
+Prints\+:
+\begin{DoxyItemize}
+\item Provisioning status (serial/region/current limit)
+\item Firmware and hardware versions
+\item Clock frequencies
+\item I2\+C0/\+I2\+C1 derived bus speeds (from configured SCL high/low count registers)
+\item SPI0 configured bus speed
+\item Core voltage
+\item System telemetry (USB/12\+V/die temperature)
+\end{DoxyItemize}
+
+I2C speeds are derived from the active clk\+\_\+peri frequency and the I2C controller\textquotesingle{}s configured fast-\/mode SCL high/low count registers. This reflects the current runtime configuration programmed by i2c\+\_\+set\+\_\+baudrate(). Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a2fdaee030ce7c670740397a7853d0159_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a2fdaee030ce7c670740397a7853d0159_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a216857df22446940ad58d505886b0d7c}\index{ConsoleTask.c@{ConsoleTask.c}!ConsoleTask@{ConsoleTask}}
+\index{ConsoleTask@{ConsoleTask}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{ConsoleTask()}{ConsoleTask()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a216857df22446940ad58d505886b0d7c} 
+void Console\+Task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{arg}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Main console task function. 
+
+Continuously polls USB-\/\+CDC for character input, accumulates complete command lines, and dispatches them to handler functions. Supports power management by suspending command processing in standby mode while maintaining heartbeat.
+
+Operation Modes\+:
+\begin{DoxyItemize}
+\item RUN\+: Normal operation with active USB-\/\+CDC polling and command processing
+\item STANDBY\+: Suspended operation with reduced heartbeat rate, no command processing
+\end{DoxyItemize}
+
+Input Handling\+:
+\begin{DoxyItemize}
+\item Polls USB-\/\+CDC at CONSOLE\+\_\+\+POLL\+\_\+\+MS intervals (non-\/blocking)
+\item Accumulates characters until CR or LF received
+\item Supports backspace/delete for line editing
+\item Dispatches complete lines to command parser
+\end{DoxyItemize}
+
+Power Management\+:
+\begin{DoxyItemize}
+\item Detects power state transitions automatically
+\item Suspends all USB-\/\+CDC operations in standby
+\item Maintains reduced heartbeat rate to prevent watchdog timeout
+\item Resumes normal operation on exit from standby
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em arg} & Task parameters (unused). \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{_console_task_8c_a216857df22446940ad58d505886b0d7c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a216857df22446940ad58d505886b0d7c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a2d3b7ff8346f8d10aa45609664940712}\index{ConsoleTask.c@{ConsoleTask.c}!dispatch\_command@{dispatch\_command}}
+\index{dispatch\_command@{dispatch\_command}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{dispatch\_command()}{dispatch\_command()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a2d3b7ff8346f8d10aa45609664940712} 
+void dispatch\+\_\+command (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{line}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Parse and dispatch command line to handler function. 
+
+Parses the input command line, separates command from arguments, converts to uppercase for case-\/insensitive matching, and routes to the appropriate handler function. Unknown commands are reported to user.
+
+Command Processing\+:
+\begin{DoxyEnumerate}
+\item Trim whitespace from input line
+\item Split command name from arguments
+\item Convert command to uppercase
+\item Match against known commands
+\item Call corresponding handler with arguments
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em line} & Null-\/terminated command line string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Modifies a local copy of the input line during parsing. 
+
+Empty lines are ignored silently. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{_console_task_8c_a2d3b7ff8346f8d10aa45609664940712_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a2d3b7ff8346f8d10aa45609664940712_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_ac5b36e86f739f1249fd54253b5f62e8e}\index{ConsoleTask.c@{ConsoleTask.c}!next\_token@{next\_token}}
+\index{next\_token@{next\_token}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{next\_token()}{next\_token()}}
+{\footnotesize\ttfamily \label{_console_task_8c_ac5b36e86f739f1249fd54253b5f62e8e} 
+char \texorpdfstring{$\ast$}{*} next\+\_\+token (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{pptr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Extract next whitespace-\/delimited token from string. 
+
+Parses and null-\/terminates the next token, advancing the cursor. Modifies the input string by inserting null terminator.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in,out}}  & {\em pptr} & Pointer to string cursor, updated to point past token.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to token start, or NULL if no more tokens.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The returned token is within the original buffer and null-\/terminated. 
+
+Consecutive calls parse successive tokens from the same string. 
+\end{DoxyNote}
+\Hypertarget{_console_task_8c_ae86dc7efac53d19e22f864a9d0742343}\index{ConsoleTask.c@{ConsoleTask.c}!parse\_ip@{parse\_ip}}
+\index{parse\_ip@{parse\_ip}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{parse\_ip()}{parse\_ip()}}
+{\footnotesize\ttfamily \label{_console_task_8c_ae86dc7efac53d19e22f864a9d0742343} 
+bool parse\+\_\+ip (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{str}{, }\item[{uint8\+\_\+t}]{ip}{\mbox{[}4\mbox{]}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Parse IP address from dotted decimal string. 
+
+Converts IP address string (e.\+g., "{}192.\+168.\+1.\+100"{}) to 4-\/byte array. Validates that all octets are in range 0-\/255.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em str} & IP address string in dotted decimal format. \\
+\hline
+\mbox{\texttt{out}}  & {\em ip} & Array to receive 4 octets.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on successful parse and validation, false on error. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{_console_task_8c_ae86dc7efac53d19e22f864a9d0742343_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_ae86dc7efac53d19e22f864a9d0742343_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_console_task_8c_a561a6132ad4e7cd399313cfcf0ec4b05}\index{ConsoleTask.c@{ConsoleTask.c}!trim@{trim}}
+\index{trim@{trim}!ConsoleTask.c@{ConsoleTask.c}}
+\doxysubsubsection{\texorpdfstring{trim()}{trim()}}
+{\footnotesize\ttfamily \label{_console_task_8c_a561a6132ad4e7cd399313cfcf0ec4b05} 
+char \texorpdfstring{$\ast$}{*} trim (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Trim whitespace from both ends of string. 
+
+Removes leading and trailing spaces, tabs, CR, and LF characters. Modifies the input string in place.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in,out}}  & {\em str} & String to trim. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to trimmed string (within same buffer). 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8c_a561a6132ad4e7cd399313cfcf0ec4b05_icgraph}
+\end{center}
+\end{figure}

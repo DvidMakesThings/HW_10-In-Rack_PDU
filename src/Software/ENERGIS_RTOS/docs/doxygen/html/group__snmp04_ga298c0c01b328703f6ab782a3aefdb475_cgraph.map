@@ -1,0 +1,9 @@
+<map id="get_ocp_RECOVERY_THRESHOLD_A" name="get_ocp_RECOVERY_THRESHOLD_A">
+<area shape="rect" id="Node000001" title="SNMP getter for OCP recovery threshold [A]." alt="" coords="5,31,261,57"/>
+<area shape="rect" id="Node000002" href="$snmp__power_mon_8c.html#af45f37256bc0bbee50f12561e810efda" title="Format float to ASCII string buffer." alt="" coords="346,5,389,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="261,27,330,20,330,25,261,33"/>
+<area shape="rect" id="Node000003" href="$snmp__power_mon_8c.html#a8bfed698c2d0034fd91352b89bcfce10" title="Read overcurrent protection status snapshot." alt="" coords="309,56,426,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="261,55,293,59,293,64,261,61"/>
+<area shape="rect" id="Node000004" href="$group__tasks08.html#gaa9aab2a7bfb3274872c5f4f162af177e" title="Obtain a snapshot of the current protection status." alt="" coords="474,56,629,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="427,67,458,67,458,72,427,72"/>
+</map>

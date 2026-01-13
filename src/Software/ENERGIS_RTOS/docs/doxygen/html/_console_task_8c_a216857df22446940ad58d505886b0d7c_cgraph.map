@@ -1,0 +1,121 @@
+<map id="ConsoleTask" name="ConsoleTask">
+<area shape="rect" id="Node000001" title="Main console task function." alt="" coords="5,1481,103,1507"/>
+<area shape="rect" id="Node000002" href="$_console_task_8c.html#a2d3b7ff8346f8d10aa45609664940712" title="Parse and dispatch command line to handler function." alt="" coords="151,966,285,993"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="57,1479,205,1006,210,1008,62,1481"/>
+<area shape="rect" id="Node000139" href="$group__tasks03.html#ga4f7298bb6ff71177639ba837e4068eb1" title="Record a heartbeat from a registered task." alt="" coords="156,1455,280,1482"/>
+<area shape="poly" id="edge66_Node000001_Node000139" title=" " alt="" coords="103,1484,141,1478,141,1483,104,1489"/>
+<area shape="rect" id="Node000133" href="$group__tasks05.html#ga2473a4441580b27bdc14f48e2d2fff8e" title="Log formatted message to output." alt="" coords="181,1506,255,1533"/>
+<area shape="poly" id="edge68_Node000001_Node000133" title=" " alt="" coords="104,1499,166,1509,165,1514,103,1504"/>
+<area shape="rect" id="Node000140" href="$group__misc3.html#gad3252fba1863d278f2611cad531177f5" title="Query the current system power state." alt="" coords="159,1557,276,1583"/>
+<area shape="poly" id="edge69_Node000001_Node000140" title=" " alt="" coords="81,1506,152,1542,165,1548,163,1553,150,1547,78,1510"/>
+<area shape="rect" id="Node000003" href="$_console_task_8c.html#af809ce383dc5b6ac2143d6c9bcb3ac82" title="Auto&#45;calibrate current gain for a single channel (async)." alt="" coords="360,130,472,157"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="216,966,219,819,233,579,247,451,267,333,295,235,312,196,331,167,344,156,347,160,335,170,316,199,300,236,272,334,252,452,238,579,225,819,222,966"/>
+<area shape="rect" id="Node000009" href="$_console_task_8c.html#a0d8e587e5768e03b92507df84c90e261" title="Auto&#45;calibrate voltage for a single channel or ALL (async)." alt="" coords="358,231,474,258"/>
+<area shape="poly" id="edge7_Node000002_Node000009" title=" " alt="" coords="217,966,222,835,239,626,253,515,273,412,298,327,314,294,331,268,342,259,345,263,335,272,318,296,303,329,278,413,258,516,244,626,227,835,222,966"/>
+<area shape="rect" id="Node000012" href="$_console_task_8c.html#a5105a396699c462b61d50bd687fc783a" title="Auto&#45;calibrate zero point (0V, 0A) for a single channel or ALL (async)." alt="" coords="348,991,483,1018"/>
+<area shape="poly" id="edge11_Node000002_Node000012" title=" " alt="" coords="286,985,334,992,333,997,285,991"/>
+<area shape="rect" id="Node000015" href="$_console_task_8c.html#a561a6132ad4e7cd399313cfcf0ec4b05" title="Trim whitespace from both ends of string." alt="" coords="616,1097,660,1123"/>
+<area shape="poly" id="edge65_Node000002_Node000015" title=" " alt="" coords="227,992,241,1023,264,1062,295,1100,313,1116,334,1129,368,1142,404,1149,441,1151,478,1149,546,1137,601,1121,602,1126,548,1142,479,1154,441,1156,404,1154,367,1147,332,1134,310,1120,291,1104,259,1065,236,1025,222,994"/>
+<area shape="rect" id="Node000016" href="$_console_task_8c.html#a8dd4553251d0df8084c5e577f59f7fdb" title="Enter BOOTSEL (USB ROM bootloader) now, robustly. Flush CDC, stop scheduling, disconnect USB,..." alt="" coords="368,1042,463,1069"/>
+<area shape="poly" id="edge15_Node000002_Node000016" title=" " alt="" coords="249,991,334,1028,354,1035,353,1040,332,1033,247,996"/>
+<area shape="rect" id="Node000017" href="$_console_task_8c.html#a05b2618d7fb383d2e3e64220ae18b64f" title="Calibrate RP2040 die temperature sensor and persist to EEPROM." alt="" coords="358,941,474,967"/>
+<area shape="poly" id="edge16_Node000002_Node000017" title=" " alt="" coords="285,968,342,961,343,966,286,973"/>
+<area shape="rect" id="Node000035" href="$_console_task_8c.html#ab35c3eebd4024e51ebf2872c85fd1dd0" title="Calibrate a single HLW8032 channel (deprecated)." alt="" coords="364,1093,467,1119"/>
+<area shape="poly" id="edge18_Node000002_Node000035" title=" " alt="" coords="233,991,275,1034,304,1058,334,1078,351,1086,348,1091,332,1083,300,1062,272,1038,229,995"/>
+<area shape="rect" id="Node000036" href="$_console_task_8c.html#a71caf917a52e067a11ae2c836247af41" title="Asynchronously clear the error event log region." alt="" coords="346,282,485,309"/>
+<area shape="poly" id="edge19_Node000002_Node000036" title=" " alt="" coords="217,966,224,843,242,649,256,546,276,452,300,373,315,342,331,319,333,317,337,320,335,322,319,345,305,375,281,453,262,547,247,650,229,844,222,966"/>
+<area shape="rect" id="Node000039" href="$_console_task_8c.html#a134228a08494ed1e3121aa8719b6bd87" title="Asynchronously clear the warning event log region." alt="" coords="337,333,494,359"/>
+<area shape="poly" id="edge21_Node000002_Node000039" title=" " alt="" coords="217,966,225,851,245,673,260,578,279,491,302,419,316,391,331,370,333,367,337,371,335,373,320,394,307,421,284,493,265,579,250,673,230,852,223,966"/>
+<area shape="rect" id="Node000041" href="$_console_task_8c.html#a03fc4d00d9a82992876fb2cb87bade44" title="Clear error LED on display board." alt="" coords="371,1701,460,1727"/>
+<area shape="poly" id="edge23_Node000002_Node000041" title=" " alt="" coords="224,993,281,1372,315,1588,335,1687,358,1703,355,1707,331,1690,310,1588,275,1373,219,994"/>
+<area shape="rect" id="Node000042" href="$group__tasks11.html#gaab4189cd5d61b2c583d85150b87147ad" title="Set FAULT LED on display MCP." alt="" coords="569,1447,707,1474"/>
+<area shape="poly" id="edge64_Node000002_Node000042" title=" " alt="" coords="227,992,265,1069,296,1116,335,1157,356,1173,377,1183,417,1193,457,1204,478,1214,500,1231,545,1280,582,1335,610,1389,629,1432,624,1434,605,1391,577,1338,541,1283,497,1235,475,1219,455,1209,415,1198,375,1188,354,1178,331,1161,292,1119,260,1071,222,994"/>
+<area shape="rect" id="Node000049" href="$_console_task_8c.html#aac8555eb5b2f76507f0ec587126f7e36" title="Configure all network settings at once." alt="" coords="345,383,486,410"/>
+<area shape="poly" id="edge25_Node000002_Node000049" title=" " alt="" coords="217,965,227,859,248,696,263,610,282,531,304,465,317,440,331,420,334,418,337,421,335,424,322,443,309,467,287,532,268,611,253,696,232,860,223,966"/>
+<area shape="rect" id="Node000053" href="$_console_task_8c.html#a4939561f3838f8c7fdd8a213ea27d52a" title="Get relay channel state(s)." alt="" coords="370,434,462,461"/>
+<area shape="poly" id="edge27_Node000002_Node000053" title=" " alt="" coords="218,965,228,868,250,720,266,642,284,571,306,511,331,471,353,455,356,460,335,475,311,514,289,572,271,643,256,721,234,869,223,966"/>
+<area shape="rect" id="Node000059" href="$_console_task_8c.html#a8e38607dcb0ccf8d67c20c04ec180e2c" title="Read 12V supply voltage (cached, no ADC access)." alt="" coords="358,1245,474,1271"/>
+<area shape="poly" id="edge29_Node000002_Node000059" title=" " alt="" coords="224,993,235,1037,256,1098,289,1165,310,1196,335,1224,350,1235,347,1240,331,1228,306,1200,284,1168,251,1101,230,1038,219,994"/>
+<area shape="rect" id="Node000060" href="$_console_task_8c.html#ad9bba0b26dcd7a357fb045e27e9a8b84" title="Read and print RP2040 die temperature from cached telemetry." alt="" coords="362,1295,469,1322"/>
+<area shape="poly" id="edge30_Node000002_Node000060" title=" " alt="" coords="223,993,230,1046,248,1124,262,1166,281,1208,305,1247,335,1281,349,1292,346,1296,331,1285,301,1250,276,1211,257,1168,242,1126,224,1047,218,994"/>
+<area shape="rect" id="Node000061" href="$_console_task_8c.html#a3c1141d2e9fdc2db5ea2311b97bbc8a3" title="Read USB supply voltage (cached, no ADC access)." alt="" coords="366,1346,465,1373"/>
+<area shape="poly" id="edge31_Node000002_Node000061" title=" " alt="" coords="222,993,226,1054,242,1145,256,1195,275,1245,301,1291,335,1332,353,1344,350,1349,331,1336,297,1294,271,1247,251,1197,236,1147,221,1055,217,993"/>
+<area shape="rect" id="Node000062" href="$_console_task_8c.html#a6dff31ee4789340df2661d51566b8d32" title="Individual command implementation functions." alt="" coords="377,1397,454,1423"/>
+<area shape="poly" id="edge32_Node000002_Node000062" title=" " alt="" coords="221,993,223,1062,236,1166,249,1224,270,1281,298,1335,335,1383,348,1393,363,1400,361,1405,345,1397,331,1387,293,1338,265,1284,244,1226,230,1167,217,1062,216,993"/>
+<area shape="rect" id="Node000063" href="$_console_task_8c.html#a7dc7bbff6e5db53bf64b8e6aed947dfd" title="Display network information." alt="" coords="370,1447,462,1474"/>
+<area shape="poly" id="edge33_Node000002_Node000063" title=" " alt="" coords="223,993,236,1081,259,1214,274,1283,292,1347,313,1399,335,1434,356,1448,353,1452,331,1437,308,1401,287,1348,269,1285,254,1215,230,1082,218,993"/>
+<area shape="rect" id="Node000074" href="$_console_task_8c.html#a0d5e02eb01ff1d44e10d306bd308e247" title="Manually clear overcurrent lockout." alt="" coords="364,1498,467,1525"/>
+<area shape="poly" id="edge34_Node000002_Node000074" title=" " alt="" coords="223,993,234,1090,256,1238,271,1315,289,1387,311,1445,335,1484,351,1496,348,1501,331,1488,306,1447,284,1388,266,1317,250,1239,228,1091,218,993"/>
+<area shape="rect" id="Node000076" href="$_console_task_8c.html#a63487c03ad93724c7d23efab606b01fa" title="Display overcurrent protection status." alt="" coords="360,1549,471,1575"/>
+<area shape="poly" id="edge35_Node000002_Node000076" title=" " alt="" coords="223,993,232,1099,253,1262,268,1348,287,1427,309,1491,322,1516,335,1535,348,1545,345,1550,331,1539,317,1519,304,1493,282,1428,263,1349,248,1263,227,1100,217,994"/>
+<area shape="rect" id="Node000078" href="$group__tasks09.html#ga20d378f18cee6529bae6a4ec665fe155" title="Main PROV command dispatcher and help provider." alt="" coords="376,1599,455,1626"/>
+<area shape="poly" id="edge36_Node000002_Node000078" title=" " alt="" coords="224,993,268,1305,302,1486,319,1551,335,1586,347,1596,363,1603,360,1608,345,1600,331,1589,314,1553,297,1488,263,1306,218,994"/>
+<area shape="rect" id="Node000103" href="$_console_task_8c.html#a6d0cd7c4becc9c09202fb0410a151358" title="Asynchronously dump the error event log region." alt="" coords="348,485,483,511"/>
+<area shape="poly" id="edge37_Node000002_Node000103" title=" " alt="" coords="218,965,230,877,254,744,269,674,287,610,308,558,331,522,334,519,338,522,335,525,313,560,292,612,274,676,259,745,236,878,223,966"/>
+<area shape="rect" id="Node000105" href="$_console_task_8c.html#a294853f6f498050ef6873332ed43ff36" title="Read power data from HLW8032 for all channels." alt="" coords="339,1650,492,1677"/>
+<area shape="poly" id="edge39_Node000002_Node000105" title=" " alt="" coords="224,993,276,1340,311,1539,325,1606,335,1637,337,1638,333,1642,331,1639,320,1608,305,1540,271,1341,218,994"/>
+<area shape="rect" id="Node000107" href="$_console_task_8c.html#afba7e3313a1c3e6671370e2abfbf6543" title="Read power data from HLW8032 for a specific channel." alt="" coords="338,535,493,562"/>
+<area shape="poly" id="edge40_Node000002_Node000107" title=" " alt="" coords="216,966,217,897,230,792,244,733,265,675,293,620,331,572,334,569,338,573,335,576,298,623,270,677,249,735,236,793,223,897,221,966"/>
+<area shape="rect" id="Node000108" href="$_console_task_8c.html#ad20074bf7395fb147a6c78eef186f101" title="Asynchronously dump the warning event log region." alt="" coords="338,586,493,613"/>
+<area shape="poly" id="edge42_Node000002_Node000108" title=" " alt="" coords="217,965,221,904,236,812,251,762,271,712,297,664,331,623,334,620,338,624,335,627,301,667,275,714,256,763,242,813,226,905,222,966"/>
+<area shape="rect" id="Node000110" href="$_console_task_8c.html#a77acaff274ceded6be5a02bac7564212" title="Reboot system via watchdog." alt="" coords="371,74,460,101"/>
+<area shape="poly" id="edge44_Node000002_Node000110" title=" " alt="" coords="216,966,219,811,232,557,246,421,266,295,294,189,311,148,331,116,355,98,358,102,335,120,316,151,299,191,271,296,251,421,237,557,224,811,222,966"/>
+<area shape="rect" id="Node000111" href="$group__tasks03.html#ga2cceff60fca1f201d5d60588aff53bbc" title="Immediate, Health&#45;owned reboot with context." alt="" coords="570,9,706,35"/>
+<area shape="poly" id="edge60_Node000002_Node000111" title=" " alt="" coords="217,965,228,787,251,497,267,348,285,216,307,115,318,81,331,60,354,41,381,26,439,8,499,3,555,5,554,11,499,8,440,14,383,31,358,45,335,64,323,83,312,116,291,217,272,349,256,498,233,787,223,966"/>
+<area shape="rect" id="Node000124" href="$_console_task_8c.html#a7aa01a6fcc3370b20b304e73b3830318" title="Set relay channel state." alt="" coords="370,637,462,663"/>
+<area shape="poly" id="edge47_Node000002_Node000124" title=" " alt="" coords="218,965,224,911,242,833,257,790,276,748,301,708,331,673,354,659,357,664,335,677,305,711,281,751,262,792,248,835,230,912,223,966"/>
+<area shape="rect" id="Node000127" href="$_console_task_8c.html#a77fb192d5194de041d5e8ae1a05477fa" title="Set DNS server address." alt="" coords="366,687,465,714"/>
+<area shape="poly" id="edge49_Node000002_Node000127" title=" " alt="" coords="219,965,229,919,249,854,282,785,304,752,331,724,350,712,353,716,335,728,309,756,287,787,254,856,234,920,224,966"/>
+<area shape="rect" id="Node000128" href="$_console_task_8c.html#a8cd1020242da5065bf2a614269f883b8" title="Set gateway address." alt="" coords="368,738,463,765"/>
+<area shape="poly" id="edge51_Node000002_Node000128" title=" " alt="" coords="220,965,233,927,255,876,288,822,308,797,331,775,352,762,355,767,335,779,312,800,292,825,260,879,238,929,225,967"/>
+<area shape="rect" id="Node000129" href="$_console_task_8c.html#a90f4fe95464bf6ca1b258e5c0e435839" title="Set IP address." alt="" coords="372,789,460,815"/>
+<area shape="poly" id="edge53_Node000002_Node000129" title=" " alt="" coords="223,964,263,898,294,859,331,825,356,813,358,817,335,830,298,863,267,901,228,967"/>
+<area shape="rect" id="Node000130" href="$_console_task_8c.html#a0f6f61a07bd6f06135e7d566867144fa" title="Set subnet mask." alt="" coords="370,839,462,866"/>
+<area shape="poly" id="edge55_Node000002_Node000130" title=" " alt="" coords="229,964,272,921,300,897,332,876,354,866,356,870,334,880,304,901,275,925,233,967"/>
+<area shape="rect" id="Node000131" href="$_console_task_8c.html#a51dd9940ef335025afc0875bd5bf8543" title="Show calibration data for one or all channels." alt="" coords="356,890,475,917"/>
+<area shape="poly" id="edge57_Node000002_Node000131" title=" " alt="" coords="247,963,332,926,351,919,353,924,334,931,249,968"/>
+<area shape="rect" id="Node000134" href="$_console_task_8c.html#a2fdaee030ce7c670740397a7853d0159" title="Print system information and health telemetry to the console." alt="" coords="368,1751,463,1778"/>
+<area shape="poly" id="edge59_Node000002_Node000134" title=" " alt="" coords="224,993,283,1401,335,1738,355,1752,352,1756,331,1741,277,1402,218,993"/>
+<area shape="rect" id="Node000135" href="$group__tasks10.html#ga84bff75330a6c83d2e407ed67f91b42c" title="Trigger a formatted EEPROM dump asynchronously. Enqueues a STORAGE_CMD_DUMP_FORMATTED message and ret..." alt="" coords="333,1802,498,1845"/>
+<area shape="poly" id="edge61_Node000002_Node000135" title=" " alt="" coords="224,993,288,1443,293,1521,298,1622,310,1720,320,1760,335,1789,336,1790,332,1793,331,1792,315,1762,304,1721,293,1623,288,1522,282,1444,218,993"/>
+<area shape="rect" id="Node000136" href="$group__tasks10.html#ga8b5d786522ab539d03629fe26e59feac" title="Asynchronously erase the entire EEPROM. Enqueues a STORAGE_CMD_ERASE_ALL message to trigger the opera..." alt="" coords="333,1869,498,1895"/>
+<area shape="poly" id="edge62_Node000002_Node000136" title=" " alt="" coords="224,993,288,1443,292,1537,294,1658,298,1719,305,1774,317,1821,335,1855,337,1857,333,1861,331,1858,312,1823,300,1776,292,1719,289,1658,287,1537,282,1444,219,993"/>
+<area shape="rect" id="Node000138" href="$group__tasks10.html#ga9b03bccea9582d81071026a75020a89a" title="Load factory defaults into EEPROM and RAM cache." alt="" coords="342,181,490,207"/>
+<area shape="poly" id="edge63_Node000002_Node000138" title=" " alt="" coords="217,965,221,826,236,602,250,483,270,372,297,281,313,245,331,218,333,215,337,219,335,221,317,248,302,283,275,373,255,483,241,602,226,826,222,966"/>
+<area shape="rect" id="Node000004" href="$group__drivers04.html#ga2fabec2f7c0a743f2fd172d233fabb0a" title="Query whether an asynchronous calibration sequence is currently running." alt="" coords="570,59,706,102"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="465,127,555,101,556,107,466,132"/>
+<area shape="rect" id="Node000005" href="$group__drivers04.html#gab740dc1c846d7716ef91fb32fca2ad53" title="Start asynchronous current calibration (Iref) for all channels." alt="" coords="570,126,706,169"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="472,142,555,143,555,149,472,147"/>
+<area shape="rect" id="Node000007" href="$group__drivers04.html#ga22bc351ab1444202e6adfd69ed60cfc7" title="Start asynchronous current calibration (Iref) for a single channel." alt="" coords="567,193,709,235"/>
+<area shape="poly" id="edge5_Node000003_Node000007" title=" " alt="" coords="463,155,499,166,557,185,555,190,498,171,461,160"/>
+<area shape="rect" id="Node000008" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="546,586,730,613"/>
+<area shape="poly" id="edge6_Node000003_Node000008" title=" " alt="" coords="474,150,500,167,520,193,532,218,537,242,539,267,538,319,541,348,549,380,589,487,626,571,621,573,584,489,544,381,536,349,533,319,533,267,532,243,527,220,516,196,497,171,471,154"/>
+<area shape="poly" id="edge10_Node000009_Node000008" title=" " alt="" coords="476,253,500,268,628,571,623,573,496,272,473,258"/>
+<area shape="rect" id="Node000010" href="$group__drivers04.html#gac3fd97d9d666bdf1a910b34170d0c38d" title="Start asynchronous voltage calibration (Vref/0A) for all channels." alt="" coords="570,326,706,369"/>
+<area shape="poly" id="edge8_Node000009_Node000010" title=" " alt="" coords="474,256,500,268,515,279,524,290,534,301,548,312,558,317,555,322,545,316,530,305,520,294,511,283,497,272,472,261"/>
+<area shape="rect" id="Node000011" href="$group__drivers04.html#ga1f792103cb278ba55286ca036e96a17c" title="Start asynchronous voltage calibration (Vref/0A) for a single channel." alt="" coords="566,259,710,302"/>
+<area shape="poly" id="edge9_Node000009_Node000011" title=" " alt="" coords="475,251,551,264,550,269,474,257"/>
+<area shape="poly" id="edge13_Node000012_Node000008" title=" " alt="" coords="480,989,497,977,531,937,560,891,583,842,600,792,623,698,632,628,637,628,628,699,605,794,588,844,565,894,536,940,500,981,483,993"/>
+<area shape="rect" id="Node000013" href="$group__drivers04.html#ga643d63b42087b4dd4b336571eb9b6d18" title="Start asynchronous zero calibration (0V/0A) for all channels." alt="" coords="570,983,706,1026"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="483,1002,555,1002,555,1007,483,1007"/>
+<area shape="poly" id="edge14_Node000012_Node000015" title=" " alt="" coords="469,1016,499,1028,556,1056,605,1086,602,1090,553,1061,497,1032,467,1021"/>
+<area shape="poly" id="edge17_Node000017_Node000008" title=" " alt="" coords="473,941,497,927,528,893,554,854,576,813,594,770,618,690,630,628,635,629,623,691,599,772,581,815,559,857,532,896,500,931,476,946"/>
+<area shape="poly" id="edge20_Node000036_Node000008" title=" " alt="" coords="482,307,500,319,517,337,535,365,571,435,629,571,624,573,566,437,530,367,513,341,497,323,479,312"/>
+<area shape="poly" id="edge22_Node000039_Node000008" title=" " alt="" coords="480,358,500,369,525,392,547,417,584,472,612,526,630,571,625,573,607,529,580,475,543,420,521,395,497,374,478,362"/>
+<area shape="poly" id="edge24_Node000041_Node000042" title=" " alt="" coords="460,1704,479,1697,497,1687,521,1665,543,1640,580,1585,607,1531,625,1488,630,1490,612,1534,584,1588,547,1643,525,1669,500,1691,482,1702,462,1709"/>
+<area shape="poly" id="edge26_Node000049_Node000008" title=" " alt="" coords="478,408,500,420,541,455,576,496,625,571,620,574,572,499,537,459,497,424,475,413"/>
+<area shape="poly" id="edge28_Node000053_Node000008" title=" " alt="" coords="463,455,500,470,535,494,567,521,617,572,613,576,563,525,531,498,497,475,461,460"/>
+<area shape="poly" id="edge38_Node000103_Node000008" title=" " alt="" coords="468,510,499,521,555,548,603,576,601,580,552,553,497,526,467,515"/>
+<area shape="poly" id="edge41_Node000107_Node000008" title=" " alt="" coords="478,560,562,579,561,585,477,565"/>
+<area shape="poly" id="edge43_Node000108_Node000008" title=" " alt="" coords="493,597,531,597,531,602,493,602"/>
+<area shape="poly" id="edge45_Node000110_Node000111" title=" " alt="" coords="460,71,546,45,571,37,572,43,547,50,461,76"/>
+<area shape="rect" id="Node000123" href="$_health_task_8c.html#a50503dee6a29e98e633b16b1b8b550bc" title="Get current monotonic time in milliseconds." alt="" coords="778,969,848,995"/>
+<area shape="poly" id="edge46_Node000111_Node000123" title=" " alt="" coords="708,28,732,46,743,67,753,100,769,198,783,325,794,470,808,758,814,953,808,953,802,758,789,471,778,326,764,198,747,101,738,69,728,49,705,33"/>
+<area shape="poly" id="edge48_Node000124_Node000008" title=" " alt="" coords="461,637,561,614,562,619,463,642"/>
+<area shape="poly" id="edge50_Node000127_Node000008" title=" " alt="" coords="465,685,497,673,552,646,601,619,603,623,555,651,499,678,467,690"/>
+<area shape="poly" id="edge52_Node000128_Node000008" title=" " alt="" coords="463,738,497,724,531,701,563,674,613,623,617,627,567,678,535,705,500,728,465,743"/>
+<area shape="poly" id="edge54_Node000129_Node000008" title=" " alt="" coords="459,791,497,774,537,740,572,700,620,625,625,628,576,703,541,744,500,779,461,796"/>
+<area shape="poly" id="edge56_Node000130_Node000008" title=" " alt="" coords="461,842,480,835,497,825,521,803,543,779,580,724,607,670,625,626,630,628,612,672,584,726,547,782,525,807,500,830,482,840,463,847"/>
+<area shape="poly" id="edge58_Node000131_Node000008" title=" " alt="" coords="474,889,497,876,524,848,548,817,587,748,613,681,628,628,633,629,618,682,592,750,553,820,528,852,500,880,477,894"/>
+<area shape="poly" id="edge67_Node000139_Node000123" title=" " alt="" coords="274,1481,287,1492,297,1509,303,1530,309,1581,307,1705,305,1769,307,1827,316,1874,324,1892,335,1905,355,1921,374,1931,393,1936,412,1937,453,1928,497,1905,557,1864,600,1822,632,1778,654,1731,672,1679,687,1621,727,1485,748,1418,764,1349,788,1212,802,1094,808,1011,813,1011,807,1094,793,1213,770,1350,753,1420,732,1487,693,1623,677,1680,659,1733,636,1781,604,1826,560,1868,500,1910,454,1933,413,1942,392,1941,372,1936,352,1925,331,1909,319,1895,311,1876,302,1827,300,1769,302,1705,304,1581,298,1531,292,1511,283,1496,270,1485"/>
+</map>

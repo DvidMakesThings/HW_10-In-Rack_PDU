@@ -1,0 +1,5 @@
+<map id="storage_erase_all_async" name="storage_erase_all_async">
+<area shape="rect" id="Node000001" title="Start full EEPROM erase (async, watchdog&#45;safe)." alt="" coords="5,5,171,32"/>
+<area shape="rect" id="Node000002" href="$group__tasks10.html#gadff2b57dc3c074453ee1393d0f6f3623" title="Storage subsystem readiness query (configuration loaded)." alt="" coords="219,5,341,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,16,203,16,203,21,171,21"/>
+</map>

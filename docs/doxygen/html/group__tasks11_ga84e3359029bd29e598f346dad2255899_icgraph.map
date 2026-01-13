@@ -1,0 +1,70 @@
+<map id="Switch_GetState" name="Switch_GetState">
+<area shape="rect" id="Node000001" title="Get current relay channel state from hardware." alt="" coords="1381,132,1501,159"/>
+<area shape="rect" id="Node000002" href="$_console_task_8c.html#a4939561f3838f8c7fdd8a213ea27d52a" title="Get relay channel state(s)." alt="" coords="1204,5,1296,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1417,122,1380,83,1332,46,1295,31,1298,26,1334,42,1383,79,1421,118"/>
+<area shape="rect" id="Node000009" href="$group__drivers04.html#ga0b3a5c410541deaf144c3e33d4b65175" title="Poll one channel and cache results (round&#45;robin)." alt="" coords="1184,56,1316,83"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1398,127,1332,97,1299,86,1301,81,1334,92,1401,122"/>
+<area shape="rect" id="Node000012" href="$group__drivers04.html#ga76f09e4482db113563628126492d3200" title="Read and cache measurements for all 8 channels." alt="" coords="1182,107,1318,133"/>
+<area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="1366,138,1318,132,1319,126,1366,133"/>
+<area shape="rect" id="Node000014" href="$metrics__handler_8c.html#aa1bfbf45c38a0802fc8ca3ea2d9e5ce7" title="Render OpenMetrics exposition format to static buffer." alt="" coords="1196,157,1304,184"/>
+<area shape="poly" id="edge14_Node000001_Node000014" title=" " alt="" coords="1366,158,1304,166,1303,161,1365,153"/>
+<area shape="rect" id="Node000019" href="$group__tasks11.html#ga19c6dbf15503e4ca3c985e5acd42c278" title="Legacy wrapper for Switch_GetState." alt="" coords="1167,259,1333,285"/>
+<area shape="poly" id="edge20_Node000001_Node000019" title=" " alt="" coords="1408,170,1273,260,1270,256,1405,165"/>
+<area shape="rect" id="Node000029" href="$group__tasks11.html#ga0dc547344c666f64e755f89d09d8b5e4" title="Toggle single relay channel with verification." alt="" coords="1197,461,1303,488"/>
+<area shape="poly" id="edge30_Node000001_Node000029" title=" " alt="" coords="1427,174,1261,462,1257,460,1422,171"/>
+<area shape="rect" id="Node000003" href="$_console_task_8c.html#a2d3b7ff8346f8d10aa45609664940712" title="Parse and dispatch command line to handler function." alt="" coords="972,5,1106,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1188,21,1107,21,1107,16,1188,16"/>
+<area shape="rect" id="Node000004" href="$_console_task_8c.html#a216857df22446940ad58d505886b0d7c" title="Main console task function." alt="" coords="793,5,890,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="956,21,891,21,891,16,956,16"/>
+<area shape="rect" id="Node000005" href="$group__tasks02.html#gad45ca7c142e8c2764d52b3d554ffcdeb" title="Initialize and start the console task." alt="" coords="426,5,549,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="777,21,549,21,549,16,777,16"/>
+<area shape="rect" id="Node000006" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,81,378,108"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="438,41,428,46,367,83,365,79,425,42,436,36"/>
+<area shape="rect" id="Node000007" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,81,263,108"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="295,97,263,97,263,92,295,92"/>
+<area shape="rect" id="Node000008" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,81,102,108"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="134,97,102,97,102,92,134,92"/>
+<area shape="rect" id="Node000010" href="$_meter_task_8c.html#addb3656d7dd28b5f2537e286d9da7b66" title="Main Meter Task loop." alt="" coords="980,56,1098,83"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="1169,72,1098,72,1098,67,1169,67"/>
+<area shape="rect" id="Node000011" href="$group__tasks06.html#ga33bd9742d865d9e98a4b81d443f69837" title="Create and start the Meter Task with a deterministic enable gate." alt="" coords="434,56,541,83"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="965,72,542,72,542,67,965,67"/>
+<area shape="poly" id="edge11_Node000011_Node000006" title=" " alt="" coords="419,84,379,91,378,86,418,79"/>
+<area shape="rect" id="Node000013" href="$group__tasks06.html#gae6a0acceca7a3a35f63bba05a7cd1826" title="Request immediate refresh of all channels (blocking)." alt="" coords="964,107,1114,133"/>
+<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="1166,123,1115,123,1115,117,1166,117"/>
+<area shape="rect" id="Node000015" href="$group__webui03.html#gad0f01d3921a7ce18c26c85f120a43411" title="Handle HTTP GET request to /metrics endpoint." alt="" coords="959,157,1119,184"/>
+<area shape="poly" id="edge15_Node000014_Node000015" title=" " alt="" coords="1181,173,1119,173,1119,168,1181,168"/>
+<area shape="rect" id="Node000016" href="$group__webui02.html#ga52702a4dcaff4540a9ddd10e4d5f4525" title="Process incoming HTTP connections and route requests." alt="" coords="772,107,911,133"/>
+<area shape="poly" id="edge16_Node000015_Node000016" title=" " alt="" coords="968,155,896,137,897,131,970,150"/>
+<area shape="rect" id="Node000017" href="$_net_task_8c.html#a80f30ff31d5f0d4f6696af42d015bce6" title="Network task main function." alt="" coords="597,107,724,133"/>
+<area shape="poly" id="edge17_Node000016_Node000017" title=" " alt="" coords="757,123,724,123,724,117,757,117"/>
+<area shape="rect" id="Node000018" href="$group__tasks07.html#ga3bb13f092e9d7a8e15776e5e8bf8e8c3" title="Create and start the Network Task with a deterministic enable gate." alt="" coords="440,107,535,133"/>
+<area shape="poly" id="edge18_Node000017_Node000018" title=" " alt="" coords="581,123,535,123,535,117,581,117"/>
+<area shape="poly" id="edge19_Node000018_Node000006" title=" " alt="" coords="424,112,378,103,379,98,425,106"/>
+<area shape="rect" id="Node000020" href="$snmp__outlet_ctrl_8c.html#aae9111624ead3d3f32f8ec6f54c84363" title="Generic SNMP getter for outlet state." alt="" coords="1005,309,1073,336"/>
+<area shape="poly" id="edge21_Node000019_Node000020" title=" " alt="" coords="1177,292,1074,317,1073,312,1176,287"/>
+<area shape="rect" id="Node000021" href="$group__snmp03.html#gade7df1ea335261e38c6b1c2a61ed2ded" title="SNMP getter for outlet 1 state." alt="" coords="780,157,903,184"/>
+<area shape="poly" id="edge22_Node000020_Node000021" title=" " alt="" coords="1016,299,970,248,941,222,910,198,888,187,890,182,913,194,945,217,974,244,1020,295"/>
+<area shape="rect" id="Node000022" href="$group__snmp03.html#gabbff421a9229e31a0cb05761892eec6e" title="SNMP getter for outlet 2 state." alt="" coords="780,208,903,235"/>
+<area shape="poly" id="edge23_Node000020_Node000022" title=" " alt="" coords="1003,303,960,276,910,249,883,238,885,233,912,244,962,271,1006,298"/>
+<area shape="rect" id="Node000023" href="$group__snmp03.html#gae617a671308e5f001c463b793cfe7a03" title="SNMP getter for outlet 3 state." alt="" coords="780,259,903,285"/>
+<area shape="poly" id="edge24_Node000020_Node000023" title=" " alt="" coords="989,313,896,289,897,283,990,308"/>
+<area shape="rect" id="Node000024" href="$group__snmp03.html#gac540752940c1f251d408f0954c14364d" title="SNMP getter for outlet 4 state." alt="" coords="780,309,903,336"/>
+<area shape="poly" id="edge25_Node000020_Node000024" title=" " alt="" coords="989,325,904,325,904,320,989,320"/>
+<area shape="rect" id="Node000025" href="$group__snmp03.html#ga03c6e3cdf72aa5de6d3b9c1fc220add0" title="SNMP getter for outlet 5 state." alt="" coords="780,360,903,387"/>
+<area shape="poly" id="edge26_Node000020_Node000025" title=" " alt="" coords="990,338,897,362,896,357,989,333"/>
+<area shape="rect" id="Node000026" href="$group__snmp03.html#ga62abeab3df59bba29de074d147e280f2" title="SNMP getter for outlet 6 state." alt="" coords="780,411,903,437"/>
+<area shape="poly" id="edge27_Node000020_Node000026" title=" " alt="" coords="1006,347,962,374,912,401,885,413,883,408,910,396,960,370,1003,343"/>
+<area shape="rect" id="Node000027" href="$group__snmp03.html#ga45aa10db7cd7f4c2a207b81312c7a95f" title="SNMP getter for outlet 7 state." alt="" coords="780,461,903,488"/>
+<area shape="poly" id="edge28_Node000020_Node000027" title=" " alt="" coords="1020,350,974,401,945,428,913,452,890,463,888,458,910,447,941,424,970,397,1016,347"/>
+<area shape="rect" id="Node000028" href="$group__snmp03.html#ga219cf7f985467e92225ffcd452f81464" title="SNMP getter for outlet 8 state." alt="" coords="780,512,903,539"/>
+<area shape="poly" id="edge29_Node000020_Node000028" title=" " alt="" coords="1024,351,969,435,939,475,913,502,893,514,890,509,910,498,935,472,965,431,1019,348"/>
+<area shape="rect" id="Node000030" href="$group__driver01.html#gafe1594ae8ba586d579964b90a2ddd5ff" title="Execute short&#45;press action for SET button on specified channel." alt="" coords="961,461,1117,488"/>
+<area shape="poly" id="edge31_Node000029_Node000030" title=" " alt="" coords="1181,477,1117,477,1117,472,1181,472"/>
+<area shape="rect" id="Node000033" href="$group__tasks11.html#ga5668cd5c93cc64bb2d551bb9ab90d610" title="Legacy wrapper for Switch_Toggle." alt="" coords="963,512,1115,539"/>
+<area shape="poly" id="edge35_Node000029_Node000033" title=" " alt="" coords="1183,493,1098,514,1097,509,1181,488"/>
+<area shape="rect" id="Node000031" href="$_button_task_8c.html#ac8adec5c9e99b51c4884034cf2e41275" title="Main button scanning and event processing task." alt="" coords="794,563,889,589"/>
+<area shape="poly" id="edge32_Node000030_Node000031" title=" " alt="" coords="970,497,961,502,946,514,937,527,928,540,913,553,890,565,888,560,910,548,924,536,933,524,942,511,958,498,967,492"/>
+<area shape="rect" id="Node000032" href="$group__tasks01.html#ga66ab3f6fa24432c008c6ea7b0ccddb5f" title="Initialize and start the button handling task." alt="" coords="604,461,716,488"/>
+<area shape="poly" id="edge33_Node000031_Node000032" title=" " alt="" coords="783,559,771,553,719,521,677,491,680,486,722,517,773,548,785,554"/>
+<area shape="poly" id="edge34_Node000032_Node000006" title=" " alt="" coords="636,451,355,110,359,107,640,447"/>
+</map>

@@ -1,0 +1,355 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/wrap\+\_\+watchdog.c File Reference}
+\hypertarget{wrap__watchdog_8c}{}\label{wrap__watchdog_8c}\index{src/Software/ENERGIS\_RTOS/src/wrap\_watchdog.c@{src/Software/ENERGIS\_RTOS/src/wrap\_watchdog.c}}
+{\ttfamily \#include "{}CONFIG.\+h"{}}\newline
+Include dependency graph for wrap\+\_\+watchdog.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{wrap__watchdog_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{wrap__watchdog_8c_adb449e2586c2b4e2c49a054f9e513a67}{WARP\+\_\+\+TAG}}~"{}\mbox{[}WRAP\mbox{]}"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{wrap__watchdog_8c_aebb1ae196e0497d33aa76b6f7967bc52}{log\+\_\+err}} (const char \texorpdfstring{$\ast$}{*}fmt,...)
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{wrap__watchdog_8c_a6f12bfe00064237eb14acd5149583789}{rd\+\_\+lr}} (void)
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{wrap__watchdog_8c_a6aaed12923e5647930cbc038ff475de6}{rd\+\_\+pc}} (void)
+\item 
+static void \mbox{\hyperlink{wrap__watchdog_8c_a1a4601eac39bff5f6bb00e750ef8d190}{stall\+\_\+forever}} (void)
+\item 
+void \mbox{\hyperlink{wrap__watchdog_8c_aece35b6d1f54896c47086e3ef4496b0d}{\+\_\+\+\_\+real\+\_\+watchdog\+\_\+reboot}} (unsigned, unsigned, unsigned)
+\item 
+void \mbox{\hyperlink{wrap__watchdog_8c_a7ec321882b25c20f7f76e5328d17cbc2}{\+\_\+\+\_\+wrap\+\_\+watchdog\+\_\+reboot}} (unsigned a, unsigned b, unsigned c)
+\item 
+void \mbox{\hyperlink{wrap__watchdog_8c_a5b374734fda83a4526b3d100da0c352d}{\+\_\+\+\_\+real\+\_\+abort}} (void)
+\item 
+void \mbox{\hyperlink{wrap__watchdog_8c_aaa6cd61bd2c175387296e45148c81cfa}{\+\_\+\+\_\+wrap\+\_\+abort}} (void)
+\item 
+void \mbox{\hyperlink{wrap__watchdog_8c_a3d78480a9e74306fb569e87e79fed400}{\+\_\+\+\_\+real\+\_\+\+\_\+\+\_\+assert\+\_\+func}} (const char \texorpdfstring{$\ast$}{*}file, int line, const char \texorpdfstring{$\ast$}{*}func, const char \texorpdfstring{$\ast$}{*}expr)
+\item 
+void \mbox{\hyperlink{wrap__watchdog_8c_adc64b0117f036e046dacab2ab5b696ef}{\+\_\+\+\_\+wrap\+\_\+\+\_\+\+\_\+\+\_\+assert\+\_\+func}} (const char \texorpdfstring{$\ast$}{*}file, int line, const char \texorpdfstring{$\ast$}{*}func, const char \texorpdfstring{$\ast$}{*}expr)
+\item 
+void \mbox{\hyperlink{wrap__watchdog_8c_a49f45e1ee7c1f8d64e51e41b166251fc}{\+\_\+\+\_\+wrap\+\_\+\+\_\+\+\_\+assert\+\_\+func}} (const char \texorpdfstring{$\ast$}{*}file, int line, const char \texorpdfstring{$\ast$}{*}func, const char \texorpdfstring{$\ast$}{*}expr)
+\item 
+void \mbox{\hyperlink{wrap__watchdog_8c_aa73bdb8e38aade0a3470afbd15744e8e}{\+\_\+\+\_\+real\+\_\+panic}} (const char \texorpdfstring{$\ast$}{*}fmt,...)
+\item 
+void \mbox{\hyperlink{wrap__watchdog_8c_a1b827684bd389b5230c52e764bbe4960}{\+\_\+\+\_\+wrap\+\_\+panic}} (const char \texorpdfstring{$\ast$}{*}fmt,...)
+\item 
+void \mbox{\hyperlink{wrap__watchdog_8c_a7455c2e1074e5498aae241a715c45ba2}{\+\_\+\+\_\+real\+\_\+hard\+\_\+assertion\+\_\+failure}} (const char \texorpdfstring{$\ast$}{*}, int, const char \texorpdfstring{$\ast$}{*}, const char \texorpdfstring{$\ast$}{*})
+\item 
+void \mbox{\hyperlink{wrap__watchdog_8c_ac9c5a975df64eae3ec596ed62fb00b23}{\+\_\+\+\_\+wrap\+\_\+hard\+\_\+assertion\+\_\+failure}} (const char \texorpdfstring{$\ast$}{*}file, int line, const char \texorpdfstring{$\ast$}{*}func, const char \texorpdfstring{$\ast$}{*}msg)
+\item 
+void \mbox{\hyperlink{wrap__watchdog_8c_a95514a9053e62036b1f0b855d487b7f5}{\+\_\+\+\_\+real\+\_\+invalid\+\_\+params}} (const char \texorpdfstring{$\ast$}{*}, const char \texorpdfstring{$\ast$}{*})
+\item 
+void \mbox{\hyperlink{wrap__watchdog_8c_a77ee5c4659e04509182fcd3ad6eb4206}{\+\_\+\+\_\+wrap\+\_\+invalid\+\_\+params}} (const char \texorpdfstring{$\ast$}{*}func, const char \texorpdfstring{$\ast$}{*}msg)
+\item 
+void \mbox{\hyperlink{wrap__watchdog_8c_a22c1affba7a649abc54e33071bff77ad}{\+\_\+\+\_\+real\+\_\+reset\+\_\+usb\+\_\+boot}} (uint32\+\_\+t, uint32\+\_\+t)
+\item 
+void \mbox{\hyperlink{wrap__watchdog_8c_af6d786bda4720494deef92913260a1bf}{\+\_\+\+\_\+wrap\+\_\+reset\+\_\+usb\+\_\+boot}} (uint32\+\_\+t a, uint32\+\_\+t b)
+\item 
+void \mbox{\hyperlink{wrap__watchdog_8c_a3d468f1c8346b38a9c5e8a7249074b4f}{\+\_\+\+\_\+real\+\_\+runtime\+\_\+unreset\+\_\+core}} (void)
+\item 
+void \mbox{\hyperlink{wrap__watchdog_8c_a449eb3533741993c5ea1eb483d610f39}{\+\_\+\+\_\+wrap\+\_\+runtime\+\_\+unreset\+\_\+core}} (void)
+\item 
+void \mbox{\hyperlink{wrap__watchdog_8c_aee31a92a3b0a3201fd4e08919425e3c1}{\+\_\+\+\_\+real\+\_\+runtime\+\_\+reboot}} (void)
+\item 
+void \mbox{\hyperlink{wrap__watchdog_8c_a28f699f43e76055c35aca79825aef947}{\+\_\+\+\_\+wrap\+\_\+runtime\+\_\+reboot}} (void)
+\item 
+void \mbox{\hyperlink{wrap__watchdog_8c_ae01df2169c7656cb28df5d3613f5c553}{\+\_\+\+\_\+real\+\_\+\+\_\+\+\_\+\+NVIC\+\_\+\+System\+Reset}} (void)
+\item 
+void \mbox{\hyperlink{wrap__watchdog_8c_ae89e2978c09455504948a18f61fa0b25}{\+\_\+\+\_\+wrap\+\_\+\+\_\+\+\_\+\+NVIC\+\_\+\+System\+Reset}} (void)
+\item 
+void \mbox{\hyperlink{wrap__watchdog_8c_ab11bb5c73edd88c3102b66c6e8da6fe6}{\+\_\+\+\_\+real\+\_\+scb\+\_\+reboot}} (void)
+\item 
+void \mbox{\hyperlink{wrap__watchdog_8c_ad434bfbe359e28625b39a75444784a27}{\+\_\+\+\_\+wrap\+\_\+scb\+\_\+reboot}} (void)
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{wrap__watchdog_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{wrap__watchdog_8c_adb449e2586c2b4e2c49a054f9e513a67}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!WARP\_TAG@{WARP\_TAG}}
+\index{WARP\_TAG@{WARP\_TAG}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{WARP\_TAG}{WARP\_TAG}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_adb449e2586c2b4e2c49a054f9e513a67} 
+\#define WARP\+\_\+\+TAG~"{}\mbox{[}WRAP\mbox{]}"{}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{wrap__watchdog_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{wrap__watchdog_8c_a3d78480a9e74306fb569e87e79fed400}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!\_\_real\_\_\_assert\_func@{\_\_real\_\_\_assert\_func}}
+\index{\_\_real\_\_\_assert\_func@{\_\_real\_\_\_assert\_func}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{\_\_real\_\_\_assert\_func()}{\_\_real\_\_\_assert\_func()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_a3d78480a9e74306fb569e87e79fed400} 
+void \+\_\+\+\_\+real\+\_\+\+\_\+\+\_\+assert\+\_\+func (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{file}{, }\item[{int}]{line}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{func}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{expr}{}\end{DoxyParamCaption})}
+
+\Hypertarget{wrap__watchdog_8c_ae01df2169c7656cb28df5d3613f5c553}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!\_\_real\_\_\_NVIC\_SystemReset@{\_\_real\_\_\_NVIC\_SystemReset}}
+\index{\_\_real\_\_\_NVIC\_SystemReset@{\_\_real\_\_\_NVIC\_SystemReset}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{\_\_real\_\_\_NVIC\_SystemReset()}{\_\_real\_\_\_NVIC\_SystemReset()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_ae01df2169c7656cb28df5d3613f5c553} 
+void \+\_\+\+\_\+real\+\_\+\+\_\+\+\_\+\+NVIC\+\_\+\+System\+Reset (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{wrap__watchdog_8c_a5b374734fda83a4526b3d100da0c352d}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!\_\_real\_abort@{\_\_real\_abort}}
+\index{\_\_real\_abort@{\_\_real\_abort}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{\_\_real\_abort()}{\_\_real\_abort()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_a5b374734fda83a4526b3d100da0c352d} 
+void \+\_\+\+\_\+real\+\_\+abort (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{wrap__watchdog_8c_a7455c2e1074e5498aae241a715c45ba2}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!\_\_real\_hard\_assertion\_failure@{\_\_real\_hard\_assertion\_failure}}
+\index{\_\_real\_hard\_assertion\_failure@{\_\_real\_hard\_assertion\_failure}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{\_\_real\_hard\_assertion\_failure()}{\_\_real\_hard\_assertion\_failure()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_a7455c2e1074e5498aae241a715c45ba2} 
+void \+\_\+\+\_\+real\+\_\+hard\+\_\+assertion\+\_\+failure (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{}{, }\item[{int}]{}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{wrap__watchdog_8c_a95514a9053e62036b1f0b855d487b7f5}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!\_\_real\_invalid\_params@{\_\_real\_invalid\_params}}
+\index{\_\_real\_invalid\_params@{\_\_real\_invalid\_params}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{\_\_real\_invalid\_params()}{\_\_real\_invalid\_params()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_a95514a9053e62036b1f0b855d487b7f5} 
+void \+\_\+\+\_\+real\+\_\+invalid\+\_\+params (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{wrap__watchdog_8c_aa73bdb8e38aade0a3470afbd15744e8e}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!\_\_real\_panic@{\_\_real\_panic}}
+\index{\_\_real\_panic@{\_\_real\_panic}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{\_\_real\_panic()}{\_\_real\_panic()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_aa73bdb8e38aade0a3470afbd15744e8e} 
+void \+\_\+\+\_\+real\+\_\+panic (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{fmt}{, }\item[{}]{...}{}\end{DoxyParamCaption})}
+
+\Hypertarget{wrap__watchdog_8c_a22c1affba7a649abc54e33071bff77ad}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!\_\_real\_reset\_usb\_boot@{\_\_real\_reset\_usb\_boot}}
+\index{\_\_real\_reset\_usb\_boot@{\_\_real\_reset\_usb\_boot}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{\_\_real\_reset\_usb\_boot()}{\_\_real\_reset\_usb\_boot()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_a22c1affba7a649abc54e33071bff77ad} 
+void \+\_\+\+\_\+real\+\_\+reset\+\_\+usb\+\_\+boot (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{}{, }\item[{uint32\+\_\+t}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{wrap__watchdog_8c_aee31a92a3b0a3201fd4e08919425e3c1}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!\_\_real\_runtime\_reboot@{\_\_real\_runtime\_reboot}}
+\index{\_\_real\_runtime\_reboot@{\_\_real\_runtime\_reboot}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{\_\_real\_runtime\_reboot()}{\_\_real\_runtime\_reboot()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_aee31a92a3b0a3201fd4e08919425e3c1} 
+void \+\_\+\+\_\+real\+\_\+runtime\+\_\+reboot (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{wrap__watchdog_8c_a3d468f1c8346b38a9c5e8a7249074b4f}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!\_\_real\_runtime\_unreset\_core@{\_\_real\_runtime\_unreset\_core}}
+\index{\_\_real\_runtime\_unreset\_core@{\_\_real\_runtime\_unreset\_core}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{\_\_real\_runtime\_unreset\_core()}{\_\_real\_runtime\_unreset\_core()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_a3d468f1c8346b38a9c5e8a7249074b4f} 
+void \+\_\+\+\_\+real\+\_\+runtime\+\_\+unreset\+\_\+core (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{wrap__watchdog_8c_ab11bb5c73edd88c3102b66c6e8da6fe6}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!\_\_real\_scb\_reboot@{\_\_real\_scb\_reboot}}
+\index{\_\_real\_scb\_reboot@{\_\_real\_scb\_reboot}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{\_\_real\_scb\_reboot()}{\_\_real\_scb\_reboot()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_ab11bb5c73edd88c3102b66c6e8da6fe6} 
+void \+\_\+\+\_\+real\+\_\+scb\+\_\+reboot (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{wrap__watchdog_8c_aece35b6d1f54896c47086e3ef4496b0d}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!\_\_real\_watchdog\_reboot@{\_\_real\_watchdog\_reboot}}
+\index{\_\_real\_watchdog\_reboot@{\_\_real\_watchdog\_reboot}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{\_\_real\_watchdog\_reboot()}{\_\_real\_watchdog\_reboot()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_aece35b6d1f54896c47086e3ef4496b0d} 
+void \+\_\+\+\_\+real\+\_\+watchdog\+\_\+reboot (\begin{DoxyParamCaption}\item[{unsigned}]{}{, }\item[{unsigned}]{}{, }\item[{unsigned}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{wrap__watchdog_8c_adc64b0117f036e046dacab2ab5b696ef}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!\_\_wrap\_\_\_\_assert\_func@{\_\_wrap\_\_\_\_assert\_func}}
+\index{\_\_wrap\_\_\_\_assert\_func@{\_\_wrap\_\_\_\_assert\_func}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{\_\_wrap\_\_\_\_assert\_func()}{\_\_wrap\_\_\_\_assert\_func()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_adc64b0117f036e046dacab2ab5b696ef} 
+void \+\_\+\+\_\+wrap\+\_\+\+\_\+\+\_\+\+\_\+assert\+\_\+func (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{file}{, }\item[{int}]{line}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{func}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{expr}{}\end{DoxyParamCaption})}
+
+\Hypertarget{wrap__watchdog_8c_a49f45e1ee7c1f8d64e51e41b166251fc}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!\_\_wrap\_\_\_assert\_func@{\_\_wrap\_\_\_assert\_func}}
+\index{\_\_wrap\_\_\_assert\_func@{\_\_wrap\_\_\_assert\_func}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{\_\_wrap\_\_\_assert\_func()}{\_\_wrap\_\_\_assert\_func()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_a49f45e1ee7c1f8d64e51e41b166251fc} 
+void \+\_\+\+\_\+wrap\+\_\+\+\_\+\+\_\+assert\+\_\+func (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{file}{, }\item[{int}]{line}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{func}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{expr}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{wrap__watchdog_8c_a49f45e1ee7c1f8d64e51e41b166251fc_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{wrap__watchdog_8c_ae89e2978c09455504948a18f61fa0b25}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!\_\_wrap\_\_\_NVIC\_SystemReset@{\_\_wrap\_\_\_NVIC\_SystemReset}}
+\index{\_\_wrap\_\_\_NVIC\_SystemReset@{\_\_wrap\_\_\_NVIC\_SystemReset}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{\_\_wrap\_\_\_NVIC\_SystemReset()}{\_\_wrap\_\_\_NVIC\_SystemReset()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_ae89e2978c09455504948a18f61fa0b25} 
+void \+\_\+\+\_\+wrap\+\_\+\+\_\+\+\_\+\+NVIC\+\_\+\+System\+Reset (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{wrap__watchdog_8c_ae89e2978c09455504948a18f61fa0b25_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{wrap__watchdog_8c_aaa6cd61bd2c175387296e45148c81cfa}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!\_\_wrap\_abort@{\_\_wrap\_abort}}
+\index{\_\_wrap\_abort@{\_\_wrap\_abort}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{\_\_wrap\_abort()}{\_\_wrap\_abort()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_aaa6cd61bd2c175387296e45148c81cfa} 
+void \+\_\+\+\_\+wrap\+\_\+abort (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{wrap__watchdog_8c_aaa6cd61bd2c175387296e45148c81cfa_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{wrap__watchdog_8c_ac9c5a975df64eae3ec596ed62fb00b23}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!\_\_wrap\_hard\_assertion\_failure@{\_\_wrap\_hard\_assertion\_failure}}
+\index{\_\_wrap\_hard\_assertion\_failure@{\_\_wrap\_hard\_assertion\_failure}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{\_\_wrap\_hard\_assertion\_failure()}{\_\_wrap\_hard\_assertion\_failure()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_ac9c5a975df64eae3ec596ed62fb00b23} 
+void \+\_\+\+\_\+wrap\+\_\+hard\+\_\+assertion\+\_\+failure (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{file}{, }\item[{int}]{line}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{func}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{msg}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{wrap__watchdog_8c_ac9c5a975df64eae3ec596ed62fb00b23_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{wrap__watchdog_8c_a77ee5c4659e04509182fcd3ad6eb4206}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!\_\_wrap\_invalid\_params@{\_\_wrap\_invalid\_params}}
+\index{\_\_wrap\_invalid\_params@{\_\_wrap\_invalid\_params}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{\_\_wrap\_invalid\_params()}{\_\_wrap\_invalid\_params()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_a77ee5c4659e04509182fcd3ad6eb4206} 
+void \+\_\+\+\_\+wrap\+\_\+invalid\+\_\+params (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{func}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{msg}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{wrap__watchdog_8c_a77ee5c4659e04509182fcd3ad6eb4206_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{wrap__watchdog_8c_a1b827684bd389b5230c52e764bbe4960}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!\_\_wrap\_panic@{\_\_wrap\_panic}}
+\index{\_\_wrap\_panic@{\_\_wrap\_panic}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{\_\_wrap\_panic()}{\_\_wrap\_panic()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_a1b827684bd389b5230c52e764bbe4960} 
+void \+\_\+\+\_\+wrap\+\_\+panic (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{fmt}{, }\item[{}]{...}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{wrap__watchdog_8c_a1b827684bd389b5230c52e764bbe4960_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{wrap__watchdog_8c_af6d786bda4720494deef92913260a1bf}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!\_\_wrap\_reset\_usb\_boot@{\_\_wrap\_reset\_usb\_boot}}
+\index{\_\_wrap\_reset\_usb\_boot@{\_\_wrap\_reset\_usb\_boot}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{\_\_wrap\_reset\_usb\_boot()}{\_\_wrap\_reset\_usb\_boot()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_af6d786bda4720494deef92913260a1bf} 
+void \+\_\+\+\_\+wrap\+\_\+reset\+\_\+usb\+\_\+boot (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{a}{, }\item[{uint32\+\_\+t}]{b}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{wrap__watchdog_8c_af6d786bda4720494deef92913260a1bf_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{wrap__watchdog_8c_a28f699f43e76055c35aca79825aef947}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!\_\_wrap\_runtime\_reboot@{\_\_wrap\_runtime\_reboot}}
+\index{\_\_wrap\_runtime\_reboot@{\_\_wrap\_runtime\_reboot}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{\_\_wrap\_runtime\_reboot()}{\_\_wrap\_runtime\_reboot()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_a28f699f43e76055c35aca79825aef947} 
+void \+\_\+\+\_\+wrap\+\_\+runtime\+\_\+reboot (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{wrap__watchdog_8c_a28f699f43e76055c35aca79825aef947_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{wrap__watchdog_8c_a449eb3533741993c5ea1eb483d610f39}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!\_\_wrap\_runtime\_unreset\_core@{\_\_wrap\_runtime\_unreset\_core}}
+\index{\_\_wrap\_runtime\_unreset\_core@{\_\_wrap\_runtime\_unreset\_core}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{\_\_wrap\_runtime\_unreset\_core()}{\_\_wrap\_runtime\_unreset\_core()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_a449eb3533741993c5ea1eb483d610f39} 
+void \+\_\+\+\_\+wrap\+\_\+runtime\+\_\+unreset\+\_\+core (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{wrap__watchdog_8c_a449eb3533741993c5ea1eb483d610f39_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{wrap__watchdog_8c_ad434bfbe359e28625b39a75444784a27}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!\_\_wrap\_scb\_reboot@{\_\_wrap\_scb\_reboot}}
+\index{\_\_wrap\_scb\_reboot@{\_\_wrap\_scb\_reboot}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{\_\_wrap\_scb\_reboot()}{\_\_wrap\_scb\_reboot()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_ad434bfbe359e28625b39a75444784a27} 
+void \+\_\+\+\_\+wrap\+\_\+scb\+\_\+reboot (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{wrap__watchdog_8c_ad434bfbe359e28625b39a75444784a27_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{wrap__watchdog_8c_a7ec321882b25c20f7f76e5328d17cbc2}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!\_\_wrap\_watchdog\_reboot@{\_\_wrap\_watchdog\_reboot}}
+\index{\_\_wrap\_watchdog\_reboot@{\_\_wrap\_watchdog\_reboot}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{\_\_wrap\_watchdog\_reboot()}{\_\_wrap\_watchdog\_reboot()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_a7ec321882b25c20f7f76e5328d17cbc2} 
+void \+\_\+\+\_\+wrap\+\_\+watchdog\+\_\+reboot (\begin{DoxyParamCaption}\item[{unsigned}]{a}{, }\item[{unsigned}]{b}{, }\item[{unsigned}]{c}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{wrap__watchdog_8c_a7ec321882b25c20f7f76e5328d17cbc2_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{wrap__watchdog_8c_aebb1ae196e0497d33aa76b6f7967bc52}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!log\_err@{log\_err}}
+\index{log\_err@{log\_err}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{log\_err()}{log\_err()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_aebb1ae196e0497d33aa76b6f7967bc52} 
+void log\+\_\+err (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{fmt}{, }\item[{}]{...}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=299pt]{wrap__watchdog_8c_aebb1ae196e0497d33aa76b6f7967bc52_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{wrap__watchdog_8c_aebb1ae196e0497d33aa76b6f7967bc52_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{wrap__watchdog_8c_a6f12bfe00064237eb14acd5149583789}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!rd\_lr@{rd\_lr}}
+\index{rd\_lr@{rd\_lr}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{rd\_lr()}{rd\_lr()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_a6f12bfe00064237eb14acd5149583789} 
+uint32\+\_\+t rd\+\_\+lr (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=278pt]{wrap__watchdog_8c_a6f12bfe00064237eb14acd5149583789_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{wrap__watchdog_8c_a6aaed12923e5647930cbc038ff475de6}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!rd\_pc@{rd\_pc}}
+\index{rd\_pc@{rd\_pc}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{rd\_pc()}{rd\_pc()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_a6aaed12923e5647930cbc038ff475de6} 
+uint32\+\_\+t rd\+\_\+pc (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{wrap__watchdog_8c_a1a4601eac39bff5f6bb00e750ef8d190}\index{wrap\_watchdog.c@{wrap\_watchdog.c}!stall\_forever@{stall\_forever}}
+\index{stall\_forever@{stall\_forever}!wrap\_watchdog.c@{wrap\_watchdog.c}}
+\doxysubsubsection{\texorpdfstring{stall\_forever()}{stall\_forever()}}
+{\footnotesize\ttfamily \label{wrap__watchdog_8c_a1a4601eac39bff5f6bb00e750ef8d190} 
+void stall\+\_\+forever (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{wrap__watchdog_8c_a1a4601eac39bff5f6bb00e750ef8d190_icgraph}
+\end{center}
+\end{figure}

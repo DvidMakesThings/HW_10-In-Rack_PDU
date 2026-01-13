@@ -1,0 +1,74 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/misc/crashlog.h File Reference}
+\hypertarget{crashlog_8h}{}\label{crashlog_8h}\index{src/Software/ENERGIS\_RTOS/src/misc/crashlog.h@{src/Software/ENERGIS\_RTOS/src/misc/crashlog.h}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for crashlog.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{crashlog_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{crashlog_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcrashlog__t}{crashlog\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Crash log structure stored in noinit so it survives resets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{Indent}\textbf{ Constants}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__misc1_ga7eca9d3b0c9e9975fe8917425a5931cc}{CRASH\+\_\+\+FEED\+\_\+\+RING}}~16u
+\begin{DoxyCompactList}\small\item\em Retained log ring capacity for watchdog feeds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Enumerations}
+\begin{Indent}\textbf{ Reset Reason Values}\par
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__misc1_ga3da6cc7835d9b18adc73cb404f8e9985}{crash\+\_\+reset\+\_\+reason\+\_\+t}} \{ \newline
+\mbox{\hyperlink{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a4c5a1abca50bbcaccba25a55f1698252}{CR\+\_\+\+RESET\+\_\+\+UNKNOWN}} = 0u
+, \mbox{\hyperlink{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a68fd56235c593d0a17739e5b02007f15}{CR\+\_\+\+RESET\+\_\+\+POWERON}} = 1u
+, \mbox{\hyperlink{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a1b426e325becbee34a0fecc17b6d90db}{CR\+\_\+\+RESET\+\_\+\+WATCHDOG}} = 2u
+, \mbox{\hyperlink{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a6260f396c215c34ffb370b2ffafa8f87}{CR\+\_\+\+RESET\+\_\+\+SOFTWARE}} = 3u
+, \newline
+\mbox{\hyperlink{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a8258b7f926f9fd20044a96858c16c151}{CR\+\_\+\+RESET\+\_\+\+BROWNOUT}} = 4u
+, \mbox{\hyperlink{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985aed93463f235a0af77837e4727581e7c7}{CR\+\_\+\+RESET\+\_\+\+EXTERNAL}} = 5u
+, \mbox{\hyperlink{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a041f6a3c80572a3b807ac771924080b6}{CR\+\_\+\+RESET\+\_\+\+DEBUG}} = 6u
+ \}
+\begin{DoxyCompactList}\small\item\em Reset cause enumeration recorded at early boot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Functions}
+\begin{Indent}\textbf{ Public API}\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__misc1_ga040d161613770d2656d3350134445684}{Crash\+Log\+\_\+\+Print\+And\+Clear\+On\+Boot}} (void)
+\begin{DoxyCompactList}\small\item\em Print last crash diagnostics and reset reason, then clear Hard\+Fault fields. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc1_ga8dac22c0f05ce9e997b99d9179a2bf5f}{Crash\+Log\+\_\+\+Record\+Wdt\+Feed}} (uint32\+\_\+t \mbox{\hyperlink{_button_task_8c_a50503dee6a29e98e633b16b1b8b550bc}{now\+\_\+ms}})
+\begin{DoxyCompactList}\small\item\em Record a hardware watchdog feed timestamp for telemetry tracking. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc1_ga131d28172212c0df74acc1e9d9527c4a}{Crash\+Log\+\_\+\+Capture\+Reset\+Reason\+Early}} (void)
+\begin{DoxyCompactList}\small\item\em Capture reset cause at early boot before RTOS initialization. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc1_ga28f2af805f9b4954b888151007f862a3}{Crash\+Log\+\_\+\+Record\+Software\+Reboot\+Tag}} (const char \texorpdfstring{$\ast$}{*}tag)
+\begin{DoxyCompactList}\small\item\em Tag an intentional software reboot with a descriptive reason string. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc1_ga1a04e8bbf9617464ae676b6b4d89241c}{Crash\+Log\+\_\+\+On\+Hard\+Fault}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}stacked\+\_\+regs)
+\begin{DoxyCompactList}\small\item\em Hard\+Fault handler C bridge that captures exception context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Platform Hooks}\par
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__misc1_gaed84e69b9c69051cc7be2c213183e109}{Crash\+Log\+\_\+\+Platform\+\_\+\+Read\+Reset\+Bits}} (void)
+\begin{DoxyCompactList}\small\item\em Platform hook to read raw reset-\/cause bits from hardware. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__misc1_ga3da6cc7835d9b18adc73cb404f8e9985}{crash\+\_\+reset\+\_\+reason\+\_\+t}} \mbox{\hyperlink{group__misc1_ga41cf871cde075031b39beae132e7c13d}{Crash\+Log\+\_\+\+Platform\+\_\+\+Decode\+Reset}} (uint32\+\_\+t raw)
+\begin{DoxyCompactList}\small\item\em Platform hook to decode raw reset bits into standardized reason enum. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

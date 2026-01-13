@@ -1,0 +1,15 @@
+<map id="Storage_IsReady" name="Storage_IsReady">
+<area shape="rect" id="Node000001" title="Storage subsystem readiness query (configuration loaded)." alt="" coords="587,56,709,83"/>
+<area shape="rect" id="Node000002" href="$group__tasks01.html#ga66ab3f6fa24432c008c6ea7b0ccddb5f" title="Initialize and start the button handling task." alt="" coords="426,5,539,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="586,53,528,35,529,30,588,48"/>
+<area shape="rect" id="Node000003" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,56,378,83"/>
+<area shape="poly" id="edge5_Node000001_Node000003" title=" " alt="" coords="571,72,379,72,379,67,571,67"/>
+<area shape="rect" id="Node000006" href="$group__tasks07.html#ga3bb13f092e9d7a8e15776e5e8bf8e8c3" title="Create and start the Network Task with a deterministic enable gate." alt="" coords="435,107,530,133"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="588,90,529,109,528,104,586,85"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="431,40,380,60,378,55,429,35"/>
+<area shape="rect" id="Node000004" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,56,263,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="295,72,263,72,263,67,295,67"/>
+<area shape="rect" id="Node000005" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,56,102,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="134,72,102,72,102,67,134,67"/>
+<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="429,103,378,84,380,79,431,98"/>
+</map>

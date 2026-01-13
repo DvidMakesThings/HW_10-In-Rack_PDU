@@ -1,0 +1,77 @@
+<map id="Storage_Config_IsReady" name="Storage_Config_IsReady">
+<area shape="rect" id="Node000001" title="Check if config is loaded and ready." alt="" coords="1404,370,1571,396"/>
+<area shape="rect" id="Node000002" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,139,378,166"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1482,355,1474,290,1453,206,1437,162,1415,121,1388,83,1354,52,1316,28,1281,14,1248,9,1214,9,1142,20,1100,25,1052,27,659,27,614,30,570,40,527,54,486,71,415,109,366,141,364,136,413,104,484,66,525,49,569,35,614,25,659,22,1052,22,1100,19,1141,14,1214,4,1248,3,1282,9,1319,23,1358,48,1392,80,1420,118,1442,160,1459,204,1479,289,1487,354"/>
+<area shape="rect" id="Node000005" href="$group__tasks05.html#gae7a93a44989ffe1e7ed93e7f76613c89" title="Asynchronously clear the error event log region." alt="" coords="1207,128,1340,171"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1473,357,1454,319,1428,273,1395,226,1354,185,1337,174,1340,169,1358,181,1399,223,1433,270,1459,316,1477,354"/>
+<area shape="rect" id="Node000012" href="$group__tasks05.html#ga0e8d9cfcef8d0dabb1f981d61e7f41c4" title="Clear startup preset via StorageTask." alt="" coords="1200,462,1346,504"/>
+<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="1449,406,1357,452,1331,463,1329,459,1355,447,1446,402"/>
+<area shape="rect" id="Node000017" href="$group__tasks05.html#gab4d1bea675979447fdffabc6d58310c5" title="Asynchronously clear the warning event log region." alt="" coords="1198,62,1349,104"/>
+<area shape="poly" id="edge19_Node000001_Node000017" title=" " alt="" coords="1477,355,1462,305,1437,242,1402,176,1379,145,1354,118,1339,107,1342,103,1358,114,1384,142,1406,173,1442,240,1467,303,1482,354"/>
+<area shape="rect" id="Node000019" href="$group__tasks05.html#ga7174a6c72a5b95807a0c02f2bb9871bf" title="Delete a user output preset via StorageTask." alt="" coords="1199,595,1348,622"/>
+<area shape="poly" id="edge23_Node000001_Node000019" title=" " alt="" coords="1478,411,1460,450,1434,497,1400,544,1358,585,1337,597,1335,592,1354,581,1396,541,1430,494,1456,448,1473,409"/>
+<area shape="rect" id="Node000021" href="$group__tasks05.html#ga423080bfa834046c228f9b5e7a83999e" title="Asynchronously dump the error event log region in hex format." alt="" coords="1205,195,1342,238"/>
+<area shape="poly" id="edge26_Node000001_Node000021" title=" " alt="" coords="1465,359,1418,306,1387,277,1355,252,1335,241,1337,236,1357,247,1391,273,1421,302,1469,356"/>
+<area shape="rect" id="Node000023" href="$_storage_task_8c.html#a65991cc9fd9f82af7e0b0b4caedf89e6" title="Trigger a formatted EEPROM dump in StorageTask context." alt="" coords="1191,696,1356,723"/>
+<area shape="poly" id="edge29_Node000001_Node000023" title=" " alt="" coords="1485,412,1472,469,1449,543,1432,582,1412,620,1387,655,1358,686,1340,698,1337,693,1354,682,1383,652,1407,617,1427,580,1444,541,1467,468,1479,411"/>
+<area shape="rect" id="Node000024" href="$group__tasks05.html#gab41c0a3084c3335d1f8cbe0bb50ff3af" title="Asynchronously dump the warning event log region in hex format." alt="" coords="1196,262,1351,304"/>
+<area shape="poly" id="edge30_Node000001_Node000024" title=" " alt="" coords="1446,364,1355,319,1329,307,1331,302,1357,314,1449,360"/>
+<area shape="rect" id="Node000026" href="$group__storage09.html#ga9b748e74135c13df21595e6db035de95" title="Read channel label from RAM cache (thread&#45;safe). See channel_labels.h." alt="" coords="1203,528,1344,571"/>
+<area shape="poly" id="edge33_Node000001_Node000026" title=" " alt="" coords="1469,410,1421,464,1391,493,1357,519,1337,530,1335,525,1355,514,1387,489,1418,460,1465,407"/>
+<area shape="rect" id="Node000029" href="$group__tasks05.html#ga9f739ec7195c1d9f17c6a48ecfa121b4" title="Save a user output preset via StorageTask. Enqueues a message to perform the save on the StorageTask ..." alt="" coords="1202,646,1344,672"/>
+<area shape="poly" id="edge37_Node000001_Node000029" title=" " alt="" coords="1482,412,1467,460,1442,521,1406,582,1383,611,1358,636,1339,647,1336,643,1354,632,1379,607,1401,579,1437,518,1462,459,1477,411"/>
+<area shape="rect" id="Node000030" href="$group__storage09.html#ga9019937f0e528616251b6c085b7245a9" title="Write channel label via storage queue (thread&#45;safe). See channel_labels.h." alt="" coords="1203,328,1344,371"/>
+<area shape="poly" id="edge39_Node000001_Node000030" title=" " alt="" coords="1389,370,1344,363,1345,358,1389,365"/>
+<area shape="rect" id="Node000032" href="$group__tasks05.html#ga5689969f8de481f2f5533245da6b315f" title="Set startup preset via StorageTask." alt="" coords="1205,395,1342,438"/>
+<area shape="poly" id="edge42_Node000001_Node000032" title=" " alt="" coords="1390,401,1342,408,1341,403,1389,396"/>
+<area shape="rect" id="Node000003" href="$group__tasks01.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,139,263,166"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="295,155,263,155,263,150,295,150"/>
+<area shape="rect" id="Node000004" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,139,102,166"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="134,155,102,155,102,150,134,150"/>
+<area shape="rect" id="Node000006" href="$group__console__commands.html#ga71caf917a52e067a11ae2c836247af41" title="Asynchronously clear the error event log region." alt="" coords="982,164,1120,191"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1192,162,1121,172,1120,166,1191,157"/>
+<area shape="rect" id="Node000010" href="$_button_task_8c.html#ac8adec5c9e99b51c4884034cf2e41275" title="Main button scanning and event processing task." alt="" coords="1004,114,1098,140"/>
+<area shape="poly" id="edge10_Node000005_Node000010" title=" " alt="" coords="1191,144,1098,134,1099,129,1192,139"/>
+<area shape="rect" id="Node000007" href="$_console_task_8c.html#a2d3b7ff8346f8d10aa45609664940712" title="Parse and dispatch command line to handler function." alt="" coords="774,164,909,191"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="966,180,909,180,909,175,966,175"/>
+<area shape="rect" id="Node000008" href="$_console_task_8c.html#a216857df22446940ad58d505886b0d7c" title="Main console task function." alt="" coords="612,164,709,191"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="759,180,710,180,710,175,759,175"/>
+<area shape="rect" id="Node000009" href="$group__tasks04.html#gad45ca7c142e8c2764d52b3d554ffcdeb" title="Initialize and start the console task." alt="" coords="426,164,549,191"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="596,180,549,180,549,175,596,175"/>
+<area shape="poly" id="edge9_Node000009_Node000002" title=" " alt="" coords="411,167,378,161,379,156,412,161"/>
+<area shape="rect" id="Node000011" href="$group__tasks02.html#ga66ab3f6fa24432c008c6ea7b0ccddb5f" title="Initialize and start the button handling task." alt="" coords="604,114,716,140"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="988,130,717,130,717,124,988,124"/>
+<area shape="poly" id="edge12_Node000011_Node000002" title=" " alt="" coords="589,135,379,152,378,147,588,130"/>
+<area shape="rect" id="Node000013" href="$group__webui6.html#gab0a20afe333957eef6db7e68e569467f" title="Handle POST /api/startup&#45;config." alt="" coords="961,411,1141,438"/>
+<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="1185,462,1104,441,1105,436,1186,457"/>
+<area shape="rect" id="Node000014" href="$group__webui1.html#ga52702a4dcaff4540a9ddd10e4d5f4525" title="Process incoming HTTP connections and route requests." alt="" coords="772,411,911,438"/>
+<area shape="poly" id="edge15_Node000013_Node000014" title=" " alt="" coords="945,427,911,427,911,422,945,422"/>
+<area shape="rect" id="Node000015" href="$_net_task_8c.html#a80f30ff31d5f0d4f6696af42d015bce6" title="Network task main function." alt="" coords="597,363,724,390"/>
+<area shape="poly" id="edge16_Node000014_Node000015" title=" " alt="" coords="774,409,713,393,714,388,775,404"/>
+<area shape="rect" id="Node000016" href="$group__tasks06.html#ga3bb13f092e9d7a8e15776e5e8bf8e8c3" title="Create and start the Network Task with a deterministic enable gate." alt="" coords="440,264,535,291"/>
+<area shape="poly" id="edge17_Node000015_Node000016" title=" " alt="" coords="620,357,511,294,514,289,623,352"/>
+<area shape="poly" id="edge18_Node000016_Node000002" title=" " alt="" coords="458,256,360,168,363,164,461,252"/>
+<area shape="poly" id="edge22_Node000017_Node000010" title=" " alt="" coords="1183,104,1099,120,1098,115,1182,98"/>
+<area shape="rect" id="Node000018" href="$group__console__commands.html#ga134228a08494ed1e3121aa8719b6bd87" title="Asynchronously clear the warning event log region." alt="" coords="972,63,1130,90"/>
+<area shape="poly" id="edge20_Node000017_Node000018" title=" " alt="" coords="1182,83,1130,81,1130,76,1182,78"/>
+<area shape="poly" id="edge21_Node000018_Node000007" title=" " alt="" coords="977,97,960,104,906,135,862,166,859,162,903,130,958,99,975,92"/>
+<area shape="rect" id="Node000020" href="$group__webui6.html#gac567b4413a409d9902bed06e35f6a702" title="Handle POST /api/config&#45;presets." alt="" coords="959,595,1143,622"/>
+<area shape="poly" id="edge24_Node000019_Node000020" title=" " alt="" coords="1183,611,1143,611,1143,606,1183,606"/>
+<area shape="poly" id="edge25_Node000020_Node000014" title=" " alt="" coords="982,591,958,577,920,543,889,504,848,439,852,437,893,501,924,539,961,573,984,586"/>
+<area shape="rect" id="Node000022" href="$group__console__commands.html#ga6d0cd7c4becc9c09202fb0410a151358" title="Asynchronously dump the error event log region." alt="" coords="983,215,1119,242"/>
+<area shape="poly" id="edge27_Node000021_Node000022" title=" " alt="" coords="1190,223,1119,227,1119,222,1190,218"/>
+<area shape="poly" id="edge28_Node000022_Node000007" title=" " alt="" coords="977,213,899,194,900,189,979,208"/>
+<area shape="rect" id="Node000025" href="$group__console__commands.html#gad20074bf7395fb147a6c78eef186f101" title="Asynchronously dump the warning event log region." alt="" coords="974,268,1128,295"/>
+<area shape="poly" id="edge31_Node000024_Node000025" title=" " alt="" coords="1180,285,1129,285,1129,279,1180,280"/>
+<area shape="poly" id="edge32_Node000025_Node000007" title=" " alt="" coords="981,265,958,256,903,224,859,194,862,189,906,220,961,251,983,261"/>
+<area shape="rect" id="Node000027" href="$group__webui3.html#gabec26dab8e118ff845c2fde12dc885cf" title="Handle GET /api/status endpoint and return JSON telemetry." alt="" coords="975,536,1127,563"/>
+<area shape="poly" id="edge34_Node000026_Node000027" title=" " alt="" coords="1188,552,1127,552,1127,547,1188,547"/>
+<area shape="rect" id="Node000028" href="$group__storage09.html#gad3ee11180cd1b8d9e0f174b2607ab429" title="Read all channel labels from RAM cache (thread&#45;safe). See channel_labels.h." alt="" coords="970,470,1132,512"/>
+<area shape="poly" id="edge36_Node000026_Node000028" title=" " alt="" coords="1187,530,1131,515,1133,510,1189,525"/>
+<area shape="poly" id="edge35_Node000027_Node000014" title=" " alt="" coords="971,533,958,527,926,506,897,483,853,440,857,436,900,479,929,502,961,522,974,528"/>
+<area shape="poly" id="edge38_Node000029_Node000020" title=" " alt="" coords="1196,644,1112,625,1113,620,1197,639"/>
+<area shape="rect" id="Node000031" href="$group__webui2.html#ga204196bd085f7a778067392b56920c59" title="Handles the HTTP request for the control page (/api/control)" alt="" coords="973,348,1129,375"/>
+<area shape="poly" id="edge40_Node000030_Node000031" title=" " alt="" coords="1188,357,1129,360,1129,355,1187,352"/>
+<area shape="poly" id="edge41_Node000031_Node000014" title=" " alt="" coords="990,383,890,413,888,408,988,377"/>
+<area shape="poly" id="edge43_Node000032_Node000013" title=" " alt="" coords="1190,422,1142,424,1142,418,1189,417"/>
+</map>

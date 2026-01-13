@@ -1,0 +1,16 @@
+<map id="EEPROM_ReadUserPrefsWithChecksum" name="EEPROM_ReadUserPrefsWithChecksum">
+<area shape="rect" id="Node000001" title="Read and verify user preferences with CRC&#45;8 validation." alt="" coords="5,48,209,91"/>
+<area shape="rect" id="Node000002" href="$group__storage01.html#gaae57a92db26b8a63b7584fd2f3407077" title="Calculate CRC&#45;8 checksum for data integrity verification." alt="" coords="286,5,392,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="207,45,271,31,272,36,208,50"/>
+<area shape="rect" id="Node000003" href="$group__driver02.html#ga622a6736c8384f9e1921a1bda2a84df9" title="Read buffer from EEPROM." alt="" coords="257,56,421,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="209,67,241,67,241,72,209,72"/>
+<area shape="rect" id="Node000007" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="469,107,652,133"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="209,85,257,92,453,111,453,116,256,97,209,90"/>
+<area shape="rect" id="Node000004" href="$group__drivers05.html#ga66ae4c7028f764a3770cabe101dba8bf" title="Read from 16&#45;bit memory address: write [mem_hi, mem_lo] (no stop), then read len bytes." alt="" coords="486,56,635,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="421,67,471,67,471,72,421,72"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="401,81,485,100,484,105,400,86"/>
+<area shape="rect" id="Node000005" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="729,31,851,57"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="635,59,713,50,714,55,635,64"/>
+<area shape="rect" id="Node000006" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="700,81,880,108"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="635,75,685,80,685,86,635,80"/>
+</map>

@@ -1,0 +1,365 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item Helpers Module 
+\end{DoxyEnumerate}}
+\hypertarget{group__misc2}{}\label{group__misc2}\index{2. Helpers Module@{2. Helpers Module}}
+
+
+System-\/wide helper utilities and diagnostics.  
+
+
+Collaboration diagram for 2. Helpers Module\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=326pt]{group__misc2}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public API}
+\begin{DoxyCompactItemize}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__misc2_gaeb4007c2c85c659d737d6fd89a270f5e}{get\+\_\+form\+\_\+value}} (const char \texorpdfstring{$\ast$}{*}body, const char \texorpdfstring{$\ast$}{*}key)
+\begin{DoxyCompactList}\small\item\em Extract value for a given key from URL-\/encoded form data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc2_ga493994a6707f3269e63a5006d8e409a1}{urldecode}} (char \texorpdfstring{$\ast$}{*}s)
+\begin{DoxyCompactList}\small\item\em Decode URL-\/encoded string in-\/place. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__misc2_ga7429c45bd6a0f11e4a997bf71a74cb48}{get\+\_\+\+Voltage}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Read voltage from specified ADC channel. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__misc2_ga94392e9ee8263660e4b9065f0e6d501a}{ethernet\+\_\+apply\+\_\+network\+\_\+from\+\_\+storage}} (const \mbox{\hyperlink{structnetwork_info}{network\+Info}} \texorpdfstring{$\ast$}{*}ni)
+\begin{DoxyCompactList}\small\item\em Apply network configuration from storage to W5500 Ethernet controller. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc2_gaca2ea273167ca7fe990deec4aa069964}{Boot\+\_\+\+Log\+Reset\+Cause}} (void)
+\begin{DoxyCompactList}\small\item\em Log detailed reset cause information at boot. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc2_ga2481802ac87dc386890d49a5b9f61e0f}{Helpers\+\_\+\+Early\+Boot\+Snapshot}} (void)
+\begin{DoxyCompactList}\small\item\em Capture early boot reset snapshot into retained memory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc2_ga1224bdfc48804ed50a3c65f98208f8a6}{Helpers\+\_\+\+Late\+Boot\+Dump\+And\+Clear}} (void)
+\begin{DoxyCompactList}\small\item\em Print the early boot snapshot and clear transient diagnostics. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+System-\/wide helper utilities and diagnostics. 
+
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/06
+\end{DoxyDate}
+This module provides general-\/purpose utility functions and early boot diagnostics that do not fit into specialized modules. It serves as a collection of cross-\/cutting concerns including URL parsing, network configuration bridging, and boot snapshot capture for reset analysis.
+
+Key functionalities\+:
+\begin{DoxyItemize}
+\item URL-\/encoded form data parsing and decoding
+\item Network configuration bridging between storage and driver layers
+\item Early boot reset cause capture and reporting
+\item ADC voltage reading utilities
+\end{DoxyItemize}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-func-members}
+\Hypertarget{group__misc2_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__misc2_gaca2ea273167ca7fe990deec4aa069964}\index{2. Helpers Module@{2. Helpers Module}!Boot\_LogResetCause@{Boot\_LogResetCause}}
+\index{Boot\_LogResetCause@{Boot\_LogResetCause}!2. Helpers Module@{2. Helpers Module}}
+\doxysubsubsubsection{\texorpdfstring{Boot\_LogResetCause()}{Boot\_LogResetCause()}}
+{\footnotesize\ttfamily \label{group__misc2_gaca2ea273167ca7fe990deec4aa069964} 
+void Boot\+\_\+\+Log\+Reset\+Cause (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Log detailed reset cause information at boot. 
+
+Reads RP2040/\+RP2350 hardware reset cause registers and outputs comprehensive diagnostics including chip reset flags, watchdog reason, and scratch register contents. This function decodes and reports\+:
+\begin{DoxyItemize}
+\item Chip reset flags (POR, RUN, Watchdog, VREG, Temperature)
+\item Watchdog reason register
+\item All 8 watchdog scratch registers
+\item Fault context breadcrumbs if present (0x\+BEEF signature)
+\end{DoxyItemize}
+
+If a fault signature is detected in scratch\mbox{[}0\mbox{]}, the function decodes the fault type (Hard\+Fault, Stack\+Overflow, Malloc\+Fail, Assert) and prints the associated context from the remaining scratch registers.
+
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This function is read-\/only and does not modify hardware state. 
+
+Platform-\/specific to RP2040/\+RP2350; gracefully handles other platforms. 
+
+Call this after logger initialization for diagnostic output.
+\end{DoxyNote}
+Log detailed reset cause information at boot.
+
+Reads RP2040/\+RP2350 reset cause hardware registers and outputs comprehensive diagnostics. If fault breadcrumbs are present (0x\+BEEF signature in scratch\mbox{[}0\mbox{]}), decodes and reports the fault type and context.
+
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__misc2_gaca2ea273167ca7fe990deec4aa069964_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__misc2_ga94392e9ee8263660e4b9065f0e6d501a}\index{2. Helpers Module@{2. Helpers Module}!ethernet\_apply\_network\_from\_storage@{ethernet\_apply\_network\_from\_storage}}
+\index{ethernet\_apply\_network\_from\_storage@{ethernet\_apply\_network\_from\_storage}!2. Helpers Module@{2. Helpers Module}}
+\doxysubsubsubsection{\texorpdfstring{ethernet\_apply\_network\_from\_storage()}{ethernet\_apply\_network\_from\_storage()}}
+{\footnotesize\ttfamily \label{group__misc2_ga94392e9ee8263660e4b9065f0e6d501a} 
+bool ethernet\+\_\+apply\+\_\+network\+\_\+from\+\_\+storage (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structnetwork_info}{network\+Info}} \texorpdfstring{$\ast$}{*}}]{ni}{}\end{DoxyParamCaption})}
+
+
+
+Apply network configuration from storage to W5500 Ethernet controller. 
+
+This function bridges the storage layer and the W5500 driver layer by translating the \doxylink{structnetwork_info}{network\+Info} structure into the driver-\/specific configuration format and applying it to the hardware. It performs the following operations\+:
+\begin{DoxyItemize}
+\item Converts \doxylink{structnetwork_info}{network\+Info} to \doxylink{structw5500___net_config}{w5500\+\_\+\+Net\+Config} format
+\item Applies configuration to W5500 hardware registers
+\item Initializes the W5500 chip with the new configuration
+\item Briefly flashes the Ethernet LED to indicate successful configuration
+\end{DoxyItemize}
+
+This abstraction allows Net\+Task to configure networking without direct knowledge of the driver\textquotesingle{}s internal types or initialization sequence.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ni} & Pointer to \doxylink{structnetwork_info}{network\+Info} structure containing IP, gateway, subnet, DNS, MAC, and DHCP mode\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on successful configuration and initialization, false on failure
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The function validates the input pointer before use. 
+
+Failure conditions are logged via the error logging system if enabled.
+\end{DoxyNote}
+Apply network configuration from storage to W5500 Ethernet controller.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ni} & Pointer to \doxylink{structnetwork_info}{network\+Info} (ip, gw, sn, dns, mac, dhcp mode) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success, false otherwise
+\end{DoxyReturn}
+This function maps Storage\+Task schema to the driver config struct, calls w5500\+\_\+set\+\_\+network and then w5500\+\_\+chip\+\_\+init. It allows Net\+Task to configure networking without needing to know the internal type. \Hypertarget{group__misc2_gaeb4007c2c85c659d737d6fd89a270f5e}\index{2. Helpers Module@{2. Helpers Module}!get\_form\_value@{get\_form\_value}}
+\index{get\_form\_value@{get\_form\_value}!2. Helpers Module@{2. Helpers Module}}
+\doxysubsubsubsection{\texorpdfstring{get\_form\_value()}{get\_form\_value()}}
+{\footnotesize\ttfamily \label{group__misc2_gaeb4007c2c85c659d737d6fd89a270f5e} 
+char \texorpdfstring{$\ast$}{*} get\+\_\+form\+\_\+value (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{body}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{key}{}\end{DoxyParamCaption})}
+
+
+
+Extract value for a given key from URL-\/encoded form data. 
+
+Searches a URL-\/encoded body string for the specified key and returns its associated value in a static buffer. The value is extracted but NOT decoded; caller must call \doxylink{group__misc2_ga493994a6707f3269e63a5006d8e409a1}{urldecode()} separately if needed.
+
+This function is commonly used to parse HTTP POST form submissions in the format\+: key1=value1\&key2=value2\&...
+
+
+\begin{DoxyParams}{Parameters}
+{\em body} & URL-\/encoded body string to search (must be null-\/terminated) \\
+\hline
+{\em key} & Key name to search for (must be null-\/terminated)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to static buffer containing the extracted value, or NULL if key not found. The static buffer is 128 bytes and will be overwritten on the next call.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This function uses a static buffer; not thread-\/safe. 
+
+The returned value is not URL-\/decoded; use \doxylink{group__misc2_ga493994a6707f3269e63a5006d8e409a1}{urldecode()} for full decoding. 
+
+Maximum value length is 127 characters (128th byte is null terminator).
+\end{DoxyNote}
+Extract value for a given key from URL-\/encoded form data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em body} & The URL-\/encoded body string to search \\
+\hline
+{\em key} & The key to search for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to static buffer containing the value, or NULL if not found 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The returned pointer is to a static buffer that will be overwritten on the next call. The value is not URL-\/decoded by this function. 
+\end{DoxyNote}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__misc2_gaeb4007c2c85c659d737d6fd89a270f5e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__misc2_ga7429c45bd6a0f11e4a997bf71a74cb48}\index{2. Helpers Module@{2. Helpers Module}!get\_Voltage@{get\_Voltage}}
+\index{get\_Voltage@{get\_Voltage}!2. Helpers Module@{2. Helpers Module}}
+\doxysubsubsubsection{\texorpdfstring{get\_Voltage()}{get\_Voltage()}}
+{\footnotesize\ttfamily \label{group__misc2_ga7429c45bd6a0f11e4a997bf71a74cb48} 
+float get\+\_\+\+Voltage (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch}{}\end{DoxyParamCaption})}
+
+
+
+Read voltage from specified ADC channel. 
+
+Performs an ADC conversion on the specified channel and returns the measured voltage as a floating-\/point value. Conversion parameters (reference voltage, resolution) are platform-\/dependent.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ch} & ADC channel number to read (platform-\/specific range)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Measured voltage as a float value in volts
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+ADC must be initialized before calling this function. 
+
+Channel validity is not checked; caller must ensure valid channel number. 
+\end{DoxyNote}
+\Hypertarget{group__misc2_ga2481802ac87dc386890d49a5b9f61e0f}\index{2. Helpers Module@{2. Helpers Module}!Helpers\_EarlyBootSnapshot@{Helpers\_EarlyBootSnapshot}}
+\index{Helpers\_EarlyBootSnapshot@{Helpers\_EarlyBootSnapshot}!2. Helpers Module@{2. Helpers Module}}
+\doxysubsubsubsection{\texorpdfstring{Helpers\_EarlyBootSnapshot()}{Helpers\_EarlyBootSnapshot()}}
+{\footnotesize\ttfamily \label{group__misc2_ga2481802ac87dc386890d49a5b9f61e0f} 
+void Helpers\+\_\+\+Early\+Boot\+Snapshot (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Capture early boot reset snapshot into retained memory. 
+
+This function must be called as the very first statement in main(), before any subsystem initialization. It captures a minimal diagnostic snapshot into non-\/initialized RAM that survives resets\+:
+\begin{DoxyItemize}
+\item Validates or initializes the snapshot structure
+\item Increments monotonic boot counter
+\item Reads raw reset reason bits from hardware
+\item Copies all 8 watchdog scratch registers
+\end{DoxyItemize}
+
+The snapshot is designed to be captured before any potential initialization failures that might prevent normal logging. It uses no heap, no peripherals beyond hardware register reads, and minimal stack space.
+
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+MUST be called before clock configuration, RTOS, logger, or USB initialization. 
+
+Uses noinit RAM section; contents survive across soft resets. 
+
+Pair with \doxylink{group__misc2_ga1224bdfc48804ed50a3c65f98208f8a6}{Helpers\+\_\+\+Late\+Boot\+Dump\+And\+Clear()} to print the snapshot. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__misc2_ga2481802ac87dc386890d49a5b9f61e0f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__misc2_ga2481802ac87dc386890d49a5b9f61e0f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__misc2_ga1224bdfc48804ed50a3c65f98208f8a6}\index{2. Helpers Module@{2. Helpers Module}!Helpers\_LateBootDumpAndClear@{Helpers\_LateBootDumpAndClear}}
+\index{Helpers\_LateBootDumpAndClear@{Helpers\_LateBootDumpAndClear}!2. Helpers Module@{2. Helpers Module}}
+\doxysubsubsubsection{\texorpdfstring{Helpers\_LateBootDumpAndClear()}{Helpers\_LateBootDumpAndClear()}}
+{\footnotesize\ttfamily \label{group__misc2_ga1224bdfc48804ed50a3c65f98208f8a6} 
+void Helpers\+\_\+\+Late\+Boot\+Dump\+And\+Clear (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Print the early boot snapshot and clear transient diagnostics. 
+
+This function should be called during initialization after the logger subsystem is ready. It outputs the boot snapshot that was captured by \doxylink{group__misc2_ga2481802ac87dc386890d49a5b9f61e0f}{Helpers\+\_\+\+Early\+Boot\+Snapshot()}, including\+:
+\begin{DoxyItemize}
+\item Monotonic boot counter
+\item Raw reset reason bits
+\item All 8 watchdog scratch register values
+\end{DoxyItemize}
+
+After printing, the function clears only the transient diagnostic fields (reset bits and scratch registers) while preserving the magic, version, and boot counter for correlation across subsequent boots.
+
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Call this from initialization task after logger is initialized. 
+
+If no valid snapshot exists, a brief notification is printed. 
+
+The boot counter persists and continues incrementing across boots. 
+\end{DoxyNote}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__misc2_ga1224bdfc48804ed50a3c65f98208f8a6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__misc2_ga493994a6707f3269e63a5006d8e409a1}\index{2. Helpers Module@{2. Helpers Module}!urldecode@{urldecode}}
+\index{urldecode@{urldecode}!2. Helpers Module@{2. Helpers Module}}
+\doxysubsubsubsection{\texorpdfstring{urldecode()}{urldecode()}}
+{\footnotesize\ttfamily \label{group__misc2_ga493994a6707f3269e63a5006d8e409a1} 
+void urldecode (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{s}{}\end{DoxyParamCaption})}
+
+
+
+Decode URL-\/encoded string in-\/place. 
+
+Performs in-\/place URL decoding, converting\+:
+\begin{DoxyItemize}
+\item \textquotesingle{}+\textquotesingle{} characters to spaces
+\item \textquotesingle{}XX\textquotesingle{} hex sequences to their corresponding bytes
+\end{DoxyItemize}
+
+The decoded string will always be equal or shorter in length than the original, making in-\/place modification safe.
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Null-\/terminated string to decode (modified in-\/place)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The input string is modified in-\/place. 
+
+Invalid hex sequences are copied as-\/is without decoding. 
+
+This function is not thread-\/safe if multiple threads access the same buffer.
+\end{DoxyNote}
+Decode URL-\/encoded string in-\/place.
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The string to decode (modified in-\/place) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This function modifies the input string in-\/place, converting URL encoding to regular characters. \textquotesingle{}+\textquotesingle{} becomes space, and XX sequences are converted to their corresponding characters. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{group__misc2_ga493994a6707f3269e63a5006d8e409a1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__misc2_ga493994a6707f3269e63a5006d8e409a1_icgraph}
+\end{center}
+\end{figure}

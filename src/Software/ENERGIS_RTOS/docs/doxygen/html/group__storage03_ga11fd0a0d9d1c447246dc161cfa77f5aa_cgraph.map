@@ -1,0 +1,9 @@
+<map id="DeviceIdentity_IsUnlocked" name="DeviceIdentity_IsUnlocked">
+<area shape="rect" id="Node000001" title="Check if provisioning is currently unlocked." alt="" coords="5,5,184,32"/>
+<area shape="rect" id="Node000002" href="$device__identity_8c.html#a3739393f286b8d8676728762e42d9209" title="Check if the provisioning window is still open." alt="" coords="232,5,394,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,16,216,16,216,21,184,21"/>
+<area shape="rect" id="Node000003" href="$_button_task_8c.html#a50503dee6a29e98e633b16b1b8b550bc" title="Get current system time in milliseconds." alt="" coords="442,5,512,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="395,16,427,16,427,21,395,21"/>
+<area shape="rect" id="Node000004" href="$group__driver01.html#ga038e6418532b3e07206ada073cf02f22" title="Get monotonic millisecond timestamp since boot." alt="" coords="560,5,693,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="513,16,545,16,545,21,513,21"/>
+</map>

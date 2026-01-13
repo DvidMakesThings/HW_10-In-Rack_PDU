@@ -1,0 +1,60 @@
+\doxysection{Console\+Task.\+h}
+\hypertarget{_console_task_8h_source}{}\label{_console_task_8h_source}\index{src/Software/ENERGIS\_RTOS/src/tasks/ConsoleTask.h@{src/Software/ENERGIS\_RTOS/src/tasks/ConsoleTask.h}}
+\mbox{\hyperlink{_console_task_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#ifndef\ CONSOLE\_TASK\_H}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ CONSOLE\_TASK\_H}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_o_n_f_i_g_8h}{../CONFIG.h}}"{}}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{extern}\ QueueHandle\_t\ \mbox{\hyperlink{group__tasks02_ga63df37407f32873668fce7f38927ea15}{q\_power}};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{extern}\ QueueHandle\_t\ \mbox{\hyperlink{group__tasks02_ga988900dc449acf0ca0b71913239e82d3}{q\_cfg}};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{extern}\ QueueHandle\_t\ \mbox{\hyperlink{group__tasks02_ga17fe448666de7107b8c3aa8a16bf1f85}{q\_meter}};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{extern}\ QueueHandle\_t\ \mbox{\hyperlink{group__tasks02_ga190f5d69790a6eb1e47e555b304c1cd3}{q\_net}};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{comment}{/*\ Message\ Type\ Definitions\ */}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00100\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{group__tasks02_ggab2fcb31273a6ffa0e884123cc5943095a529f680386be0d2e185944b54dbc1839}{PWR\_CMD\_SET\_RELAY}},\ \ \ \ \ }
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{group__tasks02_ggab2fcb31273a6ffa0e884123cc5943095a55294b2ee2d0300949b5121b4d43d9f7}{PWR\_CMD\_GET\_RELAY}},\ \ \ \ \ }
+\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{group__tasks02_ggab2fcb31273a6ffa0e884123cc5943095aad6ddee991b80cbd4c67e9fe511f170a}{PWR\_CMD\_RELAY\_ALL\_OFF}},\ }
+\DoxyCodeLine{00104\ \}\ \mbox{\hyperlink{group__tasks02_gab2fcb31273a6ffa0e884123cc5943095}{power\_cmd\_kind\_t}};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00113\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00114\ \ \ \ \ \mbox{\hyperlink{group__tasks02_gab2fcb31273a6ffa0e884123cc5943095}{power\_cmd\_kind\_t}}\ \mbox{\hyperlink{structpower__msg__t_a790c7cef8d0b304736634fad88dcbe2e}{kind}};\ }
+\DoxyCodeLine{00115\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structpower__msg__t_a88db7831ed22bea234879eff5952d23d}{channel}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00116\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structpower__msg__t_a8f3e6d9ee7207cd97654deac77ba1f90}{value}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00117\ \}\ \mbox{\hyperlink{structpower__msg__t}{power\_msg\_t}};}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00126\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00127\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structcfg__msg__t_a4b4d7871d36d760a1dff2b9fe8bf47d5}{action}};\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structcfg__msg__t_a9134a758dcbfa52fab734a94b62e4f8e}{key}}[32];\ \ \ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structcfg__msg__t_a0c18991efb8ecef615346998eae363d0}{val}}[64];\ \ \ }
+\DoxyCodeLine{00130\ \}\ \mbox{\hyperlink{structcfg__msg__t}{cfg\_msg\_t}};}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00138\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00139\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structmeter__msg__t_a18515503b31233560cdc9b8dafcae872}{action}};\ \ }
+\DoxyCodeLine{00140\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structmeter__msg__t_a103ce8ba65f9047acc7d0a9cfae3238f}{channel}};\ }
+\DoxyCodeLine{00141\ \}\ \mbox{\hyperlink{structmeter__msg__t}{meter\_msg\_t}};}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00149\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00150\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structnet__msg__t_a66753b38c7116921daaea2688aeabbb9}{action}};\ }
+\DoxyCodeLine{00151\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structnet__msg__t_a4795fd3def3e6b3bcab4657d4ed8f3b0}{ip}}[4];\ \ }
+\DoxyCodeLine{00152\ \}\ \mbox{\hyperlink{structnet__msg__t}{net\_msg\_t}};}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \textcolor{comment}{/*\ Public\ API\ */}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00185\ BaseType\_t\ \mbox{\hyperlink{group__tasks02_gad45ca7c142e8c2764d52b3d554ffcdeb}{ConsoleTask\_Init}}(\textcolor{keywordtype}{bool}\ enable);}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00201\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks02_gab2d019f35eb9844ccb157488ed577f8f}{Console\_IsReady}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ CONSOLE\_TASK\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00204\ }
+
+\end{DoxyCode}

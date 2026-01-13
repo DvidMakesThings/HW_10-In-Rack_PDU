@@ -1,0 +1,11 @@
+<map id="read_relay_mask" name="read_relay_mask">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,126,57"/>
+<area shape="rect" id="Node000002" href="$group__drivers06.html#ga2e6de484edec28d8c39620a364ce5b92" title="Read a logic level from a pin." alt="" coords="174,31,276,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="126,41,158,41,158,47,126,47"/>
+<area shape="rect" id="Node000003" href="$group__drivers05.html#ga0e406d50e8948e593649a11c729acd9b" title="Read 8&#45;bit register: write [reg] (no stop), then read 1 byte." alt="" coords="324,31,454,57"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="276,41,309,41,309,47,276,47"/>
+<area shape="rect" id="Node000004" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="531,5,653,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="455,33,515,25,516,31,455,38"/>
+<area shape="rect" id="Node000005" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="502,56,682,83"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="455,50,487,54,487,59,455,55"/>
+</map>

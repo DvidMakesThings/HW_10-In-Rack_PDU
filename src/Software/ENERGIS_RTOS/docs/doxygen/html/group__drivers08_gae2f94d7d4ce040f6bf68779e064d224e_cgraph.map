@@ -1,0 +1,5 @@
+<map id="ctlsocket" name="ctlsocket">
+<area shape="rect" id="Node000001" title="Control socket options." alt="" coords="5,5,80,32"/>
+<area shape="rect" id="Node000002" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="128,5,311,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,16,112,16,112,21,80,21"/>
+</map>

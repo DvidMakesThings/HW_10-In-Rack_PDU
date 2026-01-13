@@ -2,8 +2,8 @@
  * @file src/tasks/storage_submodule/device_identity.h
  * @author DvidMakesThings - David Sipos
  *
- * @defgroup storage10 Device Identity Module
- * @ingroup storage
+ * @defgroup storage03 3. Device Identity Module
+ * @ingroup tasks10
  * @brief Serial Number and Region Management with EEPROM Persistence
  * @{
  *
@@ -67,6 +67,7 @@
  *          - EU: 10A (IEC/ENEC compliant)
  *          - US: 15A (UL/CSA compliant)
  */
+/** @enum device_region_t */
 typedef enum {
     DEVICE_REGION_UNKNOWN = 0x00, /**< Unprovisioned or invalid region. */
     DEVICE_REGION_EU = 0x45,      /**< EU region (10A limit). ASCII 'E'. */
@@ -78,6 +79,7 @@ typedef enum {
  * @details Provides fast read access to identity parameters.
  *          All fields are populated from EEPROM at boot.
  */
+/** @struct device_identity_t */
 typedef struct {
     char serial_number[DEVICE_SN_MAX_LEN + 1]; /**< Null-terminated serial number. */
     device_region_t region;                    /**< Device region setting. */
@@ -94,6 +96,7 @@ typedef struct {
  *
  * CRC is stored at offset 0x11 in the EEPROM block.
  */
+/** @struct device_identity_eeprom_t */
 typedef struct __attribute__((packed)) {
     char serial_number[DEVICE_SN_MAX_LEN + 1]; /**< Null-terminated serial number (16 bytes). */
     uint8_t region;                            /**< Region code (device_region_t). */
@@ -102,6 +105,8 @@ typedef struct __attribute__((packed)) {
 
 /* ==================== Public API - Initialization ==================== */
 
+/** @name Initialization APIs
+ * @{ */
 /**
  * @brief Initialize the device identity module.
  *
@@ -116,9 +121,12 @@ typedef struct __attribute__((packed)) {
  * @note Thread-safe. May be called before scheduler starts.
  */
 void DeviceIdentity_Init(void);
+/** @} */
 
 /* ==================== Public API - Read Access ==================== */
 
+/** @name Read Access APIs
+ * @{ */
 /**
  * @brief Get pointer to the device identity RAM cache.
  *
@@ -153,9 +161,12 @@ float DeviceIdentity_GetCurrentLimitA(void);
  * @return true if cache contains valid provisioned data, false otherwise.
  */
 bool DeviceIdentity_IsValid(void);
+/** @} */
 
 /* ==================== Public API - Provisioning ==================== */
 
+/** @name Provisioning APIs
+ * @{ */
 /**
  * @brief Attempt to unlock provisioning with the given token.
  *
@@ -191,15 +202,19 @@ int DeviceIdentity_SetSerialNumber(const char *serial_number);
  * @return 0 on success, -1 if locked, -2 if invalid region, -3 if EEPROM error.
  */
 int DeviceIdentity_SetRegion(device_region_t region);
+/** @} */
 
 /* ==================== Public API - MAC Address ==================== */
 
+/** @name MAC Address APIs
+ * @{ */
 /**
  * @brief Derive MAC address from the cached serial number.
  *
  * @param mac 6-byte output buffer for MAC address.
  */
 void DeviceIdentity_FillMac(uint8_t mac[6]);
+/** @} */
 
 #endif /* DEVICE_IDENTITY_H */
 

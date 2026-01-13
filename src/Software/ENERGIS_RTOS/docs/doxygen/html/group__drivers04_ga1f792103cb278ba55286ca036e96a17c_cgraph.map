@@ -1,0 +1,5 @@
+<map id="hlw8032_calibration_start_voltage_single" name="hlw8032_calibration_start_voltage_single">
+<area shape="rect" id="Node000001" title="Start asynchronous voltage calibration for a single channel." alt="" coords="5,5,150,48"/>
+<area shape="rect" id="Node000002" href="$_h_l_w8032__driver_8c.html#acc3dced2405146bb247c8d852e88e56f" title="Reset sample accumulators for the current async calibration channel." alt="" coords="198,5,340,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,24,182,24,182,29,150,29"/>
+</map>

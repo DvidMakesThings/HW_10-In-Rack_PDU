@@ -1,0 +1,115 @@
+<map id="MeterTask_Init" name="MeterTask_Init">
+<area shape="rect" id="Node000001" title="Create and start the Meter Task with a deterministic enable gate." alt="" coords="5,586,113,612"/>
+<area shape="rect" id="Node000002" href="$group__drivers04.html#gac1bd84c5a254283faacc776489f36625" title="Initialize HLW8032 driver subsystem." alt="" coords="173,134,266,160"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="63,585,206,174,211,176,68,586"/>
+<area shape="rect" id="Node000009" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="1110,282,1293,308"/>
+<area shape="poly" id="edge53_Node000001_Node000009" title=" " alt="" coords="59,585,68,493,87,354,101,282,117,215,136,159,159,120,189,87,218,62,246,43,276,30,308,21,344,16,428,14,697,14,803,8,889,3,930,5,971,14,1015,32,1063,59,1090,81,1114,106,1152,163,1179,220,1195,266,1190,268,1174,222,1148,165,1110,109,1087,85,1061,64,1013,36,969,19,929,11,889,8,804,13,697,19,428,19,344,22,309,27,278,35,249,48,221,66,192,91,163,123,141,161,122,216,106,283,93,355,73,494,64,586"/>
+<area shape="rect" id="Node000010" href="$_meter_task_8c.html#addb3656d7dd28b5f2537e286d9da7b66" title="Main Meter Task loop." alt="" coords="161,814,278,840"/>
+<area shape="poly" id="edge8_Node000001_Node000010" title=" " alt="" coords="72,611,202,800,198,803,68,614"/>
+<area shape="rect" id="Node000067" href="$group__tasks07.html#gac238017e1130a6a762cf67cf3d8228e4" title="Network subsystem readiness query." alt="" coords="170,864,268,891"/>
+<area shape="poly" id="edge47_Node000001_Node000067" title=" " alt="" coords="65,612,73,657,90,720,119,789,139,821,163,851,166,853,162,857,159,854,135,824,114,791,85,722,68,658,59,613"/>
+<area shape="rect" id="Node000068" href="$group__tasks08.html#gabaeebc1f043da757f96bac70bb8ac8ba" title="Initialize the overcurrent protection module." alt="" coords="162,1362,276,1388"/>
+<area shape="poly" id="edge48_Node000001_Node000068" title=" " alt="" coords="66,612,215,1346,210,1347,61,613"/>
+<area shape="rect" id="Node000073" href="$group__storage01.html#ga1a4a0e2917c171c09500b674b6f2911f" title="Load temperature calibration from EEPROM and apply to MeterTask." alt="" coords="326,358,532,384"/>
+<area shape="poly" id="edge54_Node000001_Node000073" title=" " alt="" coords="72,583,112,546,172,495,245,440,325,394,340,387,343,392,327,399,248,445,175,499,115,550,76,587"/>
+<area shape="rect" id="Node000003" href="$group__drivers04.html#ga76954a7035d4f2fad1ec9fba75e62b6c" title="Load calibration data from EEPROM for all channels." alt="" coords="346,134,512,160"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="267,144,330,144,330,150,267,150"/>
+<area shape="poly" id="edge7_Node000002_Node000009" title=" " alt="" coords="257,131,396,89,492,67,601,50,717,41,836,45,895,53,953,66,1009,84,1063,107,1087,122,1109,140,1146,183,1173,228,1192,266,1187,269,1169,231,1141,186,1105,144,1084,126,1061,112,1007,89,951,71,894,59,835,51,717,47,602,55,493,72,397,94,259,136"/>
+<area shape="rect" id="Node000004" href="$group__storage01.html#gaa3b6f1341ad447d7f7f95d1be802b1e7" title="Read calibration record for single HLW8032 channel." alt="" coords="585,126,806,168"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="513,144,570,144,570,150,513,150"/>
+<area shape="rect" id="Node000005" href="$group__driver02.html#ga622a6736c8384f9e1921a1bda2a84df9" title="Read buffer from EEPROM." alt="" coords="878,155,1042,182"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="806,153,863,158,862,163,806,159"/>
+<area shape="poly" id="edge6_Node000004_Node000009" title=" " alt="" coords="792,122,854,114,924,112,995,120,1030,128,1063,141,1104,166,1139,200,1168,235,1188,267,1183,270,1163,238,1135,203,1101,170,1061,145,1028,133,994,125,924,118,855,120,793,128"/>
+<area shape="poly" id="edge5_Node000005_Node000009" title=" " alt="" coords="1016,180,1063,198,1123,233,1173,269,1170,274,1120,238,1061,203,1014,185"/>
+<area shape="poly" id="edge44_Node000010_Node000009" title=" " alt="" coords="220,813,228,767,246,702,277,632,298,600,324,572,356,546,385,529,414,518,442,512,504,506,580,495,654,485,718,483,828,490,881,492,935,487,994,473,1061,445,1100,418,1134,385,1162,350,1183,320,1187,323,1166,354,1138,389,1103,422,1063,449,996,478,936,493,881,497,828,496,718,488,654,490,581,500,504,511,443,517,415,524,388,534,359,551,328,576,302,603,281,635,251,704,233,768,225,814"/>
+<area shape="rect" id="Node000011" href="$_meter_task_8c.html#ac813b666061cf4dd0ff7bd15f385eb34" title="Convert ADC raw code to RP2040 die temperature using per&#45;device calibration." alt="" coords="348,636,510,663"/>
+<area shape="poly" id="edge9_Node000010_Node000011" title=" " alt="" coords="224,812,237,783,259,745,288,706,324,673,332,668,335,672,328,677,292,709,263,748,242,785,229,814"/>
+<area shape="rect" id="Node000012" href="$group__tasks03.html#ga4f7298bb6ff71177639ba837e4068eb1" title="Record a heartbeat from a registered task." alt="" coords="368,687,491,714"/>
+<area shape="poly" id="edge10_Node000010_Node000012" title=" " alt="" coords="231,811,270,771,296,749,325,730,353,717,355,722,327,735,299,753,273,775,234,815"/>
+<area shape="rect" id="Node000014" href="$group__drivers04.html#gad2a10b704d2588035bde43ff6b941ea7" title="Get cached current for a channel." alt="" coords="613,814,778,840"/>
+<area shape="poly" id="edge12_Node000010_Node000014" title=" " alt="" coords="241,811,279,790,325,774,383,762,429,758,476,762,533,774,558,786,581,799,604,807,603,812,579,804,555,790,531,779,475,767,429,763,384,767,327,779,281,795,243,815"/>
+<area shape="rect" id="Node000015" href="$group__drivers04.html#ga5b03a8561efc81ded185e88ffc1574a9" title="Get cached power for a channel (computed from V*I)." alt="" coords="349,788,509,815"/>
+<area shape="poly" id="edge13_Node000010_Node000015" title=" " alt="" coords="278,817,333,811,334,816,279,823"/>
+<area shape="rect" id="Node000016" href="$group__drivers04.html#ga3fd1465bd8f5106879ee5677d0d551da" title="Get cached voltage for a channel." alt="" coords="612,864,779,891"/>
+<area shape="poly" id="edge18_Node000010_Node000016" title=" " alt="" coords="279,831,597,865,596,870,278,836"/>
+<area shape="rect" id="Node000017" href="$group__drivers04.html#ga01cdcd0497f8134e1ecb93331474dbdb" title="Get cached relay state for a channel." alt="" coords="352,890,506,916"/>
+<area shape="poly" id="edge16_Node000010_Node000017" title=" " alt="" coords="253,838,327,868,367,882,365,887,325,873,251,843"/>
+<area shape="rect" id="Node000018" href="$group__drivers04.html#ga33d4652f0a85150f7dcba9f702b9893b" title="Get cached uptime for a channel." alt="" coords="347,940,511,967"/>
+<area shape="poly" id="edge17_Node000010_Node000018" title=" " alt="" coords="262,838,280,850,296,871,304,890,311,909,328,926,335,931,332,935,324,930,307,912,299,892,291,873,276,854,259,843"/>
+<area shape="rect" id="Node000019" href="$group__drivers04.html#ga8813e14d94b16a9cc2229159c8fdd6c1" title="Check if a complete measurement cycle has finished since last check." alt="" coords="346,991,513,1018"/>
+<area shape="poly" id="edge19_Node000010_Node000019" title=" " alt="" coords="264,839,280,850,292,867,299,884,303,917,308,948,315,962,328,977,334,982,331,986,324,981,310,965,303,949,298,917,294,886,288,870,276,854,261,843"/>
+<area shape="rect" id="Node000020" href="$group__drivers04.html#ga4824aa9f5ece25a68111e4097e62311e" title="Get the total current sum across all 8 channels." alt="" coords="342,1042,516,1068"/>
+<area shape="poly" id="edge20_Node000010_Node000020" title=" " alt="" coords="265,839,280,851,295,874,302,898,303,943,304,986,312,1007,328,1028,331,1031,327,1035,324,1031,307,1009,299,987,297,943,297,899,291,877,276,854,262,843"/>
+<area shape="rect" id="Node000021" href="$group__drivers04.html#ga0b3a5c410541deaf144c3e33d4b65175" title="Poll one channel and cache results (round&#45;robin)." alt="" coords="364,586,495,612"/>
+<area shape="poly" id="edge21_Node000010_Node000021" title=" " alt="" coords="221,812,232,774,252,723,282,669,301,644,324,622,348,609,350,614,328,626,305,647,286,672,256,725,237,776,226,814"/>
+<area shape="rect" id="Node000053" href="$_button_task_8c.html#a50503dee6a29e98e633b16b1b8b550bc" title="Get current system time in milliseconds." alt="" coords="660,1104,731,1131"/>
+<area shape="poly" id="edge37_Node000010_Node000053" title=" " alt="" coords="266,839,280,851,298,881,305,912,304,942,300,971,297,999,298,1026,307,1053,328,1078,350,1092,383,1102,470,1114,564,1118,645,1117,645,1122,564,1123,469,1119,382,1107,348,1096,324,1082,302,1055,293,1027,291,999,295,970,299,941,300,912,293,883,276,854,263,843"/>
+<area shape="rect" id="Node000055" href="$group__tasks08.html#gabb9789239f4931927587b1b236b1e315" title="Update the overcurrent state machine using a new total current sample." alt="" coords="360,1244,498,1271"/>
+<area shape="poly" id="edge39_Node000010_Node000055" title=" " alt="" coords="267,839,280,851,296,876,307,902,313,927,315,951,311,999,300,1046,291,1093,288,1138,291,1161,298,1184,310,1207,328,1230,347,1245,344,1249,324,1234,306,1210,293,1186,286,1162,282,1139,285,1092,295,1045,305,999,310,951,308,928,302,903,292,879,276,854,264,843"/>
+<area shape="rect" id="Node000064" href="$group__misc3.html#gad3252fba1863d278f2611cad531177f5" title="Query the current system power state." alt="" coords="370,1194,488,1220"/>
+<area shape="poly" id="edge42_Node000010_Node000064" title=" " alt="" coords="267,839,280,851,295,873,304,895,312,938,309,980,301,1021,293,1061,292,1100,302,1140,312,1160,328,1180,341,1190,356,1198,354,1203,338,1195,324,1184,308,1163,297,1142,287,1101,288,1060,296,1020,304,979,307,938,299,897,290,875,276,854,263,843"/>
+<area shape="rect" id="Node000065" href="$_meter_task_8c.html#ad6e0a2bab0856d8c05588f7f2d9ac2b1" title="Publish telemetry sample to queue (non&#45;blocking)." alt="" coords="368,408,491,435"/>
+<area shape="poly" id="edge43_Node000010_Node000065" title=" " alt="" coords="218,813,219,749,231,653,244,599,263,546,290,496,324,452,351,433,354,438,328,456,294,499,268,548,249,601,237,654,224,749,223,813"/>
+<area shape="rect" id="Node000066" href="$_meter_task_8c.html#aa944612215bcc302f972c3dfbf2d811b" title="Update energy accumulation for a channel." alt="" coords="376,1143,482,1170"/>
+<area shape="poly" id="edge45_Node000010_Node000066" title=" " alt="" coords="266,839,280,851,301,887,309,922,308,957,303,990,298,1023,298,1056,306,1089,328,1123,344,1135,362,1144,360,1149,341,1140,324,1126,301,1091,292,1057,293,1023,297,990,302,956,303,923,296,889,276,854,263,843"/>
+<area shape="rect" id="Node000013" href="$_health_task_8c.html#a50503dee6a29e98e633b16b1b8b550bc" title="Get current monotonic time in milliseconds." alt="" coords="660,763,731,790"/>
+<area shape="poly" id="edge11_Node000012_Node000013" title=" " alt="" coords="478,712,533,730,581,748,646,765,645,770,580,754,531,735,476,717"/>
+<area shape="poly" id="edge14_Node000015_Node000014" title=" " alt="" coords="510,807,598,815,597,820,510,812"/>
+<area shape="poly" id="edge15_Node000015_Node000016" title=" " alt="" coords="478,813,533,831,581,850,610,858,608,863,579,855,531,836,476,818"/>
+<area shape="rect" id="Node000022" href="$_h_l_w8032__driver_8c.html#a23deda9220b5477c45e2d2a78d62ef42" title="Compute total current sum from all cached channel currents." alt="" coords="620,662,771,688"/>
+<area shape="poly" id="edge22_Node000021_Node000022" title=" " alt="" coords="496,610,533,622,558,635,581,647,606,655,605,660,579,652,555,639,531,627,495,615"/>
+<area shape="rect" id="Node000023" href="$group__drivers04.html#ga3e3e299137c4b5355cd17f94ddc24899" title="Get channel uptime in seconds." alt="" coords="625,712,766,739"/>
+<area shape="poly" id="edge23_Node000021_Node000023" title=" " alt="" coords="496,605,534,622,551,641,559,662,566,681,582,698,611,713,609,717,579,702,561,683,554,663,547,644,531,626,494,610"/>
+<area shape="rect" id="Node000024" href="$group__drivers04.html#gaf9b4059456656d1620a19fa771086a2d" title="Read power measurements from a specific channel." alt="" coords="645,611,746,638"/>
+<area shape="poly" id="edge24_Node000021_Node000024" title=" " alt="" coords="496,603,630,615,629,621,495,608"/>
+<area shape="rect" id="Node000049" href="$group__drivers04.html#gacfd84777ef919c041f40ea955f672d5e" title="Update channel uptime based on current relay state." alt="" coords="615,510,776,536"/>
+<area shape="poly" id="edge32_Node000021_Node000049" title=" " alt="" coords="467,583,580,546,611,538,612,543,581,551,469,588"/>
+<area shape="rect" id="Node000050" href="$group__tasks11.html#ga84e3359029bd29e598f346dad2255899" title="Get current relay channel state from hardware." alt="" coords="635,560,756,587"/>
+<area shape="poly" id="edge33_Node000021_Node000050" title=" " alt="" coords="495,590,620,578,620,583,496,595"/>
+<area shape="poly" id="edge31_Node000024_Node000009" title=" " alt="" coords="747,621,782,629,798,636,813,648,836,682,843,718,841,753,834,788,827,823,826,856,836,887,846,902,860,917,886,936,911,949,935,957,960,959,984,957,1009,949,1034,935,1060,917,1077,899,1093,875,1120,809,1142,726,1160,635,1185,454,1196,324,1201,324,1190,454,1166,636,1148,728,1125,811,1097,877,1081,903,1064,921,1037,940,1011,953,986,962,960,965,934,962,909,954,883,940,857,921,842,906,831,890,821,857,822,822,829,787,836,753,838,718,831,684,809,651,795,641,780,634,746,626"/>
+<area shape="rect" id="Node000025" href="$_h_l_w8032__driver_8c.html#a1014a92e163cf6095bc8ab27cbc74500" title="Apply calibration and compute scaled measurements." alt="" coords="901,662,1020,688"/>
+<area shape="poly" id="edge25_Node000024_Node000025" title=" " alt="" coords="747,631,886,658,885,663,746,637"/>
+<area shape="rect" id="Node000026" href="$_h_l_w8032__driver_8c.html#a757e5e7d8ecf5674a26fbd19c063353b" title="Feed one fresh HLW8032 sample into the async calibration engine." alt="" coords="893,712,1028,755"/>
+<area shape="poly" id="edge26_Node000024_Node000026" title=" " alt="" coords="747,626,780,634,812,647,828,660,837,673,846,686,860,698,879,708,877,713,857,703,842,689,833,676,824,664,809,652,778,639,746,632"/>
+<area shape="rect" id="Node000035" href="$_h_l_w8032__driver_8c.html#a317577d37ad844a15b55a8f5e55126f3" title="Select HLW8032 channel via multiplexer." alt="" coords="916,880,1004,907"/>
+<area shape="poly" id="edge27_Node000024_Node000035" title=" " alt="" coords="747,621,781,629,798,637,813,648,832,675,841,703,841,731,838,759,834,786,834,814,842,840,861,866,879,880,902,888,900,893,877,885,857,870,837,842,829,814,829,786,832,758,836,731,835,704,828,678,809,652,795,641,780,634,746,626"/>
+<area shape="rect" id="Node000043" href="$_h_l_w8032__driver_8c.html#a799e80fb388177bbb679caf2767dacf4" title="Parse HLW8032 frame and extract raw register values." alt="" coords="914,779,1007,806"/>
+<area shape="poly" id="edge29_Node000024_Node000043" title=" " alt="" coords="747,623,781,630,812,648,826,662,833,677,837,708,842,737,848,751,860,765,879,777,899,784,898,789,876,781,857,769,844,754,837,739,832,708,828,679,821,665,809,652,779,635,746,628"/>
+<area shape="rect" id="Node000046" href="$_h_l_w8032__driver_8c.html#a1cdae985fb0d22061b8e24fa8c175acc" title="Read one valid 24&#45;byte HLW8032 frame from UART." alt="" coords="917,830,1004,856"/>
+<area shape="poly" id="edge30_Node000024_Node000046" title=" " alt="" coords="747,622,781,629,812,648,829,669,837,690,838,733,838,776,845,796,860,816,880,829,903,837,901,842,878,834,857,820,841,798,833,777,832,733,832,691,824,671,809,652,779,634,746,627"/>
+<area shape="poly" id="edge28_Node000035_Node000009" title=" " alt="" coords="1004,890,1034,883,1060,866,1074,849,1087,825,1112,764,1134,688,1152,605,1180,442,1195,324,1200,324,1185,443,1157,606,1139,690,1117,766,1092,828,1079,852,1064,870,1036,888,1005,895"/>
+<area shape="rect" id="Node000037" href="$_switch_task_8c.html#a2a7f01bd659f5eea0a4a131d8c57c207" title=" " alt="" coords="938,611,983,638"/>
+<area shape="poly" id="edge34_Node000050_Node000037" title=" " alt="" coords="757,583,923,615,922,620,756,588"/>
+<area shape="rect" id="Node000051" href="$group__drivers06.html#ga2e6de484edec28d8c39620a364ce5b92" title="Read a logic level from a pin." alt="" coords="909,510,1012,536"/>
+<area shape="poly" id="edge35_Node000050_Node000051" title=" " alt="" coords="756,560,893,533,894,538,757,565"/>
+<area shape="rect" id="Node000038" href="$group__drivers06.html#ga6568742c79ce5190216e5185238229ba" title="Get relay MCP23017 device context." alt="" coords="920,560,1001,587"/>
+<area shape="poly" id="edge36_Node000050_Node000038" title=" " alt="" coords="756,571,904,571,904,576,756,576"/>
+<area shape="rect" id="Node000054" href="$group__driver01.html#ga038e6418532b3e07206ada073cf02f22" title="Get monotonic millisecond timestamp since boot." alt="" coords="894,1104,1026,1131"/>
+<area shape="poly" id="edge38_Node000053_Node000054" title=" " alt="" coords="731,1115,879,1115,879,1120,731,1120"/>
+<area shape="poly" id="edge41_Node000055_Node000009" title=" " alt="" coords="498,1243,839,1183,1061,1141,1081,1114,1099,1078,1116,1034,1130,983,1154,866,1171,739,1184,610,1191,492,1197,324,1203,324,1196,492,1189,611,1177,739,1159,867,1135,984,1121,1035,1104,1080,1085,1117,1063,1145,840,1188,499,1248"/>
+<area shape="rect" id="Node000056" href="$_o_c_p_8c.html#ae8d60a50e6a32ee1f355ee379407a4c9" title="Execute overcurrent trip action." alt="" coords="649,1244,742,1271"/>
+<area shape="poly" id="edge40_Node000055_Node000056" title=" " alt="" coords="499,1255,634,1255,634,1260,499,1260"/>
+<area shape="poly" id="edge46_Node000066_Node000053" title=" " alt="" coords="482,1146,645,1122,645,1127,483,1151"/>
+<area shape="rect" id="Node000069" href="$group__storage03.html#ga5b4f82b48868c1a68c60a9fc9a7f3e37" title="Get the current limit in amperes based on cached region." alt="" coords="341,1295,517,1338"/>
+<area shape="poly" id="edge49_Node000068_Node000069" title=" " alt="" coords="269,1359,335,1340,336,1345,270,1364"/>
+<area shape="rect" id="Node000070" href="$group__storage03.html#ga8159c9128e13ce5870ad6d282094ed83" title="Get the cached device region." alt="" coords="342,1362,516,1388"/>
+<area shape="poly" id="edge50_Node000068_Node000070" title=" " alt="" coords="277,1372,327,1372,327,1378,277,1378"/>
+<area shape="rect" id="Node000071" href="$_o_c_p_8c.html#a1fe49fcbbfe0cf03f3ab1dc57313b0bf" title="Sanitize a current limit value obtained from configuration." alt="" coords="374,1412,485,1439"/>
+<area shape="poly" id="edge51_Node000068_Node000071" title=" " alt="" coords="277,1386,359,1406,358,1411,276,1391"/>
+<area shape="rect" id="Node000072" href="$_o_c_p_8c.html#af8d318d7a4d47ef1cf067b8e28c44099" title="Clamp and order derived thresholds." alt="" coords="362,1463,496,1490"/>
+<area shape="poly" id="edge52_Node000068_Node000072" title=" " alt="" coords="238,1387,277,1418,327,1449,349,1457,347,1462,325,1453,274,1422,234,1391"/>
+<area shape="rect" id="Node000074" href="$group__storage01.html#gac5ff91b753d7b36b811a2d75068006ed" title="Read RP2040 temperature calibration record from EEPROM." alt="" coords="590,256,801,283"/>
+<area shape="poly" id="edge55_Node000073_Node000074" title=" " alt="" coords="466,355,643,286,645,291,468,360"/>
+<area shape="rect" id="Node000078" href="$group__storage01.html#ga7796a67e219e367ba5424202cff756ae" title="Apply temperature calibration to MeterTask measurement path." alt="" coords="580,358,811,384"/>
+<area shape="poly" id="edge60_Node000073_Node000078" title=" " alt="" coords="533,368,565,368,565,374,533,374"/>
+<area shape="poly" id="edge56_Node000074_Node000005" title=" " alt="" coords="726,253,858,198,897,184,899,189,860,203,728,258"/>
+<area shape="poly" id="edge57_Node000074_Node000009" title=" " alt="" coords="761,253,824,243,900,235,981,234,1062,242,1113,255,1159,272,1157,277,1111,260,1062,247,981,239,900,241,825,248,762,258"/>
+<area shape="rect" id="Node000075" href="$calibration_8c.html#ac2a5362a8e4606ad12cb0d6c9941ef6d" title="Fill temp_calib_t with safe defaults (no calibration)." alt="" coords="900,256,1020,283"/>
+<area shape="poly" id="edge58_Node000074_Node000075" title=" " alt="" coords="802,267,885,267,885,272,802,272"/>
+<area shape="rect" id="Node000076" href="$calibration_8c.html#abd5621818dd5300de23e2fd5c9106cea" title="Validate a temp calibration record (magic/version/ranges/CRC)." alt="" coords="901,307,1020,334"/>
+<area shape="poly" id="edge59_Node000074_Node000076" title=" " alt="" coords="770,281,886,304,885,309,769,286"/>
+<area shape="poly" id="edge62_Node000078_Node000009" title=" " alt="" coords="811,369,932,362,998,354,1061,343,1111,329,1155,312,1157,317,1112,334,1063,348,998,359,933,367,811,374"/>
+<area shape="poly" id="edge63_Node000078_Node000076" title=" " alt="" coords="769,354,885,332,886,337,770,360"/>
+<area shape="rect" id="Node000079" href="$group__tasks06.html#ga3f1131031850b69b057eeb4f8db3a4b9" title="Apply per&#45;device temperature calibration parameters." alt="" coords="859,408,1062,435"/>
+<area shape="poly" id="edge61_Node000078_Node000079" title=" " alt="" coords="770,382,872,402,871,407,769,388"/>
+</map>

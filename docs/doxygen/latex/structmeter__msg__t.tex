@@ -1,0 +1,45 @@
+\doxysection{meter\+\_\+msg\+\_\+t Struct Reference}
+\hypertarget{structmeter__msg__t}{}\label{structmeter__msg__t}\index{meter\_msg\_t@{meter\_msg\_t}}
+
+
+Meter reading message for Meter\+Task.  
+
+
+
+
+{\ttfamily \#include $<$Console\+Task.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structmeter__msg__t_a18515503b31233560cdc9b8dafcae872}{action}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structmeter__msg__t_a103ce8ba65f9047acc7d0a9cfae3238f}{channel}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Meter reading message for Meter\+Task. 
+
+Reserved for future asynchronous measurement queries; sent via {\ttfamily q\+\_\+meter}. 
+
+\label{doc-variable-members}
+\Hypertarget{structmeter__msg__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structmeter__msg__t_a18515503b31233560cdc9b8dafcae872}\index{meter\_msg\_t@{meter\_msg\_t}!action@{action}}
+\index{action@{action}!meter\_msg\_t@{meter\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{action}{action}}
+{\footnotesize\ttfamily \label{structmeter__msg__t_a18515503b31233560cdc9b8dafcae872} 
+uint8\+\_\+t meter\+\_\+msg\+\_\+t\+::action}
+
+Operation\+: 0=read\+\_\+now, 1=set\+\_\+channel. \Hypertarget{structmeter__msg__t_a103ce8ba65f9047acc7d0a9cfae3238f}\index{meter\_msg\_t@{meter\_msg\_t}!channel@{channel}}
+\index{channel@{channel}!meter\_msg\_t@{meter\_msg\_t}}
+\doxysubsubsection{\texorpdfstring{channel}{channel}}
+{\footnotesize\ttfamily \label{structmeter__msg__t_a103ce8ba65f9047acc7d0a9cfae3238f} 
+uint8\+\_\+t meter\+\_\+msg\+\_\+t\+::channel}
+
+Target measurement channel (0-\/7). 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\mbox{\hyperlink{_console_task_8h}{Console\+Task.\+h}}\end{DoxyCompactItemize}

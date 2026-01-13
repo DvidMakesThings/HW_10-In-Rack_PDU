@@ -1,0 +1,18 @@
+<map id="log_printf_force" name="log_printf_force">
+<area shape="rect" id="Node000001" title="Log message bypassing mute state." alt="" coords="937,47,1048,73"/>
+<area shape="rect" id="Node000002" href="$_storage_task_8c.html#a9b67fa0fd6f5c01192d214b4b39d958c" title="Incremental formatted EEPROM dump worker." alt="" coords="736,5,889,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="922,50,889,44,890,38,922,44"/>
+<area shape="rect" id="Node000008" href="$_storage_task_8c.html#ad9e9d1e6e78f163d3619f526d29ee321" title="Incrementally dump an event log region in formatted hex." alt="" coords="742,72,884,115"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="923,76,885,83,884,78,922,70"/>
+<area shape="rect" id="Node000003" href="$_storage_task_8c.html#a502037c1577c7bd180a629669af058f7" title="Storage task main function." alt="" coords="594,47,688,73"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="721,47,689,53,688,48,720,42"/>
+<area shape="rect" id="Node000004" href="$group__tasks10.html#ga26dbdabce55a139cf536e8469373b7c4" title="Initialize and start the Storage task with a deterministic enable gate. Creates mutex,..." alt="" coords="426,47,546,73"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="578,63,546,63,546,57,578,57"/>
+<area shape="rect" id="Node000005" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,47,378,73"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="411,63,379,63,379,57,411,57"/>
+<area shape="rect" id="Node000006" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,47,263,73"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="295,63,263,63,263,57,295,57"/>
+<area shape="rect" id="Node000007" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,47,102,73"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="134,63,102,63,102,57,134,57"/>
+<area shape="poly" id="edge8_Node000008_Node000003" title=" " alt="" coords="726,79,688,72,689,66,727,74"/>
+</map>

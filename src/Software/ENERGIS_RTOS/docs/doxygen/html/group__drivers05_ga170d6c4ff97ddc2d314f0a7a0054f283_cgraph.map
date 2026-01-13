@@ -1,0 +1,5 @@
+<map id="i2c_bus_write_timeout_us" name="i2c_bus_write_timeout_us">
+<area shape="rect" id="Node000001" title="Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK i2c_write_time..." alt="" coords="5,5,178,32"/>
+<area shape="rect" id="Node000002" href="$i2c__bus_8c.html#afbaa64f79bdd1fa39c8fa5b7a9c2717b" title=" " alt="" coords="226,5,383,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="178,16,210,16,210,21,178,21"/>
+</map>

@@ -1,0 +1,978 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item HLW8032 Power Measurement Driver 
+\end{DoxyEnumerate}}
+\hypertarget{group__drivers04}{}\label{group__drivers04}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+
+
+RTOS-\/safe driver for HLW8032 power measurement IC.  
+
+
+Collaboration diagram for 4. HLW8032 Power Measurement Driver\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{group__drivers04}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef hlw\+\_\+calib\+\_\+t \mbox{\hyperlink{group__drivers04_ga44c9ea596494d029a9d1de5f7986f2f7}{hlw\+\_\+calib\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Per-\/channel calibration data structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Semaphore\+Handle\+\_\+t \mbox{\hyperlink{group__drivers04_ga44f0e457365b1d578cbb01ee9f15af0c}{uart\+Hlw\+Mtx}}
+\begin{DoxyCompactList}\small\item\em UART mutex for HLW8032 communication (extern, defined in .c) \end{DoxyCompactList}\item 
+Semaphore\+Handle\+\_\+t \mbox{\hyperlink{group__drivers04_ga44f0e457365b1d578cbb01ee9f15af0c}{uart\+Hlw\+Mtx}} = NULL
+\begin{DoxyCompactList}\small\item\em UART mutex for HLW8032 communication (extern, defined in .c) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Public API}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__drivers04_gac1bd84c5a254283faacc776489f36625}{hlw8032\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize HLW8032 driver subsystem. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers04_gaf9b4059456656d1620a19fa771086a2d}{hlw8032\+\_\+read}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Read power measurements from a specific channel. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__drivers04_ga6fb634639b04ca4cfd297f7c48a0c181}{hlw8032\+\_\+get\+\_\+voltage}} (void)
+\begin{DoxyCompactList}\small\item\em Get last voltage reading from previous \doxylink{group__drivers04_gaf9b4059456656d1620a19fa771086a2d}{hlw8032\+\_\+read()}. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__drivers04_ga2688ff6d07f74455d95d323ff3c2a0dd}{hlw8032\+\_\+get\+\_\+current}} (void)
+\begin{DoxyCompactList}\small\item\em Get last current reading from previous \doxylink{group__drivers04_gaf9b4059456656d1620a19fa771086a2d}{hlw8032\+\_\+read()}. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__drivers04_gaaa960776be4d3e02a4606c524dc5316b}{hlw8032\+\_\+get\+\_\+power}} (void)
+\begin{DoxyCompactList}\small\item\em Get last power reading from previous \doxylink{group__drivers04_gaf9b4059456656d1620a19fa771086a2d}{hlw8032\+\_\+read()}. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__drivers04_ga3e3e299137c4b5355cd17f94ddc24899}{hlw8032\+\_\+get\+\_\+uptime}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Get channel uptime in seconds. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers04_gacfd84777ef919c041f40ea955f672d5e}{hlw8032\+\_\+update\+\_\+uptime}} (uint8\+\_\+t ch, bool state)
+\begin{DoxyCompactList}\small\item\em Update channel uptime based on current relay state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers04_ga0b3a5c410541deaf144c3e33d4b65175}{hlw8032\+\_\+poll\+\_\+once}} (void)
+\begin{DoxyCompactList}\small\item\em Poll one channel and cache results (round-\/robin). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers04_ga76f09e4482db113563628126492d3200}{hlw8032\+\_\+refresh\+\_\+all}} (void)
+\begin{DoxyCompactList}\small\item\em Read and cache measurements for all 8 channels. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__drivers04_ga3fd1465bd8f5106879ee5677d0d551da}{hlw8032\+\_\+cached\+\_\+voltage}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Get cached voltage for a channel. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__drivers04_gad2a10b704d2588035bde43ff6b941ea7}{hlw8032\+\_\+cached\+\_\+current}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Get cached current for a channel. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__drivers04_ga5b03a8561efc81ded185e88ffc1574a9}{hlw8032\+\_\+cached\+\_\+power}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Get cached power for a channel (computed from V\texorpdfstring{$\ast$}{*}I). \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__drivers04_ga33d4652f0a85150f7dcba9f702b9893b}{hlw8032\+\_\+cached\+\_\+uptime}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Get cached uptime for a channel. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers04_ga01cdcd0497f8134e1ecb93331474dbdb}{hlw8032\+\_\+cached\+\_\+state}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Get cached relay state for a channel. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__drivers04_ga4824aa9f5ece25a68111e4097e62311e}{hlw8032\+\_\+get\+\_\+total\+\_\+current}} (void)
+\begin{DoxyCompactList}\small\item\em Get the total current sum across all 8 channels. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers04_ga8813e14d94b16a9cc2229159c8fdd6c1}{hlw8032\+\_\+cycle\+\_\+complete}} (void)
+\begin{DoxyCompactList}\small\item\em Check if a complete measurement cycle has finished since last check. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers04_gabacd90abd2475b3fb2dfe2efcd8e4f6a}{hlw8032\+\_\+calibration\+\_\+start\+\_\+current\+\_\+all}} (uint8\+\_\+t channel, float ref\+\_\+current)
+\begin{DoxyCompactList}\small\item\em Start asynchronous current calibration for all channels. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers04_ga76954a7035d4f2fad1ec9fba75e62b6c}{hlw8032\+\_\+load\+\_\+calibration}} (void)
+\begin{DoxyCompactList}\small\item\em Load calibration data from EEPROM for all channels. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers04_ga643d63b42087b4dd4b336571eb9b6d18}{hlw8032\+\_\+calibration\+\_\+start\+\_\+zero\+\_\+all}} (void)
+\begin{DoxyCompactList}\small\item\em Start asynchronous zero calibration (0V/0A) for all channels. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers04_gac3fd97d9d666bdf1a910b34170d0c38d}{hlw8032\+\_\+calibration\+\_\+start\+\_\+voltage\+\_\+all}} (float ref\+\_\+voltage)
+\begin{DoxyCompactList}\small\item\em Start asynchronous voltage calibration for all channels. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers04_ga2fabec2f7c0a743f2fd172d233fabb0a}{hlw8032\+\_\+calibration\+\_\+is\+\_\+running}} (void)
+\begin{DoxyCompactList}\small\item\em Query whether an asynchronous calibration sequence is currently running. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers04_ga9ab9b6a4d7f948c4bfd0bad1b1866a1b}{hlw8032\+\_\+get\+\_\+calibration}} (uint8\+\_\+t channel, \mbox{\hyperlink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}calib)
+\begin{DoxyCompactList}\small\item\em Retrieve calibration data for a channel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers04_gada8bbee8b1136d3d493ce67c266942da}{hlw8032\+\_\+print\+\_\+calibration}} (uint8\+\_\+t channel)
+\begin{DoxyCompactList}\small\item\em Print calibration data for a channel to log. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers04_ga6113ad3cf2b9bc5dad22805412ae8150}{hlw8032\+\_\+dump\+\_\+cache}} (void)
+\begin{DoxyCompactList}\small\item\em Diagnostic\+: Dump all cached channel values to log. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{HLW8032 Constants}
+HLW8032 nominal voltage calibration factor (volts) \begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__drivers04_gad932e9114863299db7ccf7734fa3d384}{HLW8032\+\_\+\+VF}}~1.\+88f
+\item 
+\#define \mbox{\hyperlink{group__drivers04_gaebe7d2d06bc26b3ecabcfa943eea8542}{HLW8032\+\_\+\+CF}}~1.\+0f
+\begin{DoxyCompactList}\small\item\em HLW8032 nominal current calibration factor (amps) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__drivers04_gae2ffdc964c3e8df6a8ebf772f03fba13}{MAX\+\_\+\+RX\+\_\+\+BYTES}}~128
+\begin{DoxyCompactList}\small\item\em Maximum number of bytes to read during frame sync. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__drivers04_ga2205f920fe4a1621f1ba9fa7137dc54c}{HLW\+\_\+\+UART\+\_\+\+TIMEOUT\+\_\+\+US}}~250000\+ULL
+\begin{DoxyCompactList}\small\item\em UART read timeout in microseconds. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__drivers04_gae59cc3c57b510020113e91f32c9a7cda}{MUX\+\_\+\+SETTLE\+\_\+\+US}}~1000
+\begin{DoxyCompactList}\small\item\em Hardware settling time after MUX change (microseconds) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+RTOS-\/safe driver for HLW8032 power measurement IC. 
+
+\begin{DoxyVersion}{Version}
+1.\+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/12-\/11
+\end{DoxyDate}
+RTOS-\/safe driver for interfacing with HLW8032 power measurement chips. Features\+:
+\begin{DoxyItemize}
+\item Mutex-\/protected UART access for thread safety
+\item Multiplexed channel selection via MCP23017
+\item Hardware v1.\+0.\+0 pin swap compensation
+\item Per-\/channel calibration with EEPROM persistence
+\item Cached measurements and uptime tracking
+\item Total current sum for overcurrent protection
+\item Queue-\/based logging (no direct printf)
+\end{DoxyItemize}
+
+Hardware Configuration\+:
+\begin{DoxyItemize}
+\item 8 HLW8032 ICs sharing UART0 RX (4800 baud)
+\item Individual TX lines selected by 74HC4051 multiplexer
+\item Multiplexer control via MCP23017 port B (MUX\+\_\+\+A/\+B/C, MUX\+\_\+\+EN)
+\item Frame format\+: 24 bytes starting with 0x55 0x5A
+\end{DoxyItemize}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{group__drivers04_doc-define-members}
+\doxysubsubsection{Macro Definition Documentation}
+\Hypertarget{group__drivers04_gaebe7d2d06bc26b3ecabcfa943eea8542}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!HLW8032\_CF@{HLW8032\_CF}}
+\index{HLW8032\_CF@{HLW8032\_CF}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{HLW8032\_CF}{HLW8032\_CF}}
+{\footnotesize\ttfamily \label{group__drivers04_gaebe7d2d06bc26b3ecabcfa943eea8542} 
+\#define HLW8032\+\_\+\+CF~1.\+0f}
+
+
+
+HLW8032 nominal current calibration factor (amps) 
+
+\Hypertarget{group__drivers04_gad932e9114863299db7ccf7734fa3d384}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!HLW8032\_VF@{HLW8032\_VF}}
+\index{HLW8032\_VF@{HLW8032\_VF}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{HLW8032\_VF}{HLW8032\_VF}}
+{\footnotesize\ttfamily \label{group__drivers04_gad932e9114863299db7ccf7734fa3d384} 
+\#define HLW8032\+\_\+\+VF~1.\+88f}
+
+\Hypertarget{group__drivers04_ga2205f920fe4a1621f1ba9fa7137dc54c}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!HLW\_UART\_TIMEOUT\_US@{HLW\_UART\_TIMEOUT\_US}}
+\index{HLW\_UART\_TIMEOUT\_US@{HLW\_UART\_TIMEOUT\_US}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{HLW\_UART\_TIMEOUT\_US}{HLW\_UART\_TIMEOUT\_US}}
+{\footnotesize\ttfamily \label{group__drivers04_ga2205f920fe4a1621f1ba9fa7137dc54c} 
+\#define HLW\+\_\+\+UART\+\_\+\+TIMEOUT\+\_\+\+US~250000\+ULL}
+
+
+
+UART read timeout in microseconds. 
+
+\Hypertarget{group__drivers04_gae2ffdc964c3e8df6a8ebf772f03fba13}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!MAX\_RX\_BYTES@{MAX\_RX\_BYTES}}
+\index{MAX\_RX\_BYTES@{MAX\_RX\_BYTES}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{MAX\_RX\_BYTES}{MAX\_RX\_BYTES}}
+{\footnotesize\ttfamily \label{group__drivers04_gae2ffdc964c3e8df6a8ebf772f03fba13} 
+\#define MAX\+\_\+\+RX\+\_\+\+BYTES~128}
+
+
+
+Maximum number of bytes to read during frame sync. 
+
+\Hypertarget{group__drivers04_gae59cc3c57b510020113e91f32c9a7cda}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!MUX\_SETTLE\_US@{MUX\_SETTLE\_US}}
+\index{MUX\_SETTLE\_US@{MUX\_SETTLE\_US}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{MUX\_SETTLE\_US}{MUX\_SETTLE\_US}}
+{\footnotesize\ttfamily \label{group__drivers04_gae59cc3c57b510020113e91f32c9a7cda} 
+\#define MUX\+\_\+\+SETTLE\+\_\+\+US~1000}
+
+
+
+Hardware settling time after MUX change (microseconds) 
+
+
+
+\label{doc-typedef-members}
+\Hypertarget{group__drivers04_doc-typedef-members}
+\doxysubsubsection{Typedef Documentation}
+\Hypertarget{group__drivers04_ga44c9ea596494d029a9d1de5f7986f2f7}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!hlw\_calib\_t@{hlw\_calib\_t}}
+\index{hlw\_calib\_t@{hlw\_calib\_t}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{hlw\_calib\_t}{hlw\_calib\_t}}
+{\footnotesize\ttfamily \label{group__drivers04_ga44c9ea596494d029a9d1de5f7986f2f7} 
+typedef hlw\+\_\+calib\+\_\+t hlw\+\_\+calib\+\_\+t}
+
+
+
+Per-\/channel calibration data structure. 
+
+Defined in \doxylink{_e_e_p_r_o_m___memory_map_8h}{EEPROM\+\_\+\+Memory\+Map.\+h}, included here for convenience. Contains voltage/current factors, offsets, resistor values, and flags. 
+
+\label{doc-func-members}
+\Hypertarget{group__drivers04_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__drivers04_gad2a10b704d2588035bde43ff6b941ea7}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!hlw8032\_cached\_current@{hlw8032\_cached\_current}}
+\index{hlw8032\_cached\_current@{hlw8032\_cached\_current}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{hlw8032\_cached\_current()}{hlw8032\_cached\_current()}}
+{\footnotesize\ttfamily \label{group__drivers04_gad2a10b704d2588035bde43ff6b941ea7} 
+float hlw8032\+\_\+cached\+\_\+current (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch}{}\end{DoxyParamCaption})}
+
+
+
+Get cached current for a channel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ch} & Channel index \mbox{[}0..7\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float Cached current in amperes (0.\+0 if invalid or out of range)
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Returns 0.\+0 for readings \texorpdfstring{$<$}{<}0A or \texorpdfstring{$>$}{>}100A 
+
+Cache updated by \doxylink{group__drivers04_ga0b3a5c410541deaf144c3e33d4b65175}{hlw8032\+\_\+poll\+\_\+once()} or \doxylink{group__drivers04_ga76f09e4482db113563628126492d3200}{hlw8032\+\_\+refresh\+\_\+all()} 
+\end{DoxyNote}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers04_gad2a10b704d2588035bde43ff6b941ea7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers04_ga5b03a8561efc81ded185e88ffc1574a9}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!hlw8032\_cached\_power@{hlw8032\_cached\_power}}
+\index{hlw8032\_cached\_power@{hlw8032\_cached\_power}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{hlw8032\_cached\_power()}{hlw8032\_cached\_power()}}
+{\footnotesize\ttfamily \label{group__drivers04_ga5b03a8561efc81ded185e88ffc1574a9} 
+float hlw8032\+\_\+cached\+\_\+power (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch}{}\end{DoxyParamCaption})}
+
+
+
+Get cached power for a channel (computed from V\texorpdfstring{$\ast$}{*}I). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ch} & Channel index \mbox{[}0..7\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float Cached power in watts (0.\+0 if invalid or out of range)
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Computed as voltage \texorpdfstring{$\ast$}{*} current from cache 
+
+Returns 0.\+0 for invalid voltages/currents or result \texorpdfstring{$>$}{>}40kW 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers04_ga5b03a8561efc81ded185e88ffc1574a9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers04_ga5b03a8561efc81ded185e88ffc1574a9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers04_ga01cdcd0497f8134e1ecb93331474dbdb}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!hlw8032\_cached\_state@{hlw8032\_cached\_state}}
+\index{hlw8032\_cached\_state@{hlw8032\_cached\_state}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{hlw8032\_cached\_state()}{hlw8032\_cached\_state()}}
+{\footnotesize\ttfamily \label{group__drivers04_ga01cdcd0497f8134e1ecb93331474dbdb} 
+bool hlw8032\+\_\+cached\+\_\+state (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch}{}\end{DoxyParamCaption})}
+
+
+
+Get cached relay state for a channel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ch} & Channel index \mbox{[}0..7\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool Cached relay state (true=ON, false=OFF) 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers04_ga01cdcd0497f8134e1ecb93331474dbdb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers04_ga33d4652f0a85150f7dcba9f702b9893b}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!hlw8032\_cached\_uptime@{hlw8032\_cached\_uptime}}
+\index{hlw8032\_cached\_uptime@{hlw8032\_cached\_uptime}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{hlw8032\_cached\_uptime()}{hlw8032\_cached\_uptime()}}
+{\footnotesize\ttfamily \label{group__drivers04_ga33d4652f0a85150f7dcba9f702b9893b} 
+uint32\+\_\+t hlw8032\+\_\+cached\+\_\+uptime (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch}{}\end{DoxyParamCaption})}
+
+
+
+Get cached uptime for a channel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ch} & Channel index \mbox{[}0..7\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t Cached uptime in seconds 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers04_ga33d4652f0a85150f7dcba9f702b9893b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers04_ga3fd1465bd8f5106879ee5677d0d551da}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!hlw8032\_cached\_voltage@{hlw8032\_cached\_voltage}}
+\index{hlw8032\_cached\_voltage@{hlw8032\_cached\_voltage}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{hlw8032\_cached\_voltage()}{hlw8032\_cached\_voltage()}}
+{\footnotesize\ttfamily \label{group__drivers04_ga3fd1465bd8f5106879ee5677d0d551da} 
+float hlw8032\+\_\+cached\+\_\+voltage (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch}{}\end{DoxyParamCaption})}
+
+
+
+Get cached voltage for a channel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ch} & Channel index \mbox{[}0..7\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float Cached voltage in volts (0.\+0 if invalid or out of range)
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Returns 0.\+0 for readings \texorpdfstring{$<$}{<}0V or \texorpdfstring{$>$}{>}400V 
+
+Cache updated by \doxylink{group__drivers04_ga0b3a5c410541deaf144c3e33d4b65175}{hlw8032\+\_\+poll\+\_\+once()} or \doxylink{group__drivers04_ga76f09e4482db113563628126492d3200}{hlw8032\+\_\+refresh\+\_\+all()} 
+\end{DoxyNote}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers04_ga3fd1465bd8f5106879ee5677d0d551da_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers04_ga2fabec2f7c0a743f2fd172d233fabb0a}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!hlw8032\_calibration\_is\_running@{hlw8032\_calibration\_is\_running}}
+\index{hlw8032\_calibration\_is\_running@{hlw8032\_calibration\_is\_running}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{hlw8032\_calibration\_is\_running()}{hlw8032\_calibration\_is\_running()}}
+{\footnotesize\ttfamily \label{group__drivers04_ga2fabec2f7c0a743f2fd172d233fabb0a} 
+bool hlw8032\+\_\+calibration\+\_\+is\+\_\+running (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Query whether an asynchronous calibration sequence is currently running. 
+
+\begin{DoxyReturn}{Returns}
+true if a zero or voltage calibration is in progress 
+
+false otherwise
+
+true if a calibration is in progress 
+
+false otherwise 
+\end{DoxyReturn}
+\Hypertarget{group__drivers04_gabacd90abd2475b3fb2dfe2efcd8e4f6a}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!hlw8032\_calibration\_start\_current\_all@{hlw8032\_calibration\_start\_current\_all}}
+\index{hlw8032\_calibration\_start\_current\_all@{hlw8032\_calibration\_start\_current\_all}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{hlw8032\_calibration\_start\_current\_all()}{hlw8032\_calibration\_start\_current\_all()}}
+{\footnotesize\ttfamily \label{group__drivers04_gabacd90abd2475b3fb2dfe2efcd8e4f6a} 
+bool hlw8032\+\_\+calibration\+\_\+start\+\_\+current\+\_\+all (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{channel}{, }\item[{float}]{ref\+\_\+current}{}\end{DoxyParamCaption})}
+
+
+
+Start asynchronous current calibration for all channels. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ref\+\_\+current} & Reference current in amps (must be \texorpdfstring{$>$}{>} 0.\+0f) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if calibration sequence successfully started 
+
+false if another calibration is running or ref\+\_\+current invalid
+\end{DoxyReturn}
+Start asynchronous current calibration for all channels.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Channel index \mbox{[}0..7\mbox{]} to be calibrated. \\
+\hline
+{\em ref\+\_\+current} & Reference current in amps (must be \texorpdfstring{$>$}{>} 0.\+0f)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if calibration sequence successfully started 
+
+false if another calibration is running, channel invalid, or ref\+\_\+current invalid
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Requires that the selected channel carries the known current (use a DMM). 
+
+Assumes voltage \& zero calibration have already been run. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{group__drivers04_gabacd90abd2475b3fb2dfe2efcd8e4f6a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers04_gabacd90abd2475b3fb2dfe2efcd8e4f6a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers04_gac3fd97d9d666bdf1a910b34170d0c38d}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!hlw8032\_calibration\_start\_voltage\_all@{hlw8032\_calibration\_start\_voltage\_all}}
+\index{hlw8032\_calibration\_start\_voltage\_all@{hlw8032\_calibration\_start\_voltage\_all}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{hlw8032\_calibration\_start\_voltage\_all()}{hlw8032\_calibration\_start\_voltage\_all()}}
+{\footnotesize\ttfamily \label{group__drivers04_gac3fd97d9d666bdf1a910b34170d0c38d} 
+bool hlw8032\+\_\+calibration\+\_\+start\+\_\+voltage\+\_\+all (\begin{DoxyParamCaption}\item[{float}]{ref\+\_\+voltage}{}\end{DoxyParamCaption})}
+
+
+
+Start asynchronous voltage calibration for all channels. 
+
+
+\begin{DoxyItemize}
+\item Runs a non-\/blocking calibration sequence driven by \doxylink{group__drivers04_ga0b3a5c410541deaf144c3e33d4b65175}{hlw8032\+\_\+poll\+\_\+once()}
+\item Uses a single reference voltage for all channels (e.\+g. 230V)
+\item For each channel, computes new voltage gain factor and stores to EEPROM
+\end{DoxyItemize}
+
+Requirements\+:
+\begin{DoxyItemize}
+\item All channels must see the same stable reference mains voltage
+\item Current calibration is still not implemented (assumes 0A)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em ref\+\_\+voltage} & Reference voltage in volts (must be \texorpdfstring{$>$}{>} 0.\+0f)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if calibration sequence successfully started 
+
+false if another calibration is already running or ref\+\_\+voltage invalid
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Does not block; progress is logged asynchronously.
+\end{DoxyNote}
+Start asynchronous voltage calibration for all channels.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ref\+\_\+voltage} & Reference voltage in volts (must be \texorpdfstring{$>$}{>} 0.\+0f) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if calibration sequence successfully started 
+
+false if another calibration is running or ref\+\_\+voltage invalid 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{group__drivers04_gac3fd97d9d666bdf1a910b34170d0c38d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers04_gac3fd97d9d666bdf1a910b34170d0c38d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers04_ga643d63b42087b4dd4b336571eb9b6d18}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!hlw8032\_calibration\_start\_zero\_all@{hlw8032\_calibration\_start\_zero\_all}}
+\index{hlw8032\_calibration\_start\_zero\_all@{hlw8032\_calibration\_start\_zero\_all}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{hlw8032\_calibration\_start\_zero\_all()}{hlw8032\_calibration\_start\_zero\_all()}}
+{\footnotesize\ttfamily \label{group__drivers04_ga643d63b42087b4dd4b336571eb9b6d18} 
+bool hlw8032\+\_\+calibration\+\_\+start\+\_\+zero\+\_\+all (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Start asynchronous zero calibration (0V/0A) for all channels. 
+
+
+\begin{DoxyItemize}
+\item Runs a non-\/blocking calibration sequence driven by \doxylink{group__drivers04_ga0b3a5c410541deaf144c3e33d4b65175}{hlw8032\+\_\+poll\+\_\+once()}
+\item Collects a fixed number of samples per channel using normal HLW polling
+\item For each channel, computes voltage offset at 0V and stores to EEPROM
+\end{DoxyItemize}
+
+Requirements\+:
+\begin{DoxyItemize}
+\item All relay channels must be OFF and unloaded (0V, 0A) during the sequence
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+true if calibration sequence successfully started 
+
+false if another calibration is already running or parameters invalid
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Does not block; progress is logged asynchronously.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+true if calibration sequence successfully started 
+
+false if another calibration is already running 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{group__drivers04_ga643d63b42087b4dd4b336571eb9b6d18_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers04_ga643d63b42087b4dd4b336571eb9b6d18_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers04_ga8813e14d94b16a9cc2229159c8fdd6c1}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!hlw8032\_cycle\_complete@{hlw8032\_cycle\_complete}}
+\index{hlw8032\_cycle\_complete@{hlw8032\_cycle\_complete}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{hlw8032\_cycle\_complete()}{hlw8032\_cycle\_complete()}}
+{\footnotesize\ttfamily \label{group__drivers04_ga8813e14d94b16a9cc2229159c8fdd6c1} 
+bool hlw8032\+\_\+cycle\+\_\+complete (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Check if a complete measurement cycle has finished since last check. 
+
+Returns true once per complete 8-\/channel cycle and clears the flag. Used by Meter\+Task to know when to update overcurrent protection.
+
+\begin{DoxyReturn}{Returns}
+true if a new cycle completed, false otherwise
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Flag is cleared after reading (consume-\/once semantics) 
+\end{DoxyNote}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers04_ga8813e14d94b16a9cc2229159c8fdd6c1_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers04_ga6113ad3cf2b9bc5dad22805412ae8150}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!hlw8032\_dump\_cache@{hlw8032\_dump\_cache}}
+\index{hlw8032\_dump\_cache@{hlw8032\_dump\_cache}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{hlw8032\_dump\_cache()}{hlw8032\_dump\_cache()}}
+{\footnotesize\ttfamily \label{group__drivers04_ga6113ad3cf2b9bc5dad22805412ae8150} 
+void hlw8032\+\_\+dump\+\_\+cache (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Diagnostic\+: Dump all cached channel values to log. 
+
+\begin{DoxyNote}{Note}
+Useful for debugging cache corruption or channel cross-\/contamination issues 
+\end{DoxyNote}
+\Hypertarget{group__drivers04_ga9ab9b6a4d7f948c4bfd0bad1b1866a1b}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!hlw8032\_get\_calibration@{hlw8032\_get\_calibration}}
+\index{hlw8032\_get\_calibration@{hlw8032\_get\_calibration}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{hlw8032\_get\_calibration()}{hlw8032\_get\_calibration()}}
+{\footnotesize\ttfamily \label{group__drivers04_ga9ab9b6a4d7f948c4bfd0bad1b1866a1b} 
+bool hlw8032\+\_\+get\+\_\+calibration (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{channel}{, }\item[{\mbox{\hyperlink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{calib}{}\end{DoxyParamCaption})}
+
+
+
+Retrieve calibration data for a channel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Channel index \mbox{[}0..7\mbox{]} \\
+\hline
+{\em calib} & Pointer to destination structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if channel is calibrated (calib-\/\texorpdfstring{$>$}{>}calibrated == 0x\+CA) 
+
+false if invalid channel, null pointer, or not calibrated 
+\end{DoxyReturn}
+\Hypertarget{group__drivers04_ga2688ff6d07f74455d95d323ff3c2a0dd}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!hlw8032\_get\_current@{hlw8032\_get\_current}}
+\index{hlw8032\_get\_current@{hlw8032\_get\_current}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{hlw8032\_get\_current()}{hlw8032\_get\_current()}}
+{\footnotesize\ttfamily \label{group__drivers04_ga2688ff6d07f74455d95d323ff3c2a0dd} 
+float hlw8032\+\_\+get\+\_\+current (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Get last current reading from previous \doxylink{group__drivers04_gaf9b4059456656d1620a19fa771086a2d}{hlw8032\+\_\+read()}. 
+
+\begin{DoxyReturn}{Returns}
+float Current in amperes (calibrated)
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Returns last reading regardless of channel 
+
+Call after \doxylink{group__drivers04_gaf9b4059456656d1620a19fa771086a2d}{hlw8032\+\_\+read()} for corresponding channel 
+\end{DoxyNote}
+\Hypertarget{group__drivers04_gaaa960776be4d3e02a4606c524dc5316b}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!hlw8032\_get\_power@{hlw8032\_get\_power}}
+\index{hlw8032\_get\_power@{hlw8032\_get\_power}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{hlw8032\_get\_power()}{hlw8032\_get\_power()}}
+{\footnotesize\ttfamily \label{group__drivers04_gaaa960776be4d3e02a4606c524dc5316b} 
+float hlw8032\+\_\+get\+\_\+power (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Get last power reading from previous \doxylink{group__drivers04_gaf9b4059456656d1620a19fa771086a2d}{hlw8032\+\_\+read()}. 
+
+\begin{DoxyReturn}{Returns}
+float Active power in watts (calibrated)
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Returns last reading regardless of channel 
+
+Call after \doxylink{group__drivers04_gaf9b4059456656d1620a19fa771086a2d}{hlw8032\+\_\+read()} for corresponding channel 
+\end{DoxyNote}
+\Hypertarget{group__drivers04_ga4824aa9f5ece25a68111e4097e62311e}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!hlw8032\_get\_total\_current@{hlw8032\_get\_total\_current}}
+\index{hlw8032\_get\_total\_current@{hlw8032\_get\_total\_current}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{hlw8032\_get\_total\_current()}{hlw8032\_get\_total\_current()}}
+{\footnotesize\ttfamily \label{group__drivers04_ga4824aa9f5ece25a68111e4097e62311e} 
+float hlw8032\+\_\+get\+\_\+total\+\_\+current (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Get the total current sum across all 8 channels. 
+
+Returns the sum of all cached channel currents, updated at the end of each complete 8-\/channel measurement cycle. Used by the overcurrent protection system in Meter\+Task for real-\/time monitoring.
+
+\begin{DoxyReturn}{Returns}
+float Total current in amperes \mbox{[}0.\+0 .. 800.\+0\mbox{]}
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Updated by \doxylink{group__drivers04_ga0b3a5c410541deaf144c3e33d4b65175}{hlw8032\+\_\+poll\+\_\+once()} after channel 7 completes 
+
+Updated by \doxylink{group__drivers04_ga76f09e4482db113563628126492d3200}{hlw8032\+\_\+refresh\+\_\+all()} after all channels complete 
+
+Thread-\/safe read (volatile) 
+\end{DoxyNote}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers04_ga4824aa9f5ece25a68111e4097e62311e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers04_ga3e3e299137c4b5355cd17f94ddc24899}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!hlw8032\_get\_uptime@{hlw8032\_get\_uptime}}
+\index{hlw8032\_get\_uptime@{hlw8032\_get\_uptime}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{hlw8032\_get\_uptime()}{hlw8032\_get\_uptime()}}
+{\footnotesize\ttfamily \label{group__drivers04_ga3e3e299137c4b5355cd17f94ddc24899} 
+uint32\+\_\+t hlw8032\+\_\+get\+\_\+uptime (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch}{}\end{DoxyParamCaption})}
+
+
+
+Get channel uptime in seconds. 
+
+Tracks cumulative ON time based on relay state. Updated by \doxylink{group__drivers04_gacfd84777ef919c041f40ea955f672d5e}{hlw8032\+\_\+update\+\_\+uptime()}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ch} & Channel index \mbox{[}0..7\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t Uptime in seconds 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers04_ga3e3e299137c4b5355cd17f94ddc24899_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers04_ga6fb634639b04ca4cfd297f7c48a0c181}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!hlw8032\_get\_voltage@{hlw8032\_get\_voltage}}
+\index{hlw8032\_get\_voltage@{hlw8032\_get\_voltage}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{hlw8032\_get\_voltage()}{hlw8032\_get\_voltage()}}
+{\footnotesize\ttfamily \label{group__drivers04_ga6fb634639b04ca4cfd297f7c48a0c181} 
+float hlw8032\+\_\+get\+\_\+voltage (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Get last voltage reading from previous \doxylink{group__drivers04_gaf9b4059456656d1620a19fa771086a2d}{hlw8032\+\_\+read()}. 
+
+\begin{DoxyReturn}{Returns}
+float Voltage in volts (calibrated)
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Returns last reading regardless of channel 
+
+Call after \doxylink{group__drivers04_gaf9b4059456656d1620a19fa771086a2d}{hlw8032\+\_\+read()} for corresponding channel 
+\end{DoxyNote}
+\Hypertarget{group__drivers04_gac1bd84c5a254283faacc776489f36625}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!hlw8032\_init@{hlw8032\_init}}
+\index{hlw8032\_init@{hlw8032\_init}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{hlw8032\_init()}{hlw8032\_init()}}
+{\footnotesize\ttfamily \label{group__drivers04_gac1bd84c5a254283faacc776489f36625} 
+void hlw8032\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Initialize HLW8032 driver subsystem. 
+
+
+\begin{DoxyItemize}
+\item Creates UART mutex for thread-\/safe access
+\item Initializes UART0 at 4800 baud
+\item Configures GPIO pins for UART
+\item Loads calibration data from EEPROM
+\item Initializes uptime tracking for all channels
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Must be called during system initialization before any other HLW functions. 
+
+Requires MCP23017 driver to be initialized first. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers04_gac1bd84c5a254283faacc776489f36625_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers04_gac1bd84c5a254283faacc776489f36625_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers04_ga76954a7035d4f2fad1ec9fba75e62b6c}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!hlw8032\_load\_calibration@{hlw8032\_load\_calibration}}
+\index{hlw8032\_load\_calibration@{hlw8032\_load\_calibration}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{hlw8032\_load\_calibration()}{hlw8032\_load\_calibration()}}
+{\footnotesize\ttfamily \label{group__drivers04_ga76954a7035d4f2fad1ec9fba75e62b6c} 
+void hlw8032\+\_\+load\+\_\+calibration (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Load calibration data from EEPROM for all channels. 
+
+
+\begin{DoxyItemize}
+\item Reads calibration records via \doxylink{group__storage01_gaa3b6f1341ad447d7f7f95d1be802b1e7}{EEPROM\+\_\+\+Read\+Sensor\+Calibration\+For\+Channel()}
+\item Sanitizes loaded values (replaces invalid with defaults)
+\item Falls back to nominal values if EEPROM read fails
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Called automatically by \doxylink{group__drivers04_gac1bd84c5a254283faacc776489f36625}{hlw8032\+\_\+init()} 
+
+Can be called manually to reload after EEPROM updates 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers04_ga76954a7035d4f2fad1ec9fba75e62b6c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers04_ga76954a7035d4f2fad1ec9fba75e62b6c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers04_ga0b3a5c410541deaf144c3e33d4b65175}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!hlw8032\_poll\_once@{hlw8032\_poll\_once}}
+\index{hlw8032\_poll\_once@{hlw8032\_poll\_once}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{hlw8032\_poll\_once()}{hlw8032\_poll\_once()}}
+{\footnotesize\ttfamily \label{group__drivers04_ga0b3a5c410541deaf144c3e33d4b65175} 
+void hlw8032\+\_\+poll\+\_\+once (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Poll one channel and cache results (round-\/robin). 
+
+
+\begin{DoxyItemize}
+\item Queries relay state from MCP driver
+\item Updates uptime for current channel
+\item Reads and caches measurements
+\item Advances to next channel for subsequent call
+\item Updates total current sum after completing channel 7
+\item Thread-\/safe (internal mutex locking)
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Designed for periodic calling by Meter\+Task 
+
+Completes full 8-\/channel cycle in 8 calls 
+
+Total current sum is updated at end of each cycle (after CH7) 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers04_ga0b3a5c410541deaf144c3e33d4b65175_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers04_ga0b3a5c410541deaf144c3e33d4b65175_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers04_gada8bbee8b1136d3d493ce67c266942da}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!hlw8032\_print\_calibration@{hlw8032\_print\_calibration}}
+\index{hlw8032\_print\_calibration@{hlw8032\_print\_calibration}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{hlw8032\_print\_calibration()}{hlw8032\_print\_calibration()}}
+{\footnotesize\ttfamily \label{group__drivers04_gada8bbee8b1136d3d493ce67c266942da} 
+void hlw8032\+\_\+print\+\_\+calibration (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{channel}{}\end{DoxyParamCaption})}
+
+
+
+Print calibration data for a channel to log. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Channel index \mbox{[}0..7\mbox{]} \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=297pt]{group__drivers04_gada8bbee8b1136d3d493ce67c266942da_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers04_gada8bbee8b1136d3d493ce67c266942da_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers04_gaf9b4059456656d1620a19fa771086a2d}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!hlw8032\_read@{hlw8032\_read}}
+\index{hlw8032\_read@{hlw8032\_read}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{hlw8032\_read()}{hlw8032\_read()}}
+{\footnotesize\ttfamily \label{group__drivers04_gaf9b4059456656d1620a19fa771086a2d} 
+bool hlw8032\+\_\+read (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch}{}\end{DoxyParamCaption})}
+
+
+
+Read power measurements from a specific channel. 
+
+
+\begin{DoxyItemize}
+\item Selects channel via multiplexer
+\item Reads and validates 24-\/byte frame
+\item Applies per-\/channel calibration
+\item Updates internal raw and scaled measurement cache
+\item Thread-\/safe (uses uart\+Hlw\+Mtx)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em ch} & Channel index \mbox{[}0..7\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if valid frame received and parsed 
+
+false on timeout, invalid checksum, or out-\/of-\/range channel
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Blocks for up to HLW\+\_\+\+UART\+\_\+\+TIMEOUT\+\_\+\+US waiting for frame 
+
+Uses v\+Task\+Delay() for cooperative scheduling 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers04_gaf9b4059456656d1620a19fa771086a2d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers04_gaf9b4059456656d1620a19fa771086a2d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers04_ga76f09e4482db113563628126492d3200}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!hlw8032\_refresh\_all@{hlw8032\_refresh\_all}}
+\index{hlw8032\_refresh\_all@{hlw8032\_refresh\_all}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{hlw8032\_refresh\_all()}{hlw8032\_refresh\_all()}}
+{\footnotesize\ttfamily \label{group__drivers04_ga76f09e4482db113563628126492d3200} 
+void hlw8032\+\_\+refresh\+\_\+all (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Read and cache measurements for all 8 channels. 
+
+Sequentially polls all channels and updates cache. Blocking operation (takes \texorpdfstring{$\sim$}{\string~}2 seconds at 4800 baud). Updates total current sum after completing all channels.
+
+\begin{DoxyNote}{Note}
+Use sparingly (e.\+g., on demand or system init) 
+
+Prefer \doxylink{group__drivers04_ga0b3a5c410541deaf144c3e33d4b65175}{hlw8032\+\_\+poll\+\_\+once()} for continuous monitoring 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers04_ga76f09e4482db113563628126492d3200_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=331pt]{group__drivers04_ga76f09e4482db113563628126492d3200_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers04_gacfd84777ef919c041f40ea955f672d5e}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!hlw8032\_update\_uptime@{hlw8032\_update\_uptime}}
+\index{hlw8032\_update\_uptime@{hlw8032\_update\_uptime}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{hlw8032\_update\_uptime()}{hlw8032\_update\_uptime()}}
+{\footnotesize\ttfamily \label{group__drivers04_gacfd84777ef919c041f40ea955f672d5e} 
+void hlw8032\+\_\+update\+\_\+uptime (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch}{, }\item[{bool}]{state}{}\end{DoxyParamCaption})}
+
+
+
+Update channel uptime based on current relay state. 
+
+
+\begin{DoxyItemize}
+\item If state transitioned from OFF to ON, starts tracking
+\item If state is ON, accumulates time since last call
+\item If state transitioned from ON to OFF, stops accumulation
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em ch} & Channel index \mbox{[}0..7\mbox{]} \\
+\hline
+{\em state} & Current relay state (true=ON, false=OFF)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Should be called periodically (e.\+g., by Meter\+Task) 
+
+Uses absolute\+\_\+time\+\_\+t for microsecond precision 
+\end{DoxyNote}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers04_gacfd84777ef919c041f40ea955f672d5e_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{group__drivers04_doc-var-members}
+\doxysubsubsection{Variable Documentation}
+\Hypertarget{group__drivers04_ga44f0e457365b1d578cbb01ee9f15af0c}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!uartHlwMtx@{uartHlwMtx}}
+\index{uartHlwMtx@{uartHlwMtx}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{uartHlwMtx}{uartHlwMtx}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{group__drivers04_ga44f0e457365b1d578cbb01ee9f15af0c} 
+Semaphore\+Handle\+\_\+t uart\+Hlw\+Mtx = NULL}
+
+
+
+UART mutex for HLW8032 communication (extern, defined in .c) 
+
+\Hypertarget{group__drivers04_ga44f0e457365b1d578cbb01ee9f15af0c}\index{4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}!uartHlwMtx@{uartHlwMtx}}
+\index{uartHlwMtx@{uartHlwMtx}!4. HLW8032 Power Measurement Driver@{4. HLW8032 Power Measurement Driver}}
+\doxysubsubsubsection{\texorpdfstring{uartHlwMtx}{uartHlwMtx}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{group__drivers04_ga44f0e457365b1d578cbb01ee9f15af0c} 
+Semaphore\+Handle\+\_\+t uart\+Hlw\+Mtx\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+UART mutex for HLW8032 communication (extern, defined in .c) 
+

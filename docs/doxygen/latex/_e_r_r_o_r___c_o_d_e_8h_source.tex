@@ -1,0 +1,152 @@
+\doxysection{ERROR\+\_\+\+CODE.\+h}
+\hypertarget{_e_r_r_o_r___c_o_d_e_8h_source}{}\label{_e_r_r_o_r___c_o_d_e_8h_source}\index{src/Software/ENERGIS\_RTOS/src/ERROR\_CODE.h@{src/Software/ENERGIS\_RTOS/src/ERROR\_CODE.h}}
+\mbox{\hyperlink{_e_r_r_o_r___c_o_d_e_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ ERRORLOGGER\ 1}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{/********************************************************************************}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ERROR\ CODE\ SCHEME\ (16-\/bit:\ 0xMSCC)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ ********************************************************************************/}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{group__config04_gga8e48d8cd53b1718d1d4f1419b72e3d41a805db7a2df0314826a7654be3ba24402}{ERR\_SEV\_INFO}}\ =\ 0x1,\ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{group__config04_gga8e48d8cd53b1718d1d4f1419b72e3d41a1f5f367f42f5b538f36b02a512882b77}{ERR\_SEV\_WARNING}}\ =\ 0x2,\ }
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{group__config04_gga8e48d8cd53b1718d1d4f1419b72e3d41a3ba5b0701279ef186b78b42c2ad7a87c}{ERR\_SEV\_ERROR}}\ =\ 0x4,\ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{group__config04_gga8e48d8cd53b1718d1d4f1419b72e3d41aaf0891fe33f6c79509f16c26af4d4b1a}{ERR\_FATAL\_ERROR}}\ =\ 0xF\ \ }
+\DoxyCodeLine{00044\ \}\ \mbox{\hyperlink{group__config04_ga8e48d8cd53b1718d1d4f1419b72e3d41}{error\_severity\_t}};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ ERR\_MOD\_INIT\ 0x1\ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ ERR\_MOD\_NET\ 0x2\ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ ERR\_MOD\_METER\ 0x3\ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ ERR\_MOD\_STORAGE\ 0x4\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ ERR\_MOD\_BUTTON\ 0x5\ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ ERR\_MOD\_HEALTH\ 0x6\ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ ERR\_MOD\_LOGGER\ 0x7\ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ ERR\_MOD\_CONSOLE\ 0x8\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ ERR\_MOD\_OCP\ 0x9\ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ ERR\_MOD\_SWTASK\ 0xA\ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{comment}{/********************************************************************************}}
+\DoxyCodeLine{00063\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FILE\ IDs\ (FID)\ PER\ MODULE\ /\ FILE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00064\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Used\ in\ ERR\_MAKE\_CODE(module,\ severity,\ FID,\ EID)\ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00065\ \textcolor{comment}{\ ********************************************************************************/}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{comment}{/*\ ===========================\ INIT\ MODULE\ (0x1)\ ============================\ */}}
+\DoxyCodeLine{00068\ \textcolor{comment}{/*\ Files:}}
+\DoxyCodeLine{00069\ \textcolor{comment}{\ *\ \ \ src/ENERGIS\_RTOS.c}}
+\DoxyCodeLine{00070\ \textcolor{comment}{\ *\ \ \ src/tasks/InitTask.c}}
+\DoxyCodeLine{00071\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ ERR\_FID\_INIT\_MAIN\ 0x0\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ ERR\_FID\_INITTASK\ 0xF\ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{comment}{/*\ ============================\ NET\ MODULE\ (0x2)\ ============================\ */}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ ERR\_FID\_NET\_HTTP\_CONTROL\ 0x0\ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ ERR\_FID\_NET\_HTTP\_SERVER\ 0x1\ \ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ ERR\_FID\_NET\_HTTP\_METRICS\ 0x2\ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ ERR\_FID\_NET\_HTTP\_PAGE\_CONTENT\ 0x3\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ ERR\_FID\_NET\_HTTP\_SETTINGS\ 0x4\ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ ERR\_FID\_NET\_HTTP\_STATUS\ 0x5\ \ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ ERR\_FID\_NET\_SNMP\_CUSTOM\ 0x6\ \ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ ERR\_FID\_NET\_SNMP\_NETCTRL\ 0x7\ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ ERR\_FID\_NET\_SNMP\_OUTLETCTRL\ 0x8\ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ ERR\_FID\_NET\_SNMP\_POWERMON\ 0x9\ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ ERR\_FID\_NET\_SNMP\_VOLTAGEMON\ 0xA\ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ ERR\_FID\_NET\_ETHERNET\ 0xB\ \ \ \ \ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ ERR\_FID\_NET\_SOCKET\ 0xC\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#define\ ERR\_FID\_NET\_SOCKET2\ 0xD\ \ \ \ \ \ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#define\ ERR\_FID\_NET\_SNMP\ 0xE\ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#define\ ERR\_FID\_NETTASK\ 0xF\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{comment}{/*\ ==========================\ METER\ MODULE\ (0x3)\ ============================\ */}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ ERR\_FID\_HLW8032\ 0x0\ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#define\ ERR\_FID\_METERTASK\ 0xF\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{comment}{/*\ =========================\ STORAGE\ MODULE\ (0x4)\ ===========================\ */}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#define\ ERR\_FID\_ST\_CALIBRATION\ 0x0\ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#define\ ERR\_FID\_ST\_CHANNEL\_LBL\ 0x1\ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#define\ ERR\_FID\_ST\_ENERGY\_MON\ 0x2\ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ ERR\_FID\_ST\_EVENT\_LOG\ 0x3\ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#define\ ERR\_FID\_ST\_FACTORY\_DEFS\ 0x4\ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#define\ ERR\_FID\_ST\_CAT24\ 0x5\ \ \ \ \ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#define\ ERR\_FID\_ST\_NETWORK\_CFG\ 0x6\ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#define\ ERR\_FID\_ST\_STORAGE\_COMMON\ 0x7\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#define\ ERR\_FID\_ST\_USER\_OUTPUT\ 0x8\ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#define\ ERR\_FID\_ST\_USER\_PREFS\ 0x9\ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#define\ ERR\_FID\_DEVICE\_IDENTITY\ 0xA\ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#define\ ERR\_FID\_ST\_STORAGETASK\ 0xF\ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{comment}{/*\ =========================\ BUTTON\ MODULE\ (0x5)\ ============================\ */}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ ERR\_FID\_BUTTON\_DRV\ 0x0\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#define\ ERR\_FID\_MCP23017\ 0x1\ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#define\ ERR\_FID\_MCP23017\_2\ 0x2\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#define\ ERR\_FID\_BUTTONTASK\ 0xF\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{comment}{/*\ =========================\ HEALTH\ MODULE\ (0x6)\ ============================\ */}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#define\ ERR\_FID\_CRASHLOG\ 0x0\ \ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#define\ ERR\_FID\_POWER\_MGR\ 0x1\ \ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#define\ ERR\_FID\_RTOS\_HOOKS\ 0x2\ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#define\ ERR\_FID\_WATCHDOG\_WRAP\ 0x3\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#define\ ERR\_FID\_HEALTHTASK\ 0xF\ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \textcolor{comment}{/*\ =========================\ LOGGER\ MODULE\ (0x7)\ ============================\ */}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#define\ ERR\_FID\_HELPERS\ 0x0\ \ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#define\ ERR\_FID\_LOGGERTASK\ 0xF\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{comment}{/*\ ========================\ CONSOLE\ MODULE\ (0x8)\ ============================\ */}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#define\ ERR\_FID\_CONSOLETASK\ 0x0\ \ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#define\ ERR\_FID\_CONSOLETASK2\ 0x1\ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#define\ ERR\_FID\_CONSOLETASK3\ 0x2\ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#define\ ERR\_FID\_PROV\_COMMANDS\ 0x3\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00133\ \textcolor{comment}{/*\ Reserve\ 0x4..0xF\ for\ future\ console\_submodules\ .c\ files\ */}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \textcolor{comment}{/*\ ====================\ Overcurrent\ Protection\ (0x9)\ =========================\ */}}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#define\ ERR\_FID\_OVPTASK\ 0xF\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \textcolor{comment}{/*\ =========================\ SWITCH\ MODULE\ (0xA)\ =============================\ */}}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#define\ ERR\_FID\_SWITCHTASK\ 0x0\ \ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#define\ ERR\_FID\_SWITCHTASK1\ 0x1\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#define\ ERR\_FID\_SWITCHTASK2\ 0x2\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#define\ ERR\_FID\_SWITCHTASK3\ 0x3\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#define\ ERR\_FID\_SWITCHTASK4\ 0x4\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#define\ ERR\_FID\_SWITCHTASK5\ 0x5\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \textcolor{comment}{/********************************************************************************}}
+\DoxyCodeLine{00147\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FUNCTION\ MACROS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00148\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00149\ \textcolor{comment}{\ ********************************************************************************/}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#define\ ERR\_FID(fid)\ ((uint8\_t)((fid)\ \&\ 0x0F))}}
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\#define\ ERR\_EID(eid)\ ((uint8\_t)((eid)\ \&\ 0x0F))}}
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\#define\ ERR\_CC(fid,\ eid)\ ((uint8\_t)((ERR\_FID(fid)\ <<\ 4)\ |\ ERR\_EID(eid)))}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00179\ \textcolor{preprocessor}{\#define\ ERR\_MAKE\_CODE(module,\ severity,\ fid,\ eid)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\ \ \ \ ((uint16\_t)((((module)\ \&\ 0x0F)\ <<\ 12)\ |\ (((severity)\ \&\ 0x0F)\ <<\ 8)\ |\ ERR\_CC(fid,\ eid)))}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00187\ \textcolor{preprocessor}{\#define\ ERR\_GET\_FID(code)\ ((uint8\_t)(((code)\ >>\ 4)\ \&\ 0x0F))}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\#define\ ERR\_GET\_EID(code)\ ((uint8\_t)((code)\ \&\ 0x0F))}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00201\ \textcolor{preprocessor}{\#define\ ERR\_GET\_MODULE(code)\ ((uint8\_t)(((code)\ >>\ 12)\ \&\ 0x0F))}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00208\ \textcolor{preprocessor}{\#define\ ERR\_GET\_SEVERITY(code)\ ((uint8\_t)(((code)\ >>\ 8)\ \&\ 0x0F))}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00217\ \textcolor{preprocessor}{\#if\ ERROR}}
+\DoxyCodeLine{00218\ \textcolor{preprocessor}{\#define\ ERROR\_PRINT\_CODE(code,\ fmt,\ ...)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00219\ \textcolor{preprocessor}{\ \ \ \ do\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00220\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ Switch\_SetFaultLed(true,\ 0);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00221\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ log\_printf\_force("{}[ERROR\ 0x\%04X]\ "{}\ fmt,\ (uint16\_t)(code),\ \#\#\_\_VA\_ARGS\_\_);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00222\ \textcolor{preprocessor}{\ \ \ \ \}\ while\ (0)}}
+\DoxyCodeLine{00223\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00224\ \textcolor{preprocessor}{\#define\ ERROR\_PRINT\_CODE(code,\ fmt,\ ...)\ ((void)0)}}
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \textcolor{preprocessor}{\#if\ WARNING}}
+\DoxyCodeLine{00228\ \textcolor{preprocessor}{\#define\ WARNING\_PRINT\_CODE(code,\ fmt,\ ...)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00229\ \textcolor{preprocessor}{\ \ \ \ log\_printf\_force("{}[WARNING\ 0x\%04X]\ "{}\ fmt,\ (uint16\_t)(code),\ \#\#\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00230\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00231\ \textcolor{preprocessor}{\#define\ WARNING\_PRINT\_CODE(code,\ fmt,\ ...)\ ((void)0)}}
+\DoxyCodeLine{00232\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

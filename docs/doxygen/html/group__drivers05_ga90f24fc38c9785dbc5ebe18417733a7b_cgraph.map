@@ -1,0 +1,5 @@
+<map id="w5500_check_version" name="w5500_check_version">
+<area shape="rect" id="Node000001" title="Check W5500 version register (diagnostic)" alt="" coords="5,5,156,32"/>
+<area shape="rect" id="Node000002" href="$group__tasks05.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="204,5,387,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="156,16,188,16,188,21,156,21"/>
+</map>

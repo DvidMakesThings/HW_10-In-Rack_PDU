@@ -5,8 +5,7 @@
  * @version 1.0.0
  * @date 2025-11-06
  *
- * @details Implements a FreeRTOS-based logging task that receives log messages
- * via a queue and outputs them to stdio (USB-CDC).
+ * @brief Logger task implementation with queue-based message handling.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -17,42 +16,62 @@
 #define LOGGER_TAG "[LOGGER]"
 
 /**
- * @brief Single log record placed on the logger queue.
+ * @brief Log message queue item structure.
+ *
+ * Contains a single formatted log message ready for output. Messages are
+ * pre-formatted by log_printf() before being queued, avoiding formatting
+ * work in the output task.
  */
 typedef struct {
-    char msg[LOGGER_MSG_MAX]; /**< Null-terminated log line payload. */
+    char msg[LOGGER_MSG_MAX]; /**< Null-terminated formatted log message. */
 } LogItem_t;
 
-/** @brief Logger queue handle (created once in LoggerTask_Init). */
+/** Logger message queue handle. */
 static QueueHandle_t logQueue;
 
-/** @brief The logger task handle (for single-instance guard). */
+/** Logger task handle for single-instance guard. */
 static TaskHandle_t s_logger_task = NULL;
 
+/** Mute depth counter for nested mute sections (0 = not muted). */
 static volatile uint32_t s_logger_mute_depth = 0u;
 
 /**
- * @brief Logger task loop – prints all messages from the queue.
+ * @brief Main logger task function.
+ *
+ * Continuously receives log messages from the queue and outputs them to
+ * USB-CDC (stdout). Implements heartbeat monitoring and maintains responsiveness
+ * to the health watchdog even when no messages are pending.
+ *
+ * Operation:
+ * - Initializes USB-CDC on first run
+ * - Waits 1 second for USB enumeration
+ * - Polls queue with 50ms timeout to maintain watchdog responsiveness
+ * - Outputs received messages immediately to stdout
+ * - Sends periodic heartbeats to health monitor
+ *
+ * @param[in] arg Task parameters (unused).
  */
 static void LoggerTask(void *arg) {
     (void)arg;
 
+    /* Initialize USB-CDC for console output */
     stdio_init_all();
-    vTaskDelay(pdMS_TO_TICKS(1000)); /* allow USB-CDC to enumerate */
+    vTaskDelay(pdMS_TO_TICKS(1000));
     ECHO("%s Task started\r\n", LOGGER_TAG);
 
     static uint32_t hb_log_ms = 0;
     LogItem_t item;
 
+    /* Main message processing loop */
     for (;;) {
-        /* periodic beat irrespective of queue traffic */
+        /* Send periodic heartbeat to health monitor */
         uint32_t __now = to_ms_since_boot(get_absolute_time());
         if ((__now - hb_log_ms) >= LOGTASKBEAT_MS) {
             hb_log_ms = __now;
             Health_Heartbeat(HEALTH_ID_LOGGER);
         }
 
-        /* wait briefly for a log item; stay responsive to HealthTask */
+        /* Receive and output log messages with timeout for watchdog responsiveness */
         if (xQueueReceive(logQueue, &item, pdMS_TO_TICKS(50)) == pdPASS) {
             printf("%s", item.msg);
             Health_Heartbeat(HEALTH_ID_LOGGER);
@@ -60,23 +79,19 @@ static void LoggerTask(void *arg) {
     }
 }
 
-/* ##################################################################### */
-/*                       PUBLIC API FUNCTIONS                            */
-/* ##################################################################### */
+/* Public API Implementation */
 
-/**
- * @brief Query Logger READY state.
- */
+/** See loggertask.h for detailed documentation. */
 bool Logger_IsReady(void) { return (logQueue != NULL); }
 
-/**
- * @brief Initialize and start the Logger task with a deterministic enable gate.
- */
+/** See loggertask.h for detailed documentation. */
 BaseType_t LoggerTask_Init(bool enable) {
+    /* Skip initialization if disabled */
     if (!enable) {
-        return pdPASS; /* deterministically skipped */
+        return pdPASS;
     }
 
+    /* Create message queue if not already created */
     if (logQueue == NULL) {
         logQueue = xQueueCreate(LOGGER_QUEUE_LEN, sizeof(LogItem_t));
         if (logQueue == NULL) {
@@ -90,10 +105,10 @@ BaseType_t LoggerTask_Init(bool enable) {
         }
     }
 
+    /* Create task if not already created */
     if (s_logger_task == NULL) {
-        if (xTaskCreate(LoggerTask, "Logger", LOGGER_STACK_SIZE,
-                        NULL, /* task reads file-scope logQueue */
-                        LOGTASK_PRIORITY, &s_logger_task) != pdPASS) {
+        if (xTaskCreate(LoggerTask, "Logger", LOGGER_STACK_SIZE, NULL, LOGTASK_PRIORITY,
+                        &s_logger_task) != pdPASS) {
             return pdFAIL;
         }
     }
@@ -101,14 +116,11 @@ BaseType_t LoggerTask_Init(bool enable) {
     return pdPASS;
 }
 
-/**
- * @brief Printf-style logging into the Logger queue.
- * Formats a message into the internal LogItem_t buffer and enqueues it for the
- * Logger task to flush to the chosen backends (UART, USB-CDC, etc.).
- */
+/** See loggertask.h for detailed documentation. */
 void log_printf(const char *fmt, ...) {
+    /* Validate logger initialization and format string */
     if (logQueue == NULL || fmt == NULL) {
-        return; /* Logger not initialized yet */
+        return;
     }
 
     /* Drop message if logger is muted */
@@ -116,46 +128,43 @@ void log_printf(const char *fmt, ...) {
         return;
     }
 
+    /* Format message into queue item */
     LogItem_t item;
     va_list args;
     va_start(args, fmt);
     (void)vsnprintf(item.msg, sizeof(item.msg), fmt, args);
     va_end(args);
 
-    /* Non-blocking send; drop if full */
+    /* Send to queue (non-blocking, drop if full) */
     (void)xQueueSend(logQueue, &item, 0);
 }
 
-/**
- * @brief Printf-style logging that bypasses the mute gate.
- */
+/** See loggertask.h for detailed documentation. */
 void log_printf_force(const char *fmt, ...) {
+    /* Validate logger initialization and format string */
     if (logQueue == NULL || fmt == NULL) {
-        return; /* Logger not initialized yet */
+        return;
     }
 
+    /* Format message into queue item (ignore mute state) */
     LogItem_t item;
     va_list args;
     va_start(args, fmt);
     (void)vsnprintf(item.msg, sizeof(item.msg), fmt, args);
     va_end(args);
 
-    /* Non-blocking send; drop if full */
+    /* Send to queue (non-blocking, drop if full) */
     (void)xQueueSend(logQueue, &item, 0);
 }
 
-/**
- * @brief Begin a critical logging section by muting normal log traffic.
- */
+/** See loggertask.h for detailed documentation. */
 void Logger_MutePush(void) {
     taskENTER_CRITICAL();
     s_logger_mute_depth++;
     taskEXIT_CRITICAL();
 }
 
-/**
- * @brief End a critical logging section started with Logger_MutePush().
- */
+/** See loggertask.h for detailed documentation. */
 void Logger_MutePop(void) {
     taskENTER_CRITICAL();
     if (s_logger_mute_depth > 0u) {

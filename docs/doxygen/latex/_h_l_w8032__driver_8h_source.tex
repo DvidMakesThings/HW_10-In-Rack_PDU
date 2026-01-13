@@ -1,0 +1,92 @@
+\doxysection{HLW8032\+\_\+driver.\+h}
+\hypertarget{_h_l_w8032__driver_8h_source}{}\label{_h_l_w8032__driver_8h_source}\index{src/Software/ENERGIS\_RTOS/src/drivers/HLW8032\_driver.h@{src/Software/ENERGIS\_RTOS/src/drivers/HLW8032\_driver.h}}
+\mbox{\hyperlink{_h_l_w8032__driver_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#ifndef\ HLW8032\_DRIVER\_H}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ HLW8032\_DRIVER\_H}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_o_n_f_i_g_8h}{../CONFIG.h}}"{}}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{comment}{/*\ =====================\ \ HLW8032\ Constants\ \ ===============================\ */}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ HLW8032\_VF\ 1.88f}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ HLW8032\_CF\ 1.0f}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ MAX\_RX\_BYTES\ 128}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ HLW\_UART\_TIMEOUT\_US\ 250000ULL}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ MUX\_SETTLE\_US\ 1000}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{comment}{/*\ =====================\ \ RTOS\ Synchronization\ \ ============================\ */}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{extern}\ SemaphoreHandle\_t\ \mbox{\hyperlink{group__drivers04_ga44f0e457365b1d578cbb01ee9f15af0c}{uartHlwMtx}};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{comment}{/*\ =====================\ \ Calibration\ Structure\ \ ===========================\ */}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{structhlw__calib__t}{hlw\_calib\_t}}\ \mbox{\hyperlink{structhlw__calib__t}{hlw\_calib\_t}};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{comment}{/*\ =====================\ \ Public\ API\ Functions\ \ ============================\ */}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00096\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers04_gac1bd84c5a254283faacc776489f36625}{hlw8032\_init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00115\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers04_gaf9b4059456656d1620a19fa771086a2d}{hlw8032\_read}}(uint8\_t\ ch);}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00125\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{group__drivers04_ga6fb634639b04ca4cfd297f7c48a0c181}{hlw8032\_get\_voltage}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00135\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{group__drivers04_ga2688ff6d07f74455d95d323ff3c2a0dd}{hlw8032\_get\_current}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00145\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{group__drivers04_gaaa960776be4d3e02a4606c524dc5316b}{hlw8032\_get\_power}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00156\ uint32\_t\ \mbox{\hyperlink{group__drivers04_ga3e3e299137c4b5355cd17f94ddc24899}{hlw8032\_get\_uptime}}(uint8\_t\ ch);}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00172\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers04_gacfd84777ef919c041f40ea955f672d5e}{hlw8032\_update\_uptime}}(uint8\_t\ ch,\ \textcolor{keywordtype}{bool}\ state);}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00189\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers04_ga0b3a5c410541deaf144c3e33d4b65175}{hlw8032\_poll\_once}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00201\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers04_ga76f09e4482db113563628126492d3200}{hlw8032\_refresh\_all}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \textcolor{comment}{/*\ =====================\ \ Cached\ Measurement\ Accessors\ \ ====================\ */}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00214\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{group__drivers04_ga3fd1465bd8f5106879ee5677d0d551da}{hlw8032\_cached\_voltage}}(uint8\_t\ ch);}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00225\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{group__drivers04_gad2a10b704d2588035bde43ff6b941ea7}{hlw8032\_cached\_current}}(uint8\_t\ ch);}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00236\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{group__drivers04_ga5b03a8561efc81ded185e88ffc1574a9}{hlw8032\_cached\_power}}(uint8\_t\ ch);}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00244\ uint32\_t\ \mbox{\hyperlink{group__drivers04_ga33d4652f0a85150f7dcba9f702b9893b}{hlw8032\_cached\_uptime}}(uint8\_t\ ch);}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00252\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers04_ga01cdcd0497f8134e1ecb93331474dbdb}{hlw8032\_cached\_state}}(uint8\_t\ ch);}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \textcolor{comment}{/*\ =====================\ \ Total\ Current\ Sum\ Accessor\ \ ======================\ */}}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00270\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{group__drivers04_ga4824aa9f5ece25a68111e4097e62311e}{hlw8032\_get\_total\_current}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00283\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers04_ga8813e14d94b16a9cc2229159c8fdd6c1}{hlw8032\_cycle\_complete}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \textcolor{comment}{/*\ =====================\ \ Calibration\ Functions\ \ ===========================\ */}}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00294\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers04_gabacd90abd2475b3fb2dfe2efcd8e4f6a}{hlw8032\_calibration\_start\_current\_all}}(uint8\_t\ channel,\ \textcolor{keywordtype}{float}\ ref\_current);}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00307\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers04_ga76954a7035d4f2fad1ec9fba75e62b6c}{hlw8032\_load\_calibration}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00325\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers04_ga643d63b42087b4dd4b336571eb9b6d18}{hlw8032\_calibration\_start\_zero\_all}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00346\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers04_gac3fd97d9d666bdf1a910b34170d0c38d}{hlw8032\_calibration\_start\_voltage\_all}}(\textcolor{keywordtype}{float}\ ref\_voltage);}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00354\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers04_ga2fabec2f7c0a743f2fd172d233fabb0a}{hlw8032\_calibration\_is\_running}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00364\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers04_ga9ab9b6a4d7f948c4bfd0bad1b1866a1b}{hlw8032\_get\_calibration}}(uint8\_t\ channel,\ \mbox{\hyperlink{structhlw__calib__t}{hlw\_calib\_t}}\ *calib);}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00371\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers04_gada8bbee8b1136d3d493ce67c266942da}{hlw8032\_print\_calibration}}(uint8\_t\ channel);}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00378\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers04_ga6113ad3cf2b9bc5dad22805412ae8150}{hlw8032\_dump\_cache}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00381\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ HLW8032\_DRIVER\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00382\ }
+
+\end{DoxyCode}

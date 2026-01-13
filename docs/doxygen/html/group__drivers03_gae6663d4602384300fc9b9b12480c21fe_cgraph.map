@@ -1,0 +1,18 @@
+<map id="mcp_init" name="mcp_init">
+<area shape="rect" id="Node000001" title="Initialize an MCP23017 device to a known state." alt="" coords="5,81,76,108"/>
+<area shape="rect" id="Node000002" href="$group__drivers01.html#ga0e406d50e8948e593649a11c729acd9b" title="Read 8&#45;bit register: write [reg] (no stop), then read 1 byte." alt="" coords="125,31,256,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,80,133,60,135,65,77,85"/>
+<area shape="rect" id="Node000005" href="$group__drivers01.html#gab7b4aa096ded6cebd93256e5b5994e42" title="Write 8&#45;bit register with 8&#45;bit value: [reg, value]." alt="" coords="124,81,257,108"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="76,92,108,92,108,97,76,97"/>
+<area shape="rect" id="Node000008" href="$_m_c_p23017__driver_8c.html#a29f7b2f2def728133e13cc85e91b9655" title="Pulse reset GPIO if configured." alt="" coords="146,132,234,159"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="77,104,135,124,133,129,75,109"/>
+<area shape="rect" id="Node000003" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="334,56,455,83"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="256,49,319,57,318,63,256,55"/>
+<area shape="rect" id="Node000004" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="305,5,484,32"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="256,33,289,29,290,34,256,39"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="257,84,318,76,319,81,257,89"/>
+<area shape="rect" id="Node000006" href="$group__drivers01.html#ga170d6c4ff97ddc2d314f0a7a0054f283" title="Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK i2c_write_time..." alt="" coords="308,107,481,133"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="257,100,293,105,293,110,257,106"/>
+<area shape="rect" id="Node000007" href="$i2c__bus_8c.html#afbaa64f79bdd1fa39c8fa5b7a9c2717b" title=" " alt="" coords="532,107,690,133"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="481,117,517,117,517,123,481,123"/>
+</map>

@@ -1,0 +1,310 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/snmp/snmp\+\_\+power\+Mon.c File Reference}
+\hypertarget{snmp__power_mon_8c}{}\label{snmp__power_mon_8c}\index{src/Software/ENERGIS\_RTOS/src/snmp/snmp\_powerMon.c@{src/Software/ENERGIS\_RTOS/src/snmp/snmp\_powerMon.c}}
+{\ttfamily \#include "{}snmp\+\_\+power\+Mon.\+h"{}}\newline
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+{\ttfamily \#include "{}../tasks/\+OCP.\+h"{}}\newline
+Include dependency graph for snmp\+\_\+power\+Mon.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp__power_mon_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{snmp__power_mon_8c_a3c154fc0f0802416a453f7f5ef8d1051}{GEN\+\_\+\+CH}}(idx)
+\begin{DoxyCompactList}\small\item\em Macro to generate six SNMP telemetry getters for a channel. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{snmp__power_mon_8c_af45f37256bc0bbee50f12561e810efda}{ftoa}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len, float x, const char \texorpdfstring{$\ast$}{*}fmt)
+\begin{DoxyCompactList}\small\item\em Format float to ASCII string buffer. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{snmp__power_mon_8c_a906d1e27977299ca0024205545d05dc7}{u32toa}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len, uint32\+\_\+t v)
+\begin{DoxyCompactList}\small\item\em Format uint32 to ASCII string buffer. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{snmp__power_mon_8c_a2f3700d5c752414ae1faad14def54875}{readN}} (uint8\+\_\+t ch, float \texorpdfstring{$\ast$}{*}v, float \texorpdfstring{$\ast$}{*}a, float \texorpdfstring{$\ast$}{*}w, float \texorpdfstring{$\ast$}{*}pf, float \texorpdfstring{$\ast$}{*}kwh, uint32\+\_\+t \texorpdfstring{$\ast$}{*}up)
+\begin{DoxyCompactList}\small\item\em Read telemetry snapshot for a channel from Meter\+Task cache. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{snmp__power_mon_8c_a4d518845ee0423e2c4f3c291241beafc}{i32le}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len, int32\+\_\+t v)
+\begin{DoxyCompactList}\small\item\em Write a signed 32-\/bit integer into SNMP response buffer. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{snmp__power_mon_8c_a3fc9a8bd0eb932e391c20a636e6a18c4}{u32le}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len, uint32\+\_\+t v)
+\begin{DoxyCompactList}\small\item\em Write an unsigned 32-\/bit integer into SNMP response buffer. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{snmp__power_mon_8c_a8bfed698c2d0034fd91352b89bcfce10}{ocp\+\_\+read\+\_\+status}} (\mbox{\hyperlink{structovercurrent__status__t}{overcurrent\+\_\+status\+\_\+t}} \texorpdfstring{$\ast$}{*}st)
+\begin{DoxyCompactList}\small\item\em Read overcurrent protection status snapshot. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_gac66c88289a827019e9d7d2fd52c8a25d}{get\+\_\+ocp\+\_\+\+STATE}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for overcurrent protection state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_gac64f180957717b1f72f3bb0d46657f7c}{get\+\_\+ocp\+\_\+\+TOTAL\+\_\+\+CURRENT\+\_\+A}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for total measured current across all outlets \mbox{[}A\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_gab7ffa6c94b3c4085b6ceb7fec2b08723}{get\+\_\+ocp\+\_\+\+LIMIT\+\_\+A}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for configured OCP current limit \mbox{[}A\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_ga59836958c7dde04d045c218bc4bfa82c}{get\+\_\+ocp\+\_\+\+WARNING\+\_\+\+THRESHOLD\+\_\+A}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for OCP warning threshold \mbox{[}A\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_gad078fc7ee62f370b56ba305985db7faf}{get\+\_\+ocp\+\_\+\+CRITICAL\+\_\+\+THRESHOLD\+\_\+A}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for OCP critical threshold \mbox{[}A\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_ga298c0c01b328703f6ab782a3aefdb475}{get\+\_\+ocp\+\_\+\+RECOVERY\+\_\+\+THRESHOLD\+\_\+A}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for OCP recovery threshold \mbox{[}A\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_ga4f79c8b9c7d28d59cff221808b47f082}{get\+\_\+ocp\+\_\+\+LAST\+\_\+\+TRIPPED\+\_\+\+CH}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for last tripped channel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_gaeb4bf92301309e943f28678b8a92cadb}{get\+\_\+ocp\+\_\+\+TRIP\+\_\+\+COUNT}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for OCP trip count since boot. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_gad08889d91475184951158037ae7988e3}{get\+\_\+ocp\+\_\+\+LAST\+\_\+\+TRIP\+\_\+\+MS}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for last trip timestamp in milliseconds since boot. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_ga397cba4cff16c21da10f1da4a86235d2}{get\+\_\+ocp\+\_\+\+SWITCHING\+\_\+\+ALLOWED}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for switching-\/allowed flag. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_gade7b106ecfdbb74b00cd434f7d23104b}{get\+\_\+ocp\+\_\+\+RESET}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for OCP reset control value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_gaf8f7c0a54cdf6546c526e37786b80baa}{set\+\_\+ocp\+\_\+\+RESET}} (int32\+\_\+t v)
+\begin{DoxyCompactList}\small\item\em SNMP setter to clear OCP lockout. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/08
+\end{DoxyDate}
+Implementation of SNMP power monitoring callbacks. All telemetry data is read from Meter\+Task\textquotesingle{}s canonical cache using non-\/blocking operations. If telemetry is invalid or unavailable, functions return zero values to ensure SNMP queries always receive valid responses.
+
+The module uses macro-\/generated functions (GEN\+\_\+\+CH) to create 6 telemetry getters per channel (voltage, current, power, power factor, energy, uptime) for all 8 outlets. OCP status functions access the overcurrent protection module directly via \doxylink{group__tasks08_gaa9aab2a7bfb3274872c5f4f162af177e}{Overcurrent\+\_\+\+Get\+Status()}.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{snmp__power_mon_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{snmp__power_mon_8c_a3c154fc0f0802416a453f7f5ef8d1051}\index{snmp\_powerMon.c@{snmp\_powerMon.c}!GEN\_CH@{GEN\_CH}}
+\index{GEN\_CH@{GEN\_CH}!snmp\_powerMon.c@{snmp\_powerMon.c}}
+\doxysubsubsection{\texorpdfstring{GEN\_CH}{GEN\_CH}}
+{\footnotesize\ttfamily \label{snmp__power_mon_8c_a3c154fc0f0802416a453f7f5ef8d1051} 
+\#define GEN\+\_\+\+CH(\begin{DoxyParamCaption}\item[{}]{idx}{}\end{DoxyParamCaption})}
+
+
+
+Macro to generate six SNMP telemetry getters for a channel. 
+
+Generates the following functions for channel N (idx)\+:
+\begin{DoxyItemize}
+\item get\+\_\+power\+\_\+\+N\+\_\+\+MEAS\+\_\+\+VOLTAGE\+: Voltage \mbox{[}V\mbox{]} as ASCII float (2 decimals)
+\item get\+\_\+power\+\_\+\+N\+\_\+\+MEAS\+\_\+\+CURRENT\+: Current \mbox{[}A\mbox{]} as ASCII float (3 decimals)
+\item get\+\_\+power\+\_\+\+N\+\_\+\+MEAS\+\_\+\+WATT\+: Power \mbox{[}W\mbox{]} as ASCII float (1 decimal)
+\item get\+\_\+power\+\_\+\+N\+\_\+\+MEAS\+\_\+\+PF\+: Power factor as ASCII float (3 decimals)
+\item get\+\_\+power\+\_\+\+N\+\_\+\+MEAS\+\_\+\+KWH\+: Energy \mbox{[}k\+Wh\mbox{]} as ASCII float (3 decimals)
+\item get\+\_\+power\+\_\+\+N\+\_\+\+MEAS\+\_\+\+UPTIME\+: Uptime \mbox{[}s\mbox{]} as ASCII unsigned integer
+\end{DoxyItemize}
+
+Each generated function reads telemetry from Meter\+Task cache via \doxylink{snmp__power_mon_8c_a2f3700d5c752414ae1faad14def54875}{read\+N()} and formats the appropriate field using \doxylink{snmp__power_mon_8c_af45f37256bc0bbee50f12561e810efda}{ftoa()} or \doxylink{snmp__power_mon_8c_a906d1e27977299ca0024205545d05dc7}{u32toa()}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & Channel index (0..7) \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{snmp__power_mon_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{snmp__power_mon_8c_af45f37256bc0bbee50f12561e810efda}\index{snmp\_powerMon.c@{snmp\_powerMon.c}!ftoa@{ftoa}}
+\index{ftoa@{ftoa}!snmp\_powerMon.c@{snmp\_powerMon.c}}
+\doxysubsubsection{\texorpdfstring{ftoa()}{ftoa()}}
+{\footnotesize\ttfamily \label{snmp__power_mon_8c_af45f37256bc0bbee50f12561e810efda} 
+void ftoa (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{, }\item[{float}]{x}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{fmt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Format float to ASCII string buffer. 
+
+Converts a floating-\/point value to ASCII representation using the specified printf format string. Used for OCTET\+\_\+\+STRING SNMP responses.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer (minimum 16 bytes required) \\
+\hline
+{\em len} & Pointer to receive string length (excluding null terminator) \\
+\hline
+{\em x} & Float value to format \\
+\hline
+{\em fmt} & Printf format string (e.\+g., "{}\%.\+2f"{} for 2 decimals)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{snmp__power_mon_8c_af45f37256bc0bbee50f12561e810efda_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snmp__power_mon_8c_a4d518845ee0423e2c4f3c291241beafc}\index{snmp\_powerMon.c@{snmp\_powerMon.c}!i32le@{i32le}}
+\index{i32le@{i32le}!snmp\_powerMon.c@{snmp\_powerMon.c}}
+\doxysubsubsection{\texorpdfstring{i32le()}{i32le()}}
+{\footnotesize\ttfamily \label{snmp__power_mon_8c_a4d518845ee0423e2c4f3c291241beafc} 
+void i32le (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{, }\item[{int32\+\_\+t}]{v}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Write a signed 32-\/bit integer into SNMP response buffer. 
+
+The SNMP agent uses fixed-\/length 4-\/byte INTEGER storage for SNMPDTYPE\+\_\+\+INTEGER entries. This helper writes the value as a 32-\/bit little-\/endian integer and reports a fixed length of 4 bytes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Destination buffer (must be at least 4 bytes). \\
+\hline
+{\em len} & Output length; always set to 4. \\
+\hline
+{\em v} & Signed 32-\/bit value to encode. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=116pt]{snmp__power_mon_8c_a4d518845ee0423e2c4f3c291241beafc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=328pt]{snmp__power_mon_8c_a4d518845ee0423e2c4f3c291241beafc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snmp__power_mon_8c_a8bfed698c2d0034fd91352b89bcfce10}\index{snmp\_powerMon.c@{snmp\_powerMon.c}!ocp\_read\_status@{ocp\_read\_status}}
+\index{ocp\_read\_status@{ocp\_read\_status}!snmp\_powerMon.c@{snmp\_powerMon.c}}
+\doxysubsubsection{\texorpdfstring{ocp\_read\_status()}{ocp\_read\_status()}}
+{\footnotesize\ttfamily \label{snmp__power_mon_8c_a8bfed698c2d0034fd91352b89bcfce10} 
+bool ocp\+\_\+read\+\_\+status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structovercurrent__status__t}{overcurrent\+\_\+status\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{st}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Read overcurrent protection status snapshot. 
+
+Attempts to obtain an atomic snapshot of the overcurrent protection state from the OCP module via \doxylink{group__tasks08_gaa9aab2a7bfb3274872c5f4f162af177e}{Overcurrent\+\_\+\+Get\+Status()}. If the module is not initialized or the snapshot cannot be obtained, returns false.
+
+
+\begin{DoxyParams}{Parameters}
+{\em st} & Pointer to destination structure for status snapshot\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if valid snapshot obtained, false otherwise
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Returns false if st is NULL or OCP module not initialized. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=321pt]{snmp__power_mon_8c_a8bfed698c2d0034fd91352b89bcfce10_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp__power_mon_8c_a8bfed698c2d0034fd91352b89bcfce10_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snmp__power_mon_8c_a2f3700d5c752414ae1faad14def54875}\index{snmp\_powerMon.c@{snmp\_powerMon.c}!readN@{readN}}
+\index{readN@{readN}!snmp\_powerMon.c@{snmp\_powerMon.c}}
+\doxysubsubsection{\texorpdfstring{readN()}{readN()}}
+{\footnotesize\ttfamily \label{snmp__power_mon_8c_a2f3700d5c752414ae1faad14def54875} 
+void readN (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch}{, }\item[{float \texorpdfstring{$\ast$}{*}}]{v}{, }\item[{float \texorpdfstring{$\ast$}{*}}]{a}{, }\item[{float \texorpdfstring{$\ast$}{*}}]{w}{, }\item[{float \texorpdfstring{$\ast$}{*}}]{pf}{, }\item[{float \texorpdfstring{$\ast$}{*}}]{kwh}{, }\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{up}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Read telemetry snapshot for a channel from Meter\+Task cache. 
+
+Retrieves all telemetry parameters for a specified channel from the Meter\+Task cache. If telemetry is unavailable or invalid, all output parameters are set to zero to ensure SNMP responses are always well-\/formed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ch} & Channel index (0..7) \\
+\hline
+{\em v} & Pointer to receive voltage \mbox{[}V\mbox{]} \\
+\hline
+{\em a} & Pointer to receive current \mbox{[}A\mbox{]} \\
+\hline
+{\em w} & Pointer to receive power \mbox{[}W\mbox{]} \\
+\hline
+{\em pf} & Pointer to receive power factor (0..1) \\
+\hline
+{\em kwh} & Pointer to receive accumulated energy \mbox{[}k\+Wh\mbox{]} \\
+\hline
+{\em up} & Pointer to receive uptime \mbox{[}s\mbox{]}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Non-\/blocking operation; returns immediately with cached data. 
+
+Returns zeros if channel out of range or telemetry invalid. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=284pt]{snmp__power_mon_8c_a2f3700d5c752414ae1faad14def54875_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snmp__power_mon_8c_a3fc9a8bd0eb932e391c20a636e6a18c4}\index{snmp\_powerMon.c@{snmp\_powerMon.c}!u32le@{u32le}}
+\index{u32le@{u32le}!snmp\_powerMon.c@{snmp\_powerMon.c}}
+\doxysubsubsection{\texorpdfstring{u32le()}{u32le()}}
+{\footnotesize\ttfamily \label{snmp__power_mon_8c_a3fc9a8bd0eb932e391c20a636e6a18c4} 
+void u32le (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{, }\item[{uint32\+\_\+t}]{v}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Write an unsigned 32-\/bit integer into SNMP response buffer. 
+
+The SNMP agent uses fixed-\/length 4-\/byte INTEGER storage for SNMPDTYPE\+\_\+\+INTEGER entries. This helper writes the value as a 32-\/bit little-\/endian integer and reports a fixed length of 4 bytes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Destination buffer (must be at least 4 bytes). \\
+\hline
+{\em len} & Output length; always set to 4. \\
+\hline
+{\em v} & Unsigned 32-\/bit value to encode. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=285pt]{snmp__power_mon_8c_a3fc9a8bd0eb932e391c20a636e6a18c4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snmp__power_mon_8c_a906d1e27977299ca0024205545d05dc7}\index{snmp\_powerMon.c@{snmp\_powerMon.c}!u32toa@{u32toa}}
+\index{u32toa@{u32toa}!snmp\_powerMon.c@{snmp\_powerMon.c}}
+\doxysubsubsection{\texorpdfstring{u32toa()}{u32toa()}}
+{\footnotesize\ttfamily \label{snmp__power_mon_8c_a906d1e27977299ca0024205545d05dc7} 
+void u32toa (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{, }\item[{uint32\+\_\+t}]{v}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Format uint32 to ASCII string buffer. 
+
+Converts an unsigned 32-\/bit integer to ASCII decimal representation. Used for OCTET\+\_\+\+STRING SNMP responses.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer (minimum 16 bytes required) \\
+\hline
+{\em len} & Pointer to receive string length (excluding null terminator) \\
+\hline
+{\em v} & Unsigned 32-\/bit value to format\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}

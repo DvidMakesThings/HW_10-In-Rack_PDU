@@ -1,0 +1,406 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item Crash Log Module 
+\end{DoxyEnumerate}}
+\hypertarget{group__misc1}{}\label{group__misc1}\index{1. Crash Log Module@{1. Crash Log Module}}
+
+
+Crash log and fault diagnostics module.  
+
+
+Collaboration diagram for 1. Crash Log Module\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{group__misc1}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcrashlog__t}{crashlog\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Crash log structure stored in noinit so it survives resets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Reset Reason Values}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__misc1_ga3da6cc7835d9b18adc73cb404f8e9985}{crash\+\_\+reset\+\_\+reason\+\_\+t}} \{ \newline
+\mbox{\hyperlink{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a4c5a1abca50bbcaccba25a55f1698252}{CR\+\_\+\+RESET\+\_\+\+UNKNOWN}} = 0u
+, \mbox{\hyperlink{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a68fd56235c593d0a17739e5b02007f15}{CR\+\_\+\+RESET\+\_\+\+POWERON}} = 1u
+, \mbox{\hyperlink{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a1b426e325becbee34a0fecc17b6d90db}{CR\+\_\+\+RESET\+\_\+\+WATCHDOG}} = 2u
+, \mbox{\hyperlink{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a6260f396c215c34ffb370b2ffafa8f87}{CR\+\_\+\+RESET\+\_\+\+SOFTWARE}} = 3u
+, \newline
+\mbox{\hyperlink{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a8258b7f926f9fd20044a96858c16c151}{CR\+\_\+\+RESET\+\_\+\+BROWNOUT}} = 4u
+, \mbox{\hyperlink{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985aed93463f235a0af77837e4727581e7c7}{CR\+\_\+\+RESET\+\_\+\+EXTERNAL}} = 5u
+, \mbox{\hyperlink{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a041f6a3c80572a3b807ac771924080b6}{CR\+\_\+\+RESET\+\_\+\+DEBUG}} = 6u
+ \}
+\begin{DoxyCompactList}\small\item\em Reset cause enumeration recorded at early boot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Public API}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__misc1_ga040d161613770d2656d3350134445684}{Crash\+Log\+\_\+\+Print\+And\+Clear\+On\+Boot}} (void)
+\begin{DoxyCompactList}\small\item\em Print last crash diagnostics and reset reason, then clear Hard\+Fault fields. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc1_ga8dac22c0f05ce9e997b99d9179a2bf5f}{Crash\+Log\+\_\+\+Record\+Wdt\+Feed}} (uint32\+\_\+t \mbox{\hyperlink{_button_task_8c_a50503dee6a29e98e633b16b1b8b550bc}{now\+\_\+ms}})
+\begin{DoxyCompactList}\small\item\em Record a hardware watchdog feed timestamp for telemetry tracking. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc1_ga131d28172212c0df74acc1e9d9527c4a}{Crash\+Log\+\_\+\+Capture\+Reset\+Reason\+Early}} (void)
+\begin{DoxyCompactList}\small\item\em Capture reset cause at early boot before RTOS initialization. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc1_ga28f2af805f9b4954b888151007f862a3}{Crash\+Log\+\_\+\+Record\+Software\+Reboot\+Tag}} (const char \texorpdfstring{$\ast$}{*}tag)
+\begin{DoxyCompactList}\small\item\em Tag an intentional software reboot with a descriptive reason string. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc1_ga1a04e8bbf9617464ae676b6b4d89241c}{Crash\+Log\+\_\+\+On\+Hard\+Fault}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}stacked\+\_\+regs)
+\begin{DoxyCompactList}\small\item\em Hard\+Fault handler C bridge that captures exception context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Platform Hooks}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__misc1_gaed84e69b9c69051cc7be2c213183e109}{Crash\+Log\+\_\+\+Platform\+\_\+\+Read\+Reset\+Bits}} (void)
+\begin{DoxyCompactList}\small\item\em Platform hook to read raw reset-\/cause bits from hardware. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__misc1_ga3da6cc7835d9b18adc73cb404f8e9985}{crash\+\_\+reset\+\_\+reason\+\_\+t}} \mbox{\hyperlink{group__misc1_ga41cf871cde075031b39beae132e7c13d}{Crash\+Log\+\_\+\+Platform\+\_\+\+Decode\+Reset}} (uint32\+\_\+t raw)
+\begin{DoxyCompactList}\small\item\em Platform hook to decode raw reset bits into standardized reason enum. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Constants}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__misc1_ga7eca9d3b0c9e9975fe8917425a5931cc}{CRASH\+\_\+\+FEED\+\_\+\+RING}}~16u
+\begin{DoxyCompactList}\small\item\em Retained log ring capacity for watchdog feeds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Crash log and fault diagnostics module. 
+
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/06
+\end{DoxyDate}
+This module provides crash logging and diagnostics capabilities for the ENERGIS PDU. It captures and retains critical fault information across system resets in a dedicated noinit RAM section with CRC32 integrity checking.
+
+The crash log system provides\+:
+\begin{DoxyItemize}
+\item Hard\+Fault exception context capture (PC, LR, registers)
+\item Reset cause detection and classification
+\item Monotonic boot counter
+\item Watchdog feed telemetry ring buffer
+\item Software reboot tagging for intentional resets
+\item Post-\/mortem diagnostics output at boot
+\end{DoxyItemize}
+
+The crash log structure survives soft resets and watchdog reboots, allowing post-\/mortem analysis of fault conditions. CRC32 validation ensures data integrity.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{group__misc1_doc-define-members}
+\doxysubsubsection{Macro Definition Documentation}
+\Hypertarget{group__misc1_ga7eca9d3b0c9e9975fe8917425a5931cc}\index{1. Crash Log Module@{1. Crash Log Module}!CRASH\_FEED\_RING@{CRASH\_FEED\_RING}}
+\index{CRASH\_FEED\_RING@{CRASH\_FEED\_RING}!1. Crash Log Module@{1. Crash Log Module}}
+\doxysubsubsubsection{\texorpdfstring{CRASH\_FEED\_RING}{CRASH\_FEED\_RING}}
+{\footnotesize\ttfamily \label{group__misc1_ga7eca9d3b0c9e9975fe8917425a5931cc} 
+\#define CRASH\+\_\+\+FEED\+\_\+\+RING~16u}
+
+
+
+Retained log ring capacity for watchdog feeds. 
+
+
+
+\label{doc-enum-members}
+\Hypertarget{group__misc1_doc-enum-members}
+\doxysubsubsection{Enumeration Type Documentation}
+\Hypertarget{group__misc1_ga3da6cc7835d9b18adc73cb404f8e9985}\index{1. Crash Log Module@{1. Crash Log Module}!crash\_reset\_reason\_t@{crash\_reset\_reason\_t}}
+\index{crash\_reset\_reason\_t@{crash\_reset\_reason\_t}!1. Crash Log Module@{1. Crash Log Module}}
+\doxysubsubsubsection{\texorpdfstring{crash\_reset\_reason\_t}{crash\_reset\_reason\_t}}
+{\footnotesize\ttfamily \label{group__misc1_ga3da6cc7835d9b18adc73cb404f8e9985} 
+enum \mbox{\hyperlink{group__misc1_ga3da6cc7835d9b18adc73cb404f8e9985}{crash\+\_\+reset\+\_\+reason\+\_\+t}}}
+
+
+
+Reset cause enumeration recorded at early boot. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CR\_RESET\_UNKNOWN@{CR\_RESET\_UNKNOWN}!1. Crash Log Module@{1. Crash Log Module}}\index{1. Crash Log Module@{1. Crash Log Module}!CR\_RESET\_UNKNOWN@{CR\_RESET\_UNKNOWN}}}\Hypertarget{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a4c5a1abca50bbcaccba25a55f1698252}\label{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a4c5a1abca50bbcaccba25a55f1698252} 
+CR\+\_\+\+RESET\+\_\+\+UNKNOWN&Unknown or not captured. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CR\_RESET\_POWERON@{CR\_RESET\_POWERON}!1. Crash Log Module@{1. Crash Log Module}}\index{1. Crash Log Module@{1. Crash Log Module}!CR\_RESET\_POWERON@{CR\_RESET\_POWERON}}}\Hypertarget{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a68fd56235c593d0a17739e5b02007f15}\label{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a68fd56235c593d0a17739e5b02007f15} 
+CR\+\_\+\+RESET\+\_\+\+POWERON&Power-\/on or external power cycle. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CR\_RESET\_WATCHDOG@{CR\_RESET\_WATCHDOG}!1. Crash Log Module@{1. Crash Log Module}}\index{1. Crash Log Module@{1. Crash Log Module}!CR\_RESET\_WATCHDOG@{CR\_RESET\_WATCHDOG}}}\Hypertarget{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a1b426e325becbee34a0fecc17b6d90db}\label{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a1b426e325becbee34a0fecc17b6d90db} 
+CR\+\_\+\+RESET\+\_\+\+WATCHDOG&Hardware watchdog caused reboot. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CR\_RESET\_SOFTWARE@{CR\_RESET\_SOFTWARE}!1. Crash Log Module@{1. Crash Log Module}}\index{1. Crash Log Module@{1. Crash Log Module}!CR\_RESET\_SOFTWARE@{CR\_RESET\_SOFTWARE}}}\Hypertarget{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a6260f396c215c34ffb370b2ffafa8f87}\label{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a6260f396c215c34ffb370b2ffafa8f87} 
+CR\+\_\+\+RESET\+\_\+\+SOFTWARE&Software-\/called reboot/reset. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CR\_RESET\_BROWNOUT@{CR\_RESET\_BROWNOUT}!1. Crash Log Module@{1. Crash Log Module}}\index{1. Crash Log Module@{1. Crash Log Module}!CR\_RESET\_BROWNOUT@{CR\_RESET\_BROWNOUT}}}\Hypertarget{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a8258b7f926f9fd20044a96858c16c151}\label{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a8258b7f926f9fd20044a96858c16c151} 
+CR\+\_\+\+RESET\+\_\+\+BROWNOUT&Brown-\/out or supply dip. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CR\_RESET\_EXTERNAL@{CR\_RESET\_EXTERNAL}!1. Crash Log Module@{1. Crash Log Module}}\index{1. Crash Log Module@{1. Crash Log Module}!CR\_RESET\_EXTERNAL@{CR\_RESET\_EXTERNAL}}}\Hypertarget{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985aed93463f235a0af77837e4727581e7c7}\label{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985aed93463f235a0af77837e4727581e7c7} 
+CR\+\_\+\+RESET\+\_\+\+EXTERNAL&External reset pin toggled. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CR\_RESET\_DEBUG@{CR\_RESET\_DEBUG}!1. Crash Log Module@{1. Crash Log Module}}\index{1. Crash Log Module@{1. Crash Log Module}!CR\_RESET\_DEBUG@{CR\_RESET\_DEBUG}}}\Hypertarget{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a041f6a3c80572a3b807ac771924080b6}\label{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a041f6a3c80572a3b807ac771924080b6} 
+CR\+\_\+\+RESET\+\_\+\+DEBUG&Debug probe reset. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{group__misc1_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__misc1_ga131d28172212c0df74acc1e9d9527c4a}\index{1. Crash Log Module@{1. Crash Log Module}!CrashLog\_CaptureResetReasonEarly@{CrashLog\_CaptureResetReasonEarly}}
+\index{CrashLog\_CaptureResetReasonEarly@{CrashLog\_CaptureResetReasonEarly}!1. Crash Log Module@{1. Crash Log Module}}
+\doxysubsubsubsection{\texorpdfstring{CrashLog\_CaptureResetReasonEarly()}{CrashLog\_CaptureResetReasonEarly()}}
+{\footnotesize\ttfamily \label{group__misc1_ga131d28172212c0df74acc1e9d9527c4a} 
+void Crash\+Log\+\_\+\+Capture\+Reset\+Reason\+Early (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Capture reset cause at early boot before RTOS initialization. 
+
+This function must be called very early during system startup, before clocks, RTOS, or any dynamic initialization. It performs the following operations\+:
+\begin{DoxyItemize}
+\item Validates the retained crash log header using CRC32
+\item Initializes the structure on first power-\/on or after corruption
+\item Increments the monotonic boot counter
+\item Reads and decodes platform-\/specific reset cause bits
+\item Updates the crash log with current reset information
+\end{DoxyItemize}
+
+The boot counter persists across resets and provides correlation for crash analysis.
+
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Call this as the first statement in main() before any other initialization. 
+
+This function uses no heap allocation and performs minimal hardware access. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__misc1_ga131d28172212c0df74acc1e9d9527c4a_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__misc1_ga1a04e8bbf9617464ae676b6b4d89241c}\index{1. Crash Log Module@{1. Crash Log Module}!CrashLog\_OnHardFault@{CrashLog\_OnHardFault}}
+\index{CrashLog\_OnHardFault@{CrashLog\_OnHardFault}!1. Crash Log Module@{1. Crash Log Module}}
+\doxysubsubsubsection{\texorpdfstring{CrashLog\_OnHardFault()}{CrashLog\_OnHardFault()}}
+{\footnotesize\ttfamily \label{group__misc1_ga1a04e8bbf9617464ae676b6b4d89241c} 
+void Crash\+Log\+\_\+\+On\+Hard\+Fault (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{stacked\+\_\+regs}{}\end{DoxyParamCaption})}
+
+
+
+Hard\+Fault handler C bridge that captures exception context. 
+
+This function is called from the Hard\+Fault exception vector with a pointer to the stacked register frame. It captures the complete CPU context at the time of the fault into the retained crash log structure.
+
+Captured registers\+: r0, r1, r2, r3, r12, lr, pc, xpsr
+
+After capturing context, the function marks the Hard\+Fault as valid, updates the CRC32, and initiates a controlled reboot. In debug builds, it triggers a breakpoint before rebooting.
+
+
+\begin{DoxyParams}{Parameters}
+{\em stacked\+\_\+regs} & Pointer to exception stack frame containing\+: \mbox{[}0\mbox{]}=r0, \mbox{[}1\mbox{]}=r1, \mbox{[}2\mbox{]}=r2, \mbox{[}3\mbox{]}=r3, \mbox{[}4\mbox{]}=r12, \mbox{[}5\mbox{]}=lr, \mbox{[}6\mbox{]}=pc, \mbox{[}7\mbox{]}=xpsr\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None (function does not return)
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This function is typically called from assembly Hard\+Fault\+\_\+\+Handler. 
+
+The function never returns; system is rebooted after context capture. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__misc1_ga1a04e8bbf9617464ae676b6b4d89241c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__misc1_ga41cf871cde075031b39beae132e7c13d}\index{1. Crash Log Module@{1. Crash Log Module}!CrashLog\_Platform\_DecodeReset@{CrashLog\_Platform\_DecodeReset}}
+\index{CrashLog\_Platform\_DecodeReset@{CrashLog\_Platform\_DecodeReset}!1. Crash Log Module@{1. Crash Log Module}}
+\doxysubsubsubsection{\texorpdfstring{CrashLog\_Platform\_DecodeReset()}{CrashLog\_Platform\_DecodeReset()}}
+{\footnotesize\ttfamily \label{group__misc1_ga41cf871cde075031b39beae132e7c13d} 
+\mbox{\hyperlink{group__misc1_ga3da6cc7835d9b18adc73cb404f8e9985}{crash\+\_\+reset\+\_\+reason\+\_\+t}} Crash\+Log\+\_\+\+Platform\+\_\+\+Decode\+Reset (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{raw}{}\end{DoxyParamCaption})}
+
+
+
+Platform hook to decode raw reset bits into standardized reason enum. 
+
+This weak function interprets the raw reset bits returned by \doxylink{group__misc1_gaed84e69b9c69051cc7be2c213183e109}{Crash\+Log\+\_\+\+Platform\+\_\+\+Read\+Reset\+Bits()} and maps them to the standard \doxylink{group__misc1_ga3da6cc7835d9b18adc73cb404f8e9985}{crash\+\_\+reset\+\_\+reason\+\_\+t} enumeration.
+
+The default implementation provides heuristic decoding suitable for RP2040/\+RP2350\+:
+\begin{DoxyItemize}
+\item Watchdog bit set -\/\texorpdfstring{$>$}{>} CR\+\_\+\+RESET\+\_\+\+WATCHDOG
+\item Software bit set -\/\texorpdfstring{$>$}{>} CR\+\_\+\+RESET\+\_\+\+SOFTWARE
+\item Neither set -\/\texorpdfstring{$>$}{>} CR\+\_\+\+RESET\+\_\+\+POWERON
+\end{DoxyItemize}
+
+Platforms can override this function for custom reset classification.
+
+
+\begin{DoxyParams}{Parameters}
+{\em raw} & Raw bits value from \doxylink{group__misc1_gaed84e69b9c69051cc7be2c213183e109}{Crash\+Log\+\_\+\+Platform\+\_\+\+Read\+Reset\+Bits()}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Decoded reset reason from \doxylink{group__misc1_ga3da6cc7835d9b18adc73cb404f8e9985}{crash\+\_\+reset\+\_\+reason\+\_\+t} enumeration
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Default implementation is weak and can be overridden per platform. 
+\end{DoxyNote}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__misc1_ga41cf871cde075031b39beae132e7c13d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__misc1_gaed84e69b9c69051cc7be2c213183e109}\index{1. Crash Log Module@{1. Crash Log Module}!CrashLog\_Platform\_ReadResetBits@{CrashLog\_Platform\_ReadResetBits}}
+\index{CrashLog\_Platform\_ReadResetBits@{CrashLog\_Platform\_ReadResetBits}!1. Crash Log Module@{1. Crash Log Module}}
+\doxysubsubsubsection{\texorpdfstring{CrashLog\_Platform\_ReadResetBits()}{CrashLog\_Platform\_ReadResetBits()}}
+{\footnotesize\ttfamily \label{group__misc1_gaed84e69b9c69051cc7be2c213183e109} 
+uint32\+\_\+t Crash\+Log\+\_\+\+Platform\+\_\+\+Read\+Reset\+Bits (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Platform hook to read raw reset-\/cause bits from hardware. 
+
+This weak function reads platform-\/specific reset cause registers and returns them as a raw bit field. The default implementation supports RP2040/\+RP2350 platforms and reads the watchdog status plus scratch registers to distinguish intentional vs fault-\/driven watchdog resets.
+
+Platforms can override this function to provide custom reset detection logic.
+
+\begin{DoxyReturn}{Returns}
+Platform-\/specific raw reset bits. For RP2040\+:
+\begin{DoxyItemize}
+\item bit 0\+: watchdog caused reboot (fault condition)
+\item bit 1\+: intentional software reboot
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Default implementation is weak and can be overridden per platform. 
+
+RP2040 implementation checks watchdog scratch registers to distinguish Health-\/owned intentional reboots from true watchdog faults. 
+\end{DoxyNote}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__misc1_gaed84e69b9c69051cc7be2c213183e109_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__misc1_ga040d161613770d2656d3350134445684}\index{1. Crash Log Module@{1. Crash Log Module}!CrashLog\_PrintAndClearOnBoot@{CrashLog\_PrintAndClearOnBoot}}
+\index{CrashLog\_PrintAndClearOnBoot@{CrashLog\_PrintAndClearOnBoot}!1. Crash Log Module@{1. Crash Log Module}}
+\doxysubsubsubsection{\texorpdfstring{CrashLog\_PrintAndClearOnBoot()}{CrashLog\_PrintAndClearOnBoot()}}
+{\footnotesize\ttfamily \label{group__misc1_ga040d161613770d2656d3350134445684} 
+void Crash\+Log\+\_\+\+Print\+And\+Clear\+On\+Boot (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Print last crash diagnostics and reset reason, then clear Hard\+Fault fields. 
+
+This function should be called once during system initialization after the logger subsystem is ready. It validates the retained crash log header, prints boot diagnostics including reset reason and watchdog feed history, and outputs any captured Hard\+Fault context if present.
+
+The function waits briefly for logger readiness (300ms timeout with 10ms polling) to ensure diagnostic output is not lost. After printing, Hard\+Fault fields are cleared to prevent stale data from being reported on subsequent boots.
+
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Call this function from the initialization task after logger is initialized. 
+
+The function is non-\/blocking and uses best-\/effort output. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__misc1_ga040d161613770d2656d3350134445684_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__misc1_ga28f2af805f9b4954b888151007f862a3}\index{1. Crash Log Module@{1. Crash Log Module}!CrashLog\_RecordSoftwareRebootTag@{CrashLog\_RecordSoftwareRebootTag}}
+\index{CrashLog\_RecordSoftwareRebootTag@{CrashLog\_RecordSoftwareRebootTag}!1. Crash Log Module@{1. Crash Log Module}}
+\doxysubsubsubsection{\texorpdfstring{CrashLog\_RecordSoftwareRebootTag()}{CrashLog\_RecordSoftwareRebootTag()}}
+{\footnotesize\ttfamily \label{group__misc1_ga28f2af805f9b4954b888151007f862a3} 
+void Crash\+Log\+\_\+\+Record\+Software\+Reboot\+Tag (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{tag}{}\end{DoxyParamCaption})}
+
+
+
+Tag an intentional software reboot with a descriptive reason string. 
+
+This function allows software to record a short descriptive tag before initiating a controlled reboot via watchdog. The tag helps distinguish intentional reboots from fault conditions during post-\/mortem analysis.
+
+The tag string is copied into the retained crash log and will be visible in the boot diagnostics output. String is truncated to fit the 24-\/byte buffer and automatically null-\/terminated.
+
+
+\begin{DoxyParams}{Parameters}
+{\em tag} & Null-\/terminated ASCII string describing reboot reason. Pass NULL to clear the tag. Maximum 23 characters (24th byte is reserved for null terminator).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Call this immediately before initiating a watchdog reboot. 
+
+Common tags\+: "{}\+User request"{}, "{}\+Firmware update"{}, "{}\+Network reconfiguration"{} 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__misc1_ga28f2af805f9b4954b888151007f862a3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__misc1_ga28f2af805f9b4954b888151007f862a3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__misc1_ga8dac22c0f05ce9e997b99d9179a2bf5f}\index{1. Crash Log Module@{1. Crash Log Module}!CrashLog\_RecordWdtFeed@{CrashLog\_RecordWdtFeed}}
+\index{CrashLog\_RecordWdtFeed@{CrashLog\_RecordWdtFeed}!1. Crash Log Module@{1. Crash Log Module}}
+\doxysubsubsubsection{\texorpdfstring{CrashLog\_RecordWdtFeed()}{CrashLog\_RecordWdtFeed()}}
+{\footnotesize\ttfamily \label{group__misc1_ga8dac22c0f05ce9e997b99d9179a2bf5f} 
+void Crash\+Log\+\_\+\+Record\+Wdt\+Feed (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{now\+\_\+ms}{}\end{DoxyParamCaption})}
+
+
+
+Record a hardware watchdog feed timestamp for telemetry tracking. 
+
+This function should be called immediately after feeding the hardware watchdog. It maintains a ring buffer of feed deltas (time between consecutive feeds) to help diagnose watchdog-\/related resets. The ring buffer size is defined by CRASH\+\_\+\+FEED\+\_\+\+RING.
+
+Feed deltas are stored as relative time differences to maximize diagnostic value and handle timestamp wraps gracefully.
+
+
+\begin{DoxyParams}{Parameters}
+{\em now\+\_\+ms} & Monotonic milliseconds timestamp of the feed event.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This function validates and initializes the crash log header if needed. 
+
+Thread-\/safe when called from a single context (typically Health\+Task). 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__misc1_ga8dac22c0f05ce9e997b99d9179a2bf5f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__misc1_ga8dac22c0f05ce9e997b99d9179a2bf5f_icgraph}
+\end{center}
+\end{figure}

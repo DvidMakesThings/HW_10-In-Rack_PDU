@@ -1,0 +1,7 @@
+<map id="__wrap_reset_usb_boot" name="__wrap_reset_usb_boot">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,165,57"/>
+<area shape="rect" id="Node000002" href="$wrap__watchdog_8c.html#a1a4601eac39bff5f6bb00e750ef8d190" title=" " alt="" coords="258,5,350,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="165,32,242,23,243,28,165,37"/>
+<area shape="rect" id="Node000003" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="213,56,396,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="165,51,197,54,197,60,165,56"/>
+</map>

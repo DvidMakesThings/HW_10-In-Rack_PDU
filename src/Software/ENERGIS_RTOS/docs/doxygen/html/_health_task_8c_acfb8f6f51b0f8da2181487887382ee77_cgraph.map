@@ -1,0 +1,5 @@
+<map id="required_tasks_have_heartbeat_once" name="required_tasks_have_heartbeat_once">
+<area shape="rect" id="Node000001" title="Check if all required tasks have sent at least one heartbeat." alt="" coords="5,5,147,48"/>
+<area shape="rect" id="Node000002" href="$_health_task_8c.html#a8213bf3a8e666885c3d45b1d5d8fb85c" title="Check if a health ID is in the required mask." alt="" coords="195,13,296,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,24,179,24,179,29,147,29"/>
+</map>

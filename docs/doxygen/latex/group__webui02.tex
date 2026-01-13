@@ -1,0 +1,192 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item HTTP Server 
+\end{DoxyEnumerate}}
+\hypertarget{group__webui02}{}\label{group__webui02}\index{2. HTTP Server@{2. HTTP Server}}
+
+
+Main HTTP server with chunked transfer for large pages.  
+
+
+Collaboration diagram for 2. HTTP Server\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{group__webui02}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{group__webui02_ga2dd3bba639b08c3907dcb43527b74858}{http\+\_\+server\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the HTTP server and start listening on port 80. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__webui02_ga52702a4dcaff4540a9ddd10e4d5f4525}{http\+\_\+server\+\_\+process}} (void)
+\begin{DoxyCompactList}\small\item\em Process incoming HTTP connections and route requests to handlers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Main HTTP server with chunked transfer for large pages. 
+
+\begin{DoxyVersion}{Version}
+1.\+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/01-\/01
+\end{DoxyDate}
+This module implements the core HTTP/1.\+1 server for the ENERGIS managed PDU. It provides web-\/based access to device control, monitoring, and configuration through a responsive HTML interface and JSON REST API.
+
+Architecture\+:
+\begin{DoxyItemize}
+\item Single-\/socket TCP listener on port 80
+\item Request parsing with automatic Content-\/\+Length handling
+\item Chunked transmission to work within W5500 8KB TX buffer limit
+\item Route-\/based dispatch to specialized handlers
+\item CORS headers for cross-\/origin API access
+\item Connection timeout detection and recovery
+\end{DoxyItemize}
+
+Routing Table\+:
+\begin{DoxyItemize}
+\item GET /api/status -\/\texorpdfstring{$>$}{>} Status JSON (channel states, telemetry, OCP)
+\item GET /api/settings -\/\texorpdfstring{$>$}{>} Settings JSON (network config, preferences)
+\item POST /api/settings -\/\texorpdfstring{$>$}{>} Update settings, trigger reboot
+\item POST /api/control -\/\texorpdfstring{$>$}{>} Control relays and labels
+\item GET /api/config-\/presets -\/\texorpdfstring{$>$}{>} List saved presets
+\item POST /api/config-\/presets -\/\texorpdfstring{$>$}{>} Save/delete preset
+\item POST /api/apply-\/config -\/\texorpdfstring{$>$}{>} Apply preset immediately
+\item POST /api/startup-\/config -\/\texorpdfstring{$>$}{>} Set/clear apply-\/on-\/startup preset
+\item GET /metrics -\/\texorpdfstring{$>$}{>} Prometheus/\+Open\+Metrics telemetry
+\item GET /settings.html -\/\texorpdfstring{$>$}{>} Settings page (gzipped)
+\item GET /help.html -\/\texorpdfstring{$>$}{>} Help page (gzipped)
+\item GET /control.html, GET / -\/\texorpdfstring{$>$}{>} Control page (gzipped, default)
+\item GET /user\+\_\+manual.html -\/\texorpdfstring{$>$}{>} User manual (iframe embed)
+\item GET /automation\+\_\+manual.html -\/\texorpdfstring{$>$}{>} Automation manual (iframe embed)
+\end{DoxyItemize}
+
+Constraints\+:
+\begin{DoxyItemize}
+\item W5500 has 8KB TX buffer per socket
+\item HTML pages can exceed 8KB (especially help.\+html)
+\item Solution\+: Gzip compression + chunked sending (4KB chunks with delays)
+\item RX buffer allocated once at init\+: 2KB
+\end{DoxyItemize}
+
+Thread Safety\+:
+\begin{DoxyItemize}
+\item All W5500 access protected by spi\+Mtx (acquired by Net\+Task)
+\item Called only from Net\+Task context
+\item Handlers may access shared resources (require their own locking)
+\end{DoxyItemize}
+
+Connection Management\+:
+\begin{DoxyItemize}
+\item Single-\/connection model (one request at a time)
+\item After response\+: disconnect, close, re-\/open, re-\/listen
+\item TX watchdog\+: if peer stalls (TX FSR stuck for \texorpdfstring{$>$}{>}1.\+2s), forcibly close
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Uses synchronous blocking patterns within Net\+Task; OK as this is the only task performing network operations. 
+
+CORS enabled for all responses to allow browser-\/based automation.
+\end{DoxyNote}
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-func-members}
+\Hypertarget{group__webui02_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__webui02_ga2dd3bba639b08c3907dcb43527b74858}\index{2. HTTP Server@{2. HTTP Server}!http\_server\_init@{http\_server\_init}}
+\index{http\_server\_init@{http\_server\_init}!2. HTTP Server@{2. HTTP Server}}
+\doxysubsubsubsection{\texorpdfstring{http\_server\_init()}{http\_server\_init()}}
+{\footnotesize\ttfamily \label{group__webui02_ga2dd3bba639b08c3907dcb43527b74858} 
+bool http\+\_\+server\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Initialize the HTTP server and start listening on port 80. 
+
+Allocates the HTTP request buffer (2KB) and opens a TCP socket on port 80. Configures TCP keep-\/alive and begins listening for incoming connections. Must be called once during system initialization before \doxylink{group__webui02_ga52702a4dcaff4540a9ddd10e4d5f4525}{http\+\_\+server\+\_\+process()}.
+
+\begin{DoxyReturn}{Returns}
+true on successful initialization, false on failure
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & Socket opened, buffer allocated, listening started \\
+\hline
+{\em false} & Failed to allocate buffer, open socket, or start listening\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxyNote}{Note}
+Logs errors with structured error codes on failure. 
+
+Uses heap allocation for RX buffer via pv\+Port\+Malloc().
+\end{DoxyNote}
+Initialize the HTTP server and start listening on port 80.
+
+Allocates RX buffer, opens TCP socket on port 80, enables keep-\/alive, and begins listening. On failure, logs error and returns false.
+
+\begin{DoxyReturn}{Returns}
+true on success; false on allocation/socket/listen failure. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__webui02_ga2dd3bba639b08c3907dcb43527b74858_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__webui02_ga2dd3bba639b08c3907dcb43527b74858_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__webui02_ga52702a4dcaff4540a9ddd10e4d5f4525}\index{2. HTTP Server@{2. HTTP Server}!http\_server\_process@{http\_server\_process}}
+\index{http\_server\_process@{http\_server\_process}!2. HTTP Server@{2. HTTP Server}}
+\doxysubsubsubsection{\texorpdfstring{http\_server\_process()}{http\_server\_process()}}
+{\footnotesize\ttfamily \label{group__webui02_ga52702a4dcaff4540a9ddd10e4d5f4525} 
+void http\+\_\+server\+\_\+process (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Process incoming HTTP connections and route requests to handlers. 
+
+This function must be called repeatedly from Net\+Task\textquotesingle{}s main loop. It checks the socket state, reads incoming HTTP requests, dispatches to appropriate handlers based on URL patterns, and manages connection lifecycle.
+
+Operation\+:
+\begin{DoxyItemize}
+\item Monitors socket state (ESTABLISHED, CLOSE\+\_\+\+WAIT, INIT)
+\item Reads HTTP headers and body using Content-\/\+Length
+\item Routes requests to handler functions
+\item Implements TX watchdog (forcibly closes stalled connections after 1.\+2s)
+\item Closes and re-\/listens after each response
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Blocking within Net\+Task context; safe as Net\+Task is single-\/threaded. 
+
+TX watchdog protects against slow/stalled HTTP clients. 
+
+All responses include "{}\+Connection\+: close"{} header.
+\end{DoxyNote}
+Process incoming HTTP connections and route requests to handlers.
+
+Handles GET/\+POST routes for status, settings, control, presets, apply/startup config, and metrics. Serves static pages for other requests. Always closes connection after responding and re-\/listens. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__webui02_ga52702a4dcaff4540a9ddd10e4d5f4525_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__webui02_ga52702a4dcaff4540a9ddd10e4d5f4525_icgraph}
+\end{center}
+\end{figure}

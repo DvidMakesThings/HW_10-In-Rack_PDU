@@ -1,26 +1,35 @@
 /**
- * @file src/misc/helpers.h
+ * @file src/misc/power_mgr.h
  * @author DvidMakesThings - David Sipos
  *
- * @defgroup misc4 4. Power manager Module
+ * @defgroup misc3 3. Power Manager Module
  * @ingroup misc
- * @brief Header file for power manager module
+ * @brief Centralized power state management and standby mode control
  * @{
  *
  * @version 1.0.0
  * @date 2025-11-17
  *
- * @details Provides global power state management for fake "power down" / standby mode.
- * The power manager maintains a central state that tasks can query to determine
- * whether to run normally or enter a minimal "parked" mode.
+ * @details
+ * This module provides centralized power state management for the ENERGIS PDU,
+ * implementing a software-based standby mode that reduces power consumption and
+ * network activity while maintaining system responsiveness for wake events.
  *
- * In STANDBY mode:
- * - W5500 is held in reset (PHY down, no network traffic)
- * - All relays are turned off
- * - All LEDs except PWR_LED are turned off
- * - PWR_LED pulses with a soft fade pattern
- * - Tasks continue running but skip heavy operations
- * - Watchdog and HealthTask remain satisfied via periodic heartbeats
+ * The power manager maintains a global state that all tasks can query to adapt
+ * their behavior between normal operation (RUN) and low-power (STANDBY) modes.
+ * State transitions are atomic and coordinated across hardware peripherals.
+ *
+ * Standby Mode Characteristics:
+ * - W5500 Ethernet controller held in hardware reset (PHY disabled, no traffic)
+ * - All relay outputs disabled
+ * - Display LEDs off except PWR_LED (breathing pattern)
+ * - Selection LEDs disabled
+ * - Tasks continue executing but skip non-critical operations
+ * - Watchdog remains serviced to prevent unexpected resets
+ * - System remains responsive to button press wake events
+ *
+ * Wake from standby is typically triggered by a short press of the power button,
+ * which calls Power_ExitStandby() to restore normal operation.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -33,16 +42,26 @@
 
 /**
  * @brief System power states
+ * @enum power_state_t
+ * @ingroup misc3
+ * @name Power States
+ * @{
  */
 typedef enum {
     PWR_STATE_RUN = 0,    /**< Normal operation mode */
     PWR_STATE_STANDBY = 1 /**< Low-power standby mode */
 } power_state_t;
+/** @} */
 
 /* ##################################################################### */
 /*                       PUBLIC API FUNCTIONS                            */
 /* ##################################################################### */
 
+/**
+ * @name Public API
+ * @ingroup misc3
+ * @{
+ */
 /**
  * @brief Initialize the power manager subsystem.
  *
@@ -115,6 +134,7 @@ void Power_ExitStandby(void);
  * @return None
  */
 void Power_ServiceStandbyLED(void);
+/** @} */
 
 #endif /* POWER_MGR_H */
 

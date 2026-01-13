@@ -1,0 +1,5 @@
+<map id="next_tok" name="next_tok">
+<area shape="rect" id="Node000001" title="Extract next token (whitespace&#45;delimited)." alt="" coords="5,5,77,32"/>
+<area shape="rect" id="Node000002" href="$provisioning__commands_8c.html#aefcdc2446ee6295fa79a99db012a1c8c" title="Skip leading whitespace." alt="" coords="125,5,194,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,16,109,16,109,21,77,21"/>
+</map>

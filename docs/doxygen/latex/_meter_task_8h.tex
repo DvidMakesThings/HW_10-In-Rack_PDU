@@ -1,0 +1,71 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\+Meter\+Task.h File Reference}
+\hypertarget{_meter_task_8h}{}\label{_meter_task_8h}\index{src/Software/ENERGIS\_RTOS/src/tasks/MeterTask.h@{src/Software/ENERGIS\_RTOS/src/tasks/MeterTask.h}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for Meter\+Task.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_meter_task_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_meter_task_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmeter__telemetry__t}{meter\+\_\+telemetry\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Telemetry sample for a single output channel. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structsystem__telemetry__t}{system\+\_\+telemetry\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Snapshot of system-\/level ADC telemetry. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{Indent}\textbf{ Task Configuration}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__tasks06_gaad3bb15e19bfd8ba4a465c084865eea4}{METER\+\_\+\+TASK\+\_\+\+STACK\+\_\+\+SIZE}}~512
+\item 
+\#define \mbox{\hyperlink{group__tasks06_gafdd7da982ea20efea37a875c9e42b3f6}{METER\+\_\+\+POLL\+\_\+\+RATE\+\_\+\+HZ}}~25
+\item 
+\#define \mbox{\hyperlink{group__tasks06_ga46632b85a1221325c1018edf23213c86}{METER\+\_\+\+AVERAGE\+\_\+\+WINDOW\+\_\+\+MS}}~1000
+\item 
+\#define \mbox{\hyperlink{group__tasks06_ga59705ca462302f33c8de8d177848b4dd}{METER\+\_\+\+TELEMETRY\+\_\+\+QUEUE\+\_\+\+LEN}}~16
+\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Functions}
+\begin{Indent}\textbf{ Task API}\par
+\begin{DoxyCompactItemize}
+\item 
+Base\+Type\+\_\+t \mbox{\hyperlink{group__tasks06_ga33bd9742d865d9e98a4b81d443f69837}{Meter\+Task\+\_\+\+Init}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Create and start the Meter Task with a deterministic enable gate. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks06_gaacb98f39434e19bddfcdc0e0b555bd50}{Meter\+\_\+\+Is\+Ready}} (void)
+\begin{DoxyCompactList}\small\item\em Query meter subsystem readiness status. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks06_ga18b328d88256e730d39d6a33ea78d399}{Meter\+Task\+\_\+\+Get\+Telemetry}} (uint8\+\_\+t channel, \mbox{\hyperlink{structmeter__telemetry__t}{meter\+\_\+telemetry\+\_\+t}} \texorpdfstring{$\ast$}{*}telem)
+\begin{DoxyCompactList}\small\item\em Get latest cached telemetry for a specific channel (non-\/blocking). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks06_gae6a0acceca7a3a35f63bba05a7cd1826}{Meter\+Task\+\_\+\+Refresh\+All}} (void)
+\begin{DoxyCompactList}\small\item\em Request immediate refresh of all channels (blocking). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks06_ga909c8be3f0ce184e2cd1045bc29e0e30}{Meter\+Task\+\_\+\+Get\+System\+Telemetry}} (\mbox{\hyperlink{structsystem__telemetry__t}{system\+\_\+telemetry\+\_\+t}} \texorpdfstring{$\ast$}{*}sys)
+\begin{DoxyCompactList}\small\item\em Get the latest system ADC telemetry snapshot (non-\/blocking). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks06_gab0a72837aa90a24179f30788894fc8d6}{Meter\+Task\+\_\+\+Temp\+Calibration\+\_\+\+Single\+Point\+Compute}} (float ambient\+\_\+c, uint16\+\_\+t raw\+\_\+temp, float \texorpdfstring{$\ast$}{*}out\+\_\+v0, float \texorpdfstring{$\ast$}{*}out\+\_\+slope, float \texorpdfstring{$\ast$}{*}out\+\_\+offset)
+\begin{DoxyCompactList}\small\item\em Compute single-\/point temperature calibration (offset only). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks06_ga0f880913779ddddeb13c63ff028eb4a9}{Meter\+Task\+\_\+\+Temp\+Calibration\+\_\+\+Two\+Point\+Compute}} (float t1\+\_\+c, uint16\+\_\+t raw1, float t2\+\_\+c, uint16\+\_\+t raw2, float \texorpdfstring{$\ast$}{*}out\+\_\+v0, float \texorpdfstring{$\ast$}{*}out\+\_\+slope, float \texorpdfstring{$\ast$}{*}out\+\_\+offset)
+\begin{DoxyCompactList}\small\item\em Compute two-\/point temperature calibration (slope + intercept, zero offset). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks06_ga3f1131031850b69b057eeb4f8db3a4b9}{Meter\+Task\+\_\+\+Set\+Temp\+Calibration}} (float v0\+\_\+volts\+\_\+at\+\_\+27c, float slope\+\_\+volts\+\_\+per\+\_\+deg, float offset\+\_\+c)
+\begin{DoxyCompactList}\small\item\em Apply per-\/device temperature calibration parameters. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks06_ga3e47111bb4b1227f43106ee888c45902}{Meter\+Task\+\_\+\+Get\+Temp\+Calibration\+Info}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}out\+\_\+mode, float \texorpdfstring{$\ast$}{*}out\+\_\+v0, float \texorpdfstring{$\ast$}{*}out\+\_\+slope, float \texorpdfstring{$\ast$}{*}out\+\_\+offset)
+\begin{DoxyCompactList}\small\item\em Query active temperature calibration parameters and inferred mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{group__tasks06_ga7c05890110d34f76bc337fe1dd88ed2e}{q\+\_\+meter\+\_\+telemetry}}
+\begin{DoxyCompactList}\small\item\em Telemetry queue handle for publishing measurements. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

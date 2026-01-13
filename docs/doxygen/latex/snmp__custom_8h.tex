@@ -1,0 +1,41 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/snmp/snmp\+\_\+custom.h File Reference}
+\hypertarget{snmp__custom_8h}{}\label{snmp__custom_8h}\index{src/Software/ENERGIS\_RTOS/src/snmp/snmp\_custom.h@{src/Software/ENERGIS\_RTOS/src/snmp/snmp\_custom.h}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for snmp\+\_\+custom.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp__custom_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp__custom_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__snmp01_ga4d3d68fdba21b44efc30f71a40efa7ed}{init\+Table}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the SNMP OID table. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp01_ga01e7036f2bce7c2647b681dcfe2b3731}{initial\+\_\+\+Trap}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}manager\+IP, uint8\+\_\+t \texorpdfstring{$\ast$}{*}agent\+IP)
+\begin{DoxyCompactList}\small\item\em Send SNMP Warm\+Start trap notification to manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{group__snmp01_ga171971564950d97e48939e2f6de4d92f}{COMMUNITY}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Community string bytes (length \doxylink{group__drivers07_ga253bb776650cb698ee240d43141e1cfa}{COMMUNITY\+\_\+\+SIZE}). \end{DoxyCompactList}\item 
+const uint8\+\_\+t \mbox{\hyperlink{group__snmp01_ga253bb776650cb698ee240d43141e1cfa}{COMMUNITY\+\_\+\+SIZE}}
+\begin{DoxyCompactList}\small\item\em Community string length. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structsnmp__entry__t}{snmp\+\_\+entry\+\_\+t}} \mbox{\hyperlink{group__snmp01_ga0fc0a81b7ad505f393362648610b3a2c}{snmp\+Data}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Global OID table (implemented in \doxylink{snmp__custom_8c}{snmp\+\_\+custom.\+c}). \end{DoxyCompactList}\item 
+const int32\+\_\+t \mbox{\hyperlink{group__snmp01_ga073f16bfbcb7015e6408be249c5d2932}{max\+Data}}
+\begin{DoxyCompactList}\small\item\em Number of valid entries in \doxylink{group__drivers07_ga0fc0a81b7ad505f393362648610b3a2c}{snmp\+Data}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

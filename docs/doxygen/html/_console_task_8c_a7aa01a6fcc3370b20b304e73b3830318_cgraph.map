@@ -1,0 +1,30 @@
+<map id="cmd_set_ch" name="cmd_set_ch">
+<area shape="rect" id="Node000001" title="Set relay channel state." alt="" coords="5,56,98,83"/>
+<area shape="rect" id="Node000002" href="$group__tasks08.html#ga4bf47606df6e10c610300fdf1a2573b5" title="Query whether switching actions are currently allowed." alt="" coords="377,5,587,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,53,145,41,256,27,361,20,361,25,256,32,146,47,98,58"/>
+<area shape="rect" id="Node000003" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="146,56,329,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="98,67,130,67,130,72,98,72"/>
+<area shape="rect" id="Node000004" href="$group__tasks11.html#gabd8f13f37bd62b267259ae2d027bda28" title="Set single relay channel state with verification." alt="" coords="169,107,306,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="99,79,172,99,170,105,97,84"/>
+<area shape="poly" id="edge13_Node000004_Node000002" title=" " alt="" coords="303,104,328,92,342,80,351,68,360,54,376,42,387,36,389,41,378,46,364,58,355,71,346,84,330,97,306,108"/>
+<area shape="rect" id="Node000005" href="$_switch_task_8c.html#a2a7f01bd659f5eea0a4a131d8c57c207" title=" " alt="" coords="460,56,505,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="305,103,444,74,445,80,306,109"/>
+<area shape="rect" id="Node000006" href="$group__drivers06.html#ga7634eca518e2158ba0e636a3f03f3928" title="Get display MCP23017 device context." alt="" coords="435,107,529,133"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="306,117,419,117,419,123,306,123"/>
+<area shape="rect" id="Node000007" href="$group__drivers06.html#ga6568742c79ce5190216e5185238229ba" title="Get relay MCP23017 device context." alt="" coords="442,157,523,184"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="306,131,427,157,426,162,305,137"/>
+<area shape="rect" id="Node000008" href="$group__drivers06.html#ga8b8bc528b75e419262e7663ee669dc31" title="Write a logic level to a pin." alt="" coords="430,208,535,235"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="261,132,313,163,378,194,415,205,414,210,376,198,311,167,258,136"/>
+<area shape="rect" id="Node000014" href="$_switch_task_8c.html#abb7cc7eb4e959fda6a43c8dd85f20090" title=" " alt="" coords="452,259,512,285"/>
+<area shape="poly" id="edge14_Node000004_Node000014" title=" " alt="" coords="252,132,302,187,338,218,378,244,408,256,438,264,437,269,406,261,376,249,335,222,299,191,248,136"/>
+<area shape="rect" id="Node000009" href="$group__drivers05.html#gab7b4aa096ded6cebd93256e5b5994e42" title="Write 8&#45;bit register with 8&#45;bit value: [reg, value]." alt="" coords="647,183,780,209"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="535,213,631,202,632,208,536,218"/>
+<area shape="rect" id="Node000013" href="$_m_c_p23017__driver_8c.html#a0ff45ad384852ba5f69f0fd781c2f46a" title=" " alt="" coords="635,233,792,260"/>
+<area shape="poly" id="edge12_Node000008_Node000013" title=" " alt="" coords="536,224,620,234,619,239,535,230"/>
+<area shape="rect" id="Node000010" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="865,157,986,184"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="780,185,849,177,850,182,781,191"/>
+<area shape="rect" id="Node000011" href="$group__drivers05.html#ga170d6c4ff97ddc2d314f0a7a0054f283" title="Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK i2c_write_time..." alt="" coords="840,208,1012,235"/>
+<area shape="poly" id="edge10_Node000009_Node000011" title=" " alt="" coords="781,201,825,207,824,212,780,207"/>
+<area shape="rect" id="Node000012" href="$i2c__bus_8c.html#afbaa64f79bdd1fa39c8fa5b7a9c2717b" title=" " alt="" coords="1060,208,1217,235"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="1013,219,1044,219,1044,224,1013,224"/>
+</map>

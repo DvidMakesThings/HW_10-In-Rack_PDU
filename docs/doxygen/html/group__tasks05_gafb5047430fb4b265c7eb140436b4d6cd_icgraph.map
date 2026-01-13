@@ -1,0 +1,14 @@
+<map id="Logger_IsReady" name="Logger_IsReady">
+<area shape="rect" id="Node000001" title="Query logger task readiness status." alt="" coords="684,56,800,83"/>
+<area shape="rect" id="Node000002" href="$group__tasks02.html#gad45ca7c142e8c2764d52b3d554ffcdeb" title="Initialize and start the console task." alt="" coords="470,5,592,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="668,54,589,35,590,30,669,49"/>
+<area shape="rect" id="Node000003" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,31,378,57"/>
+<area shape="poly" id="edge6_Node000001_Node000003" title=" " alt="" coords="668,67,378,49,379,43,668,62"/>
+<area shape="rect" id="Node000006" href="$group__misc1.html#ga040d161613770d2656d3350134445684" title="Print last crash diagnostics and reset reason, then clear HardFault fields." alt="" coords="426,107,636,133"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="669,89,590,109,589,103,668,84"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="455,32,379,42,379,37,454,26"/>
+<area shape="rect" id="Node000004" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,31,263,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="295,47,263,47,263,41,295,41"/>
+<area shape="rect" id="Node000005" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,31,102,57"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="134,47,102,47,102,41,134,41"/>
+</map>

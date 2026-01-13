@@ -1,0 +1,283 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/misc/rtos\+\_\+hooks.c File Reference}
+\hypertarget{rtos__hooks_8c}{}\label{rtos__hooks_8c}\index{src/Software/ENERGIS\_RTOS/src/misc/rtos\_hooks.c@{src/Software/ENERGIS\_RTOS/src/misc/rtos\_hooks.c}}
+
+
+Free\+RTOS hook implementations, crash breadcrumbs, and scheduler canaries.  
+
+
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for rtos\+\_\+hooks.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rtos__hooks_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rtos__hooks_8c_a452c2ba1286757569c3b1cb3d8428801}{RTOS\+\_\+\+HOOKS\+\_\+\+TAG}}~"{}\mbox{[}RTOSHKS\mbox{]}"{}
+\item 
+\#define \mbox{\hyperlink{rtos__hooks_8c_a8a805022ac07d55077dc5fd5046ea1f0}{HOOK\+\_\+\+LOGE}}(...)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{rtos__hooks_8c_af8fd46040ba1315de2ea5941a863ffb4}{rtos\+\_\+now\+\_\+ms}} (void)
+\begin{DoxyCompactList}\small\item\em Convert Free\+RTOS tick count to milliseconds. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc4_ga97fd430f36f8b065226e2bff9bad1de5}{v\+Application\+Idle\+Hook}} (void)
+\begin{DoxyCompactList}\small\item\em Free\+RTOS Idle hook. Increments the scheduler canary and records time. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__misc4_ga7ad3b2e7f54fbc65a7ce48de8cb3ab88}{RTOS\+\_\+\+Idle\+Canary\+\_\+\+Read}} (void)
+\begin{DoxyCompactList}\small\item\em Read the current Idle canary value. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__misc4_ga9ac2d2d4103087861a0bf882d5ebada9}{RTOS\+\_\+\+Idle\+Canary\+\_\+\+Last\+Ms}} (void)
+\begin{DoxyCompactList}\small\item\em Read the last millisecond timestamp observed in the Idle hook. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__misc4_ga5d4c49ef4e56e7cb316082d5dac685e0}{RTOS\+\_\+\+Idle\+Canary\+\_\+\+Delta}} (uint32\+\_\+t prev\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Compute canary delta since a previous sample. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__misc4_ga931071cb29c290b70b5d74a9150d4ab8}{RTOS\+\_\+\+Ticks\+Ms}} (void)
+\begin{DoxyCompactList}\small\item\em Snapshot the current RTOS time in milliseconds. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rtos__hooks_8c_a54b14b665d04a631991869b21065bf90}{v\+Application\+Stack\+Overflow\+Hook}} (Task\+Handle\+\_\+t x\+Task, char \texorpdfstring{$\ast$}{*}pc\+Task\+Name)
+\begin{DoxyCompactList}\small\item\em Free\+RTOS stack overflow hook with fault context capture. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rtos__hooks_8c_ab7e5c95cf72a3f819bc4462a7fb62ca3}{v\+Application\+Malloc\+Failed\+Hook}} (void)
+\begin{DoxyCompactList}\small\item\em Free\+RTOS heap allocation failure hook with context capture. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__config05_ga20f7d031e5579a7e413468a721166881}{v\+Assert\+Called}} (const char \texorpdfstring{$\ast$}{*}file, int line)
+\begin{DoxyCompactList}\small\item\em Free\+RTOS assertion failure hook with context capture. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{rtos__hooks_8c_a2804a023941a956288c32ad08b2cf59e}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} ((naked))
+\begin{DoxyCompactList}\small\item\em Cortex-\/M Hard\+Fault exception handler with context capture. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rtos__hooks_8c_ab4f0234f54a73010291c7fb50d9e4ba5}{hardfault\+\_\+c}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}sp)
+\begin{DoxyCompactList}\small\item\em Hard\+Fault C handler that extracts and logs fault context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile uint32\+\_\+t \mbox{\hyperlink{rtos__hooks_8c_aee4abb207a7b1086d8e90eb2732f6558}{g\+\_\+rtos\+\_\+idle\+\_\+canary}} = 0u
+\begin{DoxyCompactList}\small\item\em Global scheduler Idle canary incremented from \doxylink{group__misc4_ga97fd430f36f8b065226e2bff9bad1de5}{v\+Application\+Idle\+Hook()}. \end{DoxyCompactList}\item 
+volatile uint32\+\_\+t \mbox{\hyperlink{rtos__hooks_8c_ab341bab73265a6b63106f35d7ff07e03}{g\+\_\+rtos\+\_\+idle\+\_\+last\+\_\+ms}} = 0u
+\begin{DoxyCompactList}\small\item\em Last observed millisecond timestamp from Idle hook. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Free\+RTOS hook implementations, crash breadcrumbs, and scheduler canaries. 
+
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/06
+\end{DoxyDate}
+Implementation of Free\+RTOS application hooks and fault handlers. This module captures fault context into watchdog scratch registers for post-\/mortem analysis and provides scheduler liveness monitoring via Idle task canary.
+
+All fault handlers follow a consistent pattern\+:
+\begin{DoxyEnumerate}
+\item Write fault signature (0x\+BEEF + cause code) to scratch\mbox{[}0\mbox{]}
+\item Capture minimal context (LR, task handle, etc.) to remaining scratch registers
+\item Initiate controlled reboot via Health module
+\end{DoxyEnumerate}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}}
+
+This module provides\+:
+\begin{DoxyItemize}
+\item Minimal post-\/mortem breadcrumbs stored in RP2040 watchdog scratch registers on fatal hooks.
+\item An Idle-\/hook canary that advances whenever the Idle task runs, used to detect scheduler stalls.
+\item Lightweight accessors to read the canary and correlate last Idle timestamp.
+\end{DoxyItemize}
+
+All routines are non-\/blocking and safe for RP2040. Reboots use the watchdog path. 
+
+\label{doc-define-members}
+\Hypertarget{rtos__hooks_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{rtos__hooks_8c_a8a805022ac07d55077dc5fd5046ea1f0}\index{rtos\_hooks.c@{rtos\_hooks.c}!HOOK\_LOGE@{HOOK\_LOGE}}
+\index{HOOK\_LOGE@{HOOK\_LOGE}!rtos\_hooks.c@{rtos\_hooks.c}}
+\doxysubsubsection{\texorpdfstring{HOOK\_LOGE}{HOOK\_LOGE}}
+{\footnotesize\ttfamily \label{rtos__hooks_8c_a8a805022ac07d55077dc5fd5046ea1f0} 
+\#define HOOK\+\_\+\+LOGE(\begin{DoxyParamCaption}\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__overcurrent__thresholds_gae1cb3e9a56747aa0a7e58b387628c8db}{ERROR\_PRINT}}(\_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}
+\Hypertarget{rtos__hooks_8c_a452c2ba1286757569c3b1cb3d8428801}\index{rtos\_hooks.c@{rtos\_hooks.c}!RTOS\_HOOKS\_TAG@{RTOS\_HOOKS\_TAG}}
+\index{RTOS\_HOOKS\_TAG@{RTOS\_HOOKS\_TAG}!rtos\_hooks.c@{rtos\_hooks.c}}
+\doxysubsubsection{\texorpdfstring{RTOS\_HOOKS\_TAG}{RTOS\_HOOKS\_TAG}}
+{\footnotesize\ttfamily \label{rtos__hooks_8c_a452c2ba1286757569c3b1cb3d8428801} 
+\#define RTOS\+\_\+\+HOOKS\+\_\+\+TAG~"{}\mbox{[}RTOSHKS\mbox{]}"{}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{rtos__hooks_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{rtos__hooks_8c_a2804a023941a956288c32ad08b2cf59e}\index{rtos\_hooks.c@{rtos\_hooks.c}!\_\_attribute\_\_@{\_\_attribute\_\_}}
+\index{\_\_attribute\_\_@{\_\_attribute\_\_}!rtos\_hooks.c@{rtos\_hooks.c}}
+\doxysubsubsection{\texorpdfstring{\_\_attribute\_\_()}{\_\_attribute\_\_()}}
+{\footnotesize\ttfamily \label{rtos__hooks_8c_a2804a023941a956288c32ad08b2cf59e} 
+\+\_\+\+\_\+attribute\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{(naked)}]{}{}\end{DoxyParamCaption})}
+
+
+
+Cortex-\/M Hard\+Fault exception handler with context capture. 
+
+Assembly trampoline that determines which stack pointer was active at the time of the fault (MSP or PSP) and passes it to the C handler function.
+
+The handler captures CPU context and writes it to watchdog scratch registers before initiating a controlled reboot.
+
+\begin{DoxyReturn}{Returns}
+None (function does not return; system reboots)
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This function is naked and contains only assembly code 
+\end{DoxyNote}
+\Hypertarget{rtos__hooks_8c_ab4f0234f54a73010291c7fb50d9e4ba5}\index{rtos\_hooks.c@{rtos\_hooks.c}!hardfault\_c@{hardfault\_c}}
+\index{hardfault\_c@{hardfault\_c}!rtos\_hooks.c@{rtos\_hooks.c}}
+\doxysubsubsection{\texorpdfstring{hardfault\_c()}{hardfault\_c()}}
+{\footnotesize\ttfamily \label{rtos__hooks_8c_ab4f0234f54a73010291c7fb50d9e4ba5} 
+void hardfault\+\_\+c (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{sp}{}\end{DoxyParamCaption})}
+
+
+
+Hard\+Fault C handler that extracts and logs fault context. 
+
+Called from the Hard\+Fault\+\_\+\+Handler assembly trampoline with a pointer to the stacked register frame. Extracts all stacked registers and attempts to log them before entering an infinite wait loop.
+
+Exception stack frame layout (sp points to r0)\+: \mbox{[}0\mbox{]}=r0, \mbox{[}1\mbox{]}=r1, \mbox{[}2\mbox{]}=r2, \mbox{[}3\mbox{]}=r3, \mbox{[}4\mbox{]}=r12, \mbox{[}5\mbox{]}=lr, \mbox{[}6\mbox{]}=pc, \mbox{[}7\mbox{]}=xpsr
+
+
+\begin{DoxyParams}{Parameters}
+{\em sp} & Pointer to exception stack frame\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None (function does not return; enters infinite WFI loop) 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{rtos__hooks_8c_ab4f0234f54a73010291c7fb50d9e4ba5_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{rtos__hooks_8c_af8fd46040ba1315de2ea5941a863ffb4}\index{rtos\_hooks.c@{rtos\_hooks.c}!rtos\_now\_ms@{rtos\_now\_ms}}
+\index{rtos\_now\_ms@{rtos\_now\_ms}!rtos\_hooks.c@{rtos\_hooks.c}}
+\doxysubsubsection{\texorpdfstring{rtos\_now\_ms()}{rtos\_now\_ms()}}
+{\footnotesize\ttfamily \label{rtos__hooks_8c_af8fd46040ba1315de2ea5941a863ffb4} 
+uint32\+\_\+t rtos\+\_\+now\+\_\+ms (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Convert Free\+RTOS tick count to milliseconds. 
+
+Helper function that reads the current tick count and converts it to milliseconds based on the configured tick rate.
+
+\begin{DoxyReturn}{Returns}
+Milliseconds since scheduler start 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=299pt]{rtos__hooks_8c_af8fd46040ba1315de2ea5941a863ffb4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{rtos__hooks_8c_ab7e5c95cf72a3f819bc4462a7fb62ca3}\index{rtos\_hooks.c@{rtos\_hooks.c}!vApplicationMallocFailedHook@{vApplicationMallocFailedHook}}
+\index{vApplicationMallocFailedHook@{vApplicationMallocFailedHook}!rtos\_hooks.c@{rtos\_hooks.c}}
+\doxysubsubsection{\texorpdfstring{vApplicationMallocFailedHook()}{vApplicationMallocFailedHook()}}
+{\footnotesize\ttfamily \label{rtos__hooks_8c_ab7e5c95cf72a3f819bc4462a7fb62ca3} 
+void v\+Application\+Malloc\+Failed\+Hook (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Free\+RTOS heap allocation failure hook with context capture. 
+
+Called by Free\+RTOS when pv\+Port\+Malloc() fails to allocate memory. Captures diagnostic context and initiates reboot.
+
+Fault signature format in watchdog scratch registers\+:
+\begin{DoxyItemize}
+\item scratch\mbox{[}0\mbox{]}\+: 0x\+BEEF0000 \texorpdfstring{$\vert$}{|} 0x\+F3 (Malloc\+Fail signature)
+\item scratch\mbox{[}1\mbox{]}\+: Function return address
+\item scratch\mbox{[}2\mbox{]}\+: Current task handle
+\item scratch\mbox{[}3\mbox{]}\+: Current task stack high-\/water mark
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+None (function does not return; system reboots)
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Requires config\+USE\+\_\+\+MALLOC\+\_\+\+FAILED\+\_\+\+HOOK=1 in \doxylink{_free_r_t_o_s_config_8h}{Free\+RTOSConfig.\+h} 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rtos__hooks_8c_ab7e5c95cf72a3f819bc4462a7fb62ca3_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{rtos__hooks_8c_a54b14b665d04a631991869b21065bf90}\index{rtos\_hooks.c@{rtos\_hooks.c}!vApplicationStackOverflowHook@{vApplicationStackOverflowHook}}
+\index{vApplicationStackOverflowHook@{vApplicationStackOverflowHook}!rtos\_hooks.c@{rtos\_hooks.c}}
+\doxysubsubsection{\texorpdfstring{vApplicationStackOverflowHook()}{vApplicationStackOverflowHook()}}
+{\footnotesize\ttfamily \label{rtos__hooks_8c_a54b14b665d04a631991869b21065bf90} 
+void v\+Application\+Stack\+Overflow\+Hook (\begin{DoxyParamCaption}\item[{Task\+Handle\+\_\+t}]{x\+Task}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{pc\+Task\+Name}{}\end{DoxyParamCaption})}
+
+
+
+Free\+RTOS stack overflow hook with fault context capture. 
+
+Called by Free\+RTOS when stack overflow is detected for a task. Captures diagnostic context into watchdog scratch registers and initiates reboot.
+
+Fault signature format in watchdog scratch registers\+:
+\begin{DoxyItemize}
+\item scratch\mbox{[}0\mbox{]}\+: 0x\+BEEF0000 \texorpdfstring{$\vert$}{|} 0x\+F2 (Stack\+Overflow signature)
+\item scratch\mbox{[}1\mbox{]}\+: Function return address
+\item scratch\mbox{[}2\mbox{]}\+: Offending task handle
+\item scratch\mbox{[}3\mbox{]}\+: Task stack high-\/water mark (bytes remaining before overflow)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Task} & Offending task handle \\
+\hline
+{\em pc\+Task\+Name} & Task name string pointer (may be invalid post-\/crash)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None (function does not return; system reboots)
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Requires config\+CHECK\+\_\+\+FOR\+\_\+\+STACK\+\_\+\+OVERFLOW \texorpdfstring{$>$}{>} 0 in \doxylink{_free_r_t_o_s_config_8h}{Free\+RTOSConfig.\+h} 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rtos__hooks_8c_a54b14b665d04a631991869b21065bf90_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{rtos__hooks_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{rtos__hooks_8c_aee4abb207a7b1086d8e90eb2732f6558}\index{rtos\_hooks.c@{rtos\_hooks.c}!g\_rtos\_idle\_canary@{g\_rtos\_idle\_canary}}
+\index{g\_rtos\_idle\_canary@{g\_rtos\_idle\_canary}!rtos\_hooks.c@{rtos\_hooks.c}}
+\doxysubsubsection{\texorpdfstring{g\_rtos\_idle\_canary}{g\_rtos\_idle\_canary}}
+{\footnotesize\ttfamily \label{rtos__hooks_8c_aee4abb207a7b1086d8e90eb2732f6558} 
+volatile uint32\+\_\+t g\+\_\+rtos\+\_\+idle\+\_\+canary = 0u}
+
+
+
+Global scheduler Idle canary incremented from \doxylink{group__misc4_ga97fd430f36f8b065226e2bff9bad1de5}{v\+Application\+Idle\+Hook()}. 
+
+Monotonically increases whenever the Free\+RTOS Idle task runs. Lack of progress over multiple Health periods indicates a scheduler stall. \Hypertarget{rtos__hooks_8c_ab341bab73265a6b63106f35d7ff07e03}\index{rtos\_hooks.c@{rtos\_hooks.c}!g\_rtos\_idle\_last\_ms@{g\_rtos\_idle\_last\_ms}}
+\index{g\_rtos\_idle\_last\_ms@{g\_rtos\_idle\_last\_ms}!rtos\_hooks.c@{rtos\_hooks.c}}
+\doxysubsubsection{\texorpdfstring{g\_rtos\_idle\_last\_ms}{g\_rtos\_idle\_last\_ms}}
+{\footnotesize\ttfamily \label{rtos__hooks_8c_ab341bab73265a6b63106f35d7ff07e03} 
+volatile uint32\+\_\+t g\+\_\+rtos\+\_\+idle\+\_\+last\+\_\+ms = 0u}
+
+
+
+Last observed millisecond timestamp from Idle hook. 
+
+Captures when the Idle task last executed, based on RTOS tick time converted to ms. 

@@ -1,0 +1,5 @@
+<map id="setSn_TX_WR" name="setSn_TX_WR">
+<area shape="rect" id="Node000001" title="Set socket TX write pointer (Sn_TX_WR) in big&#45;endian." alt="" coords="5,5,115,32"/>
+<area shape="rect" id="Node000002" href="$group__drivers03.html#ga8e525d27915365abbe8086dc3363055f" title="Write multiple bytes to W5500 (optimized bulk transfer)" alt="" coords="163,5,282,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,16,147,16,147,21,115,21"/>
+</map>

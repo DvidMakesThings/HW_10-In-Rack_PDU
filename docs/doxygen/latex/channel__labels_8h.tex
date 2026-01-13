@@ -1,0 +1,46 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/storage\+\_\+submodule/channel\+\_\+labels.h File Reference}
+\hypertarget{channel__labels_8h}{}\label{channel__labels_8h}\index{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/channel\_labels.h@{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/channel\_labels.h}}
+{\ttfamily \#include "{}../../\+CONFIG.\+h"{}}\newline
+Include dependency graph for channel\+\_\+labels.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{channel__labels_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{channel__labels_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__storage02_ga6398fe537889dbfbfa6d9d64c4d7db88}{EEPROM\+\_\+\+Write\+Channel\+Label}} (uint8\+\_\+t channel\+\_\+index, const char \texorpdfstring{$\ast$}{*}label)
+\begin{DoxyCompactList}\small\item\em Write null-\/terminated label string for a channel (stored in fixed slot). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage02_ga32e401468db1696835d3afe7d799c23b}{EEPROM\+\_\+\+Read\+Channel\+Label}} (uint8\+\_\+t channel\+\_\+index, char \texorpdfstring{$\ast$}{*}out, size\+\_\+t out\+\_\+len)
+\begin{DoxyCompactList}\small\item\em Read label string for a channel. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage02_gaf78531bf7a49a1b100af4fe0a8a1e2dd}{EEPROM\+\_\+\+Clear\+Channel\+Label}} (uint8\+\_\+t channel\+\_\+index)
+\begin{DoxyCompactList}\small\item\em Clear one channel label slot (fills with zeros). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage02_ga67a2dd3f4c5ce4b35fcc26bf85f7d886}{EEPROM\+\_\+\+Clear\+All\+Channel\+Labels}} (void)
+\begin{DoxyCompactList}\small\item\em Clear all channel label slots. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__storage02_gad1cb7f9e0fd0395902ffd198dd6f2ee0}{Channel\+Labels\+\_\+\+Load\+From\+EEPROM}} (void)
+\begin{DoxyCompactList}\small\item\em Load all channel labels from EEPROM into RAM cache. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage02_ga99ae818723cc95ffd9af13c54cd7a352}{Channel\+Labels\+\_\+\+Get\+Cached}} (uint8\+\_\+t channel, char \texorpdfstring{$\ast$}{*}out, size\+\_\+t out\+\_\+len)
+\begin{DoxyCompactList}\small\item\em Get label from RAM cache (non-\/blocking). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage02_gaee4d746ce522f44d4c8d6d4c12216248}{Channel\+Labels\+\_\+\+Set\+And\+Write}} (uint8\+\_\+t channel, const char \texorpdfstring{$\ast$}{*}label)
+\begin{DoxyCompactList}\small\item\em Update label in cache and write to EEPROM. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage02_ga9b748e74135c13df21595e6db035de95}{storage\+\_\+get\+\_\+channel\+\_\+label}} (uint8\+\_\+t channel, char \texorpdfstring{$\ast$}{*}out, size\+\_\+t out\+\_\+len)
+\begin{DoxyCompactList}\small\item\em Read channel label from RAM cache (thread-\/safe, non-\/blocking). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage02_ga9019937f0e528616251b6c085b7245a9}{storage\+\_\+set\+\_\+channel\+\_\+label}} (uint8\+\_\+t channel, const char \texorpdfstring{$\ast$}{*}label)
+\begin{DoxyCompactList}\small\item\em Write channel label via storage queue (thread-\/safe). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage02_gad3ee11180cd1b8d9e0f174b2607ab429}{storage\+\_\+get\+\_\+all\+\_\+channel\+\_\+labels}} (char labels\mbox{[}ENERGIS\+\_\+\+NUM\+\_\+\+CHANNELS\mbox{]}\mbox{[}26\mbox{]}, size\+\_\+t label\+\_\+buf\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Read all channel labels from RAM cache (thread-\/safe, non-\/blocking). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

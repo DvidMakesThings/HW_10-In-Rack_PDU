@@ -1,0 +1,55 @@
+\doxysection{Tasks }
+\hypertarget{group__tasks}{}\label{group__tasks}\index{Tasks@{Tasks}}
+
+
+General task implementations for ENERGIS PDU firmware.  
+
+
+Collaboration diagram for Tasks\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=287pt]{group__tasks}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Topics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__tasks01}{1. Button Task}}
+\begin{DoxyCompactList}\small\item\em Button input handling with debouncing and selection window management. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__tasks02}{2. Console Task}}
+\begin{DoxyCompactList}\small\item\em USB-\/\+CDC console command interface for system control and diagnostics. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__tasks03}{3. Health}}
+\begin{DoxyCompactList}\small\item\em System health monitor\+: watchdog, heartbeats, diagnostics (reset-\/safe). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__tasks04}{4. Init Task -\/ RTOS Initialization}}
+\begin{DoxyCompactList}\small\item\em Hardware bring-\/up sequencing task implementation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__tasks05}{5. Logger Task}}
+\begin{DoxyCompactList}\small\item\em Centralized logging subsystem with queue-\/based message handling. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__tasks06}{6. Meter Task}}
+\begin{DoxyCompactList}\small\item\em Power metering and system telemetry monitoring task with HLW8032 interface. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__tasks07}{7. Network Task}}
+\begin{DoxyCompactList}\small\item\em Network stack manager for W5500 Ethernet, HTTP server, and SNMP agent. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__tasks08}{8. Overcurrent Protection Module}}
+\begin{DoxyCompactList}\small\item\em High-\/priority overcurrent monitoring and protection system. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__tasks09}{9. Provisioning Command Handlers Header}}
+\begin{DoxyCompactList}\small\item\em Factory provisioning commands for device identity configuration via UART. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__tasks10}{10. Storage Task}}
+\begin{DoxyCompactList}\small\item\em Persistent configuration manager with CAT24\+C256 EEPROM and queue-\/based access. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__tasks11}{11. Switch Task}}
+\begin{DoxyCompactList}\small\item\em Synchronous relay and LED control manager with MCP23017 GPIO expanders. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+General task implementations for ENERGIS PDU firmware. 
+
+\input{group__tasks01}
+\input{group__tasks02}
+\input{group__tasks03}
+\input{group__tasks04}
+\input{group__tasks05}
+\input{group__tasks06}
+\input{group__tasks07}
+\input{group__tasks08}
+\input{group__tasks09}
+\input{group__tasks10}
+\input{group__tasks11}

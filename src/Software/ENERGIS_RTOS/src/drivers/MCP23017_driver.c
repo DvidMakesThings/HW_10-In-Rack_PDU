@@ -114,7 +114,7 @@ mcp23017_t *mcp_register(i2c_inst_t *i2c, uint8_t addr, int8_t rst_gpio) {
     /* Validate parameters */
     if (!i2c || addr < 0x20 || addr > 0x27) {
 #if ERRORLOGGER
-        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017, 0x03);
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017, 0x0);
         MCP_ERROR_CODE(errorcode, "%s Invalid register params: i2c=%p addr=0x%02X\r\n", MCP_TAG,
                        (void *)i2c, addr);
         // Storage_EnqueueErrorCode(errorcode);
@@ -131,7 +131,7 @@ mcp23017_t *mcp_register(i2c_inst_t *i2c, uint8_t addr, int8_t rst_gpio) {
     /* Check for registry space */
     if (g_device_count >= MCP_MAX_DEVICES) {
 #if ERRORLOGGER
-        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017, 0x04);
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017, 0x1);
         MCP_ERROR_CODE(errorcode, "%s Device registry full\r\n", MCP_TAG);
         // Storage_EnqueueErrorCode(errorcode);
 #endif
@@ -153,7 +153,7 @@ mcp23017_t *mcp_register(i2c_inst_t *i2c, uint8_t addr, int8_t rst_gpio) {
     dev->mutex = xSemaphoreCreateMutex();
     if (!dev->mutex) {
 #if ERRORLOGGER
-        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017, 0x05);
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017, 0x2);
         MCP_ERROR_CODE(errorcode, "%s Mutex create failed for addr=0x%02X\r\n", MCP_TAG, addr);
         // Storage_EnqueueErrorCode(errorcode);
 #endif
@@ -176,7 +176,7 @@ mcp23017_t *mcp_register(i2c_inst_t *i2c, uint8_t addr, int8_t rst_gpio) {
 void mcp_init(mcp23017_t *dev) {
     if (!dev) {
 #if ERRORLOGGER
-        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017, 0x06);
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_ERROR, ERR_FID_MCP23017, 0x3);
         MCP_ERROR_CODE(errorcode, "%s NULL device in init\r\n", MCP_TAG);
         // Storage_EnqueueErrorCode(errorcode);
 #endif
@@ -225,7 +225,6 @@ void mcp_init(mcp23017_t *dev) {
     dev->inited = true;
 
     xSemaphoreGive(dev->mutex);
-
 }
 
 bool mcp_recover(mcp23017_t *dev) {
@@ -252,7 +251,7 @@ bool mcp_recover(mcp23017_t *dev) {
 
 #if ERRORLOGGER
     if (!ok) {
-        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_WARNING, ERR_FID_MCP23017, 0x05);
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_BUTTON, ERR_SEV_WARNING, ERR_FID_MCP23017, 0x0);
         MCP_WARNING_CODE(errorcode, "%s Recover failed: addr=0x%02X\r\n", MCP_TAG, dev->addr);
         // Storage_EnqueueWarningCode(errorcode);
     }

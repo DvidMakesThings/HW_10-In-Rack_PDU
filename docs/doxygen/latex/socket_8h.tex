@@ -1,0 +1,227 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/drivers/socket.h File Reference}
+\hypertarget{socket_8h}{}\label{socket_8h}\index{src/Software/ENERGIS\_RTOS/src/drivers/socket.h@{src/Software/ENERGIS\_RTOS/src/drivers/socket.h}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for socket.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{socket_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{socket_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{Indent}\textbf{ Socket Result Codes}\par
+{\em Socket operation result codes }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga43761c46fde2eb998247950b5a735cbf}{SOCK\+\_\+\+OK}}~1
+\item 
+\#define \mbox{\hyperlink{group__drivers08_gaf338f8defd644d00125c76201a38ce74}{SOCK\+\_\+\+BUSY}}~0
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga3692681cc0dc13c8e8df68868785f894}{SOCK\+\_\+\+FATAL}}~-\/1000
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Socket Error Codes}\par
+{\em Socket error codes }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}}~0
+\item 
+\#define \mbox{\hyperlink{group__drivers08_gaf6ef7a97c9bef95e6a0520a0f41b2923}{SOCKERR\+\_\+\+SOCKNUM}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 1)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga9445babb7a4c392d0fe0aa8cefb162af}{SOCKERR\+\_\+\+SOCKOPT}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 2)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga4cd6d7ca2165fc20977a855ca8ef5efc}{SOCKERR\+\_\+\+SOCKINIT}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 3)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_gae202798313c7d68a56d5253f9e364ac7}{SOCKERR\+\_\+\+SOCKCLOSED}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 4)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga6971dab6af9ec3f511a08f7944e04c85}{SOCKERR\+\_\+\+SOCKMODE}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 5)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_gabaab5024537ee2bcfe81a78e1d65d739}{SOCKERR\+\_\+\+SOCKFLAG}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 6)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_gafa51a4ca35e3dde8100252b9bdb32de2}{SOCKERR\+\_\+\+SOCKSTATUS}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 7)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_gacfaf9e9da5a7bd9846052975871cb488}{SOCKERR\+\_\+\+ARG}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 10)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_gaf6282af0917498ec1560d934a73103b5}{SOCKERR\+\_\+\+PORTZERO}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 11)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga6a6dd25815b319d08e09382ccb798795}{SOCKERR\+\_\+\+IPINVALID}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 12)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga8d293d23a00072c794547d2fccfa5a6e}{SOCKERR\+\_\+\+TIMEOUT}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 13)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga6c4165b7c48a4e986b94e6ac4d5a88fe}{SOCKERR\+\_\+\+DATALEN}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 14)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga1b458bac22c1408dd9f8bc7628cb6113}{SOCKERR\+\_\+\+BUFFER}}~(\mbox{\hyperlink{group__drivers08_ga46c7c571ffee7a316b5ca7d696c6f68e}{SOCK\+\_\+\+ERROR}} -\/ 15)
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga381abf0c05f627dfe0ed9876106cb34c}{SOCKFATAL\+\_\+\+PACKLEN}}~(\mbox{\hyperlink{group__drivers08_ga3692681cc0dc13c8e8df68868785f894}{SOCK\+\_\+\+FATAL}} -\/ 1)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Socket Flags}\par
+{\em Socket flags (for \doxylink{group__drivers08_ga8cc0a2074b3aae98a132c1ae3c51188f}{socket()} call) }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga49117ce7d884321865f4db6b139107c4}{SF\+\_\+\+ETHER\+\_\+\+OWN}}~(\mbox{\hyperlink{group__config03_ga9045e26eee8663753dbf02919f313c2a}{Sn\+\_\+\+MR\+\_\+\+MFEN}})
+\item 
+\#define \mbox{\hyperlink{group__drivers08_gacd337681c4ef4fbf02a4ff4ca493f58a}{SF\+\_\+\+IGMP\+\_\+\+VER2}}~(\mbox{\hyperlink{group__config03_gab15c83d6d0b4bd06c697c14c6f716977}{Sn\+\_\+\+MR\+\_\+\+MC}})
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga73908595a4322a54ab879938f1f9e263}{SF\+\_\+\+TCP\+\_\+\+NODELAY}}~(\mbox{\hyperlink{group__config03_gaffbdfabc2d0bb33ef649d916506f040e}{Sn\+\_\+\+MR\+\_\+\+ND}})
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga62356ecd96a5545441134262d88c3cc2}{SF\+\_\+\+MULTI\+\_\+\+ENABLE}}~(\mbox{\hyperlink{group__config03_gac93105c327d64a318d7388c31ccb5075}{Sn\+\_\+\+MR\+\_\+\+MULTI}})
+\item 
+\#define \mbox{\hyperlink{group__drivers08_gae9bc25736822c8937e783714525b5dcd}{SF\+\_\+\+IO\+\_\+\+NONBLOCK}}~0x01
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga87077f4a5c6f873ae954994b3ce0da78}{SF\+\_\+\+IO\+\_\+\+BLOCK}}~0x00
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga0a3656cb954d39bb1df851da40e82d53}{SF\+\_\+\+UNI\+\_\+\+BLOCK}}~(\mbox{\hyperlink{group__config03_gac786108aec4528dd98cf6fb7ebae4841}{Sn\+\_\+\+MR\+\_\+\+UCASTB}})
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ UDP \& MACRAW Packet Info}\par
+{\em UDP \& MACRAW Packet Information Flags }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__drivers08_ga970d74802b0e51a57d2036ada9f956fd}{PACK\+\_\+\+FIRST}}~0x80
+\item 
+\#define \mbox{\hyperlink{group__drivers08_gac562b74bdfbd701536d2bd0be62f5280}{PACK\+\_\+\+REMAINED}}~0x01
+\item 
+\#define \mbox{\hyperlink{group__drivers08_gae06c5dba7f49f92040308a7219f0b891}{PACK\+\_\+\+COMPLETED}}~0x00
+\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint8\+\_\+t \mbox{\hyperlink{group__drivers08_ga2b3f978d539175d112fb6ebaa7efc0f0}{SOCKET}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{Indent}\textbf{ Socket Interrupt Flags}\par
+{\em Socket interrupt kinds }\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__drivers08_gaa9d536c54137cd7b425c4c1e3cbfd49c}{sockint\+\_\+kind}} \{ \newline
+\mbox{\hyperlink{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49ca572b5fc4792b828241e3cb59c95d8162}{SIK\+\_\+\+CONNECTED}} = (1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 0)
+, \mbox{\hyperlink{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49ca9680dba91346657e5ace550b548e078b}{SIK\+\_\+\+DISCONNECTED}} = (1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 1)
+, \mbox{\hyperlink{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49ca083fdc9e4e60122e9430e00cea78ecba}{SIK\+\_\+\+RECEIVED}} = (1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 2)
+, \mbox{\hyperlink{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49ca9932f0ef330402b0f60a08073fd5a753}{SIK\+\_\+\+TIMEOUT}} = (1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 3)
+, \newline
+\mbox{\hyperlink{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49ca263f2ee924ce301138f6ff041d539bd2}{SIK\+\_\+\+SENT}} = (1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 4)
+, \mbox{\hyperlink{group__drivers08_ggaa9d536c54137cd7b425c4c1e3cbfd49cab047934b1869746fbc0f144b5a750235}{SIK\+\_\+\+ALL}} = 0x1F
+ \}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Socket Control Types}\par
+{\em Socket control types (for ctlsocket) }\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__drivers08_ga3a77339a724cf087b366b8710aa683e6}{ctlsock\+\_\+type}} \{ \newline
+\mbox{\hyperlink{group__drivers08_gga3a77339a724cf087b366b8710aa683e6ab3ec317b2f9cb2df881dedd576500f2f}{CS\+\_\+\+SET\+\_\+\+IOMODE}}
+, \mbox{\hyperlink{group__drivers08_gga3a77339a724cf087b366b8710aa683e6af7caa802f7e7242ca70ce5640a9b8e85}{CS\+\_\+\+GET\+\_\+\+IOMODE}}
+, \mbox{\hyperlink{group__drivers08_gga3a77339a724cf087b366b8710aa683e6a9f3ee6f21891b62bdf724135151e9e59}{CS\+\_\+\+GET\+\_\+\+MAXTXBUF}}
+, \mbox{\hyperlink{group__drivers08_gga3a77339a724cf087b366b8710aa683e6abb1c8779447ef09aa57c88c71186ca1e}{CS\+\_\+\+GET\+\_\+\+MAXRXBUF}}
+, \newline
+\mbox{\hyperlink{group__drivers08_gga3a77339a724cf087b366b8710aa683e6aef32fa8c2e9399355ed769ec77729f8e}{CS\+\_\+\+CLR\+\_\+\+INTERRUPT}}
+, \mbox{\hyperlink{group__drivers08_gga3a77339a724cf087b366b8710aa683e6a7e9faa71bdd2cf508fbf5cc9f7e83ccc}{CS\+\_\+\+GET\+\_\+\+INTERRUPT}}
+, \mbox{\hyperlink{group__drivers08_gga3a77339a724cf087b366b8710aa683e6a2ad38020bf3c84479f0e5552929747be}{CS\+\_\+\+SET\+\_\+\+INTMASK}}
+, \mbox{\hyperlink{group__drivers08_gga3a77339a724cf087b366b8710aa683e6abdad4e84a9a5a8084e9662d4d8587f18}{CS\+\_\+\+GET\+\_\+\+INTMASK}}
+ \}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Socket Option Types}\par
+{\em Socket option types (for setsockopt/getsockopt) }\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__drivers08_ga2f86b7ad233f3b8d6ae0af3ee91e9944}{sockopt\+\_\+type}} \{ \newline
+\mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944af21c9fec4a305d9504e0487f7ae7fc26}{SO\+\_\+\+FLAG}}
+, \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a69762968a8cae82544deffe1c3ac32cf}{SO\+\_\+\+TTL}}
+, \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944afef2289d3bfeecda602214576b0a42e3}{SO\+\_\+\+TOS}}
+, \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944ae7f6aaf2aaef0519a813b3e26ef9c4fd}{SO\+\_\+\+MSS}}
+, \newline
+\mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944aedcfb91978540124a81e0302c58bb6d7}{SO\+\_\+\+DESTIP}}
+, \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a3429f41e7099b4badca2630c7a5e4f1c}{SO\+\_\+\+DESTPORT}}
+, \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a2bf80fd82c7e9231c427cd62a5d62cf0}{SO\+\_\+\+KEEPALIVESEND}}
+, \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a779fa4480ecb9a4b247bd6130c25647f}{SO\+\_\+\+KEEPALIVEAUTO}}
+, \newline
+\mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a1b0e150a176b12a227d6ab7c294fc05a}{SO\+\_\+\+SENDBUF}}
+, \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944ab30861739974726fb7a170bbac572c22}{SO\+\_\+\+RECVBUF}}
+, \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a3f76c1b04cfc969826bed37a3c4cff06}{SO\+\_\+\+STATUS}}
+, \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944ac8e0d12b5a8ee43e5ebe37a39b31988a}{SO\+\_\+\+REMAINSIZE}}
+, \newline
+\mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944af1a89a6cfe6fce7381f825553de1a905}{SO\+\_\+\+PACKINFO}}
+ \}
+\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Functions}
+\begin{Indent}\textbf{ Public API}\par
+{\em Create and initialize a socket
+
+Creates a new socket with the specified protocol and port. For TCP, the socket is put into SOCK\+\_\+\+INIT state. For UDP, the socket is put into SOCK\+\_\+\+UDP state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number (0-\/7) \\
+\hline
+{\em protocol} & Protocol type\+:
+\begin{DoxyItemize}
+\item Sn\+\_\+\+MR\+\_\+\+TCP\+: TCP socket
+\item Sn\+\_\+\+MR\+\_\+\+UDP\+: UDP socket
+\item Sn\+\_\+\+MR\+\_\+\+IPRAW\+: IP raw socket
+\item Sn\+\_\+\+MR\+\_\+\+MACRAW\+: MAC raw socket 
+\end{DoxyItemize}\\
+\hline
+{\em port} & Local port number (0 = auto-\/assign from 0x\+C000) \\
+\hline
+{\em flag} & Socket flags (SF\+\_\+xxx combinations)\+:
+\begin{DoxyItemize}
+\item TCP\+: SF\+\_\+\+TCP\+\_\+\+NODELAY, SF\+\_\+\+IO\+\_\+\+NONBLOCK
+\item UDP\+: SF\+\_\+\+IGMP\+\_\+\+VER2, SF\+\_\+\+MULTI\+\_\+\+ENABLE, SF\+\_\+\+UNI\+\_\+\+BLOCK, SF\+\_\+\+IO\+\_\+\+NONBLOCK
+\item MACRAW\+: SF\+\_\+\+ETHER\+\_\+\+OWN 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Socket number (sn) on success, negative error code on failure
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+TCP sockets require IP address to be configured 
+
+Port 0 triggers auto-\/assignment starting from 0x\+C000 
+\end{DoxyNote}
+}\begin{DoxyCompactItemize}
+\item 
+int8\+\_\+t \mbox{\hyperlink{group__drivers08_ga8cc0a2074b3aae98a132c1ae3c51188f}{socket}} (uint8\+\_\+t sn, uint8\+\_\+t protocol, uint16\+\_\+t port, uint8\+\_\+t flag)
+\begin{DoxyCompactList}\small\item\em Create and initialize a socket. \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{group__drivers08_ga025710a2709097be7824f0564f89a461}{closesocket}} (uint8\+\_\+t sn)
+\begin{DoxyCompactList}\small\item\em Close a socket. \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{group__drivers08_ga0230efb936b222a0cbc7680e2c39c994}{disconnect}} (uint8\+\_\+t sn)
+\begin{DoxyCompactList}\small\item\em Disconnect a TCP socket. \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{group__drivers08_gae2f94d7d4ce040f6bf68779e064d224e}{ctlsocket}} (uint8\+\_\+t sn, \mbox{\hyperlink{group__drivers08_ga3a77339a724cf087b366b8710aa683e6}{ctlsock\+\_\+type}} cstype, void \texorpdfstring{$\ast$}{*}arg)
+\begin{DoxyCompactList}\small\item\em Control socket options. \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{group__drivers08_ga0111e4784e20d97dacd5aaf54cb48ef1}{setsockopt}} (uint8\+\_\+t sn, \mbox{\hyperlink{group__drivers08_ga2f86b7ad233f3b8d6ae0af3ee91e9944}{sockopt\+\_\+type}} sotype, void \texorpdfstring{$\ast$}{*}arg)
+\begin{DoxyCompactList}\small\item\em Set socket option. \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{group__drivers08_ga631998ae17cbf099b0071f20c88ce5cf}{getsockopt}} (uint8\+\_\+t sn, \mbox{\hyperlink{group__drivers08_ga2f86b7ad233f3b8d6ae0af3ee91e9944}{sockopt\+\_\+type}} sotype, void \texorpdfstring{$\ast$}{*}arg)
+\begin{DoxyCompactList}\small\item\em Get socket option. \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{group__drivers08_ga58ae959798d5d874ac5ea796da90db8c}{listen}} (uint8\+\_\+t sn)
+\begin{DoxyCompactList}\small\item\em Put socket into listen mode (TCP server) \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{group__drivers08_gaf7ab832f4201ef0f04eefcac063b998e}{connect}} (uint8\+\_\+t sn, uint8\+\_\+t \texorpdfstring{$\ast$}{*}addr, uint16\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Connect to remote server (TCP client) \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{group__drivers08_gacd77c3cc60e87d09a5714932506d7c4b}{send}} (uint8\+\_\+t sn, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Send data over TCP socket. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__drivers08_gafbf5f9d6f92a7ad4811b3c4f211f3672}{send\+\_\+all\+\_\+blocking}} (uint8\+\_\+t sn, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, int len)
+\begin{DoxyCompactList}\small\item\em Send all data over TCP socket in blocking mode. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{group__drivers08_ga4cfb66f7440a1dd9ac0ee0b933a38c59}{recv}} (uint8\+\_\+t sn, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Receive data from TCP socket. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{group__drivers08_ga30fc77ba1005733b501994818bde12f8}{sendto}} (uint8\+\_\+t sn, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t len, uint8\+\_\+t \texorpdfstring{$\ast$}{*}addr, uint16\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Send datagram over UDP socket. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{group__drivers08_gae580bd099f9bcbeca63a3145c0015e62}{recvfrom}} (uint8\+\_\+t sn, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t len, uint8\+\_\+t \texorpdfstring{$\ast$}{*}addr, uint16\+\_\+t \texorpdfstring{$\ast$}{*}port)
+\begin{DoxyCompactList}\small\item\em Receive datagram from UDP socket. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{group__drivers08_gaa2d7390eb4454dd102f39caf47829065}{recvfrom\+\_\+\+SNMP}} (uint8\+\_\+t sn, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t len, uint8\+\_\+t \texorpdfstring{$\ast$}{*}addr, uint16\+\_\+t \texorpdfstring{$\ast$}{*}port)
+\begin{DoxyCompactList}\small\item\em Receive datagram from UDP socket. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__drivers08_ga7bde883229057ef5a2fd615e99eeb43e}{sock\+\_\+pack\+\_\+info}} \mbox{[}\mbox{\hyperlink{group__config03_ga5322fda8c75b38b8c84a677103387d07}{W5500\+\_\+\+SOCKNUM}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

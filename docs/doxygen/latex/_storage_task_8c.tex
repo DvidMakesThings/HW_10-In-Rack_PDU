@@ -1,0 +1,811 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\+Storage\+Task.c File Reference}
+\hypertarget{_storage_task_8c}{}\label{_storage_task_8c}\index{src/Software/ENERGIS\_RTOS/src/tasks/StorageTask.c@{src/Software/ENERGIS\_RTOS/src/tasks/StorageTask.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for Storage\+Task.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_storage_task_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_storage_task_8c_a26eb8e0a78775234ed6e6227d7bba1df}{STORAGE\+\_\+\+TASK\+\_\+\+TAG}}~"{}\mbox{[}STORAGE\mbox{]}"{}
+\item 
+\#define \mbox{\hyperlink{_storage_task_8c_a5e4a9a3108658a20b0b25103bd45c758}{STORAGE\+\_\+\+TASK\+\_\+\+STACK\+\_\+\+SIZE}}~2048
+\item 
+\#define \mbox{\hyperlink{_storage_task_8c_ab4b3c4b69cb8277ed84ef9e64f2913fe}{STORAGE\+\_\+\+TASK\+\_\+\+PRIORITY}}~2
+\item 
+\#define \mbox{\hyperlink{_storage_task_8c_a53ba50a4d8496a98aadff2b7a7d22a51}{STORAGE\+\_\+\+DEBOUNCE\+\_\+\+MS}}~2000  /\texorpdfstring{$\ast$}{*} 2 seconds idle before writing \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{_storage_task_8c_ab60752363eaffbb734e590247bd94454}{STORAGE\+\_\+\+QUEUE\+\_\+\+POLL\+\_\+\+MS}}~100 /\texorpdfstring{$\ast$}{*} Check queue every 100ms \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{_storage_task_8c_a9901cbff61534df9cb46b52b1412c71a}{ERROR\+\_\+\+LOG\+\_\+\+QUEUE\+\_\+\+LENGTH}}~32
+\item 
+\#define \mbox{\hyperlink{_storage_task_8c_a22e4def4b27cab782df94a47850d7f47}{WARNING\+\_\+\+LOG\+\_\+\+QUEUE\+\_\+\+LENGTH}}~32
+\item 
+\#define \mbox{\hyperlink{_storage_task_8c_afcfbca25788da760ad01460935b5c8b4}{STORAGE\+\_\+\+LOG\+\_\+\+MAX\+\_\+\+WRITES}}~4 /\texorpdfstring{$\ast$}{*} max EEPROM writes per loop \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{_storage_task_8c_ad058345c560ee66c6a7d751b1ad425a6}{EEPROM\+\_\+\+ERASE\+\_\+\+CHUNK\+\_\+\+BYTES}}~32U
+\item 
+\#define \mbox{\hyperlink{_storage_task_8c_a798d729527c66877d962a855be791fa4}{EEPROM\+\_\+\+ERASE\+\_\+\+PAGE\+\_\+\+DELAY\+\_\+\+MS}}~6U
+\item 
+\#define \mbox{\hyperlink{_storage_task_8c_aec0bfc891a3e7b7d54c118d62b094e62}{EEPROM\+\_\+\+ERASE\+\_\+\+PROGRESS\+\_\+\+BYTES}}~1024U
+\item 
+\#define \mbox{\hyperlink{_storage_task_8c_a41bae6a65e354fb501d4a9cfd5565a6b}{STORAGE\+\_\+\+REBOOT\+\_\+\+ON\+\_\+\+CONFIG\+\_\+\+SAVE}}~1
+\item 
+\#define \mbox{\hyperlink{_storage_task_8c_aa49c0a943ec65469f12257a6bfce4896}{STORAGE\+\_\+\+READY}}()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{group__tasks10_gaad6cb463ba1647fe51faeea5f08268da}{Storage\+\_\+\+Config\+\_\+\+Is\+Ready}} (void)
+\begin{DoxyCompactList}\small\item\em Check if config is loaded and ready. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_storage_task_8c_a9b67fa0fd6f5c01192d214b4b39d958c}{storage\+\_\+dump\+\_\+eeprom\+\_\+formatted}} (void)
+\begin{DoxyCompactList}\small\item\em Incremental formatted EEPROM dump worker. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_storage_task_8c_ad9e9d1e6e78f163d3619f526d29ee321}{storage\+\_\+dump\+\_\+event\+\_\+region}} (uint16\+\_\+t base, uint16\+\_\+t size, uint16\+\_\+t \texorpdfstring{$\ast$}{*}offset, bool \texorpdfstring{$\ast$}{*}active)
+\begin{DoxyCompactList}\small\item\em Incrementally dump an event log region in formatted hex. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_storage_task_8c_a4aff71a877bf3f8ef49cffd7de19ae61}{storage\+\_\+clear\+\_\+event\+\_\+region}} (uint16\+\_\+t base, uint16\+\_\+t size, uint16\+\_\+t \texorpdfstring{$\ast$}{*}offset, bool \texorpdfstring{$\ast$}{*}active)
+\begin{DoxyCompactList}\small\item\em Incrementally clear an event log region to 0x\+FF bytes. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_storage_task_8c_ae851beece865afaface1694a5b6e75e6}{storage\+\_\+erase\+\_\+step}} (void)
+\item 
+static void \mbox{\hyperlink{_storage_task_8c_a4f9335f77202f7c7e3d5f42edf956355}{Storage\+\_\+\+Flush\+Event\+Queues}} (void)
+\begin{DoxyCompactList}\small\item\em Flush queued error and warning codes into EEPROM event logs. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_storage_task_8c_a4fc600cc02b207340a3e903acc1a64c8}{load\+\_\+config\+\_\+from\+\_\+eeprom}} (void)
+\begin{DoxyCompactList}\small\item\em Load all config from EEPROM to RAM cache. Called once during task startup to populate RAM cache with stored config. Uses submodule functions to load each section. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_storage_task_8c_a1e1c743939d312be08d0a632e0f41f88}{commit\+\_\+dirty\+\_\+sections}} (void)
+\begin{DoxyCompactList}\small\item\em Commit all dirty sections to EEPROM. Checks dirty flags and writes changed sections to EEPROM using submodule functions. Optionally triggers reboot if STORAGE\+\_\+\+REBOOT\+\_\+\+ON\+\_\+\+CONFIG\+\_\+\+SAVE is enabled. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_storage_task_8c_a213cb9056713a15a181cf8d4351879c0}{process\+\_\+storage\+\_\+msg}} (const \mbox{\hyperlink{structstorage__msg__t}{storage\+\_\+msg\+\_\+t}} \texorpdfstring{$\ast$}{*}msg)
+\begin{DoxyCompactList}\small\item\em Process storage request message. Handles all storage commands by updating RAM cache, setting dirty flags, or directly accessing EEPROM (for channel labels and testing). \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_storage_task_8c_a502037c1577c7bd180a629669af058f7}{Storage\+Task}} (void \texorpdfstring{$\ast$}{*}arg)
+\begin{DoxyCompactList}\small\item\em Storage task main function. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga84bff75330a6c83d2e407ed67f91b42c}{storage\+\_\+dump\+\_\+formatted\+\_\+async}} (void)
+\begin{DoxyCompactList}\small\item\em Trigger a formatted EEPROM dump asynchronously. Enqueues a \doxylink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226abea6af041e6361673510b8676c2df65d}{STORAGE\+\_\+\+CMD\+\_\+\+DUMP\+\_\+\+FORMATTED} message and returns immediately without waiting for completion. The dump is executed by Storage\+Task in the background, and log output is generated from there. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga423080bfa834046c228f9b5e7a83999e}{storage\+\_\+dump\+\_\+error\+\_\+log\+\_\+async}} (void)
+\begin{DoxyCompactList}\small\item\em Asynchronously dump the error event log region in hex format. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_gab41c0a3084c3335d1f8cbe0bb50ff3af}{storage\+\_\+dump\+\_\+warning\+\_\+log\+\_\+async}} (void)
+\begin{DoxyCompactList}\small\item\em Asynchronously dump the warning event log region in hex format. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_gae7a93a44989ffe1e7ed93e7f76613c89}{storage\+\_\+clear\+\_\+error\+\_\+log\+\_\+async}} (void)
+\begin{DoxyCompactList}\small\item\em Asynchronously clear the error event log region. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_gab4d1bea675979447fdffabc6d58310c5}{storage\+\_\+clear\+\_\+warning\+\_\+log\+\_\+async}} (void)
+\begin{DoxyCompactList}\small\item\em Asynchronously clear the warning event log region. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_storage_task_8c_a8975f5b2c08a7f3188a851ad1b211c63}{EEPROM\+\_\+\+Erase\+All}} (void)
+\begin{DoxyCompactList}\small\item\em Erase entire EEPROM to 0x\+FF with watchdog-\/safe yielding. Writes 0x\+FF to all EEPROM addresses in 32-\/byte chunks with periodic yields. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga8b5d786522ab539d03629fe26e59feac}{storage\+\_\+erase\+\_\+all\+\_\+async}} (void)
+\begin{DoxyCompactList}\small\item\em Asynchronously erase the entire EEPROM. Enqueues a \doxylink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a59b826401ea7cbc617d29e1cf59c4e9e}{STORAGE\+\_\+\+CMD\+\_\+\+ERASE\+\_\+\+ALL} message to trigger the operation in Storage\+Task. Returns immediately without waiting for completion. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga1f15ee7aca9bde86802f18a6115232ec}{storage\+\_\+erase\+\_\+all\+\_\+is\+\_\+busy}} (void)
+\begin{DoxyCompactList}\small\item\em Query if an EEPROM erase-\/all operation is in progress. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks10_ga78c530f9c7ec4d2330e6d1a092df6dc0}{Storage\+\_\+\+Enqueue\+Error\+Code}} (uint16\+\_\+t code)
+\begin{DoxyCompactList}\small\item\em Enqueue an error code for deferred EEPROM logging (non-\/blocking). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks10_gac25626a70e6fe0baeaa167d47bed33d1}{Storage\+\_\+\+Enqueue\+Warning\+Code}} (uint16\+\_\+t code)
+\begin{DoxyCompactList}\small\item\em Enqueue a warning code for deferred EEPROM logging (non-\/blocking). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks10_ga26dbdabce55a139cf536e8469373b7c4}{Storage\+Task\+\_\+\+Init}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Initialize and start the Storage task with a deterministic enable gate. Creates mutex, event group, and task. Waits for Console readiness before proceeding. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_gadff2b57dc3c074453ee1393d0f6f3623}{Storage\+\_\+\+Is\+Ready}} (void)
+\begin{DoxyCompactList}\small\item\em Storage subsystem readiness query (configuration loaded). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_gafeb6e0067e67c68af21f0eeae1d1279a}{storage\+\_\+wait\+\_\+ready}} (uint32\+\_\+t timeout\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Wait for config to be loaded from EEPROM. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga422389bc6e9270118a931e58981753f9}{storage\+\_\+get\+\_\+network}} (\mbox{\hyperlink{structnetwork_info}{network\+Info}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Get network configuration. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_gabe45ebb96c320636c4a5e969e59a9f4a}{storage\+\_\+set\+\_\+network}} (const \mbox{\hyperlink{structnetwork_info}{network\+Info}} \texorpdfstring{$\ast$}{*}net)
+\begin{DoxyCompactList}\small\item\em Set network configuration. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga10ecafb6284cb48bde01319b72dd548d}{storage\+\_\+get\+\_\+prefs}} (\mbox{\hyperlink{structuser_pref_info}{user\+Pref\+Info}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Get user preferences (synchronous, from RAM cache). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga282d408c2379357ac6ac1b98cbf907ba}{storage\+\_\+set\+\_\+prefs}} (const \mbox{\hyperlink{structuser_pref_info}{user\+Pref\+Info}} \texorpdfstring{$\ast$}{*}prefs)
+\begin{DoxyCompactList}\small\item\em Set user preferences. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_gafecdd5e5972ee20f38816f87b30152e0}{storage\+\_\+get\+\_\+relay\+\_\+states}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Get relay power-\/on states. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga761b912e22cfdc3710e7facea80e564e}{storage\+\_\+set\+\_\+relay\+\_\+states}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}states)
+\begin{DoxyCompactList}\small\item\em Set relay states. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_gac76c462f26b55c553f69180c76b0729b}{storage\+\_\+commit\+\_\+now}} (uint32\+\_\+t timeout\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Load factory defaults via Storage\+Task. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga9b03bccea9582d81071026a75020a89a}{storage\+\_\+load\+\_\+defaults}} (uint32\+\_\+t timeout\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Load factory defaults into EEPROM and RAM cache. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_gab4c46386e5942f7de1f3a5be1a1b8fa9}{storage\+\_\+get\+\_\+sensor\+\_\+cal}} (uint8\+\_\+t channel, \mbox{\hyperlink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Read sensor calibration for a channel. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga358cb2af62e67be54bc8228d8074563d}{storage\+\_\+set\+\_\+sensor\+\_\+cal}} (uint8\+\_\+t channel, const \mbox{\hyperlink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}cal)
+\begin{DoxyCompactList}\small\item\em Set sensor calibration for a channel. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_storage_task_8c_a65991cc9fd9f82af7e0b0b4caedf89e6}{storage\+\_\+dump\+\_\+formatted}} (uint32\+\_\+t timeout\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Trigger a formatted EEPROM dump in Storage\+Task context. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga9f739ec7195c1d9f17c6a48ecfa121b4}{storage\+\_\+save\+\_\+preset}} (uint8\+\_\+t index, const char \texorpdfstring{$\ast$}{*}name, uint8\+\_\+t mask)
+\begin{DoxyCompactList}\small\item\em Save a user output preset via Storage\+Task. Enqueues a message to perform the save on the Storage\+Task thread. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga7174a6c72a5b95807a0c02f2bb9871bf}{storage\+\_\+delete\+\_\+preset}} (uint8\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Delete a user output preset via Storage\+Task. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga5689969f8de481f2f5533245da6b315f}{storage\+\_\+set\+\_\+startup\+\_\+preset}} (uint8\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Set startup preset via Storage\+Task. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga0e8d9cfcef8d0dabb1f981d61e7f41c4}{storage\+\_\+clear\+\_\+startup\+\_\+preset}} (void)
+\begin{DoxyCompactList}\small\item\em Clear startup preset via Storage\+Task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{_storage_task_8c_a988900dc449acf0ca0b71913239e82d3}{q\+\_\+cfg}}
+\item 
+Semaphore\+Handle\+\_\+t \mbox{\hyperlink{group__tasks10_gaf015228821869529545d62856625c224}{eeprom\+Mtx}} = NULL
+\item 
+Event\+Group\+Handle\+\_\+t \mbox{\hyperlink{group__tasks10_ga0ea67700c08dc702805d3eebd8fd2541}{cfg\+Events}} = NULL
+\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{group__tasks10_ga9042a1723c10aaba2b8e74b72e953ca7}{g\+\_\+error\+Code\+Queue}} = NULL
+\begin{DoxyCompactList}\small\item\em Queue handles for deferred error/warning logging. \end{DoxyCompactList}\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{group__tasks10_ga8217a535f95788fd84b724d4a31fc967}{g\+\_\+warning\+Code\+Queue}} = NULL
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{_storage_task_8c_aedc5a9058d8b845fca6177c74454d9d0}{DEFAULT\+\_\+\+RELAY\+\_\+\+STATUS}} \mbox{[}8\mbox{]} = \{0\}
+\begin{DoxyCompactList}\small\item\em Default relay status array (all OFF). \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structnetwork_info}{network\+Info}} \mbox{\hyperlink{_storage_task_8c_a798988c99534b7d96891fece90178e8f}{DEFAULT\+\_\+\+NETWORK}}
+\begin{DoxyCompactList}\small\item\em Default network configuration (MAC suffix filled at runtime). \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structuser_pref_info}{user\+Pref\+Info}} \mbox{\hyperlink{_storage_task_8c_a4adf270c04ed651d651b6074266aab1a}{DEFAULT\+\_\+\+USER\+\_\+\+PREFS}}
+\begin{DoxyCompactList}\small\item\em Default user preferences. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \mbox{\hyperlink{_storage_task_8c_af4cacafb77fdb05221b76712d72bc2c4}{DEFAULT\+\_\+\+ENERGY\+\_\+\+DATA}} \mbox{[}64\mbox{]} = \{0\}
+\begin{DoxyCompactList}\small\item\em Default energy data (placeholder). \end{DoxyCompactList}\item 
+const uint8\+\_\+t \mbox{\hyperlink{_storage_task_8c_a404935045ff6fed58a6466f385f2947c}{DEFAULT\+\_\+\+LOG\+\_\+\+DATA}} \mbox{[}64\mbox{]} = \{0\}
+\begin{DoxyCompactList}\small\item\em Default event log data (placeholder). \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structstorage__cache__t}{storage\+\_\+cache\+\_\+t}} \mbox{\hyperlink{_storage_task_8c_ae887bc08ebd2889678d63dbb36daed09}{g\+\_\+cache}}
+\item 
+static volatile bool \mbox{\hyperlink{_storage_task_8c_a20bfb3d4073ffdf702f7e575715ae38c}{eth\+\_\+netcfg\+\_\+ready}} = false
+\item 
+static bool \mbox{\hyperlink{_storage_task_8c_ad6e3e814993da6cc2ba869f395437cc1}{s\+\_\+erase\+\_\+active}} = false
+\begin{DoxyCompactList}\small\item\em Incremental full EEPROM erase active flag. \end{DoxyCompactList}\item 
+static uint32\+\_\+t \mbox{\hyperlink{_storage_task_8c_a3313ce61ae68b1ce39573f75269d8390}{s\+\_\+erase\+\_\+next\+\_\+addr}} = 0
+\begin{DoxyCompactList}\small\item\em Next EEPROM address to erase. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{_storage_task_8c_aaacb6509973187cfebf4601bd32bb37f}{s\+\_\+dump\+\_\+active}} = false
+\begin{DoxyCompactList}\small\item\em Internal flag indicating an incremental EEPROM dump is in progress. \end{DoxyCompactList}\item 
+static uint32\+\_\+t \mbox{\hyperlink{_storage_task_8c_aac69354c1dc5de60c6c874e0762335f3}{s\+\_\+dump\+\_\+next\+\_\+addr}} = 0
+\begin{DoxyCompactList}\small\item\em Next EEPROM address to dump (0..CAT24\+C256\+\_\+\+TOTAL\+\_\+\+SIZE-\/1). \end{DoxyCompactList}\item 
+static Semaphore\+Handle\+\_\+t \mbox{\hyperlink{_storage_task_8c_a06f3837406432b35af53d3625f917984}{s\+\_\+dump\+\_\+done\+\_\+sem}} = NULL
+\begin{DoxyCompactList}\small\item\em Completion semaphore for blocking dump callers. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{_storage_task_8c_a716144c1713452dd63e8471a1cf161f3}{s\+\_\+err\+\_\+dump\+\_\+active}} = false
+\begin{DoxyCompactList}\small\item\em Internal flag indicating an incremental error log dump is in progress. \end{DoxyCompactList}\item 
+static uint16\+\_\+t \mbox{\hyperlink{_storage_task_8c_a8d177f8e69be2c04ac0f1360d533e811}{s\+\_\+err\+\_\+dump\+\_\+next\+\_\+offset}} = 0
+\begin{DoxyCompactList}\small\item\em Next offset within the error log region to dump. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{_storage_task_8c_a8535a6bf17e9301809f73a183db72122}{s\+\_\+warn\+\_\+dump\+\_\+active}} = false
+\begin{DoxyCompactList}\small\item\em Internal flag indicating an incremental warning log dump is in progress. \end{DoxyCompactList}\item 
+static uint16\+\_\+t \mbox{\hyperlink{_storage_task_8c_a5cfe3d58794f594e39033fc241e024a8}{s\+\_\+warn\+\_\+dump\+\_\+next\+\_\+offset}} = 0
+\begin{DoxyCompactList}\small\item\em Next offset within the warning log region to dump. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{_storage_task_8c_a1151e8ef23053909b8502bf7f168cadc}{s\+\_\+err\+\_\+clear\+\_\+active}} = false
+\begin{DoxyCompactList}\small\item\em Internal flag indicating an incremental error log clear is in progress. \end{DoxyCompactList}\item 
+static uint16\+\_\+t \mbox{\hyperlink{_storage_task_8c_a8cc3ed87d21721cb6112e3b354a12667}{s\+\_\+err\+\_\+clear\+\_\+next\+\_\+offset}} = 0
+\begin{DoxyCompactList}\small\item\em Next offset within the error log region to clear. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{_storage_task_8c_aef4cc26a63cd44ba23e3308e08bb3564}{s\+\_\+warn\+\_\+clear\+\_\+active}} = false
+\begin{DoxyCompactList}\small\item\em Internal flag indicating an incremental warning log clear is in progress. \end{DoxyCompactList}\item 
+static uint16\+\_\+t \mbox{\hyperlink{_storage_task_8c_ad8a341fe1cd1af01a0f7e20502abbdda}{s\+\_\+warn\+\_\+clear\+\_\+next\+\_\+offset}} = 0
+\begin{DoxyCompactList}\small\item\em Next offset within the warning log region to clear. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+3.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/14
+\end{DoxyDate}
+Storage\+Task Architecture\+:
+\begin{DoxyItemize}
+\item Owns ALL EEPROM access (only this task touches CAT24\+C256)
+\item Maintains RAM cache of critical config
+\item Debounces writes (2 second idle period)
+\item Processes requests from q\+\_\+cfg queue
+\item Delegates EEPROM operations to submodules in storage\+\_\+submodule/
+\end{DoxyItemize}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{_storage_task_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_storage_task_8c_ad058345c560ee66c6a7d751b1ad425a6}\index{StorageTask.c@{StorageTask.c}!EEPROM\_ERASE\_CHUNK\_BYTES@{EEPROM\_ERASE\_CHUNK\_BYTES}}
+\index{EEPROM\_ERASE\_CHUNK\_BYTES@{EEPROM\_ERASE\_CHUNK\_BYTES}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_ERASE\_CHUNK\_BYTES}{EEPROM\_ERASE\_CHUNK\_BYTES}}
+{\footnotesize\ttfamily \label{_storage_task_8c_ad058345c560ee66c6a7d751b1ad425a6} 
+\#define EEPROM\+\_\+\+ERASE\+\_\+\+CHUNK\+\_\+\+BYTES~32U}
+
+\Hypertarget{_storage_task_8c_a798d729527c66877d962a855be791fa4}\index{StorageTask.c@{StorageTask.c}!EEPROM\_ERASE\_PAGE\_DELAY\_MS@{EEPROM\_ERASE\_PAGE\_DELAY\_MS}}
+\index{EEPROM\_ERASE\_PAGE\_DELAY\_MS@{EEPROM\_ERASE\_PAGE\_DELAY\_MS}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_ERASE\_PAGE\_DELAY\_MS}{EEPROM\_ERASE\_PAGE\_DELAY\_MS}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a798d729527c66877d962a855be791fa4} 
+\#define EEPROM\+\_\+\+ERASE\+\_\+\+PAGE\+\_\+\+DELAY\+\_\+\+MS~6U}
+
+\Hypertarget{_storage_task_8c_aec0bfc891a3e7b7d54c118d62b094e62}\index{StorageTask.c@{StorageTask.c}!EEPROM\_ERASE\_PROGRESS\_BYTES@{EEPROM\_ERASE\_PROGRESS\_BYTES}}
+\index{EEPROM\_ERASE\_PROGRESS\_BYTES@{EEPROM\_ERASE\_PROGRESS\_BYTES}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_ERASE\_PROGRESS\_BYTES}{EEPROM\_ERASE\_PROGRESS\_BYTES}}
+{\footnotesize\ttfamily \label{_storage_task_8c_aec0bfc891a3e7b7d54c118d62b094e62} 
+\#define EEPROM\+\_\+\+ERASE\+\_\+\+PROGRESS\+\_\+\+BYTES~1024U}
+
+\Hypertarget{_storage_task_8c_a9901cbff61534df9cb46b52b1412c71a}\index{StorageTask.c@{StorageTask.c}!ERROR\_LOG\_QUEUE\_LENGTH@{ERROR\_LOG\_QUEUE\_LENGTH}}
+\index{ERROR\_LOG\_QUEUE\_LENGTH@{ERROR\_LOG\_QUEUE\_LENGTH}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{ERROR\_LOG\_QUEUE\_LENGTH}{ERROR\_LOG\_QUEUE\_LENGTH}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a9901cbff61534df9cb46b52b1412c71a} 
+\#define ERROR\+\_\+\+LOG\+\_\+\+QUEUE\+\_\+\+LENGTH~32}
+
+\Hypertarget{_storage_task_8c_a53ba50a4d8496a98aadff2b7a7d22a51}\index{StorageTask.c@{StorageTask.c}!STORAGE\_DEBOUNCE\_MS@{STORAGE\_DEBOUNCE\_MS}}
+\index{STORAGE\_DEBOUNCE\_MS@{STORAGE\_DEBOUNCE\_MS}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{STORAGE\_DEBOUNCE\_MS}{STORAGE\_DEBOUNCE\_MS}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a53ba50a4d8496a98aadff2b7a7d22a51} 
+\#define STORAGE\+\_\+\+DEBOUNCE\+\_\+\+MS~2000  /\texorpdfstring{$\ast$}{*} 2 seconds idle before writing \texorpdfstring{$\ast$}{*}/}
+
+\Hypertarget{_storage_task_8c_afcfbca25788da760ad01460935b5c8b4}\index{StorageTask.c@{StorageTask.c}!STORAGE\_LOG\_MAX\_WRITES@{STORAGE\_LOG\_MAX\_WRITES}}
+\index{STORAGE\_LOG\_MAX\_WRITES@{STORAGE\_LOG\_MAX\_WRITES}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{STORAGE\_LOG\_MAX\_WRITES}{STORAGE\_LOG\_MAX\_WRITES}}
+{\footnotesize\ttfamily \label{_storage_task_8c_afcfbca25788da760ad01460935b5c8b4} 
+\#define STORAGE\+\_\+\+LOG\+\_\+\+MAX\+\_\+\+WRITES~4 /\texorpdfstring{$\ast$}{*} max EEPROM writes per loop \texorpdfstring{$\ast$}{*}/}
+
+\Hypertarget{_storage_task_8c_ab60752363eaffbb734e590247bd94454}\index{StorageTask.c@{StorageTask.c}!STORAGE\_QUEUE\_POLL\_MS@{STORAGE\_QUEUE\_POLL\_MS}}
+\index{STORAGE\_QUEUE\_POLL\_MS@{STORAGE\_QUEUE\_POLL\_MS}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{STORAGE\_QUEUE\_POLL\_MS}{STORAGE\_QUEUE\_POLL\_MS}}
+{\footnotesize\ttfamily \label{_storage_task_8c_ab60752363eaffbb734e590247bd94454} 
+\#define STORAGE\+\_\+\+QUEUE\+\_\+\+POLL\+\_\+\+MS~100 /\texorpdfstring{$\ast$}{*} Check queue every 100ms \texorpdfstring{$\ast$}{*}/}
+
+\Hypertarget{_storage_task_8c_aa49c0a943ec65469f12257a6bfce4896}\index{StorageTask.c@{StorageTask.c}!STORAGE\_READY@{STORAGE\_READY}}
+\index{STORAGE\_READY@{STORAGE\_READY}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{STORAGE\_READY}{STORAGE\_READY}}
+{\footnotesize\ttfamily \label{_storage_task_8c_aa49c0a943ec65469f12257a6bfce4896} 
+\#define STORAGE\+\_\+\+READY(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(ready\_val)}
+
+\end{DoxyCode}
+\Hypertarget{_storage_task_8c_a41bae6a65e354fb501d4a9cfd5565a6b}\index{StorageTask.c@{StorageTask.c}!STORAGE\_REBOOT\_ON\_CONFIG\_SAVE@{STORAGE\_REBOOT\_ON\_CONFIG\_SAVE}}
+\index{STORAGE\_REBOOT\_ON\_CONFIG\_SAVE@{STORAGE\_REBOOT\_ON\_CONFIG\_SAVE}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{STORAGE\_REBOOT\_ON\_CONFIG\_SAVE}{STORAGE\_REBOOT\_ON\_CONFIG\_SAVE}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a41bae6a65e354fb501d4a9cfd5565a6b} 
+\#define STORAGE\+\_\+\+REBOOT\+\_\+\+ON\+\_\+\+CONFIG\+\_\+\+SAVE~1}
+
+\Hypertarget{_storage_task_8c_ab4b3c4b69cb8277ed84ef9e64f2913fe}\index{StorageTask.c@{StorageTask.c}!STORAGE\_TASK\_PRIORITY@{STORAGE\_TASK\_PRIORITY}}
+\index{STORAGE\_TASK\_PRIORITY@{STORAGE\_TASK\_PRIORITY}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{STORAGE\_TASK\_PRIORITY}{STORAGE\_TASK\_PRIORITY}}
+{\footnotesize\ttfamily \label{_storage_task_8c_ab4b3c4b69cb8277ed84ef9e64f2913fe} 
+\#define STORAGE\+\_\+\+TASK\+\_\+\+PRIORITY~2}
+
+\Hypertarget{_storage_task_8c_a5e4a9a3108658a20b0b25103bd45c758}\index{StorageTask.c@{StorageTask.c}!STORAGE\_TASK\_STACK\_SIZE@{STORAGE\_TASK\_STACK\_SIZE}}
+\index{STORAGE\_TASK\_STACK\_SIZE@{STORAGE\_TASK\_STACK\_SIZE}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{STORAGE\_TASK\_STACK\_SIZE}{STORAGE\_TASK\_STACK\_SIZE}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a5e4a9a3108658a20b0b25103bd45c758} 
+\#define STORAGE\+\_\+\+TASK\+\_\+\+STACK\+\_\+\+SIZE~2048}
+
+\Hypertarget{_storage_task_8c_a26eb8e0a78775234ed6e6227d7bba1df}\index{StorageTask.c@{StorageTask.c}!STORAGE\_TASK\_TAG@{STORAGE\_TASK\_TAG}}
+\index{STORAGE\_TASK\_TAG@{STORAGE\_TASK\_TAG}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{STORAGE\_TASK\_TAG}{STORAGE\_TASK\_TAG}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a26eb8e0a78775234ed6e6227d7bba1df} 
+\#define STORAGE\+\_\+\+TASK\+\_\+\+TAG~"{}\mbox{[}STORAGE\mbox{]}"{}}
+
+\Hypertarget{_storage_task_8c_a22e4def4b27cab782df94a47850d7f47}\index{StorageTask.c@{StorageTask.c}!WARNING\_LOG\_QUEUE\_LENGTH@{WARNING\_LOG\_QUEUE\_LENGTH}}
+\index{WARNING\_LOG\_QUEUE\_LENGTH@{WARNING\_LOG\_QUEUE\_LENGTH}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{WARNING\_LOG\_QUEUE\_LENGTH}{WARNING\_LOG\_QUEUE\_LENGTH}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a22e4def4b27cab782df94a47850d7f47} 
+\#define WARNING\+\_\+\+LOG\+\_\+\+QUEUE\+\_\+\+LENGTH~32}
+
+
+
+\label{doc-func-members}
+\Hypertarget{_storage_task_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_storage_task_8c_a1e1c743939d312be08d0a632e0f41f88}\index{StorageTask.c@{StorageTask.c}!commit\_dirty\_sections@{commit\_dirty\_sections}}
+\index{commit\_dirty\_sections@{commit\_dirty\_sections}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{commit\_dirty\_sections()}{commit\_dirty\_sections()}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a1e1c743939d312be08d0a632e0f41f88} 
+void commit\+\_\+dirty\+\_\+sections (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Commit all dirty sections to EEPROM. Checks dirty flags and writes changed sections to EEPROM using submodule functions. Optionally triggers reboot if STORAGE\+\_\+\+REBOOT\+\_\+\+ON\+\_\+\+CONFIG\+\_\+\+SAVE is enabled. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_storage_task_8c_a1e1c743939d312be08d0a632e0f41f88_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_storage_task_8c_a1e1c743939d312be08d0a632e0f41f88_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_storage_task_8c_a8975f5b2c08a7f3188a851ad1b211c63}\index{StorageTask.c@{StorageTask.c}!EEPROM\_EraseAll@{EEPROM\_EraseAll}}
+\index{EEPROM\_EraseAll@{EEPROM\_EraseAll}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_EraseAll()}{EEPROM\_EraseAll()}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a8975f5b2c08a7f3188a851ad1b211c63} 
+int EEPROM\+\_\+\+Erase\+All (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Erase entire EEPROM to 0x\+FF with watchdog-\/safe yielding. Writes 0x\+FF to all EEPROM addresses in 32-\/byte chunks with periodic yields. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_storage_task_8c_a8975f5b2c08a7f3188a851ad1b211c63_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_storage_task_8c_a4fc600cc02b207340a3e903acc1a64c8}\index{StorageTask.c@{StorageTask.c}!load\_config\_from\_eeprom@{load\_config\_from\_eeprom}}
+\index{load\_config\_from\_eeprom@{load\_config\_from\_eeprom}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{load\_config\_from\_eeprom()}{load\_config\_from\_eeprom()}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a4fc600cc02b207340a3e903acc1a64c8} 
+void load\+\_\+config\+\_\+from\+\_\+eeprom (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Load all config from EEPROM to RAM cache. Called once during task startup to populate RAM cache with stored config. Uses submodule functions to load each section. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_storage_task_8c_a4fc600cc02b207340a3e903acc1a64c8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_storage_task_8c_a4fc600cc02b207340a3e903acc1a64c8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_storage_task_8c_a213cb9056713a15a181cf8d4351879c0}\index{StorageTask.c@{StorageTask.c}!process\_storage\_msg@{process\_storage\_msg}}
+\index{process\_storage\_msg@{process\_storage\_msg}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{process\_storage\_msg()}{process\_storage\_msg()}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a213cb9056713a15a181cf8d4351879c0} 
+void process\+\_\+storage\+\_\+msg (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structstorage__msg__t}{storage\+\_\+msg\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{msg}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Process storage request message. Handles all storage commands by updating RAM cache, setting dirty flags, or directly accessing EEPROM (for channel labels and testing). 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_storage_task_8c_a213cb9056713a15a181cf8d4351879c0_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_storage_task_8c_a213cb9056713a15a181cf8d4351879c0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_storage_task_8c_a4aff71a877bf3f8ef49cffd7de19ae61}\index{StorageTask.c@{StorageTask.c}!storage\_clear\_event\_region@{storage\_clear\_event\_region}}
+\index{storage\_clear\_event\_region@{storage\_clear\_event\_region}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{storage\_clear\_event\_region()}{storage\_clear\_event\_region()}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a4aff71a877bf3f8ef49cffd7de19ae61} 
+void storage\+\_\+clear\+\_\+event\+\_\+region (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{base}{, }\item[{uint16\+\_\+t}]{size}{, }\item[{uint16\+\_\+t \texorpdfstring{$\ast$}{*}}]{offset}{, }\item[{bool \texorpdfstring{$\ast$}{*}}]{active}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Incrementally clear an event log region to 0x\+FF bytes. 
+
+The region is erased in small chunks with watchdog-\/safe yielding and short EEPROM mutex holds so that the operation remains non-\/blocking for other tasks.
+
+
+\begin{DoxyParams}{Parameters}
+{\em base} & Start address of the region. \\
+\hline
+{\em size} & Size in bytes of the region. \\
+\hline
+{\em offset} & \mbox{[}in,out\mbox{]} Current offset within the region (0..size). \\
+\hline
+{\em active} & \mbox{[}in,out\mbox{]} Pointer to active flag; cleared when clear completes. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_storage_task_8c_a4aff71a877bf3f8ef49cffd7de19ae61_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_storage_task_8c_a4aff71a877bf3f8ef49cffd7de19ae61_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_storage_task_8c_a9b67fa0fd6f5c01192d214b4b39d958c}\index{StorageTask.c@{StorageTask.c}!storage\_dump\_eeprom\_formatted@{storage\_dump\_eeprom\_formatted}}
+\index{storage\_dump\_eeprom\_formatted@{storage\_dump\_eeprom\_formatted}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{storage\_dump\_eeprom\_formatted()}{storage\_dump\_eeprom\_formatted()}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a9b67fa0fd6f5c01192d214b4b39d958c} 
+void storage\+\_\+dump\+\_\+eeprom\+\_\+formatted (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Incremental formatted EEPROM dump worker. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_storage_task_8c_a9b67fa0fd6f5c01192d214b4b39d958c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_storage_task_8c_a9b67fa0fd6f5c01192d214b4b39d958c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_storage_task_8c_ad9e9d1e6e78f163d3619f526d29ee321}\index{StorageTask.c@{StorageTask.c}!storage\_dump\_event\_region@{storage\_dump\_event\_region}}
+\index{storage\_dump\_event\_region@{storage\_dump\_event\_region}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{storage\_dump\_event\_region()}{storage\_dump\_event\_region()}}
+{\footnotesize\ttfamily \label{_storage_task_8c_ad9e9d1e6e78f163d3619f526d29ee321} 
+void storage\+\_\+dump\+\_\+event\+\_\+region (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{base}{, }\item[{uint16\+\_\+t}]{size}{, }\item[{uint16\+\_\+t \texorpdfstring{$\ast$}{*}}]{offset}{, }\item[{bool \texorpdfstring{$\ast$}{*}}]{active}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Incrementally dump an event log region in formatted hex. 
+
+This helper prints the specified EEPROM region in the same format and 16-\/byte lines as the full EEPROM dump, but limited to a given base address and size.
+
+
+\begin{DoxyParams}{Parameters}
+{\em base} & Start address of the region. \\
+\hline
+{\em size} & Size in bytes of the region. \\
+\hline
+{\em offset} & \mbox{[}in,out\mbox{]} Current offset within the region (0..size). \\
+\hline
+{\em active} & \mbox{[}in,out\mbox{]} Pointer to active flag; cleared when dump completes. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_storage_task_8c_ad9e9d1e6e78f163d3619f526d29ee321_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_storage_task_8c_ad9e9d1e6e78f163d3619f526d29ee321_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_storage_task_8c_a65991cc9fd9f82af7e0b0b4caedf89e6}\index{StorageTask.c@{StorageTask.c}!storage\_dump\_formatted@{storage\_dump\_formatted}}
+\index{storage\_dump\_formatted@{storage\_dump\_formatted}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{storage\_dump\_formatted()}{storage\_dump\_formatted()}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a65991cc9fd9f82af7e0b0b4caedf89e6} 
+bool storage\+\_\+dump\+\_\+formatted (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{timeout\+\_\+ms}{}\end{DoxyParamCaption})}
+
+
+
+Trigger a formatted EEPROM dump in Storage\+Task context. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_storage_task_8c_a65991cc9fd9f82af7e0b0b4caedf89e6_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_storage_task_8c_ae851beece865afaface1694a5b6e75e6}\index{StorageTask.c@{StorageTask.c}!storage\_erase\_step@{storage\_erase\_step}}
+\index{storage\_erase\_step@{storage\_erase\_step}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{storage\_erase\_step()}{storage\_erase\_step()}}
+{\footnotesize\ttfamily \label{_storage_task_8c_ae851beece865afaface1694a5b6e75e6} 
+void storage\+\_\+erase\+\_\+step (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_storage_task_8c_ae851beece865afaface1694a5b6e75e6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_storage_task_8c_ae851beece865afaface1694a5b6e75e6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_storage_task_8c_a4f9335f77202f7c7e3d5f42edf956355}\index{StorageTask.c@{StorageTask.c}!Storage\_FlushEventQueues@{Storage\_FlushEventQueues}}
+\index{Storage\_FlushEventQueues@{Storage\_FlushEventQueues}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{Storage\_FlushEventQueues()}{Storage\_FlushEventQueues()}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a4f9335f77202f7c7e3d5f42edf956355} 
+void Storage\+\_\+\+Flush\+Event\+Queues (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Flush queued error and warning codes into EEPROM event logs. 
+
+This function is invoked periodically by \doxylink{_storage_task_8c_a502037c1577c7bd180a629669af058f7}{Storage\+Task} to persist error and warning codes that have been enqueued during runtime into their respective EEPROM circular buffers. Each entry is written as a 16-\/bit event code in big-\/endian format.
+
+To prevent repetitive flooding of the failure memory by the same error code (e.\+g., when a function repeatedly detects the same fault in a loop), this implementation tracks the last stored error and warning code and skips consecutive duplicates. This ensures that the event log records unique error transitions rather than continuous repetitions.
+
+Operation is non-\/blocking and watchdog-\/safe\+:
+\begin{DoxyItemize}
+\item Each EEPROM transaction is performed under \doxylink{group__tasks10_gaf015228821869529545d62856625c224}{eeprom\+Mtx} protection.
+\item Only a limited number of writes per call are allowed.
+\item The function yields periodically to feed the watchdog.
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+The ring buffer layout in EEPROM\+:
+\begin{DoxyItemize}
+\item \mbox{[}0..1\mbox{]} \+: 16-\/bit write pointer (entry index)
+\item \mbox{[}2..N\mbox{]} \+: Event entries (16-\/bit each, big-\/endian)
+\end{DoxyItemize}
+
+Only the first occurrence of an identical code (after a different one) is written. Subsequent identical codes are ignored until a new code appears. Both error and warning queues are handled independently. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_storage_task_8c_a4f9335f77202f7c7e3d5f42edf956355_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_storage_task_8c_a4f9335f77202f7c7e3d5f42edf956355_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_storage_task_8c_a502037c1577c7bd180a629669af058f7}\index{StorageTask.c@{StorageTask.c}!StorageTask@{StorageTask}}
+\index{StorageTask@{StorageTask}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{StorageTask()}{StorageTask()}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a502037c1577c7bd180a629669af058f7} 
+void Storage\+Task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{arg}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Storage task main function. 
+
+Initialization sequence\+:
+\begin{DoxyEnumerate}
+\item Check/write factory defaults (first boot)
+\item Load config from EEPROM to RAM cache
+\item Signal CFG\+\_\+\+READY
+\end{DoxyEnumerate}
+
+Main loop\+:
+\begin{DoxyItemize}
+\item Process storage messages from q\+\_\+cfg queue
+\item Auto-\/commit dirty sections after debounce period
+\item Send periodic heartbeat
+\item Flush queued error/warning codes to EEPROM (bounded)
+\item Drive incremental EEPROM dump when \doxylink{_storage_task_8c_aaacb6509973187cfebf4601bd32bb37f}{s\+\_\+dump\+\_\+active} is true 
+\end{DoxyItemize}Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_storage_task_8c_a502037c1577c7bd180a629669af058f7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_storage_task_8c_a502037c1577c7bd180a629669af058f7_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{_storage_task_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{_storage_task_8c_af4cacafb77fdb05221b76712d72bc2c4}\index{StorageTask.c@{StorageTask.c}!DEFAULT\_ENERGY\_DATA@{DEFAULT\_ENERGY\_DATA}}
+\index{DEFAULT\_ENERGY\_DATA@{DEFAULT\_ENERGY\_DATA}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_ENERGY\_DATA}{DEFAULT\_ENERGY\_DATA}}
+{\footnotesize\ttfamily \label{_storage_task_8c_af4cacafb77fdb05221b76712d72bc2c4} 
+const uint8\+\_\+t DEFAULT\+\_\+\+ENERGY\+\_\+\+DATA\mbox{[}64\mbox{]} = \{0\}}
+
+
+
+Default energy data (placeholder). 
+
+\Hypertarget{_storage_task_8c_a404935045ff6fed58a6466f385f2947c}\index{StorageTask.c@{StorageTask.c}!DEFAULT\_LOG\_DATA@{DEFAULT\_LOG\_DATA}}
+\index{DEFAULT\_LOG\_DATA@{DEFAULT\_LOG\_DATA}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_LOG\_DATA}{DEFAULT\_LOG\_DATA}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a404935045ff6fed58a6466f385f2947c} 
+const uint8\+\_\+t DEFAULT\+\_\+\+LOG\+\_\+\+DATA\mbox{[}64\mbox{]} = \{0\}}
+
+
+
+Default event log data (placeholder). 
+
+\Hypertarget{_storage_task_8c_a798988c99534b7d96891fece90178e8f}\index{StorageTask.c@{StorageTask.c}!DEFAULT\_NETWORK@{DEFAULT\_NETWORK}}
+\index{DEFAULT\_NETWORK@{DEFAULT\_NETWORK}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_NETWORK}{DEFAULT\_NETWORK}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a798988c99534b7d96891fece90178e8f} 
+const \mbox{\hyperlink{structnetwork_info}{network\+Info}} DEFAULT\+\_\+\+NETWORK}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ .ip\ =\ \mbox{\hyperlink{group__config01_ga6bcec64b544b74e628a348846e546941}{ENERGIS\_DEFAULT\_IP}},}
+\DoxyCodeLine{\ \ \ \ .gw\ =\ \mbox{\hyperlink{group__config01_ga61b0c1d2f442d39fc54989d6ade0d870}{ENERGIS\_DEFAULT\_GW}},}
+\DoxyCodeLine{\ \ \ \ .sn\ =\ \mbox{\hyperlink{group__config01_ga80cb3abbba38b19472099f25027a6b65}{ENERGIS\_DEFAULT\_SN}},}
+\DoxyCodeLine{\ \ \ \ .mac\ =\ \{\mbox{\hyperlink{group__overcurrent__thresholds_gad4ab0b5ac1cc8d56727819ffac591b01}{ENERGIS\_MAC\_PREFIX0}},\ \mbox{\hyperlink{group__overcurrent__thresholds_ga33efce3c4b7f9e54502a8cf36347e52b}{ENERGIS\_MAC\_PREFIX1}},\ \mbox{\hyperlink{group__overcurrent__thresholds_ga477e07b1acbe20a58ee159649e2d4b60}{ENERGIS\_MAC\_PREFIX2}},\ 0x00,\ 0x00,\ 0x00\},}
+\DoxyCodeLine{\ \ \ \ .dns\ =\ \mbox{\hyperlink{group__config01_ga8bdcc7005183fa45002f248740a0446b}{ENERGIS\_DEFAULT\_DNS}},}
+\DoxyCodeLine{\ \ \ \ .dhcp\ =\ \mbox{\hyperlink{group__overcurrent__thresholds_gac097e2fea691f7e50324af8a83c4b07a}{ENERGIS\_DEFAULT\_DHCP}}\}}
+
+\end{DoxyCode}
+
+
+Default network configuration (MAC suffix filled at runtime). 
+
+\Hypertarget{_storage_task_8c_aedc5a9058d8b845fca6177c74454d9d0}\index{StorageTask.c@{StorageTask.c}!DEFAULT\_RELAY\_STATUS@{DEFAULT\_RELAY\_STATUS}}
+\index{DEFAULT\_RELAY\_STATUS@{DEFAULT\_RELAY\_STATUS}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_RELAY\_STATUS}{DEFAULT\_RELAY\_STATUS}}
+{\footnotesize\ttfamily \label{_storage_task_8c_aedc5a9058d8b845fca6177c74454d9d0} 
+const uint8\+\_\+t DEFAULT\+\_\+\+RELAY\+\_\+\+STATUS\mbox{[}8\mbox{]} = \{0\}}
+
+
+
+Default relay status array (all OFF). 
+
+\Hypertarget{_storage_task_8c_a4adf270c04ed651d651b6074266aab1a}\index{StorageTask.c@{StorageTask.c}!DEFAULT\_USER\_PREFS@{DEFAULT\_USER\_PREFS}}
+\index{DEFAULT\_USER\_PREFS@{DEFAULT\_USER\_PREFS}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_USER\_PREFS}{DEFAULT\_USER\_PREFS}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a4adf270c04ed651d651b6074266aab1a} 
+const \mbox{\hyperlink{structuser_pref_info}{user\+Pref\+Info}} DEFAULT\+\_\+\+USER\+\_\+\+PREFS}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ .device\_name\ =\ \mbox{\hyperlink{group__overcurrent__thresholds_gabab87e4c9b1cea63570eda6d54bba8cc}{DEFAULT\_NAME}},\ .location\ =\ \mbox{\hyperlink{group__overcurrent__thresholds_gab868d07879546e97e34453f1f75debd9}{DEFAULT\_LOCATION}},\ .temp\_unit\ =\ 0\}}
+
+\end{DoxyCode}
+
+
+Default user preferences. 
+
+\Hypertarget{_storage_task_8c_a20bfb3d4073ffdf702f7e575715ae38c}\index{StorageTask.c@{StorageTask.c}!eth\_netcfg\_ready@{eth\_netcfg\_ready}}
+\index{eth\_netcfg\_ready@{eth\_netcfg\_ready}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{eth\_netcfg\_ready}{eth\_netcfg\_ready}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a20bfb3d4073ffdf702f7e575715ae38c} 
+volatile bool eth\+\_\+netcfg\+\_\+ready = false\hspace{0.3cm}{\ttfamily [static]}}
+
+Config ready flag \Hypertarget{_storage_task_8c_ae887bc08ebd2889678d63dbb36daed09}\index{StorageTask.c@{StorageTask.c}!g\_cache@{g\_cache}}
+\index{g\_cache@{g\_cache}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{g\_cache}{g\_cache}}
+{\footnotesize\ttfamily \label{_storage_task_8c_ae887bc08ebd2889678d63dbb36daed09} 
+\mbox{\hyperlink{structstorage__cache__t}{storage\+\_\+cache\+\_\+t}} g\+\_\+cache\hspace{0.3cm}{\ttfamily [static]}}
+
+RAM cache (only accessed by Storage\+Task) \Hypertarget{_storage_task_8c_a988900dc449acf0ca0b71913239e82d3}\index{StorageTask.c@{StorageTask.c}!q\_cfg@{q\_cfg}}
+\index{q\_cfg@{q\_cfg}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{q\_cfg}{q\_cfg}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a988900dc449acf0ca0b71913239e82d3} 
+Queue\+Handle\+\_\+t q\+\_\+cfg\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{_storage_task_8c_aaacb6509973187cfebf4601bd32bb37f}\index{StorageTask.c@{StorageTask.c}!s\_dump\_active@{s\_dump\_active}}
+\index{s\_dump\_active@{s\_dump\_active}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_dump\_active}{s\_dump\_active}}
+{\footnotesize\ttfamily \label{_storage_task_8c_aaacb6509973187cfebf4601bd32bb37f} 
+bool s\+\_\+dump\+\_\+active = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Internal flag indicating an incremental EEPROM dump is in progress. 
+
+\Hypertarget{_storage_task_8c_a06f3837406432b35af53d3625f917984}\index{StorageTask.c@{StorageTask.c}!s\_dump\_done\_sem@{s\_dump\_done\_sem}}
+\index{s\_dump\_done\_sem@{s\_dump\_done\_sem}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_dump\_done\_sem}{s\_dump\_done\_sem}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a06f3837406432b35af53d3625f917984} 
+Semaphore\+Handle\+\_\+t s\+\_\+dump\+\_\+done\+\_\+sem = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Completion semaphore for blocking dump callers. 
+
+\Hypertarget{_storage_task_8c_aac69354c1dc5de60c6c874e0762335f3}\index{StorageTask.c@{StorageTask.c}!s\_dump\_next\_addr@{s\_dump\_next\_addr}}
+\index{s\_dump\_next\_addr@{s\_dump\_next\_addr}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_dump\_next\_addr}{s\_dump\_next\_addr}}
+{\footnotesize\ttfamily \label{_storage_task_8c_aac69354c1dc5de60c6c874e0762335f3} 
+uint32\+\_\+t s\+\_\+dump\+\_\+next\+\_\+addr = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Next EEPROM address to dump (0..CAT24\+C256\+\_\+\+TOTAL\+\_\+\+SIZE-\/1). 
+
+\Hypertarget{_storage_task_8c_ad6e3e814993da6cc2ba869f395437cc1}\index{StorageTask.c@{StorageTask.c}!s\_erase\_active@{s\_erase\_active}}
+\index{s\_erase\_active@{s\_erase\_active}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_erase\_active}{s\_erase\_active}}
+{\footnotesize\ttfamily \label{_storage_task_8c_ad6e3e814993da6cc2ba869f395437cc1} 
+bool s\+\_\+erase\+\_\+active = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Incremental full EEPROM erase active flag. 
+
+\Hypertarget{_storage_task_8c_a3313ce61ae68b1ce39573f75269d8390}\index{StorageTask.c@{StorageTask.c}!s\_erase\_next\_addr@{s\_erase\_next\_addr}}
+\index{s\_erase\_next\_addr@{s\_erase\_next\_addr}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_erase\_next\_addr}{s\_erase\_next\_addr}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a3313ce61ae68b1ce39573f75269d8390} 
+uint32\+\_\+t s\+\_\+erase\+\_\+next\+\_\+addr = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Next EEPROM address to erase. 
+
+\Hypertarget{_storage_task_8c_a1151e8ef23053909b8502bf7f168cadc}\index{StorageTask.c@{StorageTask.c}!s\_err\_clear\_active@{s\_err\_clear\_active}}
+\index{s\_err\_clear\_active@{s\_err\_clear\_active}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_err\_clear\_active}{s\_err\_clear\_active}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a1151e8ef23053909b8502bf7f168cadc} 
+bool s\+\_\+err\+\_\+clear\+\_\+active = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Internal flag indicating an incremental error log clear is in progress. 
+
+\Hypertarget{_storage_task_8c_a8cc3ed87d21721cb6112e3b354a12667}\index{StorageTask.c@{StorageTask.c}!s\_err\_clear\_next\_offset@{s\_err\_clear\_next\_offset}}
+\index{s\_err\_clear\_next\_offset@{s\_err\_clear\_next\_offset}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_err\_clear\_next\_offset}{s\_err\_clear\_next\_offset}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a8cc3ed87d21721cb6112e3b354a12667} 
+uint16\+\_\+t s\+\_\+err\+\_\+clear\+\_\+next\+\_\+offset = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Next offset within the error log region to clear. 
+
+\Hypertarget{_storage_task_8c_a716144c1713452dd63e8471a1cf161f3}\index{StorageTask.c@{StorageTask.c}!s\_err\_dump\_active@{s\_err\_dump\_active}}
+\index{s\_err\_dump\_active@{s\_err\_dump\_active}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_err\_dump\_active}{s\_err\_dump\_active}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a716144c1713452dd63e8471a1cf161f3} 
+bool s\+\_\+err\+\_\+dump\+\_\+active = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Internal flag indicating an incremental error log dump is in progress. 
+
+\Hypertarget{_storage_task_8c_a8d177f8e69be2c04ac0f1360d533e811}\index{StorageTask.c@{StorageTask.c}!s\_err\_dump\_next\_offset@{s\_err\_dump\_next\_offset}}
+\index{s\_err\_dump\_next\_offset@{s\_err\_dump\_next\_offset}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_err\_dump\_next\_offset}{s\_err\_dump\_next\_offset}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a8d177f8e69be2c04ac0f1360d533e811} 
+uint16\+\_\+t s\+\_\+err\+\_\+dump\+\_\+next\+\_\+offset = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Next offset within the error log region to dump. 
+
+\Hypertarget{_storage_task_8c_aef4cc26a63cd44ba23e3308e08bb3564}\index{StorageTask.c@{StorageTask.c}!s\_warn\_clear\_active@{s\_warn\_clear\_active}}
+\index{s\_warn\_clear\_active@{s\_warn\_clear\_active}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_warn\_clear\_active}{s\_warn\_clear\_active}}
+{\footnotesize\ttfamily \label{_storage_task_8c_aef4cc26a63cd44ba23e3308e08bb3564} 
+bool s\+\_\+warn\+\_\+clear\+\_\+active = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Internal flag indicating an incremental warning log clear is in progress. 
+
+\Hypertarget{_storage_task_8c_ad8a341fe1cd1af01a0f7e20502abbdda}\index{StorageTask.c@{StorageTask.c}!s\_warn\_clear\_next\_offset@{s\_warn\_clear\_next\_offset}}
+\index{s\_warn\_clear\_next\_offset@{s\_warn\_clear\_next\_offset}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_warn\_clear\_next\_offset}{s\_warn\_clear\_next\_offset}}
+{\footnotesize\ttfamily \label{_storage_task_8c_ad8a341fe1cd1af01a0f7e20502abbdda} 
+uint16\+\_\+t s\+\_\+warn\+\_\+clear\+\_\+next\+\_\+offset = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Next offset within the warning log region to clear. 
+
+\Hypertarget{_storage_task_8c_a8535a6bf17e9301809f73a183db72122}\index{StorageTask.c@{StorageTask.c}!s\_warn\_dump\_active@{s\_warn\_dump\_active}}
+\index{s\_warn\_dump\_active@{s\_warn\_dump\_active}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_warn\_dump\_active}{s\_warn\_dump\_active}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a8535a6bf17e9301809f73a183db72122} 
+bool s\+\_\+warn\+\_\+dump\+\_\+active = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Internal flag indicating an incremental warning log dump is in progress. 
+
+\Hypertarget{_storage_task_8c_a5cfe3d58794f594e39033fc241e024a8}\index{StorageTask.c@{StorageTask.c}!s\_warn\_dump\_next\_offset@{s\_warn\_dump\_next\_offset}}
+\index{s\_warn\_dump\_next\_offset@{s\_warn\_dump\_next\_offset}!StorageTask.c@{StorageTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_warn\_dump\_next\_offset}{s\_warn\_dump\_next\_offset}}
+{\footnotesize\ttfamily \label{_storage_task_8c_a5cfe3d58794f594e39033fc241e024a8} 
+uint16\+\_\+t s\+\_\+warn\+\_\+dump\+\_\+next\+\_\+offset = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Next offset within the warning log region to dump. 
+

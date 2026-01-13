@@ -1,0 +1,158 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/snmp/snmp\+\_\+custom.c File Reference}
+\hypertarget{snmp__custom_8c}{}\label{snmp__custom_8c}\index{src/Software/ENERGIS\_RTOS/src/snmp/snmp\_custom.c@{src/Software/ENERGIS\_RTOS/src/snmp/snmp\_custom.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for snmp\+\_\+custom.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp__custom_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{snmp__custom_8c_a846025370470bb62623a4d3d28e9eaf5}{get\+\_\+sys\+Contact}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for sys\+Contact (RFC1213 system group). \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{snmp__custom_8c_a7f1dd4a784c109fff25e9e19a7f3d7b7}{get\+\_\+sys\+Name}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for sys\+Name (RFC1213 system group). \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{snmp__custom_8c_a3a0dad460f2c1aa9f532ef3a65246b0f}{get\+\_\+sys\+Location}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for sys\+Location (RFC1213 system group). \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{snmp__custom_8c_a764866ca5f6acdc9e1dc7a6a7e0b3034}{get\+\_\+sys\+SN}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for device serial number. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers07_ga4d3d68fdba21b44efc30f71a40efa7ed}{init\+Table}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize OID table and agent community (implemented in \doxylink{snmp__custom_8c}{snmp\+\_\+custom.\+c}). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers07_ga01e7036f2bce7c2647b681dcfe2b3731}{initial\+\_\+\+Trap}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}manager\+IP, uint8\+\_\+t \texorpdfstring{$\ast$}{*}agent\+IP)
+\begin{DoxyCompactList}\small\item\em Perform initial trap setup with manager/agent IP (in \doxylink{snmp__custom_8c}{snmp\+\_\+custom.\+c}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{group__drivers07_ga171971564950d97e48939e2f6de4d92f}{COMMUNITY}} \mbox{[}$\,$\mbox{]} = "{}public"{}
+\begin{DoxyCompactList}\small\item\em Community string bytes (length \doxylink{group__drivers07_ga253bb776650cb698ee240d43141e1cfa}{COMMUNITY\+\_\+\+SIZE}). \end{DoxyCompactList}\item 
+const uint8\+\_\+t \mbox{\hyperlink{group__drivers07_ga253bb776650cb698ee240d43141e1cfa}{COMMUNITY\+\_\+\+SIZE}} = (uint8\+\_\+t)(sizeof(\mbox{\hyperlink{group__drivers07_ga171971564950d97e48939e2f6de4d92f}{COMMUNITY}}) -\/ 1)
+\begin{DoxyCompactList}\small\item\em Community string length. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structsnmp__entry__t}{snmp\+\_\+entry\+\_\+t}} \mbox{\hyperlink{group__drivers07_ga0fc0a81b7ad505f393362648610b3a2c}{snmp\+Data}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Global OID table (implemented in \doxylink{snmp__custom_8c}{snmp\+\_\+custom.\+c}). \end{DoxyCompactList}\item 
+const int32\+\_\+t \mbox{\hyperlink{group__drivers07_ga073f16bfbcb7015e6408be249c5d2932}{max\+Data}} = (int32\+\_\+t)(sizeof(\mbox{\hyperlink{group__drivers07_ga0fc0a81b7ad505f393362648610b3a2c}{snmp\+Data}}) / sizeof(\mbox{\hyperlink{group__drivers07_ga0fc0a81b7ad505f393362648610b3a2c}{snmp\+Data}}\mbox{[}0\mbox{]}))
+\begin{DoxyCompactList}\small\item\em Number of valid entries in \doxylink{group__drivers07_ga0fc0a81b7ad505f393362648610b3a2c}{snmp\+Data}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/07
+\end{DoxyDate}
+Implementation of the SNMP OID table for ENERGIS PDU. This file defines the complete mapping between OIDs and their associated callback functions, as well as static system identification values.
+
+The table structure uses the \doxylink{structsnmp__entry__t}{snmp\+\_\+entry\+\_\+t} format from the W5500 SNMP library, with each entry specifying\+:
+\begin{DoxyItemize}
+\item OID length and bytes
+\item Data type (INTEGER, OCTET\+\_\+\+STRING, OBJ\+\_\+\+ID, TIME\+\_\+\+TICKS)
+\item Data length for fixed values
+\item Static value or getter/setter function pointers
+\end{DoxyItemize}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-func-members}
+\Hypertarget{snmp__custom_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{snmp__custom_8c_a846025370470bb62623a4d3d28e9eaf5}\index{snmp\_custom.c@{snmp\_custom.c}!get\_sysContact@{get\_sysContact}}
+\index{get\_sysContact@{get\_sysContact}!snmp\_custom.c@{snmp\_custom.c}}
+\doxysubsubsection{\texorpdfstring{get\_sysContact()}{get\_sysContact()}}
+{\footnotesize\ttfamily \label{snmp__custom_8c_a846025370470bb62623a4d3d28e9eaf5} 
+void get\+\_\+sys\+Contact (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+SNMP getter for sys\+Contact (RFC1213 system group). 
+
+Returns the contact information for the person responsible for this node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer for OCTET\+\_\+\+STRING value \\
+\hline
+{\em len} & Pointer to receive string length (bytes written, excluding null)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\Hypertarget{snmp__custom_8c_a3a0dad460f2c1aa9f532ef3a65246b0f}\index{snmp\_custom.c@{snmp\_custom.c}!get\_sysLocation@{get\_sysLocation}}
+\index{get\_sysLocation@{get\_sysLocation}!snmp\_custom.c@{snmp\_custom.c}}
+\doxysubsubsection{\texorpdfstring{get\_sysLocation()}{get\_sysLocation()}}
+{\footnotesize\ttfamily \label{snmp__custom_8c_a3a0dad460f2c1aa9f532ef3a65246b0f} 
+void get\+\_\+sys\+Location (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+SNMP getter for sys\+Location (RFC1213 system group). 
+
+Returns the physical location of this node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer for OCTET\+\_\+\+STRING value \\
+\hline
+{\em len} & Pointer to receive string length (bytes written, excluding null)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\Hypertarget{snmp__custom_8c_a7f1dd4a784c109fff25e9e19a7f3d7b7}\index{snmp\_custom.c@{snmp\_custom.c}!get\_sysName@{get\_sysName}}
+\index{get\_sysName@{get\_sysName}!snmp\_custom.c@{snmp\_custom.c}}
+\doxysubsubsection{\texorpdfstring{get\_sysName()}{get\_sysName()}}
+{\footnotesize\ttfamily \label{snmp__custom_8c_a7f1dd4a784c109fff25e9e19a7f3d7b7} 
+void get\+\_\+sys\+Name (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+SNMP getter for sys\+Name (RFC1213 system group). 
+
+Returns the administratively-\/assigned name for this managed node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer for OCTET\+\_\+\+STRING value \\
+\hline
+{\em len} & Pointer to receive string length (bytes written, excluding null)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\Hypertarget{snmp__custom_8c_a764866ca5f6acdc9e1dc7a6a7e0b3034}\index{snmp\_custom.c@{snmp\_custom.c}!get\_sysSN@{get\_sysSN}}
+\index{get\_sysSN@{get\_sysSN}!snmp\_custom.c@{snmp\_custom.c}}
+\doxysubsubsection{\texorpdfstring{get\_sysSN()}{get\_sysSN()}}
+{\footnotesize\ttfamily \label{snmp__custom_8c_a764866ca5f6acdc9e1dc7a6a7e0b3034} 
+void get\+\_\+sys\+SN (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+SNMP getter for device serial number. 
+
+Retrieves the device serial number from persistent storage and returns it as an OCTET\+\_\+\+STRING. Mapped to sys\+Name OID in the MIB.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer for OCTET\+\_\+\+STRING value \\
+\hline
+{\em len} & Pointer to receive string length (bytes written, excluding null)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=281pt]{snmp__custom_8c_a764866ca5f6acdc9e1dc7a6a7e0b3034_cgraph}
+\end{center}
+\end{figure}

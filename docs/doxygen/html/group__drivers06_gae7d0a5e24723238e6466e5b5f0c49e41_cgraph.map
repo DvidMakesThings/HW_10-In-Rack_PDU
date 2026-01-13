@@ -1,0 +1,11 @@
+<map id="mcp_recover" name="mcp_recover">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,102,57"/>
+<area shape="rect" id="Node000002" href="$group__drivers05.html#gab7b4aa096ded6cebd93256e5b5994e42" title="Write 8&#45;bit register with 8&#45;bit value: [reg, value]." alt="" coords="150,31,283,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="102,41,134,41,134,47,102,47"/>
+<area shape="rect" id="Node000003" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="356,5,478,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="283,33,341,26,342,31,284,38"/>
+<area shape="rect" id="Node000004" href="$group__drivers05.html#ga170d6c4ff97ddc2d314f0a7a0054f283" title="Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK i2c_write_time..." alt="" coords="331,56,503,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="284,50,316,54,315,59,283,55"/>
+<area shape="rect" id="Node000005" href="$i2c__bus_8c.html#afbaa64f79bdd1fa39c8fa5b7a9c2717b" title=" " alt="" coords="551,56,709,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="504,67,536,67,536,72,504,72"/>
+</map>

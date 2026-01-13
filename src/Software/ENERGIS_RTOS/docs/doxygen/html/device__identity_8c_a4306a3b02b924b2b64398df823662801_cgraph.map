@@ -1,0 +1,5 @@
+<map id="calc_identity_crc_raw" name="calc_identity_crc_raw">
+<area shape="rect" id="Node000001" title="Calculate CRC&#45;8 for device identity EEPROM block image." alt="" coords="5,5,153,32"/>
+<area shape="rect" id="Node000002" href="$group__storage08.html#gaae57a92db26b8a63b7584fd2f3407077" title="Calculate CRC&#45;8 checksum for data integrity verification." alt="" coords="201,5,306,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="153,16,185,16,185,21,153,21"/>
+</map>

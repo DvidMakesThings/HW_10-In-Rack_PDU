@@ -1,0 +1,5 @@
+<map id="hlw_calib_data_t" name="hlw_calib_data_t">
+<area shape="rect" id="Node000001" title="Container for all 8 channels of HLW8032 calibration data." alt="" coords="5,104,124,131"/>
+<area shape="rect" id="Node000002" href="$structhlw__calib__t.html" title="Per&#45;channel calibration parameters for HLW8032 power meter IC." alt="" coords="21,5,108,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,48,67,104,62,104,62,48"/>
+</map>

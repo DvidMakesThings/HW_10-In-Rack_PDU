@@ -1,0 +1,27 @@
+<map id="EEPROM_AppendErrorCode" name="EEPROM_AppendErrorCode">
+<area shape="rect" id="Node000001" title="Append one error event code to error ring buffer with automatic wrapping." alt="" coords="5,81,195,108"/>
+<area shape="rect" id="Node000002" href="$event__log_8c.html#aff4a8a7a6e2e30d7b8c636d55493f325" title="Append one 16&#45;bit event code to a ring buffer region in EEPROM." alt="" coords="243,81,449,108"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="195,92,227,92,227,97,195,97"/>
+<area shape="rect" id="Node000003" href="$group__driver02.html#ga622a6736c8384f9e1921a1bda2a84df9" title="Read buffer from EEPROM." alt="" coords="497,56,661,83"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="449,81,481,77,482,83,450,86"/>
+<area shape="rect" id="Node000008" href="$group__driver02.html#ga8088b9a17773cb65bb6b5d89d3598125" title="Write buffer to EEPROM with automatic page boundary handling." alt="" coords="498,107,661,133"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="450,103,482,107,482,112,449,109"/>
+<area shape="rect" id="Node000004" href="$group__drivers05.html#ga66ae4c7028f764a3770cabe101dba8bf" title="Read from 16&#45;bit memory address: write [mem_hi, mem_lo] (no stop), then read len bytes." alt="" coords="727,5,875,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="640,53,724,33,725,39,642,58"/>
+<area shape="rect" id="Node000007" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="709,56,893,83"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="661,67,694,67,694,72,661,72"/>
+<area shape="rect" id="Node000005" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="970,56,1091,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="865,30,955,50,954,55,864,35"/>
+<area shape="rect" id="Node000006" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="941,5,1120,32"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="875,16,925,16,925,21,875,21"/>
+<area shape="poly" id="edge12_Node000008_Node000007" title=" " alt="" coords="640,103,724,84,725,89,642,109"/>
+<area shape="rect" id="Node000009" href="$group__drivers05.html#ga77ca38d627119d534873e177c5f4a667" title="Write to 16&#45;bit memory address: [mem_hi, mem_lo, data...]." alt="" coords="725,107,877,133"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="661,117,710,117,710,123,661,123"/>
+<area shape="rect" id="Node000012" href="$_c_a_t24_c256__driver_8c.html#aeba5f43a83c24289211b7d919c260978" title="RTOS&#45;compatible write cycle delay." alt="" coords="738,157,864,184"/>
+<area shape="poly" id="edge13_Node000008_Node000012" title=" " alt="" coords="642,131,725,151,724,156,640,137"/>
+<area shape="poly" id="edge9_Node000009_Node000005" title=" " alt="" coords="864,103,954,83,955,89,865,109"/>
+<area shape="rect" id="Node000010" href="$group__drivers05.html#ga170d6c4ff97ddc2d314f0a7a0054f283" title="Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK i2c_write_time..." alt="" coords="944,107,1116,133"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="877,117,929,117,929,123,877,123"/>
+<area shape="rect" id="Node000011" href="$i2c__bus_8c.html#afbaa64f79bdd1fa39c8fa5b7a9c2717b" title=" " alt="" coords="1168,107,1325,133"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="1117,117,1152,117,1152,123,1117,123"/>
+</map>

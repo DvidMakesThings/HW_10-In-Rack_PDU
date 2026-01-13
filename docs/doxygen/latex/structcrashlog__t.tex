@@ -1,0 +1,213 @@
+\doxysection{crashlog\+\_\+t Struct Reference}
+\hypertarget{structcrashlog__t}{}\label{structcrashlog__t}\index{crashlog\_t@{crashlog\_t}}
+
+
+Crash log structure stored in noinit so it survives resets.  
+
+
+
+
+{\ttfamily \#include $<$crashlog.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structcrashlog__t_aedb30457598e4eac8a961cbea94fb623}{hdr\+\_\+magic}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structcrashlog__t_a2770632c551b70866eea849b79946590}{hdr\+\_\+version}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structcrashlog__t_a79c41cf6abf819cb4c2a67ffc6854aa5}{hdr\+\_\+size}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structcrashlog__t_a8a8f754682bdcc0b5ebbe6ef536c6111}{hdr\+\_\+crc32}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structcrashlog__t_a0a92f896f61de29e4b0fa45840bf38a2}{hf\+\_\+valid}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structcrashlog__t_a6d1d1eee5d10967d58c832a58ba31188}{rsvd0}} \mbox{[}3\mbox{]}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structcrashlog__t_ab5a78f7c957e63cec1eea533cf8b6c05}{pc}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structcrashlog__t_ae5f51f173d74e56106fd09509e5737c7}{lr}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structcrashlog__t_abe2669c559492b250560512ae912acca}{xpsr}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structcrashlog__t_a83fbb408d262cd1f4f7cc24b8fcd63c4}{r0}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structcrashlog__t_a439e9f0ffca9ff0052bb26f39934aa9e}{r1}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structcrashlog__t_acffe6b8ff20ce427a656c4205ce93bad}{r2}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structcrashlog__t_a2665b9c9fa35b5725a305894d80c7f89}{r3}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structcrashlog__t_ae39c814fce6a7cd47a3a87e8830badfd}{r12}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structcrashlog__t_a3b69d35e7ece77c525d1564728db181a}{reset\+\_\+raw\+\_\+bits}}
+\item 
+\mbox{\hyperlink{group__misc1_ga3da6cc7835d9b18adc73cb404f8e9985}{crash\+\_\+reset\+\_\+reason\+\_\+t}} \mbox{\hyperlink{structcrashlog__t_a65100817986135b97760ee6788d5b50d}{reset\+\_\+reason}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structcrashlog__t_a1f1d30de651fe783b3df6ff79f886e99}{boots\+\_\+counter}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structcrashlog__t_ae3f9b71d10c1b1ad3ecee2b9364e6ddc}{wdt\+\_\+last\+\_\+ts\+\_\+ms}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structcrashlog__t_af0eb9e9d8254d3af90d472d667a20ab9}{wdt\+\_\+feed\+\_\+delta\+\_\+ms}} \mbox{[}\mbox{\hyperlink{group__misc1_ga7eca9d3b0c9e9975fe8917425a5931cc}{CRASH\+\_\+\+FEED\+\_\+\+RING}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structcrashlog__t_a116f8de94ac8754b967e6e413dc6f42e}{wdt\+\_\+feed\+\_\+wr}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structcrashlog__t_a2397da129395bc03da70efe05cb42f6e}{wdt\+\_\+feed\+\_\+count}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structcrashlog__t_ac94bbe9a0c82b083839b2f445f4aff44}{rsvd1}} \mbox{[}2\mbox{]}
+\item 
+char \mbox{\hyperlink{structcrashlog__t_a1ef9ce5100a95eb17be3b1085a044813}{sw\+\_\+reboot\+\_\+tag}} \mbox{[}24\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Crash log structure stored in noinit so it survives resets. 
+
+This structure contains a validated header with versioning and CRC. Only after a successful header validation are the runtime fields considered valid. 
+
+\label{doc-variable-members}
+\Hypertarget{structcrashlog__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structcrashlog__t_a1f1d30de651fe783b3df6ff79f886e99}\index{crashlog\_t@{crashlog\_t}!boots\_counter@{boots\_counter}}
+\index{boots\_counter@{boots\_counter}!crashlog\_t@{crashlog\_t}}
+\doxysubsubsection{\texorpdfstring{boots\_counter}{boots\_counter}}
+{\footnotesize\ttfamily \label{structcrashlog__t_a1f1d30de651fe783b3df6ff79f886e99} 
+uint32\+\_\+t crashlog\+\_\+t\+::boots\+\_\+counter}
+
+Monotonic boots counter (retained). \Hypertarget{structcrashlog__t_a8a8f754682bdcc0b5ebbe6ef536c6111}\index{crashlog\_t@{crashlog\_t}!hdr\_crc32@{hdr\_crc32}}
+\index{hdr\_crc32@{hdr\_crc32}!crashlog\_t@{crashlog\_t}}
+\doxysubsubsection{\texorpdfstring{hdr\_crc32}{hdr\_crc32}}
+{\footnotesize\ttfamily \label{structcrashlog__t_a8a8f754682bdcc0b5ebbe6ef536c6111} 
+uint32\+\_\+t crashlog\+\_\+t\+::hdr\+\_\+crc32}
+
+CRC32 of the structure with this field set to 0. \Hypertarget{structcrashlog__t_aedb30457598e4eac8a961cbea94fb623}\index{crashlog\_t@{crashlog\_t}!hdr\_magic@{hdr\_magic}}
+\index{hdr\_magic@{hdr\_magic}!crashlog\_t@{crashlog\_t}}
+\doxysubsubsection{\texorpdfstring{hdr\_magic}{hdr\_magic}}
+{\footnotesize\ttfamily \label{structcrashlog__t_aedb30457598e4eac8a961cbea94fb623} 
+uint32\+\_\+t crashlog\+\_\+t\+::hdr\+\_\+magic}
+
+Magic \textquotesingle{}CRLG\textquotesingle{} to validate retained block. \Hypertarget{structcrashlog__t_a79c41cf6abf819cb4c2a67ffc6854aa5}\index{crashlog\_t@{crashlog\_t}!hdr\_size@{hdr\_size}}
+\index{hdr\_size@{hdr\_size}!crashlog\_t@{crashlog\_t}}
+\doxysubsubsection{\texorpdfstring{hdr\_size}{hdr\_size}}
+{\footnotesize\ttfamily \label{structcrashlog__t_a79c41cf6abf819cb4c2a67ffc6854aa5} 
+uint16\+\_\+t crashlog\+\_\+t\+::hdr\+\_\+size}
+
+sizeof(crashlog\+\_\+t) at build time. \Hypertarget{structcrashlog__t_a2770632c551b70866eea849b79946590}\index{crashlog\_t@{crashlog\_t}!hdr\_version@{hdr\_version}}
+\index{hdr\_version@{hdr\_version}!crashlog\_t@{crashlog\_t}}
+\doxysubsubsection{\texorpdfstring{hdr\_version}{hdr\_version}}
+{\footnotesize\ttfamily \label{structcrashlog__t_a2770632c551b70866eea849b79946590} 
+uint16\+\_\+t crashlog\+\_\+t\+::hdr\+\_\+version}
+
+Structure version for compatibility. \Hypertarget{structcrashlog__t_a0a92f896f61de29e4b0fa45840bf38a2}\index{crashlog\_t@{crashlog\_t}!hf\_valid@{hf\_valid}}
+\index{hf\_valid@{hf\_valid}!crashlog\_t@{crashlog\_t}}
+\doxysubsubsection{\texorpdfstring{hf\_valid}{hf\_valid}}
+{\footnotesize\ttfamily \label{structcrashlog__t_a0a92f896f61de29e4b0fa45840bf38a2} 
+uint8\+\_\+t crashlog\+\_\+t\+::hf\+\_\+valid}
+
+Non-\/zero indicates Hard\+Fault registers below are valid. \Hypertarget{structcrashlog__t_ae5f51f173d74e56106fd09509e5737c7}\index{crashlog\_t@{crashlog\_t}!lr@{lr}}
+\index{lr@{lr}!crashlog\_t@{crashlog\_t}}
+\doxysubsubsection{\texorpdfstring{lr}{lr}}
+{\footnotesize\ttfamily \label{structcrashlog__t_ae5f51f173d74e56106fd09509e5737c7} 
+uint32\+\_\+t crashlog\+\_\+t\+::lr}
+
+Link Register at fault. \Hypertarget{structcrashlog__t_ab5a78f7c957e63cec1eea533cf8b6c05}\index{crashlog\_t@{crashlog\_t}!pc@{pc}}
+\index{pc@{pc}!crashlog\_t@{crashlog\_t}}
+\doxysubsubsection{\texorpdfstring{pc}{pc}}
+{\footnotesize\ttfamily \label{structcrashlog__t_ab5a78f7c957e63cec1eea533cf8b6c05} 
+uint32\+\_\+t crashlog\+\_\+t\+::pc}
+
+Program Counter at fault. \Hypertarget{structcrashlog__t_a83fbb408d262cd1f4f7cc24b8fcd63c4}\index{crashlog\_t@{crashlog\_t}!r0@{r0}}
+\index{r0@{r0}!crashlog\_t@{crashlog\_t}}
+\doxysubsubsection{\texorpdfstring{r0}{r0}}
+{\footnotesize\ttfamily \label{structcrashlog__t_a83fbb408d262cd1f4f7cc24b8fcd63c4} 
+uint32\+\_\+t crashlog\+\_\+t\+::r0}
+
+\Hypertarget{structcrashlog__t_a439e9f0ffca9ff0052bb26f39934aa9e}\index{crashlog\_t@{crashlog\_t}!r1@{r1}}
+\index{r1@{r1}!crashlog\_t@{crashlog\_t}}
+\doxysubsubsection{\texorpdfstring{r1}{r1}}
+{\footnotesize\ttfamily \label{structcrashlog__t_a439e9f0ffca9ff0052bb26f39934aa9e} 
+uint32\+\_\+t crashlog\+\_\+t\+::r1}
+
+\Hypertarget{structcrashlog__t_ae39c814fce6a7cd47a3a87e8830badfd}\index{crashlog\_t@{crashlog\_t}!r12@{r12}}
+\index{r12@{r12}!crashlog\_t@{crashlog\_t}}
+\doxysubsubsection{\texorpdfstring{r12}{r12}}
+{\footnotesize\ttfamily \label{structcrashlog__t_ae39c814fce6a7cd47a3a87e8830badfd} 
+uint32\+\_\+t crashlog\+\_\+t\+::r12}
+
+Stacked registers at fault. \Hypertarget{structcrashlog__t_acffe6b8ff20ce427a656c4205ce93bad}\index{crashlog\_t@{crashlog\_t}!r2@{r2}}
+\index{r2@{r2}!crashlog\_t@{crashlog\_t}}
+\doxysubsubsection{\texorpdfstring{r2}{r2}}
+{\footnotesize\ttfamily \label{structcrashlog__t_acffe6b8ff20ce427a656c4205ce93bad} 
+uint32\+\_\+t crashlog\+\_\+t\+::r2}
+
+\Hypertarget{structcrashlog__t_a2665b9c9fa35b5725a305894d80c7f89}\index{crashlog\_t@{crashlog\_t}!r3@{r3}}
+\index{r3@{r3}!crashlog\_t@{crashlog\_t}}
+\doxysubsubsection{\texorpdfstring{r3}{r3}}
+{\footnotesize\ttfamily \label{structcrashlog__t_a2665b9c9fa35b5725a305894d80c7f89} 
+uint32\+\_\+t crashlog\+\_\+t\+::r3}
+
+\Hypertarget{structcrashlog__t_a3b69d35e7ece77c525d1564728db181a}\index{crashlog\_t@{crashlog\_t}!reset\_raw\_bits@{reset\_raw\_bits}}
+\index{reset\_raw\_bits@{reset\_raw\_bits}!crashlog\_t@{crashlog\_t}}
+\doxysubsubsection{\texorpdfstring{reset\_raw\_bits}{reset\_raw\_bits}}
+{\footnotesize\ttfamily \label{structcrashlog__t_a3b69d35e7ece77c525d1564728db181a} 
+uint32\+\_\+t crashlog\+\_\+t\+::reset\+\_\+raw\+\_\+bits}
+
+Platform-\/specific raw reset bits (if captured). \Hypertarget{structcrashlog__t_a65100817986135b97760ee6788d5b50d}\index{crashlog\_t@{crashlog\_t}!reset\_reason@{reset\_reason}}
+\index{reset\_reason@{reset\_reason}!crashlog\_t@{crashlog\_t}}
+\doxysubsubsection{\texorpdfstring{reset\_reason}{reset\_reason}}
+{\footnotesize\ttfamily \label{structcrashlog__t_a65100817986135b97760ee6788d5b50d} 
+\mbox{\hyperlink{group__misc1_ga3da6cc7835d9b18adc73cb404f8e9985}{crash\+\_\+reset\+\_\+reason\+\_\+t}} crashlog\+\_\+t\+::reset\+\_\+reason}
+
+Decoded reset reason. \Hypertarget{structcrashlog__t_a6d1d1eee5d10967d58c832a58ba31188}\index{crashlog\_t@{crashlog\_t}!rsvd0@{rsvd0}}
+\index{rsvd0@{rsvd0}!crashlog\_t@{crashlog\_t}}
+\doxysubsubsection{\texorpdfstring{rsvd0}{rsvd0}}
+{\footnotesize\ttfamily \label{structcrashlog__t_a6d1d1eee5d10967d58c832a58ba31188} 
+uint8\+\_\+t crashlog\+\_\+t\+::rsvd0\mbox{[}3\mbox{]}}
+
+Reserved padding. \Hypertarget{structcrashlog__t_ac94bbe9a0c82b083839b2f445f4aff44}\index{crashlog\_t@{crashlog\_t}!rsvd1@{rsvd1}}
+\index{rsvd1@{rsvd1}!crashlog\_t@{crashlog\_t}}
+\doxysubsubsection{\texorpdfstring{rsvd1}{rsvd1}}
+{\footnotesize\ttfamily \label{structcrashlog__t_ac94bbe9a0c82b083839b2f445f4aff44} 
+uint8\+\_\+t crashlog\+\_\+t\+::rsvd1\mbox{[}2\mbox{]}}
+
+Reserved padding. \Hypertarget{structcrashlog__t_a1ef9ce5100a95eb17be3b1085a044813}\index{crashlog\_t@{crashlog\_t}!sw\_reboot\_tag@{sw\_reboot\_tag}}
+\index{sw\_reboot\_tag@{sw\_reboot\_tag}!crashlog\_t@{crashlog\_t}}
+\doxysubsubsection{\texorpdfstring{sw\_reboot\_tag}{sw\_reboot\_tag}}
+{\footnotesize\ttfamily \label{structcrashlog__t_a1ef9ce5100a95eb17be3b1085a044813} 
+char crashlog\+\_\+t\+::sw\+\_\+reboot\+\_\+tag\mbox{[}24\mbox{]}}
+
+Short ASCII tag for reason (optional, NUL-\/terminated). \Hypertarget{structcrashlog__t_a2397da129395bc03da70efe05cb42f6e}\index{crashlog\_t@{crashlog\_t}!wdt\_feed\_count@{wdt\_feed\_count}}
+\index{wdt\_feed\_count@{wdt\_feed\_count}!crashlog\_t@{crashlog\_t}}
+\doxysubsubsection{\texorpdfstring{wdt\_feed\_count}{wdt\_feed\_count}}
+{\footnotesize\ttfamily \label{structcrashlog__t_a2397da129395bc03da70efe05cb42f6e} 
+uint8\+\_\+t crashlog\+\_\+t\+::wdt\+\_\+feed\+\_\+count}
+
+Number of valid entries (\texorpdfstring{$<$}{<}= CRASH\+\_\+\+FEED\+\_\+\+RING). \Hypertarget{structcrashlog__t_af0eb9e9d8254d3af90d472d667a20ab9}\index{crashlog\_t@{crashlog\_t}!wdt\_feed\_delta\_ms@{wdt\_feed\_delta\_ms}}
+\index{wdt\_feed\_delta\_ms@{wdt\_feed\_delta\_ms}!crashlog\_t@{crashlog\_t}}
+\doxysubsubsection{\texorpdfstring{wdt\_feed\_delta\_ms}{wdt\_feed\_delta\_ms}}
+{\footnotesize\ttfamily \label{structcrashlog__t_af0eb9e9d8254d3af90d472d667a20ab9} 
+uint32\+\_\+t crashlog\+\_\+t\+::wdt\+\_\+feed\+\_\+delta\+\_\+ms\mbox{[}\mbox{\hyperlink{group__misc1_ga7eca9d3b0c9e9975fe8917425a5931cc}{CRASH\+\_\+\+FEED\+\_\+\+RING}}\mbox{]}}
+
+Deltas in ms since previous feed. \Hypertarget{structcrashlog__t_a116f8de94ac8754b967e6e413dc6f42e}\index{crashlog\_t@{crashlog\_t}!wdt\_feed\_wr@{wdt\_feed\_wr}}
+\index{wdt\_feed\_wr@{wdt\_feed\_wr}!crashlog\_t@{crashlog\_t}}
+\doxysubsubsection{\texorpdfstring{wdt\_feed\_wr}{wdt\_feed\_wr}}
+{\footnotesize\ttfamily \label{structcrashlog__t_a116f8de94ac8754b967e6e413dc6f42e} 
+uint8\+\_\+t crashlog\+\_\+t\+::wdt\+\_\+feed\+\_\+wr}
+
+Write index into ring. \Hypertarget{structcrashlog__t_ae3f9b71d10c1b1ad3ecee2b9364e6ddc}\index{crashlog\_t@{crashlog\_t}!wdt\_last\_ts\_ms@{wdt\_last\_ts\_ms}}
+\index{wdt\_last\_ts\_ms@{wdt\_last\_ts\_ms}!crashlog\_t@{crashlog\_t}}
+\doxysubsubsection{\texorpdfstring{wdt\_last\_ts\_ms}{wdt\_last\_ts\_ms}}
+{\footnotesize\ttfamily \label{structcrashlog__t_ae3f9b71d10c1b1ad3ecee2b9364e6ddc} 
+uint32\+\_\+t crashlog\+\_\+t\+::wdt\+\_\+last\+\_\+ts\+\_\+ms}
+
+Absolute ms of the last recorded feed. \Hypertarget{structcrashlog__t_abe2669c559492b250560512ae912acca}\index{crashlog\_t@{crashlog\_t}!xpsr@{xpsr}}
+\index{xpsr@{xpsr}!crashlog\_t@{crashlog\_t}}
+\doxysubsubsection{\texorpdfstring{xpsr}{xpsr}}
+{\footnotesize\ttfamily \label{structcrashlog__t_abe2669c559492b250560512ae912acca} 
+uint32\+\_\+t crashlog\+\_\+t\+::xpsr}
+
+x\+PSR at fault. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/misc/\mbox{\hyperlink{crashlog_8h}{crashlog.\+h}}\end{DoxyCompactItemize}

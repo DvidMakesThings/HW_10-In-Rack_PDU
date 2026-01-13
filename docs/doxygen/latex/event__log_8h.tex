@@ -1,0 +1,34 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/storage\+\_\+submodule/event\+\_\+log.h File Reference}
+\hypertarget{event__log_8h}{}\label{event__log_8h}\index{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/event\_log.h@{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/event\_log.h}}
+{\ttfamily \#include "{}../../\+CONFIG.\+h"{}}\newline
+Include dependency graph for event\+\_\+log.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{event__log_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{event__log_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__storage05_gabbe7eb05db9255f0b77b8d43ed6ee7c3}{EEPROM\+\_\+\+Write\+Event\+Logs}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write entire error event log region to EEPROM (bulk operation). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage05_gad9c0aae90591df3b2bb552a2755ce7a9}{EEPROM\+\_\+\+Read\+Event\+Logs}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Read entire error event log region from EEPROM (bulk operation). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage05_gaac46b7836e5834209a11390bf671aaea}{EEPROM\+\_\+\+Append\+Error\+Code}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}entry)
+\begin{DoxyCompactList}\small\item\em Append one error event code to error ring buffer with automatic wrapping. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage05_gab97b8ca8cca74eac342092d2e5cdb139}{EEPROM\+\_\+\+Append\+Warning\+Code}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}entry)
+\begin{DoxyCompactList}\small\item\em Append one warning event code to warning ring buffer with automatic wrapping. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

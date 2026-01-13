@@ -2,8 +2,8 @@
  * @file src/tasks/storage_submodule/user_output.h
  * @author DvidMakesThings - David Sipos
  *
- * @defgroup storage03 3. User Output
- * @ingroup storage
+ * @defgroup storage09 9. User Output
+ * @ingroup tasks10
  * @brief User output configuration presets and apply-on-startup persistence
  * @{
  *
@@ -44,6 +44,8 @@
 
 /* ==================== Constants ==================== */
 
+/** @name Constants
+ * @{ */
 /** Maximum number of user-configurable presets. */
 #define USER_OUTPUT_MAX_PRESETS 5u
 
@@ -58,6 +60,7 @@
 
 /** Value indicating no startup preset is configured. */
 #define USER_OUTPUT_STARTUP_NONE 0xFFu
+/** @} */
 
 /* ==================== Data Structures ==================== */
 
@@ -85,6 +88,8 @@ typedef struct __attribute__((packed)) {
 
 /* ==================== Public API ==================== */
 
+/** @name Public API
+ * @{ */
 /**
  * @brief Initialize user output subsystem and load presets from EEPROM.
  *
@@ -195,9 +200,12 @@ bool UserOutput_ApplyStartupPreset(void);
  * @return true if preset is valid, false if empty or invalid index.
  */
 bool UserOutput_IsPresetValid(uint8_t index);
+/** @} */
 
 /* ==================== Legacy API (deprecated) ==================== */
 
+/** @name Legacy API (deprecated)
+ * @{ */
 /**
  * @brief Write relay states to EEPROM user output section (legacy).
  * @deprecated Use UserOutput_SavePreset() instead.
@@ -217,6 +225,7 @@ int EEPROM_WriteUserOutput(const uint8_t *data, size_t len);
  * @return 0 on success, -1 on error.
  */
 int EEPROM_ReadUserOutput(uint8_t *data, size_t len);
+/** @} */
 
 #endif /* USER_OUTPUT_H */
 

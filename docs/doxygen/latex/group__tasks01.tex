@@ -1,0 +1,245 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item Button Task 
+\end{DoxyEnumerate}}
+\hypertarget{group__tasks01}{}\label{group__tasks01}\index{1. Button Task@{1. Button Task}}
+
+
+Button input handling with debouncing and selection window management.  
+
+
+Collaboration diagram for 1. Button Task\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{group__tasks01}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structbtn__event__t}{btn\+\_\+event\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Button event message published to the queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__tasks01_ga5f3c716f66dc5610b621b0f68059707a}{btn\+\_\+event\+\_\+kind\+\_\+t}} \{ \newline
+\mbox{\hyperlink{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aa05e67b3cb5e00b70f9cd5ee7cf2d9c29}{BTN\+\_\+\+EV\+\_\+\+PLUS\+\_\+\+FALL}} = 1u
+, \mbox{\hyperlink{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aa87f1f018ce130f39d6b2c8377fb42484}{BTN\+\_\+\+EV\+\_\+\+PLUS\+\_\+\+RISE}} = 2u
+, \mbox{\hyperlink{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aaa5a6cba1ff19287c45c423816348153e}{BTN\+\_\+\+EV\+\_\+\+MINUS\+\_\+\+FALL}} = 3u
+, \mbox{\hyperlink{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aa1e1e8c44257ec3b52d84db2b947b0ec0}{BTN\+\_\+\+EV\+\_\+\+MINUS\+\_\+\+RISE}} = 4u
+, \newline
+\mbox{\hyperlink{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aa7a0000ee3caa99136466a72581e0e8b5}{BTN\+\_\+\+EV\+\_\+\+SET\+\_\+\+SHORT}} = 5u
+, \mbox{\hyperlink{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aab3a546c531e811b4697fe981a2072843}{BTN\+\_\+\+EV\+\_\+\+SET\+\_\+\+LONG}} = 6u
+ \}
+\begin{DoxyCompactList}\small\item\em Button scanning period in milliseconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Base\+Type\+\_\+t \mbox{\hyperlink{group__tasks01_ga66ab3f6fa24432c008c6ea7b0ccddb5f}{Button\+Task\+\_\+\+Init}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Initialize and start the button handling task. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks01_ga10ed3ecf4c7563fe0fd3a2324b9260e1}{Button\+\_\+\+Is\+Ready}} (void)
+\begin{DoxyCompactList}\small\item\em Query button task readiness status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{group__tasks01_ga4f858b0945b86e1932ecb297d91c7878}{q\+\_\+btn}}
+\begin{DoxyCompactList}\small\item\em Global queue for button event distribution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Button input handling with debouncing and selection window management. 
+
+\begin{DoxyVersion}{Version}
+1.\+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/08
+\end{DoxyDate}
+This module implements a Free\+RTOS task for handling physical button inputs on the PDU. It provides debounced button reading, selection window management with visual feedback, and power state control through button combinations.
+
+Key Features\+:
+\begin{DoxyItemize}
+\item Polls PLUS, MINUS, SET, and PWR button GPIOs at configurable intervals
+\item Software debouncing with configurable timing thresholds
+\item Distinction between short and long press events for SET and PWR buttons
+\item Selection window with timeout and LED blinking feedback
+\item Event queue for inter-\/task communication
+\item Power management integration for standby mode control
+\end{DoxyItemize}
+
+Button Behavior\+:
+\begin{DoxyItemize}
+\item PLUS\+: Move selection right (wraps around), only when window is active
+\item MINUS\+: Move selection left (wraps around), only when window is active
+\item SET (short)\+: Toggle selected relay output, opens window if closed
+\item SET (long)\+: Clear error/warning logs and fault LED
+\item PWR (long)\+: Enter standby mode from normal operation
+\item PWR (short)\+: Exit standby mode when in standby
+\end{DoxyItemize}
+
+The selection window provides visual feedback via blinking LEDs and automatically closes after a configurable timeout period. The task operates without interrupts, using polling to maintain predictable real-\/time behavior.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-enum-members}
+\Hypertarget{group__tasks01_doc-enum-members}
+\doxysubsubsection{Enumeration Type Documentation}
+\Hypertarget{group__tasks01_ga5f3c716f66dc5610b621b0f68059707a}\index{1. Button Task@{1. Button Task}!btn\_event\_kind\_t@{btn\_event\_kind\_t}}
+\index{btn\_event\_kind\_t@{btn\_event\_kind\_t}!1. Button Task@{1. Button Task}}
+\doxysubsubsubsection{\texorpdfstring{btn\_event\_kind\_t}{btn\_event\_kind\_t}}
+{\footnotesize\ttfamily \label{group__tasks01_ga5f3c716f66dc5610b621b0f68059707a} 
+enum \mbox{\hyperlink{group__tasks01_ga5f3c716f66dc5610b621b0f68059707a}{btn\+\_\+event\+\_\+kind\+\_\+t}}}
+
+
+
+Button scanning period in milliseconds. 
+
+Defines how frequently the task polls button GPIO states. Lower values provide faster response but increase CPU usage. Typical range\+: 5-\/20ms.
+
+Selection LED blink period in milliseconds.
+
+Controls the on/off cycle time for the selection indicator LED during the active selection window. Must be long enough to be visible to users.
+
+Selection window timeout in milliseconds.
+
+Duration for which the selection window remains open after the last button interaction. After timeout, LEDs turn off and window closes automatically.
+
+Storage task readiness timeout in milliseconds.
+
+Maximum time to wait for Storage\+Task initialization during bring-\/up sequence. Button\+Task initialization fails if storage is not ready within this period.
+
+Button event types published to {\ttfamily q\+\_\+btn}.
+
+
+\begin{DoxyItemize}
+\item Edge events\+: debounced PLUS/\+MINUS press and release transitions.
+\item Press events\+: SET short/long press determined by duration thresholds.
+\item Events are generated by {\ttfamily Button\+Task} and consumed by subscribers via the queue. 
+\end{DoxyItemize}\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BTN\_EV\_PLUS\_FALL@{BTN\_EV\_PLUS\_FALL}!1. Button Task@{1. Button Task}}\index{1. Button Task@{1. Button Task}!BTN\_EV\_PLUS\_FALL@{BTN\_EV\_PLUS\_FALL}}}\Hypertarget{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aa05e67b3cb5e00b70f9cd5ee7cf2d9c29}\label{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aa05e67b3cb5e00b70f9cd5ee7cf2d9c29} 
+BTN\+\_\+\+EV\+\_\+\+PLUS\+\_\+\+FALL&PLUS button pressed (debounced falling edge detected). \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BTN\_EV\_PLUS\_RISE@{BTN\_EV\_PLUS\_RISE}!1. Button Task@{1. Button Task}}\index{1. Button Task@{1. Button Task}!BTN\_EV\_PLUS\_RISE@{BTN\_EV\_PLUS\_RISE}}}\Hypertarget{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aa87f1f018ce130f39d6b2c8377fb42484}\label{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aa87f1f018ce130f39d6b2c8377fb42484} 
+BTN\+\_\+\+EV\+\_\+\+PLUS\+\_\+\+RISE&PLUS button released (debounced rising edge detected). \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BTN\_EV\_MINUS\_FALL@{BTN\_EV\_MINUS\_FALL}!1. Button Task@{1. Button Task}}\index{1. Button Task@{1. Button Task}!BTN\_EV\_MINUS\_FALL@{BTN\_EV\_MINUS\_FALL}}}\Hypertarget{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aaa5a6cba1ff19287c45c423816348153e}\label{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aaa5a6cba1ff19287c45c423816348153e} 
+BTN\+\_\+\+EV\+\_\+\+MINUS\+\_\+\+FALL&MINUS button pressed (debounced falling edge detected). \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BTN\_EV\_MINUS\_RISE@{BTN\_EV\_MINUS\_RISE}!1. Button Task@{1. Button Task}}\index{1. Button Task@{1. Button Task}!BTN\_EV\_MINUS\_RISE@{BTN\_EV\_MINUS\_RISE}}}\Hypertarget{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aa1e1e8c44257ec3b52d84db2b947b0ec0}\label{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aa1e1e8c44257ec3b52d84db2b947b0ec0} 
+BTN\+\_\+\+EV\+\_\+\+MINUS\+\_\+\+RISE&MINUS button released (debounced rising edge detected). \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BTN\_EV\_SET\_SHORT@{BTN\_EV\_SET\_SHORT}!1. Button Task@{1. Button Task}}\index{1. Button Task@{1. Button Task}!BTN\_EV\_SET\_SHORT@{BTN\_EV\_SET\_SHORT}}}\Hypertarget{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aa7a0000ee3caa99136466a72581e0e8b5}\label{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aa7a0000ee3caa99136466a72581e0e8b5} 
+BTN\+\_\+\+EV\+\_\+\+SET\+\_\+\+SHORT&SET button short press confirmed on release. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BTN\_EV\_SET\_LONG@{BTN\_EV\_SET\_LONG}!1. Button Task@{1. Button Task}}\index{1. Button Task@{1. Button Task}!BTN\_EV\_SET\_LONG@{BTN\_EV\_SET\_LONG}}}\Hypertarget{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aab3a546c531e811b4697fe981a2072843}\label{group__tasks01_gga5f3c716f66dc5610b621b0f68059707aab3a546c531e811b4697fe981a2072843} 
+BTN\+\_\+\+EV\+\_\+\+SET\+\_\+\+LONG&SET button long press confirmed while held down. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{group__tasks01_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__tasks01_ga10ed3ecf4c7563fe0fd3a2324b9260e1}\index{1. Button Task@{1. Button Task}!Button\_IsReady@{Button\_IsReady}}
+\index{Button\_IsReady@{Button\_IsReady}!1. Button Task@{1. Button Task}}
+\doxysubsubsubsection{\texorpdfstring{Button\_IsReady()}{Button\_IsReady()}}
+{\footnotesize\ttfamily \label{group__tasks01_ga10ed3ecf4c7563fe0fd3a2324b9260e1} 
+bool Button\+\_\+\+Is\+Ready (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Query button task readiness status. 
+
+Provides a thread-\/safe method to check whether Button\+Task has completed initialization successfully. Used for deterministic boot sequencing to ensure proper task dependency ordering.
+
+\begin{DoxyReturn}{Returns}
+true if Button\+Task\+\_\+\+Init(true) completed successfully and task is running. 
+
+false if \doxylink{group__tasks01_ga66ab3f6fa24432c008c6ea7b0ccddb5f}{Button\+Task\+\_\+\+Init()} was not called, called with enable=false, or initialization failed.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This function is safe to call from any task context.
+\end{DoxyNote}
+See \doxylink{_button_task_8h}{buttontask.\+h} for detailed documentation. Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks01_ga10ed3ecf4c7563fe0fd3a2324b9260e1_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__tasks01_ga66ab3f6fa24432c008c6ea7b0ccddb5f}\index{1. Button Task@{1. Button Task}!ButtonTask\_Init@{ButtonTask\_Init}}
+\index{ButtonTask\_Init@{ButtonTask\_Init}!1. Button Task@{1. Button Task}}
+\doxysubsubsubsection{\texorpdfstring{ButtonTask\_Init()}{ButtonTask\_Init()}}
+{\footnotesize\ttfamily \label{group__tasks01_ga66ab3f6fa24432c008c6ea7b0ccddb5f} 
+Base\+Type\+\_\+t Button\+Task\+\_\+\+Init (\begin{DoxyParamCaption}\item[{bool}]{enable}{}\end{DoxyParamCaption})}
+
+
+
+Initialize and start the button handling task. 
+
+Creates the Button\+Task Free\+RTOS task, initializes button GPIOs, sets up the event queue, and configures the LED blink timer. Implements deterministic initialization with storage readiness gate.
+
+Initialization sequence\+:
+\begin{DoxyEnumerate}
+\item Initializes button GPIO pins with pull-\/ups
+\item Waits for Storage\+Task readiness (with timeout)
+\item Initializes power manager
+\item Creates button event queue (32 events deep)
+\item Creates and starts LED blink timer
+\item Spawns Button\+Task with configured priority
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}{Parameters}
+{\em enable} & Set true to initialize and start task, false to skip initialization deterministically without side effects.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pd\+PASS on successful initialization or when skipped (enable=false). 
+
+pd\+FAIL if initialization fails (timeout, queue creation, task creation).
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This function blocks until Storage\+Task becomes ready or timeout occurs. 
+
+Logs error codes to error logger on failure.
+\end{DoxyNote}
+See \doxylink{_button_task_8h}{buttontask.\+h} for detailed documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks01_ga66ab3f6fa24432c008c6ea7b0ccddb5f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks01_ga66ab3f6fa24432c008c6ea7b0ccddb5f_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{group__tasks01_doc-var-members}
+\doxysubsubsection{Variable Documentation}
+\Hypertarget{group__tasks01_ga4f858b0945b86e1932ecb297d91c7878}\index{1. Button Task@{1. Button Task}!q\_btn@{q\_btn}}
+\index{q\_btn@{q\_btn}!1. Button Task@{1. Button Task}}
+\doxysubsubsubsection{\texorpdfstring{q\_btn}{q\_btn}}
+{\footnotesize\ttfamily \label{group__tasks01_ga4f858b0945b86e1932ecb297d91c7878} 
+Queue\+Handle\+\_\+t q\+\_\+btn\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Global queue for button event distribution. 
+
+Free\+RTOS queue handle used by {\ttfamily Button\+Task} to publish button events. Other tasks subscribe to this queue to receive notifications. The queue is created during {\ttfamily \doxylink{group__tasks01_ga66ab3f6fa24432c008c6ea7b0ccddb5f}{Button\+Task\+\_\+\+Init()}} and remains valid throughout runtime.
+
+Global queue for button events consumed by higher layers. 

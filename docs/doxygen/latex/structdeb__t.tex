@@ -1,0 +1,65 @@
+\doxysection{deb\+\_\+t Struct Reference}
+\hypertarget{structdeb__t}{}\label{structdeb__t}\index{deb\_t@{deb\_t}}
+
+
+Button debouncer state structure.  
+
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{structdeb__t_a25e85e0a585221ff1be9df3046204cf8}{stable}}
+\item 
+bool \mbox{\hyperlink{structdeb__t_a07c38c1cc5e355df715a348a6a43c3a6}{prev\+\_\+stable}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structdeb__t_a6e4b0654178e2f680fa518dabf3d0e9c}{last\+\_\+change\+\_\+ms}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structdeb__t_a7e183727e4a6686d29af936d7a505b8e}{stable\+\_\+since}}
+\item 
+bool \mbox{\hyperlink{structdeb__t_ae5727e0c92dd295c374fe54e872dac47}{latched\+\_\+press}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Button debouncer state structure. 
+
+Maintains state for software button debouncing algorithm. Tracks both raw and stable button levels to detect valid transitions after the debounce period expires. 
+
+\label{doc-variable-members}
+\Hypertarget{structdeb__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structdeb__t_a6e4b0654178e2f680fa518dabf3d0e9c}\index{deb\_t@{deb\_t}!last\_change\_ms@{last\_change\_ms}}
+\index{last\_change\_ms@{last\_change\_ms}!deb\_t@{deb\_t}}
+\doxysubsubsection{\texorpdfstring{last\_change\_ms}{last\_change\_ms}}
+{\footnotesize\ttfamily \label{structdeb__t_a6e4b0654178e2f680fa518dabf3d0e9c} 
+uint32\+\_\+t deb\+\_\+t\+::last\+\_\+change\+\_\+ms}
+
+Timestamp of last raw level transition. \Hypertarget{structdeb__t_ae5727e0c92dd295c374fe54e872dac47}\index{deb\_t@{deb\_t}!latched\_press@{latched\_press}}
+\index{latched\_press@{latched\_press}!deb\_t@{deb\_t}}
+\doxysubsubsection{\texorpdfstring{latched\_press}{latched\_press}}
+{\footnotesize\ttfamily \label{structdeb__t_ae5727e0c92dd295c374fe54e872dac47} 
+bool deb\+\_\+t\+::latched\+\_\+press}
+
+Press event pending short/long resolution (SET/\+PWR only). \Hypertarget{structdeb__t_a07c38c1cc5e355df715a348a6a43c3a6}\index{deb\_t@{deb\_t}!prev\_stable@{prev\_stable}}
+\index{prev\_stable@{prev\_stable}!deb\_t@{deb\_t}}
+\doxysubsubsection{\texorpdfstring{prev\_stable}{prev\_stable}}
+{\footnotesize\ttfamily \label{structdeb__t_a07c38c1cc5e355df715a348a6a43c3a6} 
+bool deb\+\_\+t\+::prev\+\_\+stable}
+
+Previous stable level for edge detection. \Hypertarget{structdeb__t_a25e85e0a585221ff1be9df3046204cf8}\index{deb\_t@{deb\_t}!stable@{stable}}
+\index{stable@{stable}!deb\_t@{deb\_t}}
+\doxysubsubsection{\texorpdfstring{stable}{stable}}
+{\footnotesize\ttfamily \label{structdeb__t_a25e85e0a585221ff1be9df3046204cf8} 
+bool deb\+\_\+t\+::stable}
+
+Current stable debounced level (true=high, false=low). \Hypertarget{structdeb__t_a7e183727e4a6686d29af936d7a505b8e}\index{deb\_t@{deb\_t}!stable\_since@{stable\_since}}
+\index{stable\_since@{stable\_since}!deb\_t@{deb\_t}}
+\doxysubsubsection{\texorpdfstring{stable\_since}{stable\_since}}
+{\footnotesize\ttfamily \label{structdeb__t_a7e183727e4a6686d29af936d7a505b8e} 
+uint32\+\_\+t deb\+\_\+t\+::stable\+\_\+since}
+
+Timestamp when current stable level was confirmed. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\mbox{\hyperlink{_button_task_8c}{Button\+Task.\+c}}\end{DoxyCompactItemize}

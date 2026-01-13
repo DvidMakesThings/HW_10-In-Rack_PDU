@@ -1,0 +1,37 @@
+\doxysection{CAT24\+C256\+\_\+driver.\+h}
+\hypertarget{_c_a_t24_c256__driver_8h_source}{}\label{_c_a_t24_c256__driver_8h_source}\index{src/Software/ENERGIS\_RTOS/src/drivers/CAT24C256\_driver.h@{src/Software/ENERGIS\_RTOS/src/drivers/CAT24C256\_driver.h}}
+\mbox{\hyperlink{_c_a_t24_c256__driver_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#ifndef\ CAT24C256\_DRIVER\_H}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ CAT24C256\_DRIVER\_H}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_o_n_f_i_g_8h}{../CONFIG.h}}"{}}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ CAT24C256\_I2C\_ADDR\ 0x50}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ CAT24C256\_PAGE\_SIZE\ 64}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ CAT24C256\_TOTAL\_SIZE\ EEPROM\_SIZE}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ CAT24C256\_WRITE\_CYCLE\_MS\ 5}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00091\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__driver02_gaa20b40f13c003ce354ce5a163374ac90}{CAT24C256\_Init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00113\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__driver02_gaf61b654ebe83dc406d2a05dceef29c80}{CAT24C256\_WriteByte}}(uint16\_t\ addr,\ uint8\_t\ data);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00130\ uint8\_t\ \mbox{\hyperlink{group__driver02_gaa9216a0e6778df3ed3a57d872911efe4}{CAT24C256\_ReadByte}}(uint16\_t\ addr);}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00159\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__driver02_ga8088b9a17773cb65bb6b5d89d3598125}{CAT24C256\_WriteBuffer}}(uint16\_t\ addr,\ \textcolor{keyword}{const}\ uint8\_t\ *data,\ uint16\_t\ len);}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00178\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__driver02_ga622a6736c8384f9e1921a1bda2a84df9}{CAT24C256\_ReadBuffer}}(uint16\_t\ addr,\ uint8\_t\ *buffer,\ uint32\_t\ len);}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00207\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__driver02_gabec86a54fd16b590ec742aa2734d7031}{CAT24C256\_SelfTest}}(uint16\_t\ test\_addr);}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ CAT24C256\_DRIVER\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00211\ }
+
+\end{DoxyCode}

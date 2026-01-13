@@ -27,14 +27,8 @@
 /* ========================================================================== */
 
 /**
- * @brief Write entire sensor calibration area to EEPROM.
- *
- * @param data Source buffer containing calibration data
- * @param len  Number of bytes to write (must be <= EEPROM_SENSOR_CAL_SIZE)
- * @return 0 on success, -1 on bounds check failure or I2C error
- *
- * @details Typically used to write all channel calibration data at once
- *          (array of @ref hlw_calib_t). Must be called with eepromMtx held.
+ * @brief Write entire HLW8032 sensor calibration block to EEPROM.
+ * @details See calibration.h for full API documentation.
  */
 int EEPROM_WriteSensorCalibration(const uint8_t *data, size_t len) {
     if (len > EEPROM_SENSOR_CAL_SIZE) {
@@ -52,14 +46,8 @@ int EEPROM_WriteSensorCalibration(const uint8_t *data, size_t len) {
 }
 
 /**
- * @brief Read entire sensor calibration area from EEPROM.
- *
- * @param data Destination buffer
- * @param len  Number of bytes to read (must be <= EEPROM_SENSOR_CAL_SIZE)
- * @return 0 on success, -1 on bounds check failure
- *
- * @details Reads the contiguous HLW8032 calibration block. Must be called
- *          with eepromMtx held.
+ * @brief Read entire HLW8032 sensor calibration block from EEPROM.
+ * @details See calibration.h for full API documentation.
  */
 int EEPROM_ReadSensorCalibration(uint8_t *data, size_t len) {
     if (len > EEPROM_SENSOR_CAL_SIZE) {
@@ -78,14 +66,8 @@ int EEPROM_ReadSensorCalibration(uint8_t *data, size_t len) {
 }
 
 /**
- * @brief Write calibration record for a single HLW8032 channel.
- *
- * @param ch  Channel index [0..7]
- * @param in  Pointer to calibration data structure
- * @return 0 on success, -1 on invalid channel or null pointer
- *
- * @details Calculates the per-channel address and writes @ref hlw_calib_t.
- *          Must be called with eepromMtx held.
+ * @brief Write calibration record for single HLW8032 channel.
+ * @details See calibration.h for full API documentation.
  */
 int EEPROM_WriteSensorCalibrationForChannel(uint8_t ch, const hlw_calib_t *in) {
     if (ch >= 8 || !in) {
@@ -104,21 +86,14 @@ int EEPROM_WriteSensorCalibrationForChannel(uint8_t ch, const hlw_calib_t *in) {
 }
 
 /**
- * @brief Read calibration record for a single HLW8032 channel.
- *
- * @param ch  Channel index [0..7]
- * @param out Pointer to calibration data structure to fill
- * @return 0 on success, -1 on invalid channel or null pointer
- *
- * @details If record is not marked calibrated (flag != 0xCA), default HLW8032
- *          factors and component values are populated. Must be called with
- *          eepromMtx held.
+ * @brief Read calibration record for single HLW8032 channel.
+ * @details See calibration.h for full API documentation.
  */
 int EEPROM_ReadSensorCalibrationForChannel(uint8_t ch, hlw_calib_t *out) {
     if (ch >= 8 || !out) {
 #if ERRORLOGGER
         uint16_t err_code =
-            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0x3);
+            ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CALIBRATION, 0xF);
         ERROR_PRINT_CODE(err_code, "%s Read Sensor Calibration: Invalid channel %d\r\n", ST_CAL_TAG,
                          ch);
         Storage_EnqueueErrorCode(err_code);
@@ -233,14 +208,8 @@ static void tempcal_finalize_crc(temp_calib_t *rec) {
 }
 
 /**
- * @brief Write RP2040 temperature calibration block to EEPROM.
- *
- * @param cal Pointer to calibration data to store
- * @return 0 on success, -1 on invalid input or I2C error
- *
- * @details
- * Writes @ref temp_calib_t into the block defined by @ref EEPROM_TEMP_CAL_START
- * and @ref EEPROM_TEMP_CAL_SIZE. Must be called with eepromMtx held.
+ * @brief Write RP2040 temperature calibration record to EEPROM.
+ * @details See calibration.h for full API documentation.
  */
 int EEPROM_WriteTempCalibration(const temp_calib_t *cal) {
     if (!cal) {
@@ -275,13 +244,8 @@ int EEPROM_WriteTempCalibration(const temp_calib_t *cal) {
 }
 
 /**
- * @brief Read RP2040 temperature calibration block from EEPROM.
- *
- * @param out Pointer to struct to fill
- * @return 0 if valid data loaded, -1 if not present/invalid (defaults returned)
- *
- * @details
- * On failure, @p out is filled with safe defaults (mode NONE).
+ * @brief Read RP2040 temperature calibration record from EEPROM.
+ * @details See calibration.h for full API documentation.
  * Must be called with eepromMtx held.
  */
 int EEPROM_ReadTempCalibration(temp_calib_t *out) {
@@ -317,18 +281,8 @@ int EEPROM_ReadTempCalibration(temp_calib_t *out) {
 }
 
 /**
- * @brief Compute a single-point temp calibration (offset only) from a reference.
- *
- * @param ambient_c True ambient temperature [°C]
- * @param raw_temp  ADC raw code measured at ambient (AINSEL=4)
- * @param out       Output structure to populate (mode=TEMP_CAL_MODE_1PT)
- * @return 0 on success, -1 on invalid arguments
- *
- * @details
- * Uses current model defaults (0.706 V @27°C, 1.721 mV/°C) to compute T_raw then
- * sets offset so that reported temperature matches @p ambient_c.
- * The resulting @ref temp_calib_t can be written to EEPROM with
- * @ref EEPROM_WriteTempCalibration() and applied at boot.
+ * @brief Compute single-point temperature calibration from reference measurement.
+ * @details See calibration.h for full API documentation.
  */
 int TempCalibration_ComputeSinglePoint(float ambient_c, uint16_t raw_temp, temp_calib_t *out) {
     if (!out) {
@@ -354,19 +308,8 @@ int TempCalibration_ComputeSinglePoint(float ambient_c, uint16_t raw_temp, temp_
 }
 
 /**
- * @brief Compute a two-point temp calibration (slope + intercept).
- *
- * @param t1_c  True temperature point #1 [°C] (e.g., ambient)
- * @param raw1  ADC raw at point #1
- * @param t2_c  True temperature point #2 [°C] (e.g., warmed)
- * @param raw2  ADC raw at point #2
- * @param out   Output structure to populate (mode=TEMP_CAL_MODE_2PT, offset=0)
- * @return 0 on success, -1 on invalid inputs or out-of-range results
- *
- * @details
- * Derives slope and V0 from the two points, sets residual offset to 0.
- * Callers can optionally do a tiny single-point trim afterwards to reduce
- * residuals at ambient.
+ * @brief Compute two-point temperature calibration from reference measurements.
+ * @details See calibration.h for full API documentation.
  */
 int TempCalibration_ComputeTwoPoint(float t1_c, uint16_t raw1, float t2_c, uint16_t raw2,
                                     temp_calib_t *out) {
@@ -431,15 +374,8 @@ int TempCalibration_ComputeTwoPoint(float t1_c, uint16_t raw1, float t2_c, uint1
 }
 
 /**
- * @brief Apply a temperature calibration record to MeterTask.
- *
- * @param cal Pointer to temp calibration record (already validated or read)
- * @return 0 on success, -1 on invalid input or rejection by MeterTask
- *
- * @details
- * Pushes (V0, slope, offset) into the MeterTask conversion path so that all
- * consumers (CLI, /api/status, /metrics) see calibrated °C. This does not
- * persist any data; callers should write @p cal to EEPROM separately.
+ * @brief Apply temperature calibration to MeterTask measurement path.
+ * @details See calibration.h for full API documentation.
  */
 int TempCalibration_ApplyToMeterTask(const temp_calib_t *cal) {
     if (!cal) {
@@ -468,15 +404,8 @@ int TempCalibration_ApplyToMeterTask(const temp_calib_t *cal) {
 }
 
 /**
- * @brief Load temp calibration from EEPROM and apply to MeterTask.
- *
- * @param out Optional pointer to receive the loaded (or default) record
- * @return 0 if valid calibration was applied, -1 if defaults applied
- *
- * @details
- * Convenience helper for boot: read record, validate, apply. If invalid,
- * defaults are applied (mode NONE) and -1 is returned.
- * Must be called with eepromMtx held for the EEPROM read.
+ * @brief Load temperature calibration from EEPROM and apply to MeterTask.
+ * @details See calibration.h for full API documentation.
  */
 int TempCalibration_LoadAndApply(temp_calib_t *out) {
     temp_calib_t rec;

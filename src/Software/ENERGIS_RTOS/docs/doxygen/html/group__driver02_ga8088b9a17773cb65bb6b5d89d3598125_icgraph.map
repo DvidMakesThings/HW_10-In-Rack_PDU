@@ -1,0 +1,129 @@
+<map id="CAT24C256_WriteBuffer" name="CAT24C256_WriteBuffer">
+<area shape="rect" id="Node000001" title="Write buffer to EEPROM with automatic page boundary handling." alt="" coords="1335,765,1499,792"/>
+<area shape="rect" id="Node000002" href="$group__driver02.html#gabec86a54fd16b590ec742aa2734d7031" title="Execute comprehensive EEPROM self&#45;test." alt="" coords="1104,5,1251,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1412,750,1403,604,1382,395,1365,287,1344,188,1317,107,1302,76,1285,52,1269,39,1250,30,1252,25,1272,35,1289,49,1307,73,1322,105,1349,187,1371,286,1387,394,1408,604,1417,750"/>
+<area shape="rect" id="Node000003" href="$group__storage06.html#gaf16478f016f685e6139892aed390ac3e" title="Check if factory defaults need to be written (first boot detection)." alt="" coords="315,309,471,336"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1409,750,1392,658,1365,538,1348,478,1329,424,1308,381,1286,353,1258,334,1223,319,1182,307,1136,298,1032,287,918,284,803,287,693,293,520,307,472,312,471,307,519,301,693,288,803,282,918,279,1032,282,1136,293,1183,302,1225,314,1260,330,1289,349,1312,378,1334,422,1353,476,1370,536,1397,657,1414,749"/>
+<area shape="rect" id="Node000009" href="$event__log_8c.html#aff4a8a7a6e2e30d7b8c636d55493f325" title="Append one 16&#45;bit event code to a ring buffer region in EEPROM." alt="" coords="1074,816,1280,843"/>
+<area shape="poly" id="edge5_Node000001_Node000009" title=" " alt="" coords="1336,798,1244,818,1243,813,1335,793"/>
+<area shape="rect" id="Node000013" href="$group__storage04.html#ga718d1f1b5a07b4a0afee080ae1b18f2d" title="Append energy record to ring buffer. See energy_monitor.h." alt="" coords="1070,1019,1284,1045"/>
+<area shape="poly" id="edge11_Node000001_Node000013" title=" " alt="" coords="1409,808,1393,851,1368,903,1333,956,1312,981,1289,1002,1255,1020,1252,1016,1286,998,1309,977,1329,953,1363,901,1388,849,1404,806"/>
+<area shape="rect" id="Node000014" href="$group__storage02.html#gaf78531bf7a49a1b100af4fe0a8a1e2dd" title="Clear one channel label slot. See channel_labels.h." alt="" coords="1079,1069,1275,1096"/>
+<area shape="poly" id="edge12_Node000001_Node000014" title=" " alt="" coords="1414,808,1401,862,1378,930,1361,966,1341,1000,1317,1032,1289,1059,1270,1071,1268,1066,1286,1055,1313,1028,1337,997,1357,963,1373,928,1396,860,1408,807"/>
+<area shape="rect" id="Node000016" href="$_storage_task_8c.html#a8975f5b2c08a7f3188a851ad1b211c63" title="Erase entire EEPROM to 0xFF with watchdog&#45;safe yielding. Writes 0xFF to all EEPROM addresses in 32&#45;by..." alt="" coords="1110,1120,1245,1147"/>
+<area shape="poly" id="edge14_Node000001_Node000016" title=" " alt="" coords="1416,808,1406,871,1385,952,1369,996,1347,1037,1321,1076,1289,1110,1269,1123,1246,1131,1245,1126,1267,1118,1286,1106,1317,1073,1343,1035,1364,993,1380,951,1401,870,1411,807"/>
+<area shape="rect" id="Node000017" href="$group__storage02.html#ga6398fe537889dbfbfa6d9d64c4d7db88" title="Write channel label to EEPROM." alt="" coords="1080,917,1275,944"/>
+<area shape="poly" id="edge15_Node000001_Node000017" title=" " alt="" coords="1397,806,1351,854,1321,879,1289,901,1245,919,1243,914,1286,896,1318,875,1347,850,1393,802"/>
+<area shape="rect" id="Node000020" href="$group__storage04.html#ga2d726f82a082d5cdd3ae6b1bfaab1ce8" title="Write energy monitoring region. See energy_monitor.h." alt="" coords="789,613,1006,640"/>
+<area shape="poly" id="edge19_Node000001_Node000020" title=" " alt="" coords="1387,758,1341,725,1286,696,1216,672,1143,655,1007,636,1007,630,1144,650,1217,667,1288,691,1344,720,1390,753"/>
+<area shape="rect" id="Node000022" href="$group__storage05.html#gabbe7eb05db9255f0b77b8d43ed6ee7c3" title="Write event log region. See event_log.h." alt="" coords="809,664,987,691"/>
+<area shape="poly" id="edge23_Node000001_Node000022" title=" " alt="" coords="1369,762,1287,735,1208,718,1129,704,987,687,988,682,1130,699,1209,712,1288,729,1370,757"/>
+<area shape="rect" id="Node000023" href="$group__storage01.html#ga32076a8416bb992b9406dec24567cf71" title="Write entire HLW8032 sensor calibration block to EEPROM." alt="" coords="788,715,1008,741"/>
+<area shape="poly" id="edge25_Node000001_Node000023" title=" " alt="" coords="1320,767,1287,763,1008,738,1008,733,1288,757,1320,761"/>
+<area shape="rect" id="Node000024" href="$group__storage01.html#ga6fba2dcfc28ba004e71997f93c6b3d39" title="Write calibration record for single HLW8032 channel." alt="" coords="1068,363,1287,405"/>
+<area shape="poly" id="edge27_Node000001_Node000024" title=" " alt="" coords="1411,750,1403,683,1382,594,1366,547,1345,500,1318,457,1286,419,1271,408,1274,404,1289,415,1323,454,1350,498,1371,545,1388,592,1408,682,1417,750"/>
+<area shape="rect" id="Node000026" href="$group__storage07.html#ga6e3a05e108d6081a55378ffe3e817f43" title="Write system information block without CRC validation." alt="" coords="806,765,990,792"/>
+<area shape="poly" id="edge32_Node000001_Node000026" title=" " alt="" coords="1320,781,990,781,990,776,1320,776"/>
+<area shape="rect" id="Node000027" href="$group__storage07.html#ga45b5a1959fd75b07c11591fcc92f89c4" title="Write system information with CRC&#45;8 validation appended." alt="" coords="1072,1171,1282,1213"/>
+<area shape="poly" id="edge34_Node000001_Node000027" title=" " alt="" coords="1417,808,1410,878,1390,973,1374,1024,1352,1073,1324,1120,1289,1161,1274,1172,1271,1168,1285,1157,1320,1117,1347,1071,1369,1022,1385,972,1404,878,1412,807"/>
+<area shape="rect" id="Node000028" href="$group__storage01.html#gabc289be7b0cdbb53e52f48a0a10701ac" title="Write RP2040 temperature calibration record to EEPROM." alt="" coords="793,157,1003,184"/>
+<area shape="poly" id="edge35_Node000001_Node000028" title=" " alt="" coords="1410,750,1396,641,1371,492,1354,416,1334,348,1311,292,1285,255,1256,231,1222,211,1187,196,1149,184,1074,171,1003,167,1004,162,1074,166,1151,179,1189,191,1225,207,1259,227,1289,252,1316,290,1339,346,1359,415,1376,491,1401,640,1415,750"/>
+<area shape="rect" id="Node000033" href="$group__storage07.html#gaf37b38d193b54bcce8d8bbd38407dafc" title="Write raw network configuration block without CRC validation." alt="" coords="1080,1237,1274,1264"/>
+<area shape="poly" id="edge39_Node000001_Node000033" title=" " alt="" coords="1419,808,1417,890,1411,944,1401,1003,1385,1064,1361,1123,1330,1179,1289,1227,1273,1239,1270,1235,1286,1223,1326,1176,1357,1121,1380,1062,1395,1002,1406,944,1411,890,1414,807"/>
+<area shape="rect" id="Node000034" href="$group__storage07.html#ga3c1fef9aa93f898978387328a8a6e33d" title="Write network configuration with CRC&#45;8 validation appended." alt="" coords="1067,429,1287,472"/>
+<area shape="poly" id="edge40_Node000001_Node000034" title=" " alt="" coords="1409,751,1397,695,1374,623,1357,586,1338,550,1314,516,1286,486,1270,475,1273,470,1289,482,1318,512,1342,547,1362,584,1379,622,1402,694,1414,750"/>
+<area shape="rect" id="Node000049" href="$group__storage09.html#ga737c93ab5e7648d81175b6d5fd05ce6d" title="Legacy: Write raw relay states to EEPROM relay section." alt="" coords="1086,563,1269,589"/>
+<area shape="poly" id="edge52_Node000001_Node000049" title=" " alt="" coords="1400,753,1356,681,1324,643,1286,610,1249,592,1251,587,1289,606,1327,639,1360,678,1405,750"/>
+<area shape="rect" id="Node000050" href="$group__storage11.html#ga2df7072b6a21ee4c6a1008be0c0d2808" title="Write raw user preferences block to EEPROM." alt="" coords="1070,1288,1284,1315"/>
+<area shape="poly" id="edge55_Node000001_Node000050" title=" " alt="" coords="1415,808,1400,912,1373,1053,1356,1124,1337,1189,1314,1242,1289,1278,1274,1289,1270,1285,1285,1274,1310,1239,1332,1187,1351,1123,1368,1052,1394,911,1409,807"/>
+<area shape="rect" id="Node000051" href="$group__storage11.html#gaffd968de2dd26c2a571f3057dc72f2dc" title="Write user preferences with CRC&#45;8 validation." alt="" coords="1076,496,1278,539"/>
+<area shape="poly" id="edge56_Node000001_Node000051" title=" " alt="" coords="1405,752,1389,708,1364,654,1330,599,1309,575,1286,553,1268,542,1271,537,1289,549,1313,571,1334,596,1369,652,1394,706,1410,750"/>
+<area shape="rect" id="Node000053" href="$_storage_task_8c.html#a4aff71a877bf3f8ef49cffd7de19ae61" title="Incrementally clear an event log region to 0xFF bytes." alt="" coords="324,1012,462,1055"/>
+<area shape="poly" id="edge60_Node000001_Node000053" title=" " alt="" coords="1406,808,1388,843,1362,884,1329,925,1289,958,1194,981,1010,1015,729,1060,624,1066,519,1060,462,1052,463,1046,520,1055,624,1061,728,1055,1009,1009,1193,976,1286,954,1325,921,1358,881,1383,840,1401,805"/>
+<area shape="rect" id="Node000054" href="$_storage_task_8c.html#ae851beece865afaface1694a5b6e75e6" title=" " alt="" coords="326,81,461,108"/>
+<area shape="poly" id="edge62_Node000001_Node000054" title=" " alt="" coords="1411,750,1399,629,1375,461,1359,376,1338,298,1314,235,1300,212,1285,194,1239,155,1189,123,1135,97,1078,77,1019,61,959,51,838,41,720,43,612,54,520,69,449,83,448,78,519,63,612,49,720,38,838,35,960,45,1020,56,1079,72,1137,92,1191,119,1242,151,1289,190,1304,209,1318,233,1343,297,1364,375,1381,460,1404,629,1416,750"/>
+<area shape="rect" id="Node000055" href="$user__output_8c.html#a4a2fedd43a7bcd0f98aeb04d1e320be0" title="Persist current cache to EEPROM (atomic block)." alt="" coords="811,917,985,944"/>
+<area shape="poly" id="edge64_Node000001_Node000055" title=" " alt="" coords="1386,803,1341,832,1288,857,1232,874,1153,890,986,920,985,915,1152,885,1230,868,1286,852,1339,827,1383,799"/>
+<area shape="rect" id="Node000061" href="$device__identity_8c.html#aa849e09774fe6a45bb4479d2ee49c402" title="Write device identity to EEPROM using the defined block image." alt="" coords="1094,1339,1260,1365"/>
+<area shape="poly" id="edge75_Node000001_Node000061" title=" " alt="" coords="1416,807,1402,921,1377,1077,1360,1157,1340,1229,1316,1288,1289,1329,1262,1346,1259,1341,1285,1325,1312,1286,1335,1227,1355,1155,1372,1076,1397,920,1410,807"/>
+<area shape="rect" id="Node000004" href="$_storage_task_8c.html#a502037c1577c7bd180a629669af058f7" title="Storage task main function." alt="" coords="173,601,267,628"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="378,351,231,602,227,600,374,348"/>
+<area shape="rect" id="Node000005" href="$group__tasks10.html#ga26dbdabce55a139cf536e8469373b7c4" title="Initialize and start the Storage task with a deterministic enable gate. Creates mutex,..." alt="" coords="5,601,125,628"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="157,617,125,617,125,612,157,612"/>
+<area shape="rect" id="Node000010" href="$group__storage05.html#gaac46b7836e5834209a11390bf671aaea" title="Append error code to ring buffer. See event_log.h." alt="" coords="803,816,992,843"/>
+<area shape="poly" id="edge6_Node000009_Node000010" title=" " alt="" coords="1059,832,993,832,993,827,1059,827"/>
+<area shape="rect" id="Node000012" href="$group__storage05.html#gab97b8ca8cca74eac342092d2e5cdb139" title="Append warning code to ring buffer. See event_log.h." alt="" coords="794,867,1002,893"/>
+<area shape="poly" id="edge9_Node000009_Node000012" title=" " alt="" coords="1085,849,976,869,975,863,1084,843"/>
+<area shape="rect" id="Node000011" href="$_storage_task_8c.html#a4f9335f77202f7c7e3d5f42edf956355" title="Flush queued error and warning codes into EEPROM event logs." alt="" coords="532,715,716,741"/>
+<area shape="poly" id="edge7_Node000010_Node000011" title=" " alt="" coords="787,812,775,806,760,794,750,780,742,767,727,756,702,744,705,740,730,751,746,764,755,777,763,790,778,802,790,808"/>
+<area shape="poly" id="edge8_Node000011_Node000004" title=" " alt="" coords="548,713,519,705,265,631,267,626,520,700,549,708"/>
+<area shape="poly" id="edge10_Node000012_Node000011" title=" " alt="" coords="781,861,775,857,763,844,756,831,750,805,744,779,738,767,727,755,709,744,712,740,730,751,742,764,749,777,755,804,761,829,767,841,778,853,784,857"/>
+<area shape="rect" id="Node000015" href="$group__storage02.html#ga67a2dd3f4c5ce4b35fcc26bf85f7d886" title="Clear all channel label slots. See channel_labels.h." alt="" coords="789,1069,1007,1096"/>
+<area shape="poly" id="edge13_Node000014_Node000015" title=" " alt="" coords="1063,1085,1007,1085,1007,1080,1063,1080"/>
+<area shape="rect" id="Node000018" href="$group__storage02.html#gaee4d746ce522f44d4c8d6d4c12216248" title="Update label in cache and write to EEPROM. See channel_labels.h." alt="" coords="530,1019,718,1045"/>
+<area shape="poly" id="edge16_Node000017_Node000018" title=" " alt="" coords="1086,950,701,1021,700,1015,1085,945"/>
+<area shape="rect" id="Node000019" href="$_storage_task_8c.html#a213cb9056713a15a181cf8d4351879c0" title="Process storage request message. Handles all storage commands by updating RAM cache,..." alt="" coords="318,765,468,792"/>
+<area shape="poly" id="edge17_Node000018_Node000019" title=" " alt="" coords="583,1013,549,988,517,958,500,930,492,906,484,881,469,854,440,820,410,794,414,790,444,816,474,850,489,879,497,904,505,928,521,954,552,984,586,1008"/>
+<area shape="poly" id="edge18_Node000019_Node000004" title=" " alt="" coords="363,757,313,711,232,630,236,627,317,707,367,753"/>
+<area shape="rect" id="Node000021" href="$group__storage06.html#ga6dadd32bf70e8ea2569da7d4bbb02e0a" title="Write factory defaults to all EEPROM sections." alt="" coords="519,664,729,691"/>
+<area shape="poly" id="edge20_Node000020_Node000021" title=" " alt="" coords="807,646,700,666,699,661,806,641"/>
+<area shape="poly" id="edge21_Node000021_Node000003" title=" " alt="" coords="598,654,559,608,517,552,479,491,445,430,399,338,403,335,450,427,484,488,522,549,563,605,602,651"/>
+<area shape="poly" id="edge22_Node000021_Node000019" title=" " alt="" coords="540,698,520,705,461,736,414,767,412,763,459,731,518,700,538,693"/>
+<area shape="poly" id="edge24_Node000022_Node000021" title=" " alt="" coords="793,680,729,680,729,675,793,675"/>
+<area shape="poly" id="edge26_Node000023_Node000021" title=" " alt="" coords="806,714,699,694,700,689,807,709"/>
+<area shape="poly" id="edge28_Node000024_Node000003" title=" " alt="" coords="1078,361,1019,351,867,335,716,327,472,324,472,319,716,322,868,330,1019,345,1079,356"/>
+<area shape="rect" id="Node000025" href="$_storage_task_8c.html#a1e1c743939d312be08d0a632e0f41f88" title="Commit all dirty sections to EEPROM. Checks dirty flags and writes changed sections to EEPROM using s..." alt="" coords="822,411,974,437"/>
+<area shape="poly" id="edge29_Node000024_Node000025" title=" " alt="" coords="1052,405,975,416,974,410,1051,399"/>
+<area shape="poly" id="edge31_Node000025_Node000004" title=" " alt="" coords="809,443,778,461,768,472,762,483,756,506,750,530,742,542,730,553,693,571,641,585,512,604,376,613,268,617,267,612,376,608,512,598,640,579,691,566,727,548,738,539,745,528,751,505,757,481,764,468,775,457,806,439"/>
+<area shape="poly" id="edge30_Node000025_Node000019" title=" " alt="" coords="808,442,778,461,765,477,759,493,755,527,752,562,745,579,731,597,704,616,679,627,654,631,629,632,578,634,550,641,521,654,484,681,452,712,406,767,402,763,448,708,481,677,518,650,548,636,577,629,629,627,653,626,677,622,701,612,727,593,740,577,747,561,750,527,754,492,761,474,775,457,805,437"/>
+<area shape="poly" id="edge33_Node000026_Node000021" title=" " alt="" coords="791,763,775,756,760,743,750,730,742,717,727,705,702,694,705,689,730,700,746,713,755,727,763,739,778,751,793,758"/>
+<area shape="poly" id="edge36_Node000028_Node000003" title=" " alt="" coords="777,160,716,160,650,164,583,177,520,198,482,222,449,253,405,310,401,307,445,250,479,218,518,194,582,171,649,159,715,154,777,155"/>
+<area shape="rect" id="Node000029" href="$_console_task_8c.html#a05b2618d7fb383d2e3e64220ae18b64f" title="Calibrate RP2040 die temperature sensor and persist to EEPROM." alt="" coords="566,107,682,133"/>
+<area shape="poly" id="edge37_Node000028_Node000029" title=" " alt="" coords="806,157,682,133,683,128,807,151"/>
+<area shape="rect" id="Node000030" href="$_console_task_8c.html#a2d3b7ff8346f8d10aa45609664940712" title="Parse and dispatch command line to handler function." alt="" coords="326,157,460,184"/>
+<area shape="poly" id="edge38_Node000029_Node000030" title=" " alt="" coords="551,139,458,159,457,154,550,133"/>
+<area shape="poly" id="edge42_Node000034_Node000021" title=" " alt="" coords="1052,454,972,459,892,467,823,481,797,491,778,502,764,518,756,535,754,571,752,609,745,628,730,647,702,666,699,661,727,643,740,626,747,608,748,571,751,534,759,515,775,498,795,486,822,476,891,462,971,453,1051,449"/>
+<area shape="poly" id="edge41_Node000034_Node000025" title=" " alt="" coords="1051,441,974,434,975,429,1052,436"/>
+<area shape="rect" id="Node000035" href="$group__storage07.html#ga37c460b3ea58fd130cea86904b06f7b1" title="Load network configuration from EEPROM with automatic fallback and MAC repair." alt="" coords="816,360,980,387"/>
+<area shape="poly" id="edge43_Node000034_Node000035" title=" " alt="" coords="1087,427,1066,420,1018,401,974,390,975,385,1020,396,1068,415,1088,422"/>
+<area shape="rect" id="Node000036" href="$_console_task_8c.html#a7dc7bbff6e5db53bf64b8e6aed947dfd" title="Display network information." alt="" coords="578,208,670,235"/>
+<area shape="poly" id="edge44_Node000035_Node000036" title=" " alt="" coords="857,354,649,237,651,233,860,350"/>
+<area shape="rect" id="Node000037" href="$group__webui05.html#gac088630081f9ab2535ccd751fdfaaad7" title="Handle GET /api/settings and return configuration as JSON." alt="" coords="556,411,692,437"/>
+<area shape="poly" id="edge46_Node000035_Node000037" title=" " alt="" coords="807,393,693,414,692,409,806,388"/>
+<area shape="rect" id="Node000041" href="$group__webui05.html#ga0fe4c530cf7754724a14147a82c71108" title="Handle POST /api/settings to update configuration." alt="" coords="552,461,696,488"/>
+<area shape="poly" id="edge47_Node000035_Node000041" title=" " alt="" coords="802,390,778,401,763,413,755,425,746,439,730,452,697,465,695,461,727,447,742,435,750,422,760,409,775,396,800,385"/>
+<area shape="rect" id="Node000042" href="$_storage_task_8c.html#a4fc600cc02b207340a3e903acc1a64c8" title="Load all config from EEPROM to RAM cache. Called once during task startup to populate RAM cache with ..." alt="" coords="539,512,709,539"/>
+<area shape="poly" id="edge48_Node000035_Node000042" title=" " alt="" coords="802,387,778,401,767,412,761,424,755,450,749,476,742,489,730,502,711,514,708,509,727,498,738,486,744,474,750,449,756,422,763,409,775,397,800,382"/>
+<area shape="rect" id="Node000043" href="$snmp__network_ctrl_8c.html#a6a708726aad77be7b0108febd0094116" title="Load persisted network configuration from EEPROM." alt="" coords="580,360,668,387"/>
+<area shape="poly" id="edge51_Node000035_Node000043" title=" " alt="" coords="800,376,668,376,668,371,800,371"/>
+<area shape="poly" id="edge45_Node000036_Node000030" title=" " alt="" coords="562,211,457,187,458,182,563,205"/>
+<area shape="poly" id="edge50_Node000042_Node000004" title=" " alt="" coords="523,527,421,536,368,546,316,560,274,580,239,603,236,599,271,576,314,555,367,540,421,531,523,522"/>
+<area shape="poly" id="edge49_Node000042_Node000019" title=" " alt="" coords="592,550,556,577,521,610,484,652,451,696,405,766,401,763,447,693,480,649,517,606,553,573,588,546"/>
+<area shape="poly" id="edge54_Node000049_Node000021" title=" " alt="" coords="1070,567,1002,565,927,569,851,581,778,604,763,613,754,624,745,636,730,648,687,666,685,661,727,643,741,632,750,621,760,609,776,599,850,575,927,563,1002,559,1070,561"/>
+<area shape="poly" id="edge53_Node000049_Node000025" title=" " alt="" coords="1078,559,1066,553,1050,541,1040,529,1031,516,1017,502,968,467,923,440,926,435,971,463,1021,498,1035,512,1044,525,1053,537,1068,548,1080,554"/>
+<area shape="poly" id="edge57_Node000051_Node000025" title=" " alt="" coords="1087,493,1066,487,935,440,937,435,1068,481,1089,488"/>
+<area shape="rect" id="Node000052" href="$group__storage11.html#ga89e7b743f0d87d2f8658c42cbaf1990d" title="Write default device name and location with CRC." alt="" coords="777,512,1019,539"/>
+<area shape="poly" id="edge58_Node000051_Node000052" title=" " alt="" coords="1060,523,1019,525,1019,519,1060,518"/>
+<area shape="poly" id="edge59_Node000052_Node000021" title=" " alt="" coords="798,547,778,559,762,580,755,602,748,625,730,647,698,666,695,661,727,643,743,622,750,600,757,577,775,555,795,543"/>
+<area shape="poly" id="edge61_Node000053_Node000004" title=" " alt="" coords="366,1000,339,955,313,904,281,824,254,744,222,629,227,628,259,742,286,822,317,902,344,952,371,997"/>
+<area shape="poly" id="edge63_Node000054_Node000004" title=" " alt="" coords="348,118,331,131,317,147,299,186,282,240,254,377,235,512,225,601,220,601,230,511,249,376,277,239,294,184,313,144,328,127,345,114"/>
+<area shape="rect" id="Node000056" href="$group__storage09.html#ga6a93dd22bec3564db3ef13032a5d3e87" title="Clear the startup preset selection and commit to EEPROM." alt="" coords="521,867,727,893"/>
+<area shape="poly" id="edge65_Node000055_Node000056" title=" " alt="" coords="806,916,699,897,700,891,807,911"/>
+<area shape="rect" id="Node000057" href="$group__storage09.html#ga2b79ea5da2b1810668e743da2a1dcf69" title="Delete a preset from cache and commit to EEPROM." alt="" coords="538,917,710,944"/>
+<area shape="poly" id="edge67_Node000055_Node000057" title=" " alt="" coords="795,933,710,933,710,928,795,928"/>
+<area shape="rect" id="Node000058" href="$group__storage09.html#ga5727076845e0fe2135c108d8317704a2" title="Initialize the User Output subsystem and load presets." alt="" coords="336,864,450,891"/>
+<area shape="poly" id="edge69_Node000055_Node000058" title=" " alt="" coords="833,951,767,964,688,973,602,973,560,968,519,959,486,946,455,928,408,893,412,889,458,924,488,941,520,953,561,963,603,968,687,968,766,958,832,945"/>
+<area shape="rect" id="Node000059" href="$group__storage09.html#gad6fa0b01aa77b8a8d3ad8a949793ee28" title="Save or update a preset in cache and commit to EEPROM." alt="" coords="542,765,706,792"/>
+<area shape="poly" id="edge71_Node000055_Node000059" title=" " alt="" coords="795,919,775,907,763,895,756,882,750,855,744,830,738,818,727,806,705,793,707,788,730,802,742,815,749,828,755,854,761,880,767,892,778,903,798,915"/>
+<area shape="rect" id="Node000060" href="$group__storage09.html#ga386208413b1b0046b3ff03ade368e250" title="Set the startup preset selection and commit to EEPROM." alt="" coords="526,816,722,843"/>
+<area shape="poly" id="edge73_Node000055_Node000060" title=" " alt="" coords="795,917,775,908,760,895,750,882,742,869,727,857,702,846,705,841,730,852,746,865,755,879,763,891,778,903,797,912"/>
+<area shape="poly" id="edge66_Node000056_Node000019" title=" " alt="" coords="538,864,518,857,459,826,412,795,414,790,461,821,520,852,540,859"/>
+<area shape="poly" id="edge68_Node000057_Node000019" title=" " alt="" coords="529,913,518,908,502,895,491,883,469,854,408,794,411,790,473,850,495,879,505,891,521,903,531,909"/>
+<area shape="poly" id="edge70_Node000058_Node000004" title=" " alt="" coords="361,856,336,833,313,806,282,757,256,707,224,629,229,627,261,705,287,755,317,802,340,829,365,852"/>
+<area shape="poly" id="edge72_Node000059_Node000019" title=" " alt="" coords="527,781,468,781,468,776,527,776"/>
+<area shape="poly" id="edge74_Node000060_Node000019" title=" " alt="" coords="545,815,457,795,458,790,546,810"/>
+<area shape="rect" id="Node000062" href="$group__storage03.html#ga9f2f68ea0ff2c13d4fe5d52dc3a99e4f" title="Set the device region (requires unlock)." alt="" coords="811,1368,984,1395"/>
+<area shape="poly" id="edge76_Node000061_Node000062" title=" " alt="" coords="1079,1365,985,1375,985,1370,1078,1360"/>
+<area shape="rect" id="Node000065" href="$group__storage03.html#ga3ac2980af26af34986f7360246deefa5" title="Set the device serial number (requires unlock)." alt="" coords="815,1301,980,1344"/>
+<area shape="poly" id="edge77_Node000061_Node000065" title=" " alt="" coords="1078,1344,981,1334,981,1329,1079,1339"/>
+</map>

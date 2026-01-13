@@ -1,0 +1,32 @@
+<map id="Switch_SelectAllOff" name="Switch_SelectAllOff">
+<area shape="rect" id="Node000001" title="Turn off all selection LEDs." alt="" coords="1514,81,1652,108"/>
+<area shape="rect" id="Node000002" href="$button__driver_8c.html#a1e1377700e59631bf0d33be94ab08f5b" title="Turn off all selection LEDs via SwitchTask." alt="" coords="1337,107,1441,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1499,108,1442,116,1442,111,1498,103"/>
+<area shape="rect" id="Node000012" href="$power__mgr_8c.html#ae6615d2590136a1a1be071dce3a0690d" title="Disable all channel selection LEDs." alt="" coords="1312,56,1466,83"/>
+<area shape="poly" id="edge15_Node000001_Node000012" title=" " alt="" coords="1498,86,1466,82,1467,77,1499,81"/>
+<area shape="rect" id="Node000003" href="$group__driver01.html#gac22126e540828f671a4440c6649bdf55" title="Initialize button GPIO pins and selection LED hardware." alt="" coords="729,208,867,235"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1323,137,1264,148,868,214,867,208,1264,143,1322,131"/>
+<area shape="rect" id="Node000008" href="$group__driver01.html#gac5901ff1bb130ab17484230d894cc54e" title="Turn off all eight channel selection LEDs." alt="" coords="1108,107,1264,133"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="1322,123,1264,123,1264,117,1322,117"/>
+<area shape="rect" id="Node000004" href="$group__tasks01.html#ga66ab3f6fa24432c008c6ea7b0ccddb5f" title="Initialize and start the button handling task." alt="" coords="426,157,539,184"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="713,210,539,182,539,177,714,205"/>
+<area shape="rect" id="Node000005" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,157,378,184"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="411,173,379,173,379,168,411,168"/>
+<area shape="rect" id="Node000006" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,157,263,184"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="295,173,263,173,263,168,295,168"/>
+<area shape="rect" id="Node000007" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,157,102,184"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="134,173,102,173,102,168,134,168"/>
+<area shape="rect" id="Node000009" href="$_button_task_8c.html#a55d32bf8c265acac02fafc64c218564c" title="Process LED blink logic and window timeout." alt="" coords="748,157,849,184"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="1108,140,1060,148,947,162,849,170,849,165,946,156,1059,143,1107,134"/>
+<area shape="rect" id="Node000010" href="$_button_task_8c.html#ac8adec5c9e99b51c4884034cf2e41275" title="Main button scanning and event processing task." alt="" coords="587,107,681,133"/>
+<area shape="poly" id="edge11_Node000008_Node000010" title=" " alt="" coords="1113,106,1059,97,967,90,894,89,822,94,729,104,682,112,681,107,729,99,821,88,894,83,967,84,1060,92,1114,100"/>
+<area shape="rect" id="Node000011" href="$_button_task_8c.html#ac582a6e2100c0837f272a315955aedcc" title="Deactivate selection window and disable LED feedback." alt="" coords="936,107,1039,133"/>
+<area shape="poly" id="edge12_Node000008_Node000011" title=" " alt="" coords="1092,123,1040,123,1040,117,1092,117"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="737,155,679,136,680,131,739,150"/>
+<area shape="poly" id="edge10_Node000010_Node000004" title=" " alt="" coords="578,141,526,159,524,154,576,136"/>
+<area shape="poly" id="edge13_Node000011_Node000009" title=" " alt="" coords="922,140,850,160,849,155,920,135"/>
+<area shape="poly" id="edge14_Node000011_Node000010" title=" " alt="" coords="920,123,681,123,681,117,920,117"/>
+<area shape="rect" id="Node000013" href="$group__misc3.html#ga40de5935f9ba85f9141a9243b4d02c87" title="Enter standby mode." alt="" coords="915,5,1060,32"/>
+<area shape="poly" id="edge16_Node000012_Node000013" title=" " alt="" coords="1296,60,1059,30,1060,25,1297,55"/>
+<area shape="poly" id="edge17_Node000013_Node000010" title=" " alt="" coords="901,21,816,30,772,39,730,53,685,79,651,108,647,104,682,75,728,48,771,34,815,25,900,16"/>
+</map>

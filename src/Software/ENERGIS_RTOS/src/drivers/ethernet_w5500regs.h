@@ -2,16 +2,16 @@
  * @file src/drivers/ethernet_w5500regs.h
  * @author DvidMakesThings - David Sipos
  *
- * @defgroup config04 4. W5500 Register definitions
+ * @defgroup config03 3. W5500 Register definitions
  * @ingroup config
  * @brief W5500 Register Definitions
  * @{
  *
  * @version 1.0.0
  * @date 2025-11-06
- * 
+ *
  * @details Complete W5500 register map.
- * 
+ *
  * @note This file is self-contained and doesn't depend on old library files.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
@@ -26,6 +26,9 @@
 /******************************************************************************
  *                          CHIP DEFINITIONS                                  *
  ******************************************************************************/
+/** @name Chip Definitions
+ *  Constants and helpers describing W5500 chip-level attributes.
+ *  @{ */
 
 #define W5500_IOBASE 0x00000000
 #define W5500_SOCKNUM 8
@@ -42,10 +45,14 @@
 
 /* Address offset increment */
 #define W5500_OFFSET_INC(ADDR, N) ((ADDR) + ((N) << 8))
+/** @} */
 
 /******************************************************************************
  *                          COMMON REGISTERS                                  *
  ******************************************************************************/
+/** @name Common Registers
+ *  Base registers applicable across the W5500 device.
+ *  @{ */
 
 /* Mode Register */
 #define MR (W5500_IOBASE + (0x0000 << 8) + (W5500_CREG_BLOCK << 3))
@@ -109,10 +116,14 @@
 
 /* Chip Version Register */
 #define VERSIONR (W5500_IOBASE + (0x0039 << 8) + (W5500_CREG_BLOCK << 3))
+/** @} */
 
 /******************************************************************************
  *                          SOCKET REGISTERS                                  *
  ******************************************************************************/
+/** @name Socket Registers
+ *  Per-socket control and data path registers.
+ *  @{ */
 
 /* Socket n Mode Register */
 #define Sn_MR(N) (W5500_IOBASE + (0x0000 << 8) + (W5500_SREG_BLOCK(N) << 3))
@@ -179,10 +190,14 @@
 
 /* Socket n Keep Alive Timer Register */
 #define Sn_KPALVTR(N) (W5500_IOBASE + (0x002F << 8) + (W5500_SREG_BLOCK(N) << 3))
+/** @} */
 
 /******************************************************************************
  *                          MODE REGISTER BITS                                *
  ******************************************************************************/
+/** @name Mode Register Bits (MR)
+ *  Bit masks for the common Mode Register.
+ *  @{ */
 
 /* MR (Mode Register) bits */
 #define MR_RST 0x80   /* Software reset */
@@ -190,6 +205,11 @@
 #define MR_PB 0x10    /* Ping block */
 #define MR_PPPOE 0x08 /* PPPoE mode */
 #define MR_FARP 0x02  /* Force ARP */
+/** @} */
+
+/** @name PHY Configuration Bits (PHYCFGR)
+ *  Bit masks for PHY configuration and status.
+ *  @{ */
 
 /* PHYCFGR (PHY Configuration Register) bits */
 #define PHYCFGR_RST 0x80         /* PHY reset */
@@ -204,10 +224,14 @@
 #define PHYCFGR_DPX_FULL 0x04    /* Full duplex */
 #define PHYCFGR_SPD_100 0x02     /* 100Mbps */
 #define PHYCFGR_LNK_ON 0x01      /* Link up */
+/** @} */
 
 /******************************************************************************
  *                          SOCKET MODE REGISTER BITS                         *
  ******************************************************************************/
+/** @name Socket Mode Register Values
+ *  Values for `Sn_MR` to select socket type.
+ *  @{ */
 
 /* Sn_MR (Socket Mode Register) values */
 #define Sn_MR_CLOSE 0x00  /* Closed */
@@ -215,6 +239,11 @@
 #define Sn_MR_UDP 0x02    /* UDP mode */
 #define Sn_MR_IPRAW 0x03  /* IP raw mode */
 #define Sn_MR_MACRAW 0x04 /* MAC raw mode */
+/** @} */
+
+/** @name Socket Mode Flags
+ *  Flags modifying `Sn_MR` behavior across modes.
+ *  @{ */
 
 /* Sn_MR flags */
 #define Sn_MR_UCASTB 0x10 /* Unicast block (UDP multicast) */
@@ -225,10 +254,14 @@
 #define Sn_MR_MC 0x20     /* IGMP version (UDP multicast) */
 #define Sn_MR_MFEN 0x80   /* MAC filter (MACRAW) */
 #define Sn_MR_MULTI 0x80  /* Multicast (UDP) */
+/** @} */
 
 /******************************************************************************
  *                          SOCKET COMMAND REGISTER VALUES                    *
  ******************************************************************************/
+/** @name Socket Command Register Values
+ *  Commands written to `Sn_CR` to control socket state.
+ *  @{ */
 
 /* Sn_CR (Socket Command Register) values */
 #define Sn_CR_OPEN 0x01      /* Open socket */
@@ -240,10 +273,14 @@
 #define Sn_CR_SEND_MAC 0x21  /* Send MAC (UDP) */
 #define Sn_CR_SEND_KEEP 0x22 /* Send keep-alive (TCP) */
 #define Sn_CR_RECV 0x40      /* Receive data */
+/** @} */
 
 /******************************************************************************
  *                          SOCKET INTERRUPT REGISTER BITS                    *
  ******************************************************************************/
+/** @name Socket Interrupt Register Bits
+ *  Bit masks for `Sn_IR` interrupt sources.
+ *  @{ */
 
 /* Sn_IR (Socket Interrupt Register) bits */
 #define Sn_IR_SENDOK 0x10  /* Send OK */
@@ -251,10 +288,14 @@
 #define Sn_IR_RECV 0x04    /* Receive */
 #define Sn_IR_DISCON 0x02  /* Disconnected */
 #define Sn_IR_CON 0x01     /* Connected */
+/** @} */
 
 /******************************************************************************
  *                          SOCKET STATUS REGISTER VALUES                     *
  ******************************************************************************/
+/** @name Socket Status Register Values
+ *  Values read from `Sn_SR` representing socket states.
+ *  @{ */
 
 /* Sn_SR (Socket Status Register) values */
 #define SOCK_CLOSED 0x00      /* Socket closed */
@@ -271,10 +312,14 @@
 #define SOCK_UDP 0x22         /* UDP socket */
 #define SOCK_IPRAW 0x32       /* IP raw socket */
 #define SOCK_MACRAW 0x42      /* MAC raw socket */
+/** @} */
 
 /******************************************************************************
  *                          PHY CONFIGURATION VALUES                          *
  ******************************************************************************/
+/** @name PHY Configuration Values
+ *  Enumerated meanings for PHY configuration via software.
+ *  @{ */
 
 /* PHY configuration modes */
 #define PHY_CONFBY_HW 0     /* Configure by hardware */
@@ -285,6 +330,7 @@
 #define PHY_SPEED_100 1     /* 100Mbps */
 #define PHY_DUPLEX_HALF 0   /* Half-duplex */
 #define PHY_DUPLEX_FULL 1   /* Full-duplex */
+/** @} */
 
 #endif /* W5500_REGS_H */
 

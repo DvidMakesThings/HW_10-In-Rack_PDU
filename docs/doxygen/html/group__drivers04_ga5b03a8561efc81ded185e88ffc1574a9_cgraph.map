@@ -1,0 +1,7 @@
+<map id="hlw8032_cached_power" name="hlw8032_cached_power">
+<area shape="rect" id="Node000001" title="Get cached power for a channel (computed from V*I)." alt="" coords="5,31,166,57"/>
+<area shape="rect" id="Node000002" href="$group__drivers04.html#gad2a10b704d2588035bde43ff6b941ea7" title="Get cached current for a channel." alt="" coords="215,5,380,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,32,199,28,199,33,166,37"/>
+<area shape="rect" id="Node000003" href="$group__drivers04.html#ga3fd1465bd8f5106879ee5677d0d551da" title="Get cached voltage for a channel." alt="" coords="214,56,381,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="166,51,198,55,198,60,166,56"/>
+</map>

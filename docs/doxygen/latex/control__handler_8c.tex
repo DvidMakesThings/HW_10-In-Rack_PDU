@@ -1,0 +1,72 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/web\+\_\+handlers/control\+\_\+handler.c File Reference}
+\hypertarget{control__handler_8c}{}\label{control__handler_8c}\index{src/Software/ENERGIS\_RTOS/src/web\_handlers/control\_handler.c@{src/Software/ENERGIS\_RTOS/src/web\_handlers/control\_handler.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for control\+\_\+handler.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{control__handler_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{control__handler_8c_a009cbfa675459fa889f9fcba3d005796}{CONTROL\+\_\+\+HANDLER\+\_\+\+TAG}}~"{}$<$Control Handler$>$"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{control__handler_8c_a8c210587f97cbef60c84dc0bfba63c2f}{net\+\_\+beat}} (void)
+\item 
+void \mbox{\hyperlink{group__webui01_ga204196bd085f7a778067392b56920c59}{handle\+\_\+control\+\_\+request}} (uint8\+\_\+t sock, char \texorpdfstring{$\ast$}{*}body)
+\begin{DoxyCompactList}\small\item\em Handles the HTTP request for the control page (/api/control) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+2.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/01-\/01
+\end{DoxyDate}
+Handles POST requests to /api/control endpoint for relay control. Processes form-\/encoded channel states and labels, applies changes using RTOS-\/cooperative Switch\+Task API for non-\/blocking operation. Label updates are performed via storage queue for thread safety.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{control__handler_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{control__handler_8c_a009cbfa675459fa889f9fcba3d005796}\index{control\_handler.c@{control\_handler.c}!CONTROL\_HANDLER\_TAG@{CONTROL\_HANDLER\_TAG}}
+\index{CONTROL\_HANDLER\_TAG@{CONTROL\_HANDLER\_TAG}!control\_handler.c@{control\_handler.c}}
+\doxysubsubsection{\texorpdfstring{CONTROL\_HANDLER\_TAG}{CONTROL\_HANDLER\_TAG}}
+{\footnotesize\ttfamily \label{control__handler_8c_a009cbfa675459fa889f9fcba3d005796} 
+\#define CONTROL\+\_\+\+HANDLER\+\_\+\+TAG~"{}$<$Control Handler$>$"{}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{control__handler_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{control__handler_8c_a8c210587f97cbef60c84dc0bfba63c2f}\index{control\_handler.c@{control\_handler.c}!net\_beat@{net\_beat}}
+\index{net\_beat@{net\_beat}!control\_handler.c@{control\_handler.c}}
+\doxysubsubsection{\texorpdfstring{net\_beat()}{net\_beat()}}
+{\footnotesize\ttfamily \label{control__handler_8c_a8c210587f97cbef60c84dc0bfba63c2f} 
+void net\+\_\+beat (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{control__handler_8c_a8c210587f97cbef60c84dc0bfba63c2f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{control__handler_8c_a8c210587f97cbef60c84dc0bfba63c2f_icgraph}
+\end{center}
+\end{figure}

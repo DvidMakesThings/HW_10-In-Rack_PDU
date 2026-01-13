@@ -5,8 +5,12 @@
  * @version 1.2.0
  * @date 2025-12-10
  *
- * @details Implements centralized power state management for ENERGIS standby mode.
- * Provides atomic state transitions and hardware control for entering/exiting standby.
+ * @details
+ * Implementation of centralized power state management including standby mode entry/exit
+ * logic, hardware peripheral control coordination, and LED animation for standby indication.
+ *
+ * This module coordinates multiple hardware peripherals (W5500, MCP23017, relays) and
+ * provides thread-safe state query for task behavior adaptation.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -43,10 +47,11 @@ static struct {
 /* ##################################################################### */
 
 /**
- * @brief Turn off all relay outputs and mirror LEDs.
+ * @brief Disable all relay outputs using SwitchTask API.
  *
- * @details Uses SwitchTask API to enqueue all-off command.
- * Non-blocking operation prevents watchdog starvation.
+ * Enqueues a non-blocking command to turn off all relay outputs via the
+ * SwitchTask message queue. This ensures serialized access to relay control
+ * hardware and prevents I2C bus contention.
  *
  * @return None
  */
@@ -56,10 +61,11 @@ static void turn_off_all_relays(void) {
 }
 
 /**
- * @brief Turn off all display LEDs except PWR_LED.
+ * @brief Disable display LEDs except PWR_LED for standby indication.
  *
- * @details Uses SwitchTask-controlled display LED APIs instead of direct MCP access.
- * This guarantees serialized I2C access and avoids bus contention during SNMP stress.
+ * Turns off FAULT and ETH LEDs while keeping PWR_LED on. Uses SwitchTask API
+ * to ensure serialized I2C access to the MCP23017 display controller. This prevents
+ * bus contention that can occur during concurrent access from multiple tasks.
  *
  * @return None
  */
@@ -73,39 +79,46 @@ static void turn_off_leds_except_pwr(void) {
 }
 
 /**
- * @brief Turn off all selection LEDs.
+ * @brief Disable all channel selection LEDs.
  *
- * @details Uses SwitchTask API to ensure selection MCP access is serialized.
+ * Turns off all selection LEDs using SwitchTask API with 50ms timeout.
+ * Ensures serialized access to the selection LED MCP23017 controller.
  *
  * @return None
  */
 static void turn_off_selection_leds(void) { (void)Switch_SelectAllOff(50); }
 
 /**
- * @brief Hold W5500 in reset (drive RESET pin low).
+ * @brief Assert W5500 hardware reset to disable Ethernet.
  *
- * @details Asserts the W5500 hardware reset pin, forcing the Ethernet
- * controller into reset state. PHY link will go down and all network
- * activity will cease.
+ * Drives the W5500 RESET pin low, forcing the Ethernet controller into
+ * reset state. This disables the PHY, terminates all network connections,
+ * and stops all traffic. Power consumption is reduced as the chip enters
+ * a minimal state.
  *
  * @return None
  */
 static void w5500_hold_reset(void) { gpio_put(W5500_RESET, 0); }
 
 /**
- * @brief Release W5500 from reset (drive RESET pin high).
+ * @brief Deassert W5500 hardware reset to enable Ethernet.
  *
- * @details Deasserts the W5500 hardware reset pin, allowing the chip
- * to come out of reset. NetTask will detect link-up and reinitialize.
+ * Drives the W5500 RESET pin high, allowing the Ethernet controller to
+ * exit reset state and begin initialization. NetTask will detect the
+ * state change via Power_GetState() and reinitialize network services.
  *
  * @return None
  */
 static void w5500_release_reset(void) { gpio_put(W5500_RESET, 1); }
 
 /**
- * @brief Set PWR_LED state with change tracking to avoid redundant I2C writes.
+ * @brief Set PWR_LED state with change tracking.
  *
- * @param on true to turn LED ON, false to turn OFF
+ * Updates PWR_LED state only if it differs from the current tracked state,
+ * avoiding redundant I2C write operations that can cause bus contention.
+ *
+ * @param on true to enable LED, false to disable LED
+ *
  * @return None
  */
 static void set_pwr_led_tracked(bool on) {
@@ -124,13 +137,16 @@ static void set_pwr_led_tracked(bool on) {
  * @brief Initialize the power manager subsystem.
  */
 void Power_Init(void) {
+    /* Initialize power state to normal operation */
     s_power_state = PWR_STATE_RUN;
     s_pwr_led_state = false;
+
+    /* Clear LED animation state */
     s_led_anim.last_update_ms = 0;
     s_led_anim.phase = 0;
     s_led_anim.direction = 0;
 
-    /* Set initial PWR_LED state */
+    /* Enable PWR_LED for normal operation indication */
     set_pwr_led_tracked(true);
 
     INFO_PRINT("%s Power manager initialized (state=RUN)\r\n", POWER_MGR_TAG);
@@ -145,6 +161,7 @@ power_state_t Power_GetState(void) { return s_power_state; }
  * @brief Enter standby mode.
  */
 void Power_EnterStandby(void) {
+    /* Prevent redundant standby entry */
     if (s_power_state == PWR_STATE_STANDBY) {
 #if ERRORLOGGER
         uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_WARNING, ERR_FID_POWER_MGR, 0x0);
@@ -156,32 +173,33 @@ void Power_EnterStandby(void) {
 
     INFO_PRINT("%s Entering STANDBY mode\r\n", POWER_MGR_TAG);
 
-    /* 1) Turn off all relay outputs */
+    /* Disable all relay outputs for safety and power savings */
     turn_off_all_relays();
 
-    /* 2) Turn off selection LEDs */
+    /* Clear all selection LEDs */
     turn_off_selection_leds();
 
-    /* 3) Turn off all display LEDs except PWR_LED */
+    /* Set display LEDs to standby pattern */
     turn_off_leds_except_pwr();
 
-    /* 4) Atomically update power state BEFORE asserting reset so NetTask
-     * can immediately skip all network operations on its next cycle. */
+    /* Update state atomically before W5500 reset to allow NetTask
+     * to detect the transition and skip network operations immediately */
     s_power_state = PWR_STATE_STANDBY;
 
-    /* 5) Hold W5500 in reset */
+    /* Assert W5500 reset to disable networking */
     w5500_hold_reset();
 
-    /* 5) Initialize LED animation state */
+    /* Initialize LED breathing animation state */
     s_led_anim.last_update_ms = to_ms_since_boot(get_absolute_time());
     s_led_anim.phase = 0;
     s_led_anim.direction = 0;
 
-    /* 6) Track PWR_LED as ON (set by turn_off_leds_except_pwr) */
+    /* Track PWR_LED state (enabled by turn_off_leds_except_pwr) */
     s_pwr_led_state = true;
 
     INFO_PRINT("%s STANDBY mode active\r\n", POWER_MGR_TAG);
 
+    /* Suppress normal logging output during standby */
     Logger_MutePush();
 }
 
@@ -189,6 +207,7 @@ void Power_EnterStandby(void) {
  * @brief Exit standby mode and return to normal operation.
  */
 void Power_ExitStandby(void) {
+    /* Prevent redundant wake operation */
     if (s_power_state == PWR_STATE_RUN) {
 #if ERRORLOGGER
         uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_WARNING, ERR_FID_POWER_MGR, 0x1);
@@ -198,34 +217,30 @@ void Power_ExitStandby(void) {
         return;
     }
 
+    /* Restore normal logging output */
     Logger_MutePop();
 
     INFO_PRINT("%s Exiting STANDBY mode\r\n", POWER_MGR_TAG);
 
-    /* 1) Release W5500 from reset */
+    /* Deassert W5500 reset to enable Ethernet controller */
     w5500_release_reset();
 
-    /* 2) Set PWR_LED to solid ON (normal state) - only write if changed */
+    /* Set PWR_LED to solid on for normal operation */
     set_pwr_led_tracked(true);
 
-    /* 3) ETH_LED will be controlled by NetTask link detection */
+    /* Clear ETH_LED (NetTask will control it based on link status) */
     Switch_SetEthLed(false, 10);
 
-    /* 3a) Apply startup preset if configured (may power external switch)
-     * This ensures any user-selected relay state is restored on wake so
-     * link can come up and NetTask can reinitialize networking. */
+    /* Restore relay state from configured startup preset if available
+     * This may include powering an external network switch */
     (void)UserOutput_ApplyStartupPreset();
 
-    /* 4) Atomically update power state */
+    /* Update power state atomically */
     s_power_state = PWR_STATE_RUN;
 
     INFO_PRINT("%s RUN mode active, network will reinitialize\r\n", POWER_MGR_TAG);
 
-    /* Note: Relay state may be restored from a startup preset if configured.
-     * Otherwise, relays remain OFF and the user must turn them on.
-     * NetTask will detect link-up and call net_reinit_from_cache() when the
-     * external network becomes available. */
-
+    /* Reconfigure PROC_LED PWM for normal operation indication */
     static uint32_t s_pwm_slice = 0;
     s_pwm_slice = pwm_gpio_to_slice_num(PROC_LED);
     pwm_set_wrap(s_pwm_slice, 65535U);
@@ -252,11 +267,11 @@ void Power_ExitStandby(void) {
  * inside this function; change that to adjust both together.
  */
 void Power_ServiceStandbyLED(void) {
-    /* Configuration knob: common blink + heartbeat period (ms).
-     * 2000 ms → 0.5 Hz (1 s ON / 1 s OFF). */
+    /* Standby LED pattern period configuration */
     static const uint32_t s_standby_period_ms = 2000U;
     const uint32_t half_period_ms = s_standby_period_ms / 2U;
 
+    /* PWR_LED blink state */
     static uint32_t s_last_toggle_ms = 0;
     static bool s_led_on = true;
 
@@ -267,21 +282,13 @@ void Power_ServiceStandbyLED(void) {
 
     uint32_t now_ms = to_ms_since_boot(get_absolute_time());
 
-    /* RUN mode: PWR_LED is already set, PROC_LED off - NO I2C OPERATIONS!
-     *
-     * CRITICAL: Previously this function called Switch_SetPwrLed(true) every
-     * ButtonTask iteration, requiring the display MCP mutex. During SNMP
-     * stress testing, SwitchTask frequently holds this mutex for display
-     * LED updates, causing ButtonTask to block for 4-6 seconds waiting.
-     *
-     * Fix: PWR_LED is set once during Power_Init() and Power_ExitStandby().
-     * No need to continuously rewrite it. */
+    /* RUN mode: LEDs already configured, no updates needed */
     if (s_power_state != PWR_STATE_STANDBY) {
-        /* Reset blink state for next standby entry */
+        /* Reset blink state for clean standby entry */
         s_last_toggle_ms = 0;
         s_led_on = true;
 
-        /* Keep PROC_LED off when not in standby (PWM only, no I2C) */
+        /* Disable PROC_LED heartbeat */
         if (s_pwm_init) {
             pwm_set_gpio_level(PROC_LED, 0);
         }
@@ -289,27 +296,27 @@ void Power_ServiceStandbyLED(void) {
         return;
     }
 
-    /* STANDBY mode - I2C operations are acceptable here since there's
-     * no SNMP traffic (W5500 is in reset) */
+    /* STANDBY mode: Implement PWR_LED blink and PROC_LED heartbeat */
 
-    /* 0.5 Hz blink for PWR_LED:
-     * toggle every half_period_ms (1 s) → 2 s full cycle. */
+    /* Toggle PWR_LED at 0.5 Hz (1s on / 1s off) */
     if (s_last_toggle_ms == 0U) {
+        /* Initialize blink timing */
         s_last_toggle_ms = now_ms;
         s_led_on = true;
         set_pwr_led_tracked(true);
     } else if ((now_ms - s_last_toggle_ms) >= half_period_ms) {
+        /* Toggle LED state */
         s_last_toggle_ms = now_ms;
         s_led_on = !s_led_on;
         set_pwr_led_tracked(s_led_on);
     }
 
-    /* Lazy init of PWM for PROC_LED (GPIO28) */
+    /* Initialize PROC_LED PWM on first standby LED service call */
     if (!s_pwm_init) {
         gpio_set_function(PROC_LED, GPIO_FUNC_PWM);
         s_pwm_slice = pwm_gpio_to_slice_num(PROC_LED);
 
-        /* 16-bit wrap for fine brightness steps; clkdiv gives a few hundred Hz PWM */
+        /* Configure PWM for smooth brightness control */
         pwm_set_wrap(s_pwm_slice, 65535U);
         pwm_set_clkdiv(s_pwm_slice, 8.0f);
         pwm_set_enabled(s_pwm_slice, true);
@@ -322,19 +329,19 @@ void Power_ServiceStandbyLED(void) {
         s_hb_start_ms = now_ms;
     }
 
-    /* Heartbeat envelope: triangle wave 0..max..0 over s_standby_period_ms.
-     * Same total period as the PWR_LED blink (shared config above). */
+    /* Generate heartbeat breathing pattern using triangle wave */
     uint32_t elapsed = now_ms - s_hb_start_ms;
     uint32_t t = elapsed % s_standby_period_ms;
     uint32_t duty;
 
     if (t < half_period_ms) {
-        /* Fade up during first half period */
+        /* Fade up brightness during first half */
         duty = (t * 65535U) / half_period_ms;
     } else {
-        /* Fade down during second half period */
+        /* Fade down brightness during second half */
         duty = ((s_standby_period_ms - t) * 65535U) / half_period_ms;
     }
 
+    /* Apply calculated duty cycle to PROC_LED */
     pwm_set_gpio_level(PROC_LED, (uint16_t)duty);
 }

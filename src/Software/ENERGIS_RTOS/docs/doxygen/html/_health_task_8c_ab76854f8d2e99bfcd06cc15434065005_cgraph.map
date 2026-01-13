@@ -1,0 +1,7 @@
+<map id="Health_PrintLastRebootDetailed" name="Health_PrintLastRebootDetailed">
+<area shape="rect" id="Node000001" title="Print detailed info about the last reboot if it was caused by Health." alt="" coords="5,31,214,57"/>
+<area shape="rect" id="Node000002" href="$_health_task_8c.html#ac66d48f916a563641390eae52aa66f2d" title="Clear the watchdog scratch registers. Used after a clean boot to avoid stale data." alt="" coords="313,5,394,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="214,30,297,22,298,27,214,36"/>
+<area shape="rect" id="Node000003" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="262,56,445,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="214,52,246,56,246,61,214,58"/>
+</map>

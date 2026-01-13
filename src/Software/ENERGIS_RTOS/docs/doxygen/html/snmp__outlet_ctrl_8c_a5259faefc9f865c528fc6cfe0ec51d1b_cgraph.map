@@ -1,0 +1,29 @@
+<map id="setter_n" name="setter_n">
+<area shape="rect" id="Node000001" title="Generic SNMP setter for outlet state." alt="" coords="5,132,74,159"/>
+<area shape="rect" id="Node000002" href="$group__tasks11.html#gaef7818ff67a4d2235b897909f9fe6744" title="Legacy wrapper for Switch_SetChannel." alt="" coords="122,132,304,159"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="74,143,106,143,106,148,74,148"/>
+<area shape="rect" id="Node000003" href="$group__tasks11.html#gabd8f13f37bd62b267259ae2d027bda28" title="Set single relay channel state with verification." alt="" coords="352,132,488,159"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="305,143,337,143,337,148,305,148"/>
+<area shape="rect" id="Node000004" href="$_switch_task_8c.html#a2a7f01bd659f5eea0a4a131d8c57c207" title=" " alt="" coords="619,5,664,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="431,130,474,86,503,62,535,42,569,28,603,21,604,26,571,33,538,46,506,66,477,90,435,133"/>
+<area shape="rect" id="Node000005" href="$group__drivers06.html#ga7634eca518e2158ba0e636a3f03f3928" title="Get display MCP23017 device context." alt="" coords="594,56,689,83"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="448,129,535,92,579,80,580,85,537,97,450,134"/>
+<area shape="rect" id="Node000006" href="$group__drivers06.html#ga6568742c79ce5190216e5185238229ba" title="Get relay MCP23017 device context." alt="" coords="601,107,682,133"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="489,135,585,124,586,129,489,140"/>
+<area shape="rect" id="Node000007" href="$group__drivers06.html#ga8b8bc528b75e419262e7663ee669dc31" title="Write a logic level to a pin." alt="" coords="589,157,694,184"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="489,150,573,160,573,166,489,156"/>
+<area shape="rect" id="Node000013" href="$group__tasks08.html#ga4bf47606df6e10c610300fdf1a2573b5" title="Query whether switching actions are currently allowed." alt="" coords="536,208,747,235"/>
+<area shape="poly" id="edge12_Node000003_Node000013" title=" " alt="" coords="450,157,537,193,561,201,560,206,535,199,448,162"/>
+<area shape="rect" id="Node000014" href="$_switch_task_8c.html#abb7cc7eb4e959fda6a43c8dd85f20090" title=" " alt="" coords="612,259,671,285"/>
+<area shape="poly" id="edge13_Node000003_Node000014" title=" " alt="" coords="435,157,477,201,506,224,538,244,567,256,598,264,596,269,566,261,535,249,503,229,474,205,431,161"/>
+<area shape="rect" id="Node000008" href="$group__drivers05.html#gab7b4aa096ded6cebd93256e5b5994e42" title="Write 8&#45;bit register with 8&#45;bit value: [reg, value]." alt="" coords="806,132,940,159"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="694,162,791,152,791,157,695,168"/>
+<area shape="rect" id="Node000012" href="$_m_c_p23017__driver_8c.html#a0ff45ad384852ba5f69f0fd781c2f46a" title=" " alt="" coords="795,183,951,209"/>
+<area shape="poly" id="edge11_Node000007_Node000012" title=" " alt="" coords="695,174,779,183,779,188,694,179"/>
+<area shape="rect" id="Node000009" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="1024,107,1146,133"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="940,135,1008,126,1009,132,940,140"/>
+<area shape="rect" id="Node000010" href="$group__drivers05.html#ga170d6c4ff97ddc2d314f0a7a0054f283" title="Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK i2c_write_time..." alt="" coords="999,157,1171,184"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="940,151,984,156,984,161,940,156"/>
+<area shape="rect" id="Node000011" href="$i2c__bus_8c.html#afbaa64f79bdd1fa39c8fa5b7a9c2717b" title=" " alt="" coords="1219,157,1377,184"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="1172,168,1204,168,1204,173,1172,173"/>
+</map>

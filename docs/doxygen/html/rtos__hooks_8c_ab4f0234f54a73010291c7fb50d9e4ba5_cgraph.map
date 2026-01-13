@@ -1,0 +1,5 @@
+<map id="hardfault_c" name="hardfault_c">
+<area shape="rect" id="Node000001" title="HardFault C handler that extracts and logs fault context." alt="" coords="5,5,91,32"/>
+<area shape="rect" id="Node000002" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="139,5,322,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,16,123,16,123,21,91,21"/>
+</map>

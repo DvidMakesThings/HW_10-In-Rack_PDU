@@ -1,0 +1,4 @@
+<map id="EEPROM" name="EEPROM">
+<area shape="rect" id="Node000002" href="$group__config06.html" title="EEPROM Memory Layout and Data Structures." alt="" coords="133,5,307,32"/>
+<area shape="rect" id="Node000001" title="EEPROM Memory Map (RTOS version)" alt="" coords="5,5,85,32"/>
+</map>

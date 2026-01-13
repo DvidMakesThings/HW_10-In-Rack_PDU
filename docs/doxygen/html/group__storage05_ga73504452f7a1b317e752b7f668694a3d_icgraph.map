@@ -1,0 +1,17 @@
+<map id="TempCalibration_ComputeSinglePoint" name="TempCalibration_ComputeSinglePoint">
+<area shape="rect" id="Node000001" title="Compute single&#45;point temperature calibration from reference measurement." alt="" coords="1089,5,1300,48"/>
+<area shape="rect" id="Node000002" href="$_console_task_8c.html#a05b2618d7fb383d2e3e64220ae18b64f" title="Calibrate RP2040 die temperature sensor and persist to EEPROM." alt="" coords="924,13,1041,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1073,29,1041,29,1041,24,1073,24"/>
+<area shape="rect" id="Node000003" href="$_console_task_8c.html#a2d3b7ff8346f8d10aa45609664940712" title="Parse and dispatch command line to handler function." alt="" coords="742,13,876,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="909,29,877,29,877,24,909,24"/>
+<area shape="rect" id="Node000004" href="$_console_task_8c.html#a216857df22446940ad58d505886b0d7c" title="Main console task function." alt="" coords="597,13,694,40"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="726,29,694,29,694,24,726,24"/>
+<area shape="rect" id="Node000005" href="$group__tasks02.html#gad45ca7c142e8c2764d52b3d554ffcdeb" title="Initialize and start the console task." alt="" coords="426,13,549,40"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="581,29,549,29,549,24,581,24"/>
+<area shape="rect" id="Node000006" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,13,378,40"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="411,29,379,29,379,24,411,24"/>
+<area shape="rect" id="Node000007" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,13,263,40"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="295,29,263,29,263,24,295,24"/>
+<area shape="rect" id="Node000008" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,13,102,40"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="134,29,102,29,102,24,134,24"/>
+</map>

@@ -2,7 +2,7 @@
  * @file src/tasks/OCP.h
  * @author DvidMakesThings - David Sipos
  *
- * @defgroup tasks10 10. Overcurrent Protection Module
+ * @defgroup tasks08 8. Overcurrent Protection Module
  * @ingroup tasks
  * @brief High-priority overcurrent monitoring and protection system.
  * @{
@@ -36,13 +36,14 @@
 #ifndef OVERCURRENT_H
 #define OVERCURRENT_H
 
-#include <stdbool.h>
-#include <stdint.h>
+#include "../CONFIG.h"
 
 /* ==================== Overcurrent State Enumeration ==================== */
 
 /**
  * @brief Overcurrent protection state levels.
+ * @enum overcurrent_state_t
+ * @ingroup tasks08
  */
 typedef enum {
     OC_STATE_NORMAL = 0, /**< Current within safe limits */
@@ -55,6 +56,8 @@ typedef enum {
 
 /**
  * @brief Overcurrent protection status snapshot.
+ * @struct overcurrent_status_t
+ * @ingroup tasks08
  */
 typedef struct {
     overcurrent_state_t state;       /**< Current protection state */
@@ -72,6 +75,11 @@ typedef struct {
 /* ==================== Public API ==================== */
 
 /**
+ * @name Public API
+ * @{
+ */
+
+/**
  * @brief Initialize the overcurrent protection module.
  *
  * @details
@@ -81,6 +89,7 @@ typedef struct {
  *
  * @note Thread-safe. Can be called from any task context.
  */
+/** @ingroup tasks08 */
 void Overcurrent_Init(void);
 
 /**
@@ -98,6 +107,7 @@ void Overcurrent_Init(void);
  *
  * @note Thread-safe. Typically called from MeterTask context.
  */
+/** @ingroup tasks08 */
 overcurrent_state_t Overcurrent_Update(float total_current_a);
 
 /**
@@ -111,6 +121,7 @@ overcurrent_state_t Overcurrent_Update(float total_current_a);
  *
  * @note Thread-safe. Can be called from any task context.
  */
+/** @ingroup tasks08 */
 bool Overcurrent_IsSwitchingAllowed(void);
 
 /**
@@ -125,6 +136,7 @@ bool Overcurrent_IsSwitchingAllowed(void);
  *
  * @note Thread-safe. Can be called from any task context.
  */
+/** @ingroup tasks08 */
 bool Overcurrent_CanTurnOn(uint8_t channel);
 
 /**
@@ -138,6 +150,7 @@ bool Overcurrent_CanTurnOn(uint8_t channel);
  *
  * @note Thread-safe. Called by SwitchTask after successful relay activation.
  */
+/** @ingroup tasks08 */
 void Overcurrent_RecordChannelOn(uint8_t channel);
 
 /**
@@ -152,6 +165,7 @@ void Overcurrent_RecordChannelOn(uint8_t channel);
  *
  * @note Thread-safe. Status is an atomic snapshot.
  */
+/** @ingroup tasks08 */
 bool Overcurrent_GetStatus(overcurrent_status_t *status);
 
 /**
@@ -161,6 +175,7 @@ bool Overcurrent_GetStatus(overcurrent_status_t *status);
  *
  * @note Thread-safe. Can be called from any task context.
  */
+/** @ingroup tasks08 */
 overcurrent_state_t Overcurrent_GetState(void);
 
 /**
@@ -170,6 +185,7 @@ overcurrent_state_t Overcurrent_GetState(void);
  *
  * @note Returns ENERGIS_CURRENT_LIMIT_A (10A EU / 15A US)
  */
+/** @ingroup tasks08 */
 float Overcurrent_GetLimit(void);
 
 /**
@@ -184,7 +200,10 @@ float Overcurrent_GetLimit(void);
  *
  * @warning Use with caution. Does not verify current has actually decreased.
  */
+/** @ingroup tasks08 */
 bool Overcurrent_ClearLockout(void);
+
+/** @} */
 
 #endif /* OVERCURRENT_H */
 

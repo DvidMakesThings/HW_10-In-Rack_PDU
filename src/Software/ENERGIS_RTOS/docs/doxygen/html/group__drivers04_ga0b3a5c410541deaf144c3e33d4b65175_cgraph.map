@@ -1,0 +1,72 @@
+<map id="hlw8032_poll_once" name="hlw8032_poll_once">
+<area shape="rect" id="Node000001" title="Poll one channel and cache results (round&#45;robin)." alt="" coords="5,279,137,305"/>
+<area shape="rect" id="Node000002" href="$_h_l_w8032__driver_8c.html#a23deda9220b5477c45e2d2a78d62ef42" title="Compute total current sum from all cached channel currents." alt="" coords="190,136,340,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,277,121,226,150,197,183,172,193,167,196,172,186,177,154,201,125,230,84,280"/>
+<area shape="rect" id="Node000003" href="$_h_l_w8032__driver_8c.html#a0c1936086fb31adce02100161fce739c" title="Helper to query if calibration is running and fetch active channel." alt="" coords="195,187,336,229"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="102,276,184,239,196,233,199,238,186,244,104,280"/>
+<area shape="rect" id="Node000004" href="$group__drivers04.html#ga3e3e299137c4b5355cd17f94ddc24899" title="Get channel uptime in seconds." alt="" coords="195,253,336,280"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="137,281,179,275,180,280,138,286"/>
+<area shape="rect" id="Node000005" href="$group__drivers04.html#gaf9b4059456656d1620a19fa771086a2d" title="Read power measurements from a specific channel." alt="" coords="215,304,316,331"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="138,298,200,306,199,311,137,303"/>
+<area shape="rect" id="Node000029" href="$group__drivers04.html#gacfd84777ef919c041f40ea955f672d5e" title="Update channel uptime based on current relay state." alt="" coords="185,485,346,512"/>
+<area shape="poly" id="edge29_Node000001_Node000029" title=" " alt="" coords="80,305,117,380,148,425,186,465,204,476,201,481,183,469,144,428,113,382,75,307"/>
+<area shape="rect" id="Node000030" href="$group__tasks11.html#ga84e3359029bd29e598f346dad2255899" title="Get current relay channel state from hardware." alt="" coords="618,443,738,469"/>
+<area shape="poly" id="edge30_Node000001_Node000030" title=" " alt="" coords="103,303,186,340,289,386,334,403,395,420,503,440,603,450,602,455,502,445,393,425,333,408,287,391,184,345,101,308"/>
+<area shape="rect" id="Node000006" href="$_h_l_w8032__driver_8c.html#a1014a92e163cf6095bc8ab27cbc74500" title="Apply calibration and compute scaled measurements." alt="" coords="402,216,521,243"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="315,302,345,290,368,271,393,252,403,247,405,252,395,257,372,276,347,294,317,307"/>
+<area shape="rect" id="Node000007" href="$_h_l_w8032__driver_8c.html#a757e5e7d8ecf5674a26fbd19c063353b" title="Feed one fresh HLW8032 sample into the async calibration engine." alt="" coords="394,267,529,309"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="316,307,378,298,379,303,317,312"/>
+<area shape="rect" id="Node000011" href="$_h_l_w8032__driver_8c.html#a317577d37ad844a15b55a8f5e55126f3" title="Select HLW8032 channel via multiplexer." alt="" coords="418,384,506,411"/>
+<area shape="poly" id="edge10_Node000005_Node000011" title=" " alt="" coords="301,329,414,375,412,380,299,334"/>
+<area shape="rect" id="Node000012" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="586,341,770,368"/>
+<area shape="poly" id="edge28_Node000005_Node000012" title=" " alt="" coords="317,319,571,342,571,348,316,325"/>
+<area shape="rect" id="Node000023" href="$_h_l_w8032__driver_8c.html#a799e80fb388177bbb679caf2767dacf4" title="Parse HLW8032 frame and extract raw register values." alt="" coords="415,56,508,83"/>
+<area shape="poly" id="edge22_Node000005_Node000023" title=" " alt="" coords="315,307,331,300,344,290,358,273,367,256,373,223,376,186,382,166,392,144,411,116,433,92,436,95,415,119,396,147,387,168,382,187,378,223,372,258,363,276,348,294,334,305,317,312"/>
+<area shape="rect" id="Node000026" href="$_h_l_w8032__driver_8c.html#a1cdae985fb0d22061b8e24fa8c175acc" title="Read one valid 24&#45;byte HLW8032 frame from UART." alt="" coords="418,157,505,184"/>
+<area shape="poly" id="edge25_Node000005_Node000026" title=" " alt="" coords="315,305,344,290,361,269,368,248,375,226,392,202,408,190,411,194,396,206,380,228,373,250,366,272,348,294,318,310"/>
+<area shape="rect" id="Node000008" href="$_h_l_w8032__driver_8c.html#aad15d8e17ce424d4f8a6fd4eb64c53bb" title="Finish calibration for the current channel using accumulated samples." alt="" coords="599,208,757,251"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="529,267,583,252,584,257,530,272"/>
+<area shape="rect" id="Node000010" href="$_h_l_w8032__driver_8c.html#acc3dced2405146bb247c8d852e88e56f" title="Reset sample accumulators for the current async calibration channel." alt="" coords="607,275,749,317"/>
+<area shape="poly" id="edge9_Node000007_Node000010" title=" " alt="" coords="530,288,592,290,591,295,529,293"/>
+<area shape="rect" id="Node000009" href="$group__tasks10.html#ga358cb2af62e67be54bc8228d8074563d" title="Set sensor calibration for a channel." alt="" coords="827,216,986,243"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="758,227,811,227,811,232,758,232"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="506,386,591,369,592,374,507,391"/>
+<area shape="rect" id="Node000013" href="$group__tasks11.html#gaabc2d09a184f003994dc97e1f33ffea2" title="Set relay MCP Port B masked bits (MUX control)." alt="" coords="577,392,779,419"/>
+<area shape="poly" id="edge12_Node000011_Node000013" title=" " alt="" coords="506,396,562,398,562,404,506,402"/>
+<area shape="rect" id="Node000014" href="$_switch_task_8c.html#a2a7f01bd659f5eea0a4a131d8c57c207" title=" " alt="" coords="884,417,929,444"/>
+<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="779,414,869,424,868,429,779,419"/>
+<area shape="rect" id="Node000015" href="$group__drivers06.html#ga6568742c79ce5190216e5185238229ba" title="Get relay MCP23017 device context." alt="" coords="866,468,947,495"/>
+<area shape="poly" id="edge14_Node000013_Node000015" title=" " alt="" coords="744,417,780,428,804,441,828,454,852,463,850,468,826,458,802,445,778,433,742,422"/>
+<area shape="rect" id="Node000016" href="$group__drivers06.html#ga0dfecc1e56ba649b3a89936c6206c9e2" title="Atomic masked write to a port." alt="" coords="846,316,966,343"/>
+<area shape="poly" id="edge15_Node000013_Node000016" title=" " alt="" coords="742,389,778,378,802,365,826,352,842,346,844,351,828,357,804,370,780,382,744,394"/>
+<area shape="rect" id="Node000022" href="$_switch_task_8c.html#abb7cc7eb4e959fda6a43c8dd85f20090" title=" " alt="" coords="877,367,936,393"/>
+<area shape="poly" id="edge21_Node000013_Node000022" title=" " alt="" coords="779,391,861,382,861,388,779,397"/>
+<area shape="rect" id="Node000017" href="$group__drivers05.html#gab7b4aa096ded6cebd93256e5b5994e42" title="Write 8&#45;bit register with 8&#45;bit value: [reg, value]." alt="" coords="1046,316,1179,343"/>
+<area shape="poly" id="edge16_Node000016_Node000017" title=" " alt="" coords="967,327,1030,327,1030,332,967,332"/>
+<area shape="rect" id="Node000021" href="$_m_c_p23017__driver_8c.html#a0ff45ad384852ba5f69f0fd781c2f46a" title=" " alt="" coords="1034,367,1190,393"/>
+<area shape="poly" id="edge20_Node000016_Node000021" title=" " alt="" coords="964,341,1041,360,1040,365,963,346"/>
+<area shape="rect" id="Node000018" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="1267,392,1389,419"/>
+<area shape="poly" id="edge17_Node000017_Node000018" title=" " alt="" coords="1158,341,1191,352,1277,383,1275,389,1189,357,1156,346"/>
+<area shape="rect" id="Node000019" href="$group__drivers05.html#ga170d6c4ff97ddc2d314f0a7a0054f283" title="Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK i2c_write_time..." alt="" coords="1242,316,1414,343"/>
+<area shape="poly" id="edge18_Node000017_Node000019" title=" " alt="" coords="1179,327,1226,327,1226,332,1179,332"/>
+<area shape="rect" id="Node000020" href="$i2c__bus_8c.html#afbaa64f79bdd1fa39c8fa5b7a9c2717b" title=" " alt="" coords="1466,316,1623,343"/>
+<area shape="poly" id="edge19_Node000019_Node000020" title=" " alt="" coords="1414,327,1450,327,1450,332,1414,332"/>
+<area shape="rect" id="Node000024" href="$_h_l_w8032__driver_8c.html#a647afe01364a59d5afbe6c9788559da9" title="Safely extract uint16_t (big&#45;endian) from frame." alt="" coords="633,5,723,32"/>
+<area shape="poly" id="edge23_Node000023_Node000024" title=" " alt="" coords="508,56,617,30,619,35,509,61"/>
+<area shape="rect" id="Node000025" href="$_h_l_w8032__driver_8c.html#a633e83653e2eabb77d79ea3725c7f458" title="Safely extract uint24_t (big&#45;endian) from frame." alt="" coords="633,56,723,83"/>
+<area shape="poly" id="edge24_Node000023_Node000025" title=" " alt="" coords="509,67,618,67,618,72,509,72"/>
+<area shape="rect" id="Node000027" href="$_h_l_w8032__driver_8c.html#a8c3364fbeb1899ae2c744c1c78ea30be" title="Validate HLW8032 frame checksum." alt="" coords="627,107,729,133"/>
+<area shape="poly" id="edge26_Node000026_Node000027" title=" " alt="" coords="505,158,611,133,612,138,506,163"/>
+<area shape="rect" id="Node000028" href="$_h_l_w8032__driver_8c.html#ac110831a99259d71aaec153a9a194438" title="Check if HLW8032 State REG indicates a valid frame." alt="" coords="623,157,733,184"/>
+<area shape="poly" id="edge27_Node000026_Node000028" title=" " alt="" coords="505,168,608,168,608,173,505,173"/>
+<area shape="poly" id="edge31_Node000030_Node000014" title=" " alt="" coords="738,447,868,432,868,437,739,452"/>
+<area shape="poly" id="edge36_Node000030_Node000015" title=" " alt="" coords="739,460,850,473,850,478,738,465"/>
+<area shape="poly" id="edge37_Node000030_Node000022" title=" " alt="" coords="738,441,778,428,802,416,826,403,861,390,863,395,828,408,804,421,780,433,739,446"/>
+<area shape="rect" id="Node000031" href="$group__drivers06.html#ga2e6de484edec28d8c39620a364ce5b92" title="Read a logic level from a pin." alt="" coords="855,519,958,545"/>
+<area shape="poly" id="edge32_Node000030_Node000031" title=" " alt="" coords="720,467,828,504,848,511,846,516,826,509,718,472"/>
+<area shape="rect" id="Node000032" href="$group__drivers05.html#ga0e406d50e8948e593649a11c729acd9b" title="Read 8&#45;bit register: write [reg] (no stop), then read 1 byte." alt="" coords="1047,493,1177,520"/>
+<area shape="poly" id="edge33_Node000031_Node000032" title=" " alt="" coords="958,523,1031,514,1032,519,958,528"/>
+<area shape="poly" id="edge34_Node000032_Node000018" title=" " alt="" coords="1142,490,1283,423,1285,428,1144,495"/>
+<area shape="rect" id="Node000033" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="1238,493,1418,520"/>
+<area shape="poly" id="edge35_Node000032_Node000033" title=" " alt="" coords="1177,504,1223,504,1223,509,1177,509"/>
+</map>

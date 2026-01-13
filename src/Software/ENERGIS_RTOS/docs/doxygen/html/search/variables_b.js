@@ -1,0 +1,23 @@
+var searchData=
+[
+  ['label_0',['label',['../structstorage__msg__t.html#ae501a582a110422634b940e29ffcfa8a',1,'storage_msg_t']]],
+  ['last_5fchange_5fms_1',['last_change_ms',['../structdeb__t.html#a6e4b0654178e2f680fa518dabf3d0e9c',1,'deb_t']]],
+  ['last_5fchange_5ftick_2',['last_change_tick',['../structstorage__cache__t.html#a871105f6c0821cf4e9bba6971a855b93',1,'storage_cache_t']]],
+  ['last_5fchannel_5fread_3',['last_channel_read',['../_h_l_w8032__driver_8c.html#a394d6186aa55858eaec59f593624f3f7',1,'HLW8032_driver.c']]],
+  ['last_5fcurrent_4',['last_current',['../_h_l_w8032__driver_8c.html#a98c848a20dba7cc003020b1c42cd742c',1,'HLW8032_driver.c']]],
+  ['last_5fenergy_5fupdate_5fms_5',['last_energy_update_ms',['../_meter_task_8c.html#adea9bb4c487124cb1eb50b54ee235467',1,'MeterTask.c']]],
+  ['last_5fpower_6',['last_power',['../_h_l_w8032__driver_8c.html#ad3c020358ff7347ff2efff64b793bf3d',1,'HLW8032_driver.c']]],
+  ['last_5fseen_5fms_7',['last_seen_ms',['../structtask__meta__t.html#ae2c62a531616ebef4d625f33eb8b38ae',1,'task_meta_t']]],
+  ['last_5fstate_5freg_8',['last_state_reg',['../_h_l_w8032__driver_8c.html#a03d910fafc4f985231cc3ec5e8f16913',1,'HLW8032_driver.c']]],
+  ['last_5ftrip_5ftimestamp_5fms_9',['last_trip_timestamp_ms',['../structovercurrent__status__t.html#a52f500fa88e427140926781cff09e600',1,'overcurrent_status_t']]],
+  ['last_5ftripped_5fchannel_10',['last_tripped_channel',['../structovercurrent__status__t.html#a30f7251df34c379d1707413a45062fbb',1,'overcurrent_status_t']]],
+  ['last_5fupdate_5fms_11',['last_update_ms',['../power__mgr_8c.html#a55c9db1db2e7f9a80337d744a4aef512',1,'power_mgr.c']]],
+  ['last_5fvoltage_12',['last_voltage',['../_h_l_w8032__driver_8c.html#abe6c80c69a1c9865acdd7844392d2d97',1,'HLW8032_driver.c']]],
+  ['latched_5fpress_13',['latched_press',['../structdeb__t.html#ae5727e0c92dd295c374fe54e872dac47',1,'deb_t']]],
+  ['latest_5ftelemetry_14',['latest_telemetry',['../_meter_task_8c.html#aef903a50ce41262a8c0d9cf64f2752b4',1,'MeterTask.c']]],
+  ['len_15',['len',['../structi2c__bus__request__t.html#a7c1c8c0828a9412b45a013a6ef5e3dfd',1,'i2c_bus_request_t::len'],['../structsnmp__tlv__t.html#a45662f13bb6490c55197fffea0582e0a',1,'snmp_tlv_t::len'],['../structsnmp__msg__t.html#a3e0417165d72f679ee412d115f6c876e',1,'snmp_msg_t::len']]],
+  ['limit_5fa_16',['limit_a',['../structovercurrent__status__t.html#a7ba74c18764a17439f5de9b96d9dfa71',1,'overcurrent_status_t']]],
+  ['location_17',['location',['../structuser_pref_info.html#a00adf96c6e20b5170a8e988ae0b37dda',1,'userPrefInfo']]],
+  ['logqueue_18',['logQueue',['../_logger_task_8c.html#a312ebbb5fc5830fb0b462aa4f24e9a50',1,'LoggerTask.c']]],
+  ['lr_19',['lr',['../structcrashlog__t.html#ae5f51f173d74e56106fd09509e5737c7',1,'crashlog_t']]]
+];

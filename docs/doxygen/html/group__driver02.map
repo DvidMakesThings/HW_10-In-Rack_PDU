@@ -1,0 +1,4 @@
+<map id="2. EEPROM Driver" name="2. EEPROM Driver">
+<area shape="rect" id="Node000001" title="I2C driver for CAT24C256 32KB EEPROM with page&#45;aware write operations." alt="" coords="117,5,250,32"/>
+<area shape="rect" id="Node000002" href="$group__drivers.html" title="HAL drivers for the Energis PDU firmware." alt="" coords="5,5,69,32"/>
+</map>

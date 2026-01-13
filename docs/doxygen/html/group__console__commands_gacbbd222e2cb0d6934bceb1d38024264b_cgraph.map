@@ -1,0 +1,9 @@
+<map id="cmd_auto_cal_zero" name="cmd_auto_cal_zero">
+<area shape="rect" id="Node000001" title="Auto&#45;calibrate zero point (0V, 0A) for all channels (async)." alt="" coords="5,43,140,69"/>
+<area shape="rect" id="Node000002" href="$group__drivers04.html#ga643d63b42087b4dd4b336571eb9b6d18" title="Start asynchronous zero calibration (0V/0A) for all channels." alt="" coords="212,5,347,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="140,44,196,36,197,41,140,49"/>
+<area shape="rect" id="Node000004" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="188,72,371,99"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="140,63,173,68,172,73,140,68"/>
+<area shape="rect" id="Node000003" href="$_h_l_w8032__driver_8c.html#acc3dced2405146bb247c8d852e88e56f" title="Reset sample accumulators for the current async calibration channel." alt="" coords="419,5,561,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="347,24,404,24,404,29,347,29"/>
+</map>

@@ -1,0 +1,73 @@
+\doxysection{user\+\_\+output.\+h}
+\hypertarget{user__output_8h_source}{}\label{user__output_8h_source}\index{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/user\_output.h@{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/user\_output.h}}
+\mbox{\hyperlink{user__output_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#ifndef\ USER\_OUTPUT\_H}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ USER\_OUTPUT\_H}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_o_n_f_i_g_8h}{../../CONFIG.h}}"{}}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{comment}{/*\ ====================\ Constants\ ====================\ */}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ USER\_OUTPUT\_MAX\_PRESETS\ 5u}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ USER\_OUTPUT\_NAME\_MAX\_LEN\ 25u}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ USER\_OUTPUT\_PRESET\_VALID\ 0xA5u}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ USER\_OUTPUT\_HEADER\_MAGIC\ 0xC5u}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ USER\_OUTPUT\_STARTUP\_NONE\ 0xFFu}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{comment}{/*\ ====================\ Data\ Structures\ ====================\ */}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{group__main01_gae3fa85d0ce445e937670de85f9af490a}{\_\_attribute\_\_}}((packed))\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{char}\ name[\mbox{\hyperlink{group__storage09_gab51a15ea684e163433ede2f7f69257ab}{USER\_OUTPUT\_NAME\_MAX\_LEN}}\ +\ 1];\ }
+\DoxyCodeLine{00070\ \ \ \ \ uint8\_t\ relay\_mask;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00071\ \ \ \ \ uint8\_t\ valid;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00072\ \}\ \mbox{\hyperlink{structuser__output__preset__t}{user\_output\_preset\_t}};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{group__main01_gae3fa85d0ce445e937670de85f9af490a}{\_\_attribute\_\_}}((packed))\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ uint8\_t\ magic;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00080\ \ \ \ \ uint8\_t\ startup\_preset;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00081\ \ \ \ \ uint8\_t\ reserved[2];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{structuser__output__preset__t}{user\_output\_preset\_t}}\ presets[\mbox{\hyperlink{group__storage09_ga046749104e0d3ed1c5d14777e32dba42}{USER\_OUTPUT\_MAX\_PRESETS}}];\ }
+\DoxyCodeLine{00083\ \ \ \ \ uint16\_t\ crc;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00084\ \}\ \mbox{\hyperlink{structuser__output__data__t}{user\_output\_data\_t}};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{comment}{/*\ ====================\ Public\ API\ ====================\ */}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00097\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__storage09_ga5727076845e0fe2135c108d8317704a2}{UserOutput\_Init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00108\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__storage09_ga21a7d214a0524abc04ae28e27ef944d3}{UserOutput\_GetAllPresets}}(\mbox{\hyperlink{structuser__output__preset__t}{user\_output\_preset\_t}}\ out[\mbox{\hyperlink{group__storage09_ga046749104e0d3ed1c5d14777e32dba42}{USER\_OUTPUT\_MAX\_PRESETS}}]);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00117\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__storage09_ga5f0640ed65cd2801c9c2b8774fbd9774}{UserOutput\_GetPreset}}(uint8\_t\ index,\ \mbox{\hyperlink{structuser__output__preset__t}{user\_output\_preset\_t}}\ *out);}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00129\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__storage09_gad6fa0b01aa77b8a8d3ad8a949793ee28}{UserOutput\_SavePreset}}(uint8\_t\ index,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name,\ uint8\_t\ relay\_mask);}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00140\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__storage09_ga2b79ea5da2b1810668e743da2a1dcf69}{UserOutput\_DeletePreset}}(uint8\_t\ index);}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00147\ uint8\_t\ \mbox{\hyperlink{group__storage09_ga256c864690ce5f7015f2f610f33441f8}{UserOutput\_GetStartupPreset}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00158\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__storage09_ga386208413b1b0046b3ff03ade368e250}{UserOutput\_SetStartupPreset}}(uint8\_t\ index);}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00168\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__storage09_ga6a93dd22bec3564db3ef13032a5d3e87}{UserOutput\_ClearStartupPreset}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00179\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__storage09_ga2b42208cc6b557303cf0db15e24b687b}{UserOutput\_ApplyPreset}}(uint8\_t\ index);}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00189\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__storage09_ga9995f76491a71a41beba203375da42c9}{UserOutput\_ApplyStartupPreset}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00197\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__storage09_ga14e941dd659a1a734d8bf360cbbe6444}{UserOutput\_IsPresetValid}}(uint8\_t\ index);}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \textcolor{comment}{/*\ ====================\ Legacy\ API\ (deprecated)\ ====================\ */}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00209\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage09_ga737c93ab5e7648d81175b6d5fd05ce6d}{EEPROM\_WriteUserOutput}}(\textcolor{keyword}{const}\ uint8\_t\ *data,\ \textcolor{keywordtype}{size\_t}\ len);}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00219\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage09_ga25688db788c627b0458f2fd63711af25}{EEPROM\_ReadUserOutput}}(uint8\_t\ *data,\ \textcolor{keywordtype}{size\_t}\ len);}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ USER\_OUTPUT\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00222\ }
+
+\end{DoxyCode}

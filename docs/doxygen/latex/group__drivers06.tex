@@ -1,0 +1,721 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item MCP23017 Driver 
+\end{DoxyEnumerate}}
+\hypertarget{group__drivers06}{}\label{group__drivers06}\index{6. MCP23017 Driver@{6. MCP23017 Driver}}
+
+
+Header file for MCP23017 I2C GPIO expander driver.  
+
+
+Collaboration diagram for 6. MCP23017 Driver\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=269pt]{group__drivers06}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em MCP23017 device context structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__drivers06_gafcca317840825e3def57a977e4ea2cf2}{mcp\+\_\+register}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, int8\+\_\+t rst\+\_\+gpio)
+\begin{DoxyCompactList}\small\item\em Register or retrieve an MCP23017 device context. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers06_gae6663d4602384300fc9b9b12480c21fe}{mcp\+\_\+init}} (\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}dev)
+\begin{DoxyCompactList}\small\item\em Initialize an MCP23017 device to a known state. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers06_ga645c359c52df805555051e80c83fc495}{mcp\+\_\+write\+\_\+reg}} (\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}dev, uint8\+\_\+t reg, uint8\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Write a value to an MCP23017 register. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers06_ga4d99b3ea65704c98455cdd5da4fbeaad}{mcp\+\_\+read\+\_\+reg}} (\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}dev, uint8\+\_\+t reg, uint8\+\_\+t \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Read a value from an MCP23017 register. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers06_ga8ce6b811dfb85d4ca1b02ed7e61b6079}{mcp\+\_\+set\+\_\+direction}} (\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}dev, uint8\+\_\+t pin, uint8\+\_\+t \mbox{\hyperlink{power__mgr_8c_ac6116d5235e13e059e591879c46d7174}{direction}})
+\begin{DoxyCompactList}\small\item\em Set pin direction (input/output). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers06_ga8b8bc528b75e419262e7663ee669dc31}{mcp\+\_\+write\+\_\+pin}} (\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}dev, uint8\+\_\+t pin, uint8\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Write a logic level to a pin. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__drivers06_ga2e6de484edec28d8c39620a364ce5b92}{mcp\+\_\+read\+\_\+pin}} (\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}dev, uint8\+\_\+t pin)
+\begin{DoxyCompactList}\small\item\em Read a logic level from a pin. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers06_ga0dfecc1e56ba649b3a89936c6206c9e2}{mcp\+\_\+write\+\_\+mask}} (\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}dev, uint8\+\_\+t port\+\_\+ab, uint8\+\_\+t mask, uint8\+\_\+t value\+\_\+bits)
+\begin{DoxyCompactList}\small\item\em Atomic masked write to a port. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers06_gad0f920b57a523cbf561692c26e810819}{mcp\+\_\+resync\+\_\+from\+\_\+hw}} (\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}dev)
+\begin{DoxyCompactList}\small\item\em Re-\/sync shadow registers from hardware. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers06_ga443377619e6d82e31b58ffc269b64936}{MCP2017\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize all MCP23017 devices for the ENERGIS PDU. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__drivers06_ga6568742c79ce5190216e5185238229ba}{mcp\+\_\+relay}} (void)
+\begin{DoxyCompactList}\small\item\em Get relay MCP23017 device context. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__drivers06_ga7634eca518e2158ba0e636a3f03f3928}{mcp\+\_\+display}} (void)
+\begin{DoxyCompactList}\small\item\em Get display MCP23017 device context. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__drivers06_gae6acbfdd05b6bdd8877262ce03f77eeb}{mcp\+\_\+selection}} (void)
+\begin{DoxyCompactList}\small\item\em Get selection MCP23017 device context. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers06_gae7d0a5e24723238e6466e5b5f0c49e41}{mcp\+\_\+recover}} (\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}dev)
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{MCP23017 Register Addresses}
+MCP23017 register addresses (BANK=0, sequential). \begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__drivers06_gaa9b0dc57c9fbeb1cd61e7b7252bfeddf}{mcp23017\+\_\+reg\+\_\+t}} \{ \newline
+\mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfaff196b20f60d0d869ae4f4ba9b82fef2}{MCP23017\+\_\+\+IODIRA}} = 0x00
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfab143752e2335aab9b8adfb174fca661a}{MCP23017\+\_\+\+IODIRB}} = 0x01
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa70651fc7aa02961aef334b927f477609}{MCP23017\+\_\+\+IPOLA}} = 0x02
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfae4a1c553e545531dae4ea79c5fe069cd}{MCP23017\+\_\+\+IPOLB}} = 0x03
+, \newline
+\mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa3194ea8e063908f7a2ec5812d1527820}{MCP23017\+\_\+\+GPINTENA}} = 0x04
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa9586bd3d22780ec90bf201be346159e6}{MCP23017\+\_\+\+GPINTENB}} = 0x05
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa8fb1506d888fa5afddb2a168c3ba3184}{MCP23017\+\_\+\+DEFVALA}} = 0x06
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfaab35f56ba43581aa58c3d74c3e49fb7b}{MCP23017\+\_\+\+DEFVALB}} = 0x07
+, \newline
+\mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfad372a07dc741b63cbfa0119c33669b61}{MCP23017\+\_\+\+INTCONA}} = 0x08
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa1ca12f19f543953808a080ea79c4eb90}{MCP23017\+\_\+\+INTCONB}} = 0x09
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfab9368d55494e0488c55fa5443f30f5fa}{MCP23017\+\_\+\+IOCON}} = 0x0A
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfaf215e406bd96cca356a639c6927769f4}{MCP23017\+\_\+\+IOCONB}} = 0x0B
+, \newline
+\mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfac502aa0f54a5b41a761c120e665da27b}{MCP23017\+\_\+\+GPPUA}} = 0x0C
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfadccc42f206cc7af95ec25c07c6cf48b4}{MCP23017\+\_\+\+GPPUB}} = 0x0D
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa49e2535f9b490c064d85152d8e9efc04}{MCP23017\+\_\+\+INTFA}} = 0x0E
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa79b0bfcfc88489c89fad266e2c9cf459}{MCP23017\+\_\+\+INTFB}} = 0x0F
+, \newline
+\mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfac9b9ec9f18ff7ad436574b18ed8e14f6}{MCP23017\+\_\+\+INTCAPA}} = 0x10
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfaf97e8423ea050872e63b854d9975149d}{MCP23017\+\_\+\+INTCAPB}} = 0x11
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa4b5694ccf89d415b3a4f7734c0dc821c}{MCP23017\+\_\+\+GPIOA}} = 0x12
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa519ffdeaa44b2010fc26367f13a297c9}{MCP23017\+\_\+\+GPIOB}} = 0x13
+, \newline
+\mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa71e94f58edc954fa5085d31cc7432bce}{MCP23017\+\_\+\+OLATA}} = 0x14
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfabe2c3e1f499629565afee65dd51a4f1f}{MCP23017\+\_\+\+OLATB}} = 0x15
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Configuration}
+Maximum I2C retries before failure. \begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__drivers06_ga5ad7d69037b1e20fbff7de47b99d4a5c}{MCP\+\_\+\+I2\+C\+\_\+\+MAX\+\_\+\+RETRIES}}~3
+\item 
+\#define \mbox{\hyperlink{group__drivers06_gac7e3477cbab6b1b13385db015ba029ab}{MCP\+\_\+\+I2\+C\+\_\+\+TIMEOUT\+\_\+\+US}}~5000
+\begin{DoxyCompactList}\small\item\em I2C operation timeout in microseconds. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__drivers06_gaef07a9c827ee0feec29848e5df0de922}{MCP\+\_\+\+I2\+C\+\_\+\+RETRY\+\_\+\+DELAY\+\_\+\+US}}~200
+\begin{DoxyCompactList}\small\item\em Delay between I2C retries in microseconds. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__drivers06_ga82f5cff496c7673e3a07a86d00678b6b}{MCP\+\_\+\+RESET\+\_\+\+PULSE\+\_\+\+MS}}~5
+\begin{DoxyCompactList}\small\item\em Reset pulse duration in milliseconds. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__drivers06_ga3353eb195b5b88f30c2cc35a35e071e3}{MCP\+\_\+\+POST\+\_\+\+RESET\+\_\+\+MS}}~10
+\begin{DoxyCompactList}\small\item\em Post-\/reset stabilization delay in milliseconds. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__drivers06_ga837bd015db22cdd863feff717af76c1a}{MCP\+\_\+\+MAX\+\_\+\+DEVICES}}~8
+\begin{DoxyCompactList}\small\item\em Maximum number of MCP23017 devices. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Header file for MCP23017 I2C GPIO expander driver. 
+
+\begin{DoxyVersion}{Version}
+2.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/12-\/16
+\end{DoxyDate}
+Simplified MCP23017 driver with direct I2C operations. All functions are thread-\/safe via per-\/device mutex.
+
+Design Principles (v2.\+0)\+:
+\begin{DoxyItemize}
+\item Simple, direct I2C operations with minimal abstraction
+\item Per-\/device mutex for thread safety
+\item Shadow OLAT registers to prevent torn read-\/modify-\/write
+\item Timeout-\/based I2C operations (no infinite blocking)
+\item Clear error reporting
+\end{DoxyItemize}
+
+Usage\+:
+\begin{DoxyEnumerate}
+\item Call \doxylink{group__drivers06_ga443377619e6d82e31b58ffc269b64936}{MCP2017\+\_\+\+Init()} once at startup
+\item Use \doxylink{group__drivers06_ga6568742c79ce5190216e5185238229ba}{mcp\+\_\+relay()}, \doxylink{group__drivers06_ga7634eca518e2158ba0e636a3f03f3928}{mcp\+\_\+display()}, \doxylink{group__drivers06_gae6acbfdd05b6bdd8877262ce03f77eeb}{mcp\+\_\+selection()} to get device handles
+\item Use \doxylink{group__drivers06_ga8b8bc528b75e419262e7663ee669dc31}{mcp\+\_\+write\+\_\+pin()}, \doxylink{group__drivers06_ga2e6de484edec28d8c39620a364ce5b92}{mcp\+\_\+read\+\_\+pin()} for pin operations
+\item Use \doxylink{group__drivers06_ga0dfecc1e56ba649b3a89936c6206c9e2}{mcp\+\_\+write\+\_\+mask()} for atomic multi-\/bit operations
+\end{DoxyEnumerate}
+
+IMPORTANT\+: For relay control, use Switch\+Task APIs instead of direct MCP calls. This ensures proper serialization and display LED mirroring.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{group__drivers06_doc-define-members}
+\doxysubsubsection{Macro Definition Documentation}
+\Hypertarget{group__drivers06_ga5ad7d69037b1e20fbff7de47b99d4a5c}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP\_I2C\_MAX\_RETRIES@{MCP\_I2C\_MAX\_RETRIES}}
+\index{MCP\_I2C\_MAX\_RETRIES@{MCP\_I2C\_MAX\_RETRIES}!6. MCP23017 Driver@{6. MCP23017 Driver}}
+\doxysubsubsubsection{\texorpdfstring{MCP\_I2C\_MAX\_RETRIES}{MCP\_I2C\_MAX\_RETRIES}}
+{\footnotesize\ttfamily \label{group__drivers06_ga5ad7d69037b1e20fbff7de47b99d4a5c} 
+\#define MCP\+\_\+\+I2\+C\+\_\+\+MAX\+\_\+\+RETRIES~3}
+
+\Hypertarget{group__drivers06_gaef07a9c827ee0feec29848e5df0de922}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP\_I2C\_RETRY\_DELAY\_US@{MCP\_I2C\_RETRY\_DELAY\_US}}
+\index{MCP\_I2C\_RETRY\_DELAY\_US@{MCP\_I2C\_RETRY\_DELAY\_US}!6. MCP23017 Driver@{6. MCP23017 Driver}}
+\doxysubsubsubsection{\texorpdfstring{MCP\_I2C\_RETRY\_DELAY\_US}{MCP\_I2C\_RETRY\_DELAY\_US}}
+{\footnotesize\ttfamily \label{group__drivers06_gaef07a9c827ee0feec29848e5df0de922} 
+\#define MCP\+\_\+\+I2\+C\+\_\+\+RETRY\+\_\+\+DELAY\+\_\+\+US~200}
+
+
+
+Delay between I2C retries in microseconds. 
+
+\Hypertarget{group__drivers06_gac7e3477cbab6b1b13385db015ba029ab}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP\_I2C\_TIMEOUT\_US@{MCP\_I2C\_TIMEOUT\_US}}
+\index{MCP\_I2C\_TIMEOUT\_US@{MCP\_I2C\_TIMEOUT\_US}!6. MCP23017 Driver@{6. MCP23017 Driver}}
+\doxysubsubsubsection{\texorpdfstring{MCP\_I2C\_TIMEOUT\_US}{MCP\_I2C\_TIMEOUT\_US}}
+{\footnotesize\ttfamily \label{group__drivers06_gac7e3477cbab6b1b13385db015ba029ab} 
+\#define MCP\+\_\+\+I2\+C\+\_\+\+TIMEOUT\+\_\+\+US~5000}
+
+
+
+I2C operation timeout in microseconds. 
+
+\Hypertarget{group__drivers06_ga837bd015db22cdd863feff717af76c1a}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP\_MAX\_DEVICES@{MCP\_MAX\_DEVICES}}
+\index{MCP\_MAX\_DEVICES@{MCP\_MAX\_DEVICES}!6. MCP23017 Driver@{6. MCP23017 Driver}}
+\doxysubsubsubsection{\texorpdfstring{MCP\_MAX\_DEVICES}{MCP\_MAX\_DEVICES}}
+{\footnotesize\ttfamily \label{group__drivers06_ga837bd015db22cdd863feff717af76c1a} 
+\#define MCP\+\_\+\+MAX\+\_\+\+DEVICES~8}
+
+
+
+Maximum number of MCP23017 devices. 
+
+\Hypertarget{group__drivers06_ga3353eb195b5b88f30c2cc35a35e071e3}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP\_POST\_RESET\_MS@{MCP\_POST\_RESET\_MS}}
+\index{MCP\_POST\_RESET\_MS@{MCP\_POST\_RESET\_MS}!6. MCP23017 Driver@{6. MCP23017 Driver}}
+\doxysubsubsubsection{\texorpdfstring{MCP\_POST\_RESET\_MS}{MCP\_POST\_RESET\_MS}}
+{\footnotesize\ttfamily \label{group__drivers06_ga3353eb195b5b88f30c2cc35a35e071e3} 
+\#define MCP\+\_\+\+POST\+\_\+\+RESET\+\_\+\+MS~10}
+
+
+
+Post-\/reset stabilization delay in milliseconds. 
+
+\Hypertarget{group__drivers06_ga82f5cff496c7673e3a07a86d00678b6b}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP\_RESET\_PULSE\_MS@{MCP\_RESET\_PULSE\_MS}}
+\index{MCP\_RESET\_PULSE\_MS@{MCP\_RESET\_PULSE\_MS}!6. MCP23017 Driver@{6. MCP23017 Driver}}
+\doxysubsubsubsection{\texorpdfstring{MCP\_RESET\_PULSE\_MS}{MCP\_RESET\_PULSE\_MS}}
+{\footnotesize\ttfamily \label{group__drivers06_ga82f5cff496c7673e3a07a86d00678b6b} 
+\#define MCP\+\_\+\+RESET\+\_\+\+PULSE\+\_\+\+MS~5}
+
+
+
+Reset pulse duration in milliseconds. 
+
+
+
+\label{doc-enum-members}
+\Hypertarget{group__drivers06_doc-enum-members}
+\doxysubsubsection{Enumeration Type Documentation}
+\Hypertarget{group__drivers06_gaa9b0dc57c9fbeb1cd61e7b7252bfeddf}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!mcp23017\_reg\_t@{mcp23017\_reg\_t}}
+\index{mcp23017\_reg\_t@{mcp23017\_reg\_t}!6. MCP23017 Driver@{6. MCP23017 Driver}}
+\doxysubsubsubsection{\texorpdfstring{mcp23017\_reg\_t}{mcp23017\_reg\_t}}
+{\footnotesize\ttfamily \label{group__drivers06_gaa9b0dc57c9fbeb1cd61e7b7252bfeddf} 
+enum \mbox{\hyperlink{group__drivers06_gaa9b0dc57c9fbeb1cd61e7b7252bfeddf}{mcp23017\+\_\+reg\+\_\+t}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MCP23017\_IODIRA@{MCP23017\_IODIRA}!6. MCP23017 Driver@{6. MCP23017 Driver}}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP23017\_IODIRA@{MCP23017\_IODIRA}}}\Hypertarget{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfaff196b20f60d0d869ae4f4ba9b82fef2}\label{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfaff196b20f60d0d869ae4f4ba9b82fef2} 
+MCP23017\+\_\+\+IODIRA&I/O direction register A \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MCP23017\_IODIRB@{MCP23017\_IODIRB}!6. MCP23017 Driver@{6. MCP23017 Driver}}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP23017\_IODIRB@{MCP23017\_IODIRB}}}\Hypertarget{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfab143752e2335aab9b8adfb174fca661a}\label{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfab143752e2335aab9b8adfb174fca661a} 
+MCP23017\+\_\+\+IODIRB&I/O direction register B \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MCP23017\_IPOLA@{MCP23017\_IPOLA}!6. MCP23017 Driver@{6. MCP23017 Driver}}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP23017\_IPOLA@{MCP23017\_IPOLA}}}\Hypertarget{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa70651fc7aa02961aef334b927f477609}\label{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa70651fc7aa02961aef334b927f477609} 
+MCP23017\+\_\+\+IPOLA&Input polarity register A \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MCP23017\_IPOLB@{MCP23017\_IPOLB}!6. MCP23017 Driver@{6. MCP23017 Driver}}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP23017\_IPOLB@{MCP23017\_IPOLB}}}\Hypertarget{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfae4a1c553e545531dae4ea79c5fe069cd}\label{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfae4a1c553e545531dae4ea79c5fe069cd} 
+MCP23017\+\_\+\+IPOLB&Input polarity register B \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MCP23017\_GPINTENA@{MCP23017\_GPINTENA}!6. MCP23017 Driver@{6. MCP23017 Driver}}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP23017\_GPINTENA@{MCP23017\_GPINTENA}}}\Hypertarget{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa3194ea8e063908f7a2ec5812d1527820}\label{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa3194ea8e063908f7a2ec5812d1527820} 
+MCP23017\+\_\+\+GPINTENA&Interrupt-\/on-\/change control A \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MCP23017\_GPINTENB@{MCP23017\_GPINTENB}!6. MCP23017 Driver@{6. MCP23017 Driver}}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP23017\_GPINTENB@{MCP23017\_GPINTENB}}}\Hypertarget{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa9586bd3d22780ec90bf201be346159e6}\label{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa9586bd3d22780ec90bf201be346159e6} 
+MCP23017\+\_\+\+GPINTENB&Interrupt-\/on-\/change control B \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MCP23017\_DEFVALA@{MCP23017\_DEFVALA}!6. MCP23017 Driver@{6. MCP23017 Driver}}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP23017\_DEFVALA@{MCP23017\_DEFVALA}}}\Hypertarget{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa8fb1506d888fa5afddb2a168c3ba3184}\label{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa8fb1506d888fa5afddb2a168c3ba3184} 
+MCP23017\+\_\+\+DEFVALA&Default compare value A \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MCP23017\_DEFVALB@{MCP23017\_DEFVALB}!6. MCP23017 Driver@{6. MCP23017 Driver}}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP23017\_DEFVALB@{MCP23017\_DEFVALB}}}\Hypertarget{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfaab35f56ba43581aa58c3d74c3e49fb7b}\label{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfaab35f56ba43581aa58c3d74c3e49fb7b} 
+MCP23017\+\_\+\+DEFVALB&Default compare value B \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MCP23017\_INTCONA@{MCP23017\_INTCONA}!6. MCP23017 Driver@{6. MCP23017 Driver}}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP23017\_INTCONA@{MCP23017\_INTCONA}}}\Hypertarget{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfad372a07dc741b63cbfa0119c33669b61}\label{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfad372a07dc741b63cbfa0119c33669b61} 
+MCP23017\+\_\+\+INTCONA&Interrupt control A \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MCP23017\_INTCONB@{MCP23017\_INTCONB}!6. MCP23017 Driver@{6. MCP23017 Driver}}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP23017\_INTCONB@{MCP23017\_INTCONB}}}\Hypertarget{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa1ca12f19f543953808a080ea79c4eb90}\label{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa1ca12f19f543953808a080ea79c4eb90} 
+MCP23017\+\_\+\+INTCONB&Interrupt control B \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MCP23017\_IOCON@{MCP23017\_IOCON}!6. MCP23017 Driver@{6. MCP23017 Driver}}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP23017\_IOCON@{MCP23017\_IOCON}}}\Hypertarget{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfab9368d55494e0488c55fa5443f30f5fa}\label{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfab9368d55494e0488c55fa5443f30f5fa} 
+MCP23017\+\_\+\+IOCON&Configuration register \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MCP23017\_IOCONB@{MCP23017\_IOCONB}!6. MCP23017 Driver@{6. MCP23017 Driver}}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP23017\_IOCONB@{MCP23017\_IOCONB}}}\Hypertarget{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfaf215e406bd96cca356a639c6927769f4}\label{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfaf215e406bd96cca356a639c6927769f4} 
+MCP23017\+\_\+\+IOCONB&Configuration register (mirror) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MCP23017\_GPPUA@{MCP23017\_GPPUA}!6. MCP23017 Driver@{6. MCP23017 Driver}}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP23017\_GPPUA@{MCP23017\_GPPUA}}}\Hypertarget{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfac502aa0f54a5b41a761c120e665da27b}\label{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfac502aa0f54a5b41a761c120e665da27b} 
+MCP23017\+\_\+\+GPPUA&Pull-\/up resistor config A \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MCP23017\_GPPUB@{MCP23017\_GPPUB}!6. MCP23017 Driver@{6. MCP23017 Driver}}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP23017\_GPPUB@{MCP23017\_GPPUB}}}\Hypertarget{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfadccc42f206cc7af95ec25c07c6cf48b4}\label{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfadccc42f206cc7af95ec25c07c6cf48b4} 
+MCP23017\+\_\+\+GPPUB&Pull-\/up resistor config B \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MCP23017\_INTFA@{MCP23017\_INTFA}!6. MCP23017 Driver@{6. MCP23017 Driver}}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP23017\_INTFA@{MCP23017\_INTFA}}}\Hypertarget{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa49e2535f9b490c064d85152d8e9efc04}\label{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa49e2535f9b490c064d85152d8e9efc04} 
+MCP23017\+\_\+\+INTFA&Interrupt flag A \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MCP23017\_INTFB@{MCP23017\_INTFB}!6. MCP23017 Driver@{6. MCP23017 Driver}}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP23017\_INTFB@{MCP23017\_INTFB}}}\Hypertarget{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa79b0bfcfc88489c89fad266e2c9cf459}\label{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa79b0bfcfc88489c89fad266e2c9cf459} 
+MCP23017\+\_\+\+INTFB&Interrupt flag B \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MCP23017\_INTCAPA@{MCP23017\_INTCAPA}!6. MCP23017 Driver@{6. MCP23017 Driver}}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP23017\_INTCAPA@{MCP23017\_INTCAPA}}}\Hypertarget{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfac9b9ec9f18ff7ad436574b18ed8e14f6}\label{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfac9b9ec9f18ff7ad436574b18ed8e14f6} 
+MCP23017\+\_\+\+INTCAPA&Interrupt capture A \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MCP23017\_INTCAPB@{MCP23017\_INTCAPB}!6. MCP23017 Driver@{6. MCP23017 Driver}}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP23017\_INTCAPB@{MCP23017\_INTCAPB}}}\Hypertarget{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfaf97e8423ea050872e63b854d9975149d}\label{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfaf97e8423ea050872e63b854d9975149d} 
+MCP23017\+\_\+\+INTCAPB&Interrupt capture B \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MCP23017\_GPIOA@{MCP23017\_GPIOA}!6. MCP23017 Driver@{6. MCP23017 Driver}}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP23017\_GPIOA@{MCP23017\_GPIOA}}}\Hypertarget{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa4b5694ccf89d415b3a4f7734c0dc821c}\label{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa4b5694ccf89d415b3a4f7734c0dc821c} 
+MCP23017\+\_\+\+GPIOA&GPIO port A \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MCP23017\_GPIOB@{MCP23017\_GPIOB}!6. MCP23017 Driver@{6. MCP23017 Driver}}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP23017\_GPIOB@{MCP23017\_GPIOB}}}\Hypertarget{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa519ffdeaa44b2010fc26367f13a297c9}\label{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa519ffdeaa44b2010fc26367f13a297c9} 
+MCP23017\+\_\+\+GPIOB&GPIO port B \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MCP23017\_OLATA@{MCP23017\_OLATA}!6. MCP23017 Driver@{6. MCP23017 Driver}}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP23017\_OLATA@{MCP23017\_OLATA}}}\Hypertarget{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa71e94f58edc954fa5085d31cc7432bce}\label{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa71e94f58edc954fa5085d31cc7432bce} 
+MCP23017\+\_\+\+OLATA&Output latch A \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MCP23017\_OLATB@{MCP23017\_OLATB}!6. MCP23017 Driver@{6. MCP23017 Driver}}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP23017\_OLATB@{MCP23017\_OLATB}}}\Hypertarget{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfabe2c3e1f499629565afee65dd51a4f1f}\label{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfabe2c3e1f499629565afee65dd51a4f1f} 
+MCP23017\+\_\+\+OLATB&Output latch B \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{group__drivers06_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__drivers06_ga443377619e6d82e31b58ffc269b64936}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!MCP2017\_Init@{MCP2017\_Init}}
+\index{MCP2017\_Init@{MCP2017\_Init}!6. MCP23017 Driver@{6. MCP23017 Driver}}
+\doxysubsubsubsection{\texorpdfstring{MCP2017\_Init()}{MCP2017\_Init()}}
+{\footnotesize\ttfamily \label{group__drivers06_ga443377619e6d82e31b58ffc269b64936} 
+void MCP2017\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Initialize all MCP23017 devices for the ENERGIS PDU. 
+
+Registers and initializes\+:
+\begin{DoxyItemize}
+\item Relay MCP (I2\+C1 @ MCP\+\_\+\+RELAY\+\_\+\+ADDR)
+\item Display MCP (I2\+C0 @ MCP\+\_\+\+DISPLAY\+\_\+\+ADDR)
+\item Selection MCP (I2\+C0 @ MCP\+\_\+\+SELECTION\+\_\+\+ADDR)
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Call once during system startup, before \doxylink{group__tasks11_gadb05f16c80e367211f6a0bef7cedfc1f}{Switch\+Task\+\_\+\+Init()}. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers06_ga443377619e6d82e31b58ffc269b64936_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers06_ga443377619e6d82e31b58ffc269b64936_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers06_ga7634eca518e2158ba0e636a3f03f3928}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!mcp\_display@{mcp\_display}}
+\index{mcp\_display@{mcp\_display}!6. MCP23017 Driver@{6. MCP23017 Driver}}
+\doxysubsubsubsection{\texorpdfstring{mcp\_display()}{mcp\_display()}}
+{\footnotesize\ttfamily \label{group__drivers06_ga7634eca518e2158ba0e636a3f03f3928} 
+\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*} mcp\+\_\+display (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Get display MCP23017 device context. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to display MCP context, or NULL if not initialized. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers06_ga7634eca518e2158ba0e636a3f03f3928_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers06_gae6663d4602384300fc9b9b12480c21fe}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!mcp\_init@{mcp\_init}}
+\index{mcp\_init@{mcp\_init}!6. MCP23017 Driver@{6. MCP23017 Driver}}
+\doxysubsubsubsection{\texorpdfstring{mcp\_init()}{mcp\_init()}}
+{\footnotesize\ttfamily \label{group__drivers06_gae6663d4602384300fc9b9b12480c21fe} 
+void mcp\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{dev}{}\end{DoxyParamCaption})}
+
+
+
+Initialize an MCP23017 device to a known state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dev} & Device context from \doxylink{group__drivers06_gafcca317840825e3def57a977e4ea2cf2}{mcp\+\_\+register()}\\
+\hline
+\end{DoxyParams}
+Configures the device with\+:
+\begin{DoxyItemize}
+\item BANK=0, SEQOP=1 (sequential operation)
+\item All pins as outputs
+\item No pull-\/ups
+\item Syncs shadow registers from hardware 
+\end{DoxyItemize}Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers06_gae6663d4602384300fc9b9b12480c21fe_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers06_gae6663d4602384300fc9b9b12480c21fe_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers06_ga2e6de484edec28d8c39620a364ce5b92}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!mcp\_read\_pin@{mcp\_read\_pin}}
+\index{mcp\_read\_pin@{mcp\_read\_pin}!6. MCP23017 Driver@{6. MCP23017 Driver}}
+\doxysubsubsubsection{\texorpdfstring{mcp\_read\_pin()}{mcp\_read\_pin()}}
+{\footnotesize\ttfamily \label{group__drivers06_ga2e6de484edec28d8c39620a364ce5b92} 
+uint8\+\_\+t mcp\+\_\+read\+\_\+pin (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{dev}{, }\item[{uint8\+\_\+t}]{pin}{}\end{DoxyParamCaption})}
+
+
+
+Read a logic level from a pin. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dev} & Device context \\
+\hline
+{\em pin} & Pin number (0-\/7 = Port A, 8-\/15 = Port B) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 = low, 1 = high
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Thread-\/safe (acquires device mutex). 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers06_ga2e6de484edec28d8c39620a364ce5b92_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers06_ga2e6de484edec28d8c39620a364ce5b92_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers06_ga4d99b3ea65704c98455cdd5da4fbeaad}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!mcp\_read\_reg@{mcp\_read\_reg}}
+\index{mcp\_read\_reg@{mcp\_read\_reg}!6. MCP23017 Driver@{6. MCP23017 Driver}}
+\doxysubsubsubsection{\texorpdfstring{mcp\_read\_reg()}{mcp\_read\_reg()}}
+{\footnotesize\ttfamily \label{group__drivers06_ga4d99b3ea65704c98455cdd5da4fbeaad} 
+bool mcp\+\_\+read\+\_\+reg (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{dev}{, }\item[{uint8\+\_\+t}]{reg}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{out}{}\end{DoxyParamCaption})}
+
+
+
+Read a value from an MCP23017 register. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dev} & Device context \\
+\hline
+{\em reg} & Register address \\
+\hline
+{\em out} & Pointer to receive read value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success, false on I2C failure.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Thread-\/safe (acquires device mutex). 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers06_ga4d99b3ea65704c98455cdd5da4fbeaad_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers06_gae7d0a5e24723238e6466e5b5f0c49e41}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!mcp\_recover@{mcp\_recover}}
+\index{mcp\_recover@{mcp\_recover}!6. MCP23017 Driver@{6. MCP23017 Driver}}
+\doxysubsubsubsection{\texorpdfstring{mcp\_recover()}{mcp\_recover()}}
+{\footnotesize\ttfamily \label{group__drivers06_gae7d0a5e24723238e6466e5b5f0c49e41} 
+bool mcp\+\_\+recover (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{dev}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers06_gae7d0a5e24723238e6466e5b5f0c49e41_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers06_gafcca317840825e3def57a977e4ea2cf2}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!mcp\_register@{mcp\_register}}
+\index{mcp\_register@{mcp\_register}!6. MCP23017 Driver@{6. MCP23017 Driver}}
+\doxysubsubsubsection{\texorpdfstring{mcp\_register()}{mcp\_register()}}
+{\footnotesize\ttfamily \label{group__drivers06_gafcca317840825e3def57a977e4ea2cf2} 
+\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*} mcp\+\_\+register (\begin{DoxyParamCaption}\item[{i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}}]{i2c}{, }\item[{uint8\+\_\+t}]{addr}{, }\item[{int8\+\_\+t}]{rst\+\_\+gpio}{}\end{DoxyParamCaption})}
+
+
+
+Register or retrieve an MCP23017 device context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i2c} & I2C bus instance (i2c0 or i2c1) \\
+\hline
+{\em addr} & 7-\/bit I2C address (0x20-\/0x27) \\
+\hline
+{\em rst\+\_\+gpio} & Reset GPIO pin number (-\/1 if not connected) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to device context, or NULL on error.
+\end{DoxyReturn}
+If a device with the same I2C bus and address is already registered, returns the existing context. Otherwise creates a new one. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{group__drivers06_gafcca317840825e3def57a977e4ea2cf2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers06_gafcca317840825e3def57a977e4ea2cf2_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers06_ga6568742c79ce5190216e5185238229ba}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!mcp\_relay@{mcp\_relay}}
+\index{mcp\_relay@{mcp\_relay}!6. MCP23017 Driver@{6. MCP23017 Driver}}
+\doxysubsubsubsection{\texorpdfstring{mcp\_relay()}{mcp\_relay()}}
+{\footnotesize\ttfamily \label{group__drivers06_ga6568742c79ce5190216e5185238229ba} 
+\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*} mcp\+\_\+relay (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Get relay MCP23017 device context. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to relay MCP context, or NULL if not initialized. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers06_ga6568742c79ce5190216e5185238229ba_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers06_gad0f920b57a523cbf561692c26e810819}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!mcp\_resync\_from\_hw@{mcp\_resync\_from\_hw}}
+\index{mcp\_resync\_from\_hw@{mcp\_resync\_from\_hw}!6. MCP23017 Driver@{6. MCP23017 Driver}}
+\doxysubsubsubsection{\texorpdfstring{mcp\_resync\_from\_hw()}{mcp\_resync\_from\_hw()}}
+{\footnotesize\ttfamily \label{group__drivers06_gad0f920b57a523cbf561692c26e810819} 
+void mcp\+\_\+resync\+\_\+from\+\_\+hw (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{dev}{}\end{DoxyParamCaption})}
+
+
+
+Re-\/sync shadow registers from hardware. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dev} & Device context\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Thread-\/safe (acquires device mutex). 
+
+Call if hardware state may have changed externally. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers06_gad0f920b57a523cbf561692c26e810819_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers06_gae6acbfdd05b6bdd8877262ce03f77eeb}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!mcp\_selection@{mcp\_selection}}
+\index{mcp\_selection@{mcp\_selection}!6. MCP23017 Driver@{6. MCP23017 Driver}}
+\doxysubsubsubsection{\texorpdfstring{mcp\_selection()}{mcp\_selection()}}
+{\footnotesize\ttfamily \label{group__drivers06_gae6acbfdd05b6bdd8877262ce03f77eeb} 
+\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*} mcp\+\_\+selection (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Get selection MCP23017 device context. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to selection MCP context, or NULL if not initialized. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers06_gae6acbfdd05b6bdd8877262ce03f77eeb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers06_ga8ce6b811dfb85d4ca1b02ed7e61b6079}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!mcp\_set\_direction@{mcp\_set\_direction}}
+\index{mcp\_set\_direction@{mcp\_set\_direction}!6. MCP23017 Driver@{6. MCP23017 Driver}}
+\doxysubsubsubsection{\texorpdfstring{mcp\_set\_direction()}{mcp\_set\_direction()}}
+{\footnotesize\ttfamily \label{group__drivers06_ga8ce6b811dfb85d4ca1b02ed7e61b6079} 
+void mcp\+\_\+set\+\_\+direction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{dev}{, }\item[{uint8\+\_\+t}]{pin}{, }\item[{uint8\+\_\+t}]{direction}{}\end{DoxyParamCaption})}
+
+
+
+Set pin direction (input/output). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dev} & Device context \\
+\hline
+{\em pin} & Pin number (0-\/7 = Port A, 8-\/15 = Port B) \\
+\hline
+{\em direction} & 0 = output, 1 = input\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Thread-\/safe (acquires device mutex). 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers06_ga8ce6b811dfb85d4ca1b02ed7e61b6079_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers06_ga0dfecc1e56ba649b3a89936c6206c9e2}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!mcp\_write\_mask@{mcp\_write\_mask}}
+\index{mcp\_write\_mask@{mcp\_write\_mask}!6. MCP23017 Driver@{6. MCP23017 Driver}}
+\doxysubsubsubsection{\texorpdfstring{mcp\_write\_mask()}{mcp\_write\_mask()}}
+{\footnotesize\ttfamily \label{group__drivers06_ga0dfecc1e56ba649b3a89936c6206c9e2} 
+bool mcp\+\_\+write\+\_\+mask (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{dev}{, }\item[{uint8\+\_\+t}]{port\+\_\+ab}{, }\item[{uint8\+\_\+t}]{mask}{, }\item[{uint8\+\_\+t}]{value\+\_\+bits}{}\end{DoxyParamCaption})}
+
+
+
+Atomic masked write to a port. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dev} & Device context \\
+\hline
+{\em port\+\_\+ab} & 0 = Port A, 1 = Port B \\
+\hline
+{\em mask} & Bits to modify (1 = modify, 0 = preserve) \\
+\hline
+{\em value\+\_\+bits} & New values for masked bits \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success, false on I2C failure.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Thread-\/safe (acquires device mutex). 
+
+Uses shadow register for atomicity. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers06_ga0dfecc1e56ba649b3a89936c6206c9e2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers06_ga0dfecc1e56ba649b3a89936c6206c9e2_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers06_ga8b8bc528b75e419262e7663ee669dc31}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!mcp\_write\_pin@{mcp\_write\_pin}}
+\index{mcp\_write\_pin@{mcp\_write\_pin}!6. MCP23017 Driver@{6. MCP23017 Driver}}
+\doxysubsubsubsection{\texorpdfstring{mcp\_write\_pin()}{mcp\_write\_pin()}}
+{\footnotesize\ttfamily \label{group__drivers06_ga8b8bc528b75e419262e7663ee669dc31} 
+bool mcp\+\_\+write\+\_\+pin (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{dev}{, }\item[{uint8\+\_\+t}]{pin}{, }\item[{uint8\+\_\+t}]{value}{}\end{DoxyParamCaption})}
+
+
+
+Write a logic level to a pin. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dev} & Device context \\
+\hline
+{\em pin} & Pin number (0-\/7 = Port A, 8-\/15 = Port B) \\
+\hline
+{\em value} & 0 = low, 1 = high \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success, false on I2C failure.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Thread-\/safe (acquires device mutex). 
+
+Uses shadow register to prevent torn read-\/modify-\/write. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers06_ga8b8bc528b75e419262e7663ee669dc31_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers06_ga8b8bc528b75e419262e7663ee669dc31_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers06_ga645c359c52df805555051e80c83fc495}\index{6. MCP23017 Driver@{6. MCP23017 Driver}!mcp\_write\_reg@{mcp\_write\_reg}}
+\index{mcp\_write\_reg@{mcp\_write\_reg}!6. MCP23017 Driver@{6. MCP23017 Driver}}
+\doxysubsubsubsection{\texorpdfstring{mcp\_write\_reg()}{mcp\_write\_reg()}}
+{\footnotesize\ttfamily \label{group__drivers06_ga645c359c52df805555051e80c83fc495} 
+bool mcp\+\_\+write\+\_\+reg (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{dev}{, }\item[{uint8\+\_\+t}]{reg}{, }\item[{uint8\+\_\+t}]{value}{}\end{DoxyParamCaption})}
+
+
+
+Write a value to an MCP23017 register. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dev} & Device context \\
+\hline
+{\em reg} & Register address \\
+\hline
+{\em value} & Value to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success, false on I2C failure.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Thread-\/safe (acquires device mutex). 
+
+Updates shadow registers if writing to OLATx. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers06_ga645c359c52df805555051e80c83fc495_cgraph}
+\end{center}
+\end{figure}

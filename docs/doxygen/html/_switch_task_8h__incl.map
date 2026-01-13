@@ -1,0 +1,11 @@
+<map id="src/Software/ENERGIS_RTOS/src/tasks/SwitchTask.h" name="src/Software/ENERGIS_RTOS/src/tasks/SwitchTask.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="85,5,290,48"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,96,80,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,51,80,90,77,86,149,46"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="104,96,168,123"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="177,50,154,84,150,81,172,47"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="193,96,287,123"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="203,47,226,81,221,84,199,50"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="311,96,368,123"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="228,46,304,86,301,91,226,51"/>
+</map>

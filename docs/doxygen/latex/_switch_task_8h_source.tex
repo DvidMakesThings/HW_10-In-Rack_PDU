@@ -1,0 +1,117 @@
+\doxysection{Switch\+Task.\+h}
+\hypertarget{_switch_task_8h_source}{}\label{_switch_task_8h_source}\index{src/Software/ENERGIS\_RTOS/src/tasks/SwitchTask.h@{src/Software/ENERGIS\_RTOS/src/tasks/SwitchTask.h}}
+\mbox{\hyperlink{_switch_task_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#ifndef\ ENERGIS\_SWITCHTASK\_H}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#define\ ENERGIS\_SWITCHTASK\_H}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#include\ "{}FreeRTOS.h"{}}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#include\ "{}task.h"{}}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{comment}{/*\ ====================\ Configuration\ Knobs\ ====================\ */}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#ifndef\ SWITCH\_MUTEX\_TIMEOUT\_MS}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#define\ SWITCH\_MUTEX\_TIMEOUT\_MS\ 1000}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#ifndef\ SWITCH\_TASK\_PERIOD\_MS}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#define\ SWITCH\_TASK\_PERIOD\_MS\ 100}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\#ifndef\ SWITCH\_HW\_SYNC\_INTERVAL\_MS}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#define\ SWITCH\_HW\_SYNC\_INTERVAL\_MS\ 5000}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\#ifndef\ SWITCH\_WAIT\_STORAGE\_READY\_MS}}
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\#define\ SWITCH\_WAIT\_STORAGE\_READY\_MS\ 5000}}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \textcolor{comment}{/*\ ====================\ Result\ Codes\ ====================\ */}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00176\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \mbox{\hyperlink{group__tasks11_gga64f3e0ad0f68b11e5283c8f9c6f551eaa10ab10cccbc4ac3476eb467136b3a89a}{SWITCH\_OK}}\ =\ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00178\ \ \ \ \ \mbox{\hyperlink{group__tasks11_gga64f3e0ad0f68b11e5283c8f9c6f551eaa9f43f3d7ffb8588931b42e6f2e220c33}{SWITCH\_ERR\_NOT\_INIT}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00179\ \ \ \ \ \mbox{\hyperlink{group__tasks11_gga64f3e0ad0f68b11e5283c8f9c6f551eaa5f6feca665c20c06c16a8988cb6959c3}{SWITCH\_ERR\_INVALID\_CHANNEL}},\ }
+\DoxyCodeLine{00180\ \ \ \ \ \mbox{\hyperlink{group__tasks11_gga64f3e0ad0f68b11e5283c8f9c6f551eaac54bcd219c8960421407b5cffaaf5c4f}{SWITCH\_ERR\_MUTEX\_TIMEOUT}},\ \ \ }
+\DoxyCodeLine{00181\ \ \ \ \ \mbox{\hyperlink{group__tasks11_gga64f3e0ad0f68b11e5283c8f9c6f551eaa1dcb4f0a00b7fff88f0ad1d794a67859}{SWITCH\_ERR\_I2C\_FAIL}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00182\ \ \ \ \ \mbox{\hyperlink{group__tasks11_gga64f3e0ad0f68b11e5283c8f9c6f551eaa44f56bfdb779201cde05b18399b981e0}{SWITCH\_ERR\_VERIFY\_FAIL}},\ \ \ \ \ }
+\DoxyCodeLine{00183\ \ \ \ \ \mbox{\hyperlink{group__tasks11_gga64f3e0ad0f68b11e5283c8f9c6f551eaa529829f25b105d17bc49b74a289224de}{SWITCH\_ERR\_OVERCURRENT}},\ \ \ \ \ }
+\DoxyCodeLine{00184\ \ \ \ \ \mbox{\hyperlink{group__tasks11_gga64f3e0ad0f68b11e5283c8f9c6f551eaa42877200b005671111e3a6fb0c5c0523}{SWITCH\_ERR\_NULL\_PARAM}}\ \ \ \ \ \ \ }
+\DoxyCodeLine{00185\ \}\ \mbox{\hyperlink{group__tasks11_ga64f3e0ad0f68b11e5283c8f9c6f551ea}{switch\_result\_t}};}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \textcolor{comment}{/*\ ====================\ Public\ API\ ====================\ */}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00204\ BaseType\_t\ \mbox{\hyperlink{group__tasks11_gadb05f16c80e367211f6a0bef7cedfc1f}{SwitchTask\_Init}}(\textcolor{keywordtype}{bool}\ enable);}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00212\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks11_gaadad543913d4fa9faefda9082b0b7c91}{Switch\_IsReady}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Synchronous\ State\ Reads\ (DETERMINISTIC)\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00229\ \mbox{\hyperlink{group__tasks11_ga64f3e0ad0f68b11e5283c8f9c6f551ea}{switch\_result\_t}}\ \mbox{\hyperlink{group__tasks11_ga84e3359029bd29e598f346dad2255899}{Switch\_GetState}}(uint8\_t\ channel,\ \textcolor{keywordtype}{bool}\ *out\_state);}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00243\ \mbox{\hyperlink{group__tasks11_ga64f3e0ad0f68b11e5283c8f9c6f551ea}{switch\_result\_t}}\ \mbox{\hyperlink{group__tasks11_ga622d027de675f1438882d66f24d6bdb7}{Switch\_GetAllStates}}(uint8\_t\ *out\_mask);}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Synchronous\ State\ Writes\ (DETERMINISTIC)\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00264\ \mbox{\hyperlink{group__tasks11_ga64f3e0ad0f68b11e5283c8f9c6f551ea}{switch\_result\_t}}\ \mbox{\hyperlink{group__tasks11_gabd8f13f37bd62b267259ae2d027bda28}{Switch\_SetChannel}}(uint8\_t\ channel,\ \textcolor{keywordtype}{bool}\ state);}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00276\ \mbox{\hyperlink{group__tasks11_ga64f3e0ad0f68b11e5283c8f9c6f551ea}{switch\_result\_t}}\ \mbox{\hyperlink{group__tasks11_ga0dc547344c666f64e755f89d09d8b5e4}{Switch\_Toggle}}(uint8\_t\ channel);}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00286\ \mbox{\hyperlink{group__tasks11_ga64f3e0ad0f68b11e5283c8f9c6f551ea}{switch\_result\_t}}\ \mbox{\hyperlink{group__tasks11_ga5d472b53fb4a91dee92b07282779b570}{Switch\_AllOn}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00296\ \mbox{\hyperlink{group__tasks11_ga64f3e0ad0f68b11e5283c8f9c6f551ea}{switch\_result\_t}}\ \mbox{\hyperlink{group__tasks11_ga6d7e4669c03c8bd5f6e47e4166627c2b}{Switch\_AllOff}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00308\ \mbox{\hyperlink{group__tasks11_ga64f3e0ad0f68b11e5283c8f9c6f551ea}{switch\_result\_t}}\ \mbox{\hyperlink{group__tasks11_gac03ed713c1c6d4402e28852482171290}{Switch\_SetMask}}(uint8\_t\ mask);}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Legacy\ API\ Wrappers\ (for\ backward\ compatibility)\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00320\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks11_ga19c6dbf15503e4ca3c985e5acd42c278}{Switch\_GetStateCompat}}(uint8\_t\ channel,\ \textcolor{keywordtype}{bool}\ *out\_state);}
+\DoxyCodeLine{00321\ }
+\DoxyCodeLine{00332\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks11_gaef7818ff67a4d2235b897909f9fe6744}{Switch\_SetChannelCompat}}(uint8\_t\ channel,\ \textcolor{keywordtype}{bool}\ state,\ uint32\_t\ timeout\_ms);}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00339\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks11_ga5668cd5c93cc64bb2d551bb9ab90d610}{Switch\_ToggleCompat}}(uint8\_t\ channel,\ uint32\_t\ timeout\_ms);}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00346\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks11_ga535deab4f947688ac90e48d7b6089f37}{Switch\_AllOnCompat}}(uint32\_t\ timeout\_ms);}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00353\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks11_gae3abe0a8fcbfd0f0f5659784f8529d0a}{Switch\_AllOffCompat}}(uint32\_t\ timeout\_ms);}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00360\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks11_gabb0de987436db6762211cd48049c73f5}{Switch\_SetMaskCompat}}(uint8\_t\ mask,\ uint32\_t\ timeout\_ms);}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ MUX\ Control\ (for\ HLW8032)\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00363\ }
+\DoxyCodeLine{00380\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks11_gaabc2d09a184f003994dc97e1f33ffea2}{Switch\_SetRelayPortBMasked}}(uint8\_t\ mask,\ uint8\_t\ value,\ uint32\_t\ timeout\_ms);}
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00382\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Selection\ LED\ Control\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00393\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks11_ga422f1d39bad24719818ed9a06ba7d8e7}{Switch\_SelectAllOff}}(uint32\_t\ timeout\_ms);}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00406\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks11_ga350ee69c82fbab2a27ec7bb3a723806f}{Switch\_SelectShow}}(uint8\_t\ index,\ \textcolor{keywordtype}{bool}\ on,\ uint32\_t\ timeout\_ms);}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00408\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Display\ LED\ Control\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00420\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks11_gaab4189cd5d61b2c583d85150b87147ad}{Switch\_SetFaultLed}}(\textcolor{keywordtype}{bool}\ state,\ uint32\_t\ timeout\_ms);}
+\DoxyCodeLine{00421\ }
+\DoxyCodeLine{00432\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks11_ga2777a225e3f0db8b4d227771b78a2532}{Switch\_SetPwrLed}}(\textcolor{keywordtype}{bool}\ state,\ uint32\_t\ timeout\_ms);}
+\DoxyCodeLine{00433\ }
+\DoxyCodeLine{00444\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks11_ga4531b6b0fc77db5d8d96d7ab477361ae}{Switch\_SetEthLed}}(\textcolor{keywordtype}{bool}\ state,\ uint32\_t\ timeout\_ms);}
+\DoxyCodeLine{00445\ }
+\DoxyCodeLine{00446\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Utility\ Functions\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00457\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks11_gabc5e948e23445e07eb03320a0c518c4f}{Switch\_SyncFromHardware}}(uint32\_t\ timeout\_ms);}
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00467\ uint8\_t\ \mbox{\hyperlink{group__tasks11_ga9f44ebe178dec92605d90260badab61a}{Switch\_GetCachedMask}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00468\ }
+\DoxyCodeLine{00469\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Front-\/Panel\ Manual\ Activity\ Gate\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00470\ }
+\DoxyCodeLine{00482\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__tasks11_gab96571983d5766b065d2f4452bd023f1}{Switch\_SetManualPanelActive}}(\textcolor{keywordtype}{bool}\ active);}
+\DoxyCodeLine{00483\ }
+\DoxyCodeLine{00484\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ ENERGIS\_SWITCHTASK\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00485\ }
+
+\end{DoxyCode}

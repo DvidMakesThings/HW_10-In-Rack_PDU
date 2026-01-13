@@ -1,0 +1,16 @@
+<map id="hlw8032_load_calibration" name="hlw8032_load_calibration">
+<area shape="rect" id="Node000001" title="Load calibration data from EEPROM for all channels." alt="" coords="5,56,172,83"/>
+<area shape="rect" id="Node000002" href="$group__storage01.html#gaa3b6f1341ad447d7f7f95d1be802b1e7" title="Read calibration record for single HLW8032 channel." alt="" coords="220,48,440,91"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,67,204,67,204,72,172,72"/>
+<area shape="rect" id="Node000003" href="$group__driver02.html#ga622a6736c8384f9e1921a1bda2a84df9" title="Read buffer from EEPROM." alt="" coords="488,31,652,57"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="440,55,472,52,473,57,441,60"/>
+<area shape="rect" id="Node000007" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="700,81,884,108"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="441,73,685,86,684,91,440,78"/>
+<area shape="rect" id="Node000004" href="$group__drivers05.html#ga66ae4c7028f764a3770cabe101dba8bf" title="Read from 16&#45;bit memory address: write [mem_hi, mem_lo] (no stop), then read len bytes." alt="" coords="718,31,866,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="652,41,702,41,702,47,652,47"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="633,55,716,75,715,80,631,61"/>
+<area shape="rect" id="Node000005" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="961,5,1082,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="866,33,945,24,945,30,867,38"/>
+<area shape="rect" id="Node000006" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="932,56,1111,83"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="867,50,917,55,916,60,866,55"/>
+</map>

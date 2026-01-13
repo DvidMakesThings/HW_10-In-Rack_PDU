@@ -1,0 +1,24 @@
+<map id="ButtonDrv_SelectShow" name="ButtonDrv_SelectShow">
+<area shape="rect" id="Node000001" title="Control visibility of a single channel selection LED." alt="" coords="932,81,1090,108"/>
+<area shape="rect" id="Node000002" href="$group__driver01.html#gaabe879a90d89fae52e5a45c07ce6134a" title="Move selection indicator one position left with wraparound." alt="" coords="734,5,880,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="962,77,883,47,851,35,853,30,885,41,964,73"/>
+<area shape="rect" id="Node000008" href="$group__driver01.html#ga900a33314d24546a18ef5db5a3db8a40" title="Move selection indicator one position right with wraparound." alt="" coords="729,56,884,83"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="916,86,884,82,885,76,917,80"/>
+<area shape="rect" id="Node000009" href="$_button_task_8c.html#a55d32bf8c265acac02fafc64c218564c" title="Process LED blink logic and window timeout." alt="" coords="756,107,857,133"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="917,109,858,116,857,111,917,104"/>
+<area shape="rect" id="Node000010" href="$_button_task_8c.html#ace0bf93e3b15940dda5cf9fb120c8273" title="Activate selection window and enable LED feedback." alt="" coords="756,157,857,184"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="964,117,885,148,853,159,851,154,883,143,962,112"/>
+<area shape="rect" id="Node000003" href="$_button_task_8c.html#ac8adec5c9e99b51c4884034cf2e41275" title="Main button scanning and event processing task." alt="" coords="587,81,681,108"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="746,40,730,46,659,83,657,78,728,42,744,35"/>
+<area shape="rect" id="Node000004" href="$group__tasks01.html#ga66ab3f6fa24432c008c6ea7b0ccddb5f" title="Initialize and start the button handling task." alt="" coords="426,81,539,108"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="571,97,539,97,539,92,571,92"/>
+<area shape="rect" id="Node000005" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,81,378,108"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="411,97,379,97,379,92,411,92"/>
+<area shape="rect" id="Node000006" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,81,263,108"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="295,97,263,97,263,92,295,92"/>
+<area shape="rect" id="Node000007" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,81,102,108"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="134,97,102,97,102,92,134,92"/>
+<area shape="poly" id="edge8_Node000008_Node000003" title=" " alt="" coords="714,86,682,90,681,85,713,80"/>
+<area shape="poly" id="edge10_Node000009_Node000003" title=" " alt="" coords="740,113,681,104,682,99,741,108"/>
+<area shape="poly" id="edge12_Node000010_Node000003" title=" " alt="" coords="744,154,728,148,657,111,659,106,730,143,746,149"/>
+</map>

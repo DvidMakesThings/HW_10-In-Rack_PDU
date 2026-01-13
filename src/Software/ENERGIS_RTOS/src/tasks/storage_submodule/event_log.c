@@ -77,32 +77,14 @@ static int EEPROM_AppendCodeGeneric(uint16_t base, uint16_t block_size, const ui
     return 0;
 }
 
-/**
- * @brief Write event log region to EEPROM.
- *
- * Used for bulk writes of event log data. First 2 bytes are ring buffer pointer.
- *
- * CRITICAL: Must be called with eepromMtx held!
- *
- * @param data Source buffer containing event log data
- * @param len Number of bytes to write
- * @return 0 on success, -1 on bounds check failure or I2C error
- */
+/** @brief Write event log region. See event_log.h. */
 int EEPROM_WriteEventLogs(const uint8_t *data, size_t len) {
     if (len > EEPROM_EVENT_ERR_SIZE)
         return -1;
     return CAT24C256_WriteBuffer(EEPROM_EVENT_ERR_START, data, (uint16_t)len);
 }
 
-/**
- * @brief Read event log region from EEPROM.
- *
- * CRITICAL: Must be called with eepromMtx held!
- *
- * @param data Destination buffer
- * @param len  Number of bytes to read
- * @return 0 on success, -1 on bounds check failure
- */
+/** @brief Read event log region from EEPROM. See event_log.h. */
 int EEPROM_ReadEventLogs(uint8_t *data, size_t len) {
     if (len > EEPROM_EVENT_ERR_SIZE)
         return -1;
@@ -110,34 +92,12 @@ int EEPROM_ReadEventLogs(uint8_t *data, size_t len) {
     return 0;
 }
 
-/**
- * @brief Append one error event code (16-bit) to the error log ring buffer.
- *
- * Uses the error log region defined by EEPROM_EVENT_ERR_START / EEPROM_EVENT_ERR_SIZE
- * and stores one 16-bit code per entry.
- *
- * CRITICAL: Must be called with eepromMtx held!
- *
- * @param entry Pointer to EVENT_LOG_ENTRY_SIZE bytes (uint16_t error code).
- *
- * @return 0 on success, -1 on I2C write error.
- */
+/** @brief Append error code to ring buffer. See event_log.h. */
 int EEPROM_AppendErrorCode(const uint8_t *entry) {
     return EEPROM_AppendCodeGeneric(EEPROM_EVENT_ERR_START, EEPROM_EVENT_ERR_SIZE, entry);
 }
 
-/**
- * @brief Append one warning event code (16-bit) to the warning log ring buffer.
- *
- * Uses the warning log region defined by EEPROM_EVENT_WARN_START / EEPROM_EVENT_WARN_SIZE
- * and stores one 16-bit code per entry.
- *
- * CRITICAL: Must be called with eepromMtx held!
- *
- * @param entry Pointer to EVENT_LOG_ENTRY_SIZE bytes (uint16_t warning code).
- *
- * @return 0 on success, -1 on I2C write error.
- */
+/** @brief Append warning code to ring buffer. See event_log.h. */
 int EEPROM_AppendWarningCode(const uint8_t *entry) {
     return EEPROM_AppendCodeGeneric(EEPROM_EVENT_WARN_START, EEPROM_EVENT_WARN_SIZE, entry);
 }

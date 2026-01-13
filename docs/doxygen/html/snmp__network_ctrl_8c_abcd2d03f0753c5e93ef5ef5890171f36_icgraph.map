@@ -1,0 +1,5 @@
+<map id="macfmt" name="macfmt">
+<area shape="rect" id="Node000001" title="Format MAC address as colon&#45;separated hexadecimal string." alt="" coords="176,5,241,32"/>
+<area shape="rect" id="Node000002" href="$group__snmp02.html#gadb6d8b45f5c3512e380ef7ef4f6d0353" title="SNMP getter for MAC address." alt="" coords="5,5,128,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,21,128,21,128,16,160,16"/>
+</map>

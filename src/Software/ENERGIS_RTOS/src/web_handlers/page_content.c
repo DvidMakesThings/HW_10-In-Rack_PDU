@@ -5,7 +5,10 @@
  * @version 1.0.0
  * @date 2025-11-07
  *
- * @details Stores HTML pages as const char arrays in flash memory.
+ * @details
+ * Implementation of HTML page content routing and storage management.
+ * Provides simple string matching to map HTTP request paths to flash-stored HTML content.
+ * Uses gzipped blobs for frequently accessed pages to reduce transfer size.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -207,64 +210,71 @@ const char automation_manual_html[] =
     "target=\"_blank\">here</a>.</p></div></div></body></html>\n";
 
 /**
- * @brief Gets the HTML content for a requested page
- * @param request The HTTP request line (e.g. "GET /control.html HTTP/1.1")
- * @return Pointer to the HTML content, or control.html as default
- * @note Routes HTTP requests to appropriate HTML page content
+ * @brief Route HTTP request to appropriate HTML page content.
+ * @see page_content.h for detailed documentation.
  */
 const char *get_page_content(const char *request) {
+    /* Route to settings page */
     if (strstr(request, "GET /settings.html"))
         return (const char *)settings_gz;
+
+    /* Route to help page */
     else if (strstr(request, "GET /help.html"))
-        /* Serve the gzipped help page directly from flash */
         return (const char *)help_gz;
+
+    /* Route to user manual iframe page */
     else if (strstr(request, "GET /user_manual.html"))
         return user_manual_html;
+
+    /* Route to automation manual iframe page */
     else if (strstr(request, "GET /automation_manual.html"))
         return automation_manual_html;
+
+    /* Route to control page or root */
     else if (strstr(request, "GET /control.html") || strstr(request, "GET /"))
         return (const char *)control_gz;
 
-    /* Default to control page */
+    /* Default fallback to control page */
     return (const char *)control_gz;
 }
 
 /**
- * @brief Gets the content length for a requested HTML page.
- *
- * @param request  HTTP request line (for example, "GET /help.html HTTP/1.1").
- * @param is_gzip  Optional output flag; set to 1 if the selected page is gzipped, 0 otherwise.
- *
- * @return Content length in bytes for the selected page.
- *
- * @details
- * - Uses strlen() for pages stored as standard C strings.
- * - Uses help_gz_len for the Help page, which is stored as a gzip-compressed blob.
- * - Falls back to the control page if the request does not match any known HTML endpoint.
+ * @brief Get content length and encoding for a requested HTML page.
+ * @see page_content.h for detailed documentation.
  */
 int get_page_length(const char *request, int *is_gzip) {
+    /* Default to plain HTML */
     if (is_gzip)
         *is_gzip = 0;
 
+    /* Settings page (gzipped) */
     if (strstr(request, "GET /settings.html")) {
         if (is_gzip)
             *is_gzip = 1;
         return (int)settings_gz_len;
-    } else if (strstr(request, "GET /help.html")) {
+    }
+    /* Help page (gzipped) */
+    else if (strstr(request, "GET /help.html")) {
         if (is_gzip)
             *is_gzip = 1;
-        /* Length of the gzipped help content (from help_gz.h) */
         return (int)help_gz_len;
-    } else if (strstr(request, "GET /user_manual.html")) {
+    }
+    /* User manual page (plain HTML) */
+    else if (strstr(request, "GET /user_manual.html")) {
         return (int)strlen(user_manual_html);
-    } else if (strstr(request, "GET /automation_manual.html")) {
+    }
+    /* Automation manual page (plain HTML) */
+    else if (strstr(request, "GET /automation_manual.html")) {
         return (int)strlen(automation_manual_html);
-    } else if (strstr(request, "GET /control.html") || strstr(request, "GET /")) {
+    }
+    /* Control page or root (gzipped) */
+    else if (strstr(request, "GET /control.html") || strstr(request, "GET /")) {
         if (is_gzip)
             *is_gzip = 1;
         return (int)control_gz_len;
     }
 
+    /* Default fallback to control page (gzipped) */
     if (is_gzip)
         *is_gzip = 1;
     return (int)control_gz_len;

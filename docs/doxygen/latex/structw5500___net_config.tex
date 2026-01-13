@@ -1,0 +1,75 @@
+\doxysection{w5500\+\_\+\+Net\+Config Struct Reference}
+\hypertarget{structw5500___net_config}{}\label{structw5500___net_config}\index{w5500\_NetConfig@{w5500\_NetConfig}}
+
+
+Network information structure.  
+
+
+
+
+{\ttfamily \#include $<$ethernet\+\_\+driver.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structw5500___net_config_aea0e42850071f8495a41d336ce61eaa4}{mac}} \mbox{[}6\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structw5500___net_config_a93d4a6f7f8439084527ffdb636bd5b38}{ip}} \mbox{[}4\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structw5500___net_config_a42a4c46a14272f5038c7322ee3fccfab}{sn}} \mbox{[}4\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structw5500___net_config_aa41a0b6e8b389f18bdaafde82a31783c}{gw}} \mbox{[}4\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structw5500___net_config_a01d33713a2de7b181563acf5625e2e7f}{dns}} \mbox{[}4\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structw5500___net_config_aae817f806148477eecde6d7088d0aa77}{dhcp}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Network information structure. 
+
+\label{doc-variable-members}
+\Hypertarget{structw5500___net_config_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structw5500___net_config_aae817f806148477eecde6d7088d0aa77}\index{w5500\_NetConfig@{w5500\_NetConfig}!dhcp@{dhcp}}
+\index{dhcp@{dhcp}!w5500\_NetConfig@{w5500\_NetConfig}}
+\doxysubsubsection{\texorpdfstring{dhcp}{dhcp}}
+{\footnotesize\ttfamily \label{structw5500___net_config_aae817f806148477eecde6d7088d0aa77} 
+uint8\+\_\+t w5500\+\_\+\+Net\+Config\+::dhcp}
+
+DHCP mode (0=static, 1=DHCP) \Hypertarget{structw5500___net_config_a01d33713a2de7b181563acf5625e2e7f}\index{w5500\_NetConfig@{w5500\_NetConfig}!dns@{dns}}
+\index{dns@{dns}!w5500\_NetConfig@{w5500\_NetConfig}}
+\doxysubsubsection{\texorpdfstring{dns}{dns}}
+{\footnotesize\ttfamily \label{structw5500___net_config_a01d33713a2de7b181563acf5625e2e7f} 
+uint8\+\_\+t w5500\+\_\+\+Net\+Config\+::dns\mbox{[}4\mbox{]}}
+
+DNS server address \Hypertarget{structw5500___net_config_aa41a0b6e8b389f18bdaafde82a31783c}\index{w5500\_NetConfig@{w5500\_NetConfig}!gw@{gw}}
+\index{gw@{gw}!w5500\_NetConfig@{w5500\_NetConfig}}
+\doxysubsubsection{\texorpdfstring{gw}{gw}}
+{\footnotesize\ttfamily \label{structw5500___net_config_aa41a0b6e8b389f18bdaafde82a31783c} 
+uint8\+\_\+t w5500\+\_\+\+Net\+Config\+::gw\mbox{[}4\mbox{]}}
+
+Gateway address \Hypertarget{structw5500___net_config_a93d4a6f7f8439084527ffdb636bd5b38}\index{w5500\_NetConfig@{w5500\_NetConfig}!ip@{ip}}
+\index{ip@{ip}!w5500\_NetConfig@{w5500\_NetConfig}}
+\doxysubsubsection{\texorpdfstring{ip}{ip}}
+{\footnotesize\ttfamily \label{structw5500___net_config_a93d4a6f7f8439084527ffdb636bd5b38} 
+uint8\+\_\+t w5500\+\_\+\+Net\+Config\+::ip\mbox{[}4\mbox{]}}
+
+IP address \Hypertarget{structw5500___net_config_aea0e42850071f8495a41d336ce61eaa4}\index{w5500\_NetConfig@{w5500\_NetConfig}!mac@{mac}}
+\index{mac@{mac}!w5500\_NetConfig@{w5500\_NetConfig}}
+\doxysubsubsection{\texorpdfstring{mac}{mac}}
+{\footnotesize\ttfamily \label{structw5500___net_config_aea0e42850071f8495a41d336ce61eaa4} 
+uint8\+\_\+t w5500\+\_\+\+Net\+Config\+::mac\mbox{[}6\mbox{]}}
+
+MAC address \Hypertarget{structw5500___net_config_a42a4c46a14272f5038c7322ee3fccfab}\index{w5500\_NetConfig@{w5500\_NetConfig}!sn@{sn}}
+\index{sn@{sn}!w5500\_NetConfig@{w5500\_NetConfig}}
+\doxysubsubsection{\texorpdfstring{sn}{sn}}
+{\footnotesize\ttfamily \label{structw5500___net_config_a42a4c46a14272f5038c7322ee3fccfab} 
+uint8\+\_\+t w5500\+\_\+\+Net\+Config\+::sn\mbox{[}4\mbox{]}}
+
+Subnet mask 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/drivers/\mbox{\hyperlink{ethernet__driver_8h}{ethernet\+\_\+driver.\+h}}\end{DoxyCompactItemize}

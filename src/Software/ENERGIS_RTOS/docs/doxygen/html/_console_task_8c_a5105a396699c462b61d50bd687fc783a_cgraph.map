@@ -1,0 +1,14 @@
+<map id="cmd_auto_cal_zero" name="cmd_auto_cal_zero">
+<area shape="rect" id="Node000001" title="Auto&#45;calibrate zero point (0V, 0A) for a single channel or ALL (async)." alt="" coords="5,109,140,136"/>
+<area shape="rect" id="Node000002" href="$group__drivers04.html#ga643d63b42087b4dd4b336571eb9b6d18" title="Start asynchronous zero calibration (0V/0A) for all channels." alt="" coords="212,5,347,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,107,187,58,200,52,202,57,189,62,98,111"/>
+<area shape="rect" id="Node000004" href="$group__drivers04.html#ga599fb8b7a58451f236d4e7807bb17078" title="Start asynchronous zero calibration (0V/0A) for a single channel." alt="" coords="212,72,347,115"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="140,111,196,102,197,108,140,116"/>
+<area shape="rect" id="Node000005" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="188,139,371,165"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="140,130,173,134,172,139,140,135"/>
+<area shape="rect" id="Node000006" href="$_console_task_8c.html#a561a6132ad4e7cd399313cfcf0ec4b05" title="Trim whitespace from both ends of string." alt="" coords="258,189,301,216"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="101,134,189,175,243,192,242,197,187,180,98,139"/>
+<area shape="rect" id="Node000003" href="$_h_l_w8032__driver_8c.html#acc3dced2405146bb247c8d852e88e56f" title="Reset sample accumulators for the current async calibration channel." alt="" coords="419,39,561,81"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="348,35,404,44,403,49,347,40"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="347,80,403,71,404,76,348,85"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="Helpers_EarlyBootSnapshot" name="Helpers_EarlyBootSnapshot">
+<area shape="rect" id="Node000001" title="Capture early boot reset snapshot into retained memory." alt="" coords="5,56,191,83"/>
+<area shape="rect" id="Node000002" href="$helpers_8c.html#add43331fd1dff608bcc6fdb69d099db6" title="Clear boot snapshot structure to zero." alt="" coords="246,5,404,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,53,247,33,248,39,162,58"/>
+<area shape="rect" id="Node000003" href="$helpers_8c.html#a07d51ad787e9d99a3a90ab70cf69337d" title="Copy watchdog scratch registers to destination buffer." alt="" coords="239,56,411,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="191,67,223,67,223,72,191,72"/>
+<area shape="rect" id="Node000004" href="$helpers_8c.html#ae691976c69cc3e362923ae7d95664327" title="Read platform reset reason bits from hardware." alt="" coords="245,107,404,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="162,81,248,100,247,105,161,86"/>
+</map>

@@ -1,0 +1,72 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\+Health\+Task.h File Reference}
+\hypertarget{_health_task_8h}{}\label{_health_task_8h}\index{src/Software/ENERGIS\_RTOS/src/tasks/HealthTask.h@{src/Software/ENERGIS\_RTOS/src/tasks/HealthTask.h}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for Health\+Task.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_health_task_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_health_task_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{Indent}\textbf{ Heartbeat Periods}\par
+{\em Expected task heartbeat cadence in milliseconds.
+
+These values guide Health\+Task diagnostics and liveness expectations. Tasks should call {\ttfamily \doxylink{group__tasks03_ga4f7298bb6ff71177639ba837e4068eb1}{Health\+\_\+\+Heartbeat()}} at least as frequently as their period, and always within the liveness window controlled by {\ttfamily HEALTH\+\_\+\+SILENCE\+\_\+\+MS}. }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__tasks03_ga352cfd94e52834b67e71cd2fc05ad110}{LOGTASKBEAT\+\_\+\+MS}}~500
+\item 
+\#define \mbox{\hyperlink{group__tasks03_ga3abc449bfc85b9dd8af4ef1c93700df8}{NETTASKBEAT\+\_\+\+MS}}~500
+\item 
+\#define \mbox{\hyperlink{group__tasks03_ga8ecfc2902821e413c6e5b938ce437fd8}{METERTASKBEAT\+\_\+\+MS}}~500
+\item 
+\#define \mbox{\hyperlink{group__tasks03_ga6989b1e01404fb3e9bdb2808c1fc8512}{STORAGETASKBEAT\+\_\+\+MS}}~500
+\item 
+\#define \mbox{\hyperlink{group__tasks03_ga287201e77e05385d6004d9578c769efa}{BUTTONTASKBEAT\+\_\+\+MS}}~500
+\item 
+\#define \mbox{\hyperlink{group__tasks03_gae8dac68e8910f4f878870bf414ecd958}{CONSOLETASKBEAT\+\_\+\+MS}}~500
+\item 
+\#define \mbox{\hyperlink{group__tasks03_ga482b8f55dae942a91b38b60b38683069}{SWITCHTASKBEAT\+\_\+\+MS}}~500
+\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__tasks03_ga85cb9e0b43d35bed4ce045a22086c2b0}{health\+\_\+id\+\_\+t}} \{ \newline
+\mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a051e8be4fb238dd58b9221e976987d75}{HEALTH\+\_\+\+ID\+\_\+\+LOGGER}} = 0
+, \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0ad37f44c33ad392b2b3daf0be960c69f7}{HEALTH\+\_\+\+ID\+\_\+\+CONSOLE}} = 1
+, \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a015d1fa647ab3cefab7537a5f91d24b2}{HEALTH\+\_\+\+ID\+\_\+\+STORAGE}} = 2
+, \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0aec9e0ebdf114b54ffaefe5ac0dfe4f42}{HEALTH\+\_\+\+ID\+\_\+\+BUTTON}} = 3
+, \newline
+\mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0adc8e549fa3ff902b411cb02ea9f57c14}{HEALTH\+\_\+\+ID\+\_\+\+SWITCH}} = 4
+, \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a561a36766da3f788952f9183b07ad21d}{HEALTH\+\_\+\+ID\+\_\+\+NET}} = 5
+, \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a2cea86f90ff8e96b63128b6591e9f50c}{HEALTH\+\_\+\+ID\+\_\+\+METER}} = 6
+, \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a8a4e0fbdeb7262156a215b8c0df390b6}{HEALTH\+\_\+\+ID\+\_\+\+MAX}} = 16
+ \}
+\begin{DoxyCompactList}\small\item\em Stable heartbeat IDs for tasks supervised by {\ttfamily Health\+Task}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__tasks03_gaaa57b8a364b1e80fdbcbd231b80ee70d}{Health\+Task\+\_\+\+Start}} (void)
+\begin{DoxyCompactList}\small\item\em Start the {\ttfamily Health\+Task} (idempotent). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks03_ga39ec0ac355c1ecd9f7b42602beceaab9}{Health\+\_\+\+Register\+Task}} (\mbox{\hyperlink{group__tasks03_ga85cb9e0b43d35bed4ce045a22086c2b0}{health\+\_\+id\+\_\+t}} id, Task\+Handle\+\_\+t h, const char \texorpdfstring{$\ast$}{*}name)
+\begin{DoxyCompactList}\small\item\em Register a task handle and human-\/readable name for diagnostics. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks03_ga4f7298bb6ff71177639ba837e4068eb1}{Health\+\_\+\+Heartbeat}} (\mbox{\hyperlink{group__tasks03_ga85cb9e0b43d35bed4ce045a22086c2b0}{health\+\_\+id\+\_\+t}} id)
+\begin{DoxyCompactList}\small\item\em Mark a task as alive (heartbeat). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks03_ga5b404de66522546aae096a94abd6d5fc}{Health\+\_\+\+Record\+Blocked}} (const char \texorpdfstring{$\ast$}{*}tag, uint32\+\_\+t waited\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Record a long blocking event for later diagnostics. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks03_ga2cceff60fca1f201d5d60588aff53bbc}{Health\+\_\+\+Reboot\+Now}} (const char \texorpdfstring{$\ast$}{*}reason)
+\begin{DoxyCompactList}\small\item\em Immediate, Health-\/owned reboot with context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

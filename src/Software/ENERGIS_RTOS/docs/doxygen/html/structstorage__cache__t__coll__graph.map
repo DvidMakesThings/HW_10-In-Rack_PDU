@@ -1,0 +1,9 @@
+<map id="storage_cache_t" name="storage_cache_t">
+<area shape="rect" id="Node000001" title="RAM cache structure (owned by StorageTask)" alt="" coords="106,104,223,131"/>
+<area shape="rect" id="Node000002" href="$structnetwork_info.html" title="Network configuration data structure for EEPROM storage." alt="" coords="5,5,95,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="71,42,107,78,142,101,139,106,104,82,67,46"/>
+<area shape="rect" id="Node000003" href="$structuser_pref_info.html" title="User preferences data structure for device identification and display settings." alt="" coords="118,5,211,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="167,48,167,104,162,104,162,48"/>
+<area shape="rect" id="Node000004" href="$structhlw__calib__t.html" title="Per&#45;channel calibration parameters for HLW8032 power meter IC." alt="" coords="235,5,321,32"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="271,48,261,66,248,82,229,96,208,106,206,101,226,91,244,78,257,63,266,45"/>
+</map>

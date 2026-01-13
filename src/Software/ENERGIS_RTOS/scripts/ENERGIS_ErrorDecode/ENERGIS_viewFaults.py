@@ -267,7 +267,7 @@ class EnergisLogViewerUART(ctk.CTk):
             self.status_label.configure(text=f"Config error: {e}")
             return
 
-        self.status_label.configure(text=f"Opening {port} @ {baud} for {label} log…")
+        self.status_label.configure(text=f"Opening {port} @ {baud} for {label} log...")
         self.update_idletasks()
 
         try:

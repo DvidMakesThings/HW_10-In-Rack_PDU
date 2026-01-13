@@ -1,0 +1,4 @@
+<map id="Protocol Support Flags" name="Protocol Support Flags">
+<area shape="rect" id="Node000001" title="Enable/disable protocol features." alt="" coords="265,5,419,32"/>
+<area shape="rect" id="Node000002" href="$group__config02.html" title="Centralized configuration parameters for W5500 Ethernet controller." alt="" coords="5,5,217,32"/>
+</map>

@@ -244,7 +244,7 @@ static bool net_reinit_from_cache(void) {
     /* Reapply stored network configuration */
     if (!ethernet_apply_network_from_storage(&s_net_cfg)) {
 #if ERRORLOGGER
-        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_WARNING, ERR_FID_NETTASK, 0x1);
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_WARNING, ERR_FID_NETTASK, 0x8);
         WARNING_PRINT_CODE(errorcode, "%s W5500 reinit from cached config failed\r\n",
                            NET_TASK_TAG);
         Storage_EnqueueWarningCode(errorcode);
@@ -311,7 +311,7 @@ static void NetTask_Function(void *pvParameters) {
 
         /* Fallback: use defaults directly from StorageTask helper */
         s_net_cfg = LoadUserNetworkConfig();
-        errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_WARNING, ERR_FID_NETTASK, 0x4);
+        errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_WARNING, ERR_FID_NETTASK, 0x9);
         WARNING_PRINT_CODE(errorcode, "%s using fallback network defaults\r\n", NET_TASK_TAG);
         Storage_EnqueueWarningCode(errorcode);
     }
@@ -491,14 +491,15 @@ static void NetTask_Function(void *pvParameters) {
 /* ##################################################################### */
 
 /**
- * @brief Initialize and start the network task.
+ * @brief Create and start the Network Task with a deterministic enable gate.
  *
- * @param enable If false, NetTask is not created but the call returns pdPASS.
- * @return pdPASS on successful task creation or when disabled, error code otherwise.
+ * See nettask.h for full API documentation.
  *
- * @details
- * Performs a deterministic gate on StorageTask readiness, then creates the
- * NetTask FreeRTOS task. The internal READY flag is updated only on success.
+ * Implementation notes:
+ * - Waits up to 5 seconds for StorageTask readiness before proceeding
+ * - Spawns task with 4KB stack at NETTASK_PRIORITY
+ * - Task internally handles configuration loading and service startup
+ * - Logs error code if task creation fails
  */
 BaseType_t NetTask_Init(bool enable) {
     /* TU-local READY flag accessor (no file-scope globals added). */

@@ -1,0 +1,1202 @@
+\doxysubsubsection{Overcurrent Protection Thresholds }
+\hypertarget{group__overcurrent__thresholds}{}\label{group__overcurrent__thresholds}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+
+
+Fixed threshold offsets for overcurrent state machine.  
+
+
+Collaboration diagram for Overcurrent Protection Thresholds\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__overcurrent__thresholds}
+\end{center}
+\end{figure}
+\doxysubsubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga3653e6904b473d527f48e6b9cc39653e}{ENERGIS\+\_\+\+CURRENT\+\_\+\+SAFETY\+\_\+\+MARGIN\+\_\+A}}~0.\+5f
+\begin{DoxyCompactList}\small\item\em Safety threshold margin in amperes. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga2ccef42c801941f2ddc6486d07c6b1b2}{ENERGIS\+\_\+\+CURRENT\+\_\+\+WARNING\+\_\+\+OFFSET\+\_\+A}}~1.\+0f
+\begin{DoxyCompactList}\small\item\em Warning threshold offset in amperes. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gab4c7b8b9c972626cd13e1308447d3cb5}{ENERGIS\+\_\+\+CURRENT\+\_\+\+RECOVERY\+\_\+\+OFFSET\+\_\+A}}~1.\+5f
+\begin{DoxyCompactList}\small\item\em Recovery hysteresis offset in amperes. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga1c6b0e0bdbb8d14a494a629fdf871511}{SWVERSION}}~\mbox{\hyperlink{group__config01_gaa14dc39d52ab121ceb570f1a265385e0}{FIRMWARE\+\_\+\+VERSION}}
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gac82504751eea500ec7332a5206f8c669}{SW\+\_\+\+REV}}~\mbox{\hyperlink{group__config01_ga97f713d703f40938e4e87f331757b7b3}{FIRMWARE\+\_\+\+VERSION\+\_\+\+LITERAL}}
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga558edc8a19bd5871a574872c8099cd10}{HW\+\_\+\+REV}}~\mbox{\hyperlink{group__config01_ga5bc6a8d3eec56bfb3c3c0b0ab0fe8aad}{HARDWARE\+\_\+\+VERSION\+\_\+\+LITERAL}}
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gabab87e4c9b1cea63570eda6d54bba8cc}{DEFAULT\+\_\+\+NAME}}~"{}ENERGIS-\/"{} FIRMWARE\+\_\+\+VERSION
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gab868d07879546e97e34453f1f75debd9}{DEFAULT\+\_\+\+LOCATION}}~"{}Location"{}
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gae3ef7bba113f663df6996f286b632a3f}{EEPROM\+\_\+\+SIZE}}~0x8000
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gac1e4df19245721f15e4cf404033b9633}{LOGGER\+\_\+\+STACK\+\_\+\+SIZE}}~1024
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga5f02c4dbd548f74401d5d09b00dae897}{LOGGER\+\_\+\+QUEUE\+\_\+\+LEN}}~64
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga862c89f441ad8b4a6c2249b0ef3effe7}{LOGGER\+\_\+\+MSG\+\_\+\+MAX}}~128
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gac097e2fea691f7e50324af8a83c4b07a}{ENERGIS\+\_\+\+DEFAULT\+\_\+\+DHCP}}~\mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_a03435e30aa792ac723256d9fa67a4df2}{EEPROM\+\_\+\+NETINFO\+\_\+\+STATIC}}
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gad4ab0b5ac1cc8d56727819ffac591b01}{ENERGIS\+\_\+\+MAC\+\_\+\+PREFIX0}}~0x02 /\texorpdfstring{$\ast$}{*} local, unicast \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga33efce3c4b7f9e54502a8cf36347e52b}{ENERGIS\+\_\+\+MAC\+\_\+\+PREFIX1}}~0x45 /\texorpdfstring{$\ast$}{*} \textquotesingle{}E\textquotesingle{} \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga477e07b1acbe20a58ee159649e2d4b60}{ENERGIS\+\_\+\+MAC\+\_\+\+PREFIX2}}~0x4E /\texorpdfstring{$\ast$}{*} \textquotesingle{}N\textquotesingle{} \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gad72dbcf6d0153db1b8d8a58001feed83}{DEBUG}}~0
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga7eed3ea9c85c79cf7a62b6faf1dd2cdc}{DEBUG\+\_\+\+HEALTH}}~0
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gae1103fea1e1b3c41ca3322d5389f7162}{INFO}}~1
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga629d0e49cb4176aa31aabd84d5541253}{INFO\+\_\+\+HEALTH}}~0
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga076f3299d13ae5c18dea4f8eb44d6a4b}{PLOT\+\_\+\+EN}}~0
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gaed8f45c318478c8caba81d153b4e64c6}{NETLOG}}~0
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga8897411e308a7cb568cdc18c4568e90a}{UART\+\_\+\+IFACE}}~1
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga8fe83ac76edc595f6b98cd4a4127aed5}{ERROR}}~1
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga5cb439d9f933fde4cf23caa370c030e7}{WARNING}}~1
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga88edd2aa4feabff4af21a997d5d8aa23}{DEBUG\+\_\+\+PRINT}}(...)
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga19a89fc053d98cd7b3181d57ae2bebb3}{DEBUG\+\_\+\+PRINT\+\_\+\+HEALTH}}(...)
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gaa8dde0ba8fe0b3eafdceed02442176b1}{HEALTH\+\_\+\+INFO}}(...)
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gabe2194229f4d20b5a2e5a97be7ffbf06}{INFO\+\_\+\+PRINT}}(...)
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gae1cb3e9a56747aa0a7e58b387628c8db}{ERROR\+\_\+\+PRINT}}(...)
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gaccfb184894a0f62420dfcca5cc2a7ce5}{ERROR\+\_\+\+PRINT\+\_\+\+DEBUG}}(...)
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga09754ff78ee34858d9f269c5ca9c054b}{WARNING\+\_\+\+PRINT}}(...)
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga3784a175008722dca2ee1812412aaafb}{PLOT}}(...)
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga042950eb26c1c2e07251b031c231656f}{NETLOG\+\_\+\+PRINT}}(...)
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga2aaea8561b2fb9a7cb0b5c4b01078d66}{ECHO}}(...)
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga0370de2a226ec75dd11d53d0915a7754}{I2\+C0\+\_\+\+SPEED}}~400000
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga9ac9774a35604eba5f18f572fe756cc5}{I2\+C1\+\_\+\+SPEED}}~400000
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga0cd00a4152e739294a3ba0384ad1d110}{EEPROM\+\_\+\+I2C}}~i2c1
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga5a6f21365f28293461ab6198f0eb34c5}{MCP23017\+\_\+\+RELAY\+\_\+\+I2C}}~i2c1
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga4adb63fef85486f8f0348a53a45f7086}{MCP23017\+\_\+\+DISPLAY\+\_\+\+I2C}}~i2c0
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga4aee9feb4f32a6abb6a8b997424d62b1}{MCP23017\+\_\+\+SELECTION\+\_\+\+I2C}}~\mbox{\hyperlink{group__overcurrent__thresholds_ga4adb63fef85486f8f0348a53a45f7086}{MCP23017\+\_\+\+DISPLAY\+\_\+\+I2C}}
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga9cee1f4c5994e7e3713883aae0447f52}{SPI\+\_\+\+SPEED\+\_\+\+W5500}}~40000000
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga0210d85f75d02bdec08c024691be4104}{W5500\+\_\+\+SPI\+\_\+\+INSTANCE}}~spi0
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga1de69c73f829a03f46f5e7690da7e79a}{UART\+\_\+\+ID}}~uart1
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gad4455691936f92fdd6c37566fc58ba1f}{BAUD\+\_\+\+RATE}}~115200
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga1b6bc740105f5f5d9671b25322d3e741}{UART\+\_\+\+CMD\+\_\+\+BUF\+\_\+\+LEN}}~1024
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga3a248277dc57379287ff8fece8678de3}{UART\+\_\+\+MAX\+\_\+\+LINES}}~4
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga3502da0ae6d9514d5b103c3407d7ac30}{HLW8032\+\_\+\+UART\+\_\+\+ID}}~uart0
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gaf89cfc0d8c6d03ab2344e999c899c45d}{HLW8032\+\_\+\+BAUDRATE}}~4800
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gada5ed028f3ce7bdfbe8fe23827b9b493}{HLW8032\+\_\+\+FRAME\+\_\+\+LENGTH}}~24
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gae5597ce31d23d11493e6e674fe257d73}{NUM\+\_\+\+CHANNELS}}~8
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gaf2c6386baa1a79953f60c8b30a798ae6}{POLL\+\_\+\+INTERVAL\+\_\+\+MS}}~6000u
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga958fb8696c4c5444563865c39d1315e3}{TX\+\_\+\+CH1}}~0
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga481fe705b13be50414c6b4c934a883c2}{TX\+\_\+\+CH2}}~1
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gabbc46515daaf466f749f9b696c92bfd1}{TX\+\_\+\+CH3}}~2
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gadebf7a6a1c01cd70fe20f388261edffe}{TX\+\_\+\+CH4}}~3
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga213a2780c8c6f19185ab686b857935ed}{TX\+\_\+\+CH5}}~4
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gafba8a93ab27f197808a672641592a017}{TX\+\_\+\+CH6}}~5
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gaab2d4c5e8863ca76ddb94152460c5fca}{TX\+\_\+\+CH7}}~6
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga5b925dba6f78d32d0f0e5e6eaf6b152b}{TX\+\_\+\+CH8}}~7
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gaf61292b0e5c5bc4c19bb36503148aa34}{VREG\+\_\+\+BASE}}~0x40064000
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gad53c32a59d155fb627161aa156c4f6f3}{VREG\+\_\+\+VSEL\+\_\+\+MASK}}~0x7
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gae9deeb1486fb1892e37b175810d23f1d}{UART0\+\_\+\+RX}}~0
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga0a573eb024fbcf113feed4ce51dd3f64}{UART0\+\_\+\+TX}}~1
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga8c91f3240413d91d202e16fdcb47614e}{I2\+C1\+\_\+\+SDA}}~2
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga89fa4656e988e929608905e5de142558}{I2\+C1\+\_\+\+SCL}}~3
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gaf530325ce28cf25ce89308fbd9ac8c16}{I2\+C0\+\_\+\+SDA}}~4
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga69f255245dd74fb6785ca39656cf9983}{I2\+C0\+\_\+\+SCL}}~5
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga46027cd97ff756e5ddadcc10811b5699}{GPIO6}}~6
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga3820cacb614277004870fc37b33ad084}{GPIO7}}~7
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gaa951be0ce26f788049a86e407a70ae20}{GPIO8}}~8
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gae2a4c4d28729daf18e1923a1878e7352}{GPIO9}}~9
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gae285b2475841ecb1ac23d8511b360d0e}{GPIO10}}~10
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gac376b1c124378935df7b3c171b2bef35}{GPIO11}}~11
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga51ca76d1508339b071a974798b90474b}{KEY\+\_\+0}}~12
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga5a7fd35018971faa28dacd3e33a8f737}{KEY\+\_\+1}}~13
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga3a146cb397d373be978dfa9fd1dc9b3a}{KEY\+\_\+2}}~14
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga701a135e841c3cfb69d9c5bb1444e198}{KEY\+\_\+3}}~15
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gad097d8cb562086a6dbd54685c05f7040}{BUT\+\_\+\+PLUS}}~\mbox{\hyperlink{group__overcurrent__thresholds_ga5a7fd35018971faa28dacd3e33a8f737}{KEY\+\_\+1}}
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga73d72e531cfc3a03ad4a3f1f14d41f08}{BUT\+\_\+\+MINUS}}~\mbox{\hyperlink{group__overcurrent__thresholds_ga51ca76d1508339b071a974798b90474b}{KEY\+\_\+0}}
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gaba462a7ac5bc63e61d5e1437494fcedd}{BUT\+\_\+\+SET}}~\mbox{\hyperlink{group__overcurrent__thresholds_ga3a146cb397d373be978dfa9fd1dc9b3a}{KEY\+\_\+2}}
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gaa6576692855459ea98b84dd13d76f48b}{BUT\+\_\+\+PWR}}~\mbox{\hyperlink{group__overcurrent__thresholds_ga701a135e841c3cfb69d9c5bb1444e198}{KEY\+\_\+3}}
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga5907c71e474d5acceab5bb8dc93f99d7}{W5500\+\_\+\+MISO}}~16
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gadb086b4754ce7859d847860d5e327910}{W5500\+\_\+\+CS}}~17
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gaac8047e48a180391f5b8022799f11905}{W5500\+\_\+\+SCK}}~18
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga28154e97dec70bb3db383840bd913b9f}{W5500\+\_\+\+MOSI}}~19
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga5df3a6d20f52bf5f7b67601f0bbd30c3}{W5500\+\_\+\+RESET}}~20
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga067bb8b34e47239e6dfb86070fb54ecb}{W5500\+\_\+\+INT}}~21
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga29a8a94bafabfbdbe6b1bae0c15fa3da}{FAN\+\_\+\+CTRL}}~22
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gadcd7af491941e03bf6d54a09ab9a390e}{MCP\+\_\+\+MB\+\_\+\+RST}}~23
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gab72f354a5f2dcc38ed852ee70c1bbd70}{MCP\+\_\+\+DP\+\_\+\+RST}}~24
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gab12f1e360fe2273935fbd69b28fe4f82}{VREG\+\_\+\+EN}}~25
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gaef6e5978a66d7d0a77c65736c0de506e}{ADC\+\_\+\+VUSB}}~26
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga1fa2460e32327ade49189c95740bc1b5}{NC}}~27
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga3179f49f0220a6faea006f0dc4ba715c}{PROC\+\_\+\+LED}}~28
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga5553d0bb9eed10964f5dc6ddb16d1146}{ADC\+\_\+12\+V\+\_\+\+MEA}}~29
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga5a03d0b939a8dda552c9fe3319a82485}{ADC\+\_\+\+VREF}}~3.\+0f
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga555a695bf58df062dc03f0e892d95cd7}{ADC\+\_\+\+MAX}}~4096.\+0f
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gaeb9e33b42cde41bab8dfb7ebc878dcf5}{ADC\+\_\+\+TOL}}~1.\+005f
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga212623e5cc026b073891cab19f37a17c}{V\+\_\+\+USB}}~0
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gac227d1627b40c666f9da297701968211}{V\+\_\+\+SUPPLY}}~3
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga16433c75f0d3615fe60d59ec8a86834a}{TEMP\+\_\+\+SENSOR}}~4
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga38be4881016a89385f3e5f2b5c40d858}{VBUS\+\_\+\+DIVIDER}}~2.\+0f
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gae91027bc7d5344bb984a6220edddf427}{SUPPLY\+\_\+\+DIVIDER}}~11.\+0f
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gadcf3fe8bff4208f0b35c5d93aa1dd28f}{MCP\+\_\+\+RELAY\+\_\+\+ADDR}}~0x20
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga00a85d4f690158a60f684acd72c9fb67}{REL\+\_\+0}}~0
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga01ee714da422793f00c963701ff407b4}{REL\+\_\+1}}~1
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga72ebd683e5f5010a186f54c7640ac01c}{REL\+\_\+2}}~2
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga520a75718aa638012006af2ae88105ab}{REL\+\_\+3}}~3
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga73e2f07fd5e8026bfbf9c2471f9ee9b4}{REL\+\_\+4}}~4
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga73ce44890ee273df22f151769145da50}{REL\+\_\+5}}~5
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga4b275642a0e8fcfe64fe15ae5f807d45}{REL\+\_\+6}}~6
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga6dc706ddbaf39a8faad3032bf77fff32}{REL\+\_\+7}}~7
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga48f798d3d618de58b4c1e3c32258f555}{MUX\+\_\+A}}~8
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gaf4420ad5732937ebdf4da15904d9d7de}{MUX\+\_\+B}}~9
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gad3e0ebce7995ef8856096479ff0d2b8d}{MUX\+\_\+C}}~10
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gab2d3b07f5252d56b264c3ee32731b7e8}{MUX\+\_\+\+EN}}~11
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga0ebc84791aae3c7622d0232204ed597d}{MCP\+\_\+\+DISPLAY\+\_\+\+ADDR}}~0x21
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga69935f16da7c62437bf70a37e61c3be4}{OUT\+\_\+1}}~0
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gac5f4137d1a55c77759edf878353cbdd9}{OUT\+\_\+2}}~1
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gafb490d9c8efe9dd227e08f0275bd1bb7}{OUT\+\_\+3}}~2
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga6b0abcb040de7e8005a407aa43ecc08a}{OUT\+\_\+4}}~3
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga7b74146b1f5a437784cfc11b4fb7cd7a}{OUT\+\_\+5}}~4
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gabb0747b330b4f84daac7493eab49f8ee}{OUT\+\_\+6}}~5
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga9cbf44b88ea99d5443972a8a869e89b9}{OUT\+\_\+7}}~6
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga64c6664b96aef0d32e10fc4288e3e820}{OUT\+\_\+8}}~7
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga66f1754cc817ac88bb3348c50c56974f}{FAULT\+\_\+\+LED}}~8
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga30ae11d10d38d076e0f8dbbd933b109b}{ETH\+\_\+\+LED}}~9
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga2fd7963d35da0d1136af4cbe95ac5d80}{PWR\+\_\+\+LED}}~10
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gaf436220ed6c0b112069da734d38b95d4}{MCP\+\_\+\+SELECTION\+\_\+\+ADDR}}~0x23
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gaa8884671a723fc65c0c92dbfb79e262f}{SEL\+\_\+1}}~0
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gaa435e437c364d6527d9b2850470c2477}{SEL\+\_\+2}}~1
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga15cc798cabb537c34754fb482b624a7e}{SEL\+\_\+3}}~2
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_gacef8283fa4643289e972fc72e294bb7a}{SEL\+\_\+4}}~3
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga7794477e9351b42104dc4379dbd2e5a8}{SEL\+\_\+5}}~4
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga7e63209b96a138a0932da92324ff9504}{SEL\+\_\+6}}~5
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga2490ce9c46d7569b70a584f19c3178c6}{SEL\+\_\+7}}~6
+\item 
+\#define \mbox{\hyperlink{group__overcurrent__thresholds_ga71bc11d3ac1b35bda99ff7c12416c674}{SEL\+\_\+8}}~7
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+Fixed threshold offsets for overcurrent state machine. 
+
+These thresholds are fixed offsets applied to the regional current limit. The actual limit (10A EU / 15A US) is determined at runtime from EEPROM.
+
+State Machine\+:
+\begin{DoxyItemize}
+\item NORMAL\+: Current \texorpdfstring{$<$}{<} (LIMIT -\/ WARNING\+\_\+\+OFFSET)
+\item WARNING\+: Current \texorpdfstring{$>$}{>}= (LIMIT -\/ WARNING\+\_\+\+OFFSET)
+\item CRITICAL\+: Current \texorpdfstring{$>$}{>}= (LIMIT -\/ SAFETY\+\_\+\+MARGIN)
+\item LOCKOUT\+: Trip executed, switching disabled
+\item RECOVERY\+: Current \texorpdfstring{$<$}{<} (LIMIT -\/ RECOVERY\+\_\+\+OFFSET) 
+\end{DoxyItemize}
+
+\label{doc-define-members}
+\Hypertarget{group__overcurrent__thresholds_doc-define-members}
+\doxysubsubsubsection{Macro Definition Documentation}
+\Hypertarget{group__overcurrent__thresholds_ga5553d0bb9eed10964f5dc6ddb16d1146}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!ADC\_12V\_MEA@{ADC\_12V\_MEA}}
+\index{ADC\_12V\_MEA@{ADC\_12V\_MEA}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{ADC\_12V\_MEA}{ADC\_12V\_MEA}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga5553d0bb9eed10964f5dc6ddb16d1146} 
+\#define ADC\+\_\+12\+V\+\_\+\+MEA~29}
+
+\Hypertarget{group__overcurrent__thresholds_ga555a695bf58df062dc03f0e892d95cd7}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!ADC\_MAX@{ADC\_MAX}}
+\index{ADC\_MAX@{ADC\_MAX}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{ADC\_MAX}{ADC\_MAX}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga555a695bf58df062dc03f0e892d95cd7} 
+\#define ADC\+\_\+\+MAX~4096.\+0f}
+
+\Hypertarget{group__overcurrent__thresholds_gaeb9e33b42cde41bab8dfb7ebc878dcf5}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!ADC\_TOL@{ADC\_TOL}}
+\index{ADC\_TOL@{ADC\_TOL}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{ADC\_TOL}{ADC\_TOL}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gaeb9e33b42cde41bab8dfb7ebc878dcf5} 
+\#define ADC\+\_\+\+TOL~1.\+005f}
+
+\Hypertarget{group__overcurrent__thresholds_ga5a03d0b939a8dda552c9fe3319a82485}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!ADC\_VREF@{ADC\_VREF}}
+\index{ADC\_VREF@{ADC\_VREF}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{ADC\_VREF}{ADC\_VREF}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga5a03d0b939a8dda552c9fe3319a82485} 
+\#define ADC\+\_\+\+VREF~3.\+0f}
+
+\Hypertarget{group__overcurrent__thresholds_gaef6e5978a66d7d0a77c65736c0de506e}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!ADC\_VUSB@{ADC\_VUSB}}
+\index{ADC\_VUSB@{ADC\_VUSB}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{ADC\_VUSB}{ADC\_VUSB}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gaef6e5978a66d7d0a77c65736c0de506e} 
+\#define ADC\+\_\+\+VUSB~26}
+
+\Hypertarget{group__overcurrent__thresholds_gad4455691936f92fdd6c37566fc58ba1f}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!BAUD\_RATE@{BAUD\_RATE}}
+\index{BAUD\_RATE@{BAUD\_RATE}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{BAUD\_RATE}{BAUD\_RATE}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gad4455691936f92fdd6c37566fc58ba1f} 
+\#define BAUD\+\_\+\+RATE~115200}
+
+\Hypertarget{group__overcurrent__thresholds_ga73d72e531cfc3a03ad4a3f1f14d41f08}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!BUT\_MINUS@{BUT\_MINUS}}
+\index{BUT\_MINUS@{BUT\_MINUS}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{BUT\_MINUS}{BUT\_MINUS}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga73d72e531cfc3a03ad4a3f1f14d41f08} 
+\#define BUT\+\_\+\+MINUS~\mbox{\hyperlink{group__overcurrent__thresholds_ga51ca76d1508339b071a974798b90474b}{KEY\+\_\+0}}}
+
+\Hypertarget{group__overcurrent__thresholds_gad097d8cb562086a6dbd54685c05f7040}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!BUT\_PLUS@{BUT\_PLUS}}
+\index{BUT\_PLUS@{BUT\_PLUS}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{BUT\_PLUS}{BUT\_PLUS}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gad097d8cb562086a6dbd54685c05f7040} 
+\#define BUT\+\_\+\+PLUS~\mbox{\hyperlink{group__overcurrent__thresholds_ga5a7fd35018971faa28dacd3e33a8f737}{KEY\+\_\+1}}}
+
+\Hypertarget{group__overcurrent__thresholds_gaa6576692855459ea98b84dd13d76f48b}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!BUT\_PWR@{BUT\_PWR}}
+\index{BUT\_PWR@{BUT\_PWR}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{BUT\_PWR}{BUT\_PWR}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gaa6576692855459ea98b84dd13d76f48b} 
+\#define BUT\+\_\+\+PWR~\mbox{\hyperlink{group__overcurrent__thresholds_ga701a135e841c3cfb69d9c5bb1444e198}{KEY\+\_\+3}}}
+
+\Hypertarget{group__overcurrent__thresholds_gaba462a7ac5bc63e61d5e1437494fcedd}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!BUT\_SET@{BUT\_SET}}
+\index{BUT\_SET@{BUT\_SET}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{BUT\_SET}{BUT\_SET}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gaba462a7ac5bc63e61d5e1437494fcedd} 
+\#define BUT\+\_\+\+SET~\mbox{\hyperlink{group__overcurrent__thresholds_ga3a146cb397d373be978dfa9fd1dc9b3a}{KEY\+\_\+2}}}
+
+\Hypertarget{group__overcurrent__thresholds_gad72dbcf6d0153db1b8d8a58001feed83}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!DEBUG@{DEBUG}}
+\index{DEBUG@{DEBUG}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{DEBUG}{DEBUG}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gad72dbcf6d0153db1b8d8a58001feed83} 
+\#define DEBUG~0}
+
+\Hypertarget{group__overcurrent__thresholds_ga7eed3ea9c85c79cf7a62b6faf1dd2cdc}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!DEBUG\_HEALTH@{DEBUG\_HEALTH}}
+\index{DEBUG\_HEALTH@{DEBUG\_HEALTH}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{DEBUG\_HEALTH}{DEBUG\_HEALTH}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga7eed3ea9c85c79cf7a62b6faf1dd2cdc} 
+\#define DEBUG\+\_\+\+HEALTH~0}
+
+\Hypertarget{group__overcurrent__thresholds_ga88edd2aa4feabff4af21a997d5d8aa23}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!DEBUG\_PRINT@{DEBUG\_PRINT}}
+\index{DEBUG\_PRINT@{DEBUG\_PRINT}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{DEBUG\_PRINT}{DEBUG\_PRINT}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga88edd2aa4feabff4af21a997d5d8aa23} 
+\#define DEBUG\+\_\+\+PRINT(\begin{DoxyParamCaption}\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((void)0)}
+
+\end{DoxyCode}
+\Hypertarget{group__overcurrent__thresholds_ga19a89fc053d98cd7b3181d57ae2bebb3}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!DEBUG\_PRINT\_HEALTH@{DEBUG\_PRINT\_HEALTH}}
+\index{DEBUG\_PRINT\_HEALTH@{DEBUG\_PRINT\_HEALTH}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{DEBUG\_PRINT\_HEALTH}{DEBUG\_PRINT\_HEALTH}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga19a89fc053d98cd7b3181d57ae2bebb3} 
+\#define DEBUG\+\_\+\+PRINT\+\_\+\+HEALTH(\begin{DoxyParamCaption}\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((void)0)}
+
+\end{DoxyCode}
+\Hypertarget{group__overcurrent__thresholds_gab868d07879546e97e34453f1f75debd9}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!DEFAULT\_LOCATION@{DEFAULT\_LOCATION}}
+\index{DEFAULT\_LOCATION@{DEFAULT\_LOCATION}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{DEFAULT\_LOCATION}{DEFAULT\_LOCATION}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gab868d07879546e97e34453f1f75debd9} 
+\#define DEFAULT\+\_\+\+LOCATION~"{}Location"{}}
+
+\Hypertarget{group__overcurrent__thresholds_gabab87e4c9b1cea63570eda6d54bba8cc}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!DEFAULT\_NAME@{DEFAULT\_NAME}}
+\index{DEFAULT\_NAME@{DEFAULT\_NAME}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{DEFAULT\_NAME}{DEFAULT\_NAME}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gabab87e4c9b1cea63570eda6d54bba8cc} 
+\#define DEFAULT\+\_\+\+NAME~"{}ENERGIS-\/"{} FIRMWARE\+\_\+\+VERSION}
+
+\Hypertarget{group__overcurrent__thresholds_ga2aaea8561b2fb9a7cb0b5c4b01078d66}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!ECHO@{ECHO}}
+\index{ECHO@{ECHO}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{ECHO}{ECHO}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga2aaea8561b2fb9a7cb0b5c4b01078d66} 
+\#define ECHO(\begin{DoxyParamCaption}\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__tasks05_ga2473a4441580b27bdc14f48e2d2fff8e}{log\_printf}}(\textcolor{stringliteral}{"{}\(\backslash\)t[ECHO]\ "{}}\ \_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}
+\Hypertarget{group__overcurrent__thresholds_ga0cd00a4152e739294a3ba0384ad1d110}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!EEPROM\_I2C@{EEPROM\_I2C}}
+\index{EEPROM\_I2C@{EEPROM\_I2C}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_I2C}{EEPROM\_I2C}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga0cd00a4152e739294a3ba0384ad1d110} 
+\#define EEPROM\+\_\+\+I2C~i2c1}
+
+\Hypertarget{group__overcurrent__thresholds_gae3ef7bba113f663df6996f286b632a3f}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!EEPROM\_SIZE@{EEPROM\_SIZE}}
+\index{EEPROM\_SIZE@{EEPROM\_SIZE}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_SIZE}{EEPROM\_SIZE}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gae3ef7bba113f663df6996f286b632a3f} 
+\#define EEPROM\+\_\+\+SIZE~0x8000}
+
+\Hypertarget{group__overcurrent__thresholds_gab4c7b8b9c972626cd13e1308447d3cb5}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!ENERGIS\_CURRENT\_RECOVERY\_OFFSET\_A@{ENERGIS\_CURRENT\_RECOVERY\_OFFSET\_A}}
+\index{ENERGIS\_CURRENT\_RECOVERY\_OFFSET\_A@{ENERGIS\_CURRENT\_RECOVERY\_OFFSET\_A}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{ENERGIS\_CURRENT\_RECOVERY\_OFFSET\_A}{ENERGIS\_CURRENT\_RECOVERY\_OFFSET\_A}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gab4c7b8b9c972626cd13e1308447d3cb5} 
+\#define ENERGIS\+\_\+\+CURRENT\+\_\+\+RECOVERY\+\_\+\+OFFSET\+\_\+A~1.\+5f}
+
+
+
+Recovery hysteresis offset in amperes. 
+
+Offset from limit for RECOVERY threshold (exit lockout). \Hypertarget{group__overcurrent__thresholds_ga3653e6904b473d527f48e6b9cc39653e}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!ENERGIS\_CURRENT\_SAFETY\_MARGIN\_A@{ENERGIS\_CURRENT\_SAFETY\_MARGIN\_A}}
+\index{ENERGIS\_CURRENT\_SAFETY\_MARGIN\_A@{ENERGIS\_CURRENT\_SAFETY\_MARGIN\_A}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{ENERGIS\_CURRENT\_SAFETY\_MARGIN\_A}{ENERGIS\_CURRENT\_SAFETY\_MARGIN\_A}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga3653e6904b473d527f48e6b9cc39653e} 
+\#define ENERGIS\+\_\+\+CURRENT\+\_\+\+SAFETY\+\_\+\+MARGIN\+\_\+A~0.\+5f}
+
+
+
+Safety threshold margin in amperes. 
+
+Offset from limit for CRITICAL threshold. \Hypertarget{group__overcurrent__thresholds_ga2ccef42c801941f2ddc6486d07c6b1b2}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!ENERGIS\_CURRENT\_WARNING\_OFFSET\_A@{ENERGIS\_CURRENT\_WARNING\_OFFSET\_A}}
+\index{ENERGIS\_CURRENT\_WARNING\_OFFSET\_A@{ENERGIS\_CURRENT\_WARNING\_OFFSET\_A}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{ENERGIS\_CURRENT\_WARNING\_OFFSET\_A}{ENERGIS\_CURRENT\_WARNING\_OFFSET\_A}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga2ccef42c801941f2ddc6486d07c6b1b2} 
+\#define ENERGIS\+\_\+\+CURRENT\+\_\+\+WARNING\+\_\+\+OFFSET\+\_\+A~1.\+0f}
+
+
+
+Warning threshold offset in amperes. 
+
+Offset from limit for WARNING threshold. \Hypertarget{group__overcurrent__thresholds_gac097e2fea691f7e50324af8a83c4b07a}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!ENERGIS\_DEFAULT\_DHCP@{ENERGIS\_DEFAULT\_DHCP}}
+\index{ENERGIS\_DEFAULT\_DHCP@{ENERGIS\_DEFAULT\_DHCP}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{ENERGIS\_DEFAULT\_DHCP}{ENERGIS\_DEFAULT\_DHCP}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gac097e2fea691f7e50324af8a83c4b07a} 
+\#define ENERGIS\+\_\+\+DEFAULT\+\_\+\+DHCP~\mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_a03435e30aa792ac723256d9fa67a4df2}{EEPROM\+\_\+\+NETINFO\+\_\+\+STATIC}}}
+
+Default DHCP mode for first boot. \Hypertarget{group__overcurrent__thresholds_gad4ab0b5ac1cc8d56727819ffac591b01}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!ENERGIS\_MAC\_PREFIX0@{ENERGIS\_MAC\_PREFIX0}}
+\index{ENERGIS\_MAC\_PREFIX0@{ENERGIS\_MAC\_PREFIX0}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{ENERGIS\_MAC\_PREFIX0}{ENERGIS\_MAC\_PREFIX0}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gad4ab0b5ac1cc8d56727819ffac591b01} 
+\#define ENERGIS\+\_\+\+MAC\+\_\+\+PREFIX0~0x02 /\texorpdfstring{$\ast$}{*} local, unicast \texorpdfstring{$\ast$}{*}/}
+
+Locally-\/administered unicast OUI for ENERGIS ("{}02\+:45\+:4\+E"{}). \Hypertarget{group__overcurrent__thresholds_ga33efce3c4b7f9e54502a8cf36347e52b}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!ENERGIS\_MAC\_PREFIX1@{ENERGIS\_MAC\_PREFIX1}}
+\index{ENERGIS\_MAC\_PREFIX1@{ENERGIS\_MAC\_PREFIX1}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{ENERGIS\_MAC\_PREFIX1}{ENERGIS\_MAC\_PREFIX1}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga33efce3c4b7f9e54502a8cf36347e52b} 
+\#define ENERGIS\+\_\+\+MAC\+\_\+\+PREFIX1~0x45 /\texorpdfstring{$\ast$}{*} \textquotesingle{}E\textquotesingle{} \texorpdfstring{$\ast$}{*}/}
+
+\Hypertarget{group__overcurrent__thresholds_ga477e07b1acbe20a58ee159649e2d4b60}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!ENERGIS\_MAC\_PREFIX2@{ENERGIS\_MAC\_PREFIX2}}
+\index{ENERGIS\_MAC\_PREFIX2@{ENERGIS\_MAC\_PREFIX2}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{ENERGIS\_MAC\_PREFIX2}{ENERGIS\_MAC\_PREFIX2}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga477e07b1acbe20a58ee159649e2d4b60} 
+\#define ENERGIS\+\_\+\+MAC\+\_\+\+PREFIX2~0x4E /\texorpdfstring{$\ast$}{*} \textquotesingle{}N\textquotesingle{} \texorpdfstring{$\ast$}{*}/}
+
+\Hypertarget{group__overcurrent__thresholds_ga8fe83ac76edc595f6b98cd4a4127aed5}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!ERROR@{ERROR}}
+\index{ERROR@{ERROR}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{ERROR}{ERROR}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga8fe83ac76edc595f6b98cd4a4127aed5} 
+\#define ERROR~1}
+
+\Hypertarget{group__overcurrent__thresholds_gae1cb3e9a56747aa0a7e58b387628c8db}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!ERROR\_PRINT@{ERROR\_PRINT}}
+\index{ERROR\_PRINT@{ERROR\_PRINT}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{ERROR\_PRINT}{ERROR\_PRINT}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gae1cb3e9a56747aa0a7e58b387628c8db} 
+\#define ERROR\+\_\+\+PRINT(\begin{DoxyParamCaption}\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ (\textcolor{comment}{/*Switch\_SetFaultLed(true,\ 10),*/}\ \mbox{\hyperlink{group__tasks05_ga36194a3f790c1e727f3b9ab3c0ab38ba}{log\_printf\_force}}(\textcolor{stringliteral}{"{}[ERROR]\ "{}}\ \_\_VA\_ARGS\_\_))}
+
+\end{DoxyCode}
+\Hypertarget{group__overcurrent__thresholds_gaccfb184894a0f62420dfcca5cc2a7ce5}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!ERROR\_PRINT\_DEBUG@{ERROR\_PRINT\_DEBUG}}
+\index{ERROR\_PRINT\_DEBUG@{ERROR\_PRINT\_DEBUG}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{ERROR\_PRINT\_DEBUG}{ERROR\_PRINT\_DEBUG}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gaccfb184894a0f62420dfcca5cc2a7ce5} 
+\#define ERROR\+\_\+\+PRINT\+\_\+\+DEBUG(\begin{DoxyParamCaption}\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((void)0)}
+
+\end{DoxyCode}
+\Hypertarget{group__overcurrent__thresholds_ga30ae11d10d38d076e0f8dbbd933b109b}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!ETH\_LED@{ETH\_LED}}
+\index{ETH\_LED@{ETH\_LED}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{ETH\_LED}{ETH\_LED}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga30ae11d10d38d076e0f8dbbd933b109b} 
+\#define ETH\+\_\+\+LED~9}
+
+\Hypertarget{group__overcurrent__thresholds_ga29a8a94bafabfbdbe6b1bae0c15fa3da}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!FAN\_CTRL@{FAN\_CTRL}}
+\index{FAN\_CTRL@{FAN\_CTRL}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{FAN\_CTRL}{FAN\_CTRL}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga29a8a94bafabfbdbe6b1bae0c15fa3da} 
+\#define FAN\+\_\+\+CTRL~22}
+
+\Hypertarget{group__overcurrent__thresholds_ga66f1754cc817ac88bb3348c50c56974f}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!FAULT\_LED@{FAULT\_LED}}
+\index{FAULT\_LED@{FAULT\_LED}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{FAULT\_LED}{FAULT\_LED}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga66f1754cc817ac88bb3348c50c56974f} 
+\#define FAULT\+\_\+\+LED~8}
+
+\Hypertarget{group__overcurrent__thresholds_gae285b2475841ecb1ac23d8511b360d0e}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!GPIO10@{GPIO10}}
+\index{GPIO10@{GPIO10}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{GPIO10}{GPIO10}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gae285b2475841ecb1ac23d8511b360d0e} 
+\#define GPIO10~10}
+
+\Hypertarget{group__overcurrent__thresholds_gac376b1c124378935df7b3c171b2bef35}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!GPIO11@{GPIO11}}
+\index{GPIO11@{GPIO11}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{GPIO11}{GPIO11}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gac376b1c124378935df7b3c171b2bef35} 
+\#define GPIO11~11}
+
+\Hypertarget{group__overcurrent__thresholds_ga46027cd97ff756e5ddadcc10811b5699}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!GPIO6@{GPIO6}}
+\index{GPIO6@{GPIO6}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{GPIO6}{GPIO6}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga46027cd97ff756e5ddadcc10811b5699} 
+\#define GPIO6~6}
+
+\Hypertarget{group__overcurrent__thresholds_ga3820cacb614277004870fc37b33ad084}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!GPIO7@{GPIO7}}
+\index{GPIO7@{GPIO7}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{GPIO7}{GPIO7}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga3820cacb614277004870fc37b33ad084} 
+\#define GPIO7~7}
+
+\Hypertarget{group__overcurrent__thresholds_gaa951be0ce26f788049a86e407a70ae20}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!GPIO8@{GPIO8}}
+\index{GPIO8@{GPIO8}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{GPIO8}{GPIO8}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gaa951be0ce26f788049a86e407a70ae20} 
+\#define GPIO8~8}
+
+\Hypertarget{group__overcurrent__thresholds_gae2a4c4d28729daf18e1923a1878e7352}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!GPIO9@{GPIO9}}
+\index{GPIO9@{GPIO9}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{GPIO9}{GPIO9}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gae2a4c4d28729daf18e1923a1878e7352} 
+\#define GPIO9~9}
+
+\Hypertarget{group__overcurrent__thresholds_gaa8dde0ba8fe0b3eafdceed02442176b1}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!HEALTH\_INFO@{HEALTH\_INFO}}
+\index{HEALTH\_INFO@{HEALTH\_INFO}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{HEALTH\_INFO}{HEALTH\_INFO}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gaa8dde0ba8fe0b3eafdceed02442176b1} 
+\#define HEALTH\+\_\+\+INFO(\begin{DoxyParamCaption}\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((void)0)}
+
+\end{DoxyCode}
+\Hypertarget{group__overcurrent__thresholds_gaf89cfc0d8c6d03ab2344e999c899c45d}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!HLW8032\_BAUDRATE@{HLW8032\_BAUDRATE}}
+\index{HLW8032\_BAUDRATE@{HLW8032\_BAUDRATE}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{HLW8032\_BAUDRATE}{HLW8032\_BAUDRATE}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gaf89cfc0d8c6d03ab2344e999c899c45d} 
+\#define HLW8032\+\_\+\+BAUDRATE~4800}
+
+\Hypertarget{group__overcurrent__thresholds_gada5ed028f3ce7bdfbe8fe23827b9b493}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!HLW8032\_FRAME\_LENGTH@{HLW8032\_FRAME\_LENGTH}}
+\index{HLW8032\_FRAME\_LENGTH@{HLW8032\_FRAME\_LENGTH}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{HLW8032\_FRAME\_LENGTH}{HLW8032\_FRAME\_LENGTH}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gada5ed028f3ce7bdfbe8fe23827b9b493} 
+\#define HLW8032\+\_\+\+FRAME\+\_\+\+LENGTH~24}
+
+\Hypertarget{group__overcurrent__thresholds_ga3502da0ae6d9514d5b103c3407d7ac30}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!HLW8032\_UART\_ID@{HLW8032\_UART\_ID}}
+\index{HLW8032\_UART\_ID@{HLW8032\_UART\_ID}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{HLW8032\_UART\_ID}{HLW8032\_UART\_ID}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga3502da0ae6d9514d5b103c3407d7ac30} 
+\#define HLW8032\+\_\+\+UART\+\_\+\+ID~uart0}
+
+\Hypertarget{group__overcurrent__thresholds_ga558edc8a19bd5871a574872c8099cd10}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!HW\_REV@{HW\_REV}}
+\index{HW\_REV@{HW\_REV}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{HW\_REV}{HW\_REV}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga558edc8a19bd5871a574872c8099cd10} 
+\#define HW\+\_\+\+REV~\mbox{\hyperlink{group__config01_ga5bc6a8d3eec56bfb3c3c0b0ab0fe8aad}{HARDWARE\+\_\+\+VERSION\+\_\+\+LITERAL}}}
+
+\Hypertarget{group__overcurrent__thresholds_ga69f255245dd74fb6785ca39656cf9983}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!I2C0\_SCL@{I2C0\_SCL}}
+\index{I2C0\_SCL@{I2C0\_SCL}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{I2C0\_SCL}{I2C0\_SCL}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga69f255245dd74fb6785ca39656cf9983} 
+\#define I2\+C0\+\_\+\+SCL~5}
+
+\Hypertarget{group__overcurrent__thresholds_gaf530325ce28cf25ce89308fbd9ac8c16}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!I2C0\_SDA@{I2C0\_SDA}}
+\index{I2C0\_SDA@{I2C0\_SDA}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{I2C0\_SDA}{I2C0\_SDA}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gaf530325ce28cf25ce89308fbd9ac8c16} 
+\#define I2\+C0\+\_\+\+SDA~4}
+
+\Hypertarget{group__overcurrent__thresholds_ga0370de2a226ec75dd11d53d0915a7754}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!I2C0\_SPEED@{I2C0\_SPEED}}
+\index{I2C0\_SPEED@{I2C0\_SPEED}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{I2C0\_SPEED}{I2C0\_SPEED}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga0370de2a226ec75dd11d53d0915a7754} 
+\#define I2\+C0\+\_\+\+SPEED~400000}
+
+\Hypertarget{group__overcurrent__thresholds_ga89fa4656e988e929608905e5de142558}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!I2C1\_SCL@{I2C1\_SCL}}
+\index{I2C1\_SCL@{I2C1\_SCL}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{I2C1\_SCL}{I2C1\_SCL}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga89fa4656e988e929608905e5de142558} 
+\#define I2\+C1\+\_\+\+SCL~3}
+
+\Hypertarget{group__overcurrent__thresholds_ga8c91f3240413d91d202e16fdcb47614e}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!I2C1\_SDA@{I2C1\_SDA}}
+\index{I2C1\_SDA@{I2C1\_SDA}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{I2C1\_SDA}{I2C1\_SDA}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga8c91f3240413d91d202e16fdcb47614e} 
+\#define I2\+C1\+\_\+\+SDA~2}
+
+\Hypertarget{group__overcurrent__thresholds_ga9ac9774a35604eba5f18f572fe756cc5}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!I2C1\_SPEED@{I2C1\_SPEED}}
+\index{I2C1\_SPEED@{I2C1\_SPEED}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{I2C1\_SPEED}{I2C1\_SPEED}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga9ac9774a35604eba5f18f572fe756cc5} 
+\#define I2\+C1\+\_\+\+SPEED~400000}
+
+\Hypertarget{group__overcurrent__thresholds_gae1103fea1e1b3c41ca3322d5389f7162}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!INFO@{INFO}}
+\index{INFO@{INFO}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{INFO}{INFO}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gae1103fea1e1b3c41ca3322d5389f7162} 
+\#define INFO~1}
+
+\Hypertarget{group__overcurrent__thresholds_ga629d0e49cb4176aa31aabd84d5541253}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!INFO\_HEALTH@{INFO\_HEALTH}}
+\index{INFO\_HEALTH@{INFO\_HEALTH}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{INFO\_HEALTH}{INFO\_HEALTH}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga629d0e49cb4176aa31aabd84d5541253} 
+\#define INFO\+\_\+\+HEALTH~0}
+
+\Hypertarget{group__overcurrent__thresholds_gabe2194229f4d20b5a2e5a97be7ffbf06}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!INFO\_PRINT@{INFO\_PRINT}}
+\index{INFO\_PRINT@{INFO\_PRINT}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{INFO\_PRINT}{INFO\_PRINT}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gabe2194229f4d20b5a2e5a97be7ffbf06} 
+\#define INFO\+\_\+\+PRINT(\begin{DoxyParamCaption}\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__tasks05_ga2473a4441580b27bdc14f48e2d2fff8e}{log\_printf}}(\textcolor{stringliteral}{"{}[INFO]\ "{}}\ \_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}
+\Hypertarget{group__overcurrent__thresholds_ga51ca76d1508339b071a974798b90474b}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!KEY\_0@{KEY\_0}}
+\index{KEY\_0@{KEY\_0}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{KEY\_0}{KEY\_0}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga51ca76d1508339b071a974798b90474b} 
+\#define KEY\+\_\+0~12}
+
+\Hypertarget{group__overcurrent__thresholds_ga5a7fd35018971faa28dacd3e33a8f737}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!KEY\_1@{KEY\_1}}
+\index{KEY\_1@{KEY\_1}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{KEY\_1}{KEY\_1}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga5a7fd35018971faa28dacd3e33a8f737} 
+\#define KEY\+\_\+1~13}
+
+\Hypertarget{group__overcurrent__thresholds_ga3a146cb397d373be978dfa9fd1dc9b3a}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!KEY\_2@{KEY\_2}}
+\index{KEY\_2@{KEY\_2}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{KEY\_2}{KEY\_2}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga3a146cb397d373be978dfa9fd1dc9b3a} 
+\#define KEY\+\_\+2~14}
+
+\Hypertarget{group__overcurrent__thresholds_ga701a135e841c3cfb69d9c5bb1444e198}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!KEY\_3@{KEY\_3}}
+\index{KEY\_3@{KEY\_3}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{KEY\_3}{KEY\_3}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga701a135e841c3cfb69d9c5bb1444e198} 
+\#define KEY\+\_\+3~15}
+
+\Hypertarget{group__overcurrent__thresholds_ga862c89f441ad8b4a6c2249b0ef3effe7}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!LOGGER\_MSG\_MAX@{LOGGER\_MSG\_MAX}}
+\index{LOGGER\_MSG\_MAX@{LOGGER\_MSG\_MAX}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{LOGGER\_MSG\_MAX}{LOGGER\_MSG\_MAX}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga862c89f441ad8b4a6c2249b0ef3effe7} 
+\#define LOGGER\+\_\+\+MSG\+\_\+\+MAX~128}
+
+\Hypertarget{group__overcurrent__thresholds_ga5f02c4dbd548f74401d5d09b00dae897}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!LOGGER\_QUEUE\_LEN@{LOGGER\_QUEUE\_LEN}}
+\index{LOGGER\_QUEUE\_LEN@{LOGGER\_QUEUE\_LEN}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{LOGGER\_QUEUE\_LEN}{LOGGER\_QUEUE\_LEN}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga5f02c4dbd548f74401d5d09b00dae897} 
+\#define LOGGER\+\_\+\+QUEUE\+\_\+\+LEN~64}
+
+\Hypertarget{group__overcurrent__thresholds_gac1e4df19245721f15e4cf404033b9633}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!LOGGER\_STACK\_SIZE@{LOGGER\_STACK\_SIZE}}
+\index{LOGGER\_STACK\_SIZE@{LOGGER\_STACK\_SIZE}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{LOGGER\_STACK\_SIZE}{LOGGER\_STACK\_SIZE}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gac1e4df19245721f15e4cf404033b9633} 
+\#define LOGGER\+\_\+\+STACK\+\_\+\+SIZE~1024}
+
+\Hypertarget{group__overcurrent__thresholds_ga4adb63fef85486f8f0348a53a45f7086}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!MCP23017\_DISPLAY\_I2C@{MCP23017\_DISPLAY\_I2C}}
+\index{MCP23017\_DISPLAY\_I2C@{MCP23017\_DISPLAY\_I2C}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{MCP23017\_DISPLAY\_I2C}{MCP23017\_DISPLAY\_I2C}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga4adb63fef85486f8f0348a53a45f7086} 
+\#define MCP23017\+\_\+\+DISPLAY\+\_\+\+I2C~i2c0}
+
+\Hypertarget{group__overcurrent__thresholds_ga5a6f21365f28293461ab6198f0eb34c5}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!MCP23017\_RELAY\_I2C@{MCP23017\_RELAY\_I2C}}
+\index{MCP23017\_RELAY\_I2C@{MCP23017\_RELAY\_I2C}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{MCP23017\_RELAY\_I2C}{MCP23017\_RELAY\_I2C}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga5a6f21365f28293461ab6198f0eb34c5} 
+\#define MCP23017\+\_\+\+RELAY\+\_\+\+I2C~i2c1}
+
+\Hypertarget{group__overcurrent__thresholds_ga4aee9feb4f32a6abb6a8b997424d62b1}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!MCP23017\_SELECTION\_I2C@{MCP23017\_SELECTION\_I2C}}
+\index{MCP23017\_SELECTION\_I2C@{MCP23017\_SELECTION\_I2C}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{MCP23017\_SELECTION\_I2C}{MCP23017\_SELECTION\_I2C}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga4aee9feb4f32a6abb6a8b997424d62b1} 
+\#define MCP23017\+\_\+\+SELECTION\+\_\+\+I2C~\mbox{\hyperlink{group__overcurrent__thresholds_ga4adb63fef85486f8f0348a53a45f7086}{MCP23017\+\_\+\+DISPLAY\+\_\+\+I2C}}}
+
+\Hypertarget{group__overcurrent__thresholds_ga0ebc84791aae3c7622d0232204ed597d}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!MCP\_DISPLAY\_ADDR@{MCP\_DISPLAY\_ADDR}}
+\index{MCP\_DISPLAY\_ADDR@{MCP\_DISPLAY\_ADDR}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{MCP\_DISPLAY\_ADDR}{MCP\_DISPLAY\_ADDR}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga0ebc84791aae3c7622d0232204ed597d} 
+\#define MCP\+\_\+\+DISPLAY\+\_\+\+ADDR~0x21}
+
+\Hypertarget{group__overcurrent__thresholds_gab72f354a5f2dcc38ed852ee70c1bbd70}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!MCP\_DP\_RST@{MCP\_DP\_RST}}
+\index{MCP\_DP\_RST@{MCP\_DP\_RST}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{MCP\_DP\_RST}{MCP\_DP\_RST}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gab72f354a5f2dcc38ed852ee70c1bbd70} 
+\#define MCP\+\_\+\+DP\+\_\+\+RST~24}
+
+\Hypertarget{group__overcurrent__thresholds_gadcd7af491941e03bf6d54a09ab9a390e}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!MCP\_MB\_RST@{MCP\_MB\_RST}}
+\index{MCP\_MB\_RST@{MCP\_MB\_RST}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{MCP\_MB\_RST}{MCP\_MB\_RST}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gadcd7af491941e03bf6d54a09ab9a390e} 
+\#define MCP\+\_\+\+MB\+\_\+\+RST~23}
+
+\Hypertarget{group__overcurrent__thresholds_gadcf3fe8bff4208f0b35c5d93aa1dd28f}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!MCP\_RELAY\_ADDR@{MCP\_RELAY\_ADDR}}
+\index{MCP\_RELAY\_ADDR@{MCP\_RELAY\_ADDR}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{MCP\_RELAY\_ADDR}{MCP\_RELAY\_ADDR}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gadcf3fe8bff4208f0b35c5d93aa1dd28f} 
+\#define MCP\+\_\+\+RELAY\+\_\+\+ADDR~0x20}
+
+\Hypertarget{group__overcurrent__thresholds_gaf436220ed6c0b112069da734d38b95d4}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!MCP\_SELECTION\_ADDR@{MCP\_SELECTION\_ADDR}}
+\index{MCP\_SELECTION\_ADDR@{MCP\_SELECTION\_ADDR}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{MCP\_SELECTION\_ADDR}{MCP\_SELECTION\_ADDR}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gaf436220ed6c0b112069da734d38b95d4} 
+\#define MCP\+\_\+\+SELECTION\+\_\+\+ADDR~0x23}
+
+\Hypertarget{group__overcurrent__thresholds_ga48f798d3d618de58b4c1e3c32258f555}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!MUX\_A@{MUX\_A}}
+\index{MUX\_A@{MUX\_A}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{MUX\_A}{MUX\_A}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga48f798d3d618de58b4c1e3c32258f555} 
+\#define MUX\+\_\+A~8}
+
+\Hypertarget{group__overcurrent__thresholds_gaf4420ad5732937ebdf4da15904d9d7de}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!MUX\_B@{MUX\_B}}
+\index{MUX\_B@{MUX\_B}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{MUX\_B}{MUX\_B}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gaf4420ad5732937ebdf4da15904d9d7de} 
+\#define MUX\+\_\+B~9}
+
+\Hypertarget{group__overcurrent__thresholds_gad3e0ebce7995ef8856096479ff0d2b8d}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!MUX\_C@{MUX\_C}}
+\index{MUX\_C@{MUX\_C}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{MUX\_C}{MUX\_C}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gad3e0ebce7995ef8856096479ff0d2b8d} 
+\#define MUX\+\_\+C~10}
+
+\Hypertarget{group__overcurrent__thresholds_gab2d3b07f5252d56b264c3ee32731b7e8}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!MUX\_EN@{MUX\_EN}}
+\index{MUX\_EN@{MUX\_EN}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{MUX\_EN}{MUX\_EN}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gab2d3b07f5252d56b264c3ee32731b7e8} 
+\#define MUX\+\_\+\+EN~11}
+
+\Hypertarget{group__overcurrent__thresholds_ga1fa2460e32327ade49189c95740bc1b5}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!NC@{NC}}
+\index{NC@{NC}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{NC}{NC}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga1fa2460e32327ade49189c95740bc1b5} 
+\#define NC~27}
+
+\Hypertarget{group__overcurrent__thresholds_gaed8f45c318478c8caba81d153b4e64c6}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!NETLOG@{NETLOG}}
+\index{NETLOG@{NETLOG}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{NETLOG}{NETLOG}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gaed8f45c318478c8caba81d153b4e64c6} 
+\#define NETLOG~0}
+
+\Hypertarget{group__overcurrent__thresholds_ga042950eb26c1c2e07251b031c231656f}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!NETLOG\_PRINT@{NETLOG\_PRINT}}
+\index{NETLOG\_PRINT@{NETLOG\_PRINT}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{NETLOG\_PRINT}{NETLOG\_PRINT}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga042950eb26c1c2e07251b031c231656f} 
+\#define NETLOG\+\_\+\+PRINT(\begin{DoxyParamCaption}\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((void)0)}
+
+\end{DoxyCode}
+\Hypertarget{group__overcurrent__thresholds_gae5597ce31d23d11493e6e674fe257d73}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!NUM\_CHANNELS@{NUM\_CHANNELS}}
+\index{NUM\_CHANNELS@{NUM\_CHANNELS}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{NUM\_CHANNELS}{NUM\_CHANNELS}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gae5597ce31d23d11493e6e674fe257d73} 
+\#define NUM\+\_\+\+CHANNELS~8}
+
+\Hypertarget{group__overcurrent__thresholds_ga69935f16da7c62437bf70a37e61c3be4}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!OUT\_1@{OUT\_1}}
+\index{OUT\_1@{OUT\_1}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{OUT\_1}{OUT\_1}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga69935f16da7c62437bf70a37e61c3be4} 
+\#define OUT\+\_\+1~0}
+
+\Hypertarget{group__overcurrent__thresholds_gac5f4137d1a55c77759edf878353cbdd9}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!OUT\_2@{OUT\_2}}
+\index{OUT\_2@{OUT\_2}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{OUT\_2}{OUT\_2}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gac5f4137d1a55c77759edf878353cbdd9} 
+\#define OUT\+\_\+2~1}
+
+\Hypertarget{group__overcurrent__thresholds_gafb490d9c8efe9dd227e08f0275bd1bb7}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!OUT\_3@{OUT\_3}}
+\index{OUT\_3@{OUT\_3}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{OUT\_3}{OUT\_3}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gafb490d9c8efe9dd227e08f0275bd1bb7} 
+\#define OUT\+\_\+3~2}
+
+\Hypertarget{group__overcurrent__thresholds_ga6b0abcb040de7e8005a407aa43ecc08a}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!OUT\_4@{OUT\_4}}
+\index{OUT\_4@{OUT\_4}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{OUT\_4}{OUT\_4}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga6b0abcb040de7e8005a407aa43ecc08a} 
+\#define OUT\+\_\+4~3}
+
+\Hypertarget{group__overcurrent__thresholds_ga7b74146b1f5a437784cfc11b4fb7cd7a}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!OUT\_5@{OUT\_5}}
+\index{OUT\_5@{OUT\_5}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{OUT\_5}{OUT\_5}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga7b74146b1f5a437784cfc11b4fb7cd7a} 
+\#define OUT\+\_\+5~4}
+
+\Hypertarget{group__overcurrent__thresholds_gabb0747b330b4f84daac7493eab49f8ee}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!OUT\_6@{OUT\_6}}
+\index{OUT\_6@{OUT\_6}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{OUT\_6}{OUT\_6}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gabb0747b330b4f84daac7493eab49f8ee} 
+\#define OUT\+\_\+6~5}
+
+\Hypertarget{group__overcurrent__thresholds_ga9cbf44b88ea99d5443972a8a869e89b9}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!OUT\_7@{OUT\_7}}
+\index{OUT\_7@{OUT\_7}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{OUT\_7}{OUT\_7}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga9cbf44b88ea99d5443972a8a869e89b9} 
+\#define OUT\+\_\+7~6}
+
+\Hypertarget{group__overcurrent__thresholds_ga64c6664b96aef0d32e10fc4288e3e820}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!OUT\_8@{OUT\_8}}
+\index{OUT\_8@{OUT\_8}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{OUT\_8}{OUT\_8}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga64c6664b96aef0d32e10fc4288e3e820} 
+\#define OUT\+\_\+8~7}
+
+\Hypertarget{group__overcurrent__thresholds_ga3784a175008722dca2ee1812412aaafb}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!PLOT@{PLOT}}
+\index{PLOT@{PLOT}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{PLOT}{PLOT}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga3784a175008722dca2ee1812412aaafb} 
+\#define PLOT(\begin{DoxyParamCaption}\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((void)0)}
+
+\end{DoxyCode}
+\Hypertarget{group__overcurrent__thresholds_ga076f3299d13ae5c18dea4f8eb44d6a4b}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!PLOT\_EN@{PLOT\_EN}}
+\index{PLOT\_EN@{PLOT\_EN}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{PLOT\_EN}{PLOT\_EN}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga076f3299d13ae5c18dea4f8eb44d6a4b} 
+\#define PLOT\+\_\+\+EN~0}
+
+\Hypertarget{group__overcurrent__thresholds_gaf2c6386baa1a79953f60c8b30a798ae6}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!POLL\_INTERVAL\_MS@{POLL\_INTERVAL\_MS}}
+\index{POLL\_INTERVAL\_MS@{POLL\_INTERVAL\_MS}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{POLL\_INTERVAL\_MS}{POLL\_INTERVAL\_MS}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gaf2c6386baa1a79953f60c8b30a798ae6} 
+\#define POLL\+\_\+\+INTERVAL\+\_\+\+MS~6000u}
+
+\Hypertarget{group__overcurrent__thresholds_ga3179f49f0220a6faea006f0dc4ba715c}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!PROC\_LED@{PROC\_LED}}
+\index{PROC\_LED@{PROC\_LED}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{PROC\_LED}{PROC\_LED}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga3179f49f0220a6faea006f0dc4ba715c} 
+\#define PROC\+\_\+\+LED~28}
+
+\Hypertarget{group__overcurrent__thresholds_ga2fd7963d35da0d1136af4cbe95ac5d80}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!PWR\_LED@{PWR\_LED}}
+\index{PWR\_LED@{PWR\_LED}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{PWR\_LED}{PWR\_LED}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga2fd7963d35da0d1136af4cbe95ac5d80} 
+\#define PWR\+\_\+\+LED~10}
+
+\Hypertarget{group__overcurrent__thresholds_ga00a85d4f690158a60f684acd72c9fb67}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!REL\_0@{REL\_0}}
+\index{REL\_0@{REL\_0}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{REL\_0}{REL\_0}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga00a85d4f690158a60f684acd72c9fb67} 
+\#define REL\+\_\+0~0}
+
+\Hypertarget{group__overcurrent__thresholds_ga01ee714da422793f00c963701ff407b4}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!REL\_1@{REL\_1}}
+\index{REL\_1@{REL\_1}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{REL\_1}{REL\_1}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga01ee714da422793f00c963701ff407b4} 
+\#define REL\+\_\+1~1}
+
+\Hypertarget{group__overcurrent__thresholds_ga72ebd683e5f5010a186f54c7640ac01c}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!REL\_2@{REL\_2}}
+\index{REL\_2@{REL\_2}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{REL\_2}{REL\_2}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga72ebd683e5f5010a186f54c7640ac01c} 
+\#define REL\+\_\+2~2}
+
+\Hypertarget{group__overcurrent__thresholds_ga520a75718aa638012006af2ae88105ab}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!REL\_3@{REL\_3}}
+\index{REL\_3@{REL\_3}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{REL\_3}{REL\_3}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga520a75718aa638012006af2ae88105ab} 
+\#define REL\+\_\+3~3}
+
+\Hypertarget{group__overcurrent__thresholds_ga73e2f07fd5e8026bfbf9c2471f9ee9b4}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!REL\_4@{REL\_4}}
+\index{REL\_4@{REL\_4}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{REL\_4}{REL\_4}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga73e2f07fd5e8026bfbf9c2471f9ee9b4} 
+\#define REL\+\_\+4~4}
+
+\Hypertarget{group__overcurrent__thresholds_ga73ce44890ee273df22f151769145da50}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!REL\_5@{REL\_5}}
+\index{REL\_5@{REL\_5}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{REL\_5}{REL\_5}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga73ce44890ee273df22f151769145da50} 
+\#define REL\+\_\+5~5}
+
+\Hypertarget{group__overcurrent__thresholds_ga4b275642a0e8fcfe64fe15ae5f807d45}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!REL\_6@{REL\_6}}
+\index{REL\_6@{REL\_6}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{REL\_6}{REL\_6}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga4b275642a0e8fcfe64fe15ae5f807d45} 
+\#define REL\+\_\+6~6}
+
+\Hypertarget{group__overcurrent__thresholds_ga6dc706ddbaf39a8faad3032bf77fff32}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!REL\_7@{REL\_7}}
+\index{REL\_7@{REL\_7}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{REL\_7}{REL\_7}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga6dc706ddbaf39a8faad3032bf77fff32} 
+\#define REL\+\_\+7~7}
+
+\Hypertarget{group__overcurrent__thresholds_gaa8884671a723fc65c0c92dbfb79e262f}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!SEL\_1@{SEL\_1}}
+\index{SEL\_1@{SEL\_1}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{SEL\_1}{SEL\_1}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gaa8884671a723fc65c0c92dbfb79e262f} 
+\#define SEL\+\_\+1~0}
+
+\Hypertarget{group__overcurrent__thresholds_gaa435e437c364d6527d9b2850470c2477}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!SEL\_2@{SEL\_2}}
+\index{SEL\_2@{SEL\_2}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{SEL\_2}{SEL\_2}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gaa435e437c364d6527d9b2850470c2477} 
+\#define SEL\+\_\+2~1}
+
+\Hypertarget{group__overcurrent__thresholds_ga15cc798cabb537c34754fb482b624a7e}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!SEL\_3@{SEL\_3}}
+\index{SEL\_3@{SEL\_3}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{SEL\_3}{SEL\_3}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga15cc798cabb537c34754fb482b624a7e} 
+\#define SEL\+\_\+3~2}
+
+\Hypertarget{group__overcurrent__thresholds_gacef8283fa4643289e972fc72e294bb7a}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!SEL\_4@{SEL\_4}}
+\index{SEL\_4@{SEL\_4}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{SEL\_4}{SEL\_4}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gacef8283fa4643289e972fc72e294bb7a} 
+\#define SEL\+\_\+4~3}
+
+\Hypertarget{group__overcurrent__thresholds_ga7794477e9351b42104dc4379dbd2e5a8}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!SEL\_5@{SEL\_5}}
+\index{SEL\_5@{SEL\_5}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{SEL\_5}{SEL\_5}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga7794477e9351b42104dc4379dbd2e5a8} 
+\#define SEL\+\_\+5~4}
+
+\Hypertarget{group__overcurrent__thresholds_ga7e63209b96a138a0932da92324ff9504}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!SEL\_6@{SEL\_6}}
+\index{SEL\_6@{SEL\_6}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{SEL\_6}{SEL\_6}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga7e63209b96a138a0932da92324ff9504} 
+\#define SEL\+\_\+6~5}
+
+\Hypertarget{group__overcurrent__thresholds_ga2490ce9c46d7569b70a584f19c3178c6}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!SEL\_7@{SEL\_7}}
+\index{SEL\_7@{SEL\_7}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{SEL\_7}{SEL\_7}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga2490ce9c46d7569b70a584f19c3178c6} 
+\#define SEL\+\_\+7~6}
+
+\Hypertarget{group__overcurrent__thresholds_ga71bc11d3ac1b35bda99ff7c12416c674}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!SEL\_8@{SEL\_8}}
+\index{SEL\_8@{SEL\_8}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{SEL\_8}{SEL\_8}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga71bc11d3ac1b35bda99ff7c12416c674} 
+\#define SEL\+\_\+8~7}
+
+\Hypertarget{group__overcurrent__thresholds_ga9cee1f4c5994e7e3713883aae0447f52}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!SPI\_SPEED\_W5500@{SPI\_SPEED\_W5500}}
+\index{SPI\_SPEED\_W5500@{SPI\_SPEED\_W5500}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{SPI\_SPEED\_W5500}{SPI\_SPEED\_W5500}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga9cee1f4c5994e7e3713883aae0447f52} 
+\#define SPI\+\_\+\+SPEED\+\_\+\+W5500~40000000}
+
+\Hypertarget{group__overcurrent__thresholds_gae91027bc7d5344bb984a6220edddf427}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!SUPPLY\_DIVIDER@{SUPPLY\_DIVIDER}}
+\index{SUPPLY\_DIVIDER@{SUPPLY\_DIVIDER}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{SUPPLY\_DIVIDER}{SUPPLY\_DIVIDER}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gae91027bc7d5344bb984a6220edddf427} 
+\#define SUPPLY\+\_\+\+DIVIDER~11.\+0f}
+
+\Hypertarget{group__overcurrent__thresholds_gac82504751eea500ec7332a5206f8c669}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!SW\_REV@{SW\_REV}}
+\index{SW\_REV@{SW\_REV}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{SW\_REV}{SW\_REV}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gac82504751eea500ec7332a5206f8c669} 
+\#define SW\+\_\+\+REV~\mbox{\hyperlink{group__config01_ga97f713d703f40938e4e87f331757b7b3}{FIRMWARE\+\_\+\+VERSION\+\_\+\+LITERAL}}}
+
+\Hypertarget{group__overcurrent__thresholds_ga1c6b0e0bdbb8d14a494a629fdf871511}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!SWVERSION@{SWVERSION}}
+\index{SWVERSION@{SWVERSION}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{SWVERSION}{SWVERSION}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga1c6b0e0bdbb8d14a494a629fdf871511} 
+\#define SWVERSION~\mbox{\hyperlink{group__config01_gaa14dc39d52ab121ceb570f1a265385e0}{FIRMWARE\+\_\+\+VERSION}}}
+
+\Hypertarget{group__overcurrent__thresholds_ga16433c75f0d3615fe60d59ec8a86834a}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!TEMP\_SENSOR@{TEMP\_SENSOR}}
+\index{TEMP\_SENSOR@{TEMP\_SENSOR}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{TEMP\_SENSOR}{TEMP\_SENSOR}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga16433c75f0d3615fe60d59ec8a86834a} 
+\#define TEMP\+\_\+\+SENSOR~4}
+
+\Hypertarget{group__overcurrent__thresholds_ga958fb8696c4c5444563865c39d1315e3}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!TX\_CH1@{TX\_CH1}}
+\index{TX\_CH1@{TX\_CH1}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{TX\_CH1}{TX\_CH1}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga958fb8696c4c5444563865c39d1315e3} 
+\#define TX\+\_\+\+CH1~0}
+
+\Hypertarget{group__overcurrent__thresholds_ga481fe705b13be50414c6b4c934a883c2}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!TX\_CH2@{TX\_CH2}}
+\index{TX\_CH2@{TX\_CH2}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{TX\_CH2}{TX\_CH2}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga481fe705b13be50414c6b4c934a883c2} 
+\#define TX\+\_\+\+CH2~1}
+
+\Hypertarget{group__overcurrent__thresholds_gabbc46515daaf466f749f9b696c92bfd1}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!TX\_CH3@{TX\_CH3}}
+\index{TX\_CH3@{TX\_CH3}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{TX\_CH3}{TX\_CH3}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gabbc46515daaf466f749f9b696c92bfd1} 
+\#define TX\+\_\+\+CH3~2}
+
+\Hypertarget{group__overcurrent__thresholds_gadebf7a6a1c01cd70fe20f388261edffe}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!TX\_CH4@{TX\_CH4}}
+\index{TX\_CH4@{TX\_CH4}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{TX\_CH4}{TX\_CH4}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gadebf7a6a1c01cd70fe20f388261edffe} 
+\#define TX\+\_\+\+CH4~3}
+
+\Hypertarget{group__overcurrent__thresholds_ga213a2780c8c6f19185ab686b857935ed}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!TX\_CH5@{TX\_CH5}}
+\index{TX\_CH5@{TX\_CH5}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{TX\_CH5}{TX\_CH5}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga213a2780c8c6f19185ab686b857935ed} 
+\#define TX\+\_\+\+CH5~4}
+
+\Hypertarget{group__overcurrent__thresholds_gafba8a93ab27f197808a672641592a017}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!TX\_CH6@{TX\_CH6}}
+\index{TX\_CH6@{TX\_CH6}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{TX\_CH6}{TX\_CH6}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gafba8a93ab27f197808a672641592a017} 
+\#define TX\+\_\+\+CH6~5}
+
+\Hypertarget{group__overcurrent__thresholds_gaab2d4c5e8863ca76ddb94152460c5fca}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!TX\_CH7@{TX\_CH7}}
+\index{TX\_CH7@{TX\_CH7}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{TX\_CH7}{TX\_CH7}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gaab2d4c5e8863ca76ddb94152460c5fca} 
+\#define TX\+\_\+\+CH7~6}
+
+\Hypertarget{group__overcurrent__thresholds_ga5b925dba6f78d32d0f0e5e6eaf6b152b}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!TX\_CH8@{TX\_CH8}}
+\index{TX\_CH8@{TX\_CH8}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{TX\_CH8}{TX\_CH8}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga5b925dba6f78d32d0f0e5e6eaf6b152b} 
+\#define TX\+\_\+\+CH8~7}
+
+\Hypertarget{group__overcurrent__thresholds_gae9deeb1486fb1892e37b175810d23f1d}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!UART0\_RX@{UART0\_RX}}
+\index{UART0\_RX@{UART0\_RX}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{UART0\_RX}{UART0\_RX}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gae9deeb1486fb1892e37b175810d23f1d} 
+\#define UART0\+\_\+\+RX~0}
+
+\Hypertarget{group__overcurrent__thresholds_ga0a573eb024fbcf113feed4ce51dd3f64}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!UART0\_TX@{UART0\_TX}}
+\index{UART0\_TX@{UART0\_TX}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{UART0\_TX}{UART0\_TX}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga0a573eb024fbcf113feed4ce51dd3f64} 
+\#define UART0\+\_\+\+TX~1}
+
+\Hypertarget{group__overcurrent__thresholds_ga1b6bc740105f5f5d9671b25322d3e741}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!UART\_CMD\_BUF\_LEN@{UART\_CMD\_BUF\_LEN}}
+\index{UART\_CMD\_BUF\_LEN@{UART\_CMD\_BUF\_LEN}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{UART\_CMD\_BUF\_LEN}{UART\_CMD\_BUF\_LEN}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga1b6bc740105f5f5d9671b25322d3e741} 
+\#define UART\+\_\+\+CMD\+\_\+\+BUF\+\_\+\+LEN~1024}
+
+\Hypertarget{group__overcurrent__thresholds_ga1de69c73f829a03f46f5e7690da7e79a}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!UART\_ID@{UART\_ID}}
+\index{UART\_ID@{UART\_ID}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{UART\_ID}{UART\_ID}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga1de69c73f829a03f46f5e7690da7e79a} 
+\#define UART\+\_\+\+ID~uart1}
+
+\Hypertarget{group__overcurrent__thresholds_ga8897411e308a7cb568cdc18c4568e90a}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!UART\_IFACE@{UART\_IFACE}}
+\index{UART\_IFACE@{UART\_IFACE}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{UART\_IFACE}{UART\_IFACE}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga8897411e308a7cb568cdc18c4568e90a} 
+\#define UART\+\_\+\+IFACE~1}
+
+\Hypertarget{group__overcurrent__thresholds_ga3a248277dc57379287ff8fece8678de3}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!UART\_MAX\_LINES@{UART\_MAX\_LINES}}
+\index{UART\_MAX\_LINES@{UART\_MAX\_LINES}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{UART\_MAX\_LINES}{UART\_MAX\_LINES}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga3a248277dc57379287ff8fece8678de3} 
+\#define UART\+\_\+\+MAX\+\_\+\+LINES~4}
+
+\Hypertarget{group__overcurrent__thresholds_gac227d1627b40c666f9da297701968211}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!V\_SUPPLY@{V\_SUPPLY}}
+\index{V\_SUPPLY@{V\_SUPPLY}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{V\_SUPPLY}{V\_SUPPLY}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gac227d1627b40c666f9da297701968211} 
+\#define V\+\_\+\+SUPPLY~3}
+
+\Hypertarget{group__overcurrent__thresholds_ga212623e5cc026b073891cab19f37a17c}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!V\_USB@{V\_USB}}
+\index{V\_USB@{V\_USB}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{V\_USB}{V\_USB}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga212623e5cc026b073891cab19f37a17c} 
+\#define V\+\_\+\+USB~0}
+
+\Hypertarget{group__overcurrent__thresholds_ga38be4881016a89385f3e5f2b5c40d858}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!VBUS\_DIVIDER@{VBUS\_DIVIDER}}
+\index{VBUS\_DIVIDER@{VBUS\_DIVIDER}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{VBUS\_DIVIDER}{VBUS\_DIVIDER}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga38be4881016a89385f3e5f2b5c40d858} 
+\#define VBUS\+\_\+\+DIVIDER~2.\+0f}
+
+\Hypertarget{group__overcurrent__thresholds_gaf61292b0e5c5bc4c19bb36503148aa34}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!VREG\_BASE@{VREG\_BASE}}
+\index{VREG\_BASE@{VREG\_BASE}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{VREG\_BASE}{VREG\_BASE}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gaf61292b0e5c5bc4c19bb36503148aa34} 
+\#define VREG\+\_\+\+BASE~0x40064000}
+
+\Hypertarget{group__overcurrent__thresholds_gab12f1e360fe2273935fbd69b28fe4f82}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!VREG\_EN@{VREG\_EN}}
+\index{VREG\_EN@{VREG\_EN}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{VREG\_EN}{VREG\_EN}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gab12f1e360fe2273935fbd69b28fe4f82} 
+\#define VREG\+\_\+\+EN~25}
+
+\Hypertarget{group__overcurrent__thresholds_gad53c32a59d155fb627161aa156c4f6f3}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!VREG\_VSEL\_MASK@{VREG\_VSEL\_MASK}}
+\index{VREG\_VSEL\_MASK@{VREG\_VSEL\_MASK}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{VREG\_VSEL\_MASK}{VREG\_VSEL\_MASK}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gad53c32a59d155fb627161aa156c4f6f3} 
+\#define VREG\+\_\+\+VSEL\+\_\+\+MASK~0x7}
+
+\Hypertarget{group__overcurrent__thresholds_gadb086b4754ce7859d847860d5e327910}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!W5500\_CS@{W5500\_CS}}
+\index{W5500\_CS@{W5500\_CS}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_CS}{W5500\_CS}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gadb086b4754ce7859d847860d5e327910} 
+\#define W5500\+\_\+\+CS~17}
+
+\Hypertarget{group__overcurrent__thresholds_ga067bb8b34e47239e6dfb86070fb54ecb}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!W5500\_INT@{W5500\_INT}}
+\index{W5500\_INT@{W5500\_INT}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_INT}{W5500\_INT}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga067bb8b34e47239e6dfb86070fb54ecb} 
+\#define W5500\+\_\+\+INT~21}
+
+\Hypertarget{group__overcurrent__thresholds_ga5907c71e474d5acceab5bb8dc93f99d7}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!W5500\_MISO@{W5500\_MISO}}
+\index{W5500\_MISO@{W5500\_MISO}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_MISO}{W5500\_MISO}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga5907c71e474d5acceab5bb8dc93f99d7} 
+\#define W5500\+\_\+\+MISO~16}
+
+\Hypertarget{group__overcurrent__thresholds_ga28154e97dec70bb3db383840bd913b9f}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!W5500\_MOSI@{W5500\_MOSI}}
+\index{W5500\_MOSI@{W5500\_MOSI}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_MOSI}{W5500\_MOSI}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga28154e97dec70bb3db383840bd913b9f} 
+\#define W5500\+\_\+\+MOSI~19}
+
+\Hypertarget{group__overcurrent__thresholds_ga5df3a6d20f52bf5f7b67601f0bbd30c3}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!W5500\_RESET@{W5500\_RESET}}
+\index{W5500\_RESET@{W5500\_RESET}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_RESET}{W5500\_RESET}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga5df3a6d20f52bf5f7b67601f0bbd30c3} 
+\#define W5500\+\_\+\+RESET~20}
+
+\Hypertarget{group__overcurrent__thresholds_gaac8047e48a180391f5b8022799f11905}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!W5500\_SCK@{W5500\_SCK}}
+\index{W5500\_SCK@{W5500\_SCK}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_SCK}{W5500\_SCK}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_gaac8047e48a180391f5b8022799f11905} 
+\#define W5500\+\_\+\+SCK~18}
+
+\Hypertarget{group__overcurrent__thresholds_ga0210d85f75d02bdec08c024691be4104}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!W5500\_SPI\_INSTANCE@{W5500\_SPI\_INSTANCE}}
+\index{W5500\_SPI\_INSTANCE@{W5500\_SPI\_INSTANCE}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_SPI\_INSTANCE}{W5500\_SPI\_INSTANCE}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga0210d85f75d02bdec08c024691be4104} 
+\#define W5500\+\_\+\+SPI\+\_\+\+INSTANCE~spi0}
+
+\Hypertarget{group__overcurrent__thresholds_ga5cb439d9f933fde4cf23caa370c030e7}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!WARNING@{WARNING}}
+\index{WARNING@{WARNING}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{WARNING}{WARNING}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga5cb439d9f933fde4cf23caa370c030e7} 
+\#define WARNING~1}
+
+\Hypertarget{group__overcurrent__thresholds_ga09754ff78ee34858d9f269c5ca9c054b}\index{Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}!WARNING\_PRINT@{WARNING\_PRINT}}
+\index{WARNING\_PRINT@{WARNING\_PRINT}!Overcurrent Protection Thresholds@{Overcurrent Protection Thresholds}}
+\doxysubsubsubsubsection{\texorpdfstring{WARNING\_PRINT}{WARNING\_PRINT}}
+{\footnotesize\ttfamily \label{group__overcurrent__thresholds_ga09754ff78ee34858d9f269c5ca9c054b} 
+\#define WARNING\+\_\+\+PRINT(\begin{DoxyParamCaption}\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__tasks05_ga36194a3f790c1e727f3b9ab3c0ab38ba}{log\_printf\_force}}(\textcolor{stringliteral}{"{}[WARNING]\ "{}}\ \_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}

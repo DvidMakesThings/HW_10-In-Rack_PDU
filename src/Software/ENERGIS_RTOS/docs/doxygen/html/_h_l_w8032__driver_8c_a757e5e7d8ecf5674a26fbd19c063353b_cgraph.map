@@ -1,0 +1,9 @@
+<map id="hlw8032_calibration_consume_sample" name="hlw8032_calibration_consume_sample">
+<area shape="rect" id="Node000001" title="Feed one fresh HLW8032 sample into the async calibration engine." alt="" coords="5,39,141,81"/>
+<area shape="rect" id="Node000002" href="$_h_l_w8032__driver_8c.html#aad15d8e17ce424d4f8a6fd4eb64c53bb" title="Finish calibration for the current channel using accumulated samples." alt="" coords="189,5,347,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="141,46,173,40,174,45,141,51"/>
+<area shape="rect" id="Node000004" href="$_h_l_w8032__driver_8c.html#acc3dced2405146bb247c8d852e88e56f" title="Reset sample accumulators for the current async calibration channel." alt="" coords="197,72,339,115"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="141,69,182,76,181,81,141,74"/>
+<area shape="rect" id="Node000003" href="$group__tasks10.html#ga358cb2af62e67be54bc8228d8074563d" title="Set sensor calibration for a channel." alt="" coords="395,13,554,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="348,24,380,24,380,29,348,29"/>
+</map>

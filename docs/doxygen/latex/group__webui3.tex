@@ -1,0 +1,179 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item Status Handler 
+\end{DoxyEnumerate}}
+\hypertarget{group__webui3}{}\label{group__webui3}\index{3. Status Handler@{3. Status Handler}}
+
+
+Handler for GET /api/status endpoint providing system telemetry.  
+
+
+Collaboration diagram for 3. Status Handler\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=300pt]{group__webui3}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__webui3_gabec26dab8e118ff845c2fde12dc885cf}{handle\+\_\+status\+\_\+request}} (uint8\+\_\+t sock)
+\begin{DoxyCompactList}\small\item\em Handle GET /api/status endpoint and return JSON telemetry. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Handler for GET /api/status endpoint providing system telemetry. 
+
+\begin{DoxyVersion}{Version}
+2.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/01-\/01
+\end{DoxyDate}
+This module handles GET requests to /api/status and returns a comprehensive JSON response containing all system telemetry and status information. The handler aggregates data from multiple subsystems using cached values to provide immediate responses without blocking on hardware measurements.
+
+Data Sources\+:
+\begin{DoxyItemize}
+\item Channel states\+: Cached from Switch\+Task (updated in real-\/time by relay control)
+\item Power metrics\+: Cached from Meter\+Task (updated periodically by HLW8032 measurements)
+\item Channel labels\+: Retrieved from RAM cache (synchronized with EEPROM by Storage\+Task)
+\item Internal temperature\+: Cached die temperature from Meter\+Task (updated with power metrics)
+\item Overcurrent status\+: Real-\/time status from Overcurrent Protection module
+\end{DoxyItemize}
+
+Architecture Benefits\+:
+\begin{DoxyItemize}
+\item Non-\/blocking\+: All data retrieved from caches; no waiting for I2C, SPI, or UART
+\item Fast response\+: Typical response time \texorpdfstring{$<$}{<}10ms regardless of measurement cadence
+\item Consistency\+: All readings timestamped from same source (task-\/maintained caches)
+\item Decoupling\+: UI refresh rate independent of hardware measurement intervals
+\end{DoxyItemize}
+
+JSON Response Structure\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ "{}channels"{}:\ [}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ "{}voltage"{}:\ 230.5,}
+\DoxyCodeLine{\ \ \ \ \ \ "{}current"{}:\ 0.45,}
+\DoxyCodeLine{\ \ \ \ \ \ "{}uptime"{}:\ 3600,}
+\DoxyCodeLine{\ \ \ \ \ \ "{}power"{}:\ 103.7,}
+\DoxyCodeLine{\ \ \ \ \ \ "{}state"{}:\ true,}
+\DoxyCodeLine{\ \ \ \ \ \ "{}label"{}:\ "{}Web\ Server"{}}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ ...}
+\DoxyCodeLine{\ \ ],}
+\DoxyCodeLine{\ \ "{}internalTemperature"{}:\ 45.2,}
+\DoxyCodeLine{\ \ "{}temperatureUnit"{}:\ "{}°C"{},}
+\DoxyCodeLine{\ \ "{}systemStatus"{}:\ "{}OK"{},}
+\DoxyCodeLine{\ \ "{}overcurrent"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}state"{}:\ "{}NORMAL"{},}
+\DoxyCodeLine{\ \ \ \ "{}total\_current\_a"{}:\ 3.6,}
+\DoxyCodeLine{\ \ \ \ "{}limit\_a"{}:\ 10.0,}
+\DoxyCodeLine{\ \ \ \ "{}warning\_threshold\_a"{}:\ 8.0,}
+\DoxyCodeLine{\ \ \ \ "{}critical\_threshold\_a"{}:\ 9.5,}
+\DoxyCodeLine{\ \ \ \ "{}recovery\_threshold\_a"{}:\ 7.5,}
+\DoxyCodeLine{\ \ \ \ "{}switching\_allowed"{}:\ true,}
+\DoxyCodeLine{\ \ \ \ "{}trip\_count"{}:\ 0,}
+\DoxyCodeLine{\ \ \ \ "{}region"{}:\ "{}EU"{}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Temperature Unit Handling\+:
+\begin{DoxyItemize}
+\item User preference stored in EEPROM (0=Celsius, 1=Fahrenheit, 2=Kelvin)
+\item Die temperature measured in Celsius, converted based on preference
+\item Unit string included in response for client-\/side display
+\end{DoxyItemize}
+
+System Status Determination\+:
+\begin{DoxyItemize}
+\item "{}\+OK"{}\+: Normal operation (OC\+\_\+\+STATE\+\_\+\+NORMAL)
+\item "{}\+WARNING"{}\+: Elevated current or critical threshold reached
+\item "{}\+LOCKOUT"{}\+: Overcurrent protection triggered, switching disabled
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+All responses include CORS headers for browser-\/based automation. 
+
+JSON strings are escaped for safety (quotes, backslashes, control chars). 
+
+Called from Net\+Task context; all data access is thread-\/safe via caches.
+\end{DoxyNote}
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-func-members}
+\Hypertarget{group__webui3_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__webui3_gabec26dab8e118ff845c2fde12dc885cf}\index{3. Status Handler@{3. Status Handler}!handle\_status\_request@{handle\_status\_request}}
+\index{handle\_status\_request@{handle\_status\_request}!3. Status Handler@{3. Status Handler}}
+\doxysubsubsubsection{\texorpdfstring{handle\_status\_request()}{handle\_status\_request()}}
+{\footnotesize\ttfamily \label{group__webui3_gabec26dab8e118ff845c2fde12dc885cf} 
+void handle\+\_\+status\+\_\+request (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sock}{}\end{DoxyParamCaption})}
+
+
+
+Handle GET /api/status endpoint and return JSON telemetry. 
+
+Aggregates system status from multiple cached sources and formats a comprehensive JSON response containing all channel states, power measurements, labels, temperature, and overcurrent protection status. All data is retrieved from RAM caches maintained by other tasks, ensuring fast non-\/blocking response regardless of hardware timing.
+
+Operation\+:
+\begin{DoxyEnumerate}
+\item Retrieve cached die temperature from Meter\+Task
+\item Load user preference for temperature unit (Celsius/\+Fahrenheit/\+Kelvin)
+\item Snapshot all 8 channel relay states from Switch\+Task cache
+\item Retrieve overcurrent protection status and determine system status
+\item Load all channel labels from RAM cache (EEPROM-\/synchronized)
+\item Build JSON array with per-\/channel telemetry (voltage, current, power, uptime, state, label)
+\item Append temperature, system status, and overcurrent details to JSON
+\item Send HTTP 200 OK response with JSON body and CORS headers
+\end{DoxyEnumerate}
+
+JSON Safety\+:
+\begin{DoxyItemize}
+\item Channel labels are JSON-\/escaped to handle quotes, backslashes, and control chars
+\item All numeric values formatted with fixed precision
+\item Boolean values rendered as true/false literals
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & Socket number for HTTP connection\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+@http
+\begin{DoxyItemize}
+\item 200 OK\+: Success with JSON body containing complete system status
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Non-\/blocking; all data from caches, no hardware access. 
+
+Called from Net\+Task; assumes SPI mutex already held. 
+
+Response includes Connection\+: close and Cache-\/\+Control\+: no-\/cache headers.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{status__handler_8h}{status\+\_\+handler.\+h} for detailed documentation. 
+\end{DoxySeeAlso}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__webui3_gabec26dab8e118ff845c2fde12dc885cf_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__webui3_gabec26dab8e118ff845c2fde12dc885cf_icgraph}
+\end{center}
+\end{figure}

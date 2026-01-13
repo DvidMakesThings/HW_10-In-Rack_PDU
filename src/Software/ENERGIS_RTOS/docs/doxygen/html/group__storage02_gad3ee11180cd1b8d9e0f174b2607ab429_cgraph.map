@@ -1,0 +1,9 @@
+<map id="storage_get_all_channel_labels" name="storage_get_all_channel_labels">
+<area shape="rect" id="Node000001" title="Read all channel labels from RAM cache (thread&#45;safe, non&#45;blocking)." alt="" coords="5,23,167,65"/>
+<area shape="rect" id="Node000002" href="$group__storage02.html#ga9b748e74135c13df21595e6db035de95" title="Read channel label from RAM cache (thread&#45;safe). See channel_labels.h." alt="" coords="215,23,356,65"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,41,199,41,199,47,167,47"/>
+<area shape="rect" id="Node000003" href="$group__storage02.html#ga99ae818723cc95ffd9af13c54cd7a352" title="Get label from RAM cache. See channel_labels.h." alt="" coords="404,5,584,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="356,33,388,29,389,34,357,38"/>
+<area shape="rect" id="Node000004" href="$group__tasks10.html#gaad6cb463ba1647fe51faeea5f08268da" title="Check if config is loaded and ready." alt="" coords="410,56,578,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="357,50,395,55,394,60,356,55"/>
+</map>

@@ -1,0 +1,44 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/storage\+\_\+submodule/network.h File Reference}
+\hypertarget{network_8h}{}\label{network_8h}\index{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/network.h@{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/network.h}}
+{\ttfamily \#include "{}../../\+CONFIG.\+h"{}}\newline
+Include dependency graph for network.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{network_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{network_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__storage07_gaf37b38d193b54bcce8d8bbd38407dafc}{EEPROM\+\_\+\+Write\+User\+Network}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write raw network configuration block without CRC validation. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage07_ga36caebd539c36be02e805af5d1278ed5}{EEPROM\+\_\+\+Read\+User\+Network}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Read raw network configuration block without CRC validation. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage07_ga3c1fef9aa93f898978387328a8a6e33d}{EEPROM\+\_\+\+Write\+User\+Network\+With\+Checksum}} (const \mbox{\hyperlink{structnetwork_info}{network\+Info}} \texorpdfstring{$\ast$}{*}net\+\_\+info)
+\begin{DoxyCompactList}\small\item\em Write network configuration with CRC-\/8 validation appended. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage07_gaef5b120a12ff3e275706067ea3cf7e46}{EEPROM\+\_\+\+Read\+User\+Network\+With\+Checksum}} (\mbox{\hyperlink{structnetwork_info}{network\+Info}} \texorpdfstring{$\ast$}{*}net\+\_\+info)
+\begin{DoxyCompactList}\small\item\em Read and verify network configuration with CRC-\/8 validation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structnetwork_info}{network\+Info}} \mbox{\hyperlink{group__storage07_ga37c460b3ea58fd130cea86904b06f7b1}{Load\+User\+Network\+Config}} (void)
+\begin{DoxyCompactList}\small\item\em Load network configuration from EEPROM with automatic fallback and MAC repair. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage07_ga6e3a05e108d6081a55378ffe3e817f43}{EEPROM\+\_\+\+Write\+System\+Info}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write system information block without CRC validation. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage07_gab6868e2a26481771ef8ed81d4e909814}{EEPROM\+\_\+\+Read\+System\+Info}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Read system information block without CRC validation. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage07_ga45b5a1959fd75b07c11591fcc92f89c4}{EEPROM\+\_\+\+Write\+System\+Info\+With\+Checksum}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write system information with CRC-\/8 validation appended. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage07_ga781ad4b6b12005f76e0742e107443083}{EEPROM\+\_\+\+Read\+System\+Info\+With\+Checksum}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Read and verify system information with CRC-\/8 validation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

@@ -1,0 +1,34 @@
+\doxysection{power\+\_\+mgr.\+h}
+\hypertarget{power__mgr_8h_source}{}\label{power__mgr_8h_source}\index{src/Software/ENERGIS\_RTOS/src/misc/power\_mgr.h@{src/Software/ENERGIS\_RTOS/src/misc/power\_mgr.h}}
+\mbox{\hyperlink{power__mgr_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#ifndef\ POWER\_MGR\_H}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ POWER\_MGR\_H}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_o_n_f_i_g_8h}{CONFIG.h}}"{}}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{group__misc3_ggacd64982bf58e213a07ae1fe0f2235cb9a63a8aa4bf635f74171bbfe8f145dd1cf}{PWR\_STATE\_RUN}}\ =\ 0,\ \ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{group__misc3_ggacd64982bf58e213a07ae1fe0f2235cb9adb2ad70dbd755481133fc891b67fd91b}{PWR\_STATE\_STANDBY}}\ =\ 1\ }
+\DoxyCodeLine{00053\ \}\ \mbox{\hyperlink{group__misc3_gacd64982bf58e213a07ae1fe0f2235cb9}{power\_state\_t}};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{comment}{/*\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\ */}}
+\DoxyCodeLine{00057\ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PUBLIC\ API\ FUNCTIONS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00058\ \textcolor{comment}{/*\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\ */}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00073\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__misc3_ga83454e7bafa44edd5acce76b7aa91e0b}{Power\_Init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00084\ \mbox{\hyperlink{group__misc3_gacd64982bf58e213a07ae1fe0f2235cb9}{power\_state\_t}}\ \mbox{\hyperlink{group__misc3_gad3252fba1863d278f2611cad531177f5}{Power\_GetState}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00103\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__misc3_ga40de5935f9ba85f9141a9243b4d02c87}{Power\_EnterStandby}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00122\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__misc3_gafa726e9d0fc140faa3f54c6905ac2520}{Power\_ExitStandby}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00136\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__misc3_ga0827dd667e39150cad0b7642a076d384}{Power\_ServiceStandbyLED}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ POWER\_MGR\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00140\ }
+
+\end{DoxyCode}

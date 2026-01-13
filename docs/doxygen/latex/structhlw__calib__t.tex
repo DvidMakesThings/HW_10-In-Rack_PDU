@@ -1,0 +1,168 @@
+\doxysection{hlw\+\_\+calib\+\_\+t Struct Reference}
+\hypertarget{structhlw__calib__t}{}\label{structhlw__calib__t}\index{hlw\_calib\_t@{hlw\_calib\_t}}
+
+
+Per-\/channel calibration parameters for HLW8032 power meter IC.  
+
+
+
+
+{\ttfamily \#include $<$EEPROM\+\_\+\+Memory\+Map.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{group__config06_ga9f32a01fdc7a70ae83fc9d2ec9a57116}{voltage\+\_\+factor}}
+\item 
+float \mbox{\hyperlink{structhlw__calib__t_a0eb9e9cb473fc1784468a64a7a04fd72}{current\+\_\+factor}}
+\item 
+float \mbox{\hyperlink{structhlw__calib__t_a5017a8dade5307b845d46c80d36602fd}{voltage\+\_\+offset}}
+\item 
+float \mbox{\hyperlink{structhlw__calib__t_a637e5487c49ed6c1a8b0ea1442404d48}{current\+\_\+offset}}
+\item 
+float \mbox{\hyperlink{structhlw__calib__t_a0d17aead26967383dbfa3ada72d301ea}{r1\+\_\+actual}}
+\item 
+float \mbox{\hyperlink{structhlw__calib__t_a7304281de5d7f031f6cb30679657a341}{r2\+\_\+actual}}
+\item 
+float \mbox{\hyperlink{structhlw__calib__t_a2bdc7f9f9d3f1eddd5ccfdfd79a9239c}{shunt\+\_\+actual}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structhlw__calib__t_a0a21aa49bcabca9beb3df82e92f7f22f}{calibrated}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structhlw__calib__t_a2374580965d708e1b8d63a69b418b853}{zero\+\_\+calibrated}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structhlw__calib__t_a795c9b41d2557573b7f5939f20269b58}{reserved}} \mbox{[}5\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Per-\/channel calibration parameters for HLW8032 power meter IC. 
+
+Stores calibration factors and hardware parameters for one HLW8032 power measurement channel. Each PDU has 8 independent channels requiring individual calibration. Calibration performed via UART commands using known voltage and current references.
+
+Calibration Factors\+:
+\begin{DoxyItemize}
+\item voltage\+\_\+factor\+: VF multiplier for voltage calculation (default\+: 0.\+596)
+\begin{DoxyItemize}
+\item Converts HLW8032 voltage register to actual volts
+\item Derived from\+: V\+\_\+actual / V\+\_\+register during calibration
+\end{DoxyItemize}
+\item current\+\_\+factor\+: CF multiplier for current calculation (default\+: 14.\+871)
+\begin{DoxyItemize}
+\item Converts HLW8032 current register to actual amps
+\item Derived from\+: I\+\_\+actual / I\+\_\+register during calibration
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Zero-\/\+Point Offsets\+:
+\begin{DoxyItemize}
+\item voltage\+\_\+offset\+: Zero-\/load voltage correction in volts
+\begin{DoxyItemize}
+\item Compensates for ADC offset error
+\item Measured with no load, subtracted from readings
+\end{DoxyItemize}
+\item current\+\_\+offset\+: Zero-\/load current correction in amps
+\begin{DoxyItemize}
+\item Compensates for ADC offset and leakage
+\item Measured with no load, subtracted from readings
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Hardware Parameters\+:
+\begin{DoxyItemize}
+\item r1\+\_\+actual\+: Measured high-\/side voltage divider resistor (default\+: 1880kΩ)
+\item r2\+\_\+actual\+: Measured low-\/side voltage divider resistor (default\+: 1kΩ)
+\item shunt\+\_\+actual\+: Measured current sense shunt resistor (default\+: 0.\+001Ω)
+\end{DoxyItemize}
+
+Calibration Flags\+:
+\begin{DoxyItemize}
+\item calibrated\+: 0x\+CA if voltage/current calibration complete, 0x\+FF otherwise
+\item zero\+\_\+calibrated\+: 0x\+CA if zero-\/point calibration complete, 0x\+FF otherwise
+\end{DoxyItemize}
+
+Reserved\+:
+\begin{DoxyItemize}
+\item 5 bytes reserved for future expansion and structure alignment
+\end{DoxyItemize}
+
+Calibration Workflow\+:
+\begin{DoxyEnumerate}
+\item Measure actual resistor values and update r1/r2/shunt
+\item Apply known voltage, measure, calculate voltage\+\_\+factor
+\item Apply known current, measure, calculate current\+\_\+factor
+\item Remove load, measure offsets, store voltage/current\+\_\+offset
+\item Set calibrated flags to 0x\+CA
+\item Write structure to EEPROM for channel
+\end{DoxyEnumerate}
+
+\begin{DoxyNote}{Note}
+Structure size\+: 41 bytes per channel. 
+
+Total storage for 8 channels\+: 328 bytes + 1 byte CRC = 329 bytes. 
+
+Floats stored in IEEE 754 single-\/precision format (4 bytes each). 
+\end{DoxyNote}
+
+
+\label{doc-variable-members}
+\Hypertarget{structhlw__calib__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structhlw__calib__t_a0a21aa49bcabca9beb3df82e92f7f22f}\index{hlw\_calib\_t@{hlw\_calib\_t}!calibrated@{calibrated}}
+\index{calibrated@{calibrated}!hlw\_calib\_t@{hlw\_calib\_t}}
+\doxysubsubsection{\texorpdfstring{calibrated}{calibrated}}
+{\footnotesize\ttfamily \label{structhlw__calib__t_a0a21aa49bcabca9beb3df82e92f7f22f} 
+uint8\+\_\+t hlw\+\_\+calib\+\_\+t\+::calibrated}
+
+0x\+CA if calibrated, 0x\+FF otherwise. \Hypertarget{structhlw__calib__t_a0eb9e9cb473fc1784468a64a7a04fd72}\index{hlw\_calib\_t@{hlw\_calib\_t}!current\_factor@{current\_factor}}
+\index{current\_factor@{current\_factor}!hlw\_calib\_t@{hlw\_calib\_t}}
+\doxysubsubsection{\texorpdfstring{current\_factor}{current\_factor}}
+{\footnotesize\ttfamily \label{structhlw__calib__t_a0eb9e9cb473fc1784468a64a7a04fd72} 
+float hlw\+\_\+calib\+\_\+t\+::current\+\_\+factor}
+
+CF calibration factor (default\+: 14.\+871). \Hypertarget{structhlw__calib__t_a637e5487c49ed6c1a8b0ea1442404d48}\index{hlw\_calib\_t@{hlw\_calib\_t}!current\_offset@{current\_offset}}
+\index{current\_offset@{current\_offset}!hlw\_calib\_t@{hlw\_calib\_t}}
+\doxysubsubsection{\texorpdfstring{current\_offset}{current\_offset}}
+{\footnotesize\ttfamily \label{structhlw__calib__t_a637e5487c49ed6c1a8b0ea1442404d48} 
+float hlw\+\_\+calib\+\_\+t\+::current\+\_\+offset}
+
+Zero-\/point current offset in amps. \Hypertarget{structhlw__calib__t_a0d17aead26967383dbfa3ada72d301ea}\index{hlw\_calib\_t@{hlw\_calib\_t}!r1\_actual@{r1\_actual}}
+\index{r1\_actual@{r1\_actual}!hlw\_calib\_t@{hlw\_calib\_t}}
+\doxysubsubsection{\texorpdfstring{r1\_actual}{r1\_actual}}
+{\footnotesize\ttfamily \label{structhlw__calib__t_a0d17aead26967383dbfa3ada72d301ea} 
+float hlw\+\_\+calib\+\_\+t\+::r1\+\_\+actual}
+
+Actual R1 resistor value in ohms (default\+: 1880000Ω). \Hypertarget{structhlw__calib__t_a7304281de5d7f031f6cb30679657a341}\index{hlw\_calib\_t@{hlw\_calib\_t}!r2\_actual@{r2\_actual}}
+\index{r2\_actual@{r2\_actual}!hlw\_calib\_t@{hlw\_calib\_t}}
+\doxysubsubsection{\texorpdfstring{r2\_actual}{r2\_actual}}
+{\footnotesize\ttfamily \label{structhlw__calib__t_a7304281de5d7f031f6cb30679657a341} 
+float hlw\+\_\+calib\+\_\+t\+::r2\+\_\+actual}
+
+Actual R2 resistor value in ohms (default\+: 1000Ω). \Hypertarget{structhlw__calib__t_a795c9b41d2557573b7f5939f20269b58}\index{hlw\_calib\_t@{hlw\_calib\_t}!reserved@{reserved}}
+\index{reserved@{reserved}!hlw\_calib\_t@{hlw\_calib\_t}}
+\doxysubsubsection{\texorpdfstring{reserved}{reserved}}
+{\footnotesize\ttfamily \label{structhlw__calib__t_a795c9b41d2557573b7f5939f20269b58} 
+uint8\+\_\+t hlw\+\_\+calib\+\_\+t\+::reserved\mbox{[}5\mbox{]}}
+
+Reserved bytes for future expansion and alignment. \Hypertarget{structhlw__calib__t_a2bdc7f9f9d3f1eddd5ccfdfd79a9239c}\index{hlw\_calib\_t@{hlw\_calib\_t}!shunt\_actual@{shunt\_actual}}
+\index{shunt\_actual@{shunt\_actual}!hlw\_calib\_t@{hlw\_calib\_t}}
+\doxysubsubsection{\texorpdfstring{shunt\_actual}{shunt\_actual}}
+{\footnotesize\ttfamily \label{structhlw__calib__t_a2bdc7f9f9d3f1eddd5ccfdfd79a9239c} 
+float hlw\+\_\+calib\+\_\+t\+::shunt\+\_\+actual}
+
+Actual shunt resistor value in ohms (default\+: 0.\+001Ω). \Hypertarget{structhlw__calib__t_a5017a8dade5307b845d46c80d36602fd}\index{hlw\_calib\_t@{hlw\_calib\_t}!voltage\_offset@{voltage\_offset}}
+\index{voltage\_offset@{voltage\_offset}!hlw\_calib\_t@{hlw\_calib\_t}}
+\doxysubsubsection{\texorpdfstring{voltage\_offset}{voltage\_offset}}
+{\footnotesize\ttfamily \label{structhlw__calib__t_a5017a8dade5307b845d46c80d36602fd} 
+float hlw\+\_\+calib\+\_\+t\+::voltage\+\_\+offset}
+
+Zero-\/point voltage offset in volts. \Hypertarget{structhlw__calib__t_a2374580965d708e1b8d63a69b418b853}\index{hlw\_calib\_t@{hlw\_calib\_t}!zero\_calibrated@{zero\_calibrated}}
+\index{zero\_calibrated@{zero\_calibrated}!hlw\_calib\_t@{hlw\_calib\_t}}
+\doxysubsubsection{\texorpdfstring{zero\_calibrated}{zero\_calibrated}}
+{\footnotesize\ttfamily \label{structhlw__calib__t_a2374580965d708e1b8d63a69b418b853} 
+uint8\+\_\+t hlw\+\_\+calib\+\_\+t\+::zero\+\_\+calibrated}
+
+0x\+CA if zero-\/calibration done, 0x\+FF otherwise. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/misc/\mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h}{EEPROM\+\_\+\+Memory\+Map.\+h}}\end{DoxyCompactItemize}

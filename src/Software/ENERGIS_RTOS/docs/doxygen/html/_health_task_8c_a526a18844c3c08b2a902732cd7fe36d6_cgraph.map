@@ -1,0 +1,64 @@
+<map id="health_task" name="health_task">
+<area shape="rect" id="Node000001" title="Health supervision worker task with strict arm gating and idle&#45;canary checks." alt="" coords="5,436,94,463"/>
+<area shape="rect" id="Node000002" href="$group__misc1.html#ga8dac22c0f05ce9e997b99d9179a2bf5f" title="Record a hardware watchdog feed timestamp for telemetry tracking." alt="" coords="153,56,332,83"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="50,435,60,364,78,261,105,160,121,120,140,93,143,90,147,94,144,96,126,123,110,162,84,262,65,365,55,436"/>
+<area shape="rect" id="Node000009" href="$_health_task_8c.html#ab1f74e39f4baf6da01b7d9a7322b1252" title="Dump the recent blocked events ring buffer." alt="" coords="183,107,302,133"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="48,435,50,381,61,303,72,260,89,218,111,178,140,143,167,127,169,131,143,147,115,181,94,220,78,261,66,304,55,382,53,436"/>
+<area shape="rect" id="Node000010" href="$_health_task_8c.html#a3b445bff75b4db504ee2e1f2e077e114" title="Record a watchdog feed and reset the pre&#45;bark guard." alt="" coords="175,157,311,184"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="49,436,55,391,69,328,96,260,116,229,140,201,159,187,162,191,143,205,120,232,101,263,74,330,60,392,54,436"/>
+<area shape="rect" id="Node000011" href="$_health_task_8c.html#a8213bf3a8e666885c3d45b1d5d8fb85c" title="Check if a health ID is in the required mask." alt="" coords="648,360,750,387"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="56,462,64,496,81,539,106,582,123,600,143,615,182,631,233,643,294,650,359,652,424,650,484,643,536,631,574,615,600,595,623,569,642,541,657,511,679,451,691,401,696,403,684,452,662,513,646,544,627,573,604,598,577,620,537,636,485,648,424,655,359,657,293,655,232,648,180,636,140,620,120,604,102,585,76,541,59,497,51,464"/>
+<area shape="rect" id="Node000012" href="$_health_task_8c.html#a160a90c77e4bf752dfacf1902e7d1271" title="Log the current free heap size." alt="" coords="192,259,294,285"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="53,434,83,371,108,334,140,302,176,283,178,288,143,306,112,337,88,374,58,437"/>
+<area shape="rect" id="Node000013" href="$_health_task_8c.html#a53210676008974c592a4d5a3d3e2d4b6" title="Print the heartbeat status of all required tasks, one line per task." alt="" coords="416,680,551,707"/>
+<area shape="poly" id="edge15_Node000001_Node000013" title=" " alt="" coords="55,463,61,503,76,557,102,614,121,638,143,659,172,677,204,690,272,705,339,709,401,705,401,710,339,714,271,711,202,695,170,682,140,663,117,642,97,616,71,559,56,504,49,464"/>
+<area shape="rect" id="Node000014" href="$_health_task_8c.html#a6c24df6d8d86ef094694156984474046" title=" " alt="" coords="167,360,319,387"/>
+<area shape="poly" id="edge17_Node000001_Node000014" title=" " alt="" coords="71,433,103,414,141,396,161,389,163,394,143,401,105,419,73,438"/>
+<area shape="rect" id="Node000015" href="$_health_task_8c.html#a4f622f7eefe9176d86353921b2facf62" title="Compute the maximum delta time since last heartbeat among required tasks." alt="" coords="425,309,542,336"/>
+<area shape="poly" id="edge18_Node000001_Node000015" title=" " alt="" coords="56,434,88,389,112,365,140,346,174,332,209,321,280,310,349,307,410,310,409,316,349,313,281,315,210,327,175,337,143,350,116,369,92,392,61,437"/>
+<area shape="rect" id="Node000016" href="$_health_task_8c.html#a50503dee6a29e98e633b16b1b8b550bc" title="Get current monotonic time in milliseconds." alt="" coords="208,461,278,488"/>
+<area shape="poly" id="edge20_Node000001_Node000016" title=" " alt="" coords="94,452,193,465,192,471,94,458"/>
+<area shape="rect" id="Node000017" href="$_health_task_8c.html#a443004247b904055d802c8cece93c2d8" title="Print a brief summary if the last reboot was caused by Health." alt="" coords="177,563,308,605"/>
+<area shape="poly" id="edge21_Node000001_Node000017" title=" " alt="" coords="63,461,96,501,143,542,164,554,162,559,140,546,92,504,59,465"/>
+<area shape="rect" id="Node000020" href="$_health_task_8c.html#ac8169b2f9ba217c30cf8950a9c412cb7" title="Report stale tasks and log reboot context if any are found." alt="" coords="198,411,288,437"/>
+<area shape="poly" id="edge24_Node000001_Node000020" title=" " alt="" coords="94,441,183,429,183,434,94,446"/>
+<area shape="rect" id="Node000023" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="392,461,575,488"/>
+<area shape="poly" id="edge34_Node000001_Node000023" title=" " alt="" coords="71,461,103,481,142,497,214,509,288,508,357,501,416,489,417,495,358,506,288,514,214,514,141,503,101,486,68,466"/>
+<area shape="rect" id="Node000024" href="$_health_task_8c.html#acfb8f6f51b0f8da2181487887382ee77" title="Check if all required tasks have sent at least one heartbeat." alt="" coords="413,225,554,268"/>
+<area shape="poly" id="edge30_Node000001_Node000024" title=" " alt="" coords="49,435,56,396,71,342,97,288,117,264,140,244,170,228,203,217,270,208,338,210,398,220,397,225,337,216,271,213,204,223,172,233,143,249,120,268,102,291,76,344,61,397,55,436"/>
+<area shape="rect" id="Node000025" href="$group__misc4.html#ga9ac2d2d4103087861a0bf882d5ebada9" title="Read the last millisecond timestamp observed in the Idle hook." alt="" coords="154,731,332,757"/>
+<area shape="poly" id="edge32_Node000001_Node000025" title=" " alt="" coords="54,463,59,510,73,576,84,612,99,648,119,681,144,710,158,721,155,725,140,714,115,684,95,650,79,614,67,577,54,510,49,463"/>
+<area shape="rect" id="Node000026" href="$group__misc4.html#ga7ad3b2e7f54fbc65a7ce48de8cb3ab88" title="Read the current Idle canary value." alt="" coords="160,781,326,808"/>
+<area shape="poly" id="edge33_Node000001_Node000026" title=" " alt="" coords="53,463,54,520,64,602,75,646,92,691,114,732,144,767,149,772,145,776,140,771,110,735,87,693,70,648,59,603,49,520,48,463"/>
+<area shape="rect" id="Node000027" href="$group__tasks10.html#gac25626a70e6fe0baeaa167d47bed33d1" title="Enqueue a warning code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="142,832,344,859"/>
+<area shape="poly" id="edge35_Node000001_Node000027" title=" " alt="" coords="55,463,64,537,83,644,109,750,126,791,144,818,147,821,143,825,140,822,121,793,104,751,77,645,59,538,50,464"/>
+<area shape="rect" id="Node000003" href="$crashlog_8c.html#a9207dc5d61cc94ea574ba706f3195453" title="Initialize retained crash log structure to clean state." alt="" coords="427,107,540,133"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="310,81,412,102,411,108,309,86"/>
+<area shape="rect" id="Node000004" href="$crashlog_8c.html#a50f52af1f76175e818dad1ef9f2bc3eb" title="Recompute and store updated CRC32 for the crash log structure." alt="" coords="637,56,761,83"/>
+<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="333,67,621,67,621,72,333,72"/>
+<area shape="rect" id="Node000006" href="$crashlog_8c.html#a19fbb6b4d2a38070175773953f6fb5db" title="Validate retained crash log header and CRC32 checksum." alt="" coords="623,5,775,32"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="333,55,392,48,608,25,608,30,392,53,333,60"/>
+<area shape="rect" id="Node000007" href="$_button_task_8c.html#a50503dee6a29e98e633b16b1b8b550bc" title="Get current system time in milliseconds." alt="" coords="448,157,519,184"/>
+<area shape="poly" id="edge8_Node000002_Node000007" title=" " alt="" coords="320,81,345,92,361,105,370,118,379,131,393,143,434,160,432,164,391,148,375,135,366,121,357,109,343,97,317,86"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="540,104,624,84,625,89,541,109"/>
+<area shape="rect" id="Node000005" href="$crashlog_8c.html#ae55aac5d65874421d290cce57ce04ed5" title="Compute CRC32 checksum using standard polynomial 0xEDB88320." alt="" coords="823,31,915,57"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="761,57,807,50,808,56,762,63"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="776,27,807,32,806,37,775,33"/>
+<area shape="rect" id="Node000008" href="$group__driver01.html#ga038e6418532b3e07206ada073cf02f22" title="Get monotonic millisecond timestamp since boot." alt="" coords="633,157,765,184"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="519,168,617,168,617,173,519,173"/>
+<area shape="poly" id="edge12_Node000010_Node000007" title=" " alt="" coords="311,168,433,168,433,173,311,173"/>
+<area shape="poly" id="edge16_Node000013_Node000011" title=" " alt="" coords="545,677,574,659,600,630,623,597,657,525,679,456,691,401,696,403,684,457,662,527,627,600,604,633,577,663,548,682"/>
+<area shape="poly" id="edge19_Node000015_Node000011" title=" " alt="" coords="543,334,634,355,633,361,542,339"/>
+<area shape="rect" id="Node000018" href="$_health_task_8c.html#ac66d48f916a563641390eae52aa66f2d" title="Clear the watchdog scratch registers. Used after a clean boot to avoid stale data." alt="" coords="443,579,524,605"/>
+<area shape="poly" id="edge22_Node000017_Node000018" title=" " alt="" coords="309,583,428,587,427,593,309,589"/>
+<area shape="rect" id="Node000019" href="$_health_task_8c.html#aa70f2b53ee454037c8802aeee9ee558b" title="Check if the last reboot was caused by Health and load its context." alt="" coords="416,512,552,555"/>
+<area shape="poly" id="edge23_Node000017_Node000019" title=" " alt="" coords="308,568,400,548,401,553,309,573"/>
+<area shape="poly" id="edge26_Node000020_Node000015" title=" " alt="" coords="287,416,316,408,343,396,357,385,366,372,375,359,391,346,409,337,412,341,393,350,379,362,370,375,361,388,345,401,317,413,289,421"/>
+<area shape="rect" id="Node000021" href="$_health_task_8c.html#a996702f3c487931dc54c3bea7a590fe6" title="Store watchdog stale info to scratch registers." alt="" coords="425,411,542,437"/>
+<area shape="poly" id="edge25_Node000020_Node000021" title=" " alt="" coords="288,421,409,421,409,427,288,427"/>
+<area shape="rect" id="Node000022" href="$_health_task_8c.html#aa94502c10a8bfd89ced413d2b98d479f" title="Compute the stale task mask for all required tasks." alt="" coords="413,360,554,387"/>
+<area shape="poly" id="edge27_Node000020_Node000022" title=" " alt="" coords="287,412,402,388,403,393,288,417"/>
+<area shape="poly" id="edge29_Node000020_Node000023" title=" " alt="" coords="288,431,403,455,402,460,287,436"/>
+<area shape="poly" id="edge28_Node000022_Node000011" title=" " alt="" coords="555,371,633,371,633,376,555,376"/>
+<area shape="poly" id="edge31_Node000024_Node000011" title=" " alt="" coords="526,266,577,295,665,349,662,354,574,300,523,271"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="Health_RegisterTask" name="Health_RegisterTask">
+<area shape="rect" id="Node000001" title="Register a task handle and human&#45;readable name for diagnostics." alt="" coords="5,56,149,83"/>
+<area shape="rect" id="Node000002" href="$_health_task_8c.html#a8213bf3a8e666885c3d45b1d5d8fb85c" title="Check if a health ID is in the required mask." alt="" coords="247,5,348,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="138,53,231,31,232,36,139,58"/>
+<area shape="rect" id="Node000003" href="$_health_task_8c.html#a50503dee6a29e98e633b16b1b8b550bc" title="Get current monotonic time in milliseconds." alt="" coords="263,56,333,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="149,67,247,67,247,72,149,72"/>
+<area shape="rect" id="Node000004" href="$group__tasks10.html#gac25626a70e6fe0baeaa167d47bed33d1" title="Enqueue a warning code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="197,107,399,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="139,81,222,100,221,105,138,86"/>
+</map>

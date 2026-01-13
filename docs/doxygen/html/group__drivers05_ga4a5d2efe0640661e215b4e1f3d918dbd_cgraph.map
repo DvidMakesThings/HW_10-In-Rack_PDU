@@ -1,0 +1,11 @@
+<map id="eth_recv_data" name="eth_recv_data">
+<area shape="rect" id="Node000001" title="Receive data from socket RX buffer." alt="" coords="5,56,109,83"/>
+<area shape="rect" id="Node000002" href="$group__drivers05.html#ga63c2ca3d8006105cbac360261ec27404" title="Set socket RX read pointer (Sn_RX_RD) in big&#45;endian." alt="" coords="194,5,302,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,53,180,34,181,39,110,58"/>
+<area shape="rect" id="Node000004" href="$group__tasks05.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="157,56,340,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="109,67,141,67,141,72,109,72"/>
+<area shape="rect" id="Node000005" href="$group__drivers05.html#ga720712f243385daced1e173642f23f3f" title="Read multiple bytes from W5500 (optimized bulk transfer)" alt="" coords="190,107,306,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="110,80,181,100,180,105,108,85"/>
+<area shape="rect" id="Node000003" href="$group__drivers05.html#ga8e525d27915365abbe8086dc3363055f" title="Write multiple bytes to W5500 (optimized bulk transfer)" alt="" coords="388,5,507,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="303,16,373,16,373,21,303,21"/>
+</map>

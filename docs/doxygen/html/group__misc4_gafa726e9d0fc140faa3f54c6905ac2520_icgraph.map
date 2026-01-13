@@ -1,0 +1,13 @@
+<map id="Power_ExitStandby" name="Power_ExitStandby">
+<area shape="rect" id="Node000001" title="Exit standby mode and return to normal operation." alt="" coords="729,5,865,32"/>
+<area shape="rect" id="Node000002" href="$_button_task_8c.html#ac8adec5c9e99b51c4884034cf2e41275" title="Main button scanning and event processing task." alt="" coords="587,5,681,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="713,21,682,21,682,16,713,16"/>
+<area shape="rect" id="Node000003" href="$group__tasks02.html#ga66ab3f6fa24432c008c6ea7b0ccddb5f" title="Initialize and start the button handling task." alt="" coords="426,5,539,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="571,21,539,21,539,16,571,16"/>
+<area shape="rect" id="Node000004" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,5,378,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="411,21,379,21,379,16,411,16"/>
+<area shape="rect" id="Node000005" href="$group__tasks01.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,5,263,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="295,21,263,21,263,16,295,16"/>
+<area shape="rect" id="Node000006" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,5,102,32"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="134,21,102,21,102,16,134,16"/>
+</map>

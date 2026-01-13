@@ -1,0 +1,80 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/storage\+\_\+submodule/device\+\_\+identity.h File Reference}
+\hypertarget{device__identity_8h}{}\label{device__identity_8h}\index{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/device\_identity.h@{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/device\_identity.h}}
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+Include dependency graph for device\+\_\+identity.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{device__identity_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{device__identity_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structdevice__identity__t}{device\+\_\+identity\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Device identity RAM cache structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__storage03_ga873a1b4db5414ab4ac986547e952f2fe}{DEVICE\+\_\+\+SN\+\_\+\+MAX\+\_\+\+LEN}}~15
+\begin{DoxyCompactList}\small\item\em Maximum length of serial number string (excluding null terminator). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__storage03_gae4d74f9ef4f807b438ff2aee66b55350}{PROV\+\_\+\+UNLOCK\+\_\+\+TOKEN}}~"{}6D61676963"{}
+\begin{DoxyCompactList}\small\item\em Provisioning unlock token (hex string). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__storage03_gaf11aaae114cd0c1c20eb730929d2fbc8}{PROV\+\_\+\+UNLOCK\+\_\+\+TIMEOUT\+\_\+\+MS}}~60000
+\begin{DoxyCompactList}\small\item\em Provisioning unlock timeout in milliseconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__storage03_ga509a8b0630b9c754a52a817ba37e032b}{device\+\_\+region\+\_\+t}} \{ \mbox{\hyperlink{group__storage03_gga509a8b0630b9c754a52a817ba37e032ba07eea1ebaa36d551f30f56c30b308d57}{DEVICE\+\_\+\+REGION\+\_\+\+UNKNOWN}} = 0x00
+, \mbox{\hyperlink{group__storage03_gga509a8b0630b9c754a52a817ba37e032ba0b78a74641c8e6c2b2754eef80ab4aeb}{DEVICE\+\_\+\+REGION\+\_\+\+EU}} = 0x45
+, \mbox{\hyperlink{group__storage03_gga509a8b0630b9c754a52a817ba37e032bac833b1f9e2f5832aef5b89fe71fa8abe}{DEVICE\+\_\+\+REGION\+\_\+\+US}} = 0x55
+ \}
+\begin{DoxyCompactList}\small\item\em Device region enumeration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{group__storage03_gab898071398b359603a35c202e9c65f3b}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} ((packed))
+\begin{DoxyCompactList}\small\item\em Device identity EEPROM payload fields (without reserved pad). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__storage03_ga8a44399536e0b86e0b543df9f1962c17}{Device\+Identity\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the device identity module. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structdevice__identity__t}{device\+\_\+identity\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__storage03_gad79ee3ecce363eec976ed7616906c27d}{Device\+Identity\+\_\+\+Get}} (void)
+\begin{DoxyCompactList}\small\item\em Get pointer to the device identity RAM cache. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__storage03_gab09c3d3cce44235c32034cb03d64fbe4}{Device\+Identity\+\_\+\+Get\+Serial\+Number}} (void)
+\begin{DoxyCompactList}\small\item\em Get the cached serial number string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__storage03_ga509a8b0630b9c754a52a817ba37e032b}{device\+\_\+region\+\_\+t}} \mbox{\hyperlink{group__storage03_ga8159c9128e13ce5870ad6d282094ed83}{Device\+Identity\+\_\+\+Get\+Region}} (void)
+\begin{DoxyCompactList}\small\item\em Get the cached device region. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__storage03_ga5b4f82b48868c1a68c60a9fc9a7f3e37}{Device\+Identity\+\_\+\+Get\+Current\+LimitA}} (void)
+\begin{DoxyCompactList}\small\item\em Get the current limit in amperes based on cached region. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage03_ga6a8334a56f37167d1e857260bb262902}{Device\+Identity\+\_\+\+Is\+Valid}} (void)
+\begin{DoxyCompactList}\small\item\em Check if device identity is valid (provisioned). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage03_ga41878c484b104d5237c63deef71f450b}{Device\+Identity\+\_\+\+Unlock}} (const char \texorpdfstring{$\ast$}{*}token)
+\begin{DoxyCompactList}\small\item\em Attempt to unlock provisioning with the given token. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__storage03_ga2bf21d733d9d7a0292429bb3f6f144c3}{Device\+Identity\+\_\+\+Lock}} (void)
+\begin{DoxyCompactList}\small\item\em Lock provisioning (close write window). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage03_ga11fd0a0d9d1c447246dc161cfa77f5aa}{Device\+Identity\+\_\+\+Is\+Unlocked}} (void)
+\begin{DoxyCompactList}\small\item\em Check if provisioning is currently unlocked. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage03_ga3ac2980af26af34986f7360246deefa5}{Device\+Identity\+\_\+\+Set\+Serial\+Number}} (const char \texorpdfstring{$\ast$}{*}serial\+\_\+number)
+\begin{DoxyCompactList}\small\item\em Set the device serial number (requires unlock). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage03_ga9f2f68ea0ff2c13d4fe5d52dc3a99e4f}{Device\+Identity\+\_\+\+Set\+Region}} (\mbox{\hyperlink{group__storage03_ga509a8b0630b9c754a52a817ba37e032b}{device\+\_\+region\+\_\+t}} region)
+\begin{DoxyCompactList}\small\item\em Set the device region (requires unlock). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__storage03_ga461c49efb137c6fcc9871867b974c326}{Device\+Identity\+\_\+\+Fill\+Mac}} (uint8\+\_\+t mac\mbox{[}6\mbox{]})
+\begin{DoxyCompactList}\small\item\em Derive MAC address from the cached serial number. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__storage03_ga3d4f201eb84e7a480bb2455f5181bca0}{device\+\_\+identity\+\_\+eeprom\+\_\+t}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

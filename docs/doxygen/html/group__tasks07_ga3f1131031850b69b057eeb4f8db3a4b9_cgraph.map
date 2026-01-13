@@ -1,0 +1,5 @@
+<map id="MeterTask_SetTempCalibration" name="MeterTask_SetTempCalibration">
+<area shape="rect" id="Node000001" title="Apply per&#45;device temperature calibration parameters." alt="" coords="5,5,209,32"/>
+<area shape="rect" id="Node000002" href="$group__tasks05.html#gac25626a70e6fe0baeaa167d47bed33d1" title="Enqueue a warning code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="257,5,459,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="209,16,241,16,241,21,209,21"/>
+</map>

@@ -1,0 +1,225 @@
+\doxysection{ethernet\+\_\+driver.\+h}
+\hypertarget{ethernet__driver_8h_source}{}\label{ethernet__driver_8h_source}\index{src/Software/ENERGIS\_RTOS/src/drivers/ethernet\_driver.h@{src/Software/ENERGIS\_RTOS/src/drivers/ethernet\_driver.h}}
+\mbox{\hyperlink{ethernet__driver_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#ifndef\ W5500\_DRIVER\_H}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ W5500\_DRIVER\_H}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_o_n_f_i_g_8h}{../CONFIG.h}}"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TYPE\ DEFINITIONS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00037\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structw5500___net_config_aea0e42850071f8495a41d336ce61eaa4}{mac}}[6];\ }
+\DoxyCodeLine{00038\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structw5500___net_config_a93d4a6f7f8439084527ffdb636bd5b38}{ip}}[4];\ \ }
+\DoxyCodeLine{00039\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structw5500___net_config_a42a4c46a14272f5038c7322ee3fccfab}{sn}}[4];\ \ }
+\DoxyCodeLine{00040\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structw5500___net_config_aa41a0b6e8b389f18bdaafde82a31783c}{gw}}[4];\ \ }
+\DoxyCodeLine{00041\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structw5500___net_config_a01d33713a2de7b181563acf5625e2e7f}{dns}}[4];\ }
+\DoxyCodeLine{00042\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structw5500___net_config_aae817f806148477eecde6d7088d0aa77}{dhcp}};\ \ \ }
+\DoxyCodeLine{00043\ \}\ \mbox{\hyperlink{structw5500___net_config}{w5500\_NetConfig}};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00051\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structw5500___phy_config_a921e2c0e24bd2851c7379de3e96fde90}{by}};\ \ \ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structw5500___phy_config_ac699d0e620f273acb61f79823ee4fd8e}{mode}};\ \ \ }
+\DoxyCodeLine{00053\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structw5500___phy_config_a069e683d10cdb609098a44b7cabba67b}{speed}};\ \ }
+\DoxyCodeLine{00054\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structw5500___phy_config_a99819ddef655d6e85bcb9d1f5c88a4a2}{duplex}};\ }
+\DoxyCodeLine{00055\ \}\ \mbox{\hyperlink{structw5500___phy_config}{w5500\_PhyConfig}};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{group__drivers03_ggacef8050f9ef67107f3847653577da34fae2760211c2bb5d3d92d4844e70659521}{PHY\_LINK\_OFF}}\ =\ 0,\ }
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{group__drivers03_ggacef8050f9ef67107f3847653577da34faf86ca986c2c6c1d071154268f8d66c9f}{PHY\_LINK\_ON}}\ =\ 1\ \ \ }
+\DoxyCodeLine{00065\ \}\ \mbox{\hyperlink{group__drivers03_gacef8050f9ef67107f3847653577da34f}{w5500\_PhyLink}};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{group__drivers03_gga7ad32e7472dce94b87b4e5bf53a9d5c0a6d1da1ce3b18ff3bcb1d5965e5f214b0}{PHY\_POWER\_NORM}}\ =\ 0,\ }
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{group__drivers03_gga7ad32e7472dce94b87b4e5bf53a9d5c0aeec263e1564a45c07d60ea3c190ddebd}{PHY\_POWER\_DOWN}}\ =\ 1\ \ }
+\DoxyCodeLine{00075\ \}\ \mbox{\hyperlink{group__drivers03_ga7ad32e7472dce94b87b4e5bf53a9d5c0}{w5500\_PhyPower}};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00079\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GLOBAL\ VARIABLES\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00080\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{extern}\ SemaphoreHandle\_t\ \mbox{\hyperlink{group__drivers03_ga58d0639cbfc3e7de1ed5c7d85b9821f4}{w5500\_spi\_mutex}};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00095\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ REGISTER\ ACCESS\ (LOW-\/LEVEL)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00096\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00108\ uint8\_t\ \mbox{\hyperlink{group__drivers03_ga0cfc16a607bf2406462a16e0b098badb}{w5500\_read\_reg}}(uint32\_t\ addr\_sel);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00117\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers03_ga9bd16b5a58852d08dd22d052bfaf1d05}{w5500\_write\_reg}}(uint32\_t\ addr\_sel,\ uint8\_t\ data);}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00127\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers03_ga720712f243385daced1e173642f23f3f}{w5500\_read\_buf}}(uint32\_t\ addr\_sel,\ uint8\_t\ *buf,\ uint16\_t\ len);}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00137\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers03_ga8e525d27915365abbe8086dc3363055f}{w5500\_write\_buf}}(uint32\_t\ addr\_sel,\ uint8\_t\ *buf,\ uint16\_t\ len);}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00141\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ COMMON\ REGISTER\ INLINE\ ACCESS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00142\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{comment}{/*\ Common\ register\ getters/setters\ */}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#define\ setMR(mr)\ w5500\_write\_reg(MR,\ (mr))}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#define\ getMR()\ w5500\_read\_reg(MR)}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#define\ setGAR(gar)\ w5500\_write\_buf(GAR,\ (gar),\ 4)}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#define\ getGAR(gar)\ w5500\_read\_buf(GAR,\ (gar),\ 4)}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#define\ setSUBR(subr)\ w5500\_write\_buf(SUBR,\ (subr),\ 4)}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#define\ getSUBR(subr)\ w5500\_read\_buf(SUBR,\ (subr),\ 4)}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\#define\ setSHAR(shar)\ w5500\_write\_buf(SHAR,\ (shar),\ 6)}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\#define\ getSHAR(shar)\ w5500\_read\_buf(SHAR,\ (shar),\ 6)}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#define\ setSIPR(sipr)\ w5500\_write\_buf(SIPR,\ (sipr),\ 4)}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\#define\ getSIPR(sipr)\ w5500\_read\_buf(SIPR,\ (sipr),\ 4)}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#define\ setIR(ir)\ w5500\_write\_reg(IR,\ ((ir)\ \&\ 0xF0))}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\#define\ getIR()\ (w5500\_read\_reg(IR)\ \&\ 0xF0)}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\#define\ setPHYCFGR(phycfgr)\ w5500\_write\_reg(PHYCFGR,\ (phycfgr))}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#define\ getPHYCFGR()\ w5500\_read\_reg(PHYCFGR)}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\#define\ getVERSIONR()\ w5500\_read\_reg(VERSIONR)}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00182\ \textcolor{comment}{/*\ Socket\ register\ getters/setters\ */}}
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\#define\ setSn\_MR(sn,\ mr)\ w5500\_write\_reg(Sn\_MR(sn),\ (mr))}}
+\DoxyCodeLine{00184\ \textcolor{preprocessor}{\#define\ getSn\_MR(sn)\ w5500\_read\_reg(Sn\_MR(sn))}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \textcolor{preprocessor}{\#define\ setSn\_CR(sn,\ cr)\ w5500\_write\_reg(Sn\_CR(sn),\ (cr))}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\#define\ getSn\_CR(sn)\ w5500\_read\_reg(Sn\_CR(sn))}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \textcolor{preprocessor}{\#define\ setSn\_IR(sn,\ ir)\ w5500\_write\_reg(Sn\_IR(sn),\ (ir))}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\#define\ getSn\_IR(sn)\ w5500\_read\_reg(Sn\_IR(sn))}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\#define\ setSn\_IMR(sn,\ imr)\ w5500\_write\_reg(Sn\_IMR(sn),\ (imr))}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \textcolor{preprocessor}{\#define\ getSn\_IMR(sn)\ w5500\_read\_reg(Sn\_IMR(sn))}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\#define\ getSn\_SR(sn)\ w5500\_read\_reg(Sn\_SR(sn))}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00207\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers03_gab5067ea57282ddde48ecb150943ece32}{setSn\_PORT}}(uint8\_t\ sn,\ uint16\_t\ port);}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00215\ uint16\_t\ \mbox{\hyperlink{group__drivers03_ga27629270cacc8f11b4931aeb9c779ca2}{getSn\_PORT}}(uint8\_t\ sn);}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \textcolor{preprocessor}{\#define\ setSn\_DIPR(sn,\ dipr)\ w5500\_write\_buf(Sn\_DIPR(sn),\ (dipr),\ 4)}}
+\DoxyCodeLine{00218\ \textcolor{preprocessor}{\#define\ getSn\_DIPR(sn,\ dipr)\ w5500\_read\_buf(Sn\_DIPR(sn),\ (dipr),\ 4)}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00227\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers03_ga2266fd45d5dc208a9ac11f084d476188}{setSn\_DPORT}}(uint8\_t\ sn,\ uint16\_t\ dport);}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00235\ uint16\_t\ \mbox{\hyperlink{group__drivers03_ga63cf3a1380ecdfc60d1a0e2ac5478bb7}{getSn\_DPORT}}(uint8\_t\ sn);}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \textcolor{preprocessor}{\#define\ setSn\_RXBUF\_SIZE(sn,\ size)\ w5500\_write\_reg(Sn\_RXBUF\_SIZE(sn),\ (size))}}
+\DoxyCodeLine{00238\ \textcolor{preprocessor}{\#define\ getSn\_RXBUF\_SIZE(sn)\ w5500\_read\_reg(Sn\_RXBUF\_SIZE(sn))}}
+\DoxyCodeLine{00239\ \textcolor{preprocessor}{\#define\ setSn\_TXBUF\_SIZE(sn,\ size)\ w5500\_write\_reg(Sn\_TXBUF\_SIZE(sn),\ (size))}}
+\DoxyCodeLine{00240\ \textcolor{preprocessor}{\#define\ getSn\_TXBUF\_SIZE(sn)\ w5500\_read\_reg(Sn\_TXBUF\_SIZE(sn))}}
+\DoxyCodeLine{00241\ \textcolor{preprocessor}{\#define\ getSn\_TX\_FSR(sn)\ w5500\_get\_tx\_fsr(sn)}}
+\DoxyCodeLine{00242\ \textcolor{preprocessor}{\#define\ getSn\_RX\_RSR(sn)\ w5500\_get\_rx\_rsr(sn)}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00251\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers03_ga35f04740974b2f6a16c4744f1641fd47}{setSn\_TX\_WR}}(uint8\_t\ sn,\ uint16\_t\ ptr);}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \textcolor{preprocessor}{\#define\ getSn\_TX\_WR(sn)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00254\ \textcolor{preprocessor}{\ \ \ \ ((w5500\_read\_reg(Sn\_TX\_WR(sn))\ <<\ 8)\ +\ w5500\_read\_reg(W5500\_OFFSET\_INC(Sn\_TX\_WR(sn),\ 1)))}}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00263\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers03_ga63c2ca3d8006105cbac360261ec27404}{setSn\_RX\_RD}}(uint8\_t\ sn,\ uint16\_t\ ptr);}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \textcolor{preprocessor}{\#define\ getSn\_RX\_RD(sn)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00266\ \textcolor{preprocessor}{\ \ \ \ ((w5500\_read\_reg(Sn\_RX\_RD(sn))\ <<\ 8)\ +\ w5500\_read\_reg(W5500\_OFFSET\_INC(Sn\_RX\_RD(sn),\ 1)))}}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \textcolor{preprocessor}{\#define\ setSn\_TTL(sn,\ ttl)\ w5500\_write\_reg(Sn\_TTL(sn),\ (ttl))}}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \textcolor{preprocessor}{\#define\ getSn\_TTL(sn)\ w5500\_read\_reg(Sn\_TTL(sn))}}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \textcolor{preprocessor}{\#define\ setSn\_TOS(sn,\ tos)\ w5500\_write\_reg(Sn\_TOS(sn),\ (tos))}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\#define\ getSn\_TOS(sn)\ w5500\_read\_reg(Sn\_TOS(sn))}}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \textcolor{preprocessor}{\#define\ setSn\_MSSR(sn,\ mss)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00277\ \textcolor{preprocessor}{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00278\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ w5500\_write\_reg(Sn\_MSSR(sn),\ (uint8\_t)((mss)\ >>\ 8));\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00279\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ w5500\_write\_reg(W5500\_OFFSET\_INC(Sn\_MSSR(sn),\ 1),\ (uint8\_t)(mss));\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00280\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \textcolor{preprocessor}{\#define\ getSn\_MSSR(sn)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00283\ \textcolor{preprocessor}{\ \ \ \ (((uint16\_t)w5500\_read\_reg(Sn\_MSSR(sn))\ <<\ 8)\ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00284\ \textcolor{preprocessor}{\ \ \ \ \ w5500\_read\_reg(W5500\_OFFSET\_INC(Sn\_MSSR(sn),\ 1)))}}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \textcolor{preprocessor}{\#define\ setSn\_KPALVTR(sn,\ kpalvtr)\ w5500\_write\_reg(Sn\_KPALVTR(sn),\ (kpalvtr))}}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\#define\ getSn\_KPALVTR(sn)\ w5500\_read\_reg(Sn\_KPALVTR(sn))}}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \textcolor{comment}{/*\ Helper\ functions\ for\ socket\ buffer\ size\ (max\ TX/RX)\ */}}
+\DoxyCodeLine{00291\ \textcolor{preprocessor}{\#define\ getSn\_TxMAX(sn)\ (getSn\_TXBUF\_SIZE(sn)\ <<\ 10)}}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \textcolor{preprocessor}{\#define\ getSn\_RxMAX(sn)\ (getSn\_RXBUF\_SIZE(sn)\ <<\ 10)}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00296\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00297\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SOCKET\ DATA\ TRANSFER\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00298\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00311\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers03_gaeaef8ee772ea9b4a5c6ba7702a1c9b52}{eth\_send\_data}}(uint8\_t\ sn,\ uint8\_t\ *wizdata,\ uint16\_t\ len);}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00321\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers03_ga4a5d2efe0640661e215b4e1f3d918dbd}{eth\_recv\_data}}(uint8\_t\ sn,\ uint8\_t\ *wizdata,\ uint16\_t\ len);}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00330\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers03_ga5944e5f356542e598f515b7f0196d1a3}{eth\_recv\_ignore}}(uint8\_t\ sn,\ uint16\_t\ len);}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00338\ uint16\_t\ \mbox{\hyperlink{group__drivers03_gaddeb179a48abf7a94ba651742d77c24d}{w5500\_get\_tx\_fsr}}(uint8\_t\ sn);}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00346\ uint16\_t\ \mbox{\hyperlink{group__drivers03_gad4b8fcc33da68070ad8208da41838d4c}{w5500\_get\_rx\_rsr}}(uint8\_t\ sn);}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00350\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ INITIALIZATION\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00351\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00369\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers03_ga1528dc514cbd1c3cc346f1593554a042}{w5500\_hw\_init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00384\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers03_ga4c79e652fe1be0ffee1445f8411cce51}{w5500\_chip\_init}}(\mbox{\hyperlink{structw5500___net_config}{w5500\_NetConfig}}\ *net\_info);}
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00392\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers03_ga90f24fc38c9785dbc5ebe18417733a7b}{w5500\_check\_version}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00395\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00396\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NETWORK\ CONFIGURATION\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00397\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00401\ }
+\DoxyCodeLine{00408\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers03_ga8aef3e5f959b806f9890722dee066782}{w5500\_set\_network}}(\mbox{\hyperlink{structw5500___net_config}{w5500\_NetConfig}}\ *net\_info);}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00416\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers03_ga51cb463647ad0291c4b7a69d2c4c9a04}{w5500\_get\_network}}(\mbox{\hyperlink{structw5500___net_config}{w5500\_NetConfig}}\ *net\_info);}
+\DoxyCodeLine{00417\ }
+\DoxyCodeLine{00424\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers03_gabe918beda4e8c4b4a42c7e96f471ff1c}{w5500\_print\_network}}(\mbox{\hyperlink{structw5500___net_config}{w5500\_NetConfig}}\ *net\_info);}
+\DoxyCodeLine{00426\ }
+\DoxyCodeLine{00427\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00428\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PHY\ MANAGEMENT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00429\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00433\ }
+\DoxyCodeLine{00440\ \mbox{\hyperlink{group__drivers03_gacef8050f9ef67107f3847653577da34f}{w5500\_PhyLink}}\ \mbox{\hyperlink{group__drivers03_gafc4a24de4907644bb37647d9afa7f69d}{w5500\_get\_link\_status}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00441\ }
+\DoxyCodeLine{00448\ int8\_t\ \mbox{\hyperlink{group__drivers03_ga9ed1fde0b5018519ab23e299d9a2fc13}{w5500\_set\_phy\_conf}}(\mbox{\hyperlink{structw5500___phy_config}{w5500\_PhyConfig}}\ *phyconf);}
+\DoxyCodeLine{00449\ }
+\DoxyCodeLine{00456\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers03_ga581d6d6cf877331ce49b5bcf11fe13bc}{w5500\_get\_phy\_conf}}(\mbox{\hyperlink{structw5500___phy_config}{w5500\_PhyConfig}}\ *phyconf);}
+\DoxyCodeLine{00457\ }
+\DoxyCodeLine{00464\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers03_ga4d82ae9c8c6c8da0c1d25b1c8e9755d8}{w5500\_set\_phy\_power}}(\mbox{\hyperlink{group__drivers03_ga7ad32e7472dce94b87b4e5bf53a9d5c0}{w5500\_PhyPower}}\ mode);}
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00467\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00468\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UTILITY\ FUNCTIONS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00469\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00480\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers03_gac147c27b83f9f642f636d5e67254d7e8}{w5500\_sw\_reset}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00488\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{group__drivers03_gad1b2ecf04b09016da660535e20ef3d0f}{w5500\_get\_chip\_id}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00490\ }
+\DoxyCodeLine{00491\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ W5500\_DRIVER\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00492\ }
+
+\end{DoxyCode}

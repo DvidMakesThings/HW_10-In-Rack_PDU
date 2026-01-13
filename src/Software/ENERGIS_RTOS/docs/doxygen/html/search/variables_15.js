@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['v0_5fvolts_5fat_5f27c_0',['v0_volts_at_27c',['../structtemp__calib__t.html#aa78debf46048160bf37300516b83175c',1,'temp_calib_t']]],
+  ['val_1',['val',['../structcfg__msg__t.html#a0c18991efb8ecef615346998eae363d0',1,'cfg_msg_t']]],
+  ['valid_2',['valid',['../structmeter__telemetry__t.html#a54b76744dd51362eb1fa441baacf15df',1,'meter_telemetry_t::valid'],['../structsystem__telemetry__t.html#afe871dc8ce702e7cf4cfe6ea43d25ef8',1,'system_telemetry_t::valid'],['../structdevice__identity__t.html#aaaf972ee283f2cf88a6f57a20bec03d8',1,'device_identity_t::valid']]],
+  ['valid_5fsamples_3',['valid_samples',['../structhlw__async__cal__state__t.html#a85a69938719d14049b61a4471abdbc23',1,'hlw_async_cal_state_t']]],
+  ['value_4',['value',['../structpower__msg__t.html#a8f3e6d9ee7207cd97654deac77ba1f90',1,'power_msg_t']]],
+  ['vdat_5fsum_5',['vdat_sum',['../structhlw__async__cal__state__t.html#a6cc91a0cc7f9771b2eca272949b7caa6',1,'hlw_async_cal_state_t']]],
+  ['version_6',['version',['../structhelpers__boot__snapshot__t.html#a04414a5fa2cc4dd1e7d18cc98841c546',1,'helpers_boot_snapshot_t::version'],['../structtemp__calib__t.html#a83793273590bd1225a8d821a5686150f',1,'temp_calib_t::version']]],
+  ['voldata_7',['VolData',['../_h_l_w8032__driver_8c.html#a97815d40a4bc549e6a9fa18ce1808c0f',1,'HLW8032_driver.c']]],
+  ['volpar_8',['VolPar',['../_h_l_w8032__driver_8c.html#a08cd0fc8d7d9c5e3a71ebb2b5caed1fc',1,'HLW8032_driver.c']]],
+  ['voltage_9',['voltage',['../structmeter__telemetry__t.html#af19ae91d0498716ecc183a9d4ac08b92',1,'meter_telemetry_t']]],
+  ['voltage_5ffactor_10',['voltage_factor',['../group__config06.html#ga9f32a01fdc7a70ae83fc9d2ec9a57116',1,'hlw_calib_t']]],
+  ['voltage_5foffset_11',['voltage_offset',['../structhlw__calib__t.html#a5017a8dade5307b845d46c80d36602fd',1,'hlw_calib_t']]],
+  ['vpar_5fsum_12',['vpar_sum',['../structhlw__async__cal__state__t.html#ac982cb494ece56356b53d945779d4d50',1,'hlw_async_cal_state_t']]],
+  ['vstart_13',['vstart',['../structsnmp__tlv__t.html#a8300b267d4a2692e19555cff64f09297',1,'snmp_tlv_t']]],
+  ['vsupply_5fvolts_14',['vsupply_volts',['../structsystem__telemetry__t.html#ae9e26dae8269b2e578fbdb71cf35a9e0',1,'system_telemetry_t']]],
+  ['vusb_5fvolts_15',['vusb_volts',['../structsystem__telemetry__t.html#a8f7e83cf46184558455b6bb8c7469e5e',1,'system_telemetry_t']]]
+];

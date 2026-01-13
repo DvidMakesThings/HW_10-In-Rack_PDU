@@ -1,0 +1,425 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\+Init\+Task.c File Reference}
+\hypertarget{_init_task_8c}{}\label{_init_task_8c}\index{src/Software/ENERGIS\_RTOS/src/tasks/InitTask.c@{src/Software/ENERGIS\_RTOS/src/tasks/InitTask.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for Init\+Task.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_init_task_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_init_task_8c_a344bef1b2813ae2f1a6b859d6bb4aa85}{INIT\+\_\+\+TASK\+\_\+\+PRIORITY}}~\mbox{\hyperlink{group__config05_ga7e7d702961a27fb97a00c2657fda0fa1}{INITTASK\+\_\+\+PRIORITY}} /\texorpdfstring{$\ast$}{*} Highest priority \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{_init_task_8c_a83c5d0d28972f4ef62389e7bcd3a1817}{INIT\+\_\+\+TASK\+\_\+\+STACK\+\_\+\+SIZE}}~2048
+\item 
+\#define \mbox{\hyperlink{_init_task_8c_a6122d1e3f1d00646cc4a9fb5f3ee79d0}{INIT\+\_\+\+TASK\+\_\+\+TAG}}~"{}\mbox{[}INIT\mbox{]}"{}
+\item 
+\#define \mbox{\hyperlink{_init_task_8c_aba6e7ec3552797f86b0153a67eec4a1c}{READY\+\_\+\+LOGGER}}~(1 $<$$<$ 0)
+\item 
+\#define \mbox{\hyperlink{_init_task_8c_ac3d81b704febafe14c60f085c88fcaad}{READY\+\_\+\+STORAGE}}~(1 $<$$<$ 1)
+\item 
+\#define \mbox{\hyperlink{_init_task_8c_a957cd42c060793c94cd9f6ebbf7b6a08}{READY\+\_\+\+NET}}~(1 $<$$<$ 2)
+\item 
+\#define \mbox{\hyperlink{_init_task_8c_a7eb14f15e0a0387972280a6c4d33f723}{READY\+\_\+\+METER}}~(1 $<$$<$ 3)
+\item 
+\#define \mbox{\hyperlink{_init_task_8c_ad08bbe52990db46525092ad3a3f32eb0}{READY\+\_\+\+ALL}}~(\mbox{\hyperlink{_init_task_8c_aba6e7ec3552797f86b0153a67eec4a1c}{READY\+\_\+\+LOGGER}} \texorpdfstring{$\vert$}{|} \mbox{\hyperlink{_init_task_8c_ac3d81b704febafe14c60f085c88fcaad}{READY\+\_\+\+STORAGE}} \texorpdfstring{$\vert$}{|} \mbox{\hyperlink{_init_task_8c_a957cd42c060793c94cd9f6ebbf7b6a08}{READY\+\_\+\+NET}} \texorpdfstring{$\vert$}{|} \mbox{\hyperlink{_init_task_8c_a7eb14f15e0a0387972280a6c4d33f723}{READY\+\_\+\+METER}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{_init_task_8c_a7850b1e4409c8324ed9ad29de28348d4}{init\+\_\+gpio}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize GPIO pins for all peripherals. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_init_task_8c_a8790b90a7c218ea77e5def273c955166}{init\+\_\+i2c}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize I2C buses. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_init_task_8c_a94bfbc05f30f704d8b26931233f22419}{init\+\_\+spi}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize SPI for W5500. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_init_task_8c_a58741f53e3e22ec8db7e66ded93d3b79}{init\+\_\+adc}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize ADC for voltage/temperature sensing. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{_init_task_8c_a4b021180dcad28b6474f228f166ad1c2}{probe\+\_\+i2c\+\_\+device}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, const char \texorpdfstring{$\ast$}{*}name)
+\begin{DoxyCompactList}\small\item\em Probe I2C device at given address. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{_init_task_8c_a1a4684086ac7fe379f9dda25b8f6b107}{probe\+\_\+mcps}} (void)
+\begin{DoxyCompactList}\small\item\em Probe all MCP23017 devices. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{_init_task_8c_ad111fa8c3ef4e0bc10a9aa62218489de}{probe\+\_\+eeprom}} (void)
+\begin{DoxyCompactList}\small\item\em Probe EEPROM. \end{DoxyCompactList}\item 
+static float \mbox{\hyperlink{_init_task_8c_a45698d967d7693e166eeb3bc92c7ef19}{adc\+\_\+read\+\_\+voltage\+\_\+avg}} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Read voltage from the selected ADC channel with averaging. \end{DoxyCompactList}\item 
+static uint8\+\_\+t \mbox{\hyperlink{_init_task_8c_ad4e552a62b6a29e14ea997265cb7ef25}{apply\+\_\+saved\+\_\+relay\+\_\+states}} (void)
+\begin{DoxyCompactList}\small\item\em Apply saved relay states on startup. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks04_ga1c8976a6cc85a66091cbd8c414c78368}{Init\+Task\+\_\+\+Save\+Current\+Relay\+States}} (void)
+\begin{DoxyCompactList}\small\item\em Save current relay states to storage. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_init_task_8c_ad718429ab806319601819907a5ef51ac}{Init\+Task}} (void \texorpdfstring{$\ast$}{*}pv\+Parameters)
+\begin{DoxyCompactList}\small\item\em Init\+Task main routine that performs the full bring-\/alive sequence. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks04_ga8a8abeda7232f47559b8683414202508}{Init\+Task\+\_\+\+Create}} (void)
+\begin{DoxyCompactList}\small\item\em Create and start the Init\+Task at highest priority. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static Event\+Group\+Handle\+\_\+t \mbox{\hyperlink{_init_task_8c_a0bc20499efd9a26b480432f40d6d6492}{init\+\_\+events}} = NULL
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+2.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/01-\/01
+\end{DoxyDate}
+Init\+Task runs at highest priority during system boot to\+:
+\begin{DoxyEnumerate}
+\item Initialize all hardware in proper sequence
+\item Probe peripherals to verify communication
+\item Create subsystem tasks in dependency order
+\item Wait for subsystems to report ready
+\item Apply saved configuration (relay states) on startup
+\item Delete itself when system is fully operational
+\end{DoxyEnumerate}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{_init_task_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_init_task_8c_a344bef1b2813ae2f1a6b859d6bb4aa85}\index{InitTask.c@{InitTask.c}!INIT\_TASK\_PRIORITY@{INIT\_TASK\_PRIORITY}}
+\index{INIT\_TASK\_PRIORITY@{INIT\_TASK\_PRIORITY}!InitTask.c@{InitTask.c}}
+\doxysubsubsection{\texorpdfstring{INIT\_TASK\_PRIORITY}{INIT\_TASK\_PRIORITY}}
+{\footnotesize\ttfamily \label{_init_task_8c_a344bef1b2813ae2f1a6b859d6bb4aa85} 
+\#define INIT\+\_\+\+TASK\+\_\+\+PRIORITY~\mbox{\hyperlink{group__config05_ga7e7d702961a27fb97a00c2657fda0fa1}{INITTASK\+\_\+\+PRIORITY}} /\texorpdfstring{$\ast$}{*} Highest priority \texorpdfstring{$\ast$}{*}/}
+
+\Hypertarget{_init_task_8c_a83c5d0d28972f4ef62389e7bcd3a1817}\index{InitTask.c@{InitTask.c}!INIT\_TASK\_STACK\_SIZE@{INIT\_TASK\_STACK\_SIZE}}
+\index{INIT\_TASK\_STACK\_SIZE@{INIT\_TASK\_STACK\_SIZE}!InitTask.c@{InitTask.c}}
+\doxysubsubsection{\texorpdfstring{INIT\_TASK\_STACK\_SIZE}{INIT\_TASK\_STACK\_SIZE}}
+{\footnotesize\ttfamily \label{_init_task_8c_a83c5d0d28972f4ef62389e7bcd3a1817} 
+\#define INIT\+\_\+\+TASK\+\_\+\+STACK\+\_\+\+SIZE~2048}
+
+\Hypertarget{_init_task_8c_a6122d1e3f1d00646cc4a9fb5f3ee79d0}\index{InitTask.c@{InitTask.c}!INIT\_TASK\_TAG@{INIT\_TASK\_TAG}}
+\index{INIT\_TASK\_TAG@{INIT\_TASK\_TAG}!InitTask.c@{InitTask.c}}
+\doxysubsubsection{\texorpdfstring{INIT\_TASK\_TAG}{INIT\_TASK\_TAG}}
+{\footnotesize\ttfamily \label{_init_task_8c_a6122d1e3f1d00646cc4a9fb5f3ee79d0} 
+\#define INIT\+\_\+\+TASK\+\_\+\+TAG~"{}\mbox{[}INIT\mbox{]}"{}}
+
+\Hypertarget{_init_task_8c_ad08bbe52990db46525092ad3a3f32eb0}\index{InitTask.c@{InitTask.c}!READY\_ALL@{READY\_ALL}}
+\index{READY\_ALL@{READY\_ALL}!InitTask.c@{InitTask.c}}
+\doxysubsubsection{\texorpdfstring{READY\_ALL}{READY\_ALL}}
+{\footnotesize\ttfamily \label{_init_task_8c_ad08bbe52990db46525092ad3a3f32eb0} 
+\#define READY\+\_\+\+ALL~(\mbox{\hyperlink{_init_task_8c_aba6e7ec3552797f86b0153a67eec4a1c}{READY\+\_\+\+LOGGER}} \texorpdfstring{$\vert$}{|} \mbox{\hyperlink{_init_task_8c_ac3d81b704febafe14c60f085c88fcaad}{READY\+\_\+\+STORAGE}} \texorpdfstring{$\vert$}{|} \mbox{\hyperlink{_init_task_8c_a957cd42c060793c94cd9f6ebbf7b6a08}{READY\+\_\+\+NET}} \texorpdfstring{$\vert$}{|} \mbox{\hyperlink{_init_task_8c_a7eb14f15e0a0387972280a6c4d33f723}{READY\+\_\+\+METER}})}
+
+\Hypertarget{_init_task_8c_aba6e7ec3552797f86b0153a67eec4a1c}\index{InitTask.c@{InitTask.c}!READY\_LOGGER@{READY\_LOGGER}}
+\index{READY\_LOGGER@{READY\_LOGGER}!InitTask.c@{InitTask.c}}
+\doxysubsubsection{\texorpdfstring{READY\_LOGGER}{READY\_LOGGER}}
+{\footnotesize\ttfamily \label{_init_task_8c_aba6e7ec3552797f86b0153a67eec4a1c} 
+\#define READY\+\_\+\+LOGGER~(1 $<$$<$ 0)}
+
+\Hypertarget{_init_task_8c_a7eb14f15e0a0387972280a6c4d33f723}\index{InitTask.c@{InitTask.c}!READY\_METER@{READY\_METER}}
+\index{READY\_METER@{READY\_METER}!InitTask.c@{InitTask.c}}
+\doxysubsubsection{\texorpdfstring{READY\_METER}{READY\_METER}}
+{\footnotesize\ttfamily \label{_init_task_8c_a7eb14f15e0a0387972280a6c4d33f723} 
+\#define READY\+\_\+\+METER~(1 $<$$<$ 3)}
+
+\Hypertarget{_init_task_8c_a957cd42c060793c94cd9f6ebbf7b6a08}\index{InitTask.c@{InitTask.c}!READY\_NET@{READY\_NET}}
+\index{READY\_NET@{READY\_NET}!InitTask.c@{InitTask.c}}
+\doxysubsubsection{\texorpdfstring{READY\_NET}{READY\_NET}}
+{\footnotesize\ttfamily \label{_init_task_8c_a957cd42c060793c94cd9f6ebbf7b6a08} 
+\#define READY\+\_\+\+NET~(1 $<$$<$ 2)}
+
+\Hypertarget{_init_task_8c_ac3d81b704febafe14c60f085c88fcaad}\index{InitTask.c@{InitTask.c}!READY\_STORAGE@{READY\_STORAGE}}
+\index{READY\_STORAGE@{READY\_STORAGE}!InitTask.c@{InitTask.c}}
+\doxysubsubsection{\texorpdfstring{READY\_STORAGE}{READY\_STORAGE}}
+{\footnotesize\ttfamily \label{_init_task_8c_ac3d81b704febafe14c60f085c88fcaad} 
+\#define READY\+\_\+\+STORAGE~(1 $<$$<$ 1)}
+
+
+
+\label{doc-func-members}
+\Hypertarget{_init_task_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_init_task_8c_a45698d967d7693e166eeb3bc92c7ef19}\index{InitTask.c@{InitTask.c}!adc\_read\_voltage\_avg@{adc\_read\_voltage\_avg}}
+\index{adc\_read\_voltage\_avg@{adc\_read\_voltage\_avg}!InitTask.c@{InitTask.c}}
+\doxysubsubsection{\texorpdfstring{adc\_read\_voltage\_avg()}{adc\_read\_voltage\_avg()}}
+{\footnotesize\ttfamily \label{_init_task_8c_a45698d967d7693e166eeb3bc92c7ef19} 
+float adc\+\_\+read\+\_\+voltage\+\_\+avg (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Read voltage from the selected ADC channel with averaging. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_init_task_8c_a45698d967d7693e166eeb3bc92c7ef19_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_init_task_8c_ad4e552a62b6a29e14ea997265cb7ef25}\index{InitTask.c@{InitTask.c}!apply\_saved\_relay\_states@{apply\_saved\_relay\_states}}
+\index{apply\_saved\_relay\_states@{apply\_saved\_relay\_states}!InitTask.c@{InitTask.c}}
+\doxysubsubsection{\texorpdfstring{apply\_saved\_relay\_states()}{apply\_saved\_relay\_states()}}
+{\footnotesize\ttfamily \label{_init_task_8c_ad4e552a62b6a29e14ea997265cb7ef25} 
+uint8\+\_\+t apply\+\_\+saved\+\_\+relay\+\_\+states (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Apply saved relay states on startup. 
+
+Uses the User\+Output preset system to apply the designated startup configuration. If no startup preset is configured, does nothing. Falls back to legacy relay states if the User\+Output system fails.
+
+\begin{DoxyReturn}{Returns}
+Number of channels that changed (for logging purposes) 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_init_task_8c_ad4e552a62b6a29e14ea997265cb7ef25_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_init_task_8c_ad4e552a62b6a29e14ea997265cb7ef25_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_init_task_8c_a58741f53e3e22ec8db7e66ded93d3b79}\index{InitTask.c@{InitTask.c}!init\_adc@{init\_adc}}
+\index{init\_adc@{init\_adc}!InitTask.c@{InitTask.c}}
+\doxysubsubsection{\texorpdfstring{init\_adc()}{init\_adc()}}
+{\footnotesize\ttfamily \label{_init_task_8c_a58741f53e3e22ec8db7e66ded93d3b79} 
+void init\+\_\+adc (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Initialize ADC for voltage/temperature sensing. 
+
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_init_task_8c_a58741f53e3e22ec8db7e66ded93d3b79_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_init_task_8c_a7850b1e4409c8324ed9ad29de28348d4}\index{InitTask.c@{InitTask.c}!init\_gpio@{init\_gpio}}
+\index{init\_gpio@{init\_gpio}!InitTask.c@{InitTask.c}}
+\doxysubsubsection{\texorpdfstring{init\_gpio()}{init\_gpio()}}
+{\footnotesize\ttfamily \label{_init_task_8c_a7850b1e4409c8324ed9ad29de28348d4} 
+void init\+\_\+gpio (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Initialize GPIO pins for all peripherals. 
+
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_init_task_8c_a7850b1e4409c8324ed9ad29de28348d4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_init_task_8c_a8790b90a7c218ea77e5def273c955166}\index{InitTask.c@{InitTask.c}!init\_i2c@{init\_i2c}}
+\index{init\_i2c@{init\_i2c}!InitTask.c@{InitTask.c}}
+\doxysubsubsection{\texorpdfstring{init\_i2c()}{init\_i2c()}}
+{\footnotesize\ttfamily \label{_init_task_8c_a8790b90a7c218ea77e5def273c955166} 
+void init\+\_\+i2c (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Initialize I2C buses. 
+
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_init_task_8c_a8790b90a7c218ea77e5def273c955166_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_init_task_8c_a8790b90a7c218ea77e5def273c955166_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_init_task_8c_a94bfbc05f30f704d8b26931233f22419}\index{InitTask.c@{InitTask.c}!init\_spi@{init\_spi}}
+\index{init\_spi@{init\_spi}!InitTask.c@{InitTask.c}}
+\doxysubsubsection{\texorpdfstring{init\_spi()}{init\_spi()}}
+{\footnotesize\ttfamily \label{_init_task_8c_a94bfbc05f30f704d8b26931233f22419} 
+void init\+\_\+spi (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Initialize SPI for W5500. 
+
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_init_task_8c_a94bfbc05f30f704d8b26931233f22419_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_init_task_8c_ad718429ab806319601819907a5ef51ac}\index{InitTask.c@{InitTask.c}!InitTask@{InitTask}}
+\index{InitTask@{InitTask}!InitTask.c@{InitTask.c}}
+\doxysubsubsection{\texorpdfstring{InitTask()}{InitTask()}}
+{\footnotesize\ttfamily \label{_init_task_8c_ad718429ab806319601819907a5ef51ac} 
+void Init\+Task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Parameters}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Init\+Task main routine that performs the full bring-\/alive sequence. 
+
+Sequence implemented exactly as specified\+: 1) Boot banner + HW init (GPIO, tick/watchdog standby, UART/\+SPI/\+I2C, ADC). 2) Rail check (3V3/5V) and peripheral probes\+:
+\begin{DoxyItemize}
+\item MCP23017 x3 (I2C)
+\item CAT24\+C256 EEPROM (read sys-\/info/checksum block)
+\item HLW8032 power meter (expect sane response if available)
+\item W5500 (read VERSIONR) 3) Subsystem initialization in strict dependency order\+:
+\item Logger\+Task (captures all subsequent logs)
+\item Storage\+Task (EEPROM owner; loads/validates config)
+\item Switch\+Task (MCP owner; applies SAFE state) \mbox{[}optional\mbox{]}
+\item Button\+Task (front-\/panel scan) \mbox{[}optional\mbox{]}
+\item Meter\+Task (HLW8032 polling)
+\item Net\+Task (W5500 + HTTP/\+SNMP using loaded config)
+\item Console\+Task (UART/\+USB-\/\+CDC console online)
+\item Health\+Task (watchdog, heartbeats) \mbox{[}optional\mbox{]} 4) Configuration distribution\+:
+\item Wait for Storage\+Task -\/\texorpdfstring{$>$}{>} config ready
+\item Fetch validated network config and passively rely on Net\+Task to use it
+\item Apply saved relay states (power-\/on configuration) 5) Finalization\+:
+\item LEDs to indicate RUNNING
+\item Log "{}\+System bring-\/alive complete"{} and self-\/delete
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & Unused. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{_init_task_8c_ad718429ab806319601819907a5ef51ac_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_init_task_8c_ad718429ab806319601819907a5ef51ac_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_init_task_8c_ad111fa8c3ef4e0bc10a9aa62218489de}\index{InitTask.c@{InitTask.c}!probe\_eeprom@{probe\_eeprom}}
+\index{probe\_eeprom@{probe\_eeprom}!InitTask.c@{InitTask.c}}
+\doxysubsubsection{\texorpdfstring{probe\_eeprom()}{probe\_eeprom()}}
+{\footnotesize\ttfamily \label{_init_task_8c_ad111fa8c3ef4e0bc10a9aa62218489de} 
+bool probe\+\_\+eeprom (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Probe EEPROM. 
+
+\begin{DoxyReturn}{Returns}
+true if EEPROM responds 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_init_task_8c_ad111fa8c3ef4e0bc10a9aa62218489de_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_init_task_8c_ad111fa8c3ef4e0bc10a9aa62218489de_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_init_task_8c_a4b021180dcad28b6474f228f166ad1c2}\index{InitTask.c@{InitTask.c}!probe\_i2c\_device@{probe\_i2c\_device}}
+\index{probe\_i2c\_device@{probe\_i2c\_device}!InitTask.c@{InitTask.c}}
+\doxysubsubsection{\texorpdfstring{probe\_i2c\_device()}{probe\_i2c\_device()}}
+{\footnotesize\ttfamily \label{_init_task_8c_a4b021180dcad28b6474f228f166ad1c2} 
+bool probe\+\_\+i2c\+\_\+device (\begin{DoxyParamCaption}\item[{i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}}]{i2c}{, }\item[{uint8\+\_\+t}]{addr}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Probe I2C device at given address. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i2c} & I2C instance \\
+\hline
+{\em addr} & 7-\/bit I2C address \\
+\hline
+{\em name} & Device name for logging \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if device responds 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_init_task_8c_a4b021180dcad28b6474f228f166ad1c2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_init_task_8c_a4b021180dcad28b6474f228f166ad1c2_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_init_task_8c_a1a4684086ac7fe379f9dda25b8f6b107}\index{InitTask.c@{InitTask.c}!probe\_mcps@{probe\_mcps}}
+\index{probe\_mcps@{probe\_mcps}!InitTask.c@{InitTask.c}}
+\doxysubsubsection{\texorpdfstring{probe\_mcps()}{probe\_mcps()}}
+{\footnotesize\ttfamily \label{_init_task_8c_a1a4684086ac7fe379f9dda25b8f6b107} 
+bool probe\+\_\+mcps (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Probe all MCP23017 devices. 
+
+\begin{DoxyReturn}{Returns}
+true if all MCP23017s respond 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_init_task_8c_a1a4684086ac7fe379f9dda25b8f6b107_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_init_task_8c_a1a4684086ac7fe379f9dda25b8f6b107_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{_init_task_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{_init_task_8c_a0bc20499efd9a26b480432f40d6d6492}\index{InitTask.c@{InitTask.c}!init\_events@{init\_events}}
+\index{init\_events@{init\_events}!InitTask.c@{InitTask.c}}
+\doxysubsubsection{\texorpdfstring{init\_events}{init\_events}}
+{\footnotesize\ttfamily \label{_init_task_8c_a0bc20499efd9a26b480432f40d6d6492} 
+Event\+Group\+Handle\+\_\+t init\+\_\+events = NULL\hspace{0.3cm}{\ttfamily [static]}}
+

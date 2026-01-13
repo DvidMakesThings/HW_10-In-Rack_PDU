@@ -1,0 +1,6 @@
+<map id="get_ocp_RESET" name="get_ocp_RESET">
+<area shape="rect" id="Node000001" title="SNMP getter for OCP reset control value." alt="" coords="5,29,125,56"/>
+<area shape="rect" id="Node000002" href="$snmp__power_mon_8c.html#a4d518845ee0423e2c4f3c291241beafc" title="Write a signed 32&#45;bit integer into SNMP response buffer." alt="" coords="173,29,221,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="125,40,157,40,157,45,125,45"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="173,30,169,21,172,11,182,5,197,3,213,5,222,12,218,16,211,10,197,8,184,10,177,14,175,20,178,28"/>
+</map>

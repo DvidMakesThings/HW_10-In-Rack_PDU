@@ -1,0 +1,31 @@
+<map id="UserOutput_SetStartupPreset" name="UserOutput_SetStartupPreset">
+<area shape="rect" id="Node000001" title="Set the startup preset index." alt="" coords="5,81,201,108"/>
+<area shape="rect" id="Node000002" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="683,107,867,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="201,89,401,88,519,92,636,99,668,102,668,107,635,104,518,97,401,94,201,94"/>
+<area shape="rect" id="Node000003" href="$user__output_8c.html#a4a2fedd43a7bcd0f98aeb04d1e320be0" title="Persist current cache to EEPROM (atomic block)." alt="" coords="249,107,423,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="202,103,234,106,233,112,201,108"/>
+<area shape="poly" id="edge15_Node000003_Node000002" title=" " alt="" coords="423,117,668,117,668,123,423,123"/>
+<area shape="rect" id="Node000004" href="$group__driver02.html#ga622a6736c8384f9e1921a1bda2a84df9" title="Read buffer from EEPROM." alt="" coords="471,157,635,184"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="397,131,479,151,477,156,396,137"/>
+<area shape="rect" id="Node000008" href="$group__driver02.html#ga8088b9a17773cb65bb6b5d89d3598125" title="Write buffer to EEPROM with automatic page boundary handling." alt="" coords="472,5,635,32"/>
+<area shape="poly" id="edge8_Node000003_Node000008" title=" " alt="" coords="365,104,508,36,510,41,368,109"/>
+<area shape="rect" id="Node000013" href="$user__output_8c.html#a072416fc52711c1dd3db90d4e8cd261b" title="Compute CRC16&#45;CCITT over a buffer." alt="" coords="489,208,617,235"/>
+<area shape="poly" id="edge16_Node000003_Node000013" title=" " alt="" coords="360,132,410,162,472,194,489,200,487,205,470,198,407,167,357,136"/>
+<area shape="poly" id="edge7_Node000004_Node000002" title=" " alt="" coords="614,154,698,135,699,140,616,159"/>
+<area shape="rect" id="Node000005" href="$group__drivers05.html#ga66ae4c7028f764a3770cabe101dba8bf" title="Read from 16&#45;bit memory address: write [mem_hi, mem_lo] (no stop), then read len bytes." alt="" coords="701,157,849,184"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="635,168,685,168,685,173,635,173"/>
+<area shape="rect" id="Node000006" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="944,81,1065,108"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="828,154,866,143,953,111,955,117,868,148,829,159"/>
+<area shape="rect" id="Node000007" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="915,157,1094,184"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="849,168,899,168,899,173,849,173"/>
+<area shape="poly" id="edge13_Node000008_Node000002" title=" " alt="" coords="599,30,637,48,651,60,661,71,670,82,685,92,696,98,694,103,682,97,667,86,657,75,648,64,634,53,597,35"/>
+<area shape="rect" id="Node000009" href="$group__drivers05.html#ga77ca38d627119d534873e177c5f4a667" title="Write to 16&#45;bit memory address: [mem_hi, mem_lo, data...]." alt="" coords="699,5,851,32"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="635,16,684,16,684,21,635,21"/>
+<area shape="rect" id="Node000012" href="$_c_a_t24_c256__driver_8c.html#aeba5f43a83c24289211b7d919c260978" title="RTOS&#45;compatible write cycle delay." alt="" coords="712,56,838,83"/>
+<area shape="poly" id="edge14_Node000008_Node000012" title=" " alt="" coords="616,30,699,49,698,55,614,35"/>
+<area shape="poly" id="edge10_Node000009_Node000006" title=" " alt="" coords="829,30,868,41,955,73,953,78,866,47,828,35"/>
+<area shape="rect" id="Node000010" href="$group__drivers05.html#ga170d6c4ff97ddc2d314f0a7a0054f283" title="Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK i2c_write_time..." alt="" coords="918,5,1090,32"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="851,16,903,16,903,21,851,21"/>
+<area shape="rect" id="Node000011" href="$i2c__bus_8c.html#afbaa64f79bdd1fa39c8fa5b7a9c2717b" title=" " alt="" coords="1142,5,1299,32"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="1091,16,1126,16,1126,21,1091,21"/>
+</map>

@@ -1,0 +1,40 @@
+<map id="prov_set_region" name="prov_set_region">
+<area shape="rect" id="Node000001" title="Handle PROV SET_REGION &lt;EU|US&gt; command." alt="" coords="5,81,119,108"/>
+<area shape="rect" id="Node000002" href="$group__storage03.html#ga5b4f82b48868c1a68c60a9fc9a7f3e37" title="Get the current limit in amperes based on cached region." alt="" coords="167,15,343,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,78,167,60,169,65,109,83"/>
+<area shape="rect" id="Node000003" href="$group__storage03.html#ga9f2f68ea0ff2c13d4fe5d52dc3a99e4f" title="Set the device region (requires unlock)." alt="" coords="168,81,342,108"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="119,92,153,92,153,97,119,97"/>
+<area shape="rect" id="Node000019" href="$provisioning__commands_8c.html#a0b35a835cd23f0d4f1564ab342db0109" title="Trim leading and trailing whitespace/control chars in&#45;place." alt="" coords="197,132,312,159"/>
+<area shape="poly" id="edge19_Node000001_Node000019" title=" " alt="" coords="116,106,187,125,186,130,115,111"/>
+<area shape="rect" id="Node000004" href="$device__identity_8c.html#a3739393f286b8d8676728762e42d9209" title="Check if the provisioning window is still open." alt="" coords="399,5,561,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="309,78,342,67,390,42,408,35,410,40,392,46,344,72,311,83"/>
+<area shape="rect" id="Node000007" href="$device__identity_8c.html#a5b9e55cb62f389b33b1ba95030158cea" title="Update RAM cache from EEPROM record." alt="" coords="391,56,569,83"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="341,82,375,78,376,84,342,88"/>
+<area shape="rect" id="Node000008" href="$device__identity_8c.html#a9ae2b99dfda6e002ea479fac618edccf" title="Validate region code." alt="" coords="426,107,534,133"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="342,102,411,110,411,115,341,107"/>
+<area shape="rect" id="Node000009" href="$device__identity_8c.html#aa849e09774fe6a45bb4479d2ee49c402" title="Write device identity to EEPROM using the defined block image." alt="" coords="397,157,563,184"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="311,106,344,118,392,143,410,150,408,155,390,148,342,122,309,111"/>
+<area shape="rect" id="Node000005" href="$_button_task_8c.html#a50503dee6a29e98e633b16b1b8b550bc" title="Get current system time in milliseconds." alt="" coords="664,5,734,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="562,16,648,16,648,21,562,21"/>
+<area shape="rect" id="Node000006" href="$group__driver01.html#ga038e6418532b3e07206ada073cf02f22" title="Get monotonic millisecond timestamp since boot." alt="" coords="854,5,986,32"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="734,16,839,16,839,21,734,21"/>
+<area shape="rect" id="Node000010" href="$device__identity_8c.html#a4306a3b02b924b2b64398df823662801" title="Calculate CRC&#45;8 for device identity EEPROM block image." alt="" coords="625,81,773,108"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="532,154,568,143,650,112,652,117,570,148,534,159"/>
+<area shape="rect" id="Node000012" href="$group__driver02.html#ga8088b9a17773cb65bb6b5d89d3598125" title="Write buffer to EEPROM with automatic page boundary handling." alt="" coords="617,157,781,184"/>
+<area shape="poly" id="edge11_Node000009_Node000012" title=" " alt="" coords="564,168,602,168,602,173,564,173"/>
+<area shape="rect" id="Node000017" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="829,208,1012,235"/>
+<area shape="poly" id="edge18_Node000009_Node000017" title=" " alt="" coords="549,182,618,193,813,212,813,218,617,199,549,187"/>
+<area shape="rect" id="Node000011" href="$group__storage08.html#gaae57a92db26b8a63b7584fd2f3407077" title="Calculate CRC&#45;8 checksum for data integrity verification." alt="" coords="868,56,973,83"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="773,84,852,74,852,80,773,89"/>
+<area shape="rect" id="Node000013" href="$group__drivers05.html#ga77ca38d627119d534873e177c5f4a667" title="Write to 16&#45;bit memory address: [mem_hi, mem_lo, data...]." alt="" coords="845,107,996,133"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="760,154,844,135,845,140,761,159"/>
+<area shape="poly" id="edge16_Node000012_Node000017" title=" " alt="" coords="761,182,845,201,844,207,760,187"/>
+<area shape="rect" id="Node000018" href="$_c_a_t24_c256__driver_8c.html#aeba5f43a83c24289211b7d919c260978" title="RTOS&#45;compatible write cycle delay." alt="" coords="858,157,983,184"/>
+<area shape="poly" id="edge17_Node000012_Node000018" title=" " alt="" coords="781,168,843,168,843,173,781,173"/>
+<area shape="rect" id="Node000014" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="1086,81,1207,108"/>
+<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="996,109,1069,101,1070,106,997,114"/>
+<area shape="rect" id="Node000015" href="$group__drivers05.html#ga170d6c4ff97ddc2d314f0a7a0054f283" title="Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK i2c_write_time..." alt="" coords="1060,132,1232,159"/>
+<area shape="poly" id="edge14_Node000013_Node000015" title=" " alt="" coords="997,126,1045,131,1045,137,996,131"/>
+<area shape="rect" id="Node000016" href="$i2c__bus_8c.html#afbaa64f79bdd1fa39c8fa5b7a9c2717b" title=" " alt="" coords="1280,132,1438,159"/>
+<area shape="poly" id="edge15_Node000015_Node000016" title=" " alt="" coords="1233,143,1265,143,1265,148,1233,148"/>
+</map>

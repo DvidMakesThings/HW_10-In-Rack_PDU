@@ -1,0 +1,5 @@
+<map id="storage_save_preset" name="storage_save_preset">
+<area shape="rect" id="Node000001" title="Save a user output preset via StorageTask. Enqueues a message to perform the save on the StorageTask ..." alt="" coords="5,5,148,32"/>
+<area shape="rect" id="Node000002" href="$group__tasks09.html#gaad6cb463ba1647fe51faeea5f08268da" title="Check if config is loaded and ready." alt="" coords="196,5,363,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="148,16,180,16,180,21,148,21"/>
+</map>

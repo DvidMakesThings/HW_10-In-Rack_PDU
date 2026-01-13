@@ -1,0 +1,14 @@
+<map id="Tasks" name="Tasks">
+<area shape="rect" id="Node000001" title="General task implementations for ENERGIS PDU firmware." alt="" coords="5,275,62,301"/>
+<area shape="rect" id="Node000002" href="$group__tasks01.html" title="Button input handling with debouncing and selection window management." alt="" coords="143,5,248,32"/>
+<area shape="rect" id="Node000003" href="$group__tasks02.html" title="USB&#45;CDC console command interface for system control and diagnostics." alt="" coords="138,56,253,83"/>
+<area shape="rect" id="Node000004" href="$group__tasks03.html" title="System health monitor: watchdog, heartbeats, diagnostics (reset&#45;safe)." alt="" coords="158,107,232,133"/>
+<area shape="rect" id="Node000005" href="$group__tasks04.html" title="Hardware bring&#45;up sequencing task implementation." alt="" coords="129,157,262,200"/>
+<area shape="rect" id="Node000006" href="$group__tasks05.html" title="Centralized logging subsystem with queue&#45;based message handling." alt="" coords="142,224,248,251"/>
+<area shape="rect" id="Node000007" href="$group__tasks06.html" title="Power metering and system telemetry monitoring task with HLW8032 interface." alt="" coords="145,275,246,301"/>
+<area shape="rect" id="Node000008" href="$group__tasks07.html" title="Network stack manager for W5500 Ethernet, HTTP server, and SNMP agent." alt="" coords="137,325,254,352"/>
+<area shape="rect" id="Node000009" href="$group__tasks08.html" title="High&#45;priority overcurrent monitoring and protection system." alt="" coords="112,376,279,419"/>
+<area shape="rect" id="Node000010" href="$group__tasks09.html" title="Factory provisioning commands for device identity configuration via UART." alt="" coords="110,443,281,485"/>
+<area shape="rect" id="Node000011" href="$group__tasks10.html" title="Persistent configuration manager with CAT24C256 EEPROM and queue&#45;based access." alt="" coords="136,509,255,536"/>
+<area shape="rect" id="Node000012" href="$group__tasks11.html" title="Synchronous relay and LED control manager with MCP23017 GPIO expanders." alt="" coords="139,560,252,587"/>
+</map>

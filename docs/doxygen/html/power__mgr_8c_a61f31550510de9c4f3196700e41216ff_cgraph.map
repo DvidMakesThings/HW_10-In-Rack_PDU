@@ -1,0 +1,35 @@
+<map id="turn_off_leds_except_pwr" name="turn_off_leds_except_pwr">
+<area shape="rect" id="Node000001" title="Disable display LEDs except PWR_LED for standby indication." alt="" coords="5,132,175,159"/>
+<area shape="rect" id="Node000002" href="$group__tasks11.html#ga4531b6b0fc77db5d8d96d7ab477361ae" title="Set NETWORK LINK LED on display MCP." alt="" coords="227,81,356,108"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="146,129,220,110,222,115,147,134"/>
+<area shape="rect" id="Node000012" href="$group__tasks11.html#gaab4189cd5d61b2c583d85150b87147ad" title="Set FAULT LED on display MCP." alt="" coords="223,132,361,159"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="175,143,207,143,207,148,175,148"/>
+<area shape="rect" id="Node000013" href="$group__tasks11.html#ga2777a225e3f0db8b4d227771b78a2532" title="Set POWER GOOD LED on display MCP." alt="" coords="226,183,358,209"/>
+<area shape="poly" id="edge16_Node000001_Node000013" title=" " alt="" coords="147,157,222,176,220,181,146,162"/>
+<area shape="rect" id="Node000003" href="$_switch_task_8c.html#a2a7f01bd659f5eea0a4a131d8c57c207" title=" " alt="" coords="439,157,484,184"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="334,106,362,118,410,143,426,151,424,156,408,148,360,122,332,111"/>
+<area shape="rect" id="Node000004" href="$group__drivers06.html#ga7634eca518e2158ba0e636a3f03f3928" title="Get display MCP23017 device context." alt="" coords="414,208,509,235"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="344,106,363,118,380,137,388,156,396,175,411,194,415,197,411,201,407,198,391,178,383,158,375,140,359,122,341,111"/>
+<area shape="rect" id="Node000005" href="$group__drivers06.html#ga8b8bc528b75e419262e7663ee669dc31" title="Write a logic level to a pin." alt="" coords="409,56,514,83"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="356,82,393,77,394,82,357,88"/>
+<area shape="rect" id="Node000011" href="$_switch_task_8c.html#abb7cc7eb4e959fda6a43c8dd85f20090" title=" " alt="" coords="432,107,491,133"/>
+<area shape="poly" id="edge10_Node000002_Node000011" title=" " alt="" coords="357,102,417,111,416,116,356,107"/>
+<area shape="rect" id="Node000006" href="$group__drivers05.html#gab7b4aa096ded6cebd93256e5b5994e42" title="Write 8&#45;bit register with 8&#45;bit value: [reg, value]." alt="" coords="574,31,707,57"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="515,59,558,53,558,58,515,65"/>
+<area shape="rect" id="Node000010" href="$_m_c_p23017__driver_8c.html#a0ff45ad384852ba5f69f0fd781c2f46a" title=" " alt="" coords="562,81,719,108"/>
+<area shape="poly" id="edge9_Node000005_Node000010" title=" " alt="" coords="515,74,547,79,547,84,515,79"/>
+<area shape="rect" id="Node000007" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="792,5,914,32"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="707,33,776,25,777,30,708,39"/>
+<area shape="rect" id="Node000008" href="$group__drivers05.html#ga170d6c4ff97ddc2d314f0a7a0054f283" title="Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK i2c_write_time..." alt="" coords="767,56,939,83"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="708,49,752,55,751,60,707,55"/>
+<area shape="rect" id="Node000009" href="$i2c__bus_8c.html#afbaa64f79bdd1fa39c8fa5b7a9c2717b" title=" " alt="" coords="987,56,1144,83"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="940,67,971,67,971,72,940,72"/>
+<area shape="poly" id="edge12_Node000012_Node000003" title=" " alt="" coords="362,153,424,163,424,168,361,158"/>
+<area shape="poly" id="edge13_Node000012_Node000004" title=" " alt="" coords="334,157,362,168,410,194,420,198,417,203,408,198,360,173,332,162"/>
+<area shape="poly" id="edge14_Node000012_Node000005" title=" " alt="" coords="332,129,360,118,408,92,417,88,420,92,410,97,362,122,334,134"/>
+<area shape="poly" id="edge15_Node000012_Node000011" title=" " alt="" coords="361,132,416,124,417,129,362,138"/>
+<area shape="poly" id="edge17_Node000013_Node000003" title=" " alt="" coords="358,183,423,174,424,179,359,189"/>
+<area shape="poly" id="edge18_Node000013_Node000004" title=" " alt="" coords="359,203,400,209,399,215,358,209"/>
+<area shape="poly" id="edge19_Node000013_Node000005" title=" " alt="" coords="341,180,359,169,375,150,383,132,391,113,407,93,411,89,415,94,411,97,396,116,388,134,380,153,363,173,344,184"/>
+<area shape="poly" id="edge20_Node000013_Node000011" title=" " alt="" coords="332,180,360,168,408,143,417,138,420,143,410,148,362,173,334,185"/>
+</map>

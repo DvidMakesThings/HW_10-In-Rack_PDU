@@ -1,0 +1,5 @@
+<map id="getSn_PORT" name="getSn_PORT">
+<area shape="rect" id="Node000001" title="Get the local TCP/UDP port (big&#45;endian)" alt="" coords="5,5,104,32"/>
+<area shape="rect" id="Node000002" href="$group__drivers05.html#ga720712f243385daced1e173642f23f3f" title="Read multiple bytes from W5500 (optimized bulk transfer)" alt="" coords="152,5,268,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,16,136,16,136,21,104,21"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="u32le" name="u32le">
+<area shape="rect" id="Node000001" title="Write an unsigned 32&#45;bit integer into SNMP response buffer." alt="" coords="226,31,278,57"/>
+<area shape="rect" id="Node000002" href="$group__snmp04.html#gad08889d91475184951158037ae7988e3" title="SNMP getter for last trip timestamp in milliseconds since boot." alt="" coords="5,5,178,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="210,40,178,35,179,30,211,35"/>
+<area shape="rect" id="Node000003" href="$group__snmp04.html#gaeb4bf92301309e943f28678b8a92cadb" title="SNMP getter for OCP trip count since boot." alt="" coords="11,56,172,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="211,53,173,59,172,54,210,48"/>
+</map>

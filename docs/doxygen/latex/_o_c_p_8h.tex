@@ -1,0 +1,60 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\+OCP.h File Reference}
+\hypertarget{_o_c_p_8h}{}\label{_o_c_p_8h}\index{src/Software/ENERGIS\_RTOS/src/tasks/OCP.h@{src/Software/ENERGIS\_RTOS/src/tasks/OCP.h}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for OCP.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_c_p_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_c_p_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structovercurrent__status__t}{overcurrent\+\_\+status\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Overcurrent protection status snapshot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}{overcurrent\+\_\+state\+\_\+t}} \{ \mbox{\hyperlink{group__tasks08_gga5fece384d5a09708e5d58632d565f1eda04b503ade97db147ebde7367339b8079}{OC\+\_\+\+STATE\+\_\+\+NORMAL}} = 0
+, \mbox{\hyperlink{group__tasks08_gga5fece384d5a09708e5d58632d565f1edad71568499048d4fcc9154061c05048db}{OC\+\_\+\+STATE\+\_\+\+WARNING}}
+, \mbox{\hyperlink{group__tasks08_gga5fece384d5a09708e5d58632d565f1eda0aa318f855c67136cdaf8de3c44da5cd}{OC\+\_\+\+STATE\+\_\+\+CRITICAL}}
+, \mbox{\hyperlink{group__tasks08_gga5fece384d5a09708e5d58632d565f1eda4e7efb0775a0eb8c255a5c39450ea6fc}{OC\+\_\+\+STATE\+\_\+\+LOCKOUT}}
+ \}
+\begin{DoxyCompactList}\small\item\em Overcurrent protection state levels. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{Indent}\textbf{ Public API}\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__tasks08_gabaeebc1f043da757f96bac70bb8ac8ba}{Overcurrent\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the overcurrent protection module. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}{overcurrent\+\_\+state\+\_\+t}} \mbox{\hyperlink{group__tasks08_gabb9789239f4931927587b1b236b1e315}{Overcurrent\+\_\+\+Update}} (float total\+\_\+current\+\_\+a)
+\begin{DoxyCompactList}\small\item\em Update overcurrent protection with new total current measurement. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks08_ga4bf47606df6e10c610300fdf1a2573b5}{Overcurrent\+\_\+\+Is\+Switching\+Allowed}} (void)
+\begin{DoxyCompactList}\small\item\em Check if channel switching is currently allowed. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks08_ga49359b42016742671b8c5ff517c8687c}{Overcurrent\+\_\+\+Can\+Turn\+On}} (uint8\+\_\+t channel)
+\begin{DoxyCompactList}\small\item\em Check if turning ON a specific channel is allowed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks08_ga05298731bbc499e043d911ec1ca59879}{Overcurrent\+\_\+\+Record\+Channel\+On}} (uint8\+\_\+t channel)
+\begin{DoxyCompactList}\small\item\em Record that a channel was just turned ON. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks08_gaa9aab2a7bfb3274872c5f4f162af177e}{Overcurrent\+\_\+\+Get\+Status}} (\mbox{\hyperlink{structovercurrent__status__t}{overcurrent\+\_\+status\+\_\+t}} \texorpdfstring{$\ast$}{*}status)
+\begin{DoxyCompactList}\small\item\em Get current overcurrent protection status. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}{overcurrent\+\_\+state\+\_\+t}} \mbox{\hyperlink{group__tasks08_ga01d97571c761ab643753f677d3088684}{Overcurrent\+\_\+\+Get\+State}} (void)
+\begin{DoxyCompactList}\small\item\em Get current protection state. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__tasks08_ga1fdf004c7e21b587d490854fcc9505ff}{Overcurrent\+\_\+\+Get\+Limit}} (void)
+\begin{DoxyCompactList}\small\item\em Get the configured current limit. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks08_gadc9a057a3aef40a2ec56e65c2e55daab}{Overcurrent\+\_\+\+Clear\+Lockout}} (void)
+\begin{DoxyCompactList}\small\item\em Manually clear lockout state (for recovery/reset). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

@@ -634,7 +634,7 @@ int32_t recv(uint8_t sn, uint8_t *buf, uint16_t len) {
             if (sr != SOCK_ESTABLISHED && sr != SOCK_CLOSE_WAIT) {
 #if ERRORLOGGER
                 uint16_t errorcode =
-                    ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x01);
+                    ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x0);
                 maybe_log_sock_not_connected(sn, sr, errorcode);
 #endif
                 return SOCKERR_SOCKSTATUS;
@@ -738,7 +738,7 @@ int32_t sendto(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uint16_t p
     tmp = getSn_SR(sn);
     if (tmp != SOCK_UDP) {
 #if ERRORLOGGER
-        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x04);
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x1);
         ERROR_PRINT_CODE(errorcode, "%s Socket %u not in UDP mode (state=0x%02X)\r\n", SOCK_TAG, sn,
                          tmp);
         Storage_EnqueueErrorCode(errorcode);
@@ -765,7 +765,7 @@ int32_t sendto(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uint16_t p
             if (tmp != SOCK_UDP) {
 #if ERRORLOGGER
                 uint16_t errorcode =
-                    ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x05);
+                    ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x2);
                 ERROR_PRINT_CODE(errorcode, "%s Socket %u not in UDP mode (state=0x%02X)\r\n",
                                  SOCK_TAG, sn, tmp);
                 Storage_EnqueueErrorCode(errorcode);
@@ -857,7 +857,7 @@ int32_t recvfrom(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uint16_t
 
 #if ERRORLOGGER
                 uint16_t errorcode =
-                    ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x06);
+                    ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x3);
                 ERROR_PRINT_CODE(errorcode, "%s Socket %u not in UDP mode (state=0x%02X)\r\n",
                                  SOCK_TAG, sn, sr);
                 Storage_EnqueueErrorCode(errorcode);
@@ -1058,7 +1058,7 @@ int32_t recvfrom_SNMP(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uin
                 closesocket(sn);
 #if ERRORLOGGER
                 uint16_t errorcode =
-                    ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x07);
+                    ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x4);
                 ERROR_PRINT_CODE(errorcode, "%s Socket %u MACRAW packet too large (%u bytes)\r\n",
                                  SOCK_TAG, sn, sock_remained_size[sn]);
                 Storage_EnqueueErrorCode(errorcode);
@@ -1138,7 +1138,7 @@ int8_t ctlsocket(uint8_t sn, ctlsock_type cstype, void *arg) {
 
 #if ERRORLOGGER
             uint16_t errorcode =
-                ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x08);
+                ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x5);
             ERROR_PRINT_CODE(errorcode, "%s ctlsocket: Invalid I/O mode %u\r\n", SOCK_TAG, tmp);
             Storage_EnqueueErrorCode(errorcode);
 #endif
@@ -1181,7 +1181,7 @@ int8_t ctlsocket(uint8_t sn, ctlsock_type cstype, void *arg) {
 
     default:
 #if ERRORLOGGER
-        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x09);
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x6);
         ERROR_PRINT_CODE(errorcode, "%s ctlsocket: Invalid control type %u\r\n", SOCK_TAG, cstype);
         Storage_EnqueueErrorCode(errorcode);
 #endif
@@ -1229,7 +1229,7 @@ int8_t setsockopt(uint8_t sn, sockopt_type sotype, void *arg) {
 
 #if ERRORLOGGER
             uint16_t errorcode =
-                ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x0A);
+                ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x7);
             ERROR_PRINT_CODE(
                 errorcode,
                 "%s setsockopt: Keep-alive auto must be disabled before sending keep-alive\r\n",
@@ -1245,7 +1245,7 @@ int8_t setsockopt(uint8_t sn, sockopt_type sotype, void *arg) {
                 setSn_IR(sn, Sn_IR_TIMEOUT);
 #if ERRORLOGGER
                 uint16_t errorcode =
-                    ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x0B);
+                    ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x8);
                 ERROR_PRINT_CODE(errorcode,
                                  "%s setsockopt: Keep-alive send timeout on socket %u\r\n",
                                  SOCK_TAG, sn);
@@ -1264,7 +1264,7 @@ int8_t setsockopt(uint8_t sn, sockopt_type sotype, void *arg) {
 
     default:
 #if ERRORLOGGER
-        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x0C);
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x9);
         ERROR_PRINT_CODE(errorcode, "%s setsockopt: Invalid socket option %u\r\n", SOCK_TAG,
                          sotype);
         Storage_EnqueueErrorCode(errorcode);
@@ -1339,7 +1339,7 @@ int8_t getsockopt(uint8_t sn, sockopt_type sotype, void *arg) {
         if ((getSn_MR(sn) == Sn_MR_TCP)) {
 #if ERRORLOGGER
             uint16_t errorcode =
-                ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x0D);
+                ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0xA);
             ERROR_PRINT_CODE(errorcode, "%s getsockopt: PACKINFO not valid for TCP sockets\r\n",
                              SOCK_TAG);
             Storage_EnqueueErrorCode(errorcode);
@@ -1351,7 +1351,7 @@ int8_t getsockopt(uint8_t sn, sockopt_type sotype, void *arg) {
 
     default:
 #if ERRORLOGGER
-        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0x0E);
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SOCKET2, 0xB);
         ERROR_PRINT_CODE(errorcode, "%s getsockopt: Invalid socket option %u\r\n", SOCK_TAG,
                          sotype);
         Storage_EnqueueErrorCode(errorcode);

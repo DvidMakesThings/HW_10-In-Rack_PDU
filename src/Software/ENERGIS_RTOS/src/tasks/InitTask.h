@@ -2,11 +2,7 @@
  * @file src/tasks/InitTask.h
  * @author DvidMakesThings - David Sipos
  *
- * @defgroup tasks Tasks
- * @brief General task implementations for ENERGIS PDU firmware.
- * @{
- *
- * @defgroup tasks01 1. Init Task - RTOS Initialization
+ * @defgroup tasks04 4. Init Task - RTOS Initialization
  * @ingroup tasks
  * @brief Hardware bring-up sequencing task implementation
  * @{
@@ -32,24 +28,26 @@
 #include "../CONFIG.h"
 
 /**
- * @brief Create and start the InitTask
+ * @brief Create and start the InitTask.
+ * @ingroup tasks04
+ * @details
+ * Creates the high-priority initialization task responsible for hardware bring-up
+ * and subsystem creation. Runs during early boot, then deletes itself once the
+ * system reports ready.
  *
- * This function creates the InitTask which will run at highest priority
- * during system boot to initialize all hardware and create subsystem tasks.
- *
- * @note Call this from main() BEFORE vTaskStartScheduler()
- * InitTask will delete itself after system is fully operational
+ * @note Call from `main()` before `vTaskStartScheduler()`.
+ * @note Deterministic sequencing: creates tasks in dependency order and waits for readiness.
  */
 void InitTask_Create(void);
 
 /**
  * @brief Save current relay states as startup configuration.
+ * @ingroup tasks04
+ * @details
+ * Reads current relay states from hardware and persists them to EEPROM. The saved
+ * states are applied automatically on the next boot.
  *
- * Reads current relay states from hardware and saves them to EEPROM.
- * These saved states will be applied automatically on next boot.
- * Can be called from console commands or web UI.
- *
- * @return true on success, false on error
+ * @return true on success, false on error.
  */
 bool InitTask_SaveCurrentRelayStates(void);
 

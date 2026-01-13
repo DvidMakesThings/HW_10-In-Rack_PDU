@@ -1,0 +1,105 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item Control Handler 
+\end{DoxyEnumerate}}
+\hypertarget{group__webui01}{}\label{group__webui01}\index{1. Control Handler@{1. Control Handler}}
+
+
+Handler for the page control.\+html.  
+
+
+Collaboration diagram for 1. Control Handler\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=303pt]{group__webui01}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__webui01_ga204196bd085f7a778067392b56920c59}{handle\+\_\+control\+\_\+request}} (uint8\+\_\+t sock, char \texorpdfstring{$\ast$}{*}body)
+\begin{DoxyCompactList}\small\item\em Handles the HTTP request for the control page. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Handler for the page control.\+html. 
+
+\begin{DoxyVersion}{Version}
+2.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/01-\/01
+\end{DoxyDate}
+Handles POST requests to /api/control endpoint for relay control. Processes form-\/encoded channel states and labels, applies changes using idempotent relay control functions with logging. Label updates are performed via storage queue for thread safety.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-func-members}
+\Hypertarget{group__webui01_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__webui01_ga204196bd085f7a778067392b56920c59}\index{1. Control Handler@{1. Control Handler}!handle\_control\_request@{handle\_control\_request}}
+\index{handle\_control\_request@{handle\_control\_request}!1. Control Handler@{1. Control Handler}}
+\doxysubsubsubsection{\texorpdfstring{handle\_control\_request()}{handle\_control\_request()}}
+{\footnotesize\ttfamily \label{group__webui01_ga204196bd085f7a778067392b56920c59} 
+void handle\+\_\+control\+\_\+request (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sock}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{body}{}\end{DoxyParamCaption})}
+
+
+
+Handles the HTTP request for the control page. 
+
+Processes POST requests to /api/control with form-\/encoded body\+:
+\begin{DoxyItemize}
+\item channelN (1-\/8)\+: "{}on"{} or "{}off"{} for relay state
+\item labelN (1-\/8)\+: Channel label string (max 25 chars)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & The socket number \\
+\hline
+{\em body} & The request body (form-\/encoded)\\
+\hline
+\end{DoxyParams}
+@http
+\begin{DoxyItemize}
+\item 400 Bad Request\+: Missing body
+\item 503 Service Unavailable\+: Overcurrent lockout prevents switching ON
+\item 200 OK\+: Success with "{}\+OK\textbackslash{}n"{} body
+\end{DoxyItemize}
+
+Handles the HTTP request for the control page.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & The socket number \\
+\hline
+{\em body} & Form-\/encoded POST body (e.\+g., "{}channel1=on\&channel3=off\&label1=\+My\+Device"{})\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyItemize}
+\item Parses form-\/urlencoded fields\+: channelN and labelN where N=1..8.
+\item Channel semantics\+: "{}on"{} -\/\texorpdfstring{$>$}{>} relay ON "{}off"{} or missing -\/\texorpdfstring{$>$}{>} relay OFF
+\item Label semantics\+: If labelN field is present, updates the channel label via storage queue. Labels are truncated to 25 characters max.
+\end{DoxyItemize}
+
+@http
+\begin{DoxyItemize}
+\item 400 Bad Request if body is missing.
+\item 503 Service Unavailable if overcurrent lockout prevents switching ON.
+\item 200 OK on success with "{}\+OK\textbackslash{}n"{} text body. 
+\end{DoxyItemize}Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__webui01_ga204196bd085f7a778067392b56920c59_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__webui01_ga204196bd085f7a778067392b56920c59_icgraph}
+\end{center}
+\end{figure}

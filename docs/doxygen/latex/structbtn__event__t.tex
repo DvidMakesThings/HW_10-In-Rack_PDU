@@ -1,0 +1,53 @@
+\doxysection{btn\+\_\+event\+\_\+t Struct Reference}
+\hypertarget{structbtn__event__t}{}\label{structbtn__event__t}\index{btn\_event\_t@{btn\_event\_t}}
+
+
+Button event message published to the queue.  
+
+
+
+
+{\ttfamily \#include $<$Button\+Task.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__tasks01_ga5f3c716f66dc5610b621b0f68059707a}{btn\+\_\+event\+\_\+kind\+\_\+t}} \mbox{\hyperlink{structbtn__event__t_a601d1115d7637d8ad448df18aac41fd9}{kind}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structbtn__event__t_a63b7c1f57ed6b49a62b28681305c10d4}{t\+\_\+ms}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structbtn__event__t_a3badb4b8b50db5c5c3b68e69b5881a0b}{sel}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Button event message published to the queue. 
+
+Contains the event kind, timestamp, and current selection index. Produced by {\ttfamily Button\+Task} and consumed by subscribers from {\ttfamily q\+\_\+btn}. 
+
+\label{doc-variable-members}
+\Hypertarget{structbtn__event__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structbtn__event__t_a601d1115d7637d8ad448df18aac41fd9}\index{btn\_event\_t@{btn\_event\_t}!kind@{kind}}
+\index{kind@{kind}!btn\_event\_t@{btn\_event\_t}}
+\doxysubsubsection{\texorpdfstring{kind}{kind}}
+{\footnotesize\ttfamily \label{structbtn__event__t_a601d1115d7637d8ad448df18aac41fd9} 
+\mbox{\hyperlink{group__tasks01_ga5f3c716f66dc5610b621b0f68059707a}{btn\+\_\+event\+\_\+kind\+\_\+t}} btn\+\_\+event\+\_\+t\+::kind}
+
+Type of button event that occurred. \Hypertarget{structbtn__event__t_a3badb4b8b50db5c5c3b68e69b5881a0b}\index{btn\_event\_t@{btn\_event\_t}!sel@{sel}}
+\index{sel@{sel}!btn\_event\_t@{btn\_event\_t}}
+\doxysubsubsection{\texorpdfstring{sel}{sel}}
+{\footnotesize\ttfamily \label{structbtn__event__t_a3badb4b8b50db5c5c3b68e69b5881a0b} 
+uint8\+\_\+t btn\+\_\+event\+\_\+t\+::sel}
+
+Currently selected output channel (0-\/7). \Hypertarget{structbtn__event__t_a63b7c1f57ed6b49a62b28681305c10d4}\index{btn\_event\_t@{btn\_event\_t}!t\_ms@{t\_ms}}
+\index{t\_ms@{t\_ms}!btn\_event\_t@{btn\_event\_t}}
+\doxysubsubsection{\texorpdfstring{t\_ms}{t\_ms}}
+{\footnotesize\ttfamily \label{structbtn__event__t_a63b7c1f57ed6b49a62b28681305c10d4} 
+uint32\+\_\+t btn\+\_\+event\+\_\+t\+::t\+\_\+ms}
+
+Event timestamp in milliseconds since boot. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\mbox{\hyperlink{_button_task_8h}{Button\+Task.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,497 @@
+\doxysubsection{Device Identity Module }
+\hypertarget{group__storage10}{}\label{group__storage10}\index{Device Identity Module@{Device Identity Module}}
+
+
+Serial Number and Region Management with EEPROM Persistence.  
+
+
+Collaboration diagram for Device Identity Module\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=325pt]{group__storage10}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structdevice__identity__t}{device\+\_\+identity\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Device identity RAM cache structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__storage10_ga873a1b4db5414ab4ac986547e952f2fe}{DEVICE\+\_\+\+SN\+\_\+\+MAX\+\_\+\+LEN}}~15
+\begin{DoxyCompactList}\small\item\em Maximum length of serial number string (excluding null terminator). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__storage10_gae4d74f9ef4f807b438ff2aee66b55350}{PROV\+\_\+\+UNLOCK\+\_\+\+TOKEN}}~"{}6D61676963"{}
+\begin{DoxyCompactList}\small\item\em Provisioning unlock token (hex string). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__storage10_gaf11aaae114cd0c1c20eb730929d2fbc8}{PROV\+\_\+\+UNLOCK\+\_\+\+TIMEOUT\+\_\+\+MS}}~60000
+\begin{DoxyCompactList}\small\item\em Provisioning unlock timeout in milliseconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__storage10_ga509a8b0630b9c754a52a817ba37e032b}{device\+\_\+region\+\_\+t}} \{ \mbox{\hyperlink{group__storage10_gga509a8b0630b9c754a52a817ba37e032ba07eea1ebaa36d551f30f56c30b308d57}{DEVICE\+\_\+\+REGION\+\_\+\+UNKNOWN}} = 0x00
+, \mbox{\hyperlink{group__storage10_gga509a8b0630b9c754a52a817ba37e032ba0b78a74641c8e6c2b2754eef80ab4aeb}{DEVICE\+\_\+\+REGION\+\_\+\+EU}} = 0x45
+, \mbox{\hyperlink{group__storage10_gga509a8b0630b9c754a52a817ba37e032bac833b1f9e2f5832aef5b89fe71fa8abe}{DEVICE\+\_\+\+REGION\+\_\+\+US}} = 0x55
+ \}
+\begin{DoxyCompactList}\small\item\em Device region enumeration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{group__storage10_gab898071398b359603a35c202e9c65f3b}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} ((packed))
+\begin{DoxyCompactList}\small\item\em Device identity EEPROM payload fields (without reserved pad). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__storage10_ga8a44399536e0b86e0b543df9f1962c17}{Device\+Identity\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the device identity module. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structdevice__identity__t}{device\+\_\+identity\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__storage10_gad79ee3ecce363eec976ed7616906c27d}{Device\+Identity\+\_\+\+Get}} (void)
+\begin{DoxyCompactList}\small\item\em Get pointer to the device identity RAM cache. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__storage10_gab09c3d3cce44235c32034cb03d64fbe4}{Device\+Identity\+\_\+\+Get\+Serial\+Number}} (void)
+\begin{DoxyCompactList}\small\item\em Get the cached serial number string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__storage10_ga509a8b0630b9c754a52a817ba37e032b}{device\+\_\+region\+\_\+t}} \mbox{\hyperlink{group__storage10_ga8159c9128e13ce5870ad6d282094ed83}{Device\+Identity\+\_\+\+Get\+Region}} (void)
+\begin{DoxyCompactList}\small\item\em Get the cached device region. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__storage10_ga5b4f82b48868c1a68c60a9fc9a7f3e37}{Device\+Identity\+\_\+\+Get\+Current\+LimitA}} (void)
+\begin{DoxyCompactList}\small\item\em Get the current limit in amperes based on cached region. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage10_ga6a8334a56f37167d1e857260bb262902}{Device\+Identity\+\_\+\+Is\+Valid}} (void)
+\begin{DoxyCompactList}\small\item\em Check if device identity is valid (provisioned). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage10_ga41878c484b104d5237c63deef71f450b}{Device\+Identity\+\_\+\+Unlock}} (const char \texorpdfstring{$\ast$}{*}token)
+\begin{DoxyCompactList}\small\item\em Attempt to unlock provisioning with the given token. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__storage10_ga2bf21d733d9d7a0292429bb3f6f144c3}{Device\+Identity\+\_\+\+Lock}} (void)
+\begin{DoxyCompactList}\small\item\em Lock provisioning (close write window). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage10_ga11fd0a0d9d1c447246dc161cfa77f5aa}{Device\+Identity\+\_\+\+Is\+Unlocked}} (void)
+\begin{DoxyCompactList}\small\item\em Check if provisioning is currently unlocked. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage10_ga3ac2980af26af34986f7360246deefa5}{Device\+Identity\+\_\+\+Set\+Serial\+Number}} (const char \texorpdfstring{$\ast$}{*}serial\+\_\+number)
+\begin{DoxyCompactList}\small\item\em Set the device serial number (requires unlock). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage10_ga9f2f68ea0ff2c13d4fe5d52dc3a99e4f}{Device\+Identity\+\_\+\+Set\+Region}} (\mbox{\hyperlink{group__storage10_ga509a8b0630b9c754a52a817ba37e032b}{device\+\_\+region\+\_\+t}} region)
+\begin{DoxyCompactList}\small\item\em Set the device region (requires unlock). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__storage10_ga461c49efb137c6fcc9871867b974c326}{Device\+Identity\+\_\+\+Fill\+Mac}} (uint8\+\_\+t mac\mbox{[}6\mbox{]})
+\begin{DoxyCompactList}\small\item\em Derive MAC address from the cached serial number. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__storage10_ga3d4f201eb84e7a480bb2455f5181bca0}{device\+\_\+identity\+\_\+eeprom\+\_\+t}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Serial Number and Region Management with EEPROM Persistence. 
+
+\begin{DoxyVersion}{Version}
+1.\+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/12-\/14
+\end{DoxyDate}
+This module provides centralized management of device identity parameters\+:
+\begin{DoxyItemize}
+\item Serial number (up to 15 characters + null terminator)
+\item Region setting (EU / US)
+\end{DoxyItemize}
+
+Architecture\+:
+\begin{DoxyItemize}
+\item RAM cache provides fast, lock-\/free read access for all modules
+\item EEPROM provides non-\/volatile persistence with CRC-\/8 validation
+\item EEPROM layout is defined {\bfseries{exclusively}} in \doxylink{_e_e_p_r_o_m___memory_map_8h}{EEPROM\+\_\+\+Memory\+Map.\+h}
+\item No module is allowed to redefine EEPROM address or size locally
+\end{DoxyItemize}
+
+Provisioning\+:
+\begin{DoxyItemize}
+\item Requires explicit unlock with a fixed token
+\item Unlock opens a time-\/limited write window
+\item Writes are rejected outside the window
+\end{DoxyItemize}
+
+IMPORTANT\+:
+\begin{DoxyItemize}
+\item All consumers must read identity {\bfseries{only from the RAM cache}}
+\item EEPROM is accessed only by this module
+\end{DoxyItemize}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{group__storage10_doc-define-members}
+\doxysubsubsection{Macro Definition Documentation}
+\Hypertarget{group__storage10_ga873a1b4db5414ab4ac986547e952f2fe}\index{Device Identity Module@{Device Identity Module}!DEVICE\_SN\_MAX\_LEN@{DEVICE\_SN\_MAX\_LEN}}
+\index{DEVICE\_SN\_MAX\_LEN@{DEVICE\_SN\_MAX\_LEN}!Device Identity Module@{Device Identity Module}}
+\doxysubsubsubsection{\texorpdfstring{DEVICE\_SN\_MAX\_LEN}{DEVICE\_SN\_MAX\_LEN}}
+{\footnotesize\ttfamily \label{group__storage10_ga873a1b4db5414ab4ac986547e952f2fe} 
+\#define DEVICE\+\_\+\+SN\+\_\+\+MAX\+\_\+\+LEN~15}
+
+
+
+Maximum length of serial number string (excluding null terminator). 
+
+\Hypertarget{group__storage10_gaf11aaae114cd0c1c20eb730929d2fbc8}\index{Device Identity Module@{Device Identity Module}!PROV\_UNLOCK\_TIMEOUT\_MS@{PROV\_UNLOCK\_TIMEOUT\_MS}}
+\index{PROV\_UNLOCK\_TIMEOUT\_MS@{PROV\_UNLOCK\_TIMEOUT\_MS}!Device Identity Module@{Device Identity Module}}
+\doxysubsubsubsection{\texorpdfstring{PROV\_UNLOCK\_TIMEOUT\_MS}{PROV\_UNLOCK\_TIMEOUT\_MS}}
+{\footnotesize\ttfamily \label{group__storage10_gaf11aaae114cd0c1c20eb730929d2fbc8} 
+\#define PROV\+\_\+\+UNLOCK\+\_\+\+TIMEOUT\+\_\+\+MS~60000}
+
+
+
+Provisioning unlock timeout in milliseconds. 
+
+Write window closes automatically after this duration. \Hypertarget{group__storage10_gae4d74f9ef4f807b438ff2aee66b55350}\index{Device Identity Module@{Device Identity Module}!PROV\_UNLOCK\_TOKEN@{PROV\_UNLOCK\_TOKEN}}
+\index{PROV\_UNLOCK\_TOKEN@{PROV\_UNLOCK\_TOKEN}!Device Identity Module@{Device Identity Module}}
+\doxysubsubsubsection{\texorpdfstring{PROV\_UNLOCK\_TOKEN}{PROV\_UNLOCK\_TOKEN}}
+{\footnotesize\ttfamily \label{group__storage10_gae4d74f9ef4f807b438ff2aee66b55350} 
+\#define PROV\+\_\+\+UNLOCK\+\_\+\+TOKEN~"{}6D61676963"{}}
+
+
+
+Provisioning unlock token (hex string). 
+
+\begin{DoxyNote}{Note}
+This is the expected token for {\ttfamily PROV UNLOCK \texorpdfstring{$<$}{<}token\texorpdfstring{$>$}{>}} command. 
+\end{DoxyNote}
+
+
+\label{doc-enum-members}
+\Hypertarget{group__storage10_doc-enum-members}
+\doxysubsubsection{Enumeration Type Documentation}
+\Hypertarget{group__storage10_ga509a8b0630b9c754a52a817ba37e032b}\index{Device Identity Module@{Device Identity Module}!device\_region\_t@{device\_region\_t}}
+\index{device\_region\_t@{device\_region\_t}!Device Identity Module@{Device Identity Module}}
+\doxysubsubsubsection{\texorpdfstring{device\_region\_t}{device\_region\_t}}
+{\footnotesize\ttfamily \label{group__storage10_ga509a8b0630b9c754a52a817ba37e032b} 
+enum \mbox{\hyperlink{group__storage10_ga509a8b0630b9c754a52a817ba37e032b}{device\+\_\+region\+\_\+t}}}
+
+
+
+Device region enumeration. 
+
+Determines current limit for overcurrent protection\+:
+\begin{DoxyItemize}
+\item EU\+: 10A (IEC/\+ENEC compliant)
+\item US\+: 15A (UL/\+CSA compliant) 
+\end{DoxyItemize}\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEVICE\_REGION\_UNKNOWN@{DEVICE\_REGION\_UNKNOWN}!Device Identity Module@{Device Identity Module}}\index{Device Identity Module@{Device Identity Module}!DEVICE\_REGION\_UNKNOWN@{DEVICE\_REGION\_UNKNOWN}}}\Hypertarget{group__storage10_gga509a8b0630b9c754a52a817ba37e032ba07eea1ebaa36d551f30f56c30b308d57}\label{group__storage10_gga509a8b0630b9c754a52a817ba37e032ba07eea1ebaa36d551f30f56c30b308d57} 
+DEVICE\+\_\+\+REGION\+\_\+\+UNKNOWN&Unprovisioned or invalid region. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEVICE\_REGION\_EU@{DEVICE\_REGION\_EU}!Device Identity Module@{Device Identity Module}}\index{Device Identity Module@{Device Identity Module}!DEVICE\_REGION\_EU@{DEVICE\_REGION\_EU}}}\Hypertarget{group__storage10_gga509a8b0630b9c754a52a817ba37e032ba0b78a74641c8e6c2b2754eef80ab4aeb}\label{group__storage10_gga509a8b0630b9c754a52a817ba37e032ba0b78a74641c8e6c2b2754eef80ab4aeb} 
+DEVICE\+\_\+\+REGION\+\_\+\+EU&EU region (10A limit). ASCII \textquotesingle{}E\textquotesingle{}. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEVICE\_REGION\_US@{DEVICE\_REGION\_US}!Device Identity Module@{Device Identity Module}}\index{Device Identity Module@{Device Identity Module}!DEVICE\_REGION\_US@{DEVICE\_REGION\_US}}}\Hypertarget{group__storage10_gga509a8b0630b9c754a52a817ba37e032bac833b1f9e2f5832aef5b89fe71fa8abe}\label{group__storage10_gga509a8b0630b9c754a52a817ba37e032bac833b1f9e2f5832aef5b89fe71fa8abe} 
+DEVICE\+\_\+\+REGION\+\_\+\+US&US region (15A limit). ASCII \textquotesingle{}U\textquotesingle{}. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{group__storage10_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__storage10_gab898071398b359603a35c202e9c65f3b}\index{Device Identity Module@{Device Identity Module}!\_\_attribute\_\_@{\_\_attribute\_\_}}
+\index{\_\_attribute\_\_@{\_\_attribute\_\_}!Device Identity Module@{Device Identity Module}}
+\doxysubsubsubsection{\texorpdfstring{\_\_attribute\_\_()}{\_\_attribute\_\_()}}
+{\footnotesize\ttfamily \label{group__storage10_gab898071398b359603a35c202e9c65f3b} 
+struct \+\_\+\+\_\+attribute\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{(packed)}]{}{}\end{DoxyParamCaption})}
+
+
+
+Device identity EEPROM payload fields (without reserved pad). 
+
+This struct represents the logical identity fields stored in EEPROM. The reserved padding byte (offset 0x12) is not represented here, but is still written deterministically to enforce a stable EEPROM block image.
+
+CRC is stored at offset 0x11 in the EEPROM block. \texorpdfstring{$<$}{<} Null-\/terminated serial number (16 bytes).
+
+\texorpdfstring{$<$}{<} Region code (\doxylink{group__storage10_ga509a8b0630b9c754a52a817ba37e032b}{device\+\_\+region\+\_\+t}).
+
+\texorpdfstring{$<$}{<} CRC-\/8 over serial\+\_\+number+region (17 bytes).\Hypertarget{group__storage10_ga461c49efb137c6fcc9871867b974c326}\index{Device Identity Module@{Device Identity Module}!DeviceIdentity\_FillMac@{DeviceIdentity\_FillMac}}
+\index{DeviceIdentity\_FillMac@{DeviceIdentity\_FillMac}!Device Identity Module@{Device Identity Module}}
+\doxysubsubsubsection{\texorpdfstring{DeviceIdentity\_FillMac()}{DeviceIdentity\_FillMac()}}
+{\footnotesize\ttfamily \label{group__storage10_ga461c49efb137c6fcc9871867b974c326} 
+void Device\+Identity\+\_\+\+Fill\+Mac (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{mac}{\mbox{[}6\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Derive MAC address from the cached serial number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mac} & 6-\/byte output buffer for MAC address. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage10_ga461c49efb137c6fcc9871867b974c326_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage10_gad79ee3ecce363eec976ed7616906c27d}\index{Device Identity Module@{Device Identity Module}!DeviceIdentity\_Get@{DeviceIdentity\_Get}}
+\index{DeviceIdentity\_Get@{DeviceIdentity\_Get}!Device Identity Module@{Device Identity Module}}
+\doxysubsubsubsection{\texorpdfstring{DeviceIdentity\_Get()}{DeviceIdentity\_Get()}}
+{\footnotesize\ttfamily \label{group__storage10_gad79ee3ecce363eec976ed7616906c27d} 
+const \mbox{\hyperlink{structdevice__identity__t}{device\+\_\+identity\+\_\+t}} \texorpdfstring{$\ast$}{*} Device\+Identity\+\_\+\+Get (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Get pointer to the device identity RAM cache. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to \doxylink{structdevice__identity__t}{device\+\_\+identity\+\_\+t} cache (never NULL). 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage10_gad79ee3ecce363eec976ed7616906c27d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage10_ga5b4f82b48868c1a68c60a9fc9a7f3e37}\index{Device Identity Module@{Device Identity Module}!DeviceIdentity\_GetCurrentLimitA@{DeviceIdentity\_GetCurrentLimitA}}
+\index{DeviceIdentity\_GetCurrentLimitA@{DeviceIdentity\_GetCurrentLimitA}!Device Identity Module@{Device Identity Module}}
+\doxysubsubsubsection{\texorpdfstring{DeviceIdentity\_GetCurrentLimitA()}{DeviceIdentity\_GetCurrentLimitA()}}
+{\footnotesize\ttfamily \label{group__storage10_ga5b4f82b48868c1a68c60a9fc9a7f3e37} 
+float Device\+Identity\+\_\+\+Get\+Current\+LimitA (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Get the current limit in amperes based on cached region. 
+
+\begin{DoxyReturn}{Returns}
+Current limit in amperes as float. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage10_ga5b4f82b48868c1a68c60a9fc9a7f3e37_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage10_ga8159c9128e13ce5870ad6d282094ed83}\index{Device Identity Module@{Device Identity Module}!DeviceIdentity\_GetRegion@{DeviceIdentity\_GetRegion}}
+\index{DeviceIdentity\_GetRegion@{DeviceIdentity\_GetRegion}!Device Identity Module@{Device Identity Module}}
+\doxysubsubsubsection{\texorpdfstring{DeviceIdentity\_GetRegion()}{DeviceIdentity\_GetRegion()}}
+{\footnotesize\ttfamily \label{group__storage10_ga8159c9128e13ce5870ad6d282094ed83} 
+\mbox{\hyperlink{group__storage10_ga509a8b0630b9c754a52a817ba37e032b}{device\+\_\+region\+\_\+t}} Device\+Identity\+\_\+\+Get\+Region (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Get the cached device region. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{group__storage10_ga509a8b0630b9c754a52a817ba37e032b}{device\+\_\+region\+\_\+t} value. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage10_ga8159c9128e13ce5870ad6d282094ed83_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage10_gab09c3d3cce44235c32034cb03d64fbe4}\index{Device Identity Module@{Device Identity Module}!DeviceIdentity\_GetSerialNumber@{DeviceIdentity\_GetSerialNumber}}
+\index{DeviceIdentity\_GetSerialNumber@{DeviceIdentity\_GetSerialNumber}!Device Identity Module@{Device Identity Module}}
+\doxysubsubsubsection{\texorpdfstring{DeviceIdentity\_GetSerialNumber()}{DeviceIdentity\_GetSerialNumber()}}
+{\footnotesize\ttfamily \label{group__storage10_gab09c3d3cce44235c32034cb03d64fbe4} 
+const char \texorpdfstring{$\ast$}{*} Device\+Identity\+\_\+\+Get\+Serial\+Number (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Get the cached serial number string. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to null-\/terminated serial number string. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage10_gab09c3d3cce44235c32034cb03d64fbe4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage10_ga8a44399536e0b86e0b543df9f1962c17}\index{Device Identity Module@{Device Identity Module}!DeviceIdentity\_Init@{DeviceIdentity\_Init}}
+\index{DeviceIdentity\_Init@{DeviceIdentity\_Init}!Device Identity Module@{Device Identity Module}}
+\doxysubsubsubsection{\texorpdfstring{DeviceIdentity\_Init()}{DeviceIdentity\_Init()}}
+{\footnotesize\ttfamily \label{group__storage10_ga8a44399536e0b86e0b543df9f1962c17} 
+void Device\+Identity\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Initialize the device identity module. 
+
+Loads device identity from EEPROM into the RAM cache. If EEPROM data is invalid (CRC mismatch or empty), the cache is marked invalid and default placeholder values are used.
+
+This function must be called early in the boot sequence, after EEPROM driver initialization but before any module that needs SN/region access.
+
+\begin{DoxyNote}{Note}
+Thread-\/safe. May be called before scheduler starts. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage10_ga8a44399536e0b86e0b543df9f1962c17_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage10_ga8a44399536e0b86e0b543df9f1962c17_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage10_ga11fd0a0d9d1c447246dc161cfa77f5aa}\index{Device Identity Module@{Device Identity Module}!DeviceIdentity\_IsUnlocked@{DeviceIdentity\_IsUnlocked}}
+\index{DeviceIdentity\_IsUnlocked@{DeviceIdentity\_IsUnlocked}!Device Identity Module@{Device Identity Module}}
+\doxysubsubsubsection{\texorpdfstring{DeviceIdentity\_IsUnlocked()}{DeviceIdentity\_IsUnlocked()}}
+{\footnotesize\ttfamily \label{group__storage10_ga11fd0a0d9d1c447246dc161cfa77f5aa} 
+bool Device\+Identity\+\_\+\+Is\+Unlocked (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Check if provisioning is currently unlocked. 
+
+\begin{DoxyReturn}{Returns}
+true if unlocked and write window is open, false otherwise. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage10_ga11fd0a0d9d1c447246dc161cfa77f5aa_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage10_ga11fd0a0d9d1c447246dc161cfa77f5aa_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage10_ga6a8334a56f37167d1e857260bb262902}\index{Device Identity Module@{Device Identity Module}!DeviceIdentity\_IsValid@{DeviceIdentity\_IsValid}}
+\index{DeviceIdentity\_IsValid@{DeviceIdentity\_IsValid}!Device Identity Module@{Device Identity Module}}
+\doxysubsubsubsection{\texorpdfstring{DeviceIdentity\_IsValid()}{DeviceIdentity\_IsValid()}}
+{\footnotesize\ttfamily \label{group__storage10_ga6a8334a56f37167d1e857260bb262902} 
+bool Device\+Identity\+\_\+\+Is\+Valid (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Check if device identity is valid (provisioned). 
+
+\begin{DoxyReturn}{Returns}
+true if cache contains valid provisioned data, false otherwise. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage10_ga6a8334a56f37167d1e857260bb262902_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage10_ga2bf21d733d9d7a0292429bb3f6f144c3}\index{Device Identity Module@{Device Identity Module}!DeviceIdentity\_Lock@{DeviceIdentity\_Lock}}
+\index{DeviceIdentity\_Lock@{DeviceIdentity\_Lock}!Device Identity Module@{Device Identity Module}}
+\doxysubsubsubsection{\texorpdfstring{DeviceIdentity\_Lock()}{DeviceIdentity\_Lock()}}
+{\footnotesize\ttfamily \label{group__storage10_ga2bf21d733d9d7a0292429bb3f6f144c3} 
+void Device\+Identity\+\_\+\+Lock (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Lock provisioning (close write window). 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage10_ga2bf21d733d9d7a0292429bb3f6f144c3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage10_ga9f2f68ea0ff2c13d4fe5d52dc3a99e4f}\index{Device Identity Module@{Device Identity Module}!DeviceIdentity\_SetRegion@{DeviceIdentity\_SetRegion}}
+\index{DeviceIdentity\_SetRegion@{DeviceIdentity\_SetRegion}!Device Identity Module@{Device Identity Module}}
+\doxysubsubsubsection{\texorpdfstring{DeviceIdentity\_SetRegion()}{DeviceIdentity\_SetRegion()}}
+{\footnotesize\ttfamily \label{group__storage10_ga9f2f68ea0ff2c13d4fe5d52dc3a99e4f} 
+int Device\+Identity\+\_\+\+Set\+Region (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__storage10_ga509a8b0630b9c754a52a817ba37e032b}{device\+\_\+region\+\_\+t}}}]{region}{}\end{DoxyParamCaption})}
+
+
+
+Set the device region (requires unlock). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em region} & New region setting (DEVICE\+\_\+\+REGION\+\_\+\+EU or DEVICE\+\_\+\+REGION\+\_\+\+US). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 if locked, -\/2 if invalid region, -\/3 if EEPROM error. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage10_ga9f2f68ea0ff2c13d4fe5d52dc3a99e4f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage10_ga9f2f68ea0ff2c13d4fe5d52dc3a99e4f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage10_ga3ac2980af26af34986f7360246deefa5}\index{Device Identity Module@{Device Identity Module}!DeviceIdentity\_SetSerialNumber@{DeviceIdentity\_SetSerialNumber}}
+\index{DeviceIdentity\_SetSerialNumber@{DeviceIdentity\_SetSerialNumber}!Device Identity Module@{Device Identity Module}}
+\doxysubsubsubsection{\texorpdfstring{DeviceIdentity\_SetSerialNumber()}{DeviceIdentity\_SetSerialNumber()}}
+{\footnotesize\ttfamily \label{group__storage10_ga3ac2980af26af34986f7360246deefa5} 
+int Device\+Identity\+\_\+\+Set\+Serial\+Number (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{serial\+\_\+number}{}\end{DoxyParamCaption})}
+
+
+
+Set the device serial number (requires unlock). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+\_\+number} & New serial number string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 if locked, -\/2 if invalid input, -\/3 if EEPROM error. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage10_ga3ac2980af26af34986f7360246deefa5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage10_ga3ac2980af26af34986f7360246deefa5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage10_ga41878c484b104d5237c63deef71f450b}\index{Device Identity Module@{Device Identity Module}!DeviceIdentity\_Unlock@{DeviceIdentity\_Unlock}}
+\index{DeviceIdentity\_Unlock@{DeviceIdentity\_Unlock}!Device Identity Module@{Device Identity Module}}
+\doxysubsubsubsection{\texorpdfstring{DeviceIdentity\_Unlock()}{DeviceIdentity\_Unlock()}}
+{\footnotesize\ttfamily \label{group__storage10_ga41878c484b104d5237c63deef71f450b} 
+bool Device\+Identity\+\_\+\+Unlock (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{token}{}\end{DoxyParamCaption})}
+
+
+
+Attempt to unlock provisioning with the given token. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em token} & Hex string token to validate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if unlock succeeded, false if token mismatch. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage10_ga41878c484b104d5237c63deef71f450b_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{group__storage10_doc-var-members}
+\doxysubsubsection{Variable Documentation}
+\Hypertarget{group__storage10_ga3d4f201eb84e7a480bb2455f5181bca0}\index{Device Identity Module@{Device Identity Module}!device\_identity\_eeprom\_t@{device\_identity\_eeprom\_t}}
+\index{device\_identity\_eeprom\_t@{device\_identity\_eeprom\_t}!Device Identity Module@{Device Identity Module}}
+\doxysubsubsubsection{\texorpdfstring{device\_identity\_eeprom\_t}{device\_identity\_eeprom\_t}}
+{\footnotesize\ttfamily \label{group__storage10_ga3d4f201eb84e7a480bb2455f5181bca0} 
+device\+\_\+identity\+\_\+eeprom\+\_\+t}
+

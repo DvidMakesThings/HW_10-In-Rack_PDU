@@ -16,11 +16,11 @@ Addr   00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
   → **Serial number = `SN-0167663`**
 * `31 2E 30 2E 30 00` → ASCII `"1.0.0\0"`
   → **Software version = `1.0.0`**
-* Remaining bytes in `0x0000–0x004F` currently `0xFF` → **unused / empty area in the system info block**
+* Remaining bytes in `0x0000-0x004F` currently `0xFF` → **unused / empty area in the system info block**
 
 So this SYS_INFO record holds the device ID `SN-0167663` and firmware version `1.0.0`, with the rest of the 0x0100-byte block still blank.
 
-### Unused *0x0050–0x0200*
+### Unused *0x0050-0x0200*
 
 ```
 0x0050 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
@@ -62,18 +62,18 @@ So this SYS_INFO record holds the device ID `SN-0167663` and firmware version `1
 
 #### Decoded:
 
-* `0x0200–0x0207` → 8 × relay power-on state bytes
+* `0x0200-0x0207` → 8 × relay power-on state bytes
 
   * Channel 1..8: `00 00 00 00 00 00 00 00`
   * Each `0x00` = **default power-on state = OFF** (matches `DEFAULT_RELAY_STATUS[8] = {0}`)
-* `0x0208–0x02FF` → all `0xFF`
+* `0x0208-0x02FF` → all `0xFF`
 
   * **Currently unused / reserved** area inside the User Output block (no extra metadata or CRC stored yet).
 
 So right now the EEPROM says: **all 8 outputs come up OFF by default, rest of the 0x0100-byte User Output region is empty.**
 
 
-### Unused *0x0220–0x0300*
+### Unused *0x0220-0x0300*
 
 ```
 0x0220 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
@@ -108,10 +108,10 @@ So right now the EEPROM says: **all 8 outputs come up OFF by default, rest of th
 * `08 08 08 08` → DNS = **8.8.8.8**
 * `00` → DHCP flag = **0** → **DHCP disabled (static IP)**
 * `89` → CRC-8 over first 23 bytes = **0x89**
-* Remaining `FF FF FF FF FF FF FF FF` (0x0318–0x031F) → **unused / padding** inside the 32-byte network block.
+* Remaining `FF FF FF FF FF FF FF FF` (0x0318-0x031F) → **unused / padding** inside the 32-byte network block.
 
 
-### Unused *0x0320–0x0400*
+### Unused *0x0320-0x0400*
 ```
 0x0320 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
 0x0330 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
@@ -128,7 +128,7 @@ So right now the EEPROM says: **all 8 outputs come up OFF by default, rest of th
 0x03E0 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
 0x03F0 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
 ```
-### Sensor calibration record *0x0400–0x0550*
+### Sensor calibration record *0x0400-0x0550*
 
 ```
 0x0400 FF FF FF FF FF FF FF FF D7 A3 F0 3F 00 00 80 3F 
@@ -179,7 +179,7 @@ This block stores `hlw_calib_data_t` = **8 × `hlw_calib_t`** (one per HLW8032 c
   * `6F 12 83 3A` → **0.001**
     → `shunt_actual` = **1 mΩ**
 
-These value triplets repeat in the visible entries (0x0400…, 0x0480…, 0x0500…), so the channels that are initialized use:
+These value triplets repeat in the visible entries (0x0400..., 0x0480..., 0x0500...), so the channels that are initialized use:
 
 * `voltage_factor ≈ 1.88`
 * `current_factor = 1.0`
@@ -188,11 +188,11 @@ These value triplets repeat in the visible entries (0x0400…, 0x0480…, 0x0500
 
 The rest of the **0x0150-byte block**:
 
-* `0x0400–0x051F` → holds the actual `hlw_calib_data_t` (8×36 bytes, some channels still all-FF = unused/default).
-* `0x0520–0x054F` → all `0xFF` → reserved/empty space in the sensor calibration region.
+* `0x0400-0x051F` → holds the actual `hlw_calib_data_t` (8×36 bytes, some channels still all-FF = unused/default).
+* `0x0520-0x054F` → all `0xFF` → reserved/empty space in the sensor calibration region.
 
 
-### Unused *0x0550–0x0800*
+### Unused *0x0550-0x0800*
 
 ```
 0x0550 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
@@ -469,7 +469,7 @@ So: version-1, single-point calib using the datasheet line (V0=0.706, slope=1.72
 0x14F0 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
 ```
 
-### Energy Monitoring Data *0x1500–0x1600* but not used
+### Energy Monitoring Data *0x1500-0x1600* but not used
 ```
 0x1500 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
 0x1510 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
@@ -489,7 +489,7 @@ So: version-1, single-point calib using the datasheet line (V0=0.706, slope=1.72
 0x15F0 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
 ```
 
-### Failure Memory Data for ERRORs *0x1600–0x1800* 
+### Failure Memory Data for ERRORs *0x1600-0x1800* 
 
 ```
 0x1600 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
@@ -526,7 +526,7 @@ So: version-1, single-point calib using the datasheet line (V0=0.706, slope=1.72
 0x17F0 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
 ```
 
-### Failure Memory Data for WARNINGs *0x1600–0x1800* 
+### Failure Memory Data for WARNINGs *0x1600-0x1800* 
 ```
 0x1800 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF  
 0x1810 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
@@ -562,7 +562,7 @@ So: version-1, single-point calib using the datasheet line (V0=0.706, slope=1.72
 0x19F0 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
 ```
 
-### Channel Labels *0x1A00–0x1C00* but not used
+### Channel Labels *0x1A00-0x1C00* but not used
 
 ```
 0x1A00 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
@@ -599,7 +599,7 @@ So: version-1, single-point calib using the datasheet line (V0=0.706, slope=1.72
 0x1BF0 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
 ```
 
-### Unused *0x1C00–0x2000*
+### Unused *0x1C00-0x2000*
 
 ```
 0x1C00 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
@@ -707,15 +707,15 @@ So: version-1, single-point calib using the datasheet line (V0=0.706, slope=1.72
 
 #### Decoded:
 
-* `0x2000–0x201F` → `device_name[32]`
+* `0x2000-0x201F` → `device_name[32]`
   * Bytes `45 4E 45 52 47 49 53 2D 31 2E 30 2E 30 00 ...` → ASCII `"ENERGIS-1.0.0"` + zero padding to 32 bytes.
-* `0x2020–0x203F` → `location[32]`
+* `0x2020-0x203F` → `location[32]`
   * Bytes `4C 6F 63 61 74 69 6F 6E 00 ...` → ASCII `"Location"` + zero padding to 32 bytes.
 * `0x2040` → `temp_unit` (1 byte) 
   * `00` → temperature unit = **0 = Celsius** (as defined by `DEFAULT_USER_PREFS`, “Temperature unit: Celsius (0)”).
 * `0x2041` → CRC-8 over first 65 bytes (`device_name[32] + location[32] + temp_unit`) 
   * `FC` → stored CRC-8 = **0xFC** (valid, otherwise `EEPROM_ReadUserPrefsWithChecksum()` would reject it).
-* `0x2042–0x21FF` → unused / erased padding inside the user-prefs block (`0xFF`), not read by the current code (only first 66 bytes are used). 
+* `0x2042-0x21FF` → unused / erased padding inside the user-prefs block (`0xFF`), not read by the current code (only first 66 bytes are used). 
 
 So effectively you have default prefs stored: **name `"ENERGIS-1.0.0"`, location `"Location"`, temp in °C, CRC OK**.
 
@@ -2227,7 +2227,7 @@ So effectively you have default prefs stored: **name `"ENERGIS-1.0.0"`, location
 0x7FE0 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
 ```
 
-### Magic value record *0x7FF0–0x7FFF*
+### Magic value record *0x7FF0-0x7FFF*
 
 ```text
 0x7FF0 FF FF FF FF FF FF FF FF FF FF FF FF FF FF 5A A5
@@ -2235,13 +2235,13 @@ So effectively you have default prefs stored: **name `"ENERGIS-1.0.0"`, location
 
 #### Decoded:
 
-* `0x7FFE–0x7FFF` → magic word location (`EEPROM_MAGIC_ADDR = 0x7FFE`)
+* `0x7FFE-0x7FFF` → magic word location (`EEPROM_MAGIC_ADDR = 0x7FFE`)
 
   * Bytes at the end: `5A A5`
   * Interpreted as little-endian `uint16_t`: **0xA55A**
   * This matches `EEPROM_MAGIC_VAL = 0xA55A`
 
-* `0x7FF0–0x7FFD` → all `0xFF`
+* `0x7FF0-0x7FFD` → all `0xFF`
 
   * Unused / erased padding before the magic word.
 

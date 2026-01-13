@@ -1,0 +1,540 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\+Button\+Task.c File Reference}
+\hypertarget{_button_task_8c}{}\label{_button_task_8c}\index{src/Software/ENERGIS\_RTOS/src/tasks/ButtonTask.c@{src/Software/ENERGIS\_RTOS/src/tasks/ButtonTask.c}}
+
+
+Button task implementation with debouncing and selection window control.  
+
+
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for Button\+Task.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_button_task_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structdeb__t}{deb\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Button debouncer state structure. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structdeb__edge__t}{deb\+\_\+edge\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Debouncer edge detection result. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_button_task_8c_a23e4686f3ae25139e61ce1e02c8930ba}{BUTTON\+\_\+\+TASK\+\_\+\+TAG}}~"{}\mbox{[}BUTTONTASK\mbox{]}"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{_button_task_8c_adff2b57dc3c074453ee1393d0f6f3623}{Storage\+\_\+\+Is\+Ready}} (void)
+\begin{DoxyCompactList}\small\item\em Storage subsystem readiness query (configuration loaded). \end{DoxyCompactList}\item 
+static uint32\+\_\+t \mbox{\hyperlink{_button_task_8c_a50503dee6a29e98e633b16b1b8b550bc}{now\+\_\+ms}} (void)
+\begin{DoxyCompactList}\small\item\em Get current system time in milliseconds. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_button_task_8c_a48e9dfcba05fe3d5c468e7e11c27779d}{deb\+\_\+init}} (\mbox{\hyperlink{structdeb__t}{deb\+\_\+t}} \texorpdfstring{$\ast$}{*}d, bool level, uint32\+\_\+t now)
+\begin{DoxyCompactList}\small\item\em Initialize debouncer state. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structdeb__edge__t}{deb\+\_\+edge\+\_\+t}} \mbox{\hyperlink{_button_task_8c_a771066548d461a800cee3f937f21da2d}{deb\+\_\+update}} (\mbox{\hyperlink{structdeb__t}{deb\+\_\+t}} \texorpdfstring{$\ast$}{*}d, bool raw, uint32\+\_\+t now)
+\begin{DoxyCompactList}\small\item\em Update debouncer with new raw button reading. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_button_task_8c_a7dd01d9d8a132e8200f18d1b39a6830b}{emit}} (\mbox{\hyperlink{group__tasks01_ga5f3c716f66dc5610b621b0f68059707a}{btn\+\_\+event\+\_\+kind\+\_\+t}} kind)
+\begin{DoxyCompactList}\small\item\em Publish button event to event queue. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_button_task_8c_ace0bf93e3b15940dda5cf9fb120c8273}{window\+\_\+open}} (uint32\+\_\+t now)
+\begin{DoxyCompactList}\small\item\em Activate selection window and enable LED feedback. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_button_task_8c_a6315d1130562e53cdab52ed30e551e88}{window\+\_\+refresh}} (uint32\+\_\+t now)
+\begin{DoxyCompactList}\small\item\em Extend selection window timeout. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_button_task_8c_ac582a6e2100c0837f272a315955aedcc}{window\+\_\+close}} (void)
+\begin{DoxyCompactList}\small\item\em Deactivate selection window and disable LED feedback. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_button_task_8c_af38f8f598c769e263c3090fa7a821246}{v\+Blink\+Timer\+Cb}} (Timer\+Handle\+\_\+t x\+Timer)
+\begin{DoxyCompactList}\small\item\em Blink timer callback function. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_button_task_8c_a55d32bf8c265acac02fafc64c218564c}{process\+\_\+blink}} (uint32\+\_\+t now)
+\begin{DoxyCompactList}\small\item\em Process LED blink logic and window timeout. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{_button_task_8c_a43c5c53e354dd4f2319cc4c76f23ea01}{read\+\_\+pwr\+\_\+button}} (void)
+\begin{DoxyCompactList}\small\item\em Read power button GPIO state. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_button_task_8c_ac8adec5c9e99b51c4884034cf2e41275}{v\+Button\+Task}} (void \texorpdfstring{$\ast$}{*}pv\+Parameters)
+\begin{DoxyCompactList}\small\item\em Main button scanning and event processing task. \end{DoxyCompactList}\item 
+Base\+Type\+\_\+t \mbox{\hyperlink{group__tasks01_ga66ab3f6fa24432c008c6ea7b0ccddb5f}{Button\+Task\+\_\+\+Init}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Initialize and start the button handling task. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks01_ga10ed3ecf4c7563fe0fd3a2324b9260e1}{Button\+\_\+\+Is\+Ready}} (void)
+\begin{DoxyCompactList}\small\item\em Query button task readiness status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{group__tasks01_ga4f858b0945b86e1932ecb297d91c7878}{q\+\_\+btn}} = NULL
+\begin{DoxyCompactList}\small\item\em Global queue for button event distribution. \end{DoxyCompactList}\item 
+static volatile uint8\+\_\+t \mbox{\hyperlink{_button_task_8c_ad6ddf37e4bd4e88d793bceb7164adb23}{s\+\_\+selected}} = 0
+\item 
+static volatile bool \mbox{\hyperlink{_button_task_8c_a13cdd70ff93ec2eef9b45d6e6a224f14}{s\+\_\+btn\+\_\+ready}} = false
+\item 
+static Timer\+Handle\+\_\+t \mbox{\hyperlink{_button_task_8c_ad3adee35118a0855896cb74b497ba0ab}{s\+\_\+blink\+\_\+timer}} = NULL
+\item 
+static volatile bool \mbox{\hyperlink{_button_task_8c_a9a3a9da3b90db22d0af5d6dbdf3c61c1}{s\+\_\+window\+\_\+active}} = false
+\item 
+static volatile uint32\+\_\+t \mbox{\hyperlink{_button_task_8c_a9bb251157c156b26df93e125f6697d09}{s\+\_\+last\+\_\+press\+\_\+ms}} = 0
+\item 
+static volatile bool \mbox{\hyperlink{_button_task_8c_acbe4978df96ecf94e37b12f5af0e931f}{s\+\_\+blink\+\_\+pending}} = false
+\item 
+static volatile bool \mbox{\hyperlink{_button_task_8c_ac31f16189bbc1a293c2854271ae94de5}{s\+\_\+blink\+\_\+state}} = false
+\item 
+static volatile uint32\+\_\+t \mbox{\hyperlink{_button_task_8c_a24ca45639a05601b54532e3196ea3588}{s\+\_\+last\+\_\+blink\+\_\+ms}} = 0
+\item 
+static \mbox{\hyperlink{structdeb__t}{deb\+\_\+t}} \mbox{\hyperlink{_button_task_8c_a5a20402302e95ee8e0a6fb7aa37dd287}{s\+\_\+plus}}
+\item 
+static \mbox{\hyperlink{structdeb__t}{deb\+\_\+t}} \mbox{\hyperlink{_button_task_8c_a7bff1fbecffed474bd0b8e070c3679c1}{s\+\_\+minus}}
+\item 
+static \mbox{\hyperlink{structdeb__t}{deb\+\_\+t}} \mbox{\hyperlink{_button_task_8c_adb042da5ffad7be7cfdcf630b6a698c6}{s\+\_\+set}}
+\item 
+static \mbox{\hyperlink{structdeb__t}{deb\+\_\+t}} \mbox{\hyperlink{_button_task_8c_adf0e2a8a6f16108153eaeda6286886f9}{s\+\_\+pwr}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Button task implementation with debouncing and selection window control. 
+
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+2.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/12-\/09
+\end{DoxyDate}
+
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{_button_task_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_button_task_8c_a23e4686f3ae25139e61ce1e02c8930ba}\index{ButtonTask.c@{ButtonTask.c}!BUTTON\_TASK\_TAG@{BUTTON\_TASK\_TAG}}
+\index{BUTTON\_TASK\_TAG@{BUTTON\_TASK\_TAG}!ButtonTask.c@{ButtonTask.c}}
+\doxysubsubsection{\texorpdfstring{BUTTON\_TASK\_TAG}{BUTTON\_TASK\_TAG}}
+{\footnotesize\ttfamily \label{_button_task_8c_a23e4686f3ae25139e61ce1e02c8930ba} 
+\#define BUTTON\+\_\+\+TASK\+\_\+\+TAG~"{}\mbox{[}BUTTONTASK\mbox{]}"{}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{_button_task_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_button_task_8c_a48e9dfcba05fe3d5c468e7e11c27779d}\index{ButtonTask.c@{ButtonTask.c}!deb\_init@{deb\_init}}
+\index{deb\_init@{deb\_init}!ButtonTask.c@{ButtonTask.c}}
+\doxysubsubsection{\texorpdfstring{deb\_init()}{deb\_init()}}
+{\footnotesize\ttfamily \label{_button_task_8c_a48e9dfcba05fe3d5c468e7e11c27779d} 
+void deb\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structdeb__t}{deb\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{d}{, }\item[{bool}]{level}{, }\item[{uint32\+\_\+t}]{now}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Initialize debouncer state. 
+
+Sets up a debouncer with the current raw button level and timestamp. Must be called before using the debouncer in the update loop.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{out}}  & {\em d} & Pointer to debouncer state structure to initialize. \\
+\hline
+\mbox{\texttt{in}}  & {\em level} & Initial raw button level (true=high/unpressed, false=low/pressed). \\
+\hline
+\mbox{\texttt{in}}  & {\em now} & Current timestamp in milliseconds. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_button_task_8c_a48e9dfcba05fe3d5c468e7e11c27779d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_button_task_8c_a771066548d461a800cee3f937f21da2d}\index{ButtonTask.c@{ButtonTask.c}!deb\_update@{deb\_update}}
+\index{deb\_update@{deb\_update}!ButtonTask.c@{ButtonTask.c}}
+\doxysubsubsection{\texorpdfstring{deb\_update()}{deb\_update()}}
+{\footnotesize\ttfamily \label{_button_task_8c_a771066548d461a800cee3f937f21da2d} 
+\mbox{\hyperlink{structdeb__edge__t}{deb\+\_\+edge\+\_\+t}} deb\+\_\+update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structdeb__t}{deb\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{d}{, }\item[{bool}]{raw}{, }\item[{uint32\+\_\+t}]{now}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Update debouncer with new raw button reading. 
+
+Implements software debouncing by requiring a stable level for DEBOUNCE\+\_\+\+MS before accepting a transition. Detects rising and falling edges after debouncing completes.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in,out}}  & {\em d} & Pointer to debouncer state. \\
+\hline
+\mbox{\texttt{in}}  & {\em raw} & Current raw button level from GPIO. \\
+\hline
+\mbox{\texttt{in}}  & {\em now} & Current timestamp in milliseconds.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Structure with edge flags indicating detected transitions. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_button_task_8c_a771066548d461a800cee3f937f21da2d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_button_task_8c_a7dd01d9d8a132e8200f18d1b39a6830b}\index{ButtonTask.c@{ButtonTask.c}!emit@{emit}}
+\index{emit@{emit}!ButtonTask.c@{ButtonTask.c}}
+\doxysubsubsection{\texorpdfstring{emit()}{emit()}}
+{\footnotesize\ttfamily \label{_button_task_8c_a7dd01d9d8a132e8200f18d1b39a6830b} 
+void emit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__tasks01_ga5f3c716f66dc5610b621b0f68059707a}{btn\+\_\+event\+\_\+kind\+\_\+t}}}]{kind}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Publish button event to event queue. 
+
+Creates a button event structure with the specified type and current state, then publishes it non-\/blocking to the global event queue for consumption by other tasks.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em kind} & Button event type to publish. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_button_task_8c_a7dd01d9d8a132e8200f18d1b39a6830b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_button_task_8c_a7dd01d9d8a132e8200f18d1b39a6830b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_button_task_8c_a50503dee6a29e98e633b16b1b8b550bc}\index{ButtonTask.c@{ButtonTask.c}!now\_ms@{now\_ms}}
+\index{now\_ms@{now\_ms}!ButtonTask.c@{ButtonTask.c}}
+\doxysubsubsection{\texorpdfstring{now\_ms()}{now\_ms()}}
+{\footnotesize\ttfamily \label{_button_task_8c_a50503dee6a29e98e633b16b1b8b550bc} 
+uint32\+\_\+t now\+\_\+ms (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Get current system time in milliseconds. 
+
+Provides monotonic millisecond timestamp for debouncing and timing operations. Wraps button driver timing function.
+
+\begin{DoxyReturn}{Returns}
+Milliseconds elapsed since system boot. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=268pt]{_button_task_8c_a50503dee6a29e98e633b16b1b8b550bc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_button_task_8c_a50503dee6a29e98e633b16b1b8b550bc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_button_task_8c_a55d32bf8c265acac02fafc64c218564c}\index{ButtonTask.c@{ButtonTask.c}!process\_blink@{process\_blink}}
+\index{process\_blink@{process\_blink}!ButtonTask.c@{ButtonTask.c}}
+\doxysubsubsection{\texorpdfstring{process\_blink()}{process\_blink()}}
+{\footnotesize\ttfamily \label{_button_task_8c_a55d32bf8c265acac02fafc64c218564c} 
+void process\+\_\+blink (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{now}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Process LED blink logic and window timeout. 
+
+Handles selection LED blinking and window timeout management in Button\+Task context where I2C operations are safe. Toggles LED state, checks for window timeout, and queues LED updates through button driver to switch task.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em now} & Current timestamp in milliseconds.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Called from main Button\+Task loop only. 
+
+Rate-\/limited to prevent I2C bus flooding. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_button_task_8c_a55d32bf8c265acac02fafc64c218564c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_button_task_8c_a55d32bf8c265acac02fafc64c218564c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_button_task_8c_a43c5c53e354dd4f2319cc4c76f23ea01}\index{ButtonTask.c@{ButtonTask.c}!read\_pwr\_button@{read\_pwr\_button}}
+\index{read\_pwr\_button@{read\_pwr\_button}!ButtonTask.c@{ButtonTask.c}}
+\doxysubsubsection{\texorpdfstring{read\_pwr\_button()}{read\_pwr\_button()}}
+{\footnotesize\ttfamily \label{_button_task_8c_a43c5c53e354dd4f2319cc4c76f23ea01} 
+bool read\+\_\+pwr\+\_\+button (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Read power button GPIO state. 
+
+Reads the current state of the power button GPIO pin. Button uses active-\/low logic where low indicates pressed state.
+
+\begin{DoxyReturn}{Returns}
+true if button is not pressed (pin high), false if pressed (pin low). 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_button_task_8c_a43c5c53e354dd4f2319cc4c76f23ea01_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_button_task_8c_adff2b57dc3c074453ee1393d0f6f3623}\index{ButtonTask.c@{ButtonTask.c}!Storage\_IsReady@{Storage\_IsReady}}
+\index{Storage\_IsReady@{Storage\_IsReady}!ButtonTask.c@{ButtonTask.c}}
+\doxysubsubsection{\texorpdfstring{Storage\_IsReady()}{Storage\_IsReady()}}
+{\footnotesize\ttfamily \label{_button_task_8c_adff2b57dc3c074453ee1393d0f6f3623} 
+bool Storage\+\_\+\+Is\+Ready (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Storage subsystem readiness query (configuration loaded). 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_button_task_8c_adff2b57dc3c074453ee1393d0f6f3623_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_button_task_8c_af38f8f598c769e263c3090fa7a821246}\index{ButtonTask.c@{ButtonTask.c}!vBlinkTimerCb@{vBlinkTimerCb}}
+\index{vBlinkTimerCb@{vBlinkTimerCb}!ButtonTask.c@{ButtonTask.c}}
+\doxysubsubsection{\texorpdfstring{vBlinkTimerCb()}{vBlinkTimerCb()}}
+{\footnotesize\ttfamily \label{_button_task_8c_af38f8f598c769e263c3090fa7a821246} 
+void v\+Blink\+Timer\+Cb (\begin{DoxyParamCaption}\item[{Timer\+Handle\+\_\+t}]{x\+Timer}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Blink timer callback function. 
+
+Periodic timer callback that requests LED blink update by setting a flag. Does not perform any I2C operations directly to avoid bus conflicts with other tasks using the shared I2C bus. The main task loop processes the blink request in a safe context.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em x\+Timer} & Timer handle (unused).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Runs in timer daemon task context, not Button\+Task context. 
+
+I2C operations from timer context cause bus collisions and watchdog issues. 
+\end{DoxyNote}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_button_task_8c_af38f8f598c769e263c3090fa7a821246_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_button_task_8c_ac8adec5c9e99b51c4884034cf2e41275}\index{ButtonTask.c@{ButtonTask.c}!vButtonTask@{vButtonTask}}
+\index{vButtonTask@{vButtonTask}!ButtonTask.c@{ButtonTask.c}}
+\doxysubsubsection{\texorpdfstring{vButtonTask()}{vButtonTask()}}
+{\footnotesize\ttfamily \label{_button_task_8c_ac8adec5c9e99b51c4884034cf2e41275} 
+void v\+Button\+Task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Parameters}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Main button scanning and event processing task. 
+
+Continuously polls button GPIOs, performs debouncing, manages the selection window, and executes button actions. Handles all button logic including short/long press detection, power state control, and event publishing.
+
+Button Actions\+:
+\begin{DoxyItemize}
+\item PLUS/\+MINUS (first press)\+: Open selection window without changing selection
+\item PLUS/\+MINUS (window active)\+: Move selection and refresh timeout
+\item SET (short)\+: Toggle selected relay output
+\item SET (long)\+: Clear error/warning logs and fault LED
+\item PWR (long in RUN mode)\+: Enter standby mode
+\item PWR (short in STANDBY)\+: Exit standby mode
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em pv\+Parameters} & Task parameters (unused). \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{_button_task_8c_ac8adec5c9e99b51c4884034cf2e41275_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_button_task_8c_ac8adec5c9e99b51c4884034cf2e41275_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_button_task_8c_ac582a6e2100c0837f272a315955aedcc}\index{ButtonTask.c@{ButtonTask.c}!window\_close@{window\_close}}
+\index{window\_close@{window\_close}!ButtonTask.c@{ButtonTask.c}}
+\doxysubsubsection{\texorpdfstring{window\_close()}{window\_close()}}
+{\footnotesize\ttfamily \label{_button_task_8c_ac582a6e2100c0837f272a315955aedcc} 
+void window\+\_\+close (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Deactivate selection window and disable LED feedback. 
+
+Closes the selection window, turns off all selection LEDs, and notifies the switch task to resume normal panel operation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_button_task_8c_ac582a6e2100c0837f272a315955aedcc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_button_task_8c_ac582a6e2100c0837f272a315955aedcc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_button_task_8c_ace0bf93e3b15940dda5cf9fb120c8273}\index{ButtonTask.c@{ButtonTask.c}!window\_open@{window\_open}}
+\index{window\_open@{window\_open}!ButtonTask.c@{ButtonTask.c}}
+\doxysubsubsection{\texorpdfstring{window\_open()}{window\_open()}}
+{\footnotesize\ttfamily \label{_button_task_8c_ace0bf93e3b15940dda5cf9fb120c8273} 
+void window\+\_\+open (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{now}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Activate selection window and enable LED feedback. 
+
+Opens the selection window, initializes the blink state, and notifies the switch task to allow manual panel interaction. LED is turned on immediately at the selected channel.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em now} & Current timestamp in milliseconds. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_button_task_8c_ace0bf93e3b15940dda5cf9fb120c8273_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_button_task_8c_ace0bf93e3b15940dda5cf9fb120c8273_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_button_task_8c_a6315d1130562e53cdab52ed30e551e88}\index{ButtonTask.c@{ButtonTask.c}!window\_refresh@{window\_refresh}}
+\index{window\_refresh@{window\_refresh}!ButtonTask.c@{ButtonTask.c}}
+\doxysubsubsection{\texorpdfstring{window\_refresh()}{window\_refresh()}}
+{\footnotesize\ttfamily \label{_button_task_8c_a6315d1130562e53cdab52ed30e551e88} 
+void window\+\_\+refresh (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{now}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Extend selection window timeout. 
+
+Updates the last activity timestamp to prevent window timeout. Called on each button interaction while window is active.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em now} & Current timestamp in milliseconds. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_button_task_8c_a6315d1130562e53cdab52ed30e551e88_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{_button_task_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{_button_task_8c_acbe4978df96ecf94e37b12f5af0e931f}\index{ButtonTask.c@{ButtonTask.c}!s\_blink\_pending@{s\_blink\_pending}}
+\index{s\_blink\_pending@{s\_blink\_pending}!ButtonTask.c@{ButtonTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_blink\_pending}{s\_blink\_pending}}
+{\footnotesize\ttfamily \label{_button_task_8c_acbe4978df96ecf94e37b12f5af0e931f} 
+volatile bool s\+\_\+blink\+\_\+pending = false\hspace{0.3cm}{\ttfamily [static]}}
+
+Blink request flag set by timer callback, processed by main task loop. Decouples timer ISR from I2C operations to prevent bus collisions. \Hypertarget{_button_task_8c_ac31f16189bbc1a293c2854271ae94de5}\index{ButtonTask.c@{ButtonTask.c}!s\_blink\_state@{s\_blink\_state}}
+\index{s\_blink\_state@{s\_blink\_state}!ButtonTask.c@{ButtonTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_blink\_state}{s\_blink\_state}}
+{\footnotesize\ttfamily \label{_button_task_8c_ac31f16189bbc1a293c2854271ae94de5} 
+volatile bool s\+\_\+blink\+\_\+state = false\hspace{0.3cm}{\ttfamily [static]}}
+
+Current selection LED state (true=on, false=off). \Hypertarget{_button_task_8c_ad3adee35118a0855896cb74b497ba0ab}\index{ButtonTask.c@{ButtonTask.c}!s\_blink\_timer@{s\_blink\_timer}}
+\index{s\_blink\_timer@{s\_blink\_timer}!ButtonTask.c@{ButtonTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_blink\_timer}{s\_blink\_timer}}
+{\footnotesize\ttfamily \label{_button_task_8c_ad3adee35118a0855896cb74b497ba0ab} 
+Timer\+Handle\+\_\+t s\+\_\+blink\+\_\+timer = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+Timer handle for selection LED blinking. \Hypertarget{_button_task_8c_a13cdd70ff93ec2eef9b45d6e6a224f14}\index{ButtonTask.c@{ButtonTask.c}!s\_btn\_ready@{s\_btn\_ready}}
+\index{s\_btn\_ready@{s\_btn\_ready}!ButtonTask.c@{ButtonTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_btn\_ready}{s\_btn\_ready}}
+{\footnotesize\ttfamily \label{_button_task_8c_a13cdd70ff93ec2eef9b45d6e6a224f14} 
+volatile bool s\+\_\+btn\+\_\+ready = false\hspace{0.3cm}{\ttfamily [static]}}
+
+Task initialization completion flag for boot sequencing. \Hypertarget{_button_task_8c_a24ca45639a05601b54532e3196ea3588}\index{ButtonTask.c@{ButtonTask.c}!s\_last\_blink\_ms@{s\_last\_blink\_ms}}
+\index{s\_last\_blink\_ms@{s\_last\_blink\_ms}!ButtonTask.c@{ButtonTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_last\_blink\_ms}{s\_last\_blink\_ms}}
+{\footnotesize\ttfamily \label{_button_task_8c_a24ca45639a05601b54532e3196ea3588} 
+volatile uint32\+\_\+t s\+\_\+last\+\_\+blink\+\_\+ms = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+Timestamp of last LED blink update for rate limiting. \Hypertarget{_button_task_8c_a9bb251157c156b26df93e125f6697d09}\index{ButtonTask.c@{ButtonTask.c}!s\_last\_press\_ms@{s\_last\_press\_ms}}
+\index{s\_last\_press\_ms@{s\_last\_press\_ms}!ButtonTask.c@{ButtonTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_last\_press\_ms}{s\_last\_press\_ms}}
+{\footnotesize\ttfamily \label{_button_task_8c_a9bb251157c156b26df93e125f6697d09} 
+volatile uint32\+\_\+t s\+\_\+last\+\_\+press\+\_\+ms = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+Timestamp of last button press for window timeout calculation. \Hypertarget{_button_task_8c_a7bff1fbecffed474bd0b8e070c3679c1}\index{ButtonTask.c@{ButtonTask.c}!s\_minus@{s\_minus}}
+\index{s\_minus@{s\_minus}!ButtonTask.c@{ButtonTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_minus}{s\_minus}}
+{\footnotesize\ttfamily \label{_button_task_8c_a7bff1fbecffed474bd0b8e070c3679c1} 
+\mbox{\hyperlink{structdeb__t}{deb\+\_\+t}} s\+\_\+minus\hspace{0.3cm}{\ttfamily [static]}}
+
+Debouncer state for MINUS button. \Hypertarget{_button_task_8c_a5a20402302e95ee8e0a6fb7aa37dd287}\index{ButtonTask.c@{ButtonTask.c}!s\_plus@{s\_plus}}
+\index{s\_plus@{s\_plus}!ButtonTask.c@{ButtonTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_plus}{s\_plus}}
+{\footnotesize\ttfamily \label{_button_task_8c_a5a20402302e95ee8e0a6fb7aa37dd287} 
+\mbox{\hyperlink{structdeb__t}{deb\+\_\+t}} s\+\_\+plus\hspace{0.3cm}{\ttfamily [static]}}
+
+Debouncer state for PLUS button. \Hypertarget{_button_task_8c_adf0e2a8a6f16108153eaeda6286886f9}\index{ButtonTask.c@{ButtonTask.c}!s\_pwr@{s\_pwr}}
+\index{s\_pwr@{s\_pwr}!ButtonTask.c@{ButtonTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_pwr}{s\_pwr}}
+{\footnotesize\ttfamily \label{_button_task_8c_adf0e2a8a6f16108153eaeda6286886f9} 
+\mbox{\hyperlink{structdeb__t}{deb\+\_\+t}} s\+\_\+pwr\hspace{0.3cm}{\ttfamily [static]}}
+
+Debouncer state for PWR button. \Hypertarget{_button_task_8c_ad6ddf37e4bd4e88d793bceb7164adb23}\index{ButtonTask.c@{ButtonTask.c}!s\_selected@{s\_selected}}
+\index{s\_selected@{s\_selected}!ButtonTask.c@{ButtonTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_selected}{s\_selected}}
+{\footnotesize\ttfamily \label{_button_task_8c_ad6ddf37e4bd4e88d793bceb7164adb23} 
+volatile uint8\+\_\+t s\+\_\+selected = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+Current selected output channel index (0-\/7). \Hypertarget{_button_task_8c_adb042da5ffad7be7cfdcf630b6a698c6}\index{ButtonTask.c@{ButtonTask.c}!s\_set@{s\_set}}
+\index{s\_set@{s\_set}!ButtonTask.c@{ButtonTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_set}{s\_set}}
+{\footnotesize\ttfamily \label{_button_task_8c_adb042da5ffad7be7cfdcf630b6a698c6} 
+\mbox{\hyperlink{structdeb__t}{deb\+\_\+t}} s\+\_\+set\hspace{0.3cm}{\ttfamily [static]}}
+
+Debouncer state for SET button. \Hypertarget{_button_task_8c_a9a3a9da3b90db22d0af5d6dbdf3c61c1}\index{ButtonTask.c@{ButtonTask.c}!s\_window\_active@{s\_window\_active}}
+\index{s\_window\_active@{s\_window\_active}!ButtonTask.c@{ButtonTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_window\_active}{s\_window\_active}}
+{\footnotesize\ttfamily \label{_button_task_8c_a9a3a9da3b90db22d0af5d6dbdf3c61c1} 
+volatile bool s\+\_\+window\+\_\+active = false\hspace{0.3cm}{\ttfamily [static]}}
+
+Selection window active state flag. 

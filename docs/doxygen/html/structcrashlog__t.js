@@ -1,0 +1,26 @@
+var structcrashlog__t =
+[
+    [ "boots_counter", "structcrashlog__t.html#a1f1d30de651fe783b3df6ff79f886e99", null ],
+    [ "hdr_crc32", "structcrashlog__t.html#a8a8f754682bdcc0b5ebbe6ef536c6111", null ],
+    [ "hdr_magic", "structcrashlog__t.html#aedb30457598e4eac8a961cbea94fb623", null ],
+    [ "hdr_size", "structcrashlog__t.html#a79c41cf6abf819cb4c2a67ffc6854aa5", null ],
+    [ "hdr_version", "structcrashlog__t.html#a2770632c551b70866eea849b79946590", null ],
+    [ "hf_valid", "structcrashlog__t.html#a0a92f896f61de29e4b0fa45840bf38a2", null ],
+    [ "lr", "structcrashlog__t.html#ae5f51f173d74e56106fd09509e5737c7", null ],
+    [ "pc", "structcrashlog__t.html#ab5a78f7c957e63cec1eea533cf8b6c05", null ],
+    [ "r0", "structcrashlog__t.html#a83fbb408d262cd1f4f7cc24b8fcd63c4", null ],
+    [ "r1", "structcrashlog__t.html#a439e9f0ffca9ff0052bb26f39934aa9e", null ],
+    [ "r12", "structcrashlog__t.html#ae39c814fce6a7cd47a3a87e8830badfd", null ],
+    [ "r2", "structcrashlog__t.html#acffe6b8ff20ce427a656c4205ce93bad", null ],
+    [ "r3", "structcrashlog__t.html#a2665b9c9fa35b5725a305894d80c7f89", null ],
+    [ "reset_raw_bits", "structcrashlog__t.html#a3b69d35e7ece77c525d1564728db181a", null ],
+    [ "reset_reason", "structcrashlog__t.html#a65100817986135b97760ee6788d5b50d", null ],
+    [ "rsvd0", "structcrashlog__t.html#a6d1d1eee5d10967d58c832a58ba31188", null ],
+    [ "rsvd1", "structcrashlog__t.html#ac94bbe9a0c82b083839b2f445f4aff44", null ],
+    [ "sw_reboot_tag", "structcrashlog__t.html#a1ef9ce5100a95eb17be3b1085a044813", null ],
+    [ "wdt_feed_count", "structcrashlog__t.html#a2397da129395bc03da70efe05cb42f6e", null ],
+    [ "wdt_feed_delta_ms", "structcrashlog__t.html#af0eb9e9d8254d3af90d472d667a20ab9", null ],
+    [ "wdt_feed_wr", "structcrashlog__t.html#a116f8de94ac8754b967e6e413dc6f42e", null ],
+    [ "wdt_last_ts_ms", "structcrashlog__t.html#ae3f9b71d10c1b1ad3ecee2b9364e6ddc", null ],
+    [ "xpsr", "structcrashlog__t.html#abe2669c559492b250560512ae912acca", null ]
+];

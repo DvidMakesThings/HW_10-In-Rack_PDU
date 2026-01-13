@@ -1,0 +1,9 @@
+<map id="Configuration Files" name="Configuration Files">
+<area shape="rect" id="Node000001" title="Configuration files for the Energis PDU firmware." alt="" coords="5,132,136,159"/>
+<area shape="rect" id="Node000002" href="$group__config01.html" title="Configuration header for ENERGIS PDU firmware." alt="" coords="203,5,376,32"/>
+<area shape="rect" id="Node000003" href="$group__config02.html" title="Centralized configuration parameters for W5500 Ethernet controller." alt="" coords="184,56,395,83"/>
+<area shape="rect" id="Node000004" href="$group__config03.html" title="W5500 Register Definitions." alt="" coords="193,107,386,133"/>
+<area shape="rect" id="Node000005" href="$group__config04.html" title="Configuration header for ENERGIS PDU firmware." alt="" coords="194,157,384,184"/>
+<area shape="rect" id="Node000006" href="$group__config05.html" title="FreeRTOS Configuration Header." alt="" coords="213,208,366,235"/>
+<area shape="rect" id="Node000007" href="$group__config06.html" title="EEPROM Memory Layout and Data Structures." alt="" coords="202,259,376,285"/>
+</map>

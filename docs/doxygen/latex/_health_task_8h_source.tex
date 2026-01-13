@@ -1,0 +1,48 @@
+\doxysection{Health\+Task.\+h}
+\hypertarget{_health_task_8h_source}{}\label{_health_task_8h_source}\index{src/Software/ENERGIS\_RTOS/src/tasks/HealthTask.h@{src/Software/ENERGIS\_RTOS/src/tasks/HealthTask.h}}
+\mbox{\hyperlink{_health_task_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_o_n_f_i_g_8h}{../CONFIG.h}}"{}}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ LOGTASKBEAT\_MS\ 500}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ NETTASKBEAT\_MS\ 500}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ METERTASKBEAT\_MS\ 500}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ STORAGETASKBEAT\_MS\ 500}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ BUTTONTASKBEAT\_MS\ 500}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ CONSOLETASKBEAT\_MS\ 500}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ SWITCHTASKBEAT\_MS\ 500}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a051e8be4fb238dd58b9221e976987d75}{HEALTH\_ID\_LOGGER}}\ =\ 0,\ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0ad37f44c33ad392b2b3daf0be960c69f7}{HEALTH\_ID\_CONSOLE}}\ =\ 1,\ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a015d1fa647ab3cefab7537a5f91d24b2}{HEALTH\_ID\_STORAGE}}\ =\ 2,\ }
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0aec9e0ebdf114b54ffaefe5ac0dfe4f42}{HEALTH\_ID\_BUTTON}}\ =\ 3,\ \ }
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0adc8e549fa3ff902b411cb02ea9f57c14}{HEALTH\_ID\_SWITCH}}\ =\ 4,\ \ }
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a561a36766da3f788952f9183b07ad21d}{HEALTH\_ID\_NET}}\ =\ 5,\ \ \ }
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a2cea86f90ff8e96b63128b6591e9f50c}{HEALTH\_ID\_METER}}\ =\ 6,\ }
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a8a4e0fbdeb7262156a215b8c0df390b6}{HEALTH\_ID\_MAX}}\ =\ 16\ }
+\DoxyCodeLine{00097\ \}\ \mbox{\hyperlink{group__tasks03_ga85cb9e0b43d35bed4ce045a22086c2b0}{health\_id\_t}};}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{comment}{/*\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\ */}}
+\DoxyCodeLine{00100\ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PUBLIC\ API\ FUNCTIONS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00101\ \textcolor{comment}{/*\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\ */}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00110\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__tasks03_gaaa57b8a364b1e80fdbcbd231b80ee70d}{HealthTask\_Start}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00122\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__tasks03_ga39ec0ac355c1ecd9f7b42602beceaab9}{Health\_RegisterTask}}(\mbox{\hyperlink{group__tasks03_ga85cb9e0b43d35bed4ce045a22086c2b0}{health\_id\_t}}\ \textcolor{keywordtype}{id},\ TaskHandle\_t\ h,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name);}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00132\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__tasks03_ga4f7298bb6ff71177639ba837e4068eb1}{Health\_Heartbeat}}(\mbox{\hyperlink{group__tasks03_ga85cb9e0b43d35bed4ce045a22086c2b0}{health\_id\_t}}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00142\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__tasks03_ga5b404de66522546aae096a94abd6d5fc}{Health\_RecordBlocked}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *tag,\ uint32\_t\ waited\_ms);}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00153\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__tasks03_ga2cceff60fca1f201d5d60588aff53bbc}{Health\_RebootNow}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *reason);}
+\DoxyCodeLine{00154\ }
+
+\end{DoxyCode}

@@ -1,0 +1,21 @@
+<map id="Switch_SetFaultLed" name="Switch_SetFaultLed">
+<area shape="rect" id="Node000001" title="Set FAULT LED on display MCP." alt="" coords="5,81,144,108"/>
+<area shape="rect" id="Node000002" href="$_switch_task_8c.html#a2a7f01bd659f5eea0a4a131d8c57c207" title=" " alt="" coords="222,5,267,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,78,206,32,209,37,108,83"/>
+<area shape="rect" id="Node000003" href="$group__drivers06.html#ga7634eca518e2158ba0e636a3f03f3928" title="Get display MCP23017 device context." alt="" coords="197,56,292,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="144,82,181,76,182,81,145,87"/>
+<area shape="rect" id="Node000004" href="$group__drivers06.html#ga8b8bc528b75e419262e7663ee669dc31" title="Write a logic level to a pin." alt="" coords="192,107,297,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="145,102,177,107,176,113,144,108"/>
+<area shape="rect" id="Node000010" href="$_switch_task_8c.html#abb7cc7eb4e959fda6a43c8dd85f20090" title=" " alt="" coords="215,157,274,184"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="108,106,202,149,200,154,105,111"/>
+<area shape="rect" id="Node000005" href="$group__drivers05.html#gab7b4aa096ded6cebd93256e5b5994e42" title="Write 8&#45;bit register with 8&#45;bit value: [reg, value]." alt="" coords="356,81,490,108"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="297,110,340,104,341,109,298,115"/>
+<area shape="rect" id="Node000009" href="$_m_c_p23017__driver_8c.html#a0ff45ad384852ba5f69f0fd781c2f46a" title=" " alt="" coords="345,132,501,159"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="298,125,330,129,329,135,297,130"/>
+<area shape="rect" id="Node000006" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="575,56,696,83"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="490,84,559,76,559,81,491,89"/>
+<area shape="rect" id="Node000007" href="$group__drivers05.html#ga170d6c4ff97ddc2d314f0a7a0054f283" title="Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK i2c_write_time..." alt="" coords="549,107,722,133"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="491,100,534,105,534,111,490,105"/>
+<area shape="rect" id="Node000008" href="$i2c__bus_8c.html#afbaa64f79bdd1fa39c8fa5b7a9c2717b" title=" " alt="" coords="770,107,927,133"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="722,117,754,117,754,123,722,123"/>
+</map>

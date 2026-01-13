@@ -1,0 +1,21 @@
+<map id="getter_n" name="getter_n">
+<area shape="rect" id="Node000001" title="Generic SNMP getter for outlet state." alt="" coords="5,81,74,108"/>
+<area shape="rect" id="Node000002" href="$group__tasks11.html#ga19c6dbf15503e4ca3c985e5acd42c278" title="Legacy wrapper for Switch_GetState." alt="" coords="122,81,288,108"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="74,92,106,92,106,97,74,97"/>
+<area shape="rect" id="Node000003" href="$group__tasks11.html#ga84e3359029bd29e598f346dad2255899" title="Get current relay channel state from hardware." alt="" coords="336,81,456,108"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="288,92,320,92,320,97,288,97"/>
+<area shape="rect" id="Node000004" href="$_switch_task_8c.html#a2a7f01bd659f5eea0a4a131d8c57c207" title=" " alt="" coords="533,5,578,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="425,78,517,33,520,38,427,83"/>
+<area shape="rect" id="Node000005" href="$group__drivers06.html#ga2e6de484edec28d8c39620a364ce5b92" title="Read a logic level from a pin." alt="" coords="504,56,607,83"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="456,82,489,77,490,82,457,88"/>
+<area shape="rect" id="Node000009" href="$group__drivers06.html#ga6568742c79ce5190216e5185238229ba" title="Get relay MCP23017 device context." alt="" coords="515,107,596,133"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="457,102,500,108,499,114,456,107"/>
+<area shape="rect" id="Node000010" href="$_switch_task_8c.html#abb7cc7eb4e959fda6a43c8dd85f20090" title=" " alt="" coords="526,157,585,184"/>
+<area shape="poly" id="edge9_Node000003_Node000010" title=" " alt="" coords="427,106,513,148,511,153,425,111"/>
+<area shape="rect" id="Node000006" href="$group__drivers05.html#ga0e406d50e8948e593649a11c729acd9b" title="Read 8&#45;bit register: write [reg] (no stop), then read 1 byte." alt="" coords="655,56,785,83"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="607,67,639,67,639,72,607,72"/>
+<area shape="rect" id="Node000007" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="862,31,983,57"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="785,59,846,51,847,56,786,64"/>
+<area shape="rect" id="Node000008" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="833,81,1012,108"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="786,75,818,79,817,84,785,80"/>
+</map>

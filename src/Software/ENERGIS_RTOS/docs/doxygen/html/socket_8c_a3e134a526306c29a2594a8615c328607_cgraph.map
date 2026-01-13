@@ -1,0 +1,7 @@
+<map id="maybe_log_sock_not_connected" name="maybe_log_sock_not_connected">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,23,150,65"/>
+<area shape="rect" id="Node000002" href="$group__misc3.html#gad3252fba1863d278f2611cad531177f5" title="Query the current system power state." alt="" coords="231,5,348,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,33,215,25,215,30,151,38"/>
+<area shape="rect" id="Node000003" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="198,56,381,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="151,50,182,54,182,59,150,55"/>
+</map>

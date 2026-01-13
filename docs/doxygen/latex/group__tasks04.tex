@@ -1,0 +1,112 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item Init Task -\/ RTOS Initialization 
+\end{DoxyEnumerate}}
+\hypertarget{group__tasks04}{}\label{group__tasks04}\index{4. Init Task -\/ RTOS Initialization@{4. Init Task -\/ RTOS Initialization}}
+
+
+Hardware bring-\/up sequencing task implementation.  
+
+
+Collaboration diagram for 4. Init Task -\/ RTOS Initialization\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=258pt]{group__tasks04}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__tasks04_ga8a8abeda7232f47559b8683414202508}{Init\+Task\+\_\+\+Create}} (void)
+\begin{DoxyCompactList}\small\item\em Create and start the Init\+Task. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks04_ga1c8976a6cc85a66091cbd8c414c78368}{Init\+Task\+\_\+\+Save\+Current\+Relay\+States}} (void)
+\begin{DoxyCompactList}\small\item\em Save current relay states as startup configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Hardware bring-\/up sequencing task implementation. 
+
+\begin{DoxyVersion}{Version}
+2.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/01-\/01
+\end{DoxyDate}
+Init\+Task runs at highest priority during system boot to\+:
+\begin{DoxyEnumerate}
+\item Initialize all hardware in proper sequence
+\item Probe peripherals to verify communication
+\item Create subsystem tasks in dependency order
+\item Wait for subsystems to report ready
+\item Apply saved configuration (relay states) on startup
+\item Delete itself when system is fully operational
+\end{DoxyEnumerate}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-func-members}
+\Hypertarget{group__tasks04_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__tasks04_ga8a8abeda7232f47559b8683414202508}\index{4. Init Task -\/ RTOS Initialization@{4. Init Task -\/ RTOS Initialization}!InitTask\_Create@{InitTask\_Create}}
+\index{InitTask\_Create@{InitTask\_Create}!4. Init Task -\/ RTOS Initialization@{4. Init Task -\/ RTOS Initialization}}
+\doxysubsubsubsection{\texorpdfstring{InitTask\_Create()}{InitTask\_Create()}}
+{\footnotesize\ttfamily \label{group__tasks04_ga8a8abeda7232f47559b8683414202508} 
+void Init\+Task\+\_\+\+Create (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Create and start the Init\+Task. 
+
+Creates the high-\/priority initialization task responsible for hardware bring-\/up and subsystem creation. Runs during early boot, then deletes itself once the system reports ready.
+
+\begin{DoxyNote}{Note}
+Call from {\ttfamily main()} before {\ttfamily v\+Task\+Start\+Scheduler()}. 
+
+Deterministic sequencing\+: creates tasks in dependency order and waits for readiness.
+\end{DoxyNote}
+Create and start the Init\+Task.
+
+Call this from main() before v\+Task\+Start\+Scheduler(). The task will execute the deterministic bring-\/up sequence (Logger -\/\texorpdfstring{$>$}{>} Console -\/\texorpdfstring{$>$}{>} Storage -\/\texorpdfstring{$>$}{>} Button -\/\texorpdfstring{$>$}{>} Net -\/\texorpdfstring{$>$}{>} Meter), then delete itself when all subsystems are ready or have timed out. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{group__tasks04_ga8a8abeda7232f47559b8683414202508_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=273pt]{group__tasks04_ga8a8abeda7232f47559b8683414202508_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__tasks04_ga1c8976a6cc85a66091cbd8c414c78368}\index{4. Init Task -\/ RTOS Initialization@{4. Init Task -\/ RTOS Initialization}!InitTask\_SaveCurrentRelayStates@{InitTask\_SaveCurrentRelayStates}}
+\index{InitTask\_SaveCurrentRelayStates@{InitTask\_SaveCurrentRelayStates}!4. Init Task -\/ RTOS Initialization@{4. Init Task -\/ RTOS Initialization}}
+\doxysubsubsubsection{\texorpdfstring{InitTask\_SaveCurrentRelayStates()}{InitTask\_SaveCurrentRelayStates()}}
+{\footnotesize\ttfamily \label{group__tasks04_ga1c8976a6cc85a66091cbd8c414c78368} 
+bool Init\+Task\+\_\+\+Save\+Current\+Relay\+States (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Save current relay states as startup configuration. 
+
+Reads current relay states from hardware and persists them to EEPROM. The saved states are applied automatically on the next boot.
+
+\begin{DoxyReturn}{Returns}
+true on success, false on error.
+\end{DoxyReturn}
+Save current relay states as startup configuration.
+
+Reads current relay states from hardware and saves them to EEPROM. This is typically called when user wants to save current configuration.
+
+\begin{DoxyReturn}{Returns}
+true on success, false on error 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks04_ga1c8976a6cc85a66091cbd8c414c78368_cgraph}
+\end{center}
+\end{figure}

@@ -6,8 +6,16 @@
  * @date 2025-11-08
  *
  * @details
- * Reads the user/network configuration from EEPROM using storage helpers and
- * formats fields for SNMP. If EEPROM access fails, falls back to compiled defaults.
+ * Implementation of SNMP network configuration getters. This module reads the
+ * persisted network configuration from EEPROM via StorageTask and formats
+ * network addresses as human-readable strings for SNMP responses.
+ *
+ * Formatting conventions:
+ * - IPv4 addresses: dotted-decimal (e.g., "192.168.1.100")
+ * - MAC addresses: colon-separated hex (e.g., "02:45:4E:0C:7B:1C")
+ *
+ * All functions include error handling with automatic fallback to compiled
+ * defaults if storage access fails.
  */
 
 #include "../CONFIG.h"
@@ -17,14 +25,20 @@
 /* ===== Internal: fetch persisted network config (EEPROM) ===== */
 
 /**
- * @brief Load the persisted network configuration into a caller-provided struct.
+ * @brief Load persisted network configuration from EEPROM.
  *
- * @param[out] out  Destination struct to receive the persisted configuration.
+ * Attempts to read the network configuration from persistent storage via
+ * storage_get_network(). If the read fails, populates the output structure
+ * with compiled-in defaults.
  *
- * @post On success, @p out fields are populated from EEPROM. On failure, @p out
- *       receives compiled defaults via LoadUserNetworkConfig().
+ * @param out Pointer to destination networkInfo structure
+ *
+ * @return None
+ *
+ * @note Validates output pointer and logs error if NULL.
  */
 static inline void load_netcfg(networkInfo *out) {
+    /* Validate output pointer */
     if (!out) {
         uint16_t errorcode =
             ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_SNMP_NETCTRL, 0x1);
@@ -32,34 +46,38 @@ static inline void load_netcfg(networkInfo *out) {
         Storage_EnqueueErrorCode(errorcode);
         return;
     }
+
+    /* Attempt to read from storage; fall back to defaults on failure */
     if (!storage_get_network(out)) {
         *out = LoadUserNetworkConfig();
     }
 }
 
 /**
- * @brief Format an IPv4 address to dotted decimal.
+ * @brief Format IPv4 address as dotted-decimal string.
  *
- * @param[out] ptr  Destination buffer (must be at least 16 bytes).
- * @param[in]  ip   Source IPv4 address as 4 octets.
+ * Converts a 4-byte IPv4 address to the standard dotted-decimal notation
+ * with null termination.
  *
- * @return Number of characters written excluding the null terminator.
+ * @param ptr Output buffer (minimum 16 bytes required for "255.255.255.255\0")
+ * @param ip Source IPv4 address as 4-byte array
  *
- * @note The output format is "x.x.x.x" and is null-terminated.
+ * @return Number of characters written, excluding null terminator
  */
 static inline uint8_t ipfmt(void *ptr, const uint8_t ip[4]) {
     return (uint8_t)snprintf((char *)ptr, 16, "%u.%u.%u.%u", ip[0], ip[1], ip[2], ip[3]);
 }
 
 /**
- * @brief Format a MAC address to colon-separated hex.
+ * @brief Format MAC address as colon-separated hexadecimal string.
  *
- * @param[out] ptr  Destination buffer (must be at least 18 bytes).
- * @param[in]  mac  Source MAC address as 6 octets.
+ * Converts a 6-byte MAC address to the standard colon-separated uppercase
+ * hexadecimal format with null termination.
  *
- * @return Number of characters written excluding the null terminator.
+ * @param ptr Output buffer (minimum 18 bytes required for "FF:FF:FF:FF:FF:FF\0")
+ * @param mac Source MAC address as 6-byte array
  *
- * @note The output format is "02:45:4E:0C:7B:1C" and is null-terminated.
+ * @return Number of characters written, excluding null terminator
  */
 static inline uint8_t macfmt(void *ptr, const uint8_t mac[6]) {
     return (uint8_t)snprintf((char *)ptr, 18, "%02X:%02X:%02X:%02X:%02X:%02X", mac[0], mac[1],
@@ -68,75 +86,30 @@ static inline uint8_t macfmt(void *ptr, const uint8_t mac[6]) {
 
 /* ===== SNMP getters (string-typed) ===== */
 
-/**
- * @brief Get persisted IP address (EEPROM) for SNMP.
- *
- * @param[out] ptr  Output buffer for the string (>=16 bytes recommended).
- * @param[out] len  Number of characters written to @p ptr (excluding null).
- *
- * @pre Storage helpers are initialized.
- * @post @p ptr contains the dotted-decimal IP; @p len reflects byte count.
- */
 void get_networkIP(void *ptr, uint8_t *len) {
     networkInfo ni;
     load_netcfg(&ni);
     *len = ipfmt(ptr, ni.ip);
 }
 
-/**
- * @brief Get persisted subnet mask (EEPROM) for SNMP.
- *
- * @param[out] ptr  Output buffer for the string (>=16 bytes recommended).
- * @param[out] len  Number of characters written to @p ptr (excluding null).
- *
- * @pre Storage helpers are initialized.
- * @post @p ptr contains the dotted-decimal mask; @p len reflects byte count.
- */
 void get_networkMask(void *ptr, uint8_t *len) {
     networkInfo ni;
     load_netcfg(&ni);
     *len = ipfmt(ptr, ni.sn);
 }
 
-/**
- * @brief Get persisted gateway (EEPROM) for SNMP.
- *
- * @param[out] ptr  Output buffer for the string (>=16 bytes recommended).
- * @param[out] len  Number of characters written to @p ptr (excluding null).
- *
- * @pre Storage helpers are initialized.
- * @post @p ptr contains the dotted-decimal gateway; @p len reflects byte count.
- */
 void get_networkGateway(void *ptr, uint8_t *len) {
     networkInfo ni;
     load_netcfg(&ni);
     *len = ipfmt(ptr, ni.gw);
 }
 
-/**
- * @brief Get persisted DNS server (EEPROM) for SNMP.
- *
- * @param[out] ptr  Output buffer for the string (>=16 bytes recommended).
- * @param[out] len  Number of characters written to @p ptr (excluding null).
- *
- * @pre Storage helpers are initialized.
- * @post @p ptr contains the dotted-decimal DNS address; @p len reflects byte count.
- */
 void get_networkDNS(void *ptr, uint8_t *len) {
     networkInfo ni;
     load_netcfg(&ni);
     *len = ipfmt(ptr, ni.dns);
 }
 
-/**
- * @brief Get persisted MAC address (EEPROM) for SNMP.
- *
- * @param[out] ptr  Output buffer for the string (>=16 bytes recommended).
- * @param[out] len  Number of characters written to @p ptr (excluding null).
- *
- * @pre Storage helpers are initialized.
- * @post @p ptr contains the dotted-decimal MAC address; @p len reflects byte count.
- */
 void get_networkMAC(void *ptr, uint8_t *len) {
     networkInfo ni;
     load_netcfg(&ni);

@@ -1,0 +1,162 @@
+\doxysection{snmp.\+h}
+\hypertarget{snmp_8h_source}{}\label{snmp_8h_source}\index{src/Software/ENERGIS\_RTOS/src/drivers/snmp.h@{src/Software/ENERGIS\_RTOS/src/drivers/snmp.h}}
+\mbox{\hyperlink{snmp_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#ifndef\ ENERGIS\_SNMP\_H}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ ENERGIS\_SNMP\_H}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ *\ \ Build-\/time\ options}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#ifndef\ \_SNMP\_DEBUG\_}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ \_SNMP\_DEBUG\_\ DEBUG}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#ifndef\ SNMP\_MAX\_OID}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ SNMP\_MAX\_OID\ 12}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#ifndef\ SNMP\_MAX\_STRING}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ SNMP\_MAX\_STRING\ 64}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#ifndef\ SNMP\_MAX\_MSG}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ SNMP\_MAX\_MSG\ 768}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#ifndef\ SNMP\_MAX\_TRAP}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ SNMP\_MAX\_TRAP\ 512}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ SNMP\_PORT\_AGENT\ 161}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ SNMP\_PORT\_TRAP\ 162}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ SNMP\_V1\ 0}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00064\ \textcolor{comment}{\ *\ \ ASN.1\ /\ SNMP\ tags\ and\ error\ codes}}
+\DoxyCodeLine{00065\ \textcolor{comment}{\ *\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ SNMPDTYPE\_INTEGER\ 0x02}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ SNMPDTYPE\_OCTET\_STRING\ 0x04}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ SNMPDTYPE\_NULL\_ITEM\ 0x05}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ SNMPDTYPE\_OBJ\_ID\ 0x06}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ SNMPDTYPE\_SEQUENCE\ 0x30}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ SNMPDTYPE\_SEQUENCE\_OF\ SNMPDTYPE\_SEQUENCE}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ SNMPDTYPE\_COUNTER\ 0x41}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ SNMPDTYPE\_GAUGE\ 0x42}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ SNMPDTYPE\_TIME\_TICKS\ 0x43}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ SNMPDTYPE\_OPAQUE\ 0x44}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ GET\_REQUEST\ 0xA0}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ GET\_NEXT\_REQUEST\ 0xA1}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ GET\_RESPONSE\ 0xA2}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#define\ SET\_REQUEST\ 0xA3}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#define\ VALID\_REQUEST(x)\ ((x)\ ==\ GET\_REQUEST\ ||\ (x)\ ==\ GET\_NEXT\_REQUEST\ ||\ (x)\ ==\ SET\_REQUEST)}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{comment}{/*\ Generic\ trap\ types\ */}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#define\ SNMPTRAP\_COLDSTART\ 0x00}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#define\ SNMPTRAP\_WARMSTART\ 0x01}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#define\ SNMPTRAP\_LINKDOWN\ 0x02}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ SNMPTRAP\_LINKUP\ 0x03}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#define\ SNMPTRAP\_AUTHENTICATION\ 0x04}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#define\ SNMPTRAP\_EGPNEIGHBORLOSS\ 0x05}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{comment}{/*\ Agent\ return/error\ codes\ */}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#define\ SNMP\_SUCCESS\ 0}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#define\ OID\_NOT\_FOUND\ -\/1}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ TABLE\_FULL\ -\/2}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#define\ ILLEGAL\_LENGTH\ -\/3}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#define\ INVALID\_ENTRY\_ID\ -\/4}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#define\ INVALID\_DATA\_TYPE\ -\/5}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#define\ NO\_SUCH\_NAME\ 2}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#define\ BAD\_VALUE\ 3}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#ifndef\ HTONL}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#define\ HTONL(x)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\ \ \ \ ((((x)\ >>\ 24)\ \&\ 0x000000FF)\ |\ (((x)\ >>\ 8)\ \&\ 0x0000FF00)\ |\ (((x)\ <<\ 8)\ \&\ 0x00FF0000)\ |\ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\ \ \ \ \ (((x)\ <<\ 24)\ \&\ 0xFF000000))}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#define\ COPY\_SEGMENT(x)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ request\_msg.index\ +=\ seglen;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ memcpy(\&response\_msg.buffer[response\_msg.index],\ \&request\_msg.buffer[x.start],\ seglen);\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ response\_msg.index\ +=\ seglen;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\ \ \ \ \}}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00139\ \textcolor{comment}{\ *\ \ Public\ types}}
+\DoxyCodeLine{00140\ \textcolor{comment}{\ *\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00149\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00150\ \ \ \ \ int32\_t\ \mbox{\hyperlink{structsnmp__tlv__t_a4bed53f6902e5d1168051a81415eab31}{start}};\ \ }
+\DoxyCodeLine{00151\ \ \ \ \ int32\_t\ \mbox{\hyperlink{structsnmp__tlv__t_a45662f13bb6490c55197fffea0582e0a}{len}};\ \ \ \ }
+\DoxyCodeLine{00152\ \ \ \ \ int32\_t\ \mbox{\hyperlink{structsnmp__tlv__t_a8300b267d4a2692e19555cff64f09297}{vstart}};\ }
+\DoxyCodeLine{00153\ \ \ \ \ int32\_t\ \mbox{\hyperlink{structsnmp__tlv__t_afe752759cf1c233a1523638c39a31fc3}{nstart}};\ }
+\DoxyCodeLine{00154\ \}\ \mbox{\hyperlink{structsnmp__tlv__t}{snmp\_tlv\_t}};}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00163\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00164\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structsnmp__msg__t_ac06a757470745a27423cb562596ed618}{buffer}}[\mbox{\hyperlink{group__drivers07_ga3c4da6220392a79f17acd6f92823ae21}{SNMP\_MAX\_MSG}}];\ }
+\DoxyCodeLine{00165\ \ \ \ \ int32\_t\ \mbox{\hyperlink{structsnmp__msg__t_a3e0417165d72f679ee412d115f6c876e}{len}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00166\ \ \ \ \ int32\_t\ \mbox{\hyperlink{structsnmp__msg__t_a9512a1c2620da211c4de7ce3972f7af5}{index}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00167\ \}\ \mbox{\hyperlink{structsnmp__msg__t}{snmp\_msg\_t}};}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00176\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00177\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structsnmp__entry__t_af754658399d998f4fd0a66048dbac5ab}{oidlen}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00178\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structsnmp__entry__t_a18e1675b2fb8616f254b49d88ebb0151}{oid}}[\mbox{\hyperlink{group__drivers07_gaa1247060563b5496faabb3101c94c0fe}{SNMP\_MAX\_OID}}];\ }
+\DoxyCodeLine{00179\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structsnmp__entry__t_af2eb0898a3492f09dfe922f7fa394b29}{dataType}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00180\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structsnmp__entry__t_a74a84e6feacd53ad5a522db7a5d125aa}{dataLen}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{union\ }\{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structsnmp__entry__t_ac73b7af7a73b3c97545e507ce6e1fd07}{octetstring}}[\mbox{\hyperlink{group__drivers07_ga7eabbff7225d69d858fbae9fd92d84dc}{SNMP\_MAX\_STRING}}];}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structsnmp__entry__t_a59c131b61d935f8568f33052d75eaa94}{intval}};}
+\DoxyCodeLine{00184\ \ \ \ \ \}\ u;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00185\ \ \ \ \ void\ (*\mbox{\hyperlink{structsnmp__entry__t_ac2f9269cb36bb3adb029fbcd9b608c9c}{getfunction}})(\textcolor{keywordtype}{void}\ *ptr,\ uint8\_t\ *len);\ }
+\DoxyCodeLine{00186\ \ \ \ \ void\ (*\mbox{\hyperlink{structsnmp__entry__t_a2ea89391893c3ed8f57946778fc98a62}{setfunction}})(int32\_t\ v);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00187\ \}\ \mbox{\hyperlink{structsnmp__entry__t}{snmp\_entry\_t}};}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00190\ \textcolor{comment}{\ *\ \ Public\ API}}
+\DoxyCodeLine{00191\ \textcolor{comment}{\ *\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00204\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__drivers07_gaceddc5a84a3d118c49268cfb5ba8c0bb}{SNMP\_Init}}(uint8\_t\ sock\_agent,\ uint16\_t\ local\_port,\ uint8\_t\ sock\_trap);}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00212\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__drivers07_ga972f694c4faddc6acac860a71a1382cd}{SNMP\_Poll}}(\textcolor{keywordtype}{int}\ max\_packets);}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00220\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers07_gaf6784b34d0637f242ccbde5945d27ca9}{SNMP\_Tick10ms}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00227\ uint32\_t\ \mbox{\hyperlink{group__drivers07_ga8b18137382d90ca77a5391a0b927a6b3}{SNMP\_GetTick10ms}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00235\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers07_gaccfeccce705940cdb923c673b67db35d}{SNMP\_GetUptime}}(\textcolor{keywordtype}{void}\ *ptr,\ uint8\_t\ *len);}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00249\ int32\_t\ \mbox{\hyperlink{group__drivers07_gaface68bc44083fa16ce731bc1a8f5014}{SNMP\_SendTrap}}(uint8\_t\ *managerIP,\ uint8\_t\ *agentIP,\ int8\_t\ *community,}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsnmp__entry__t}{snmp\_entry\_t}}\ enterprise\_oid,\ uint32\_t\ genericTrap,\ uint32\_t\ specificTrap,}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ va\_count,\ ...);}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00255\ \textcolor{comment}{\ *\ \ External\ MIB\ table\ and\ helpers\ (provided\ by\ snmp\_custom.*)}}
+\DoxyCodeLine{00256\ \textcolor{comment}{\ *\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00263\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers07_ga4d3d68fdba21b44efc30f71a40efa7ed}{initTable}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00270\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__drivers07_ga01e7036f2bce7c2647b681dcfe2b3731}{initial\_Trap}}(uint8\_t\ *managerIP,\ uint8\_t\ *agentIP);}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00279\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structsnmp__entry__t}{snmp\_entry\_t}}\ \mbox{\hyperlink{group__drivers07_ga0fc0a81b7ad505f393362648610b3a2c}{snmpData}}[];}
+\DoxyCodeLine{00287\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ int32\_t\ \mbox{\hyperlink{group__drivers07_ga073f16bfbcb7015e6408be249c5d2932}{maxData}};}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00290\ \textcolor{comment}{\ *\ \ Community\ string\ (provided\ by\ snmp\_custom.*)}}
+\DoxyCodeLine{00291\ \textcolor{comment}{\ *\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00297\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ uint8\_t\ \mbox{\hyperlink{group__drivers07_ga171971564950d97e48939e2f6de4d92f}{COMMUNITY}}[];}
+\DoxyCodeLine{00302\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ uint8\_t\ \mbox{\hyperlink{group__drivers07_ga253bb776650cb698ee240d43141e1cfa}{COMMUNITY\_SIZE}};}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ ENERGIS\_SNMP\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00305\ }
+
+\end{DoxyCode}

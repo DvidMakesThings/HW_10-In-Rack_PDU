@@ -1,0 +1,4 @@
+<map id="Hardware Pin Configuration" name="Hardware Pin Configuration">
+<area shape="rect" id="Node000001" title="SPI peripheral and GPIO pin assignments from CONFIG.h." alt="" coords="265,5,446,32"/>
+<area shape="rect" id="Node000002" href="$group__config02.html" title="Centralized configuration parameters for W5500 Ethernet controller." alt="" coords="5,5,217,32"/>
+</map>

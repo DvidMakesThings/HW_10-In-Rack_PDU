@@ -1,0 +1,4 @@
+<map id="5. SNMP Agent &#45; Voltage Monitoring" name="5. SNMP Agent &#45; Voltage Monitoring">
+<area shape="rect" id="Node000002" href="$group__snmp.html" title="SNMP agent implementation for ENERGIS PDU." alt="" coords="5,13,103,40"/>
+<area shape="rect" id="Node000001" title="RP2040 internal rails, die temperature, and project voltage monitoring." alt="" coords="151,5,318,48"/>
+</map>

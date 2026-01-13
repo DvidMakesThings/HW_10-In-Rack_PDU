@@ -1,0 +1,17 @@
+<map id="hscr_clear" name="hscr_clear">
+<area shape="rect" id="Node000001" title="Clear the watchdog scratch registers. Used after a clean boot to avoid stale data." alt="" coords="989,35,1071,61"/>
+<area shape="rect" id="Node000002" href="$_health_task_8c.html#ab76854f8d2e99bfcd06cc15434065005" title="Print detailed info about the last reboot if it was caused by Health." alt="" coords="733,5,941,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="973,42,929,35,930,30,974,37"/>
+<area shape="rect" id="Node000003" href="$_health_task_8c.html#a443004247b904055d802c8cece93c2d8" title="Print a brief summary if the last reboot was caused by Health." alt="" coords="772,56,903,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="975,59,904,70,903,65,974,54"/>
+<area shape="rect" id="Node000004" href="$_health_task_8c.html#a526a18844c3c08b2a902732cd7fe36d6" title="Health supervision worker task with strict arm gating and idle&#45;canary checks." alt="" coords="597,64,685,91"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="756,80,686,80,686,75,756,75"/>
+<area shape="rect" id="Node000005" href="$group__tasks03.html#gaaa57b8a364b1e80fdbcbd231b80ee70d" title="Start the Health supervision task." alt="" coords="426,64,549,91"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="581,80,549,80,549,75,581,75"/>
+<area shape="rect" id="Node000006" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,64,378,91"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="411,80,379,80,379,75,411,75"/>
+<area shape="rect" id="Node000007" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,64,263,91"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="295,80,263,80,263,75,295,75"/>
+<area shape="rect" id="Node000008" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,64,102,91"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="134,80,102,80,102,75,134,75"/>
+</map>

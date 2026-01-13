@@ -1,0 +1,55 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/drivers/\+CAT24\+C256\+\_\+driver.h File Reference}
+\hypertarget{_c_a_t24_c256__driver_8h}{}\label{_c_a_t24_c256__driver_8h}\index{src/Software/ENERGIS\_RTOS/src/drivers/CAT24C256\_driver.h@{src/Software/ENERGIS\_RTOS/src/drivers/CAT24C256\_driver.h}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for CAT24\+C256\+\_\+driver.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_c_a_t24_c256__driver_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_c_a_t24_c256__driver_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{Indent}\textbf{ EEPROM Constants}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__driver02_ga56d3d4b8d057c0ad193e764efa43a20d}{CAT24\+C256\+\_\+\+I2\+C\+\_\+\+ADDR}}~0x50
+\begin{DoxyCompactList}\small\item\em I2C device address for CAT24\+C256 (7-\/bit). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__driver02_ga7b56ae4eca49760b199e1985221a35db}{CAT24\+C256\+\_\+\+PAGE\+\_\+\+SIZE}}~64
+\begin{DoxyCompactList}\small\item\em EEPROM page size in bytes for write operations. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__driver02_gaab23c1fae8e8667a5e15cfa230b707bd}{CAT24\+C256\+\_\+\+TOTAL\+\_\+\+SIZE}}~\mbox{\hyperlink{group__overcurrent__thresholds_gae3ef7bba113f663df6996f286b632a3f}{EEPROM\+\_\+\+SIZE}}
+\begin{DoxyCompactList}\small\item\em Total EEPROM capacity in bytes (32KB). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__driver02_ga180e3b5180444bcffffb44b2ffff3291}{CAT24\+C256\+\_\+\+WRITE\+\_\+\+CYCLE\+\_\+\+MS}}~5
+\begin{DoxyCompactList}\small\item\em Mandatory write cycle delay in milliseconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__driver02_gaa20b40f13c003ce354ce5a163374ac90}{CAT24\+C256\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize CAT24\+C256 EEPROM driver. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Public API}\par
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__driver02_gaf61b654ebe83dc406d2a05dceef29c80}{CAT24\+C256\+\_\+\+Write\+Byte}} (uint16\+\_\+t addr, uint8\+\_\+t data)
+\begin{DoxyCompactList}\small\item\em Write single byte to EEPROM. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__driver02_gaa9216a0e6778df3ed3a57d872911efe4}{CAT24\+C256\+\_\+\+Read\+Byte}} (uint16\+\_\+t addr)
+\begin{DoxyCompactList}\small\item\em Read single byte from EEPROM. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__driver02_ga8088b9a17773cb65bb6b5d89d3598125}{CAT24\+C256\+\_\+\+Write\+Buffer}} (uint16\+\_\+t addr, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write buffer to EEPROM with automatic page boundary handling. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__driver02_ga622a6736c8384f9e1921a1bda2a84df9}{CAT24\+C256\+\_\+\+Read\+Buffer}} (uint16\+\_\+t addr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buffer, uint32\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Read buffer from EEPROM. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__driver02_gabec86a54fd16b590ec742aa2734d7031}{CAT24\+C256\+\_\+\+Self\+Test}} (uint16\+\_\+t test\+\_\+addr)
+\begin{DoxyCompactList}\small\item\em Execute comprehensive EEPROM self-\/test. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

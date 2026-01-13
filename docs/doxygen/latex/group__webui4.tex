@@ -1,0 +1,312 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item Settings Handler 
+\end{DoxyEnumerate}}
+\hypertarget{group__webui4}{}\label{group__webui4}\index{4. Settings Handler@{4. Settings Handler}}
+
+
+Handler for settings page and configuration API endpoints.  
+
+
+Collaboration diagram for 4. Settings Handler\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=307pt]{group__webui4}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__webui4_gae50a830dd3536accfe480e0cefb7c4b1}{handle\+\_\+settings\+\_\+request}} (uint8\+\_\+t sock)
+\begin{DoxyCompactList}\small\item\em Serve settings HTML page via GET /settings.html. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__webui4_gac088630081f9ab2535ccd751fdfaaad7}{handle\+\_\+settings\+\_\+api}} (uint8\+\_\+t sock)
+\begin{DoxyCompactList}\small\item\em Handle GET /api/settings and return configuration as JSON. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__webui4_ga0fe4c530cf7754724a14147a82c71108}{handle\+\_\+settings\+\_\+post}} (uint8\+\_\+t sock, char \texorpdfstring{$\ast$}{*}body)
+\begin{DoxyCompactList}\small\item\em Handle POST /api/settings to update configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Handler for settings page and configuration API endpoints. 
+
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/07
+\end{DoxyDate}
+This module handles both the settings HTML page (GET /settings.html) and the settings REST API endpoints (GET/\+POST /api/settings). It provides configuration management for network parameters and user preferences, with immediate persistence to EEPROM.
+
+Supported Operations\+:
+\begin{DoxyItemize}
+\item GET /settings.html\+: Serve gzipped settings page from flash
+\item GET /api/settings\+: Return current configuration as JSON
+\item POST /api/settings\+: Update configuration and persist to EEPROM
+\end{DoxyItemize}
+
+Configuration Categories\+:
+
+Network Settings (via \doxylink{structnetwork_info}{network\+Info} struct)\+:
+\begin{DoxyItemize}
+\item IP address, gateway, subnet mask, DNS server
+\item MAC address (read-\/only, displayed but not editable)
+\item DHCP enable/disable (future enhancement)
+\end{DoxyItemize}
+
+User Preferences (via \doxylink{structuser_pref_info}{user\+Pref\+Info} struct)\+:
+\begin{DoxyItemize}
+\item Device name (user-\/friendly identifier)
+\item Location (physical location description)
+\item Temperature unit (Celsius / Fahrenheit / Kelvin)
+\end{DoxyItemize}
+
+Read-\/\+Only Information (displayed in GET /api/settings)\+:
+\begin{DoxyItemize}
+\item Serial number (from device identity EEPROM block)
+\item Firmware version (compile-\/time constant)
+\item Hardware version (compile-\/time constant)
+\item Device region (EU/\+US from device identity)
+\item Overcurrent protection limits (current\+\_\+limit, warning, critical thresholds)
+\item Internal temperature (die temperature from ADC)
+\end{DoxyItemize}
+
+POST Operation Flow\+:
+\begin{DoxyEnumerate}
+\item Parse form-\/encoded POST body (URL decoding applied)
+\item Load current network config and preferences from RAM caches
+\item Apply updates from form fields
+\item Compare with backup to detect changes
+\item If network changed\+: persist to EEPROM and apply to W5500 hardware
+\item If preferences changed\+: persist to EEPROM
+\item Send 204 No Content response
+\item Trigger Storage\+Task commit (which may reboot device)
+\end{DoxyEnumerate}
+
+Data Persistence\+:
+\begin{DoxyItemize}
+\item All configuration stored in EEPROM via Storage\+Task API
+\item RAM caches maintained by Storage\+Task for fast access
+\item Changes written immediately but commit may be delayed
+\item POST handler ensures commit before returning (may trigger reboot)
+\end{DoxyItemize}
+
+Network Configuration Updates\+:
+\begin{DoxyItemize}
+\item Settings applied to W5500 hardware immediately after EEPROM write
+\item May cause temporary network disruption during reconfiguration
+\item Browser may lose connection if IP address changes
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+All HTTP responses include CORS headers for browser automation. 
+
+POST changes are persistent across reboots. 
+
+Internal temperature reading uses RP2040 die temperature sensor (ADC channel 4).
+\end{DoxyNote}
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-func-members}
+\Hypertarget{group__webui4_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__webui4_gac088630081f9ab2535ccd751fdfaaad7}\index{4. Settings Handler@{4. Settings Handler}!handle\_settings\_api@{handle\_settings\_api}}
+\index{handle\_settings\_api@{handle\_settings\_api}!4. Settings Handler@{4. Settings Handler}}
+\doxysubsubsubsection{\texorpdfstring{handle\_settings\_api()}{handle\_settings\_api()}}
+{\footnotesize\ttfamily \label{group__webui4_gac088630081f9ab2535ccd751fdfaaad7} 
+void handle\+\_\+settings\+\_\+api (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sock}{}\end{DoxyParamCaption})}
+
+
+
+Handle GET /api/settings and return configuration as JSON. 
+
+Aggregates network configuration, user preferences, device identity, overcurrent limits, and internal temperature into a comprehensive JSON response. All data retrieved from RAM caches (network config, preferences) or read-\/only sources (device identity).
+
+JSON Response Fields\+:
+\begin{DoxyItemize}
+\item ip, gateway, subnet, dns\+: Network configuration (dotted-\/decimal strings)
+\item mac\+: MAC address (colon-\/separated hex string, read-\/only)
+\item device\+\_\+name\+: User-\/configured device name
+\item location\+: User-\/configured physical location
+\item temp\+\_\+unit\+: Temperature unit preference ("{}celsius"{}, "{}fahrenheit"{}, "{}kelvin"{})
+\item temperature\+: Current die temperature in user\textquotesingle{}s preferred unit
+\item serial\+\_\+number\+: Device serial number from EEPROM
+\item firmware\+\_\+version\+: Firmware version string (compile-\/time constant)
+\item hardware\+\_\+version\+: Hardware version string (compile-\/time constant)
+\item device\+\_\+region\+: Device region ("{}\+EU"{}, "{}\+US"{}, or "{}\+UNKNOWN"{})
+\item current\+\_\+limit\+: Overcurrent limit formatted as "{}\+X.\+X A"{}
+\item warning\+\_\+limit\+: Warning threshold formatted as "{}\+X.\+XX A"{}
+\item critical\+\_\+limit\+: Critical threshold formatted as "{}\+X.\+XX A"{}
+\end{DoxyItemize}
+
+Temperature Measurement\+:
+\begin{DoxyItemize}
+\item RP2040 die temperature read via ADC channel 4
+\item Converted from raw ADC value using chip-\/specific formula
+\item Output converted to user\textquotesingle{}s preferred unit
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & Socket number for HTTP connection\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+@http
+\begin{DoxyItemize}
+\item 200 OK with JSON body containing all configuration and status fields
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Non-\/blocking; all data from caches except ADC read for die temperature. 
+
+Die temperature may not reflect actual ambient or case temperature.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{settings__handler_8h}{settings\+\_\+handler.\+h} for detailed documentation. 
+\end{DoxySeeAlso}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__webui4_gac088630081f9ab2535ccd751fdfaaad7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__webui4_gac088630081f9ab2535ccd751fdfaaad7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__webui4_ga0fe4c530cf7754724a14147a82c71108}\index{4. Settings Handler@{4. Settings Handler}!handle\_settings\_post@{handle\_settings\_post}}
+\index{handle\_settings\_post@{handle\_settings\_post}!4. Settings Handler@{4. Settings Handler}}
+\doxysubsubsubsection{\texorpdfstring{handle\_settings\_post()}{handle\_settings\_post()}}
+{\footnotesize\ttfamily \label{group__webui4_ga0fe4c530cf7754724a14147a82c71108} 
+void handle\+\_\+settings\+\_\+post (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sock}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{body}{}\end{DoxyParamCaption})}
+
+
+
+Handle POST /api/settings to update configuration. 
+
+Parses form-\/encoded POST body to extract network settings and user preferences, compares with current values, persists changes to EEPROM via Storage\+Task, and triggers immediate commit (which may reboot the device). Network changes are applied to W5500 hardware in addition to EEPROM.
+
+Form Parameters\+:
+\begin{DoxyItemize}
+\item ip\+: New IP address (dotted-\/decimal string)
+\item gateway\+: New gateway address (dotted-\/decimal string)
+\item subnet\+: New subnet mask (dotted-\/decimal string)
+\item dns\+: New DNS server address (dotted-\/decimal string)
+\item device\+\_\+name\+: New device name (up to 31 chars)
+\item location\+: New location description (up to 31 chars)
+\item temp\+\_\+unit\+: Temperature unit ("{}celsius"{}, "{}fahrenheit"{}, "{}kelvin"{})
+\end{DoxyItemize}
+
+Operation\+:
+\begin{DoxyEnumerate}
+\item Validate body is present (return 400 if missing)
+\item Load current network config and preferences from RAM caches
+\item Parse form parameters and apply URL decoding
+\item Update network config fields if form values present
+\item If network changed\+: persist to EEPROM and apply to W5500 hardware
+\item Update user preferences if form values present
+\item If preferences changed\+: persist to EEPROM
+\item Send 204 No Content response
+\item Trigger Storage\+Task commit with 5s timeout (may reboot)
+\end{DoxyEnumerate}
+
+Network Reconfiguration\+:
+\begin{DoxyItemize}
+\item W5500 hardware reconfigured immediately after EEPROM write
+\item May cause temporary loss of connectivity
+\item If IP address changes, client must reconnect at new address
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & Socket number for HTTP connection \\
+\hline
+{\em body} & Form-\/encoded POST body (mutable, decoded in-\/place)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+@http
+\begin{DoxyItemize}
+\item 400 Bad Request if body is NULL
+\item 204 No Content on success (no response body)
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Changes are persistent; stored in EEPROM and survive reboots. 
+
+Commit operation may trigger device reboot for consistency. 
+
+Client connection may be lost if IP address changes.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{settings__handler_8h}{settings\+\_\+handler.\+h} for detailed documentation. 
+\end{DoxySeeAlso}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__webui4_ga0fe4c530cf7754724a14147a82c71108_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__webui4_ga0fe4c530cf7754724a14147a82c71108_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__webui4_gae50a830dd3536accfe480e0cefb7c4b1}\index{4. Settings Handler@{4. Settings Handler}!handle\_settings\_request@{handle\_settings\_request}}
+\index{handle\_settings\_request@{handle\_settings\_request}!4. Settings Handler@{4. Settings Handler}}
+\doxysubsubsubsection{\texorpdfstring{handle\_settings\_request()}{handle\_settings\_request()}}
+{\footnotesize\ttfamily \label{group__webui4_gae50a830dd3536accfe480e0cefb7c4b1} 
+void handle\+\_\+settings\+\_\+request (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sock}{}\end{DoxyParamCaption})}
+
+
+
+Serve settings HTML page via GET /settings.html. 
+
+Returns the settings page as gzipped HTML from flash memory. Uses chunked transmission (4KB chunks with 5ms delays) to avoid overflowing W5500 TX buffer. The HTML page includes Java\+Script that fetches configuration via GET /api/settings and submits changes via POST /api/settings.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & Socket number for HTTP connection\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+@http
+\begin{DoxyItemize}
+\item 200 OK with gzipped HTML body and Content-\/\+Encoding\+: gzip header
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Non-\/blocking; HTML served directly from flash without dynamic content. 
+
+Client must support gzip encoding (all modern browsers do).
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{settings__handler_8h}{settings\+\_\+handler.\+h} for detailed documentation. 
+\end{DoxySeeAlso}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__webui4_gae50a830dd3536accfe480e0cefb7c4b1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__webui4_gae50a830dd3536accfe480e0cefb7c4b1_icgraph}
+\end{center}
+\end{figure}

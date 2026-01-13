@@ -2,16 +2,43 @@
  * @file src/snmp/snmp_powerMon.h
  * @author DvidMakesThings - David Sipos
  *
- * @defgroup snmp04 4. SNMP Agent - Power monitoring (RTOS)
+ * @defgroup snmp04 4. SNMP Agent - Power Monitoring
  * @ingroup snmp
- * @brief Per-channel power telemetry GET callbacks using MeterTask API.
+ * @brief Per-channel power telemetry and overcurrent protection status via SNMP.
  * @{
  *
  * @version 1.1.0
  * @date 2025-11-08
  *
- * @details Queries the canonical telemetry cache owned by MeterTask.
- *          Uses MeterTask_GetTelemetry() for non-blocking cached reads.
+ * @details
+ * This module provides SNMP GET callbacks that expose per-outlet power telemetry
+ * and system-wide overcurrent protection status. All telemetry data is retrieved
+ * from MeterTask's canonical cache for efficient non-blocking access.
+ *
+ * Per-Channel Telemetry (8 outlets):
+ * - Voltage [V] - RMS voltage measurement (ASCII float, 2 decimals)
+ * - Current [A] - RMS current measurement (ASCII float, 3 decimals)
+ * - Power [W] - Active power measurement (ASCII float, 1 decimal)
+ * - Power Factor - Dimensionless ratio 0..1 (ASCII float, 3 decimals)
+ * - Energy [kWh] - Accumulated energy since outlet powered on (ASCII float, 3 decimals)
+ * - Uptime [s] - Time since outlet last powered on (ASCII integer)
+ *
+ * Overcurrent Protection (OCP) Status:
+ * - State - NORMAL/WARNING/CRITICAL/LOCKOUT (INTEGER 0..3)
+ * - Total Current - Sum of all outlet currents (ASCII float, 3 decimals)
+ * - Configured Limit - OCP trip threshold (ASCII float, 2 decimals)
+ * - Warning/Critical/Recovery Thresholds (ASCII float, 2 decimals)
+ * - Last Tripped Channel - 1-based outlet index or 0 (INTEGER)
+ * - Trip Counter - Number of trips since boot (INTEGER)
+ * - Last Trip Timestamp - Milliseconds since boot (INTEGER)
+ * - Switching Allowed - 0=LOCKOUT, 1=allowed (INTEGER)
+ * - Reset Control - Write non-zero to clear lockout (SET-only)
+ *
+ * All telemetry reads are non-blocking and RTOS-safe. If telemetry is invalid
+ * or unavailable, functions return zero values rather than blocking or failing.
+ *
+ * @note All functions can be safely called from SNMP agent context.
+ * @note Telemetry cache is updated by MeterTask at approximately 1 Hz.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -22,21 +49,62 @@
 
 #include "../CONFIG.h"
 
-extern void Meter_GetLatest(uint8_t ch, float *v, float *a, float *w, float *pf, float *kwh,
-                            uint32_t *uptime);
+/** @name Channel Telemetry
+ * @{
+ */
 
 /**
- * @brief Detailed description
- *
- * @param buf  Destination buffer for ASCII float/u32.
- * @param len  Out length.
+ * @brief SNMP getter for outlet 0 voltage [V].
+ * @param buf Output buffer (minimum 16 bytes recommended)
+ * @param len Pointer to receive string length
  * @return None
+ * @note Returns ASCII float with 2 decimals (e.g., "230.15").
  */
 void get_power_0_MEAS_VOLTAGE(void *buf, uint8_t *len);
+
+/**
+ * @brief SNMP getter for outlet 0 current [A].
+ * @param buf Output buffer
+ * @param len Pointer to receive string length
+ * @return None
+ * @note Returns ASCII float with 3 decimals.
+ */
 void get_power_0_MEAS_CURRENT(void *buf, uint8_t *len);
+
+/**
+ * @brief SNMP getter for outlet 0 power [W].
+ * @param buf Output buffer
+ * @param len Pointer to receive string length
+ * @return None
+ * @note Returns ASCII float with 1 decimal.
+ */
 void get_power_0_MEAS_WATT(void *buf, uint8_t *len);
+
+/**
+ * @brief SNMP getter for outlet 0 power factor.
+ * @param buf Output buffer
+ * @param len Pointer to receive string length
+ * @return None
+ * @note Returns ASCII float with 3 decimals (0..1 range).
+ */
 void get_power_0_MEAS_PF(void *buf, uint8_t *len);
+
+/**
+ * @brief SNMP getter for outlet 0 accumulated energy [kWh].
+ * @param buf Output buffer
+ * @param len Pointer to receive string length
+ * @return None
+ * @note Returns ASCII float with 3 decimals.
+ */
 void get_power_0_MEAS_KWH(void *buf, uint8_t *len);
+
+/**
+ * @brief SNMP getter for outlet 0 uptime [s].
+ * @param buf Output buffer
+ * @param len Pointer to receive string length
+ * @return None
+ * @note Returns ASCII unsigned integer.
+ */
 void get_power_0_MEAS_UPTIME(void *buf, uint8_t *len);
 
 void get_power_1_MEAS_VOLTAGE(void *buf, uint8_t *len);
@@ -87,6 +155,12 @@ void get_power_7_MEAS_WATT(void *buf, uint8_t *len);
 void get_power_7_MEAS_PF(void *buf, uint8_t *len);
 void get_power_7_MEAS_KWH(void *buf, uint8_t *len);
 void get_power_7_MEAS_UPTIME(void *buf, uint8_t *len);
+
+/** @} */
+
+/** @name OCP API
+ * @{
+ */
 
 /* =====================  Overcurrent Protection (OCP) SNMP  ===================== */
 
@@ -220,6 +294,8 @@ void get_ocp_RESET(void *buf, uint8_t *len);
  * @param v SNMP INTEGER value provided by SNMP SET.
  */
 void set_ocp_RESET(int32_t v);
+
+/** @} */
 
 #endif
 

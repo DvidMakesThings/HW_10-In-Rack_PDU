@@ -20,7 +20,6 @@
  */
 
 #include "../CONFIG.h"
-#include "task.h"
 
 /**
  * @brief Enable I2C0 transaction tracing for debugging.

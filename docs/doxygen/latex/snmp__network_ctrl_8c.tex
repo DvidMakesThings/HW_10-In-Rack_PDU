@@ -1,0 +1,165 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/snmp/snmp\+\_\+network\+Ctrl.c File Reference}
+\hypertarget{snmp__network_ctrl_8c}{}\label{snmp__network_ctrl_8c}\index{src/Software/ENERGIS\_RTOS/src/snmp/snmp\_networkCtrl.c@{src/Software/ENERGIS\_RTOS/src/snmp/snmp\_networkCtrl.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for snmp\+\_\+network\+Ctrl.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp__network_ctrl_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{snmp__network_ctrl_8c_a63fbf46318d102769ef0d3d7a910d89e}{SNMPNETCTL\+\_\+\+TAG}}~"{}\mbox{[}SNMPNCT\mbox{]}"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{snmp__network_ctrl_8c_a6a708726aad77be7b0108febd0094116}{load\+\_\+netcfg}} (\mbox{\hyperlink{structnetwork_info}{network\+Info}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Load persisted network configuration from EEPROM. \end{DoxyCompactList}\item 
+static uint8\+\_\+t \mbox{\hyperlink{snmp__network_ctrl_8c_aaa34791e38a29c71b1c47d3662729686}{ipfmt}} (void \texorpdfstring{$\ast$}{*}ptr, const uint8\+\_\+t ip\mbox{[}4\mbox{]})
+\begin{DoxyCompactList}\small\item\em Format IPv4 address as dotted-\/decimal string. \end{DoxyCompactList}\item 
+static uint8\+\_\+t \mbox{\hyperlink{snmp__network_ctrl_8c_abcd2d03f0753c5e93ef5ef5890171f36}{macfmt}} (void \texorpdfstring{$\ast$}{*}ptr, const uint8\+\_\+t mac\mbox{[}6\mbox{]})
+\begin{DoxyCompactList}\small\item\em Format MAC address as colon-\/separated hexadecimal string. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp02_gad27ee84f180b6b9c90fe62588f4d2022}{get\+\_\+network\+IP}} (void \texorpdfstring{$\ast$}{*}ptr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for device IP address. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp02_ga741d94202ff45e3f45147913bb42b059}{get\+\_\+network\+Mask}} (void \texorpdfstring{$\ast$}{*}ptr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for subnet mask. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp02_ga3795c4048a3466dc0e10450be2dfc4e4}{get\+\_\+network\+Gateway}} (void \texorpdfstring{$\ast$}{*}ptr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for gateway address. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp02_ga627509df7abbb7ecc5928d9e5ccfb488}{get\+\_\+network\+DNS}} (void \texorpdfstring{$\ast$}{*}ptr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for DNS server address. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp02_gadb6d8b45f5c3512e380ef7ef4f6d0353}{get\+\_\+network\+MAC}} (void \texorpdfstring{$\ast$}{*}ptr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for MAC address. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/08
+\end{DoxyDate}
+Implementation of SNMP network configuration getters. This module reads the persisted network configuration from EEPROM via Storage\+Task and formats network addresses as human-\/readable strings for SNMP responses.
+
+Formatting conventions\+:
+\begin{DoxyItemize}
+\item IPv4 addresses\+: dotted-\/decimal (e.\+g., "{}192.\+168.\+1.\+100"{})
+\item MAC addresses\+: colon-\/separated hex (e.\+g., "{}02\+:45\+:4\+E\+:0\+C\+:7\+B\+:1\+C"{})
+\end{DoxyItemize}
+
+All functions include error handling with automatic fallback to compiled defaults if storage access fails. 
+
+\label{doc-define-members}
+\Hypertarget{snmp__network_ctrl_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{snmp__network_ctrl_8c_a63fbf46318d102769ef0d3d7a910d89e}\index{snmp\_networkCtrl.c@{snmp\_networkCtrl.c}!SNMPNETCTL\_TAG@{SNMPNETCTL\_TAG}}
+\index{SNMPNETCTL\_TAG@{SNMPNETCTL\_TAG}!snmp\_networkCtrl.c@{snmp\_networkCtrl.c}}
+\doxysubsubsection{\texorpdfstring{SNMPNETCTL\_TAG}{SNMPNETCTL\_TAG}}
+{\footnotesize\ttfamily \label{snmp__network_ctrl_8c_a63fbf46318d102769ef0d3d7a910d89e} 
+\#define SNMPNETCTL\+\_\+\+TAG~"{}\mbox{[}SNMPNCT\mbox{]}"{}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{snmp__network_ctrl_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{snmp__network_ctrl_8c_aaa34791e38a29c71b1c47d3662729686}\index{snmp\_networkCtrl.c@{snmp\_networkCtrl.c}!ipfmt@{ipfmt}}
+\index{ipfmt@{ipfmt}!snmp\_networkCtrl.c@{snmp\_networkCtrl.c}}
+\doxysubsubsection{\texorpdfstring{ipfmt()}{ipfmt()}}
+{\footnotesize\ttfamily \label{snmp__network_ctrl_8c_aaa34791e38a29c71b1c47d3662729686} 
+uint8\+\_\+t ipfmt (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{ptr}{, }\item[{const uint8\+\_\+t}]{ip}{\mbox{[}4\mbox{]}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Format IPv4 address as dotted-\/decimal string. 
+
+Converts a 4-\/byte IPv4 address to the standard dotted-\/decimal notation with null termination.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ptr} & Output buffer (minimum 16 bytes required for "{}255.\+255.\+255.\+255\textbackslash{}0"{}) \\
+\hline
+{\em ip} & Source IPv4 address as 4-\/byte array\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of characters written, excluding null terminator 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=262pt]{snmp__network_ctrl_8c_aaa34791e38a29c71b1c47d3662729686_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snmp__network_ctrl_8c_a6a708726aad77be7b0108febd0094116}\index{snmp\_networkCtrl.c@{snmp\_networkCtrl.c}!load\_netcfg@{load\_netcfg}}
+\index{load\_netcfg@{load\_netcfg}!snmp\_networkCtrl.c@{snmp\_networkCtrl.c}}
+\doxysubsubsection{\texorpdfstring{load\_netcfg()}{load\_netcfg()}}
+{\footnotesize\ttfamily \label{snmp__network_ctrl_8c_a6a708726aad77be7b0108febd0094116} 
+void load\+\_\+netcfg (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structnetwork_info}{network\+Info}} \texorpdfstring{$\ast$}{*}}]{out}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Load persisted network configuration from EEPROM. 
+
+Attempts to read the network configuration from persistent storage via \doxylink{group__tasks10_ga422389bc6e9270118a931e58981753f9}{storage\+\_\+get\+\_\+network()}. If the read fails, populates the output structure with compiled-\/in defaults.
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & Pointer to destination \doxylink{structnetwork_info}{network\+Info} structure\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Validates output pointer and logs error if NULL. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp__network_ctrl_8c_a6a708726aad77be7b0108febd0094116_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=291pt]{snmp__network_ctrl_8c_a6a708726aad77be7b0108febd0094116_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{snmp__network_ctrl_8c_abcd2d03f0753c5e93ef5ef5890171f36}\index{snmp\_networkCtrl.c@{snmp\_networkCtrl.c}!macfmt@{macfmt}}
+\index{macfmt@{macfmt}!snmp\_networkCtrl.c@{snmp\_networkCtrl.c}}
+\doxysubsubsection{\texorpdfstring{macfmt()}{macfmt()}}
+{\footnotesize\ttfamily \label{snmp__network_ctrl_8c_abcd2d03f0753c5e93ef5ef5890171f36} 
+uint8\+\_\+t macfmt (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{ptr}{, }\item[{const uint8\+\_\+t}]{mac}{\mbox{[}6\mbox{]}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Format MAC address as colon-\/separated hexadecimal string. 
+
+Converts a 6-\/byte MAC address to the standard colon-\/separated uppercase hexadecimal format with null termination.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ptr} & Output buffer (minimum 18 bytes required for "{}\+FF\+:\+FF\+:\+FF\+:\+FF\+:\+FF\+:\+FF\textbackslash{}0"{}) \\
+\hline
+{\em mac} & Source MAC address as 6-\/byte array\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of characters written, excluding null terminator 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=257pt]{snmp__network_ctrl_8c_abcd2d03f0753c5e93ef5ef5890171f36_icgraph}
+\end{center}
+\end{figure}

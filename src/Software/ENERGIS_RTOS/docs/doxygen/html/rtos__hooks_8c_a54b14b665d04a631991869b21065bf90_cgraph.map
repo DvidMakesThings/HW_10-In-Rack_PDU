@@ -1,0 +1,38 @@
+<map id="vApplicationStackOverflowHook" name="vApplicationStackOverflowHook">
+<area shape="rect" id="Node000001" title="FreeRTOS stack overflow hook with fault context capture." alt="" coords="5,232,215,259"/>
+<area shape="rect" id="Node000002" href="$group__tasks03.html#ga2cceff60fca1f201d5d60588aff53bbc" title="Immediate, Health&#45;owned reboot with context." alt="" coords="263,232,398,259"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="215,243,247,243,247,248,215,248"/>
+<area shape="rect" id="Node000003" href="$group__misc1.html#ga28f2af805f9b4954b888151007f862a3" title="Tag an intentional software reboot with a descriptive reason string." alt="" coords="446,55,687,81"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="339,230,381,176,411,145,444,116,474,99,505,85,507,90,477,103,448,121,414,149,385,180,343,233"/>
+<area shape="rect" id="Node000008" href="$group__misc1.html#ga8dac22c0f05ce9e997b99d9179a2bf5f" title="Record a hardware watchdog feed timestamp for telemetry tracking." alt="" coords="477,131,656,157"/>
+<area shape="poly" id="edge9_Node000002_Node000008" title=" " alt="" coords="363,229,518,161,520,166,365,234"/>
+<area shape="rect" id="Node000011" href="$group__misc2.html#ga2481802ac87dc386890d49a5b9f61e0f" title="Capture early boot reset snapshot into retained memory." alt="" coords="474,232,659,259"/>
+<area shape="poly" id="edge15_Node000002_Node000011" title=" " alt="" coords="399,243,459,243,459,248,399,248"/>
+<area shape="rect" id="Node000015" href="$_health_task_8c.html#aa5ca74a3259f5a05972427d8d339d580" title=" " alt="" coords="492,283,641,309"/>
+<area shape="poly" id="edge19_Node000002_Node000015" title=" " alt="" coords="395,257,447,268,485,276,484,281,445,273,393,262"/>
+<area shape="rect" id="Node000016" href="$_health_task_8c.html#a50503dee6a29e98e633b16b1b8b550bc" title="Get current monotonic time in milliseconds." alt="" coords="532,333,602,360"/>
+<area shape="poly" id="edge20_Node000002_Node000016" title=" " alt="" coords="350,257,392,288,447,319,482,330,517,338,516,343,481,335,445,324,389,293,346,261"/>
+<area shape="rect" id="Node000004" href="$crashlog_8c.html#a9207dc5d61cc94ea574ba706f3195453" title="Initialize retained crash log structure to clean state." alt="" coords="765,80,878,107"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="688,77,750,83,749,89,688,83"/>
+<area shape="rect" id="Node000005" href="$crashlog_8c.html#a50f52af1f76175e818dad1ef9f2bc3eb" title="Recompute and store updated CRC32 for the crash log structure." alt="" coords="960,80,1084,107"/>
+<area shape="poly" id="edge6_Node000003_Node000005" title=" " alt="" coords="599,51,658,31,735,11,778,5,822,3,866,6,909,15,957,38,997,68,994,72,955,43,907,20,865,11,822,8,778,10,736,16,659,36,601,56"/>
+<area shape="rect" id="Node000007" href="$crashlog_8c.html#a19fbb6b4d2a38070175773953f6fb5db" title="Validate retained crash log header and CRC32 checksum." alt="" coords="746,29,897,56"/>
+<area shape="poly" id="edge7_Node000003_Node000007" title=" " alt="" coords="688,53,730,49,730,54,688,59"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="878,91,944,91,944,96,878,96"/>
+<area shape="rect" id="Node000006" href="$crashlog_8c.html#ae55aac5d65874421d290cce57ce04ed5" title="Compute CRC32 checksum using standard polynomial 0xEDB88320." alt="" coords="1136,55,1228,81"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1084,81,1120,75,1121,80,1085,86"/>
+<area shape="poly" id="edge8_Node000007_Node000006" title=" " alt="" coords="898,45,1121,61,1120,66,897,51"/>
+<area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="637,127,749,105,750,110,638,133"/>
+<area shape="poly" id="edge11_Node000008_Node000005" title=" " alt="" coords="657,138,776,131,907,116,951,108,952,113,908,121,776,136,657,144"/>
+<area shape="poly" id="edge12_Node000008_Node000007" title=" " alt="" coords="602,128,686,91,734,65,752,59,754,64,736,70,688,96,604,132"/>
+<area shape="rect" id="Node000009" href="$_button_task_8c.html#a50503dee6a29e98e633b16b1b8b550bc" title="Get current system time in milliseconds." alt="" coords="786,181,857,208"/>
+<area shape="poly" id="edge13_Node000008_Node000009" title=" " alt="" coords="638,155,772,182,771,187,637,161"/>
+<area shape="rect" id="Node000010" href="$group__driver01.html#ga038e6418532b3e07206ada073cf02f22" title="Get monotonic millisecond timestamp since boot." alt="" coords="956,181,1088,208"/>
+<area shape="poly" id="edge14_Node000009_Node000010" title=" " alt="" coords="857,192,940,192,940,197,857,197"/>
+<area shape="rect" id="Node000012" href="$helpers_8c.html#add43331fd1dff608bcc6fdb69d099db6" title="Clear boot snapshot structure to zero." alt="" coords="742,232,901,259"/>
+<area shape="poly" id="edge16_Node000011_Node000012" title=" " alt="" coords="660,243,727,243,727,248,660,248"/>
+<area shape="rect" id="Node000013" href="$helpers_8c.html#a07d51ad787e9d99a3a90ab70cf69337d" title="Copy watchdog scratch registers to destination buffer." alt="" coords="735,283,908,309"/>
+<area shape="poly" id="edge17_Node000011_Node000013" title=" " alt="" coords="638,257,737,276,735,282,637,262"/>
+<area shape="rect" id="Node000014" href="$helpers_8c.html#ae691976c69cc3e362923ae7d95664327" title="Read platform reset reason bits from hardware." alt="" coords="742,333,901,360"/>
+<area shape="poly" id="edge18_Node000011_Node000014" title=" " alt="" coords="660,256,689,268,704,281,714,294,722,307,737,319,747,324,744,329,734,323,719,310,709,297,701,284,686,273,658,261"/>
+</map>

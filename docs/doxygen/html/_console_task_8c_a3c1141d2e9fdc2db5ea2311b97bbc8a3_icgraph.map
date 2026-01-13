@@ -1,0 +1,15 @@
+<map id="cmd_get_usb" name="cmd_get_usb">
+<area shape="rect" id="Node000001" title="Read USB supply voltage (cached, no ADC access)." alt="" coords="924,5,1024,32"/>
+<area shape="rect" id="Node000002" href="$_console_task_8c.html#a2d3b7ff8346f8d10aa45609664940712" title="Parse and dispatch command line to handler function." alt="" coords="742,5,876,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="909,21,877,21,877,16,909,16"/>
+<area shape="rect" id="Node000003" href="$_console_task_8c.html#a216857df22446940ad58d505886b0d7c" title="Main console task function." alt="" coords="597,5,694,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="726,21,694,21,694,16,726,16"/>
+<area shape="rect" id="Node000004" href="$group__tasks02.html#gad45ca7c142e8c2764d52b3d554ffcdeb" title="Initialize and start the console task." alt="" coords="426,5,549,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="581,21,549,21,549,16,581,16"/>
+<area shape="rect" id="Node000005" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,5,378,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="411,21,379,21,379,16,411,16"/>
+<area shape="rect" id="Node000006" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,5,263,32"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="295,21,263,21,263,16,295,16"/>
+<area shape="rect" id="Node000007" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,5,102,32"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="134,21,102,21,102,16,134,16"/>
+</map>

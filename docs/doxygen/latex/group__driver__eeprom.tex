@@ -1,0 +1,401 @@
+\doxysubsection{EEPROM Driver }
+\hypertarget{group__driver__eeprom}{}\label{group__driver__eeprom}\index{EEPROM Driver@{EEPROM Driver}}
+
+
+I2C driver for CAT24\+C256 32KB EEPROM with page-\/aware write operations.  
+
+
+Collaboration diagram for EEPROM Driver\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=252pt]{group__driver__eeprom}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__driver__eeprom_ga56d3d4b8d057c0ad193e764efa43a20d}{CAT24\+C256\+\_\+\+I2\+C\+\_\+\+ADDR}}~0x50
+\begin{DoxyCompactList}\small\item\em I2C device address for CAT24\+C256 (7-\/bit). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__driver__eeprom_ga7b56ae4eca49760b199e1985221a35db}{CAT24\+C256\+\_\+\+PAGE\+\_\+\+SIZE}}~64
+\begin{DoxyCompactList}\small\item\em EEPROM page size in bytes for write operations. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__driver__eeprom_gaab23c1fae8e8667a5e15cfa230b707bd}{CAT24\+C256\+\_\+\+TOTAL\+\_\+\+SIZE}}~\mbox{\hyperlink{group__overcurrent__thresholds_gae3ef7bba113f663df6996f286b632a3f}{EEPROM\+\_\+\+SIZE}}
+\begin{DoxyCompactList}\small\item\em Total EEPROM capacity in bytes (32KB). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__driver__eeprom_ga180e3b5180444bcffffb44b2ffff3291}{CAT24\+C256\+\_\+\+WRITE\+\_\+\+CYCLE\+\_\+\+MS}}~5
+\begin{DoxyCompactList}\small\item\em Mandatory write cycle delay in milliseconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__driver__eeprom_gaa20b40f13c003ce354ce5a163374ac90}{CAT24\+C256\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize CAT24\+C256 EEPROM driver. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__driver__eeprom_gaf61b654ebe83dc406d2a05dceef29c80}{CAT24\+C256\+\_\+\+Write\+Byte}} (uint16\+\_\+t addr, uint8\+\_\+t data)
+\begin{DoxyCompactList}\small\item\em Write single byte to EEPROM. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__driver__eeprom_gaa9216a0e6778df3ed3a57d872911efe4}{CAT24\+C256\+\_\+\+Read\+Byte}} (uint16\+\_\+t addr)
+\begin{DoxyCompactList}\small\item\em Read single byte from EEPROM. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__driver__eeprom_ga8088b9a17773cb65bb6b5d89d3598125}{CAT24\+C256\+\_\+\+Write\+Buffer}} (uint16\+\_\+t addr, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write buffer to EEPROM with automatic page boundary handling. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__driver__eeprom_ga622a6736c8384f9e1921a1bda2a84df9}{CAT24\+C256\+\_\+\+Read\+Buffer}} (uint16\+\_\+t addr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buffer, uint32\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Read buffer from EEPROM. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__driver__eeprom_gabec86a54fd16b590ec742aa2734d7031}{CAT24\+C256\+\_\+\+Self\+Test}} (uint16\+\_\+t test\+\_\+addr)
+\begin{DoxyCompactList}\small\item\em Execute comprehensive EEPROM self-\/test. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+I2C driver for CAT24\+C256 32KB EEPROM with page-\/aware write operations. 
+
+\begin{DoxyVersion}{Version}
+1.\+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/06
+\end{DoxyDate}
+Provides thread-\/safe access to the CAT24\+C256 serial EEPROM used for non-\/volatile parameter storage in the ENERGIS PDU. The driver handles\+:
+\begin{DoxyItemize}
+\item 64-\/byte page boundary management for writes
+\item Mandatory write cycle delays per datasheet timing
+\item 16-\/bit address space (0x0000 -\/ 0x7\+FFF, 32KB total)
+\item I2C bus arbitration via centralized bus manager
+\end{DoxyItemize}
+
+Key Features\+:
+\begin{DoxyItemize}
+\item Page-\/aware buffered writes prevent page boundary corruption
+\item Automatic write cycle delays (5ms per page)
+\item Sequential multi-\/byte reads without page restrictions
+\item Self-\/test function for hardware validation
+\end{DoxyItemize}
+
+Thread Safety\+:
+\begin{DoxyItemize}
+\item All operations must be called from Storage\+Task with eeprom\+Mtx protection
+\item Uses i2c\+\_\+bus\+\_\+\texorpdfstring{$\ast$}{*} wrappers for serialized I2C access
+\end{DoxyItemize}
+
+Hardware Configuration\+:
+\begin{DoxyItemize}
+\item I2C address\+: 0x50 (7-\/bit)
+\item Bus\+: I2\+C1 (configurable via \doxylink{_c_o_n_f_i_g_8h}{CONFIG.\+h})
+\item Speed\+: Typically 100-\/400 k\+Hz
+\end{DoxyItemize}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{group__driver__eeprom_doc-define-members}
+\doxysubsubsection{Macro Definition Documentation}
+\Hypertarget{group__driver__eeprom_ga56d3d4b8d057c0ad193e764efa43a20d}\index{EEPROM Driver@{EEPROM Driver}!CAT24C256\_I2C\_ADDR@{CAT24C256\_I2C\_ADDR}}
+\index{CAT24C256\_I2C\_ADDR@{CAT24C256\_I2C\_ADDR}!EEPROM Driver@{EEPROM Driver}}
+\doxysubsubsubsection{\texorpdfstring{CAT24C256\_I2C\_ADDR}{CAT24C256\_I2C\_ADDR}}
+{\footnotesize\ttfamily \label{group__driver__eeprom_ga56d3d4b8d057c0ad193e764efa43a20d} 
+\#define CAT24\+C256\+\_\+\+I2\+C\+\_\+\+ADDR~0x50}
+
+
+
+I2C device address for CAT24\+C256 (7-\/bit). 
+
+\begin{DoxyNote}{Note}
+Hardware address pins A0-\/\+A2 can modify this if available on device 
+\end{DoxyNote}
+\Hypertarget{group__driver__eeprom_ga7b56ae4eca49760b199e1985221a35db}\index{EEPROM Driver@{EEPROM Driver}!CAT24C256\_PAGE\_SIZE@{CAT24C256\_PAGE\_SIZE}}
+\index{CAT24C256\_PAGE\_SIZE@{CAT24C256\_PAGE\_SIZE}!EEPROM Driver@{EEPROM Driver}}
+\doxysubsubsubsection{\texorpdfstring{CAT24C256\_PAGE\_SIZE}{CAT24C256\_PAGE\_SIZE}}
+{\footnotesize\ttfamily \label{group__driver__eeprom_ga7b56ae4eca49760b199e1985221a35db} 
+\#define CAT24\+C256\+\_\+\+PAGE\+\_\+\+SIZE~64}
+
+
+
+EEPROM page size in bytes for write operations. 
+
+\begin{DoxyNote}{Note}
+Writes must not cross 64-\/byte page boundaries per datasheet 
+\end{DoxyNote}
+\Hypertarget{group__driver__eeprom_gaab23c1fae8e8667a5e15cfa230b707bd}\index{EEPROM Driver@{EEPROM Driver}!CAT24C256\_TOTAL\_SIZE@{CAT24C256\_TOTAL\_SIZE}}
+\index{CAT24C256\_TOTAL\_SIZE@{CAT24C256\_TOTAL\_SIZE}!EEPROM Driver@{EEPROM Driver}}
+\doxysubsubsubsection{\texorpdfstring{CAT24C256\_TOTAL\_SIZE}{CAT24C256\_TOTAL\_SIZE}}
+{\footnotesize\ttfamily \label{group__driver__eeprom_gaab23c1fae8e8667a5e15cfa230b707bd} 
+\#define CAT24\+C256\+\_\+\+TOTAL\+\_\+\+SIZE~\mbox{\hyperlink{group__overcurrent__thresholds_gae3ef7bba113f663df6996f286b632a3f}{EEPROM\+\_\+\+SIZE}}}
+
+
+
+Total EEPROM capacity in bytes (32KB). 
+
+\Hypertarget{group__driver__eeprom_ga180e3b5180444bcffffb44b2ffff3291}\index{EEPROM Driver@{EEPROM Driver}!CAT24C256\_WRITE\_CYCLE\_MS@{CAT24C256\_WRITE\_CYCLE\_MS}}
+\index{CAT24C256\_WRITE\_CYCLE\_MS@{CAT24C256\_WRITE\_CYCLE\_MS}!EEPROM Driver@{EEPROM Driver}}
+\doxysubsubsubsection{\texorpdfstring{CAT24C256\_WRITE\_CYCLE\_MS}{CAT24C256\_WRITE\_CYCLE\_MS}}
+{\footnotesize\ttfamily \label{group__driver__eeprom_ga180e3b5180444bcffffb44b2ffff3291} 
+\#define CAT24\+C256\+\_\+\+WRITE\+\_\+\+CYCLE\+\_\+\+MS~5}
+
+
+
+Mandatory write cycle delay in milliseconds. 
+
+\begin{DoxyNote}{Note}
+Per datasheet\+: 5ms typical, 10ms maximum 
+\end{DoxyNote}
+
+
+\label{doc-func-members}
+\Hypertarget{group__driver__eeprom_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__driver__eeprom_gaa20b40f13c003ce354ce5a163374ac90}\index{EEPROM Driver@{EEPROM Driver}!CAT24C256\_Init@{CAT24C256\_Init}}
+\index{CAT24C256\_Init@{CAT24C256\_Init}!EEPROM Driver@{EEPROM Driver}}
+\doxysubsubsubsection{\texorpdfstring{CAT24C256\_Init()}{CAT24C256\_Init()}}
+{\footnotesize\ttfamily \label{group__driver__eeprom_gaa20b40f13c003ce354ce5a163374ac90} 
+void CAT24\+C256\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Initialize CAT24\+C256 EEPROM driver. 
+
+Configures I2C GPIO pins with proper function assignment and pull-\/ups. The I2C peripheral must already be initialized by system\+\_\+startup\+\_\+init() before calling this function.
+
+Pin Configuration\+:
+\begin{DoxyItemize}
+\item SDA\+: GPIO function + internal pull-\/up
+\item SCL\+: GPIO function + internal pull-\/up
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Call once during system initialization after I2C peripheral init 
+
+Thread-\/safe, can be called from any task context 
+\end{DoxyNote}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__driver__eeprom_gaa20b40f13c003ce354ce5a163374ac90_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__driver__eeprom_ga622a6736c8384f9e1921a1bda2a84df9}\index{EEPROM Driver@{EEPROM Driver}!CAT24C256\_ReadBuffer@{CAT24C256\_ReadBuffer}}
+\index{CAT24C256\_ReadBuffer@{CAT24C256\_ReadBuffer}!EEPROM Driver@{EEPROM Driver}}
+\doxysubsubsubsection{\texorpdfstring{CAT24C256\_ReadBuffer()}{CAT24C256\_ReadBuffer()}}
+{\footnotesize\ttfamily \label{group__driver__eeprom_ga622a6736c8384f9e1921a1bda2a84df9} 
+void CAT24\+C256\+\_\+\+Read\+Buffer (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{addr}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buffer}{, }\item[{uint32\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Read buffer from EEPROM. 
+
+Performs sequential read using EEPROM auto-\/increment feature. Can read across page boundaries without restriction. On error, fills destination buffer with 0x\+FF to indicate invalid data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr} & Starting memory address \mbox{[}0x0000 -\/ 0x7\+FFF\mbox{]} \\
+\hline
+{\em buffer} & Destination buffer pointer \\
+\hline
+{\em len} & Number of bytes to read\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Thread-\/safety\+: Must be called from Storage\+Task with eeprom\+Mtx held 
+
+Buffer filled with 0x\+FF on I2C communication failure 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__driver__eeprom_ga622a6736c8384f9e1921a1bda2a84df9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__driver__eeprom_ga622a6736c8384f9e1921a1bda2a84df9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__driver__eeprom_gaa9216a0e6778df3ed3a57d872911efe4}\index{EEPROM Driver@{EEPROM Driver}!CAT24C256\_ReadByte@{CAT24C256\_ReadByte}}
+\index{CAT24C256\_ReadByte@{CAT24C256\_ReadByte}!EEPROM Driver@{EEPROM Driver}}
+\doxysubsubsubsection{\texorpdfstring{CAT24C256\_ReadByte()}{CAT24C256\_ReadByte()}}
+{\footnotesize\ttfamily \label{group__driver__eeprom_gaa9216a0e6778df3ed3a57d872911efe4} 
+uint8\+\_\+t CAT24\+C256\+\_\+\+Read\+Byte (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{addr}{}\end{DoxyParamCaption})}
+
+
+
+Read single byte from EEPROM. 
+
+Performs two-\/phase I2C transaction\+:
+\begin{DoxyEnumerate}
+\item Write 16-\/bit address with repeated start
+\item Read one data byte
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr} & Memory address \mbox{[}0x0000 -\/ 0x7\+FFF\mbox{]}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Byte value read from EEPROM 
+
+0x\+FF on I2C communication failure
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Thread-\/safety\+: Must be called from Storage\+Task with eeprom\+Mtx held 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__driver__eeprom_gaa9216a0e6778df3ed3a57d872911efe4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__driver__eeprom_gabec86a54fd16b590ec742aa2734d7031}\index{EEPROM Driver@{EEPROM Driver}!CAT24C256\_SelfTest@{CAT24C256\_SelfTest}}
+\index{CAT24C256\_SelfTest@{CAT24C256\_SelfTest}!EEPROM Driver@{EEPROM Driver}}
+\doxysubsubsubsection{\texorpdfstring{CAT24C256\_SelfTest()}{CAT24C256\_SelfTest()}}
+{\footnotesize\ttfamily \label{group__driver__eeprom_gabec86a54fd16b590ec742aa2734d7031} 
+bool CAT24\+C256\+\_\+\+Self\+Test (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{test\+\_\+addr}{}\end{DoxyParamCaption})}
+
+
+
+Execute comprehensive EEPROM self-\/test. 
+
+Validates EEPROM functionality by writing and reading back a test pattern designed to detect common failure modes\+:
+
+Test Pattern (8 bytes)\+:
+\begin{DoxyItemize}
+\item 0x\+AA, 0x55\+: Alternating bit patterns (detects stuck bits)
+\item 0x\+CC, 0x33\+: Adjacent bit pairs (detects crosstalk)
+\item 0x\+F0, 0x0F\+: Nibble patterns (detects partial byte errors)
+\item 0x00, 0x\+FF\+: Extreme values (detects threshold issues)
+\end{DoxyItemize}
+
+Procedure\+:
+\begin{DoxyEnumerate}
+\item Write test pattern to specified address
+\item Wait 10ms for write completion
+\item Read back pattern
+\item Compare byte-\/by-\/byte with expected values
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}{Parameters}
+{\em test\+\_\+addr} & Starting address for test (modifies 8 bytes)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if all bytes match expected pattern 
+
+false on write failure, read failure, or data mismatch
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Overwrites 8 bytes at test\+\_\+addr 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Thread-\/safety\+: Must be called from Storage\+Task with eeprom\+Mtx held 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__driver__eeprom_gabec86a54fd16b590ec742aa2734d7031_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__driver__eeprom_ga8088b9a17773cb65bb6b5d89d3598125}\index{EEPROM Driver@{EEPROM Driver}!CAT24C256\_WriteBuffer@{CAT24C256\_WriteBuffer}}
+\index{CAT24C256\_WriteBuffer@{CAT24C256\_WriteBuffer}!EEPROM Driver@{EEPROM Driver}}
+\doxysubsubsubsection{\texorpdfstring{CAT24C256\_WriteBuffer()}{CAT24C256\_WriteBuffer()}}
+{\footnotesize\ttfamily \label{group__driver__eeprom_ga8088b9a17773cb65bb6b5d89d3598125} 
+int CAT24\+C256\+\_\+\+Write\+Buffer (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{addr}{, }\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{uint16\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Write buffer to EEPROM with automatic page boundary handling. 
+
+Writes data in page-\/aligned chunks to prevent page boundary corruption. Automatically splits writes that cross 64-\/byte page boundaries into multiple operations with proper write cycle delays between each.
+
+Page Boundary Example\+:
+\begin{DoxyItemize}
+\item Write 100 bytes starting at 0x0020\+:
+\begin{DoxyItemize}
+\item Chunk 1\+: 0x0020-\/0x003F (32 bytes to page boundary)
+\item Delay 5ms
+\item Chunk 2\+: 0x0040-\/0x007F (64 bytes, full page)
+\item Delay 5ms
+\item Chunk 3\+: 0x0080-\/0x0083 (4 bytes remaining)
+\item Delay 5ms
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr} & Starting memory address \mbox{[}0x0000 -\/ 0x7\+FFF\mbox{]} \\
+\hline
+{\em data} & Source buffer pointer \\
+\hline
+{\em len} & Number of bytes to write\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on complete success 
+
+-\/1 on NULL pointer or any I2C error
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Thread-\/safety\+: Must be called from Storage\+Task with eeprom\+Mtx held 
+
+Total operation time\+: (number\+\_\+of\+\_\+pages × 5ms) + I2C transfer time 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__driver__eeprom_ga8088b9a17773cb65bb6b5d89d3598125_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__driver__eeprom_ga8088b9a17773cb65bb6b5d89d3598125_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__driver__eeprom_gaf61b654ebe83dc406d2a05dceef29c80}\index{EEPROM Driver@{EEPROM Driver}!CAT24C256\_WriteByte@{CAT24C256\_WriteByte}}
+\index{CAT24C256\_WriteByte@{CAT24C256\_WriteByte}!EEPROM Driver@{EEPROM Driver}}
+\doxysubsubsubsection{\texorpdfstring{CAT24C256\_WriteByte()}{CAT24C256\_WriteByte()}}
+{\footnotesize\ttfamily \label{group__driver__eeprom_gaf61b654ebe83dc406d2a05dceef29c80} 
+int CAT24\+C256\+\_\+\+Write\+Byte (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{addr}{, }\item[{uint8\+\_\+t}]{data}{}\end{DoxyParamCaption})}
+
+
+
+Write single byte to EEPROM. 
+
+Performs atomic single-\/byte write with automatic write cycle delay. Operation blocks for write cycle time after I2C transaction completes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr} & Memory address \mbox{[}0x0000 -\/ 0x7\+FFF\mbox{]} \\
+\hline
+{\em data} & Byte value to write\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success 
+
+-\/1 on I2C communication failure
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Thread-\/safety\+: Must be called from Storage\+Task with eeprom\+Mtx held 
+
+Blocks for CAT24\+C256\+\_\+\+WRITE\+\_\+\+CYCLE\+\_\+\+MS after write 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__driver__eeprom_gaf61b654ebe83dc406d2a05dceef29c80_cgraph}
+\end{center}
+\end{figure}

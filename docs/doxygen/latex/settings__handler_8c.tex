@@ -1,0 +1,145 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/web\+\_\+handlers/settings\+\_\+handler.c File Reference}
+\hypertarget{settings__handler_8c}{}\label{settings__handler_8c}\index{src/Software/ENERGIS\_RTOS/src/web\_handlers/settings\_handler.c@{src/Software/ENERGIS\_RTOS/src/web\_handlers/settings\_handler.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+{\ttfamily \#include "{}../html/settings\+\_\+gz.\+h"{}}\newline
+{\ttfamily \#include "{}../tasks/\+Storage\+Task.\+h"{}}\newline
+Include dependency graph for settings\+\_\+handler.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{settings__handler_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{settings__handler_8c_a5ef31d224287d92914524f82c0dd37c9}{SETTINGS\+\_\+\+HANDLER\+\_\+\+TAG}}~"{}$<$Settings Handler$>$"{}
+\item 
+\#define \mbox{\hyperlink{settings__handler_8c_a051cc30fcf75e17f40e07e4773cb3e2f}{SETTINGS\+\_\+\+MAX\+\_\+\+SEND\+\_\+\+CHUNK}}~4096
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{settings__handler_8c_a8c210587f97cbef60c84dc0bfba63c2f}{net\+\_\+beat}} (void)
+\item 
+static int \mbox{\hyperlink{settings__handler_8c_a38a4f4c6ca8fbf53419dac5c7d4e9e93}{settings\+\_\+send\+\_\+all}} (uint8\+\_\+t sock, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, int len)
+\begin{DoxyCompactList}\small\item\em Send data in safe chunks to avoid overflowing W5500 TX buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__webui05_gae50a830dd3536accfe480e0cefb7c4b1}{handle\+\_\+settings\+\_\+request}} (uint8\+\_\+t sock)
+\begin{DoxyCompactList}\small\item\em Serve settings HTML page via GET /settings.html. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__webui05_gac088630081f9ab2535ccd751fdfaaad7}{handle\+\_\+settings\+\_\+api}} (uint8\+\_\+t sock)
+\begin{DoxyCompactList}\small\item\em Handle GET /api/settings and return configuration as JSON. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__webui05_ga0fe4c530cf7754724a14147a82c71108}{handle\+\_\+settings\+\_\+post}} (uint8\+\_\+t sock, char \texorpdfstring{$\ast$}{*}body)
+\begin{DoxyCompactList}\small\item\em Handle POST /api/settings to update configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/07
+\end{DoxyDate}
+Implementation of settings page and configuration API handlers. Manages network configuration and user preferences with EEPROM persistence. Includes chunked transmission for gzipped HTML page, JSON API for configuration retrieval, and form-\/encoded POST handler for configuration updates with W5500 hardware application.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{settings__handler_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{settings__handler_8c_a5ef31d224287d92914524f82c0dd37c9}\index{settings\_handler.c@{settings\_handler.c}!SETTINGS\_HANDLER\_TAG@{SETTINGS\_HANDLER\_TAG}}
+\index{SETTINGS\_HANDLER\_TAG@{SETTINGS\_HANDLER\_TAG}!settings\_handler.c@{settings\_handler.c}}
+\doxysubsubsection{\texorpdfstring{SETTINGS\_HANDLER\_TAG}{SETTINGS\_HANDLER\_TAG}}
+{\footnotesize\ttfamily \label{settings__handler_8c_a5ef31d224287d92914524f82c0dd37c9} 
+\#define SETTINGS\+\_\+\+HANDLER\+\_\+\+TAG~"{}$<$Settings Handler$>$"{}}
+
+\Hypertarget{settings__handler_8c_a051cc30fcf75e17f40e07e4773cb3e2f}\index{settings\_handler.c@{settings\_handler.c}!SETTINGS\_MAX\_SEND\_CHUNK@{SETTINGS\_MAX\_SEND\_CHUNK}}
+\index{SETTINGS\_MAX\_SEND\_CHUNK@{SETTINGS\_MAX\_SEND\_CHUNK}!settings\_handler.c@{settings\_handler.c}}
+\doxysubsubsection{\texorpdfstring{SETTINGS\_MAX\_SEND\_CHUNK}{SETTINGS\_MAX\_SEND\_CHUNK}}
+{\footnotesize\ttfamily \label{settings__handler_8c_a051cc30fcf75e17f40e07e4773cb3e2f} 
+\#define SETTINGS\+\_\+\+MAX\+\_\+\+SEND\+\_\+\+CHUNK~4096}
+
+
+
+\label{doc-func-members}
+\Hypertarget{settings__handler_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{settings__handler_8c_a8c210587f97cbef60c84dc0bfba63c2f}\index{settings\_handler.c@{settings\_handler.c}!net\_beat@{net\_beat}}
+\index{net\_beat@{net\_beat}!settings\_handler.c@{settings\_handler.c}}
+\doxysubsubsection{\texorpdfstring{net\_beat()}{net\_beat()}}
+{\footnotesize\ttfamily \label{settings__handler_8c_a8c210587f97cbef60c84dc0bfba63c2f} 
+void net\+\_\+beat (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{settings__handler_8c_a8c210587f97cbef60c84dc0bfba63c2f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{settings__handler_8c_a8c210587f97cbef60c84dc0bfba63c2f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{settings__handler_8c_a38a4f4c6ca8fbf53419dac5c7d4e9e93}\index{settings\_handler.c@{settings\_handler.c}!settings\_send\_all@{settings\_send\_all}}
+\index{settings\_send\_all@{settings\_send\_all}!settings\_handler.c@{settings\_handler.c}}
+\doxysubsubsection{\texorpdfstring{settings\_send\_all()}{settings\_send\_all()}}
+{\footnotesize\ttfamily \label{settings__handler_8c_a38a4f4c6ca8fbf53419dac5c7d4e9e93} 
+int settings\+\_\+send\+\_\+all (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sock}{, }\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{int}]{len}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Send data in safe chunks to avoid overflowing W5500 TX buffer. 
+
+Splits large payloads into chunks of up to 4KB (SETTINGS\+\_\+\+MAX\+\_\+\+SEND\+\_\+\+CHUNK) and sends each chunk sequentially with a small delay between chunks to allow hardware TX drain. This prevents TX buffer overflow when sending large responses (e.\+g., gzipped HTML pages).
+
+Transmit Strategy\+:
+\begin{DoxyItemize}
+\item Maximum chunk size\+: 4KB (fits comfortably in 8KB W5500 TX buffer)
+\item Inter-\/chunk delay\+: 5ms (allows hardware to transmit buffered data)
+\item Health heartbeat called after each chunk for watchdog
+\end{DoxyItemize}
+
+Error Handling\+:
+\begin{DoxyItemize}
+\item Returns -\/1 immediately if any \doxylink{group__drivers08_gacd77c3cc60e87d09a5714932506d7c4b}{send()} call fails
+\item Logs structured error code to error logger on failure
+\item No retry or recovery; caller must handle errors
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & Socket number for W5500 connection \\
+\hline
+{\em data} & Pointer to data buffer to transmit \\
+\hline
+{\em len} & Total number of bytes to send\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Total bytes sent on success, -\/1 on send failure
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Function blocks until all data is sent or an error occurs. 
+
+Safe for sending payloads larger than W5500 TX buffer (8KB). 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{settings__handler_8c_a38a4f4c6ca8fbf53419dac5c7d4e9e93_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{settings__handler_8c_a38a4f4c6ca8fbf53419dac5c7d4e9e93_icgraph}
+\end{center}
+\end{figure}

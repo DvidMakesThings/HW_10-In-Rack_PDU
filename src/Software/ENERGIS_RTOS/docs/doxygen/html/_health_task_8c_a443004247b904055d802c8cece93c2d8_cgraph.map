@@ -1,0 +1,7 @@
+<map id="print_health_reboot_brief" name="print_health_reboot_brief">
+<area shape="rect" id="Node000001" title="Print a brief summary if the last reboot was caused by Health." alt="" coords="5,27,137,69"/>
+<area shape="rect" id="Node000002" href="$_health_task_8c.html#ac66d48f916a563641390eae52aa66f2d" title="Clear the watchdog scratch registers. Used after a clean boot to avoid stale data." alt="" coords="212,5,294,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="137,35,197,25,198,30,137,40"/>
+<area shape="rect" id="Node000003" href="$_health_task_8c.html#aa70f2b53ee454037c8802aeee9ee558b" title="Check if the last reboot was caused by Health and load its context." alt="" coords="185,56,321,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="137,56,170,61,169,67,137,61"/>
+</map>

@@ -1,0 +1,61 @@
+\doxysection{metrics\+\_\+counters\+\_\+t Struct Reference}
+\hypertarget{structmetrics__counters__t}{}\label{structmetrics__counters__t}\index{metrics\_counters\_t@{metrics\_counters\_t}}
+
+
+Global metrics counters for system-\/level statistics.  
+
+
+
+
+{\ttfamily \#include $<$metrics\+\_\+handler.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+volatile uint32\+\_\+t \mbox{\hyperlink{structmetrics__counters__t_a4d5e0417805402bd862584e601258105}{http\+\_\+requests\+\_\+total}}
+\item 
+volatile uint32\+\_\+t \mbox{\hyperlink{structmetrics__counters__t_a6effe4efa892fb8c0568ab48deb19eac}{snmp\+\_\+requests\+\_\+total}}
+\item 
+volatile uint32\+\_\+t \mbox{\hyperlink{structmetrics__counters__t_a04f535113aa8d880c2a1fbf7276bfbd5}{relay\+\_\+toggles\+\_\+total}}
+\item 
+volatile uint32\+\_\+t \mbox{\hyperlink{structmetrics__counters__t_a0fa844031787eb271f344a56456f7e95}{watchdog\+\_\+resets\+\_\+total}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Global metrics counters for system-\/level statistics. 
+
+All counters are monotonically increasing since boot. Access must be atomic or protected by appropriate synchronization when incrementing. 
+
+\label{doc-variable-members}
+\Hypertarget{structmetrics__counters__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structmetrics__counters__t_a4d5e0417805402bd862584e601258105}\index{metrics\_counters\_t@{metrics\_counters\_t}!http\_requests\_total@{http\_requests\_total}}
+\index{http\_requests\_total@{http\_requests\_total}!metrics\_counters\_t@{metrics\_counters\_t}}
+\doxysubsubsection{\texorpdfstring{http\_requests\_total}{http\_requests\_total}}
+{\footnotesize\ttfamily \label{structmetrics__counters__t_a4d5e0417805402bd862584e601258105} 
+volatile uint32\+\_\+t metrics\+\_\+counters\+\_\+t\+::http\+\_\+requests\+\_\+total}
+
+Total HTTP requests served \Hypertarget{structmetrics__counters__t_a04f535113aa8d880c2a1fbf7276bfbd5}\index{metrics\_counters\_t@{metrics\_counters\_t}!relay\_toggles\_total@{relay\_toggles\_total}}
+\index{relay\_toggles\_total@{relay\_toggles\_total}!metrics\_counters\_t@{metrics\_counters\_t}}
+\doxysubsubsection{\texorpdfstring{relay\_toggles\_total}{relay\_toggles\_total}}
+{\footnotesize\ttfamily \label{structmetrics__counters__t_a04f535113aa8d880c2a1fbf7276bfbd5} 
+volatile uint32\+\_\+t metrics\+\_\+counters\+\_\+t\+::relay\+\_\+toggles\+\_\+total}
+
+Total relay state changes \Hypertarget{structmetrics__counters__t_a6effe4efa892fb8c0568ab48deb19eac}\index{metrics\_counters\_t@{metrics\_counters\_t}!snmp\_requests\_total@{snmp\_requests\_total}}
+\index{snmp\_requests\_total@{snmp\_requests\_total}!metrics\_counters\_t@{metrics\_counters\_t}}
+\doxysubsubsection{\texorpdfstring{snmp\_requests\_total}{snmp\_requests\_total}}
+{\footnotesize\ttfamily \label{structmetrics__counters__t_a6effe4efa892fb8c0568ab48deb19eac} 
+volatile uint32\+\_\+t metrics\+\_\+counters\+\_\+t\+::snmp\+\_\+requests\+\_\+total}
+
+Total SNMP requests received \Hypertarget{structmetrics__counters__t_a0fa844031787eb271f344a56456f7e95}\index{metrics\_counters\_t@{metrics\_counters\_t}!watchdog\_resets\_total@{watchdog\_resets\_total}}
+\index{watchdog\_resets\_total@{watchdog\_resets\_total}!metrics\_counters\_t@{metrics\_counters\_t}}
+\doxysubsubsection{\texorpdfstring{watchdog\_resets\_total}{watchdog\_resets\_total}}
+{\footnotesize\ttfamily \label{structmetrics__counters__t_a0fa844031787eb271f344a56456f7e95} 
+volatile uint32\+\_\+t metrics\+\_\+counters\+\_\+t\+::watchdog\+\_\+resets\+\_\+total}
+
+Total watchdog resets since power-\/on 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/web\+\_\+handlers/\mbox{\hyperlink{metrics__handler_8h}{metrics\+\_\+handler.\+h}}\end{DoxyCompactItemize}

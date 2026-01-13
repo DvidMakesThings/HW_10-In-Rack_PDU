@@ -1,0 +1,76 @@
+\doxysection{device\+\_\+identity.\+h}
+\hypertarget{device__identity_8h_source}{}\label{device__identity_8h_source}\index{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/device\_identity.h@{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/device\_identity.h}}
+\mbox{\hyperlink{device__identity_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#ifndef\ DEVICE\_IDENTITY\_H}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ DEVICE\_IDENTITY\_H}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{comment}{/*\ ====================\ Configuration\ Constants\ ====================\ */}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ DEVICE\_SN\_MAX\_LEN\ 15}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ PROV\_UNLOCK\_TOKEN\ "{}6D61676963"{}}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ PROV\_UNLOCK\_TIMEOUT\_MS\ 60000}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{comment}{/*\ ====================\ Type\ Definitions\ ====================\ */}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{group__storage03_gga509a8b0630b9c754a52a817ba37e032ba07eea1ebaa36d551f30f56c30b308d57}{DEVICE\_REGION\_UNKNOWN}}\ =\ 0x00,\ }
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{group__storage03_gga509a8b0630b9c754a52a817ba37e032ba0b78a74641c8e6c2b2754eef80ab4aeb}{DEVICE\_REGION\_EU}}\ =\ 0x45,\ \ \ \ \ \ }
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{group__storage03_gga509a8b0630b9c754a52a817ba37e032bac833b1f9e2f5832aef5b89fe71fa8abe}{DEVICE\_REGION\_US}}\ =\ 0x55\ \ \ \ \ \ \ }
+\DoxyCodeLine{00074\ \}\ \mbox{\hyperlink{group__storage03_ga509a8b0630b9c754a52a817ba37e032b}{device\_region\_t}};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structdevice__identity__t_a445c8cbdfe1742a5b1bb7f140b461e44}{serial\_number}}[\mbox{\hyperlink{group__storage03_ga873a1b4db5414ab4ac986547e952f2fe}{DEVICE\_SN\_MAX\_LEN}}\ +\ 1];\ }
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{group__storage03_ga509a8b0630b9c754a52a817ba37e032b}{device\_region\_t}}\ \mbox{\hyperlink{structdevice__identity__t_a4cbac26f3bb492b953eab3a01d9153de}{region}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structdevice__identity__t_aaaf972ee283f2cf88a6f57a20bec03d8}{valid}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00085\ \}\ \mbox{\hyperlink{structdevice__identity__t}{device\_identity\_t}};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{group__main01_gae3fa85d0ce445e937670de85f9af490a}{\_\_attribute\_\_}}((packed))\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{char}\ serial\_number[\mbox{\hyperlink{group__storage03_ga873a1b4db5414ab4ac986547e952f2fe}{DEVICE\_SN\_MAX\_LEN}}\ +\ 1];\ }
+\DoxyCodeLine{00099\ \ \ \ \ uint8\_t\ region;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00100\ \ \ \ \ uint8\_t\ crc;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00101\ \}\ \mbox{\hyperlink{group__storage03_ga3d4f201eb84e7a480bb2455f5181bca0}{device\_identity\_eeprom\_t}};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{comment}{/*\ ====================\ Public\ API\ -\/\ Initialization\ ====================\ */}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00118\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__storage03_ga8a44399536e0b86e0b543df9f1962c17}{DeviceIdentity\_Init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{comment}{/*\ ====================\ Public\ API\ -\/\ Read\ Access\ ====================\ */}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00127\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structdevice__identity__t}{device\_identity\_t}}\ *\mbox{\hyperlink{group__storage03_gad79ee3ecce363eec976ed7616906c27d}{DeviceIdentity\_Get}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00134\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{group__storage03_gab09c3d3cce44235c32034cb03d64fbe4}{DeviceIdentity\_GetSerialNumber}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00141\ \mbox{\hyperlink{group__storage03_ga509a8b0630b9c754a52a817ba37e032b}{device\_region\_t}}\ \mbox{\hyperlink{group__storage03_ga8159c9128e13ce5870ad6d282094ed83}{DeviceIdentity\_GetRegion}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00148\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{group__storage03_ga5b4f82b48868c1a68c60a9fc9a7f3e37}{DeviceIdentity\_GetCurrentLimitA}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00155\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__storage03_ga6a8334a56f37167d1e857260bb262902}{DeviceIdentity\_IsValid}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \textcolor{comment}{/*\ ====================\ Public\ API\ -\/\ Provisioning\ ====================\ */}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00165\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__storage03_ga41878c484b104d5237c63deef71f450b}{DeviceIdentity\_Unlock}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *token);}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00170\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__storage03_ga2bf21d733d9d7a0292429bb3f6f144c3}{DeviceIdentity\_Lock}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00177\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__storage03_ga11fd0a0d9d1c447246dc161cfa77f5aa}{DeviceIdentity\_IsUnlocked}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00185\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage03_ga3ac2980af26af34986f7360246deefa5}{DeviceIdentity\_SetSerialNumber}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *serial\_number);}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00193\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage03_ga9f2f68ea0ff2c13d4fe5d52dc3a99e4f}{DeviceIdentity\_SetRegion}}(\mbox{\hyperlink{group__storage03_ga509a8b0630b9c754a52a817ba37e032b}{device\_region\_t}}\ region);}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \textcolor{comment}{/*\ ====================\ Public\ API\ -\/\ MAC\ Address\ ====================\ */}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00202\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__storage03_ga461c49efb137c6fcc9871867b974c326}{DeviceIdentity\_FillMac}}(uint8\_t\ mac[6]);}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ DEVICE\_IDENTITY\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00205\ }
+
+\end{DoxyCode}

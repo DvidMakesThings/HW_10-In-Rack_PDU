@@ -1,0 +1,289 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item Logger Task 
+\end{DoxyEnumerate}}
+\hypertarget{group__tasks05}{}\label{group__tasks05}\index{5. Logger Task@{5. Logger Task}}
+
+
+Centralized logging subsystem with queue-\/based message handling.  
+
+
+Collaboration diagram for 5. Logger Task\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{group__tasks05}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public API}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{group__tasks05_gafb5047430fb4b265c7eb140436b4d6cd}{Logger\+\_\+\+Is\+Ready}} (void)
+\begin{DoxyCompactList}\small\item\em Query logger task readiness status. \end{DoxyCompactList}\item 
+Base\+Type\+\_\+t \mbox{\hyperlink{group__tasks05_gaae3080c72dfa5993e5e495fd767e32c9}{Logger\+Task\+\_\+\+Init}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Initialize and start the logger task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks05_ga2473a4441580b27bdc14f48e2d2fff8e}{log\+\_\+printf}} (const char \texorpdfstring{$\ast$}{*}fmt,...)
+\begin{DoxyCompactList}\small\item\em Log formatted message to output. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks05_gafc11bbe1cbc3f91b4eec771974d1cc22}{Logger\+\_\+\+Mute\+Push}} (void)
+\begin{DoxyCompactList}\small\item\em Enter logger mute section. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks05_gae9f5d60f97cc58b03ddaf0578bdba99b}{Logger\+\_\+\+Mute\+Pop}} (void)
+\begin{DoxyCompactList}\small\item\em Exit logger mute section. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks05_ga36194a3f790c1e727f3b9ab3c0ab38ba}{log\+\_\+printf\+\_\+force}} (const char \texorpdfstring{$\ast$}{*}fmt,...)
+\begin{DoxyCompactList}\small\item\em Log message bypassing mute state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Centralized logging subsystem with queue-\/based message handling. 
+
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/06
+\end{DoxyDate}
+This module implements a centralized logging system for the PDU firmware using a Free\+RTOS task and message queue architecture. It provides thread-\/safe logging from any task context with optional muting capability for critical sections.
+
+Architecture\+:
+\begin{DoxyItemize}
+\item Queue-\/based message passing decouples log generation from output
+\item Single consumer task (Logger\+Task) handles all USB-\/\+CDC output
+\item Non-\/blocking sends prevent logging from blocking application tasks
+\item Configurable queue depth and message size
+\item Mute functionality for reducing noise during debug operations
+\end{DoxyItemize}
+
+Key Features\+:
+\begin{DoxyItemize}
+\item Thread-\/safe logging from any task or ISR context
+\item Printf-\/style formatting with variadic arguments
+\item Automatic message truncation to prevent buffer overflows
+\item Non-\/blocking queue operations (messages dropped if queue full)
+\item Nested mute/unmute support for critical sections
+\item Force-\/log capability to bypass mute state
+\item Integrated with health monitoring for watchdog supervision
+\end{DoxyItemize}
+
+Usage Pattern\+:
+\begin{DoxyEnumerate}
+\item Initialize early in boot sequence via Logger\+Task\+\_\+\+Init(true)
+\item Use \doxylink{group__tasks05_ga2473a4441580b27bdc14f48e2d2fff8e}{log\+\_\+printf()} from any task for normal logging
+\item Use \doxylink{group__tasks05_gafc11bbe1cbc3f91b4eec771974d1cc22}{Logger\+\_\+\+Mute\+Push()}/\+Mute\+Pop() to temporarily suppress logs
+\item Use \doxylink{group__tasks05_ga36194a3f790c1e727f3b9ab3c0ab38ba}{log\+\_\+printf\+\_\+force()} to log even when muted
+\end{DoxyEnumerate}
+
+Output\+:
+\begin{DoxyItemize}
+\item All logs directed to USB-\/\+CDC (stdout via stdio\+\_\+init\+\_\+all)
+\item 1-\/second delay after init for USB enumeration
+\item Immediate console availability for early boot diagnostics
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Logger\+Task should be initialized first in boot sequence to capture all subsequent initialization logs. 
+
+Messages are truncated to LOGGER\+\_\+\+MSG\+\_\+\+MAX bytes if too long. 
+
+Queue full condition silently drops messages (check LOGGER\+\_\+\+QUEUE\+\_\+\+LEN).
+\end{DoxyNote}
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-func-members}
+\Hypertarget{group__tasks05_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__tasks05_ga2473a4441580b27bdc14f48e2d2fff8e}\index{5. Logger Task@{5. Logger Task}!log\_printf@{log\_printf}}
+\index{log\_printf@{log\_printf}!5. Logger Task@{5. Logger Task}}
+\doxysubsubsubsection{\texorpdfstring{log\_printf()}{log\_printf()}}
+{\footnotesize\ttfamily \label{group__tasks05_ga2473a4441580b27bdc14f48e2d2fff8e} 
+void log\+\_\+printf (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{fmt}{, }\item[{}]{...}{}\end{DoxyParamCaption})}
+
+
+
+Log formatted message to output. 
+
+Thread-\/safe printf-\/style logging function that formats and queues a message for output by Logger\+Task. Messages are silently dropped if logger is not initialized, queue is full, or logger is muted.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em fmt} & Printf-\/style format string. \\
+\hline
+\mbox{\texttt{in}}  & {\em ...} & Variable arguments matching format specifiers.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Non-\/blocking\+: returns immediately even if queue is full (message dropped). 
+
+Messages truncated to LOGGER\+\_\+\+MSG\+\_\+\+MAX bytes including null terminator. 
+
+Suppressed when \doxylink{group__tasks05_gafc11bbe1cbc3f91b4eec771974d1cc22}{Logger\+\_\+\+Mute\+Push()} active; use \doxylink{group__tasks05_ga36194a3f790c1e727f3b9ab3c0ab38ba}{log\+\_\+printf\+\_\+force()} to override. 
+
+Safe to call from any task context; not safe from ISR (use ISR-\/safe alternative).
+\end{DoxyNote}
+See \doxylink{_logger_task_8h}{loggertask.\+h} for detailed documentation. Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks05_ga2473a4441580b27bdc14f48e2d2fff8e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__tasks05_ga36194a3f790c1e727f3b9ab3c0ab38ba}\index{5. Logger Task@{5. Logger Task}!log\_printf\_force@{log\_printf\_force}}
+\index{log\_printf\_force@{log\_printf\_force}!5. Logger Task@{5. Logger Task}}
+\doxysubsubsubsection{\texorpdfstring{log\_printf\_force()}{log\_printf\_force()}}
+{\footnotesize\ttfamily \label{group__tasks05_ga36194a3f790c1e727f3b9ab3c0ab38ba} 
+void log\+\_\+printf\+\_\+force (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{fmt}{, }\item[{}]{...}{}\end{DoxyParamCaption})}
+
+
+
+Log message bypassing mute state. 
+
+Identical to \doxylink{group__tasks05_ga2473a4441580b27bdc14f48e2d2fff8e}{log\+\_\+printf()} but ignores the mute counter, ensuring message is logged even during muted sections. Useful for critical diagnostics that must always appear regardless of mute state.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em fmt} & Printf-\/style format string. \\
+\hline
+\mbox{\texttt{in}}  & {\em ...} & Variable arguments matching format specifiers.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Same non-\/blocking behavior and truncation rules as \doxylink{group__tasks05_ga2473a4441580b27bdc14f48e2d2fff8e}{log\+\_\+printf()}. 
+
+Still requires logger to be initialized (checked internally).
+\end{DoxyNote}
+See \doxylink{_logger_task_8h}{loggertask.\+h} for detailed documentation. Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks05_ga36194a3f790c1e727f3b9ab3c0ab38ba_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__tasks05_gafb5047430fb4b265c7eb140436b4d6cd}\index{5. Logger Task@{5. Logger Task}!Logger\_IsReady@{Logger\_IsReady}}
+\index{Logger\_IsReady@{Logger\_IsReady}!5. Logger Task@{5. Logger Task}}
+\doxysubsubsubsection{\texorpdfstring{Logger\_IsReady()}{Logger\_IsReady()}}
+{\footnotesize\ttfamily \label{group__tasks05_gafb5047430fb4b265c7eb140436b4d6cd} 
+bool Logger\+\_\+\+Is\+Ready (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Query logger task readiness status. 
+
+Provides a thread-\/safe method to check whether Logger\+Task has completed initialization successfully. Used for deterministic boot sequencing to ensure logging is available before other subsystems start.
+
+\begin{DoxyReturn}{Returns}
+true if Logger\+Task\+\_\+\+Init(true) completed successfully and queue is created. 
+
+false if \doxylink{group__tasks05_gaae3080c72dfa5993e5e495fd767e32c9}{Logger\+Task\+\_\+\+Init()} was not called, called with enable=false, or initialization failed.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Based on log queue existence, providing immediate readiness indication. 
+
+Safe to call from any task context or early in boot before scheduler starts.
+\end{DoxyNote}
+See \doxylink{_logger_task_8h}{loggertask.\+h} for detailed documentation. Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks05_gafb5047430fb4b265c7eb140436b4d6cd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__tasks05_gae9f5d60f97cc58b03ddaf0578bdba99b}\index{5. Logger Task@{5. Logger Task}!Logger\_MutePop@{Logger\_MutePop}}
+\index{Logger\_MutePop@{Logger\_MutePop}!5. Logger Task@{5. Logger Task}}
+\doxysubsubsubsection{\texorpdfstring{Logger\_MutePop()}{Logger\_MutePop()}}
+{\footnotesize\ttfamily \label{group__tasks05_gae9f5d60f97cc58b03ddaf0578bdba99b} 
+void Logger\+\_\+\+Mute\+Pop (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Exit logger mute section. 
+
+Decrements the mute depth counter. When counter reaches zero, \doxylink{group__tasks05_ga2473a4441580b27bdc14f48e2d2fff8e}{log\+\_\+printf()} resumes normal operation. Counter saturates at zero (won\textquotesingle{}t underflow).
+
+\begin{DoxyNote}{Note}
+Thread-\/safe\+: uses critical section for atomic counter decrement. 
+
+Must be paired with \doxylink{group__tasks05_gafc11bbe1cbc3f91b4eec771974d1cc22}{Logger\+\_\+\+Mute\+Push()} for each mute level. 
+
+Safe to call even if not muted (no-\/op when counter already zero).
+\end{DoxyNote}
+See \doxylink{_logger_task_8h}{loggertask.\+h} for detailed documentation. Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks05_gae9f5d60f97cc58b03ddaf0578bdba99b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__tasks05_gafc11bbe1cbc3f91b4eec771974d1cc22}\index{5. Logger Task@{5. Logger Task}!Logger\_MutePush@{Logger\_MutePush}}
+\index{Logger\_MutePush@{Logger\_MutePush}!5. Logger Task@{5. Logger Task}}
+\doxysubsubsubsection{\texorpdfstring{Logger\_MutePush()}{Logger\_MutePush()}}
+{\footnotesize\ttfamily \label{group__tasks05_gafc11bbe1cbc3f91b4eec771974d1cc22} 
+void Logger\+\_\+\+Mute\+Push (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Enter logger mute section. 
+
+Suppresses all \doxylink{group__tasks05_ga2473a4441580b27bdc14f48e2d2fff8e}{log\+\_\+printf()} output by incrementing an internal mute depth counter. Useful for reducing log noise during intensive debug operations or repetitive tasks. Supports nesting\+: each Mute\+Push() must be matched by a Mute\+Pop().
+
+\begin{DoxyNote}{Note}
+Thread-\/safe\+: uses critical section for atomic counter increment. 
+
+Does not affect \doxylink{group__tasks05_ga36194a3f790c1e727f3b9ab3c0ab38ba}{log\+\_\+printf\+\_\+force()} which always outputs. 
+
+Mute state is global; affects all tasks calling \doxylink{group__tasks05_ga2473a4441580b27bdc14f48e2d2fff8e}{log\+\_\+printf()}.
+\end{DoxyNote}
+See \doxylink{_logger_task_8h}{loggertask.\+h} for detailed documentation. Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks05_gafc11bbe1cbc3f91b4eec771974d1cc22_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__tasks05_gaae3080c72dfa5993e5e495fd767e32c9}\index{5. Logger Task@{5. Logger Task}!LoggerTask\_Init@{LoggerTask\_Init}}
+\index{LoggerTask\_Init@{LoggerTask\_Init}!5. Logger Task@{5. Logger Task}}
+\doxysubsubsubsection{\texorpdfstring{LoggerTask\_Init()}{LoggerTask\_Init()}}
+{\footnotesize\ttfamily \label{group__tasks05_gaae3080c72dfa5993e5e495fd767e32c9} 
+Base\+Type\+\_\+t Logger\+Task\+\_\+\+Init (\begin{DoxyParamCaption}\item[{bool}]{enable}{}\end{DoxyParamCaption})}
+
+
+
+Initialize and start the logger task. 
+
+Creates the Logger\+Task Free\+RTOS task and message queue for centralized logging. Should be called first in the boot sequence to capture all initialization logs from subsequent subsystems.
+
+Initialization Sequence\+:
+\begin{DoxyEnumerate}
+\item Creates log message queue (LOGGER\+\_\+\+QUEUE\+\_\+\+LEN deep)
+\item Spawns Logger\+Task with configured priority and stack size
+\item Task initializes USB-\/\+CDC and begins processing queued messages
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em enable} & Set true to initialize and start task, false to skip initialization deterministically without side effects.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pd\+PASS on successful initialization or when skipped (enable=false). 
+
+pd\+FAIL if initialization fails (queue creation, task creation).
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Call before all other tasks in boot sequence (step 1/6). 
+
+Idempotent\+: safe to call multiple times, creates resources only once. 
+
+Logs error codes to error logger on failure (if error logger available).
+\end{DoxyNote}
+See \doxylink{_logger_task_8h}{loggertask.\+h} for detailed documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks05_gaae3080c72dfa5993e5e495fd767e32c9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks05_gaae3080c72dfa5993e5e495fd767e32c9_icgraph}
+\end{center}
+\end{figure}

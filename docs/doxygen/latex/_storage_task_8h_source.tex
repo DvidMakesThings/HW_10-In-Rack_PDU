@@ -1,0 +1,200 @@
+\doxysection{Storage\+Task.\+h}
+\hypertarget{_storage_task_8h_source}{}\label{_storage_task_8h_source}\index{src/Software/ENERGIS\_RTOS/src/tasks/StorageTask.h@{src/Software/ENERGIS\_RTOS/src/tasks/StorageTask.h}}
+\mbox{\hyperlink{_storage_task_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#ifndef\ STORAGE\_TASK\_H}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#define\ STORAGE\_TASK\_H}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_o_n_f_i_g_8h}{../CONFIG.h}}"{}}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{comment}{/*\ Include\ all\ storage\ submodules\ */}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{comment}{/*\ Note:\ All\ includes\ come\ via\ CONFIG.h\ */}}
+\DoxyCodeLine{00103\ \textcolor{comment}{/*\ CONFIG.h\ provides:\ FreeRTOS,\ event\_groups.h,\ EEPROM\_MemoryMap.h,\ etc.\ */}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{comment}{/*\ ====================\ Mutex\ and\ Event\ Handles\ ====================\ */}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00112\ \textcolor{keyword}{extern}\ SemaphoreHandle\_t\ \mbox{\hyperlink{group__tasks10_gaf015228821869529545d62856625c224}{eepromMtx}};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00119\ \textcolor{keyword}{extern}\ EventGroupHandle\_t\ \mbox{\hyperlink{group__tasks10_ga0ea67700c08dc702805d3eebd8fd2541}{cfgEvents}};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00128\ \textcolor{keyword}{extern}\ QueueHandle\_t\ \mbox{\hyperlink{group__tasks10_ga9042a1723c10aaba2b8e74b72e953ca7}{g\_errorCodeQueue}};}
+\DoxyCodeLine{00133\ \textcolor{keyword}{extern}\ QueueHandle\_t\ \mbox{\hyperlink{group__tasks10_ga8217a535f95788fd84b724d4a31fc967}{g\_warningCodeQueue}};}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#endif}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#define\ CFG\_READY\_BIT\ (1\ <<\ 0)}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{comment}{/*\ ====================\ Message\ Structures\ ====================\ */}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00158\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226aa1b2efe89d16b67da39b8eccb7e16c48}{STORAGE\_CMD\_READ\_NETWORK}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00165\ \ \ \ \ \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a05d874d45aa5701557ad94e2d6b38452}{STORAGE\_CMD\_WRITE\_NETWORK}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00166\ \ \ \ \ \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a16e4f278afe38f6bdbcf3e6fb15a03cd}{STORAGE\_CMD\_READ\_PREFS}},\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00167\ \ \ \ \ \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a30afcda48e9630e32955bf8fed9119f7}{STORAGE\_CMD\_WRITE\_PREFS}},\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00168\ \ \ \ \ \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a8b3e0d704d4df8f02598cf3d4bd83beb}{STORAGE\_CMD\_READ\_RELAY\_STATES}},\ \ \ }
+\DoxyCodeLine{00169\ \ \ \ \ \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226ab9ec18e2f0727b89433c8af08dd28b81}{STORAGE\_CMD\_WRITE\_RELAY\_STATES}},\ \ }
+\DoxyCodeLine{00170\ \ \ \ \ \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226aa55e44f77cda055ae9552714e56b231e}{STORAGE\_CMD\_READ\_CHANNEL\_LABEL}},\ \ }
+\DoxyCodeLine{00171\ \ \ \ \ \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226aaaf390f8f38c8ac5e9e143141913c7e3}{STORAGE\_CMD\_WRITE\_CHANNEL\_LABEL}},\ }
+\DoxyCodeLine{00172\ \ \ \ \ \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a3506928d069500efc8900d8c013825e1}{STORAGE\_CMD\_COMMIT}},\ }
+\DoxyCodeLine{00173\ \ \ \ \ \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a60687477ae1d86aabd018524429784e5}{STORAGE\_CMD\_LOAD\_DEFAULTS}},\ }
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00181\ \ \ \ \ \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a5ada85a4f12beb85083c88b8fd7f8746}{STORAGE\_CMD\_READ\_SENSOR\_CAL}},\ \ }
+\DoxyCodeLine{00182\ \ \ \ \ \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a8299b7398cf194f858e121861cf9fff2}{STORAGE\_CMD\_WRITE\_SENSOR\_CAL}},\ }
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00190\ \ \ \ \ \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226ae3c0f096efc3f09972747e21bde5a784}{STORAGE\_CMD\_DUMP\_ERROR\_LOG}},\ \ \ \ }
+\DoxyCodeLine{00191\ \ \ \ \ \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a22b467f20a2cbf80e62cc081b90c156a}{STORAGE\_CMD\_DUMP\_WARNING\_LOG}},\ \ }
+\DoxyCodeLine{00192\ \ \ \ \ \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a6b207cbe70c44bc776fdadc118dc7013}{STORAGE\_CMD\_CLEAR\_ERROR\_LOG}},\ \ \ }
+\DoxyCodeLine{00193\ \ \ \ \ \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a16bfee000531eed0d6eab8e990feb3e7}{STORAGE\_CMD\_CLEAR\_WARNING\_LOG}},\ }
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00201\ \ \ \ \ \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a59b826401ea7cbc617d29e1cf59c4e9e}{STORAGE\_CMD\_ERASE\_ALL}},\ }
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00209\ \ \ \ \ \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226abea6af041e6361673510b8676c2df65d}{STORAGE\_CMD\_DUMP\_FORMATTED}},\ }
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00217\ \ \ \ \ \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a70dda4dde4951684745d2178002c6334}{STORAGE\_CMD\_SAVE\_USER\_OUTPUT\_PRESET}},\ \ \ }
+\DoxyCodeLine{00218\ \ \ \ \ \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a5d36c43430afd13344f689689d88c5f4}{STORAGE\_CMD\_DELETE\_USER\_OUTPUT\_PRESET}},\ }
+\DoxyCodeLine{00219\ \ \ \ \ \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a3e50aac776e7884a0785ad929535a4fa}{STORAGE\_CMD\_SET\_STARTUP\_PRESET}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00220\ \ \ \ \ \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a978ad0bcb18f7d7ac82c88e682de78be}{STORAGE\_CMD\_CLEAR\_STARTUP\_PRESET}}\ \ \ \ \ \ \ }
+\DoxyCodeLine{00222\ \}\ \mbox{\hyperlink{group__tasks10_ga5ba5cfc55a0c0ff9a7f58f6a9802e226}{storage\_cmd\_t}};}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00229\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00230\ \ \ \ \ \mbox{\hyperlink{group__tasks10_ga5ba5cfc55a0c0ff9a7f58f6a9802e226}{storage\_cmd\_t}}\ \mbox{\hyperlink{structstorage__msg__t_a206a22320a3de65f15d7295101b0aac3}{cmd}};\ }
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keyword}{union\ }\{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ For\ network\ config\ */}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structnetwork_info}{networkInfo}}\ \mbox{\hyperlink{structstorage__msg__t_a42b787634d528868098ab35845ccafb0}{net\_info}};}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ For\ user\ preferences\ */}}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structuser_pref_info}{userPrefInfo}}\ \mbox{\hyperlink{structstorage__msg__t_a945fbe778f17eeab307acb11f21d6612}{user\_prefs}};}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ For\ relay\ states\ */}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structstorage__msg__t_a422317e9a6d9365443deb61dbda2f491}{states}}[8];\ }
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \}\ relay;}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ For\ channel\ labels\ */}}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structstorage__msg__t_aec503e5bd3aee9e583b949c55777d3a4}{channel}};\ }
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structstorage__msg__t_ae501a582a110422634b940e29ffcfa8a}{label}}[64];\ \ }
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \}\ ch\_label;}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ For\ sensor\ calibration\ */}}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ channel;\ \ \ }
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structhlw__calib__t}{hlw\_calib\_t}}\ \mbox{\hyperlink{structstorage__msg__t_a2c2a0be6b36bc7129cb95c648b5fc101}{calib}};\ }
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \}\ sensor\_cal;}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ For\ SIL\ testing\ */}}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structstorage__msg__t_a45f7a9cb74968808ce8999609c36d6ec}{test\_addr}};\ }
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ *\mbox{\hyperlink{structstorage__msg__t_adaf455d82f46baac57bb81c4043959cb}{result}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \}\ sil\_test;}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ For\ user\ output\ presets\ */}}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structstorage__msg__t_add2f8632021ee0549e1feb0c5e5f6480}{index}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structstorage__msg__t_ad8a16c8f561e854396e57fdb71255a70}{name}}[\mbox{\hyperlink{group__storage09_gab51a15ea684e163433ede2f7f69257ab}{USER\_OUTPUT\_NAME\_MAX\_LEN}}\ +\ 1];\ }
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structstorage__msg__t_aac682d5b8e7327b04da48178cb0e3de8}{mask}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \}\ user\_output;}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ index;\ }
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \}\ startup;}
+\DoxyCodeLine{00270\ \ \ \ \ \}\ data;}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{structstorage__msg__t_add8a9b4139ed187a6e7deab8492db167}{output\_ptr}};}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00276\ \ \ \ \ SemaphoreHandle\_t\ \mbox{\hyperlink{structstorage__msg__t_aae8a030bccfbd535570d8ad2bbee6995}{done\_sem}};}
+\DoxyCodeLine{00277\ \}\ \mbox{\hyperlink{structstorage__msg__t}{storage\_msg\_t}};}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \textcolor{comment}{/*\ ====================\ RAM\ Config\ Cache\ ====================\ */}}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00286\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00287\ \ \ \ \ \mbox{\hyperlink{structnetwork_info}{networkInfo}}\ \mbox{\hyperlink{structstorage__cache__t_a84e7d5c6b7a66f746dfb7f9ec7f429d9}{network}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00288\ \ \ \ \ \mbox{\hyperlink{structuser_pref_info}{userPrefInfo}}\ \mbox{\hyperlink{structstorage__cache__t_ae066049958bbf65bb10a4e5e47e5e179}{preferences}};\ \ }
+\DoxyCodeLine{00289\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structstorage__cache__t_a26f67e17adfcc23fe06f7e3b6b59b7b7}{relay\_states}}[8];\ \ \ }
+\DoxyCodeLine{00290\ \ \ \ \ \mbox{\hyperlink{structhlw__calib__t}{hlw\_calib\_t}}\ \mbox{\hyperlink{structstorage__cache__t_a0098637a404cc7c8e40246195e0ffaf7}{sensor\_cal}}[8];\ }
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structstorage__cache__t_ad6531646d5ede7e836bb61bdf6564199}{network\_dirty}};}
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structstorage__cache__t_a2a71ea8ae0dda9de947b70ed72711757}{prefs\_dirty}};}
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structstorage__cache__t_aa48e403751c9f623edd70aa57d6c4d99}{relay\_dirty}};}
+\DoxyCodeLine{00296\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structstorage__cache__t_a32dc02a092fb9ab4641e493b691fbdce}{sensor\_cal\_dirty}}[8];}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00299\ \ \ \ \ TickType\_t\ \mbox{\hyperlink{structstorage__cache__t_a871105f6c0821cf4e9bba6971a855b93}{last\_change\_tick}};}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \}\ \mbox{\hyperlink{structstorage__cache__t}{storage\_cache\_t}};}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \textcolor{comment}{/*\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\ */}}
+\DoxyCodeLine{00304\ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PUBLIC\ API\ FUNCTIONS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00305\ \textcolor{comment}{/*\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\ */}}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00321\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks10_ga84bff75330a6c83d2e407ed67f91b42c}{storage\_dump\_formatted\_async}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00329\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks10_ga8b5d786522ab539d03629fe26e59feac}{storage\_erase\_all\_async}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00337\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks10_ga1f15ee7aca9bde86802f18a6115232ec}{storage\_erase\_all\_is\_busy}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00356\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__tasks10_ga26dbdabce55a139cf536e8469373b7c4}{StorageTask\_Init}}(\textcolor{keywordtype}{bool}\ enable);}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00358\ \textcolor{comment}{/*\ =====\ User\ Output\ Preset\ API\ (routed\ via\ StorageTask)\ =====\ */}}
+\DoxyCodeLine{00359\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks10_ga9f739ec7195c1d9f17c6a48ecfa121b4}{storage\_save\_preset}}(uint8\_t\ index,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name,\ uint8\_t\ mask);}
+\DoxyCodeLine{00360\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks10_ga7174a6c72a5b95807a0c02f2bb9871bf}{storage\_delete\_preset}}(uint8\_t\ index);}
+\DoxyCodeLine{00361\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks10_ga5689969f8de481f2f5533245da6b315f}{storage\_set\_startup\_preset}}(uint8\_t\ index);}
+\DoxyCodeLine{00362\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks10_ga0e8d9cfcef8d0dabb1f981d61e7f41c4}{storage\_clear\_startup\_preset}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00375\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks10_gadff2b57dc3c074453ee1393d0f6f3623}{Storage\_IsReady}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00382\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks10_gaad6cb463ba1647fe51faeea5f08268da}{Storage\_Config\_IsReady}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00391\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks10_gafeb6e0067e67c68af21f0eeae1d1279a}{storage\_wait\_ready}}(uint32\_t\ timeout\_ms);}
+\DoxyCodeLine{00392\ }
+\DoxyCodeLine{00400\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks10_ga422389bc6e9270118a931e58981753f9}{storage\_get\_network}}(\mbox{\hyperlink{structnetwork_info}{networkInfo}}\ *out);}
+\DoxyCodeLine{00401\ }
+\DoxyCodeLine{00409\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks10_gabe45ebb96c320636c4a5e969e59a9f4a}{storage\_set\_network}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structnetwork_info}{networkInfo}}\ *net);}
+\DoxyCodeLine{00410\ }
+\DoxyCodeLine{00418\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks10_ga10ecafb6284cb48bde01319b72dd548d}{storage\_get\_prefs}}(\mbox{\hyperlink{structuser_pref_info}{userPrefInfo}}\ *out);}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00427\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks10_ga282d408c2379357ac6ac1b98cbf907ba}{storage\_set\_prefs}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structuser_pref_info}{userPrefInfo}}\ *prefs);}
+\DoxyCodeLine{00428\ }
+\DoxyCodeLine{00436\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks10_gafecdd5e5972ee20f38816f87b30152e0}{storage\_get\_relay\_states}}(uint8\_t\ *out);}
+\DoxyCodeLine{00437\ }
+\DoxyCodeLine{00445\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks10_ga761b912e22cfdc3710e7facea80e564e}{storage\_set\_relay\_states}}(\textcolor{keyword}{const}\ uint8\_t\ *states);}
+\DoxyCodeLine{00446\ }
+\DoxyCodeLine{00454\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks10_gac76c462f26b55c553f69180c76b0729b}{storage\_commit\_now}}(uint32\_t\ timeout\_ms);}
+\DoxyCodeLine{00455\ }
+\DoxyCodeLine{00463\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks10_ga9b03bccea9582d81071026a75020a89a}{storage\_load\_defaults}}(uint32\_t\ timeout\_ms);}
+\DoxyCodeLine{00464\ }
+\DoxyCodeLine{00473\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks10_gab4c46386e5942f7de1f3a5be1a1b8fa9}{storage\_get\_sensor\_cal}}(uint8\_t\ channel,\ \mbox{\hyperlink{structhlw__calib__t}{hlw\_calib\_t}}\ *out);}
+\DoxyCodeLine{00474\ }
+\DoxyCodeLine{00483\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks10_ga358cb2af62e67be54bc8228d8074563d}{storage\_set\_sensor\_cal}}(uint8\_t\ channel,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structhlw__calib__t}{hlw\_calib\_t}}\ *cal);}
+\DoxyCodeLine{00484\ }
+\DoxyCodeLine{00493\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__tasks10_ga78c530f9c7ec4d2330e6d1a092df6dc0}{Storage\_EnqueueErrorCode}}(uint16\_t\ code);}
+\DoxyCodeLine{00494\ }
+\DoxyCodeLine{00503\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__tasks10_gac25626a70e6fe0baeaa167d47bed33d1}{Storage\_EnqueueWarningCode}}(uint16\_t\ code);}
+\DoxyCodeLine{00504\ }
+\DoxyCodeLine{00518\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks10_ga423080bfa834046c228f9b5e7a83999e}{storage\_dump\_error\_log\_async}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00519\ }
+\DoxyCodeLine{00533\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks10_gab41c0a3084c3335d1f8cbe0bb50ff3af}{storage\_dump\_warning\_log\_async}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00534\ }
+\DoxyCodeLine{00548\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks10_gae7a93a44989ffe1e7ed93e7f76613c89}{storage\_clear\_error\_log\_async}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00549\ }
+\DoxyCodeLine{00563\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__tasks10_gab4d1bea675979447fdffabc6d58310c5}{storage\_clear\_warning\_log\_async}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00564\ }
+\DoxyCodeLine{00566\ }
+\DoxyCodeLine{00567\ \textcolor{comment}{/*\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\ */}}
+\DoxyCodeLine{00568\ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CHANNEL\ LABEL\ API\ FUNCTIONS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00569\ \textcolor{comment}{/*\ \ \ \ \ \ \ \ (Declared\ in\ channel\_labels.h,\ listed\ here\ for\ reference)\ \ \ \ \ \ */}}
+\DoxyCodeLine{00570\ \textcolor{comment}{/*\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\ */}}
+\DoxyCodeLine{00571\ }
+\DoxyCodeLine{00572\ \textcolor{comment}{/*\ These\ functions\ are\ declared\ in\ channel\_labels.h:}}
+\DoxyCodeLine{00573\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00574\ \textcolor{comment}{\ *\ bool\ storage\_get\_channel\_label(uint8\_t\ channel,\ char\ *out,\ size\_t\ out\_len);}}
+\DoxyCodeLine{00575\ \textcolor{comment}{\ *\ bool\ storage\_set\_channel\_label(uint8\_t\ channel,\ const\ char\ *label);}}
+\DoxyCodeLine{00576\ \textcolor{comment}{\ *\ bool\ storage\_get\_all\_channel\_labels(char\ labels[ENERGIS\_NUM\_CHANNELS][26],\ size\_t}}
+\DoxyCodeLine{00577\ \textcolor{comment}{\ *\ label\_buf\_size);}}
+\DoxyCodeLine{00578\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00579\ }
+\DoxyCodeLine{00580\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ STORAGE\_TASK\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00581\ }
+
+\end{DoxyCode}

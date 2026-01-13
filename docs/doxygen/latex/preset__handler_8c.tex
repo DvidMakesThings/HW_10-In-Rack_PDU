@@ -1,0 +1,109 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/web\+\_\+handlers/preset\+\_\+handler.c File Reference}
+\hypertarget{preset__handler_8c}{}\label{preset__handler_8c}\index{src/Software/ENERGIS\_RTOS/src/web\_handlers/preset\_handler.c@{src/Software/ENERGIS\_RTOS/src/web\_handlers/preset\_handler.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for preset\+\_\+handler.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{preset__handler_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{preset__handler_8c_a5b298d60927ed3a77ac4a64429eff6f5}{PRESET\+\_\+\+HANDLER\+\_\+\+TAG}}~"{}$<$Preset Handler$>$"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{preset__handler_8c_a8c210587f97cbef60c84dc0bfba63c2f}{net\+\_\+beat}} (void)
+\item 
+static void \mbox{\hyperlink{preset__handler_8c_afbfb89004b7821413a0e3422eed78788}{json\+\_\+escape}} (const char \texorpdfstring{$\ast$}{*}src, char \texorpdfstring{$\ast$}{*}dst, size\+\_\+t dst\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Escape a string for safe JSON output. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__webui6_ga28b479f1bbf75790595aed33be757ee9}{handle\+\_\+config\+\_\+presets\+\_\+get}} (uint8\+\_\+t sock)
+\begin{DoxyCompactList}\small\item\em Handle GET /api/config-\/presets. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__webui6_gac567b4413a409d9902bed06e35f6a702}{handle\+\_\+config\+\_\+presets\+\_\+post}} (uint8\+\_\+t sock, char \texorpdfstring{$\ast$}{*}body)
+\begin{DoxyCompactList}\small\item\em Handle POST /api/config-\/presets. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__webui6_gaf78e3a135e8d65322fc8966722adfa76}{handle\+\_\+apply\+\_\+config\+\_\+post}} (uint8\+\_\+t sock, char \texorpdfstring{$\ast$}{*}body)
+\begin{DoxyCompactList}\small\item\em Handle POST /api/apply-\/config. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__webui6_gab0a20afe333957eef6db7e68e569467f}{handle\+\_\+startup\+\_\+config\+\_\+post}} (uint8\+\_\+t sock, char \texorpdfstring{$\ast$}{*}body)
+\begin{DoxyCompactList}\small\item\em Handle POST /api/startup-\/config. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/01-\/01
+\end{DoxyDate}
+HTTP handlers for configuration preset management. Provides REST-\/like API endpoints for saving, loading, and applying relay configuration presets.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{preset__handler_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{preset__handler_8c_a5b298d60927ed3a77ac4a64429eff6f5}\index{preset\_handler.c@{preset\_handler.c}!PRESET\_HANDLER\_TAG@{PRESET\_HANDLER\_TAG}}
+\index{PRESET\_HANDLER\_TAG@{PRESET\_HANDLER\_TAG}!preset\_handler.c@{preset\_handler.c}}
+\doxysubsubsection{\texorpdfstring{PRESET\_HANDLER\_TAG}{PRESET\_HANDLER\_TAG}}
+{\footnotesize\ttfamily \label{preset__handler_8c_a5b298d60927ed3a77ac4a64429eff6f5} 
+\#define PRESET\+\_\+\+HANDLER\+\_\+\+TAG~"{}$<$Preset Handler$>$"{}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{preset__handler_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{preset__handler_8c_afbfb89004b7821413a0e3422eed78788}\index{preset\_handler.c@{preset\_handler.c}!json\_escape@{json\_escape}}
+\index{json\_escape@{json\_escape}!preset\_handler.c@{preset\_handler.c}}
+\doxysubsubsection{\texorpdfstring{json\_escape()}{json\_escape()}}
+{\footnotesize\ttfamily \label{preset__handler_8c_afbfb89004b7821413a0e3422eed78788} 
+void json\+\_\+escape (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{src}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{dst}{, }\item[{size\+\_\+t}]{dst\+\_\+size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Escape a string for safe JSON output. 
+
+Replaces special characters with JSON escape sequences ("{} \textbackslash{} ~\newline
+ \textbackslash{}r \textbackslash{}t). Copies only printable characters \texorpdfstring{$>$}{>}= 0x20; truncates to fit destination.
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & Source C-\/string to escape (null-\/terminated). \\
+\hline
+{\em dst} & Destination buffer to receive escaped string. \\
+\hline
+{\em dst\+\_\+size} & Size of destination buffer in bytes (including terminator). \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{preset__handler_8c_afbfb89004b7821413a0e3422eed78788_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{preset__handler_8c_a8c210587f97cbef60c84dc0bfba63c2f}\index{preset\_handler.c@{preset\_handler.c}!net\_beat@{net\_beat}}
+\index{net\_beat@{net\_beat}!preset\_handler.c@{preset\_handler.c}}
+\doxysubsubsection{\texorpdfstring{net\_beat()}{net\_beat()}}
+{\footnotesize\ttfamily \label{preset__handler_8c_a8c210587f97cbef60c84dc0bfba63c2f} 
+void net\+\_\+beat (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{preset__handler_8c_a8c210587f97cbef60c84dc0bfba63c2f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{preset__handler_8c_a8c210587f97cbef60c84dc0bfba63c2f_icgraph}
+\end{center}
+\end{figure}

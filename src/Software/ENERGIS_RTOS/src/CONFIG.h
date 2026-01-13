@@ -6,7 +6,7 @@
  * @brief Configuration files for the Energis PDU firmware.
  * @{
  *
- * @defgroup config01 1. RTOS Configuration
+ * @defgroup config01 1. Hardware Configuration
  * @ingroup config
  * @brief Configuration header for ENERGIS PDU firmware.
  * @{
@@ -30,12 +30,6 @@
 
 #include "FreeRTOS.h"
 #include "event_groups.h"
-#include "hardware/clocks.h"
-#include "hardware/irq.h"
-#include "hardware/pwm.h"
-#include "hardware/structs/vreg_and_chip_reset.h"
-#include "hardware/structs/watchdog.h"
-#include "hardware/watchdog.h"
 #include "pico/bootrom.h"
 #include "pico/multicore.h"
 #include "pico/stdlib.h"
@@ -59,7 +53,10 @@
 #include "hardware/gpio.h"
 #include "hardware/i2c.h"
 #include "hardware/irq.h"
+#include "hardware/pwm.h"
 #include "hardware/spi.h"
+#include "hardware/structs/vreg_and_chip_reset.h"
+#include "hardware/structs/watchdog.h"
 #include "hardware/sync.h"
 #include "hardware/uart.h"
 #include "hardware/watchdog.h"
@@ -120,7 +117,11 @@
 #include "web_handlers/metrics_handler.h"
 /* clang-format on */
 
+/** @name External Handles
+ * @ingroup config01
+ * @{ */
 extern w5500_NetConfig eth_netcfg;
+/** @} */
 
 /********************************************************************************
  *                          GLOBAL CONFIGURATIONS                               *
@@ -129,14 +130,25 @@ extern w5500_NetConfig eth_netcfg;
 
 /********************** Button behavior for press durations *********************/
 // Button longpress duration thresholds
+/** @name Button Behavior
+ * @ingroup config01
+ * @{ */
 #define LONGPRESS_DT 2500
+/** @} */
 
 /************************* Debounce and Guard Timers ****************************/
+/** @name Guard/Timing
+ * @ingroup config01
+ * @{ */
 #define DEBOUNCE_MS 100u
 
 #define POST_GUARD_MS (DEBOUNCE_MS + 10u)
+/** @} */
 
 /*********************** Feature Enable/Disable Flags ***************************/
+/** @name Feature Flags
+ * @ingroup config01
+ * @{ */
 #define CFG_ENABLE_METRICS 1
 
 /**
@@ -150,8 +162,12 @@ extern w5500_NetConfig eth_netcfg;
 #ifndef SWITCH_DISPLAY_STRICT
 #define SWITCH_DISPLAY_STRICT 1
 #endif
+/** @} */
 
 /***************************** Network Defaults *********************************/
+/** @name Network Defaults
+ * @ingroup config01
+ * @{ */
 /**
  * @brief Default static IPv4 address octets.
  */
@@ -171,8 +187,12 @@ extern w5500_NetConfig eth_netcfg;
  * @brief Default IPv4 DNS server octets.
  */
 #define ENERGIS_DEFAULT_DNS {8, 8, 8, 8}
+/** @} */
 
 /***************************** Hardware Version *********************************/
+/** @name Versioning
+ * @ingroup config01
+ * @{ */
 /**
  * @brief Hardware version string.
  * @details Format: MAJOR.MINOR.PATCH
@@ -197,6 +217,7 @@ extern w5500_NetConfig eth_netcfg;
  * @details Encoded as: MAJOR*100 + MINOR*10 + PATCH
  */
 #define FIRMWARE_VERSION_LITERAL 110
+/** @} */
 
 /******************** Overcurrent Protection Thresholds ************************/
 /**
@@ -233,6 +254,7 @@ extern w5500_NetConfig eth_netcfg;
  * @details Offset from limit for RECOVERY threshold (exit lockout).
  */
 #define ENERGIS_CURRENT_RECOVERY_OFFSET_A 1.5f
+/** @} */
 
 /********************************************************************************
  *                          GLOBAL CONFIGURATIONS                               *
@@ -240,29 +262,44 @@ extern w5500_NetConfig eth_netcfg;
  ********************************************************************************/
 
 /* ---------- Default values  ---------- */
+/** @name Defaults
+ * @ingroup config01
+ * @{ */
 #define SWVERSION FIRMWARE_VERSION
 #define SW_REV FIRMWARE_VERSION_LITERAL
 #define HW_REV HARDWARE_VERSION_LITERAL
 #define DEFAULT_NAME "ENERGIS-" FIRMWARE_VERSION
 #define DEFAULT_LOCATION "Location"
+/** @} */
 
 /* ---------- SYSTEM CONSTANTS ---------- */
+/** @name System Constants
+ * @ingroup config01
+ * @{ */
 #define EEPROM_SIZE 0x8000
 #define LOGGER_STACK_SIZE 1024
 #define LOGGER_QUEUE_LEN 64
 #define LOGGER_MSG_MAX 128
+/** @} */
 
 /** Default DHCP mode for first boot. */
 #define ENERGIS_DEFAULT_DHCP EEPROM_NETINFO_STATIC
 
 /** Locally-administered unicast OUI for ENERGIS ("02:45:4E"). */
+/** @name MAC Address Prefix
+ * @ingroup config01
+ * @{ */
 #define ENERGIS_MAC_PREFIX0 0x02 /* local, unicast */
 #define ENERGIS_MAC_PREFIX1 0x45 /* 'E' */
 #define ENERGIS_MAC_PREFIX2 0x4E /* 'N' */
+/** @} */
 
 /* ---------- LOGGING FLAGS ---------- */
+/** @name Logging Flags
+ * @ingroup config01
+ * @{ */
 #ifndef DEBUG
-#define DEBUG 0
+#define DEBUG 1
 #endif
 
 #ifndef DEBUG_HEALTH
@@ -274,7 +311,7 @@ extern w5500_NetConfig eth_netcfg;
 #endif
 
 #ifndef INFO_HEALTH
-#define INFO_HEALTH 0
+#define INFO_HEALTH 1
 #endif
 
 #ifndef PLOT_EN
@@ -289,8 +326,12 @@ extern w5500_NetConfig eth_netcfg;
 #define UART_IFACE 1
 
 #endif
+/** @} */
 
 /* Ensure logging level flags exist even if commented out elsewhere */
+/** @name Logging Macros
+ * @ingroup config01
+ * @{ */
 #ifndef ERROR
 #define ERROR 1
 #endif
@@ -324,8 +365,7 @@ extern w5500_NetConfig eth_netcfg;
 #endif
 
 #if ERROR
-#define ERROR_PRINT(...)                                                                           \
-    (/*Switch_SetFaultLed(true, 10),*/ log_printf_force("[ERROR] " __VA_ARGS__))
+#define ERROR_PRINT(...) (Switch_SetFaultLed(true, 10), log_printf_force("[ERROR] " __VA_ARGS__))
 #else
 #define ERROR_PRINT(...) ((void)0)
 #endif
@@ -359,35 +399,51 @@ extern w5500_NetConfig eth_netcfg;
 #else
 #define ECHO(...) ((void)0)
 #endif
+/** @} */
 
 /********************************************************************************
  *                          PERIPHERAL ASSIGNMENTS                              *
  ********************************************************************************/
 // I2C Peripheral Assignments
+/** @name I2C Assignments
+ * @ingroup config01
+ * @{ */
 #define I2C0_SPEED 400000                           // 400 kHz fast mode
 #define I2C1_SPEED 400000                           // 400 kHz fast mode
 #define EEPROM_I2C i2c1                             // Using I2C1 for EEPROM communication
 #define MCP23017_RELAY_I2C i2c1                     // Using I2C1 for Relay Board MCP23017
 #define MCP23017_DISPLAY_I2C i2c0                   // Using I2C0 for Display Board MCP23017
 #define MCP23017_SELECTION_I2C MCP23017_DISPLAY_I2C // Using I2C0 for Selection Row MCP23017
+/** @} */
 
 // SPI Peripheral Assignments
+/** @name SPI Assignments
+ * @ingroup config01
+ * @{ */
 #define SPI_SPEED_W5500 40000000 // 40 MHz
 #define W5500_SPI_INSTANCE spi0  // SPI0 for Ethernet
+/** @} */
 
 /********************************************************************************
  *                            CONSOLE CONFIGURATIONS                            *
  ********************************************************************************/
 
+/** @name Console Configuration
+ * @ingroup config01
+ * @{ */
 #define UART_ID uart1
 #define BAUD_RATE 115200
 #define UART_CMD_BUF_LEN 1024
 #define UART_MAX_LINES 4
+/** @} */
 
 /********************************************************************************
  *                           HLW8032 UART CHANNELS                              *
  ********************************************************************************/
 
+/** @name HLW8032 UART Channels
+ * @ingroup config01
+ * @{ */
 #define HLW8032_UART_ID uart0
 #define HLW8032_BAUDRATE 4800
 #define HLW8032_FRAME_LENGTH 24
@@ -401,16 +457,24 @@ extern w5500_NetConfig eth_netcfg;
 #define TX_CH6 5
 #define TX_CH7 6
 #define TX_CH8 7
+/** @} */
 
 /********************************************************************************
  *                       MCU SPECIFIC DEFINES                                   *
  ********************************************************************************/
+/** @name MCU Specific
+ * @ingroup config01
+ * @{ */
 #define VREG_BASE 0x40064000
 #define VREG_VSEL_MASK 0x7
+/** @} */
 
 /********************************************************************************
  *                        RP2040 GPIO PIN ASSIGNMENTS                           *
  ********************************************************************************/
+/** @name GPIO Assignments
+ * @ingroup config01
+ * @{ */
 #define UART0_RX 0
 #define UART0_TX 1
 #define I2C1_SDA 2
@@ -445,10 +509,14 @@ extern w5500_NetConfig eth_netcfg;
 #define NC 27 // ADC Temp sensor (not used)
 #define PROC_LED 28
 #define ADC_12V_MEA 29
+/** @} */
 
 /********************************************************************************
  *                         ADC CHANNEL ASSIGNMENTS                              *
  ********************************************************************************/
+/** @name ADC Channels
+ * @ingroup config01
+ * @{ */
 #define ADC_VREF 3.0f
 #define ADC_MAX 4096.0f
 #define ADC_TOL 1.005f // +0.5% correction factor
@@ -457,10 +525,14 @@ extern w5500_NetConfig eth_netcfg;
 #define TEMP_SENSOR 4
 #define VBUS_DIVIDER 2.0f
 #define SUPPLY_DIVIDER 11.0f
+/** @} */
 
 /********************************************************************************
  *                       MCP23017 RELAY BOARD CONFIGURATIONS                    *
  ********************************************************************************/
+/** @name Relay Board Config
+ * @ingroup config01
+ * @{ */
 #define MCP_RELAY_ADDR 0x20 // 0b0100000
 #define REL_0 0
 #define REL_1 1
@@ -474,10 +546,14 @@ extern w5500_NetConfig eth_netcfg;
 #define MUX_B 9
 #define MUX_C 10
 #define MUX_EN 11
+/** @} */
 
 /********************************************************************************
  *                        MCP23017 DISPLAY BOARD CONFIGURATIONS                 *
  ********************************************************************************/
+/** @name Display Board Config
+ * @ingroup config01
+ * @{ */
 #define MCP_DISPLAY_ADDR 0x21 // 0b0100001
 #define OUT_1 0
 #define OUT_2 1
@@ -490,11 +566,15 @@ extern w5500_NetConfig eth_netcfg;
 #define FAULT_LED 8
 #define ETH_LED 9
 #define PWR_LED 10
+/** @} */
 
 /********************************************************************************
  *                        MCP23017 SELECTION ROW CONFIGURATIONS                 *
  ********************************************************************************/
 
+/** @name Selection Row Config
+ * @ingroup config01
+ * @{ */
 #define MCP_SELECTION_ADDR 0x23
 #define SEL_1 0
 #define SEL_2 1
@@ -504,6 +584,7 @@ extern w5500_NetConfig eth_netcfg;
 #define SEL_6 5
 #define SEL_7 6
 #define SEL_8 7
+/** @} */
 
 #endif /* CONFIG_H */
 

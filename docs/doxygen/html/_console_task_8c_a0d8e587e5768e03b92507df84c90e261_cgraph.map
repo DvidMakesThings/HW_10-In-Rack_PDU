@@ -1,0 +1,9 @@
+<map id="cmd_auto_cal_v" name="cmd_auto_cal_v">
+<area shape="rect" id="Node000001" title="Auto&#45;calibrate voltage for all channels (async)." alt="" coords="5,43,122,69"/>
+<area shape="rect" id="Node000002" href="$group__drivers04.html#gac3fd97d9d666bdf1a910b34170d0c38d" title="Start asynchronous voltage calibration (Vref/0A) for all channels." alt="" coords="194,5,329,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,45,178,36,179,42,122,50"/>
+<area shape="rect" id="Node000004" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="170,72,353,99"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="122,62,154,67,154,72,121,67"/>
+<area shape="rect" id="Node000003" href="$_h_l_w8032__driver_8c.html#acc3dced2405146bb247c8d852e88e56f" title="Reset sample accumulators for the current async calibration channel." alt="" coords="401,5,543,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="329,24,386,24,386,29,329,29"/>
+</map>

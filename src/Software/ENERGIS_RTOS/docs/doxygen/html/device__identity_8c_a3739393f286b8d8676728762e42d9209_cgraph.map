@@ -1,0 +1,7 @@
+<map id="is_unlock_window_open" name="is_unlock_window_open">
+<area shape="rect" id="Node000001" title="Check if the provisioning window is still open." alt="" coords="5,5,168,32"/>
+<area shape="rect" id="Node000002" href="$_button_task_8c.html#a50503dee6a29e98e633b16b1b8b550bc" title="Get current system time in milliseconds." alt="" coords="216,5,286,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="168,16,200,16,200,21,168,21"/>
+<area shape="rect" id="Node000003" href="$group__driver01.html#ga038e6418532b3e07206ada073cf02f22" title="Get monotonic millisecond timestamp since boot." alt="" coords="334,5,466,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="287,16,318,16,318,21,287,21"/>
+</map>

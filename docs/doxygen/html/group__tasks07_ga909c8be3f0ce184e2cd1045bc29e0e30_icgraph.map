@@ -1,0 +1,55 @@
+<map id="MeterTask_GetSystemTelemetry" name="MeterTask_GetSystemTelemetry">
+<area shape="rect" id="Node000001" title="Get the latest system ADC telemetry snapshot (non&#45;blocking)." alt="" coords="1403,309,1615,336"/>
+<area shape="rect" id="Node000002" href="$group__console__commands.html#ga05b2618d7fb383d2e3e64220ae18b64f" title="Calibrate RP2040 die temperature sensor and persist to EEPROM." alt="" coords="1203,5,1319,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1498,296,1480,242,1451,175,1409,105,1383,73,1353,46,1337,36,1319,29,1321,24,1339,31,1357,42,1387,70,1413,102,1456,172,1485,240,1503,294"/>
+<area shape="rect" id="Node000009" href="$group__console__commands.html#ga8e38607dcb0ccf8d67c20c04ec180e2c" title="Read 12V supply voltage (cached, no ADC access)." alt="" coords="1203,56,1319,83"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1495,296,1474,252,1444,198,1403,143,1380,118,1354,97,1318,81,1321,76,1356,92,1383,114,1407,140,1448,195,1479,250,1500,294"/>
+<area shape="rect" id="Node000010" href="$group__console__commands.html#gad9bba0b26dcd7a357fb045e27e9a8b84" title="Read and print RP2040 die temperature from cached telemetry." alt="" coords="1207,107,1314,133"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="1490,297,1467,263,1436,222,1397,182,1354,148,1314,131,1316,126,1356,143,1401,178,1440,219,1471,260,1494,294"/>
+<area shape="rect" id="Node000011" href="$group__console__commands.html#ga3c1141d2e9fdc2db5ea2311b97bbc8a3" title="Read USB supply voltage (cached, no ADC access)." alt="" coords="1211,157,1310,184"/>
+<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="1483,300,1427,248,1392,221,1354,198,1310,182,1312,177,1356,194,1395,217,1430,244,1487,296"/>
+<area shape="rect" id="Node000012" href="$group__console__commands.html#ga2fdaee030ce7c670740397a7853d0159" title="Print system information and health telemetry to the console." alt="" coords="1213,208,1308,235"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="1469,304,1415,276,1354,249,1308,235,1310,230,1356,244,1418,271,1472,299"/>
+<area shape="rect" id="Node000013" href="$group__snmp05.html#ga07d36a9715f0433b1988b447807b3015" title="SNMP getter for on&#45;die temperature [°C]." alt="" coords="1167,259,1355,285"/>
+<area shape="poly" id="edge16_Node000001_Node000013" title=" " alt="" coords="1425,308,1329,289,1330,283,1426,303"/>
+<area shape="rect" id="Node000014" href="$group__snmp05.html#ga49b2857ddaab294f0f73932f5c16eddb" title="SNMP getter for on&#45;die temperature sensor voltage [V]." alt="" coords="1181,309,1340,336"/>
+<area shape="poly" id="edge17_Node000001_Node000014" title=" " alt="" coords="1387,325,1341,325,1341,320,1387,320"/>
+<area shape="rect" id="Node000015" href="$group__snmp05.html#ga2618c7cb453d6e0a9d958bc932d38a9a" title="SNMP getter for V_SUPPLY rail voltage [V]." alt="" coords="1207,360,1314,387"/>
+<area shape="poly" id="edge18_Node000001_Node000015" title=" " alt="" coords="1426,342,1315,365,1314,360,1425,337"/>
+<area shape="rect" id="Node000016" href="$group__snmp05.html#gae1abd1add9071497c30abed555937772" title="SNMP getter for V_SUPPLY divider tap voltage [V]." alt="" coords="1185,411,1337,437"/>
+<area shape="poly" id="edge19_Node000001_Node000016" title=" " alt="" coords="1472,346,1418,374,1356,401,1321,413,1319,408,1354,396,1415,369,1469,342"/>
+<area shape="rect" id="Node000017" href="$group__snmp05.html#ga574d71ccd641800ba60092a96698aae3" title="SNMP getter for V_USB rail voltage [V]." alt="" coords="1219,461,1302,488"/>
+<area shape="poly" id="edge20_Node000001_Node000017" title=" " alt="" coords="1487,349,1430,401,1395,428,1356,452,1304,470,1302,465,1354,447,1392,424,1427,397,1483,345"/>
+<area shape="rect" id="Node000018" href="$group__snmp05.html#ga0c98fc2539c1c130d4ffba0bbf9224d3" title="SNMP getter for V_USB divider tap voltage [V]." alt="" coords="1197,512,1325,539"/>
+<area shape="poly" id="edge21_Node000001_Node000018" title=" " alt="" coords="1494,351,1471,385,1440,426,1401,467,1356,502,1326,516,1324,511,1354,498,1397,463,1436,423,1467,382,1490,348"/>
+<area shape="rect" id="Node000019" href="$group__webui3.html#gabec26dab8e118ff845c2fde12dc885cf" title="Handle GET /api/status endpoint and return JSON telemetry." alt="" coords="963,563,1115,589"/>
+<area shape="poly" id="edge22_Node000001_Node000019" title=" " alt="" coords="1501,352,1481,398,1451,454,1410,509,1385,533,1356,553,1328,567,1297,578,1234,590,1171,593,1116,590,1116,585,1171,588,1233,585,1296,573,1326,562,1354,548,1381,529,1406,505,1447,451,1477,396,1496,350"/>
+<area shape="rect" id="Node000023" href="$metrics__handler_8c.html#aa1bfbf45c38a0802fc8ca3ea2d9e5ce7" title="Render OpenMetrics exposition format to static buffer." alt="" coords="1207,613,1314,640"/>
+<area shape="poly" id="edge27_Node000001_Node000023" title=" " alt="" coords="1502,352,1483,403,1453,469,1411,537,1386,569,1357,597,1337,609,1316,618,1314,613,1335,605,1353,593,1382,565,1407,534,1449,467,1478,401,1497,350"/>
+<area shape="rect" id="Node000003" href="$_console_task_8c.html#a2d3b7ff8346f8d10aa45609664940712" title="Parse and dispatch command line to handler function." alt="" coords="972,132,1106,159"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1189,37,1168,46,1134,67,1103,90,1056,133,1052,129,1099,86,1131,62,1165,42,1187,33"/>
+<area shape="rect" id="Node000004" href="$_console_task_8c.html#a216857df22446940ad58d505886b0d7c" title="Main console task function." alt="" coords="793,169,890,196"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="957,163,891,176,890,171,956,158"/>
+<area shape="rect" id="Node000005" href="$group__tasks04.html#gad45ca7c142e8c2764d52b3d554ffcdeb" title="Initialize and start the console task." alt="" coords="426,203,549,229"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="778,191,549,213,549,208,777,186"/>
+<area shape="rect" id="Node000006" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,272,378,299"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="446,239,375,274,373,269,444,234"/>
+<area shape="rect" id="Node000007" href="$group__tasks01.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,272,263,299"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="295,288,263,288,263,283,295,283"/>
+<area shape="rect" id="Node000008" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,272,102,299"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="134,288,102,288,102,283,134,283"/>
+<area shape="poly" id="edge9_Node000009_Node000003" title=" " alt="" coords="1191,90,1168,97,1073,134,1071,129,1166,92,1189,85"/>
+<area shape="poly" id="edge11_Node000010_Node000003" title=" " alt="" coords="1192,130,1107,140,1106,135,1192,125"/>
+<area shape="poly" id="edge13_Node000011_Node000003" title=" " alt="" coords="1196,166,1106,156,1107,150,1196,161"/>
+<area shape="poly" id="edge15_Node000012_Node000003" title=" " alt="" coords="1197,208,1166,199,1071,162,1073,157,1168,193,1199,203"/>
+<area shape="rect" id="Node000020" href="$group__webui1.html#ga52702a4dcaff4540a9ddd10e4d5f4525" title="Process incoming HTTP connections and route requests." alt="" coords="772,563,911,589"/>
+<area shape="poly" id="edge23_Node000019_Node000020" title=" " alt="" coords="947,579,912,579,912,573,947,573"/>
+<area shape="rect" id="Node000021" href="$_net_task_8c.html#a80f30ff31d5f0d4f6696af42d015bce6" title="Network task main function." alt="" coords="597,385,724,412"/>
+<area shape="poly" id="edge24_Node000020_Node000021" title=" " alt="" coords="814,553,674,414,677,411,818,550"/>
+<area shape="rect" id="Node000022" href="$group__tasks06.html#ga3bb13f092e9d7a8e15776e5e8bf8e8c3" title="Create and start the Network Task with a deterministic enable gate." alt="" coords="440,297,535,324"/>
+<area shape="poly" id="edge25_Node000021_Node000022" title=" " alt="" coords="618,380,514,327,517,322,620,375"/>
+<area shape="poly" id="edge26_Node000022_Node000006" title=" " alt="" coords="424,302,378,294,379,289,425,297"/>
+<area shape="rect" id="Node000024" href="$group__webui6.html#gad0f01d3921a7ce18c26c85f120a43411" title="Handle HTTP GET request to /metrics endpoint." alt="" coords="959,613,1119,640"/>
+<area shape="poly" id="edge28_Node000023_Node000024" title=" " alt="" coords="1192,629,1119,629,1119,624,1192,624"/>
+<area shape="poly" id="edge29_Node000024_Node000020" title=" " alt="" coords="968,611,896,593,897,587,970,606"/>
+</map>

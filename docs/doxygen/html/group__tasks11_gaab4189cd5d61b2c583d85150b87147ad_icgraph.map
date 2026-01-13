@@ -1,0 +1,30 @@
+<map id="Switch_SetFaultLed" name="Switch_SetFaultLed">
+<area shape="rect" id="Node000001" title="Set FAULT LED on display MCP." alt="" coords="1152,107,1290,133"/>
+<area shape="rect" id="Node000002" href="$group__driver01.html#ga487df05238dab6da8ad4ab2d1d8e3a4d" title="Execute long&#45;press action for SET button." alt="" coords="943,5,1095,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1188,99,1149,72,1103,46,1073,35,1075,30,1105,42,1151,68,1191,95"/>
+<area shape="rect" id="Node000003" href="$_console_task_8c.html#a03fc4d00d9a82992876fb2cb87bade44" title="Clear error LED on display board." alt="" coords="974,56,1064,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1149,105,1063,83,1064,78,1151,100"/>
+<area shape="rect" id="Node000004" href="$_console_task_8c.html#a2d3b7ff8346f8d10aa45609664940712" title="Parse and dispatch command line to handler function." alt="" coords="747,107,881,133"/>
+<area shape="poly" id="edge9_Node000001_Node000004" title=" " alt="" coords="1136,123,882,123,882,117,1136,117"/>
+<area shape="rect" id="Node000010" href="$power__mgr_8c.html#a61f31550510de9c4f3196700e41216ff" title="Disable display LEDs except PWR_LED for standby indication." alt="" coords="934,157,1104,184"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="1150,140,1076,159,1074,154,1149,135"/>
+<area shape="rect" id="Node000012" href="$_button_task_8c.html#ac8adec5c9e99b51c4884034cf2e41275" title="Main button scanning and event processing task." alt="" coords="598,157,692,184"/>
+<area shape="poly" id="edge15_Node000001_Node000012" title=" " alt="" coords="1195,146,1154,175,1105,199,1051,213,1005,221,964,224,925,224,844,214,742,199,689,187,690,182,742,193,844,209,925,218,963,219,1004,216,1050,207,1103,193,1152,171,1192,142"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="960,87,872,109,871,103,958,81"/>
+<area shape="rect" id="Node000005" href="$_console_task_8c.html#a216857df22446940ad58d505886b0d7c" title="Main console task function." alt="" coords="597,107,694,133"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="732,123,694,123,694,117,732,117"/>
+<area shape="rect" id="Node000006" href="$group__tasks02.html#gad45ca7c142e8c2764d52b3d554ffcdeb" title="Initialize and start the console task." alt="" coords="426,107,549,133"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="581,123,549,123,549,117,581,117"/>
+<area shape="rect" id="Node000007" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,132,378,159"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="412,136,379,142,378,137,411,131"/>
+<area shape="rect" id="Node000008" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,132,263,159"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="295,148,263,148,263,143,295,143"/>
+<area shape="rect" id="Node000009" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,132,102,159"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="134,148,102,148,102,143,134,143"/>
+<area shape="rect" id="Node000011" href="$group__misc3.html#ga40de5935f9ba85f9141a9243b4d02c87" title="Enter standby mode." alt="" coords="742,157,886,184"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="919,173,887,173,887,168,919,168"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="726,173,693,173,693,168,726,168"/>
+<area shape="rect" id="Node000013" href="$group__tasks01.html#ga66ab3f6fa24432c008c6ea7b0ccddb5f" title="Initialize and start the button handling task." alt="" coords="431,157,544,184"/>
+<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="583,173,544,173,544,168,583,168"/>
+<area shape="poly" id="edge14_Node000013_Node000007" title=" " alt="" coords="415,161,378,154,379,149,416,155"/>
+</map>

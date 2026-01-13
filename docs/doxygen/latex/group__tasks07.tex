@@ -1,0 +1,335 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item Network Task 
+\end{DoxyEnumerate}}
+\hypertarget{group__tasks07}{}\label{group__tasks07}\index{7. Network Task@{7. Network Task}}
+
+
+Network stack manager for W5500 Ethernet, HTTP server, and SNMP agent.  
+
+
+Collaboration diagram for 7. Network Task\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{group__tasks07}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public API}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{group__tasks07_ga94392e9ee8263660e4b9065f0e6d501a}{ethernet\+\_\+apply\+\_\+network\+\_\+from\+\_\+storage}} (const \mbox{\hyperlink{structnetwork_info}{network\+Info}} \texorpdfstring{$\ast$}{*}ni)
+\begin{DoxyCompactList}\small\item\em Apply network configuration from Storage\+Task and initialize the W5500. \end{DoxyCompactList}\item 
+Base\+Type\+\_\+t \mbox{\hyperlink{group__tasks07_ga3bb13f092e9d7a8e15776e5e8bf8e8c3}{Net\+Task\+\_\+\+Init}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Create and start the Network Task with a deterministic enable gate. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks07_gac238017e1130a6a762cf67cf3d8228e4}{Net\+\_\+\+Is\+Ready}} (void)
+\begin{DoxyCompactList}\small\item\em Query network subsystem readiness status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Task Constants}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__tasks07_ga45e3beb061abbbefef96b890c3f2f86a}{NET\+\_\+\+TASK\+\_\+\+STACK\+\_\+\+SIZE}}~1024
+\begin{DoxyCompactList}\small\item\em Network task stack size. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__tasks07_ga4cb6721fd8b89e7292b80b8ec4f9f51c}{NET\+\_\+\+TASK\+\_\+\+CYCLE\+\_\+\+MS}}~10
+\begin{DoxyCompactList}\small\item\em Network task cycle time in milliseconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Network stack manager for W5500 Ethernet, HTTP server, and SNMP agent. 
+
+\begin{DoxyVersion}{Version}
+1.\+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/07
+\end{DoxyDate}
+This module implements a Free\+RTOS task for managing all network operations on the PDU. It is the exclusive owner of the W5500 Ethernet controller and coordinates HTTP and SNMP services with robust link supervision and standby mode support.
+
+Architecture\+:
+\begin{DoxyItemize}
+\item Single-\/owner model\+: Net\+Task has exclusive access to W5500 hardware
+\item Manages three W5500 hardware sockets\+: HTTP (0), SNMP agent (1), SNMP trap (2)
+\item Supervises PHY link status with automatic reinitialization on link-\/up events
+\item Integrates with Power\+Mgr for standby mode support
+\item Coordinates with Storage\+Task for network configuration loading
+\item Provides visual feedback via ETH LED (solid when linked, blinking when down)
+\end{DoxyItemize}
+
+Key Features\+:
+\begin{DoxyItemize}
+\item W5500 Ethernet controller management (SPI, GPIO, reset sequencing)
+\item HTTP web server for PDU control interface and metrics endpoint
+\item SNMP agent for network management protocol support
+\item SNMP trap sender for proactive event notifications
+\item Robust link detection and automatic recovery from cable disconnection
+\item Full reinitialization on each link-\/up event to prevent stale connections
+\item Standby mode support\+: suspends all operations when system enters standby
+\item ETH LED control\+: solid ON when linked, blinking at 1 Hz when unlinked
+\item Graceful degradation\+: system operates normally even without Ethernet
+\end{DoxyItemize}
+
+Network Configuration\+:
+\begin{DoxyItemize}
+\item Loaded from EEPROM via Storage\+Task at boot
+\item Supports both static IP and DHCP modes
+\item Configurable IP address, subnet mask, gateway, DNS server
+\item Fixed MAC address (device-\/specific or factory default)
+\item Configuration cached for rapid reinitialization on link events
+\end{DoxyItemize}
+
+Link Supervision\+:
+\begin{DoxyItemize}
+\item Polls W5500 PHY status continuously during RUN mode
+\item Detects link-\/up transitions\+: triggers full W5500 reset and service restart
+\item Detects link-\/down transitions\+: enables ETH LED blinking indicator
+\item Prevents ERR\+\_\+\+CONNECTION\+\_\+\+REFUSED after cable reconnection via full reinit
+\item Short timeout guards prevent indefinite blocking during reinitialization
+\end{DoxyItemize}
+
+Service Management\+:
+\begin{DoxyItemize}
+\item HTTP server\+: processes incoming requests with cooperative scheduling
+\item SNMP agent\+: polls for incoming requests, rate-\/limited to prevent starvation
+\item Health monitoring\+: tracks long-\/blocking operations and reports to watchdog
+\item Cooperative pacing\+: yields between HTTP and SNMP operations to maintain responsiveness
+\end{DoxyItemize}
+
+Standby Mode Behavior\+:
+\begin{DoxyItemize}
+\item When system enters STANDBY via \doxylink{group__misc3_ga40de5935f9ba85f9141a9243b4d02c87}{Power\+\_\+\+Enter\+Standby()}\+:
+\begin{DoxyItemize}
+\item W5500 held in hardware reset by power manager
+\item All network processing suspended
+\item Maintains reduced heartbeat (500ms) for watchdog
+\end{DoxyItemize}
+\item On exit from STANDBY via \doxylink{group__misc3_gafa726e9d0fc140faa3f54c6905ac2520}{Power\+\_\+\+Exit\+Standby()}\+:
+\begin{DoxyItemize}
+\item Detects state transition and calls \doxylink{_net_task_8c_a69d051e31c6438ed93d21deb141e4795}{net\+\_\+reinit\+\_\+from\+\_\+cache()}
+\item Restores W5500 configuration and restarts services
+\item Re-\/evaluates link status and updates ETH LED accordingly
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Error Handling\+:
+\begin{DoxyItemize}
+\item Graceful boot without Ethernet\+: rest of system operates normally
+\item Hardware init failure\+: enters safe loop with heartbeat only
+\item Configuration load failure\+: applies factory defaults automatically
+\item Link supervision\+: handles intermittent connections robustly
+\item All failures logged via structured error codes to EEPROM
+\end{DoxyItemize}
+
+Usage Pattern\+:
+\begin{DoxyEnumerate}
+\item Call Net\+Task\+\_\+\+Init(true) during system initialization (after Storage\+Task)
+\item Query readiness via \doxylink{group__tasks07_gac238017e1130a6a762cf67cf3d8228e4}{Net\+\_\+\+Is\+Ready()} before accessing network functions
+\item Task autonomously manages W5500, HTTP, SNMP, and link supervision
+\item No explicit shutdown needed; standby mode handled automatically
+\end{DoxyEnumerate}
+
+Integration Points\+:
+\begin{DoxyItemize}
+\item Storage\+Task\+: loads network configuration from EEPROM
+\item Power\+Mgr\+: respects standby mode and coordinates W5500 reset control
+\item Switch\+Task\+: controls ETH LED for visual link status feedback
+\item Health monitor\+: sends heartbeat and reports long-\/blocking operations
+\item HTTP handlers\+: serve web interface and metrics endpoint
+\item SNMP handlers\+: respond to management queries and send traps
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Net\+Task must be initialized after Storage\+Task due to configuration dependency. 
+
+No other task should access W5500 hardware or SPI interface directly. 
+
+System continues operating normally even if Ethernet hardware fails. 
+
+HTTP server runs on TCP port 80; SNMP agent on UDP port 161.
+\end{DoxyNote}
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{group__tasks07_doc-define-members}
+\doxysubsubsection{Macro Definition Documentation}
+\Hypertarget{group__tasks07_ga4cb6721fd8b89e7292b80b8ec4f9f51c}\index{7. Network Task@{7. Network Task}!NET\_TASK\_CYCLE\_MS@{NET\_TASK\_CYCLE\_MS}}
+\index{NET\_TASK\_CYCLE\_MS@{NET\_TASK\_CYCLE\_MS}!7. Network Task@{7. Network Task}}
+\doxysubsubsubsection{\texorpdfstring{NET\_TASK\_CYCLE\_MS}{NET\_TASK\_CYCLE\_MS}}
+{\footnotesize\ttfamily \label{group__tasks07_ga4cb6721fd8b89e7292b80b8ec4f9f51c} 
+\#define NET\+\_\+\+TASK\+\_\+\+CYCLE\+\_\+\+MS~10}
+
+
+
+Network task cycle time in milliseconds. 
+
+\Hypertarget{group__tasks07_ga45e3beb061abbbefef96b890c3f2f86a}\index{7. Network Task@{7. Network Task}!NET\_TASK\_STACK\_SIZE@{NET\_TASK\_STACK\_SIZE}}
+\index{NET\_TASK\_STACK\_SIZE@{NET\_TASK\_STACK\_SIZE}!7. Network Task@{7. Network Task}}
+\doxysubsubsubsection{\texorpdfstring{NET\_TASK\_STACK\_SIZE}{NET\_TASK\_STACK\_SIZE}}
+{\footnotesize\ttfamily \label{group__tasks07_ga45e3beb061abbbefef96b890c3f2f86a} 
+\#define NET\+\_\+\+TASK\+\_\+\+STACK\+\_\+\+SIZE~1024}
+
+
+
+Network task stack size. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{group__tasks07_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__tasks07_ga94392e9ee8263660e4b9065f0e6d501a}\index{7. Network Task@{7. Network Task}!ethernet\_apply\_network\_from\_storage@{ethernet\_apply\_network\_from\_storage}}
+\index{ethernet\_apply\_network\_from\_storage@{ethernet\_apply\_network\_from\_storage}!7. Network Task@{7. Network Task}}
+\doxysubsubsubsection{\texorpdfstring{ethernet\_apply\_network\_from\_storage()}{ethernet\_apply\_network\_from\_storage()}}
+{\footnotesize\ttfamily \label{group__tasks07_ga94392e9ee8263660e4b9065f0e6d501a} 
+bool ethernet\+\_\+apply\+\_\+network\+\_\+from\+\_\+storage (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structnetwork_info}{network\+Info}} \texorpdfstring{$\ast$}{*}}]{ni}{}\end{DoxyParamCaption})}
+
+
+
+Apply network configuration from Storage\+Task and initialize the W5500. 
+
+Converts persistent network configuration into W5500 register settings and performs low-\/level chip initialization. Used during boot and on link-\/up events to configure IP, subnet, gateway, DNS, MAC, and mode (DHCP/static).
+
+Configuration Process\+:
+\begin{DoxyEnumerate}
+\item Map \doxylink{structnetwork_info}{network\+Info} structure to \doxylink{structw5500___net_config}{w5500\+\_\+\+Net\+Config} format
+\item Call \doxylink{group__drivers03_ga4c79e652fe1be0ffee1445f8411cce51}{w5500\+\_\+chip\+\_\+init()} to program chip registers
+\item Verify configuration and log results
+\item Return success/failure status
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em ni} & Pointer to \doxylink{structnetwork_info}{network\+Info} structure loaded from EEPROM.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if W5500 initialized successfully with provided configuration. 
+
+false if hardware init failed or PHY link is not present.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Link absence is not treated as fatal; system continues without Ethernet. 
+
+Safe to call multiple times; used for reinitialization on link events. 
+
+Logs configuration to console via \doxylink{group__drivers03_gabe918beda4e8c4b4a42c7e96f471ff1c}{w5500\+\_\+print\+\_\+network()}.
+\end{DoxyNote}
+Apply network configuration from Storage\+Task and initialize the W5500.
+
+Apply network configuration from storage to W5500 Ethernet controller.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ni} & Pointer to \doxylink{structnetwork_info}{network\+Info} (ip, gw, sn, dns, mac, dhcp mode) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success, false otherwise
+\end{DoxyReturn}
+This function maps Storage\+Task schema to the driver config struct, calls w5500\+\_\+set\+\_\+network and then w5500\+\_\+chip\+\_\+init. It allows Net\+Task to configure networking without needing to know the internal type. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks07_ga94392e9ee8263660e4b9065f0e6d501a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks07_ga94392e9ee8263660e4b9065f0e6d501a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__tasks07_gac238017e1130a6a762cf67cf3d8228e4}\index{7. Network Task@{7. Network Task}!Net\_IsReady@{Net\_IsReady}}
+\index{Net\_IsReady@{Net\_IsReady}!7. Network Task@{7. Network Task}}
+\doxysubsubsubsection{\texorpdfstring{Net\_IsReady()}{Net\_IsReady()}}
+{\footnotesize\ttfamily \label{group__tasks07_gac238017e1130a6a762cf67cf3d8228e4} 
+bool Net\+\_\+\+Is\+Ready (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Query network subsystem readiness status. 
+
+Provides a thread-\/safe method to check whether Net\+Task has been created and is operational. Used for deterministic sequencing to ensure network subsystem is available before accessing network-\/dependent functions.
+
+\begin{DoxyReturn}{Returns}
+true if Net\+Task has been created successfully and is running. 
+
+false if \doxylink{group__tasks07_ga3bb13f092e9d7a8e15776e5e8bf8e8c3}{Net\+Task\+\_\+\+Init()} was not called, called with enable=false, or initialization failed.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Based on task handle existence, providing immediate readiness indication. 
+
+Safe to call from any task context or early in boot before scheduler starts.
+\end{DoxyNote}
+Query network subsystem readiness status.
+
+\begin{DoxyReturn}{Returns}
+true if Net\+Task has been successfully created, false otherwise. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks07_gac238017e1130a6a762cf67cf3d8228e4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__tasks07_ga3bb13f092e9d7a8e15776e5e8bf8e8c3}\index{7. Network Task@{7. Network Task}!NetTask\_Init@{NetTask\_Init}}
+\index{NetTask\_Init@{NetTask\_Init}!7. Network Task@{7. Network Task}}
+\doxysubsubsubsection{\texorpdfstring{NetTask\_Init()}{NetTask\_Init()}}
+{\footnotesize\ttfamily \label{group__tasks07_ga3bb13f092e9d7a8e15776e5e8bf8e8c3} 
+Base\+Type\+\_\+t Net\+Task\+\_\+\+Init (\begin{DoxyParamCaption}\item[{bool}]{enable}{}\end{DoxyParamCaption})}
+
+
+
+Create and start the Network Task with a deterministic enable gate. 
+
+Creates the Net\+Task Free\+RTOS task and waits for Storage\+Task readiness before proceeding. Implements deterministic boot sequencing to ensure configuration is available before network initialization.
+
+Initialization Sequence\+:
+\begin{DoxyEnumerate}
+\item Wait for Storage\+Task readiness with 5-\/second timeout
+\item Spawn Net\+Task with 4KB stack at NETTASK\+\_\+\+PRIORITY
+\item Task internally waits for \doxylink{group__tasks10_gafeb6e0067e67c68af21f0eeae1d1279a}{storage\+\_\+wait\+\_\+ready()} before loading config
+\item Task applies network config and starts HTTP/\+SNMP services
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em enable} & Set true to initialize and start task, false to skip initialization deterministically without side effects.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pd\+PASS on successful initialization or when skipped (enable=false). 
+
+pd\+FAIL if task creation fails.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Call after Switch\+Task\+\_\+\+Init(true) in boot sequence (step 6/7). 
+
+Logs error codes on failure via error logger if enabled. 
+
+Idempotent\+: safe to call multiple times, creates resources only once. 
+
+Task begins autonomous operation immediately after creation.
+\end{DoxyNote}
+See \doxylink{_net_task_8h}{nettask.\+h} for full API documentation.
+
+Implementation notes\+:
+\begin{DoxyItemize}
+\item Waits up to 5 seconds for Storage\+Task readiness before proceeding
+\item Spawns task with 4KB stack at NETTASK\+\_\+\+PRIORITY
+\item Task internally handles configuration loading and service startup
+\item Logs error code if task creation fails 
+\end{DoxyItemize}Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks07_ga3bb13f092e9d7a8e15776e5e8bf8e8c3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks07_ga3bb13f092e9d7a8e15776e5e8bf8e8c3_icgraph}
+\end{center}
+\end{figure}

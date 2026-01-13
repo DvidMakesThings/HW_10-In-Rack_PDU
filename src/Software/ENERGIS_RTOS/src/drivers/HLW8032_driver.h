@@ -1,13 +1,14 @@
 /**
- * @file HLW8032_driver.h
+ * @file src/drivers/HLW8032_driver.h
  * @author DvidMakesThings - David Sipos
  *
  * @defgroup drivers04 4. HLW8032 Power Measurement Driver
  * @ingroup drivers
  * @brief RTOS-safe driver for HLW8032 power measurement IC
  * @{
- * @version 1.1.0
- * @date 2025-12-11
+ *
+ * @version 12.0.0
+ * @date 2026-01-07
  *
  * @details RTOS-safe driver for interfacing with HLW8032 power measurement chips.
  * Features:
@@ -25,6 +26,88 @@
  * - Multiplexer control via MCP23017 port B (MUX_A/B/C, MUX_EN)
  * - Frame format: 24 bytes starting with 0x55 0x5A
  *
+ * Calibration Overview (Async):
+ *
+ * Purpose
+ * - Provide a safe, non-blocking way to calibrate HLW8032 channels while the system
+ *   continues normal operation. Results are persisted per-channel to EEPROM.
+ *
+ * High-level Flow
+ * 1) Start (arm state machine)
+ *    - ZERO (0V/0A): zero offsets for V and I across one or all channels
+ *      Functions: hlw8032_calibration_start_zero_all(), hlw8032_calibration_start_zero_single(ch)
+ *    - VOLT (Vref/0A): voltage gain factor using a known mains reference (current ~0A)
+ *      Functions: hlw8032_calibration_start_voltage_all(refV),
+ * hlw8032_calibration_start_voltage_single(ch, refV)
+ *    - CURR (Iref): current gain factor using a known measured current
+ *      Functions:
+ *        - hlw8032_calibration_start_current_single(ch, refI): single-channel
+ *        - hlw8032_calibration_start_current_all(refI): driver sequences all channels
+ *    - Single-channel runs reuse the ALL mode internally but limit the window to
+ *      current_channel=ch, total_channels=ch+1.
+ *
+ * 2) Sampling (cooperative)
+ *    - Regular calls to hlw8032_read()/hlw8032_poll_once() feed frames to the engine.
+ *    - Only valid frames (checksum/state OK) contribute to accumulated sums:
+ *      VolPar/VolData and CurPar/CurData.
+ *    - Collection stops per-channel after a fixed target: HLW_CAL_SAMPLES_PER_CH (see .c).
+ *
+ * 3) Finish per channel (compute + persist)
+ *    - ZERO mode: measure offsets at 0V/0A
+ *      voltage_offset = (VolPar/VolData) * voltage_factor
+ *      current_offset = (CurPar/CurData) * current_factor
+ *    - VOLT mode: compute new voltage_factor using reference voltage
+ *      voltage_factor_new = (Vref + voltage_offset) * (VolData/VolPar)
+ *    - CURR mode: compute new current_factor using reference current
+ *      current_factor_new = (Iref + current_offset) * (CurData/CurPar)
+ *    - The updated per-channel record (factors, offsets, flags) is written immediately to
+ *      EEPROM via EEPROM_WriteSensorCalibrationForChannel(ch, &cal).
+ *    - On EEPROM write failure, the channel is marked failed; processing continues.
+ *
+ * 4) Advance or complete (sequence control)
+ *    - For ALL-channel runs: advance to the next channel and repeat sampling.
+ *    - For single-channel runs: complete and clear the running flag.
+ *    - A summary is logged: total ok vs failed channels.
+ *
+ * Persistence and Load
+ * - Each channel’s calibration is committed to EEPROM at the moment its computation finishes.
+ * - On boot, hlw8032_load_calibration() loads all channels into RAM, sanitizes values,
+ *   and falls back to nominal defaults if reads fail.
+ *
+ * Concurrency & Safety
+ * - Only one calibration can run at a time; starts will fail if already running.
+ * - Sampling is cooperative with normal operation (no busy loops); UART access is mutexed.
+ * - Power loss mid-run is safe: completed channels are already persisted; incomplete ones
+ *   remain unchanged.
+ * - Console "ALL" for current calibration invokes
+ *   hlw8032_calibration_start_current_all(refI). The driver sequences channels 0..7
+ *   internally and the polling loop pins to the active channel to accelerate
+ *   sampling. No parallel calibrations are executed. The console may wait on
+ *   `hlw8032_calibration_is_running()` until completion.
+ *
+ * Constraints & Recommendations
+ * - ZERO: ensure all relays OFF (0V/0A) on the target channels.
+ * - VOLT: ensure a stable mains reference across the selected channels; keep current ~0A.
+ * - CURR: apply a known current on the selected channel and measure with a DMM.
+ * - Best accuracy: perform ZERO, then VOLT, then CURR (for the needed channels).
+ *
+ * Monitoring & Control
+ * - Check `hlw8032_calibration_is_running()` to see if a sequence is active.
+ * - Progress and per-channel results are logged by the driver.
+ * - Console commands provide a user-facing interface:
+ *   AUTO_CAL_ZERO [ch|ALL]
+ *   AUTO_CAL_V <voltage> [ch|ALL]
+ *   AUTO_CAL_I <current> <ch|ALL>
+ *   Note: For current calibration with ALL, the console handler blocks between
+ *   channels while the async engine runs each channel to completion.
+ *
+ * Timing
+ * - Total time depends on HLW_CAL_SAMPLES_PER_CH and UART throughput (4800 baud) and
+ *   the poll cadence. Expect a short per-channel dwell while samples accumulate.
+ *
+ * Idempotency
+ * - Re-running a calibration overwrites that channel’s EEPROM record with the newest values.
+ *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
  */
@@ -37,6 +120,9 @@
 /* =====================  HLW8032 Constants  =============================== */
 
 /** @brief HLW8032 nominal voltage calibration factor (volts) */
+/** @name HLW8032 Constants
+ *  @ingroup drivers04
+ *  @{ */
 #define HLW8032_VF 1.88f
 
 /** @brief HLW8032 nominal current calibration factor (amps) */
@@ -50,10 +136,14 @@
 
 /** @brief Hardware settling time after MUX change (microseconds) */
 #define MUX_SETTLE_US 1000
+/** @} */
 
 /* =====================  RTOS Synchronization  ============================ */
 
 /** @brief UART mutex for HLW8032 communication (extern, defined in .c) */
+/** @var uartHlwMtx
+ *  @ingroup drivers04
+ */
 extern SemaphoreHandle_t uartHlwMtx;
 
 /* =====================  Calibration Structure  =========================== */
@@ -67,6 +157,10 @@ extern SemaphoreHandle_t uartHlwMtx;
 typedef hlw_calib_t hlw_calib_t;
 
 /* =====================  Public API Functions  ============================ */
+
+/** @name Public API
+ *  @ingroup drivers04
+ *  @{ */
 
 /**
  * @brief Initialize HLW8032 driver subsystem.
@@ -273,13 +367,44 @@ bool hlw8032_cycle_complete(void);
 /* =====================  Calibration Functions  =========================== */
 
 /**
+ * @brief Start asynchronous current calibration for a single channel.
+ *
+ * @details
+ * - Measures a known reference current on the specified channel and computes
+ *   the current gain factor (keeping offsets as determined by zero-cal).
+ * - Runs cooperatively alongside normal HLW polling; persists to EEPROM upon
+ *   per-channel completion.
+ *
+ * Requirements:
+ * - Provide a stable, measured current on the target channel (use a DMM).
+ * - Zero and voltage calibration should be completed beforehand for best
+ *   accuracy.
+ *
+ * @param channel     Channel index [0..7]
+ * @param ref_current Reference current in amps (must be > 0.0f)
+ * @return true if calibration sequence successfully started
+ * @return false if another calibration is running or parameters invalid
+ */
+bool hlw8032_calibration_start_current_single(uint8_t channel, float ref_current);
+
+/**
  * @brief Start asynchronous current calibration for all channels.
+ *
+ * @details
+ * - Runs a non-blocking calibration sequence across channels 0..7 using the
+ *   provided reference current. The engine advances channel-by-channel and
+ *   persists each result.
+ * - Use `hlw8032_calibration_is_running()` to monitor progress.
+ *
+ * Requirements:
+ * - Provide the same known current when prompted for each channel.
+ * - Zero and voltage calibration should be completed beforehand for best accuracy.
  *
  * @param ref_current Reference current in amps (must be > 0.0f)
  * @return true if calibration sequence successfully started
  * @return false if another calibration is running or ref_current invalid
  */
-bool hlw8032_calibration_start_current_all(uint8_t channel, float ref_current);
+bool hlw8032_calibration_start_current_all(float ref_current);
 
 /**
  * @brief Load calibration data from EEPROM for all channels.
@@ -313,6 +438,24 @@ void hlw8032_load_calibration(void);
 bool hlw8032_calibration_start_zero_all(void);
 
 /**
+ * @brief Start asynchronous zero calibration (0V/0A) for a single channel.
+ *
+ * @details
+ * Reuses the zero-calibration engine used for all channels but restricts the
+ * calibration window to the specified channel only. Sampling and processing
+ * are driven by the normal HLW polling loop.
+ *
+ * Requirements:
+ * - The selected channel must be OFF and unloaded (0V/0A)
+ * - No other calibration may be running concurrently
+ *
+ * @param channel Channel index [0..7]
+ * @return true if the sequence was successfully started
+ * @return false if busy or parameters invalid
+ */
+bool hlw8032_calibration_start_zero_single(uint8_t channel);
+
+/**
  * @brief Start asynchronous voltage calibration for all channels.
  *
  * @details
@@ -332,6 +475,24 @@ bool hlw8032_calibration_start_zero_all(void);
  * @note Does not block; progress is logged asynchronously.
  */
 bool hlw8032_calibration_start_voltage_all(float ref_voltage);
+
+/**
+ * @brief Start asynchronous voltage calibration for a single channel.
+ *
+ * @details
+ * Reuses the same engine as the all-channels voltage calibration but restricts
+ * the calibration window to the specified channel only.
+ *
+ * Requirements:
+ * - The selected channel must see the stable reference mains voltage
+ * - Current should be 0A during voltage calibration
+ *
+ * @param channel     Channel index [0..7]
+ * @param ref_voltage Reference voltage in volts (must be > 0.0f)
+ * @return true if calibration sequence successfully started
+ * @return false if another calibration is running or parameters invalid
+ */
+bool hlw8032_calibration_start_voltage_single(uint8_t channel, float ref_voltage);
 
 /**
  * @brief Query whether an asynchronous calibration sequence is currently running.
@@ -364,8 +525,8 @@ void hlw8032_print_calibration(uint8_t channel);
  * @note Useful for debugging cache corruption or channel cross-contamination issues
  */
 void hlw8032_dump_cache(void);
+/** @} */
 
 #endif /* HLW8032_DRIVER_H */
 
-/** @} */
 /** @} */

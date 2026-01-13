@@ -1,0 +1,500 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item Overcurrent Protection Module 
+\end{DoxyEnumerate}}
+\hypertarget{group__tasks08}{}\label{group__tasks08}\index{8. Overcurrent Protection Module@{8. Overcurrent Protection Module}}
+
+
+High-\/priority overcurrent monitoring and protection system.  
+
+
+Collaboration diagram for 8. Overcurrent Protection Module\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=284pt]{group__tasks08}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structovercurrent__status__t}{overcurrent\+\_\+status\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Overcurrent protection status snapshot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}{overcurrent\+\_\+state\+\_\+t}} \{ \mbox{\hyperlink{group__tasks08_gga5fece384d5a09708e5d58632d565f1eda04b503ade97db147ebde7367339b8079}{OC\+\_\+\+STATE\+\_\+\+NORMAL}} = 0
+, \mbox{\hyperlink{group__tasks08_gga5fece384d5a09708e5d58632d565f1edad71568499048d4fcc9154061c05048db}{OC\+\_\+\+STATE\+\_\+\+WARNING}}
+, \mbox{\hyperlink{group__tasks08_gga5fece384d5a09708e5d58632d565f1eda0aa318f855c67136cdaf8de3c44da5cd}{OC\+\_\+\+STATE\+\_\+\+CRITICAL}}
+, \mbox{\hyperlink{group__tasks08_gga5fece384d5a09708e5d58632d565f1eda4e7efb0775a0eb8c255a5c39450ea6fc}{OC\+\_\+\+STATE\+\_\+\+LOCKOUT}}
+ \}
+\begin{DoxyCompactList}\small\item\em Overcurrent protection state levels. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Public API}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__tasks08_gabaeebc1f043da757f96bac70bb8ac8ba}{Overcurrent\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the overcurrent protection module. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}{overcurrent\+\_\+state\+\_\+t}} \mbox{\hyperlink{group__tasks08_gabb9789239f4931927587b1b236b1e315}{Overcurrent\+\_\+\+Update}} (float total\+\_\+current\+\_\+a)
+\begin{DoxyCompactList}\small\item\em Update overcurrent protection with new total current measurement. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks08_ga4bf47606df6e10c610300fdf1a2573b5}{Overcurrent\+\_\+\+Is\+Switching\+Allowed}} (void)
+\begin{DoxyCompactList}\small\item\em Check if channel switching is currently allowed. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks08_ga49359b42016742671b8c5ff517c8687c}{Overcurrent\+\_\+\+Can\+Turn\+On}} (uint8\+\_\+t channel)
+\begin{DoxyCompactList}\small\item\em Check if turning ON a specific channel is allowed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks08_ga05298731bbc499e043d911ec1ca59879}{Overcurrent\+\_\+\+Record\+Channel\+On}} (uint8\+\_\+t channel)
+\begin{DoxyCompactList}\small\item\em Record that a channel was just turned ON. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks08_gaa9aab2a7bfb3274872c5f4f162af177e}{Overcurrent\+\_\+\+Get\+Status}} (\mbox{\hyperlink{structovercurrent__status__t}{overcurrent\+\_\+status\+\_\+t}} \texorpdfstring{$\ast$}{*}status)
+\begin{DoxyCompactList}\small\item\em Get current overcurrent protection status. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}{overcurrent\+\_\+state\+\_\+t}} \mbox{\hyperlink{group__tasks08_ga01d97571c761ab643753f677d3088684}{Overcurrent\+\_\+\+Get\+State}} (void)
+\begin{DoxyCompactList}\small\item\em Get current protection state. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__tasks08_ga1fdf004c7e21b587d490854fcc9505ff}{Overcurrent\+\_\+\+Get\+Limit}} (void)
+\begin{DoxyCompactList}\small\item\em Get the configured current limit. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks08_gadc9a057a3aef40a2ec56e65c2e55daab}{Overcurrent\+\_\+\+Clear\+Lockout}} (void)
+\begin{DoxyCompactList}\small\item\em Manually clear lockout state (for recovery/reset). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+High-\/priority overcurrent monitoring and protection system. 
+
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/12-\/11
+\end{DoxyDate}
+This module provides real-\/time overcurrent protection for the ENERGIS PDU. It monitors the total current draw across all 8 channels and implements a tiered response system\+:
+
+{\bfseries{Threshold Levels (relative to ENERGIS\+\_\+\+CURRENT\+\_\+\+LIMIT\+\_\+A)\+:}}
+\begin{DoxyItemize}
+\item WARNING (Limit -\/ 1.\+0A)\+: Raises ERR\+\_\+\+SEV\+\_\+\+ERROR, logs warning
+\item CRITICAL (Limit -\/ 0.\+25A)\+: Raises ERR\+\_\+\+FATAL\+\_\+\+ERROR, trips last channel, locks switching
+\item RECOVERY (Limit -\/ 2.\+0A)\+: Clears lockout when current falls below this level
+\end{DoxyItemize}
+
+{\bfseries{Regional Limits\+:}}
+\begin{DoxyItemize}
+\item EU Version\+: 10.\+0A (IEC/\+ENEC)
+\item US Version\+: 15.\+0A (UL/\+CSA)
+\end{DoxyItemize}
+
+{\bfseries{Architecture\+:}}
+\begin{DoxyItemize}
+\item Meter\+Task calls \doxylink{group__tasks08_gabb9789239f4931927587b1b236b1e315}{Overcurrent\+\_\+\+Update()} after each complete 8-\/channel measurement cycle
+\item Switch\+Task queries \doxylink{group__tasks08_ga4bf47606df6e10c610300fdf1a2573b5}{Overcurrent\+\_\+\+Is\+Switching\+Allowed()} before executing relay commands
+\item All control handlers (HTTP, SNMP, Console) receive rejection when locked out
+\end{DoxyItemize}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-enum-members}
+\Hypertarget{group__tasks08_doc-enum-members}
+\doxysubsubsection{Enumeration Type Documentation}
+\Hypertarget{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}\index{8. Overcurrent Protection Module@{8. Overcurrent Protection Module}!overcurrent\_state\_t@{overcurrent\_state\_t}}
+\index{overcurrent\_state\_t@{overcurrent\_state\_t}!8. Overcurrent Protection Module@{8. Overcurrent Protection Module}}
+\doxysubsubsubsection{\texorpdfstring{overcurrent\_state\_t}{overcurrent\_state\_t}}
+{\footnotesize\ttfamily \label{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed} 
+enum \mbox{\hyperlink{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}{overcurrent\+\_\+state\+\_\+t}}}
+
+
+
+Overcurrent protection state levels. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OC\_STATE\_NORMAL@{OC\_STATE\_NORMAL}!8. Overcurrent Protection Module@{8. Overcurrent Protection Module}}\index{8. Overcurrent Protection Module@{8. Overcurrent Protection Module}!OC\_STATE\_NORMAL@{OC\_STATE\_NORMAL}}}\Hypertarget{group__tasks08_gga5fece384d5a09708e5d58632d565f1eda04b503ade97db147ebde7367339b8079}\label{group__tasks08_gga5fece384d5a09708e5d58632d565f1eda04b503ade97db147ebde7367339b8079} 
+OC\+\_\+\+STATE\+\_\+\+NORMAL&Current within safe limits \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OC\_STATE\_WARNING@{OC\_STATE\_WARNING}!8. Overcurrent Protection Module@{8. Overcurrent Protection Module}}\index{8. Overcurrent Protection Module@{8. Overcurrent Protection Module}!OC\_STATE\_WARNING@{OC\_STATE\_WARNING}}}\Hypertarget{group__tasks08_gga5fece384d5a09708e5d58632d565f1edad71568499048d4fcc9154061c05048db}\label{group__tasks08_gga5fece384d5a09708e5d58632d565f1edad71568499048d4fcc9154061c05048db} 
+OC\+\_\+\+STATE\+\_\+\+WARNING&Current above warning threshold (Limit -\/ 1.\+0A) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OC\_STATE\_CRITICAL@{OC\_STATE\_CRITICAL}!8. Overcurrent Protection Module@{8. Overcurrent Protection Module}}\index{8. Overcurrent Protection Module@{8. Overcurrent Protection Module}!OC\_STATE\_CRITICAL@{OC\_STATE\_CRITICAL}}}\Hypertarget{group__tasks08_gga5fece384d5a09708e5d58632d565f1eda0aa318f855c67136cdaf8de3c44da5cd}\label{group__tasks08_gga5fece384d5a09708e5d58632d565f1eda0aa318f855c67136cdaf8de3c44da5cd} 
+OC\+\_\+\+STATE\+\_\+\+CRITICAL&Current above critical threshold (Limit -\/ 0.\+25A) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OC\_STATE\_LOCKOUT@{OC\_STATE\_LOCKOUT}!8. Overcurrent Protection Module@{8. Overcurrent Protection Module}}\index{8. Overcurrent Protection Module@{8. Overcurrent Protection Module}!OC\_STATE\_LOCKOUT@{OC\_STATE\_LOCKOUT}}}\Hypertarget{group__tasks08_gga5fece384d5a09708e5d58632d565f1eda4e7efb0775a0eb8c255a5c39450ea6fc}\label{group__tasks08_gga5fece384d5a09708e5d58632d565f1eda4e7efb0775a0eb8c255a5c39450ea6fc} 
+OC\+\_\+\+STATE\+\_\+\+LOCKOUT&Switching locked due to overcurrent trip \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{group__tasks08_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__tasks08_ga49359b42016742671b8c5ff517c8687c}\index{8. Overcurrent Protection Module@{8. Overcurrent Protection Module}!Overcurrent\_CanTurnOn@{Overcurrent\_CanTurnOn}}
+\index{Overcurrent\_CanTurnOn@{Overcurrent\_CanTurnOn}!8. Overcurrent Protection Module@{8. Overcurrent Protection Module}}
+\doxysubsubsubsection{\texorpdfstring{Overcurrent\_CanTurnOn()}{Overcurrent\_CanTurnOn()}}
+{\footnotesize\ttfamily \label{group__tasks08_ga49359b42016742671b8c5ff517c8687c} 
+bool Overcurrent\+\_\+\+Can\+Turn\+On (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{channel}{}\end{DoxyParamCaption})}
+
+
+
+Check if turning ON a specific channel is allowed. 
+
+More restrictive check that considers current headroom. Used by control handlers to provide early rejection before queueing commands.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Channel index (0-\/7) to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if channel can be turned ON, false otherwise
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Thread-\/safe. Can be called from any task context.
+\end{DoxyNote}
+Check if turning ON a specific channel is allowed.
+
+This function performs a more conservative gate than \doxylink{group__tasks08_ga4bf47606df6e10c610300fdf1a2573b5}{Overcurrent\+\_\+\+Is\+Switching\+Allowed()}. It can be used by control handlers to reject commands early when current headroom is limited or when the system is in a protective state.
+
+Current decision logic\+:
+\begin{DoxyItemize}
+\item If module is not initialized, allow.
+\item If switching is not allowed due to lockout, reject.
+\item If current state is WARNING or above, reject to preserve headroom.
+\item Otherwise allow.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Channel index \mbox{[}0..7\mbox{]}. The current implementation does not apply per-\/channel policy, but keeps the parameter for future enhancement.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool true if the channel may be turned ON, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{group__tasks08_gadc9a057a3aef40a2ec56e65c2e55daab}\index{8. Overcurrent Protection Module@{8. Overcurrent Protection Module}!Overcurrent\_ClearLockout@{Overcurrent\_ClearLockout}}
+\index{Overcurrent\_ClearLockout@{Overcurrent\_ClearLockout}!8. Overcurrent Protection Module@{8. Overcurrent Protection Module}}
+\doxysubsubsubsection{\texorpdfstring{Overcurrent\_ClearLockout()}{Overcurrent\_ClearLockout()}}
+{\footnotesize\ttfamily \label{group__tasks08_gadc9a057a3aef40a2ec56e65c2e55daab} 
+bool Overcurrent\+\_\+\+Clear\+Lockout (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Manually clear lockout state (for recovery/reset). 
+
+Forces the protection state back to NORMAL and re-\/enables switching. Should only be used for system recovery after addressing the overcurrent condition. Logs the manual reset event.
+
+\begin{DoxyReturn}{Returns}
+true if lockout was cleared, false if not in lockout state
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Use with caution. Does not verify current has actually decreased.
+\end{DoxyWarning}
+Manually clear lockout state (for recovery/reset).
+
+If the module is currently in LOCKOUT, this function resets the state to NORMAL, re-\/enables switching, clears the warning latch, and logs the manual reset.
+
+Safety note\+:
+\begin{DoxyItemize}
+\item This does not verify that current has fallen below recovery threshold.
+\item The caller is responsible for verifying that conditions are safe before use.
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+bool true if lockout was cleared, false if the module was not in lockout. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks08_gadc9a057a3aef40a2ec56e65c2e55daab_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__tasks08_ga1fdf004c7e21b587d490854fcc9505ff}\index{8. Overcurrent Protection Module@{8. Overcurrent Protection Module}!Overcurrent\_GetLimit@{Overcurrent\_GetLimit}}
+\index{Overcurrent\_GetLimit@{Overcurrent\_GetLimit}!8. Overcurrent Protection Module@{8. Overcurrent Protection Module}}
+\doxysubsubsubsection{\texorpdfstring{Overcurrent\_GetLimit()}{Overcurrent\_GetLimit()}}
+{\footnotesize\ttfamily \label{group__tasks08_ga1fdf004c7e21b587d490854fcc9505ff} 
+float Overcurrent\+\_\+\+Get\+Limit (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Get the configured current limit. 
+
+\begin{DoxyReturn}{Returns}
+Maximum allowed total current \mbox{[}Amperes\mbox{]}
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Returns ENERGIS\+\_\+\+CURRENT\+\_\+\+LIMIT\+\_\+A (10A EU / 15A US)
+\end{DoxyNote}
+Returns the configured hard current limit, derived from device identity region setting at initialization.
+
+\begin{DoxyReturn}{Returns}
+float Current limit in amperes. 
+\end{DoxyReturn}
+\Hypertarget{group__tasks08_ga01d97571c761ab643753f677d3088684}\index{8. Overcurrent Protection Module@{8. Overcurrent Protection Module}!Overcurrent\_GetState@{Overcurrent\_GetState}}
+\index{Overcurrent\_GetState@{Overcurrent\_GetState}!8. Overcurrent Protection Module@{8. Overcurrent Protection Module}}
+\doxysubsubsubsection{\texorpdfstring{Overcurrent\_GetState()}{Overcurrent\_GetState()}}
+{\footnotesize\ttfamily \label{group__tasks08_ga01d97571c761ab643753f677d3088684} 
+\mbox{\hyperlink{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}{overcurrent\+\_\+state\+\_\+t}} Overcurrent\+\_\+\+Get\+State (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Get current protection state. 
+
+\begin{DoxyReturn}{Returns}
+Current \doxylink{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}{overcurrent\+\_\+state\+\_\+t} value
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Thread-\/safe. Can be called from any task context.
+\end{DoxyNote}
+Get current protection state.
+
+Returns the internal state enum representing the current protection level.
+
+\begin{DoxyReturn}{Returns}
+\doxylink{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}{overcurrent\+\_\+state\+\_\+t} Current protection state. 
+\end{DoxyReturn}
+\Hypertarget{group__tasks08_gaa9aab2a7bfb3274872c5f4f162af177e}\index{8. Overcurrent Protection Module@{8. Overcurrent Protection Module}!Overcurrent\_GetStatus@{Overcurrent\_GetStatus}}
+\index{Overcurrent\_GetStatus@{Overcurrent\_GetStatus}!8. Overcurrent Protection Module@{8. Overcurrent Protection Module}}
+\doxysubsubsubsection{\texorpdfstring{Overcurrent\_GetStatus()}{Overcurrent\_GetStatus()}}
+{\footnotesize\ttfamily \label{group__tasks08_gaa9aab2a7bfb3274872c5f4f162af177e} 
+bool Overcurrent\+\_\+\+Get\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structovercurrent__status__t}{overcurrent\+\_\+status\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{status}{}\end{DoxyParamCaption})}
+
+
+
+Get current overcurrent protection status. 
+
+Provides a complete snapshot of the protection system state including thresholds, current measurements, and trip history.
+
+
+\begin{DoxyParams}{Parameters}
+{\em status} & Pointer to receive status snapshot \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success, false if status pointer is NULL
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Thread-\/safe. Status is an atomic snapshot.
+\end{DoxyNote}
+Get current overcurrent protection status.
+
+Fills the provided status structure with thresholds, state, current measurement, trip bookkeeping, and switching permission flag.
+
+The snapshot is intended for diagnostics and control interfaces. Values are copied from volatile module state. The snapshot is best-\/effort; it is expected to be read atomically enough for reporting purposes in this system architecture.
+
+
+\begin{DoxyParams}{Parameters}
+{\em status} & Pointer to the destination status structure.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool true on success, false if status is NULL. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks08_gaa9aab2a7bfb3274872c5f4f162af177e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__tasks08_gabaeebc1f043da757f96bac70bb8ac8ba}\index{8. Overcurrent Protection Module@{8. Overcurrent Protection Module}!Overcurrent\_Init@{Overcurrent\_Init}}
+\index{Overcurrent\_Init@{Overcurrent\_Init}!8. Overcurrent Protection Module@{8. Overcurrent Protection Module}}
+\doxysubsubsubsection{\texorpdfstring{Overcurrent\_Init()}{Overcurrent\_Init()}}
+{\footnotesize\ttfamily \label{group__tasks08_gabaeebc1f043da757f96bac70bb8ac8ba} 
+void Overcurrent\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Initialize the overcurrent protection module. 
+
+Sets up thresholds based on regional configuration (EU/\+US) and initializes the protection state machine. Must be called during system initialization before Meter\+Task begins monitoring.
+
+\begin{DoxyNote}{Note}
+Thread-\/safe. Can be called from any task context.
+\end{DoxyNote}
+Computes state machine thresholds from runtime configuration obtained from the Device\+Identity module. The region setting in EEPROM determines the appropriate current limit (10A EU / 15A US).
+
+Threshold derivation\+:
+\begin{DoxyItemize}
+\item s\+\_\+limit\+\_\+a is sourced from \doxylink{group__storage03_ga5b4f82b48868c1a68c60a9fc9a7f3e37}{Device\+Identity\+\_\+\+Get\+Current\+Limit\+A()}
+\item s\+\_\+warning\+\_\+threshold\+\_\+a = s\+\_\+limit\+\_\+a -\/ ENERGIS\+\_\+\+CURRENT\+\_\+\+WARNING\+\_\+\+OFFSET\+\_\+A
+\item s\+\_\+critical\+\_\+threshold\+\_\+a = s\+\_\+limit\+\_\+a -\/ ENERGIS\+\_\+\+CURRENT\+\_\+\+SAFETY\+\_\+\+MARGIN\+\_\+A
+\item s\+\_\+recovery\+\_\+threshold\+\_\+a = s\+\_\+limit\+\_\+a -\/ ENERGIS\+\_\+\+CURRENT\+\_\+\+RECOVERY\+\_\+\+OFFSET\+\_\+A
+\end{DoxyItemize}
+
+State initialization\+:
+\begin{DoxyItemize}
+\item Sets state to NORMAL
+\item Clears current measurement cache and trip bookkeeping
+\item Enables switching
+\item Marks the module initialized after all values are set
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+\doxylink{group__storage03_ga8a44399536e0b86e0b543df9f1962c17}{Device\+Identity\+\_\+\+Init()} must be called before this function to ensure the region setting is available. If Device\+Identity returns UNKNOWN region, the safe default (10A) is used. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{group__tasks08_gabaeebc1f043da757f96bac70bb8ac8ba_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks08_gabaeebc1f043da757f96bac70bb8ac8ba_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__tasks08_ga4bf47606df6e10c610300fdf1a2573b5}\index{8. Overcurrent Protection Module@{8. Overcurrent Protection Module}!Overcurrent\_IsSwitchingAllowed@{Overcurrent\_IsSwitchingAllowed}}
+\index{Overcurrent\_IsSwitchingAllowed@{Overcurrent\_IsSwitchingAllowed}!8. Overcurrent Protection Module@{8. Overcurrent Protection Module}}
+\doxysubsubsubsection{\texorpdfstring{Overcurrent\_IsSwitchingAllowed()}{Overcurrent\_IsSwitchingAllowed()}}
+{\footnotesize\ttfamily \label{group__tasks08_ga4bf47606df6e10c610300fdf1a2573b5} 
+bool Overcurrent\+\_\+\+Is\+Switching\+Allowed (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Check if channel switching is currently allowed. 
+
+Queried by Switch\+Task and control handlers before executing relay commands. Returns false when in LOCKOUT state due to overcurrent trip.
+
+\begin{DoxyReturn}{Returns}
+true if switching is permitted, false if locked out
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Thread-\/safe. Can be called from any task context.
+\end{DoxyNote}
+Check if channel switching is currently allowed.
+
+This function provides the fast-\/path gate for relay switching requests. While the module is uninitialized, switching is allowed to avoid blocking early boot operations. After initialization, switching is allowed only when the module is not in lockout.
+
+\begin{DoxyReturn}{Returns}
+bool true if switching is allowed, false otherwise.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The returned state reflects the internal lockout flag rather than the raw overcurrent state enum to make the decision explicit. 
+\end{DoxyNote}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks08_ga4bf47606df6e10c610300fdf1a2573b5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__tasks08_ga05298731bbc499e043d911ec1ca59879}\index{8. Overcurrent Protection Module@{8. Overcurrent Protection Module}!Overcurrent\_RecordChannelOn@{Overcurrent\_RecordChannelOn}}
+\index{Overcurrent\_RecordChannelOn@{Overcurrent\_RecordChannelOn}!8. Overcurrent Protection Module@{8. Overcurrent Protection Module}}
+\doxysubsubsubsection{\texorpdfstring{Overcurrent\_RecordChannelOn()}{Overcurrent\_RecordChannelOn()}}
+{\footnotesize\ttfamily \label{group__tasks08_ga05298731bbc499e043d911ec1ca59879} 
+void Overcurrent\+\_\+\+Record\+Channel\+On (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{channel}{}\end{DoxyParamCaption})}
+
+
+
+Record that a channel was just turned ON. 
+
+Updates the "{}last activated channel"{} tracking used to determine which channel to trip in an overcurrent event.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Channel index (0-\/7) that was activated\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Thread-\/safe. Called by Switch\+Task after successful relay activation.
+\end{DoxyNote}
+Record that a channel was just turned ON.
+
+Stores the most recently activated channel index, used for targeted trip action. The module trips the last known activated channel under a lockout event, which is intended to localize the fault to the most recently added load.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Channel index \mbox{[}0..7\mbox{]} that has been turned ON successfully. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__tasks08_gabb9789239f4931927587b1b236b1e315}\index{8. Overcurrent Protection Module@{8. Overcurrent Protection Module}!Overcurrent\_Update@{Overcurrent\_Update}}
+\index{Overcurrent\_Update@{Overcurrent\_Update}!8. Overcurrent Protection Module@{8. Overcurrent Protection Module}}
+\doxysubsubsubsection{\texorpdfstring{Overcurrent\_Update()}{Overcurrent\_Update()}}
+{\footnotesize\ttfamily \label{group__tasks08_gabb9789239f4931927587b1b236b1e315} 
+\mbox{\hyperlink{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}{overcurrent\+\_\+state\+\_\+t}} Overcurrent\+\_\+\+Update (\begin{DoxyParamCaption}\item[{float}]{total\+\_\+current\+\_\+a}{}\end{DoxyParamCaption})}
+
+
+
+Update overcurrent protection with new total current measurement. 
+
+Called by Meter\+Task after completing a full 8-\/channel measurement cycle. Evaluates current against thresholds and triggers appropriate responses\+:
+\begin{DoxyItemize}
+\item WARNING\+: Logs ERR\+\_\+\+SEV\+\_\+\+ERROR
+\item CRITICAL\+: Logs ERR\+\_\+\+FATAL\+\_\+\+ERROR, turns off last activated channel, locks switching
+\item RECOVERY\+: Clears lockout when current returns to safe levels
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em total\+\_\+current\+\_\+a} & Total current across all channels \mbox{[}Amperes\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Current overcurrent protection state
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Thread-\/safe. Typically called from Meter\+Task context.
+\end{DoxyNote}
+Update overcurrent protection with new total current measurement.
+
+This function is the evaluation core of the overcurrent protection module. It is intended to be called periodically (typically once per full measurement cycle) with the aggregated total current in amperes.
+
+Processing steps\+:
+\begin{DoxyEnumerate}
+\item Reject processing if the module is not initialized.
+\item Apply a sanity filter to reject invalid measurements.
+\item Store the latest accepted measurement for status reporting.
+\item Evaluate the state machine based on thresholds and hysteresis.
+\item Execute transition side effects\+:
+\begin{DoxyItemize}
+\item WARNING\+: log once to avoid repeated messages
+\item LOCKOUT\+: trip action, lock switching, update trip bookkeeping, log error
+\item RECOVERY\+: unlock switching and clear warning latch
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+State behavior\+:
+\begin{DoxyItemize}
+\item NORMAL\+:
+\begin{DoxyItemize}
+\item Enters WARNING when total\+\_\+current\+\_\+a \texorpdfstring{$>$}{>}= warning threshold
+\item Enters CRITICAL when total\+\_\+current\+\_\+a \texorpdfstring{$>$}{>}= critical threshold
+\end{DoxyItemize}
+\item WARNING\+:
+\begin{DoxyItemize}
+\item Enters CRITICAL when total\+\_\+current\+\_\+a \texorpdfstring{$>$}{>}= critical threshold
+\item Returns to NORMAL when total\+\_\+current\+\_\+a \texorpdfstring{$<$}{<} warning threshold
+\end{DoxyItemize}
+\item CRITICAL\+:
+\begin{DoxyItemize}
+\item Enters LOCKOUT only if total\+\_\+current\+\_\+a is still \texorpdfstring{$>$}{>}= critical threshold
+\item Returns to NORMAL if the measurement is below the critical threshold
+\end{DoxyItemize}
+\item LOCKOUT\+:
+\begin{DoxyItemize}
+\item Returns to NORMAL (recovery) when total\+\_\+current\+\_\+a \texorpdfstring{$<$}{<} recovery threshold
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em total\+\_\+current\+\_\+a} & The total measured current across all channels in amperes.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}{overcurrent\+\_\+state\+\_\+t} The current state after processing the new sample.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The sanity range check uses an upper bound of 200A to avoid acting on corrupt or uninitialized data. This value is selected to be well above any expected operating regime while still rejecting extreme invalid values. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks08_gabb9789239f4931927587b1b236b1e315_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks08_gabb9789239f4931927587b1b236b1e315_icgraph}
+\end{center}
+\end{figure}

@@ -1,0 +1,21 @@
+<map id="Switch_GetStateCompat" name="Switch_GetStateCompat">
+<area shape="rect" id="Node000001" title="Legacy wrapper for Switch_GetState." alt="" coords="293,183,459,209"/>
+<area shape="rect" id="Node000002" href="$snmp__outlet_ctrl_8c.html#aae9111624ead3d3f32f8ec6f54c84363" title="Generic SNMP getter for outlet state." alt="" coords="177,183,245,209"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="277,199,245,199,245,193,277,193"/>
+<area shape="rect" id="Node000003" href="$group__snmp03.html#gade7df1ea335261e38c6b1c2a61ed2ded" title="SNMP getter for outlet 1 state." alt="" coords="5,5,129,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="199,169,172,107,152,75,127,46,110,35,113,30,130,42,156,71,177,105,203,167"/>
+<area shape="rect" id="Node000004" href="$group__snmp03.html#gabbff421a9229e31a0cb05761892eec6e" title="SNMP getter for outlet 2 state." alt="" coords="5,56,129,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="192,171,164,133,127,97,108,86,111,81,130,93,168,130,196,168"/>
+<area shape="rect" id="Node000005" href="$group__snmp03.html#gae617a671308e5f001c463b793cfe7a03" title="SNMP getter for outlet 3 state." alt="" coords="5,107,129,133"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="175,176,127,148,103,136,105,131,130,143,178,171"/>
+<area shape="rect" id="Node000006" href="$group__snmp03.html#gac540752940c1f251d408f0954c14364d" title="SNMP getter for outlet 4 state." alt="" coords="5,157,129,184"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="161,190,129,184,130,179,162,185"/>
+<area shape="rect" id="Node000007" href="$group__snmp03.html#ga03c6e3cdf72aa5de6d3b9c1fc220add0" title="SNMP getter for outlet 5 state." alt="" coords="5,208,129,235"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="162,207,130,213,129,208,161,202"/>
+<area shape="rect" id="Node000008" href="$group__snmp03.html#ga62abeab3df59bba29de074d147e280f2" title="SNMP getter for outlet 6 state." alt="" coords="5,259,129,285"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="178,221,130,249,105,261,103,256,127,244,175,216"/>
+<area shape="rect" id="Node000009" href="$group__snmp03.html#ga45aa10db7cd7f4c2a207b81312c7a95f" title="SNMP getter for outlet 7 state." alt="" coords="5,309,129,336"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="196,224,168,262,130,299,111,311,108,306,127,295,164,259,192,221"/>
+<area shape="rect" id="Node000010" href="$group__snmp03.html#ga219cf7f985467e92225ffcd452f81464" title="SNMP getter for outlet 8 state." alt="" coords="5,360,129,387"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="203,225,177,287,156,321,130,350,113,362,110,357,127,346,152,317,172,285,199,223"/>
+</map>

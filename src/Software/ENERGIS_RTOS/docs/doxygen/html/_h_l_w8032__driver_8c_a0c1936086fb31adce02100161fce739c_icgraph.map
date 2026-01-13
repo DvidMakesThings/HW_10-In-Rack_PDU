@@ -1,0 +1,15 @@
+<map id="hlw8032_calibration_get_active_channel" name="hlw8032_calibration_get_active_channel">
+<area shape="rect" id="Node000001" title="Helper to query if calibration is running and fetch active channel." alt="" coords="926,5,1067,48"/>
+<area shape="rect" id="Node000002" href="$group__drivers04.html#ga0b3a5c410541deaf144c3e33d4b65175" title="Poll one channel and cache results (round&#45;robin)." alt="" coords="747,13,878,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="911,29,879,29,879,24,911,24"/>
+<area shape="rect" id="Node000003" href="$_meter_task_8c.html#addb3656d7dd28b5f2537e286d9da7b66" title="Main Meter Task loop." alt="" coords="582,13,699,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="732,29,699,29,699,24,732,24"/>
+<area shape="rect" id="Node000004" href="$group__tasks06.html#ga33bd9742d865d9e98a4b81d443f69837" title="Create and start the Meter Task with a deterministic enable gate." alt="" coords="426,13,534,40"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="566,29,534,29,534,24,566,24"/>
+<area shape="rect" id="Node000005" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,13,378,40"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="411,29,379,29,379,24,411,24"/>
+<area shape="rect" id="Node000006" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,13,263,40"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="295,29,263,29,263,24,295,24"/>
+<area shape="rect" id="Node000007" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,13,102,40"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="134,29,102,29,102,24,134,24"/>
+</map>

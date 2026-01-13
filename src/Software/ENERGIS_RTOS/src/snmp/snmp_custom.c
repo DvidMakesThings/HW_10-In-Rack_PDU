@@ -5,7 +5,17 @@
  * @version 1.0.0
  * @date 2025-11-07
  *
- * @details Table-only file; logic lives in per-domain modules.
+ * @details
+ * Implementation of the SNMP OID table for ENERGIS PDU. This file defines the
+ * complete mapping between OIDs and their associated callback functions, as well
+ * as static system identification values.
+ *
+ * The table structure uses the snmp_entry_t format from the W5500 SNMP library,
+ * with each entry specifying:
+ * - OID length and bytes
+ * - Data type (INTEGER, OCTET_STRING, OBJ_ID, TIME_TICKS)
+ * - Data length for fixed values
+ * - Static value or getter/setter function pointers
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -16,6 +26,16 @@
 const uint8_t COMMUNITY[] = "public";
 const uint8_t COMMUNITY_SIZE = (uint8_t)(sizeof(COMMUNITY) - 1);
 
+/**
+ * @brief SNMP getter for sysContact (RFC1213 system group).
+ *
+ * Returns the contact information for the person responsible for this node.
+ *
+ * @param buf Output buffer for OCTET_STRING value
+ * @param len Pointer to receive string length (bytes written, excluding null)
+ *
+ * @return None
+ */
 static void get_sysContact(void *buf, uint8_t *len) {
     const char *s = "dvidmakesthings@gmail.com";
     uint8_t L = (uint8_t)strlen(s);
@@ -23,6 +43,16 @@ static void get_sysContact(void *buf, uint8_t *len) {
     *len = L;
 }
 
+/**
+ * @brief SNMP getter for sysName (RFC1213 system group).
+ *
+ * Returns the administratively-assigned name for this managed node.
+ *
+ * @param buf Output buffer for OCTET_STRING value
+ * @param len Pointer to receive string length (bytes written, excluding null)
+ *
+ * @return None
+ */
 static void get_sysName(void *buf, uint8_t *len) {
     const char *s = "ENERGIS 10IN MANAGED PDU";
     uint8_t L = (uint8_t)strlen(s);
@@ -30,6 +60,16 @@ static void get_sysName(void *buf, uint8_t *len) {
     *len = L;
 }
 
+/**
+ * @brief SNMP getter for sysLocation (RFC1213 system group).
+ *
+ * Returns the physical location of this node.
+ *
+ * @param buf Output buffer for OCTET_STRING value
+ * @param len Pointer to receive string length (bytes written, excluding null)
+ *
+ * @return None
+ */
 static void get_sysLocation(void *buf, uint8_t *len) {
     const char *s = "Wien";
     uint8_t L = (uint8_t)strlen(s);
@@ -37,6 +77,17 @@ static void get_sysLocation(void *buf, uint8_t *len) {
     *len = L;
 }
 
+/**
+ * @brief SNMP getter for device serial number.
+ *
+ * Retrieves the device serial number from persistent storage and returns it
+ * as an OCTET_STRING. Mapped to sysName OID in the MIB.
+ *
+ * @param buf Output buffer for OCTET_STRING value
+ * @param len Pointer to receive string length (bytes written, excluding null)
+ *
+ * @return None
+ */
 static void get_sysSN(void *buf, uint8_t *len) {
     const device_identity_t *id = DeviceIdentity_Get();
 
@@ -171,12 +222,12 @@ snmp_entry_t snmpData[] = {
 const int32_t maxData = (int32_t)(sizeof(snmpData) / sizeof(snmpData[0]));
 
 void initTable(void) {
-    /* Nothing dynamic to initialize right now.
-     */
+    /* Table is fully static with compile-time initialization.
+     * No dynamic setup required. */
 }
 
 void initial_Trap(uint8_t *managerIP, uint8_t *agentIP) {
-    /* enterprise OID = 1.3.6.1.4.1.19865.1.0 (example) */
+    /* Construct enterprise OID entry for trap: 1.3.6.1.4.1.19865.1.0 */
     snmp_entry_t enterprise_oid = {
         .oidlen = 10,
         .oid = {0x2b, 0x06, 0x01, 0x04, 0x01, 0x81, 0x9b, 0x19, 0x01, 0x00},
@@ -186,7 +237,7 @@ void initial_Trap(uint8_t *managerIP, uint8_t *agentIP) {
         .getfunction = NULL,
         .setfunction = NULL};
 
-    /* Send a warmStart trap with no extra var-binds */
+    /* Send WarmStart trap (generic-trap 1) with no additional variable bindings */
     (void)SNMP_SendTrap(managerIP, agentIP, (int8_t *)COMMUNITY, enterprise_oid, SNMPTRAP_WARMSTART,
                         0, 0);
 }

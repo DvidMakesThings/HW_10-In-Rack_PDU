@@ -1,0 +1,5 @@
+<map id="storage_set_channel_label" name="storage_set_channel_label">
+<area shape="rect" id="Node000001" title="Write channel label via storage queue (thread&#45;safe)." alt="" coords="5,5,147,48"/>
+<area shape="rect" id="Node000002" href="$group__tasks10.html#gaad6cb463ba1647fe51faeea5f08268da" title="Check if config is loaded and ready." alt="" coords="195,13,362,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,24,179,24,179,29,147,29"/>
+</map>

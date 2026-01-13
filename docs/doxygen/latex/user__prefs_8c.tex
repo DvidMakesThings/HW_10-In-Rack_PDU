@@ -1,0 +1,75 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/storage\+\_\+submodule/user\+\_\+prefs.c File Reference}
+\hypertarget{user__prefs_8c}{}\label{user__prefs_8c}\index{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/user\_prefs.c@{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/user\_prefs.c}}
+{\ttfamily \#include "{}../../\+CONFIG.\+h"{}}\newline
+Include dependency graph for user\+\_\+prefs.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{user__prefs_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{user__prefs_8c_a0ce07d8fb01ea434e00708cbcdf958f7}{ST\+\_\+\+USER\+\_\+\+PREF\+\_\+\+TAG}}~"{}\mbox{[}ST-\/USRPR\mbox{]}"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__storage11_ga2df7072b6a21ee4c6a1008be0c0d2808}{EEPROM\+\_\+\+Write\+User\+Preferences}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write raw user preferences block to EEPROM. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage11_ga9f082445c1a6ae5112beee80a6074d97}{EEPROM\+\_\+\+Read\+User\+Preferences}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Read raw user preferences block from EEPROM. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage11_gaffd968de2dd26c2a571f3057dc72f2dc}{EEPROM\+\_\+\+Write\+User\+Prefs\+With\+Checksum}} (const \mbox{\hyperlink{structuser_pref_info}{user\+Pref\+Info}} \texorpdfstring{$\ast$}{*}prefs)
+\begin{DoxyCompactList}\small\item\em Write user preferences with CRC-\/8 validation. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage11_ga708039b6b7c8a2535429849aaf0bef39}{EEPROM\+\_\+\+Read\+User\+Prefs\+With\+Checksum}} (\mbox{\hyperlink{structuser_pref_info}{user\+Pref\+Info}} \texorpdfstring{$\ast$}{*}prefs)
+\begin{DoxyCompactList}\small\item\em Read and verify user preferences with CRC-\/8. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structuser_pref_info}{user\+Pref\+Info}} \mbox{\hyperlink{group__storage11_gada0abcfc99e366656030e908187d6d6d}{Load\+User\+Preferences}} (void)
+\begin{DoxyCompactList}\small\item\em Load user preferences from EEPROM or return defaults. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage11_ga89e7b743f0d87d2f8658c42cbaf1990d}{EEPROM\+\_\+\+Write\+Default\+Name\+Location}} (void)
+\begin{DoxyCompactList}\small\item\em Write default device name and location with CRC. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structuser_pref_info}{user\+Pref\+Info}} \mbox{\hyperlink{user__prefs_8c_a4adf270c04ed651d651b6074266aab1a}{DEFAULT\+\_\+\+USER\+\_\+\+PREFS}}
+\begin{DoxyCompactList}\small\item\em Default user preferences. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/14
+\end{DoxyDate}
+Implementation of user preferences management. Handles device name, location, and temperature unit settings with CRC-\/8 validation for data integrity.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{user__prefs_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{user__prefs_8c_a0ce07d8fb01ea434e00708cbcdf958f7}\index{user\_prefs.c@{user\_prefs.c}!ST\_USER\_PREF\_TAG@{ST\_USER\_PREF\_TAG}}
+\index{ST\_USER\_PREF\_TAG@{ST\_USER\_PREF\_TAG}!user\_prefs.c@{user\_prefs.c}}
+\doxysubsubsection{\texorpdfstring{ST\_USER\_PREF\_TAG}{ST\_USER\_PREF\_TAG}}
+{\footnotesize\ttfamily \label{user__prefs_8c_a0ce07d8fb01ea434e00708cbcdf958f7} 
+\#define ST\+\_\+\+USER\+\_\+\+PREF\+\_\+\+TAG~"{}\mbox{[}ST-\/USRPR\mbox{]}"{}}
+
+
+
+\label{doc-var-members}
+\Hypertarget{user__prefs_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{user__prefs_8c_a4adf270c04ed651d651b6074266aab1a}\index{user\_prefs.c@{user\_prefs.c}!DEFAULT\_USER\_PREFS@{DEFAULT\_USER\_PREFS}}
+\index{DEFAULT\_USER\_PREFS@{DEFAULT\_USER\_PREFS}!user\_prefs.c@{user\_prefs.c}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_USER\_PREFS}{DEFAULT\_USER\_PREFS}}
+{\footnotesize\ttfamily \label{user__prefs_8c_a4adf270c04ed651d651b6074266aab1a} 
+const \mbox{\hyperlink{structuser_pref_info}{user\+Pref\+Info}} DEFAULT\+\_\+\+USER\+\_\+\+PREFS\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Default user preferences. 
+

@@ -1,0 +1,13 @@
+<map id="mcp_write_pin" name="mcp_write_pin">
+<area shape="rect" id="Node000001" title="Write a logic level to a pin." alt="" coords="5,56,111,83"/>
+<area shape="rect" id="Node000002" href="$group__drivers05.html#gab7b4aa096ded6cebd93256e5b5994e42" title="Write 8&#45;bit register with 8&#45;bit value: [reg, value]." alt="" coords="170,31,304,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,59,154,53,155,58,112,65"/>
+<area shape="rect" id="Node000006" href="$_m_c_p23017__driver_8c.html#a0ff45ad384852ba5f69f0fd781c2f46a" title=" " alt="" coords="159,81,315,108"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="112,74,144,79,143,84,111,79"/>
+<area shape="rect" id="Node000003" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="388,5,510,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="304,33,372,25,373,30,304,39"/>
+<area shape="rect" id="Node000004" href="$group__drivers05.html#ga170d6c4ff97ddc2d314f0a7a0054f283" title="Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK i2c_write_time..." alt="" coords="363,56,535,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="304,49,348,55,348,60,304,55"/>
+<area shape="rect" id="Node000005" href="$i2c__bus_8c.html#afbaa64f79bdd1fa39c8fa5b7a9c2717b" title=" " alt="" coords="583,56,741,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="536,67,568,67,568,72,536,72"/>
+</map>

@@ -1,0 +1,14 @@
+<map id="10. Storage Task" name="10. Storage Task">
+<area shape="rect" id="Node000003" href="$group__storage01.html" title="HLW8032 power meter calibration per channel." alt="" coords="288,5,432,32"/>
+<area shape="rect" id="Node000004" href="$group__storage02.html" title="User&#45;defined labels for output channels." alt="" coords="297,56,423,83"/>
+<area shape="rect" id="Node000005" href="$group__storage03.html" title="Serial Number and Region Management with EEPROM Persistence." alt="" coords="298,107,422,149"/>
+<area shape="rect" id="Node000006" href="$group__storage04.html" title="Energy consumption logging with ring buffer persistence." alt="" coords="290,173,431,200"/>
+<area shape="rect" id="Node000007" href="$group__storage05.html" title="System event logging with separate error and warning ring buffers." alt="" coords="300,224,420,251"/>
+<area shape="rect" id="Node000008" href="$group__storage06.html" title="Factory defaults write/verify and first&#45;boot detection." alt="" coords="294,275,427,301"/>
+<area shape="rect" id="Node000009" href="$group__storage07.html" title="Network settings with CRC validation and MAC repair." alt="" coords="277,325,443,352"/>
+<area shape="rect" id="Node000010" href="$group__storage08.html" title="Shared utility functions for EEPROM data integrity and MAC address management." alt="" coords="291,376,429,403"/>
+<area shape="rect" id="Node000011" href="$group__storage09.html" title="User output configuration presets and apply&#45;on&#45;startup persistence." alt="" coords="306,427,414,453"/>
+<area shape="rect" id="Node000012" href="$group__storage11.html" title="Device name, location, and display settings with CRC&#45;8 validation." alt="" coords="288,477,432,504"/>
+<area shape="rect" id="Node000002" href="$group__tasks.html" title="General task implementations for ENERGIS PDU firmware." alt="" coords="5,249,62,276"/>
+<area shape="rect" id="Node000001" title="Persistent configuration manager with CAT24C256 EEPROM and queue&#45;based access." alt="" coords="110,249,229,276"/>
+</map>

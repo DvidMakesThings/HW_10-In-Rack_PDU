@@ -1,0 +1,11 @@
+<map id="CAT24C256_ReadByte" name="CAT24C256_ReadByte">
+<area shape="rect" id="Node000001" title="Read single byte from EEPROM." alt="" coords="5,56,163,83"/>
+<area shape="rect" id="Node000002" href="$group__drivers01.html#ga66ae4c7028f764a3770cabe101dba8bf" title="Read from 16&#45;bit memory address: write [mem_hi, mem_lo] (no stop), then read len bytes." alt="" coords="228,31,376,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,58,212,52,213,57,164,63"/>
+<area shape="rect" id="Node000005" href="$group__tasks05.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="211,81,394,108"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="164,76,195,80,195,85,163,81"/>
+<area shape="rect" id="Node000003" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="471,5,592,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="376,33,455,24,456,30,377,38"/>
+<area shape="rect" id="Node000004" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="442,56,621,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="377,50,427,55,427,60,376,55"/>
+</map>

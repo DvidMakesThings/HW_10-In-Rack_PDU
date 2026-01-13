@@ -1,0 +1,54 @@
+<map id="get_networkMask" name="get_networkMask">
+<area shape="rect" id="Node000001" title="SNMP getter for subnet mask." alt="" coords="5,335,130,361"/>
+<area shape="rect" id="Node000002" href="$snmp__network_ctrl_8c.html#aaa34791e38a29c71b1c47d3662729686" title="Format IPv4 address as dotted&#45;decimal string." alt="" coords="197,309,247,336"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="130,335,181,327,182,332,131,340"/>
+<area shape="rect" id="Node000003" href="$snmp__network_ctrl_8c.html#a6a708726aad77be7b0108febd0094116" title="Load persisted network configuration from EEPROM." alt="" coords="178,360,266,387"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="131,356,163,361,162,366,130,361"/>
+<area shape="rect" id="Node000004" href="$group__storage07.html#ga37c460b3ea58fd130cea86904b06f7b1" title="Load network configuration from EEPROM with automatic fallback and MAC repair." alt="" coords="314,179,478,205"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="248,357,264,346,298,314,328,279,375,217,379,220,332,283,302,318,268,350,252,362"/>
+<area shape="rect" id="Node000011" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="1008,259,1191,285"/>
+<area shape="poly" id="edge28_Node000003_Node000011" title=" " alt="" coords="267,373,416,380,618,384,722,381,818,375,900,363,959,346,974,335,982,322,991,308,1006,295,1017,289,1020,294,1010,300,995,312,987,325,978,339,961,350,901,368,819,380,722,386,618,389,416,386,266,379"/>
+<area shape="rect" id="Node000023" href="$group__tasks10.html#ga422389bc6e9270118a931e58981753f9" title="Get network configuration." alt="" coords="325,411,467,437"/>
+<area shape="poly" id="edge29_Node000003_Node000023" title=" " alt="" coords="267,384,334,403,333,409,266,389"/>
+<area shape="rect" id="Node000005" href="$group__storage07.html#gaef5b120a12ff3e275706067ea3cf7e46" title="Read and verify network configuration with CRC&#45;8 validation." alt="" coords="526,259,748,301"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="429,203,527,244,547,251,545,256,525,249,427,208"/>
+<area shape="rect" id="Node000012" href="$group__storage07.html#ga3c1fef9aa93f898978387328a8a6e33d" title="Write network configuration with CRC&#45;8 validation appended." alt="" coords="527,141,747,184"/>
+<area shape="poly" id="edge12_Node000004_Node000012" title=" " alt="" coords="478,179,511,175,512,181,479,185"/>
+<area shape="rect" id="Node000018" href="$group__storage08.html#gad5fac108da78e4ddeb0cf70283a0a5dc" title="Generate MAC address from device serial number." alt="" coords="548,91,726,117"/>
+<area shape="poly" id="edge22_Node000004_Node000018" title=" " alt="" coords="421,176,468,151,525,127,549,119,551,124,527,132,471,156,423,180"/>
+<area shape="rect" id="Node000020" href="$group__storage08.html#ga09214f477c63d362bbc5146830c33d8c" title="Validate and repair corrupted MAC address." alt="" coords="569,40,705,67"/>
+<area shape="poly" id="edge24_Node000004_Node000020" title=" " alt="" coords="407,176,455,127,488,99,525,76,553,65,555,70,528,81,491,104,459,131,411,180"/>
+<area shape="rect" id="Node000022" href="$group__tasks10.html#gac25626a70e6fe0baeaa167d47bed33d1" title="Enqueue a warning code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="536,208,738,235"/>
+<area shape="poly" id="edge27_Node000004_Node000022" title=" " alt="" coords="479,199,521,204,520,210,478,205"/>
+<area shape="rect" id="Node000006" href="$group__storage08.html#gaae57a92db26b8a63b7584fd2f3407077" title="Calculate CRC&#45;8 checksum for data integrity verification." alt="" coords="825,208,930,235"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="727,255,809,235,811,240,728,261"/>
+<area shape="rect" id="Node000007" href="$group__driver02.html#ga622a6736c8384f9e1921a1bda2a84df9" title="Read buffer from EEPROM." alt="" coords="796,309,960,336"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="748,297,784,303,783,309,748,302"/>
+<area shape="poly" id="edge11_Node000005_Node000011" title=" " alt="" coords="748,275,992,271,992,277,748,281"/>
+<area shape="rect" id="Node000008" href="$group__drivers05.html#ga66ae4c7028f764a3770cabe101dba8bf" title="Read from 16&#45;bit memory address: write [mem_hi, mem_lo] (no stop), then read len bytes." alt="" coords="1026,309,1174,336"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="960,320,1010,320,1010,325,960,325"/>
+<area shape="poly" id="edge10_Node000007_Node000011" title=" " alt="" coords="939,306,1023,287,1024,292,940,311"/>
+<area shape="rect" id="Node000009" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="1268,208,1390,235"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="1158,306,1190,295,1245,268,1292,241,1295,245,1247,273,1192,300,1159,311"/>
+<area shape="rect" id="Node000010" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="1239,309,1419,336"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="1174,320,1224,320,1224,325,1174,325"/>
+<area shape="poly" id="edge13_Node000012_Node000006" title=" " alt="" coords="728,182,811,202,809,208,727,187"/>
+<area shape="poly" id="edge21_Node000012_Node000011" title=" " alt="" coords="748,161,852,170,907,180,961,193,1019,219,1068,248,1065,252,1017,223,959,199,906,185,852,175,747,166"/>
+<area shape="rect" id="Node000013" href="$group__driver02.html#ga8088b9a17773cb65bb6b5d89d3598125" title="Write buffer to EEPROM with automatic page boundary handling." alt="" coords="796,107,960,133"/>
+<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="747,140,783,134,784,139,748,146"/>
+<area shape="poly" id="edge19_Node000013_Node000011" title=" " alt="" coords="924,132,961,150,987,171,1010,194,1072,247,1068,251,1006,198,983,175,959,154,922,136"/>
+<area shape="rect" id="Node000014" href="$group__drivers05.html#ga77ca38d627119d534873e177c5f4a667" title="Write to 16&#45;bit memory address: [mem_hi, mem_lo, data...]." alt="" coords="1024,107,1175,133"/>
+<area shape="poly" id="edge15_Node000013_Node000014" title=" " alt="" coords="960,117,1008,117,1008,123,960,123"/>
+<area shape="rect" id="Node000017" href="$_c_a_t24_c256__driver_8c.html#aeba5f43a83c24289211b7d919c260978" title="RTOS&#45;compatible write cycle delay." alt="" coords="1037,157,1162,184"/>
+<area shape="poly" id="edge20_Node000013_Node000017" title=" " alt="" coords="940,131,1024,151,1023,156,939,137"/>
+<area shape="poly" id="edge16_Node000014_Node000009" title=" " alt="" coords="1159,131,1192,143,1247,169,1295,197,1292,202,1245,174,1190,148,1158,136"/>
+<area shape="rect" id="Node000015" href="$group__drivers05.html#ga170d6c4ff97ddc2d314f0a7a0054f283" title="Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK i2c_write_time..." alt="" coords="1243,107,1415,133"/>
+<area shape="poly" id="edge17_Node000014_Node000015" title=" " alt="" coords="1176,117,1227,117,1227,123,1176,123"/>
+<area shape="rect" id="Node000016" href="$i2c__bus_8c.html#afbaa64f79bdd1fa39c8fa5b7a9c2717b" title=" " alt="" coords="1467,107,1624,133"/>
+<area shape="poly" id="edge18_Node000015_Node000016" title=" " alt="" coords="1415,117,1451,117,1451,123,1415,123"/>
+<area shape="rect" id="Node000019" href="$group__storage03.html#ga461c49efb137c6fcc9871867b974c326" title="Derive MAC address from the cached serial number." alt="" coords="801,56,955,83"/>
+<area shape="poly" id="edge23_Node000018_Node000019" title=" " alt="" coords="726,89,785,80,786,85,726,94"/>
+<area shape="poly" id="edge25_Node000020_Node000019" title=" " alt="" coords="705,55,786,61,785,66,705,60"/>
+<area shape="rect" id="Node000021" href="$group__storage03.html#ga6a8334a56f37167d1e857260bb262902" title="Check if device identity is valid (provisioned)." alt="" coords="802,5,954,32"/>
+<area shape="poly" id="edge26_Node000020_Node000021" title=" " alt="" coords="705,41,786,29,787,34,706,46"/>
+</map>

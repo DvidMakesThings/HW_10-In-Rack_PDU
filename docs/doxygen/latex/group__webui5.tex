@@ -1,0 +1,217 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item Page Content 
+\end{DoxyEnumerate}}
+\hypertarget{group__webui5}{}\label{group__webui5}\index{5. Page Content@{5. Page Content}}
+
+
+HTML page content storage and retrieval for web interface.  
+
+
+Collaboration diagram for 5. Page Content\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=294pt]{group__webui5}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__webui5_ga60e051c53a61100294f1cc857e73daf0}{get\+\_\+page\+\_\+content}} (const char \texorpdfstring{$\ast$}{*}request)
+\begin{DoxyCompactList}\small\item\em Route HTTP request to appropriate HTML page content. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__webui5_ga50ef0aad6146999a05d9a34b3b5c4e32}{get\+\_\+page\+\_\+length}} (const char \texorpdfstring{$\ast$}{*}request, int \texorpdfstring{$\ast$}{*}is\+\_\+gzip)
+\begin{DoxyCompactList}\small\item\em Get content length and encoding for a requested HTML page. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char \mbox{\hyperlink{group__webui5_gad882226f97c172525ecabab87380591e}{control\+\_\+html}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em HTML content for the Control page. \end{DoxyCompactList}\item 
+const char \mbox{\hyperlink{group__webui5_ga51277673c78bff80cffa4b52f2848c0a}{settings\+\_\+html}} \mbox{[}$\,$\mbox{]}
+\item 
+const char \mbox{\hyperlink{group__webui5_gaad2d54794c452b589adb75c7a835a445}{user\+\_\+manual\+\_\+html}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em HTML content for the Settings page. \end{DoxyCompactList}\item 
+const char \mbox{\hyperlink{group__webui5_gaf8a378d29df41f3c814a6aa343988fa6}{automation\+\_\+manual\+\_\+html}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em HTML content for the Automation Manual page. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+HTML page content storage and retrieval for web interface. 
+
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/07
+\end{DoxyDate}
+This module provides a simple routing layer for HTML page content stored in flash memory. It maps HTTP request paths to appropriate HTML content arrays and returns their sizes.
+
+Storage Strategy\+:
+\begin{DoxyItemize}
+\item Frequently accessed pages (control, settings, help) stored as gzip-\/compressed blobs
+\item Infrequently accessed pages (manuals) stored as plain HTML strings
+\item All content stored in flash memory to conserve RAM
+\item Gzip compression reduces transfer size and mitigates W5500 TX buffer constraints
+\end{DoxyItemize}
+
+Supported Pages\+:
+\begin{DoxyItemize}
+\item Control page (control.\+html, root /) -\/ Main relay control interface (gzipped)
+\item Settings page (settings.\+html) -\/ Network and device configuration (gzipped)
+\item Help page (help.\+html) -\/ Quick reference and links (gzipped)
+\item User Manual (user\+\_\+manual.\+html) -\/ PDF iframe embed (plain HTML)
+\item Automation Manual (automation\+\_\+manual.\+html) -\/ PDF iframe embed (plain HTML)
+\end{DoxyItemize}
+
+Usage Pattern\+:
+\begin{DoxyEnumerate}
+\item HTTP server calls \doxylink{group__webui5_ga60e051c53a61100294f1cc857e73daf0}{get\+\_\+page\+\_\+content()} to retrieve pointer to HTML data
+\item HTTP server calls \doxylink{group__webui5_ga50ef0aad6146999a05d9a34b3b5c4e32}{get\+\_\+page\+\_\+length()} to determine Content-\/\+Length and encoding
+\item HTTP server sends appropriate Content-\/\+Encoding header based on gzip flag
+\item Content is transmitted using chunked send to avoid buffer overflow
+\end{DoxyEnumerate}
+
+\begin{DoxyNote}{Note}
+All page content is const and stored in flash; no runtime modifications. 
+
+Gzipped pages use external const arrays from html/\texorpdfstring{$\ast$}{*}\+\_\+gz.h headers. 
+
+Default fallback is control.\+html for unrecognized paths.
+\end{DoxyNote}
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-func-members}
+\Hypertarget{group__webui5_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__webui5_ga60e051c53a61100294f1cc857e73daf0}\index{5. Page Content@{5. Page Content}!get\_page\_content@{get\_page\_content}}
+\index{get\_page\_content@{get\_page\_content}!5. Page Content@{5. Page Content}}
+\doxysubsubsubsection{\texorpdfstring{get\_page\_content()}{get\_page\_content()}}
+{\footnotesize\ttfamily \label{group__webui5_ga60e051c53a61100294f1cc857e73daf0} 
+const char \texorpdfstring{$\ast$}{*} get\+\_\+page\+\_\+content (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{request}{}\end{DoxyParamCaption})}
+
+
+
+Route HTTP request to appropriate HTML page content. 
+
+Maps HTTP GET request paths to corresponding HTML content stored in flash memory. Supports both plain HTML strings and gzip-\/compressed blobs. Always returns a valid pointer (defaults to control page for unrecognized paths).
+
+Routing Table\+:
+\begin{DoxyItemize}
+\item GET /settings.html → settings\+\_\+gz (gzipped)
+\item GET /help.html → help\+\_\+gz (gzipped)
+\item GET /user\+\_\+manual.html → user\+\_\+manual\+\_\+html (plain HTML)
+\item GET /automation\+\_\+manual.html → automation\+\_\+manual\+\_\+html (plain HTML)
+\item GET /control.html → control\+\_\+gz (gzipped)
+\item GET / → control\+\_\+gz (gzipped, default)
+\item All other paths → control\+\_\+gz (gzipped, fallback)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & HTTP request line (e.\+g., "{}\+GET /control.\+html HTTP/1.\+1"{}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to HTML content in flash memory (never NULL)
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Returned pointer is const and points to flash memory. 
+
+Use \doxylink{group__webui5_ga50ef0aad6146999a05d9a34b3b5c4e32}{get\+\_\+page\+\_\+length()} to determine content size and encoding.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{page__content_8h}{page\+\_\+content.\+h} for detailed documentation. 
+\end{DoxySeeAlso}
+\Hypertarget{group__webui5_ga50ef0aad6146999a05d9a34b3b5c4e32}\index{5. Page Content@{5. Page Content}!get\_page\_length@{get\_page\_length}}
+\index{get\_page\_length@{get\_page\_length}!5. Page Content@{5. Page Content}}
+\doxysubsubsubsection{\texorpdfstring{get\_page\_length()}{get\_page\_length()}}
+{\footnotesize\ttfamily \label{group__webui5_ga50ef0aad6146999a05d9a34b3b5c4e32} 
+int get\+\_\+page\+\_\+length (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{request}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{is\+\_\+gzip}{}\end{DoxyParamCaption})}
+
+
+
+Get content length and encoding for a requested HTML page. 
+
+Determines the byte length of the HTML content for a given HTTP request path and indicates whether the content is gzip-\/compressed. This information is used by the HTTP server to set Content-\/\+Length and Content-\/\+Encoding headers.
+
+Length Calculation\+:
+\begin{DoxyItemize}
+\item Gzipped pages\+: Uses precompiled \texorpdfstring{$\ast$}{*}\+\_\+gz\+\_\+len constants from header files
+\item Plain HTML pages\+: Uses strlen() to measure string length
+\item Default fallback\+: Returns control\+\_\+gz length
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & HTTP request line (e.\+g., "{}\+GET /help.\+html HTTP/1.\+1"{}) \\
+\hline
+{\em is\+\_\+gzip} & Output flag indicating compression; set to 1 if gzipped, 0 if plain HTML (may be NULL)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Content length in bytes (always positive)
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+If is\+\_\+gzip is NULL, the function still works but does not report encoding. 
+
+Always returns a valid length; falls back to control\+\_\+gz on unrecognized paths.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{page__content_8h}{page\+\_\+content.\+h} for detailed documentation. 
+\end{DoxySeeAlso}
+
+
+\label{doc-var-members}
+\Hypertarget{group__webui5_doc-var-members}
+\doxysubsubsection{Variable Documentation}
+\Hypertarget{group__webui5_gaf8a378d29df41f3c814a6aa343988fa6}\index{5. Page Content@{5. Page Content}!automation\_manual\_html@{automation\_manual\_html}}
+\index{automation\_manual\_html@{automation\_manual\_html}!5. Page Content@{5. Page Content}}
+\doxysubsubsubsection{\texorpdfstring{automation\_manual\_html}{automation\_manual\_html}}
+{\footnotesize\ttfamily \label{group__webui5_gaf8a378d29df41f3c814a6aa343988fa6} 
+const char automation\+\_\+manual\+\_\+html\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+HTML content for the Automation Manual page. 
+
+This string contains the HTML markup for the Automation Manual page, embedding the Automation Manual PDF and providing a download link. \Hypertarget{group__webui5_gad882226f97c172525ecabab87380591e}\index{5. Page Content@{5. Page Content}!control\_html@{control\_html}}
+\index{control\_html@{control\_html}!5. Page Content@{5. Page Content}}
+\doxysubsubsubsection{\texorpdfstring{control\_html}{control\_html}}
+{\footnotesize\ttfamily \label{group__webui5_gad882226f97c172525ecabab87380591e} 
+const char control\+\_\+html\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+HTML content for the Control page. 
+
+This string contains the HTML markup for the Control page, allowing users to toggle power channels and monitor data. \Hypertarget{group__webui5_ga51277673c78bff80cffa4b52f2848c0a}\index{5. Page Content@{5. Page Content}!settings\_html@{settings\_html}}
+\index{settings\_html@{settings\_html}!5. Page Content@{5. Page Content}}
+\doxysubsubsubsection{\texorpdfstring{settings\_html}{settings\_html}}
+{\footnotesize\ttfamily \label{group__webui5_ga51277673c78bff80cffa4b52f2848c0a} 
+const char settings\+\_\+html\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{group__webui5_gaad2d54794c452b589adb75c7a835a445}\index{5. Page Content@{5. Page Content}!user\_manual\_html@{user\_manual\_html}}
+\index{user\_manual\_html@{user\_manual\_html}!5. Page Content@{5. Page Content}}
+\doxysubsubsubsection{\texorpdfstring{user\_manual\_html}{user\_manual\_html}}
+{\footnotesize\ttfamily \label{group__webui5_gaad2d54794c452b589adb75c7a835a445} 
+const char user\+\_\+manual\+\_\+html\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+HTML content for the Settings page. 
+
+This string contains the HTML markup for the Settings page, allowing users to configure network, device, and temperature unit settings.
+
+\begin{DoxyNote}{Note}
+The Settings page content is stored as a gzip-\/compressed blob in \doxylink{settings__gz_8h}{settings\+\_\+gz.\+h}
+\end{DoxyNote}
+HTML content for the Help page.
+
+This string contains the HTML markup for the Help page, providing guidance and links to manuals for the ENERGIS 10IN Managed PDU.
+
+\begin{DoxyNote}{Note}
+The Help page content is stored as a gzip-\/compressed blob in \doxylink{help__gz_8h}{help\+\_\+gz.\+h}
+\end{DoxyNote}
+HTML content for the User Manual page.
+
+This string contains the HTML markup for the User Manual page, embedding the user manual PDF and providing a download link. 

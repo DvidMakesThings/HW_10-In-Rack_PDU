@@ -1,0 +1,17 @@
+<map id="storage_clear_startup_preset" name="storage_clear_startup_preset">
+<area shape="rect" id="Node000001" title="Clear startup preset via StorageTask." alt="" coords="1161,5,1307,48"/>
+<area shape="rect" id="Node000002" href="$group__webui6.html#gab0a20afe333957eef6db7e68e569467f" title="Handle POST /api/startup&#45;config." alt="" coords="932,13,1113,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1145,29,1113,29,1113,24,1145,24"/>
+<area shape="rect" id="Node000003" href="$group__webui1.html#ga52702a4dcaff4540a9ddd10e4d5f4525" title="Process incoming HTTP connections and route requests." alt="" coords="745,13,884,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="917,29,885,29,885,24,917,24"/>
+<area shape="rect" id="Node000004" href="$_net_task_8c.html#a80f30ff31d5f0d4f6696af42d015bce6" title="Network task main function." alt="" coords="570,13,697,40"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="730,29,697,29,697,24,730,24"/>
+<area shape="rect" id="Node000005" href="$group__tasks06.html#ga3bb13f092e9d7a8e15776e5e8bf8e8c3" title="Create and start the Network Task with a deterministic enable gate." alt="" coords="426,13,522,40"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="554,29,522,29,522,24,554,24"/>
+<area shape="rect" id="Node000006" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,13,378,40"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="411,29,379,29,379,24,411,24"/>
+<area shape="rect" id="Node000007" href="$group__tasks01.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,13,263,40"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="295,29,263,29,263,24,295,24"/>
+<area shape="rect" id="Node000008" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,13,102,40"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="134,29,102,29,102,24,134,24"/>
+</map>

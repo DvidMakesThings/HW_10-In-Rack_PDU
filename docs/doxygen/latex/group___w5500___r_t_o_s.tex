@@ -1,0 +1,84 @@
+\doxysubsubsection{RTOS Integration Parameters }
+\hypertarget{group___w5500___r_t_o_s}{}\label{group___w5500___r_t_o_s}\index{RTOS Integration Parameters@{RTOS Integration Parameters}}
+
+
+Free\+RTOS task and synchronization settings.  
+
+
+Collaboration diagram for RTOS Integration Parameters\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group___w5500___r_t_o_s}
+\end{center}
+\end{figure}
+\doxysubsubsubsubsection*{RTOS Parameters}
+Task sizes, timeouts, and polling intervals. \begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___w5500___r_t_o_s_ga6c3ee3959a695838958947e81ab438ef}{W5500\+\_\+\+TASK\+\_\+\+STACK}}~2048
+\item 
+\#define \mbox{\hyperlink{group___w5500___r_t_o_s_ga765050373e7cbcaf6fc705a3bab8550f}{W5500\+\_\+\+QUEUE\+\_\+\+LENGTH}}~16
+\item 
+\#define \mbox{\hyperlink{group___w5500___r_t_o_s_ga100e6f218d1c4d7631e4f0cdae77c7e7}{W5500\+\_\+\+SPI\+\_\+\+TIMEOUT}}~pd\+MS\+\_\+\+TO\+\_\+\+TICKS(100)
+\item 
+\#define \mbox{\hyperlink{group___w5500___r_t_o_s_gaddd7ecc56f224873f784018fb72b2fd5}{W5500\+\_\+\+SOCKET\+\_\+\+TIMEOUT}}~pd\+MS\+\_\+\+TO\+\_\+\+TICKS(5000)
+\item 
+\#define \mbox{\hyperlink{group___w5500___r_t_o_s_ga4e8182816849cc698df047e6a5574236}{W5500\+\_\+\+PHY\+\_\+\+CHECK\+\_\+\+MS}}~1000
+\item 
+\#define \mbox{\hyperlink{group___w5500___r_t_o_s_ga0193ab65ea8716b84812ef0dc2577def}{W5500\+\_\+\+USE\+\_\+\+INTERRUPTS}}~1
+\item 
+\#define \mbox{\hyperlink{group___w5500___r_t_o_s_ga59359c341c5d2734934339eb7e35f67f}{W5500\+\_\+\+IRQ\+\_\+\+POLL\+\_\+\+MS}}~10
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+Free\+RTOS task and synchronization settings. 
+
+
+
+\label{doc-define-members}
+\Hypertarget{group___w5500___r_t_o_s_doc-define-members}
+\doxysubsubsubsection{Macro Definition Documentation}
+\Hypertarget{group___w5500___r_t_o_s_ga59359c341c5d2734934339eb7e35f67f}\index{RTOS Integration Parameters@{RTOS Integration Parameters}!W5500\_IRQ\_POLL\_MS@{W5500\_IRQ\_POLL\_MS}}
+\index{W5500\_IRQ\_POLL\_MS@{W5500\_IRQ\_POLL\_MS}!RTOS Integration Parameters@{RTOS Integration Parameters}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_IRQ\_POLL\_MS}{W5500\_IRQ\_POLL\_MS}}
+{\footnotesize\ttfamily \label{group___w5500___r_t_o_s_ga59359c341c5d2734934339eb7e35f67f} 
+\#define W5500\+\_\+\+IRQ\+\_\+\+POLL\+\_\+\+MS~10}
+
+Interrupt polling interval when using interrupts (milliseconds) \Hypertarget{group___w5500___r_t_o_s_ga4e8182816849cc698df047e6a5574236}\index{RTOS Integration Parameters@{RTOS Integration Parameters}!W5500\_PHY\_CHECK\_MS@{W5500\_PHY\_CHECK\_MS}}
+\index{W5500\_PHY\_CHECK\_MS@{W5500\_PHY\_CHECK\_MS}!RTOS Integration Parameters@{RTOS Integration Parameters}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_PHY\_CHECK\_MS}{W5500\_PHY\_CHECK\_MS}}
+{\footnotesize\ttfamily \label{group___w5500___r_t_o_s_ga4e8182816849cc698df047e6a5574236} 
+\#define W5500\+\_\+\+PHY\+\_\+\+CHECK\+\_\+\+MS~1000}
+
+PHY link status check interval in milliseconds \Hypertarget{group___w5500___r_t_o_s_ga765050373e7cbcaf6fc705a3bab8550f}\index{RTOS Integration Parameters@{RTOS Integration Parameters}!W5500\_QUEUE\_LENGTH@{W5500\_QUEUE\_LENGTH}}
+\index{W5500\_QUEUE\_LENGTH@{W5500\_QUEUE\_LENGTH}!RTOS Integration Parameters@{RTOS Integration Parameters}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_QUEUE\_LENGTH}{W5500\_QUEUE\_LENGTH}}
+{\footnotesize\ttfamily \label{group___w5500___r_t_o_s_ga765050373e7cbcaf6fc705a3bab8550f} 
+\#define W5500\+\_\+\+QUEUE\+\_\+\+LENGTH~16}
+
+Network event queue depth \Hypertarget{group___w5500___r_t_o_s_gaddd7ecc56f224873f784018fb72b2fd5}\index{RTOS Integration Parameters@{RTOS Integration Parameters}!W5500\_SOCKET\_TIMEOUT@{W5500\_SOCKET\_TIMEOUT}}
+\index{W5500\_SOCKET\_TIMEOUT@{W5500\_SOCKET\_TIMEOUT}!RTOS Integration Parameters@{RTOS Integration Parameters}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_SOCKET\_TIMEOUT}{W5500\_SOCKET\_TIMEOUT}}
+{\footnotesize\ttfamily \label{group___w5500___r_t_o_s_gaddd7ecc56f224873f784018fb72b2fd5} 
+\#define W5500\+\_\+\+SOCKET\+\_\+\+TIMEOUT~pd\+MS\+\_\+\+TO\+\_\+\+TICKS(5000)}
+
+Socket operation timeout in ticks \Hypertarget{group___w5500___r_t_o_s_ga100e6f218d1c4d7631e4f0cdae77c7e7}\index{RTOS Integration Parameters@{RTOS Integration Parameters}!W5500\_SPI\_TIMEOUT@{W5500\_SPI\_TIMEOUT}}
+\index{W5500\_SPI\_TIMEOUT@{W5500\_SPI\_TIMEOUT}!RTOS Integration Parameters@{RTOS Integration Parameters}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_SPI\_TIMEOUT}{W5500\_SPI\_TIMEOUT}}
+{\footnotesize\ttfamily \label{group___w5500___r_t_o_s_ga100e6f218d1c4d7631e4f0cdae77c7e7} 
+\#define W5500\+\_\+\+SPI\+\_\+\+TIMEOUT~pd\+MS\+\_\+\+TO\+\_\+\+TICKS(100)}
+
+SPI mutex acquisition timeout in ticks \Hypertarget{group___w5500___r_t_o_s_ga6c3ee3959a695838958947e81ab438ef}\index{RTOS Integration Parameters@{RTOS Integration Parameters}!W5500\_TASK\_STACK@{W5500\_TASK\_STACK}}
+\index{W5500\_TASK\_STACK@{W5500\_TASK\_STACK}!RTOS Integration Parameters@{RTOS Integration Parameters}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_TASK\_STACK}{W5500\_TASK\_STACK}}
+{\footnotesize\ttfamily \label{group___w5500___r_t_o_s_ga6c3ee3959a695838958947e81ab438ef} 
+\#define W5500\+\_\+\+TASK\+\_\+\+STACK~2048}
+
+Network task stack size in bytes \Hypertarget{group___w5500___r_t_o_s_ga0193ab65ea8716b84812ef0dc2577def}\index{RTOS Integration Parameters@{RTOS Integration Parameters}!W5500\_USE\_INTERRUPTS@{W5500\_USE\_INTERRUPTS}}
+\index{W5500\_USE\_INTERRUPTS@{W5500\_USE\_INTERRUPTS}!RTOS Integration Parameters@{RTOS Integration Parameters}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_USE\_INTERRUPTS}{W5500\_USE\_INTERRUPTS}}
+{\footnotesize\ttfamily \label{group___w5500___r_t_o_s_ga0193ab65ea8716b84812ef0dc2577def} 
+\#define W5500\+\_\+\+USE\+\_\+\+INTERRUPTS~1}
+
+Enable interrupt-\/driven socket events (0=polling, 1=interrupt) 

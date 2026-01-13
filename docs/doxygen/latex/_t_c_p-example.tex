@@ -1,0 +1,37 @@
+\doxysection{TCP}
+\hypertarget{_t_c_p-example}{}\label{_t_c_p-example}Server Example 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Create\ TCP\ server\ socket\ on\ port\ 80}}
+\DoxyCodeLine{int8\_t\ sn\ =\ \mbox{\hyperlink{group__drivers08_ga8cc0a2074b3aae98a132c1ae3c51188f}{socket}}(0,\ \mbox{\hyperlink{group__config03_ga111a5f7d5eb14054bd5a895dabad372d}{Sn\_MR\_TCP}},\ 80,\ \mbox{\hyperlink{group__drivers08_gae9bc25736822c8937e783714525b5dcd}{SF\_IO\_NONBLOCK}});}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (sn\ <\ 0)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Error\ handling}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Put\ socket\ into\ listen\ mode}}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group__drivers08_ga58ae959798d5d874ac5ea796da90db8c}{listen}}(sn)\ !=\ \mbox{\hyperlink{group__drivers08_ga43761c46fde2eb998247950b5a735cbf}{SOCK\_OK}})\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{group__drivers08_ga025710a2709097be7824f0564f89a461}{closesocket}}(sn);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Check\ for\ connection}}
+\DoxyCodeLine{uint8\_t\ status;}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers08_ga631998ae17cbf099b0071f20c88ce5cf}{getsockopt}}(sn,\ \mbox{\hyperlink{group__drivers08_gga2f86b7ad233f3b8d6ae0af3ee91e9944a3f76c1b04cfc969826bed37a3c4cff06}{SO\_STATUS}},\ \&status);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (status\ ==\ \mbox{\hyperlink{group__config03_ga9cdcdeddeeb7b7bf82bbc5eb415f677c}{SOCK\_ESTABLISHED}})\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Receive\ data}}
+\DoxyCodeLine{\ \ \ \ uint8\_t\ buf[1024];}
+\DoxyCodeLine{\ \ \ \ int32\_t\ len\ =\ \mbox{\hyperlink{group__drivers08_ga4cfb66f7440a1dd9ac0ee0b933a38c59}{recv}}(sn,\ buf,\ \textcolor{keyword}{sizeof}(buf));}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (len\ >\ 0)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Process\ received\ data}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{group__drivers08_gacd77c3cc60e87d09a5714932506d7c4b}{send}}(sn,\ buf,\ len);\ \textcolor{comment}{//\ Echo\ back}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ 

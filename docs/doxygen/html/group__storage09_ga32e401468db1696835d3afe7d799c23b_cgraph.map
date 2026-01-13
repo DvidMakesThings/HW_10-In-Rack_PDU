@@ -1,0 +1,16 @@
+<map id="EEPROM_ReadChannelLabel" name="EEPROM_ReadChannelLabel">
+<area shape="rect" id="Node000001" title="Read label string for a channel." alt="" coords="5,56,202,83"/>
+<area shape="rect" id="Node000002" href="$channel__labels_8c.html#a1aaf00bf844e024f39c0c26829aaa5c4" title="Calculate EEPROM address for a channel&#39;s label slot." alt="" coords="277,5,386,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,53,261,31,263,37,168,58"/>
+<area shape="rect" id="Node000003" href="$group__driver02.html#ga622a6736c8384f9e1921a1bda2a84df9" title="Read buffer from EEPROM." alt="" coords="250,56,414,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="202,67,234,67,234,72,202,72"/>
+<area shape="rect" id="Node000007" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="462,107,645,133"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="178,81,250,92,446,111,446,116,249,97,177,86"/>
+<area shape="rect" id="Node000004" href="$group__drivers05.html#ga66ae4c7028f764a3770cabe101dba8bf" title="Read from 16&#45;bit memory address: write [mem_hi, mem_lo] (no stop), then read len bytes." alt="" coords="480,56,628,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="414,67,464,67,464,72,414,72"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="394,81,478,100,477,105,393,86"/>
+<area shape="rect" id="Node000005" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="722,31,844,57"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="628,59,706,50,707,55,628,64"/>
+<area shape="rect" id="Node000006" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="693,81,873,108"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="628,75,678,80,678,86,628,80"/>
+</map>

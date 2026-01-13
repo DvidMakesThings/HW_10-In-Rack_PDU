@@ -1,0 +1,5 @@
+<map id="Health_RecordBlocked" name="Health_RecordBlocked">
+<area shape="rect" id="Node000001" title="Record a long blocking event for later diagnostics." alt="" coords="5,5,161,32"/>
+<area shape="rect" id="Node000002" href="$_health_task_8c.html#a50503dee6a29e98e633b16b1b8b550bc" title="Get current monotonic time in milliseconds." alt="" coords="209,5,279,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,16,193,16,193,21,161,21"/>
+</map>

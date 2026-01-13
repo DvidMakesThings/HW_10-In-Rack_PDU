@@ -1,0 +1,13 @@
+<map id="DeviceIdentity_GetRegion" name="DeviceIdentity_GetRegion">
+<area shape="rect" id="Node000001" title="Get the cached device region." alt="" coords="744,5,918,32"/>
+<area shape="rect" id="Node000002" href="$group__tasks08.html#gabaeebc1f043da757f96bac70bb8ac8ba" title="Initialize the overcurrent protection module." alt="" coords="582,5,696,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="729,21,696,21,696,16,729,16"/>
+<area shape="rect" id="Node000003" href="$group__tasks06.html#ga33bd9742d865d9e98a4b81d443f69837" title="Create and start the Meter Task with a deterministic enable gate." alt="" coords="426,5,534,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="566,21,534,21,534,16,566,16"/>
+<area shape="rect" id="Node000004" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,5,378,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="411,21,379,21,379,16,411,16"/>
+<area shape="rect" id="Node000005" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,5,263,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="295,21,263,21,263,16,295,16"/>
+<area shape="rect" id="Node000006" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,5,102,32"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="134,21,102,21,102,16,134,16"/>
+</map>

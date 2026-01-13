@@ -1,0 +1,5 @@
+<map id="w5500_get_tx_fsr" name="w5500_get_tx_fsr">
+<area shape="rect" id="Node000001" title="Get socket TX free size (with double&#45;read protection)" alt="" coords="5,5,130,32"/>
+<area shape="rect" id="Node000002" href="$ethernet__driver_8c.html#a4b0b3b259cf8981cc3fe59199ffd8f70" title="Read 16&#45;bit value from W5500 register (optimized for FSR/RSR)" alt="" coords="178,5,308,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="130,16,162,16,162,21,130,21"/>
+</map>

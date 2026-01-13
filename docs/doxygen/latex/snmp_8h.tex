@@ -1,0 +1,161 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/drivers/snmp.h File Reference}
+\hypertarget{snmp_8h}{}\label{snmp_8h}\index{src/Software/ENERGIS\_RTOS/src/drivers/snmp.h@{src/Software/ENERGIS\_RTOS/src/drivers/snmp.h}}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structsnmp__tlv__t}{snmp\+\_\+tlv\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em TLV cursor describing a parsed element in an SNMP message. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structsnmp__msg__t}{snmp\+\_\+msg\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em SNMP message work buffer. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structsnmp__entry__t}{snmp\+\_\+entry\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em OID entry descriptor used by the agent’s MIB callbacks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{Indent}\textbf{ Build-\/time Options}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__drivers07_ga0f877716caace78f162f9acd3bfcb0ad}{\+\_\+\+SNMP\+\_\+\+DEBUG\+\_\+}}~\mbox{\hyperlink{group__overcurrent__thresholds_gad72dbcf6d0153db1b8d8a58001feed83}{DEBUG}}
+\begin{DoxyCompactList}\small\item\em Enable hexdumps of requests/responses on the UART console. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__drivers07_gaa1247060563b5496faabb3101c94c0fe}{SNMP\+\_\+\+MAX\+\_\+\+OID}}~12
+\begin{DoxyCompactList}\small\item\em Maximum OID components per entry. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__drivers07_ga7eabbff7225d69d858fbae9fd92d84dc}{SNMP\+\_\+\+MAX\+\_\+\+STRING}}~64
+\begin{DoxyCompactList}\small\item\em Maximum string size for OCTET STRING values. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__drivers07_ga3c4da6220392a79f17acd6f92823ae21}{SNMP\+\_\+\+MAX\+\_\+\+MSG}}~768
+\begin{DoxyCompactList}\small\item\em Maximum SNMP PDU size supported. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__drivers07_ga5dd325e447b3096138d7d4f13da21090}{SNMP\+\_\+\+MAX\+\_\+\+TRAP}}~512
+\begin{DoxyCompactList}\small\item\em Maximum SNMP TRAP PDU size. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__drivers07_ga6357aa42d6d95d68c734570c3d3c8fd4}{SNMP\+\_\+\+PORT\+\_\+\+AGENT}}~161
+\begin{DoxyCompactList}\small\item\em Default SNMP agent and trap ports. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__drivers07_ga0c0dcc214fc99fe40f1bfee3485abf11}{SNMP\+\_\+\+PORT\+\_\+\+TRAP}}~162
+\item 
+\#define \mbox{\hyperlink{group__drivers07_ga6ac01a98e084755dbcade842c3f4766b}{SNMP\+\_\+\+V1}}~0
+\begin{DoxyCompactList}\small\item\em SNMP version supported (v1). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ ASN.1 Data Types}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__drivers07_ga1309bbf071ccc26803591cb3e9dae81c}{SNMPDTYPE\+\_\+\+INTEGER}}~0x02
+\item 
+\#define \mbox{\hyperlink{group__drivers07_ga7e23a44412b1c52ad91bbe3f8706f961}{SNMPDTYPE\+\_\+\+OCTET\+\_\+\+STRING}}~0x04
+\item 
+\#define \mbox{\hyperlink{group__drivers07_ga64a731b91ad3afca5c4c50be3bebded5}{SNMPDTYPE\+\_\+\+NULL\+\_\+\+ITEM}}~0x05
+\item 
+\#define \mbox{\hyperlink{group__drivers07_gadd88bd871df907df07b8df3a8d515fdb}{SNMPDTYPE\+\_\+\+OBJ\+\_\+\+ID}}~0x06
+\item 
+\#define \mbox{\hyperlink{group__drivers07_ga8bbb940275301e6b5e8feaf9a8443b14}{SNMPDTYPE\+\_\+\+SEQUENCE}}~0x30
+\item 
+\#define \mbox{\hyperlink{group__drivers07_gab115c1f3663bbd02d242544c5902b5b8}{SNMPDTYPE\+\_\+\+SEQUENCE\+\_\+\+OF}}~\mbox{\hyperlink{group__drivers07_ga8bbb940275301e6b5e8feaf9a8443b14}{SNMPDTYPE\+\_\+\+SEQUENCE}}
+\item 
+\#define \mbox{\hyperlink{group__drivers07_ga9a5fca6fd1c67dab34312f8153807122}{SNMPDTYPE\+\_\+\+COUNTER}}~0x41
+\item 
+\#define \mbox{\hyperlink{group__drivers07_gabc779d57f204786a956d81bd848fdc9d}{SNMPDTYPE\+\_\+\+GAUGE}}~0x42
+\item 
+\#define \mbox{\hyperlink{group__drivers07_ga4720854b6e98cfb8d1693693b0035a68}{SNMPDTYPE\+\_\+\+TIME\+\_\+\+TICKS}}~0x43
+\item 
+\#define \mbox{\hyperlink{group__drivers07_ga27a4bf80ca38dd54c6031335bf3ca42a}{SNMPDTYPE\+\_\+\+OPAQUE}}~0x44
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ SNMP PDU Types}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__drivers07_ga7231a4e5ed0387b0e9875e16f560f4f0}{GET\+\_\+\+REQUEST}}~0x\+A0
+\item 
+\#define \mbox{\hyperlink{group__drivers07_gafb189f1db474c3e3613e662892bd116d}{GET\+\_\+\+NEXT\+\_\+\+REQUEST}}~0x\+A1
+\item 
+\#define \mbox{\hyperlink{group__drivers07_ga74160f0080b74c2649b30ecf921d43ae}{GET\+\_\+\+RESPONSE}}~0x\+A2
+\item 
+\#define \mbox{\hyperlink{group__drivers07_gad4729ef34337beb2d6a4e1c20d8ea5a7}{SET\+\_\+\+REQUEST}}~0x\+A3
+\item 
+\#define \mbox{\hyperlink{group__drivers07_ga8a94b67ec0fbadf7e79b7bf648eab8f9}{VALID\+\_\+\+REQUEST}}(x)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Generic Trap Types}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__drivers07_ga458ceefa06966e5db31c6f811a75b294}{SNMPTRAP\+\_\+\+COLDSTART}}~0x00
+\item 
+\#define \mbox{\hyperlink{group__drivers07_ga0c39b7d80d9cc50ae12dc731fa06c8a4}{SNMPTRAP\+\_\+\+WARMSTART}}~0x01
+\item 
+\#define \mbox{\hyperlink{group__drivers07_ga5fc039dd222f050fa6d8b13db32efd4a}{SNMPTRAP\+\_\+\+LINKDOWN}}~0x02
+\item 
+\#define \mbox{\hyperlink{group__drivers07_gad0555e24c12240c5173a83e4732e672f}{SNMPTRAP\+\_\+\+LINKUP}}~0x03
+\item 
+\#define \mbox{\hyperlink{group__drivers07_gaf6e51dece2ca150443373d6aa0312c12}{SNMPTRAP\+\_\+\+AUTHENTICATION}}~0x04
+\item 
+\#define \mbox{\hyperlink{group__drivers07_ga59126483f81142b4f52b4fdcca788e92}{SNMPTRAP\+\_\+\+EGPNEIGHBORLOSS}}~0x05
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Agent Return/\+Error Codes}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__drivers07_ga26a8de150d9019a8b9d4d892a2ccf706}{SNMP\+\_\+\+SUCCESS}}~0
+\item 
+\#define \mbox{\hyperlink{group__drivers07_ga1b8c2e9357eba4e82d07f86fa4b3627e}{OID\+\_\+\+NOT\+\_\+\+FOUND}}~-\/1
+\item 
+\#define \mbox{\hyperlink{group__drivers07_ga8984519f603cf8da52980ea99229f7e2}{TABLE\+\_\+\+FULL}}~-\/2
+\item 
+\#define \mbox{\hyperlink{group__drivers07_gac38f3beff10f266987c3fb007f6908eb}{ILLEGAL\+\_\+\+LENGTH}}~-\/3
+\item 
+\#define \mbox{\hyperlink{group__drivers07_ga5f6daf3fbd9221b985d43f974ca26715}{INVALID\+\_\+\+ENTRY\+\_\+\+ID}}~-\/4
+\item 
+\#define \mbox{\hyperlink{group__drivers07_gaf6444726292c84aff1853b7d08c9885f}{INVALID\+\_\+\+DATA\+\_\+\+TYPE}}~-\/5
+\item 
+\#define \mbox{\hyperlink{group__drivers07_ga83b11a3c3c847c4c0891e85188c1a784}{NO\+\_\+\+SUCH\+\_\+\+NAME}}~2
+\item 
+\#define \mbox{\hyperlink{group__drivers07_ga4f315b4d8591289f792158bb2b392c92}{BAD\+\_\+\+VALUE}}~3
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Helper Macros}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__drivers07_gabd1249696a0fa7574b8a9f3e8a9e6e17}{HTONL}}(x)
+\item 
+\#define \mbox{\hyperlink{group__drivers07_gaa416e60be83b7e4da23cea61d1f2c814}{COPY\+\_\+\+SEGMENT}}(x)
+\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__drivers07_ga4d3d68fdba21b44efc30f71a40efa7ed}{init\+Table}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize OID table and agent community (implemented in \doxylink{snmp__custom_8c}{snmp\+\_\+custom.\+c}). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers07_ga01e7036f2bce7c2647b681dcfe2b3731}{initial\+\_\+\+Trap}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}manager\+IP, uint8\+\_\+t \texorpdfstring{$\ast$}{*}agent\+IP)
+\begin{DoxyCompactList}\small\item\em Perform initial trap setup with manager/agent IP (in \doxylink{snmp__custom_8c}{snmp\+\_\+custom.\+c}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Public API}\par
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{group__drivers07_gaceddc5a84a3d118c49268cfb5ba8c0bb}{SNMP\+\_\+\+Init}} (uint8\+\_\+t sock\+\_\+agent, uint16\+\_\+t local\+\_\+port, uint8\+\_\+t sock\+\_\+trap)
+\begin{DoxyCompactList}\small\item\em Initialize SNMP agent UDP transport and core. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__drivers07_ga972f694c4faddc6acac860a71a1382cd}{SNMP\+\_\+\+Poll}} (int max\+\_\+packets)
+\begin{DoxyCompactList}\small\item\em Service pending SNMP datagrams without blocking. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers07_gaf6784b34d0637f242ccbde5945d27ca9}{SNMP\+\_\+\+Tick10ms}} (void)
+\begin{DoxyCompactList}\small\item\em 10 ms periodic tick for SNMP timing (called from Net\+Task). \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__drivers07_ga8b18137382d90ca77a5391a0b927a6b3}{SNMP\+\_\+\+Get\+Tick10ms}} (void)
+\begin{DoxyCompactList}\small\item\em Return the agent tick counter (in 10 ms units). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers07_gaccfeccce705940cdb923c673b67db35d}{SNMP\+\_\+\+Get\+Uptime}} (void \texorpdfstring{$\ast$}{*}ptr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em Populate current uptime (Time\+Ticks) for the system\+Up\+Time OID. \end{DoxyCompactList}\item 
+int32\+\_\+t \mbox{\hyperlink{group__drivers07_gaface68bc44083fa16ce731bc1a8f5014}{SNMP\+\_\+\+Send\+Trap}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}manager\+IP, uint8\+\_\+t \texorpdfstring{$\ast$}{*}agent\+IP, int8\+\_\+t \texorpdfstring{$\ast$}{*}community, \mbox{\hyperlink{structsnmp__entry__t}{snmp\+\_\+entry\+\_\+t}} enterprise\+\_\+oid, uint32\+\_\+t generic\+Trap, uint32\+\_\+t specific\+Trap, uint32\+\_\+t va\+\_\+count,...)
+\begin{DoxyCompactList}\small\item\em Send an SNMP trap to a manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structsnmp__entry__t}{snmp\+\_\+entry\+\_\+t}} \mbox{\hyperlink{group__drivers07_ga0fc0a81b7ad505f393362648610b3a2c}{snmp\+Data}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Global OID table (implemented in \doxylink{snmp__custom_8c}{snmp\+\_\+custom.\+c}). \end{DoxyCompactList}\item 
+const int32\+\_\+t \mbox{\hyperlink{group__drivers07_ga073f16bfbcb7015e6408be249c5d2932}{max\+Data}}
+\begin{DoxyCompactList}\small\item\em Number of valid entries in \doxylink{group__drivers07_ga0fc0a81b7ad505f393362648610b3a2c}{snmp\+Data}. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \mbox{\hyperlink{group__drivers07_ga171971564950d97e48939e2f6de4d92f}{COMMUNITY}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Community string bytes (length \doxylink{group__drivers07_ga253bb776650cb698ee240d43141e1cfa}{COMMUNITY\+\_\+\+SIZE}). \end{DoxyCompactList}\item 
+const uint8\+\_\+t \mbox{\hyperlink{group__drivers07_ga253bb776650cb698ee240d43141e1cfa}{COMMUNITY\+\_\+\+SIZE}}
+\begin{DoxyCompactList}\small\item\em Community string length. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

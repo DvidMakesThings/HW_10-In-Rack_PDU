@@ -1,0 +1,329 @@
+\doxysubsubsection{
+\begin{DoxyEnumerate}
+\item Energy Monitoring 
+\end{DoxyEnumerate}}
+\hypertarget{group__storage04}{}\label{group__storage04}\index{4. Energy Monitoring@{4. Energy Monitoring}}
+
+
+Energy consumption logging with ring buffer persistence.  
+
+
+Collaboration diagram for 4. Energy Monitoring\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{group__storage04}
+\end{center}
+\end{figure}
+\doxysubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__storage04_ga2d726f82a082d5cdd3ae6b1bfaab1ce8}{EEPROM\+\_\+\+Write\+Energy\+Monitoring}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write entire energy monitoring region to EEPROM (bulk operation). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage04_ga9fb1f24e48771317aaa7c8b6c02c9786}{EEPROM\+\_\+\+Read\+Energy\+Monitoring}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Read entire energy monitoring region from EEPROM (bulk operation). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage04_ga718d1f1b5a07b4a0afee080ae1b18f2d}{EEPROM\+\_\+\+Append\+Energy\+Record}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data)
+\begin{DoxyCompactList}\small\item\em Append one energy record to ring buffer with automatic wrapping. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+Energy consumption logging with ring buffer persistence. 
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/14
+\end{DoxyDate}
+This module manages historical energy consumption data stored in EEPROM using a ring buffer structure. Provides periodic logging of energy measurements for trend analysis and capacity planning.
+
+Key Features\+:
+\begin{DoxyItemize}
+\item Ring buffer for energy consumption records
+\item Automatic pointer wrapping for circular storage
+\item Fixed-\/size records for predictable memory usage
+\item Write pointer persistence across power cycles
+\item Support for bulk read/write operations
+\end{DoxyItemize}
+
+EEPROM Memory Layout (EEPROM\+\_\+\+ENERGY\+\_\+\+MON\+\_\+\+START, total size varies)\+:
+\begin{DoxyItemize}
+\item Offset 0-\/1\+: Write pointer (uint16\+\_\+t, entry index)
+\item Offset 2+\+: Energy records (ENERGY\+\_\+\+RECORD\+\_\+\+SIZE bytes each)
+\end{DoxyItemize}
+
+Ring Buffer Structure\+:
+\begin{DoxyItemize}
+\item First 2 bytes (ENERGY\+\_\+\+MON\+\_\+\+POINTER\+\_\+\+SIZE)\+: Write pointer
+\begin{DoxyItemize}
+\item Stores index of next record to write
+\item Automatically wraps to 0 when buffer fills
+\item Persisted to EEPROM after each append
+\end{DoxyItemize}
+\item Remaining bytes\+: Energy record array
+\begin{DoxyItemize}
+\item Each record\+: ENERGY\+\_\+\+RECORD\+\_\+\+SIZE bytes
+\item Number of records\+: (EEPROM\+\_\+\+ENERGY\+\_\+\+MON\+\_\+\+SIZE -\/ 2) / ENERGY\+\_\+\+RECORD\+\_\+\+SIZE
+\item Older records overwritten when buffer wraps
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Energy Record Format\+:
+\begin{DoxyItemize}
+\item Size\+: ENERGY\+\_\+\+RECORD\+\_\+\+SIZE bytes (defined in \doxylink{_c_o_n_f_i_g_8h}{config.\+h})
+\item Contents\+: Application-\/specific energy data structure
+\item Typically includes\+: timestamp, channel ID, energy counter, power metrics
+\item Record structure defined by Meter\+Task
+\end{DoxyItemize}
+
+Append Operation\+:
+\begin{DoxyEnumerate}
+\item Read current write pointer from EEPROM
+\item Calculate address for new record\+: BASE + 2 + (ptr × ENERGY\+\_\+\+RECORD\+\_\+\+SIZE)
+\item Write new energy record to calculated address
+\item Increment pointer (wrap to 0 if at end of buffer)
+\item Write updated pointer back to EEPROM
+\item Oldest record automatically overwritten on wrap
+\end{DoxyEnumerate}
+
+Bulk Operations\+:
+\begin{DoxyItemize}
+\item \doxylink{group__storage04_ga2d726f82a082d5cdd3ae6b1bfaab1ce8}{EEPROM\+\_\+\+Write\+Energy\+Monitoring()}\+: Bulk write entire region (for restoration)
+\item \doxylink{group__storage04_ga9fb1f24e48771317aaa7c8b6c02c9786}{EEPROM\+\_\+\+Read\+Energy\+Monitoring()}\+: Bulk read entire region (for backup/analysis)
+\item Used for firmware updates, factory reset, or data extraction
+\end{DoxyItemize}
+
+Thread Safety\+:
+\begin{DoxyItemize}
+\item All read/write functions require eeprom\+Mtx held by caller
+\item Prevents concurrent access corruption
+\item Ensures atomic read-\/modify-\/write for pointer updates
+\end{DoxyItemize}
+
+Integration Points\+:
+\begin{DoxyItemize}
+\item Meter\+Task\+: Periodically appends energy records (e.\+g., hourly)
+\item Web interface\+: Retrieves historical data for charts
+\item SNMP\+: Provides energy statistics via custom OIDs
+\item Storage Task\+: Provides eeprom\+Mtx for thread-\/safe access
+\end{DoxyItemize}
+
+Usage Pattern\+:
+\begin{DoxyEnumerate}
+\item Meter\+Task accumulates energy measurements
+\item On logging interval (e.\+g., every hour)\+: a. Pack measurements into energy record structure b. Call \doxylink{group__storage04_ga718d1f1b5a07b4a0afee080ae1b18f2d}{EEPROM\+\_\+\+Append\+Energy\+Record()} to persist
+\item Web interface or SNMP reads historical records\+: a. Call \doxylink{group__storage04_ga9fb1f24e48771317aaa7c8b6c02c9786}{EEPROM\+\_\+\+Read\+Energy\+Monitoring()} to bulk read b. Parse records using write pointer to determine newest/oldest
+\end{DoxyEnumerate}
+
+Pointer Management\+:
+\begin{DoxyItemize}
+\item Pointer tracks next write position (not last written position)
+\item Valid pointer range\+: 0 to max\+\_\+entries-\/1
+\item Corrupted pointer (out of range) clamped to 0
+\item Empty buffer indicated by uninitialized EEPROM (all 0x\+FF)
+\end{DoxyItemize}
+
+Error Handling\+:
+\begin{DoxyItemize}
+\item Bounds checking on all buffer operations
+\item Pointer validation before use
+\item Write failures logged as ERR\+\_\+\+SEV\+\_\+\+ERROR
+\item Failed writes leave pointer unchanged
+\item Error codes enqueued to event log
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Energy record format is application-\/defined via ENERGY\+\_\+\+RECORD\+\_\+\+SIZE. 
+
+Ring buffer overwrites oldest data when full (no overflow protection). 
+
+Caller must interpret pointer to distinguish new vs. old records. 
+
+All operations require eeprom\+Mtx held by caller.
+\end{DoxyNote}
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-func-members}
+\Hypertarget{group__storage04_doc-func-members}
+\doxysubsubsubsection{Function Documentation}
+\Hypertarget{group__storage04_ga718d1f1b5a07b4a0afee080ae1b18f2d}\index{4. Energy Monitoring@{4. Energy Monitoring}!EEPROM\_AppendEnergyRecord@{EEPROM\_AppendEnergyRecord}}
+\index{EEPROM\_AppendEnergyRecord@{EEPROM\_AppendEnergyRecord}!4. Energy Monitoring@{4. Energy Monitoring}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_AppendEnergyRecord()}{EEPROM\_AppendEnergyRecord()}}
+{\footnotesize\ttfamily \label{group__storage04_ga718d1f1b5a07b4a0afee080ae1b18f2d} 
+int EEPROM\+\_\+\+Append\+Energy\+Record (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})}
+
+
+
+Append one energy record to ring buffer with automatic wrapping. 
+
+Primary function for logging periodic energy measurements. Implements circular buffer behavior with automatic pointer management and wrap-\/around. Reads current write pointer, writes new record, increments pointer (with wrapping), and persists updated pointer to EEPROM.
+
+Operation Sequence\+:
+\begin{DoxyEnumerate}
+\item Read current write pointer from EEPROM (offset 0-\/1)
+\item Calculate record address\+: BASE + 2 + (pointer × ENERGY\+\_\+\+RECORD\+\_\+\+SIZE)
+\item Write new energy record to calculated address
+\item Increment pointer\+: ptr++
+\item If pointer at end of buffer\+: ptr = 0 (wrap to start)
+\item Write updated pointer back to EEPROM (offset 0-\/1)
+\end{DoxyEnumerate}
+
+Ring Buffer Behavior\+:
+\begin{DoxyItemize}
+\item Buffer size\+: (EEPROM\+\_\+\+ENERGY\+\_\+\+MON\+\_\+\+SIZE -\/ 2) bytes
+\item Number of records\+: (EEPROM\+\_\+\+ENERGY\+\_\+\+MON\+\_\+\+SIZE -\/ 2) / ENERGY\+\_\+\+RECORD\+\_\+\+SIZE
+\item When buffer fills, wraps to start and overwrites oldest record
+\item Pointer always indicates next write position, not last written
+\end{DoxyItemize}
+
+Pointer Validation\+:
+\begin{DoxyItemize}
+\item Out-\/of-\/range pointers clamped to 0 (guards against corruption)
+\item Max valid pointer\+: (buffer\+\_\+size / ENERGY\+\_\+\+RECORD\+\_\+\+SIZE) -\/ 1
+\item Corrupted pointer triggers error log but operation continues
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em data} & Pointer to energy record buffer (ENERGY\+\_\+\+RECORD\+\_\+\+SIZE bytes). Must contain complete energy record structure.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if append successful and pointer updated. 
+
+-\/1 if I2C write fails (record or pointer write).
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+
+Buffer must contain exactly ENERGY\+\_\+\+RECORD\+\_\+\+SIZE bytes. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Oldest records automatically overwritten when buffer wraps. 
+
+Pointer persisted to EEPROM after each append for power-\/loss safety. 
+
+Write failures logged as ERR\+\_\+\+SEV\+\_\+\+ERROR if ERRORLOGGER enabled. 
+
+Called periodically by Meter\+Task (e.\+g., hourly energy snapshots).
+\end{DoxyNote}
+Append one energy record to ring buffer with automatic wrapping. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage04_ga718d1f1b5a07b4a0afee080ae1b18f2d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage04_ga9fb1f24e48771317aaa7c8b6c02c9786}\index{4. Energy Monitoring@{4. Energy Monitoring}!EEPROM\_ReadEnergyMonitoring@{EEPROM\_ReadEnergyMonitoring}}
+\index{EEPROM\_ReadEnergyMonitoring@{EEPROM\_ReadEnergyMonitoring}!4. Energy Monitoring@{4. Energy Monitoring}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_ReadEnergyMonitoring()}{EEPROM\_ReadEnergyMonitoring()}}
+{\footnotesize\ttfamily \label{group__storage04_ga9fb1f24e48771317aaa7c8b6c02c9786} 
+int EEPROM\+\_\+\+Read\+Energy\+Monitoring (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{size\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Read entire energy monitoring region from EEPROM (bulk operation). 
+
+Reads complete energy monitoring buffer including write pointer and all records. Used for backing up energy data, web interface display, or SNMP statistics.
+
+Buffer Layout Returned\+:
+\begin{DoxyItemize}
+\item Offset 0-\/1\+: Write pointer (uint16\+\_\+t, indicates next write position)
+\item Offset 2+\+: Energy records (ENERGY\+\_\+\+RECORD\+\_\+\+SIZE bytes each)
+\end{DoxyItemize}
+
+Interpreting Results\+:
+\begin{DoxyItemize}
+\item Write pointer indicates next record to be written (not last written)
+\item Records wrap circularly, oldest data overwritten when buffer full
+\item Empty/uninitialized buffer has pointer = 0x0000 or 0x\+FFFF
+\item Caller must parse records using pointer to determine order
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{out}}  & {\em data} & Destination buffer for energy monitoring data. \\
+\hline
+\mbox{\texttt{in}}  & {\em len} & Number of bytes to read. Must be \texorpdfstring{$<$}{<}= EEPROM\+\_\+\+ENERGY\+\_\+\+MON\+\_\+\+SIZE.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if read successful. 
+
+-\/1 if length exceeds EEPROM\+\_\+\+ENERGY\+\_\+\+MON\+\_\+\+SIZE.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Bounds checking performed before read operation. 
+
+Read failures logged as ERR\+\_\+\+SEV\+\_\+\+ERROR if ERRORLOGGER enabled. 
+
+Caller must allocate buffer of at least len bytes. 
+
+Used for web interface, SNMP, or backup operations.
+\end{DoxyNote}
+Read entire energy monitoring region from EEPROM (bulk operation). Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage04_ga9fb1f24e48771317aaa7c8b6c02c9786_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage04_ga2d726f82a082d5cdd3ae6b1bfaab1ce8}\index{4. Energy Monitoring@{4. Energy Monitoring}!EEPROM\_WriteEnergyMonitoring@{EEPROM\_WriteEnergyMonitoring}}
+\index{EEPROM\_WriteEnergyMonitoring@{EEPROM\_WriteEnergyMonitoring}!4. Energy Monitoring@{4. Energy Monitoring}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_WriteEnergyMonitoring()}{EEPROM\_WriteEnergyMonitoring()}}
+{\footnotesize\ttfamily \label{group__storage04_ga2d726f82a082d5cdd3ae6b1bfaab1ce8} 
+int EEPROM\+\_\+\+Write\+Energy\+Monitoring (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{size\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Write entire energy monitoring region to EEPROM (bulk operation). 
+
+Writes complete energy monitoring buffer including write pointer and all records. Used for restoring backed-\/up energy data or factory reset operations. Overwrites entire EEPROM region in single operation.
+
+Buffer Layout Expected\+:
+\begin{DoxyItemize}
+\item Offset 0-\/1\+: Write pointer (uint16\+\_\+t)
+\item Offset 2+\+: Energy records (ENERGY\+\_\+\+RECORD\+\_\+\+SIZE bytes each)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em data} & Pointer to source buffer containing complete energy monitoring data. \\
+\hline
+\mbox{\texttt{in}}  & {\em len} & Number of bytes to write. Must be \texorpdfstring{$<$}{<}= EEPROM\+\_\+\+ENERGY\+\_\+\+MON\+\_\+\+SIZE.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if write successful. 
+
+-\/1 if length exceeds EEPROM\+\_\+\+ENERGY\+\_\+\+MON\+\_\+\+SIZE or I2C write fails.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+
+Overwrites all existing energy data in EEPROM. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Bounds checking performed before write operation. 
+
+Write failures logged as ERR\+\_\+\+SEV\+\_\+\+ERROR if ERRORLOGGER enabled. 
+
+Used primarily for backup restoration, not typical operation.
+\end{DoxyNote}
+Write entire energy monitoring region to EEPROM (bulk operation). Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage04_ga2d726f82a082d5cdd3ae6b1bfaab1ce8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage04_ga2d726f82a082d5cdd3ae6b1bfaab1ce8_icgraph}
+\end{center}
+\end{figure}

@@ -22,13 +22,8 @@ extern const networkInfo DEFAULT_NETWORK;
 /* ==================== System Info Functions ==================== */
 
 /**
- * @brief Write system info block (serial number, software version, etc).
- *
- * CRITICAL: Must be called with eepromMtx held!
- *
- * @param data Source buffer containing system info
- * @param len Number of bytes to write
- * @return 0 on success, -1 on bounds check failure or I2C error
+ * @brief Write system information block without CRC validation.
+ * @details See network.h for full API documentation.
  */
 int EEPROM_WriteSystemInfo(const uint8_t *data, size_t len) {
     if (len > EEPROM_SYS_INFO_SIZE) {
@@ -46,13 +41,8 @@ int EEPROM_WriteSystemInfo(const uint8_t *data, size_t len) {
 }
 
 /**
- * @brief Read system info block.
- *
- * CRITICAL: Must be called with eepromMtx held!
- *
- * @param data Destination buffer
- * @param len Number of bytes to read
- * @return 0 on success, -1 on bounds check failure
+ * @brief Read system information block without CRC validation.
+ * @details See network.h for full API documentation.
  */
 int EEPROM_ReadSystemInfo(uint8_t *data, size_t len) {
     if (len > EEPROM_SYS_INFO_SIZE) {
@@ -71,13 +61,8 @@ int EEPROM_ReadSystemInfo(uint8_t *data, size_t len) {
 }
 
 /**
- * @brief Write system info with CRC-8 appended for validation.
- *
- * CRITICAL: Must be called with eepromMtx held!
- *
- * @param data Source buffer
- * @param len Data length (reserves 1 byte for CRC)
- * @return 0 on success, -1 on error
+ * @brief Write system information with CRC-8 validation appended.
+ * @details See network.h for full API documentation.
  */
 int EEPROM_WriteSystemInfoWithChecksum(const uint8_t *data, size_t len) {
     if (len > EEPROM_SYS_INFO_SIZE - 1) {
@@ -98,13 +83,8 @@ int EEPROM_WriteSystemInfoWithChecksum(const uint8_t *data, size_t len) {
 }
 
 /**
- * @brief Read and verify system info with CRC-8.
- *
- * CRITICAL: Must be called with eepromMtx held!
- *
- * @param data Destination buffer
- * @param len Data length (CRC byte excluded)
- * @return 0 if CRC OK, -1 on CRC mismatch
+ * @brief Read and verify system information with CRC-8 validation.
+ * @details See network.h for full API documentation.
  */
 int EEPROM_ReadSystemInfoWithChecksum(uint8_t *data, size_t len) {
     if (len > EEPROM_SYS_INFO_SIZE - 1) {
@@ -140,13 +120,8 @@ int EEPROM_ReadSystemInfoWithChecksum(uint8_t *data, size_t len) {
 /* ==================== Network Configuration Functions ==================== */
 
 /**
- * @brief Write raw network configuration (no CRC).
- *
- * CRITICAL: Must be called with eepromMtx held!
- *
- * @param data Source buffer
- * @param len Number of bytes to write
- * @return 0 on success, -1 on error
+ * @brief Write raw network configuration block without CRC validation.
+ * @details See network.h for full API documentation.
  */
 int EEPROM_WriteUserNetwork(const uint8_t *data, size_t len) {
     if (len > EEPROM_USER_NETWORK_SIZE) {
@@ -163,13 +138,8 @@ int EEPROM_WriteUserNetwork(const uint8_t *data, size_t len) {
 }
 
 /**
- * @brief Read raw network configuration (no CRC).
- *
- * CRITICAL: Must be called with eepromMtx held!
- *
- * @param data Destination buffer
- * @param len Number of bytes to read
- * @return 0 on success, -1 on error
+ * @brief Read raw network configuration block without CRC validation.
+ * @details See network.h for full API documentation.
  */
 int EEPROM_ReadUserNetwork(uint8_t *data, size_t len) {
     if (len > EEPROM_USER_NETWORK_SIZE) {
@@ -187,14 +157,8 @@ int EEPROM_ReadUserNetwork(uint8_t *data, size_t len) {
 }
 
 /**
- * @brief Write network configuration with CRC-8 validation.
- *
- * Layout: MAC(6) + IP(4) + SN(4) + GW(4) + DNS(4) + DHCP(1) + CRC(1) = 24 bytes
- *
- * CRITICAL: Must be called with eepromMtx held!
- *
- * @param net_info Network configuration structure
- * @return 0 on success, -1 on null pointer
+ * @brief Write network configuration with CRC-8 validation appended.
+ * @details See network.h for full API documentation.
  */
 int EEPROM_WriteUserNetworkWithChecksum(const networkInfo *net_info) {
     if (!net_info) {
@@ -226,12 +190,8 @@ int EEPROM_WriteUserNetworkWithChecksum(const networkInfo *net_info) {
 }
 
 /**
- * @brief Read and verify network configuration with CRC-8.
- *
- * CRITICAL: Must be called with eepromMtx held!
- *
- * @param net_info Destination structure
- * @return 0 if CRC OK, -1 on CRC mismatch or null pointer
+ * @brief Read and verify network configuration with CRC-8 validation.
+ * @details See network.h for full API documentation.
  */
 int EEPROM_ReadUserNetworkWithChecksum(networkInfo *net_info) {
     if (!net_info) {
@@ -274,12 +234,8 @@ int EEPROM_ReadUserNetworkWithChecksum(networkInfo *net_info) {
 }
 
 /**
- * @brief Load network configuration from EEPROM or defaults.
- *
- * Reads network config with CRC validation. If successful, repairs MAC if corrupted.
- * If CRC fails or empty, returns defaults with derived MAC and persists them.
- *
- * @return Valid networkInfo structure (either from EEPROM or defaults)
+ * @brief Load network configuration from EEPROM with automatic fallback and MAC repair.
+ * @details See network.h for full API documentation.
  */
 networkInfo LoadUserNetworkConfig(void) {
     networkInfo net_info;

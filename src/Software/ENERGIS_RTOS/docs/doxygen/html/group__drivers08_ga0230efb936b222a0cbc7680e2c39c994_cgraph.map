@@ -1,0 +1,9 @@
+<map id="disconnect" name="disconnect">
+<area shape="rect" id="Node000001" title="Disconnect a TCP socket." alt="" coords="5,56,90,83"/>
+<area shape="rect" id="Node000002" href="$group__drivers08.html#ga025710a2709097be7824f0564f89a461" title="Close a socket." alt="" coords="193,5,284,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,55,137,41,177,31,179,36,138,47,91,60"/>
+<area shape="rect" id="Node000003" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="147,56,330,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="90,67,131,67,131,72,90,72"/>
+<area shape="rect" id="Node000004" href="$group__tasks10.html#gac25626a70e6fe0baeaa167d47bed33d1" title="Enqueue a warning code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="138,107,340,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="91,79,138,92,167,100,166,105,137,97,89,84"/>
+</map>

@@ -22,15 +22,8 @@
 #define ST_COMMON_TAG "[ST-COM]"
 
 /**
- * @brief Calculate CRC-8 checksum using polynomial 0x07.
- *
- * @details
- * Implements CRC-8 algorithm for data integrity verification.
- * Used for network config, user preferences, and device identity validation.
- *
- * @param data Input buffer to calculate CRC over.
- * @param len Length of input buffer in bytes.
- * @return Calculated CRC-8 value.
+ * @brief Calculate CRC-8 checksum for data integrity verification.
+ * @details See storage_common.h for full API documentation.
  */
 uint8_t calculate_crc8(const uint8_t *data, size_t len) {
     uint8_t crc = 0x00;
@@ -47,38 +40,14 @@ uint8_t calculate_crc8(const uint8_t *data, size_t len) {
 }
 
 /**
- * @brief Derive ENERGIS MAC address from the cached serial number.
- *
- * @details
- * Delegates to DeviceIdentity_FillMac() which uses FNV-1a hash of the
- * serial number stored in EEPROM (via RAM cache) to generate the last
- * 3 bytes of the MAC address. First 3 bytes use ENERGIS_MAC_PREFIX.
- *
- * @param mac 6-byte output buffer for MAC address.
- *
- * @note This function requires DeviceIdentity_Init() to have been called.
+ * @brief Generate MAC address from device serial number.
+ * @details See storage_common.h for full API documentation.
  */
 void Energis_FillMacFromSerial(uint8_t mac[6]) { DeviceIdentity_FillMac(mac); }
 
 /**
- * @brief Check and repair MAC address if invalid.
- *
- * @details
- * Validates MAC prefix and suffix. Repairs if:
- * - Prefix doesn't match ENERGIS_MAC_PREFIX
- * - Suffix is all zeros
- * - Suffix is all 0xFF
- *
- * In addition, if the device identity is provisioned (valid serial number and region
- * loaded from EEPROM), the function enforces that the MAC address matches the
- * serial-derived value. This ensures that a MAC derived from the placeholder
- * "UNPROVISIONED" value will be replaced after provisioning.
- *
- * Uses DeviceIdentity_FillMac() for repair which derives the MAC from
- * the cached serial number.
- *
- * @param n Network info structure containing MAC to validate/repair.
- * @return true if MAC was repaired, false if already valid.
+ * @brief Validate and repair corrupted MAC address.
+ * @details See storage_common.h for full API documentation.
  */
 bool Energis_RepairMac(networkInfo *n) {
     /* Check for wrong prefix */

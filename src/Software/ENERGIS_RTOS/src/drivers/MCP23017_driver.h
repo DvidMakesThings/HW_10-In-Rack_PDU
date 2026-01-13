@@ -1,8 +1,8 @@
 /**
- * @file MCP23017_driver.h
+ * @file src/drivers/MCP23017_driver.h
  * @author DvidMakesThings - David Sipos
  *
- * @defgroup drivers03 3. MCP23017 Driver
+ * @defgroup drivers06 6. MCP23017 Driver
  * @ingroup drivers
  * @brief Header file for MCP23017 I2C GPIO expander driver.
  * @{
@@ -40,14 +40,16 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#include "FreeRTOS.h"
-#include "hardware/i2c.h"
-#include "semphr.h"
-
 /* ==================== MCP23017 Register Map ==================== */
 
 /**
  * @brief MCP23017 register addresses (BANK=0, sequential).
+ */
+/** @name MCP23017 Register Addresses
+ *  @ingroup drivers06
+ *  @{ */
+/** @enum mcp23017_reg_t
+ *  @ingroup drivers06
  */
 typedef enum {
     MCP23017_IODIRA = 0x00,   /**< I/O direction register A */
@@ -73,12 +75,16 @@ typedef enum {
     MCP23017_OLATA = 0x14,    /**< Output latch A */
     MCP23017_OLATB = 0x15     /**< Output latch B */
 } mcp23017_reg_t;
+/** @} */
 
 /* ==================== Configuration ==================== */
 
 /**
  * @brief Maximum I2C retries before failure.
  */
+/** @name Configuration
+ *  @ingroup drivers06
+ *  @{ */
 #ifndef MCP_I2C_MAX_RETRIES
 #define MCP_I2C_MAX_RETRIES 3
 #endif
@@ -117,6 +123,7 @@ typedef enum {
 #ifndef MCP_MAX_DEVICES
 #define MCP_MAX_DEVICES 8
 #endif
+/** @} */
 
 /* ==================== Device Context ==================== */
 
@@ -126,6 +133,9 @@ typedef enum {
  * @details
  * Holds all state for a single MCP23017 device including I2C bus,
  * address, shadow registers, and synchronization mutex.
+ */
+/** @struct mcp23017_t
+ *  @ingroup drivers06
  */
 typedef struct {
     i2c_inst_t *i2c;         /**< I2C bus instance (i2c0/i2c1) */
@@ -290,8 +300,32 @@ mcp23017_t *mcp_selection(void);
 
 /* Attempt soft recovery by reprogramming key registers without hardware reset. */
 bool mcp_recover(mcp23017_t *dev);
+/** @name Public API
+ *  @ingroup drivers06
+ *  @{ */
+/* Device Registration */
+mcp23017_t *mcp_register(i2c_inst_t *i2c, uint8_t addr, int8_t rst_gpio);
+void mcp_init(mcp23017_t *dev);
+
+/* Register Operations */
+bool mcp_write_reg(mcp23017_t *dev, uint8_t reg, uint8_t value);
+bool mcp_read_reg(mcp23017_t *dev, uint8_t reg, uint8_t *out);
+
+/* Pin Operations */
+void mcp_set_direction(mcp23017_t *dev, uint8_t pin, uint8_t direction);
+bool mcp_write_pin(mcp23017_t *dev, uint8_t pin, uint8_t value);
+uint8_t mcp_read_pin(mcp23017_t *dev, uint8_t pin);
+bool mcp_write_mask(mcp23017_t *dev, uint8_t port_ab, uint8_t mask, uint8_t value_bits);
+void mcp_resync_from_hw(mcp23017_t *dev);
+
+/* Board-Specific Functions */
+void MCP2017_Init(void);
+mcp23017_t *mcp_relay(void);
+mcp23017_t *mcp_display(void);
+mcp23017_t *mcp_selection(void);
+bool mcp_recover(mcp23017_t *dev);
+/** @} */
 
 #endif /* MCP23017_DRIVER_H */
 
-/** @} */
 /** @} */

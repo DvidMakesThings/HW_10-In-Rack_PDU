@@ -1,0 +1,4 @@
+<map id="4. SNMP Agent &#45; Power Monitoring" name="4. SNMP Agent &#45; Power Monitoring">
+<area shape="rect" id="Node000002" href="$group__snmp.html" title="SNMP agent implementation for ENERGIS PDU." alt="" coords="5,13,103,40"/>
+<area shape="rect" id="Node000001" title="Per&#45;channel power telemetry and overcurrent protection status via SNMP." alt="" coords="151,5,312,48"/>
+</map>

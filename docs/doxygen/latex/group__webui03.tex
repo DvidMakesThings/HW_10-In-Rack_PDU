@@ -1,0 +1,243 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item Metrics Handler 
+\end{DoxyEnumerate}}
+\hypertarget{group__webui03}{}\label{group__webui03}\index{3. Metrics Handler@{3. Metrics Handler}}
+
+
+Handler for the page /metrics.  
+
+
+Collaboration diagram for 3. Metrics Handler\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=303pt]{group__webui03}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmetrics__counters__t}{metrics\+\_\+counters\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Global metrics counters for system-\/level statistics. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__webui03_ga21fcadb850e6619541fa5036805753cf}{METRICS\+\_\+\+BUFFER\+\_\+\+SIZE}}~8192
+\begin{DoxyCompactList}\small\item\em Static buffer size for metrics rendering (bytes) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__webui03_ga4286615087febd89409af560bfc1a869}{metrics\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize metrics subsystem. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__webui03_gad0f01d3921a7ce18c26c85f120a43411}{handle\+\_\+metrics\+\_\+request}} (uint8\+\_\+t sock)
+\begin{DoxyCompactList}\small\item\em Handle HTTP GET request to /metrics endpoint. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{group__webui03_ga4d028c969847c784e3d7717ddc2adcee}{metrics\+\_\+inc\+\_\+http\+\_\+requests}} (void)
+\begin{DoxyCompactList}\small\item\em Increment HTTP request counter. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{group__webui03_gac4af3e46461fde1d73c5c81ada36c603}{metrics\+\_\+inc\+\_\+snmp\+\_\+requests}} (void)
+\begin{DoxyCompactList}\small\item\em Increment SNMP request counter. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{group__webui03_ga403bee80cab185d92f1931e09014ee2a}{metrics\+\_\+inc\+\_\+relay\+\_\+toggles}} (void)
+\begin{DoxyCompactList}\small\item\em Increment relay toggle counter. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{group__webui03_gaa0549f8261c4512974b84afdaf0f38e8}{metrics\+\_\+inc\+\_\+watchdog\+\_\+resets}} (void)
+\begin{DoxyCompactList}\small\item\em Increment watchdog reset counter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structmetrics__counters__t}{metrics\+\_\+counters\+\_\+t}} \mbox{\hyperlink{group__webui03_ga09a1a47a166a99dd7fe9dbcf77d8a314}{g\+\_\+metrics}}
+\begin{DoxyCompactList}\small\item\em Global metrics counters instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Handler for the page /metrics. 
+
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/15
+\end{DoxyDate}
+Implements /metrics HTTP endpoint that exposes ENERGIS runtime data in Prometheus/\+Open\+Metrics text format (version 0.\+0.\+4). Provides read-\/only access to system counters, gauges, and per-\/channel telemetry for scraping by Prometheus or compatible monitoring systems.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{group__webui03_doc-define-members}
+\doxysubsubsection{Macro Definition Documentation}
+\Hypertarget{group__webui03_ga21fcadb850e6619541fa5036805753cf}\index{3. Metrics Handler@{3. Metrics Handler}!METRICS\_BUFFER\_SIZE@{METRICS\_BUFFER\_SIZE}}
+\index{METRICS\_BUFFER\_SIZE@{METRICS\_BUFFER\_SIZE}!3. Metrics Handler@{3. Metrics Handler}}
+\doxysubsubsubsection{\texorpdfstring{METRICS\_BUFFER\_SIZE}{METRICS\_BUFFER\_SIZE}}
+{\footnotesize\ttfamily \label{group__webui03_ga21fcadb850e6619541fa5036805753cf} 
+\#define METRICS\+\_\+\+BUFFER\+\_\+\+SIZE~8192}
+
+
+
+Static buffer size for metrics rendering (bytes) 
+
+
+
+\label{doc-func-members}
+\Hypertarget{group__webui03_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__webui03_gad0f01d3921a7ce18c26c85f120a43411}\index{3. Metrics Handler@{3. Metrics Handler}!handle\_metrics\_request@{handle\_metrics\_request}}
+\index{handle\_metrics\_request@{handle\_metrics\_request}!3. Metrics Handler@{3. Metrics Handler}}
+\doxysubsubsubsection{\texorpdfstring{handle\_metrics\_request()}{handle\_metrics\_request()}}
+{\footnotesize\ttfamily \label{group__webui03_gad0f01d3921a7ce18c26c85f120a43411} 
+void handle\+\_\+metrics\+\_\+request (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sock}{}\end{DoxyParamCaption})}
+
+
+
+Handle HTTP GET request to /metrics endpoint. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & Socket number for the established HTTP connection\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+Renders system metrics in Open\+Metrics text format and sends HTTP response. Returns 404 if metrics feature is disabled at compile-\/time or runtime. Uses static buffer to avoid heap allocation. Non-\/blocking\+: reads only from cached snapshots maintained by Meter\+Task and other subsystems.
+
+Response format\+:
+\begin{DoxyItemize}
+\item Content-\/\+Type\+: text/plain; version=0.\+0.\+4; charset=utf-\/8
+\item Connection\+: close
+\item Body\+: Open\+Metrics exposition format
+\end{DoxyItemize}
+
+@http
+\begin{DoxyItemize}
+\item 200 OK on success with metrics text body
+\item 404 Not Found if feature disabled
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & Socket number for the established HTTP connection\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+Checks if metrics feature is enabled (compile-\/time via CFG\+\_\+\+ENABLE\+\_\+\+METRICS). If disabled, returns 404. Otherwise, renders Open\+Metrics text and sends 200 response with proper Content-\/\+Type.
+
+@http
+\begin{DoxyItemize}
+\item 200 OK with text/plain; version=0.\+0.\+4; charset=utf-\/8 on success
+\item 404 Not Found if feature disabled 
+\end{DoxyItemize}Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__webui03_gad0f01d3921a7ce18c26c85f120a43411_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__webui03_gad0f01d3921a7ce18c26c85f120a43411_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__webui03_ga4d028c969847c784e3d7717ddc2adcee}\index{3. Metrics Handler@{3. Metrics Handler}!metrics\_inc\_http\_requests@{metrics\_inc\_http\_requests}}
+\index{metrics\_inc\_http\_requests@{metrics\_inc\_http\_requests}!3. Metrics Handler@{3. Metrics Handler}}
+\doxysubsubsubsection{\texorpdfstring{metrics\_inc\_http\_requests()}{metrics\_inc\_http\_requests()}}
+{\footnotesize\ttfamily \label{group__webui03_ga4d028c969847c784e3d7717ddc2adcee} 
+void metrics\+\_\+inc\+\_\+http\+\_\+requests (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Increment HTTP request counter. 
+
+Thread-\/safe atomic increment. Call once per HTTP request received.
+
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__webui03_ga4d028c969847c784e3d7717ddc2adcee_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__webui03_ga403bee80cab185d92f1931e09014ee2a}\index{3. Metrics Handler@{3. Metrics Handler}!metrics\_inc\_relay\_toggles@{metrics\_inc\_relay\_toggles}}
+\index{metrics\_inc\_relay\_toggles@{metrics\_inc\_relay\_toggles}!3. Metrics Handler@{3. Metrics Handler}}
+\doxysubsubsubsection{\texorpdfstring{metrics\_inc\_relay\_toggles()}{metrics\_inc\_relay\_toggles()}}
+{\footnotesize\ttfamily \label{group__webui03_ga403bee80cab185d92f1931e09014ee2a} 
+void metrics\+\_\+inc\+\_\+relay\+\_\+toggles (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Increment relay toggle counter. 
+
+Thread-\/safe atomic increment. Call once per relay state change.
+
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\Hypertarget{group__webui03_gac4af3e46461fde1d73c5c81ada36c603}\index{3. Metrics Handler@{3. Metrics Handler}!metrics\_inc\_snmp\_requests@{metrics\_inc\_snmp\_requests}}
+\index{metrics\_inc\_snmp\_requests@{metrics\_inc\_snmp\_requests}!3. Metrics Handler@{3. Metrics Handler}}
+\doxysubsubsubsection{\texorpdfstring{metrics\_inc\_snmp\_requests()}{metrics\_inc\_snmp\_requests()}}
+{\footnotesize\ttfamily \label{group__webui03_gac4af3e46461fde1d73c5c81ada36c603} 
+void metrics\+\_\+inc\+\_\+snmp\+\_\+requests (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Increment SNMP request counter. 
+
+Thread-\/safe atomic increment. Call once per SNMP request received.
+
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\Hypertarget{group__webui03_gaa0549f8261c4512974b84afdaf0f38e8}\index{3. Metrics Handler@{3. Metrics Handler}!metrics\_inc\_watchdog\_resets@{metrics\_inc\_watchdog\_resets}}
+\index{metrics\_inc\_watchdog\_resets@{metrics\_inc\_watchdog\_resets}!3. Metrics Handler@{3. Metrics Handler}}
+\doxysubsubsubsection{\texorpdfstring{metrics\_inc\_watchdog\_resets()}{metrics\_inc\_watchdog\_resets()}}
+{\footnotesize\ttfamily \label{group__webui03_gaa0549f8261c4512974b84afdaf0f38e8} 
+void metrics\+\_\+inc\+\_\+watchdog\+\_\+resets (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Increment watchdog reset counter. 
+
+Thread-\/safe atomic increment. Call once per watchdog reset event.
+
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\Hypertarget{group__webui03_ga4286615087febd89409af560bfc1a869}\index{3. Metrics Handler@{3. Metrics Handler}!metrics\_init@{metrics\_init}}
+\index{metrics\_init@{metrics\_init}!3. Metrics Handler@{3. Metrics Handler}}
+\doxysubsubsubsection{\texorpdfstring{metrics\_init()}{metrics\_init()}}
+{\footnotesize\ttfamily \label{group__webui03_ga4286615087febd89409af560bfc1a869} 
+void metrics\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Initialize metrics subsystem. 
+
+Resets all counters to zero. Must be called during system init before any counters are incremented.
+
+\begin{DoxyReturn}{Returns}
+None
+
+None
+\end{DoxyReturn}
+Resets all counters to zero. Call during system initialization before any other subsystems increment counters. 
+
+\label{doc-var-members}
+\Hypertarget{group__webui03_doc-var-members}
+\doxysubsubsection{Variable Documentation}
+\Hypertarget{group__webui03_ga09a1a47a166a99dd7fe9dbcf77d8a314}\index{3. Metrics Handler@{3. Metrics Handler}!g\_metrics@{g\_metrics}}
+\index{g\_metrics@{g\_metrics}!3. Metrics Handler@{3. Metrics Handler}}
+\doxysubsubsubsection{\texorpdfstring{g\_metrics}{g\_metrics}}
+{\footnotesize\ttfamily \label{group__webui03_ga09a1a47a166a99dd7fe9dbcf77d8a314} 
+\mbox{\hyperlink{structmetrics__counters__t}{metrics\+\_\+counters\+\_\+t}} g\+\_\+metrics\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Global metrics counters instance. 
+
+\begin{DoxyNote}{Note}
+Accessed by Net\+Task, Meter\+Task, and metrics handler 
+\end{DoxyNote}

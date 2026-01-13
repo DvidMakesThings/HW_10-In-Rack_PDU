@@ -1,0 +1,14 @@
+var searchData=
+[
+  ['oc_5fstate_5fto_5fstring_0',['oc_state_to_string',['../status__handler_8c.html#a6840085895f9e469e8e84aa9e5a9f61e',1,'status_handler.c']]],
+  ['ocp_5fread_5fstatus_1',['ocp_read_status',['../snmp__power_mon_8c.html#a8bfed698c2d0034fd91352b89bcfce10',1,'snmp_powerMon.c']]],
+  ['overcurrent_5fcanturnon_2',['Overcurrent_CanTurnOn',['../group__tasks08.html#ga49359b42016742671b8c5ff517c8687c',1,'Overcurrent_CanTurnOn(uint8_t channel):&#160;OCP.c'],['../group__tasks08.html#ga49359b42016742671b8c5ff517c8687c',1,'Overcurrent_CanTurnOn(uint8_t channel):&#160;OCP.c']]],
+  ['overcurrent_5fclearlockout_3',['Overcurrent_ClearLockout',['../group__tasks08.html#gadc9a057a3aef40a2ec56e65c2e55daab',1,'Overcurrent_ClearLockout(void):&#160;OCP.c'],['../group__tasks08.html#gadc9a057a3aef40a2ec56e65c2e55daab',1,'Overcurrent_ClearLockout(void):&#160;OCP.c']]],
+  ['overcurrent_5fgetlimit_4',['Overcurrent_GetLimit',['../group__tasks08.html#ga1fdf004c7e21b587d490854fcc9505ff',1,'Overcurrent_GetLimit(void):&#160;OCP.c'],['../group__tasks08.html#ga1fdf004c7e21b587d490854fcc9505ff',1,'Overcurrent_GetLimit(void):&#160;OCP.c']]],
+  ['overcurrent_5fgetstate_5',['Overcurrent_GetState',['../group__tasks08.html#ga01d97571c761ab643753f677d3088684',1,'Overcurrent_GetState(void):&#160;OCP.c'],['../group__tasks08.html#ga01d97571c761ab643753f677d3088684',1,'Overcurrent_GetState(void):&#160;OCP.c']]],
+  ['overcurrent_5fgetstatus_6',['Overcurrent_GetStatus',['../group__tasks08.html#gaa9aab2a7bfb3274872c5f4f162af177e',1,'Overcurrent_GetStatus(overcurrent_status_t *status):&#160;OCP.c'],['../group__tasks08.html#gaa9aab2a7bfb3274872c5f4f162af177e',1,'Overcurrent_GetStatus(overcurrent_status_t *status):&#160;OCP.c']]],
+  ['overcurrent_5finit_7',['Overcurrent_Init',['../group__tasks08.html#gabaeebc1f043da757f96bac70bb8ac8ba',1,'Overcurrent_Init(void):&#160;OCP.c'],['../group__tasks08.html#gabaeebc1f043da757f96bac70bb8ac8ba',1,'Overcurrent_Init(void):&#160;OCP.c']]],
+  ['overcurrent_5fisswitchingallowed_8',['Overcurrent_IsSwitchingAllowed',['../group__tasks08.html#ga4bf47606df6e10c610300fdf1a2573b5',1,'Overcurrent_IsSwitchingAllowed(void):&#160;OCP.c'],['../group__tasks08.html#ga4bf47606df6e10c610300fdf1a2573b5',1,'Overcurrent_IsSwitchingAllowed(void):&#160;OCP.c']]],
+  ['overcurrent_5frecordchannelon_9',['Overcurrent_RecordChannelOn',['../group__tasks08.html#ga05298731bbc499e043d911ec1ca59879',1,'Overcurrent_RecordChannelOn(uint8_t channel):&#160;OCP.c'],['../group__tasks08.html#ga05298731bbc499e043d911ec1ca59879',1,'Overcurrent_RecordChannelOn(uint8_t channel):&#160;OCP.c']]],
+  ['overcurrent_5fupdate_10',['Overcurrent_Update',['../group__tasks08.html#gabb9789239f4931927587b1b236b1e315',1,'Overcurrent_Update(float total_current_a):&#160;OCP.c'],['../group__tasks08.html#gabb9789239f4931927587b1b236b1e315',1,'Overcurrent_Update(float total_current_a):&#160;OCP.c']]]
+];

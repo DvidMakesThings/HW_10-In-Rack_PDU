@@ -1,0 +1,322 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\+OCP.c File Reference}
+\hypertarget{_o_c_p_8c}{}\label{_o_c_p_8c}\index{src/Software/ENERGIS\_RTOS/src/tasks/OCP.c@{src/Software/ENERGIS\_RTOS/src/tasks/OCP.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for OCP.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_c_p_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_o_c_p_8c_a60fe29966ab3722befcab327648bebb9}{OVERCURRENT\+\_\+\+TAG}}~"{}\mbox{[}OC\+\_\+\+PROT\mbox{]}"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static float \mbox{\hyperlink{_o_c_p_8c_a1fe49fcbbfe0cf03f3ab1dc57313b0bf}{sanitize\+\_\+limit\+\_\+a}} (float limit\+\_\+a, \mbox{\hyperlink{group__storage03_ga509a8b0630b9c754a52a817ba37e032b}{device\+\_\+region\+\_\+t}} region)
+\begin{DoxyCompactList}\small\item\em Sanitize a current limit value obtained from configuration. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_o_c_p_8c_af8d318d7a4d47ef1cf067b8e28c44099}{sanitize\+\_\+thresholds}} (void)
+\begin{DoxyCompactList}\small\item\em Clamp and order derived thresholds. \end{DoxyCompactList}\item 
+static uint8\+\_\+t \mbox{\hyperlink{_o_c_p_8c_ae8d60a50e6a32ee1f355ee379407a4c9}{execute\+\_\+trip}} (void)
+\begin{DoxyCompactList}\small\item\em Execute overcurrent trip action. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks08_gabaeebc1f043da757f96bac70bb8ac8ba}{Overcurrent\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the overcurrent protection module. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}{overcurrent\+\_\+state\+\_\+t}} \mbox{\hyperlink{group__tasks08_gabb9789239f4931927587b1b236b1e315}{Overcurrent\+\_\+\+Update}} (float total\+\_\+current\+\_\+a)
+\begin{DoxyCompactList}\small\item\em Update the overcurrent state machine using a new total current sample. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks08_ga4bf47606df6e10c610300fdf1a2573b5}{Overcurrent\+\_\+\+Is\+Switching\+Allowed}} (void)
+\begin{DoxyCompactList}\small\item\em Query whether switching actions are currently allowed. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks08_ga49359b42016742671b8c5ff517c8687c}{Overcurrent\+\_\+\+Can\+Turn\+On}} (uint8\+\_\+t channel)
+\begin{DoxyCompactList}\small\item\em Determine whether a specific channel is permitted to be turned ON. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks08_ga05298731bbc499e043d911ec1ca59879}{Overcurrent\+\_\+\+Record\+Channel\+On}} (uint8\+\_\+t channel)
+\begin{DoxyCompactList}\small\item\em Record the last channel that was turned ON. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks08_gaa9aab2a7bfb3274872c5f4f162af177e}{Overcurrent\+\_\+\+Get\+Status}} (\mbox{\hyperlink{structovercurrent__status__t}{overcurrent\+\_\+status\+\_\+t}} \texorpdfstring{$\ast$}{*}status)
+\begin{DoxyCompactList}\small\item\em Obtain a snapshot of the current protection status. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}{overcurrent\+\_\+state\+\_\+t}} \mbox{\hyperlink{group__tasks08_ga01d97571c761ab643753f677d3088684}{Overcurrent\+\_\+\+Get\+State}} (void)
+\begin{DoxyCompactList}\small\item\em Get the current overcurrent protection state. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__tasks08_ga1fdf004c7e21b587d490854fcc9505ff}{Overcurrent\+\_\+\+Get\+Limit}} (void)
+\begin{DoxyCompactList}\small\item\em Get the configured current limit. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks08_gadc9a057a3aef40a2ec56e65c2e55daab}{Overcurrent\+\_\+\+Clear\+Lockout}} (void)
+\begin{DoxyCompactList}\small\item\em Clear lockout state manually. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static float \mbox{\hyperlink{_o_c_p_8c_ad699d23d708fa25bf204319567e84679}{s\+\_\+limit\+\_\+a}} = 1000.\+0f
+\begin{DoxyCompactList}\small\item\em Protection thresholds. \end{DoxyCompactList}\item 
+static float \mbox{\hyperlink{_o_c_p_8c_a559eaff3043d03ae8fe0564e72a1b379}{s\+\_\+warning\+\_\+threshold\+\_\+a}} = 999.\+0f
+\item 
+static float \mbox{\hyperlink{_o_c_p_8c_af5eca573742f56af23aad3176c717350}{s\+\_\+critical\+\_\+threshold\+\_\+a}} = 999.\+75f
+\item 
+static float \mbox{\hyperlink{_o_c_p_8c_ad7119aaa6d25833e0160c93e18b3b0a5}{s\+\_\+recovery\+\_\+threshold\+\_\+a}} = 998.\+0f
+\item 
+static volatile \mbox{\hyperlink{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}{overcurrent\+\_\+state\+\_\+t}} \mbox{\hyperlink{_o_c_p_8c_ab9a23e15bf9a47df3b86dda7cbc16319}{s\+\_\+state}} = \mbox{\hyperlink{group__tasks08_gga5fece384d5a09708e5d58632d565f1eda04b503ade97db147ebde7367339b8079}{OC\+\_\+\+STATE\+\_\+\+NORMAL}}
+\begin{DoxyCompactList}\small\item\em Current protection state. \end{DoxyCompactList}\item 
+static volatile float \mbox{\hyperlink{_o_c_p_8c_a8dcf55afa7933aace931e428f23bcbd0}{s\+\_\+total\+\_\+current\+\_\+a}} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em Latest total current measurement. \end{DoxyCompactList}\item 
+static volatile bool \mbox{\hyperlink{_o_c_p_8c_a1311dbdfd188e9e57cf9184edbb90abb}{s\+\_\+switching\+\_\+allowed}} = true
+\begin{DoxyCompactList}\small\item\em Switching allowed flag. \end{DoxyCompactList}\item 
+static volatile uint8\+\_\+t \mbox{\hyperlink{_o_c_p_8c_ab92dfeb25b84b695fb92dc190b69400e}{s\+\_\+last\+\_\+activated\+\_\+channel}} = 0x\+FF
+\begin{DoxyCompactList}\small\item\em Last channel that was turned ON (for trip targeting) \end{DoxyCompactList}\item 
+static volatile uint32\+\_\+t \mbox{\hyperlink{_o_c_p_8c_a4ef7c8c291b6b8bd1c8ed1f01f860c60}{s\+\_\+trip\+\_\+count}} = 0
+\begin{DoxyCompactList}\small\item\em Trip event counter. \end{DoxyCompactList}\item 
+static volatile uint32\+\_\+t \mbox{\hyperlink{_o_c_p_8c_a8de969bbaf9378da97af0e4b9cca0ef9}{s\+\_\+last\+\_\+trip\+\_\+timestamp\+\_\+ms}} = 0
+\begin{DoxyCompactList}\small\item\em Timestamp of last trip. \end{DoxyCompactList}\item 
+static volatile bool \mbox{\hyperlink{_o_c_p_8c_a48dd8e932ed81a738408daa5c94b0162}{s\+\_\+warning\+\_\+logged}} = false
+\begin{DoxyCompactList}\small\item\em Warning already logged flag (prevent log spam) \end{DoxyCompactList}\item 
+static volatile bool \mbox{\hyperlink{_o_c_p_8c_a12b03d71705ed949d1afdec2dcbf04b8}{s\+\_\+initialized}} = false
+\begin{DoxyCompactList}\small\item\em Module initialized flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+2.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/12-\/14
+\end{DoxyDate}
+Implementation of the high-\/priority overcurrent protection system. Monitors total current draw and implements tiered protection responses.
+
+Version History\+:
+\begin{DoxyItemize}
+\item v1.\+x\+: Compile-\/time regional current limits via macros
+\item v2.\+0\+: Runtime regional current limits via Device\+Identity module
+\end{DoxyItemize}
+
+{\bfseries{State Machine\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{NORMAL\ -\/>\ \mbox{\hyperlink{group__overcurrent__thresholds_ga5cb439d9f933fde4cf23caa370c030e7}{WARNING}}\ (current\ >\ limit\ -\/\ 1.0A)}
+\DoxyCodeLine{\mbox{\hyperlink{group__overcurrent__thresholds_ga5cb439d9f933fde4cf23caa370c030e7}{WARNING}}\ -\/>\ CRITICAL\ (current\ >\ limit\ -\/\ 0.25A)}
+\DoxyCodeLine{CRITICAL\ -\/>\ LOCKOUT\ (trip\ executed)}
+\DoxyCodeLine{LOCKOUT\ -\/>\ NORMAL\ (current\ <\ limit\ -\/\ 2.0A)}
+
+\end{DoxyCode}
+
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{_o_c_p_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_o_c_p_8c_a60fe29966ab3722befcab327648bebb9}\index{OCP.c@{OCP.c}!OVERCURRENT\_TAG@{OVERCURRENT\_TAG}}
+\index{OVERCURRENT\_TAG@{OVERCURRENT\_TAG}!OCP.c@{OCP.c}}
+\doxysubsubsection{\texorpdfstring{OVERCURRENT\_TAG}{OVERCURRENT\_TAG}}
+{\footnotesize\ttfamily \label{_o_c_p_8c_a60fe29966ab3722befcab327648bebb9} 
+\#define OVERCURRENT\+\_\+\+TAG~"{}\mbox{[}OC\+\_\+\+PROT\mbox{]}"{}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{_o_c_p_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_o_c_p_8c_ae8d60a50e6a32ee1f355ee379407a4c9}\index{OCP.c@{OCP.c}!execute\_trip@{execute\_trip}}
+\index{execute\_trip@{execute\_trip}!OCP.c@{OCP.c}}
+\doxysubsubsection{\texorpdfstring{execute\_trip()}{execute\_trip()}}
+{\footnotesize\ttfamily \label{_o_c_p_8c_ae8d60a50e6a32ee1f355ee379407a4c9} 
+uint8\+\_\+t execute\+\_\+trip (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Execute overcurrent trip action. 
+
+Attempts to disable the last channel that was successfully enabled and recorded via \doxylink{group__tasks08_ga05298731bbc499e043d911ec1ca59879}{Overcurrent\+\_\+\+Record\+Channel\+On()}. If no valid channel is tracked, all channels are disabled as a safety fallback.
+
+Behavior\+:
+\begin{DoxyItemize}
+\item If s\+\_\+last\+\_\+activated\+\_\+channel is in range \mbox{[}0..7\mbox{]}, that channel is turned OFF.
+\item Otherwise, all channels are turned OFF.
+\end{DoxyItemize}
+
+Notes\+:
+\begin{DoxyItemize}
+\item The actual relay switching is delegated to Switch\+Task via non-\/blocking API calls.
+\item Logging is performed to indicate the applied protective action.
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t Returns the logical channel index \mbox{[}0..7\mbox{]} that was turned OFF, or 0x\+FF if the fallback "{}all OFF"{} action was used. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_c_p_8c_ae8d60a50e6a32ee1f355ee379407a4c9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_c_p_8c_ae8d60a50e6a32ee1f355ee379407a4c9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_c_p_8c_a1fe49fcbbfe0cf03f3ab1dc57313b0bf}\index{OCP.c@{OCP.c}!sanitize\_limit\_a@{sanitize\_limit\_a}}
+\index{sanitize\_limit\_a@{sanitize\_limit\_a}!OCP.c@{OCP.c}}
+\doxysubsubsection{\texorpdfstring{sanitize\_limit\_a()}{sanitize\_limit\_a()}}
+{\footnotesize\ttfamily \label{_o_c_p_8c_a1fe49fcbbfe0cf03f3ab1dc57313b0bf} 
+float sanitize\+\_\+limit\+\_\+a (\begin{DoxyParamCaption}\item[{float}]{limit\+\_\+a}{, }\item[{\mbox{\hyperlink{group__storage03_ga509a8b0630b9c754a52a817ba37e032b}{device\+\_\+region\+\_\+t}}}]{region}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Sanitize a current limit value obtained from configuration. 
+
+This module must never operate with an invalid or near-\/zero limit value, because the WARNING state triggers when total\+\_\+current\+\_\+a \texorpdfstring{$>$}{>}= (limit -\/ offset). If limit is 0 or very small, the derived thresholds become negative and will produce false WARNING logs even at 0.\+00A (all outputs OFF).
+
+The identity/config layer is expected to provide 10A (EU) or 15A (US). If it does not, we fall back to a safe regional default.
+
+
+\begin{DoxyParams}{Parameters}
+{\em limit\+\_\+a} & Raw limit value \mbox{[}A\mbox{]} from configuration. \\
+\hline
+{\em region} & Region selector from Device\+Identity.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float A validated limit in the expected operational range. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_c_p_8c_a1fe49fcbbfe0cf03f3ab1dc57313b0bf_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_c_p_8c_af8d318d7a4d47ef1cf067b8e28c44099}\index{OCP.c@{OCP.c}!sanitize\_thresholds@{sanitize\_thresholds}}
+\index{sanitize\_thresholds@{sanitize\_thresholds}!OCP.c@{OCP.c}}
+\doxysubsubsection{\texorpdfstring{sanitize\_thresholds()}{sanitize\_thresholds()}}
+{\footnotesize\ttfamily \label{_o_c_p_8c_af8d318d7a4d47ef1cf067b8e28c44099} 
+void sanitize\+\_\+thresholds (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Clamp and order derived thresholds. 
+
+Ensures the derived thresholds remain sensible even if configuration values or offsets are changed. The ordering enforced is\+: recovery \texorpdfstring{$<$}{<} warning \texorpdfstring{$<$}{<} critical \texorpdfstring{$<$}{<} limit
+
+This prevents false positives and prevents the state machine from behaving unexpectedly due to threshold inversion. Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_c_p_8c_af8d318d7a4d47ef1cf067b8e28c44099_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{_o_c_p_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{_o_c_p_8c_af5eca573742f56af23aad3176c717350}\index{OCP.c@{OCP.c}!s\_critical\_threshold\_a@{s\_critical\_threshold\_a}}
+\index{s\_critical\_threshold\_a@{s\_critical\_threshold\_a}!OCP.c@{OCP.c}}
+\doxysubsubsection{\texorpdfstring{s\_critical\_threshold\_a}{s\_critical\_threshold\_a}}
+{\footnotesize\ttfamily \label{_o_c_p_8c_af5eca573742f56af23aad3176c717350} 
+float s\+\_\+critical\+\_\+threshold\+\_\+a = 999.\+75f\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_o_c_p_8c_a12b03d71705ed949d1afdec2dcbf04b8}\index{OCP.c@{OCP.c}!s\_initialized@{s\_initialized}}
+\index{s\_initialized@{s\_initialized}!OCP.c@{OCP.c}}
+\doxysubsubsection{\texorpdfstring{s\_initialized}{s\_initialized}}
+{\footnotesize\ttfamily \label{_o_c_p_8c_a12b03d71705ed949d1afdec2dcbf04b8} 
+volatile bool s\+\_\+initialized = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Module initialized flag. 
+
+\Hypertarget{_o_c_p_8c_ab92dfeb25b84b695fb92dc190b69400e}\index{OCP.c@{OCP.c}!s\_last\_activated\_channel@{s\_last\_activated\_channel}}
+\index{s\_last\_activated\_channel@{s\_last\_activated\_channel}!OCP.c@{OCP.c}}
+\doxysubsubsection{\texorpdfstring{s\_last\_activated\_channel}{s\_last\_activated\_channel}}
+{\footnotesize\ttfamily \label{_o_c_p_8c_ab92dfeb25b84b695fb92dc190b69400e} 
+volatile uint8\+\_\+t s\+\_\+last\+\_\+activated\+\_\+channel = 0x\+FF\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Last channel that was turned ON (for trip targeting) 
+
+\Hypertarget{_o_c_p_8c_a8de969bbaf9378da97af0e4b9cca0ef9}\index{OCP.c@{OCP.c}!s\_last\_trip\_timestamp\_ms@{s\_last\_trip\_timestamp\_ms}}
+\index{s\_last\_trip\_timestamp\_ms@{s\_last\_trip\_timestamp\_ms}!OCP.c@{OCP.c}}
+\doxysubsubsection{\texorpdfstring{s\_last\_trip\_timestamp\_ms}{s\_last\_trip\_timestamp\_ms}}
+{\footnotesize\ttfamily \label{_o_c_p_8c_a8de969bbaf9378da97af0e4b9cca0ef9} 
+volatile uint32\+\_\+t s\+\_\+last\+\_\+trip\+\_\+timestamp\+\_\+ms = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Timestamp of last trip. 
+
+\Hypertarget{_o_c_p_8c_ad699d23d708fa25bf204319567e84679}\index{OCP.c@{OCP.c}!s\_limit\_a@{s\_limit\_a}}
+\index{s\_limit\_a@{s\_limit\_a}!OCP.c@{OCP.c}}
+\doxysubsubsection{\texorpdfstring{s\_limit\_a}{s\_limit\_a}}
+{\footnotesize\ttfamily \label{_o_c_p_8c_ad699d23d708fa25bf204319567e84679} 
+float s\+\_\+limit\+\_\+a = 1000.\+0f\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Protection thresholds. 
+
+\begin{DoxyNote}{Note}
+Initialized to very high defaults to prevent false trips if \doxylink{group__tasks08_gabaeebc1f043da757f96bac70bb8ac8ba}{Overcurrent\+\_\+\+Init()} hasn\textquotesingle{}t been called yet. Real values are set during initialization from Device\+Identity. 
+\end{DoxyNote}
+\Hypertarget{_o_c_p_8c_ad7119aaa6d25833e0160c93e18b3b0a5}\index{OCP.c@{OCP.c}!s\_recovery\_threshold\_a@{s\_recovery\_threshold\_a}}
+\index{s\_recovery\_threshold\_a@{s\_recovery\_threshold\_a}!OCP.c@{OCP.c}}
+\doxysubsubsection{\texorpdfstring{s\_recovery\_threshold\_a}{s\_recovery\_threshold\_a}}
+{\footnotesize\ttfamily \label{_o_c_p_8c_ad7119aaa6d25833e0160c93e18b3b0a5} 
+float s\+\_\+recovery\+\_\+threshold\+\_\+a = 998.\+0f\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_o_c_p_8c_ab9a23e15bf9a47df3b86dda7cbc16319}\index{OCP.c@{OCP.c}!s\_state@{s\_state}}
+\index{s\_state@{s\_state}!OCP.c@{OCP.c}}
+\doxysubsubsection{\texorpdfstring{s\_state}{s\_state}}
+{\footnotesize\ttfamily \label{_o_c_p_8c_ab9a23e15bf9a47df3b86dda7cbc16319} 
+volatile \mbox{\hyperlink{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}{overcurrent\+\_\+state\+\_\+t}} s\+\_\+state = \mbox{\hyperlink{group__tasks08_gga5fece384d5a09708e5d58632d565f1eda04b503ade97db147ebde7367339b8079}{OC\+\_\+\+STATE\+\_\+\+NORMAL}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Current protection state. 
+
+\Hypertarget{_o_c_p_8c_a1311dbdfd188e9e57cf9184edbb90abb}\index{OCP.c@{OCP.c}!s\_switching\_allowed@{s\_switching\_allowed}}
+\index{s\_switching\_allowed@{s\_switching\_allowed}!OCP.c@{OCP.c}}
+\doxysubsubsection{\texorpdfstring{s\_switching\_allowed}{s\_switching\_allowed}}
+{\footnotesize\ttfamily \label{_o_c_p_8c_a1311dbdfd188e9e57cf9184edbb90abb} 
+volatile bool s\+\_\+switching\+\_\+allowed = true\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Switching allowed flag. 
+
+\Hypertarget{_o_c_p_8c_a8dcf55afa7933aace931e428f23bcbd0}\index{OCP.c@{OCP.c}!s\_total\_current\_a@{s\_total\_current\_a}}
+\index{s\_total\_current\_a@{s\_total\_current\_a}!OCP.c@{OCP.c}}
+\doxysubsubsection{\texorpdfstring{s\_total\_current\_a}{s\_total\_current\_a}}
+{\footnotesize\ttfamily \label{_o_c_p_8c_a8dcf55afa7933aace931e428f23bcbd0} 
+volatile float s\+\_\+total\+\_\+current\+\_\+a = 0.\+0f\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Latest total current measurement. 
+
+\Hypertarget{_o_c_p_8c_a4ef7c8c291b6b8bd1c8ed1f01f860c60}\index{OCP.c@{OCP.c}!s\_trip\_count@{s\_trip\_count}}
+\index{s\_trip\_count@{s\_trip\_count}!OCP.c@{OCP.c}}
+\doxysubsubsection{\texorpdfstring{s\_trip\_count}{s\_trip\_count}}
+{\footnotesize\ttfamily \label{_o_c_p_8c_a4ef7c8c291b6b8bd1c8ed1f01f860c60} 
+volatile uint32\+\_\+t s\+\_\+trip\+\_\+count = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Trip event counter. 
+
+\Hypertarget{_o_c_p_8c_a48dd8e932ed81a738408daa5c94b0162}\index{OCP.c@{OCP.c}!s\_warning\_logged@{s\_warning\_logged}}
+\index{s\_warning\_logged@{s\_warning\_logged}!OCP.c@{OCP.c}}
+\doxysubsubsection{\texorpdfstring{s\_warning\_logged}{s\_warning\_logged}}
+{\footnotesize\ttfamily \label{_o_c_p_8c_a48dd8e932ed81a738408daa5c94b0162} 
+volatile bool s\+\_\+warning\+\_\+logged = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Warning already logged flag (prevent log spam) 
+
+\Hypertarget{_o_c_p_8c_a559eaff3043d03ae8fe0564e72a1b379}\index{OCP.c@{OCP.c}!s\_warning\_threshold\_a@{s\_warning\_threshold\_a}}
+\index{s\_warning\_threshold\_a@{s\_warning\_threshold\_a}!OCP.c@{OCP.c}}
+\doxysubsubsection{\texorpdfstring{s\_warning\_threshold\_a}{s\_warning\_threshold\_a}}
+{\footnotesize\ttfamily \label{_o_c_p_8c_a559eaff3043d03ae8fe0564e72a1b379} 
+float s\+\_\+warning\+\_\+threshold\+\_\+a = 999.\+0f\hspace{0.3cm}{\ttfamily [static]}}
+

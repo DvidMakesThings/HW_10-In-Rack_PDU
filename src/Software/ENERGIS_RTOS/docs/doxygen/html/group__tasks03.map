@@ -1,0 +1,4 @@
+<map id="3. Health" name="3. Health">
+<area shape="rect" id="Node000002" href="$group__tasks.html" title="General task implementations for ENERGIS PDU firmware." alt="" coords="5,5,62,32"/>
+<area shape="rect" id="Node000001" title="System health monitor: watchdog, heartbeats, diagnostics (reset&#45;safe)." alt="" coords="110,5,184,32"/>
+</map>

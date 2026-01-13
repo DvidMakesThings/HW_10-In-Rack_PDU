@@ -1,0 +1,1637 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item W5500 Driver Implementation 
+\end{DoxyEnumerate}}
+\hypertarget{group__drivers03}{}\label{group__drivers03}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+
+
+Header file for W5500 Ethernet Controller HAL Driver.  
+
+
+Collaboration diagram for 3. W5500 Driver Implementation\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=321pt]{group__drivers03}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structw5500___net_config}{w5500\+\_\+\+Net\+Config}}
+\begin{DoxyCompactList}\small\item\em Network information structure. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structw5500___phy_config}{w5500\+\_\+\+Phy\+Config}}
+\begin{DoxyCompactList}\small\item\em PHY configuration structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Type Definitions}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__drivers03_gacef8050f9ef67107f3847653577da34f}{w5500\+\_\+\+Phy\+Link}} \{ \mbox{\hyperlink{group__drivers03_ggacef8050f9ef67107f3847653577da34fae2760211c2bb5d3d92d4844e70659521}{PHY\+\_\+\+LINK\+\_\+\+OFF}} = 0
+, \mbox{\hyperlink{group__drivers03_ggacef8050f9ef67107f3847653577da34faf86ca986c2c6c1d071154268f8d66c9f}{PHY\+\_\+\+LINK\+\_\+\+ON}} = 1
+ \}
+\begin{DoxyCompactList}\small\item\em W5500 link status. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__drivers03_ga7ad32e7472dce94b87b4e5bf53a9d5c0}{w5500\+\_\+\+Phy\+Power}} \{ \mbox{\hyperlink{group__drivers03_gga7ad32e7472dce94b87b4e5bf53a9d5c0a6d1da1ce3b18ff3bcb1d5965e5f214b0}{PHY\+\_\+\+POWER\+\_\+\+NORM}} = 0
+, \mbox{\hyperlink{group__drivers03_gga7ad32e7472dce94b87b4e5bf53a9d5c0aeec263e1564a45c07d60ea3c190ddebd}{PHY\+\_\+\+POWER\+\_\+\+DOWN}} = 1
+ \}
+\begin{DoxyCompactList}\small\item\em W5500 power mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Global Variables}
+\begin{DoxyCompactItemize}
+\item 
+Semaphore\+Handle\+\_\+t \mbox{\hyperlink{group__drivers03_ga58d0639cbfc3e7de1ed5c7d85b9821f4}{w5500\+\_\+spi\+\_\+mutex}}
+\begin{DoxyCompactList}\small\item\em SPI mutex for thread-\/safe W5500 access. \end{DoxyCompactList}\item 
+Semaphore\+Handle\+\_\+t \mbox{\hyperlink{group__drivers03_ga58d0639cbfc3e7de1ed5c7d85b9821f4}{w5500\+\_\+spi\+\_\+mutex}} = NULL
+\begin{DoxyCompactList}\small\item\em SPI mutex for thread-\/safe W5500 access. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Register Access (Low-\/\+Level)}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{group__drivers03_ga0cfc16a607bf2406462a16e0b098badb}{w5500\+\_\+read\+\_\+reg}} (uint32\+\_\+t addr\+\_\+sel)
+\begin{DoxyCompactList}\small\item\em Read single byte from W5500 register (thread-\/safe) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_ga9bd16b5a58852d08dd22d052bfaf1d05}{w5500\+\_\+write\+\_\+reg}} (uint32\+\_\+t addr\+\_\+sel, uint8\+\_\+t data)
+\begin{DoxyCompactList}\small\item\em Write single byte to W5500 register (thread-\/safe) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_ga720712f243385daced1e173642f23f3f}{w5500\+\_\+read\+\_\+buf}} (uint32\+\_\+t addr\+\_\+sel, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Read buffer from W5500 (thread-\/safe) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_ga8e525d27915365abbe8086dc3363055f}{w5500\+\_\+write\+\_\+buf}} (uint32\+\_\+t addr\+\_\+sel, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write buffer to W5500 (thread-\/safe) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Socket Register Access}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__drivers03_gab5067ea57282ddde48ecb150943ece32}{set\+Sn\+\_\+\+PORT}} (uint8\+\_\+t sn, uint16\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Set the local TCP/\+UDP port (big-\/endian) \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{group__drivers03_ga27629270cacc8f11b4931aeb9c779ca2}{get\+Sn\+\_\+\+PORT}} (uint8\+\_\+t sn)
+\begin{DoxyCompactList}\small\item\em Get the local TCP/\+UDP port (big-\/endian) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_ga2266fd45d5dc208a9ac11f084d476188}{set\+Sn\+\_\+\+DPORT}} (uint8\+\_\+t sn, uint16\+\_\+t dport)
+\begin{DoxyCompactList}\small\item\em Set the destination TCP/\+UDP port (big-\/endian) \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{group__drivers03_ga63cf3a1380ecdfc60d1a0e2ac5478bb7}{get\+Sn\+\_\+\+DPORT}} (uint8\+\_\+t sn)
+\begin{DoxyCompactList}\small\item\em Get the destination TCP/\+UDP port (big-\/endian) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_ga35f04740974b2f6a16c4744f1641fd47}{set\+Sn\+\_\+\+TX\+\_\+\+WR}} (uint8\+\_\+t sn, uint16\+\_\+t ptr)
+\begin{DoxyCompactList}\small\item\em Set socket TX write pointer (Sn\+\_\+\+TX\+\_\+\+WR) in big-\/endian. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_ga63c2ca3d8006105cbac360261ec27404}{set\+Sn\+\_\+\+RX\+\_\+\+RD}} (uint8\+\_\+t sn, uint16\+\_\+t ptr)
+\begin{DoxyCompactList}\small\item\em Set socket RX read pointer (Sn\+\_\+\+RX\+\_\+\+RD) in big-\/endian. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__drivers03_gab182bcada4c8e266661e8d03647f92aa}{set\+Sn\+\_\+\+MR}}(sn,  mr)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_gaa2b3835a45b353c5f9501201edcce157}{get\+Sn\+\_\+\+MR}}(sn)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga540fe9afb87bd91eb5fbe1147429878c}{set\+Sn\+\_\+\+CR}}(sn,  cr)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga47c6218a28424d2fb3a3c04f58d0bcfb}{get\+Sn\+\_\+\+CR}}(sn)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_gaf3f411baf7d7ddf91fb6eff4f3c1544b}{set\+Sn\+\_\+\+IR}}(sn,  ir)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga470b6a4db5d8eb22390f17e73272f0d4}{get\+Sn\+\_\+\+IR}}(sn)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga950564158372cf3b9d7cfc266cfd8be9}{set\+Sn\+\_\+\+IMR}}(sn,  imr)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga06b5a2a436fba1492fc6661398008b07}{get\+Sn\+\_\+\+IMR}}(sn)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga14066bffe9453001e246b1d7b0d375c7}{get\+Sn\+\_\+\+SR}}(sn)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga90014b65551f3fdbdc6e46da90cc7110}{set\+Sn\+\_\+\+DIPR}}(sn,  dipr)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_gad10696b63256fe1836383f58cd524e87}{get\+Sn\+\_\+\+DIPR}}(sn,  dipr)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_gafd5f6176bc7acde687800c86c6de2f94}{set\+Sn\+\_\+\+RXBUF\+\_\+\+SIZE}}(sn,  size)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga3211e4a69006f6b496bf75bd08bae6d8}{get\+Sn\+\_\+\+RXBUF\+\_\+\+SIZE}}(sn)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_gac84f413f74aa7fc2b857ce19c90e030e}{set\+Sn\+\_\+\+TXBUF\+\_\+\+SIZE}}(sn,  size)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga966b7719b65d9c1bb1b1562537397ffa}{get\+Sn\+\_\+\+TXBUF\+\_\+\+SIZE}}(sn)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_gaf4c876760f3cf9b5e5899016b4060d3f}{get\+Sn\+\_\+\+TX\+\_\+\+FSR}}(sn)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_gae2ee43baa303799b273bb00c13eb4a3c}{get\+Sn\+\_\+\+RX\+\_\+\+RSR}}(sn)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga620f27e19e5780de01014ed9e6fe5e6a}{get\+Sn\+\_\+\+TX\+\_\+\+WR}}(sn)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga0441daf10a5763203ad82272aa962ff9}{get\+Sn\+\_\+\+RX\+\_\+\+RD}}(sn)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga6c9ff8dfe037466081dabef400f69686}{set\+Sn\+\_\+\+TTL}}(sn,  ttl)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga014a543cef8f2af51276bc638fb28c35}{get\+Sn\+\_\+\+TTL}}(sn)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_gad571bac49c158e67adab83a05907fe7b}{set\+Sn\+\_\+\+TOS}}(sn,  tos)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_gaec8f1c0fcaa1824ca315c5370a98378b}{get\+Sn\+\_\+\+TOS}}(sn)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_gae2f1e36c7f4077a494d82d13b4fb7768}{set\+Sn\+\_\+\+MSSR}}(sn,  mss)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga6a5ed7e2d3547e970e3d18dcfb7f0fae}{get\+Sn\+\_\+\+MSSR}}(sn)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_gaa119ecf4c21a8e0d2fb011d8140a8a82}{set\+Sn\+\_\+\+KPALVTR}}(sn,  kpalvtr)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_gafa77eaa7b903cb7431c49848e9255202}{get\+Sn\+\_\+\+KPALVTR}}(sn)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_gaba5cffa90ce609d64d0027285d41336d}{get\+Sn\+\_\+\+Tx\+MAX}}(sn)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga6ea2cfdeb5b8fb71ff05db08990e0df4}{get\+Sn\+\_\+\+Rx\+MAX}}(sn)
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Socket Data Transfer}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__drivers03_gaeaef8ee772ea9b4a5c6ba7702a1c9b52}{eth\+\_\+send\+\_\+data}} (uint8\+\_\+t sn, uint8\+\_\+t \texorpdfstring{$\ast$}{*}wizdata, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Send data to socket TX buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_ga4a5d2efe0640661e215b4e1f3d918dbd}{eth\+\_\+recv\+\_\+data}} (uint8\+\_\+t sn, uint8\+\_\+t \texorpdfstring{$\ast$}{*}wizdata, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Receive data from socket RX buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_ga5944e5f356542e598f515b7f0196d1a3}{eth\+\_\+recv\+\_\+ignore}} (uint8\+\_\+t sn, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Ignore (discard) received data. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{group__drivers03_gaddeb179a48abf7a94ba651742d77c24d}{w5500\+\_\+get\+\_\+tx\+\_\+fsr}} (uint8\+\_\+t sn)
+\begin{DoxyCompactList}\small\item\em Get socket TX free size (with double-\/read protection) \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{group__drivers03_gad4b8fcc33da68070ad8208da41838d4c}{w5500\+\_\+get\+\_\+rx\+\_\+rsr}} (uint8\+\_\+t sn)
+\begin{DoxyCompactList}\small\item\em Get socket RX received size (with double-\/read protection) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Initialization}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{group__drivers03_ga1528dc514cbd1c3cc346f1593554a042}{w5500\+\_\+hw\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize W5500 hardware (SPI, GPIOs, chip reset) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers03_ga4c79e652fe1be0ffee1445f8411cce51}{w5500\+\_\+chip\+\_\+init}} (\mbox{\hyperlink{structw5500___net_config}{w5500\+\_\+\+Net\+Config}} \texorpdfstring{$\ast$}{*}net\+\_\+info)
+\begin{DoxyCompactList}\small\item\em Initialize the W5500 chip and bring link up. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers03_ga90f24fc38c9785dbc5ebe18417733a7b}{w5500\+\_\+check\+\_\+version}} (void)
+\begin{DoxyCompactList}\small\item\em Check W5500 version register (diagnostic) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Network Configuration}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__drivers03_ga8aef3e5f959b806f9890722dee066782}{w5500\+\_\+set\+\_\+network}} (\mbox{\hyperlink{structw5500___net_config}{w5500\+\_\+\+Net\+Config}} \texorpdfstring{$\ast$}{*}net\+\_\+info)
+\begin{DoxyCompactList}\small\item\em Set network configuration (MAC, IP, subnet, gateway) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_ga51cb463647ad0291c4b7a69d2c4c9a04}{w5500\+\_\+get\+\_\+network}} (\mbox{\hyperlink{structw5500___net_config}{w5500\+\_\+\+Net\+Config}} \texorpdfstring{$\ast$}{*}net\+\_\+info)
+\begin{DoxyCompactList}\small\item\em Get current network configuration. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_gabe918beda4e8c4b4a42c7e96f471ff1c}{w5500\+\_\+print\+\_\+network}} (\mbox{\hyperlink{structw5500___net_config}{w5500\+\_\+\+Net\+Config}} \texorpdfstring{$\ast$}{*}net\+\_\+info)
+\begin{DoxyCompactList}\small\item\em Print network configuration to logger. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{PHY Management}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__drivers03_gacef8050f9ef67107f3847653577da34f}{w5500\+\_\+\+Phy\+Link}} \mbox{\hyperlink{group__drivers03_gafc4a24de4907644bb37647d9afa7f69d}{w5500\+\_\+get\+\_\+link\+\_\+status}} (void)
+\begin{DoxyCompactList}\small\item\em Get PHY link status. \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{group__drivers03_ga9ed1fde0b5018519ab23e299d9a2fc13}{w5500\+\_\+set\+\_\+phy\+\_\+conf}} (\mbox{\hyperlink{structw5500___phy_config}{w5500\+\_\+\+Phy\+Config}} \texorpdfstring{$\ast$}{*}phyconf)
+\begin{DoxyCompactList}\small\item\em Configure PHY mode (auto-\/negotiation, speed, duplex) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_ga581d6d6cf877331ce49b5bcf11fe13bc}{w5500\+\_\+get\+\_\+phy\+\_\+conf}} (\mbox{\hyperlink{structw5500___phy_config}{w5500\+\_\+\+Phy\+Config}} \texorpdfstring{$\ast$}{*}phyconf)
+\begin{DoxyCompactList}\small\item\em Get current PHY configuration. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_ga4d82ae9c8c6c8da0c1d25b1c8e9755d8}{w5500\+\_\+set\+\_\+phy\+\_\+power}} (\mbox{\hyperlink{group__drivers03_ga7ad32e7472dce94b87b4e5bf53a9d5c0}{w5500\+\_\+\+Phy\+Power}} mode)
+\begin{DoxyCompactList}\small\item\em Set PHY power mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Utility Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__drivers03_gac147c27b83f9f642f636d5e67254d7e8}{w5500\+\_\+sw\+\_\+reset}} (void)
+\begin{DoxyCompactList}\small\item\em Software reset W5500 chip. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__drivers03_gad1b2ecf04b09016da660535e20ef3d0f}{w5500\+\_\+get\+\_\+chip\+\_\+id}} (void)
+\begin{DoxyCompactList}\small\item\em Get chip ID string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Common Register Inline Access}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__drivers03_gae5f36bc48e3169d28089734f25555b39}{set\+MR}}(mr)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga57fc3e719d147197b0b7ec0dcb0aa1ab}{get\+MR}}()
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga9fadd276dc95a9f9a4346ac01f36dfd2}{set\+GAR}}(gar)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga6a574455392dbaf1510cf9e2307fe0db}{get\+GAR}}(gar)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga5fc984030fa1e5a652df0f394a142683}{set\+SUBR}}(subr)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga701b2055db9e293830de56b6824dac73}{get\+SUBR}}(subr)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga211d1e0725794a69bbd22529e5c20a20}{set\+SHAR}}(shar)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga03830f492a38592352818b01f739c591}{get\+SHAR}}(shar)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga201c24d7358252075d9fdccd54388f92}{set\+SIPR}}(sipr)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga9bdc4114a9acac5cfe9136b66e2a1d12}{get\+SIPR}}(sipr)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_gae670459da01601abca3a8b5c85c06432}{set\+IR}}(ir)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga14674f3248490718c4f1e50d06350663}{get\+IR}}()
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga04c7e378908894ab888d7ab878ea93a5}{set\+PHYCFGR}}(phycfgr)
+\item 
+\#define \mbox{\hyperlink{group__drivers03_ga1f6f159bc6ec6cc30d6c7de323266ee0}{get\+PHYCFGR}}()
+\item 
+\#define \mbox{\hyperlink{group__drivers03_gaa8c9fea2d2ed62147f86b27e595fedd1}{get\+VERSIONR}}()
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Header file for W5500 Ethernet Controller HAL Driver. 
+
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/06
+\end{DoxyDate}
+Unified RTOS-\/compatible W5500 driver combining HAL, SPI, and configuration. Thread-\/safe with Free\+RTOS mutex protection for all SPI operations.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{group__drivers03_doc-define-members}
+\doxysubsubsection{Macro Definition Documentation}
+\Hypertarget{group__drivers03_ga6a574455392dbaf1510cf9e2307fe0db}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getGAR@{getGAR}}
+\index{getGAR@{getGAR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getGAR}{getGAR}}
+{\footnotesize\ttfamily \label{group__drivers03_ga6a574455392dbaf1510cf9e2307fe0db} 
+\#define get\+GAR(\begin{DoxyParamCaption}\item[{}]{gar}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga720712f243385daced1e173642f23f3f}{w5500\_read\_buf}}(\mbox{\hyperlink{group__config03_ga4949d98617f16809c74f2382ebe9e2c8}{GAR}},\ (gar),\ 4)}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga14674f3248490718c4f1e50d06350663}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getIR@{getIR}}
+\index{getIR@{getIR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getIR}{getIR}}
+{\footnotesize\ttfamily \label{group__drivers03_ga14674f3248490718c4f1e50d06350663} 
+\#define get\+IR(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{group__drivers03_ga0cfc16a607bf2406462a16e0b098badb}{w5500\_read\_reg}}(\mbox{\hyperlink{group__config03_ga68e22635ff207d8ca10459833856bd75}{IR}})\ \&\ 0xF0)}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga57fc3e719d147197b0b7ec0dcb0aa1ab}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getMR@{getMR}}
+\index{getMR@{getMR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getMR}{getMR}}
+{\footnotesize\ttfamily \label{group__drivers03_ga57fc3e719d147197b0b7ec0dcb0aa1ab} 
+\#define get\+MR(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga0cfc16a607bf2406462a16e0b098badb}{w5500\_read\_reg}}(\mbox{\hyperlink{group__config03_ga9ecbd9f86f95534f1bcf71015d5ae81a}{MR}})}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga1f6f159bc6ec6cc30d6c7de323266ee0}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getPHYCFGR@{getPHYCFGR}}
+\index{getPHYCFGR@{getPHYCFGR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getPHYCFGR}{getPHYCFGR}}
+{\footnotesize\ttfamily \label{group__drivers03_ga1f6f159bc6ec6cc30d6c7de323266ee0} 
+\#define get\+PHYCFGR(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga0cfc16a607bf2406462a16e0b098badb}{w5500\_read\_reg}}(\mbox{\hyperlink{group__config03_ga7cc24f47ca8dcb311ade3a0bcbd74eaf}{PHYCFGR}})}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga03830f492a38592352818b01f739c591}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getSHAR@{getSHAR}}
+\index{getSHAR@{getSHAR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getSHAR}{getSHAR}}
+{\footnotesize\ttfamily \label{group__drivers03_ga03830f492a38592352818b01f739c591} 
+\#define get\+SHAR(\begin{DoxyParamCaption}\item[{}]{shar}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga720712f243385daced1e173642f23f3f}{w5500\_read\_buf}}(\mbox{\hyperlink{group__config03_ga2786df906e3569b2b578ecebfaabde15}{SHAR}},\ (shar),\ 6)}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga9bdc4114a9acac5cfe9136b66e2a1d12}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getSIPR@{getSIPR}}
+\index{getSIPR@{getSIPR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getSIPR}{getSIPR}}
+{\footnotesize\ttfamily \label{group__drivers03_ga9bdc4114a9acac5cfe9136b66e2a1d12} 
+\#define get\+SIPR(\begin{DoxyParamCaption}\item[{}]{sipr}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga720712f243385daced1e173642f23f3f}{w5500\_read\_buf}}(\mbox{\hyperlink{group__config03_gac1017606925e844389f81ccc7fc7799b}{SIPR}},\ (sipr),\ 4)}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga47c6218a28424d2fb3a3c04f58d0bcfb}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getSn\_CR@{getSn\_CR}}
+\index{getSn\_CR@{getSn\_CR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getSn\_CR}{getSn\_CR}}
+{\footnotesize\ttfamily \label{group__drivers03_ga47c6218a28424d2fb3a3c04f58d0bcfb} 
+\#define get\+Sn\+\_\+\+CR(\begin{DoxyParamCaption}\item[{}]{sn}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga0cfc16a607bf2406462a16e0b098badb}{w5500\_read\_reg}}(\mbox{\hyperlink{group__config03_gadb581db7f2124487bedbb7c61453540a}{Sn\_CR}}(sn))}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_gad10696b63256fe1836383f58cd524e87}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getSn\_DIPR@{getSn\_DIPR}}
+\index{getSn\_DIPR@{getSn\_DIPR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getSn\_DIPR}{getSn\_DIPR}}
+{\footnotesize\ttfamily \label{group__drivers03_gad10696b63256fe1836383f58cd524e87} 
+\#define get\+Sn\+\_\+\+DIPR(\begin{DoxyParamCaption}\item[{}]{sn}{, }\item[{}]{dipr}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga720712f243385daced1e173642f23f3f}{w5500\_read\_buf}}(\mbox{\hyperlink{group__config03_ga07db81e43763069a0a59acc54d4d347b}{Sn\_DIPR}}(sn),\ (dipr),\ 4)}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga06b5a2a436fba1492fc6661398008b07}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getSn\_IMR@{getSn\_IMR}}
+\index{getSn\_IMR@{getSn\_IMR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getSn\_IMR}{getSn\_IMR}}
+{\footnotesize\ttfamily \label{group__drivers03_ga06b5a2a436fba1492fc6661398008b07} 
+\#define get\+Sn\+\_\+\+IMR(\begin{DoxyParamCaption}\item[{}]{sn}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga0cfc16a607bf2406462a16e0b098badb}{w5500\_read\_reg}}(\mbox{\hyperlink{group__config03_ga98959aecefdcdc8f241104d3fd35940e}{Sn\_IMR}}(sn))}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga470b6a4db5d8eb22390f17e73272f0d4}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getSn\_IR@{getSn\_IR}}
+\index{getSn\_IR@{getSn\_IR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getSn\_IR}{getSn\_IR}}
+{\footnotesize\ttfamily \label{group__drivers03_ga470b6a4db5d8eb22390f17e73272f0d4} 
+\#define get\+Sn\+\_\+\+IR(\begin{DoxyParamCaption}\item[{}]{sn}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga0cfc16a607bf2406462a16e0b098badb}{w5500\_read\_reg}}(\mbox{\hyperlink{group__config03_ga49cb8b15ab6bbf2c41223aa9f9188af1}{Sn\_IR}}(sn))}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_gafa77eaa7b903cb7431c49848e9255202}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getSn\_KPALVTR@{getSn\_KPALVTR}}
+\index{getSn\_KPALVTR@{getSn\_KPALVTR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getSn\_KPALVTR}{getSn\_KPALVTR}}
+{\footnotesize\ttfamily \label{group__drivers03_gafa77eaa7b903cb7431c49848e9255202} 
+\#define get\+Sn\+\_\+\+KPALVTR(\begin{DoxyParamCaption}\item[{}]{sn}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga0cfc16a607bf2406462a16e0b098badb}{w5500\_read\_reg}}(\mbox{\hyperlink{group__config03_ga3a5d07b1fcf6e9f9441c69146e479114}{Sn\_KPALVTR}}(sn))}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_gaa2b3835a45b353c5f9501201edcce157}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getSn\_MR@{getSn\_MR}}
+\index{getSn\_MR@{getSn\_MR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getSn\_MR}{getSn\_MR}}
+{\footnotesize\ttfamily \label{group__drivers03_gaa2b3835a45b353c5f9501201edcce157} 
+\#define get\+Sn\+\_\+\+MR(\begin{DoxyParamCaption}\item[{}]{sn}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga0cfc16a607bf2406462a16e0b098badb}{w5500\_read\_reg}}(\mbox{\hyperlink{group__config03_ga9d485719088a4f1a18e29a0f9be921a4}{Sn\_MR}}(sn))}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga6a5ed7e2d3547e970e3d18dcfb7f0fae}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getSn\_MSSR@{getSn\_MSSR}}
+\index{getSn\_MSSR@{getSn\_MSSR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getSn\_MSSR}{getSn\_MSSR}}
+{\footnotesize\ttfamily \label{group__drivers03_ga6a5ed7e2d3547e970e3d18dcfb7f0fae} 
+\#define get\+Sn\+\_\+\+MSSR(\begin{DoxyParamCaption}\item[{}]{sn}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ (((uint16\_t)\mbox{\hyperlink{group__drivers03_ga0cfc16a607bf2406462a16e0b098badb}{w5500\_read\_reg}}(\mbox{\hyperlink{group__config03_gaafca4e6d08b7ba632bcf56348ad0c2a9}{Sn\_MSSR}}(sn))\ <<\ 8)\ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ w5500\_read\_reg(\mbox{\hyperlink{group__config03_ga3aafa6ac78df1dd4e85e186a374a764e}{W5500\_OFFSET\_INC}}(\mbox{\hyperlink{group__config03_gaafca4e6d08b7ba632bcf56348ad0c2a9}{Sn\_MSSR}}(sn),\ 1)))}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga0441daf10a5763203ad82272aa962ff9}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getSn\_RX\_RD@{getSn\_RX\_RD}}
+\index{getSn\_RX\_RD@{getSn\_RX\_RD}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getSn\_RX\_RD}{getSn\_RX\_RD}}
+{\footnotesize\ttfamily \label{group__drivers03_ga0441daf10a5763203ad82272aa962ff9} 
+\#define get\+Sn\+\_\+\+RX\+\_\+\+RD(\begin{DoxyParamCaption}\item[{}]{sn}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ ((\mbox{\hyperlink{group__drivers03_ga0cfc16a607bf2406462a16e0b098badb}{w5500\_read\_reg}}(\mbox{\hyperlink{group__config03_gad0bffc9ad3fc9039e1258696a2556df7}{Sn\_RX\_RD}}(sn))\ <<\ 8)\ +\ \mbox{\hyperlink{group__drivers03_ga0cfc16a607bf2406462a16e0b098badb}{w5500\_read\_reg}}(\mbox{\hyperlink{group__config03_ga3aafa6ac78df1dd4e85e186a374a764e}{W5500\_OFFSET\_INC}}(\mbox{\hyperlink{group__config03_gad0bffc9ad3fc9039e1258696a2556df7}{Sn\_RX\_RD}}(sn),\ 1)))}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_gae2ee43baa303799b273bb00c13eb4a3c}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getSn\_RX\_RSR@{getSn\_RX\_RSR}}
+\index{getSn\_RX\_RSR@{getSn\_RX\_RSR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getSn\_RX\_RSR}{getSn\_RX\_RSR}}
+{\footnotesize\ttfamily \label{group__drivers03_gae2ee43baa303799b273bb00c13eb4a3c} 
+\#define get\+Sn\+\_\+\+RX\+\_\+\+RSR(\begin{DoxyParamCaption}\item[{}]{sn}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_gad4b8fcc33da68070ad8208da41838d4c}{w5500\_get\_rx\_rsr}}(sn)}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga3211e4a69006f6b496bf75bd08bae6d8}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getSn\_RXBUF\_SIZE@{getSn\_RXBUF\_SIZE}}
+\index{getSn\_RXBUF\_SIZE@{getSn\_RXBUF\_SIZE}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getSn\_RXBUF\_SIZE}{getSn\_RXBUF\_SIZE}}
+{\footnotesize\ttfamily \label{group__drivers03_ga3211e4a69006f6b496bf75bd08bae6d8} 
+\#define get\+Sn\+\_\+\+RXBUF\+\_\+\+SIZE(\begin{DoxyParamCaption}\item[{}]{sn}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga0cfc16a607bf2406462a16e0b098badb}{w5500\_read\_reg}}(\mbox{\hyperlink{group__config03_gae4131b33d899ce3cd35061e7c68b7187}{Sn\_RXBUF\_SIZE}}(sn))}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga6ea2cfdeb5b8fb71ff05db08990e0df4}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getSn\_RxMAX@{getSn\_RxMAX}}
+\index{getSn\_RxMAX@{getSn\_RxMAX}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getSn\_RxMAX}{getSn\_RxMAX}}
+{\footnotesize\ttfamily \label{group__drivers03_ga6ea2cfdeb5b8fb71ff05db08990e0df4} 
+\#define get\+Sn\+\_\+\+Rx\+MAX(\begin{DoxyParamCaption}\item[{}]{sn}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{group__drivers03_ga3211e4a69006f6b496bf75bd08bae6d8}{getSn\_RXBUF\_SIZE}}(sn)\ <<\ 10)}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga14066bffe9453001e246b1d7b0d375c7}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getSn\_SR@{getSn\_SR}}
+\index{getSn\_SR@{getSn\_SR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getSn\_SR}{getSn\_SR}}
+{\footnotesize\ttfamily \label{group__drivers03_ga14066bffe9453001e246b1d7b0d375c7} 
+\#define get\+Sn\+\_\+\+SR(\begin{DoxyParamCaption}\item[{}]{sn}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga0cfc16a607bf2406462a16e0b098badb}{w5500\_read\_reg}}(\mbox{\hyperlink{group__config03_ga958511984021889fe9d54d7a704d4957}{Sn\_SR}}(sn))}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_gaec8f1c0fcaa1824ca315c5370a98378b}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getSn\_TOS@{getSn\_TOS}}
+\index{getSn\_TOS@{getSn\_TOS}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getSn\_TOS}{getSn\_TOS}}
+{\footnotesize\ttfamily \label{group__drivers03_gaec8f1c0fcaa1824ca315c5370a98378b} 
+\#define get\+Sn\+\_\+\+TOS(\begin{DoxyParamCaption}\item[{}]{sn}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga0cfc16a607bf2406462a16e0b098badb}{w5500\_read\_reg}}(\mbox{\hyperlink{group__config03_ga9e1ff4191d71d893ef657e9bc1b32072}{Sn\_TOS}}(sn))}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga014a543cef8f2af51276bc638fb28c35}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getSn\_TTL@{getSn\_TTL}}
+\index{getSn\_TTL@{getSn\_TTL}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getSn\_TTL}{getSn\_TTL}}
+{\footnotesize\ttfamily \label{group__drivers03_ga014a543cef8f2af51276bc638fb28c35} 
+\#define get\+Sn\+\_\+\+TTL(\begin{DoxyParamCaption}\item[{}]{sn}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga0cfc16a607bf2406462a16e0b098badb}{w5500\_read\_reg}}(\mbox{\hyperlink{group__config03_gae03714ed66656a8fa5fcb23280aefcbc}{Sn\_TTL}}(sn))}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_gaf4c876760f3cf9b5e5899016b4060d3f}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getSn\_TX\_FSR@{getSn\_TX\_FSR}}
+\index{getSn\_TX\_FSR@{getSn\_TX\_FSR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getSn\_TX\_FSR}{getSn\_TX\_FSR}}
+{\footnotesize\ttfamily \label{group__drivers03_gaf4c876760f3cf9b5e5899016b4060d3f} 
+\#define get\+Sn\+\_\+\+TX\+\_\+\+FSR(\begin{DoxyParamCaption}\item[{}]{sn}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_gaddeb179a48abf7a94ba651742d77c24d}{w5500\_get\_tx\_fsr}}(sn)}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga620f27e19e5780de01014ed9e6fe5e6a}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getSn\_TX\_WR@{getSn\_TX\_WR}}
+\index{getSn\_TX\_WR@{getSn\_TX\_WR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getSn\_TX\_WR}{getSn\_TX\_WR}}
+{\footnotesize\ttfamily \label{group__drivers03_ga620f27e19e5780de01014ed9e6fe5e6a} 
+\#define get\+Sn\+\_\+\+TX\+\_\+\+WR(\begin{DoxyParamCaption}\item[{}]{sn}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ ((\mbox{\hyperlink{group__drivers03_ga0cfc16a607bf2406462a16e0b098badb}{w5500\_read\_reg}}(\mbox{\hyperlink{group__config03_gae0de0822d78274f53cbed5aea9718371}{Sn\_TX\_WR}}(sn))\ <<\ 8)\ +\ \mbox{\hyperlink{group__drivers03_ga0cfc16a607bf2406462a16e0b098badb}{w5500\_read\_reg}}(\mbox{\hyperlink{group__config03_ga3aafa6ac78df1dd4e85e186a374a764e}{W5500\_OFFSET\_INC}}(\mbox{\hyperlink{group__config03_gae0de0822d78274f53cbed5aea9718371}{Sn\_TX\_WR}}(sn),\ 1)))}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga966b7719b65d9c1bb1b1562537397ffa}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getSn\_TXBUF\_SIZE@{getSn\_TXBUF\_SIZE}}
+\index{getSn\_TXBUF\_SIZE@{getSn\_TXBUF\_SIZE}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getSn\_TXBUF\_SIZE}{getSn\_TXBUF\_SIZE}}
+{\footnotesize\ttfamily \label{group__drivers03_ga966b7719b65d9c1bb1b1562537397ffa} 
+\#define get\+Sn\+\_\+\+TXBUF\+\_\+\+SIZE(\begin{DoxyParamCaption}\item[{}]{sn}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga0cfc16a607bf2406462a16e0b098badb}{w5500\_read\_reg}}(\mbox{\hyperlink{group__config03_ga6172c53b2254f7e4f2720589f0c2e982}{Sn\_TXBUF\_SIZE}}(sn))}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_gaba5cffa90ce609d64d0027285d41336d}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getSn\_TxMAX@{getSn\_TxMAX}}
+\index{getSn\_TxMAX@{getSn\_TxMAX}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getSn\_TxMAX}{getSn\_TxMAX}}
+{\footnotesize\ttfamily \label{group__drivers03_gaba5cffa90ce609d64d0027285d41336d} 
+\#define get\+Sn\+\_\+\+Tx\+MAX(\begin{DoxyParamCaption}\item[{}]{sn}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{group__drivers03_ga966b7719b65d9c1bb1b1562537397ffa}{getSn\_TXBUF\_SIZE}}(sn)\ <<\ 10)}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga701b2055db9e293830de56b6824dac73}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getSUBR@{getSUBR}}
+\index{getSUBR@{getSUBR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getSUBR}{getSUBR}}
+{\footnotesize\ttfamily \label{group__drivers03_ga701b2055db9e293830de56b6824dac73} 
+\#define get\+SUBR(\begin{DoxyParamCaption}\item[{}]{subr}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga720712f243385daced1e173642f23f3f}{w5500\_read\_buf}}(\mbox{\hyperlink{group__config03_ga49fe7cfa44021aa3ad5ba1f15f7809eb}{SUBR}},\ (subr),\ 4)}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_gaa8c9fea2d2ed62147f86b27e595fedd1}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getVERSIONR@{getVERSIONR}}
+\index{getVERSIONR@{getVERSIONR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getVERSIONR}{getVERSIONR}}
+{\footnotesize\ttfamily \label{group__drivers03_gaa8c9fea2d2ed62147f86b27e595fedd1} 
+\#define get\+VERSIONR(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga0cfc16a607bf2406462a16e0b098badb}{w5500\_read\_reg}}(\mbox{\hyperlink{group__config03_ga4e029565150c3aca3ba16b2ae3ea8b4e}{VERSIONR}})}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga9fadd276dc95a9f9a4346ac01f36dfd2}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!setGAR@{setGAR}}
+\index{setGAR@{setGAR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{setGAR}{setGAR}}
+{\footnotesize\ttfamily \label{group__drivers03_ga9fadd276dc95a9f9a4346ac01f36dfd2} 
+\#define set\+GAR(\begin{DoxyParamCaption}\item[{}]{gar}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga8e525d27915365abbe8086dc3363055f}{w5500\_write\_buf}}(\mbox{\hyperlink{group__config03_ga4949d98617f16809c74f2382ebe9e2c8}{GAR}},\ (gar),\ 4)}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_gae670459da01601abca3a8b5c85c06432}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!setIR@{setIR}}
+\index{setIR@{setIR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{setIR}{setIR}}
+{\footnotesize\ttfamily \label{group__drivers03_gae670459da01601abca3a8b5c85c06432} 
+\#define set\+IR(\begin{DoxyParamCaption}\item[{}]{ir}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga9bd16b5a58852d08dd22d052bfaf1d05}{w5500\_write\_reg}}(\mbox{\hyperlink{group__config03_ga68e22635ff207d8ca10459833856bd75}{IR}},\ ((ir)\ \&\ 0xF0))}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_gae5f36bc48e3169d28089734f25555b39}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!setMR@{setMR}}
+\index{setMR@{setMR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{setMR}{setMR}}
+{\footnotesize\ttfamily \label{group__drivers03_gae5f36bc48e3169d28089734f25555b39} 
+\#define set\+MR(\begin{DoxyParamCaption}\item[{}]{mr}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga9bd16b5a58852d08dd22d052bfaf1d05}{w5500\_write\_reg}}(\mbox{\hyperlink{group__config03_ga9ecbd9f86f95534f1bcf71015d5ae81a}{MR}},\ (mr))}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga04c7e378908894ab888d7ab878ea93a5}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!setPHYCFGR@{setPHYCFGR}}
+\index{setPHYCFGR@{setPHYCFGR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{setPHYCFGR}{setPHYCFGR}}
+{\footnotesize\ttfamily \label{group__drivers03_ga04c7e378908894ab888d7ab878ea93a5} 
+\#define set\+PHYCFGR(\begin{DoxyParamCaption}\item[{}]{phycfgr}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga9bd16b5a58852d08dd22d052bfaf1d05}{w5500\_write\_reg}}(\mbox{\hyperlink{group__config03_ga7cc24f47ca8dcb311ade3a0bcbd74eaf}{PHYCFGR}},\ (phycfgr))}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga211d1e0725794a69bbd22529e5c20a20}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!setSHAR@{setSHAR}}
+\index{setSHAR@{setSHAR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{setSHAR}{setSHAR}}
+{\footnotesize\ttfamily \label{group__drivers03_ga211d1e0725794a69bbd22529e5c20a20} 
+\#define set\+SHAR(\begin{DoxyParamCaption}\item[{}]{shar}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga8e525d27915365abbe8086dc3363055f}{w5500\_write\_buf}}(\mbox{\hyperlink{group__config03_ga2786df906e3569b2b578ecebfaabde15}{SHAR}},\ (shar),\ 6)}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga201c24d7358252075d9fdccd54388f92}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!setSIPR@{setSIPR}}
+\index{setSIPR@{setSIPR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{setSIPR}{setSIPR}}
+{\footnotesize\ttfamily \label{group__drivers03_ga201c24d7358252075d9fdccd54388f92} 
+\#define set\+SIPR(\begin{DoxyParamCaption}\item[{}]{sipr}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga8e525d27915365abbe8086dc3363055f}{w5500\_write\_buf}}(\mbox{\hyperlink{group__config03_gac1017606925e844389f81ccc7fc7799b}{SIPR}},\ (sipr),\ 4)}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga540fe9afb87bd91eb5fbe1147429878c}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!setSn\_CR@{setSn\_CR}}
+\index{setSn\_CR@{setSn\_CR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{setSn\_CR}{setSn\_CR}}
+{\footnotesize\ttfamily \label{group__drivers03_ga540fe9afb87bd91eb5fbe1147429878c} 
+\#define set\+Sn\+\_\+\+CR(\begin{DoxyParamCaption}\item[{}]{sn}{, }\item[{}]{cr}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga9bd16b5a58852d08dd22d052bfaf1d05}{w5500\_write\_reg}}(\mbox{\hyperlink{group__config03_gadb581db7f2124487bedbb7c61453540a}{Sn\_CR}}(sn),\ (cr))}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga90014b65551f3fdbdc6e46da90cc7110}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!setSn\_DIPR@{setSn\_DIPR}}
+\index{setSn\_DIPR@{setSn\_DIPR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{setSn\_DIPR}{setSn\_DIPR}}
+{\footnotesize\ttfamily \label{group__drivers03_ga90014b65551f3fdbdc6e46da90cc7110} 
+\#define set\+Sn\+\_\+\+DIPR(\begin{DoxyParamCaption}\item[{}]{sn}{, }\item[{}]{dipr}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga8e525d27915365abbe8086dc3363055f}{w5500\_write\_buf}}(\mbox{\hyperlink{group__config03_ga07db81e43763069a0a59acc54d4d347b}{Sn\_DIPR}}(sn),\ (dipr),\ 4)}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga950564158372cf3b9d7cfc266cfd8be9}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!setSn\_IMR@{setSn\_IMR}}
+\index{setSn\_IMR@{setSn\_IMR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{setSn\_IMR}{setSn\_IMR}}
+{\footnotesize\ttfamily \label{group__drivers03_ga950564158372cf3b9d7cfc266cfd8be9} 
+\#define set\+Sn\+\_\+\+IMR(\begin{DoxyParamCaption}\item[{}]{sn}{, }\item[{}]{imr}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga9bd16b5a58852d08dd22d052bfaf1d05}{w5500\_write\_reg}}(\mbox{\hyperlink{group__config03_ga98959aecefdcdc8f241104d3fd35940e}{Sn\_IMR}}(sn),\ (imr))}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_gaf3f411baf7d7ddf91fb6eff4f3c1544b}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!setSn\_IR@{setSn\_IR}}
+\index{setSn\_IR@{setSn\_IR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{setSn\_IR}{setSn\_IR}}
+{\footnotesize\ttfamily \label{group__drivers03_gaf3f411baf7d7ddf91fb6eff4f3c1544b} 
+\#define set\+Sn\+\_\+\+IR(\begin{DoxyParamCaption}\item[{}]{sn}{, }\item[{}]{ir}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga9bd16b5a58852d08dd22d052bfaf1d05}{w5500\_write\_reg}}(\mbox{\hyperlink{group__config03_ga49cb8b15ab6bbf2c41223aa9f9188af1}{Sn\_IR}}(sn),\ (ir))}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_gaa119ecf4c21a8e0d2fb011d8140a8a82}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!setSn\_KPALVTR@{setSn\_KPALVTR}}
+\index{setSn\_KPALVTR@{setSn\_KPALVTR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{setSn\_KPALVTR}{setSn\_KPALVTR}}
+{\footnotesize\ttfamily \label{group__drivers03_gaa119ecf4c21a8e0d2fb011d8140a8a82} 
+\#define set\+Sn\+\_\+\+KPALVTR(\begin{DoxyParamCaption}\item[{}]{sn}{, }\item[{}]{kpalvtr}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga9bd16b5a58852d08dd22d052bfaf1d05}{w5500\_write\_reg}}(\mbox{\hyperlink{group__config03_ga3a5d07b1fcf6e9f9441c69146e479114}{Sn\_KPALVTR}}(sn),\ (kpalvtr))}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_gab182bcada4c8e266661e8d03647f92aa}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!setSn\_MR@{setSn\_MR}}
+\index{setSn\_MR@{setSn\_MR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{setSn\_MR}{setSn\_MR}}
+{\footnotesize\ttfamily \label{group__drivers03_gab182bcada4c8e266661e8d03647f92aa} 
+\#define set\+Sn\+\_\+\+MR(\begin{DoxyParamCaption}\item[{}]{sn}{, }\item[{}]{mr}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga9bd16b5a58852d08dd22d052bfaf1d05}{w5500\_write\_reg}}(\mbox{\hyperlink{group__config03_ga9d485719088a4f1a18e29a0f9be921a4}{Sn\_MR}}(sn),\ (mr))}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_gae2f1e36c7f4077a494d82d13b4fb7768}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!setSn\_MSSR@{setSn\_MSSR}}
+\index{setSn\_MSSR@{setSn\_MSSR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{setSn\_MSSR}{setSn\_MSSR}}
+{\footnotesize\ttfamily \label{group__drivers03_gae2f1e36c7f4077a494d82d13b4fb7768} 
+\#define set\+Sn\+\_\+\+MSSR(\begin{DoxyParamCaption}\item[{}]{sn}{, }\item[{}]{mss}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ w5500\_write\_reg(\mbox{\hyperlink{group__config03_gaafca4e6d08b7ba632bcf56348ad0c2a9}{Sn\_MSSR}}(sn),\ (uint8\_t)((mss)\ >>\ 8));\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ w5500\_write\_reg(\mbox{\hyperlink{group__config03_ga3aafa6ac78df1dd4e85e186a374a764e}{W5500\_OFFSET\_INC}}(\mbox{\hyperlink{group__config03_gaafca4e6d08b7ba632bcf56348ad0c2a9}{Sn\_MSSR}}(sn),\ 1),\ (uint8\_t)(mss));\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_gafd5f6176bc7acde687800c86c6de2f94}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!setSn\_RXBUF\_SIZE@{setSn\_RXBUF\_SIZE}}
+\index{setSn\_RXBUF\_SIZE@{setSn\_RXBUF\_SIZE}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{setSn\_RXBUF\_SIZE}{setSn\_RXBUF\_SIZE}}
+{\footnotesize\ttfamily \label{group__drivers03_gafd5f6176bc7acde687800c86c6de2f94} 
+\#define set\+Sn\+\_\+\+RXBUF\+\_\+\+SIZE(\begin{DoxyParamCaption}\item[{}]{sn}{, }\item[{}]{size}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga9bd16b5a58852d08dd22d052bfaf1d05}{w5500\_write\_reg}}(\mbox{\hyperlink{group__config03_gae4131b33d899ce3cd35061e7c68b7187}{Sn\_RXBUF\_SIZE}}(sn),\ (size))}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_gad571bac49c158e67adab83a05907fe7b}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!setSn\_TOS@{setSn\_TOS}}
+\index{setSn\_TOS@{setSn\_TOS}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{setSn\_TOS}{setSn\_TOS}}
+{\footnotesize\ttfamily \label{group__drivers03_gad571bac49c158e67adab83a05907fe7b} 
+\#define set\+Sn\+\_\+\+TOS(\begin{DoxyParamCaption}\item[{}]{sn}{, }\item[{}]{tos}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga9bd16b5a58852d08dd22d052bfaf1d05}{w5500\_write\_reg}}(\mbox{\hyperlink{group__config03_ga9e1ff4191d71d893ef657e9bc1b32072}{Sn\_TOS}}(sn),\ (tos))}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga6c9ff8dfe037466081dabef400f69686}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!setSn\_TTL@{setSn\_TTL}}
+\index{setSn\_TTL@{setSn\_TTL}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{setSn\_TTL}{setSn\_TTL}}
+{\footnotesize\ttfamily \label{group__drivers03_ga6c9ff8dfe037466081dabef400f69686} 
+\#define set\+Sn\+\_\+\+TTL(\begin{DoxyParamCaption}\item[{}]{sn}{, }\item[{}]{ttl}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga9bd16b5a58852d08dd22d052bfaf1d05}{w5500\_write\_reg}}(\mbox{\hyperlink{group__config03_gae03714ed66656a8fa5fcb23280aefcbc}{Sn\_TTL}}(sn),\ (ttl))}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_gac84f413f74aa7fc2b857ce19c90e030e}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!setSn\_TXBUF\_SIZE@{setSn\_TXBUF\_SIZE}}
+\index{setSn\_TXBUF\_SIZE@{setSn\_TXBUF\_SIZE}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{setSn\_TXBUF\_SIZE}{setSn\_TXBUF\_SIZE}}
+{\footnotesize\ttfamily \label{group__drivers03_gac84f413f74aa7fc2b857ce19c90e030e} 
+\#define set\+Sn\+\_\+\+TXBUF\+\_\+\+SIZE(\begin{DoxyParamCaption}\item[{}]{sn}{, }\item[{}]{size}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga9bd16b5a58852d08dd22d052bfaf1d05}{w5500\_write\_reg}}(\mbox{\hyperlink{group__config03_ga6172c53b2254f7e4f2720589f0c2e982}{Sn\_TXBUF\_SIZE}}(sn),\ (size))}
+
+\end{DoxyCode}
+\Hypertarget{group__drivers03_ga5fc984030fa1e5a652df0f394a142683}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!setSUBR@{setSUBR}}
+\index{setSUBR@{setSUBR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{setSUBR}{setSUBR}}
+{\footnotesize\ttfamily \label{group__drivers03_ga5fc984030fa1e5a652df0f394a142683} 
+\#define set\+SUBR(\begin{DoxyParamCaption}\item[{}]{subr}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__drivers03_ga8e525d27915365abbe8086dc3363055f}{w5500\_write\_buf}}(\mbox{\hyperlink{group__config03_ga49fe7cfa44021aa3ad5ba1f15f7809eb}{SUBR}},\ (subr),\ 4)}
+
+\end{DoxyCode}
+
+
+\label{doc-enum-members}
+\Hypertarget{group__drivers03_doc-enum-members}
+\doxysubsubsection{Enumeration Type Documentation}
+\Hypertarget{group__drivers03_gacef8050f9ef67107f3847653577da34f}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!w5500\_PhyLink@{w5500\_PhyLink}}
+\index{w5500\_PhyLink@{w5500\_PhyLink}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{w5500\_PhyLink}{w5500\_PhyLink}}
+{\footnotesize\ttfamily \label{group__drivers03_gacef8050f9ef67107f3847653577da34f} 
+enum \mbox{\hyperlink{group__drivers03_gacef8050f9ef67107f3847653577da34f}{w5500\+\_\+\+Phy\+Link}}}
+
+
+
+W5500 link status. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PHY\_LINK\_OFF@{PHY\_LINK\_OFF}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!PHY\_LINK\_OFF@{PHY\_LINK\_OFF}}}\Hypertarget{group__drivers03_ggacef8050f9ef67107f3847653577da34fae2760211c2bb5d3d92d4844e70659521}\label{group__drivers03_ggacef8050f9ef67107f3847653577da34fae2760211c2bb5d3d92d4844e70659521} 
+PHY\+\_\+\+LINK\+\_\+\+OFF&Link down \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PHY\_LINK\_ON@{PHY\_LINK\_ON}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!PHY\_LINK\_ON@{PHY\_LINK\_ON}}}\Hypertarget{group__drivers03_ggacef8050f9ef67107f3847653577da34faf86ca986c2c6c1d071154268f8d66c9f}\label{group__drivers03_ggacef8050f9ef67107f3847653577da34faf86ca986c2c6c1d071154268f8d66c9f} 
+PHY\+\_\+\+LINK\+\_\+\+ON&Link up \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{group__drivers03_ga7ad32e7472dce94b87b4e5bf53a9d5c0}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!w5500\_PhyPower@{w5500\_PhyPower}}
+\index{w5500\_PhyPower@{w5500\_PhyPower}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{w5500\_PhyPower}{w5500\_PhyPower}}
+{\footnotesize\ttfamily \label{group__drivers03_ga7ad32e7472dce94b87b4e5bf53a9d5c0} 
+enum \mbox{\hyperlink{group__drivers03_ga7ad32e7472dce94b87b4e5bf53a9d5c0}{w5500\+\_\+\+Phy\+Power}}}
+
+
+
+W5500 power mode. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PHY\_POWER\_NORM@{PHY\_POWER\_NORM}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!PHY\_POWER\_NORM@{PHY\_POWER\_NORM}}}\Hypertarget{group__drivers03_gga7ad32e7472dce94b87b4e5bf53a9d5c0a6d1da1ce3b18ff3bcb1d5965e5f214b0}\label{group__drivers03_gga7ad32e7472dce94b87b4e5bf53a9d5c0a6d1da1ce3b18ff3bcb1d5965e5f214b0} 
+PHY\+\_\+\+POWER\+\_\+\+NORM&Normal mode \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PHY\_POWER\_DOWN@{PHY\_POWER\_DOWN}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!PHY\_POWER\_DOWN@{PHY\_POWER\_DOWN}}}\Hypertarget{group__drivers03_gga7ad32e7472dce94b87b4e5bf53a9d5c0aeec263e1564a45c07d60ea3c190ddebd}\label{group__drivers03_gga7ad32e7472dce94b87b4e5bf53a9d5c0aeec263e1564a45c07d60ea3c190ddebd} 
+PHY\+\_\+\+POWER\+\_\+\+DOWN&Power down mode \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{group__drivers03_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__drivers03_ga4a5d2efe0640661e215b4e1f3d918dbd}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!eth\_recv\_data@{eth\_recv\_data}}
+\index{eth\_recv\_data@{eth\_recv\_data}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{eth\_recv\_data()}{eth\_recv\_data()}}
+{\footnotesize\ttfamily \label{group__drivers03_ga4a5d2efe0640661e215b4e1f3d918dbd} 
+void eth\+\_\+recv\+\_\+data (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{wizdata}{, }\item[{uint16\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Receive data from socket RX buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+{\em wizdata} & Data buffer \\
+\hline
+{\em len} & Data length \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers03_ga4a5d2efe0640661e215b4e1f3d918dbd_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers03_ga4a5d2efe0640661e215b4e1f3d918dbd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers03_ga5944e5f356542e598f515b7f0196d1a3}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!eth\_recv\_ignore@{eth\_recv\_ignore}}
+\index{eth\_recv\_ignore@{eth\_recv\_ignore}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{eth\_recv\_ignore()}{eth\_recv\_ignore()}}
+{\footnotesize\ttfamily \label{group__drivers03_ga5944e5f356542e598f515b7f0196d1a3} 
+void eth\+\_\+recv\+\_\+ignore (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{, }\item[{uint16\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Ignore (discard) received data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+{\em len} & Length to discard \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers03_ga5944e5f356542e598f515b7f0196d1a3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers03_ga5944e5f356542e598f515b7f0196d1a3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers03_gaeaef8ee772ea9b4a5c6ba7702a1c9b52}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!eth\_send\_data@{eth\_send\_data}}
+\index{eth\_send\_data@{eth\_send\_data}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{eth\_send\_data()}{eth\_send\_data()}}
+{\footnotesize\ttfamily \label{group__drivers03_gaeaef8ee772ea9b4a5c6ba7702a1c9b52} 
+void eth\+\_\+send\+\_\+data (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{wizdata}{, }\item[{uint16\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Send data to socket TX buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+{\em wizdata} & Data buffer \\
+\hline
+{\em len} & Data length \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers03_gaeaef8ee772ea9b4a5c6ba7702a1c9b52_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers03_gaeaef8ee772ea9b4a5c6ba7702a1c9b52_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers03_ga63cf3a1380ecdfc60d1a0e2ac5478bb7}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getSn\_DPORT@{getSn\_DPORT}}
+\index{getSn\_DPORT@{getSn\_DPORT}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getSn\_DPORT()}{getSn\_DPORT()}}
+{\footnotesize\ttfamily \label{group__drivers03_ga63cf3a1380ecdfc60d1a0e2ac5478bb7} 
+uint16\+\_\+t get\+Sn\+\_\+\+DPORT (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{}\end{DoxyParamCaption})}
+
+
+
+Get the destination TCP/\+UDP port (big-\/endian) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \mbox{[}0..7\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Host-\/endian destination port 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=285pt]{group__drivers03_ga63cf3a1380ecdfc60d1a0e2ac5478bb7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=261pt]{group__drivers03_ga63cf3a1380ecdfc60d1a0e2ac5478bb7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers03_ga27629270cacc8f11b4931aeb9c779ca2}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!getSn\_PORT@{getSn\_PORT}}
+\index{getSn\_PORT@{getSn\_PORT}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{getSn\_PORT()}{getSn\_PORT()}}
+{\footnotesize\ttfamily \label{group__drivers03_ga27629270cacc8f11b4931aeb9c779ca2} 
+uint16\+\_\+t get\+Sn\+\_\+\+PORT (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{}\end{DoxyParamCaption})}
+
+
+
+Get the local TCP/\+UDP port (big-\/endian) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \mbox{[}0..7\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Host-\/endian port number 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=277pt]{group__drivers03_ga27629270cacc8f11b4931aeb9c779ca2_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers03_ga2266fd45d5dc208a9ac11f084d476188}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!setSn\_DPORT@{setSn\_DPORT}}
+\index{setSn\_DPORT@{setSn\_DPORT}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{setSn\_DPORT()}{setSn\_DPORT()}}
+{\footnotesize\ttfamily \label{group__drivers03_ga2266fd45d5dc208a9ac11f084d476188} 
+void set\+Sn\+\_\+\+DPORT (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{, }\item[{uint16\+\_\+t}]{dport}{}\end{DoxyParamCaption})}
+
+
+
+Set the destination TCP/\+UDP port (big-\/endian) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \mbox{[}0..7\mbox{]} \\
+\hline
+{\em dport} & Host-\/endian destination port \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=287pt]{group__drivers03_ga2266fd45d5dc208a9ac11f084d476188_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers03_ga2266fd45d5dc208a9ac11f084d476188_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers03_gab5067ea57282ddde48ecb150943ece32}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!setSn\_PORT@{setSn\_PORT}}
+\index{setSn\_PORT@{setSn\_PORT}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{setSn\_PORT()}{setSn\_PORT()}}
+{\footnotesize\ttfamily \label{group__drivers03_gab5067ea57282ddde48ecb150943ece32} 
+void set\+Sn\+\_\+\+PORT (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{, }\item[{uint16\+\_\+t}]{port}{}\end{DoxyParamCaption})}
+
+
+
+Set the local TCP/\+UDP port (big-\/endian) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \mbox{[}0..7\mbox{]} \\
+\hline
+{\em port} & Host-\/endian port number (e.\+g., 80) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=279pt]{group__drivers03_gab5067ea57282ddde48ecb150943ece32_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers03_gab5067ea57282ddde48ecb150943ece32_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers03_ga63c2ca3d8006105cbac360261ec27404}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!setSn\_RX\_RD@{setSn\_RX\_RD}}
+\index{setSn\_RX\_RD@{setSn\_RX\_RD}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{setSn\_RX\_RD()}{setSn\_RX\_RD()}}
+{\footnotesize\ttfamily \label{group__drivers03_ga63c2ca3d8006105cbac360261ec27404} 
+void set\+Sn\+\_\+\+RX\+\_\+\+RD (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{, }\item[{uint16\+\_\+t}]{ptr}{}\end{DoxyParamCaption})}
+
+
+
+Set socket RX read pointer (Sn\+\_\+\+RX\+\_\+\+RD) in big-\/endian. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \mbox{[}0..7\mbox{]} \\
+\hline
+{\em ptr} & New RX read pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=287pt]{group__drivers03_ga63c2ca3d8006105cbac360261ec27404_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers03_ga63c2ca3d8006105cbac360261ec27404_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers03_ga35f04740974b2f6a16c4744f1641fd47}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!setSn\_TX\_WR@{setSn\_TX\_WR}}
+\index{setSn\_TX\_WR@{setSn\_TX\_WR}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{setSn\_TX\_WR()}{setSn\_TX\_WR()}}
+{\footnotesize\ttfamily \label{group__drivers03_ga35f04740974b2f6a16c4744f1641fd47} 
+void set\+Sn\+\_\+\+TX\+\_\+\+WR (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{, }\item[{uint16\+\_\+t}]{ptr}{}\end{DoxyParamCaption})}
+
+
+
+Set socket TX write pointer (Sn\+\_\+\+TX\+\_\+\+WR) in big-\/endian. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \mbox{[}0..7\mbox{]} \\
+\hline
+{\em ptr} & New TX write pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{group__drivers03_ga35f04740974b2f6a16c4744f1641fd47_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers03_ga35f04740974b2f6a16c4744f1641fd47_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers03_ga90f24fc38c9785dbc5ebe18417733a7b}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!w5500\_check\_version@{w5500\_check\_version}}
+\index{w5500\_check\_version@{w5500\_check\_version}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{w5500\_check\_version()}{w5500\_check\_version()}}
+{\footnotesize\ttfamily \label{group__drivers03_ga90f24fc38c9785dbc5ebe18417733a7b} 
+bool w5500\+\_\+check\+\_\+version (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Check W5500 version register (diagnostic) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if version register reads 0x04 (W5500), false otherwise 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers03_ga90f24fc38c9785dbc5ebe18417733a7b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers03_ga4c79e652fe1be0ffee1445f8411cce51}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!w5500\_chip\_init@{w5500\_chip\_init}}
+\index{w5500\_chip\_init@{w5500\_chip\_init}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{w5500\_chip\_init()}{w5500\_chip\_init()}}
+{\footnotesize\ttfamily \label{group__drivers03_ga4c79e652fe1be0ffee1445f8411cce51} 
+bool w5500\+\_\+chip\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structw5500___net_config}{w5500\+\_\+\+Net\+Config}} \texorpdfstring{$\ast$}{*}}]{net\+\_\+info}{}\end{DoxyParamCaption})}
+
+
+
+Initialize the W5500 chip and bring link up. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em net\+\_\+info} & Pointer to network configuration (MAC, IP, SN, GW, DNS, DHCP) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success, false on failure
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Configures per-\/socket RX/\+TX buffer sizes.
+\item Brings the PHY up and waits for link.
+\item Applies the provided network configuration.
+\item Programs TCP retry timing registers RTR/\+RCR from \doxylink{ethernet__config_8h}{ethernet\+\_\+config.\+h}.
+\item Leaves the device ready for socket allocation and use. 
+\end{DoxyItemize}Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers03_ga4c79e652fe1be0ffee1445f8411cce51_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers03_ga4c79e652fe1be0ffee1445f8411cce51_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers03_gad1b2ecf04b09016da660535e20ef3d0f}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!w5500\_get\_chip\_id@{w5500\_get\_chip\_id}}
+\index{w5500\_get\_chip\_id@{w5500\_get\_chip\_id}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{w5500\_get\_chip\_id()}{w5500\_get\_chip\_id()}}
+{\footnotesize\ttfamily \label{group__drivers03_gad1b2ecf04b09016da660535e20ef3d0f} 
+const char \texorpdfstring{$\ast$}{*} w5500\+\_\+get\+\_\+chip\+\_\+id (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Get chip ID string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to chip ID string ("{}\+W5500"{}) 
+\end{DoxyReturn}
+\Hypertarget{group__drivers03_gafc4a24de4907644bb37647d9afa7f69d}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!w5500\_get\_link\_status@{w5500\_get\_link\_status}}
+\index{w5500\_get\_link\_status@{w5500\_get\_link\_status}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{w5500\_get\_link\_status()}{w5500\_get\_link\_status()}}
+{\footnotesize\ttfamily \label{group__drivers03_gafc4a24de4907644bb37647d9afa7f69d} 
+\mbox{\hyperlink{group__drivers03_gacef8050f9ef67107f3847653577da34f}{w5500\+\_\+\+Phy\+Link}} w5500\+\_\+get\+\_\+link\+\_\+status (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Get PHY link status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+PHY\+\_\+\+LINK\+\_\+\+ON if link is up, PHY\+\_\+\+LINK\+\_\+\+OFF if link is down 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers03_gafc4a24de4907644bb37647d9afa7f69d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers03_ga51cb463647ad0291c4b7a69d2c4c9a04}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!w5500\_get\_network@{w5500\_get\_network}}
+\index{w5500\_get\_network@{w5500\_get\_network}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{w5500\_get\_network()}{w5500\_get\_network()}}
+{\footnotesize\ttfamily \label{group__drivers03_ga51cb463647ad0291c4b7a69d2c4c9a04} 
+void w5500\+\_\+get\+\_\+network (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structw5500___net_config}{w5500\+\_\+\+Net\+Config}} \texorpdfstring{$\ast$}{*}}]{net\+\_\+info}{}\end{DoxyParamCaption})}
+
+
+
+Get current network configuration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em net\+\_\+info} & Pointer to structure to fill with current config \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers03_ga51cb463647ad0291c4b7a69d2c4c9a04_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers03_ga581d6d6cf877331ce49b5bcf11fe13bc}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!w5500\_get\_phy\_conf@{w5500\_get\_phy\_conf}}
+\index{w5500\_get\_phy\_conf@{w5500\_get\_phy\_conf}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{w5500\_get\_phy\_conf()}{w5500\_get\_phy\_conf()}}
+{\footnotesize\ttfamily \label{group__drivers03_ga581d6d6cf877331ce49b5bcf11fe13bc} 
+void w5500\+\_\+get\+\_\+phy\+\_\+conf (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structw5500___phy_config}{w5500\+\_\+\+Phy\+Config}} \texorpdfstring{$\ast$}{*}}]{phyconf}{}\end{DoxyParamCaption})}
+
+
+
+Get current PHY configuration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em phyconf} & Pointer to structure to fill with PHY config \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers03_ga581d6d6cf877331ce49b5bcf11fe13bc_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers03_gad4b8fcc33da68070ad8208da41838d4c}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!w5500\_get\_rx\_rsr@{w5500\_get\_rx\_rsr}}
+\index{w5500\_get\_rx\_rsr@{w5500\_get\_rx\_rsr}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{w5500\_get\_rx\_rsr()}{w5500\_get\_rx\_rsr()}}
+{\footnotesize\ttfamily \label{group__drivers03_gad4b8fcc33da68070ad8208da41838d4c} 
+uint16\+\_\+t w5500\+\_\+get\+\_\+rx\+\_\+rsr (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{}\end{DoxyParamCaption})}
+
+
+
+Get socket RX received size (with double-\/read protection) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Received size in RX buffer
+\end{DoxyReturn}
+Get socket RX received size (with double-\/read protection)
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RX received data size in bytes
+\end{DoxyReturn}
+Reads Sn\+\_\+\+RX\+\_\+\+RSR twice to ensure consistency (W5500 updates this register asynchronously). If values don\textquotesingle{}t match after MAX\+\_\+\+FSR\+\_\+\+RSR\+\_\+\+RETRIES attempts, returns the last read value to prevent infinite loop during heavy traffic.
+
+v1.\+2.\+0\+: Added timeout protection to prevent watchdog starvation during SNMP stress testing. Uses optimized \doxylink{ethernet__driver_8c_a4b0b3b259cf8981cc3fe59199ffd8f70}{w5500\+\_\+read\+\_\+reg16()} for efficiency. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=307pt]{group__drivers03_gad4b8fcc33da68070ad8208da41838d4c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers03_gaddeb179a48abf7a94ba651742d77c24d}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!w5500\_get\_tx\_fsr@{w5500\_get\_tx\_fsr}}
+\index{w5500\_get\_tx\_fsr@{w5500\_get\_tx\_fsr}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{w5500\_get\_tx\_fsr()}{w5500\_get\_tx\_fsr()}}
+{\footnotesize\ttfamily \label{group__drivers03_gaddeb179a48abf7a94ba651742d77c24d} 
+uint16\+\_\+t w5500\+\_\+get\+\_\+tx\+\_\+fsr (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sn}{}\end{DoxyParamCaption})}
+
+
+
+Get socket TX free size (with double-\/read protection) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Free size in TX buffer
+\end{DoxyReturn}
+Get socket TX free size (with double-\/read protection)
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Socket number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TX free buffer size in bytes
+\end{DoxyReturn}
+Reads Sn\+\_\+\+TX\+\_\+\+FSR twice to ensure consistency (W5500 updates this register asynchronously). If values don\textquotesingle{}t match after MAX\+\_\+\+FSR\+\_\+\+RSR\+\_\+\+RETRIES attempts, returns the last read value to prevent infinite loop during heavy traffic.
+
+v1.\+2.\+0\+: Added timeout protection to prevent watchdog starvation during SNMP stress testing. Uses optimized \doxylink{ethernet__driver_8c_a4b0b3b259cf8981cc3fe59199ffd8f70}{w5500\+\_\+read\+\_\+reg16()} for efficiency. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=307pt]{group__drivers03_gaddeb179a48abf7a94ba651742d77c24d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers03_ga1528dc514cbd1c3cc346f1593554a042}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!w5500\_hw\_init@{w5500\_hw\_init}}
+\index{w5500\_hw\_init@{w5500\_hw\_init}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{w5500\_hw\_init()}{w5500\_hw\_init()}}
+{\footnotesize\ttfamily \label{group__drivers03_ga1528dc514cbd1c3cc346f1593554a042} 
+bool w5500\+\_\+hw\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Initialize W5500 hardware (SPI, GPIOs, chip reset) 
+
+Call this ONCE during system initialization, before scheduler starts. Sets up\+:
+\begin{DoxyItemize}
+\item SPI peripheral and GPIO pins
+\item Critical section (mutex) for SPI access
+\item Hardware reset sequence
+\item Register callback functions
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success, false on failure 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{group__drivers03_ga1528dc514cbd1c3cc346f1593554a042_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers03_ga1528dc514cbd1c3cc346f1593554a042_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers03_gabe918beda4e8c4b4a42c7e96f471ff1c}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!w5500\_print\_network@{w5500\_print\_network}}
+\index{w5500\_print\_network@{w5500\_print\_network}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{w5500\_print\_network()}{w5500\_print\_network()}}
+{\footnotesize\ttfamily \label{group__drivers03_gabe918beda4e8c4b4a42c7e96f471ff1c} 
+void w5500\+\_\+print\+\_\+network (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structw5500___net_config}{w5500\+\_\+\+Net\+Config}} \texorpdfstring{$\ast$}{*}}]{net\+\_\+info}{}\end{DoxyParamCaption})}
+
+
+
+Print network configuration to logger. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em net\+\_\+info} & Pointer to network configuration structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers03_gabe918beda4e8c4b4a42c7e96f471ff1c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers03_ga720712f243385daced1e173642f23f3f}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!w5500\_read\_buf@{w5500\_read\_buf}}
+\index{w5500\_read\_buf@{w5500\_read\_buf}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{w5500\_read\_buf()}{w5500\_read\_buf()}}
+{\footnotesize\ttfamily \label{group__drivers03_ga720712f243385daced1e173642f23f3f} 
+void w5500\+\_\+read\+\_\+buf (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{addr\+\_\+sel}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+Buf}{, }\item[{uint16\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Read buffer from W5500 (thread-\/safe) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr\+\_\+sel} & 32-\/bit address selector (includes BSB) \\
+\hline
+{\em buf} & Pointer to destination buffer \\
+\hline
+{\em len} & Number of bytes to read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Automatically acquires SPI mutex
+\end{DoxyNote}
+Read buffer from W5500 (thread-\/safe)
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr\+\_\+sel} & Base address with block select \\
+\hline
+{\em p\+Buf} & Destination buffer \\
+\hline
+{\em len} & Number of bytes to read \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers03_ga720712f243385daced1e173642f23f3f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers03_ga0cfc16a607bf2406462a16e0b098badb}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!w5500\_read\_reg@{w5500\_read\_reg}}
+\index{w5500\_read\_reg@{w5500\_read\_reg}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{w5500\_read\_reg()}{w5500\_read\_reg()}}
+{\footnotesize\ttfamily \label{group__drivers03_ga0cfc16a607bf2406462a16e0b098badb} 
+uint8\+\_\+t w5500\+\_\+read\+\_\+reg (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{addr\+\_\+sel}{}\end{DoxyParamCaption})}
+
+
+
+Read single byte from W5500 register (thread-\/safe) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr\+\_\+sel} & 32-\/bit address selector (includes BSB) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Register value 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Automatically acquires SPI mutex
+\end{DoxyNote}
+Read single byte from W5500 register (thread-\/safe)
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr\+\_\+sel} & Register address with block select \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Register value 
+\end{DoxyReturn}
+\Hypertarget{group__drivers03_ga8aef3e5f959b806f9890722dee066782}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!w5500\_set\_network@{w5500\_set\_network}}
+\index{w5500\_set\_network@{w5500\_set\_network}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{w5500\_set\_network()}{w5500\_set\_network()}}
+{\footnotesize\ttfamily \label{group__drivers03_ga8aef3e5f959b806f9890722dee066782} 
+void w5500\+\_\+set\+\_\+network (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structw5500___net_config}{w5500\+\_\+\+Net\+Config}} \texorpdfstring{$\ast$}{*}}]{net\+\_\+info}{}\end{DoxyParamCaption})}
+
+
+
+Set network configuration (MAC, IP, subnet, gateway) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em net\+\_\+info} & Pointer to network configuration structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers03_ga8aef3e5f959b806f9890722dee066782_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers03_ga8aef3e5f959b806f9890722dee066782_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers03_ga9ed1fde0b5018519ab23e299d9a2fc13}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!w5500\_set\_phy\_conf@{w5500\_set\_phy\_conf}}
+\index{w5500\_set\_phy\_conf@{w5500\_set\_phy\_conf}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{w5500\_set\_phy\_conf()}{w5500\_set\_phy\_conf()}}
+{\footnotesize\ttfamily \label{group__drivers03_ga9ed1fde0b5018519ab23e299d9a2fc13} 
+int8\+\_\+t w5500\+\_\+set\+\_\+phy\+\_\+conf (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structw5500___phy_config}{w5500\+\_\+\+Phy\+Config}} \texorpdfstring{$\ast$}{*}}]{phyconf}{}\end{DoxyParamCaption})}
+
+
+
+Configure PHY mode (auto-\/negotiation, speed, duplex) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em phyconf} & Pointer to PHY configuration structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, negative on error 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers03_ga9ed1fde0b5018519ab23e299d9a2fc13_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers03_ga4d82ae9c8c6c8da0c1d25b1c8e9755d8}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!w5500\_set\_phy\_power@{w5500\_set\_phy\_power}}
+\index{w5500\_set\_phy\_power@{w5500\_set\_phy\_power}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{w5500\_set\_phy\_power()}{w5500\_set\_phy\_power()}}
+{\footnotesize\ttfamily \label{group__drivers03_ga4d82ae9c8c6c8da0c1d25b1c8e9755d8} 
+void w5500\+\_\+set\+\_\+phy\+\_\+power (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__drivers03_ga7ad32e7472dce94b87b4e5bf53a9d5c0}{w5500\+\_\+\+Phy\+Power}}}]{mode}{}\end{DoxyParamCaption})}
+
+
+
+Set PHY power mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mode} & PHY\+\_\+\+POWER\+\_\+\+NORM or PHY\+\_\+\+POWER\+\_\+\+DOWN \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\Hypertarget{group__drivers03_gac147c27b83f9f642f636d5e67254d7e8}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!w5500\_sw\_reset@{w5500\_sw\_reset}}
+\index{w5500\_sw\_reset@{w5500\_sw\_reset}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{w5500\_sw\_reset()}{w5500\_sw\_reset()}}
+{\footnotesize\ttfamily \label{group__drivers03_gac147c27b83f9f642f636d5e67254d7e8} 
+void w5500\+\_\+sw\+\_\+reset (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Software reset W5500 chip. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers03_gac147c27b83f9f642f636d5e67254d7e8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers03_ga8e525d27915365abbe8086dc3363055f}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!w5500\_write\_buf@{w5500\_write\_buf}}
+\index{w5500\_write\_buf@{w5500\_write\_buf}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{w5500\_write\_buf()}{w5500\_write\_buf()}}
+{\footnotesize\ttfamily \label{group__drivers03_ga8e525d27915365abbe8086dc3363055f} 
+void w5500\+\_\+write\+\_\+buf (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{addr\+\_\+sel}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+Buf}{, }\item[{uint16\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Write buffer to W5500 (thread-\/safe) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr\+\_\+sel} & 32-\/bit address selector (includes BSB) \\
+\hline
+{\em buf} & Pointer to source buffer \\
+\hline
+{\em len} & Number of bytes to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Automatically acquires SPI mutex
+\end{DoxyNote}
+Write buffer to W5500 (thread-\/safe)
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr\+\_\+sel} & Base address with block select \\
+\hline
+{\em p\+Buf} & Source buffer \\
+\hline
+{\em len} & Number of bytes to write \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers03_ga8e525d27915365abbe8086dc3363055f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers03_ga9bd16b5a58852d08dd22d052bfaf1d05}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!w5500\_write\_reg@{w5500\_write\_reg}}
+\index{w5500\_write\_reg@{w5500\_write\_reg}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{w5500\_write\_reg()}{w5500\_write\_reg()}}
+{\footnotesize\ttfamily \label{group__drivers03_ga9bd16b5a58852d08dd22d052bfaf1d05} 
+void w5500\+\_\+write\+\_\+reg (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{addr\+\_\+sel}{, }\item[{uint8\+\_\+t}]{wb}{}\end{DoxyParamCaption})}
+
+
+
+Write single byte to W5500 register (thread-\/safe) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr\+\_\+sel} & 32-\/bit address selector (includes BSB) \\
+\hline
+{\em data} & Byte to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Automatically acquires SPI mutex
+\end{DoxyNote}
+Write single byte to W5500 register (thread-\/safe)
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr\+\_\+sel} & Register address with block select \\
+\hline
+{\em wb} & Byte to write \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers03_ga9bd16b5a58852d08dd22d052bfaf1d05_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{group__drivers03_doc-var-members}
+\doxysubsubsection{Variable Documentation}
+\Hypertarget{group__drivers03_ga58d0639cbfc3e7de1ed5c7d85b9821f4}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!w5500\_spi\_mutex@{w5500\_spi\_mutex}}
+\index{w5500\_spi\_mutex@{w5500\_spi\_mutex}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{w5500\_spi\_mutex}{w5500\_spi\_mutex}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{group__drivers03_ga58d0639cbfc3e7de1ed5c7d85b9821f4} 
+Semaphore\+Handle\+\_\+t w5500\+\_\+spi\+\_\+mutex = NULL}
+
+
+
+SPI mutex for thread-\/safe W5500 access. 
+
+\begin{DoxyNote}{Note}
+All W5500 register access MUST acquire this mutex 
+\end{DoxyNote}
+\Hypertarget{group__drivers03_ga58d0639cbfc3e7de1ed5c7d85b9821f4}\index{3. W5500 Driver Implementation@{3. W5500 Driver Implementation}!w5500\_spi\_mutex@{w5500\_spi\_mutex}}
+\index{w5500\_spi\_mutex@{w5500\_spi\_mutex}!3. W5500 Driver Implementation@{3. W5500 Driver Implementation}}
+\doxysubsubsubsection{\texorpdfstring{w5500\_spi\_mutex}{w5500\_spi\_mutex}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{group__drivers03_ga58d0639cbfc3e7de1ed5c7d85b9821f4} 
+Semaphore\+Handle\+\_\+t w5500\+\_\+spi\+\_\+mutex\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+SPI mutex for thread-\/safe W5500 access. 
+
+\begin{DoxyNote}{Note}
+All W5500 register access MUST acquire this mutex 
+\end{DoxyNote}

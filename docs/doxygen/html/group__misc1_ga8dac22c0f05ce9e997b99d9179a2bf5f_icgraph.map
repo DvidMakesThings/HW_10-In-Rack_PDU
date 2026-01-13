@@ -1,0 +1,43 @@
+<map id="CrashLog_RecordWdtFeed" name="CrashLog_RecordWdtFeed">
+<area shape="rect" id="Node000001" title="Record a hardware watchdog feed timestamp for telemetry tracking." alt="" coords="1380,259,1559,285"/>
+<area shape="rect" id="Node000002" href="$group__tasks03.html#ga2cceff60fca1f201d5d60588aff53bbc" title="Immediate, Health&#45;owned reboot with context." alt="" coords="1197,183,1332,209"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1416,255,1302,212,1304,207,1418,250"/>
+<area shape="rect" id="Node000018" href="$_health_task_8c.html#a526a18844c3c08b2a902732cd7fe36d6" title="Health supervision worker task with strict arm gating and idle&#45;canary checks." alt="" coords="1220,284,1308,311"/>
+<area shape="poly" id="edge20_Node000001_Node000018" title=" " alt="" coords="1365,288,1309,295,1309,289,1364,282"/>
+<area shape="rect" id="Node000003" href="$_console_task_8c.html#a77acaff274ceded6be5a02bac7564212" title="Reboot system via watchdog." alt="" coords="999,5,1089,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1246,170,1206,111,1179,80,1147,53,1119,38,1088,29,1090,24,1121,33,1150,48,1183,76,1211,107,1251,167"/>
+<area shape="rect" id="Node000004" href="$_console_task_8c.html#a2d3b7ff8346f8d10aa45609664940712" title="Parse and dispatch command line to handler function." alt="" coords="750,56,884,83"/>
+<area shape="poly" id="edge16_Node000002_Node000004" title=" " alt="" coords="1241,172,1201,132,1175,112,1148,97,1080,76,1010,66,943,63,884,65,884,60,943,58,1010,60,1081,71,1150,92,1178,108,1204,128,1245,169"/>
+<area shape="rect" id="Node000010" href="$_storage_task_8c.html#a1e1c743939d312be08d0a632e0f41f88" title="Commit all dirty sections to EEPROM. Checks dirty flags and writes changed sections to EEPROM using s..." alt="" coords="968,107,1120,133"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="1221,178,1148,148,1109,136,1111,131,1150,143,1223,173"/>
+<area shape="rect" id="Node000014" href="$group__misc1.html#ga1a04e8bbf9617464ae676b6b4d89241c" title="HardFault handler C bridge that captures exception context." alt="" coords="965,157,1123,184"/>
+<area shape="poly" id="edge15_Node000002_Node000014" title=" " alt="" coords="1181,189,1123,182,1124,177,1182,184"/>
+<area shape="rect" id="Node000015" href="$rtos__hooks_8c.html#ab7e5c95cf72a3f819bc4462a7fb62ca3" title="FreeRTOS heap allocation failure hook with context capture." alt="" coords="946,208,1142,235"/>
+<area shape="poly" id="edge17_Node000002_Node000015" title=" " alt="" coords="1182,208,1143,213,1142,207,1181,203"/>
+<area shape="rect" id="Node000016" href="$rtos__hooks_8c.html#a54b14b665d04a631991869b21065bf90" title="FreeRTOS stack overflow hook with fault context capture." alt="" coords="939,259,1149,285"/>
+<area shape="poly" id="edge18_Node000002_Node000016" title=" " alt="" coords="1223,219,1150,249,1111,261,1109,256,1148,244,1221,214"/>
+<area shape="rect" id="Node000017" href="$group__config05.html#ga20f7d031e5579a7e413468a721166881" title="FreeRTOS assertion failure hook with context capture." alt="" coords="992,309,1096,336"/>
+<area shape="poly" id="edge19_Node000002_Node000017" title=" " alt="" coords="1244,223,1203,263,1177,283,1150,300,1124,311,1097,318,1095,313,1122,306,1147,295,1174,278,1199,259,1240,219"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="985,34,881,58,879,53,984,29"/>
+<area shape="rect" id="Node000005" href="$_console_task_8c.html#a216857df22446940ad58d505886b0d7c" title="Main console task function." alt="" coords="597,69,694,96"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="734,78,695,82,694,76,734,73"/>
+<area shape="rect" id="Node000006" href="$group__tasks02.html#gad45ca7c142e8c2764d52b3d554ffcdeb" title="Initialize and start the console task." alt="" coords="426,75,549,101"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="581,87,549,89,549,83,581,82"/>
+<area shape="rect" id="Node000007" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,132,378,159"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="439,110,380,134,378,130,437,105"/>
+<area shape="rect" id="Node000008" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,132,263,159"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="295,148,263,148,263,143,295,143"/>
+<area shape="rect" id="Node000009" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,132,102,159"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="134,148,102,148,102,143,134,143"/>
+<area shape="rect" id="Node000011" href="$_storage_task_8c.html#a213cb9056713a15a181cf8d4351879c0" title="Process storage request message. Handles all storage commands by updating RAM cache,..." alt="" coords="742,107,891,133"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="952,123,892,123,892,117,952,117"/>
+<area shape="rect" id="Node000012" href="$_storage_task_8c.html#a502037c1577c7bd180a629669af058f7" title="Storage task main function." alt="" coords="598,132,692,159"/>
+<area shape="poly" id="edge14_Node000010_Node000012" title=" " alt="" coords="959,139,892,148,785,152,693,150,693,145,785,147,891,143,959,134"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="727,136,693,141,693,136,726,131"/>
+<area shape="rect" id="Node000013" href="$group__tasks10.html#ga26dbdabce55a139cf536e8469373b7c4" title="Initialize and start the Storage task with a deterministic enable gate. Creates mutex,..." alt="" coords="428,132,547,159"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="583,148,548,148,548,143,583,143"/>
+<area shape="poly" id="edge13_Node000013_Node000007" title=" " alt="" coords="413,148,379,148,379,143,413,143"/>
+<area shape="rect" id="Node000019" href="$group__tasks03.html#gaaa57b8a364b1e80fdbcbd231b80ee70d" title="Start the Health supervision task." alt="" coords="756,284,878,311"/>
+<area shape="poly" id="edge21_Node000018_Node000019" title=" " alt="" coords="1227,321,1190,338,1149,351,1091,361,1044,365,997,361,939,351,886,334,842,314,844,309,888,329,940,345,998,356,1044,359,1090,356,1148,345,1189,333,1225,316"/>
+<area shape="poly" id="edge22_Node000019_Node000007" title=" " alt="" coords="757,281,378,159,380,153,759,276"/>
+</map>

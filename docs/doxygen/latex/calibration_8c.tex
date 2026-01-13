@@ -1,0 +1,211 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/storage\+\_\+submodule/calibration.c File Reference}
+\hypertarget{calibration_8c}{}\label{calibration_8c}\index{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/calibration.c@{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/calibration.c}}
+
+
+Sensor calibration storage for ENERGIS.  
+
+
+{\ttfamily \#include "{}../../\+CONFIG.\+h"{}}\newline
+Include dependency graph for calibration.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{calibration_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{calibration_8c_adac13c17c13978253eee1fe9e356d96e}{ST\+\_\+\+CAL\+\_\+\+TAG}}~"{}\mbox{[}ST-\/CAL\mbox{]}"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__storage01_ga32076a8416bb992b9406dec24567cf71}{EEPROM\+\_\+\+Write\+Sensor\+Calibration}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write entire HLW8032 sensor calibration block to EEPROM. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage01_ga7182e6e053685a9aac34eee5097a7416}{EEPROM\+\_\+\+Read\+Sensor\+Calibration}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Read entire HLW8032 sensor calibration block from EEPROM. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage01_ga6fba2dcfc28ba004e71997f93c6b3d39}{EEPROM\+\_\+\+Write\+Sensor\+Calibration\+For\+Channel}} (uint8\+\_\+t ch, const \mbox{\hyperlink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}in)
+\begin{DoxyCompactList}\small\item\em Write calibration record for single HLW8032 channel. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage01_gaa3b6f1341ad447d7f7f95d1be802b1e7}{EEPROM\+\_\+\+Read\+Sensor\+Calibration\+For\+Channel}} (uint8\+\_\+t ch, \mbox{\hyperlink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Read calibration record for single HLW8032 channel. \end{DoxyCompactList}\item 
+static uint32\+\_\+t \mbox{\hyperlink{calibration_8c_ae8658b50ad7475f4740593d8f35c9999}{tempcal\+\_\+crc32}} (const void \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Compute a simple CRC32 (poly 0x\+EDB88320) over a buffer. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{calibration_8c_ac2a5362a8e4606ad12cb0d6c9941ef6d}{tempcal\+\_\+defaults}} (\mbox{\hyperlink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Fill \doxylink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t} with safe defaults (no calibration). \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{calibration_8c_abd5621818dd5300de23e2fd5c9106cea}{tempcal\+\_\+is\+\_\+valid}} (const \mbox{\hyperlink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}in)
+\begin{DoxyCompactList}\small\item\em Validate a temp calibration record (magic/version/ranges/\+CRC). \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{calibration_8c_a94bdbf3b5ab88d4cfad2295e4b32b5c2}{tempcal\+\_\+finalize\+\_\+crc}} (\mbox{\hyperlink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}rec)
+\begin{DoxyCompactList}\small\item\em Compute and set CRC32 field for a record (over all but crc32). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage01_gabc289be7b0cdbb53e52f48a0a10701ac}{EEPROM\+\_\+\+Write\+Temp\+Calibration}} (const \mbox{\hyperlink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}cal)
+\begin{DoxyCompactList}\small\item\em Write RP2040 temperature calibration record to EEPROM. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage01_gac5ff91b753d7b36b811a2d75068006ed}{EEPROM\+\_\+\+Read\+Temp\+Calibration}} (\mbox{\hyperlink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Read RP2040 temperature calibration record from EEPROM. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage01_ga73504452f7a1b317e752b7f668694a3d}{Temp\+Calibration\+\_\+\+Compute\+Single\+Point}} (float ambient\+\_\+c, uint16\+\_\+t raw\+\_\+temp, \mbox{\hyperlink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Compute single-\/point temperature calibration from reference measurement. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage01_ga655669ab4b049b7ef9bcf70ea3d06ec6}{Temp\+Calibration\+\_\+\+Compute\+Two\+Point}} (float t1\+\_\+c, uint16\+\_\+t raw1, float t2\+\_\+c, uint16\+\_\+t raw2, \mbox{\hyperlink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Compute two-\/point temperature calibration from reference measurements. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage01_ga7796a67e219e367ba5424202cff756ae}{Temp\+Calibration\+\_\+\+Apply\+To\+Meter\+Task}} (const \mbox{\hyperlink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}cal)
+\begin{DoxyCompactList}\small\item\em Apply temperature calibration to Meter\+Task measurement path. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage01_ga1a4a0e2917c171c09500b674b6f2911f}{Temp\+Calibration\+\_\+\+Load\+And\+Apply}} (\mbox{\hyperlink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Load temperature calibration from EEPROM and apply to Meter\+Task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Sensor calibration storage for ENERGIS. 
+
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+2 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/15
+\end{DoxyDate}
+
+
+
+\begin{DoxyItemize}
+\item HLW8032 (per-\/channel) calibration read/write helpers.
+\item RP2040 die temperature calibration storage (single-\/point or two-\/point).
+\item Application helper to push temp calibration into Meter\+Task.
+\end{DoxyItemize}
+
+CRITICAL\+: All EEPROM read/write functions here must be called with eeprom\+Mtx held.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{calibration_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{calibration_8c_adac13c17c13978253eee1fe9e356d96e}\index{calibration.c@{calibration.c}!ST\_CAL\_TAG@{ST\_CAL\_TAG}}
+\index{ST\_CAL\_TAG@{ST\_CAL\_TAG}!calibration.c@{calibration.c}}
+\doxysubsubsection{\texorpdfstring{ST\_CAL\_TAG}{ST\_CAL\_TAG}}
+{\footnotesize\ttfamily \label{calibration_8c_adac13c17c13978253eee1fe9e356d96e} 
+\#define ST\+\_\+\+CAL\+\_\+\+TAG~"{}\mbox{[}ST-\/CAL\mbox{]}"{}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{calibration_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{calibration_8c_ae8658b50ad7475f4740593d8f35c9999}\index{calibration.c@{calibration.c}!tempcal\_crc32@{tempcal\_crc32}}
+\index{tempcal\_crc32@{tempcal\_crc32}!calibration.c@{calibration.c}}
+\doxysubsubsection{\texorpdfstring{tempcal\_crc32()}{tempcal\_crc32()}}
+{\footnotesize\ttfamily \label{calibration_8c_ae8658b50ad7475f4740593d8f35c9999} 
+uint32\+\_\+t tempcal\+\_\+crc32 (\begin{DoxyParamCaption}\item[{const void \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{size\+\_\+t}]{len}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Compute a simple CRC32 (poly 0x\+EDB88320) over a buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Pointer to buffer \\
+\hline
+{\em len} & Length in bytes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+CRC32 value
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Tiny software CRC32 for integrity. If code size is critical, you can replace with 0 and skip verification (leave crc32=0). 
+\end{DoxyNote}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{calibration_8c_ae8658b50ad7475f4740593d8f35c9999_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{calibration_8c_ac2a5362a8e4606ad12cb0d6c9941ef6d}\index{calibration.c@{calibration.c}!tempcal\_defaults@{tempcal\_defaults}}
+\index{tempcal\_defaults@{tempcal\_defaults}!calibration.c@{calibration.c}}
+\doxysubsubsection{\texorpdfstring{tempcal\_defaults()}{tempcal\_defaults()}}
+{\footnotesize\ttfamily \label{calibration_8c_ac2a5362a8e4606ad12cb0d6c9941ef6d} 
+void tempcal\+\_\+defaults (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{out}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Fill \doxylink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t} with safe defaults (no calibration). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & Pointer to structure to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{calibration_8c_ac2a5362a8e4606ad12cb0d6c9941ef6d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{calibration_8c_a94bdbf3b5ab88d4cfad2295e4b32b5c2}\index{calibration.c@{calibration.c}!tempcal\_finalize\_crc@{tempcal\_finalize\_crc}}
+\index{tempcal\_finalize\_crc@{tempcal\_finalize\_crc}!calibration.c@{calibration.c}}
+\doxysubsubsection{\texorpdfstring{tempcal\_finalize\_crc()}{tempcal\_finalize\_crc()}}
+{\footnotesize\ttfamily \label{calibration_8c_a94bdbf3b5ab88d4cfad2295e4b32b5c2} 
+void tempcal\+\_\+finalize\+\_\+crc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{rec}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Compute and set CRC32 field for a record (over all but crc32). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rec} & Pointer to record to update \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=301pt]{calibration_8c_a94bdbf3b5ab88d4cfad2295e4b32b5c2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{calibration_8c_a94bdbf3b5ab88d4cfad2295e4b32b5c2_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{calibration_8c_abd5621818dd5300de23e2fd5c9106cea}\index{calibration.c@{calibration.c}!tempcal\_is\_valid@{tempcal\_is\_valid}}
+\index{tempcal\_is\_valid@{tempcal\_is\_valid}!calibration.c@{calibration.c}}
+\doxysubsubsection{\texorpdfstring{tempcal\_is\_valid()}{tempcal\_is\_valid()}}
+{\footnotesize\ttfamily \label{calibration_8c_abd5621818dd5300de23e2fd5c9106cea} 
+int tempcal\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{in}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Validate a temp calibration record (magic/version/ranges/\+CRC). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & Pointer to record to validate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if valid, 0 otherwise 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=285pt]{calibration_8c_abd5621818dd5300de23e2fd5c9106cea_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{calibration_8c_abd5621818dd5300de23e2fd5c9106cea_icgraph}
+\end{center}
+\end{figure}

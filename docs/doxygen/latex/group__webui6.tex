@@ -1,0 +1,302 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item Preset Handler 
+\end{DoxyEnumerate}}
+\hypertarget{group__webui6}{}\label{group__webui6}\index{6. Preset Handler@{6. Preset Handler}}
+
+
+HTTP handlers for configuration preset management and apply-\/on-\/startup.  
+
+
+Collaboration diagram for 6. Preset Handler\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=300pt]{group__webui6}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__webui6_ga28b479f1bbf75790595aed33be757ee9}{handle\+\_\+config\+\_\+presets\+\_\+get}} (uint8\+\_\+t sock)
+\begin{DoxyCompactList}\small\item\em Handle GET request for /api/config-\/presets. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__webui6_gac567b4413a409d9902bed06e35f6a702}{handle\+\_\+config\+\_\+presets\+\_\+post}} (uint8\+\_\+t sock, char \texorpdfstring{$\ast$}{*}body)
+\begin{DoxyCompactList}\small\item\em Handle POST request for /api/config-\/presets. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__webui6_gaf78e3a135e8d65322fc8966722adfa76}{handle\+\_\+apply\+\_\+config\+\_\+post}} (uint8\+\_\+t sock, char \texorpdfstring{$\ast$}{*}body)
+\begin{DoxyCompactList}\small\item\em Handle POST request for /api/apply-\/config. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__webui6_gab0a20afe333957eef6db7e68e569467f}{handle\+\_\+startup\+\_\+config\+\_\+post}} (uint8\+\_\+t sock, char \texorpdfstring{$\ast$}{*}body)
+\begin{DoxyCompactList}\small\item\em Handle POST request for /api/startup-\/config. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+HTTP handlers for configuration preset management and apply-\/on-\/startup. 
+
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/01-\/01
+\end{DoxyDate}
+This module provides REST API endpoints for managing relay configuration presets. Users can save current relay states as named presets, recall them instantly, and configure a preset to apply automatically on device boot.
+
+Supported Endpoints\+:
+\begin{DoxyItemize}
+\item GET /api/config-\/presets\+: List all saved presets and current startup selection
+\item POST /api/config-\/presets\+: Save or delete a preset
+\item POST /api/apply-\/config\+: Apply a preset immediately to relay outputs
+\item POST /api/startup-\/config\+: Set or clear the apply-\/on-\/startup preset
+\end{DoxyItemize}
+
+Preset Storage\+:
+\begin{DoxyItemize}
+\item Up to 5 presets (USER\+\_\+\+OUTPUT\+\_\+\+MAX\+\_\+\+PRESETS = 5)
+\item Each preset stores\+: name (up to 25 chars), 8-\/bit relay mask (0-\/255)
+\item Stored in EEPROM via Storage\+Task for persistence across reboots
+\item RAM cache maintained by Storage\+Task for fast access
+\end{DoxyItemize}
+
+Relay Mask Encoding\+:
+\begin{DoxyItemize}
+\item Each bit represents one relay channel (bit 0 = channel 1, bit 7 = channel 8)
+\item 1 = ON, 0 = OFF
+\item Example\+: 0b00001111 (15) = channels 1-\/4 ON, 5-\/8 OFF
+\end{DoxyItemize}
+
+Apply-\/on-\/\+Startup Feature\+:
+\begin{DoxyItemize}
+\item One preset can be designated as the "{}startup preset"{}
+\item If set, this preset applies automatically during Init\+Task
+\item Ensures consistent power state after reboot or power cycle
+\item Can be cleared to disable automatic application
+\end{DoxyItemize}
+
+Overcurrent Protection Integration\+:
+\begin{DoxyItemize}
+\item Apply operations check \doxylink{group__tasks08_ga4bf47606df6e10c610300fdf1a2573b5}{Overcurrent\+\_\+\+Is\+Switching\+Allowed()} before switching
+\item Returns 503 Service Unavailable if overcurrent lockout is active
+\item Prevents potentially unsafe relay operations during overcurrent conditions
+\end{DoxyItemize}
+
+Thread Safety\+:
+\begin{DoxyItemize}
+\item All EEPROM operations routed through Storage\+Task (eeprom\+Mtx protected)
+\item All HTTP handlers called from Net\+Task context
+\item Relay operations dispatched to Switch\+Task via non-\/blocking queue
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+All responses include CORS headers for browser-\/based automation. 
+
+Preset names are JSON-\/escaped for safety. 
+
+Changes are persistent; stored in EEPROM and survive reboots.
+\end{DoxyNote}
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-func-members}
+\Hypertarget{group__webui6_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__webui6_gaf78e3a135e8d65322fc8966722adfa76}\index{6. Preset Handler@{6. Preset Handler}!handle\_apply\_config\_post@{handle\_apply\_config\_post}}
+\index{handle\_apply\_config\_post@{handle\_apply\_config\_post}!6. Preset Handler@{6. Preset Handler}}
+\doxysubsubsubsection{\texorpdfstring{handle\_apply\_config\_post()}{handle\_apply\_config\_post()}}
+{\footnotesize\ttfamily \label{group__webui6_gaf78e3a135e8d65322fc8966722adfa76} 
+void handle\+\_\+apply\+\_\+config\+\_\+post (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sock}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{body}{}\end{DoxyParamCaption})}
+
+
+
+Handle POST request for /api/apply-\/config. 
+
+Accepts form-\/encoded body\+: id=N Applies the preset immediately to relay outputs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & Socket number. \\
+\hline
+{\em body} & Form-\/encoded POST body.\\
+\hline
+\end{DoxyParams}
+Handle POST request for /api/apply-\/config.
+
+Applies a saved preset immediately to relay outputs. Body\+: id=N
+
+Guards\+:
+\begin{DoxyItemize}
+\item Validates {\ttfamily id} range.
+\item Checks {\ttfamily \doxylink{group__tasks08_ga4bf47606df6e10c610300fdf1a2573b5}{Overcurrent\+\_\+\+Is\+Switching\+Allowed()}} before switching.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & W5500 socket ID. \\
+\hline
+{\em body} & Pointer to form-\/urlencoded POST body. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__webui6_gaf78e3a135e8d65322fc8966722adfa76_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__webui6_gaf78e3a135e8d65322fc8966722adfa76_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__webui6_ga28b479f1bbf75790595aed33be757ee9}\index{6. Preset Handler@{6. Preset Handler}!handle\_config\_presets\_get@{handle\_config\_presets\_get}}
+\index{handle\_config\_presets\_get@{handle\_config\_presets\_get}!6. Preset Handler@{6. Preset Handler}}
+\doxysubsubsubsection{\texorpdfstring{handle\_config\_presets\_get()}{handle\_config\_presets\_get()}}
+{\footnotesize\ttfamily \label{group__webui6_ga28b479f1bbf75790595aed33be757ee9} 
+void handle\+\_\+config\+\_\+presets\+\_\+get (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sock}{}\end{DoxyParamCaption})}
+
+
+
+Handle GET request for /api/config-\/presets. 
+
+Returns JSON with all presets and current startup selection\+: \{ "{}presets"{}\+: \mbox{[} \{"{}id"{}\+: 0, "{}name"{}\+: "{}..."{}, "{}mask"{}\+: 0\}, ... \mbox{]}, "{}startup"{}\+: null or 0-\/4 \}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & Socket number.\\
+\hline
+\end{DoxyParams}
+Handle GET request for /api/config-\/presets.
+
+Returns JSON with the list of valid presets and the current startup selection. Uses {\ttfamily \doxylink{group__storage09_ga21a7d214a0524abc04ae28e27ef944d3}{User\+Output\+\_\+\+Get\+All\+Presets()}} and {\ttfamily \doxylink{group__storage09_ga256c864690ce5f7015f2f610f33441f8}{User\+Output\+\_\+\+Get\+Startup\+Preset()}} from RAM cache.
+
+Response shape\+: \{"{}presets"{}\+:\mbox{[}\{"{}id"{}\+:N,"{}name"{}\+:"{}..."{},"{}mask"{}\+:M\},...\mbox{]},"{}startup"{}\+:null\texorpdfstring{$\vert$}{|}0..4\}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & W5500 socket ID. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__webui6_ga28b479f1bbf75790595aed33be757ee9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__webui6_ga28b479f1bbf75790595aed33be757ee9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__webui6_gac567b4413a409d9902bed06e35f6a702}\index{6. Preset Handler@{6. Preset Handler}!handle\_config\_presets\_post@{handle\_config\_presets\_post}}
+\index{handle\_config\_presets\_post@{handle\_config\_presets\_post}!6. Preset Handler@{6. Preset Handler}}
+\doxysubsubsubsection{\texorpdfstring{handle\_config\_presets\_post()}{handle\_config\_presets\_post()}}
+{\footnotesize\ttfamily \label{group__webui6_gac567b4413a409d9902bed06e35f6a702} 
+void handle\+\_\+config\+\_\+presets\+\_\+post (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sock}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{body}{}\end{DoxyParamCaption})}
+
+
+
+Handle POST request for /api/config-\/presets. 
+
+Accepts form-\/encoded body with actions\+:
+\begin{DoxyItemize}
+\item action=save\&id=N\&name=...\&mask=N -\/\texorpdfstring{$>$}{>} Save preset at slot N
+\item action=delete\&id=N -\/\texorpdfstring{$>$}{>} Delete preset at slot N
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & Socket number. \\
+\hline
+{\em body} & Form-\/encoded POST body.\\
+\hline
+\end{DoxyParams}
+Handle POST request for /api/config-\/presets.
+
+Accepts form-\/urlencoded body to save or delete a preset.
+\begin{DoxyItemize}
+\item action=save\&id=N\&name=...\&mask=M
+\item action=delete\&id=N
+\end{DoxyItemize}
+
+Notes\+:
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{group__misc2_gaeb4007c2c85c659d737d6fd89a270f5e}{get\+\_\+form\+\_\+value()}} returns a pointer to a static buffer; values are copied to local arrays immediately to avoid aliasing across multiple calls.
+\item Calls Storage\+Task wrappers ({\ttfamily storage\+\_\+save\+\_\+preset}, {\ttfamily storage\+\_\+delete\+\_\+preset}) so all EEPROM writes occur on the storage thread under {\ttfamily eeprom\+Mtx}.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & W5500 socket ID. \\
+\hline
+{\em body} & Pointer to form-\/urlencoded POST body (mutable; decoded in-\/place). \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__webui6_gac567b4413a409d9902bed06e35f6a702_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__webui6_gac567b4413a409d9902bed06e35f6a702_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__webui6_gab0a20afe333957eef6db7e68e569467f}\index{6. Preset Handler@{6. Preset Handler}!handle\_startup\_config\_post@{handle\_startup\_config\_post}}
+\index{handle\_startup\_config\_post@{handle\_startup\_config\_post}!6. Preset Handler@{6. Preset Handler}}
+\doxysubsubsubsection{\texorpdfstring{handle\_startup\_config\_post()}{handle\_startup\_config\_post()}}
+{\footnotesize\ttfamily \label{group__webui6_gab0a20afe333957eef6db7e68e569467f} 
+void handle\+\_\+startup\+\_\+config\+\_\+post (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sock}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{body}{}\end{DoxyParamCaption})}
+
+
+
+Handle POST request for /api/startup-\/config. 
+
+Accepts form-\/encoded body\+:
+\begin{DoxyItemize}
+\item id=N -\/\texorpdfstring{$>$}{>} Set startup preset to N
+\item action=clear -\/\texorpdfstring{$>$}{>} Clear startup preset
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & Socket number. \\
+\hline
+{\em body} & Form-\/encoded POST body.\\
+\hline
+\end{DoxyParams}
+Handle POST request for /api/startup-\/config.
+
+Sets or clears the apply-\/on-\/startup preset. Body\+: id=N (set) \texorpdfstring{$\vert$}{|} action=clear (clear)
+
+Notes\+:
+\begin{DoxyItemize}
+\item Copies {\ttfamily action} and {\ttfamily id} locally to avoid {\ttfamily \doxylink{group__misc2_gaeb4007c2c85c659d737d6fd89a270f5e}{get\+\_\+form\+\_\+value()}} static buffer aliasing.
+\item Routes to Storage\+Task wrappers ({\ttfamily storage\+\_\+set\+\_\+startup\+\_\+preset}, {\ttfamily storage\+\_\+clear\+\_\+startup\+\_\+preset}).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & W5500 socket ID. \\
+\hline
+{\em body} & Pointer to form-\/urlencoded POST body. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__webui6_gab0a20afe333957eef6db7e68e569467f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__webui6_gab0a20afe333957eef6db7e68e569467f_icgraph}
+\end{center}
+\end{figure}

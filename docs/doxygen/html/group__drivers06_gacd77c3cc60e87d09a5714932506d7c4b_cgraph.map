@@ -1,0 +1,19 @@
+<map id="send" name="send">
+<area shape="rect" id="Node000001" title="Send data over TCP socket." alt="" coords="5,85,55,112"/>
+<area shape="rect" id="Node000002" href="$group__drivers06.html#ga025710a2709097be7824f0564f89a461" title="Close a socket." alt="" coords="129,5,220,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="45,83,70,62,101,42,113,36,116,40,104,46,73,66,48,87"/>
+<area shape="rect" id="Node000003" href="$group__drivers05.html#gaeaef8ee772ea9b4a5c6ba7702a1c9b52" title="Send data to socket TX buffer." alt="" coords="122,56,228,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="54,91,106,81,107,86,55,96"/>
+<area shape="rect" id="Node000006" href="$socket_8c.html#a3e134a526306c29a2594a8615c328607" title=" " alt="" coords="103,107,247,149"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="55,101,88,108,87,113,54,106"/>
+<area shape="rect" id="Node000008" href="$group__tasks05.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="295,169,478,196"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="44,111,69,137,104,159,147,173,192,182,280,188,279,193,191,187,145,178,102,164,66,141,40,114"/>
+<area shape="rect" id="Node000004" href="$group__drivers05.html#ga35f04740974b2f6a16c4744f1641fd47" title="Set socket TX write pointer (Sn_TX_WR) in big&#45;endian." alt="" coords="332,9,441,36"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="228,55,316,35,318,41,229,60"/>
+<area shape="rect" id="Node000005" href="$group__drivers05.html#ga8e525d27915365abbe8086dc3363055f" title="Write multiple bytes to W5500 (optimized bulk transfer)" alt="" coords="526,35,646,61"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="228,64,511,49,511,55,228,69"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="442,27,511,36,511,41,441,32"/>
+<area shape="rect" id="Node000007" href="$group__misc4.html#gad3252fba1863d278f2611cad531177f5" title="Query the current system power state." alt="" coords="328,115,445,141"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="248,125,312,125,312,131,248,131"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="248,144,318,162,317,168,247,149"/>
+</map>

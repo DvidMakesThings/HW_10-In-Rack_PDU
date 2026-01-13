@@ -1,0 +1,426 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item SNMP Agent -\/ Voltage Monitoring 
+\end{DoxyEnumerate}}
+\hypertarget{group__snmp05}{}\label{group__snmp05}\index{5. SNMP Agent -\/ Voltage Monitoring@{5. SNMP Agent -\/ Voltage Monitoring}}
+
+
+RP2040 internal rails, die temperature, and project voltage monitoring.  
+
+
+Collaboration diagram for 5. SNMP Agent -\/ Voltage Monitoring\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{group__snmp05}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__snmp05_ga49b2857ddaab294f0f73932f5c16eddb}{get\+\_\+temp\+Sensor\+Voltage}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for on-\/die temperature sensor voltage \mbox{[}V\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp05_ga07d36a9715f0433b1988b447807b3015}{get\+\_\+temp\+Sensor\+Temperature}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for on-\/die temperature \mbox{[}°C\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp05_ga2618c7cb453d6e0a9d958bc932d38a9a}{get\+\_\+\+VSUPPLY}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for V\+\_\+\+SUPPLY rail voltage \mbox{[}V\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp05_ga574d71ccd641800ba60092a96698aae3}{get\+\_\+\+VUSB}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for V\+\_\+\+USB rail voltage \mbox{[}V\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp05_gae1abd1add9071497c30abed555937772}{get\+\_\+\+VSUPPLY\+\_\+divider}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for V\+\_\+\+SUPPLY divider tap voltage \mbox{[}V\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp05_ga0c98fc2539c1c130d4ffba0bbf9224d3}{get\+\_\+\+VUSB\+\_\+divider}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for V\+\_\+\+USB divider tap voltage \mbox{[}V\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp05_ga55c9f217632f7444fea3b3ff5fbc7332}{get\+\_\+core\+VREG}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for core VREG voltage \mbox{[}V\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp05_ga3906d2584f13fb4dbb04d8cb3d29a881}{get\+\_\+core\+VREG\+\_\+status}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for core VREG status. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp05_ga6dfa68d52f72c963b8b84259854db6c9}{get\+\_\+bandgap\+Ref}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for bandgap reference voltage \mbox{[}V\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp05_gad373e18c9aff32c0faf35c41f0a4050b}{get\+\_\+usb\+PHYrail}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for USB PHY rail voltage \mbox{[}V\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp05_ga7437bd619910f7c801d6b5368154eb4f}{get\+\_\+io\+Rail}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for IO rail voltage \mbox{[}V\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+RP2040 internal rails, die temperature, and project voltage monitoring. 
+
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/07
+\end{DoxyDate}
+This module provides SNMP GET callbacks that expose RP2040 internal voltage rails, on-\/die temperature sensor, and project-\/specific power supply voltages. All measurements are retrieved from Meter\+Task\textquotesingle{}s system telemetry cache.
+
+Monitored Parameters\+:
+
+RP2040 Internal Measurements\+:
+\begin{DoxyItemize}
+\item Die Temperature Sensor Voltage -\/ Raw ADC voltage from internal temperature sensor
+\item Die Temperature -\/ Converted temperature in Celsius
+\item Core VREG Voltage -\/ Adjustable core voltage regulator setting (0.\+85V + 0.\+05V \texorpdfstring{$\ast$}{*} VSEL)
+\item Core VREG Status -\/ Regulator status (OK/\+Overload/\+Hi-\/Z)
+\item Bandgap Reference -\/ Fixed 1.\+10V reference
+\item USB PHY Rail -\/ Fixed 1.\+80V USB PHY supply
+\item IO Rail -\/ Fixed 3.\+30V IO supply
+\end{DoxyItemize}
+
+Project-\/\+Specific Measurements\+:
+\begin{DoxyItemize}
+\item V\+\_\+\+SUPPLY -\/ Main power supply voltage (measured via voltage divider)
+\item V\+\_\+\+USB -\/ USB power supply voltage (measured via voltage divider)
+\item V\+\_\+\+SUPPLY Divider Tap -\/ Pre-\/divider voltage at ADC input
+\item V\+\_\+\+USB Divider Tap -\/ Pre-\/divider voltage at ADC input
+\end{DoxyItemize}
+
+All voltage measurements are returned as ASCII float strings with appropriate precision (typically 2-\/3 decimals). Temperature is reported in degrees Celsius. Fixed voltages return constant string values for efficiency.
+
+Telemetry Source\+:
+\begin{DoxyItemize}
+\item Internal sensors\+: RP2040 ADC channel 4 (temperature sensor)
+\item External voltages\+: RP2040 ADC channels with resistive dividers
+\item All readings cached by Meter\+Task at approximately 1 Hz
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+All functions are RTOS-\/safe and non-\/blocking. 
+
+Returns zeros if telemetry unavailable or invalid.
+\end{DoxyNote}
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-func-members}
+\Hypertarget{group__snmp05_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__snmp05_ga6dfa68d52f72c963b8b84259854db6c9}\index{5. SNMP Agent -\/ Voltage Monitoring@{5. SNMP Agent -\/ Voltage Monitoring}!get\_bandgapRef@{get\_bandgapRef}}
+\index{get\_bandgapRef@{get\_bandgapRef}!5. SNMP Agent -\/ Voltage Monitoring@{5. SNMP Agent -\/ Voltage Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_bandgapRef()}{get\_bandgapRef()}}
+{\footnotesize\ttfamily \label{group__snmp05_ga6dfa68d52f72c963b8b84259854db6c9} 
+void get\+\_\+bandgap\+Ref (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for bandgap reference voltage \mbox{[}V\mbox{]}. 
+
+Returns the RP2040 internal bandgap reference voltage (fixed at 1.\+10V).
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer \\
+\hline
+{\em len} & Pointer to receive string length\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Always returns "{}1.\+10"{} (constant). 
+\end{DoxyNote}
+\Hypertarget{group__snmp05_ga55c9f217632f7444fea3b3ff5fbc7332}\index{5. SNMP Agent -\/ Voltage Monitoring@{5. SNMP Agent -\/ Voltage Monitoring}!get\_coreVREG@{get\_coreVREG}}
+\index{get\_coreVREG@{get\_coreVREG}!5. SNMP Agent -\/ Voltage Monitoring@{5. SNMP Agent -\/ Voltage Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_coreVREG()}{get\_coreVREG()}}
+{\footnotesize\ttfamily \label{group__snmp05_ga55c9f217632f7444fea3b3ff5fbc7332} 
+void get\+\_\+core\+VREG (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for core VREG voltage \mbox{[}V\mbox{]}. 
+
+Returns the RP2040 core voltage regulator output voltage. Calculated from VREG register\+: V = 0.\+85 + 0.\+05 \texorpdfstring{$\ast$}{*} VSEL (where VSEL = bits\mbox{[}3\+:0\mbox{]}).
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer \\
+\hline
+{\em len} & Pointer to receive string length\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Returns ASCII float with 2 decimals (e.\+g., "{}1.\+10"{}). 
+
+Typical range\+: 0.\+85V to 1.\+30V. 
+\end{DoxyNote}
+\Hypertarget{group__snmp05_ga3906d2584f13fb4dbb04d8cb3d29a881}\index{5. SNMP Agent -\/ Voltage Monitoring@{5. SNMP Agent -\/ Voltage Monitoring}!get\_coreVREG\_status@{get\_coreVREG\_status}}
+\index{get\_coreVREG\_status@{get\_coreVREG\_status}!5. SNMP Agent -\/ Voltage Monitoring@{5. SNMP Agent -\/ Voltage Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_coreVREG\_status()}{get\_coreVREG\_status()}}
+{\footnotesize\ttfamily \label{group__snmp05_ga3906d2584f13fb4dbb04d8cb3d29a881} 
+void get\+\_\+core\+VREG\+\_\+status (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for core VREG status. 
+
+Returns the RP2040 core voltage regulator status as a text string. Possible values\+: "{}\+OK"{}, "{}\+Overload"{}, "{}\+Hi-\/\+Z"{}, "{}\+Unknown"{}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer \\
+\hline
+{\em len} & Pointer to receive string length\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Returns ASCII string (not numeric). 
+\end{DoxyNote}
+\Hypertarget{group__snmp05_ga7437bd619910f7c801d6b5368154eb4f}\index{5. SNMP Agent -\/ Voltage Monitoring@{5. SNMP Agent -\/ Voltage Monitoring}!get\_ioRail@{get\_ioRail}}
+\index{get\_ioRail@{get\_ioRail}!5. SNMP Agent -\/ Voltage Monitoring@{5. SNMP Agent -\/ Voltage Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_ioRail()}{get\_ioRail()}}
+{\footnotesize\ttfamily \label{group__snmp05_ga7437bd619910f7c801d6b5368154eb4f} 
+void get\+\_\+io\+Rail (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for IO rail voltage \mbox{[}V\mbox{]}. 
+
+Returns the RP2040 IO supply voltage (fixed at 3.\+30V).
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer \\
+\hline
+{\em len} & Pointer to receive string length\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Always returns "{}3.\+30"{} (constant). 
+\end{DoxyNote}
+\Hypertarget{group__snmp05_ga07d36a9715f0433b1988b447807b3015}\index{5. SNMP Agent -\/ Voltage Monitoring@{5. SNMP Agent -\/ Voltage Monitoring}!get\_tempSensorTemperature@{get\_tempSensorTemperature}}
+\index{get\_tempSensorTemperature@{get\_tempSensorTemperature}!5. SNMP Agent -\/ Voltage Monitoring@{5. SNMP Agent -\/ Voltage Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_tempSensorTemperature()}{get\_tempSensorTemperature()}}
+{\footnotesize\ttfamily \label{group__snmp05_ga07d36a9715f0433b1988b447807b3015} 
+void get\+\_\+temp\+Sensor\+Temperature (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for on-\/die temperature \mbox{[}°C\mbox{]}. 
+
+Returns the RP2040 internal die temperature converted from the ADC reading using the chip-\/specific calibration formula.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer (minimum 16 bytes recommended) \\
+\hline
+{\em len} & Pointer to receive string length\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Returns ASCII float with 3 decimals (e.\+g., "{}42.\+150"{}). 
+
+Returns "{}0.\+000"{} if telemetry unavailable. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__snmp05_ga07d36a9715f0433b1988b447807b3015_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__snmp05_ga49b2857ddaab294f0f73932f5c16eddb}\index{5. SNMP Agent -\/ Voltage Monitoring@{5. SNMP Agent -\/ Voltage Monitoring}!get\_tempSensorVoltage@{get\_tempSensorVoltage}}
+\index{get\_tempSensorVoltage@{get\_tempSensorVoltage}!5. SNMP Agent -\/ Voltage Monitoring@{5. SNMP Agent -\/ Voltage Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_tempSensorVoltage()}{get\_tempSensorVoltage()}}
+{\footnotesize\ttfamily \label{group__snmp05_ga49b2857ddaab294f0f73932f5c16eddb} 
+void get\+\_\+temp\+Sensor\+Voltage (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for on-\/die temperature sensor voltage \mbox{[}V\mbox{]}. 
+
+Returns the raw ADC voltage from the RP2040 internal temperature sensor. Calculated as\+: V = raw\+\_\+adc\+\_\+count \texorpdfstring{$\ast$}{*} (ADC\+\_\+\+VREF / ADC\+\_\+\+MAX).
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer (minimum 16 bytes recommended) \\
+\hline
+{\em len} & Pointer to receive string length\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Returns ASCII float with 5 decimals (e.\+g., "{}0.\+72345"{}). 
+
+Returns "{}0.\+00000"{} if telemetry unavailable. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__snmp05_ga49b2857ddaab294f0f73932f5c16eddb_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__snmp05_gad373e18c9aff32c0faf35c41f0a4050b}\index{5. SNMP Agent -\/ Voltage Monitoring@{5. SNMP Agent -\/ Voltage Monitoring}!get\_usbPHYrail@{get\_usbPHYrail}}
+\index{get\_usbPHYrail@{get\_usbPHYrail}!5. SNMP Agent -\/ Voltage Monitoring@{5. SNMP Agent -\/ Voltage Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_usbPHYrail()}{get\_usbPHYrail()}}
+{\footnotesize\ttfamily \label{group__snmp05_gad373e18c9aff32c0faf35c41f0a4050b} 
+void get\+\_\+usb\+PHYrail (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for USB PHY rail voltage \mbox{[}V\mbox{]}. 
+
+Returns the RP2040 USB PHY supply voltage (fixed at 1.\+80V).
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer \\
+\hline
+{\em len} & Pointer to receive string length\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Always returns "{}1.\+80"{} (constant). 
+\end{DoxyNote}
+\Hypertarget{group__snmp05_ga2618c7cb453d6e0a9d958bc932d38a9a}\index{5. SNMP Agent -\/ Voltage Monitoring@{5. SNMP Agent -\/ Voltage Monitoring}!get\_VSUPPLY@{get\_VSUPPLY}}
+\index{get\_VSUPPLY@{get\_VSUPPLY}!5. SNMP Agent -\/ Voltage Monitoring@{5. SNMP Agent -\/ Voltage Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_VSUPPLY()}{get\_VSUPPLY()}}
+{\footnotesize\ttfamily \label{group__snmp05_ga2618c7cb453d6e0a9d958bc932d38a9a} 
+void get\+\_\+\+VSUPPLY (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for V\+\_\+\+SUPPLY rail voltage \mbox{[}V\mbox{]}. 
+
+Returns the main power supply voltage measured via voltage divider and ADC.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer \\
+\hline
+{\em len} & Pointer to receive string length\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Returns ASCII float with 3 decimals. 
+
+Returns "{}0.\+000"{} if telemetry unavailable. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__snmp05_ga2618c7cb453d6e0a9d958bc932d38a9a_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__snmp05_gae1abd1add9071497c30abed555937772}\index{5. SNMP Agent -\/ Voltage Monitoring@{5. SNMP Agent -\/ Voltage Monitoring}!get\_VSUPPLY\_divider@{get\_VSUPPLY\_divider}}
+\index{get\_VSUPPLY\_divider@{get\_VSUPPLY\_divider}!5. SNMP Agent -\/ Voltage Monitoring@{5. SNMP Agent -\/ Voltage Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_VSUPPLY\_divider()}{get\_VSUPPLY\_divider()}}
+{\footnotesize\ttfamily \label{group__snmp05_gae1abd1add9071497c30abed555937772} 
+void get\+\_\+\+VSUPPLY\+\_\+divider (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for V\+\_\+\+SUPPLY divider tap voltage \mbox{[}V\mbox{]}. 
+
+Returns the pre-\/divider voltage at the ADC input for V\+\_\+\+SUPPLY measurement. Useful for diagnostics and divider calibration.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer \\
+\hline
+{\em len} & Pointer to receive string length\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Returns ASCII float with 3 decimals. 
+
+Returns "{}0.\+000"{} if telemetry unavailable. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__snmp05_gae1abd1add9071497c30abed555937772_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__snmp05_ga574d71ccd641800ba60092a96698aae3}\index{5. SNMP Agent -\/ Voltage Monitoring@{5. SNMP Agent -\/ Voltage Monitoring}!get\_VUSB@{get\_VUSB}}
+\index{get\_VUSB@{get\_VUSB}!5. SNMP Agent -\/ Voltage Monitoring@{5. SNMP Agent -\/ Voltage Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_VUSB()}{get\_VUSB()}}
+{\footnotesize\ttfamily \label{group__snmp05_ga574d71ccd641800ba60092a96698aae3} 
+void get\+\_\+\+VUSB (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for V\+\_\+\+USB rail voltage \mbox{[}V\mbox{]}. 
+
+Returns the USB power supply voltage measured via voltage divider and ADC.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer \\
+\hline
+{\em len} & Pointer to receive string length\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Returns ASCII float with 3 decimals. 
+
+Returns "{}0.\+000"{} if telemetry unavailable. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__snmp05_ga574d71ccd641800ba60092a96698aae3_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__snmp05_ga0c98fc2539c1c130d4ffba0bbf9224d3}\index{5. SNMP Agent -\/ Voltage Monitoring@{5. SNMP Agent -\/ Voltage Monitoring}!get\_VUSB\_divider@{get\_VUSB\_divider}}
+\index{get\_VUSB\_divider@{get\_VUSB\_divider}!5. SNMP Agent -\/ Voltage Monitoring@{5. SNMP Agent -\/ Voltage Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_VUSB\_divider()}{get\_VUSB\_divider()}}
+{\footnotesize\ttfamily \label{group__snmp05_ga0c98fc2539c1c130d4ffba0bbf9224d3} 
+void get\+\_\+\+VUSB\+\_\+divider (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for V\+\_\+\+USB divider tap voltage \mbox{[}V\mbox{]}. 
+
+Returns the pre-\/divider voltage at the ADC input for V\+\_\+\+USB measurement. Useful for diagnostics and divider calibration.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer \\
+\hline
+{\em len} & Pointer to receive string length\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Returns ASCII float with 3 decimals. 
+
+Returns "{}0.\+000"{} if telemetry unavailable. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__snmp05_ga0c98fc2539c1c130d4ffba0bbf9224d3_cgraph}
+\end{center}
+\end{figure}

@@ -1,0 +1,5 @@
+<map id="stale_mask_required" name="stale_mask_required">
+<area shape="rect" id="Node000001" title="Compute the stale task mask for all required tasks." alt="" coords="5,5,147,32"/>
+<area shape="rect" id="Node000002" href="$_health_task_8c.html#a8213bf3a8e666885c3d45b1d5d8fb85c" title="Check if a health ID is in the required mask." alt="" coords="195,5,296,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,16,179,16,179,21,147,21"/>
+</map>

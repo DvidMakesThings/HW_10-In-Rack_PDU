@@ -1,0 +1,31 @@
+<map id="Switch_SetPwrLed" name="Switch_SetPwrLed">
+<area shape="rect" id="Node000001" title="Set POWER GOOD LED on display MCP." alt="" coords="1188,107,1320,133"/>
+<area shape="rect" id="Node000002" href="$group__drivers06.html#ga443377619e6d82e31b58ffc269b64936" title="Initialize all MCP23017 devices for the ENERGIS PDU." alt="" coords="587,5,691,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1179,105,1139,97,888,56,691,28,692,23,889,50,1140,92,1180,100"/>
+<area shape="rect" id="Node000006" href="$power__mgr_8c.html#afef33669bd179ec2e445c223bb1272a3" title="Set PWR_LED state with change tracking." alt="" coords="984,107,1126,133"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1172,123,1126,123,1126,117,1172,117"/>
+<area shape="rect" id="Node000012" href="$power__mgr_8c.html#a61f31550510de9c4f3196700e41216ff" title="Disable display LEDs except PWR_LED for standby indication." alt="" coords="970,183,1140,209"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="1203,142,1093,185,1091,180,1202,137"/>
+<area shape="rect" id="Node000003" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,31,378,57"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="571,27,379,44,379,38,571,22"/>
+<area shape="rect" id="Node000004" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,31,263,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="295,47,263,47,263,41,295,41"/>
+<area shape="rect" id="Node000005" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,31,102,57"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="134,47,102,47,102,41,134,41"/>
+<area shape="rect" id="Node000007" href="$group__misc3.html#gafa726e9d0fc140faa3f54c6905ac2520" title="Exit standby mode and return to normal operation." alt="" coords="762,157,899,184"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="979,140,894,159,892,154,977,135"/>
+<area shape="rect" id="Node000010" href="$group__misc3.html#ga83454e7bafa44edd5acce76b7aa91e0b" title="Initialize the power manager subsystem." alt="" coords="597,56,680,83"/>
+<area shape="poly" id="edge10_Node000006_Node000010" title=" " alt="" coords="973,106,922,97,790,83,681,74,681,69,790,77,923,92,974,101"/>
+<area shape="rect" id="Node000011" href="$group__misc3.html#ga0827dd667e39150cad0b7642a076d384" title="Service LED indication in RUN and STANDBY modes." alt="" coords="739,107,922,133"/>
+<area shape="poly" id="edge12_Node000006_Node000011" title=" " alt="" coords="969,123,923,123,923,117,969,117"/>
+<area shape="rect" id="Node000008" href="$_button_task_8c.html#ac8adec5c9e99b51c4884034cf2e41275" title="Main button scanning and event processing task." alt="" coords="592,132,686,159"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="747,162,686,154,687,149,748,157"/>
+<area shape="rect" id="Node000009" href="$group__tasks01.html#ga66ab3f6fa24432c008c6ea7b0ccddb5f" title="Initialize and start the button handling task." alt="" coords="426,56,539,83"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="595,127,511,86,513,81,597,122"/>
+<area shape="poly" id="edge9_Node000009_Node000003" title=" " alt="" coords="410,59,379,53,379,48,411,54"/>
+<area shape="poly" id="edge11_Node000010_Node000009" title=" " alt="" coords="582,72,539,72,539,67,582,67"/>
+<area shape="poly" id="edge13_Node000011_Node000008" title=" " alt="" coords="724,137,687,142,686,136,723,132"/>
+<area shape="rect" id="Node000013" href="$group__misc3.html#ga40de5935f9ba85f9141a9243b4d02c87" title="Enter standby mode." alt="" coords="758,208,903,235"/>
+<area shape="poly" id="edge15_Node000012_Node000013" title=" " alt="" coords="955,210,904,216,903,211,954,205"/>
+<area shape="poly" id="edge16_Node000013_Node000008" title=" " alt="" coords="757,205,738,198,663,162,665,157,740,194,759,200"/>
+</map>

@@ -1,0 +1,216 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item RTOS Hooks Module 
+\end{DoxyEnumerate}}
+\hypertarget{group__misc4}{}\label{group__misc4}\index{4. RTOS Hooks Module@{4. RTOS Hooks Module}}
+
+
+Free\+RTOS hook implementations and scheduler diagnostics.  
+
+
+Collaboration diagram for 4. RTOS Hooks Module\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__misc4}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Public API}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__misc4_ga97fd430f36f8b065226e2bff9bad1de5}{v\+Application\+Idle\+Hook}} (void)
+\begin{DoxyCompactList}\small\item\em Free\+RTOS Idle task hook for scheduler liveness monitoring. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__misc4_ga7ad3b2e7f54fbc65a7ce48de8cb3ab88}{RTOS\+\_\+\+Idle\+Canary\+\_\+\+Read}} (void)
+\begin{DoxyCompactList}\small\item\em Read current Idle task canary value. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__misc4_ga9ac2d2d4103087861a0bf882d5ebada9}{RTOS\+\_\+\+Idle\+Canary\+\_\+\+Last\+Ms}} (void)
+\begin{DoxyCompactList}\small\item\em Read timestamp of last Idle hook execution. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__misc4_ga5d4c49ef4e56e7cb316082d5dac685e0}{RTOS\+\_\+\+Idle\+Canary\+\_\+\+Delta}} (uint32\+\_\+t prev\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Compute canary value change since previous sample. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__misc4_ga931071cb29c290b70b5d74a9150d4ab8}{RTOS\+\_\+\+Ticks\+Ms}} (void)
+\begin{DoxyCompactList}\small\item\em Get current RTOS time in milliseconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Free\+RTOS hook implementations and scheduler diagnostics. 
+
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/06
+\end{DoxyDate}
+This module provides implementations of Free\+RTOS application hooks for fault handling and system monitoring. It captures fault context into watchdog scratch registers for post-\/mortem analysis and implements an Idle task canary for scheduler liveness detection.
+
+Provided functionality\+:
+\begin{DoxyItemize}
+\item Free\+RTOS hook implementations (Idle, Stack\+Overflow, Malloc\+Failed, Assert)
+\item Hard\+Fault exception handler with context capture
+\item Idle task canary for scheduler stall detection
+\item Fault breadcrumb storage in watchdog scratch registers
+\end{DoxyItemize}
+
+All fault hooks capture minimal context and initiate a controlled reboot to allow post-\/mortem analysis via the boot diagnostics system.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-func-members}
+\Hypertarget{group__misc4_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__misc4_ga5d4c49ef4e56e7cb316082d5dac685e0}\index{4. RTOS Hooks Module@{4. RTOS Hooks Module}!RTOS\_IdleCanary\_Delta@{RTOS\_IdleCanary\_Delta}}
+\index{RTOS\_IdleCanary\_Delta@{RTOS\_IdleCanary\_Delta}!4. RTOS Hooks Module@{4. RTOS Hooks Module}}
+\doxysubsubsubsection{\texorpdfstring{RTOS\_IdleCanary\_Delta()}{RTOS\_IdleCanary\_Delta()}}
+{\footnotesize\ttfamily \label{group__misc4_ga5d4c49ef4e56e7cb316082d5dac685e0} 
+uint32\+\_\+t RTOS\+\_\+\+Idle\+Canary\+\_\+\+Delta (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{prev\+\_\+value}{}\end{DoxyParamCaption})}
+
+
+
+Compute canary value change since previous sample. 
+
+Calculates the difference between the current canary value and a previously saved value. Handles 32-\/bit wraparound correctly.
+
+A zero delta indicates the Idle task has not run since the previous sample, suggesting possible scheduler stall or continuous CPU loading.
+
+
+\begin{DoxyParams}{Parameters}
+{\em prev\+\_\+value} & Previously sampled canary value\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Change in canary value (32-\/bit modulo arithmetic)
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Typical usage\+: sample canary, delay, sample again, compute delta
+\end{DoxyNote}
+Compute canary value change since previous sample.
+
+
+\begin{DoxyParams}{Parameters}
+{\em prev\+\_\+value} & Previously sampled canary value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The difference (current -\/ prev\+\_\+value), modulo 32-\/bit. 
+\end{DoxyReturn}
+\Hypertarget{group__misc4_ga9ac2d2d4103087861a0bf882d5ebada9}\index{4. RTOS Hooks Module@{4. RTOS Hooks Module}!RTOS\_IdleCanary\_LastMs@{RTOS\_IdleCanary\_LastMs}}
+\index{RTOS\_IdleCanary\_LastMs@{RTOS\_IdleCanary\_LastMs}!4. RTOS Hooks Module@{4. RTOS Hooks Module}}
+\doxysubsubsubsection{\texorpdfstring{RTOS\_IdleCanary\_LastMs()}{RTOS\_IdleCanary\_LastMs()}}
+{\footnotesize\ttfamily \label{group__misc4_ga9ac2d2d4103087861a0bf882d5ebada9} 
+uint32\+\_\+t RTOS\+\_\+\+Idle\+Canary\+\_\+\+Last\+Ms (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Read timestamp of last Idle hook execution. 
+
+Returns the RTOS time (in milliseconds) when the Idle hook was last executed. Useful for determining how recently the Idle task has run.
+
+\begin{DoxyReturn}{Returns}
+Milliseconds since scheduler start of last Idle execution
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Time is derived from Free\+RTOS tick count
+\end{DoxyNote}
+Read timestamp of last Idle hook execution.
+
+\begin{DoxyReturn}{Returns}
+Milliseconds since scheduler start when Idle last ran. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__misc4_ga9ac2d2d4103087861a0bf882d5ebada9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__misc4_ga7ad3b2e7f54fbc65a7ce48de8cb3ab88}\index{4. RTOS Hooks Module@{4. RTOS Hooks Module}!RTOS\_IdleCanary\_Read@{RTOS\_IdleCanary\_Read}}
+\index{RTOS\_IdleCanary\_Read@{RTOS\_IdleCanary\_Read}!4. RTOS Hooks Module@{4. RTOS Hooks Module}}
+\doxysubsubsubsection{\texorpdfstring{RTOS\_IdleCanary\_Read()}{RTOS\_IdleCanary\_Read()}}
+{\footnotesize\ttfamily \label{group__misc4_ga7ad3b2e7f54fbc65a7ce48de8cb3ab88} 
+uint32\+\_\+t RTOS\+\_\+\+Idle\+Canary\+\_\+\+Read (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Read current Idle task canary value. 
+
+Returns the current value of the monotonic counter incremented by the Idle hook. Used for scheduler liveness detection by comparing successive samples.
+
+\begin{DoxyReturn}{Returns}
+Current canary value (32-\/bit monotonic counter)
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Wraps at 32-\/bit boundary; use delta calculation for comparisons
+\end{DoxyNote}
+Read current Idle task canary value.
+
+\begin{DoxyReturn}{Returns}
+Monotonic counter incremented by the Idle hook. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__misc4_ga7ad3b2e7f54fbc65a7ce48de8cb3ab88_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__misc4_ga931071cb29c290b70b5d74a9150d4ab8}\index{4. RTOS Hooks Module@{4. RTOS Hooks Module}!RTOS\_TicksMs@{RTOS\_TicksMs}}
+\index{RTOS\_TicksMs@{RTOS\_TicksMs}!4. RTOS Hooks Module@{4. RTOS Hooks Module}}
+\doxysubsubsubsection{\texorpdfstring{RTOS\_TicksMs()}{RTOS\_TicksMs()}}
+{\footnotesize\ttfamily \label{group__misc4_ga931071cb29c290b70b5d74a9150d4ab8} 
+uint32\+\_\+t RTOS\+\_\+\+Ticks\+Ms (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Get current RTOS time in milliseconds. 
+
+Returns the current Free\+RTOS tick count converted to milliseconds. Provides a monotonic time reference for timing and scheduling.
+
+\begin{DoxyReturn}{Returns}
+Milliseconds since scheduler start
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Resolution depends on config\+TICK\+\_\+\+RATE\+\_\+\+HZ configuration 
+
+Wraps at 32-\/bit boundary (approximately 49.\+7 days at 1ms tick)
+\end{DoxyNote}
+Get current RTOS time in milliseconds.
+
+\begin{DoxyReturn}{Returns}
+Milliseconds since scheduler start. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=276pt]{group__misc4_ga931071cb29c290b70b5d74a9150d4ab8_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__misc4_ga97fd430f36f8b065226e2bff9bad1de5}\index{4. RTOS Hooks Module@{4. RTOS Hooks Module}!vApplicationIdleHook@{vApplicationIdleHook}}
+\index{vApplicationIdleHook@{vApplicationIdleHook}!4. RTOS Hooks Module@{4. RTOS Hooks Module}}
+\doxysubsubsubsection{\texorpdfstring{vApplicationIdleHook()}{vApplicationIdleHook()}}
+{\footnotesize\ttfamily \label{group__misc4_ga97fd430f36f8b065226e2bff9bad1de5} 
+void v\+Application\+Idle\+Hook (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Free\+RTOS Idle task hook for scheduler liveness monitoring. 
+
+This hook is called by the Free\+RTOS Idle task during each iteration of its main loop. It increments a global canary counter and records the current RTOS time, providing a mechanism for other tasks (typically Health\+Task) to detect scheduler stalls or excessive blocking.
+
+The hook must execute quickly and never block, as blocking the Idle task can prevent lower-\/priority cleanup operations.
+
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Requires config\+USE\+\_\+\+IDLE\+\_\+\+HOOK=1 in \doxylink{_free_r_t_o_s_config_8h}{Free\+RTOSConfig.\+h} 
+
+Runs at Idle priority; higher priority tasks will preempt it
+\end{DoxyNote}
+Free\+RTOS Idle task hook for scheduler liveness monitoring.
+
+Runs in Idle task context and must never block. Signals scheduler liveness by advancing g\+\_\+rtos\+\_\+idle\+\_\+canary and stamping g\+\_\+rtos\+\_\+idle\+\_\+last\+\_\+ms. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=299pt]{group__misc4_ga97fd430f36f8b065226e2bff9bad1de5_cgraph}
+\end{center}
+\end{figure}

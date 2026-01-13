@@ -1,0 +1,38 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/misc/rtos\+\_\+hooks.h File Reference}
+\hypertarget{rtos__hooks_8h}{}\label{rtos__hooks_8h}\index{src/Software/ENERGIS\_RTOS/src/misc/rtos\_hooks.h@{src/Software/ENERGIS\_RTOS/src/misc/rtos\_hooks.h}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for rtos\+\_\+hooks.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rtos__hooks_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rtos__hooks_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{Indent}\textbf{ Public API}\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__misc4_ga97fd430f36f8b065226e2bff9bad1de5}{v\+Application\+Idle\+Hook}} (void)
+\begin{DoxyCompactList}\small\item\em Free\+RTOS Idle task hook for scheduler liveness monitoring. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__misc4_ga7ad3b2e7f54fbc65a7ce48de8cb3ab88}{RTOS\+\_\+\+Idle\+Canary\+\_\+\+Read}} (void)
+\begin{DoxyCompactList}\small\item\em Read current Idle task canary value. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__misc4_ga9ac2d2d4103087861a0bf882d5ebada9}{RTOS\+\_\+\+Idle\+Canary\+\_\+\+Last\+Ms}} (void)
+\begin{DoxyCompactList}\small\item\em Read timestamp of last Idle hook execution. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__misc4_ga5d4c49ef4e56e7cb316082d5dac685e0}{RTOS\+\_\+\+Idle\+Canary\+\_\+\+Delta}} (uint32\+\_\+t prev\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Compute canary value change since previous sample. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__misc4_ga931071cb29c290b70b5d74a9150d4ab8}{RTOS\+\_\+\+Ticks\+Ms}} (void)
+\begin{DoxyCompactList}\small\item\em Get current RTOS time in milliseconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

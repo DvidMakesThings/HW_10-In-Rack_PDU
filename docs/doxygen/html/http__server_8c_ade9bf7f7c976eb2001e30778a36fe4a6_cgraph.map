@@ -1,0 +1,30 @@
+<map id="send_http_response" name="send_http_response">
+<area shape="rect" id="Node000001" title="Send a simple HTTP/1.1 response with headers and body." alt="" coords="5,136,144,163"/>
+<area shape="rect" id="Node000002" href="$http__server_8c.html#a279630c7631c85f4f9d4a64fafe0933a" title="Send data in safe chunks within W5500 TX buffer capacity." alt="" coords="192,136,261,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,147,176,147,176,152,144,152"/>
+<area shape="rect" id="Node000003" href="$http__server_8c.html#a8c210587f97cbef60c84dc0bfba63c2f" title=" " alt="" coords="309,45,380,72"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="244,133,312,80,315,84,247,138"/>
+<area shape="rect" id="Node000006" href="$group__drivers08.html#gacd77c3cc60e87d09a5714932506d7c4b" title="Send data over TCP socket." alt="" coords="320,136,369,163"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="261,147,305,147,305,152,261,152"/>
+<area shape="rect" id="Node000013" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="621,224,804,251"/>
+<area shape="poly" id="edge15_Node000002_Node000013" title=" " alt="" coords="250,161,326,204,376,226,429,243,473,250,518,253,605,250,605,255,518,258,472,255,428,248,374,231,324,209,247,165"/>
+<area shape="rect" id="Node000004" href="$group__tasks03.html#ga4f7298bb6ff71177639ba837e4068eb1" title="Record a heartbeat from a registered task." alt="" coords="439,5,562,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="380,47,431,34,432,39,381,52"/>
+<area shape="rect" id="Node000005" href="$_health_task_8c.html#a50503dee6a29e98e633b16b1b8b550bc" title="Get current monotonic time in milliseconds." alt="" coords="677,5,748,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="562,16,662,16,662,21,562,21"/>
+<area shape="rect" id="Node000007" href="$group__drivers08.html#ga025710a2709097be7824f0564f89a461" title="Close a socket." alt="" coords="455,56,546,83"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="363,133,427,92,440,86,442,91,430,97,366,138"/>
+<area shape="rect" id="Node000008" href="$group__drivers03.html#gaeaef8ee772ea9b4a5c6ba7702a1c9b52" title="Send data to socket TX buffer." alt="" coords="447,107,554,133"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="369,142,431,130,432,136,370,147"/>
+<area shape="rect" id="Node000011" href="$socket_8c.html#a3e134a526306c29a2594a8615c328607" title=" " alt="" coords="428,157,573,200"/>
+<area shape="poly" id="edge11_Node000006_Node000011" title=" " alt="" coords="370,151,414,160,413,165,369,157"/>
+<area shape="poly" id="edge14_Node000006_Node000013" title=" " alt="" coords="361,161,390,187,429,210,473,223,518,232,605,239,605,244,517,237,471,228,427,214,387,191,357,165"/>
+<area shape="rect" id="Node000009" href="$group__drivers03.html#ga35f04740974b2f6a16c4744f1641fd47" title="Set socket TX write pointer (Sn_TX_WR) in big&#45;endian." alt="" coords="658,60,767,87"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="553,106,642,86,643,91,555,111"/>
+<area shape="rect" id="Node000010" href="$group__drivers03.html#ga8e525d27915365abbe8086dc3363055f" title="Write multiple bytes to W5500 (optimized bulk transfer)" alt="" coords="852,85,971,112"/>
+<area shape="poly" id="edge10_Node000008_Node000010" title=" " alt="" coords="554,115,836,100,837,105,554,120"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="768,78,837,87,836,92,767,83"/>
+<area shape="rect" id="Node000012" href="$group__misc3.html#gad3252fba1863d278f2611cad531177f5" title="Query the current system power state." alt="" coords="654,165,771,192"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="573,176,638,176,638,181,573,181"/>
+<area shape="poly" id="edge13_Node000011_Node000013" title=" " alt="" coords="574,196,648,217,647,222,573,201"/>
+</map>

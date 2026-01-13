@@ -1,0 +1,95 @@
+\doxysection{user\+Pref\+Info Struct Reference}
+\hypertarget{structuser_pref_info}{}\label{structuser_pref_info}\index{userPrefInfo@{userPrefInfo}}
+
+
+User preferences data structure for device identification and display settings.  
+
+
+
+
+{\ttfamily \#include $<$EEPROM\+\_\+\+Memory\+Map.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{group__config06_ga9d2b9acc4ecae77e01440a5143a61446}{device\+\_\+name}} \mbox{[}32\mbox{]}
+\item 
+char \mbox{\hyperlink{structuser_pref_info_a00adf96c6e20b5170a8e988ae0b37dda}{location}} \mbox{[}32\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structuser_pref_info_ab401582a1a0cf34c9ff0d28871d1417b}{temp\+\_\+unit}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+User preferences data structure for device identification and display settings. 
+
+Stores user-\/configurable device metadata and display preferences. Used for SNMP sys\+Name/sys\+Location, web interface identification, and temperature unit conversion. Protected by CRC-\/8 checksum with automatic fallback to defaults on corruption.
+
+Fields\+:
+\begin{DoxyItemize}
+\item device\+\_\+name\+: 32-\/byte null-\/terminated device identification string
+\begin{DoxyItemize}
+\item Default\+: "{}\+ENERGIS PDU"{}
+\item Used in\+: SNMP sys\+Name, web interface header
+\item Max\+: 31 displayable characters + null terminator
+\end{DoxyItemize}
+\item location\+: 32-\/byte null-\/terminated physical location string
+\begin{DoxyItemize}
+\item Default\+: "{}\+Unknown"{}
+\item Used in\+: SNMP sys\+Location, web interface
+\item Max\+: 31 displayable characters + null terminator
+\end{DoxyItemize}
+\item temp\+\_\+unit\+: 1-\/byte temperature display unit selector
+\begin{DoxyItemize}
+\item 0 = Celsius (default)
+\item 1 = Fahrenheit
+\item 2 = Kelvin (reserved for future use)
+\item Applied to\+: Web interface, SNMP temperature OIDs
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Storage Format\+:
+\begin{DoxyItemize}
+\item Total size\+: 65 bytes (before CRC appended)
+\item EEPROM layout\+: \doxylink{group__config06_ga9d2b9acc4ecae77e01440a5143a61446}{device\+\_\+name(32)} + \doxylink{structuser_pref_info_a00adf96c6e20b5170a8e988ae0b37dda}{location(32)} + \doxylink{structuser_pref_info_ab401582a1a0cf34c9ff0d28871d1417b}{temp\+\_\+unit(1)} + CRC-\/8(1)
+\item CRC calculated over first 65 bytes
+\item Split writes used to respect CAT24\+C256 page boundaries
+\end{DoxyItemize}
+
+Usage\+:
+\begin{DoxyItemize}
+\item Loaded from EEPROM via \doxylink{group__storage11_gada0abcfc99e366656030e908187d6d6d}{Load\+User\+Preferences()} on boot
+\item Modified via web interface or console commands
+\item Persisted with CRC-\/8 via \doxylink{group__storage11_gaffd968de2dd26c2a571f3057dc72f2dc}{EEPROM\+\_\+\+Write\+User\+Prefs\+With\+Checksum()}
+\item Defaults applied on CRC mismatch or first boot
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Structure size\+: 65 bytes (before CRC appended). 
+
+Strings always null-\/terminated for safety. 
+
+UTF-\/8 encoding supported for international characters. 
+\end{DoxyNote}
+
+
+\label{doc-variable-members}
+\Hypertarget{structuser_pref_info_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structuser_pref_info_a00adf96c6e20b5170a8e988ae0b37dda}\index{userPrefInfo@{userPrefInfo}!location@{location}}
+\index{location@{location}!userPrefInfo@{userPrefInfo}}
+\doxysubsubsection{\texorpdfstring{location}{location}}
+{\footnotesize\ttfamily \label{structuser_pref_info_a00adf96c6e20b5170a8e988ae0b37dda} 
+char user\+Pref\+Info\+::location\mbox{[}32\mbox{]}}
+
+Physical location (32 bytes, null-\/terminated). \Hypertarget{structuser_pref_info_ab401582a1a0cf34c9ff0d28871d1417b}\index{userPrefInfo@{userPrefInfo}!temp\_unit@{temp\_unit}}
+\index{temp\_unit@{temp\_unit}!userPrefInfo@{userPrefInfo}}
+\doxysubsubsection{\texorpdfstring{temp\_unit}{temp\_unit}}
+{\footnotesize\ttfamily \label{structuser_pref_info_ab401582a1a0cf34c9ff0d28871d1417b} 
+uint8\+\_\+t user\+Pref\+Info\+::temp\+\_\+unit}
+
+Temperature unit\+: 0=Celsius, 1=Fahrenheit, 2=Kelvin (1 byte). 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/misc/\mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h}{EEPROM\+\_\+\+Memory\+Map.\+h}}\end{DoxyCompactItemize}

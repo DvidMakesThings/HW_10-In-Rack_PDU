@@ -1,0 +1,194 @@
+\doxysection{ethernet\+\_\+config.\+h}
+\hypertarget{ethernet__config_8h_source}{}\label{ethernet__config_8h_source}\index{src/Software/ENERGIS\_RTOS/src/drivers/ethernet\_config.h@{src/Software/ENERGIS\_RTOS/src/drivers/ethernet\_config.h}}
+\mbox{\hyperlink{ethernet__config_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#ifndef\ W5500\_CONFIG\_H}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ W5500\_CONFIG\_H}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_o_n_f_i_g_8h}{../CONFIG.h}}"{}}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ W5500\_SPI\ W5500\_SPI\_INSTANCE}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ W5500\_SPI\_CLOCK\ SPI\_SPEED\_W5500}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ W5500\_PIN\_MOSI\ W5500\_MOSI}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ W5500\_PIN\_MISO\ W5500\_MISO}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ W5500\_PIN\_SCK\ W5500\_SCK}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ W5500\_PIN\_CS\ W5500\_CS}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ W5500\_PIN\_RST\ W5500\_RESET}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ W5500\_PIN\_INT\ W5500\_INT}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#define\ W5500\_SOCKET\_COUNT\ 8}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#define\ W5500\_TX\_SIZE\_S0\ 8}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#define\ W5500\_TX\_SIZE\_S1\ 8}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ W5500\_TX\_SIZE\_S2\ 0}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#define\ W5500\_TX\_SIZE\_S3\ 0}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#define\ W5500\_TX\_SIZE\_S4\ 0}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#define\ W5500\_TX\_SIZE\_S5\ 0}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#define\ W5500\_TX\_SIZE\_S6\ 0}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#define\ W5500\_TX\_SIZE\_S7\ 0}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#define\ W5500\_RX\_SIZE\_S0\ 8}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#define\ W5500\_RX\_SIZE\_S1\ 8}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#define\ W5500\_RX\_SIZE\_S2\ 0}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#define\ W5500\_RX\_SIZE\_S3\ 0}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#define\ W5500\_RX\_SIZE\_S4\ 0}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#define\ W5500\_RX\_SIZE\_S5\ 0}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#define\ W5500\_RX\_SIZE\_S6\ 0}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#define\ W5500\_RX\_SIZE\_S7\ 0}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#define\ W5500\_DEFAULT\_MAC\ \{0x02,\ 0x00,\ 0x00,\ 0x12,\ 0x34,\ 0x56\}}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\#define\ W5500\_DEFAULT\_IP\ \{192,\ 168,\ 0,\ 12\}}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\#define\ W5500\_DEFAULT\_SUBNET\ \{255,\ 255,\ 255,\ 0\}}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\#define\ W5500\_DEFAULT\_GATEWAY\ \{192,\ 168,\ 0,\ 1\}}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00169\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ uint8\_t\ \mbox{\hyperlink{group___w5500___n_e_t_ga8b1745abfe8e59d4a2768947292ab361}{W5500\_DEFAULT\_DNS}}[4]\ =\ \{8,\ 8,\ 8,\ 8\};}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\#define\ W5500\_USE\_DHCP\ 0}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#define\ W5500\_ENABLE\_TCP\ 1}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\#define\ W5500\_ENABLE\_UDP\ 1}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\#define\ W5500\_ENABLE\_SNMP\ 1}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\#define\ W5500\_ENABLE\_ICMP\ 1}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00201\ \textcolor{preprocessor}{\#define\ W5500\_ENABLE\_IPV6\ 0}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00218\ \textcolor{preprocessor}{\#define\ W5500\_TASK\_STACK\ 2048}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00221\ \textcolor{preprocessor}{\#define\ W5500\_QUEUE\_LENGTH\ 16}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00224\ \textcolor{preprocessor}{\#define\ W5500\_SPI\_TIMEOUT\ pdMS\_TO\_TICKS(100)}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00227\ \textcolor{preprocessor}{\#define\ W5500\_SOCKET\_TIMEOUT\ pdMS\_TO\_TICKS(5000)}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00230\ \textcolor{preprocessor}{\#define\ W5500\_PHY\_CHECK\_MS\ 1000}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00233\ \textcolor{preprocessor}{\#define\ W5500\_USE\_INTERRUPTS\ 1}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00236\ \textcolor{preprocessor}{\#define\ W5500\_IRQ\_POLL\_MS\ 10}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00253\ \textcolor{preprocessor}{\#define\ W5500\_RETRY\_TIME\ 2000}}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00256\ \textcolor{preprocessor}{\#define\ W5500\_RETRY\_COUNT\ 8}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00259\ \textcolor{preprocessor}{\#define\ W5500\_TCP\_MSS\ 1460}}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00262\ \textcolor{preprocessor}{\#define\ W5500\_KEEPALIVE\_TIME\ 120}}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00265\ \textcolor{preprocessor}{\#define\ W5500\_TCP\_NODELAY\ 0}}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00268\ \textcolor{preprocessor}{\#define\ W5500\_PHY\_AUTONEG\ 1}}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00271\ \textcolor{preprocessor}{\#define\ W5500\_PHY\_SPEED\ 0}}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\#define\ W5500\_PHY\_DUPLEX\ 0}}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00291\ \textcolor{preprocessor}{\#define\ W5500\_DEBUG\ DEBUG}}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00294\ \textcolor{preprocessor}{\#define\ W5500\_DEBUG\_SOCKET\ 0}}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00297\ \textcolor{preprocessor}{\#define\ W5500\_DEBUG\_SPI\ 1}}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00300\ \textcolor{preprocessor}{\#define\ W5500\_LOG\_EVENTS\ 1}}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \textcolor{preprocessor}{\#if\ W5500\_DEBUG}}
+\DoxyCodeLine{00303\ \textcolor{preprocessor}{\#define\ W5500\_DBG(...)\ DEBUG\_PRINT(\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00304\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00305\ \textcolor{preprocessor}{\#define\ W5500\_DBG(...)\ ((void)0)}}
+\DoxyCodeLine{00306\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \textcolor{preprocessor}{\#if\ W5500\_DEBUG\_SOCKET}}
+\DoxyCodeLine{00311\ \textcolor{preprocessor}{\#define\ W5500\_SOCK\_DBG(...)\ DEBUG\_PRINT(\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00312\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00313\ \textcolor{preprocessor}{\#define\ W5500\_SOCK\_DBG(...)\ ((void)0)}}
+\DoxyCodeLine{00314\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \textcolor{preprocessor}{\#if\ W5500\_DEBUG\_SPI}}
+\DoxyCodeLine{00317\ \textcolor{preprocessor}{\#define\ W5500\_SPI\_DBG(...)\ DEBUG\_PRINT(\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00318\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00319\ \textcolor{preprocessor}{\#define\ W5500\_SPI\_DBG(...)\ ((void)0)}}
+\DoxyCodeLine{00320\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00321\ }
+\DoxyCodeLine{00322\ \textcolor{preprocessor}{\#if\ W5500\_LOG\_EVENTS}}
+\DoxyCodeLine{00323\ \textcolor{preprocessor}{\#define\ ETH\_LOG(...)\ INFO\_PRINT(\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00324\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00325\ \textcolor{preprocessor}{\#define\ ETH\_LOG(...)\ ((void)0)}}
+\DoxyCodeLine{00326\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00340\ \textcolor{preprocessor}{\#define\ \_W5500\_TX\_TOTAL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00341\ \textcolor{preprocessor}{\ \ \ \ (W5500\_TX\_SIZE\_S0\ +\ W5500\_TX\_SIZE\_S1\ +\ W5500\_TX\_SIZE\_S2\ +\ W5500\_TX\_SIZE\_S3\ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00342\ \textcolor{preprocessor}{\ \ \ \ \ W5500\_TX\_SIZE\_S4\ +\ W5500\_TX\_SIZE\_S5\ +\ W5500\_TX\_SIZE\_S6\ +\ W5500\_TX\_SIZE\_S7)}}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \textcolor{preprocessor}{\#define\ \_W5500\_RX\_TOTAL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00345\ \textcolor{preprocessor}{\ \ \ \ (W5500\_RX\_SIZE\_S0\ +\ W5500\_RX\_SIZE\_S1\ +\ W5500\_RX\_SIZE\_S2\ +\ W5500\_RX\_SIZE\_S3\ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00346\ \textcolor{preprocessor}{\ \ \ \ \ W5500\_RX\_SIZE\_S4\ +\ W5500\_RX\_SIZE\_S5\ +\ W5500\_RX\_SIZE\_S6\ +\ W5500\_RX\_SIZE\_S7)}}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \textcolor{preprocessor}{\#if\ \_W5500\_TX\_TOTAL\ >\ 16}}
+\DoxyCodeLine{00349\ \textcolor{preprocessor}{\#error\ "{}W5500:\ Total\ TX\ buffer\ size\ exceeds\ 16KB\ hardware\ limit"{}}}
+\DoxyCodeLine{00350\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \textcolor{preprocessor}{\#if\ \_W5500\_RX\_TOTAL\ >\ 16}}
+\DoxyCodeLine{00353\ \textcolor{preprocessor}{\#error\ "{}W5500:\ Total\ RX\ buffer\ size\ exceeds\ 16KB\ hardware\ limit"{}}}
+\DoxyCodeLine{00354\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00358\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ W5500\_CONFIG\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00359\ }
+
+\end{DoxyCode}

@@ -1,0 +1,112 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/drivers/\+MCP23017\+\_\+driver.h File Reference}
+\hypertarget{_m_c_p23017__driver_8h}{}\label{_m_c_p23017__driver_8h}\index{src/Software/ENERGIS\_RTOS/src/drivers/MCP23017\_driver.h@{src/Software/ENERGIS\_RTOS/src/drivers/MCP23017\_driver.h}}
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+Include dependency graph for MCP23017\+\_\+driver.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{_m_c_p23017__driver_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_m_c_p23017__driver_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em MCP23017 device context structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{Indent}\textbf{ Configuration}\par
+{\em Maximum I2C retries before failure. }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__drivers06_ga5ad7d69037b1e20fbff7de47b99d4a5c}{MCP\+\_\+\+I2\+C\+\_\+\+MAX\+\_\+\+RETRIES}}~3
+\item 
+\#define \mbox{\hyperlink{group__drivers06_gac7e3477cbab6b1b13385db015ba029ab}{MCP\+\_\+\+I2\+C\+\_\+\+TIMEOUT\+\_\+\+US}}~5000
+\begin{DoxyCompactList}\small\item\em I2C operation timeout in microseconds. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__drivers06_gaef07a9c827ee0feec29848e5df0de922}{MCP\+\_\+\+I2\+C\+\_\+\+RETRY\+\_\+\+DELAY\+\_\+\+US}}~200
+\begin{DoxyCompactList}\small\item\em Delay between I2C retries in microseconds. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__drivers06_ga82f5cff496c7673e3a07a86d00678b6b}{MCP\+\_\+\+RESET\+\_\+\+PULSE\+\_\+\+MS}}~5
+\begin{DoxyCompactList}\small\item\em Reset pulse duration in milliseconds. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__drivers06_ga3353eb195b5b88f30c2cc35a35e071e3}{MCP\+\_\+\+POST\+\_\+\+RESET\+\_\+\+MS}}~10
+\begin{DoxyCompactList}\small\item\em Post-\/reset stabilization delay in milliseconds. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__drivers06_ga837bd015db22cdd863feff717af76c1a}{MCP\+\_\+\+MAX\+\_\+\+DEVICES}}~8
+\begin{DoxyCompactList}\small\item\em Maximum number of MCP23017 devices. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Enumerations}
+\begin{Indent}\textbf{ MCP23017 Register Addresses}\par
+{\em MCP23017 register addresses (BANK=0, sequential). }\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__drivers06_gaa9b0dc57c9fbeb1cd61e7b7252bfeddf}{mcp23017\+\_\+reg\+\_\+t}} \{ \newline
+\mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfaff196b20f60d0d869ae4f4ba9b82fef2}{MCP23017\+\_\+\+IODIRA}} = 0x00
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfab143752e2335aab9b8adfb174fca661a}{MCP23017\+\_\+\+IODIRB}} = 0x01
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa70651fc7aa02961aef334b927f477609}{MCP23017\+\_\+\+IPOLA}} = 0x02
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfae4a1c553e545531dae4ea79c5fe069cd}{MCP23017\+\_\+\+IPOLB}} = 0x03
+, \newline
+\mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa3194ea8e063908f7a2ec5812d1527820}{MCP23017\+\_\+\+GPINTENA}} = 0x04
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa9586bd3d22780ec90bf201be346159e6}{MCP23017\+\_\+\+GPINTENB}} = 0x05
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa8fb1506d888fa5afddb2a168c3ba3184}{MCP23017\+\_\+\+DEFVALA}} = 0x06
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfaab35f56ba43581aa58c3d74c3e49fb7b}{MCP23017\+\_\+\+DEFVALB}} = 0x07
+, \newline
+\mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfad372a07dc741b63cbfa0119c33669b61}{MCP23017\+\_\+\+INTCONA}} = 0x08
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa1ca12f19f543953808a080ea79c4eb90}{MCP23017\+\_\+\+INTCONB}} = 0x09
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfab9368d55494e0488c55fa5443f30f5fa}{MCP23017\+\_\+\+IOCON}} = 0x0A
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfaf215e406bd96cca356a639c6927769f4}{MCP23017\+\_\+\+IOCONB}} = 0x0B
+, \newline
+\mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfac502aa0f54a5b41a761c120e665da27b}{MCP23017\+\_\+\+GPPUA}} = 0x0C
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfadccc42f206cc7af95ec25c07c6cf48b4}{MCP23017\+\_\+\+GPPUB}} = 0x0D
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa49e2535f9b490c064d85152d8e9efc04}{MCP23017\+\_\+\+INTFA}} = 0x0E
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa79b0bfcfc88489c89fad266e2c9cf459}{MCP23017\+\_\+\+INTFB}} = 0x0F
+, \newline
+\mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfac9b9ec9f18ff7ad436574b18ed8e14f6}{MCP23017\+\_\+\+INTCAPA}} = 0x10
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfaf97e8423ea050872e63b854d9975149d}{MCP23017\+\_\+\+INTCAPB}} = 0x11
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa4b5694ccf89d415b3a4f7734c0dc821c}{MCP23017\+\_\+\+GPIOA}} = 0x12
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa519ffdeaa44b2010fc26367f13a297c9}{MCP23017\+\_\+\+GPIOB}} = 0x13
+, \newline
+\mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfa71e94f58edc954fa5085d31cc7432bce}{MCP23017\+\_\+\+OLATA}} = 0x14
+, \mbox{\hyperlink{group__drivers06_ggaa9b0dc57c9fbeb1cd61e7b7252bfeddfabe2c3e1f499629565afee65dd51a4f1f}{MCP23017\+\_\+\+OLATB}} = 0x15
+ \}
+\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__drivers06_gafcca317840825e3def57a977e4ea2cf2}{mcp\+\_\+register}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, int8\+\_\+t rst\+\_\+gpio)
+\begin{DoxyCompactList}\small\item\em Register or retrieve an MCP23017 device context. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers06_gae6663d4602384300fc9b9b12480c21fe}{mcp\+\_\+init}} (\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}dev)
+\begin{DoxyCompactList}\small\item\em Initialize an MCP23017 device to a known state. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers06_ga645c359c52df805555051e80c83fc495}{mcp\+\_\+write\+\_\+reg}} (\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}dev, uint8\+\_\+t reg, uint8\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Write a value to an MCP23017 register. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers06_ga4d99b3ea65704c98455cdd5da4fbeaad}{mcp\+\_\+read\+\_\+reg}} (\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}dev, uint8\+\_\+t reg, uint8\+\_\+t \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Read a value from an MCP23017 register. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers06_ga8ce6b811dfb85d4ca1b02ed7e61b6079}{mcp\+\_\+set\+\_\+direction}} (\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}dev, uint8\+\_\+t pin, uint8\+\_\+t \mbox{\hyperlink{power__mgr_8c_ac6116d5235e13e059e591879c46d7174}{direction}})
+\begin{DoxyCompactList}\small\item\em Set pin direction (input/output). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers06_ga8b8bc528b75e419262e7663ee669dc31}{mcp\+\_\+write\+\_\+pin}} (\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}dev, uint8\+\_\+t pin, uint8\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Write a logic level to a pin. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__drivers06_ga2e6de484edec28d8c39620a364ce5b92}{mcp\+\_\+read\+\_\+pin}} (\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}dev, uint8\+\_\+t pin)
+\begin{DoxyCompactList}\small\item\em Read a logic level from a pin. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers06_ga0dfecc1e56ba649b3a89936c6206c9e2}{mcp\+\_\+write\+\_\+mask}} (\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}dev, uint8\+\_\+t port\+\_\+ab, uint8\+\_\+t mask, uint8\+\_\+t value\+\_\+bits)
+\begin{DoxyCompactList}\small\item\em Atomic masked write to a port. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers06_gad0f920b57a523cbf561692c26e810819}{mcp\+\_\+resync\+\_\+from\+\_\+hw}} (\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}dev)
+\begin{DoxyCompactList}\small\item\em Re-\/sync shadow registers from hardware. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers06_ga443377619e6d82e31b58ffc269b64936}{MCP2017\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize all MCP23017 devices for the ENERGIS PDU. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__drivers06_ga6568742c79ce5190216e5185238229ba}{mcp\+\_\+relay}} (void)
+\begin{DoxyCompactList}\small\item\em Get relay MCP23017 device context. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__drivers06_ga7634eca518e2158ba0e636a3f03f3928}{mcp\+\_\+display}} (void)
+\begin{DoxyCompactList}\small\item\em Get display MCP23017 device context. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__drivers06_gae6acbfdd05b6bdd8877262ce03f77eeb}{mcp\+\_\+selection}} (void)
+\begin{DoxyCompactList}\small\item\em Get selection MCP23017 device context. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers06_gae7d0a5e24723238e6466e5b5f0c49e41}{mcp\+\_\+recover}} (\mbox{\hyperlink{structmcp23017__t}{mcp23017\+\_\+t}} \texorpdfstring{$\ast$}{*}dev)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

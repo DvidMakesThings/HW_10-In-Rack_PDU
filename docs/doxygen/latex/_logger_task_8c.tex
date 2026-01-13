@@ -1,0 +1,147 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\+Logger\+Task.c File Reference}
+\hypertarget{_logger_task_8c}{}\label{_logger_task_8c}\index{src/Software/ENERGIS\_RTOS/src/tasks/LoggerTask.c@{src/Software/ENERGIS\_RTOS/src/tasks/LoggerTask.c}}
+
+
+Logger task implementation with queue-\/based message handling.  
+
+
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for Logger\+Task.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_logger_task_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_log_item__t}{Log\+Item\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Log message queue item structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_logger_task_8c_a57703b8855c5bce73f0262a37649d548}{LOGGER\+\_\+\+TAG}}~"{}\mbox{[}LOGGER\mbox{]}"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{_logger_task_8c_a7589212d4238d1284d651d1f93784b44}{Logger\+Task}} (void \texorpdfstring{$\ast$}{*}arg)
+\begin{DoxyCompactList}\small\item\em Main logger task function. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks05_gafb5047430fb4b265c7eb140436b4d6cd}{Logger\+\_\+\+Is\+Ready}} (void)
+\begin{DoxyCompactList}\small\item\em Query logger task readiness status. \end{DoxyCompactList}\item 
+Base\+Type\+\_\+t \mbox{\hyperlink{group__tasks05_gaae3080c72dfa5993e5e495fd767e32c9}{Logger\+Task\+\_\+\+Init}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Initialize and start the logger task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks05_ga2473a4441580b27bdc14f48e2d2fff8e}{log\+\_\+printf}} (const char \texorpdfstring{$\ast$}{*}fmt,...)
+\begin{DoxyCompactList}\small\item\em Log formatted message to output. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks05_ga36194a3f790c1e727f3b9ab3c0ab38ba}{log\+\_\+printf\+\_\+force}} (const char \texorpdfstring{$\ast$}{*}fmt,...)
+\begin{DoxyCompactList}\small\item\em Log message bypassing mute state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks05_gafc11bbe1cbc3f91b4eec771974d1cc22}{Logger\+\_\+\+Mute\+Push}} (void)
+\begin{DoxyCompactList}\small\item\em Enter logger mute section. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks05_gae9f5d60f97cc58b03ddaf0578bdba99b}{Logger\+\_\+\+Mute\+Pop}} (void)
+\begin{DoxyCompactList}\small\item\em Exit logger mute section. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static Queue\+Handle\+\_\+t \mbox{\hyperlink{_logger_task_8c_a312ebbb5fc5830fb0b462aa4f24e9a50}{log\+Queue}}
+\item 
+static Task\+Handle\+\_\+t \mbox{\hyperlink{_logger_task_8c_a29d5ea0a1ce25f00319b5781bbf735b7}{s\+\_\+logger\+\_\+task}} = NULL
+\item 
+static volatile uint32\+\_\+t \mbox{\hyperlink{_logger_task_8c_a3ff46b88082503771113d2adcfe3b477}{s\+\_\+logger\+\_\+mute\+\_\+depth}} = 0u
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Logger task implementation with queue-\/based message handling. 
+
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/06
+\end{DoxyDate}
+
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{_logger_task_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_logger_task_8c_a57703b8855c5bce73f0262a37649d548}\index{LoggerTask.c@{LoggerTask.c}!LOGGER\_TAG@{LOGGER\_TAG}}
+\index{LOGGER\_TAG@{LOGGER\_TAG}!LoggerTask.c@{LoggerTask.c}}
+\doxysubsubsection{\texorpdfstring{LOGGER\_TAG}{LOGGER\_TAG}}
+{\footnotesize\ttfamily \label{_logger_task_8c_a57703b8855c5bce73f0262a37649d548} 
+\#define LOGGER\+\_\+\+TAG~"{}\mbox{[}LOGGER\mbox{]}"{}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{_logger_task_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_logger_task_8c_a7589212d4238d1284d651d1f93784b44}\index{LoggerTask.c@{LoggerTask.c}!LoggerTask@{LoggerTask}}
+\index{LoggerTask@{LoggerTask}!LoggerTask.c@{LoggerTask.c}}
+\doxysubsubsection{\texorpdfstring{LoggerTask()}{LoggerTask()}}
+{\footnotesize\ttfamily \label{_logger_task_8c_a7589212d4238d1284d651d1f93784b44} 
+void Logger\+Task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{arg}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Main logger task function. 
+
+Continuously receives log messages from the queue and outputs them to USB-\/\+CDC (stdout). Implements heartbeat monitoring and maintains responsiveness to the health watchdog even when no messages are pending.
+
+Operation\+:
+\begin{DoxyItemize}
+\item Initializes USB-\/\+CDC on first run
+\item Waits 1 second for USB enumeration
+\item Polls queue with 50ms timeout to maintain watchdog responsiveness
+\item Outputs received messages immediately to stdout
+\item Sends periodic heartbeats to health monitor
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em arg} & Task parameters (unused). \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_logger_task_8c_a7589212d4238d1284d651d1f93784b44_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_logger_task_8c_a7589212d4238d1284d651d1f93784b44_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{_logger_task_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{_logger_task_8c_a312ebbb5fc5830fb0b462aa4f24e9a50}\index{LoggerTask.c@{LoggerTask.c}!logQueue@{logQueue}}
+\index{logQueue@{logQueue}!LoggerTask.c@{LoggerTask.c}}
+\doxysubsubsection{\texorpdfstring{logQueue}{logQueue}}
+{\footnotesize\ttfamily \label{_logger_task_8c_a312ebbb5fc5830fb0b462aa4f24e9a50} 
+Queue\+Handle\+\_\+t log\+Queue\hspace{0.3cm}{\ttfamily [static]}}
+
+Logger message queue handle. \Hypertarget{_logger_task_8c_a3ff46b88082503771113d2adcfe3b477}\index{LoggerTask.c@{LoggerTask.c}!s\_logger\_mute\_depth@{s\_logger\_mute\_depth}}
+\index{s\_logger\_mute\_depth@{s\_logger\_mute\_depth}!LoggerTask.c@{LoggerTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_logger\_mute\_depth}{s\_logger\_mute\_depth}}
+{\footnotesize\ttfamily \label{_logger_task_8c_a3ff46b88082503771113d2adcfe3b477} 
+volatile uint32\+\_\+t s\+\_\+logger\+\_\+mute\+\_\+depth = 0u\hspace{0.3cm}{\ttfamily [static]}}
+
+Mute depth counter for nested mute sections (0 = not muted). \Hypertarget{_logger_task_8c_a29d5ea0a1ce25f00319b5781bbf735b7}\index{LoggerTask.c@{LoggerTask.c}!s\_logger\_task@{s\_logger\_task}}
+\index{s\_logger\_task@{s\_logger\_task}!LoggerTask.c@{LoggerTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_logger\_task}{s\_logger\_task}}
+{\footnotesize\ttfamily \label{_logger_task_8c_a29d5ea0a1ce25f00319b5781bbf735b7} 
+Task\+Handle\+\_\+t s\+\_\+logger\+\_\+task = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+Logger task handle for single-\/instance guard. 

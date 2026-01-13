@@ -94,7 +94,7 @@ scrape_configs:
 * `energis_vsupply_volts` - 12 V rail voltage (gauge)
 * `energis_http_requests_total` - Total HTTP requests served (counter)
 
-### Per-Channel (ch = "1" … "8")
+### Per-Channel (ch = "1" ... "8")
 
 * `energis_channel_state{ch}` - Relay state: 1=ON, 0=OFF (gauge)
 * `energis_channel_telemetry_valid{ch}` - 1 if cached telemetry for channel is fresh (gauge)

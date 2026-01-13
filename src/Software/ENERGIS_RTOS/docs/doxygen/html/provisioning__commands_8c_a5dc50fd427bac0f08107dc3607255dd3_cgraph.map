@@ -1,0 +1,5 @@
+<map id="prov_lock" name="prov_lock">
+<area shape="rect" id="Node000001" title="Handle PROV LOCK command." alt="" coords="5,5,83,32"/>
+<area shape="rect" id="Node000002" href="$group__storage03.html#ga2bf21d733d9d7a0292429bb3f6f144c3" title="Lock provisioning (close write window)." alt="" coords="131,5,271,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,16,115,16,115,21,83,21"/>
+</map>

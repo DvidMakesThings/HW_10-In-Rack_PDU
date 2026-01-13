@@ -1,0 +1,29 @@
+<map id="tempcal_defaults" name="tempcal_defaults">
+<area shape="rect" id="Node000001" title="Fill temp_calib_t with safe defaults (no calibration)." alt="" coords="1448,64,1568,91"/>
+<area shape="rect" id="Node000002" href="$group__storage01.html#gac5ff91b753d7b36b811a2d75068006ed" title="Read RP2040 temperature calibration record from EEPROM." alt="" coords="1189,5,1400,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1449,61,1399,47,1355,35,1357,30,1401,41,1451,56"/>
+<area shape="rect" id="Node000008" href="$group__storage01.html#ga73504452f7a1b317e752b7f668694a3d" title="Compute single&#45;point temperature calibration from reference measurement." alt="" coords="1189,56,1400,99"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1432,80,1401,80,1401,75,1432,75"/>
+<area shape="rect" id="Node000013" href="$group__storage01.html#ga655669ab4b049b7ef9bcf70ea3d06ec6" title="Compute two&#45;point temperature calibration from reference measurements." alt="" coords="1195,123,1394,165"/>
+<area shape="poly" id="edge13_Node000001_Node000013" title=" " alt="" coords="1449,98,1366,125,1364,119,1447,93"/>
+<area shape="rect" id="Node000003" href="$group__storage01.html#ga1a4a0e2917c171c09500b674b6f2911f" title="Load temperature calibration from EEPROM and apply to MeterTask." alt="" coords="934,7,1141,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1173,22,1141,22,1141,17,1173,17"/>
+<area shape="rect" id="Node000004" href="$group__tasks06.html#ga33bd9742d865d9e98a4b81d443f69837" title="Create and start the Meter Task with a deterministic enable gate." alt="" coords="597,7,704,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="919,23,704,23,704,17,919,17"/>
+<area shape="rect" id="Node000005" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,32,378,59"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="581,28,379,45,378,40,581,23"/>
+<area shape="rect" id="Node000006" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,32,263,59"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="295,48,263,48,263,43,295,43"/>
+<area shape="rect" id="Node000007" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,32,102,59"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="134,48,102,48,102,43,134,43"/>
+<area shape="rect" id="Node000009" href="$_console_task_8c.html#a05b2618d7fb383d2e3e64220ae18b64f" title="Calibrate RP2040 die temperature sensor and persist to EEPROM." alt="" coords="979,64,1096,91"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="1173,80,1096,80,1096,75,1173,75"/>
+<area shape="rect" id="Node000010" href="$_console_task_8c.html#a2d3b7ff8346f8d10aa45609664940712" title="Parse and dispatch command line to handler function." alt="" coords="752,60,886,87"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="964,79,887,77,887,72,964,73"/>
+<area shape="rect" id="Node000011" href="$_console_task_8c.html#a216857df22446940ad58d505886b0d7c" title="Main console task function." alt="" coords="602,59,699,85"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="737,75,699,75,699,70,737,70"/>
+<area shape="rect" id="Node000012" href="$group__tasks02.html#gad45ca7c142e8c2764d52b3d554ffcdeb" title="Initialize and start the console task." alt="" coords="426,57,549,84"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="586,74,549,74,549,69,586,69"/>
+<area shape="poly" id="edge12_Node000012_Node000005" title=" " alt="" coords="411,60,378,54,379,49,412,54"/>
+<area shape="poly" id="edge14_Node000013_Node000009" title=" " alt="" coords="1194,121,1091,94,1093,89,1195,116"/>
+</map>

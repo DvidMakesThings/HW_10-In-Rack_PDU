@@ -1,0 +1,32 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/storage\+\_\+submodule/energy\+\_\+monitor.h File Reference}
+\hypertarget{energy__monitor_8h}{}\label{energy__monitor_8h}\index{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/energy\_monitor.h@{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/energy\_monitor.h}}
+{\ttfamily \#include "{}../../\+CONFIG.\+h"{}}\newline
+Include dependency graph for energy\+\_\+monitor.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{energy__monitor_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{energy__monitor_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__storage04_ga2d726f82a082d5cdd3ae6b1bfaab1ce8}{EEPROM\+\_\+\+Write\+Energy\+Monitoring}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write entire energy monitoring region to EEPROM (bulk operation). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage04_ga9fb1f24e48771317aaa7c8b6c02c9786}{EEPROM\+\_\+\+Read\+Energy\+Monitoring}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Read entire energy monitoring region from EEPROM (bulk operation). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage04_ga718d1f1b5a07b4a0afee080ae1b18f2d}{EEPROM\+\_\+\+Append\+Energy\+Record}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data)
+\begin{DoxyCompactList}\small\item\em Append one energy record to ring buffer with automatic wrapping. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

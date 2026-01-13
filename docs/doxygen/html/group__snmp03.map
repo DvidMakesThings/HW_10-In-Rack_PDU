@@ -1,0 +1,4 @@
+<map id="3. SNMP Agent &#45; Outlet Control" name="3. SNMP Agent &#45; Outlet Control">
+<area shape="rect" id="Node000002" href="$group__snmp.html" title="SNMP agent implementation for ENERGIS PDU." alt="" coords="5,13,103,40"/>
+<area shape="rect" id="Node000001" title="SNMP outlet control with synchronous operations via SwitchTask." alt="" coords="151,5,310,48"/>
+</map>

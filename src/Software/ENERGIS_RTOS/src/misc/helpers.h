@@ -4,14 +4,23 @@
  *
  * @defgroup misc2 2. Helpers Module
  * @ingroup misc
- * @brief Header file for helpers module
+ * @brief System-wide helper utilities and diagnostics
  * @{
  *
  * @version 1.0.0
  * @date 2025-11-06
  *
- * @details System wide used helper functions, which cannot fit
- * into other modules.
+ * @details
+ * This module provides general-purpose utility functions and early boot diagnostics
+ * that do not fit into specialized modules. It serves as a collection of cross-cutting
+ * concerns including URL parsing, network configuration bridging, and boot snapshot
+ * capture for reset analysis.
+ *
+ * Key functionalities:
+ * - URL-encoded form data parsing and decoding
+ * - Network configuration bridging between storage and driver layers
+ * - Early boot reset cause capture and reporting
+ * - ADC voltage reading utilities
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -23,77 +32,160 @@
 #include "../CONFIG.h"
 
 /**
- * @brief Extract key=value from URL-encoded body (in-place), returns NULL if missing
- * @param body The URL-encoded body string to search
- * @param key The key to search for
- * @return Pointer to static buffer containing the value, or NULL if not found
- * @note The returned pointer is to a static buffer that will be overwritten
- *       on the next call. The value is not URL-decoded by this function.
+ * @name Public API
+ * @ingroup misc2
+ * @{
+ */
+/**
+ * @brief Extract value for a given key from URL-encoded form data.
+ *
+ * Searches a URL-encoded body string for the specified key and returns its
+ * associated value in a static buffer. The value is extracted but NOT decoded;
+ * caller must call urldecode() separately if needed.
+ *
+ * This function is commonly used to parse HTTP POST form submissions in the
+ * format: key1=value1&key2=value2&...
+ *
+ * @param body URL-encoded body string to search (must be null-terminated)
+ * @param key Key name to search for (must be null-terminated)
+ *
+ * @return Pointer to static buffer containing the extracted value, or NULL if key not found.
+ *         The static buffer is 128 bytes and will be overwritten on the next call.
+ *
+ * @note This function uses a static buffer; not thread-safe.
+ * @note The returned value is not URL-decoded; use urldecode() for full decoding.
+ * @note Maximum value length is 127 characters (128th byte is null terminator).
  */
 char *get_form_value(const char *body, const char *key);
 
 /**
- * @brief Decode '+' to ' ' and "%XX" to char, in-place
- * @param s The string to decode (modified in-place)
+ * @brief Decode URL-encoded string in-place.
+ *
+ * Performs in-place URL decoding, converting:
+ * - '+' characters to spaces
+ * - '%XX' hex sequences to their corresponding bytes
+ *
+ * The decoded string will always be equal or shorter in length than the
+ * original, making in-place modification safe.
+ *
+ * @param s Null-terminated string to decode (modified in-place)
+ *
  * @return None
- * @note This function modifies the input string in-place, converting URL
- *       encoding to regular characters. '+' becomes space, and %XX sequences
- *       are converted to their corresponding characters.
+ *
+ * @note The input string is modified in-place.
+ * @note Invalid hex sequences are copied as-is without decoding.
+ * @note This function is not thread-safe if multiple threads access the same buffer.
  */
 void urldecode(char *s);
 
 /**
- * @brief Reads the voltage from a specified ADC channel.
- * @param ch The ADC channel to read from.
- * @return The voltage as a float.
+ * @brief Read voltage from specified ADC channel.
+ *
+ * Performs an ADC conversion on the specified channel and returns the
+ * measured voltage as a floating-point value. Conversion parameters
+ * (reference voltage, resolution) are platform-dependent.
+ *
+ * @param ch ADC channel number to read (platform-specific range)
+ *
+ * @return Measured voltage as a float value in volts
+ *
+ * @note ADC must be initialized before calling this function.
+ * @note Channel validity is not checked; caller must ensure valid channel number.
  */
 float get_Voltage(uint8_t ch);
 
 /**
- * @brief Apply StorageTask networkInfo into W5500 and initialize the chip.
+ * @brief Apply network configuration from storage to W5500 Ethernet controller.
  *
- * @param ni Pointer to networkInfo (ip, gw, sn, dns, mac, dhcp mode)
- * @return true on success, false otherwise
+ * This function bridges the storage layer and the W5500 driver layer by translating
+ * the networkInfo structure into the driver-specific configuration format and applying
+ * it to the hardware. It performs the following operations:
+ * - Converts networkInfo to w5500_NetConfig format
+ * - Applies configuration to W5500 hardware registers
+ * - Initializes the W5500 chip with the new configuration
+ * - Briefly flashes the Ethernet LED to indicate successful configuration
  *
- * @details
- * This function maps StorageTask schema to the driver config struct,
- * calls w5500_set_network and then w5500_chip_init. It allows NetTask
- * to configure networking without needing to know the internal type.
+ * This abstraction allows NetTask to configure networking without direct knowledge
+ * of the driver's internal types or initialization sequence.
+ *
+ * @param ni Pointer to networkInfo structure containing IP, gateway, subnet, DNS, MAC, and DHCP
+ * mode
+ *
+ * @return true on successful configuration and initialization, false on failure
+ *
+ * @note The function validates the input pointer before use.
+ * @note Failure conditions are logged via the error logging system if enabled.
  */
 bool ethernet_apply_network_from_storage(const networkInfo *ni);
 
 /**
- * @brief Log the true silicon reset cause at the very start of boot.
+ * @brief Log detailed reset cause information at boot.
  *
- * Reads RP2040 reset-cause hardware and prints a single concise line:
- *   [BOOT] cause: chip=0xXXXXXXXX had{por=?,run=?,wd=?,vreg=?,temp=?} wd_reason=0xXXXXXXXX
+ * Reads RP2040/RP2350 hardware reset cause registers and outputs comprehensive
+ * diagnostics including chip reset flags, watchdog reason, and scratch register
+ * contents. This function decodes and reports:
+ * - Chip reset flags (POR, RUN, Watchdog, VREG, Temperature)
+ * - Watchdog reason register
+ * - All 8 watchdog scratch registers
+ * - Fault context breadcrumbs if present (0xBEEF signature)
  *
- * @note This function is non-intrusive: it does not modify any state bits,
- *       it only reads and prints. All bit fields are also printed raw to
- *       avoid dependence on SDK version or naming differences.
+ * If a fault signature is detected in scratch[0], the function decodes the
+ * fault type (HardFault, StackOverflow, MallocFail, Assert) and prints the
+ * associated context from the remaining scratch registers.
+ *
+ * @return None
+ *
+ * @note This function is read-only and does not modify hardware state.
+ * @note Platform-specific to RP2040/RP2350; gracefully handles other platforms.
+ * @note Call this after logger initialization for diagnostic output.
  */
 void Boot_LogResetCause(void);
 
 /**
- * @brief Capture a minimal reset snapshot at the very beginning of boot.
+ * @brief Capture early boot reset snapshot into retained memory.
  *
- * Persist a monotonic boots counter, raw reset reason bits, and the watchdog
- * scratch registers into noinit memory. Performs no logging and uses no heap.
+ * This function must be called as the very first statement in main(), before
+ * any subsystem initialization. It captures a minimal diagnostic snapshot into
+ * non-initialized RAM that survives resets:
+ * - Validates or initializes the snapshot structure
+ * - Increments monotonic boot counter
+ * - Reads raw reset reason bits from hardware
+ * - Copies all 8 watchdog scratch registers
  *
- * Call this as the first statement in main(), before clocks, USB-CDC, logger,
- * or the RTOS are initialized.
+ * The snapshot is designed to be captured before any potential initialization
+ * failures that might prevent normal logging. It uses no heap, no peripherals
+ * beyond hardware register reads, and minimal stack space.
+ *
+ * @return None
+ *
+ * @note MUST be called before clock configuration, RTOS, logger, or USB initialization.
+ * @note Uses noinit RAM section; contents survive across soft resets.
+ * @note Pair with Helpers_LateBootDumpAndClear() to print the snapshot.
  */
 void Helpers_EarlyBootSnapshot(void);
 
 /**
- * @brief Print the previously captured snapshot once logging is available, then clear it.
+ * @brief Print the early boot snapshot and clear transient diagnostics.
  *
- * If a valid snapshot is present, prints a short diagnostics block that includes
- * the boots counter, the raw reset bits, and the watchdog scratch registers,
- * then clears the snapshot so the next boot starts fresh.
+ * This function should be called during initialization after the logger subsystem
+ * is ready. It outputs the boot snapshot that was captured by
+ * Helpers_EarlyBootSnapshot(), including:
+ * - Monotonic boot counter
+ * - Raw reset reason bits
+ * - All 8 watchdog scratch register values
  *
+ * After printing, the function clears only the transient diagnostic fields
+ * (reset bits and scratch registers) while preserving the magic, version, and
+ * boot counter for correlation across subsequent boots.
+ *
+ * @return None
+ *
+ * @note Call this from initialization task after logger is initialized.
+ * @note If no valid snapshot exists, a brief notification is printed.
+ * @note The boot counter persists and continues incrementing across boots.
  */
 void Helpers_LateBootDumpAndClear(void);
+/** @} */
 
 #endif // HELPERS_H
 

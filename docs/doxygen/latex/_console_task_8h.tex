@@ -1,0 +1,62 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\+Console\+Task.h File Reference}
+\hypertarget{_console_task_8h}{}\label{_console_task_8h}\index{src/Software/ENERGIS\_RTOS/src/tasks/ConsoleTask.h@{src/Software/ENERGIS\_RTOS/src/tasks/ConsoleTask.h}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for Console\+Task.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_console_task_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structpower__msg__t}{power\+\_\+msg\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Message for power/relay control operations. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structcfg__msg__t}{cfg\+\_\+msg\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Configuration storage message for Storage\+Task. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmeter__msg__t}{meter\+\_\+msg\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Meter reading message for Meter\+Task. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structnet__msg__t}{net\+\_\+msg\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Network operation message for Net\+Task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__tasks02_gab2fcb31273a6ffa0e884123cc5943095}{power\+\_\+cmd\+\_\+kind\+\_\+t}} \{ \mbox{\hyperlink{group__tasks02_ggab2fcb31273a6ffa0e884123cc5943095a529f680386be0d2e185944b54dbc1839}{PWR\+\_\+\+CMD\+\_\+\+SET\+\_\+\+RELAY}}
+, \mbox{\hyperlink{group__tasks02_ggab2fcb31273a6ffa0e884123cc5943095a55294b2ee2d0300949b5121b4d43d9f7}{PWR\+\_\+\+CMD\+\_\+\+GET\+\_\+\+RELAY}}
+, \mbox{\hyperlink{group__tasks02_ggab2fcb31273a6ffa0e884123cc5943095aad6ddee991b80cbd4c67e9fe511f170a}{PWR\+\_\+\+CMD\+\_\+\+RELAY\+\_\+\+ALL\+\_\+\+OFF}}
+ \}
+\begin{DoxyCompactList}\small\item\em Power/relay control command types sent via {\ttfamily q\+\_\+power}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Base\+Type\+\_\+t \mbox{\hyperlink{group__tasks02_gad45ca7c142e8c2764d52b3d554ffcdeb}{Console\+Task\+\_\+\+Init}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Initialize and start the console task. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks02_gab2d019f35eb9844ccb157488ed577f8f}{Console\+\_\+\+Is\+Ready}} (void)
+\begin{DoxyCompactList}\small\item\em Query console task readiness status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{Indent}\textbf{ Inter-\/\+Task Communication Queues}\par
+{\em Queues used by Console\+Task to communicate with subsystems. }\begin{DoxyCompactItemize}
+\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{group__tasks02_ga63df37407f32873668fce7f38927ea15}{q\+\_\+power}}
+\begin{DoxyCompactList}\small\item\em Power/relay control queue. \end{DoxyCompactList}\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{group__tasks02_ga988900dc449acf0ca0b71913239e82d3}{q\+\_\+cfg}}
+\begin{DoxyCompactList}\small\item\em Configuration storage queue. \end{DoxyCompactList}\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{group__tasks02_ga17fe448666de7107b8c3aa8a16bf1f85}{q\+\_\+meter}}
+\begin{DoxyCompactList}\small\item\em Meter reading queue. \end{DoxyCompactList}\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{group__tasks02_ga190f5d69790a6eb1e47e555b304c1cd3}{q\+\_\+net}}
+\begin{DoxyCompactList}\small\item\em Network operation queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

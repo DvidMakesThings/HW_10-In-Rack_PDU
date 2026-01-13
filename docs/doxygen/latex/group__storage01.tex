@@ -1,0 +1,903 @@
+\doxysubsubsection{
+\begin{DoxyEnumerate}
+\item Sensor Calibration 
+\end{DoxyEnumerate}}
+\hypertarget{group__storage01}{}\label{group__storage01}\index{1. Sensor Calibration@{1. Sensor Calibration}}
+
+
+HLW8032 power meter calibration per channel.  
+
+
+Collaboration diagram for 1. Sensor Calibration\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=313pt]{group__storage01}
+\end{center}
+\end{figure}
+\doxysubsubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Persistent temperature calibration record. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__storage01_ga4a6ecc46bafd36de50a097f2c1fd4e13}{TEMP\+\_\+\+CAL\+\_\+\+MAGIC}}~((uint16\+\_\+t)((\textquotesingle{}T\textquotesingle{} $<$$<$ 8) \texorpdfstring{$\vert$}{|} \textquotesingle{}C\textquotesingle{}))
+\begin{DoxyCompactList}\small\item\em Magic value stored in calibration record. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__storage01_gaa51b50a0f7206b13a9f06906d666a804}{TEMP\+\_\+\+CAL\+\_\+\+VERSION}}~(0x0001u)
+\begin{DoxyCompactList}\small\item\em Calibration record version. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{group__storage01_gga545df4a8b3ff70d5c24352e94595aef2ad83450dfec571e919836cb1c5b7cf347}{TEMP\+\_\+\+CAL\+\_\+\+FLAG\+\_\+\+VALID}} = 1u \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 0
+, \mbox{\hyperlink{group__storage01_gga545df4a8b3ff70d5c24352e94595aef2a96e7d3210cdf212589ee3ed109387eb8}{TEMP\+\_\+\+CAL\+\_\+\+FLAG\+\_\+\+TWO\+\_\+\+PT}} = 1u \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 1
+ \}
+\begin{DoxyCompactList}\small\item\em Calibration flags. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__storage01_ga8c6878800e86fa5968286d14291c03c9}{temp\+\_\+cal\+\_\+mode\+\_\+t}} \{ \mbox{\hyperlink{group__storage01_gga8c6878800e86fa5968286d14291c03c9afaafc760636677bdccbd75a0ade4e868}{TEMP\+\_\+\+CAL\+\_\+\+MODE\+\_\+\+NONE}} = 0
+, \mbox{\hyperlink{group__storage01_gga8c6878800e86fa5968286d14291c03c9a9e5eeeb58b780130e9ba647f850eac35}{TEMP\+\_\+\+CAL\+\_\+\+MODE\+\_\+1\+PT}} = 1
+, \mbox{\hyperlink{group__storage01_gga8c6878800e86fa5968286d14291c03c9abf1d6d146c10f96025ffbc33f464152e}{TEMP\+\_\+\+CAL\+\_\+\+MODE\+\_\+2\+PT}} = 2
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__storage01_ga32076a8416bb992b9406dec24567cf71}{EEPROM\+\_\+\+Write\+Sensor\+Calibration}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write entire HLW8032 sensor calibration block to EEPROM. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage01_ga7182e6e053685a9aac34eee5097a7416}{EEPROM\+\_\+\+Read\+Sensor\+Calibration}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Read entire HLW8032 sensor calibration block from EEPROM. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage01_ga6fba2dcfc28ba004e71997f93c6b3d39}{EEPROM\+\_\+\+Write\+Sensor\+Calibration\+For\+Channel}} (uint8\+\_\+t ch, const \mbox{\hyperlink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}in)
+\begin{DoxyCompactList}\small\item\em Write calibration record for single HLW8032 channel. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage01_gaa3b6f1341ad447d7f7f95d1be802b1e7}{EEPROM\+\_\+\+Read\+Sensor\+Calibration\+For\+Channel}} (uint8\+\_\+t ch, \mbox{\hyperlink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Read calibration record for single HLW8032 channel. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage01_gabc289be7b0cdbb53e52f48a0a10701ac}{EEPROM\+\_\+\+Write\+Temp\+Calibration}} (const \mbox{\hyperlink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}cal)
+\begin{DoxyCompactList}\small\item\em Write RP2040 temperature calibration record to EEPROM. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage01_gac5ff91b753d7b36b811a2d75068006ed}{EEPROM\+\_\+\+Read\+Temp\+Calibration}} (\mbox{\hyperlink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Read RP2040 temperature calibration record from EEPROM. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage01_ga73504452f7a1b317e752b7f668694a3d}{Temp\+Calibration\+\_\+\+Compute\+Single\+Point}} (float ambient\+\_\+c, uint16\+\_\+t raw\+\_\+temp, \mbox{\hyperlink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Compute single-\/point temperature calibration from reference measurement. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage01_ga655669ab4b049b7ef9bcf70ea3d06ec6}{Temp\+Calibration\+\_\+\+Compute\+Two\+Point}} (float t1\+\_\+c, uint16\+\_\+t raw1, float t2\+\_\+c, uint16\+\_\+t raw2, \mbox{\hyperlink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Compute two-\/point temperature calibration from reference measurements. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage01_ga7796a67e219e367ba5424202cff756ae}{Temp\+Calibration\+\_\+\+Apply\+To\+Meter\+Task}} (const \mbox{\hyperlink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}cal)
+\begin{DoxyCompactList}\small\item\em Apply temperature calibration to Meter\+Task measurement path. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage01_ga1a4a0e2917c171c09500b674b6f2911f}{Temp\+Calibration\+\_\+\+Load\+And\+Apply}} (\mbox{\hyperlink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Load temperature calibration from EEPROM and apply to Meter\+Task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+HLW8032 power meter calibration per channel. 
+
+\begin{DoxyVersion}{Version}
+1.\+2 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/15
+\end{DoxyDate}
+This module manages calibration data for two sensor subsystems\+: HLW8032 power meters (8 channels) and RP2040 internal temperature sensor. Provides EEPROM persistence, calibration computation helpers, and runtime application to Meter\+Task.
+
+Key Features\+:
+\begin{DoxyItemize}
+\item Per-\/channel HLW8032 calibration with voltage/current factors
+\item RP2040 temperature sensor calibration (1-\/point or 2-\/point)
+\item EEPROM persistence with bounds checking
+\item Calibration computation helpers for temperature
+\item Runtime application to Meter\+Task measurement path
+\end{DoxyItemize}
+
+HLW8032 Calibration\+:
+\begin{DoxyItemize}
+\item 8 independent channels with individual calibration records
+\item Each channel stores\+:
+\begin{DoxyItemize}
+\item Voltage factor (HLW8032\+\_\+\+VF default\+: 0.\+596)
+\item Current factor (HLW8032\+\_\+\+CF default\+: 14.\+871)
+\item Voltage offset (zero-\/point compensation)
+\item Current offset (zero-\/point compensation)
+\item Resistor divider values (R1, R2, shunt)
+\item Calibration status flags
+\end{DoxyItemize}
+\item Channel calibration stored as \doxylink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t} structure
+\item EEPROM location\+: EEPROM\+\_\+\+SENSOR\+\_\+\+CAL\+\_\+\+START + (ch \texorpdfstring{$\ast$}{*} sizeof(hlw\+\_\+calib\+\_\+t))
+\item Bulk read/write for all channels or individual channel access
+\end{DoxyItemize}
+
+Temperature Calibration\+:
+\begin{DoxyItemize}
+\item RP2040 internal temperature sensor compensation
+\item Two calibration modes\+:
+\begin{DoxyItemize}
+\item TEMP\+\_\+\+CAL\+\_\+\+MODE\+\_\+1\+PT\+: Single-\/point offset calibration
+\item TEMP\+\_\+\+CAL\+\_\+\+MODE\+\_\+2\+PT\+: Two-\/point slope + intercept calibration
+\end{DoxyItemize}
+\item Stored as \doxylink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t} structure with magic/version/\+CRC32
+\item Default model\+: V0=0.\+706V@27°C, slope=0.\+001721V/°C
+\item EEPROM location\+: EEPROM\+\_\+\+TEMP\+\_\+\+CAL\+\_\+\+START (separate block)
+\item Computation functions for deriving calibration from measurements
+\end{DoxyItemize}
+
+EEPROM Layout\+:
+\begin{DoxyEnumerate}
+\item HLW8032 Calibration Block (EEPROM\+\_\+\+SENSOR\+\_\+\+CAL\+\_\+\+START)\+:
+\begin{DoxyItemize}
+\item Size\+: EEPROM\+\_\+\+SENSOR\+\_\+\+CAL\+\_\+\+SIZE bytes
+\item Contents\+: 8 × \doxylink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t} structures (one per channel)
+\item Layout\+: Channel 0 @ offset 0, Channel 1 @ offset sizeof(hlw\+\_\+calib\+\_\+t), etc.
+\end{DoxyItemize}
+\item Temperature Calibration Block (EEPROM\+\_\+\+TEMP\+\_\+\+CAL\+\_\+\+START)\+:
+\begin{DoxyItemize}
+\item Size\+: EEPROM\+\_\+\+TEMP\+\_\+\+CAL\+\_\+\+SIZE bytes
+\item Contents\+: \doxylink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t} structure with magic/version/\+CRC32
+\item Magic\+: \textquotesingle{}TC\textquotesingle{} (0x5443) for validity detection
+\item Version\+: TEMP\+\_\+\+CAL\+\_\+\+VERSION (0x0001)
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+Temperature Calibration Workflow\+:
+\begin{DoxyEnumerate}
+\item Measure ADC raw value at known temperature(s)
+\item Call \doxylink{group__storage01_ga73504452f7a1b317e752b7f668694a3d}{Temp\+Calibration\+\_\+\+Compute\+Single\+Point()} or \doxylink{group__storage01_ga655669ab4b049b7ef9bcf70ea3d06ec6}{Temp\+Calibration\+\_\+\+Compute\+Two\+Point()}
+\item Write computed record to EEPROM via \doxylink{group__storage01_gabc289be7b0cdbb53e52f48a0a10701ac}{EEPROM\+\_\+\+Write\+Temp\+Calibration()}
+\item Apply to Meter\+Task via \doxylink{group__storage01_ga7796a67e219e367ba5424202cff756ae}{Temp\+Calibration\+\_\+\+Apply\+To\+Meter\+Task()}
+\item On boot, use \doxylink{group__storage01_ga1a4a0e2917c171c09500b674b6f2911f}{Temp\+Calibration\+\_\+\+Load\+And\+Apply()} for automatic load+apply
+\end{DoxyEnumerate}
+
+Single-\/\+Point Calibration\+:
+\begin{DoxyItemize}
+\item Measures offset only, assumes default slope
+\item Requires one known temperature measurement
+\item Suitable for reducing ambient temperature error
+\item Sets offset so T\+\_\+reported = T\+\_\+actual at calibration point
+\end{DoxyItemize}
+
+Two-\/\+Point Calibration\+:
+\begin{DoxyItemize}
+\item Measures both slope and V0 intercept
+\item Requires two temperature measurements (e.\+g., ambient + warmed)
+\item Better accuracy across temperature range
+\item Compensates for per-\/die slope variation
+\end{DoxyItemize}
+
+Thread Safety\+:
+\begin{DoxyItemize}
+\item All EEPROM read/write functions require eeprom\+Mtx held by caller
+\item Calibration computation functions are reentrant (no EEPROM access)
+\item \doxylink{group__storage01_ga7796a67e219e367ba5424202cff756ae}{Temp\+Calibration\+\_\+\+Apply\+To\+Meter\+Task()} sends queue message to Meter\+Task
+\item \doxylink{group__storage01_ga1a4a0e2917c171c09500b674b6f2911f}{Temp\+Calibration\+\_\+\+Load\+And\+Apply()} manages mutex internally
+\end{DoxyItemize}
+
+Integration Points\+:
+\begin{DoxyItemize}
+\item Meter\+Task\+: Consumes calibration data for measurements
+\item Storage\+Task\+: Provides eeprom\+Mtx for thread-\/safe access
+\item factory\+\_\+defaults\+: Writes default calibration on first boot
+\item Console commands\+: UART calibration workflow
+\end{DoxyItemize}
+
+Error Handling\+:
+\begin{DoxyItemize}
+\item Bounds checking on all EEPROM operations
+\item Null pointer checks on all function inputs
+\item Invalid channel index rejection
+\item Magic/version validation for temperature calibration
+\item CRC32 validation (optional, currently not enforced)
+\item Error codes logged and enqueued to event log
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Always call EEPROM functions with eeprom\+Mtx held. 
+
+Temperature calibration applies globally, not per-\/channel. 
+
+HLW8032 calibration is per-\/channel and independent. 
+
+Calibration changes do not take effect until applied to Meter\+Task.
+\end{DoxyNote}
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{group__storage01_doc-define-members}
+\doxysubsubsubsection{Macro Definition Documentation}
+\Hypertarget{group__storage01_ga4a6ecc46bafd36de50a097f2c1fd4e13}\index{1. Sensor Calibration@{1. Sensor Calibration}!TEMP\_CAL\_MAGIC@{TEMP\_CAL\_MAGIC}}
+\index{TEMP\_CAL\_MAGIC@{TEMP\_CAL\_MAGIC}!1. Sensor Calibration@{1. Sensor Calibration}}
+\doxysubsubsubsubsection{\texorpdfstring{TEMP\_CAL\_MAGIC}{TEMP\_CAL\_MAGIC}}
+{\footnotesize\ttfamily \label{group__storage01_ga4a6ecc46bafd36de50a097f2c1fd4e13} 
+\#define TEMP\+\_\+\+CAL\+\_\+\+MAGIC~((uint16\+\_\+t)((\textquotesingle{}T\textquotesingle{} $<$$<$ 8) \texorpdfstring{$\vert$}{|} \textquotesingle{}C\textquotesingle{}))}
+
+
+
+Magic value stored in calibration record. 
+
+\Hypertarget{group__storage01_gaa51b50a0f7206b13a9f06906d666a804}\index{1. Sensor Calibration@{1. Sensor Calibration}!TEMP\_CAL\_VERSION@{TEMP\_CAL\_VERSION}}
+\index{TEMP\_CAL\_VERSION@{TEMP\_CAL\_VERSION}!1. Sensor Calibration@{1. Sensor Calibration}}
+\doxysubsubsubsubsection{\texorpdfstring{TEMP\_CAL\_VERSION}{TEMP\_CAL\_VERSION}}
+{\footnotesize\ttfamily \label{group__storage01_gaa51b50a0f7206b13a9f06906d666a804} 
+\#define TEMP\+\_\+\+CAL\+\_\+\+VERSION~(0x0001u)}
+
+
+
+Calibration record version. 
+
+
+
+\label{doc-enum-members}
+\Hypertarget{group__storage01_doc-enum-members}
+\doxysubsubsubsection{Enumeration Type Documentation}
+\Hypertarget{group__storage01_ga545df4a8b3ff70d5c24352e94595aef2}\doxysubsubsubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{group__storage01_ga545df4a8b3ff70d5c24352e94595aef2} 
+anonymous enum}
+
+
+
+Calibration flags. 
+
+Bitmask stored in temp\+\_\+calib\+\_\+t\+::flags . \begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TEMP\_CAL\_FLAG\_VALID@{TEMP\_CAL\_FLAG\_VALID}!1. Sensor Calibration@{1. Sensor Calibration}}\index{1. Sensor Calibration@{1. Sensor Calibration}!TEMP\_CAL\_FLAG\_VALID@{TEMP\_CAL\_FLAG\_VALID}}}\Hypertarget{group__storage01_gga545df4a8b3ff70d5c24352e94595aef2ad83450dfec571e919836cb1c5b7cf347}\label{group__storage01_gga545df4a8b3ff70d5c24352e94595aef2ad83450dfec571e919836cb1c5b7cf347} 
+TEMP\+\_\+\+CAL\+\_\+\+FLAG\+\_\+\+VALID&Record validated and CRC-\/correct. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TEMP\_CAL\_FLAG\_TWO\_PT@{TEMP\_CAL\_FLAG\_TWO\_PT}!1. Sensor Calibration@{1. Sensor Calibration}}\index{1. Sensor Calibration@{1. Sensor Calibration}!TEMP\_CAL\_FLAG\_TWO\_PT@{TEMP\_CAL\_FLAG\_TWO\_PT}}}\Hypertarget{group__storage01_gga545df4a8b3ff70d5c24352e94595aef2a96e7d3210cdf212589ee3ed109387eb8}\label{group__storage01_gga545df4a8b3ff70d5c24352e94595aef2a96e7d3210cdf212589ee3ed109387eb8} 
+TEMP\+\_\+\+CAL\+\_\+\+FLAG\+\_\+\+TWO\+\_\+\+PT&Derived using two-\/point computation. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{group__storage01_ga8c6878800e86fa5968286d14291c03c9}\index{1. Sensor Calibration@{1. Sensor Calibration}!temp\_cal\_mode\_t@{temp\_cal\_mode\_t}}
+\index{temp\_cal\_mode\_t@{temp\_cal\_mode\_t}!1. Sensor Calibration@{1. Sensor Calibration}}
+\doxysubsubsubsubsection{\texorpdfstring{temp\_cal\_mode\_t}{temp\_cal\_mode\_t}}
+{\footnotesize\ttfamily \label{group__storage01_ga8c6878800e86fa5968286d14291c03c9} 
+enum \mbox{\hyperlink{group__storage01_ga8c6878800e86fa5968286d14291c03c9}{temp\+\_\+cal\+\_\+mode\+\_\+t}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TEMP\_CAL\_MODE\_NONE@{TEMP\_CAL\_MODE\_NONE}!1. Sensor Calibration@{1. Sensor Calibration}}\index{1. Sensor Calibration@{1. Sensor Calibration}!TEMP\_CAL\_MODE\_NONE@{TEMP\_CAL\_MODE\_NONE}}}\Hypertarget{group__storage01_gga8c6878800e86fa5968286d14291c03c9afaafc760636677bdccbd75a0ade4e868}\label{group__storage01_gga8c6878800e86fa5968286d14291c03c9afaafc760636677bdccbd75a0ade4e868} 
+TEMP\+\_\+\+CAL\+\_\+\+MODE\+\_\+\+NONE&No calibration data present. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TEMP\_CAL\_MODE\_1PT@{TEMP\_CAL\_MODE\_1PT}!1. Sensor Calibration@{1. Sensor Calibration}}\index{1. Sensor Calibration@{1. Sensor Calibration}!TEMP\_CAL\_MODE\_1PT@{TEMP\_CAL\_MODE\_1PT}}}\Hypertarget{group__storage01_gga8c6878800e86fa5968286d14291c03c9a9e5eeeb58b780130e9ba647f850eac35}\label{group__storage01_gga8c6878800e86fa5968286d14291c03c9a9e5eeeb58b780130e9ba647f850eac35} 
+TEMP\+\_\+\+CAL\+\_\+\+MODE\+\_\+1\+PT&Single-\/point calibration (offset only). \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TEMP\_CAL\_MODE\_2PT@{TEMP\_CAL\_MODE\_2PT}!1. Sensor Calibration@{1. Sensor Calibration}}\index{1. Sensor Calibration@{1. Sensor Calibration}!TEMP\_CAL\_MODE\_2PT@{TEMP\_CAL\_MODE\_2PT}}}\Hypertarget{group__storage01_gga8c6878800e86fa5968286d14291c03c9abf1d6d146c10f96025ffbc33f464152e}\label{group__storage01_gga8c6878800e86fa5968286d14291c03c9abf1d6d146c10f96025ffbc33f464152e} 
+TEMP\+\_\+\+CAL\+\_\+\+MODE\+\_\+2\+PT&Two-\/point calibration (slope + intercept). \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{group__storage01_doc-func-members}
+\doxysubsubsubsection{Function Documentation}
+\Hypertarget{group__storage01_ga7182e6e053685a9aac34eee5097a7416}\index{1. Sensor Calibration@{1. Sensor Calibration}!EEPROM\_ReadSensorCalibration@{EEPROM\_ReadSensorCalibration}}
+\index{EEPROM\_ReadSensorCalibration@{EEPROM\_ReadSensorCalibration}!1. Sensor Calibration@{1. Sensor Calibration}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_ReadSensorCalibration()}{EEPROM\_ReadSensorCalibration()}}
+{\footnotesize\ttfamily \label{group__storage01_ga7182e6e053685a9aac34eee5097a7416} 
+int EEPROM\+\_\+\+Read\+Sensor\+Calibration (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{size\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Read entire HLW8032 sensor calibration block from EEPROM. 
+
+Bulk read operation for all 8 channels of HLW8032 calibration data. Reads complete calibration block into provided buffer.
+
+EEPROM Layout\+:
+\begin{DoxyItemize}
+\item Start address\+: EEPROM\+\_\+\+SENSOR\+\_\+\+CAL\+\_\+\+START
+\item Maximum size\+: EEPROM\+\_\+\+SENSOR\+\_\+\+CAL\+\_\+\+SIZE bytes
+\item Contents\+: Array of \doxylink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t} structures (8 channels)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{out}}  & {\em data} & Destination buffer for calibration data. \\
+\hline
+\mbox{\texttt{in}}  & {\em len} & Number of bytes to read. Must be \texorpdfstring{$<$}{<}= EEPROM\+\_\+\+SENSOR\+\_\+\+CAL\+\_\+\+SIZE.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if read successful. 
+
+-\/1 if length exceeds EEPROM\+\_\+\+SENSOR\+\_\+\+CAL\+\_\+\+SIZE.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Bounds checking performed before read operation. 
+
+Read failures logged as ERR\+\_\+\+SEV\+\_\+\+ERROR if ERRORLOGGER enabled. 
+
+For single-\/channel reads, use \doxylink{group__storage01_gaa3b6f1341ad447d7f7f95d1be802b1e7}{EEPROM\+\_\+\+Read\+Sensor\+Calibration\+For\+Channel()}.
+\end{DoxyNote}
+See \doxylink{calibration_8h}{calibration.\+h} for full API documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage01_ga7182e6e053685a9aac34eee5097a7416_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage01_ga7182e6e053685a9aac34eee5097a7416_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage01_gaa3b6f1341ad447d7f7f95d1be802b1e7}\index{1. Sensor Calibration@{1. Sensor Calibration}!EEPROM\_ReadSensorCalibrationForChannel@{EEPROM\_ReadSensorCalibrationForChannel}}
+\index{EEPROM\_ReadSensorCalibrationForChannel@{EEPROM\_ReadSensorCalibrationForChannel}!1. Sensor Calibration@{1. Sensor Calibration}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_ReadSensorCalibrationForChannel()}{EEPROM\_ReadSensorCalibrationForChannel()}}
+{\footnotesize\ttfamily \label{group__storage01_gaa3b6f1341ad447d7f7f95d1be802b1e7} 
+int EEPROM\+\_\+\+Read\+Sensor\+Calibration\+For\+Channel (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch}{, }\item[{\mbox{\hyperlink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{out}{}\end{DoxyParamCaption})}
+
+
+
+Read calibration record for single HLW8032 channel. 
+
+Per-\/channel read operation for HLW8032 power meter calibration. Reads \doxylink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t} structure from calculated EEPROM address for specified channel.
+
+EEPROM Address Calculation\+:
+\begin{DoxyItemize}
+\item Base\+: EEPROM\+\_\+\+SENSOR\+\_\+\+CAL\+\_\+\+START
+\item Offset\+: ch × sizeof(hlw\+\_\+calib\+\_\+t)
+\item Channel 0\+: EEPROM\+\_\+\+SENSOR\+\_\+\+CAL\+\_\+\+START + 0
+\item Channel 7\+: EEPROM\+\_\+\+SENSOR\+\_\+\+CAL\+\_\+\+START + (7 × sizeof(hlw\+\_\+calib\+\_\+t))
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em ch} & Channel index \mbox{[}0..7\mbox{]}. \\
+\hline
+\mbox{\texttt{out}}  & {\em out} & Pointer to \doxylink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t} structure to receive calibration data.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if read successful. 
+
+-\/1 if ch \texorpdfstring{$>$}{>}= 8 or out is NULL.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Channel index validated before read operation. 
+
+Null pointer check performed on output structure. 
+
+Read failures logged as ERR\+\_\+\+SEV\+\_\+\+ERROR if ERRORLOGGER enabled. 
+
+Caller responsible for interpreting calibration flags.
+\end{DoxyNote}
+See \doxylink{calibration_8h}{calibration.\+h} for full API documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage01_gaa3b6f1341ad447d7f7f95d1be802b1e7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage01_gaa3b6f1341ad447d7f7f95d1be802b1e7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage01_gac5ff91b753d7b36b811a2d75068006ed}\index{1. Sensor Calibration@{1. Sensor Calibration}!EEPROM\_ReadTempCalibration@{EEPROM\_ReadTempCalibration}}
+\index{EEPROM\_ReadTempCalibration@{EEPROM\_ReadTempCalibration}!1. Sensor Calibration@{1. Sensor Calibration}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_ReadTempCalibration()}{EEPROM\_ReadTempCalibration()}}
+{\footnotesize\ttfamily \label{group__storage01_gac5ff91b753d7b36b811a2d75068006ed} 
+int EEPROM\+\_\+\+Read\+Temp\+Calibration (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{out}{}\end{DoxyParamCaption})}
+
+
+
+Read RP2040 temperature calibration record from EEPROM. 
+
+Reads \doxylink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t} structure from dedicated EEPROM block and validates magic value and version. Returns safe defaults if calibration record invalid or not present.
+
+Validation Checks\+:
+\begin{DoxyItemize}
+\item Magic value matches TEMP\+\_\+\+CAL\+\_\+\+MAGIC (\textquotesingle{}TC\textquotesingle{} = 0x5443)
+\item Version matches TEMP\+\_\+\+CAL\+\_\+\+VERSION (0x0001)
+\item Mode is valid (TEMP\+\_\+\+CAL\+\_\+\+MODE\+\_\+1\+PT or TEMP\+\_\+\+CAL\+\_\+\+MODE\+\_\+2\+PT)
+\end{DoxyItemize}
+
+Default Calibration (if invalid)\+:
+\begin{DoxyItemize}
+\item Mode\+: TEMP\+\_\+\+CAL\+\_\+\+MODE\+\_\+\+NONE
+\item V0\+: 0.\+706V (RP2040 typical at 27°C)
+\item Slope\+: 0.\+001721 V/°C (RP2040 typical)
+\item Offset\+: 0.\+0°C
+\end{DoxyItemize}
+
+EEPROM Layout\+:
+\begin{DoxyItemize}
+\item Start address\+: EEPROM\+\_\+\+TEMP\+\_\+\+CAL\+\_\+\+START
+\item Size\+: EEPROM\+\_\+\+TEMP\+\_\+\+CAL\+\_\+\+SIZE bytes (sizeof(temp\+\_\+calib\+\_\+t))
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{out}}  & {\em out} & Pointer to \doxylink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t} structure to receive calibration data.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if valid calibration record loaded. 
+
+-\/1 if magic/version invalid or not present (defaults returned).
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Null pointer check performed on output structure. 
+
+Always fills output structure with either valid data or defaults. 
+
+CRC32 validation not currently enforced.
+\end{DoxyNote}
+See \doxylink{calibration_8h}{calibration.\+h} for full API documentation. Must be called with eeprom\+Mtx held. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage01_gac5ff91b753d7b36b811a2d75068006ed_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage01_gac5ff91b753d7b36b811a2d75068006ed_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage01_ga32076a8416bb992b9406dec24567cf71}\index{1. Sensor Calibration@{1. Sensor Calibration}!EEPROM\_WriteSensorCalibration@{EEPROM\_WriteSensorCalibration}}
+\index{EEPROM\_WriteSensorCalibration@{EEPROM\_WriteSensorCalibration}!1. Sensor Calibration@{1. Sensor Calibration}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_WriteSensorCalibration()}{EEPROM\_WriteSensorCalibration()}}
+{\footnotesize\ttfamily \label{group__storage01_ga32076a8416bb992b9406dec24567cf71} 
+int EEPROM\+\_\+\+Write\+Sensor\+Calibration (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{size\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Write entire HLW8032 sensor calibration block to EEPROM. 
+
+Bulk write operation for all 8 channels of HLW8032 calibration data. Typically used to write complete \doxylink{structhlw__calib__data__t}{hlw\+\_\+calib\+\_\+data\+\_\+t} array containing calibration parameters for all channels at once.
+
+EEPROM Layout\+:
+\begin{DoxyItemize}
+\item Start address\+: EEPROM\+\_\+\+SENSOR\+\_\+\+CAL\+\_\+\+START
+\item Maximum size\+: EEPROM\+\_\+\+SENSOR\+\_\+\+CAL\+\_\+\+SIZE bytes
+\item Contents\+: Array of \doxylink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t} structures (8 channels)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em data} & Pointer to source buffer containing calibration data. \\
+\hline
+\mbox{\texttt{in}}  & {\em len} & Number of bytes to write. Must be \texorpdfstring{$<$}{<}= EEPROM\+\_\+\+SENSOR\+\_\+\+CAL\+\_\+\+SIZE.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if write successful. 
+
+-\/1 if length exceeds EEPROM\+\_\+\+SENSOR\+\_\+\+CAL\+\_\+\+SIZE or I2C write fails.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Bounds checking performed before write operation. 
+
+Write failures logged as ERR\+\_\+\+SEV\+\_\+\+ERROR if ERRORLOGGER enabled. 
+
+For single-\/channel updates, use \doxylink{group__storage01_ga6fba2dcfc28ba004e71997f93c6b3d39}{EEPROM\+\_\+\+Write\+Sensor\+Calibration\+For\+Channel()}.
+\end{DoxyNote}
+See \doxylink{calibration_8h}{calibration.\+h} for full API documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage01_ga32076a8416bb992b9406dec24567cf71_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage01_ga32076a8416bb992b9406dec24567cf71_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage01_ga6fba2dcfc28ba004e71997f93c6b3d39}\index{1. Sensor Calibration@{1. Sensor Calibration}!EEPROM\_WriteSensorCalibrationForChannel@{EEPROM\_WriteSensorCalibrationForChannel}}
+\index{EEPROM\_WriteSensorCalibrationForChannel@{EEPROM\_WriteSensorCalibrationForChannel}!1. Sensor Calibration@{1. Sensor Calibration}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_WriteSensorCalibrationForChannel()}{EEPROM\_WriteSensorCalibrationForChannel()}}
+{\footnotesize\ttfamily \label{group__storage01_ga6fba2dcfc28ba004e71997f93c6b3d39} 
+int EEPROM\+\_\+\+Write\+Sensor\+Calibration\+For\+Channel (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch}{, }\item[{const \mbox{\hyperlink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{in}{}\end{DoxyParamCaption})}
+
+
+
+Write calibration record for single HLW8032 channel. 
+
+Per-\/channel write operation for HLW8032 power meter calibration. Calculates EEPROM address for specified channel and writes \doxylink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t} structure containing voltage/current factors, offsets, and resistor values.
+
+Calibration Parameters\+:
+\begin{DoxyItemize}
+\item Voltage factor\+: Scaling coefficient for voltage measurements
+\item Current factor\+: Scaling coefficient for current measurements
+\item Voltage offset\+: Zero-\/point compensation for voltage
+\item Current offset\+: Zero-\/point compensation for current
+\item R1 actual\+: Voltage divider resistor R1 value (typically 1880kΩ)
+\item R2 actual\+: Voltage divider resistor R2 value (typically 1kΩ)
+\item Shunt actual\+: Current shunt resistance (typically 0.\+001Ω)
+\item Calibrated flag\+: Indicates if channel has been calibrated
+\item Zero calibrated flag\+: Indicates if zero-\/point calibration performed
+\end{DoxyItemize}
+
+EEPROM Address Calculation\+:
+\begin{DoxyItemize}
+\item Base\+: EEPROM\+\_\+\+SENSOR\+\_\+\+CAL\+\_\+\+START
+\item Offset\+: ch × sizeof(hlw\+\_\+calib\+\_\+t)
+\item Channel 0\+: EEPROM\+\_\+\+SENSOR\+\_\+\+CAL\+\_\+\+START + 0
+\item Channel 7\+: EEPROM\+\_\+\+SENSOR\+\_\+\+CAL\+\_\+\+START + (7 × sizeof(hlw\+\_\+calib\+\_\+t))
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em ch} & Channel index \mbox{[}0..7\mbox{]}. \\
+\hline
+\mbox{\texttt{in}}  & {\em in} & Pointer to \doxylink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t} structure containing calibration data.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if write successful. 
+
+-\/1 if ch \texorpdfstring{$>$}{>}= 8 or in is NULL.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Channel index validated before write operation. 
+
+Null pointer check performed on input structure. 
+
+Write failures logged as ERR\+\_\+\+SEV\+\_\+\+ERROR if ERRORLOGGER enabled.
+\end{DoxyNote}
+See \doxylink{calibration_8h}{calibration.\+h} for full API documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage01_ga6fba2dcfc28ba004e71997f93c6b3d39_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage01_ga6fba2dcfc28ba004e71997f93c6b3d39_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage01_gabc289be7b0cdbb53e52f48a0a10701ac}\index{1. Sensor Calibration@{1. Sensor Calibration}!EEPROM\_WriteTempCalibration@{EEPROM\_WriteTempCalibration}}
+\index{EEPROM\_WriteTempCalibration@{EEPROM\_WriteTempCalibration}!1. Sensor Calibration@{1. Sensor Calibration}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_WriteTempCalibration()}{EEPROM\_WriteTempCalibration()}}
+{\footnotesize\ttfamily \label{group__storage01_gabc289be7b0cdbb53e52f48a0a10701ac} 
+int EEPROM\+\_\+\+Write\+Temp\+Calibration (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{cal}{}\end{DoxyParamCaption})}
+
+
+
+Write RP2040 temperature calibration record to EEPROM. 
+
+Writes \doxylink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t} structure containing temperature sensor calibration parameters to dedicated EEPROM block. Automatically sets magic value and version fields. Supports both 1-\/point (offset only) and 2-\/point (slope + intercept) calibration.
+
+Calibration Record Contents\+:
+\begin{DoxyItemize}
+\item Magic\+: TEMP\+\_\+\+CAL\+\_\+\+MAGIC (\textquotesingle{}TC\textquotesingle{} = 0x5443) for validity detection
+\item Version\+: TEMP\+\_\+\+CAL\+\_\+\+VERSION (0x0001) for structure compatibility
+\item Mode\+: TEMP\+\_\+\+CAL\+\_\+\+MODE\+\_\+1\+PT or TEMP\+\_\+\+CAL\+\_\+\+MODE\+\_\+2\+PT
+\item V0\+: Voltage at 27°C reference point \mbox{[}V\mbox{]}
+\item Slope\+: Temperature coefficient \mbox{[}V/°C\mbox{]}
+\item Offset\+: Residual temperature offset \mbox{[}°C\mbox{]}
+\item Reserved\+: 3× uint32\+\_\+t for future use
+\item CRC32\+: Checksum (currently 0, not enforced)
+\end{DoxyItemize}
+
+EEPROM Layout\+:
+\begin{DoxyItemize}
+\item Start address\+: EEPROM\+\_\+\+TEMP\+\_\+\+CAL\+\_\+\+START
+\item Size\+: EEPROM\+\_\+\+TEMP\+\_\+\+CAL\+\_\+\+SIZE bytes (sizeof(temp\+\_\+calib\+\_\+t))
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em cal} & Pointer to \doxylink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t} structure containing calibration data.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if write successful. 
+
+-\/1 if cal is NULL or I2C write fails.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Magic and version fields set automatically if not already set. 
+
+CRC32 field currently not enforced (set to 0). 
+
+Write failures logged as ERR\+\_\+\+SEV\+\_\+\+ERROR if ERRORLOGGER enabled.
+\end{DoxyNote}
+See \doxylink{calibration_8h}{calibration.\+h} for full API documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage01_gabc289be7b0cdbb53e52f48a0a10701ac_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage01_gabc289be7b0cdbb53e52f48a0a10701ac_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage01_ga7796a67e219e367ba5424202cff756ae}\index{1. Sensor Calibration@{1. Sensor Calibration}!TempCalibration\_ApplyToMeterTask@{TempCalibration\_ApplyToMeterTask}}
+\index{TempCalibration\_ApplyToMeterTask@{TempCalibration\_ApplyToMeterTask}!1. Sensor Calibration@{1. Sensor Calibration}}
+\doxysubsubsubsubsection{\texorpdfstring{TempCalibration\_ApplyToMeterTask()}{TempCalibration\_ApplyToMeterTask()}}
+{\footnotesize\ttfamily \label{group__storage01_ga7796a67e219e367ba5424202cff756ae} 
+int Temp\+Calibration\+\_\+\+Apply\+To\+Meter\+Task (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{cal}{}\end{DoxyParamCaption})}
+
+
+
+Apply temperature calibration to Meter\+Task measurement path. 
+
+Sends calibration parameters (V0, slope, offset) to Meter\+Task via queue message. Meter\+Task applies these parameters to all temperature conversions, affecting console output, /api/status, and /metrics endpoints. Does not persist to EEPROM.
+
+Calibration Parameters Applied\+:
+\begin{DoxyItemize}
+\item V0\+: Voltage at 27°C reference \mbox{[}V\mbox{]}
+\item Slope\+: Temperature coefficient \mbox{[}V/°C\mbox{]}
+\item Offset\+: Residual temperature correction \mbox{[}°C\mbox{]}
+\end{DoxyItemize}
+
+Temperature Conversion Formula (after calibration)\+: T\+\_\+calibrated = ((V\+\_\+adc -\/ V0) / slope) + 27.\+0 + offset
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em cal} & Pointer to \doxylink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t} structure with calibration parameters.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if calibration applied successfully. 
+
+-\/1 if cal is NULL or Meter\+Task rejects parameters.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Does NOT write to EEPROM; caller responsible for persistence. 
+
+Calibration takes effect immediately on next temperature reading. 
+
+Meter\+Task queue must be available (called after Meter\+Task initialized). 
+
+Does NOT require eeprom\+Mtx (no EEPROM access).
+\end{DoxyNote}
+See \doxylink{calibration_8h}{calibration.\+h} for full API documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage01_ga7796a67e219e367ba5424202cff756ae_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage01_ga7796a67e219e367ba5424202cff756ae_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage01_ga73504452f7a1b317e752b7f668694a3d}\index{1. Sensor Calibration@{1. Sensor Calibration}!TempCalibration\_ComputeSinglePoint@{TempCalibration\_ComputeSinglePoint}}
+\index{TempCalibration\_ComputeSinglePoint@{TempCalibration\_ComputeSinglePoint}!1. Sensor Calibration@{1. Sensor Calibration}}
+\doxysubsubsubsubsection{\texorpdfstring{TempCalibration\_ComputeSinglePoint()}{TempCalibration\_ComputeSinglePoint()}}
+{\footnotesize\ttfamily \label{group__storage01_ga73504452f7a1b317e752b7f668694a3d} 
+int Temp\+Calibration\+\_\+\+Compute\+Single\+Point (\begin{DoxyParamCaption}\item[{float}]{ambient\+\_\+c}{, }\item[{uint16\+\_\+t}]{raw\+\_\+temp}{, }\item[{\mbox{\hyperlink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{out}{}\end{DoxyParamCaption})}
+
+
+
+Compute single-\/point temperature calibration from reference measurement. 
+
+Calculates offset-\/only calibration from a single known temperature measurement. Uses default RP2040 temperature model (V0=0.\+706V@27°C, slope=0.\+001721V/°C) to compute raw temperature, then determines offset needed to match actual temperature.
+
+Calibration Algorithm\+:
+\begin{DoxyEnumerate}
+\item Convert raw\+\_\+temp ADC value to voltage
+\item Calculate uncalibrated temperature using default model
+\item Compute offset\+: offset\+\_\+c = ambient\+\_\+c -\/ T\+\_\+uncalibrated
+\item Populate output structure with mode=TEMP\+\_\+\+CAL\+\_\+\+MODE\+\_\+1\+PT
+\end{DoxyEnumerate}
+
+Use Case\+:
+\begin{DoxyItemize}
+\item Quick calibration with single reference thermometer
+\item Reduces ambient temperature measurement error
+\item Does not compensate for slope variation
+\end{DoxyItemize}
+
+Typical Workflow\+:
+\begin{DoxyEnumerate}
+\item Measure ambient temperature with reference thermometer
+\item Read ADC raw value from RP2040 temperature sensor
+\item Call this function to compute calibration
+\item Write result to EEPROM via \doxylink{group__storage01_gabc289be7b0cdbb53e52f48a0a10701ac}{EEPROM\+\_\+\+Write\+Temp\+Calibration()}
+\item Apply to Meter\+Task via \doxylink{group__storage01_ga7796a67e219e367ba5424202cff756ae}{Temp\+Calibration\+\_\+\+Apply\+To\+Meter\+Task()}
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em ambient\+\_\+c} & True ambient temperature \mbox{[}°C\mbox{]} from reference. \\
+\hline
+\mbox{\texttt{in}}  & {\em raw\+\_\+temp} & ADC raw code from RP2040 temp sensor (AINSEL=4). \\
+\hline
+\mbox{\texttt{out}}  & {\em out} & Output \doxylink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t} structure (mode set to TEMP\+\_\+\+CAL\+\_\+\+MODE\+\_\+1\+PT).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if computation successful. 
+
+-\/1 if out is NULL or inputs out of valid range.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Does not access EEPROM; pure computation function. 
+
+Output structure ready for \doxylink{group__storage01_gabc289be7b0cdbb53e52f48a0a10701ac}{EEPROM\+\_\+\+Write\+Temp\+Calibration()}. 
+
+Assumes default RP2040 slope (0.\+001721 V/°C).
+\end{DoxyNote}
+See \doxylink{calibration_8h}{calibration.\+h} for full API documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage01_ga73504452f7a1b317e752b7f668694a3d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage01_ga73504452f7a1b317e752b7f668694a3d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage01_ga655669ab4b049b7ef9bcf70ea3d06ec6}\index{1. Sensor Calibration@{1. Sensor Calibration}!TempCalibration\_ComputeTwoPoint@{TempCalibration\_ComputeTwoPoint}}
+\index{TempCalibration\_ComputeTwoPoint@{TempCalibration\_ComputeTwoPoint}!1. Sensor Calibration@{1. Sensor Calibration}}
+\doxysubsubsubsubsection{\texorpdfstring{TempCalibration\_ComputeTwoPoint()}{TempCalibration\_ComputeTwoPoint()}}
+{\footnotesize\ttfamily \label{group__storage01_ga655669ab4b049b7ef9bcf70ea3d06ec6} 
+int Temp\+Calibration\+\_\+\+Compute\+Two\+Point (\begin{DoxyParamCaption}\item[{float}]{t1\+\_\+c}{, }\item[{uint16\+\_\+t}]{raw1}{, }\item[{float}]{t2\+\_\+c}{, }\item[{uint16\+\_\+t}]{raw2}{, }\item[{\mbox{\hyperlink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{out}{}\end{DoxyParamCaption})}
+
+
+
+Compute two-\/point temperature calibration from reference measurements. 
+
+Calculates slope and intercept calibration from two known temperature measurements. Derives both V0 (voltage at 27°C) and slope (V/°C) from the two data points. More accurate than single-\/point calibration across wider temperature range.
+
+Calibration Algorithm\+:
+\begin{DoxyEnumerate}
+\item Convert both raw ADC values to voltages
+\item Calculate slope\+: (V2 -\/ V1) / (T2 -\/ T1)
+\item Calculate V0 at 27°C reference point
+\item Set offset to 0 (linear model only)
+\item Populate output structure with mode=TEMP\+\_\+\+CAL\+\_\+\+MODE\+\_\+2\+PT
+\end{DoxyEnumerate}
+
+Use Case\+:
+\begin{DoxyItemize}
+\item High-\/accuracy calibration with two reference temperatures
+\item Compensates for per-\/die slope variation
+\item Better accuracy across full temperature range
+\end{DoxyItemize}
+
+Typical Workflow\+:
+\begin{DoxyEnumerate}
+\item Measure at ambient temperature (e.\+g., 25°C)
+\item Record ADC raw value at ambient
+\item Warm device to higher temperature (e.\+g., 40°C)
+\item Record ADC raw value at elevated temperature
+\item Call this function with both measurement pairs
+\item Optionally apply single-\/point trim for residual at ambient
+\item Write result to EEPROM and apply to Meter\+Task
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em t1\+\_\+c} & True temperature at point 1 \mbox{[}°C\mbox{]} (e.\+g., ambient). \\
+\hline
+\mbox{\texttt{in}}  & {\em raw1} & ADC raw code at point 1. \\
+\hline
+\mbox{\texttt{in}}  & {\em t2\+\_\+c} & True temperature at point 2 \mbox{[}°C\mbox{]} (e.\+g., warmed). \\
+\hline
+\mbox{\texttt{in}}  & {\em raw2} & ADC raw code at point 2. \\
+\hline
+\mbox{\texttt{out}}  & {\em out} & Output \doxylink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t} structure (mode set to TEMP\+\_\+\+CAL\+\_\+\+MODE\+\_\+2\+PT).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if computation successful. 
+
+-\/1 if out is NULL, inputs invalid, or computed parameters out of range.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Does not access EEPROM; pure computation function. 
+
+Temperature points should differ by at least 10°C for accuracy. 
+
+Output offset set to 0; caller may apply single-\/point trim if desired. 
+
+Validates computed slope and V0 are within reasonable bounds.
+\end{DoxyNote}
+See \doxylink{calibration_8h}{calibration.\+h} for full API documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage01_ga655669ab4b049b7ef9bcf70ea3d06ec6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage01_ga655669ab4b049b7ef9bcf70ea3d06ec6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage01_ga1a4a0e2917c171c09500b674b6f2911f}\index{1. Sensor Calibration@{1. Sensor Calibration}!TempCalibration\_LoadAndApply@{TempCalibration\_LoadAndApply}}
+\index{TempCalibration\_LoadAndApply@{TempCalibration\_LoadAndApply}!1. Sensor Calibration@{1. Sensor Calibration}}
+\doxysubsubsubsubsection{\texorpdfstring{TempCalibration\_LoadAndApply()}{TempCalibration\_LoadAndApply()}}
+{\footnotesize\ttfamily \label{group__storage01_ga1a4a0e2917c171c09500b674b6f2911f} 
+int Temp\+Calibration\+\_\+\+Load\+And\+Apply (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtemp__calib__t}{temp\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{out}{}\end{DoxyParamCaption})}
+
+
+
+Load temperature calibration from EEPROM and apply to Meter\+Task. 
+
+Convenience function combining EEPROM read, validation, and Meter\+Task application. Reads calibration record from EEPROM, validates magic/version, and applies to Meter\+Task. If invalid, applies safe defaults. Typical usage during boot sequence.
+
+Operation Flow\+:
+\begin{DoxyEnumerate}
+\item Call \doxylink{group__storage01_gac5ff91b753d7b36b811a2d75068006ed}{EEPROM\+\_\+\+Read\+Temp\+Calibration()} with eeprom\+Mtx held
+\item Validate magic value and version
+\item If valid, apply calibration to Meter\+Task
+\item If invalid, apply defaults (mode NONE) to Meter\+Task
+\item Optionally return loaded/default record to caller
+\end{DoxyEnumerate}
+
+Default Parameters (if invalid)\+:
+\begin{DoxyItemize}
+\item Mode\+: TEMP\+\_\+\+CAL\+\_\+\+MODE\+\_\+\+NONE
+\item V0\+: 0.\+706V (RP2040 typical)
+\item Slope\+: 0.\+001721 V/°C (RP2040 typical)
+\item Offset\+: 0.\+0°C
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{out}}  & {\em out} & Optional pointer to receive loaded or default calibration. Pass NULL if record not needed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if valid calibration loaded and applied. 
+
+-\/1 if invalid/missing calibration (defaults applied instead).
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling (for EEPROM read). 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Always applies some calibration (either valid or defaults). 
+
+Called during Init\+Task boot sequence. 
+
+Meter\+Task must be initialized before calling.
+\end{DoxyNote}
+See \doxylink{calibration_8h}{calibration.\+h} for full API documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage01_ga1a4a0e2917c171c09500b674b6f2911f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage01_ga1a4a0e2917c171c09500b674b6f2911f_icgraph}
+\end{center}
+\end{figure}

@@ -2,7 +2,7 @@
  * @file src/drivers/ethernet_driver.h
  * @author DvidMakesThings - David Sipos
  *
- * @defgroup drivers05 5. W5500 Driver Implementation
+ * @defgroup drivers03 3. W5500 Driver Implementation
  * @ingroup drivers
  * @brief Header file for W5500 Ethernet Controller HAL Driver
  * @{
@@ -24,9 +24,14 @@
 /******************************************************************************
  *                          TYPE DEFINITIONS                                  *
  ******************************************************************************/
+/** @name Type Definitions
+ *  @ingroup drivers03
+ *  @{ */
 
 /**
+ * @struct w5500_NetConfig
  * @brief Network information structure
+ * @ingroup drivers03
  */
 typedef struct {
     uint8_t mac[6]; /**< MAC address */
@@ -38,7 +43,9 @@ typedef struct {
 } w5500_NetConfig;
 
 /**
+ * @struct w5500_PhyConfig
  * @brief PHY configuration structure
+ * @ingroup drivers03
  */
 typedef struct {
     uint8_t by;     /**< PHY mode selector (PHY_CONFBY_HW/SW) */
@@ -48,7 +55,9 @@ typedef struct {
 } w5500_PhyConfig;
 
 /**
+ * @enum w5500_PhyLink
  * @brief W5500 link status
+ * @ingroup drivers03
  */
 typedef enum {
     PHY_LINK_OFF = 0, /**< Link down */
@@ -56,26 +65,38 @@ typedef enum {
 } w5500_PhyLink;
 
 /**
+ * @enum w5500_PhyPower
  * @brief W5500 power mode
+ * @ingroup drivers03
  */
 typedef enum {
     PHY_POWER_NORM = 0, /**< Normal mode */
     PHY_POWER_DOWN = 1  /**< Power down mode */
 } w5500_PhyPower;
+/** @} */
 
 /******************************************************************************
  *                          GLOBAL VARIABLES                                  *
  ******************************************************************************/
+/** @name Global Variables
+ *  @ingroup drivers03
+ *  @{ */
 
 /**
  * @brief SPI mutex for thread-safe W5500 access
  * @note All W5500 register access MUST acquire this mutex
+ * @var SemaphoreHandle_t w5500_spi_mutex
+ * @ingroup drivers03
  */
 extern SemaphoreHandle_t w5500_spi_mutex;
+/** @} */
 
 /******************************************************************************
  *                          REGISTER ACCESS (LOW-LEVEL)                       *
  ******************************************************************************/
+/** @name Register Access (Low-Level)
+ *  @ingroup drivers03
+ *  @{ */
 
 /**
  * @brief Read single byte from W5500 register (thread-safe)
@@ -114,10 +135,14 @@ void w5500_read_buf(uint32_t addr_sel, uint8_t *buf, uint16_t len);
  * @note Automatically acquires SPI mutex
  */
 void w5500_write_buf(uint32_t addr_sel, uint8_t *buf, uint16_t len);
+/** @} */
 
 /******************************************************************************
  *                          COMMON REGISTER INLINE ACCESS                     *
  ******************************************************************************/
+/** @name Common Register Inline Access
+ *  @ingroup drivers03
+ *  @{ */
 
 /* Common register getters/setters */
 #define setMR(mr) w5500_write_reg(MR, (mr))
@@ -149,7 +174,11 @@ void w5500_write_buf(uint32_t addr_sel, uint8_t *buf, uint16_t len);
 #define getPHYCFGR() w5500_read_reg(PHYCFGR)
 
 #define getVERSIONR() w5500_read_reg(VERSIONR)
+/** @} */
 
+/** @name Socket Register Access
+ *  @ingroup drivers03
+ *  @{ */
 /* Socket register getters/setters */
 #define setSn_MR(sn, mr) w5500_write_reg(Sn_MR(sn), (mr))
 #define getSn_MR(sn) w5500_read_reg(Sn_MR(sn))
@@ -170,7 +199,7 @@ void w5500_write_buf(uint32_t addr_sel, uint8_t *buf, uint16_t len);
 
 /**
  * @brief Set the local TCP/UDP port (big-endian)
- * 
+ *
  * @param sn   Socket number [0..7]
  * @param port Host-endian port number (e.g., 80)
  * @return None
@@ -179,7 +208,7 @@ void setSn_PORT(uint8_t sn, uint16_t port);
 
 /**
  * @brief Get the local TCP/UDP port (big-endian)
- * 
+ *
  * @param sn   Socket number [0..7]
  * @return     Host-endian port number
  */
@@ -190,7 +219,7 @@ uint16_t getSn_PORT(uint8_t sn);
 
 /**
  * @brief Set the destination TCP/UDP port (big-endian)
- * 
+ *
  * @param sn   Socket number [0..7]
  * @param dport Host-endian destination port
  * @return None
@@ -199,7 +228,7 @@ void setSn_DPORT(uint8_t sn, uint16_t dport);
 
 /**
  * @brief Get the destination TCP/UDP port (big-endian)
- * 
+ *
  * @param sn   Socket number [0..7]
  * @return     Host-endian destination port
  */
@@ -262,14 +291,18 @@ void setSn_RX_RD(uint8_t sn, uint16_t ptr);
 #define getSn_TxMAX(sn) (getSn_TXBUF_SIZE(sn) << 10)
 
 #define getSn_RxMAX(sn) (getSn_RXBUF_SIZE(sn) << 10)
+/** @} */
 
 /******************************************************************************
  *                          SOCKET DATA TRANSFER                              *
  ******************************************************************************/
+/** @name Socket Data Transfer
+ *  @ingroup drivers03
+ *  @{ */
 
 /**
  * @brief Send data to socket TX buffer
- * 
+ *
  * @param sn Socket number
  * @param wizdata Data buffer
  * @param len Data length
@@ -279,7 +312,7 @@ void eth_send_data(uint8_t sn, uint8_t *wizdata, uint16_t len);
 
 /**
  * @brief Receive data from socket RX buffer
- * 
+ *
  * @param sn Socket number
  * @param wizdata Data buffer
  * @param len Data length
@@ -289,7 +322,7 @@ void eth_recv_data(uint8_t sn, uint8_t *wizdata, uint16_t len);
 
 /**
  * @brief Ignore (discard) received data
- * 
+ *
  * @param sn Socket number
  * @param len Length to discard
  * @return None
@@ -298,7 +331,7 @@ void eth_recv_ignore(uint8_t sn, uint16_t len);
 
 /**
  * @brief Get socket TX free size (with double-read protection)
- * 
+ *
  * @param sn Socket number
  * @return Free size in TX buffer
  */
@@ -306,15 +339,19 @@ uint16_t w5500_get_tx_fsr(uint8_t sn);
 
 /**
  * @brief Get socket RX received size (with double-read protection)
- * 
+ *
  * @param sn Socket number
  * @return Received size in RX buffer
  */
 uint16_t w5500_get_rx_rsr(uint8_t sn);
+/** @} */
 
 /******************************************************************************
  *                          INITIALIZATION                                    *
  ******************************************************************************/
+/** @name Initialization
+ *  @ingroup drivers03
+ *  @{ */
 
 /**
  * @brief Initialize W5500 hardware (SPI, GPIOs, chip reset)
@@ -353,10 +390,14 @@ bool w5500_chip_init(w5500_NetConfig *net_info);
  * @return true if version register reads 0x04 (W5500), false otherwise
  */
 bool w5500_check_version(void);
+/** @} */
 
 /******************************************************************************
  *                          NETWORK CONFIGURATION                             *
  ******************************************************************************/
+/** @name Network Configuration
+ *  @ingroup drivers03
+ *  @{ */
 
 /**
  * @brief Set network configuration (MAC, IP, subnet, gateway)
@@ -381,10 +422,14 @@ void w5500_get_network(w5500_NetConfig *net_info);
  * @return None
  */
 void w5500_print_network(w5500_NetConfig *net_info);
+/** @} */
 
 /******************************************************************************
  *                          PHY MANAGEMENT                                    *
  ******************************************************************************/
+/** @name PHY Management
+ *  @ingroup drivers03
+ *  @{ */
 
 /**
  * @brief Get PHY link status
@@ -417,14 +462,18 @@ void w5500_get_phy_conf(w5500_PhyConfig *phyconf);
  * @return None
  */
 void w5500_set_phy_power(w5500_PhyPower mode);
+/** @} */
 
 /******************************************************************************
  *                          UTILITY FUNCTIONS                                 *
  ******************************************************************************/
+/** @name Utility Functions
+ *  @ingroup drivers03
+ *  @{ */
 
 /**
  * @brief Software reset W5500 chip
- * 
+ *
  * @param None
  * @return None
  */
@@ -432,11 +481,12 @@ void w5500_sw_reset(void);
 
 /**
  * @brief Get chip ID string
- * 
+ *
  * @param None
  * @return Pointer to chip ID string ("W5500")
  */
 const char *w5500_get_chip_id(void);
+/** @} */
 
 #endif /* W5500_DRIVER_H */
 

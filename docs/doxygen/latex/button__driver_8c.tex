@@ -1,0 +1,114 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/drivers/button\+\_\+driver.c File Reference}
+\hypertarget{button__driver_8c}{}\label{button__driver_8c}\index{src/Software/ENERGIS\_RTOS/src/drivers/button\_driver.c@{src/Software/ENERGIS\_RTOS/src/drivers/button\_driver.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for button\+\_\+driver.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{button__driver_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{button__driver_8c_a1b5c45676754dcb9e6d3c2e59c301486}{BTNDRV\+\_\+\+TAG}}~"{}\mbox{[}BTNDRV\mbox{]}"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{button__driver_8c_a1e1377700e59631bf0d33be94ab08f5b}{drv\+\_\+sel\+\_\+all\+\_\+off}} (void)
+\begin{DoxyCompactList}\small\item\em Turn off all selection LEDs via Switch\+Task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__driver01_gac22126e540828f671a4440c6649bdf55}{Button\+Drv\+\_\+\+Init\+GPIO}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize button GPIO pins and selection LED hardware. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__driver01_ga15286889045dee940269b565c973b98a}{Button\+Drv\+\_\+\+Read\+Plus}} (void)
+\begin{DoxyCompactList}\small\item\em Read current state of PLUS button. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__driver01_ga731ea4ee98db605d8215ab3eb88d4633}{Button\+Drv\+\_\+\+Read\+Minus}} (void)
+\begin{DoxyCompactList}\small\item\em Read current state of MINUS button. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__driver01_gaa50982e8ab931b8383da90535715fbb2}{Button\+Drv\+\_\+\+Read\+Set}} (void)
+\begin{DoxyCompactList}\small\item\em Read current state of SET button. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__driver01_gac5901ff1bb130ab17484230d894cc54e}{Button\+Drv\+\_\+\+Select\+All\+Off}} (void)
+\begin{DoxyCompactList}\small\item\em Turn off all eight channel selection LEDs. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__driver01_gabe577d3f3ce0d1daffbfc739aaaba34a}{Button\+Drv\+\_\+\+Select\+Show}} (uint8\+\_\+t index, bool on)
+\begin{DoxyCompactList}\small\item\em Control visibility of a single channel selection LED. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__driver01_gaabe879a90d89fae52e5a45c07ce6134a}{Button\+Drv\+\_\+\+Select\+Left}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}io\+\_\+index, bool led\+\_\+on)
+\begin{DoxyCompactList}\small\item\em Move selection indicator one position left with wraparound. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__driver01_ga900a33314d24546a18ef5db5a3db8a40}{Button\+Drv\+\_\+\+Select\+Right}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}io\+\_\+index, bool led\+\_\+on)
+\begin{DoxyCompactList}\small\item\em Move selection indicator one position right with wraparound. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__driver01_gafe1594ae8ba586d579964b90a2ddd5ff}{Button\+Drv\+\_\+\+Do\+Set\+Short}} (uint8\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Execute short-\/press action for SET button on specified channel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__driver01_ga487df05238dab6da8ad4ab2d1d8e3a4d}{Button\+Drv\+\_\+\+Do\+Set\+Long}} (void)
+\begin{DoxyCompactList}\small\item\em Execute long-\/press action for SET button. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__driver01_ga038e6418532b3e07206ada073cf02f22}{Button\+Drv\+\_\+\+Now\+Ms}} (void)
+\begin{DoxyCompactList}\small\item\em Get monotonic millisecond timestamp since boot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+1.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/12-\/10
+\end{DoxyDate}
+Implements hardware abstraction for front-\/panel buttons and selection LEDs. Delegates all I2C operations to Switch\+Task to prevent bus contention and ensure thread-\/safe access to MCP23017 GPIO expanders.
+
+Key Design Principles\+:
+\begin{DoxyItemize}
+\item Direct GPIO reads for buttons (no I2C, very fast)
+\item All LED operations queued to Switch\+Task (non-\/blocking)
+\item No local state except channel index modifications
+\item Error logging for invalid parameters and queue failures
+\end{DoxyItemize}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{button__driver_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{button__driver_8c_a1b5c45676754dcb9e6d3c2e59c301486}\index{button\_driver.c@{button\_driver.c}!BTNDRV\_TAG@{BTNDRV\_TAG}}
+\index{BTNDRV\_TAG@{BTNDRV\_TAG}!button\_driver.c@{button\_driver.c}}
+\doxysubsubsection{\texorpdfstring{BTNDRV\_TAG}{BTNDRV\_TAG}}
+{\footnotesize\ttfamily \label{button__driver_8c_a1b5c45676754dcb9e6d3c2e59c301486} 
+\#define BTNDRV\+\_\+\+TAG~"{}\mbox{[}BTNDRV\mbox{]}"{}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{button__driver_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{button__driver_8c_a1e1377700e59631bf0d33be94ab08f5b}\index{button\_driver.c@{button\_driver.c}!drv\_sel\_all\_off@{drv\_sel\_all\_off}}
+\index{drv\_sel\_all\_off@{drv\_sel\_all\_off}!button\_driver.c@{button\_driver.c}}
+\doxysubsubsection{\texorpdfstring{drv\_sel\_all\_off()}{drv\_sel\_all\_off()}}
+{\footnotesize\ttfamily \label{button__driver_8c_a1e1377700e59631bf0d33be94ab08f5b} 
+void drv\+\_\+sel\+\_\+all\+\_\+off (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Turn off all selection LEDs via Switch\+Task. 
+
+Internal helper that delegates to Switch\+Task. If Switch\+Task is not ready (early boot), LEDs are left unchanged to prevent I2C access before bus initialization.
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{button__driver_8c_a1e1377700e59631bf0d33be94ab08f5b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{button__driver_8c_a1e1377700e59631bf0d33be94ab08f5b_icgraph}
+\end{center}
+\end{figure}

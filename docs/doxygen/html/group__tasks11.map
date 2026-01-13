@@ -1,0 +1,4 @@
+<map id="11. Switch Task" name="11. Switch Task">
+<area shape="rect" id="Node000002" href="$group__tasks.html" title="General task implementations for ENERGIS PDU firmware." alt="" coords="5,5,62,32"/>
+<area shape="rect" id="Node000001" title="Synchronous relay and LED control manager with MCP23017 GPIO expanders." alt="" coords="110,5,223,32"/>
+</map>

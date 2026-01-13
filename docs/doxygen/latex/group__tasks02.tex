@@ -1,0 +1,268 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item Console Task 
+\end{DoxyEnumerate}}
+\hypertarget{group__tasks02}{}\label{group__tasks02}\index{2. Console Task@{2. Console Task}}
+
+
+USB-\/\+CDC console command interface for system control and diagnostics.  
+
+
+Collaboration diagram for 2. Console Task\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{group__tasks02}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structpower__msg__t}{power\+\_\+msg\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Message for power/relay control operations. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structcfg__msg__t}{cfg\+\_\+msg\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Configuration storage message for Storage\+Task. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmeter__msg__t}{meter\+\_\+msg\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Meter reading message for Meter\+Task. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structnet__msg__t}{net\+\_\+msg\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Network operation message for Net\+Task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__tasks02_gab2fcb31273a6ffa0e884123cc5943095}{power\+\_\+cmd\+\_\+kind\+\_\+t}} \{ \mbox{\hyperlink{group__tasks02_ggab2fcb31273a6ffa0e884123cc5943095a529f680386be0d2e185944b54dbc1839}{PWR\+\_\+\+CMD\+\_\+\+SET\+\_\+\+RELAY}}
+, \mbox{\hyperlink{group__tasks02_ggab2fcb31273a6ffa0e884123cc5943095a55294b2ee2d0300949b5121b4d43d9f7}{PWR\+\_\+\+CMD\+\_\+\+GET\+\_\+\+RELAY}}
+, \mbox{\hyperlink{group__tasks02_ggab2fcb31273a6ffa0e884123cc5943095aad6ddee991b80cbd4c67e9fe511f170a}{PWR\+\_\+\+CMD\+\_\+\+RELAY\+\_\+\+ALL\+\_\+\+OFF}}
+ \}
+\begin{DoxyCompactList}\small\item\em Power/relay control command types sent via {\ttfamily q\+\_\+power}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Base\+Type\+\_\+t \mbox{\hyperlink{group__tasks02_gad45ca7c142e8c2764d52b3d554ffcdeb}{Console\+Task\+\_\+\+Init}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Initialize and start the console task. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks02_gab2d019f35eb9844ccb157488ed577f8f}{Console\+\_\+\+Is\+Ready}} (void)
+\begin{DoxyCompactList}\small\item\em Query console task readiness status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Inter-\/\+Task Communication Queues}
+Queues used by Console\+Task to communicate with subsystems. \begin{DoxyCompactItemize}
+\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{group__tasks02_ga63df37407f32873668fce7f38927ea15}{q\+\_\+power}}
+\begin{DoxyCompactList}\small\item\em Power/relay control queue. \end{DoxyCompactList}\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{group__tasks02_ga988900dc449acf0ca0b71913239e82d3}{q\+\_\+cfg}}
+\begin{DoxyCompactList}\small\item\em Configuration storage queue. \end{DoxyCompactList}\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{group__tasks02_ga17fe448666de7107b8c3aa8a16bf1f85}{q\+\_\+meter}}
+\begin{DoxyCompactList}\small\item\em Meter reading queue. \end{DoxyCompactList}\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{group__tasks02_ga190f5d69790a6eb1e47e555b304c1cd3}{q\+\_\+net}}
+\begin{DoxyCompactList}\small\item\em Network operation queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+USB-\/\+CDC console command interface for system control and diagnostics. 
+
+\begin{DoxyVersion}{Version}
+2.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/08
+\end{DoxyDate}
+This module implements a command-\/line interface accessible via USB-\/\+CDC for PDU configuration, control, and diagnostics. The console provides comprehensive access to system functions including relay control, power monitoring, calibration, network configuration, and firmware management.
+
+Architecture\+:
+\begin{DoxyItemize}
+\item Polls USB-\/\+CDC interface at configurable intervals without using interrupts
+\item Accumulates characters into line buffer with backspace support
+\item Parses complete lines and dispatches to command handlers
+\item Commands execute directly or interact with other tasks via queues
+\item Supports standby mode with suspended command processing
+\end{DoxyItemize}
+
+Command Categories\+:
+\begin{DoxyItemize}
+\item General\+: System information, temperature, reboot, bootloader access
+\item Output Control\+: Channel switching, overcurrent status and reset
+\item Measurement\+: Power data reading, calibration procedures
+\item Network\+: IP configuration, network information display
+\item Debug\+: Advanced diagnostics, EEPROM operations, provisioning
+\end{DoxyItemize}
+
+Input Handling\+:
+\begin{DoxyItemize}
+\item Line-\/based command input with CR/\+LF termination
+\item Backspace/delete key support for editing
+\item Case-\/insensitive command matching
+\item Automatic argument parsing and validation
+\end{DoxyItemize}
+
+Power Management\+:
+\begin{DoxyItemize}
+\item Automatically suspends in standby mode to conserve power
+\item Reduced heartbeat rate during standby
+\item Resumes normal operation on exit from standby
+\end{DoxyItemize}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-enum-members}
+\Hypertarget{group__tasks02_doc-enum-members}
+\doxysubsubsection{Enumeration Type Documentation}
+\Hypertarget{group__tasks02_gab2fcb31273a6ffa0e884123cc5943095}\index{2. Console Task@{2. Console Task}!power\_cmd\_kind\_t@{power\_cmd\_kind\_t}}
+\index{power\_cmd\_kind\_t@{power\_cmd\_kind\_t}!2. Console Task@{2. Console Task}}
+\doxysubsubsubsection{\texorpdfstring{power\_cmd\_kind\_t}{power\_cmd\_kind\_t}}
+{\footnotesize\ttfamily \label{group__tasks02_gab2fcb31273a6ffa0e884123cc5943095} 
+enum \mbox{\hyperlink{group__tasks02_gab2fcb31273a6ffa0e884123cc5943095}{power\+\_\+cmd\+\_\+kind\+\_\+t}}}
+
+
+
+Power/relay control command types sent via {\ttfamily q\+\_\+power}. 
+
+Commands control individual relays or perform global shutdown. \begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PWR\_CMD\_SET\_RELAY@{PWR\_CMD\_SET\_RELAY}!2. Console Task@{2. Console Task}}\index{2. Console Task@{2. Console Task}!PWR\_CMD\_SET\_RELAY@{PWR\_CMD\_SET\_RELAY}}}\Hypertarget{group__tasks02_ggab2fcb31273a6ffa0e884123cc5943095a529f680386be0d2e185944b54dbc1839}\label{group__tasks02_ggab2fcb31273a6ffa0e884123cc5943095a529f680386be0d2e185944b54dbc1839} 
+PWR\+\_\+\+CMD\+\_\+\+SET\+\_\+\+RELAY&Set specific relay output state (on/off). \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PWR\_CMD\_GET\_RELAY@{PWR\_CMD\_GET\_RELAY}!2. Console Task@{2. Console Task}}\index{2. Console Task@{2. Console Task}!PWR\_CMD\_GET\_RELAY@{PWR\_CMD\_GET\_RELAY}}}\Hypertarget{group__tasks02_ggab2fcb31273a6ffa0e884123cc5943095a55294b2ee2d0300949b5121b4d43d9f7}\label{group__tasks02_ggab2fcb31273a6ffa0e884123cc5943095a55294b2ee2d0300949b5121b4d43d9f7} 
+PWR\+\_\+\+CMD\+\_\+\+GET\+\_\+\+RELAY&Query current state of specific relay output. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PWR\_CMD\_RELAY\_ALL\_OFF@{PWR\_CMD\_RELAY\_ALL\_OFF}!2. Console Task@{2. Console Task}}\index{2. Console Task@{2. Console Task}!PWR\_CMD\_RELAY\_ALL\_OFF@{PWR\_CMD\_RELAY\_ALL\_OFF}}}\Hypertarget{group__tasks02_ggab2fcb31273a6ffa0e884123cc5943095aad6ddee991b80cbd4c67e9fe511f170a}\label{group__tasks02_ggab2fcb31273a6ffa0e884123cc5943095aad6ddee991b80cbd4c67e9fe511f170a} 
+PWR\+\_\+\+CMD\+\_\+\+RELAY\+\_\+\+ALL\+\_\+\+OFF&Emergency shutdown\+: turn off all relay outputs. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{group__tasks02_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__tasks02_gab2d019f35eb9844ccb157488ed577f8f}\index{2. Console Task@{2. Console Task}!Console\_IsReady@{Console\_IsReady}}
+\index{Console\_IsReady@{Console\_IsReady}!2. Console Task@{2. Console Task}}
+\doxysubsubsubsection{\texorpdfstring{Console\_IsReady()}{Console\_IsReady()}}
+{\footnotesize\ttfamily \label{group__tasks02_gab2d019f35eb9844ccb157488ed577f8f} 
+bool Console\+\_\+\+Is\+Ready (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Query console task readiness status. 
+
+Provides a thread-\/safe method to check whether Console\+Task has completed initialization successfully. Used for deterministic boot sequencing to ensure proper task dependency ordering.
+
+\begin{DoxyReturn}{Returns}
+true if Console\+Task\+\_\+\+Init(true) completed successfully and queues are created. 
+
+false if \doxylink{group__tasks02_gad45ca7c142e8c2764d52b3d554ffcdeb}{Console\+Task\+\_\+\+Init()} was not called, called with enable=false, or initialization failed.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Based on q\+\_\+cfg queue existence, avoiding extra state variables. 
+
+Safe to call from any task context.
+\end{DoxyNote}
+See \doxylink{_console_task_8h}{consoletask.\+h} for detailed documentation. Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks02_gab2d019f35eb9844ccb157488ed577f8f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__tasks02_gad45ca7c142e8c2764d52b3d554ffcdeb}\index{2. Console Task@{2. Console Task}!ConsoleTask\_Init@{ConsoleTask\_Init}}
+\index{ConsoleTask\_Init@{ConsoleTask\_Init}!2. Console Task@{2. Console Task}}
+\doxysubsubsubsection{\texorpdfstring{ConsoleTask\_Init()}{ConsoleTask\_Init()}}
+{\footnotesize\ttfamily \label{group__tasks02_gad45ca7c142e8c2764d52b3d554ffcdeb} 
+Base\+Type\+\_\+t Console\+Task\+\_\+\+Init (\begin{DoxyParamCaption}\item[{bool}]{enable}{}\end{DoxyParamCaption})}
+
+
+
+Initialize and start the console task. 
+
+Creates the Console\+Task Free\+RTOS task, initializes USB-\/\+CDC polling, sets up inter-\/task message queues, and prepares the command dispatcher. Implements deterministic initialization with logger readiness gate.
+
+Initialization Sequence\+:
+\begin{DoxyEnumerate}
+\item Waits for Logger\+Task readiness with timeout
+\item Creates message queues for inter-\/task communication
+\item Spawns Console\+Task with configured priority
+\item Task begins USB-\/\+CDC polling and command processing
+\end{DoxyEnumerate}
+
+Message Queues Created\+:
+\begin{DoxyItemize}
+\item q\+\_\+power\+: Power/relay control commands (8 messages deep)
+\item q\+\_\+cfg\+: Configuration storage operations (8 messages deep)
+\item q\+\_\+meter\+: Meter reading requests (8 messages deep)
+\item q\+\_\+net\+: Network configuration commands (8 messages deep)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em enable} & Set true to initialize and start task, false to skip initialization deterministically without side effects.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pd\+PASS on successful initialization or when skipped (enable=false). 
+
+pd\+FAIL if initialization fails (queue creation, task creation).
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Call after \doxylink{group__tasks05_gaae3080c72dfa5993e5e495fd767e32c9}{Logger\+Task\+\_\+\+Init()} in boot sequence (step 2/6). 
+
+Use \doxylink{group__tasks02_gab2d019f35eb9844ccb157488ed577f8f}{Console\+\_\+\+Is\+Ready()} to verify initialization before dependent tasks. 
+
+Logs error codes to error logger on failure.
+\end{DoxyNote}
+See \doxylink{_console_task_8h}{consoletask.\+h} for detailed documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{group__tasks02_gad45ca7c142e8c2764d52b3d554ffcdeb_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks02_gad45ca7c142e8c2764d52b3d554ffcdeb_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{group__tasks02_doc-var-members}
+\doxysubsubsection{Variable Documentation}
+\Hypertarget{group__tasks02_ga988900dc449acf0ca0b71913239e82d3}\index{2. Console Task@{2. Console Task}!q\_cfg@{q\_cfg}}
+\index{q\_cfg@{q\_cfg}!2. Console Task@{2. Console Task}}
+\doxysubsubsubsection{\texorpdfstring{q\_cfg}{q\_cfg}}
+{\footnotesize\ttfamily \label{group__tasks02_ga988900dc449acf0ca0b71913239e82d3} 
+Queue\+Handle\+\_\+t q\+\_\+cfg\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Configuration storage queue. 
+
+Message queue for configuration read/write operations between Console\+Task and Storage\+Task. Used for persistent settings management. \Hypertarget{group__tasks02_ga17fe448666de7107b8c3aa8a16bf1f85}\index{2. Console Task@{2. Console Task}!q\_meter@{q\_meter}}
+\index{q\_meter@{q\_meter}!2. Console Task@{2. Console Task}}
+\doxysubsubsubsection{\texorpdfstring{q\_meter}{q\_meter}}
+{\footnotesize\ttfamily \label{group__tasks02_ga17fe448666de7107b8c3aa8a16bf1f85} 
+Queue\+Handle\+\_\+t q\+\_\+meter\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Meter reading queue. 
+
+Message queue for power measurement requests from Console\+Task to Meter\+Task. Reserved for future asynchronous meter queries. \Hypertarget{group__tasks02_ga190f5d69790a6eb1e47e555b304c1cd3}\index{2. Console Task@{2. Console Task}!q\_net@{q\_net}}
+\index{q\_net@{q\_net}!2. Console Task@{2. Console Task}}
+\doxysubsubsubsection{\texorpdfstring{q\_net}{q\_net}}
+{\footnotesize\ttfamily \label{group__tasks02_ga190f5d69790a6eb1e47e555b304c1cd3} 
+Queue\+Handle\+\_\+t q\+\_\+net\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Network operation queue. 
+
+Message queue for network configuration commands from Console\+Task to Net\+Task. Reserved for future network management operations. \Hypertarget{group__tasks02_ga63df37407f32873668fce7f38927ea15}\index{2. Console Task@{2. Console Task}!q\_power@{q\_power}}
+\index{q\_power@{q\_power}!2. Console Task@{2. Console Task}}
+\doxysubsubsubsection{\texorpdfstring{q\_power}{q\_power}}
+{\footnotesize\ttfamily \label{group__tasks02_ga63df37407f32873668fce7f38927ea15} 
+Queue\+Handle\+\_\+t q\+\_\+power\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Power/relay control queue. 
+
+Message queue for power and relay control commands from Console\+Task to other subsystems. Reserved for future inter-\/task communication. 

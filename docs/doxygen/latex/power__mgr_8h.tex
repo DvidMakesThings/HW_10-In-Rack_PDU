@@ -1,0 +1,47 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/misc/power\+\_\+mgr.h File Reference}
+\hypertarget{power__mgr_8h}{}\label{power__mgr_8h}\index{src/Software/ENERGIS\_RTOS/src/misc/power\_mgr.h@{src/Software/ENERGIS\_RTOS/src/misc/power\_mgr.h}}
+{\ttfamily \#include "{}CONFIG.\+h"{}}\newline
+Include dependency graph for power\+\_\+mgr.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{power__mgr_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{power__mgr_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Enumerations}
+\begin{Indent}\textbf{ Power States}\par
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__misc3_gacd64982bf58e213a07ae1fe0f2235cb9}{power\+\_\+state\+\_\+t}} \{ \mbox{\hyperlink{group__misc3_ggacd64982bf58e213a07ae1fe0f2235cb9a63a8aa4bf635f74171bbfe8f145dd1cf}{PWR\+\_\+\+STATE\+\_\+\+RUN}} = 0
+, \mbox{\hyperlink{group__misc3_ggacd64982bf58e213a07ae1fe0f2235cb9adb2ad70dbd755481133fc891b67fd91b}{PWR\+\_\+\+STATE\+\_\+\+STANDBY}} = 1
+ \}
+\begin{DoxyCompactList}\small\item\em System power states. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Functions}
+\begin{Indent}\textbf{ Public API}\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__misc3_ga83454e7bafa44edd5acce76b7aa91e0b}{Power\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the power manager subsystem. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__misc3_gacd64982bf58e213a07ae1fe0f2235cb9}{power\+\_\+state\+\_\+t}} \mbox{\hyperlink{group__misc3_gad3252fba1863d278f2611cad531177f5}{Power\+\_\+\+Get\+State}} (void)
+\begin{DoxyCompactList}\small\item\em Query the current system power state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc3_ga40de5935f9ba85f9141a9243b4d02c87}{Power\+\_\+\+Enter\+Standby}} (void)
+\begin{DoxyCompactList}\small\item\em Enter standby mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc3_gafa726e9d0fc140faa3f54c6905ac2520}{Power\+\_\+\+Exit\+Standby}} (void)
+\begin{DoxyCompactList}\small\item\em Exit standby mode and return to normal operation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__misc3_ga0827dd667e39150cad0b7642a076d384}{Power\+\_\+\+Service\+Standby\+LED}} (void)
+\begin{DoxyCompactList}\small\item\em Service the PWR\+\_\+\+LED pulse animation in standby mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

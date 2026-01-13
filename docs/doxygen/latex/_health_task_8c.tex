@@ -1,0 +1,889 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\+Health\+Task.c File Reference}
+\hypertarget{_health_task_8c}{}\label{_health_task_8c}\index{src/Software/ENERGIS\_RTOS/src/tasks/HealthTask.c@{src/Software/ENERGIS\_RTOS/src/tasks/HealthTask.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for Health\+Task.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_health_task_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structblock__evt__t}{block\+\_\+evt\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structtask__meta__t}{task\+\_\+meta\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_health_task_8c_ab55422c142e04bab992a060ac09492fc}{HEALTH\+\_\+\+TASK\+\_\+\+TAG}}~"{}\mbox{[}HEALTH\mbox{]}"{}
+\item 
+\#define \mbox{\hyperlink{_health_task_8c_a21bf7b65487cb99abc41686ab8e63969}{WDT\+\_\+\+PREBARK}}~"{}\mbox{[}WDT-\/PREBARK\mbox{]}"{}
+\item 
+\#define \mbox{\hyperlink{_health_task_8c_a091ba98073ca2f0b180c39d9789b6d5f}{HEALTH\+\_\+\+PRINT\+\_\+\+WDT\+\_\+\+FEED}}~1
+\item 
+\#define \mbox{\hyperlink{_health_task_8c_a9ba72b87a27fe10378f793e3d8868d4d}{HEALTH\+\_\+\+DBG}}(fmt, ...)
+\item 
+\#define \mbox{\hyperlink{_health_task_8c_a9370c546b6def8bd49ce6d255b0ee56c}{HEALTH\+\_\+\+PERIOD\+\_\+\+MS}}~250u
+\item 
+\#define \mbox{\hyperlink{_health_task_8c_ad771d2516e9afcb9f22b0ad2e5701608}{HEALTH\+\_\+\+LOG\+\_\+\+PERIOD\+\_\+\+MS}}~60000u
+\item 
+\#define \mbox{\hyperlink{_health_task_8c_a7e2139b48ce98b07bc59c6e4b1cd94be}{HEALTH\+\_\+\+WARMUP\+\_\+\+MS}}~2000u
+\item 
+\#define \mbox{\hyperlink{_health_task_8c_aec2494cb740d42b60113f0f647007268}{HEALTH\+\_\+\+SILENCE\+\_\+\+MS}}~6000u
+\item 
+\#define \mbox{\hyperlink{_health_task_8c_afc15af0a70a9a80d1f1fd68df885ae93}{HEALTH\+\_\+\+BLOCK\+\_\+\+RING\+\_\+\+SIZE}}~32u
+\item 
+\#define \mbox{\hyperlink{_health_task_8c_ad38ce946906448adb2208081f3302701}{HEALTH\+\_\+\+REQUIRED\+\_\+\+MASK}}
+\item 
+\#define \mbox{\hyperlink{_health_task_8c_a803670cc091d640f9b88b95b42637569}{HEALTH\+\_\+\+SCRATCH\+\_\+\+MAGIC}}~(0x484\+C5448u)
+\item 
+\#define \mbox{\hyperlink{_health_task_8c_a69297c2844cc865cb6278b9add29bb25}{HSCR\+\_\+\+MAGIC}}~0
+\item 
+\#define \mbox{\hyperlink{_health_task_8c_a7a08f8e7ba7f131e42ce216d1b926f20}{HSCR\+\_\+\+CAUSE}}~1
+\item 
+\#define \mbox{\hyperlink{_health_task_8c_a4cd9aa1bee30d044f4bacb0c53c70db8}{HSCR\+\_\+\+STALE}}~2
+\item 
+\#define \mbox{\hyperlink{_health_task_8c_a4b03c61871ca937b9ae91b1388383387}{HSCR\+\_\+\+MAXDT}}~3
+\item 
+\#define \mbox{\hyperlink{_health_task_8c_a10d4ad431cbc1ecab02ddfa2cabe1919}{HSCR\+\_\+\+TIMEOUT}}~4
+\item 
+\#define \mbox{\hyperlink{_health_task_8c_a7b62afdbc0a0b0a547bfed71adad69df}{HSCR\+\_\+\+TNOW}}~5
+\item 
+\#define \mbox{\hyperlink{_health_task_8c_aad44e594e112af48f753a8d2a5caab81}{HSCR\+\_\+\+REQMSK}}~6
+\item 
+\#define \mbox{\hyperlink{_health_task_8c_a9241ae3166b7a02eeb4904927e8d39f0}{HSCR\+\_\+\+FLAGS}}~7
+\item 
+\#define \mbox{\hyperlink{_health_task_8c_a24c46e9506c00cfd40befc66557f83f1}{HEALTH\+\_\+\+PREBARK\+\_\+\+MS}}~300u
+\begin{DoxyCompactList}\small\item\em Margin before timeout to emit a pre-\/bark warning (ms). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{_health_task_8c_a6c24df6d8d86ef094694156984474046}{log\+\_\+stack\+\_\+watermarks}} (void)
+\item 
+static void \mbox{\hyperlink{_health_task_8c_ac66d48f916a563641390eae52aa66f2d}{hscr\+\_\+clear}} (void)
+\begin{DoxyCompactList}\small\item\em Clear the watchdog scratch registers. Used after a clean boot to avoid stale data. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_health_task_8c_a996702f3c487931dc54c3bea7a590fe6}{hscr\+\_\+store\+\_\+stale}} (uint32\+\_\+t stale\+\_\+mask, uint32\+\_\+t maxdt, uint32\+\_\+t silence\+\_\+ms, uint32\+\_\+t tnow, uint32\+\_\+t req\+\_\+mask, bool armed, bool warmup\+\_\+elapsed)
+\begin{DoxyCompactList}\small\item\em Store watchdog stale info to scratch registers. \end{DoxyCompactList}\item 
+static uint32\+\_\+t \mbox{\hyperlink{_health_task_8c_a50503dee6a29e98e633b16b1b8b550bc}{now\+\_\+ms}} (void)
+\begin{DoxyCompactList}\small\item\em Get current monotonic time in milliseconds. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_health_task_8c_a3b445bff75b4db504ee2e1f2e077e114}{Health\+\_\+\+On\+Wdt\+Feed}} (uint32\+\_\+t \mbox{\hyperlink{_button_task_8c_a50503dee6a29e98e633b16b1b8b550bc}{now\+\_\+ms}})
+\begin{DoxyCompactList}\small\item\em Record a watchdog feed and reset the pre-\/bark guard. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_health_task_8c_a5e83b7eaeb9a94d324d87835c0860591}{Health\+\_\+\+Pre\+Bark\+Check}} (uint32\+\_\+t \mbox{\hyperlink{_button_task_8c_a50503dee6a29e98e633b16b1b8b550bc}{now\+\_\+ms}})
+\begin{DoxyCompactList}\small\item\em Emit a one-\/shot warning when remaining time is below a margin. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_health_task_8c_a160a90c77e4bf752dfacf1902e7d1271}{log\+\_\+heap\+\_\+free}} (void)
+\begin{DoxyCompactList}\small\item\em Log the current free heap size. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_health_task_8c_ab1f74e39f4baf6da01b7d9a7322b1252}{dump\+\_\+block\+\_\+ring}} (void)
+\begin{DoxyCompactList}\small\item\em Dump the recent blocked events ring buffer. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{_health_task_8c_a8213bf3a8e666885c3d45b1d5d8fb85c}{id\+\_\+in\+\_\+required}} (uint8\+\_\+t id)
+\begin{DoxyCompactList}\small\item\em Check if a health ID is in the required mask. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{_health_task_8c_acfb8f6f51b0f8da2181487887382ee77}{required\+\_\+tasks\+\_\+have\+\_\+heartbeat\+\_\+once}} (void)
+\begin{DoxyCompactList}\small\item\em Check if all required tasks have sent at least one heartbeat. \end{DoxyCompactList}\item 
+static uint32\+\_\+t \mbox{\hyperlink{_health_task_8c_a4f622f7eefe9176d86353921b2facf62}{max\+\_\+dt\+\_\+required}} (uint32\+\_\+t now\+\_\+ms\+\_\+)
+\begin{DoxyCompactList}\small\item\em Compute the maximum delta time since last heartbeat among required tasks. \end{DoxyCompactList}\item 
+static uint32\+\_\+t \mbox{\hyperlink{_health_task_8c_aa94502c10a8bfd89ced413d2b98d479f}{stale\+\_\+mask\+\_\+required}} (uint32\+\_\+t now\+\_\+ms\+\_\+)
+\begin{DoxyCompactList}\small\item\em Compute the stale task mask for all required tasks. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_health_task_8c_a53210676008974c592a4d5a3d3e2d4b6}{log\+\_\+required\+\_\+status}} (uint32\+\_\+t current\+\_\+time)
+\begin{DoxyCompactList}\small\item\em Print the heartbeat status of all required tasks, one line per task. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_health_task_8c_ac8169b2f9ba217c30cf8950a9c412cb7}{report\+\_\+stale}} (uint32\+\_\+t now\+\_\+ms\+\_\+)
+\begin{DoxyCompactList}\small\item\em Report stale tasks and log reboot context if any are found. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{_health_task_8c_aa70f2b53ee454037c8802aeee9ee558b}{hscr\+\_\+load\+\_\+is\+\_\+health\+\_\+reboot}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}stale\+\_\+mask, uint32\+\_\+t \texorpdfstring{$\ast$}{*}max\+\_\+dt\+\_\+ms, uint32\+\_\+t \texorpdfstring{$\ast$}{*}silence\+\_\+ms, uint32\+\_\+t \texorpdfstring{$\ast$}{*}t\+\_\+now\+\_\+ms, uint32\+\_\+t \texorpdfstring{$\ast$}{*}req\+\_\+mask, uint32\+\_\+t \texorpdfstring{$\ast$}{*}flags)
+\begin{DoxyCompactList}\small\item\em Check if the last reboot was caused by Health and load its context. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_health_task_8c_a443004247b904055d802c8cece93c2d8}{print\+\_\+health\+\_\+reboot\+\_\+brief}} (void)
+\begin{DoxyCompactList}\small\item\em Print a brief summary if the last reboot was caused by Health. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_health_task_8c_a526a18844c3c08b2a902732cd7fe36d6}{health\+\_\+task}} (void \texorpdfstring{$\ast$}{*}arg)
+\begin{DoxyCompactList}\small\item\em Health supervision worker task with strict arm gating and idle-\/canary checks. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks03_gaaa57b8a364b1e80fdbcbd231b80ee70d}{Health\+Task\+\_\+\+Start}} (void)
+\begin{DoxyCompactList}\small\item\em Start the Health supervision task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks03_ga39ec0ac355c1ecd9f7b42602beceaab9}{Health\+\_\+\+Register\+Task}} (\mbox{\hyperlink{group__tasks03_ga85cb9e0b43d35bed4ce045a22086c2b0}{health\+\_\+id\+\_\+t}} id, Task\+Handle\+\_\+t h, const char \texorpdfstring{$\ast$}{*}name)
+\begin{DoxyCompactList}\small\item\em Register a task with Health supervision. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks03_ga4f7298bb6ff71177639ba837e4068eb1}{Health\+\_\+\+Heartbeat}} (\mbox{\hyperlink{group__tasks03_ga85cb9e0b43d35bed4ce045a22086c2b0}{health\+\_\+id\+\_\+t}} id)
+\begin{DoxyCompactList}\small\item\em Record a heartbeat from a registered task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks03_ga5b404de66522546aae096a94abd6d5fc}{Health\+\_\+\+Record\+Blocked}} (const char \texorpdfstring{$\ast$}{*}tag, uint32\+\_\+t waited\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Record a blocking event in the ring buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_health_task_8c_ab76854f8d2e99bfcd06cc15434065005}{Health\+\_\+\+Print\+Last\+Reboot\+Detailed}} (void)
+\begin{DoxyCompactList}\small\item\em Print detailed info about the last reboot if it was caused by Health. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{_health_task_8c_aa5ca74a3259f5a05972427d8d339d580}{hscr\+\_\+store\+\_\+intentional}} (uint32\+\_\+t tnow\+\_\+ms)
+\item 
+void \mbox{\hyperlink{group__tasks03_ga2cceff60fca1f201d5d60588aff53bbc}{Health\+\_\+\+Reboot\+Now}} (const char \texorpdfstring{$\ast$}{*}reason)
+\begin{DoxyCompactList}\small\item\em Immediate, Health-\/owned reboot with context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{structtask__meta__t}{task\+\_\+meta\+\_\+t}} \mbox{\hyperlink{_health_task_8c_a29dfe62535f7f0c435e7d62d21a114c1}{s\+\_\+meta}} \mbox{[}\mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a8a4e0fbdeb7262156a215b8c0df390b6}{HEALTH\+\_\+\+ID\+\_\+\+MAX}}\mbox{]}
+\item 
+static \mbox{\hyperlink{structblock__evt__t}{block\+\_\+evt\+\_\+t}} \mbox{\hyperlink{_health_task_8c_a9e4ddd4c26a4768e8cf79ebacdd4f3e0}{s\+\_\+block\+\_\+ring}} \mbox{[}\mbox{\hyperlink{_health_task_8c_afc15af0a70a9a80d1f1fd68df885ae93}{HEALTH\+\_\+\+BLOCK\+\_\+\+RING\+\_\+\+SIZE}}\mbox{]}
+\item 
+static volatile uint32\+\_\+t \mbox{\hyperlink{_health_task_8c_a371cb89b27d5d935e1db5d7db23ebbb3}{s\+\_\+block\+\_\+w}} = 0
+\item 
+static Task\+Handle\+\_\+t \mbox{\hyperlink{_health_task_8c_af75096b83aabf1928097f1bc1385a2ac}{s\+\_\+health\+\_\+handle}} = NULL
+\item 
+static bool \mbox{\hyperlink{_health_task_8c_a94ba7e30dac233b9857e938d6b5835ba}{s\+\_\+watchdog\+\_\+armed}} = false
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{_health_task_8c_abc63009a44330f46529a437c044c4f96}{s\+\_\+start\+\_\+ms}} = 0
+\item 
+static bool \mbox{\hyperlink{_health_task_8c_a8b4f93838242d0f19e5a847a2987a8ee}{proc\+\_\+state}} = false
+\item 
+static volatile bool \mbox{\hyperlink{_health_task_8c_a4a107404b34536024afb5eda017b2121}{s\+\_\+intentional\+\_\+reboot\+\_\+pending}} = false
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{_health_task_8c_a8e2de4aed0a143a6b483d4658f8318d4}{s\+\_\+last\+\_\+wdt\+\_\+feed\+\_\+ms}} = 0
+\begin{DoxyCompactList}\small\item\em Milliseconds since last watchdog feed recorded by Health. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{_health_task_8c_ac29902867a07d96fad971a7813d2135c}{s\+\_\+prebark\+\_\+emitted}} = false
+\begin{DoxyCompactList}\small\item\em Guard to emit at most one pre-\/bark warning per silence window. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/06
+\end{DoxyDate}
+Implements a Free\+RTOS-\/based health monitoring task that manages the hardware watchdog, tracks heartbeats from registered tasks, logs diagnostics, and records long blocking events for post-\/mortem analysis. Key behavior\+:
+\begin{DoxyItemize}
+\item Graceful ARMING\+: watchdog is enabled only after a warmup period and after at least one heartbeat from each registered task (or warmup timeout).
+\item LIVENESS WINDOW\+: each task must heartbeat at least once within HEALTH\+\_\+\+SILENCE\+\_\+\+MS; otherwise the watchdog is NOT fed.
+\item DIAGNOSTICS\+: prints stack high-\/water marks and free heap periodically, and keeps a small ring of "{}blocked"{} events for post-\/mortem.
+\end{DoxyItemize}
+
+Integration\+: 1) Call Health\+\_\+\+Register\+Task(id, handle, "{}name"{}) after x\+Task\+Create for each task. 2) Call \doxylink{group__tasks03_gaaa57b8a364b1e80fdbcbd231b80ee70d}{Health\+Task\+\_\+\+Start()} once everything is created (at end of Init\+Task). 3) Inside each task loop, call Health\+\_\+\+Heartbeat(\+HEALTH\+\_\+\+ID\+\_\+xxx) once per loop. 4) Optionally call Health\+\_\+\+Record\+Blocked("{}tag"{}, waited\+\_\+ms) on long waits.
+
+\begin{DoxyNote}{Note}
+Do NOT arm another watchdog elsewhere. Let Health\+Task manage it. You can adjust HEALTH\+\_\+\+WARMUP\+\_\+\+MS and HEALTH\+\_\+\+SILENCE\+\_\+\+MS below. @project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+\end{DoxyNote}
+
+
+\label{doc-define-members}
+\Hypertarget{_health_task_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_health_task_8c_afc15af0a70a9a80d1f1fd68df885ae93}\index{HealthTask.c@{HealthTask.c}!HEALTH\_BLOCK\_RING\_SIZE@{HEALTH\_BLOCK\_RING\_SIZE}}
+\index{HEALTH\_BLOCK\_RING\_SIZE@{HEALTH\_BLOCK\_RING\_SIZE}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{HEALTH\_BLOCK\_RING\_SIZE}{HEALTH\_BLOCK\_RING\_SIZE}}
+{\footnotesize\ttfamily \label{_health_task_8c_afc15af0a70a9a80d1f1fd68df885ae93} 
+\#define HEALTH\+\_\+\+BLOCK\+\_\+\+RING\+\_\+\+SIZE~32u}
+
+\Hypertarget{_health_task_8c_a9ba72b87a27fe10378f793e3d8868d4d}\index{HealthTask.c@{HealthTask.c}!HEALTH\_DBG@{HEALTH\_DBG}}
+\index{HEALTH\_DBG@{HEALTH\_DBG}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{HEALTH\_DBG}{HEALTH\_DBG}}
+{\footnotesize\ttfamily \label{_health_task_8c_a9ba72b87a27fe10378f793e3d8868d4d} 
+\#define HEALTH\+\_\+\+DBG(\begin{DoxyParamCaption}\item[{}]{fmt}{, }\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__overcurrent__thresholds_ga19a89fc053d98cd7b3181d57ae2bebb3}{DEBUG\_PRINT\_HEALTH}}(\textcolor{stringliteral}{"{}\%s\ "{}}\ fmt,\ \mbox{\hyperlink{_health_task_8c_ab55422c142e04bab992a060ac09492fc}{HEALTH\_TASK\_TAG}},\ \#\#\_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}
+\Hypertarget{_health_task_8c_ad771d2516e9afcb9f22b0ad2e5701608}\index{HealthTask.c@{HealthTask.c}!HEALTH\_LOG\_PERIOD\_MS@{HEALTH\_LOG\_PERIOD\_MS}}
+\index{HEALTH\_LOG\_PERIOD\_MS@{HEALTH\_LOG\_PERIOD\_MS}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{HEALTH\_LOG\_PERIOD\_MS}{HEALTH\_LOG\_PERIOD\_MS}}
+{\footnotesize\ttfamily \label{_health_task_8c_ad771d2516e9afcb9f22b0ad2e5701608} 
+\#define HEALTH\+\_\+\+LOG\+\_\+\+PERIOD\+\_\+\+MS~60000u}
+
+\Hypertarget{_health_task_8c_a9370c546b6def8bd49ce6d255b0ee56c}\index{HealthTask.c@{HealthTask.c}!HEALTH\_PERIOD\_MS@{HEALTH\_PERIOD\_MS}}
+\index{HEALTH\_PERIOD\_MS@{HEALTH\_PERIOD\_MS}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{HEALTH\_PERIOD\_MS}{HEALTH\_PERIOD\_MS}}
+{\footnotesize\ttfamily \label{_health_task_8c_a9370c546b6def8bd49ce6d255b0ee56c} 
+\#define HEALTH\+\_\+\+PERIOD\+\_\+\+MS~250u}
+
+\Hypertarget{_health_task_8c_a24c46e9506c00cfd40befc66557f83f1}\index{HealthTask.c@{HealthTask.c}!HEALTH\_PREBARK\_MS@{HEALTH\_PREBARK\_MS}}
+\index{HEALTH\_PREBARK\_MS@{HEALTH\_PREBARK\_MS}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{HEALTH\_PREBARK\_MS}{HEALTH\_PREBARK\_MS}}
+{\footnotesize\ttfamily \label{_health_task_8c_a24c46e9506c00cfd40befc66557f83f1} 
+\#define HEALTH\+\_\+\+PREBARK\+\_\+\+MS~300u}
+
+
+
+Margin before timeout to emit a pre-\/bark warning (ms). 
+
+\Hypertarget{_health_task_8c_a091ba98073ca2f0b180c39d9789b6d5f}\index{HealthTask.c@{HealthTask.c}!HEALTH\_PRINT\_WDT\_FEED@{HEALTH\_PRINT\_WDT\_FEED}}
+\index{HEALTH\_PRINT\_WDT\_FEED@{HEALTH\_PRINT\_WDT\_FEED}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{HEALTH\_PRINT\_WDT\_FEED}{HEALTH\_PRINT\_WDT\_FEED}}
+{\footnotesize\ttfamily \label{_health_task_8c_a091ba98073ca2f0b180c39d9789b6d5f} 
+\#define HEALTH\+\_\+\+PRINT\+\_\+\+WDT\+\_\+\+FEED~1}
+
+\Hypertarget{_health_task_8c_ad38ce946906448adb2208081f3302701}\index{HealthTask.c@{HealthTask.c}!HEALTH\_REQUIRED\_MASK@{HEALTH\_REQUIRED\_MASK}}
+\index{HEALTH\_REQUIRED\_MASK@{HEALTH\_REQUIRED\_MASK}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{HEALTH\_REQUIRED\_MASK}{HEALTH\_REQUIRED\_MASK}}
+{\footnotesize\ttfamily \label{_health_task_8c_ad38ce946906448adb2208081f3302701} 
+\#define HEALTH\+\_\+\+REQUIRED\+\_\+\+MASK}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ ((1u\ <<\ \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a051e8be4fb238dd58b9221e976987d75}{HEALTH\_ID\_LOGGER}})\ |\ (1u\ <<\ \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0ad37f44c33ad392b2b3daf0be960c69f7}{HEALTH\_ID\_CONSOLE}})\ |\ (1u\ <<\ \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a015d1fa647ab3cefab7537a5f91d24b2}{HEALTH\_ID\_STORAGE}})\ |\ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ (1u\ <<\ \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0aec9e0ebdf114b54ffaefe5ac0dfe4f42}{HEALTH\_ID\_BUTTON}})\ |\ (1u\ <<\ \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a561a36766da3f788952f9183b07ad21d}{HEALTH\_ID\_NET}})\ |\ (1u\ <<\ \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a2cea86f90ff8e96b63128b6591e9f50c}{HEALTH\_ID\_METER}}))}
+
+\end{DoxyCode}
+\Hypertarget{_health_task_8c_a803670cc091d640f9b88b95b42637569}\index{HealthTask.c@{HealthTask.c}!HEALTH\_SCRATCH\_MAGIC@{HEALTH\_SCRATCH\_MAGIC}}
+\index{HEALTH\_SCRATCH\_MAGIC@{HEALTH\_SCRATCH\_MAGIC}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{HEALTH\_SCRATCH\_MAGIC}{HEALTH\_SCRATCH\_MAGIC}}
+{\footnotesize\ttfamily \label{_health_task_8c_a803670cc091d640f9b88b95b42637569} 
+\#define HEALTH\+\_\+\+SCRATCH\+\_\+\+MAGIC~(0x484\+C5448u)}
+
+\Hypertarget{_health_task_8c_aec2494cb740d42b60113f0f647007268}\index{HealthTask.c@{HealthTask.c}!HEALTH\_SILENCE\_MS@{HEALTH\_SILENCE\_MS}}
+\index{HEALTH\_SILENCE\_MS@{HEALTH\_SILENCE\_MS}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{HEALTH\_SILENCE\_MS}{HEALTH\_SILENCE\_MS}}
+{\footnotesize\ttfamily \label{_health_task_8c_aec2494cb740d42b60113f0f647007268} 
+\#define HEALTH\+\_\+\+SILENCE\+\_\+\+MS~6000u}
+
+\Hypertarget{_health_task_8c_ab55422c142e04bab992a060ac09492fc}\index{HealthTask.c@{HealthTask.c}!HEALTH\_TASK\_TAG@{HEALTH\_TASK\_TAG}}
+\index{HEALTH\_TASK\_TAG@{HEALTH\_TASK\_TAG}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{HEALTH\_TASK\_TAG}{HEALTH\_TASK\_TAG}}
+{\footnotesize\ttfamily \label{_health_task_8c_ab55422c142e04bab992a060ac09492fc} 
+\#define HEALTH\+\_\+\+TASK\+\_\+\+TAG~"{}\mbox{[}HEALTH\mbox{]}"{}}
+
+\Hypertarget{_health_task_8c_a7e2139b48ce98b07bc59c6e4b1cd94be}\index{HealthTask.c@{HealthTask.c}!HEALTH\_WARMUP\_MS@{HEALTH\_WARMUP\_MS}}
+\index{HEALTH\_WARMUP\_MS@{HEALTH\_WARMUP\_MS}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{HEALTH\_WARMUP\_MS}{HEALTH\_WARMUP\_MS}}
+{\footnotesize\ttfamily \label{_health_task_8c_a7e2139b48ce98b07bc59c6e4b1cd94be} 
+\#define HEALTH\+\_\+\+WARMUP\+\_\+\+MS~2000u}
+
+\Hypertarget{_health_task_8c_a7a08f8e7ba7f131e42ce216d1b926f20}\index{HealthTask.c@{HealthTask.c}!HSCR\_CAUSE@{HSCR\_CAUSE}}
+\index{HSCR\_CAUSE@{HSCR\_CAUSE}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{HSCR\_CAUSE}{HSCR\_CAUSE}}
+{\footnotesize\ttfamily \label{_health_task_8c_a7a08f8e7ba7f131e42ce216d1b926f20} 
+\#define HSCR\+\_\+\+CAUSE~1}
+
+\Hypertarget{_health_task_8c_a9241ae3166b7a02eeb4904927e8d39f0}\index{HealthTask.c@{HealthTask.c}!HSCR\_FLAGS@{HSCR\_FLAGS}}
+\index{HSCR\_FLAGS@{HSCR\_FLAGS}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{HSCR\_FLAGS}{HSCR\_FLAGS}}
+{\footnotesize\ttfamily \label{_health_task_8c_a9241ae3166b7a02eeb4904927e8d39f0} 
+\#define HSCR\+\_\+\+FLAGS~7}
+
+\Hypertarget{_health_task_8c_a69297c2844cc865cb6278b9add29bb25}\index{HealthTask.c@{HealthTask.c}!HSCR\_MAGIC@{HSCR\_MAGIC}}
+\index{HSCR\_MAGIC@{HSCR\_MAGIC}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{HSCR\_MAGIC}{HSCR\_MAGIC}}
+{\footnotesize\ttfamily \label{_health_task_8c_a69297c2844cc865cb6278b9add29bb25} 
+\#define HSCR\+\_\+\+MAGIC~0}
+
+\Hypertarget{_health_task_8c_a4b03c61871ca937b9ae91b1388383387}\index{HealthTask.c@{HealthTask.c}!HSCR\_MAXDT@{HSCR\_MAXDT}}
+\index{HSCR\_MAXDT@{HSCR\_MAXDT}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{HSCR\_MAXDT}{HSCR\_MAXDT}}
+{\footnotesize\ttfamily \label{_health_task_8c_a4b03c61871ca937b9ae91b1388383387} 
+\#define HSCR\+\_\+\+MAXDT~3}
+
+\Hypertarget{_health_task_8c_aad44e594e112af48f753a8d2a5caab81}\index{HealthTask.c@{HealthTask.c}!HSCR\_REQMSK@{HSCR\_REQMSK}}
+\index{HSCR\_REQMSK@{HSCR\_REQMSK}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{HSCR\_REQMSK}{HSCR\_REQMSK}}
+{\footnotesize\ttfamily \label{_health_task_8c_aad44e594e112af48f753a8d2a5caab81} 
+\#define HSCR\+\_\+\+REQMSK~6}
+
+\Hypertarget{_health_task_8c_a4cd9aa1bee30d044f4bacb0c53c70db8}\index{HealthTask.c@{HealthTask.c}!HSCR\_STALE@{HSCR\_STALE}}
+\index{HSCR\_STALE@{HSCR\_STALE}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{HSCR\_STALE}{HSCR\_STALE}}
+{\footnotesize\ttfamily \label{_health_task_8c_a4cd9aa1bee30d044f4bacb0c53c70db8} 
+\#define HSCR\+\_\+\+STALE~2}
+
+\Hypertarget{_health_task_8c_a10d4ad431cbc1ecab02ddfa2cabe1919}\index{HealthTask.c@{HealthTask.c}!HSCR\_TIMEOUT@{HSCR\_TIMEOUT}}
+\index{HSCR\_TIMEOUT@{HSCR\_TIMEOUT}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{HSCR\_TIMEOUT}{HSCR\_TIMEOUT}}
+{\footnotesize\ttfamily \label{_health_task_8c_a10d4ad431cbc1ecab02ddfa2cabe1919} 
+\#define HSCR\+\_\+\+TIMEOUT~4}
+
+\Hypertarget{_health_task_8c_a7b62afdbc0a0b0a547bfed71adad69df}\index{HealthTask.c@{HealthTask.c}!HSCR\_TNOW@{HSCR\_TNOW}}
+\index{HSCR\_TNOW@{HSCR\_TNOW}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{HSCR\_TNOW}{HSCR\_TNOW}}
+{\footnotesize\ttfamily \label{_health_task_8c_a7b62afdbc0a0b0a547bfed71adad69df} 
+\#define HSCR\+\_\+\+TNOW~5}
+
+\Hypertarget{_health_task_8c_a21bf7b65487cb99abc41686ab8e63969}\index{HealthTask.c@{HealthTask.c}!WDT\_PREBARK@{WDT\_PREBARK}}
+\index{WDT\_PREBARK@{WDT\_PREBARK}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{WDT\_PREBARK}{WDT\_PREBARK}}
+{\footnotesize\ttfamily \label{_health_task_8c_a21bf7b65487cb99abc41686ab8e63969} 
+\#define WDT\+\_\+\+PREBARK~"{}\mbox{[}WDT-\/PREBARK\mbox{]}"{}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{_health_task_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_health_task_8c_ab1f74e39f4baf6da01b7d9a7322b1252}\index{HealthTask.c@{HealthTask.c}!dump\_block\_ring@{dump\_block\_ring}}
+\index{dump\_block\_ring@{dump\_block\_ring}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{dump\_block\_ring()}{dump\_block\_ring()}}
+{\footnotesize\ttfamily \label{_health_task_8c_ab1f74e39f4baf6da01b7d9a7322b1252} 
+void dump\+\_\+block\+\_\+ring (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Dump the recent blocked events ring buffer. 
+
+Prints the contents of the s\+\_\+block\+\_\+ring buffer to the log, showing the most recent blocking events recorded via \doxylink{group__tasks03_ga5b404de66522546aae096a94abd6d5fc}{Health\+\_\+\+Record\+Blocked()}.
+
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_health_task_8c_ab1f74e39f4baf6da01b7d9a7322b1252_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_health_task_8c_a3b445bff75b4db504ee2e1f2e077e114}\index{HealthTask.c@{HealthTask.c}!Health\_OnWdtFeed@{Health\_OnWdtFeed}}
+\index{Health\_OnWdtFeed@{Health\_OnWdtFeed}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{Health\_OnWdtFeed()}{Health\_OnWdtFeed()}}
+{\footnotesize\ttfamily \label{_health_task_8c_a3b445bff75b4db504ee2e1f2e077e114} 
+void Health\+\_\+\+On\+Wdt\+Feed (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{now\+\_\+ms}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Record a watchdog feed and reset the pre-\/bark guard. 
+
+Call this instead of raw watchdog\+\_\+update() wherever the Health policy decides to feed the watchdog. It still performs the hardware feed, but also stores {\ttfamily now\+\_\+ms} so warn is possible if timeout is approaching.
+
+
+\begin{DoxyParams}{Parameters}
+{\em now\+\_\+ms} & Monotonic time in milliseconds (e.\+g. to\+\_\+ms\+\_\+since\+\_\+boot()). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_health_task_8c_a3b445bff75b4db504ee2e1f2e077e114_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_health_task_8c_a3b445bff75b4db504ee2e1f2e077e114_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_health_task_8c_a5e83b7eaeb9a94d324d87835c0860591}\index{HealthTask.c@{HealthTask.c}!Health\_PreBarkCheck@{Health\_PreBarkCheck}}
+\index{Health\_PreBarkCheck@{Health\_PreBarkCheck}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{Health\_PreBarkCheck()}{Health\_PreBarkCheck()}}
+{\footnotesize\ttfamily \label{_health_task_8c_a5e83b7eaeb9a94d324d87835c0860591} 
+void Health\+\_\+\+Pre\+Bark\+Check (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{now\+\_\+ms}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Emit a one-\/shot warning when remaining time is below a margin. 
+
+Call this once per Health tick (e.\+g. where you print the periodic "{}\+Summary"{}). If the watchdog is armed and the time since the last feed encroaches within HEALTH\+\_\+\+PREBARK\+\_\+\+MS of HEALTH\+\_\+\+SILENCE\+\_\+\+MS, it prints a concise line with per-\/task deltas to help pinpoint slow offenders.
+
+This function never re-\/arms or feeds the watchdog; it only logs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em now\+\_\+ms} & Monotonic time in milliseconds (e.\+g. to\+\_\+ms\+\_\+since\+\_\+boot()). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_health_task_8c_a5e83b7eaeb9a94d324d87835c0860591_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_health_task_8c_ab76854f8d2e99bfcd06cc15434065005}\index{HealthTask.c@{HealthTask.c}!Health\_PrintLastRebootDetailed@{Health\_PrintLastRebootDetailed}}
+\index{Health\_PrintLastRebootDetailed@{Health\_PrintLastRebootDetailed}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{Health\_PrintLastRebootDetailed()}{Health\_PrintLastRebootDetailed()}}
+{\footnotesize\ttfamily \label{_health_task_8c_ab76854f8d2e99bfcd06cc15434065005} 
+void Health\+\_\+\+Print\+Last\+Reboot\+Detailed (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Print detailed info about the last reboot if it was caused by Health. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_health_task_8c_ab76854f8d2e99bfcd06cc15434065005_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_health_task_8c_a526a18844c3c08b2a902732cd7fe36d6}\index{HealthTask.c@{HealthTask.c}!health\_task@{health\_task}}
+\index{health\_task@{health\_task}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{health\_task()}{health\_task()}}
+{\footnotesize\ttfamily \label{_health_task_8c_a526a18844c3c08b2a902732cd7fe36d6} 
+void health\+\_\+task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{arg}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Health supervision worker task with strict arm gating and idle-\/canary checks. 
+
+Periodically evaluates heartbeats of all registered tasks, logs stack-\/watermarks, heap usage and recent blocking events, and supervises the hardware watchdog. The watchdog ARMS ONLY AFTER BOTH conditions hold\+: (1) warmup window elapsed, AND (2) every required task produced at least one heartbeat.
+
+Additionally, emits a one-\/shot "{}pre-\/bark"{} ERROR\+\_\+\+PRINT when within HEALTH\+\_\+\+PREBARK\+\_\+\+MS of HEALTH\+\_\+\+SILENCE\+\_\+\+MS since the last feed, with per-\/task dt.
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg} & Unused task parameter. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_health_task_8c_a526a18844c3c08b2a902732cd7fe36d6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_health_task_8c_a526a18844c3c08b2a902732cd7fe36d6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_health_task_8c_ac66d48f916a563641390eae52aa66f2d}\index{HealthTask.c@{HealthTask.c}!hscr\_clear@{hscr\_clear}}
+\index{hscr\_clear@{hscr\_clear}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{hscr\_clear()}{hscr\_clear()}}
+{\footnotesize\ttfamily \label{_health_task_8c_ac66d48f916a563641390eae52aa66f2d} 
+void hscr\+\_\+clear (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Clear the watchdog scratch registers. Used after a clean boot to avoid stale data. 
+
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_health_task_8c_ac66d48f916a563641390eae52aa66f2d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_health_task_8c_aa70f2b53ee454037c8802aeee9ee558b}\index{HealthTask.c@{HealthTask.c}!hscr\_load\_is\_health\_reboot@{hscr\_load\_is\_health\_reboot}}
+\index{hscr\_load\_is\_health\_reboot@{hscr\_load\_is\_health\_reboot}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{hscr\_load\_is\_health\_reboot()}{hscr\_load\_is\_health\_reboot()}}
+{\footnotesize\ttfamily \label{_health_task_8c_aa70f2b53ee454037c8802aeee9ee558b} 
+bool hscr\+\_\+load\+\_\+is\+\_\+health\+\_\+reboot (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{stale\+\_\+mask}{, }\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{max\+\_\+dt\+\_\+ms}{, }\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{silence\+\_\+ms}{, }\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{t\+\_\+now\+\_\+ms}{, }\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{req\+\_\+mask}{, }\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{flags}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Check if the last reboot was caused by Health and load its context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stale\+\_\+mask} & Pointer to store the stale task mask, or NULL. \\
+\hline
+{\em max\+\_\+dt\+\_\+ms} & Pointer to store the max dt in ms, or NULL. \\
+\hline
+{\em silence\+\_\+ms} & Pointer to store the silence timeout in ms, or NULL. \\
+\hline
+{\em t\+\_\+now\+\_\+ms} & Pointer to store the timestamp of the reboot request, or NULL. \\
+\hline
+{\em req\+\_\+mask} & Pointer to store the required task mask, or NULL. \\
+\hline
+{\em flags} & Pointer to store additional flags, or NULL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the last reboot was caused by Health; false otherwise. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_health_task_8c_aa70f2b53ee454037c8802aeee9ee558b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_health_task_8c_aa5ca74a3259f5a05972427d8d339d580}\index{HealthTask.c@{HealthTask.c}!hscr\_store\_intentional@{hscr\_store\_intentional}}
+\index{hscr\_store\_intentional@{hscr\_store\_intentional}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{hscr\_store\_intentional()}{hscr\_store\_intentional()}}
+{\footnotesize\ttfamily \label{_health_task_8c_aa5ca74a3259f5a05972427d8d339d580} 
+void hscr\+\_\+store\+\_\+intentional (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{tnow\+\_\+ms}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_health_task_8c_aa5ca74a3259f5a05972427d8d339d580_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_health_task_8c_a996702f3c487931dc54c3bea7a590fe6}\index{HealthTask.c@{HealthTask.c}!hscr\_store\_stale@{hscr\_store\_stale}}
+\index{hscr\_store\_stale@{hscr\_store\_stale}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{hscr\_store\_stale()}{hscr\_store\_stale()}}
+{\footnotesize\ttfamily \label{_health_task_8c_a996702f3c487931dc54c3bea7a590fe6} 
+void hscr\+\_\+store\+\_\+stale (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{stale\+\_\+mask}{, }\item[{uint32\+\_\+t}]{maxdt}{, }\item[{uint32\+\_\+t}]{silence\+\_\+ms}{, }\item[{uint32\+\_\+t}]{tnow}{, }\item[{uint32\+\_\+t}]{req\+\_\+mask}{, }\item[{bool}]{armed}{, }\item[{bool}]{warmup\+\_\+elapsed}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Store watchdog stale info to scratch registers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stale\+\_\+mask} & Bitmask of stale tasks. \\
+\hline
+{\em maxdt} & Maximum delta observed (ms). \\
+\hline
+{\em silence\+\_\+ms} & Watchdog silence timeout (ms). \\
+\hline
+{\em tnow} & Current time (ms since boot). \\
+\hline
+{\em req\+\_\+mask} & Bitmask of required tasks. \\
+\hline
+{\em armed} & Whether the watchdog was armed. \\
+\hline
+{\em warmup\+\_\+elapsed} & Whether warmup period had elapsed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_health_task_8c_a996702f3c487931dc54c3bea7a590fe6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_health_task_8c_a8213bf3a8e666885c3d45b1d5d8fb85c}\index{HealthTask.c@{HealthTask.c}!id\_in\_required@{id\_in\_required}}
+\index{id\_in\_required@{id\_in\_required}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{id\_in\_required()}{id\_in\_required()}}
+{\footnotesize\ttfamily \label{_health_task_8c_a8213bf3a8e666885c3d45b1d5d8fb85c} 
+bool id\+\_\+in\+\_\+required (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Check if a health ID is in the required mask. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The health ID to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the ID is required, false otherwise. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_health_task_8c_a8213bf3a8e666885c3d45b1d5d8fb85c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_health_task_8c_a160a90c77e4bf752dfacf1902e7d1271}\index{HealthTask.c@{HealthTask.c}!log\_heap\_free@{log\_heap\_free}}
+\index{log\_heap\_free@{log\_heap\_free}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{log\_heap\_free()}{log\_heap\_free()}}
+{\footnotesize\ttfamily \label{_health_task_8c_a160a90c77e4bf752dfacf1902e7d1271} 
+void log\+\_\+heap\+\_\+free (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Log the current free heap size. 
+
+Prints the amount of free heap memory available. Requires config\+USE\+\_\+\+MALLOC\+\_\+\+FAILED\+\_\+\+HOOK to be enabled in \doxylink{_free_r_t_o_s_config_8h}{Free\+RTOSConfig.\+h}.
+
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_health_task_8c_a160a90c77e4bf752dfacf1902e7d1271_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_health_task_8c_a53210676008974c592a4d5a3d3e2d4b6}\index{HealthTask.c@{HealthTask.c}!log\_required\_status@{log\_required\_status}}
+\index{log\_required\_status@{log\_required\_status}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{log\_required\_status()}{log\_required\_status()}}
+{\footnotesize\ttfamily \label{_health_task_8c_a53210676008974c592a4d5a3d3e2d4b6} 
+void log\+\_\+required\+\_\+status (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{current\+\_\+time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Print the heartbeat status of all required tasks, one line per task. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+time} & Monotonic timestamp in milliseconds to use as "{}now"{}.\\
+\hline
+\end{DoxyParams}
+For each health ID that is marked required, this function prints exactly one log line\+:
+\begin{DoxyItemize}
+\item "{}$<$name$>$\+: PRE-\/\+ARM"{} if no heartbeat has ever been seen and the watchdog is not armed yet.
+\item "{}$<$name$>$\+: NEVER"{} if no heartbeat has ever been seen but the watchdog is already armed.
+\item "{}$<$name$>$\+: $<$dt$>$ ms"{} where dt = current\+\_\+time -\/ last\+\_\+seen\+\_\+ms, if at least one heartbeat arrived.
+\end{DoxyItemize}
+
+The task name is taken from the registration metadata; if missing, "{}task"{} is used. This function does not assemble multi-\/line strings; it emits one line per task for readability. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=293pt]{_health_task_8c_a53210676008974c592a4d5a3d3e2d4b6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_health_task_8c_a53210676008974c592a4d5a3d3e2d4b6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_health_task_8c_a6c24df6d8d86ef094694156984474046}\index{HealthTask.c@{HealthTask.c}!log\_stack\_watermarks@{log\_stack\_watermarks}}
+\index{log\_stack\_watermarks@{log\_stack\_watermarks}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{log\_stack\_watermarks()}{log\_stack\_watermarks()}}
+{\footnotesize\ttfamily \label{_health_task_8c_a6c24df6d8d86ef094694156984474046} 
+void log\+\_\+stack\+\_\+watermarks (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_health_task_8c_a6c24df6d8d86ef094694156984474046_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_health_task_8c_a4f622f7eefe9176d86353921b2facf62}\index{HealthTask.c@{HealthTask.c}!max\_dt\_required@{max\_dt\_required}}
+\index{max\_dt\_required@{max\_dt\_required}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{max\_dt\_required()}{max\_dt\_required()}}
+{\footnotesize\ttfamily \label{_health_task_8c_a4f622f7eefe9176d86353921b2facf62} 
+uint32\+\_\+t max\+\_\+dt\+\_\+required (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{now\+\_\+ms\+\_\+}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Compute the maximum delta time since last heartbeat among required tasks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em now\+\_\+ms\+\_\+} & Current monotonic time in milliseconds. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Maximum delta time in milliseconds since last heartbeat of any required task.
+\end{DoxyReturn}
+This function iterates over all registered tasks and checks if they are marked as required. For each required task, it calculates the time delta since the last heartbeat and keeps track of the maximum delta found.
+
+If a required task has never sent a heartbeat (last\+\_\+seen\+\_\+ms == 0)\+:
+\begin{DoxyItemize}
+\item If the watchdog is not yet armed, it is ignored in the max calculation.
+\item If the watchdog is armed, it contributes a delta greater than HEALTH\+\_\+\+SILENCE\+\_\+\+MS to indicate staleness. 
+\end{DoxyItemize}Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{_health_task_8c_a4f622f7eefe9176d86353921b2facf62_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_health_task_8c_a4f622f7eefe9176d86353921b2facf62_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_health_task_8c_a50503dee6a29e98e633b16b1b8b550bc}\index{HealthTask.c@{HealthTask.c}!now\_ms@{now\_ms}}
+\index{now\_ms@{now\_ms}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{now\_ms()}{now\_ms()}}
+{\footnotesize\ttfamily \label{_health_task_8c_a50503dee6a29e98e633b16b1b8b550bc} 
+uint32\+\_\+t now\+\_\+ms (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Get current monotonic time in milliseconds. 
+
+\begin{DoxyReturn}{Returns}
+Current time in milliseconds since boot. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_health_task_8c_a50503dee6a29e98e633b16b1b8b550bc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_health_task_8c_a443004247b904055d802c8cece93c2d8}\index{HealthTask.c@{HealthTask.c}!print\_health\_reboot\_brief@{print\_health\_reboot\_brief}}
+\index{print\_health\_reboot\_brief@{print\_health\_reboot\_brief}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{print\_health\_reboot\_brief()}{print\_health\_reboot\_brief()}}
+{\footnotesize\ttfamily \label{_health_task_8c_a443004247b904055d802c8cece93c2d8} 
+void print\+\_\+health\+\_\+reboot\+\_\+brief (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Print a brief summary if the last reboot was caused by Health. 
+
+If the last reboot was triggered by Health (i.\+e., the watchdog bit was set and the scratch registers contain our magic), this function prints a concise summary of the reboot context, including which tasks were stale, their max dt, the silence timeout, and the timestamp of the reboot request. After printing, it clears the scratch registers to avoid repeated reports.
+
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=317pt]{_health_task_8c_a443004247b904055d802c8cece93c2d8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_health_task_8c_a443004247b904055d802c8cece93c2d8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_health_task_8c_ac8169b2f9ba217c30cf8950a9c412cb7}\index{HealthTask.c@{HealthTask.c}!report\_stale@{report\_stale}}
+\index{report\_stale@{report\_stale}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{report\_stale()}{report\_stale()}}
+{\footnotesize\ttfamily \label{_health_task_8c_ac8169b2f9ba217c30cf8950a9c412cb7} 
+void report\+\_\+stale (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{now\+\_\+ms\+\_\+}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Report stale tasks and log reboot context if any are found. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em now\+\_\+ms\+\_\+} & Current monotonic time in milliseconds.\\
+\hline
+\end{DoxyParams}
+This function checks all required tasks for staleness based on their last heartbeat timestamps. If any required task is found to be stale (i.\+e., has not sent a heartbeat within the allowed silence window), it logs a detailed message including the stale task mask and their respective delays. It also records this information in the RP2040 watchdog scratch registers for post-\/mortem analysis after a reboot. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_health_task_8c_ac8169b2f9ba217c30cf8950a9c412cb7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_health_task_8c_ac8169b2f9ba217c30cf8950a9c412cb7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_health_task_8c_acfb8f6f51b0f8da2181487887382ee77}\index{HealthTask.c@{HealthTask.c}!required\_tasks\_have\_heartbeat\_once@{required\_tasks\_have\_heartbeat\_once}}
+\index{required\_tasks\_have\_heartbeat\_once@{required\_tasks\_have\_heartbeat\_once}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{required\_tasks\_have\_heartbeat\_once()}{required\_tasks\_have\_heartbeat\_once()}}
+{\footnotesize\ttfamily \label{_health_task_8c_acfb8f6f51b0f8da2181487887382ee77} 
+bool required\+\_\+tasks\+\_\+have\+\_\+heartbeat\+\_\+once (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Check if all required tasks have sent at least one heartbeat. 
+
+\begin{DoxyReturn}{Returns}
+true if all required tasks have a non-\/zero last\+\_\+seen\+\_\+ms, false otherwise.
+\end{DoxyReturn}
+This function iterates over all registered tasks and checks if they are marked as required. For each required task, it verifies that the last\+\_\+seen\+\_\+ms timestamp is non-\/zero, indicating that at least one heartbeat has been received from that task. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{_health_task_8c_acfb8f6f51b0f8da2181487887382ee77_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_health_task_8c_acfb8f6f51b0f8da2181487887382ee77_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_health_task_8c_aa94502c10a8bfd89ced413d2b98d479f}\index{HealthTask.c@{HealthTask.c}!stale\_mask\_required@{stale\_mask\_required}}
+\index{stale\_mask\_required@{stale\_mask\_required}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{stale\_mask\_required()}{stale\_mask\_required()}}
+{\footnotesize\ttfamily \label{_health_task_8c_aa94502c10a8bfd89ced413d2b98d479f} 
+uint32\+\_\+t stale\+\_\+mask\+\_\+required (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{now\+\_\+ms\+\_\+}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Compute the stale task mask for all required tasks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em now\+\_\+ms\+\_\+} & Current monotonic time in milliseconds. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Bitmask of HEALTH\+\_\+\+ID\+\_\+xxx values that are stale.
+\end{DoxyReturn}
+This function iterates over all registered tasks and checks if they are marked as required. For each required task, it calculates the time delta since the last heartbeat. If this delta exceeds HEALTH\+\_\+\+SILENCE\+\_\+\+MS, the corresponding bit in the returned mask is set to indicate staleness.
+
+If a required task has never sent a heartbeat (last\+\_\+seen\+\_\+ms == 0) and the watchdog is already armed, it is also considered stale. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{_health_task_8c_aa94502c10a8bfd89ced413d2b98d479f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_health_task_8c_aa94502c10a8bfd89ced413d2b98d479f_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{_health_task_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{_health_task_8c_a8b4f93838242d0f19e5a847a2987a8ee}\index{HealthTask.c@{HealthTask.c}!proc\_state@{proc\_state}}
+\index{proc\_state@{proc\_state}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{proc\_state}{proc\_state}}
+{\footnotesize\ttfamily \label{_health_task_8c_a8b4f93838242d0f19e5a847a2987a8ee} 
+bool proc\+\_\+state = false\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_health_task_8c_a9e4ddd4c26a4768e8cf79ebacdd4f3e0}\index{HealthTask.c@{HealthTask.c}!s\_block\_ring@{s\_block\_ring}}
+\index{s\_block\_ring@{s\_block\_ring}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_block\_ring}{s\_block\_ring}}
+{\footnotesize\ttfamily \label{_health_task_8c_a9e4ddd4c26a4768e8cf79ebacdd4f3e0} 
+\mbox{\hyperlink{structblock__evt__t}{block\+\_\+evt\+\_\+t}} s\+\_\+block\+\_\+ring\mbox{[}\mbox{\hyperlink{_health_task_8c_afc15af0a70a9a80d1f1fd68df885ae93}{HEALTH\+\_\+\+BLOCK\+\_\+\+RING\+\_\+\+SIZE}}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_health_task_8c_a371cb89b27d5d935e1db5d7db23ebbb3}\index{HealthTask.c@{HealthTask.c}!s\_block\_w@{s\_block\_w}}
+\index{s\_block\_w@{s\_block\_w}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_block\_w}{s\_block\_w}}
+{\footnotesize\ttfamily \label{_health_task_8c_a371cb89b27d5d935e1db5d7db23ebbb3} 
+volatile uint32\+\_\+t s\+\_\+block\+\_\+w = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_health_task_8c_af75096b83aabf1928097f1bc1385a2ac}\index{HealthTask.c@{HealthTask.c}!s\_health\_handle@{s\_health\_handle}}
+\index{s\_health\_handle@{s\_health\_handle}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_health\_handle}{s\_health\_handle}}
+{\footnotesize\ttfamily \label{_health_task_8c_af75096b83aabf1928097f1bc1385a2ac} 
+Task\+Handle\+\_\+t s\+\_\+health\+\_\+handle = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_health_task_8c_a4a107404b34536024afb5eda017b2121}\index{HealthTask.c@{HealthTask.c}!s\_intentional\_reboot\_pending@{s\_intentional\_reboot\_pending}}
+\index{s\_intentional\_reboot\_pending@{s\_intentional\_reboot\_pending}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_intentional\_reboot\_pending}{s\_intentional\_reboot\_pending}}
+{\footnotesize\ttfamily \label{_health_task_8c_a4a107404b34536024afb5eda017b2121} 
+volatile bool s\+\_\+intentional\+\_\+reboot\+\_\+pending = false\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_health_task_8c_a8e2de4aed0a143a6b483d4658f8318d4}\index{HealthTask.c@{HealthTask.c}!s\_last\_wdt\_feed\_ms@{s\_last\_wdt\_feed\_ms}}
+\index{s\_last\_wdt\_feed\_ms@{s\_last\_wdt\_feed\_ms}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_last\_wdt\_feed\_ms}{s\_last\_wdt\_feed\_ms}}
+{\footnotesize\ttfamily \label{_health_task_8c_a8e2de4aed0a143a6b483d4658f8318d4} 
+uint32\+\_\+t s\+\_\+last\+\_\+wdt\+\_\+feed\+\_\+ms = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Milliseconds since last watchdog feed recorded by Health. 
+
+\Hypertarget{_health_task_8c_a29dfe62535f7f0c435e7d62d21a114c1}\index{HealthTask.c@{HealthTask.c}!s\_meta@{s\_meta}}
+\index{s\_meta@{s\_meta}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_meta}{s\_meta}}
+{\footnotesize\ttfamily \label{_health_task_8c_a29dfe62535f7f0c435e7d62d21a114c1} 
+\mbox{\hyperlink{structtask__meta__t}{task\+\_\+meta\+\_\+t}} s\+\_\+meta\mbox{[}\mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a8a4e0fbdeb7262156a215b8c0df390b6}{HEALTH\+\_\+\+ID\+\_\+\+MAX}}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_health_task_8c_ac29902867a07d96fad971a7813d2135c}\index{HealthTask.c@{HealthTask.c}!s\_prebark\_emitted@{s\_prebark\_emitted}}
+\index{s\_prebark\_emitted@{s\_prebark\_emitted}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_prebark\_emitted}{s\_prebark\_emitted}}
+{\footnotesize\ttfamily \label{_health_task_8c_ac29902867a07d96fad971a7813d2135c} 
+bool s\+\_\+prebark\+\_\+emitted = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Guard to emit at most one pre-\/bark warning per silence window. 
+
+\Hypertarget{_health_task_8c_abc63009a44330f46529a437c044c4f96}\index{HealthTask.c@{HealthTask.c}!s\_start\_ms@{s\_start\_ms}}
+\index{s\_start\_ms@{s\_start\_ms}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_start\_ms}{s\_start\_ms}}
+{\footnotesize\ttfamily \label{_health_task_8c_abc63009a44330f46529a437c044c4f96} 
+uint32\+\_\+t s\+\_\+start\+\_\+ms = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{_health_task_8c_a94ba7e30dac233b9857e938d6b5835ba}\index{HealthTask.c@{HealthTask.c}!s\_watchdog\_armed@{s\_watchdog\_armed}}
+\index{s\_watchdog\_armed@{s\_watchdog\_armed}!HealthTask.c@{HealthTask.c}}
+\doxysubsubsection{\texorpdfstring{s\_watchdog\_armed}{s\_watchdog\_armed}}
+{\footnotesize\ttfamily \label{_health_task_8c_a94ba7e30dac233b9857e938d6b5835ba} 
+bool s\+\_\+watchdog\+\_\+armed = false\hspace{0.3cm}{\ttfamily [static]}}
+

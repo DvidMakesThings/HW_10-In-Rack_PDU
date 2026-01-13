@@ -1,5 +1,5 @@
 /**
- * @file SwitchTask.c
+ * @file src/tasks/SwitchTask.c
  * @author DvidMakesThings - David Sipos
  *
  * @version 3.0

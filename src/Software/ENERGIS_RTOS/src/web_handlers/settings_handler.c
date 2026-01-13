@@ -1,13 +1,15 @@
 /**
  * @file src/web_handlers/settings_handler.c
- * @author
+ * @author DvidMakesThings - David Sipos
  *
  * @version 1.0.0
  * @date 2025-11-07
  *
- * @details Handles GET and POST requests for settings page. Reads/writes
- * network configuration and user preferences from/to EEPROM.
- * Triggers system reboot after settings changes.
+ * @details
+ * Implementation of settings page and configuration API handlers.
+ * Manages network configuration and user preferences with EEPROM persistence.
+ * Includes chunked transmission for gzipped HTML page, JSON API for configuration retrieval,
+ * and form-encoded POST handler for configuration updates with W5500 hardware application.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -24,13 +26,30 @@ static inline void net_beat(void) { Health_Heartbeat(HEALTH_ID_NET); }
 #define SETTINGS_MAX_SEND_CHUNK 4096
 
 /**
- * @brief Sends a buffer in safe chunks to avoid overrunning W5500 TX window.
+ * @brief Send data in safe chunks to avoid overflowing W5500 TX buffer.
  *
- * @param sock Socket number.
- * @param data Pointer to buffer.
- * @param len  Total length to send.
+ * Splits large payloads into chunks of up to 4KB (SETTINGS_MAX_SEND_CHUNK) and sends each
+ * chunk sequentially with a small delay between chunks to allow hardware TX drain. This prevents
+ * TX buffer overflow when sending large responses (e.g., gzipped HTML pages).
  *
- * @return Total bytes sent on success, -1 on send failure.
+ * Transmit Strategy:
+ * - Maximum chunk size: 4KB (fits comfortably in 8KB W5500 TX buffer)
+ * - Inter-chunk delay: 5ms (allows hardware to transmit buffered data)
+ * - Health heartbeat called after each chunk for watchdog
+ *
+ * Error Handling:
+ * - Returns -1 immediately if any send() call fails
+ * - Logs structured error code to error logger on failure
+ * - No retry or recovery; caller must handle errors
+ *
+ * @param sock Socket number for W5500 connection
+ * @param data Pointer to data buffer to transmit
+ * @param len Total number of bytes to send
+ *
+ * @return Total bytes sent on success, -1 on send failure
+ *
+ * @note Function blocks until all data is sent or an error occurs.
+ * @note Safe for sending payloads larger than W5500 TX buffer (8KB).
  */
 static int settings_send_all(uint8_t sock, const uint8_t *data, int len) {
     int total_sent = 0;
@@ -43,7 +62,7 @@ static int settings_send_all(uint8_t sock, const uint8_t *data, int len) {
         if (sent <= 0) {
 #if ERRORLOGGER
             uint16_t errorcode =
-                ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_SETTINGS, 0x9);
+                ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_SETTINGS, 0x0);
             ERROR_PRINT_CODE(errorcode, "%s Send failed on socket %u\r\n", SETTINGS_HANDLER_TAG,
                              sock);
             Storage_EnqueueErrorCode(errorcode);
@@ -63,10 +82,8 @@ static int settings_send_all(uint8_t sock, const uint8_t *data, int len) {
 }
 
 /**
- * @brief Handles the HTTP request for the settings page (HTML)
- * @param sock The socket number
- * @return None
- * @note This function serves the settings page (gzipped) from flash
+ * @brief Serve settings HTML page via GET /settings.html.
+ * @see settings_handler.h for detailed documentation.
  */
 void handle_settings_request(uint8_t sock) {
     NETLOG_PRINT(">> handle_settings_request()\n");
@@ -102,17 +119,8 @@ void handle_settings_request(uint8_t sock) {
 }
 
 /**
- * @brief Handles the HTTP request for the settings API (GET /api/settings)
- * @param sock The socket number
- * @return None
- *
- * @details Returns JSON with network configuration and user preferences:
- *  - ip, gateway, subnet, dns, mac, device_name, location, temp_unit, temperature, serial_number,
- *    firmware_version, hardware_version, device_region, current_limit, warning_limit,
- * critical_limit, timezone, time, autologout
- *
- * @http
- * - 200 OK on success with JSON body and Connection: close.
+ * @brief Handle GET /api/settings and return configuration as JSON.
+ * @see settings_handler.h for detailed documentation.
  */
 void handle_settings_api(uint8_t sock) {
     NETLOG_PRINT(">> handle_settings_api()\n");
@@ -231,17 +239,8 @@ void handle_settings_api(uint8_t sock) {
 }
 
 /**
- * @brief Handles the HTTP POST for settings (/api/settings)
- * @param sock The socket number
- * @param body Form-encoded POST body
- * @return None
- *
- * @details Updates network config and user preferences. Writes changes to EEPROM,
- *          applies runtime net config if needed, then reboots the device.
- *
- * @http
- * - 400 Bad Request if body is missing.
- * - 204 No Content on success, followed by reboot.
+ * @brief Handle POST /api/settings to update configuration.
+ * @see settings_handler.h for detailed documentation.
  */
 void handle_settings_post(uint8_t sock, char *body) {
     NETLOG_PRINT(">> handle_settings_post()\n");

@@ -1,0 +1,21 @@
+<map id="storage_dump_eeprom_formatted" name="storage_dump_eeprom_formatted">
+<area shape="rect" id="Node000001" title="Incremental formatted EEPROM dump worker." alt="" coords="5,149,159,192"/>
+<area shape="rect" id="Node000002" href="$group__driver02.html#ga622a6736c8384f9e1921a1bda2a84df9" title="Read buffer from EEPROM." alt="" coords="207,81,371,108"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="133,146,206,117,225,111,227,116,208,123,135,151"/>
+<area shape="rect" id="Node000007" href="$group__tasks03.html#ga4f7298bb6ff71177639ba837e4068eb1" title="Record a heartbeat from a registered task." alt="" coords="227,132,350,159"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="158,159,212,152,212,157,159,164"/>
+<area shape="rect" id="Node000009" href="$group__tasks05.html#ga36194a3f790c1e727f3b9ab3c0ab38ba" title="Log message bypassing mute state." alt="" coords="234,183,344,209"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="159,177,219,185,218,190,158,183"/>
+<area shape="rect" id="Node000010" href="$group__tasks05.html#gae9f5d60f97cc58b03ddaf0578bdba99b" title="Exit logger mute section." alt="" coords="229,233,348,260"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="135,190,208,219,227,226,225,231,206,224,133,195"/>
+<area shape="rect" id="Node000003" href="$group__drivers05.html#ga66ae4c7028f764a3770cabe101dba8bf" title="Read from 16&#45;bit memory address: write [mem_hi, mem_lo] (no stop), then read len bytes." alt="" coords="436,31,585,57"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="350,78,434,59,435,64,351,83"/>
+<area shape="rect" id="Node000006" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="419,81,602,108"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="371,92,403,92,403,97,371,97"/>
+<area shape="rect" id="Node000004" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="679,5,801,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="585,33,663,24,664,30,585,38"/>
+<area shape="rect" id="Node000005" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="650,56,830,83"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="585,50,635,55,635,60,585,55"/>
+<area shape="rect" id="Node000008" href="$_health_task_8c.html#a50503dee6a29e98e633b16b1b8b550bc" title="Get current monotonic time in milliseconds." alt="" coords="476,132,546,159"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="351,143,460,143,460,148,351,148"/>
+</map>

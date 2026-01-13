@@ -1,0 +1,113 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/drivers/\+CAT24\+C256\+\_\+driver.c File Reference}
+\hypertarget{_c_a_t24_c256__driver_8c}{}\label{_c_a_t24_c256__driver_8c}\index{src/Software/ENERGIS\_RTOS/src/drivers/CAT24C256\_driver.c@{src/Software/ENERGIS\_RTOS/src/drivers/CAT24C256\_driver.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for CAT24\+C256\+\_\+driver.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_c_a_t24_c256__driver_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_c_a_t24_c256__driver_8c_acbc9208f50132e96cdfa5519407363ed}{CAT24\+\_\+\+TAG}}~"{}\mbox{[}CAT24\+DRV\mbox{]}"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{_c_a_t24_c256__driver_8c_aeba5f43a83c24289211b7d919c260978}{write\+\_\+cycle\+\_\+delay}} (void)
+\begin{DoxyCompactList}\small\item\em RTOS-\/compatible write cycle delay. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__driver02_gaa20b40f13c003ce354ce5a163374ac90}{CAT24\+C256\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize CAT24\+C256 EEPROM driver. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__driver02_gaf61b654ebe83dc406d2a05dceef29c80}{CAT24\+C256\+\_\+\+Write\+Byte}} (uint16\+\_\+t addr, uint8\+\_\+t data)
+\begin{DoxyCompactList}\small\item\em Write single byte to EEPROM. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__driver02_gaa9216a0e6778df3ed3a57d872911efe4}{CAT24\+C256\+\_\+\+Read\+Byte}} (uint16\+\_\+t addr)
+\begin{DoxyCompactList}\small\item\em Read single byte from EEPROM. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__driver02_ga8088b9a17773cb65bb6b5d89d3598125}{CAT24\+C256\+\_\+\+Write\+Buffer}} (uint16\+\_\+t addr, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write buffer to EEPROM with automatic page boundary handling. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__driver02_ga622a6736c8384f9e1921a1bda2a84df9}{CAT24\+C256\+\_\+\+Read\+Buffer}} (uint16\+\_\+t addr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buffer, uint32\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Read buffer from EEPROM. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__driver02_gabec86a54fd16b590ec742aa2734d7031}{CAT24\+C256\+\_\+\+Self\+Test}} (uint16\+\_\+t test\+\_\+addr)
+\begin{DoxyCompactList}\small\item\em Execute comprehensive EEPROM self-\/test. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/06
+\end{DoxyDate}
+Implementation of CAT24\+C256 32KB EEPROM driver with page-\/aware write logic. All I2C operations use the centralized i2c\+\_\+bus manager for thread safety.
+
+Write Strategy\+:
+\begin{DoxyItemize}
+\item Single bytes\+: Direct write + delay
+\item Multi-\/byte\+: Split into page-\/aligned chunks, delay after each chunk
+\end{DoxyItemize}
+
+Read Strategy\+:
+\begin{DoxyItemize}
+\item Sequential reads with EEPROM auto-\/increment
+\item No page boundary restrictions
+\end{DoxyItemize}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{_c_a_t24_c256__driver_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_c_a_t24_c256__driver_8c_acbc9208f50132e96cdfa5519407363ed}\index{CAT24C256\_driver.c@{CAT24C256\_driver.c}!CAT24\_TAG@{CAT24\_TAG}}
+\index{CAT24\_TAG@{CAT24\_TAG}!CAT24C256\_driver.c@{CAT24C256\_driver.c}}
+\doxysubsubsection{\texorpdfstring{CAT24\_TAG}{CAT24\_TAG}}
+{\footnotesize\ttfamily \label{_c_a_t24_c256__driver_8c_acbc9208f50132e96cdfa5519407363ed} 
+\#define CAT24\+\_\+\+TAG~"{}\mbox{[}CAT24\+DRV\mbox{]}"{}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{_c_a_t24_c256__driver_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_c_a_t24_c256__driver_8c_aeba5f43a83c24289211b7d919c260978}\index{CAT24C256\_driver.c@{CAT24C256\_driver.c}!write\_cycle\_delay@{write\_cycle\_delay}}
+\index{write\_cycle\_delay@{write\_cycle\_delay}!CAT24C256\_driver.c@{CAT24C256\_driver.c}}
+\doxysubsubsection{\texorpdfstring{write\_cycle\_delay()}{write\_cycle\_delay()}}
+{\footnotesize\ttfamily \label{_c_a_t24_c256__driver_8c_aeba5f43a83c24289211b7d919c260978} 
+void write\+\_\+cycle\+\_\+delay (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+RTOS-\/compatible write cycle delay. 
+
+Implements the mandatory t\+WR (write cycle time) delay per CAT24\+C256 datasheet. Uses RTOS task delay to allow other tasks to execute during wait period, preventing watchdog starvation and improving system responsiveness.
+
+Timing Requirements\+:
+\begin{DoxyItemize}
+\item Typical\+: 5ms
+\item Maximum\+: 10ms
+\item This implementation\+: 5ms (CAT24\+C256\+\_\+\+WRITE\+\_\+\+CYCLE\+\_\+\+MS)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Must be called after every write operation before next access 
+
+Uses v\+Task\+Delay for cooperative multitasking 
+\end{DoxyNote}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_c_a_t24_c256__driver_8c_aeba5f43a83c24289211b7d919c260978_icgraph}
+\end{center}
+\end{figure}

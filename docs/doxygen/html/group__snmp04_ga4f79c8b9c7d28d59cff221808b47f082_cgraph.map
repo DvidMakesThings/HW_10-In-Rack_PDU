@@ -1,0 +1,10 @@
+<map id="get_ocp_LAST_TRIPPED_CH" name="get_ocp_LAST_TRIPPED_CH">
+<area shape="rect" id="Node000001" title="SNMP getter for last tripped channel." alt="" coords="5,55,206,81"/>
+<area shape="rect" id="Node000002" href="$snmp__power_mon_8c.html#a4d518845ee0423e2c4f3c291241beafc" title="Write a signed 32&#45;bit integer into SNMP response buffer." alt="" coords="288,29,336,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="206,53,272,45,273,50,206,58"/>
+<area shape="rect" id="Node000003" href="$snmp__power_mon_8c.html#a8bfed698c2d0034fd91352b89bcfce10" title="Read overcurrent protection status snapshot." alt="" coords="254,80,371,107"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="206,78,239,82,238,87,206,83"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="286,34,276,24,277,13,290,5,312,3,340,7,348,13,349,20,344,21,343,16,338,12,312,8,292,10,282,16,281,22,289,31"/>
+<area shape="rect" id="Node000004" href="$group__tasks08.html#gaa9aab2a7bfb3274872c5f4f162af177e" title="Obtain a snapshot of the current protection status." alt="" coords="419,80,574,107"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="372,91,403,91,403,96,372,96"/>
+</map>

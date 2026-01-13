@@ -1,0 +1,4 @@
+<map id="Socket Memory Allocation" name="Socket Memory Allocation">
+<area shape="rect" id="Node000001" title="TX/RX buffer sizes for each socket (total 16KB per direction)" alt="" coords="265,5,438,32"/>
+<area shape="rect" id="Node000002" href="$group__config02.html" title="Centralized configuration parameters for W5500 Ethernet controller." alt="" coords="5,5,217,32"/>
+</map>

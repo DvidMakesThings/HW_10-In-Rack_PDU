@@ -1,0 +1,53 @@
+\doxysection{device\+\_\+identity\+\_\+t Struct Reference}
+\hypertarget{structdevice__identity__t}{}\label{structdevice__identity__t}\index{device\_identity\_t@{device\_identity\_t}}
+
+
+Device identity RAM cache structure.  
+
+
+
+
+{\ttfamily \#include $<$device\+\_\+identity.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{structdevice__identity__t_a445c8cbdfe1742a5b1bb7f140b461e44}{serial\+\_\+number}} \mbox{[}\mbox{\hyperlink{group__storage03_ga873a1b4db5414ab4ac986547e952f2fe}{DEVICE\+\_\+\+SN\+\_\+\+MAX\+\_\+\+LEN}}+1\mbox{]}
+\item 
+\mbox{\hyperlink{group__storage03_ga509a8b0630b9c754a52a817ba37e032b}{device\+\_\+region\+\_\+t}} \mbox{\hyperlink{structdevice__identity__t_a4cbac26f3bb492b953eab3a01d9153de}{region}}
+\item 
+bool \mbox{\hyperlink{structdevice__identity__t_aaaf972ee283f2cf88a6f57a20bec03d8}{valid}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Device identity RAM cache structure. 
+
+Provides fast read access to identity parameters. All fields are populated from EEPROM at boot. 
+
+\label{doc-variable-members}
+\Hypertarget{structdevice__identity__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structdevice__identity__t_a4cbac26f3bb492b953eab3a01d9153de}\index{device\_identity\_t@{device\_identity\_t}!region@{region}}
+\index{region@{region}!device\_identity\_t@{device\_identity\_t}}
+\doxysubsubsection{\texorpdfstring{region}{region}}
+{\footnotesize\ttfamily \label{structdevice__identity__t_a4cbac26f3bb492b953eab3a01d9153de} 
+\mbox{\hyperlink{group__storage03_ga509a8b0630b9c754a52a817ba37e032b}{device\+\_\+region\+\_\+t}} device\+\_\+identity\+\_\+t\+::region}
+
+Device region setting. \Hypertarget{structdevice__identity__t_a445c8cbdfe1742a5b1bb7f140b461e44}\index{device\_identity\_t@{device\_identity\_t}!serial\_number@{serial\_number}}
+\index{serial\_number@{serial\_number}!device\_identity\_t@{device\_identity\_t}}
+\doxysubsubsection{\texorpdfstring{serial\_number}{serial\_number}}
+{\footnotesize\ttfamily \label{structdevice__identity__t_a445c8cbdfe1742a5b1bb7f140b461e44} 
+char device\+\_\+identity\+\_\+t\+::serial\+\_\+number\mbox{[}\mbox{\hyperlink{group__storage03_ga873a1b4db5414ab4ac986547e952f2fe}{DEVICE\+\_\+\+SN\+\_\+\+MAX\+\_\+\+LEN}}+1\mbox{]}}
+
+Null-\/terminated serial number. \Hypertarget{structdevice__identity__t_aaaf972ee283f2cf88a6f57a20bec03d8}\index{device\_identity\_t@{device\_identity\_t}!valid@{valid}}
+\index{valid@{valid}!device\_identity\_t@{device\_identity\_t}}
+\doxysubsubsection{\texorpdfstring{valid}{valid}}
+{\footnotesize\ttfamily \label{structdevice__identity__t_aaaf972ee283f2cf88a6f57a20bec03d8} 
+bool device\+\_\+identity\+\_\+t\+::valid}
+
+True if cache contains valid data. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/storage\+\_\+submodule/\mbox{\hyperlink{device__identity_8h}{device\+\_\+identity.\+h}}\end{DoxyCompactItemize}

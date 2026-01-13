@@ -5,8 +5,16 @@
  * @version 1.1.0
  * @date 2025-11-08
  *
- * @details Queries the canonical telemetry cache owned by MeterTask.
- *          Uses MeterTask_GetTelemetry() for non-blocking cached reads.
+ * @details
+ * Implementation of SNMP power monitoring callbacks. All telemetry data is read
+ * from MeterTask's canonical cache using non-blocking operations. If telemetry
+ * is invalid or unavailable, functions return zero values to ensure SNMP queries
+ * always receive valid responses.
+ *
+ * The module uses macro-generated functions (GEN_CH) to create 6 telemetry
+ * getters per channel (voltage, current, power, power factor, energy, uptime)
+ * for all 8 outlets. OCP status functions access the overcurrent protection
+ * module directly via Overcurrent_GetStatus().
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -17,42 +25,63 @@
 #include "../tasks/OCP.h"
 
 /**
- * @brief Format float to string buffer with specified format
- * @param buf Output buffer (min 16 bytes)
- * @param len Pointer to receive string length
+ * @brief Format float to ASCII string buffer.
+ *
+ * Converts a floating-point value to ASCII representation using the specified
+ * printf format string. Used for OCTET_STRING SNMP responses.
+ *
+ * @param buf Output buffer (minimum 16 bytes required)
+ * @param len Pointer to receive string length (excluding null terminator)
  * @param x Float value to format
- * @param fmt Printf format string (e.g., "%.2f")
+ * @param fmt Printf format string (e.g., "%.2f" for 2 decimals)
+ *
+ * @return None
  */
 static inline void ftoa(void *buf, uint8_t *len, float x, const char *fmt) {
     *len = (uint8_t)snprintf((char *)buf, 16, fmt, x);
 }
 
 /**
- * @brief Format uint32 to string buffer
- * @param buf Output buffer (min 16 bytes)
- * @param len Pointer to receive string length
+ * @brief Format uint32 to ASCII string buffer.
+ *
+ * Converts an unsigned 32-bit integer to ASCII decimal representation.
+ * Used for OCTET_STRING SNMP responses.
+ *
+ * @param buf Output buffer (minimum 16 bytes required)
+ * @param len Pointer to receive string length (excluding null terminator)
  * @param v Unsigned 32-bit value to format
+ *
+ * @return None
  */
 static inline void u32toa(void *buf, uint8_t *len, uint32_t v) {
     *len = (uint8_t)snprintf((char *)buf, 16, "%lu", (unsigned long)v);
 }
 
 /**
- * @brief Read telemetry data for a channel from MeterTask cache
- * @param ch Channel index 0..7
+ * @brief Read telemetry snapshot for a channel from MeterTask cache.
+ *
+ * Retrieves all telemetry parameters for a specified channel from the MeterTask
+ * cache. If telemetry is unavailable or invalid, all output parameters are set
+ * to zero to ensure SNMP responses are always well-formed.
+ *
+ * @param ch Channel index (0..7)
  * @param v Pointer to receive voltage [V]
  * @param a Pointer to receive current [A]
  * @param w Pointer to receive power [W]
- * @param pf Pointer to receive power factor [0..1]
- * @param kwh Pointer to receive energy [kWh]
+ * @param pf Pointer to receive power factor (0..1)
+ * @param kwh Pointer to receive accumulated energy [kWh]
  * @param up Pointer to receive uptime [s]
- * @note Returns zeros if no valid telemetry available
+ *
+ * @return None
+ *
+ * @note Non-blocking operation; returns immediately with cached data.
+ * @note Returns zeros if channel out of range or telemetry invalid.
  */
 static inline void readN(uint8_t ch, float *v, float *a, float *w, float *pf, float *kwh,
                          uint32_t *up) {
     meter_telemetry_t telem;
 
-    /* Get cached telemetry from MeterTask (non-blocking) */
+    /* Attempt to read cached telemetry (non-blocking) */
     if (MeterTask_GetTelemetry(ch, &telem) && telem.valid) {
         *v = telem.voltage;
         *a = telem.current;
@@ -61,7 +90,7 @@ static inline void readN(uint8_t ch, float *v, float *a, float *w, float *pf, fl
         *kwh = telem.energy_kwh;
         *up = telem.uptime;
     } else {
-        /* No valid data - return zeros */
+        /* Return zeros if telemetry unavailable or invalid */
         *v = 0.0f;
         *a = 0.0f;
         *w = 0.0f;
@@ -72,16 +101,20 @@ static inline void readN(uint8_t ch, float *v, float *a, float *w, float *pf, fl
 }
 
 /**
- * @brief Generate SNMP getter functions for a channel
- * @param idx Channel index 0..7
+ * @brief Macro to generate six SNMP telemetry getters for a channel.
  *
- * Generates 6 functions per channel:
- * - get_power_N_MEAS_VOLTAGE(buf, len) -> "%.2f"V
- * - get_power_N_MEAS_CURRENT(buf, len) -> "%.3f"A
- * - get_power_N_MEAS_WATT(buf, len)    -> "%.1f"W
- * - get_power_N_MEAS_PF(buf, len)      -> "%.3f" (power factor)
- * - get_power_N_MEAS_KWH(buf, len)     -> "%.3f"kWh
- * - get_power_N_MEAS_UPTIME(buf, len)  -> "%lu"s
+ * Generates the following functions for channel N (idx):
+ * - get_power_N_MEAS_VOLTAGE: Voltage [V] as ASCII float (2 decimals)
+ * - get_power_N_MEAS_CURRENT: Current [A] as ASCII float (3 decimals)
+ * - get_power_N_MEAS_WATT: Power [W] as ASCII float (1 decimal)
+ * - get_power_N_MEAS_PF: Power factor as ASCII float (3 decimals)
+ * - get_power_N_MEAS_KWH: Energy [kWh] as ASCII float (3 decimals)
+ * - get_power_N_MEAS_UPTIME: Uptime [s] as ASCII unsigned integer
+ *
+ * Each generated function reads telemetry from MeterTask cache via readN() and
+ * formats the appropriate field using ftoa() or u32toa().
+ *
+ * @param idx Channel index (0..7)
  */
 #define GEN_CH(idx)                                                                                \
     void get_power_##idx##_MEAS_VOLTAGE(void *b, uint8_t *l) {                                     \
@@ -121,7 +154,7 @@ static inline void readN(uint8_t ch, float *v, float *a, float *w, float *pf, fl
         u32toa(b, l, U);                                                                           \
     }
 
-/* Generate SNMP getter functions for all 8 channels */
+/* Generate SNMP telemetry getter functions for all 8 channels (0..7) */
 GEN_CH(0)
 GEN_CH(1)
 GEN_CH(2)
@@ -170,21 +203,25 @@ static inline void u32le(void *buf, uint8_t *len, uint32_t v) {
 }
 
 /**
- * @brief Read a full overcurrent status snapshot.
+ * @brief Read overcurrent protection status snapshot.
  *
- * @details
- * Provides a best-effort atomic snapshot using Overcurrent_GetStatus(). If the
- * module is not initialized or the snapshot cannot be obtained, this function
- * returns false.
+ * Attempts to obtain an atomic snapshot of the overcurrent protection state
+ * from the OCP module via Overcurrent_GetStatus(). If the module is not
+ * initialized or the snapshot cannot be obtained, returns false.
  *
- * @param st Destination for the status snapshot.
- * @return true if a valid snapshot was written, false otherwise.
+ * @param st Pointer to destination structure for status snapshot
+ *
+ * @return true if valid snapshot obtained, false otherwise
+ *
+ * @note Returns false if st is NULL or OCP module not initialized.
  */
 static inline bool ocp_read_status(overcurrent_status_t *st) {
+    /* Validate destination pointer */
     if (st == NULL) {
         return false;
     }
 
+    /* Attempt to read OCP status snapshot */
     if (!Overcurrent_GetStatus(st)) {
         return false;
     }
@@ -192,15 +229,10 @@ static inline bool ocp_read_status(overcurrent_status_t *st) {
     return true;
 }
 
-/**
- * @brief SNMP getter: OCP state (NORMAL/WARNING/CRITICAL/LOCKOUT).
- *
- * @param buf Output buffer; writes a 32-bit little-endian INTEGER.
- * @param len Output length; always set to 4.
- */
 void get_ocp_STATE(void *buf, uint8_t *len) {
     overcurrent_status_t st;
 
+    /* Return NORMAL if status read fails */
     if (!ocp_read_status(&st)) {
         i32le(buf, len, (int32_t)OC_STATE_NORMAL);
         return;
@@ -209,17 +241,10 @@ void get_ocp_STATE(void *buf, uint8_t *len) {
     i32le(buf, len, (int32_t)st.state);
 }
 
-/**
- * @brief SNMP getter: OCP total current (A).
- *
- * @details Encoded as an ASCII string with 3 decimals to match other telemetry.
- *
- * @param buf Output buffer (min 16 bytes recommended by table entries).
- * @param len Output length in bytes.
- */
 void get_ocp_TOTAL_CURRENT_A(void *buf, uint8_t *len) {
     overcurrent_status_t st;
 
+    /* Return zero if status read fails */
     if (!ocp_read_status(&st)) {
         ftoa(buf, len, 0.0f, "%.3f");
         return;
@@ -228,12 +253,6 @@ void get_ocp_TOTAL_CURRENT_A(void *buf, uint8_t *len) {
     ftoa(buf, len, st.total_current_a, "%.3f");
 }
 
-/**
- * @brief SNMP getter: OCP configured current limit (A).
- *
- * @param buf Output buffer (min 16 bytes recommended by table entries).
- * @param len Output length in bytes.
- */
 void get_ocp_LIMIT_A(void *buf, uint8_t *len) {
     overcurrent_status_t st;
 
@@ -245,12 +264,6 @@ void get_ocp_LIMIT_A(void *buf, uint8_t *len) {
     ftoa(buf, len, st.limit_a, "%.2f");
 }
 
-/**
- * @brief SNMP getter: OCP warning threshold (A).
- *
- * @param buf Output buffer (min 16 bytes recommended by table entries).
- * @param len Output length in bytes.
- */
 void get_ocp_WARNING_THRESHOLD_A(void *buf, uint8_t *len) {
     overcurrent_status_t st;
 
@@ -262,12 +275,6 @@ void get_ocp_WARNING_THRESHOLD_A(void *buf, uint8_t *len) {
     ftoa(buf, len, st.warning_threshold_a, "%.2f");
 }
 
-/**
- * @brief SNMP getter: OCP critical threshold (A).
- *
- * @param buf Output buffer (min 16 bytes recommended by table entries).
- * @param len Output length in bytes.
- */
 void get_ocp_CRITICAL_THRESHOLD_A(void *buf, uint8_t *len) {
     overcurrent_status_t st;
 
@@ -279,12 +286,6 @@ void get_ocp_CRITICAL_THRESHOLD_A(void *buf, uint8_t *len) {
     ftoa(buf, len, st.critical_threshold_a, "%.2f");
 }
 
-/**
- * @brief SNMP getter: OCP recovery threshold (A).
- *
- * @param buf Output buffer (min 16 bytes recommended by table entries).
- * @param len Output length in bytes.
- */
 void get_ocp_RECOVERY_THRESHOLD_A(void *buf, uint8_t *len) {
     overcurrent_status_t st;
 
@@ -296,21 +297,11 @@ void get_ocp_RECOVERY_THRESHOLD_A(void *buf, uint8_t *len) {
     ftoa(buf, len, st.recovery_threshold_a, "%.2f");
 }
 
-/**
- * @brief SNMP getter: OCP last tripped channel (1..8), or 0 if none.
- *
- * @details
- * The core module stores the channel as 0-based (0..7) or 0xFF when not known.
- * This getter converts the output to a user-facing 1-based value (1..8), or 0
- * when no channel is available.
- *
- * @param buf Output buffer; writes a 32-bit little-endian INTEGER.
- * @param len Output length; always set to 4.
- */
 void get_ocp_LAST_TRIPPED_CH(void *buf, uint8_t *len) {
     overcurrent_status_t st;
     int32_t out = 0;
 
+    /* Convert 0-based channel index to 1-based for SNMP */
     if (ocp_read_status(&st)) {
         if (st.last_tripped_channel < 8u) {
             out = (int32_t)st.last_tripped_channel + 1;
@@ -322,12 +313,6 @@ void get_ocp_LAST_TRIPPED_CH(void *buf, uint8_t *len) {
     i32le(buf, len, out);
 }
 
-/**
- * @brief SNMP getter: OCP trip counter since boot.
- *
- * @param buf Output buffer; writes a 32-bit little-endian INTEGER.
- * @param len Output length; always set to 4.
- */
 void get_ocp_TRIP_COUNT(void *buf, uint8_t *len) {
     overcurrent_status_t st;
     uint32_t out = 0;
@@ -339,12 +324,6 @@ void get_ocp_TRIP_COUNT(void *buf, uint8_t *len) {
     u32le(buf, len, out);
 }
 
-/**
- * @brief SNMP getter: Timestamp of last trip (ms since boot).
- *
- * @param buf Output buffer; writes a 32-bit little-endian INTEGER.
- * @param len Output length; always set to 4.
- */
 void get_ocp_LAST_TRIP_MS(void *buf, uint8_t *len) {
     overcurrent_status_t st;
     uint32_t out = 0;
@@ -356,14 +335,6 @@ void get_ocp_LAST_TRIP_MS(void *buf, uint8_t *len) {
     u32le(buf, len, out);
 }
 
-/**
- * @brief SNMP getter: Switching allowed flag.
- *
- * @details Encoded as INTEGER (0 = not allowed, 1 = allowed).
- *
- * @param buf Output buffer; writes a 32-bit little-endian INTEGER.
- * @param len Output length; always set to 4.
- */
 void get_ocp_SWITCHING_ALLOWED(void *buf, uint8_t *len) {
     overcurrent_status_t st;
     int32_t out = 1;
@@ -375,28 +346,10 @@ void get_ocp_SWITCHING_ALLOWED(void *buf, uint8_t *len) {
     i32le(buf, len, out);
 }
 
-/**
- * @brief SNMP getter: OCP reset control value.
- *
- * @details
- * This is a write-oriented control OID. The getter returns 0.
- *
- * @param buf Output buffer; writes a 32-bit little-endian INTEGER.
- * @param len Output length; always set to 4.
- */
 void get_ocp_RESET(void *buf, uint8_t *len) { i32le(buf, len, 0); }
 
-/**
- * @brief SNMP setter: Clear OCP lockout state.
- *
- * @details
- * A non-zero value triggers Overcurrent_ClearLockout(). This operation does not
- * validate that the overload condition is resolved and should only be used
- * after reducing load.
- *
- * @param v SNMP INTEGER value written by the client.
- */
 void set_ocp_RESET(int32_t v) {
+    /* Trigger OCP lockout clear if non-zero */
     if (v != 0) {
         (void)Overcurrent_ClearLockout();
     }

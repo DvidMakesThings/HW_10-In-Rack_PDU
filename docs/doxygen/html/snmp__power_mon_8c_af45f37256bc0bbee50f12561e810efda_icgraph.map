@@ -1,0 +1,13 @@
+<map id="ftoa" name="ftoa">
+<area shape="rect" id="Node000001" title="Format float to ASCII string buffer." alt="" coords="309,107,352,133"/>
+<area shape="rect" id="Node000002" href="$group__snmp04.html#gad078fc7ee62f370b56ba305985db7faf" title="SNMP getter for OCP critical threshold [A]." alt="" coords="12,5,254,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="310,96,288,69,259,46,234,35,236,30,262,42,292,65,314,92"/>
+<area shape="rect" id="Node000003" href="$group__snmp04.html#gab7ffa6c94b3c4085b6ceb7fec2b08723" title="SNMP getter for configured OCP current limit [A]." alt="" coords="71,56,195,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="293,108,260,97,195,82,196,77,261,92,295,103"/>
+<area shape="rect" id="Node000004" href="$group__snmp04.html#ga298c0c01b328703f6ab782a3aefdb475" title="SNMP getter for OCP recovery threshold [A]." alt="" coords="5,107,261,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="293,123,261,123,261,117,293,117"/>
+<area shape="rect" id="Node000005" href="$group__snmp04.html#gac64f180957717b1f72f3bb0d46657f7c" title="SNMP getter for total measured current across all outlets [A]." alt="" coords="30,157,236,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="295,137,261,148,215,159,213,154,260,143,293,132"/>
+<area shape="rect" id="Node000006" href="$group__snmp04.html#ga59836958c7dde04d045c218bc4bfa82c" title="SNMP getter for OCP warning threshold [A]." alt="" coords="10,208,256,235"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="314,148,292,175,262,198,236,210,234,205,259,194,288,171,310,144"/>
+</map>

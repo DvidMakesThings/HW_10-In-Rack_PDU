@@ -1,0 +1,484 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/storage\+\_\+submodule/device\+\_\+identity.c File Reference}
+\hypertarget{device__identity_8c}{}\label{device__identity_8c}\index{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/device\_identity.c@{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/device\_identity.c}}
+{\ttfamily \#include "{}../../\+CONFIG.\+h"{}}\newline
+Include dependency graph for device\+\_\+identity.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{device__identity_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{device__identity_8c_a693d7c6a2e50da7b41c0b3ce4a15a34c}{DEVICE\+\_\+\+IDENTITY\+\_\+\+TAG}}~"{}\mbox{[}DEV-\/ID\mbox{]}"{}
+\item 
+\#define \mbox{\hyperlink{device__identity_8c_abbaae20f896b1491508dc17ab1e3b6c4}{EEPROM\+\_\+\+DEVICE\+\_\+\+IDENTITY\+\_\+\+ADDR}}~\mbox{\hyperlink{group__config06_ga0b0b03d61ed2b7c416e0e8665598eb3f}{EEPROM\+\_\+\+DEVICE\+\_\+\+IDENTITY\+\_\+\+START}}
+\begin{DoxyCompactList}\small\item\em EEPROM address for device identity record. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{device__identity_8c_a66bed1308b249cda5e4afd5fc5852c21}{EEPROM\+\_\+\+DEVICE\+\_\+\+IDENTITY\+\_\+\+TOTAL\+\_\+\+SIZE}}~\mbox{\hyperlink{group__config06_ga226676d435b8ea7dc26213a892abc464}{EEPROM\+\_\+\+DEVICE\+\_\+\+IDENTITY\+\_\+\+SIZE}}
+\begin{DoxyCompactList}\small\item\em Total size of device identity EEPROM block. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{device__identity_8c_a48f56dfea37a13b773d43067947bf70d}{EEPROM\+\_\+\+DEVICE\+\_\+\+IDENTITY\+\_\+\+REGION\+\_\+\+OFFSET}}~0x10u
+\begin{DoxyCompactList}\small\item\em Offset of region within identity EEPROM block. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{device__identity_8c_a1618e0e52c6c528ccfe2fae354844f88}{EEPROM\+\_\+\+DEVICE\+\_\+\+IDENTITY\+\_\+\+CRC\+\_\+\+OFFSET}}~0x11u
+\begin{DoxyCompactList}\small\item\em Offset of CRC within identity EEPROM block. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{device__identity_8c_af08ec717a68641f395791d8b7f41474b}{EEPROM\+\_\+\+DEVICE\+\_\+\+IDENTITY\+\_\+\+PAD\+\_\+\+OFFSET}}~0x12u
+\begin{DoxyCompactList}\small\item\em Offset of reserved pad within identity EEPROM block. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{device__identity_8c_a0acf2e274a352da43a527642ce8562fd}{EEPROM\+\_\+\+DEVICE\+\_\+\+IDENTITY\+\_\+\+CRC\+\_\+\+LEN}}~0x11u /\texorpdfstring{$\ast$}{*} 0x00..\+0x10 inclusive =$>$ 17 bytes \texorpdfstring{$\ast$}{*}/
+\begin{DoxyCompactList}\small\item\em Number of bytes covered by CRC calculation (serial + region). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{device__identity_8c_a16e574655217d65f33296fd5c9d6cb3f}{CURRENT\+\_\+\+LIMIT\+\_\+\+EU\+\_\+A}}~10.\+0f
+\begin{DoxyCompactList}\small\item\em EU region current limit in amperes. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{device__identity_8c_a5469cfad3f338029a3a1c9be8e5b1c32}{CURRENT\+\_\+\+LIMIT\+\_\+\+US\+\_\+A}}~15.\+0f
+\begin{DoxyCompactList}\small\item\em US region current limit in amperes. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{device__identity_8c_ac9c2918346c8c3193e85d3c54c72e073}{CURRENT\+\_\+\+LIMIT\+\_\+\+DEFAULT\+\_\+A}}~10.\+0f
+\begin{DoxyCompactList}\small\item\em Default (safe) current limit for unknown region. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{device__identity_8c_aae57a92db26b8a63b7584fd2f3407077}{calculate\+\_\+crc8}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Calculate CRC-\/8 checksum for data integrity verification. \end{DoxyCompactList}\item 
+static uint8\+\_\+t \mbox{\hyperlink{device__identity_8c_a4306a3b02b924b2b64398df823662801}{calc\+\_\+identity\+\_\+crc\+\_\+raw}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}raw)
+\begin{DoxyCompactList}\small\item\em Calculate CRC-\/8 for device identity EEPROM block image. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{device__identity_8c_a3739393f286b8d8676728762e42d9209}{is\+\_\+unlock\+\_\+window\+\_\+open}} (void)
+\begin{DoxyCompactList}\small\item\em Check if the provisioning window is still open. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{device__identity_8c_a2d5fd96a7f281483c7a5623cf99d12a4}{read\+\_\+identity\+\_\+from\+\_\+eeprom}} (\mbox{\hyperlink{group__storage03_ga3d4f201eb84e7a480bb2455f5181bca0}{device\+\_\+identity\+\_\+eeprom\+\_\+t}} \texorpdfstring{$\ast$}{*}rec)
+\begin{DoxyCompactList}\small\item\em Read device identity from EEPROM and validate CRC. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{device__identity_8c_aa849e09774fe6a45bb4479d2ee49c402}{write\+\_\+identity\+\_\+to\+\_\+eeprom}} (\mbox{\hyperlink{group__storage03_ga3d4f201eb84e7a480bb2455f5181bca0}{device\+\_\+identity\+\_\+eeprom\+\_\+t}} \texorpdfstring{$\ast$}{*}rec)
+\begin{DoxyCompactList}\small\item\em Write device identity to EEPROM using the defined block image. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{device__identity_8c_a5b9e55cb62f389b33b1ba95030158cea}{update\+\_\+cache\+\_\+from\+\_\+record}} (const \mbox{\hyperlink{group__storage03_ga3d4f201eb84e7a480bb2455f5181bca0}{device\+\_\+identity\+\_\+eeprom\+\_\+t}} \texorpdfstring{$\ast$}{*}rec)
+\begin{DoxyCompactList}\small\item\em Update RAM cache from EEPROM record. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{device__identity_8c_a875fc468168b0fba722b907febc90ab1}{validate\+\_\+serial\+\_\+number}} (const char \texorpdfstring{$\ast$}{*}sn)
+\begin{DoxyCompactList}\small\item\em Validate serial number string. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{device__identity_8c_a9ae2b99dfda6e002ea479fac618edccf}{validate\+\_\+region}} (\mbox{\hyperlink{group__storage03_ga509a8b0630b9c754a52a817ba37e032b}{device\+\_\+region\+\_\+t}} region)
+\begin{DoxyCompactList}\small\item\em Validate region code. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__storage03_ga8a44399536e0b86e0b543df9f1962c17}{Device\+Identity\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the device identity module. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structdevice__identity__t}{device\+\_\+identity\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__storage03_gad79ee3ecce363eec976ed7616906c27d}{Device\+Identity\+\_\+\+Get}} (void)
+\begin{DoxyCompactList}\small\item\em Get pointer to the device identity RAM cache. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__storage03_gab09c3d3cce44235c32034cb03d64fbe4}{Device\+Identity\+\_\+\+Get\+Serial\+Number}} (void)
+\begin{DoxyCompactList}\small\item\em Get the cached serial number string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__storage03_ga509a8b0630b9c754a52a817ba37e032b}{device\+\_\+region\+\_\+t}} \mbox{\hyperlink{group__storage03_ga8159c9128e13ce5870ad6d282094ed83}{Device\+Identity\+\_\+\+Get\+Region}} (void)
+\begin{DoxyCompactList}\small\item\em Get the cached device region. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__storage03_ga5b4f82b48868c1a68c60a9fc9a7f3e37}{Device\+Identity\+\_\+\+Get\+Current\+LimitA}} (void)
+\begin{DoxyCompactList}\small\item\em Get the current limit in amperes based on cached region. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage03_ga6a8334a56f37167d1e857260bb262902}{Device\+Identity\+\_\+\+Is\+Valid}} (void)
+\begin{DoxyCompactList}\small\item\em Check if device identity is valid (provisioned). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage03_ga41878c484b104d5237c63deef71f450b}{Device\+Identity\+\_\+\+Unlock}} (const char \texorpdfstring{$\ast$}{*}token)
+\begin{DoxyCompactList}\small\item\em Attempt to unlock provisioning with the given token. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__storage03_ga2bf21d733d9d7a0292429bb3f6f144c3}{Device\+Identity\+\_\+\+Lock}} (void)
+\begin{DoxyCompactList}\small\item\em Lock provisioning (close write window). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage03_ga11fd0a0d9d1c447246dc161cfa77f5aa}{Device\+Identity\+\_\+\+Is\+Unlocked}} (void)
+\begin{DoxyCompactList}\small\item\em Check if provisioning is currently unlocked. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage03_ga3ac2980af26af34986f7360246deefa5}{Device\+Identity\+\_\+\+Set\+Serial\+Number}} (const char \texorpdfstring{$\ast$}{*}serial\+\_\+number)
+\begin{DoxyCompactList}\small\item\em Set the device serial number (requires unlock). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage03_ga9f2f68ea0ff2c13d4fe5d52dc3a99e4f}{Device\+Identity\+\_\+\+Set\+Region}} (\mbox{\hyperlink{group__storage03_ga509a8b0630b9c754a52a817ba37e032b}{device\+\_\+region\+\_\+t}} region)
+\begin{DoxyCompactList}\small\item\em Set the device region (requires unlock). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__storage03_ga461c49efb137c6fcc9871867b974c326}{Device\+Identity\+\_\+\+Fill\+Mac}} (uint8\+\_\+t mac\mbox{[}6\mbox{]})
+\begin{DoxyCompactList}\small\item\em Derive MAC address from the cached serial number. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{structdevice__identity__t}{device\+\_\+identity\+\_\+t}} \mbox{\hyperlink{device__identity_8c_a26fdc5b14d534266eedadfd06d55efe2}{s\+\_\+cache}}
+\begin{DoxyCompactList}\small\item\em RAM cache for device identity. \end{DoxyCompactList}\item 
+static volatile uint32\+\_\+t \mbox{\hyperlink{device__identity_8c_a3c1500b139d0b2aab909471e4090838c}{s\+\_\+unlock\+\_\+timestamp\+\_\+ms}} = 0
+\begin{DoxyCompactList}\small\item\em Provisioning unlock timestamp (ms since boot). \end{DoxyCompactList}\item 
+static volatile bool \mbox{\hyperlink{device__identity_8c_a12b03d71705ed949d1afdec2dcbf04b8}{s\+\_\+initialized}} = false
+\begin{DoxyCompactList}\small\item\em Module initialized flag. \end{DoxyCompactList}\item 
+Semaphore\+Handle\+\_\+t \mbox{\hyperlink{group__tasks10_gaf015228821869529545d62856625c224}{eeprom\+Mtx}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/12-\/14
+\end{DoxyDate}
+Implementation of device identity management module. Provides centralized storage and access for serial number and region settings with EEPROM persistence and RAM caching.
+
+Thread Safety\+:
+\begin{DoxyItemize}
+\item Read operations are lock-\/free (atomic cache access)
+\item Write operations acquire eeprom\+Mtx for EEPROM access
+\item Unlock state uses atomic timestamp comparison
+\end{DoxyItemize}
+
+EEPROM Block Contract\+:
+\begin{DoxyItemize}
+\item EEPROM\+\_\+\+DEVICE\+\_\+\+IDENTITY\+\_\+\+START / EEPROM\+\_\+\+DEVICE\+\_\+\+IDENTITY\+\_\+\+SIZE define the stored block
+\item Region is stored at offset 0x10, CRC at 0x11, pad at 0x12
+\item CRC is calculated over bytes 0x00..0x10 (serial + region)
+\item Pad byte is written deterministically as 0x00 for a stable block image
+\end{DoxyItemize}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{device__identity_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{device__identity_8c_ac9c2918346c8c3193e85d3c54c72e073}\index{device\_identity.c@{device\_identity.c}!CURRENT\_LIMIT\_DEFAULT\_A@{CURRENT\_LIMIT\_DEFAULT\_A}}
+\index{CURRENT\_LIMIT\_DEFAULT\_A@{CURRENT\_LIMIT\_DEFAULT\_A}!device\_identity.c@{device\_identity.c}}
+\doxysubsubsection{\texorpdfstring{CURRENT\_LIMIT\_DEFAULT\_A}{CURRENT\_LIMIT\_DEFAULT\_A}}
+{\footnotesize\ttfamily \label{device__identity_8c_ac9c2918346c8c3193e85d3c54c72e073} 
+\#define CURRENT\+\_\+\+LIMIT\+\_\+\+DEFAULT\+\_\+A~10.\+0f}
+
+
+
+Default (safe) current limit for unknown region. 
+
+\Hypertarget{device__identity_8c_a16e574655217d65f33296fd5c9d6cb3f}\index{device\_identity.c@{device\_identity.c}!CURRENT\_LIMIT\_EU\_A@{CURRENT\_LIMIT\_EU\_A}}
+\index{CURRENT\_LIMIT\_EU\_A@{CURRENT\_LIMIT\_EU\_A}!device\_identity.c@{device\_identity.c}}
+\doxysubsubsection{\texorpdfstring{CURRENT\_LIMIT\_EU\_A}{CURRENT\_LIMIT\_EU\_A}}
+{\footnotesize\ttfamily \label{device__identity_8c_a16e574655217d65f33296fd5c9d6cb3f} 
+\#define CURRENT\+\_\+\+LIMIT\+\_\+\+EU\+\_\+A~10.\+0f}
+
+
+
+EU region current limit in amperes. 
+
+\Hypertarget{device__identity_8c_a5469cfad3f338029a3a1c9be8e5b1c32}\index{device\_identity.c@{device\_identity.c}!CURRENT\_LIMIT\_US\_A@{CURRENT\_LIMIT\_US\_A}}
+\index{CURRENT\_LIMIT\_US\_A@{CURRENT\_LIMIT\_US\_A}!device\_identity.c@{device\_identity.c}}
+\doxysubsubsection{\texorpdfstring{CURRENT\_LIMIT\_US\_A}{CURRENT\_LIMIT\_US\_A}}
+{\footnotesize\ttfamily \label{device__identity_8c_a5469cfad3f338029a3a1c9be8e5b1c32} 
+\#define CURRENT\+\_\+\+LIMIT\+\_\+\+US\+\_\+A~15.\+0f}
+
+
+
+US region current limit in amperes. 
+
+\Hypertarget{device__identity_8c_a693d7c6a2e50da7b41c0b3ce4a15a34c}\index{device\_identity.c@{device\_identity.c}!DEVICE\_IDENTITY\_TAG@{DEVICE\_IDENTITY\_TAG}}
+\index{DEVICE\_IDENTITY\_TAG@{DEVICE\_IDENTITY\_TAG}!device\_identity.c@{device\_identity.c}}
+\doxysubsubsection{\texorpdfstring{DEVICE\_IDENTITY\_TAG}{DEVICE\_IDENTITY\_TAG}}
+{\footnotesize\ttfamily \label{device__identity_8c_a693d7c6a2e50da7b41c0b3ce4a15a34c} 
+\#define DEVICE\+\_\+\+IDENTITY\+\_\+\+TAG~"{}\mbox{[}DEV-\/ID\mbox{]}"{}}
+
+\Hypertarget{device__identity_8c_abbaae20f896b1491508dc17ab1e3b6c4}\index{device\_identity.c@{device\_identity.c}!EEPROM\_DEVICE\_IDENTITY\_ADDR@{EEPROM\_DEVICE\_IDENTITY\_ADDR}}
+\index{EEPROM\_DEVICE\_IDENTITY\_ADDR@{EEPROM\_DEVICE\_IDENTITY\_ADDR}!device\_identity.c@{device\_identity.c}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_DEVICE\_IDENTITY\_ADDR}{EEPROM\_DEVICE\_IDENTITY\_ADDR}}
+{\footnotesize\ttfamily \label{device__identity_8c_abbaae20f896b1491508dc17ab1e3b6c4} 
+\#define EEPROM\+\_\+\+DEVICE\+\_\+\+IDENTITY\+\_\+\+ADDR~\mbox{\hyperlink{group__config06_ga0b0b03d61ed2b7c416e0e8665598eb3f}{EEPROM\+\_\+\+DEVICE\+\_\+\+IDENTITY\+\_\+\+START}}}
+
+
+
+EEPROM address for device identity record. 
+
+Uses EEPROM layout defined in \doxylink{_e_e_p_r_o_m___memory_map_8h}{EEPROM\+\_\+\+Memory\+Map.\+h}. \Hypertarget{device__identity_8c_a0acf2e274a352da43a527642ce8562fd}\index{device\_identity.c@{device\_identity.c}!EEPROM\_DEVICE\_IDENTITY\_CRC\_LEN@{EEPROM\_DEVICE\_IDENTITY\_CRC\_LEN}}
+\index{EEPROM\_DEVICE\_IDENTITY\_CRC\_LEN@{EEPROM\_DEVICE\_IDENTITY\_CRC\_LEN}!device\_identity.c@{device\_identity.c}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_DEVICE\_IDENTITY\_CRC\_LEN}{EEPROM\_DEVICE\_IDENTITY\_CRC\_LEN}}
+{\footnotesize\ttfamily \label{device__identity_8c_a0acf2e274a352da43a527642ce8562fd} 
+\#define EEPROM\+\_\+\+DEVICE\+\_\+\+IDENTITY\+\_\+\+CRC\+\_\+\+LEN~0x11u /\texorpdfstring{$\ast$}{*} 0x00..\+0x10 inclusive =$>$ 17 bytes \texorpdfstring{$\ast$}{*}/}
+
+
+
+Number of bytes covered by CRC calculation (serial + region). 
+
+\Hypertarget{device__identity_8c_a1618e0e52c6c528ccfe2fae354844f88}\index{device\_identity.c@{device\_identity.c}!EEPROM\_DEVICE\_IDENTITY\_CRC\_OFFSET@{EEPROM\_DEVICE\_IDENTITY\_CRC\_OFFSET}}
+\index{EEPROM\_DEVICE\_IDENTITY\_CRC\_OFFSET@{EEPROM\_DEVICE\_IDENTITY\_CRC\_OFFSET}!device\_identity.c@{device\_identity.c}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_DEVICE\_IDENTITY\_CRC\_OFFSET}{EEPROM\_DEVICE\_IDENTITY\_CRC\_OFFSET}}
+{\footnotesize\ttfamily \label{device__identity_8c_a1618e0e52c6c528ccfe2fae354844f88} 
+\#define EEPROM\+\_\+\+DEVICE\+\_\+\+IDENTITY\+\_\+\+CRC\+\_\+\+OFFSET~0x11u}
+
+
+
+Offset of CRC within identity EEPROM block. 
+
+\Hypertarget{device__identity_8c_af08ec717a68641f395791d8b7f41474b}\index{device\_identity.c@{device\_identity.c}!EEPROM\_DEVICE\_IDENTITY\_PAD\_OFFSET@{EEPROM\_DEVICE\_IDENTITY\_PAD\_OFFSET}}
+\index{EEPROM\_DEVICE\_IDENTITY\_PAD\_OFFSET@{EEPROM\_DEVICE\_IDENTITY\_PAD\_OFFSET}!device\_identity.c@{device\_identity.c}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_DEVICE\_IDENTITY\_PAD\_OFFSET}{EEPROM\_DEVICE\_IDENTITY\_PAD\_OFFSET}}
+{\footnotesize\ttfamily \label{device__identity_8c_af08ec717a68641f395791d8b7f41474b} 
+\#define EEPROM\+\_\+\+DEVICE\+\_\+\+IDENTITY\+\_\+\+PAD\+\_\+\+OFFSET~0x12u}
+
+
+
+Offset of reserved pad within identity EEPROM block. 
+
+\Hypertarget{device__identity_8c_a48f56dfea37a13b773d43067947bf70d}\index{device\_identity.c@{device\_identity.c}!EEPROM\_DEVICE\_IDENTITY\_REGION\_OFFSET@{EEPROM\_DEVICE\_IDENTITY\_REGION\_OFFSET}}
+\index{EEPROM\_DEVICE\_IDENTITY\_REGION\_OFFSET@{EEPROM\_DEVICE\_IDENTITY\_REGION\_OFFSET}!device\_identity.c@{device\_identity.c}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_DEVICE\_IDENTITY\_REGION\_OFFSET}{EEPROM\_DEVICE\_IDENTITY\_REGION\_OFFSET}}
+{\footnotesize\ttfamily \label{device__identity_8c_a48f56dfea37a13b773d43067947bf70d} 
+\#define EEPROM\+\_\+\+DEVICE\+\_\+\+IDENTITY\+\_\+\+REGION\+\_\+\+OFFSET~0x10u}
+
+
+
+Offset of region within identity EEPROM block. 
+
+\Hypertarget{device__identity_8c_a66bed1308b249cda5e4afd5fc5852c21}\index{device\_identity.c@{device\_identity.c}!EEPROM\_DEVICE\_IDENTITY\_TOTAL\_SIZE@{EEPROM\_DEVICE\_IDENTITY\_TOTAL\_SIZE}}
+\index{EEPROM\_DEVICE\_IDENTITY\_TOTAL\_SIZE@{EEPROM\_DEVICE\_IDENTITY\_TOTAL\_SIZE}!device\_identity.c@{device\_identity.c}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_DEVICE\_IDENTITY\_TOTAL\_SIZE}{EEPROM\_DEVICE\_IDENTITY\_TOTAL\_SIZE}}
+{\footnotesize\ttfamily \label{device__identity_8c_a66bed1308b249cda5e4afd5fc5852c21} 
+\#define EEPROM\+\_\+\+DEVICE\+\_\+\+IDENTITY\+\_\+\+TOTAL\+\_\+\+SIZE~\mbox{\hyperlink{group__config06_ga226676d435b8ea7dc26213a892abc464}{EEPROM\+\_\+\+DEVICE\+\_\+\+IDENTITY\+\_\+\+SIZE}}}
+
+
+
+Total size of device identity EEPROM block. 
+
+Uses EEPROM layout defined in \doxylink{_e_e_p_r_o_m___memory_map_8h}{EEPROM\+\_\+\+Memory\+Map.\+h} (includes pad byte). 
+
+\label{doc-func-members}
+\Hypertarget{device__identity_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{device__identity_8c_a4306a3b02b924b2b64398df823662801}\index{device\_identity.c@{device\_identity.c}!calc\_identity\_crc\_raw@{calc\_identity\_crc\_raw}}
+\index{calc\_identity\_crc\_raw@{calc\_identity\_crc\_raw}!device\_identity.c@{device\_identity.c}}
+\doxysubsubsection{\texorpdfstring{calc\_identity\_crc\_raw()}{calc\_identity\_crc\_raw()}}
+{\footnotesize\ttfamily \label{device__identity_8c_a4306a3b02b924b2b64398df823662801} 
+uint8\+\_\+t calc\+\_\+identity\+\_\+crc\+\_\+raw (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{raw}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Calculate CRC-\/8 for device identity EEPROM block image. 
+
+CRC is calculated over bytes 0x00..0x10 (serial + region), and stored at offset 0x11.
+
+
+\begin{DoxyParams}{Parameters}
+{\em raw} & Pointer to raw EEPROM block image. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Calculated CRC-\/8 value. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{device__identity_8c_a4306a3b02b924b2b64398df823662801_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{device__identity_8c_a4306a3b02b924b2b64398df823662801_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{device__identity_8c_aae57a92db26b8a63b7584fd2f3407077}\index{device\_identity.c@{device\_identity.c}!calculate\_crc8@{calculate\_crc8}}
+\index{calculate\_crc8@{calculate\_crc8}!device\_identity.c@{device\_identity.c}}
+\doxysubsubsection{\texorpdfstring{calculate\_crc8()}{calculate\_crc8()}}
+{\footnotesize\ttfamily \label{device__identity_8c_aae57a92db26b8a63b7584fd2f3407077} 
+uint8\+\_\+t calculate\+\_\+crc8 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{size\+\_\+t}]{len}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Calculate CRC-\/8 checksum for data integrity verification. 
+
+See \doxylink{storage__common_8h}{storage\+\_\+common.\+h} for full API documentation. Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{device__identity_8c_aae57a92db26b8a63b7584fd2f3407077_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{device__identity_8c_a3739393f286b8d8676728762e42d9209}\index{device\_identity.c@{device\_identity.c}!is\_unlock\_window\_open@{is\_unlock\_window\_open}}
+\index{is\_unlock\_window\_open@{is\_unlock\_window\_open}!device\_identity.c@{device\_identity.c}}
+\doxysubsubsection{\texorpdfstring{is\_unlock\_window\_open()}{is\_unlock\_window\_open()}}
+{\footnotesize\ttfamily \label{device__identity_8c_a3739393f286b8d8676728762e42d9209} 
+bool is\+\_\+unlock\+\_\+window\+\_\+open (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Check if the provisioning window is still open. 
+
+\begin{DoxyReturn}{Returns}
+true if unlocked and within timeout window. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{device__identity_8c_a3739393f286b8d8676728762e42d9209_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{device__identity_8c_a3739393f286b8d8676728762e42d9209_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{device__identity_8c_a2d5fd96a7f281483c7a5623cf99d12a4}\index{device\_identity.c@{device\_identity.c}!read\_identity\_from\_eeprom@{read\_identity\_from\_eeprom}}
+\index{read\_identity\_from\_eeprom@{read\_identity\_from\_eeprom}!device\_identity.c@{device\_identity.c}}
+\doxysubsubsection{\texorpdfstring{read\_identity\_from\_eeprom()}{read\_identity\_from\_eeprom()}}
+{\footnotesize\ttfamily \label{device__identity_8c_a2d5fd96a7f281483c7a5623cf99d12a4} 
+int read\+\_\+identity\+\_\+from\+\_\+eeprom (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__storage03_ga3d4f201eb84e7a480bb2455f5181bca0}{device\+\_\+identity\+\_\+eeprom\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{rec}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Read device identity from EEPROM and validate CRC. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rec} & Destination buffer for parsed EEPROM fields. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success with valid CRC, -\/1 on CRC mismatch or read error.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Must be called with eeprom\+Mtx held. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{device__identity_8c_a2d5fd96a7f281483c7a5623cf99d12a4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{device__identity_8c_a2d5fd96a7f281483c7a5623cf99d12a4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{device__identity_8c_a5b9e55cb62f389b33b1ba95030158cea}\index{device\_identity.c@{device\_identity.c}!update\_cache\_from\_record@{update\_cache\_from\_record}}
+\index{update\_cache\_from\_record@{update\_cache\_from\_record}!device\_identity.c@{device\_identity.c}}
+\doxysubsubsection{\texorpdfstring{update\_cache\_from\_record()}{update\_cache\_from\_record()}}
+{\footnotesize\ttfamily \label{device__identity_8c_a5b9e55cb62f389b33b1ba95030158cea} 
+void update\+\_\+cache\+\_\+from\+\_\+record (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{group__storage03_ga3d4f201eb84e7a480bb2455f5181bca0}{device\+\_\+identity\+\_\+eeprom\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{rec}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Update RAM cache from EEPROM record. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rec} & Validated EEPROM record. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{device__identity_8c_a5b9e55cb62f389b33b1ba95030158cea_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{device__identity_8c_a9ae2b99dfda6e002ea479fac618edccf}\index{device\_identity.c@{device\_identity.c}!validate\_region@{validate\_region}}
+\index{validate\_region@{validate\_region}!device\_identity.c@{device\_identity.c}}
+\doxysubsubsection{\texorpdfstring{validate\_region()}{validate\_region()}}
+{\footnotesize\ttfamily \label{device__identity_8c_a9ae2b99dfda6e002ea479fac618edccf} 
+bool validate\+\_\+region (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__storage03_ga509a8b0630b9c754a52a817ba37e032b}{device\+\_\+region\+\_\+t}}}]{region}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Validate region code. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em region} & Region code to validate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if valid, false otherwise. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{device__identity_8c_a9ae2b99dfda6e002ea479fac618edccf_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{device__identity_8c_a875fc468168b0fba722b907febc90ab1}\index{device\_identity.c@{device\_identity.c}!validate\_serial\_number@{validate\_serial\_number}}
+\index{validate\_serial\_number@{validate\_serial\_number}!device\_identity.c@{device\_identity.c}}
+\doxysubsubsection{\texorpdfstring{validate\_serial\_number()}{validate\_serial\_number()}}
+{\footnotesize\ttfamily \label{device__identity_8c_a875fc468168b0fba722b907febc90ab1} 
+bool validate\+\_\+serial\+\_\+number (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{sn}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Validate serial number string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sn} & Serial number string to validate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if valid, false otherwise. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{device__identity_8c_a875fc468168b0fba722b907febc90ab1_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{device__identity_8c_aa849e09774fe6a45bb4479d2ee49c402}\index{device\_identity.c@{device\_identity.c}!write\_identity\_to\_eeprom@{write\_identity\_to\_eeprom}}
+\index{write\_identity\_to\_eeprom@{write\_identity\_to\_eeprom}!device\_identity.c@{device\_identity.c}}
+\doxysubsubsection{\texorpdfstring{write\_identity\_to\_eeprom()}{write\_identity\_to\_eeprom()}}
+{\footnotesize\ttfamily \label{device__identity_8c_aa849e09774fe6a45bb4479d2ee49c402} 
+int write\+\_\+identity\+\_\+to\+\_\+eeprom (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__storage03_ga3d4f201eb84e7a480bb2455f5181bca0}{device\+\_\+identity\+\_\+eeprom\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{rec}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Write device identity to EEPROM using the defined block image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rec} & Source record to write (CRC will be calculated and set). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on write error.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Must be called with eeprom\+Mtx held. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{device__identity_8c_aa849e09774fe6a45bb4479d2ee49c402_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{device__identity_8c_aa849e09774fe6a45bb4479d2ee49c402_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{device__identity_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{device__identity_8c_a26fdc5b14d534266eedadfd06d55efe2}\index{device\_identity.c@{device\_identity.c}!s\_cache@{s\_cache}}
+\index{s\_cache@{s\_cache}!device\_identity.c@{device\_identity.c}}
+\doxysubsubsection{\texorpdfstring{s\_cache}{s\_cache}}
+{\footnotesize\ttfamily \label{device__identity_8c_a26fdc5b14d534266eedadfd06d55efe2} 
+\mbox{\hyperlink{structdevice__identity__t}{device\+\_\+identity\+\_\+t}} s\+\_\+cache\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ .serial\_number\ =\ \textcolor{stringliteral}{"{}UNPROVISIONED"{}},\ .region\ =\ \mbox{\hyperlink{group__storage03_gga509a8b0630b9c754a52a817ba37e032ba07eea1ebaa36d551f30f56c30b308d57}{DEVICE\_REGION\_UNKNOWN}},\ .valid\ =\ \textcolor{keyword}{false}\}}
+
+\end{DoxyCode}
+
+
+RAM cache for device identity. 
+
+Populated at init, updated by provisioning writes. \Hypertarget{device__identity_8c_a12b03d71705ed949d1afdec2dcbf04b8}\index{device\_identity.c@{device\_identity.c}!s\_initialized@{s\_initialized}}
+\index{s\_initialized@{s\_initialized}!device\_identity.c@{device\_identity.c}}
+\doxysubsubsection{\texorpdfstring{s\_initialized}{s\_initialized}}
+{\footnotesize\ttfamily \label{device__identity_8c_a12b03d71705ed949d1afdec2dcbf04b8} 
+volatile bool s\+\_\+initialized = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Module initialized flag. 
+
+\Hypertarget{device__identity_8c_a3c1500b139d0b2aab909471e4090838c}\index{device\_identity.c@{device\_identity.c}!s\_unlock\_timestamp\_ms@{s\_unlock\_timestamp\_ms}}
+\index{s\_unlock\_timestamp\_ms@{s\_unlock\_timestamp\_ms}!device\_identity.c@{device\_identity.c}}
+\doxysubsubsection{\texorpdfstring{s\_unlock\_timestamp\_ms}{s\_unlock\_timestamp\_ms}}
+{\footnotesize\ttfamily \label{device__identity_8c_a3c1500b139d0b2aab909471e4090838c} 
+volatile uint32\+\_\+t s\+\_\+unlock\+\_\+timestamp\+\_\+ms = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Provisioning unlock timestamp (ms since boot). 
+
+Set when unlock succeeds. 0 means locked. 

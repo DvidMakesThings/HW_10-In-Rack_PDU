@@ -1,0 +1,5 @@
+<map id="max_dt_required" name="max_dt_required">
+<area shape="rect" id="Node000001" title="Compute the maximum delta time since last heartbeat among required tasks." alt="" coords="5,5,123,32"/>
+<area shape="rect" id="Node000002" href="$_health_task_8c.html#a8213bf3a8e666885c3d45b1d5d8fb85c" title="Check if a health ID is in the required mask." alt="" coords="171,5,272,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,16,155,16,155,21,123,21"/>
+</map>

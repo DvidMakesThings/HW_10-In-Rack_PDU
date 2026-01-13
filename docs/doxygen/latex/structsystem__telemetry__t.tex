@@ -1,0 +1,91 @@
+\doxysection{system\+\_\+telemetry\+\_\+t Struct Reference}
+\hypertarget{structsystem__telemetry__t}{}\label{structsystem__telemetry__t}\index{system\_telemetry\_t@{system\_telemetry\_t}}
+
+
+Snapshot of system-\/level ADC telemetry.  
+
+
+
+
+{\ttfamily \#include $<$Meter\+Task.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{structsystem__telemetry__t_a58b6130a815dd4d70cec15bf5ec17c8e}{die\+\_\+temp\+\_\+c}}
+\item 
+float \mbox{\hyperlink{structsystem__telemetry__t_a8f7e83cf46184558455b6bb8c7469e5e}{vusb\+\_\+volts}}
+\item 
+float \mbox{\hyperlink{structsystem__telemetry__t_ae9e26dae8269b2e578fbdb71cf35a9e0}{vsupply\+\_\+volts}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structsystem__telemetry__t_a797cafb9b9307cb803889c566cd9869a}{raw\+\_\+temp}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structsystem__telemetry__t_ab10de6723bc25a35d130f308cf62928d}{raw\+\_\+vusb}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structsystem__telemetry__t_a833ea68652152e26d7023735b5c08b52}{raw\+\_\+vsupply}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structsystem__telemetry__t_ae411654fcca0e07a5cc71eb75344763b}{timestamp\+\_\+ms}}
+\item 
+bool \mbox{\hyperlink{structsystem__telemetry__t_afe871dc8ce702e7cf4cfe6ea43d25ef8}{valid}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Snapshot of system-\/level ADC telemetry. 
+
+\label{doc-variable-members}
+\Hypertarget{structsystem__telemetry__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structsystem__telemetry__t_a58b6130a815dd4d70cec15bf5ec17c8e}\index{system\_telemetry\_t@{system\_telemetry\_t}!die\_temp\_c@{die\_temp\_c}}
+\index{die\_temp\_c@{die\_temp\_c}!system\_telemetry\_t@{system\_telemetry\_t}}
+\doxysubsubsection{\texorpdfstring{die\_temp\_c}{die\_temp\_c}}
+{\footnotesize\ttfamily \label{structsystem__telemetry__t_a58b6130a815dd4d70cec15bf5ec17c8e} 
+float system\+\_\+telemetry\+\_\+t\+::die\+\_\+temp\+\_\+c}
+
+RP2040 internal sensor temperature \mbox{[}°C\mbox{]} \Hypertarget{structsystem__telemetry__t_a797cafb9b9307cb803889c566cd9869a}\index{system\_telemetry\_t@{system\_telemetry\_t}!raw\_temp@{raw\_temp}}
+\index{raw\_temp@{raw\_temp}!system\_telemetry\_t@{system\_telemetry\_t}}
+\doxysubsubsection{\texorpdfstring{raw\_temp}{raw\_temp}}
+{\footnotesize\ttfamily \label{structsystem__telemetry__t_a797cafb9b9307cb803889c566cd9869a} 
+uint16\+\_\+t system\+\_\+telemetry\+\_\+t\+::raw\+\_\+temp}
+
+Last raw ADC code for temp sensor \Hypertarget{structsystem__telemetry__t_a833ea68652152e26d7023735b5c08b52}\index{system\_telemetry\_t@{system\_telemetry\_t}!raw\_vsupply@{raw\_vsupply}}
+\index{raw\_vsupply@{raw\_vsupply}!system\_telemetry\_t@{system\_telemetry\_t}}
+\doxysubsubsection{\texorpdfstring{raw\_vsupply}{raw\_vsupply}}
+{\footnotesize\ttfamily \label{structsystem__telemetry__t_a833ea68652152e26d7023735b5c08b52} 
+uint16\+\_\+t system\+\_\+telemetry\+\_\+t\+::raw\+\_\+vsupply}
+
+Last raw ADC code for 12V tap \Hypertarget{structsystem__telemetry__t_ab10de6723bc25a35d130f308cf62928d}\index{system\_telemetry\_t@{system\_telemetry\_t}!raw\_vusb@{raw\_vusb}}
+\index{raw\_vusb@{raw\_vusb}!system\_telemetry\_t@{system\_telemetry\_t}}
+\doxysubsubsection{\texorpdfstring{raw\_vusb}{raw\_vusb}}
+{\footnotesize\ttfamily \label{structsystem__telemetry__t_ab10de6723bc25a35d130f308cf62928d} 
+uint16\+\_\+t system\+\_\+telemetry\+\_\+t\+::raw\+\_\+vusb}
+
+Last raw ADC code for VUSB tap \Hypertarget{structsystem__telemetry__t_ae411654fcca0e07a5cc71eb75344763b}\index{system\_telemetry\_t@{system\_telemetry\_t}!timestamp\_ms@{timestamp\_ms}}
+\index{timestamp\_ms@{timestamp\_ms}!system\_telemetry\_t@{system\_telemetry\_t}}
+\doxysubsubsection{\texorpdfstring{timestamp\_ms}{timestamp\_ms}}
+{\footnotesize\ttfamily \label{structsystem__telemetry__t_ae411654fcca0e07a5cc71eb75344763b} 
+uint32\+\_\+t system\+\_\+telemetry\+\_\+t\+::timestamp\+\_\+ms}
+
+Timestamp of snapshot \mbox{[}ms since boot\mbox{]} \Hypertarget{structsystem__telemetry__t_afe871dc8ce702e7cf4cfe6ea43d25ef8}\index{system\_telemetry\_t@{system\_telemetry\_t}!valid@{valid}}
+\index{valid@{valid}!system\_telemetry\_t@{system\_telemetry\_t}}
+\doxysubsubsection{\texorpdfstring{valid}{valid}}
+{\footnotesize\ttfamily \label{structsystem__telemetry__t_afe871dc8ce702e7cf4cfe6ea43d25ef8} 
+bool system\+\_\+telemetry\+\_\+t\+::valid}
+
+true if values are fresh \Hypertarget{structsystem__telemetry__t_ae9e26dae8269b2e578fbdb71cf35a9e0}\index{system\_telemetry\_t@{system\_telemetry\_t}!vsupply\_volts@{vsupply\_volts}}
+\index{vsupply\_volts@{vsupply\_volts}!system\_telemetry\_t@{system\_telemetry\_t}}
+\doxysubsubsection{\texorpdfstring{vsupply\_volts}{vsupply\_volts}}
+{\footnotesize\ttfamily \label{structsystem__telemetry__t_ae9e26dae8269b2e578fbdb71cf35a9e0} 
+float system\+\_\+telemetry\+\_\+t\+::vsupply\+\_\+volts}
+
+12V supply rail voltage \mbox{[}V\mbox{]} \Hypertarget{structsystem__telemetry__t_a8f7e83cf46184558455b6bb8c7469e5e}\index{system\_telemetry\_t@{system\_telemetry\_t}!vusb\_volts@{vusb\_volts}}
+\index{vusb\_volts@{vusb\_volts}!system\_telemetry\_t@{system\_telemetry\_t}}
+\doxysubsubsection{\texorpdfstring{vusb\_volts}{vusb\_volts}}
+{\footnotesize\ttfamily \label{structsystem__telemetry__t_a8f7e83cf46184558455b6bb8c7469e5e} 
+float system\+\_\+telemetry\+\_\+t\+::vusb\+\_\+volts}
+
+USB rail voltage \mbox{[}V\mbox{]} 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\mbox{\hyperlink{_meter_task_8h}{Meter\+Task.\+h}}\end{DoxyCompactItemize}

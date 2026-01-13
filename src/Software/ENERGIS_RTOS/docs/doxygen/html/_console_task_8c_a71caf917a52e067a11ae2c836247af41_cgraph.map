@@ -1,0 +1,9 @@
+<map id="cmd_clear_error_log" name="cmd_clear_error_log">
+<area shape="rect" id="Node000001" title="Asynchronously clear the error event log region." alt="" coords="5,43,144,69"/>
+<area shape="rect" id="Node000002" href="$group__tasks10.html#gae7a93a44989ffe1e7ed93e7f76613c89" title="Asynchronously clear the error event log region." alt="" coords="217,5,350,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,44,201,35,202,41,144,49"/>
+<area shape="rect" id="Node000004" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="192,72,375,99"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="144,63,177,68,176,73,144,68"/>
+<area shape="rect" id="Node000003" href="$group__tasks10.html#gaad6cb463ba1647fe51faeea5f08268da" title="Check if config is loaded and ready." alt="" coords="423,13,590,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="350,24,408,24,408,29,350,29"/>
+</map>

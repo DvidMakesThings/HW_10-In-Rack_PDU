@@ -1,0 +1,71 @@
+\doxysection{crashlog.\+h}
+\hypertarget{crashlog_8h_source}{}\label{crashlog_8h_source}\index{src/Software/ENERGIS\_RTOS/src/misc/crashlog.h@{src/Software/ENERGIS\_RTOS/src/misc/crashlog.h}}
+\mbox{\hyperlink{crashlog_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_o_n_f_i_g_8h}{../CONFIG.h}}"{}}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ CRASH\_FEED\_RING\ 16u}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a4c5a1abca50bbcaccba25a55f1698252}{CR\_RESET\_UNKNOWN}}\ =\ 0u,\ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a68fd56235c593d0a17739e5b02007f15}{CR\_RESET\_POWERON}}\ =\ 1u,\ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a1b426e325becbee34a0fecc17b6d90db}{CR\_RESET\_WATCHDOG}}\ =\ 2u,\ }
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a6260f396c215c34ffb370b2ffafa8f87}{CR\_RESET\_SOFTWARE}}\ =\ 3u,\ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a8258b7f926f9fd20044a96858c16c151}{CR\_RESET\_BROWNOUT}}\ =\ 4u,\ }
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985aed93463f235a0af77837e4727581e7c7}{CR\_RESET\_EXTERNAL}}\ =\ 5u,\ }
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{group__misc1_gga3da6cc7835d9b18adc73cb404f8e9985a041f6a3c80572a3b807ac771924080b6}{CR\_RESET\_DEBUG}}\ =\ 6u\ \ \ \ \ }
+\DoxyCodeLine{00065\ \}\ \mbox{\hyperlink{group__misc1_ga3da6cc7835d9b18adc73cb404f8e9985}{crash\_reset\_reason\_t}};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{/*\ Header\ with\ integrity\ */}}
+\DoxyCodeLine{00080\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structcrashlog__t_aedb30457598e4eac8a961cbea94fb623}{hdr\_magic}};\ \ \ }
+\DoxyCodeLine{00081\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structcrashlog__t_a2770632c551b70866eea849b79946590}{hdr\_version}};\ }
+\DoxyCodeLine{00082\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structcrashlog__t_a79c41cf6abf819cb4c2a67ffc6854aa5}{hdr\_size}};\ \ \ \ }
+\DoxyCodeLine{00083\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structcrashlog__t_a8a8f754682bdcc0b5ebbe6ef536c6111}{hdr\_crc32}};\ \ \ }
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{comment}{/*\ HardFault\ capture\ (valid\ only\ if\ hf\_valid\ is\ non-\/zero)\ */}}
+\DoxyCodeLine{00086\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structcrashlog__t_a0a92f896f61de29e4b0fa45840bf38a2}{hf\_valid}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00087\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structcrashlog__t_a6d1d1eee5d10967d58c832a58ba31188}{rsvd0}}[3];\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00088\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structcrashlog__t_ab5a78f7c957e63cec1eea533cf8b6c05}{pc}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00089\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structcrashlog__t_ae5f51f173d74e56106fd09509e5737c7}{lr}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00090\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structcrashlog__t_abe2669c559492b250560512ae912acca}{xpsr}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00091\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structcrashlog__t_a83fbb408d262cd1f4f7cc24b8fcd63c4}{r0}},\ \mbox{\hyperlink{structcrashlog__t_a439e9f0ffca9ff0052bb26f39934aa9e}{r1}},\ \mbox{\hyperlink{structcrashlog__t_acffe6b8ff20ce427a656c4205ce93bad}{r2}},\ \mbox{\hyperlink{structcrashlog__t_a2665b9c9fa35b5725a305894d80c7f89}{r3}},\ \mbox{\hyperlink{structcrashlog__t_ae39c814fce6a7cd47a3a87e8830badfd}{r12}};\ }
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{/*\ Reset\ diagnostics\ */}}
+\DoxyCodeLine{00094\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structcrashlog__t_a3b69d35e7ece77c525d1564728db181a}{reset\_raw\_bits}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{group__misc1_ga3da6cc7835d9b18adc73cb404f8e9985}{crash\_reset\_reason\_t}}\ \mbox{\hyperlink{structcrashlog__t_a65100817986135b97760ee6788d5b50d}{reset\_reason}};\ }
+\DoxyCodeLine{00096\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structcrashlog__t_a1f1d30de651fe783b3df6ff79f886e99}{boots\_counter}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{comment}{/*\ Watchdog\ feed\ telemetry\ as\ deltas\ for\ readability\ and\ robustness\ */}}
+\DoxyCodeLine{00099\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structcrashlog__t_ae3f9b71d10c1b1ad3ecee2b9364e6ddc}{wdt\_last\_ts\_ms}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00100\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structcrashlog__t_af0eb9e9d8254d3af90d472d667a20ab9}{wdt\_feed\_delta\_ms}}[\mbox{\hyperlink{group__misc1_ga7eca9d3b0c9e9975fe8917425a5931cc}{CRASH\_FEED\_RING}}];\ }
+\DoxyCodeLine{00101\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structcrashlog__t_a116f8de94ac8754b967e6e413dc6f42e}{wdt\_feed\_wr}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00102\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structcrashlog__t_a2397da129395bc03da70efe05cb42f6e}{wdt\_feed\_count}};\ }
+\DoxyCodeLine{00103\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structcrashlog__t_ac94bbe9a0c82b083839b2f445f4aff44}{rsvd1}}[2];\ \ \ \ \ \ \ }
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{/*\ Optional\ tag\ for\ software-\/initiated\ reboot\ */}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structcrashlog__t_a1ef9ce5100a95eb17be3b1085a044813}{sw\_reboot\_tag}}[24];\ }
+\DoxyCodeLine{00107\ \}\ \mbox{\hyperlink{structcrashlog__t}{crashlog\_t}};}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00131\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__misc1_ga040d161613770d2656d3350134445684}{CrashLog\_PrintAndClearOnBoot}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00151\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__misc1_ga8dac22c0f05ce9e997b99d9179a2bf5f}{CrashLog\_RecordWdtFeed}}(uint32\_t\ \mbox{\hyperlink{_button_task_8c_a50503dee6a29e98e633b16b1b8b550bc}{now\_ms}});}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00171\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__misc1_ga131d28172212c0df74acc1e9d9527c4a}{CrashLog\_CaptureResetReasonEarly}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00193\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__misc1_ga28f2af805f9b4954b888151007f862a3}{CrashLog\_RecordSoftwareRebootTag}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *tag);}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00216\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__misc1_ga1a04e8bbf9617464ae676b6b4d89241c}{CrashLog\_OnHardFault}}(uint32\_t\ *stacked\_regs);}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \textcolor{comment}{/*\ -\/-\/-\/\ Platform\ hooks\ (weak)\ -\/-\/-\/\ */}}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00244\ uint32\_t\ \mbox{\hyperlink{group__misc1_gaed84e69b9c69051cc7be2c213183e109}{CrashLog\_Platform\_ReadResetBits}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00266\ \mbox{\hyperlink{group__misc1_ga3da6cc7835d9b18adc73cb404f8e9985}{crash\_reset\_reason\_t}}\ \mbox{\hyperlink{group__misc1_ga41cf871cde075031b39beae132e7c13d}{CrashLog\_Platform\_DecodeReset}}(uint32\_t\ raw);}
+\DoxyCodeLine{00268\ }
+
+\end{DoxyCode}

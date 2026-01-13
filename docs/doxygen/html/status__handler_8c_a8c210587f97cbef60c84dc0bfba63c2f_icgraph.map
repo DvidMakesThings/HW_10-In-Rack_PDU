@@ -1,0 +1,17 @@
+<map id="net_beat" name="net_beat">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1133,5,1204,32"/>
+<area shape="rect" id="Node000002" href="$group__webui06.html#gabec26dab8e118ff845c2fde12dc885cf" title="Handle GET /api/status endpoint and return JSON telemetry." alt="" coords="932,5,1085,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1117,21,1085,21,1085,16,1117,16"/>
+<area shape="rect" id="Node000003" href="$group__webui02.html#ga52702a4dcaff4540a9ddd10e4d5f4525" title="Process incoming HTTP connections and route requests." alt="" coords="745,5,884,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="917,21,885,21,885,16,917,16"/>
+<area shape="rect" id="Node000004" href="$_net_task_8c.html#a80f30ff31d5f0d4f6696af42d015bce6" title="Network task main function." alt="" coords="570,5,697,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="730,21,697,21,697,16,730,16"/>
+<area shape="rect" id="Node000005" href="$group__tasks07.html#ga3bb13f092e9d7a8e15776e5e8bf8e8c3" title="Create and start the Network Task with a deterministic enable gate." alt="" coords="426,5,522,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="554,21,522,21,522,16,554,16"/>
+<area shape="rect" id="Node000006" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,5,378,32"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="411,21,379,21,379,16,411,16"/>
+<area shape="rect" id="Node000007" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,5,263,32"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="295,21,263,21,263,16,295,16"/>
+<area shape="rect" id="Node000008" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,5,102,32"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="134,21,102,21,102,16,134,16"/>
+</map>

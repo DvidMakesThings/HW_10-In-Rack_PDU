@@ -1,0 +1,17 @@
+<map id="read_identity_from_eeprom" name="read_identity_from_eeprom">
+<area shape="rect" id="Node000001" title="Read device identity from EEPROM and validate CRC." alt="" coords="5,23,134,65"/>
+<area shape="rect" id="Node000002" href="$device__identity_8c.html#a4306a3b02b924b2b64398df823662801" title="Calculate CRC&#45;8 for device identity EEPROM block image." alt="" coords="190,5,338,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="134,33,174,28,175,33,134,38"/>
+<area shape="rect" id="Node000004" href="$group__driver02.html#ga622a6736c8384f9e1921a1bda2a84df9" title="Read buffer from EEPROM." alt="" coords="182,56,346,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="134,50,167,54,166,59,134,55"/>
+<area shape="rect" id="Node000003" href="$group__storage08.html#gaae57a92db26b8a63b7584fd2f3407077" title="Calculate CRC&#45;8 checksum for data integrity verification." alt="" coords="433,5,538,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="338,16,417,16,417,21,338,21"/>
+<area shape="rect" id="Node000005" href="$group__drivers05.html#ga66ae4c7028f764a3770cabe101dba8bf" title="Read from 16&#45;bit memory address: write [mem_hi, mem_lo] (no stop), then read len bytes." alt="" coords="412,56,560,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="346,67,396,67,396,72,346,72"/>
+<area shape="rect" id="Node000008" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="394,107,577,133"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="326,81,410,100,409,105,325,86"/>
+<area shape="rect" id="Node000006" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="654,31,776,57"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="560,59,638,50,639,55,560,64"/>
+<area shape="rect" id="Node000007" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="625,81,805,108"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="560,75,610,80,610,86,560,80"/>
+</map>

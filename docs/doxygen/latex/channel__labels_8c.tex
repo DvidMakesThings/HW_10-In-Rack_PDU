@@ -1,0 +1,149 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/storage\+\_\+submodule/channel\+\_\+labels.c File Reference}
+\hypertarget{channel__labels_8c}{}\label{channel__labels_8c}\index{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/channel\_labels.c@{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/channel\_labels.c}}
+{\ttfamily \#include "{}../../\+CONFIG.\+h"{}}\newline
+Include dependency graph for channel\+\_\+labels.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{channel__labels_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{channel__labels_8c_ac1fd50ae79d43050ec7f8a6d36100a54}{ST\+\_\+\+CH\+\_\+\+LABEL\+\_\+\+TAG}}~"{}\mbox{[}ST-\/CHLAB\mbox{]}"{}
+\item 
+\#define \mbox{\hyperlink{channel__labels_8c_a037ddaa6a33f435ac2894e15cbc2c42b}{CHANNEL\+\_\+\+LABEL\+\_\+\+MAX\+\_\+\+LEN}}~25
+\begin{DoxyCompactList}\small\item\em Maximum label length (excluding null terminator). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static uint16\+\_\+t \mbox{\hyperlink{channel__labels_8c_a1aaf00bf844e024f39c0c26829aaa5c4}{\+\_\+\+Label\+Slot\+Addr}} (uint8\+\_\+t channel\+\_\+index)
+\begin{DoxyCompactList}\small\item\em Calculate EEPROM address for a channel\textquotesingle{}s label slot. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage02_ga6398fe537889dbfbfa6d9d64c4d7db88}{EEPROM\+\_\+\+Write\+Channel\+Label}} (uint8\+\_\+t channel\+\_\+index, const char \texorpdfstring{$\ast$}{*}label)
+\begin{DoxyCompactList}\small\item\em Write channel label to EEPROM. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage02_ga32e401468db1696835d3afe7d799c23b}{EEPROM\+\_\+\+Read\+Channel\+Label}} (uint8\+\_\+t channel\+\_\+index, char \texorpdfstring{$\ast$}{*}out, size\+\_\+t out\+\_\+len)
+\begin{DoxyCompactList}\small\item\em Read channel label from EEPROM. See \doxylink{channel__labels_8h}{channel\+\_\+labels.\+h}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage02_gaf78531bf7a49a1b100af4fe0a8a1e2dd}{EEPROM\+\_\+\+Clear\+Channel\+Label}} (uint8\+\_\+t channel\+\_\+index)
+\begin{DoxyCompactList}\small\item\em Clear one channel label slot. See \doxylink{channel__labels_8h}{channel\+\_\+labels.\+h}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage02_ga67a2dd3f4c5ce4b35fcc26bf85f7d886}{EEPROM\+\_\+\+Clear\+All\+Channel\+Labels}} (void)
+\begin{DoxyCompactList}\small\item\em Clear all channel label slots. See \doxylink{channel__labels_8h}{channel\+\_\+labels.\+h}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__storage02_gad1cb7f9e0fd0395902ffd198dd6f2ee0}{Channel\+Labels\+\_\+\+Load\+From\+EEPROM}} (void)
+\begin{DoxyCompactList}\small\item\em Load all channel labels from EEPROM into RAM cache. See \doxylink{channel__labels_8h}{channel\+\_\+labels.\+h}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage02_ga99ae818723cc95ffd9af13c54cd7a352}{Channel\+Labels\+\_\+\+Get\+Cached}} (uint8\+\_\+t channel, char \texorpdfstring{$\ast$}{*}out, size\+\_\+t out\+\_\+len)
+\begin{DoxyCompactList}\small\item\em Get label from RAM cache. See \doxylink{channel__labels_8h}{channel\+\_\+labels.\+h}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage02_gaee4d746ce522f44d4c8d6d4c12216248}{Channel\+Labels\+\_\+\+Set\+And\+Write}} (uint8\+\_\+t channel, const char \texorpdfstring{$\ast$}{*}label)
+\begin{DoxyCompactList}\small\item\em Update label in cache and write to EEPROM. See \doxylink{channel__labels_8h}{channel\+\_\+labels.\+h}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage02_ga9b748e74135c13df21595e6db035de95}{storage\+\_\+get\+\_\+channel\+\_\+label}} (uint8\+\_\+t channel, char \texorpdfstring{$\ast$}{*}out, size\+\_\+t out\+\_\+len)
+\begin{DoxyCompactList}\small\item\em Read channel label from RAM cache (thread-\/safe). See \doxylink{channel__labels_8h}{channel\+\_\+labels.\+h}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage02_ga9019937f0e528616251b6c085b7245a9}{storage\+\_\+set\+\_\+channel\+\_\+label}} (uint8\+\_\+t channel, const char \texorpdfstring{$\ast$}{*}label)
+\begin{DoxyCompactList}\small\item\em Write channel label via storage queue (thread-\/safe). See \doxylink{channel__labels_8h}{channel\+\_\+labels.\+h}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__storage02_gad3ee11180cd1b8d9e0f174b2607ab429}{storage\+\_\+get\+\_\+all\+\_\+channel\+\_\+labels}} (char labels\mbox{[}ENERGIS\+\_\+\+NUM\+\_\+\+CHANNELS\mbox{]}\mbox{[}26\mbox{]}, size\+\_\+t label\+\_\+buf\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Read all channel labels from RAM cache (thread-\/safe). See \doxylink{channel__labels_8h}{channel\+\_\+labels.\+h}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static char \mbox{\hyperlink{channel__labels_8c_af65dcb4ac081c15500eac8f680790784}{s\+\_\+label\+\_\+cache}} \mbox{[}ENERGIS\+\_\+\+NUM\+\_\+\+CHANNELS\mbox{]}\mbox{[}\mbox{\hyperlink{channel__labels_8c_a037ddaa6a33f435ac2894e15cbc2c42b}{CHANNEL\+\_\+\+LABEL\+\_\+\+MAX\+\_\+\+LEN}}+1\mbox{]}
+\begin{DoxyCompactList}\small\item\em RAM cache for channel labels (owned by Storage\+Task). \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{channel__labels_8c_a0c3445cf8a78d858f18169882b08939f}{s\+\_\+labels\+\_\+loaded}} = false
+\begin{DoxyCompactList}\small\item\em Flag indicating labels have been loaded from EEPROM. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+2.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/01-\/01
+\end{DoxyDate}
+Implementation of channel label management. Each of 8 channels has a fixed EEPROM slot (64 bytes) for storing user-\/defined text labels (null-\/terminated strings, max 25 characters). Labels are stored at EEPROM address 0x1\+A00 with 512 bytes total.
+
+Labels are cached in RAM for fast access. EEPROM is only read on startup and written when labels change.
+
+Thread Safety\+:
+\begin{DoxyItemize}
+\item Low-\/level EEPROM functions require eeprom\+Mtx to be held
+\item High-\/level storage\+\_\+\texorpdfstring{$\ast$}{*} functions are fully thread-\/safe (use storage queue)
+\end{DoxyItemize}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{channel__labels_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{channel__labels_8c_a037ddaa6a33f435ac2894e15cbc2c42b}\index{channel\_labels.c@{channel\_labels.c}!CHANNEL\_LABEL\_MAX\_LEN@{CHANNEL\_LABEL\_MAX\_LEN}}
+\index{CHANNEL\_LABEL\_MAX\_LEN@{CHANNEL\_LABEL\_MAX\_LEN}!channel\_labels.c@{channel\_labels.c}}
+\doxysubsubsection{\texorpdfstring{CHANNEL\_LABEL\_MAX\_LEN}{CHANNEL\_LABEL\_MAX\_LEN}}
+{\footnotesize\ttfamily \label{channel__labels_8c_a037ddaa6a33f435ac2894e15cbc2c42b} 
+\#define CHANNEL\+\_\+\+LABEL\+\_\+\+MAX\+\_\+\+LEN~25}
+
+
+
+Maximum label length (excluding null terminator). 
+
+\Hypertarget{channel__labels_8c_ac1fd50ae79d43050ec7f8a6d36100a54}\index{channel\_labels.c@{channel\_labels.c}!ST\_CH\_LABEL\_TAG@{ST\_CH\_LABEL\_TAG}}
+\index{ST\_CH\_LABEL\_TAG@{ST\_CH\_LABEL\_TAG}!channel\_labels.c@{channel\_labels.c}}
+\doxysubsubsection{\texorpdfstring{ST\_CH\_LABEL\_TAG}{ST\_CH\_LABEL\_TAG}}
+{\footnotesize\ttfamily \label{channel__labels_8c_ac1fd50ae79d43050ec7f8a6d36100a54} 
+\#define ST\+\_\+\+CH\+\_\+\+LABEL\+\_\+\+TAG~"{}\mbox{[}ST-\/CHLAB\mbox{]}"{}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{channel__labels_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{channel__labels_8c_a1aaf00bf844e024f39c0c26829aaa5c4}\index{channel\_labels.c@{channel\_labels.c}!\_LabelSlotAddr@{\_LabelSlotAddr}}
+\index{\_LabelSlotAddr@{\_LabelSlotAddr}!channel\_labels.c@{channel\_labels.c}}
+\doxysubsubsection{\texorpdfstring{\_LabelSlotAddr()}{\_LabelSlotAddr()}}
+{\footnotesize\ttfamily \label{channel__labels_8c_a1aaf00bf844e024f39c0c26829aaa5c4} 
+uint16\+\_\+t \+\_\+\+Label\+Slot\+Addr (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{channel\+\_\+index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Calculate EEPROM address for a channel\textquotesingle{}s label slot. 
+
+Each channel has EEPROM\+\_\+\+CH\+\_\+\+LABEL\+\_\+\+SLOT bytes allocated sequentially.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel\+\_\+index} & Channel index \mbox{[}0..ENERGIS\+\_\+\+NUM\+\_\+\+CHANNELS-\/1\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+EEPROM address for channel\textquotesingle{}s label slot 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{channel__labels_8c_a1aaf00bf844e024f39c0c26829aaa5c4_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{channel__labels_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{channel__labels_8c_af65dcb4ac081c15500eac8f680790784}\index{channel\_labels.c@{channel\_labels.c}!s\_label\_cache@{s\_label\_cache}}
+\index{s\_label\_cache@{s\_label\_cache}!channel\_labels.c@{channel\_labels.c}}
+\doxysubsubsection{\texorpdfstring{s\_label\_cache}{s\_label\_cache}}
+{\footnotesize\ttfamily \label{channel__labels_8c_af65dcb4ac081c15500eac8f680790784} 
+char s\+\_\+label\+\_\+cache\mbox{[}ENERGIS\+\_\+\+NUM\+\_\+\+CHANNELS\mbox{]}\mbox{[}\mbox{\hyperlink{channel__labels_8c_a037ddaa6a33f435ac2894e15cbc2c42b}{CHANNEL\+\_\+\+LABEL\+\_\+\+MAX\+\_\+\+LEN}}+1\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+RAM cache for channel labels (owned by Storage\+Task). 
+
+\Hypertarget{channel__labels_8c_a0c3445cf8a78d858f18169882b08939f}\index{channel\_labels.c@{channel\_labels.c}!s\_labels\_loaded@{s\_labels\_loaded}}
+\index{s\_labels\_loaded@{s\_labels\_loaded}!channel\_labels.c@{channel\_labels.c}}
+\doxysubsubsection{\texorpdfstring{s\_labels\_loaded}{s\_labels\_loaded}}
+{\footnotesize\ttfamily \label{channel__labels_8c_a0c3445cf8a78d858f18169882b08939f} 
+bool s\+\_\+labels\+\_\+loaded = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Flag indicating labels have been loaded from EEPROM. 
+

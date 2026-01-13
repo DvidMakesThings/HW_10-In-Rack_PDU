@@ -1,0 +1,5 @@
+<map id="log_required_status" name="log_required_status">
+<area shape="rect" id="Node000001" title="Print the heartbeat status of all required tasks, one line per task." alt="" coords="5,5,140,32"/>
+<area shape="rect" id="Node000002" href="$_health_task_8c.html#a8213bf3a8e666885c3d45b1d5d8fb85c" title="Check if a health ID is in the required mask." alt="" coords="188,5,289,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="140,16,172,16,172,21,140,21"/>
+</map>

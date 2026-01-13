@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['action_0',['action',['../structcfg__msg__t.html#a4b4d7871d36d760a1dff2b9fe8bf47d5',1,'cfg_msg_t::action'],['../structmeter__msg__t.html#a18515503b31233560cdc9b8dafcae872',1,'meter_msg_t::action'],['../structnet__msg__t.html#a66753b38c7116921daaea2688aeabbb9',1,'net_msg_t::action']]],
+  ['adc_5f12v_5fmea_1',['ADC_12V_MEA',['../group__config01.html#ga5553d0bb9eed10964f5dc6ddb16d1146',1,'CONFIG.h']]],
+  ['adc_5fmax_2',['ADC_MAX',['../group__config01.html#ga555a695bf58df062dc03f0e892d95cd7',1,'CONFIG.h']]],
+  ['adc_5fraw_5fto_5fdie_5ftemp_5fc_3',['adc_raw_to_die_temp_c',['../_meter_task_8c.html#ac813b666061cf4dd0ff7bd15f385eb34',1,'MeterTask.c']]],
+  ['adc_5fread_5fvoltage_5favg_4',['adc_read_voltage_avg',['../_init_task_8c.html#a45698d967d7693e166eeb3bc92c7ef19',1,'InitTask.c']]],
+  ['adc_5ftol_5',['ADC_TOL',['../group__config01.html#gaeb9e33b42cde41bab8dfb7ebc878dcf5',1,'CONFIG.h']]],
+  ['adc_5fvref_6',['ADC_VREF',['../group__config01.html#ga5a03d0b939a8dda552c9fe3319a82485',1,'CONFIG.h']]],
+  ['adc_5fvusb_7',['ADC_VUSB',['../group__config01.html#gaef6e5978a66d7d0a77c65736c0de506e',1,'CONFIG.h']]],
+  ['addr_8',['addr',['../structi2c__bus__request__t.html#abd4b8093ec641eb2b0f7b73e87b3f54f',1,'i2c_bus_request_t::addr'],['../structmcp23017__t.html#a04f42f2123f549a4bae8b9dcf4760a55',1,'mcp23017_t::addr']]],
+  ['advanced_20tcp_20ip_20tuning_9',['Advanced TCP/IP Tuning',['../group___w5500___a_d_v.html',1,'']]],
+  ['agent_10',['SNMP Agent',['../group__snmp.html',1,'']]],
+  ['agent_20energis_20oid_20table_11',['1. SNMP Agent - ENERGIS OID Table',['../group__snmp01.html',1,'']]],
+  ['agent_20implementation_12',['7. SNMP Agent Implementation',['../group__drivers07.html',1,'']]],
+  ['agent_20network_20configuration_13',['2. SNMP Agent - Network Configuration',['../group__snmp02.html',1,'']]],
+  ['agent_20outlet_20control_14',['3. SNMP Agent - Outlet Control',['../group__snmp03.html',1,'']]],
+  ['agent_20power_20monitoring_15',['4. SNMP Agent - Power Monitoring',['../group__snmp04.html',1,'']]],
+  ['agent_20voltage_20monitoring_16',['5. SNMP Agent - Voltage Monitoring',['../group__snmp05.html',1,'']]],
+  ['allocation_17',['Socket Memory Allocation',['../group___w5500___m_e_m.html',1,'']]],
+  ['and_20logging_18',['Debug and Logging',['../group___w5500___d_b_g.html',1,'']]],
+  ['apply_5fcalibration_19',['apply_calibration',['../_h_l_w8032__driver_8c.html#a1014a92e163cf6095bc8ab27cbc74500',1,'HLW8032_driver.c']]],
+  ['apply_5fsaved_5frelay_5fstates_20',['apply_saved_relay_states',['../_init_task_8c.html#ad4e552a62b6a29e14ea997265cb7ef25',1,'InitTask.c']]],
+  ['automation_5fmanual_5fhtml_21',['automation_manual_html',['../group__webui04.html#gaf8a378d29df41f3c814a6aa343988fa6',1,'automation_manual_html:&#160;page_content.c'],['../group__webui04.html#gaf8a378d29df41f3c814a6aa343988fa6',1,'automation_manual_html:&#160;page_content.c']]]
+];

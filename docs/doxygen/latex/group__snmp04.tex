@@ -1,0 +1,902 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item SNMP Agent -\/ Power Monitoring 
+\end{DoxyEnumerate}}
+\hypertarget{group__snmp04}{}\label{group__snmp04}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+
+
+Per-\/channel power telemetry and overcurrent protection status via SNMP.  
+
+
+Collaboration diagram for 4. SNMP Agent -\/ Power Monitoring\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=310pt]{group__snmp04}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__snmp04_gaeddb705c447d49aea9383710d70e577f}{get\+\_\+power\+\_\+0\+\_\+\+MEAS\+\_\+\+VOLTAGE}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for outlet 0 voltage \mbox{[}V\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_ga7d3f514014d0ff13a8f767e419fc9ea4}{get\+\_\+power\+\_\+0\+\_\+\+MEAS\+\_\+\+CURRENT}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for outlet 0 current \mbox{[}A\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_gadb419836c678f41e04ad2da2f3c8f20c}{get\+\_\+power\+\_\+0\+\_\+\+MEAS\+\_\+\+WATT}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for outlet 0 power \mbox{[}W\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_ga7600c8a2b0563156b9c6e976a953c4c9}{get\+\_\+power\+\_\+0\+\_\+\+MEAS\+\_\+\+PF}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for outlet 0 power factor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_ga94f308f8eb3b1aefc1ea03e8483e9002}{get\+\_\+power\+\_\+0\+\_\+\+MEAS\+\_\+\+KWH}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for outlet 0 accumulated energy \mbox{[}k\+Wh\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_gafcb9a40de0c79059dbea47256843e022}{get\+\_\+power\+\_\+0\+\_\+\+MEAS\+\_\+\+UPTIME}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for outlet 0 uptime \mbox{[}s\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_ga86e7e6f79e7099c77e5a6b491b011f25}{get\+\_\+power\+\_\+1\+\_\+\+MEAS\+\_\+\+VOLTAGE}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_gac2f98a31afbedb561913f7e71db59c6a}{get\+\_\+power\+\_\+1\+\_\+\+MEAS\+\_\+\+CURRENT}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga31d0a6724bfe3548205d760b8d50c4aa}{get\+\_\+power\+\_\+1\+\_\+\+MEAS\+\_\+\+WATT}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_gaf18599cd6961c9205b7bf508f087b86f}{get\+\_\+power\+\_\+1\+\_\+\+MEAS\+\_\+\+PF}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga4e96087068a52153f8fca484c1aa1cf5}{get\+\_\+power\+\_\+1\+\_\+\+MEAS\+\_\+\+KWH}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga4f7f1bc987837b712f0fc016c30f4dfb}{get\+\_\+power\+\_\+1\+\_\+\+MEAS\+\_\+\+UPTIME}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga6999114896986c83f40e4a7e64650bee}{get\+\_\+power\+\_\+2\+\_\+\+MEAS\+\_\+\+VOLTAGE}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga395609c13fbe74047f5f4e28df5eb2fe}{get\+\_\+power\+\_\+2\+\_\+\+MEAS\+\_\+\+CURRENT}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga2d42680dc078a8f866d321d35324bec6}{get\+\_\+power\+\_\+2\+\_\+\+MEAS\+\_\+\+WATT}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_gad744eb3629b153fec5307ec10b7fff8a}{get\+\_\+power\+\_\+2\+\_\+\+MEAS\+\_\+\+PF}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga45047ccc0259bb4c316d24422c195dfe}{get\+\_\+power\+\_\+2\+\_\+\+MEAS\+\_\+\+KWH}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_gaaa1e5b4d5f12f50ca19c3be0a9fb5441}{get\+\_\+power\+\_\+2\+\_\+\+MEAS\+\_\+\+UPTIME}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga2aefb4399fd6e3d0f09698ef444c9b7f}{get\+\_\+power\+\_\+3\+\_\+\+MEAS\+\_\+\+VOLTAGE}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_gabf7a057c1322f3f94b509e829c930856}{get\+\_\+power\+\_\+3\+\_\+\+MEAS\+\_\+\+CURRENT}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga6e1b875b50c2466f4e94df604ba78dd3}{get\+\_\+power\+\_\+3\+\_\+\+MEAS\+\_\+\+WATT}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga74b0174cff7145bacba6463db9f4acf8}{get\+\_\+power\+\_\+3\+\_\+\+MEAS\+\_\+\+PF}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga08b3386b1eb4b9344670862509b5c1ac}{get\+\_\+power\+\_\+3\+\_\+\+MEAS\+\_\+\+KWH}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_gad4f817dbe1d7bf7a05c2fc578dbb8240}{get\+\_\+power\+\_\+3\+\_\+\+MEAS\+\_\+\+UPTIME}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga4272024a4b19d4dfcd2a297ece67f33a}{get\+\_\+power\+\_\+4\+\_\+\+MEAS\+\_\+\+VOLTAGE}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga0089b6508cc43155c3d575b126af2d20}{get\+\_\+power\+\_\+4\+\_\+\+MEAS\+\_\+\+CURRENT}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga392660365480bb251231263c106515e1}{get\+\_\+power\+\_\+4\+\_\+\+MEAS\+\_\+\+WATT}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_gac9b5a90014130673828656560a1a05aa}{get\+\_\+power\+\_\+4\+\_\+\+MEAS\+\_\+\+PF}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga0636c725bad0de2b92bd4e0e19624ba6}{get\+\_\+power\+\_\+4\+\_\+\+MEAS\+\_\+\+KWH}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga3ba5522da3bf9dada9c54e4255664f19}{get\+\_\+power\+\_\+4\+\_\+\+MEAS\+\_\+\+UPTIME}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga413ebbf84e354a13a6b3a0e877016d91}{get\+\_\+power\+\_\+5\+\_\+\+MEAS\+\_\+\+VOLTAGE}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga2d54ebdbcbda1e673078a883bbd3f823}{get\+\_\+power\+\_\+5\+\_\+\+MEAS\+\_\+\+CURRENT}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga099bef93da26675aee7ed6a5364fd84d}{get\+\_\+power\+\_\+5\+\_\+\+MEAS\+\_\+\+WATT}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_gaf3f2471baf1ec75a77406f8d2d408a7d}{get\+\_\+power\+\_\+5\+\_\+\+MEAS\+\_\+\+PF}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_gaa8a57c3439938ecab0ffda554bee351c}{get\+\_\+power\+\_\+5\+\_\+\+MEAS\+\_\+\+KWH}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga2db328f572e9dfadddfe9b52bef80437}{get\+\_\+power\+\_\+5\+\_\+\+MEAS\+\_\+\+UPTIME}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga898e7752a6a2e4915e9559790affa434}{get\+\_\+power\+\_\+6\+\_\+\+MEAS\+\_\+\+VOLTAGE}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga310ed582360138222f16032b32609149}{get\+\_\+power\+\_\+6\+\_\+\+MEAS\+\_\+\+CURRENT}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga27e74e157a229565c78eb28d2fad2ef7}{get\+\_\+power\+\_\+6\+\_\+\+MEAS\+\_\+\+WATT}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga48f6203e2a2853657a3d8e5cb3a6be45}{get\+\_\+power\+\_\+6\+\_\+\+MEAS\+\_\+\+PF}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga8ffc3344b86d1382e242b777b08eff68}{get\+\_\+power\+\_\+6\+\_\+\+MEAS\+\_\+\+KWH}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga2873bf645f6829dd2e9de2f8fd671746}{get\+\_\+power\+\_\+6\+\_\+\+MEAS\+\_\+\+UPTIME}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga6a32893fce4272e8763b7ead30d8c220}{get\+\_\+power\+\_\+7\+\_\+\+MEAS\+\_\+\+VOLTAGE}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga8eb883070f6ca2ea1fcc1b565542f666}{get\+\_\+power\+\_\+7\+\_\+\+MEAS\+\_\+\+CURRENT}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga0795a0f8103ea3c4ee78fb2ed1c55720}{get\+\_\+power\+\_\+7\+\_\+\+MEAS\+\_\+\+WATT}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_ga1b3b965bb98b3d5ceb613faa26d40e4b}{get\+\_\+power\+\_\+7\+\_\+\+MEAS\+\_\+\+PF}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_gac68a3d7b770aa85c6d2a039ea997ed8f}{get\+\_\+power\+\_\+7\+\_\+\+MEAS\+\_\+\+KWH}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_gae98cdc15b6029754491f3142021dffe6}{get\+\_\+power\+\_\+7\+\_\+\+MEAS\+\_\+\+UPTIME}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\item 
+void \mbox{\hyperlink{group__snmp04_gac66c88289a827019e9d7d2fd52c8a25d}{get\+\_\+ocp\+\_\+\+STATE}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for overcurrent protection state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_gac64f180957717b1f72f3bb0d46657f7c}{get\+\_\+ocp\+\_\+\+TOTAL\+\_\+\+CURRENT\+\_\+A}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for total measured current across all outlets \mbox{[}A\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_gab7ffa6c94b3c4085b6ceb7fec2b08723}{get\+\_\+ocp\+\_\+\+LIMIT\+\_\+A}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for configured OCP current limit \mbox{[}A\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_ga59836958c7dde04d045c218bc4bfa82c}{get\+\_\+ocp\+\_\+\+WARNING\+\_\+\+THRESHOLD\+\_\+A}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for OCP warning threshold \mbox{[}A\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_gad078fc7ee62f370b56ba305985db7faf}{get\+\_\+ocp\+\_\+\+CRITICAL\+\_\+\+THRESHOLD\+\_\+A}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for OCP critical threshold \mbox{[}A\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_ga298c0c01b328703f6ab782a3aefdb475}{get\+\_\+ocp\+\_\+\+RECOVERY\+\_\+\+THRESHOLD\+\_\+A}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for OCP recovery threshold \mbox{[}A\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_ga4f79c8b9c7d28d59cff221808b47f082}{get\+\_\+ocp\+\_\+\+LAST\+\_\+\+TRIPPED\+\_\+\+CH}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for last tripped channel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_gaeb4bf92301309e943f28678b8a92cadb}{get\+\_\+ocp\+\_\+\+TRIP\+\_\+\+COUNT}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for OCP trip count since boot. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_gad08889d91475184951158037ae7988e3}{get\+\_\+ocp\+\_\+\+LAST\+\_\+\+TRIP\+\_\+\+MS}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for last trip timestamp in milliseconds since boot. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_ga397cba4cff16c21da10f1da4a86235d2}{get\+\_\+ocp\+\_\+\+SWITCHING\+\_\+\+ALLOWED}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for switching-\/allowed flag. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_gade7b106ecfdbb74b00cd434f7d23104b}{get\+\_\+ocp\+\_\+\+RESET}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for OCP reset control value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp04_gaf8f7c0a54cdf6546c526e37786b80baa}{set\+\_\+ocp\+\_\+\+RESET}} (int32\+\_\+t v)
+\begin{DoxyCompactList}\small\item\em SNMP setter to clear OCP lockout. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Per-\/channel power telemetry and overcurrent protection status via SNMP. 
+
+\begin{DoxyVersion}{Version}
+1.\+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/08
+\end{DoxyDate}
+This module provides SNMP GET callbacks that expose per-\/outlet power telemetry and system-\/wide overcurrent protection status. All telemetry data is retrieved from Meter\+Task\textquotesingle{}s canonical cache for efficient non-\/blocking access.
+
+Per-\/\+Channel Telemetry (8 outlets)\+:
+\begin{DoxyItemize}
+\item Voltage \mbox{[}V\mbox{]} -\/ RMS voltage measurement (ASCII float, 2 decimals)
+\item Current \mbox{[}A\mbox{]} -\/ RMS current measurement (ASCII float, 3 decimals)
+\item Power \mbox{[}W\mbox{]} -\/ Active power measurement (ASCII float, 1 decimal)
+\item Power Factor -\/ Dimensionless ratio 0..1 (ASCII float, 3 decimals)
+\item Energy \mbox{[}k\+Wh\mbox{]} -\/ Accumulated energy since outlet powered on (ASCII float, 3 decimals)
+\item Uptime \mbox{[}s\mbox{]} -\/ Time since outlet last powered on (ASCII integer)
+\end{DoxyItemize}
+
+Overcurrent Protection (OCP) Status\+:
+\begin{DoxyItemize}
+\item State -\/ NORMAL/\+WARNING/\+CRITICAL/\+LOCKOUT (INTEGER 0..3)
+\item Total Current -\/ Sum of all outlet currents (ASCII float, 3 decimals)
+\item Configured Limit -\/ OCP trip threshold (ASCII float, 2 decimals)
+\item Warning/\+Critical/\+Recovery Thresholds (ASCII float, 2 decimals)
+\item Last Tripped Channel -\/ 1-\/based outlet index or 0 (INTEGER)
+\item Trip Counter -\/ Number of trips since boot (INTEGER)
+\item Last Trip Timestamp -\/ Milliseconds since boot (INTEGER)
+\item Switching Allowed -\/ 0=LOCKOUT, 1=allowed (INTEGER)
+\item Reset Control -\/ Write non-\/zero to clear lockout (SET-\/only)
+\end{DoxyItemize}
+
+All telemetry reads are non-\/blocking and RTOS-\/safe. If telemetry is invalid or unavailable, functions return zero values rather than blocking or failing.
+
+\begin{DoxyNote}{Note}
+All functions can be safely called from SNMP agent context. 
+
+Telemetry cache is updated by Meter\+Task at approximately 1 Hz.
+\end{DoxyNote}
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-func-members}
+\Hypertarget{group__snmp04_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__snmp04_gad078fc7ee62f370b56ba305985db7faf}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_ocp\_CRITICAL\_THRESHOLD\_A@{get\_ocp\_CRITICAL\_THRESHOLD\_A}}
+\index{get\_ocp\_CRITICAL\_THRESHOLD\_A@{get\_ocp\_CRITICAL\_THRESHOLD\_A}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_ocp\_CRITICAL\_THRESHOLD\_A()}{get\_ocp\_CRITICAL\_THRESHOLD\_A()}}
+{\footnotesize\ttfamily \label{group__snmp04_gad078fc7ee62f370b56ba305985db7faf} 
+void get\+\_\+ocp\+\_\+\+CRITICAL\+\_\+\+THRESHOLD\+\_\+A (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for OCP critical threshold \mbox{[}A\mbox{]}. 
+
+Encoded as SNMP OCTET STRING containing ASCII float with 2 decimals.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer (min 16 bytes recommended). \\
+\hline
+{\em len} & Output length in bytes. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__snmp04_gad078fc7ee62f370b56ba305985db7faf_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__snmp04_gad08889d91475184951158037ae7988e3}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_ocp\_LAST\_TRIP\_MS@{get\_ocp\_LAST\_TRIP\_MS}}
+\index{get\_ocp\_LAST\_TRIP\_MS@{get\_ocp\_LAST\_TRIP\_MS}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_ocp\_LAST\_TRIP\_MS()}{get\_ocp\_LAST\_TRIP\_MS()}}
+{\footnotesize\ttfamily \label{group__snmp04_gad08889d91475184951158037ae7988e3} 
+void get\+\_\+ocp\+\_\+\+LAST\+\_\+\+TRIP\+\_\+\+MS (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for last trip timestamp in milliseconds since boot. 
+
+Encoded as SNMP INTEGER (4 bytes).
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer; writes a 32-\/bit little-\/endian integer. \\
+\hline
+{\em len} & Output length; always set to 4. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__snmp04_gad08889d91475184951158037ae7988e3_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__snmp04_ga4f79c8b9c7d28d59cff221808b47f082}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_ocp\_LAST\_TRIPPED\_CH@{get\_ocp\_LAST\_TRIPPED\_CH}}
+\index{get\_ocp\_LAST\_TRIPPED\_CH@{get\_ocp\_LAST\_TRIPPED\_CH}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_ocp\_LAST\_TRIPPED\_CH()}{get\_ocp\_LAST\_TRIPPED\_CH()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga4f79c8b9c7d28d59cff221808b47f082} 
+void get\+\_\+ocp\+\_\+\+LAST\+\_\+\+TRIPPED\+\_\+\+CH (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for last tripped channel. 
+
+Encoded as SNMP INTEGER (4 bytes)\+:
+\begin{DoxyItemize}
+\item 1..8 \+: 1-\/based outlet index that was switched OFF due to a trip
+\item 0 \+: not available / no targeted channel (fallback)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer; writes a 32-\/bit little-\/endian integer. \\
+\hline
+{\em len} & Output length; always set to 4. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__snmp04_ga4f79c8b9c7d28d59cff221808b47f082_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__snmp04_gab7ffa6c94b3c4085b6ceb7fec2b08723}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_ocp\_LIMIT\_A@{get\_ocp\_LIMIT\_A}}
+\index{get\_ocp\_LIMIT\_A@{get\_ocp\_LIMIT\_A}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_ocp\_LIMIT\_A()}{get\_ocp\_LIMIT\_A()}}
+{\footnotesize\ttfamily \label{group__snmp04_gab7ffa6c94b3c4085b6ceb7fec2b08723} 
+void get\+\_\+ocp\+\_\+\+LIMIT\+\_\+A (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for configured OCP current limit \mbox{[}A\mbox{]}. 
+
+Encoded as SNMP OCTET STRING containing ASCII float with 2 decimals.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer (min 16 bytes recommended). \\
+\hline
+{\em len} & Output length in bytes. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__snmp04_gab7ffa6c94b3c4085b6ceb7fec2b08723_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__snmp04_ga298c0c01b328703f6ab782a3aefdb475}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_ocp\_RECOVERY\_THRESHOLD\_A@{get\_ocp\_RECOVERY\_THRESHOLD\_A}}
+\index{get\_ocp\_RECOVERY\_THRESHOLD\_A@{get\_ocp\_RECOVERY\_THRESHOLD\_A}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_ocp\_RECOVERY\_THRESHOLD\_A()}{get\_ocp\_RECOVERY\_THRESHOLD\_A()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga298c0c01b328703f6ab782a3aefdb475} 
+void get\+\_\+ocp\+\_\+\+RECOVERY\+\_\+\+THRESHOLD\+\_\+A (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for OCP recovery threshold \mbox{[}A\mbox{]}. 
+
+Encoded as SNMP OCTET STRING containing ASCII float with 2 decimals.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer (min 16 bytes recommended). \\
+\hline
+{\em len} & Output length in bytes. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__snmp04_ga298c0c01b328703f6ab782a3aefdb475_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__snmp04_gade7b106ecfdbb74b00cd434f7d23104b}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_ocp\_RESET@{get\_ocp\_RESET}}
+\index{get\_ocp\_RESET@{get\_ocp\_RESET}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_ocp\_RESET()}{get\_ocp\_RESET()}}
+{\footnotesize\ttfamily \label{group__snmp04_gade7b106ecfdbb74b00cd434f7d23104b} 
+void get\+\_\+ocp\+\_\+\+RESET (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for OCP reset control value. 
+
+This is a write-\/oriented control OID. The getter returns 0.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer; writes a 32-\/bit little-\/endian integer. \\
+\hline
+{\em len} & Output length; always set to 4. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=242pt]{group__snmp04_gade7b106ecfdbb74b00cd434f7d23104b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__snmp04_gac66c88289a827019e9d7d2fd52c8a25d}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_ocp\_STATE@{get\_ocp\_STATE}}
+\index{get\_ocp\_STATE@{get\_ocp\_STATE}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_ocp\_STATE()}{get\_ocp\_STATE()}}
+{\footnotesize\ttfamily \label{group__snmp04_gac66c88289a827019e9d7d2fd52c8a25d} 
+void get\+\_\+ocp\+\_\+\+STATE (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for overcurrent protection state. 
+
+Returns an SNMP INTEGER (4 bytes) mapping the internal OCP state\+:
+\begin{DoxyItemize}
+\item 0\+: NORMAL
+\item 1\+: WARNING
+\item 2\+: CRITICAL
+\item 3\+: LOCKOUT
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer; writes a 32-\/bit little-\/endian integer. \\
+\hline
+{\em len} & Output length; always set to 4. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__snmp04_gac66c88289a827019e9d7d2fd52c8a25d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__snmp04_ga397cba4cff16c21da10f1da4a86235d2}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_ocp\_SWITCHING\_ALLOWED@{get\_ocp\_SWITCHING\_ALLOWED}}
+\index{get\_ocp\_SWITCHING\_ALLOWED@{get\_ocp\_SWITCHING\_ALLOWED}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_ocp\_SWITCHING\_ALLOWED()}{get\_ocp\_SWITCHING\_ALLOWED()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga397cba4cff16c21da10f1da4a86235d2} 
+void get\+\_\+ocp\+\_\+\+SWITCHING\+\_\+\+ALLOWED (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for switching-\/allowed flag. 
+
+Encoded as SNMP INTEGER (4 bytes)\+:
+\begin{DoxyItemize}
+\item 0 \+: switching blocked (LOCKOUT)
+\item 1 \+: switching allowed
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer; writes a 32-\/bit little-\/endian integer. \\
+\hline
+{\em len} & Output length; always set to 4. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__snmp04_ga397cba4cff16c21da10f1da4a86235d2_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__snmp04_gac64f180957717b1f72f3bb0d46657f7c}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_ocp\_TOTAL\_CURRENT\_A@{get\_ocp\_TOTAL\_CURRENT\_A}}
+\index{get\_ocp\_TOTAL\_CURRENT\_A@{get\_ocp\_TOTAL\_CURRENT\_A}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_ocp\_TOTAL\_CURRENT\_A()}{get\_ocp\_TOTAL\_CURRENT\_A()}}
+{\footnotesize\ttfamily \label{group__snmp04_gac64f180957717b1f72f3bb0d46657f7c} 
+void get\+\_\+ocp\+\_\+\+TOTAL\+\_\+\+CURRENT\+\_\+A (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for total measured current across all outlets \mbox{[}A\mbox{]}. 
+
+Encoded as SNMP OCTET STRING containing ASCII float with 3 decimals.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer (min 16 bytes recommended). \\
+\hline
+{\em len} & Output length in bytes. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__snmp04_gac64f180957717b1f72f3bb0d46657f7c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__snmp04_gaeb4bf92301309e943f28678b8a92cadb}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_ocp\_TRIP\_COUNT@{get\_ocp\_TRIP\_COUNT}}
+\index{get\_ocp\_TRIP\_COUNT@{get\_ocp\_TRIP\_COUNT}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_ocp\_TRIP\_COUNT()}{get\_ocp\_TRIP\_COUNT()}}
+{\footnotesize\ttfamily \label{group__snmp04_gaeb4bf92301309e943f28678b8a92cadb} 
+void get\+\_\+ocp\+\_\+\+TRIP\+\_\+\+COUNT (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for OCP trip count since boot. 
+
+Encoded as SNMP INTEGER (4 bytes).
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer; writes a 32-\/bit little-\/endian integer. \\
+\hline
+{\em len} & Output length; always set to 4. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__snmp04_gaeb4bf92301309e943f28678b8a92cadb_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__snmp04_ga59836958c7dde04d045c218bc4bfa82c}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_ocp\_WARNING\_THRESHOLD\_A@{get\_ocp\_WARNING\_THRESHOLD\_A}}
+\index{get\_ocp\_WARNING\_THRESHOLD\_A@{get\_ocp\_WARNING\_THRESHOLD\_A}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_ocp\_WARNING\_THRESHOLD\_A()}{get\_ocp\_WARNING\_THRESHOLD\_A()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga59836958c7dde04d045c218bc4bfa82c} 
+void get\+\_\+ocp\+\_\+\+WARNING\+\_\+\+THRESHOLD\+\_\+A (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for OCP warning threshold \mbox{[}A\mbox{]}. 
+
+Encoded as SNMP OCTET STRING containing ASCII float with 2 decimals.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer (min 16 bytes recommended). \\
+\hline
+{\em len} & Output length in bytes. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__snmp04_ga59836958c7dde04d045c218bc4bfa82c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__snmp04_ga7d3f514014d0ff13a8f767e419fc9ea4}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_0\_MEAS\_CURRENT@{get\_power\_0\_MEAS\_CURRENT}}
+\index{get\_power\_0\_MEAS\_CURRENT@{get\_power\_0\_MEAS\_CURRENT}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_0\_MEAS\_CURRENT()}{get\_power\_0\_MEAS\_CURRENT()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga7d3f514014d0ff13a8f767e419fc9ea4} 
+void get\+\_\+power\+\_\+0\+\_\+\+MEAS\+\_\+\+CURRENT (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for outlet 0 current \mbox{[}A\mbox{]}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer \\
+\hline
+{\em len} & Pointer to receive string length \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Returns ASCII float with 3 decimals. 
+\end{DoxyNote}
+\Hypertarget{group__snmp04_ga94f308f8eb3b1aefc1ea03e8483e9002}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_0\_MEAS\_KWH@{get\_power\_0\_MEAS\_KWH}}
+\index{get\_power\_0\_MEAS\_KWH@{get\_power\_0\_MEAS\_KWH}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_0\_MEAS\_KWH()}{get\_power\_0\_MEAS\_KWH()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga94f308f8eb3b1aefc1ea03e8483e9002} 
+void get\+\_\+power\+\_\+0\+\_\+\+MEAS\+\_\+\+KWH (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for outlet 0 accumulated energy \mbox{[}k\+Wh\mbox{]}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer \\
+\hline
+{\em len} & Pointer to receive string length \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Returns ASCII float with 3 decimals. 
+\end{DoxyNote}
+\Hypertarget{group__snmp04_ga7600c8a2b0563156b9c6e976a953c4c9}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_0\_MEAS\_PF@{get\_power\_0\_MEAS\_PF}}
+\index{get\_power\_0\_MEAS\_PF@{get\_power\_0\_MEAS\_PF}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_0\_MEAS\_PF()}{get\_power\_0\_MEAS\_PF()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga7600c8a2b0563156b9c6e976a953c4c9} 
+void get\+\_\+power\+\_\+0\+\_\+\+MEAS\+\_\+\+PF (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for outlet 0 power factor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer \\
+\hline
+{\em len} & Pointer to receive string length \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Returns ASCII float with 3 decimals (0..1 range). 
+\end{DoxyNote}
+\Hypertarget{group__snmp04_gafcb9a40de0c79059dbea47256843e022}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_0\_MEAS\_UPTIME@{get\_power\_0\_MEAS\_UPTIME}}
+\index{get\_power\_0\_MEAS\_UPTIME@{get\_power\_0\_MEAS\_UPTIME}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_0\_MEAS\_UPTIME()}{get\_power\_0\_MEAS\_UPTIME()}}
+{\footnotesize\ttfamily \label{group__snmp04_gafcb9a40de0c79059dbea47256843e022} 
+void get\+\_\+power\+\_\+0\+\_\+\+MEAS\+\_\+\+UPTIME (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for outlet 0 uptime \mbox{[}s\mbox{]}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer \\
+\hline
+{\em len} & Pointer to receive string length \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Returns ASCII unsigned integer. 
+\end{DoxyNote}
+\Hypertarget{group__snmp04_gaeddb705c447d49aea9383710d70e577f}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_0\_MEAS\_VOLTAGE@{get\_power\_0\_MEAS\_VOLTAGE}}
+\index{get\_power\_0\_MEAS\_VOLTAGE@{get\_power\_0\_MEAS\_VOLTAGE}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_0\_MEAS\_VOLTAGE()}{get\_power\_0\_MEAS\_VOLTAGE()}}
+{\footnotesize\ttfamily \label{group__snmp04_gaeddb705c447d49aea9383710d70e577f} 
+void get\+\_\+power\+\_\+0\+\_\+\+MEAS\+\_\+\+VOLTAGE (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for outlet 0 voltage \mbox{[}V\mbox{]}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer (minimum 16 bytes recommended) \\
+\hline
+{\em len} & Pointer to receive string length \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Returns ASCII float with 2 decimals (e.\+g., "{}230.\+15"{}). 
+\end{DoxyNote}
+\Hypertarget{group__snmp04_gadb419836c678f41e04ad2da2f3c8f20c}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_0\_MEAS\_WATT@{get\_power\_0\_MEAS\_WATT}}
+\index{get\_power\_0\_MEAS\_WATT@{get\_power\_0\_MEAS\_WATT}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_0\_MEAS\_WATT()}{get\_power\_0\_MEAS\_WATT()}}
+{\footnotesize\ttfamily \label{group__snmp04_gadb419836c678f41e04ad2da2f3c8f20c} 
+void get\+\_\+power\+\_\+0\+\_\+\+MEAS\+\_\+\+WATT (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for outlet 0 power \mbox{[}W\mbox{]}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Output buffer \\
+\hline
+{\em len} & Pointer to receive string length \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Returns ASCII float with 1 decimal. 
+\end{DoxyNote}
+\Hypertarget{group__snmp04_gac2f98a31afbedb561913f7e71db59c6a}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_1\_MEAS\_CURRENT@{get\_power\_1\_MEAS\_CURRENT}}
+\index{get\_power\_1\_MEAS\_CURRENT@{get\_power\_1\_MEAS\_CURRENT}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_1\_MEAS\_CURRENT()}{get\_power\_1\_MEAS\_CURRENT()}}
+{\footnotesize\ttfamily \label{group__snmp04_gac2f98a31afbedb561913f7e71db59c6a} 
+void get\+\_\+power\+\_\+1\+\_\+\+MEAS\+\_\+\+CURRENT (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga4e96087068a52153f8fca484c1aa1cf5}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_1\_MEAS\_KWH@{get\_power\_1\_MEAS\_KWH}}
+\index{get\_power\_1\_MEAS\_KWH@{get\_power\_1\_MEAS\_KWH}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_1\_MEAS\_KWH()}{get\_power\_1\_MEAS\_KWH()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga4e96087068a52153f8fca484c1aa1cf5} 
+void get\+\_\+power\+\_\+1\+\_\+\+MEAS\+\_\+\+KWH (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_gaf18599cd6961c9205b7bf508f087b86f}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_1\_MEAS\_PF@{get\_power\_1\_MEAS\_PF}}
+\index{get\_power\_1\_MEAS\_PF@{get\_power\_1\_MEAS\_PF}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_1\_MEAS\_PF()}{get\_power\_1\_MEAS\_PF()}}
+{\footnotesize\ttfamily \label{group__snmp04_gaf18599cd6961c9205b7bf508f087b86f} 
+void get\+\_\+power\+\_\+1\+\_\+\+MEAS\+\_\+\+PF (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga4f7f1bc987837b712f0fc016c30f4dfb}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_1\_MEAS\_UPTIME@{get\_power\_1\_MEAS\_UPTIME}}
+\index{get\_power\_1\_MEAS\_UPTIME@{get\_power\_1\_MEAS\_UPTIME}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_1\_MEAS\_UPTIME()}{get\_power\_1\_MEAS\_UPTIME()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga4f7f1bc987837b712f0fc016c30f4dfb} 
+void get\+\_\+power\+\_\+1\+\_\+\+MEAS\+\_\+\+UPTIME (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga86e7e6f79e7099c77e5a6b491b011f25}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_1\_MEAS\_VOLTAGE@{get\_power\_1\_MEAS\_VOLTAGE}}
+\index{get\_power\_1\_MEAS\_VOLTAGE@{get\_power\_1\_MEAS\_VOLTAGE}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_1\_MEAS\_VOLTAGE()}{get\_power\_1\_MEAS\_VOLTAGE()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga86e7e6f79e7099c77e5a6b491b011f25} 
+void get\+\_\+power\+\_\+1\+\_\+\+MEAS\+\_\+\+VOLTAGE (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga31d0a6724bfe3548205d760b8d50c4aa}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_1\_MEAS\_WATT@{get\_power\_1\_MEAS\_WATT}}
+\index{get\_power\_1\_MEAS\_WATT@{get\_power\_1\_MEAS\_WATT}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_1\_MEAS\_WATT()}{get\_power\_1\_MEAS\_WATT()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga31d0a6724bfe3548205d760b8d50c4aa} 
+void get\+\_\+power\+\_\+1\+\_\+\+MEAS\+\_\+\+WATT (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga395609c13fbe74047f5f4e28df5eb2fe}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_2\_MEAS\_CURRENT@{get\_power\_2\_MEAS\_CURRENT}}
+\index{get\_power\_2\_MEAS\_CURRENT@{get\_power\_2\_MEAS\_CURRENT}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_2\_MEAS\_CURRENT()}{get\_power\_2\_MEAS\_CURRENT()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga395609c13fbe74047f5f4e28df5eb2fe} 
+void get\+\_\+power\+\_\+2\+\_\+\+MEAS\+\_\+\+CURRENT (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga45047ccc0259bb4c316d24422c195dfe}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_2\_MEAS\_KWH@{get\_power\_2\_MEAS\_KWH}}
+\index{get\_power\_2\_MEAS\_KWH@{get\_power\_2\_MEAS\_KWH}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_2\_MEAS\_KWH()}{get\_power\_2\_MEAS\_KWH()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga45047ccc0259bb4c316d24422c195dfe} 
+void get\+\_\+power\+\_\+2\+\_\+\+MEAS\+\_\+\+KWH (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_gad744eb3629b153fec5307ec10b7fff8a}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_2\_MEAS\_PF@{get\_power\_2\_MEAS\_PF}}
+\index{get\_power\_2\_MEAS\_PF@{get\_power\_2\_MEAS\_PF}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_2\_MEAS\_PF()}{get\_power\_2\_MEAS\_PF()}}
+{\footnotesize\ttfamily \label{group__snmp04_gad744eb3629b153fec5307ec10b7fff8a} 
+void get\+\_\+power\+\_\+2\+\_\+\+MEAS\+\_\+\+PF (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_gaaa1e5b4d5f12f50ca19c3be0a9fb5441}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_2\_MEAS\_UPTIME@{get\_power\_2\_MEAS\_UPTIME}}
+\index{get\_power\_2\_MEAS\_UPTIME@{get\_power\_2\_MEAS\_UPTIME}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_2\_MEAS\_UPTIME()}{get\_power\_2\_MEAS\_UPTIME()}}
+{\footnotesize\ttfamily \label{group__snmp04_gaaa1e5b4d5f12f50ca19c3be0a9fb5441} 
+void get\+\_\+power\+\_\+2\+\_\+\+MEAS\+\_\+\+UPTIME (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga6999114896986c83f40e4a7e64650bee}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_2\_MEAS\_VOLTAGE@{get\_power\_2\_MEAS\_VOLTAGE}}
+\index{get\_power\_2\_MEAS\_VOLTAGE@{get\_power\_2\_MEAS\_VOLTAGE}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_2\_MEAS\_VOLTAGE()}{get\_power\_2\_MEAS\_VOLTAGE()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga6999114896986c83f40e4a7e64650bee} 
+void get\+\_\+power\+\_\+2\+\_\+\+MEAS\+\_\+\+VOLTAGE (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga2d42680dc078a8f866d321d35324bec6}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_2\_MEAS\_WATT@{get\_power\_2\_MEAS\_WATT}}
+\index{get\_power\_2\_MEAS\_WATT@{get\_power\_2\_MEAS\_WATT}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_2\_MEAS\_WATT()}{get\_power\_2\_MEAS\_WATT()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga2d42680dc078a8f866d321d35324bec6} 
+void get\+\_\+power\+\_\+2\+\_\+\+MEAS\+\_\+\+WATT (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_gabf7a057c1322f3f94b509e829c930856}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_3\_MEAS\_CURRENT@{get\_power\_3\_MEAS\_CURRENT}}
+\index{get\_power\_3\_MEAS\_CURRENT@{get\_power\_3\_MEAS\_CURRENT}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_3\_MEAS\_CURRENT()}{get\_power\_3\_MEAS\_CURRENT()}}
+{\footnotesize\ttfamily \label{group__snmp04_gabf7a057c1322f3f94b509e829c930856} 
+void get\+\_\+power\+\_\+3\+\_\+\+MEAS\+\_\+\+CURRENT (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga08b3386b1eb4b9344670862509b5c1ac}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_3\_MEAS\_KWH@{get\_power\_3\_MEAS\_KWH}}
+\index{get\_power\_3\_MEAS\_KWH@{get\_power\_3\_MEAS\_KWH}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_3\_MEAS\_KWH()}{get\_power\_3\_MEAS\_KWH()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga08b3386b1eb4b9344670862509b5c1ac} 
+void get\+\_\+power\+\_\+3\+\_\+\+MEAS\+\_\+\+KWH (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga74b0174cff7145bacba6463db9f4acf8}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_3\_MEAS\_PF@{get\_power\_3\_MEAS\_PF}}
+\index{get\_power\_3\_MEAS\_PF@{get\_power\_3\_MEAS\_PF}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_3\_MEAS\_PF()}{get\_power\_3\_MEAS\_PF()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga74b0174cff7145bacba6463db9f4acf8} 
+void get\+\_\+power\+\_\+3\+\_\+\+MEAS\+\_\+\+PF (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_gad4f817dbe1d7bf7a05c2fc578dbb8240}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_3\_MEAS\_UPTIME@{get\_power\_3\_MEAS\_UPTIME}}
+\index{get\_power\_3\_MEAS\_UPTIME@{get\_power\_3\_MEAS\_UPTIME}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_3\_MEAS\_UPTIME()}{get\_power\_3\_MEAS\_UPTIME()}}
+{\footnotesize\ttfamily \label{group__snmp04_gad4f817dbe1d7bf7a05c2fc578dbb8240} 
+void get\+\_\+power\+\_\+3\+\_\+\+MEAS\+\_\+\+UPTIME (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga2aefb4399fd6e3d0f09698ef444c9b7f}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_3\_MEAS\_VOLTAGE@{get\_power\_3\_MEAS\_VOLTAGE}}
+\index{get\_power\_3\_MEAS\_VOLTAGE@{get\_power\_3\_MEAS\_VOLTAGE}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_3\_MEAS\_VOLTAGE()}{get\_power\_3\_MEAS\_VOLTAGE()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga2aefb4399fd6e3d0f09698ef444c9b7f} 
+void get\+\_\+power\+\_\+3\+\_\+\+MEAS\+\_\+\+VOLTAGE (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga6e1b875b50c2466f4e94df604ba78dd3}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_3\_MEAS\_WATT@{get\_power\_3\_MEAS\_WATT}}
+\index{get\_power\_3\_MEAS\_WATT@{get\_power\_3\_MEAS\_WATT}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_3\_MEAS\_WATT()}{get\_power\_3\_MEAS\_WATT()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga6e1b875b50c2466f4e94df604ba78dd3} 
+void get\+\_\+power\+\_\+3\+\_\+\+MEAS\+\_\+\+WATT (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga0089b6508cc43155c3d575b126af2d20}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_4\_MEAS\_CURRENT@{get\_power\_4\_MEAS\_CURRENT}}
+\index{get\_power\_4\_MEAS\_CURRENT@{get\_power\_4\_MEAS\_CURRENT}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_4\_MEAS\_CURRENT()}{get\_power\_4\_MEAS\_CURRENT()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga0089b6508cc43155c3d575b126af2d20} 
+void get\+\_\+power\+\_\+4\+\_\+\+MEAS\+\_\+\+CURRENT (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga0636c725bad0de2b92bd4e0e19624ba6}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_4\_MEAS\_KWH@{get\_power\_4\_MEAS\_KWH}}
+\index{get\_power\_4\_MEAS\_KWH@{get\_power\_4\_MEAS\_KWH}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_4\_MEAS\_KWH()}{get\_power\_4\_MEAS\_KWH()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga0636c725bad0de2b92bd4e0e19624ba6} 
+void get\+\_\+power\+\_\+4\+\_\+\+MEAS\+\_\+\+KWH (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_gac9b5a90014130673828656560a1a05aa}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_4\_MEAS\_PF@{get\_power\_4\_MEAS\_PF}}
+\index{get\_power\_4\_MEAS\_PF@{get\_power\_4\_MEAS\_PF}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_4\_MEAS\_PF()}{get\_power\_4\_MEAS\_PF()}}
+{\footnotesize\ttfamily \label{group__snmp04_gac9b5a90014130673828656560a1a05aa} 
+void get\+\_\+power\+\_\+4\+\_\+\+MEAS\+\_\+\+PF (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga3ba5522da3bf9dada9c54e4255664f19}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_4\_MEAS\_UPTIME@{get\_power\_4\_MEAS\_UPTIME}}
+\index{get\_power\_4\_MEAS\_UPTIME@{get\_power\_4\_MEAS\_UPTIME}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_4\_MEAS\_UPTIME()}{get\_power\_4\_MEAS\_UPTIME()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga3ba5522da3bf9dada9c54e4255664f19} 
+void get\+\_\+power\+\_\+4\+\_\+\+MEAS\+\_\+\+UPTIME (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga4272024a4b19d4dfcd2a297ece67f33a}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_4\_MEAS\_VOLTAGE@{get\_power\_4\_MEAS\_VOLTAGE}}
+\index{get\_power\_4\_MEAS\_VOLTAGE@{get\_power\_4\_MEAS\_VOLTAGE}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_4\_MEAS\_VOLTAGE()}{get\_power\_4\_MEAS\_VOLTAGE()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga4272024a4b19d4dfcd2a297ece67f33a} 
+void get\+\_\+power\+\_\+4\+\_\+\+MEAS\+\_\+\+VOLTAGE (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga392660365480bb251231263c106515e1}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_4\_MEAS\_WATT@{get\_power\_4\_MEAS\_WATT}}
+\index{get\_power\_4\_MEAS\_WATT@{get\_power\_4\_MEAS\_WATT}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_4\_MEAS\_WATT()}{get\_power\_4\_MEAS\_WATT()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga392660365480bb251231263c106515e1} 
+void get\+\_\+power\+\_\+4\+\_\+\+MEAS\+\_\+\+WATT (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga2d54ebdbcbda1e673078a883bbd3f823}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_5\_MEAS\_CURRENT@{get\_power\_5\_MEAS\_CURRENT}}
+\index{get\_power\_5\_MEAS\_CURRENT@{get\_power\_5\_MEAS\_CURRENT}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_5\_MEAS\_CURRENT()}{get\_power\_5\_MEAS\_CURRENT()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga2d54ebdbcbda1e673078a883bbd3f823} 
+void get\+\_\+power\+\_\+5\+\_\+\+MEAS\+\_\+\+CURRENT (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_gaa8a57c3439938ecab0ffda554bee351c}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_5\_MEAS\_KWH@{get\_power\_5\_MEAS\_KWH}}
+\index{get\_power\_5\_MEAS\_KWH@{get\_power\_5\_MEAS\_KWH}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_5\_MEAS\_KWH()}{get\_power\_5\_MEAS\_KWH()}}
+{\footnotesize\ttfamily \label{group__snmp04_gaa8a57c3439938ecab0ffda554bee351c} 
+void get\+\_\+power\+\_\+5\+\_\+\+MEAS\+\_\+\+KWH (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_gaf3f2471baf1ec75a77406f8d2d408a7d}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_5\_MEAS\_PF@{get\_power\_5\_MEAS\_PF}}
+\index{get\_power\_5\_MEAS\_PF@{get\_power\_5\_MEAS\_PF}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_5\_MEAS\_PF()}{get\_power\_5\_MEAS\_PF()}}
+{\footnotesize\ttfamily \label{group__snmp04_gaf3f2471baf1ec75a77406f8d2d408a7d} 
+void get\+\_\+power\+\_\+5\+\_\+\+MEAS\+\_\+\+PF (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga2db328f572e9dfadddfe9b52bef80437}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_5\_MEAS\_UPTIME@{get\_power\_5\_MEAS\_UPTIME}}
+\index{get\_power\_5\_MEAS\_UPTIME@{get\_power\_5\_MEAS\_UPTIME}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_5\_MEAS\_UPTIME()}{get\_power\_5\_MEAS\_UPTIME()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga2db328f572e9dfadddfe9b52bef80437} 
+void get\+\_\+power\+\_\+5\+\_\+\+MEAS\+\_\+\+UPTIME (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga413ebbf84e354a13a6b3a0e877016d91}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_5\_MEAS\_VOLTAGE@{get\_power\_5\_MEAS\_VOLTAGE}}
+\index{get\_power\_5\_MEAS\_VOLTAGE@{get\_power\_5\_MEAS\_VOLTAGE}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_5\_MEAS\_VOLTAGE()}{get\_power\_5\_MEAS\_VOLTAGE()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga413ebbf84e354a13a6b3a0e877016d91} 
+void get\+\_\+power\+\_\+5\+\_\+\+MEAS\+\_\+\+VOLTAGE (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga099bef93da26675aee7ed6a5364fd84d}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_5\_MEAS\_WATT@{get\_power\_5\_MEAS\_WATT}}
+\index{get\_power\_5\_MEAS\_WATT@{get\_power\_5\_MEAS\_WATT}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_5\_MEAS\_WATT()}{get\_power\_5\_MEAS\_WATT()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga099bef93da26675aee7ed6a5364fd84d} 
+void get\+\_\+power\+\_\+5\+\_\+\+MEAS\+\_\+\+WATT (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga310ed582360138222f16032b32609149}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_6\_MEAS\_CURRENT@{get\_power\_6\_MEAS\_CURRENT}}
+\index{get\_power\_6\_MEAS\_CURRENT@{get\_power\_6\_MEAS\_CURRENT}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_6\_MEAS\_CURRENT()}{get\_power\_6\_MEAS\_CURRENT()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga310ed582360138222f16032b32609149} 
+void get\+\_\+power\+\_\+6\+\_\+\+MEAS\+\_\+\+CURRENT (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga8ffc3344b86d1382e242b777b08eff68}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_6\_MEAS\_KWH@{get\_power\_6\_MEAS\_KWH}}
+\index{get\_power\_6\_MEAS\_KWH@{get\_power\_6\_MEAS\_KWH}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_6\_MEAS\_KWH()}{get\_power\_6\_MEAS\_KWH()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga8ffc3344b86d1382e242b777b08eff68} 
+void get\+\_\+power\+\_\+6\+\_\+\+MEAS\+\_\+\+KWH (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga48f6203e2a2853657a3d8e5cb3a6be45}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_6\_MEAS\_PF@{get\_power\_6\_MEAS\_PF}}
+\index{get\_power\_6\_MEAS\_PF@{get\_power\_6\_MEAS\_PF}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_6\_MEAS\_PF()}{get\_power\_6\_MEAS\_PF()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga48f6203e2a2853657a3d8e5cb3a6be45} 
+void get\+\_\+power\+\_\+6\+\_\+\+MEAS\+\_\+\+PF (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga2873bf645f6829dd2e9de2f8fd671746}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_6\_MEAS\_UPTIME@{get\_power\_6\_MEAS\_UPTIME}}
+\index{get\_power\_6\_MEAS\_UPTIME@{get\_power\_6\_MEAS\_UPTIME}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_6\_MEAS\_UPTIME()}{get\_power\_6\_MEAS\_UPTIME()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga2873bf645f6829dd2e9de2f8fd671746} 
+void get\+\_\+power\+\_\+6\+\_\+\+MEAS\+\_\+\+UPTIME (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga898e7752a6a2e4915e9559790affa434}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_6\_MEAS\_VOLTAGE@{get\_power\_6\_MEAS\_VOLTAGE}}
+\index{get\_power\_6\_MEAS\_VOLTAGE@{get\_power\_6\_MEAS\_VOLTAGE}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_6\_MEAS\_VOLTAGE()}{get\_power\_6\_MEAS\_VOLTAGE()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga898e7752a6a2e4915e9559790affa434} 
+void get\+\_\+power\+\_\+6\+\_\+\+MEAS\+\_\+\+VOLTAGE (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga27e74e157a229565c78eb28d2fad2ef7}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_6\_MEAS\_WATT@{get\_power\_6\_MEAS\_WATT}}
+\index{get\_power\_6\_MEAS\_WATT@{get\_power\_6\_MEAS\_WATT}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_6\_MEAS\_WATT()}{get\_power\_6\_MEAS\_WATT()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga27e74e157a229565c78eb28d2fad2ef7} 
+void get\+\_\+power\+\_\+6\+\_\+\+MEAS\+\_\+\+WATT (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga8eb883070f6ca2ea1fcc1b565542f666}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_7\_MEAS\_CURRENT@{get\_power\_7\_MEAS\_CURRENT}}
+\index{get\_power\_7\_MEAS\_CURRENT@{get\_power\_7\_MEAS\_CURRENT}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_7\_MEAS\_CURRENT()}{get\_power\_7\_MEAS\_CURRENT()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga8eb883070f6ca2ea1fcc1b565542f666} 
+void get\+\_\+power\+\_\+7\+\_\+\+MEAS\+\_\+\+CURRENT (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_gac68a3d7b770aa85c6d2a039ea997ed8f}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_7\_MEAS\_KWH@{get\_power\_7\_MEAS\_KWH}}
+\index{get\_power\_7\_MEAS\_KWH@{get\_power\_7\_MEAS\_KWH}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_7\_MEAS\_KWH()}{get\_power\_7\_MEAS\_KWH()}}
+{\footnotesize\ttfamily \label{group__snmp04_gac68a3d7b770aa85c6d2a039ea997ed8f} 
+void get\+\_\+power\+\_\+7\+\_\+\+MEAS\+\_\+\+KWH (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga1b3b965bb98b3d5ceb613faa26d40e4b}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_7\_MEAS\_PF@{get\_power\_7\_MEAS\_PF}}
+\index{get\_power\_7\_MEAS\_PF@{get\_power\_7\_MEAS\_PF}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_7\_MEAS\_PF()}{get\_power\_7\_MEAS\_PF()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga1b3b965bb98b3d5ceb613faa26d40e4b} 
+void get\+\_\+power\+\_\+7\+\_\+\+MEAS\+\_\+\+PF (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_gae98cdc15b6029754491f3142021dffe6}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_7\_MEAS\_UPTIME@{get\_power\_7\_MEAS\_UPTIME}}
+\index{get\_power\_7\_MEAS\_UPTIME@{get\_power\_7\_MEAS\_UPTIME}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_7\_MEAS\_UPTIME()}{get\_power\_7\_MEAS\_UPTIME()}}
+{\footnotesize\ttfamily \label{group__snmp04_gae98cdc15b6029754491f3142021dffe6} 
+void get\+\_\+power\+\_\+7\+\_\+\+MEAS\+\_\+\+UPTIME (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga6a32893fce4272e8763b7ead30d8c220}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_7\_MEAS\_VOLTAGE@{get\_power\_7\_MEAS\_VOLTAGE}}
+\index{get\_power\_7\_MEAS\_VOLTAGE@{get\_power\_7\_MEAS\_VOLTAGE}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_7\_MEAS\_VOLTAGE()}{get\_power\_7\_MEAS\_VOLTAGE()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga6a32893fce4272e8763b7ead30d8c220} 
+void get\+\_\+power\+\_\+7\+\_\+\+MEAS\+\_\+\+VOLTAGE (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_ga0795a0f8103ea3c4ee78fb2ed1c55720}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!get\_power\_7\_MEAS\_WATT@{get\_power\_7\_MEAS\_WATT}}
+\index{get\_power\_7\_MEAS\_WATT@{get\_power\_7\_MEAS\_WATT}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{get\_power\_7\_MEAS\_WATT()}{get\_power\_7\_MEAS\_WATT()}}
+{\footnotesize\ttfamily \label{group__snmp04_ga0795a0f8103ea3c4ee78fb2ed1c55720} 
+void get\+\_\+power\+\_\+7\+\_\+\+MEAS\+\_\+\+WATT (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{group__snmp04_gaf8f7c0a54cdf6546c526e37786b80baa}\index{4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}!set\_ocp\_RESET@{set\_ocp\_RESET}}
+\index{set\_ocp\_RESET@{set\_ocp\_RESET}!4. SNMP Agent -\/ Power Monitoring@{4. SNMP Agent -\/ Power Monitoring}}
+\doxysubsubsubsection{\texorpdfstring{set\_ocp\_RESET()}{set\_ocp\_RESET()}}
+{\footnotesize\ttfamily \label{group__snmp04_gaf8f7c0a54cdf6546c526e37786b80baa} 
+void set\+\_\+ocp\+\_\+\+RESET (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{v}{}\end{DoxyParamCaption})}
+
+
+
+SNMP setter to clear OCP lockout. 
+
+Any non-\/zero value triggers \doxylink{group__tasks08_gadc9a057a3aef40a2ec56e65c2e55daab}{Overcurrent\+\_\+\+Clear\+Lockout()}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & SNMP INTEGER value provided by SNMP SET. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{group__snmp04_gaf8f7c0a54cdf6546c526e37786b80baa_cgraph}
+\end{center}
+\end{figure}

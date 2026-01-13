@@ -5,8 +5,10 @@
  * @version 1.0.0
  * @date 2025-11-06
  *
- * @details System wide used helper functions, which cannot fit
- * into other modules.
+ * @details
+ * Implementation of system-wide utility functions including URL parsing, network
+ * configuration bridging, and early boot diagnostics. This module provides helper
+ * functions that support multiple subsystems without belonging to a specific domain.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -55,10 +57,14 @@ __attribute__((section(".noinit")))
 static helpers_boot_snapshot_t s_bootsnap;
 
 /**
- * @brief Converts a hexadecimal character to its integer value
- * @param c The hexadecimal character ('0'-'9', 'A'-'F', 'a'-'f')
- * @return The integer value (0-15), or -1 if invalid
- * @note Helper function for URL decoding
+ * @brief Convert hexadecimal character to integer value.
+ *
+ * Converts a single hex digit character to its numeric value. Supports
+ * both uppercase and lowercase hex digits.
+ *
+ * @param c Hexadecimal character ('0'-'9', 'A'-'F', 'a'-'f')
+ *
+ * @return Integer value 0-15 for valid hex digits, -1 for invalid characters
  */
 static inline int hexval(char c) {
     if (c >= '0' && c <= '9')
@@ -82,32 +88,24 @@ char *get_form_value(const char *body, const char *key) {
     static char value[128];
     char search[32];
 
-    /* Build search string "key=" */
+    /* Build search pattern "key=" */
     snprintf(search, sizeof(search), "%s=", key);
 
-    /* Find the key in the body */
+    /* Locate key in body string */
     char *start = strstr(body, search);
     if (!start) {
-        /* This feature hasnt been implemented (yet?)*/
-        /*
-        #if ERRORLOGGER
-                uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_LOGGER, ERR_SEV_ERROR, ERR_FID_HELPERS,
-        0x0); ERROR_PRINT_CODE(errorcode, "%s Key '%s' not found in form data\n", HELPERS_TAG, key);
-                Storage_EnqueueErrorCode(errorcode);
-        #endif
-        */
         return NULL;
     }
 
-    /* Move past "key=" */
+    /* Advance past "key=" prefix */
     start += strlen(search);
 
-    /* Find end of value (next '&' or end of string) */
+    /* Find value terminator (next '&' or end of string) */
     char *end = strstr(start, "&");
     if (!end)
         end = start + strlen(start);
 
-    /* Extract value into static buffer */
+    /* Copy value to static buffer with bounds checking */
     size_t len = end - start;
     if (len >= sizeof(value))
         len = sizeof(value) - 1;
@@ -132,22 +130,22 @@ void urldecode(char *s) {
 
     while (*src) {
         if (*src == '+') {
-            /* Convert '+' to space */
+            /* Plus sign decodes to space */
             *dst++ = ' ';
             src++;
         } else if (src[0] == '%' && hexval(src[1]) >= 0 && hexval(src[2]) >= 0) {
-            /* Convert %XX to character */
+            /* Percent-encoded hex sequence: decode to byte */
             int hi = hexval(src[1]);
             int lo = hexval(src[2]);
             *dst++ = (char)((hi << 4) | lo);
             src += 3;
         } else {
-            /* Copy character as-is */
+            /* Regular character: copy verbatim */
             *dst++ = *src++;
         }
     }
 
-    /* Null-terminate the result */
+    /* Ensure null termination */
     *dst = '\0';
 }
 
@@ -167,6 +165,7 @@ void urldecode(char *s) {
  * to configure networking without needing to know the internal type.
  */
 bool ethernet_apply_network_from_storage(const networkInfo *ni) {
+    /* Validate input pointer */
     if (!ni) {
 #if ERRORLOGGER
         uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_LOGGER, ERR_SEV_ERROR, ERR_FID_HELPERS, 0x1);
@@ -176,44 +175,47 @@ bool ethernet_apply_network_from_storage(const networkInfo *ni) {
         return false;
     }
 
+    /* Prepare driver configuration structure */
     w5500_NetConfig cfg;
     memset(&cfg, 0, sizeof(cfg));
 
-    /* Copy addressing */
+    /* Copy IP addressing parameters */
     for (int i = 0; i < 4; ++i) {
         cfg.ip[i] = ni->ip[i];
         cfg.gw[i] = ni->gw[i];
         cfg.sn[i] = ni->sn[i];
         cfg.dns[i] = ni->dns[i];
     }
+
+    /* Copy MAC address */
     for (int i = 0; i < 6; ++i) {
         cfg.mac[i] = ni->mac[i];
     }
 
-    /* DHCP or static mode mapping */
+    /* Map DHCP mode */
     cfg.dhcp = (ni->dhcp == EEPROM_NETINFO_DHCP) ? 1 : 0;
 
-    /* Apply into driver */
+    /* Apply configuration to W5500 driver */
     w5500_set_network(&cfg);
 
-    /* Final chip init with this config */
+    /* Initialize chip with new configuration */
     if (!w5500_chip_init(&cfg)) {
         return false;
     }
 
-    /* Optional: print applied configuration */
-    // w5500_print_network(&cfg);
+    /* Flash Ethernet LED to indicate successful configuration */
     Switch_SetEthLed(true, 10);
     return true;
 }
 
 /**
- * @brief Print detailed reset cause and decode last fault breadcrumbs.
+ * @brief Print detailed reset cause diagnostics with hardware register decode.
  *
- * Reads RP2040 reset flags and watchdog REASON directly from hardware registers,
- * then dumps any fault context left in watchdog scratch[0..7] by fault/RTOS hooks.
- * Also reports the Pico SDK's watchdog non-reboot magic found in scratch[4] so
- * it is not confused with the hardware REASON register contents.
+ * Reads RP2040/RP2350 reset cause hardware registers and outputs comprehensive
+ * diagnostics. If fault breadcrumbs are present (0xBEEF signature in scratch[0]),
+ * decodes and reports the fault type and context.
+ *
+ * @return None
  */
 void Boot_LogResetCause(void) {
     uint32_t chip = vreg_and_chip_reset_hw->chip_reset;
@@ -227,12 +229,13 @@ void Boot_LogResetCause(void) {
     const unsigned had_vreg = (chip >> 3) & 1u;
     const unsigned had_temp = (chip >> 4) & 1u;
 
+    /* Print reset flags summary */
     INFO_PRINT("[BOOT] cause: chip=0x%08lx had{por=%u,run=%u,wd=%u,vreg=%u,temp=%u} "
                "wd_reason=0x%08lx\r\n\r\n",
                (unsigned long)chip, had_por, had_run, had_wd, had_vreg, had_temp,
                (unsigned long)wd);
 
-    /* Report SDK magic (if any) separately so it is not mistaken for WD.REASON. */
+    /* Dump all watchdog scratch registers for diagnostic correlation */
     {
         INFO_PRINT("[BOOT] Watchdog Scratch Register dump:\r\n");
         INFO_PRINT("[BOOT] wd_scratch0=0x%08lx\r\n", (unsigned long)watchdog_hw->scratch[0]);
@@ -245,7 +248,7 @@ void Boot_LogResetCause(void) {
         INFO_PRINT("[BOOT] wd_scratch7=0x%08lx\r\n\r\n", (unsigned long)watchdog_hw->scratch[7]);
     }
 
-    /* Fault-context signature: 0xBEEFxxxx in scratch[0] where xxxx is the cause code. */
+    /* Check for fault breadcrumb signature in scratch[0] */
     uint32_t s0 = watchdog_hw->scratch[0];
     if ((s0 & 0xFFFF0000u) == 0xBEEF0000u) {
         uint32_t cause = s0 & 0x0000FFFFu;
@@ -257,6 +260,7 @@ void Boot_LogResetCause(void) {
         uint32_t s6 = watchdog_hw->scratch[6];
         uint32_t s7 = watchdog_hw->scratch[7];
 
+        /* Decode fault cause from lower 16 bits */
         const char *cause_str = "UNKNOWN";
         switch (cause) {
         case 0xF1:
@@ -286,13 +290,21 @@ void Boot_LogResetCause(void) {
         Storage_EnqueueErrorCode(errorcode);
 #endif
 
-        /* Clear signature to avoid repeating stale report on next power-on. */
+        /* Clear fault signature to prevent stale reporting on subsequent boot */
         watchdog_hw->scratch[0] = 0u;
     }
 }
 
 /* =============================== Utilities ================================= */
 
+/**
+ * @brief Read platform reset reason bits from hardware.
+ *
+ * Platform-specific function to read raw reset cause bits. For RP2040/RP2350,
+ * reads the watchdog reason register.
+ *
+ * @return Raw reset bits, platform-specific encoding
+ */
 static inline uint32_t helpers_read_reset_bits(void) {
     uint32_t bits = 0u;
 #if defined(PICO_RP2040) || defined(PICO_RP2350) || defined(PICO_PLATFORM)
@@ -302,6 +314,16 @@ static inline uint32_t helpers_read_reset_bits(void) {
     return bits;
 }
 
+/**
+ * @brief Copy watchdog scratch registers to destination buffer.
+ *
+ * Reads all 8 watchdog scratch registers into the provided array.
+ * For non-RP platforms, fills the buffer with zeros.
+ *
+ * @param dst Destination array of 8 uint32_t values
+ *
+ * @return None
+ */
 static inline void helpers_copy_wd_scratch(uint32_t dst[8]) {
 #if defined(PICO_RP2040) || defined(PICO_RP2350) || defined(PICO_PLATFORM)
     /* Directly snapshot the hardware watchdog scratch registers. */
@@ -319,12 +341,19 @@ static inline void helpers_copy_wd_scratch(uint32_t dst[8]) {
 #endif
 }
 
+/**
+ * @brief Clear boot snapshot structure to zero.
+ *
+ * @param s Pointer to snapshot structure
+ *
+ * @return None
+ */
 static inline void helpers_clear_snapshot(helpers_boot_snapshot_t *s) { memset(s, 0, sizeof(*s)); }
 
 /* ================================ DEBUG API ====================================== */
 
 void Helpers_EarlyBootSnapshot(void) {
-    /* Initialize if invalid, else keep and bump boots. */
+    /* Validate or initialize snapshot structure */
     if (s_bootsnap.magic != HELPERS_SNAPSHOT_MAGIC ||
         s_bootsnap.version != HELPERS_SNAPSHOT_VERSION) {
         helpers_clear_snapshot(&s_bootsnap);
@@ -332,26 +361,17 @@ void Helpers_EarlyBootSnapshot(void) {
         s_bootsnap.version = HELPERS_SNAPSHOT_VERSION;
         s_bootsnap.boots = 0u;
     }
+
+    /* Increment monotonic boot counter */
     s_bootsnap.boots += 1u;
 
-    /* Capture raw reset bits and watchdog scratch registers. */
+    /* Capture reset diagnostics before any initialization */
     s_bootsnap.reset_raw_bits = helpers_read_reset_bits();
     helpers_copy_wd_scratch(s_bootsnap.wd_scratch);
 }
 
-/**
- * @brief Print the early-boot snapshot and clear only transient fields.
- *
- * Dumps the retained boot snapshot (boot counter, raw reset bits,
- * and watchdog scratch[0..7]) that was captured at the very start of @c main().
- * After printing, it clears only the transient diagnostics
- * (reset_raw_bits and wd_scratch[]), keeping @c magic, @c version,
- * and the monotonic @c boots counter intact so successive boots
- * can be correlated.
- *
- * @ingroup misc_helpers01
- */
 void Helpers_LateBootDumpAndClear(void) {
+    /* Check for valid snapshot */
     if (s_bootsnap.magic != HELPERS_SNAPSHOT_MAGIC ||
         s_bootsnap.version != HELPERS_SNAPSHOT_VERSION) {
         DEBUG_PRINT("[INFO] ========================================\r\n");
@@ -360,6 +380,7 @@ void Helpers_LateBootDumpAndClear(void) {
         return;
     }
 
+    /* Output snapshot diagnostics */
     DEBUG_PRINT("[INFO] ========================================\r\n");
     DEBUG_PRINT("[INFO] [InitTask] Early snapshot dump:\r\n");
     DEBUG_PRINT("[INFO]   boots=%lu raw=0x%08lX\r\n", (unsigned long)s_bootsnap.boots,
@@ -375,7 +396,7 @@ void Helpers_LateBootDumpAndClear(void) {
 
     DEBUG_PRINT("[INFO] ========================================\r\n");
 
-    /* Clear only transient diagnostics so boots/magic/version persist across cycles. */
+    /* Clear transient fields while preserving boot counter */
     s_bootsnap.reset_raw_bits = 0u;
     for (unsigned i = 0; i < 8; ++i) {
         s_bootsnap.wd_scratch[i] = 0u;

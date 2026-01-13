@@ -1,0 +1,9 @@
+<map id="probe_eeprom" name="probe_eeprom">
+<area shape="rect" id="Node000001" title="Probe EEPROM." alt="" coords="5,5,109,32"/>
+<area shape="rect" id="Node000002" href="$_init_task_8c.html#a4b021180dcad28b6474f228f166ad1c2" title="Probe I2C device at given address." alt="" coords="157,5,279,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,16,141,16,141,21,109,21"/>
+<area shape="rect" id="Node000003" href="$group__drivers05.html#ga5caa937abd50ec32925c6283a37ef7da" title="Queue a read on the specified I2C controller and wait synchronously. Mirrors Pico SDK i2c_read_timeou..." alt="" coords="327,5,496,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="280,16,311,16,311,21,280,21"/>
+<area shape="rect" id="Node000004" href="$i2c__bus_8c.html#afbaa64f79bdd1fa39c8fa5b7a9c2717b" title=" " alt="" coords="544,5,702,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="497,16,528,16,528,21,497,21"/>
+</map>

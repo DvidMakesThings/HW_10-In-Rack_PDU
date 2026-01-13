@@ -1,0 +1,7 @@
+<map id="Switch_AllOn" name="Switch_AllOn">
+<area shape="rect" id="Node000001" title="Turn all relay channels ON with verification." alt="" coords="362,5,462,32"/>
+<area shape="rect" id="Node000002" href="$group__tasks10.html#ga535deab4f947688ac90e48d7b6089f37" title="Legacy wrapper for Switch_AllOn." alt="" coords="168,5,314,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="347,21,314,21,314,16,347,16"/>
+<area shape="rect" id="Node000003" href="$group__snmp03.html#ga2f6d66138053f23ba063a2a22ffb91c6" title="SNMP setter for All ON bulk operation." alt="" coords="5,5,120,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="152,21,120,21,120,16,152,16"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="get_ocp_SWITCHING_ALLOWED" name="get_ocp_SWITCHING_ALLOWED">
+<area shape="rect" id="Node000001" title="SNMP getter for switching&#45;allowed flag." alt="" coords="5,55,230,81"/>
+<area shape="rect" id="Node000002" href="$snmp__power_mon_8c.html#a4d518845ee0423e2c4f3c291241beafc" title="Write a signed 32&#45;bit integer into SNMP response buffer." alt="" coords="312,29,360,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="230,52,296,45,297,50,230,58"/>
+<area shape="rect" id="Node000003" href="$snmp__power_mon_8c.html#a8bfed698c2d0034fd91352b89bcfce10" title="Read overcurrent protection status snapshot." alt="" coords="278,80,395,107"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="230,78,263,82,262,87,230,84"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="310,34,300,24,301,13,314,5,336,3,364,7,372,13,373,20,368,21,367,16,362,12,336,8,316,10,306,16,305,22,313,31"/>
+<area shape="rect" id="Node000004" href="$group__tasks08.html#gaa9aab2a7bfb3274872c5f4f162af177e" title="Obtain a snapshot of the current protection status." alt="" coords="443,80,598,107"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="396,91,427,91,427,96,396,96"/>
+</map>

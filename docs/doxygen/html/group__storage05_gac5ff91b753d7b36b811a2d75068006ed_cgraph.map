@@ -1,0 +1,20 @@
+<map id="EEPROM_ReadTempCalibration" name="EEPROM_ReadTempCalibration">
+<area shape="rect" id="Node000001" title="Read RP2040 temperature calibration record from EEPROM." alt="" coords="5,107,217,133"/>
+<area shape="rect" id="Node000002" href="$group__driver02.html#ga622a6736c8384f9e1921a1bda2a84df9" title="Read buffer from EEPROM." alt="" coords="265,31,429,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,104,287,60,289,65,156,109"/>
+<area shape="rect" id="Node000006" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="477,81,660,108"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="217,111,461,98,461,103,217,117"/>
+<area shape="rect" id="Node000007" href="$calibration_8c.html#ac2a5362a8e4606ad12cb0d6c9941ef6d" title="Fill temp_calib_t with safe defaults (no calibration)." alt="" coords="287,132,407,159"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="218,129,272,135,271,140,217,134"/>
+<area shape="rect" id="Node000008" href="$calibration_8c.html#abd5621818dd5300de23e2fd5c9106cea" title="Validate a temp calibration record (magic/version/ranges/CRC)." alt="" coords="288,183,406,209"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="154,131,265,168,287,175,285,180,264,173,153,136"/>
+<area shape="rect" id="Node000003" href="$group__drivers05.html#ga66ae4c7028f764a3770cabe101dba8bf" title="Read from 16&#45;bit memory address: write [mem_hi, mem_lo] (no stop), then read len bytes." alt="" coords="494,31,643,57"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="429,41,479,41,479,47,429,47"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="409,55,493,75,492,80,408,61"/>
+<area shape="rect" id="Node000004" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="737,5,859,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="643,33,721,24,722,30,643,38"/>
+<area shape="rect" id="Node000005" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="708,56,888,83"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="643,50,693,55,693,60,643,55"/>
+<area shape="rect" id="Node000009" href="$calibration_8c.html#ae8658b50ad7475f4740593d8f35c9999" title="Compute a simple CRC32 (poly 0xEDB88320) over a buffer." alt="" coords="516,183,622,209"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="406,193,500,193,500,199,406,199"/>
+</map>

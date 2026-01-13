@@ -1,0 +1,15 @@
+<map id="user_output_read_eeprom" name="user_output_read_eeprom">
+<area shape="rect" id="Node000001" title="Load configuration block from EEPROM into cache and validate." alt="" coords="5,81,177,108"/>
+<area shape="rect" id="Node000002" href="$group__driver02.html#ga622a6736c8384f9e1921a1bda2a84df9" title="Read buffer from EEPROM." alt="" coords="225,56,389,83"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="177,82,209,78,209,83,178,87"/>
+<area shape="rect" id="Node000007" href="$user__output_8c.html#a072416fc52711c1dd3db90d4e8cd261b" title="Compute CRC16&#45;CCITT over a buffer." alt="" coords="243,107,371,133"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="178,102,228,108,228,113,177,107"/>
+<area shape="rect" id="Node000003" href="$group__drivers05.html#ga66ae4c7028f764a3770cabe101dba8bf" title="Read from 16&#45;bit memory address: write [mem_hi, mem_lo] (no stop), then read len bytes." alt="" coords="454,31,603,57"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="389,57,439,52,439,57,389,63"/>
+<area shape="rect" id="Node000006" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="437,81,620,108"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="389,76,421,80,421,85,389,81"/>
+<area shape="rect" id="Node000004" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="697,5,819,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="603,33,681,24,682,30,603,38"/>
+<area shape="rect" id="Node000005" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="668,56,848,83"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="603,50,653,55,653,60,603,55"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="Energis_RepairMac" name="Energis_RepairMac">
+<area shape="rect" id="Node000001" title="Validate and repair corrupted MAC address." alt="" coords="5,31,141,57"/>
+<area shape="rect" id="Node000002" href="$group__storage03.html#ga461c49efb137c6fcc9871867b974c326" title="Derive MAC address from the cached serial number." alt="" coords="189,5,343,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="140,32,173,28,174,33,141,38"/>
+<area shape="rect" id="Node000003" href="$group__storage03.html#ga6a8334a56f37167d1e857260bb262902" title="Check if device identity is valid (provisioned)." alt="" coords="190,56,342,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="141,50,175,55,175,60,140,56"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="get_ocp_TRIP_COUNT" name="get_ocp_TRIP_COUNT">
+<area shape="rect" id="Node000001" title="SNMP getter for OCP trip count since boot." alt="" coords="5,31,166,57"/>
+<area shape="rect" id="Node000002" href="$snmp__power_mon_8c.html#a8bfed698c2d0034fd91352b89bcfce10" title="Read overcurrent protection status snapshot." alt="" coords="214,5,331,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,30,198,26,198,31,166,36"/>
+<area shape="rect" id="Node000004" href="$snmp__power_mon_8c.html#a3fc9a8bd0eb932e391c20a636e6a18c4" title="Write an unsigned 32&#45;bit integer into SNMP response buffer." alt="" coords="246,56,298,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="166,52,231,61,230,66,166,58"/>
+<area shape="rect" id="Node000003" href="$group__tasks08.html#gaa9aab2a7bfb3274872c5f4f162af177e" title="Obtain a snapshot of the current protection status." alt="" coords="379,5,534,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="332,16,363,16,363,21,332,21"/>
+</map>

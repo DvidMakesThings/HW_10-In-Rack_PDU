@@ -1,0 +1,29 @@
+<map id="parse_ip" name="parse_ip">
+<area shape="rect" id="Node000001" title="Parse IP address from dotted decimal string." alt="" coords="1114,107,1184,133"/>
+<area shape="rect" id="Node000002" href="$_console_task_8c.html#aac8555eb5b2f76507f0ec587126f7e36" title="Configure all network settings at once." alt="" coords="924,5,1066,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1124,97,1097,71,1064,46,1041,35,1044,30,1067,42,1100,67,1128,94"/>
+<area shape="rect" id="Node000009" href="$_console_task_8c.html#a77fb192d5194de041d5e8ae1a05477fa" title="Set DNS server address." alt="" coords="945,56,1045,83"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1098,106,1037,86,1039,81,1100,101"/>
+<area shape="rect" id="Node000010" href="$_console_task_8c.html#a8cd1020242da5065bf2a614269f883b8" title="Set gateway address." alt="" coords="947,107,1043,133"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="1098,123,1043,123,1043,117,1098,117"/>
+<area shape="rect" id="Node000011" href="$_console_task_8c.html#a90f4fe95464bf6ca1b258e5c0e435839" title="Set IP address." alt="" coords="951,157,1039,184"/>
+<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="1100,139,1039,159,1037,154,1098,134"/>
+<area shape="rect" id="Node000012" href="$_console_task_8c.html#a0f6f61a07bd6f06135e7d566867144fa" title="Set subnet mask." alt="" coords="949,208,1041,235"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="1128,146,1100,173,1067,198,1043,210,1040,205,1064,194,1097,169,1124,143"/>
+<area shape="rect" id="Node000003" href="$_console_task_8c.html#a2d3b7ff8346f8d10aa45609664940712" title="Parse and dispatch command line to handler function." alt="" coords="742,107,876,133"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="937,41,926,46,872,78,830,108,827,104,869,74,923,42,935,36"/>
+<area shape="rect" id="Node000004" href="$_console_task_8c.html#a216857df22446940ad58d505886b0d7c" title="Main console task function." alt="" coords="597,107,694,133"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="726,123,694,123,694,117,726,117"/>
+<area shape="rect" id="Node000005" href="$group__tasks02.html#gad45ca7c142e8c2764d52b3d554ffcdeb" title="Initialize and start the console task." alt="" coords="426,107,549,133"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="581,123,549,123,549,117,581,117"/>
+<area shape="rect" id="Node000006" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,107,378,133"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="411,123,379,123,379,117,411,117"/>
+<area shape="rect" id="Node000007" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,107,263,133"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="295,123,263,123,263,117,295,117"/>
+<area shape="rect" id="Node000008" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,107,102,133"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="134,123,102,123,102,117,134,117"/>
+<area shape="poly" id="edge9_Node000009_Node000003" title=" " alt="" coords="931,89,861,109,860,104,930,84"/>
+<area shape="poly" id="edge11_Node000010_Node000003" title=" " alt="" coords="932,123,877,123,877,117,932,117"/>
+<area shape="poly" id="edge13_Node000011_Node000003" title=" " alt="" coords="935,157,860,136,861,131,937,152"/>
+<area shape="poly" id="edge15_Node000012_Node000003" title=" " alt="" coords="935,204,923,198,869,166,827,136,830,132,872,162,926,194,937,199"/>
+</map>

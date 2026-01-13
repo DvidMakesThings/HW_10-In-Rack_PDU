@@ -1,0 +1,7 @@
+<map id="get_VUSB_divider" name="get_VUSB_divider">
+<area shape="rect" id="Node000001" title="SNMP getter for V_USB divider tap voltage [V]." alt="" coords="5,5,134,32"/>
+<area shape="rect" id="Node000002" href="$group__tasks06.html#ga909c8be3f0ce184e2cd1045bc29e0e30" title="Get the latest system ADC telemetry snapshot (non&#45;blocking)." alt="" coords="182,5,394,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="134,16,166,16,166,21,134,21"/>
+<area shape="rect" id="Node000003" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="442,5,625,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="394,16,426,16,426,21,394,21"/>
+</map>

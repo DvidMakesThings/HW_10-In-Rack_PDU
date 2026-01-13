@@ -1,0 +1,32 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/web\+\_\+handlers/settings\+\_\+handler.h File Reference}
+\hypertarget{settings__handler_8h}{}\label{settings__handler_8h}\index{src/Software/ENERGIS\_RTOS/src/web\_handlers/settings\_handler.h@{src/Software/ENERGIS\_RTOS/src/web\_handlers/settings\_handler.h}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for settings\+\_\+handler.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{settings__handler_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{settings__handler_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__webui05_gae50a830dd3536accfe480e0cefb7c4b1}{handle\+\_\+settings\+\_\+request}} (uint8\+\_\+t sock)
+\begin{DoxyCompactList}\small\item\em Serve settings HTML page via GET /settings.html. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__webui05_gac088630081f9ab2535ccd751fdfaaad7}{handle\+\_\+settings\+\_\+api}} (uint8\+\_\+t sock)
+\begin{DoxyCompactList}\small\item\em Handle GET /api/settings and return configuration as JSON. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__webui05_ga0fe4c530cf7754724a14147a82c71108}{handle\+\_\+settings\+\_\+post}} (uint8\+\_\+t sock, char \texorpdfstring{$\ast$}{*}body)
+\begin{DoxyCompactList}\small\item\em Handle POST /api/settings to update configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

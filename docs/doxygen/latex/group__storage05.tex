@@ -1,0 +1,475 @@
+\doxysubsubsection{
+\begin{DoxyEnumerate}
+\item Event Logging 
+\end{DoxyEnumerate}}
+\hypertarget{group__storage05}{}\label{group__storage05}\index{5. Event Logging@{5. Event Logging}}
+
+
+System event logging with separate error and warning ring buffers.  
+
+
+Collaboration diagram for 5. Event Logging\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=295pt]{group__storage05}
+\end{center}
+\end{figure}
+\doxysubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__storage05_gabbe7eb05db9255f0b77b8d43ed6ee7c3}{EEPROM\+\_\+\+Write\+Event\+Logs}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write entire error event log region to EEPROM (bulk operation). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage05_gad9c0aae90591df3b2bb552a2755ce7a9}{EEPROM\+\_\+\+Read\+Event\+Logs}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Read entire error event log region from EEPROM (bulk operation). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage05_gaac46b7836e5834209a11390bf671aaea}{EEPROM\+\_\+\+Append\+Error\+Code}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}entry)
+\begin{DoxyCompactList}\small\item\em Append one error event code to error ring buffer with automatic wrapping. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage05_gab97b8ca8cca74eac342092d2e5cdb139}{EEPROM\+\_\+\+Append\+Warning\+Code}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}entry)
+\begin{DoxyCompactList}\small\item\em Append one warning event code to warning ring buffer with automatic wrapping. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+System event logging with separate error and warning ring buffers. 
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/14
+\end{DoxyDate}
+This module manages system event logs stored in EEPROM using dual ring buffer structures. Provides persistent logging of errors and warnings for diagnostics, troubleshooting, and compliance auditing.
+
+Key Features\+:
+\begin{DoxyItemize}
+\item Separate ring buffers for errors and warnings
+\item 16-\/bit event codes for compact storage
+\item Automatic pointer wrapping for circular storage
+\item Write pointer persistence across power cycles
+\item Support for bulk read/write operations
+\item Append-\/only design prevents event tampering
+\end{DoxyItemize}
+
+EEPROM Memory Layout\+: Two independent ring buffer regions\+:
+
+
+\begin{DoxyEnumerate}
+\item Error Log (EEPROM\+\_\+\+EVENT\+\_\+\+ERR\+\_\+\+START, EEPROM\+\_\+\+EVENT\+\_\+\+ERR\+\_\+\+SIZE bytes)\+:
+\begin{DoxyItemize}
+\item Offset 0-\/1\+: Write pointer (uint16\+\_\+t, entry index)
+\item Offset 2+\+: Error codes (EVENT\+\_\+\+LOG\+\_\+\+ENTRY\+\_\+\+SIZE bytes each)
+\end{DoxyItemize}
+\item Warning Log (EEPROM\+\_\+\+EVENT\+\_\+\+WARN\+\_\+\+START, EEPROM\+\_\+\+EVENT\+\_\+\+WARN\+\_\+\+SIZE bytes)\+:
+\begin{DoxyItemize}
+\item Offset 0-\/1\+: Write pointer (uint16\+\_\+t, entry index)
+\item Offset 2+\+: Warning codes (EVENT\+\_\+\+LOG\+\_\+\+ENTRY\+\_\+\+SIZE bytes each)
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+Event Code Format\+:
+\begin{DoxyItemize}
+\item Size\+: EVENT\+\_\+\+LOG\+\_\+\+ENTRY\+\_\+\+SIZE bytes (typically 2 bytes for uint16\+\_\+t)
+\item Structure\+: 16-\/bit packed event code via ERR\+\_\+\+MAKE\+\_\+\+CODE macro
+\begin{DoxyItemize}
+\item Bits 15-\/12\+: Module ID (identifies source subsystem)
+\item Bits 11-\/8\+: Severity level (ERR\+\_\+\+SEV\+\_\+\+ERROR / ERR\+\_\+\+SEV\+\_\+\+WARNING)
+\item Bits 7-\/4\+: Function ID (identifies specific function)
+\item Bits 3-\/0\+: Error instance (distinguishes multiple errors in same function)
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Ring Buffer Structure (per buffer)\+:
+\begin{DoxyItemize}
+\item First 2 bytes (EVENT\+\_\+\+LOG\+\_\+\+POINTER\+\_\+\+SIZE)\+: Write pointer
+\begin{DoxyItemize}
+\item Stores index of next entry to write
+\item Automatically wraps to 0 when buffer fills
+\item Persisted to EEPROM after each append
+\end{DoxyItemize}
+\item Remaining bytes\+: Event code array
+\begin{DoxyItemize}
+\item Each entry\+: EVENT\+\_\+\+LOG\+\_\+\+ENTRY\+\_\+\+SIZE bytes (2 bytes for uint16\+\_\+t)
+\item Number of entries\+: (BUFFER\+\_\+\+SIZE -\/ 2) / 2
+\item Older entries overwritten when buffer wraps
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Append Operation\+:
+\begin{DoxyEnumerate}
+\item Read current write pointer from buffer start
+\item Validate pointer (clamp to 0 if out of range)
+\item Calculate address for new entry\+: BASE + 2 + (ptr × ENTRY\+\_\+\+SIZE)
+\item Write new event code to calculated address
+\item Increment pointer (wrap to 0 if at end of buffer)
+\item Write updated pointer back to buffer start
+\item Oldest entry automatically overwritten on wrap
+\end{DoxyEnumerate}
+
+Error vs. Warning Classification\+:
+\begin{DoxyItemize}
+\item Errors\+: Critical faults requiring attention
+\begin{DoxyItemize}
+\item Overcurrent trips
+\item I2C communication failures
+\item EEPROM write errors
+\item Watchdog resets
+\item Ethernet link failures
+\end{DoxyItemize}
+\item Warnings\+: Non-\/critical events for awareness
+\begin{DoxyItemize}
+\item Temperature threshold crossings
+\item MAC address repairs
+\item CRC mismatches with successful recovery
+\item Button long-\/press events
+\item DHCP fallback to static IP
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Bulk Operations\+:
+\begin{DoxyItemize}
+\item \doxylink{group__storage05_gabbe7eb05db9255f0b77b8d43ed6ee7c3}{EEPROM\+\_\+\+Write\+Event\+Logs()}\+: Bulk write entire error region (for restoration)
+\item \doxylink{group__storage05_gad9c0aae90591df3b2bb552a2755ce7a9}{EEPROM\+\_\+\+Read\+Event\+Logs()}\+: Bulk read entire error region (for backup/analysis)
+\item Used for firmware updates, factory reset, or diagnostics extraction
+\end{DoxyItemize}
+
+Thread Safety\+:
+\begin{DoxyItemize}
+\item All read/write functions require eeprom\+Mtx held by caller
+\item Prevents concurrent access corruption
+\item Ensures atomic read-\/modify-\/write for pointer updates
+\end{DoxyItemize}
+
+Integration Points\+:
+\begin{DoxyItemize}
+\item All modules\+: Append error/warning codes via \doxylink{group__tasks10_ga78c530f9c7ec4d2330e6d1a092df6dc0}{Storage\+\_\+\+Enqueue\+Error\+Code()}
+\item Storage\+Task\+: Processes queued codes and calls EEPROM append functions
+\item Web interface\+: Retrieves historical logs for diagnostics page
+\item SNMP\+: Provides event statistics via custom OIDs
+\item Console commands\+: Reads and displays event logs
+\end{DoxyItemize}
+
+Usage Pattern\+:
+\begin{DoxyEnumerate}
+\item Module detects error or warning condition
+\item Module calls \doxylink{group__tasks10_ga78c530f9c7ec4d2330e6d1a092df6dc0}{Storage\+\_\+\+Enqueue\+Error\+Code()} with \doxylink{group__config04_ga745daff0f1f8857ec240cab3479908d5}{ERR\+\_\+\+MAKE\+\_\+\+CODE()} value
+\item Storage\+Task processes queue and calls\+: a. \doxylink{group__storage05_gaac46b7836e5834209a11390bf671aaea}{EEPROM\+\_\+\+Append\+Error\+Code()} for errors (ERR\+\_\+\+SEV\+\_\+\+ERROR) b. \doxylink{group__storage05_gab97b8ca8cca74eac342092d2e5cdb139}{EEPROM\+\_\+\+Append\+Warning\+Code()} for warnings (ERR\+\_\+\+SEV\+\_\+\+WARNING)
+\item Web interface or SNMP reads historical logs\+: a. Call \doxylink{group__storage05_gad9c0aae90591df3b2bb552a2755ce7a9}{EEPROM\+\_\+\+Read\+Event\+Logs()} to bulk read error buffer b. Parse codes using write pointer to determine newest/oldest c. Decode codes using \doxylink{_e_r_r_o_r___c_o_d_e_8h}{error\+\_\+code.\+h} lookup tables
+\end{DoxyEnumerate}
+
+Pointer Management\+:
+\begin{DoxyItemize}
+\item Pointer tracks next write position (not last written position)
+\item Valid pointer range\+: 0 to max\+\_\+entries-\/1
+\item Corrupted pointer (out of range) clamped to 0
+\item Empty buffer indicated by uninitialized EEPROM (all 0x\+FF)
+\end{DoxyItemize}
+
+Error Handling\+:
+\begin{DoxyItemize}
+\item Bounds checking on all buffer operations
+\item Pointer validation before use
+\item Write failures logged to debug console (not re-\/enqueued to avoid loops)
+\item Failed writes leave pointer unchanged
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Event codes are 16-\/bit packed values via ERR\+\_\+\+MAKE\+\_\+\+CODE macro. 
+
+Ring buffers overwrite oldest data when full (no overflow protection). 
+
+Caller must interpret pointer to distinguish new vs. old entries. 
+
+All operations require eeprom\+Mtx held by caller. 
+
+Error logging failures are printed but not re-\/logged to prevent infinite loops.
+\end{DoxyNote}
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-func-members}
+\Hypertarget{group__storage05_doc-func-members}
+\doxysubsubsubsection{Function Documentation}
+\Hypertarget{group__storage05_gaac46b7836e5834209a11390bf671aaea}\index{5. Event Logging@{5. Event Logging}!EEPROM\_AppendErrorCode@{EEPROM\_AppendErrorCode}}
+\index{EEPROM\_AppendErrorCode@{EEPROM\_AppendErrorCode}!5. Event Logging@{5. Event Logging}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_AppendErrorCode()}{EEPROM\_AppendErrorCode()}}
+{\footnotesize\ttfamily \label{group__storage05_gaac46b7836e5834209a11390bf671aaea} 
+int EEPROM\+\_\+\+Append\+Error\+Code (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{entry}{}\end{DoxyParamCaption})}
+
+
+
+Append one error event code to error ring buffer with automatic wrapping. 
+
+Primary function for logging critical errors. Implements circular buffer behavior with automatic pointer management and wrap-\/around. Reads current write pointer, writes new error code, increments pointer (with wrapping), and persists updated pointer to EEPROM.
+
+Event Code Format\+:
+\begin{DoxyItemize}
+\item Size\+: EVENT\+\_\+\+LOG\+\_\+\+ENTRY\+\_\+\+SIZE bytes (typically 2 bytes for uint16\+\_\+t)
+\item Created via \doxylink{group__config04_ga745daff0f1f8857ec240cab3479908d5}{ERR\+\_\+\+MAKE\+\_\+\+CODE(module, severity, function, instance)}
+\item Example\+: \doxylink{group__config04_ga745daff0f1f8857ec240cab3479908d5}{ERR\+\_\+\+MAKE\+\_\+\+CODE(\+ERR\+\_\+\+MOD\+\_\+\+STORAGE, ERR\+\_\+\+SEV\+\_\+\+ERROR, ERR\+\_\+\+FID\+\_\+\+ST\+\_\+\+NETWORK, 0x1)}
+\end{DoxyItemize}
+
+Operation Sequence\+:
+\begin{DoxyEnumerate}
+\item Read current write pointer from EEPROM (offset 0-\/1)
+\item Validate pointer (clamp to 0 if out of range)
+\item Calculate entry address\+: BASE + 2 + (pointer × EVENT\+\_\+\+LOG\+\_\+\+ENTRY\+\_\+\+SIZE)
+\item Write new error code to calculated address
+\item Increment pointer\+: ptr++
+\item If pointer at end of buffer\+: ptr = 0 (wrap to start)
+\item Write updated pointer back to EEPROM (offset 0-\/1)
+\end{DoxyEnumerate}
+
+Ring Buffer Behavior\+:
+\begin{DoxyItemize}
+\item Buffer size\+: (EEPROM\+\_\+\+EVENT\+\_\+\+ERR\+\_\+\+SIZE -\/ 2) bytes
+\item Number of entries\+: (EEPROM\+\_\+\+EVENT\+\_\+\+ERR\+\_\+\+SIZE -\/ 2) / EVENT\+\_\+\+LOG\+\_\+\+ENTRY\+\_\+\+SIZE
+\item When buffer fills, wraps to start and overwrites oldest entry
+\item Pointer always indicates next write position, not last written
+\end{DoxyItemize}
+
+Typical Error Categories\+:
+\begin{DoxyItemize}
+\item I2C communication failures (EEPROM, MCP23017, W5500)
+\item Overcurrent protection trips
+\item EEPROM write failures
+\item Watchdog timeout resets
+\item Ethernet link failures
+\item Fatal configuration errors
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em entry} & Pointer to EVENT\+\_\+\+LOG\+\_\+\+ENTRY\+\_\+\+SIZE bytes containing error code. Must point to uint16\+\_\+t value from \doxylink{group__config04_ga745daff0f1f8857ec240cab3479908d5}{ERR\+\_\+\+MAKE\+\_\+\+CODE()}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if append successful and pointer updated. 
+
+-\/1 if I2C write fails (entry or pointer write).
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+
+Buffer must contain exactly EVENT\+\_\+\+LOG\+\_\+\+ENTRY\+\_\+\+SIZE bytes. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Oldest entries automatically overwritten when buffer wraps. 
+
+Pointer persisted to EEPROM after each append for power-\/loss safety. 
+
+Write failures logged to debug console (not re-\/enqueued to prevent loops). 
+
+Called by Storage\+Task after processing error queue.
+\end{DoxyNote}
+Append one error event code to error ring buffer with automatic wrapping. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage05_gaac46b7836e5834209a11390bf671aaea_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage05_gaac46b7836e5834209a11390bf671aaea_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage05_gab97b8ca8cca74eac342092d2e5cdb139}\index{5. Event Logging@{5. Event Logging}!EEPROM\_AppendWarningCode@{EEPROM\_AppendWarningCode}}
+\index{EEPROM\_AppendWarningCode@{EEPROM\_AppendWarningCode}!5. Event Logging@{5. Event Logging}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_AppendWarningCode()}{EEPROM\_AppendWarningCode()}}
+{\footnotesize\ttfamily \label{group__storage05_gab97b8ca8cca74eac342092d2e5cdb139} 
+int EEPROM\+\_\+\+Append\+Warning\+Code (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{entry}{}\end{DoxyParamCaption})}
+
+
+
+Append one warning event code to warning ring buffer with automatic wrapping. 
+
+Primary function for logging non-\/critical warnings. Implements circular buffer behavior with automatic pointer management and wrap-\/around. Identical operation to \doxylink{group__storage05_gaac46b7836e5834209a11390bf671aaea}{EEPROM\+\_\+\+Append\+Error\+Code()} but writes to separate warning buffer region.
+
+Event Code Format\+:
+\begin{DoxyItemize}
+\item Size\+: EVENT\+\_\+\+LOG\+\_\+\+ENTRY\+\_\+\+SIZE bytes (typically 2 bytes for uint16\+\_\+t)
+\item Created via \doxylink{group__config04_ga745daff0f1f8857ec240cab3479908d5}{ERR\+\_\+\+MAKE\+\_\+\+CODE(module, severity, function, instance)}
+\item Example\+: \doxylink{group__config04_ga745daff0f1f8857ec240cab3479908d5}{ERR\+\_\+\+MAKE\+\_\+\+CODE(\+ERR\+\_\+\+MOD\+\_\+\+STORAGE, ERR\+\_\+\+SEV\+\_\+\+WARNING, ERR\+\_\+\+FID\+\_\+\+ST\+\_\+\+NETWORK, 0x2)}
+\end{DoxyItemize}
+
+Operation Sequence\+:
+\begin{DoxyEnumerate}
+\item Read current write pointer from warning buffer start (offset 0-\/1)
+\item Validate pointer (clamp to 0 if out of range)
+\item Calculate entry address\+: BASE + 2 + (pointer × EVENT\+\_\+\+LOG\+\_\+\+ENTRY\+\_\+\+SIZE)
+\item Write new warning code to calculated address
+\item Increment pointer\+: ptr++
+\item If pointer at end of buffer\+: ptr = 0 (wrap to start)
+\item Write updated pointer back to warning buffer start
+\end{DoxyEnumerate}
+
+Ring Buffer Behavior\+:
+\begin{DoxyItemize}
+\item Buffer size\+: (EEPROM\+\_\+\+EVENT\+\_\+\+WARN\+\_\+\+SIZE -\/ 2) bytes
+\item Number of entries\+: (EEPROM\+\_\+\+EVENT\+\_\+\+WARN\+\_\+\+SIZE -\/ 2) / EVENT\+\_\+\+LOG\+\_\+\+ENTRY\+\_\+\+SIZE
+\item When buffer fills, wraps to start and overwrites oldest entry
+\item Pointer always indicates next write position, not last written
+\end{DoxyItemize}
+
+Typical Warning Categories\+:
+\begin{DoxyItemize}
+\item Temperature threshold crossings (approaching limits)
+\item MAC address repairs (automatic correction applied)
+\item CRC mismatches with successful recovery to defaults
+\item Button long-\/press events
+\item DHCP timeout with fallback to static IP
+\item Non-\/fatal configuration inconsistencies
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em entry} & Pointer to EVENT\+\_\+\+LOG\+\_\+\+ENTRY\+\_\+\+SIZE bytes containing warning code. Must point to uint16\+\_\+t value from \doxylink{group__config04_ga745daff0f1f8857ec240cab3479908d5}{ERR\+\_\+\+MAKE\+\_\+\+CODE()}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if append successful and pointer updated. 
+
+-\/1 if I2C write fails (entry or pointer write).
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+
+Buffer must contain exactly EVENT\+\_\+\+LOG\+\_\+\+ENTRY\+\_\+\+SIZE bytes. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Oldest entries automatically overwritten when buffer wraps. 
+
+Pointer persisted to EEPROM after each append for power-\/loss safety. 
+
+Write failures logged to debug console (not re-\/enqueued to prevent loops). 
+
+Called by Storage\+Task after processing warning queue.
+\end{DoxyNote}
+Append one warning event code to warning ring buffer with automatic wrapping. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage05_gab97b8ca8cca74eac342092d2e5cdb139_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage05_gab97b8ca8cca74eac342092d2e5cdb139_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage05_gad9c0aae90591df3b2bb552a2755ce7a9}\index{5. Event Logging@{5. Event Logging}!EEPROM\_ReadEventLogs@{EEPROM\_ReadEventLogs}}
+\index{EEPROM\_ReadEventLogs@{EEPROM\_ReadEventLogs}!5. Event Logging@{5. Event Logging}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_ReadEventLogs()}{EEPROM\_ReadEventLogs()}}
+{\footnotesize\ttfamily \label{group__storage05_gad9c0aae90591df3b2bb552a2755ce7a9} 
+int EEPROM\+\_\+\+Read\+Event\+Logs (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{size\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Read entire error event log region from EEPROM (bulk operation). 
+
+Reads complete error event log buffer including write pointer and all event codes. Used for backing up event data, web interface diagnostics page, or SNMP statistics.
+
+Buffer Layout Returned\+:
+\begin{DoxyItemize}
+\item Offset 0-\/1\+: Write pointer (uint16\+\_\+t, indicates next write position)
+\item Offset 2+\+: Error event codes (EVENT\+\_\+\+LOG\+\_\+\+ENTRY\+\_\+\+SIZE bytes each)
+\end{DoxyItemize}
+
+Interpreting Results\+:
+\begin{DoxyItemize}
+\item Write pointer indicates next entry to be written (not last written)
+\item Entries wrap circularly, oldest data overwritten when buffer full
+\item Empty/uninitialized buffer has pointer = 0x0000 or 0x\+FFFF
+\item Caller must parse entries using pointer to determine order
+\item Event codes decoded using ERR\+\_\+\+DECODE\+\_\+\texorpdfstring{$\ast$}{*} macros from \doxylink{_e_r_r_o_r___c_o_d_e_8h}{error\+\_\+code.\+h}
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{out}}  & {\em data} & Destination buffer for error event log data. \\
+\hline
+\mbox{\texttt{in}}  & {\em len} & Number of bytes to read. Must be \texorpdfstring{$<$}{<}= EEPROM\+\_\+\+EVENT\+\_\+\+ERR\+\_\+\+SIZE.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if read successful. 
+
+-\/1 if length exceeds EEPROM\+\_\+\+EVENT\+\_\+\+ERR\+\_\+\+SIZE.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Bounds checking performed before read operation. 
+
+Read failures logged to debug console (not re-\/enqueued to event log). 
+
+Caller must allocate buffer of at least len bytes. 
+
+Used for web interface, SNMP, console commands, or backup operations.
+\end{DoxyNote}
+Read entire error event log region from EEPROM (bulk operation). Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage05_gad9c0aae90591df3b2bb552a2755ce7a9_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage05_gabbe7eb05db9255f0b77b8d43ed6ee7c3}\index{5. Event Logging@{5. Event Logging}!EEPROM\_WriteEventLogs@{EEPROM\_WriteEventLogs}}
+\index{EEPROM\_WriteEventLogs@{EEPROM\_WriteEventLogs}!5. Event Logging@{5. Event Logging}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_WriteEventLogs()}{EEPROM\_WriteEventLogs()}}
+{\footnotesize\ttfamily \label{group__storage05_gabbe7eb05db9255f0b77b8d43ed6ee7c3} 
+int EEPROM\+\_\+\+Write\+Event\+Logs (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{size\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Write entire error event log region to EEPROM (bulk operation). 
+
+Writes complete error event log buffer including write pointer and all event codes. Used for restoring backed-\/up event data or factory reset operations. Overwrites entire EEPROM error region in single operation.
+
+Buffer Layout Expected\+:
+\begin{DoxyItemize}
+\item Offset 0-\/1\+: Write pointer (uint16\+\_\+t, entry index)
+\item Offset 2+\+: Error event codes (EVENT\+\_\+\+LOG\+\_\+\+ENTRY\+\_\+\+SIZE bytes each)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em data} & Pointer to source buffer containing complete error event log data. \\
+\hline
+\mbox{\texttt{in}}  & {\em len} & Number of bytes to write. Must be \texorpdfstring{$<$}{<}= EEPROM\+\_\+\+EVENT\+\_\+\+ERR\+\_\+\+SIZE.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if write successful. 
+
+-\/1 if length exceeds EEPROM\+\_\+\+EVENT\+\_\+\+ERR\+\_\+\+SIZE or I2C write fails.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+
+Overwrites all existing error event data in EEPROM. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Bounds checking performed before write operation. 
+
+Write failures logged to debug console (not re-\/enqueued to event log). 
+
+Used primarily for backup restoration or factory reset, not typical operation.
+\end{DoxyNote}
+Write entire error event log region to EEPROM (bulk operation). Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage05_gabbe7eb05db9255f0b77b8d43ed6ee7c3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage05_gabbe7eb05db9255f0b77b8d43ed6ee7c3_icgraph}
+\end{center}
+\end{figure}

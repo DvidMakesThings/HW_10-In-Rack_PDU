@@ -1,0 +1,39 @@
+<map id="Switch_SetMask" name="Switch_SetMask">
+<area shape="rect" id="Node000001" title="Set multiple channels via bitmask with verification." alt="" coords="5,115,126,141"/>
+<area shape="rect" id="Node000002" href="$_switch_task_8c.html#a2a7f01bd659f5eea0a4a131d8c57c207" title=" " alt="" coords="219,5,264,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,112,123,82,172,48,204,32,206,37,175,53,126,86,86,116"/>
+<area shape="rect" id="Node000003" href="$group__drivers06.html#ga6568742c79ce5190216e5185238229ba" title="Get relay MCP23017 device context." alt="" coords="376,35,458,61"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="107,112,173,92,272,70,361,54,361,59,273,75,174,97,108,117"/>
+<area shape="rect" id="Node000004" href="$group__drivers06.html#ga8b8bc528b75e419262e7663ee669dc31" title="Write a logic level to a pin." alt="" coords="364,237,470,264"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="108,139,310,209,365,229,363,234,308,215,107,144"/>
+<area shape="rect" id="Node000010" href="$_switch_task_8c.html#a4f736068a28c331df25cda27cb3a80c0" title=" " alt="" coords="174,107,309,149"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="126,125,158,125,158,131,126,131"/>
+<area shape="rect" id="Node000017" href="$_switch_task_8c.html#abb7cc7eb4e959fda6a43c8dd85f20090" title=" " alt="" coords="212,224,271,251"/>
+<area shape="poly" id="edge20_Node000001_Node000017" title=" " alt="" coords="86,140,126,170,175,203,199,216,196,221,172,208,123,174,82,144"/>
+<area shape="rect" id="Node000005" href="$group__drivers05.html#gab7b4aa096ded6cebd93256e5b5994e42" title="Write 8&#45;bit register with 8&#45;bit value: [reg, value]." alt="" coords="537,148,670,175"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="451,234,476,223,562,180,564,185,478,228,453,239"/>
+<area shape="rect" id="Node000009" href="$_m_c_p23017__driver_8c.html#a0ff45ad384852ba5f69f0fd781c2f46a" title=" " alt="" coords="525,224,682,251"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="470,244,509,241,510,247,470,250"/>
+<area shape="rect" id="Node000006" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="979,136,1100,163"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="671,157,963,149,963,154,671,162"/>
+<area shape="rect" id="Node000007" href="$group__drivers05.html#ga170d6c4ff97ddc2d314f0a7a0054f283" title="Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK i2c_write_time..." alt="" coords="730,187,902,213"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="671,171,724,181,723,186,670,176"/>
+<area shape="rect" id="Node000008" href="$i2c__bus_8c.html#afbaa64f79bdd1fa39c8fa5b7a9c2717b" title=" " alt="" coords="961,187,1118,213"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="902,197,945,197,945,203,902,203"/>
+<area shape="poly" id="edge11_Node000010_Node000003" title=" " alt="" coords="286,104,356,71,368,66,370,70,358,76,289,108"/>
+<area shape="rect" id="Node000011" href="$group__drivers06.html#ga7634eca518e2158ba0e636a3f03f3928" title="Get display MCP23017 device context." alt="" coords="370,187,464,213"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="297,148,369,178,367,183,295,152"/>
+<area shape="rect" id="Node000012" href="$group__drivers06.html#ga0dfecc1e56ba649b3a89936c6206c9e2" title="Atomic masked write to a port." alt="" coords="357,136,477,163"/>
+<area shape="poly" id="edge12_Node000010_Node000012" title=" " alt="" coords="310,134,342,137,341,143,309,139"/>
+<area shape="rect" id="Node000013" href="$_switch_task_8c.html#acc0c2f9409d734ff983b3d0f0cdf8444" title=" " alt="" coords="357,85,477,112"/>
+<area shape="poly" id="edge15_Node000010_Node000013" title=" " alt="" coords="309,114,341,109,342,114,310,119"/>
+<area shape="poly" id="edge13_Node000012_Node000005" title=" " alt="" coords="478,151,522,153,521,159,477,156"/>
+<area shape="poly" id="edge14_Node000012_Node000009" title=" " alt="" coords="453,161,478,172,563,214,561,219,476,177,451,166"/>
+<area shape="rect" id="Node000014" href="$group__drivers06.html#ga2e6de484edec28d8c39620a364ce5b92" title="Read a logic level from a pin." alt="" coords="552,85,655,112"/>
+<area shape="poly" id="edge16_Node000013_Node000014" title=" " alt="" coords="478,96,537,96,537,101,478,101"/>
+<area shape="rect" id="Node000015" href="$group__drivers05.html#ga0e406d50e8948e593649a11c729acd9b" title="Read 8&#45;bit register: write [reg] (no stop), then read 1 byte." alt="" coords="751,85,881,112"/>
+<area shape="poly" id="edge17_Node000014_Node000015" title=" " alt="" coords="655,96,735,96,735,101,655,101"/>
+<area shape="poly" id="edge18_Node000015_Node000006" title=" " alt="" coords="879,110,965,130,963,135,878,115"/>
+<area shape="rect" id="Node000016" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="950,85,1129,112"/>
+<area shape="poly" id="edge19_Node000015_Node000016" title=" " alt="" coords="881,96,934,96,934,101,881,101"/>
+</map>

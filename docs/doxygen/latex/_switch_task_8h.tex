@@ -1,0 +1,107 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\+Switch\+Task.h File Reference}
+\hypertarget{_switch_task_8h}{}\label{_switch_task_8h}\index{src/Software/ENERGIS\_RTOS/src/tasks/SwitchTask.h@{src/Software/ENERGIS\_RTOS/src/tasks/SwitchTask.h}}
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include "{}Free\+RTOS.\+h"{}}\newline
+{\ttfamily \#include "{}task.\+h"{}}\newline
+Include dependency graph for Switch\+Task.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_switch_task_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_switch_task_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{Indent}\textbf{ Configuration Knobs}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__tasks11_ga823f670d4fa6a33db720d960ae23da6c}{SWITCH\+\_\+\+MUTEX\+\_\+\+TIMEOUT\+\_\+\+MS}}~1000
+\begin{DoxyCompactList}\small\item\em Maximum time to wait for mutex acquisition (ms). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__tasks11_gae3db2791ffc8d72b4a849da50506ce1e}{SWITCH\+\_\+\+TASK\+\_\+\+PERIOD\+\_\+\+MS}}~100
+\begin{DoxyCompactList}\small\item\em Task maintenance period (ms). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__tasks11_ga7badcbe9618a49598c7e72d1af635713}{SWITCH\+\_\+\+HW\+\_\+\+SYNC\+\_\+\+INTERVAL\+\_\+\+MS}}~5000
+\begin{DoxyCompactList}\small\item\em Periodic hardware sync interval (ms). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__tasks11_gad9ffbdf400ec024cf9eb127fdd096eec}{SWITCH\+\_\+\+WAIT\+\_\+\+STORAGE\+\_\+\+READY\+\_\+\+MS}}~5000
+\begin{DoxyCompactList}\small\item\em Bring-\/up wait timeout for \doxylink{_button_task_8c_adff2b57dc3c074453ee1393d0f6f3623}{Storage\+\_\+\+Is\+Ready()} in milliseconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__tasks11_ga64f3e0ad0f68b11e5283c8f9c6f551ea}{switch\+\_\+result\+\_\+t}} \{ \newline
+\mbox{\hyperlink{group__tasks11_gga64f3e0ad0f68b11e5283c8f9c6f551eaa10ab10cccbc4ac3476eb467136b3a89a}{SWITCH\+\_\+\+OK}} = 0
+, \mbox{\hyperlink{group__tasks11_gga64f3e0ad0f68b11e5283c8f9c6f551eaa9f43f3d7ffb8588931b42e6f2e220c33}{SWITCH\+\_\+\+ERR\+\_\+\+NOT\+\_\+\+INIT}}
+, \mbox{\hyperlink{group__tasks11_gga64f3e0ad0f68b11e5283c8f9c6f551eaa5f6feca665c20c06c16a8988cb6959c3}{SWITCH\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+CHANNEL}}
+, \mbox{\hyperlink{group__tasks11_gga64f3e0ad0f68b11e5283c8f9c6f551eaac54bcd219c8960421407b5cffaaf5c4f}{SWITCH\+\_\+\+ERR\+\_\+\+MUTEX\+\_\+\+TIMEOUT}}
+, \newline
+\mbox{\hyperlink{group__tasks11_gga64f3e0ad0f68b11e5283c8f9c6f551eaa1dcb4f0a00b7fff88f0ad1d794a67859}{SWITCH\+\_\+\+ERR\+\_\+\+I2\+C\+\_\+\+FAIL}}
+, \mbox{\hyperlink{group__tasks11_gga64f3e0ad0f68b11e5283c8f9c6f551eaa44f56bfdb779201cde05b18399b981e0}{SWITCH\+\_\+\+ERR\+\_\+\+VERIFY\+\_\+\+FAIL}}
+, \mbox{\hyperlink{group__tasks11_gga64f3e0ad0f68b11e5283c8f9c6f551eaa529829f25b105d17bc49b74a289224de}{SWITCH\+\_\+\+ERR\+\_\+\+OVERCURRENT}}
+, \mbox{\hyperlink{group__tasks11_gga64f3e0ad0f68b11e5283c8f9c6f551eaa42877200b005671111e3a6fb0c5c0523}{SWITCH\+\_\+\+ERR\+\_\+\+NULL\+\_\+\+PARAM}}
+ \}
+\begin{DoxyCompactList}\small\item\em Switch operation result codes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{Indent}\textbf{ Public API}\par
+\begin{DoxyCompactItemize}
+\item 
+Base\+Type\+\_\+t \mbox{\hyperlink{group__tasks11_gadb05f16c80e367211f6a0bef7cedfc1f}{Switch\+Task\+\_\+\+Init}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Initialize and start the Switch\+Task. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks11_gaadad543913d4fa9faefda9082b0b7c91}{Switch\+\_\+\+Is\+Ready}} (void)
+\begin{DoxyCompactList}\small\item\em Check if Switch\+Task is ready for operations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__tasks11_ga64f3e0ad0f68b11e5283c8f9c6f551ea}{switch\+\_\+result\+\_\+t}} \mbox{\hyperlink{group__tasks11_ga84e3359029bd29e598f346dad2255899}{Switch\+\_\+\+Get\+State}} (uint8\+\_\+t channel, bool \texorpdfstring{$\ast$}{*}out\+\_\+state)
+\begin{DoxyCompactList}\small\item\em Get current relay channel state from hardware. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__tasks11_ga64f3e0ad0f68b11e5283c8f9c6f551ea}{switch\+\_\+result\+\_\+t}} \mbox{\hyperlink{group__tasks11_ga622d027de675f1438882d66f24d6bdb7}{Switch\+\_\+\+Get\+All\+States}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}out\+\_\+mask)
+\begin{DoxyCompactList}\small\item\em Get all 8 channel states from hardware. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__tasks11_ga64f3e0ad0f68b11e5283c8f9c6f551ea}{switch\+\_\+result\+\_\+t}} \mbox{\hyperlink{group__tasks11_gabd8f13f37bd62b267259ae2d027bda28}{Switch\+\_\+\+Set\+Channel}} (uint8\+\_\+t channel, bool state)
+\begin{DoxyCompactList}\small\item\em Set single relay channel state with verification. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__tasks11_ga64f3e0ad0f68b11e5283c8f9c6f551ea}{switch\+\_\+result\+\_\+t}} \mbox{\hyperlink{group__tasks11_ga0dc547344c666f64e755f89d09d8b5e4}{Switch\+\_\+\+Toggle}} (uint8\+\_\+t channel)
+\begin{DoxyCompactList}\small\item\em Toggle single relay channel with verification. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__tasks11_ga64f3e0ad0f68b11e5283c8f9c6f551ea}{switch\+\_\+result\+\_\+t}} \mbox{\hyperlink{group__tasks11_ga5d472b53fb4a91dee92b07282779b570}{Switch\+\_\+\+All\+On}} (void)
+\begin{DoxyCompactList}\small\item\em Turn all relay channels ON with verification. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__tasks11_ga64f3e0ad0f68b11e5283c8f9c6f551ea}{switch\+\_\+result\+\_\+t}} \mbox{\hyperlink{group__tasks11_ga6d7e4669c03c8bd5f6e47e4166627c2b}{Switch\+\_\+\+All\+Off}} (void)
+\begin{DoxyCompactList}\small\item\em Turn all relay channels OFF with verification. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__tasks11_ga64f3e0ad0f68b11e5283c8f9c6f551ea}{switch\+\_\+result\+\_\+t}} \mbox{\hyperlink{group__tasks11_gac03ed713c1c6d4402e28852482171290}{Switch\+\_\+\+Set\+Mask}} (uint8\+\_\+t mask)
+\begin{DoxyCompactList}\small\item\em Set multiple channels via bitmask with verification. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks11_ga19c6dbf15503e4ca3c985e5acd42c278}{Switch\+\_\+\+Get\+State\+Compat}} (uint8\+\_\+t channel, bool \texorpdfstring{$\ast$}{*}out\+\_\+state)
+\begin{DoxyCompactList}\small\item\em Legacy wrapper for Switch\+\_\+\+Get\+State. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks11_gaef7818ff67a4d2235b897909f9fe6744}{Switch\+\_\+\+Set\+Channel\+Compat}} (uint8\+\_\+t channel, bool state, uint32\+\_\+t timeout\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Legacy wrapper for Switch\+\_\+\+Set\+Channel. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks11_ga5668cd5c93cc64bb2d551bb9ab90d610}{Switch\+\_\+\+Toggle\+Compat}} (uint8\+\_\+t channel, uint32\+\_\+t timeout\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Legacy wrapper for Switch\+\_\+\+Toggle. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks11_ga535deab4f947688ac90e48d7b6089f37}{Switch\+\_\+\+All\+On\+Compat}} (uint32\+\_\+t timeout\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Legacy wrapper for Switch\+\_\+\+All\+On. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks11_gae3abe0a8fcbfd0f0f5659784f8529d0a}{Switch\+\_\+\+All\+Off\+Compat}} (uint32\+\_\+t timeout\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Legacy wrapper for Switch\+\_\+\+All\+Off. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks11_gabb0de987436db6762211cd48049c73f5}{Switch\+\_\+\+Set\+Mask\+Compat}} (uint8\+\_\+t mask, uint32\+\_\+t timeout\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Legacy wrapper for Switch\+\_\+\+Set\+Mask. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks11_gaabc2d09a184f003994dc97e1f33ffea2}{Switch\+\_\+\+Set\+Relay\+Port\+BMasked}} (uint8\+\_\+t mask, uint8\+\_\+t value, uint32\+\_\+t timeout\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Set relay MCP Port B masked bits (MUX control). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks11_ga422f1d39bad24719818ed9a06ba7d8e7}{Switch\+\_\+\+Select\+All\+Off}} (uint32\+\_\+t timeout\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Turn off all selection LEDs. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks11_ga350ee69c82fbab2a27ec7bb3a723806f}{Switch\+\_\+\+Select\+Show}} (uint8\+\_\+t index, bool on, uint32\+\_\+t timeout\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Show (or hide) the selection LED for a given index. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks11_gaab4189cd5d61b2c583d85150b87147ad}{Switch\+\_\+\+Set\+Fault\+Led}} (bool state, uint32\+\_\+t timeout\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Set FAULT LED on display MCP. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks11_ga2777a225e3f0db8b4d227771b78a2532}{Switch\+\_\+\+Set\+Pwr\+Led}} (bool state, uint32\+\_\+t timeout\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Set POWER GOOD LED on display MCP. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks11_ga4531b6b0fc77db5d8d96d7ab477361ae}{Switch\+\_\+\+Set\+Eth\+Led}} (bool state, uint32\+\_\+t timeout\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Set NETWORK LINK LED on display MCP. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks11_gabc5e948e23445e07eb03320a0c518c4f}{Switch\+\_\+\+Sync\+From\+Hardware}} (uint32\+\_\+t timeout\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Force synchronization of cache from hardware. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__tasks11_ga9f44ebe178dec92605d90260badab61a}{Switch\+\_\+\+Get\+Cached\+Mask}} (void)
+\begin{DoxyCompactList}\small\item\em Get cached state mask (non-\/blocking, may be stale). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks11_gab96571983d5766b065d2f4452bd023f1}{Switch\+\_\+\+Set\+Manual\+Panel\+Active}} (bool active)
+\begin{DoxyCompactList}\small\item\em Enable/disable front-\/panel (manual) selection updates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

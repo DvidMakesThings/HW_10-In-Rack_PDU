@@ -1,0 +1,313 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item I2C Bus Manager 
+\end{DoxyEnumerate}}
+\hypertarget{group__drivers01}{}\label{group__drivers01}\index{1. I2C Bus Manager@{1. I2C Bus Manager}}
+
+
+Centralized, serialized I2C access with synchronous wrappers.  
+
+
+Collaboration diagram for 1. I2C Bus Manager\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=267pt]{group__drivers01}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__drivers01_ga9c76037250f6dc0a30507d349e7248e1}{I2\+C\+\_\+\+Bus\+Lock}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c)
+\item 
+void \mbox{\hyperlink{group__drivers01_gaf26d164f7fc711b6c91d9a4b397daea3}{I2\+C\+\_\+\+Bus\+Unlock}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c)
+\item 
+void \mbox{\hyperlink{group__drivers01_ga8bf0403f2c78483c3afc9ffea67c425f}{I2\+C\+\_\+\+Bus\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the global I2C bus manager task and queue. Must be called once after hardware i2c\+\_\+init() and before clients use wrappers. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__drivers01_ga170d6c4ff97ddc2d314f0a7a0054f283}{i2c\+\_\+bus\+\_\+write\+\_\+timeout\+\_\+us}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}src, size\+\_\+t len, bool nostop, uint32\+\_\+t timeout\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK {\ttfamily i2c\+\_\+write\+\_\+timeout\+\_\+us} signature/semantics, but serialized via a FIFO. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__drivers01_ga5caa937abd50ec32925c6283a37ef7da}{i2c\+\_\+bus\+\_\+read\+\_\+timeout\+\_\+us}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}dst, size\+\_\+t len, bool nostop, uint32\+\_\+t timeout\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Queue a read on the specified I2C controller and wait synchronously. Mirrors Pico SDK {\ttfamily i2c\+\_\+read\+\_\+timeout\+\_\+us} signature/semantics, but serialized via a FIFO. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__drivers01_ga417adf0354f9f45105255aa06562fc90}{i2c\+\_\+bus\+\_\+write\+\_\+read}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}wsrc, size\+\_\+t wlen, uint8\+\_\+t \texorpdfstring{$\ast$}{*}rdst, size\+\_\+t rlen, uint32\+\_\+t timeout\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Atomically perform a write (no stop) followed immediately by a read. Ensures the repeated-\/start sequence is not interleaved with other transactions. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers01_gab7b4aa096ded6cebd93256e5b5994e42}{i2c\+\_\+bus\+\_\+write\+\_\+reg8}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, uint8\+\_\+t reg, uint8\+\_\+t value, uint32\+\_\+t timeout\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Write 8-\/bit register with 8-\/bit value\+: \mbox{[}reg, value\mbox{]}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers01_ga0e406d50e8948e593649a11c729acd9b}{i2c\+\_\+bus\+\_\+read\+\_\+reg8}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, uint8\+\_\+t reg, uint8\+\_\+t \texorpdfstring{$\ast$}{*}out, uint32\+\_\+t timeout\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Read 8-\/bit register\+: write \mbox{[}reg\mbox{]} (no stop), then read 1 byte. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers01_ga77ca38d627119d534873e177c5f4a667}{i2c\+\_\+bus\+\_\+write\+\_\+mem16}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, uint16\+\_\+t mem, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}src, size\+\_\+t len, uint32\+\_\+t timeout\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Write to 16-\/bit memory address\+: \mbox{[}mem\+\_\+hi, mem\+\_\+lo, data...\mbox{]}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers01_ga66ae4c7028f764a3770cabe101dba8bf}{i2c\+\_\+bus\+\_\+read\+\_\+mem16}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, uint16\+\_\+t mem, uint8\+\_\+t \texorpdfstring{$\ast$}{*}dst, size\+\_\+t len, uint32\+\_\+t timeout\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Read from 16-\/bit memory address\+: write \mbox{[}mem\+\_\+hi, mem\+\_\+lo\mbox{]} (no stop), then read len bytes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Centralized, serialized I2C access with synchronous wrappers. 
+
+\begin{DoxyVersion}{Version}
+2.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/12-\/17
+\end{DoxyDate}
+Exposes synchronous wrappers around Pico SDK I2C functions that are serialized through a single FIFO/\+Task, ensuring no interleaved accesses across controllers. This improves determinism under high load (e.\+g. SNMP stress) and avoids re-\/entrancy concerns.
+
+Usage\+:
+\begin{DoxyItemize}
+\item Call \doxylink{group__drivers01_ga8bf0403f2c78483c3afc9ffea67c425f}{I2\+C\+\_\+\+Bus\+Init()} once during system startup
+\item Use i2c\+\_\+bus\+\_\+\texorpdfstring{$\ast$}{*} helpers instead of direct Pico SDK calls
+\item Optional legacy lock/unlock are still available for compatibility
+\end{DoxyItemize}
+
+Thread-\/safety\+:
+\begin{DoxyItemize}
+\item All functions are safe to call from multiple tasks; requests are queued.
+\end{DoxyItemize}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-func-members}
+\Hypertarget{group__drivers01_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__drivers01_ga66ae4c7028f764a3770cabe101dba8bf}\index{1. I2C Bus Manager@{1. I2C Bus Manager}!i2c\_bus\_read\_mem16@{i2c\_bus\_read\_mem16}}
+\index{i2c\_bus\_read\_mem16@{i2c\_bus\_read\_mem16}!1. I2C Bus Manager@{1. I2C Bus Manager}}
+\doxysubsubsubsection{\texorpdfstring{i2c\_bus\_read\_mem16()}{i2c\_bus\_read\_mem16()}}
+{\footnotesize\ttfamily \label{group__drivers01_ga66ae4c7028f764a3770cabe101dba8bf} 
+bool i2c\+\_\+bus\+\_\+read\+\_\+mem16 (\begin{DoxyParamCaption}\item[{i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}}]{i2c}{, }\item[{uint8\+\_\+t}]{addr}{, }\item[{uint16\+\_\+t}]{mem}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{dst}{, }\item[{size\+\_\+t}]{len}{, }\item[{uint32\+\_\+t}]{timeout\+\_\+us}{}\end{DoxyParamCaption})}
+
+
+
+Read from 16-\/bit memory address\+: write \mbox{[}mem\+\_\+hi, mem\+\_\+lo\mbox{]} (no stop), then read len bytes. 
+
+\begin{DoxyReturn}{Returns}
+true on success, and fills dst 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers01_ga66ae4c7028f764a3770cabe101dba8bf_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers01_ga66ae4c7028f764a3770cabe101dba8bf_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers01_ga0e406d50e8948e593649a11c729acd9b}\index{1. I2C Bus Manager@{1. I2C Bus Manager}!i2c\_bus\_read\_reg8@{i2c\_bus\_read\_reg8}}
+\index{i2c\_bus\_read\_reg8@{i2c\_bus\_read\_reg8}!1. I2C Bus Manager@{1. I2C Bus Manager}}
+\doxysubsubsubsection{\texorpdfstring{i2c\_bus\_read\_reg8()}{i2c\_bus\_read\_reg8()}}
+{\footnotesize\ttfamily \label{group__drivers01_ga0e406d50e8948e593649a11c729acd9b} 
+bool i2c\+\_\+bus\+\_\+read\+\_\+reg8 (\begin{DoxyParamCaption}\item[{i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}}]{i2c}{, }\item[{uint8\+\_\+t}]{addr}{, }\item[{uint8\+\_\+t}]{reg}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{out}{, }\item[{uint32\+\_\+t}]{timeout\+\_\+us}{}\end{DoxyParamCaption})}
+
+
+
+Read 8-\/bit register\+: write \mbox{[}reg\mbox{]} (no stop), then read 1 byte. 
+
+\begin{DoxyReturn}{Returns}
+true on success, and writes into out 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{group__drivers01_ga0e406d50e8948e593649a11c729acd9b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers01_ga0e406d50e8948e593649a11c729acd9b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers01_ga5caa937abd50ec32925c6283a37ef7da}\index{1. I2C Bus Manager@{1. I2C Bus Manager}!i2c\_bus\_read\_timeout\_us@{i2c\_bus\_read\_timeout\_us}}
+\index{i2c\_bus\_read\_timeout\_us@{i2c\_bus\_read\_timeout\_us}!1. I2C Bus Manager@{1. I2C Bus Manager}}
+\doxysubsubsubsection{\texorpdfstring{i2c\_bus\_read\_timeout\_us()}{i2c\_bus\_read\_timeout\_us()}}
+{\footnotesize\ttfamily \label{group__drivers01_ga5caa937abd50ec32925c6283a37ef7da} 
+int i2c\+\_\+bus\+\_\+read\+\_\+timeout\+\_\+us (\begin{DoxyParamCaption}\item[{i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}}]{i2c}{, }\item[{uint8\+\_\+t}]{addr}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{dst}{, }\item[{size\+\_\+t}]{len}{, }\item[{bool}]{nostop}{, }\item[{uint32\+\_\+t}]{timeout\+\_\+us}{}\end{DoxyParamCaption})}
+
+
+
+Queue a read on the specified I2C controller and wait synchronously. Mirrors Pico SDK {\ttfamily i2c\+\_\+read\+\_\+timeout\+\_\+us} signature/semantics, but serialized via a FIFO. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers01_ga5caa937abd50ec32925c6283a37ef7da_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers01_ga5caa937abd50ec32925c6283a37ef7da_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers01_ga77ca38d627119d534873e177c5f4a667}\index{1. I2C Bus Manager@{1. I2C Bus Manager}!i2c\_bus\_write\_mem16@{i2c\_bus\_write\_mem16}}
+\index{i2c\_bus\_write\_mem16@{i2c\_bus\_write\_mem16}!1. I2C Bus Manager@{1. I2C Bus Manager}}
+\doxysubsubsubsection{\texorpdfstring{i2c\_bus\_write\_mem16()}{i2c\_bus\_write\_mem16()}}
+{\footnotesize\ttfamily \label{group__drivers01_ga77ca38d627119d534873e177c5f4a667} 
+bool i2c\+\_\+bus\+\_\+write\+\_\+mem16 (\begin{DoxyParamCaption}\item[{i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}}]{i2c}{, }\item[{uint8\+\_\+t}]{addr}{, }\item[{uint16\+\_\+t}]{mem}{, }\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{src}{, }\item[{size\+\_\+t}]{len}{, }\item[{uint32\+\_\+t}]{timeout\+\_\+us}{}\end{DoxyParamCaption})}
+
+
+
+Write to 16-\/bit memory address\+: \mbox{[}mem\+\_\+hi, mem\+\_\+lo, data...\mbox{]}. 
+
+\begin{DoxyReturn}{Returns}
+true on success 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers01_ga77ca38d627119d534873e177c5f4a667_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers01_ga77ca38d627119d534873e177c5f4a667_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers01_ga417adf0354f9f45105255aa06562fc90}\index{1. I2C Bus Manager@{1. I2C Bus Manager}!i2c\_bus\_write\_read@{i2c\_bus\_write\_read}}
+\index{i2c\_bus\_write\_read@{i2c\_bus\_write\_read}!1. I2C Bus Manager@{1. I2C Bus Manager}}
+\doxysubsubsubsection{\texorpdfstring{i2c\_bus\_write\_read()}{i2c\_bus\_write\_read()}}
+{\footnotesize\ttfamily \label{group__drivers01_ga417adf0354f9f45105255aa06562fc90} 
+int i2c\+\_\+bus\+\_\+write\+\_\+read (\begin{DoxyParamCaption}\item[{i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}}]{i2c}{, }\item[{uint8\+\_\+t}]{addr}{, }\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{wsrc}{, }\item[{size\+\_\+t}]{wlen}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{rdst}{, }\item[{size\+\_\+t}]{rlen}{, }\item[{uint32\+\_\+t}]{timeout\+\_\+us}{}\end{DoxyParamCaption})}
+
+
+
+Atomically perform a write (no stop) followed immediately by a read. Ensures the repeated-\/start sequence is not interleaved with other transactions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i2c} & I2C controller \\
+\hline
+{\em addr} & 7-\/bit I2C address \\
+\hline
+{\em wsrc} & Write buffer (address phase or register/memory bytes) \\
+\hline
+{\em wlen} & Length of write buffer \\
+\hline
+{\em rdst} & Read buffer destination \\
+\hline
+{\em rlen} & Length of read buffer \\
+\hline
+{\em timeout\+\_\+us} & Per-\/op timeout in microseconds \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of bytes read on success, negative on failure 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers01_ga417adf0354f9f45105255aa06562fc90_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers01_gab7b4aa096ded6cebd93256e5b5994e42}\index{1. I2C Bus Manager@{1. I2C Bus Manager}!i2c\_bus\_write\_reg8@{i2c\_bus\_write\_reg8}}
+\index{i2c\_bus\_write\_reg8@{i2c\_bus\_write\_reg8}!1. I2C Bus Manager@{1. I2C Bus Manager}}
+\doxysubsubsubsection{\texorpdfstring{i2c\_bus\_write\_reg8()}{i2c\_bus\_write\_reg8()}}
+{\footnotesize\ttfamily \label{group__drivers01_gab7b4aa096ded6cebd93256e5b5994e42} 
+bool i2c\+\_\+bus\+\_\+write\+\_\+reg8 (\begin{DoxyParamCaption}\item[{i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}}]{i2c}{, }\item[{uint8\+\_\+t}]{addr}{, }\item[{uint8\+\_\+t}]{reg}{, }\item[{uint8\+\_\+t}]{value}{, }\item[{uint32\+\_\+t}]{timeout\+\_\+us}{}\end{DoxyParamCaption})}
+
+
+
+Write 8-\/bit register with 8-\/bit value\+: \mbox{[}reg, value\mbox{]}. 
+
+\begin{DoxyReturn}{Returns}
+true on success 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers01_gab7b4aa096ded6cebd93256e5b5994e42_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers01_gab7b4aa096ded6cebd93256e5b5994e42_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers01_ga170d6c4ff97ddc2d314f0a7a0054f283}\index{1. I2C Bus Manager@{1. I2C Bus Manager}!i2c\_bus\_write\_timeout\_us@{i2c\_bus\_write\_timeout\_us}}
+\index{i2c\_bus\_write\_timeout\_us@{i2c\_bus\_write\_timeout\_us}!1. I2C Bus Manager@{1. I2C Bus Manager}}
+\doxysubsubsubsection{\texorpdfstring{i2c\_bus\_write\_timeout\_us()}{i2c\_bus\_write\_timeout\_us()}}
+{\footnotesize\ttfamily \label{group__drivers01_ga170d6c4ff97ddc2d314f0a7a0054f283} 
+int i2c\+\_\+bus\+\_\+write\+\_\+timeout\+\_\+us (\begin{DoxyParamCaption}\item[{i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}}]{i2c}{, }\item[{uint8\+\_\+t}]{addr}{, }\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{src}{, }\item[{size\+\_\+t}]{len}{, }\item[{bool}]{nostop}{, }\item[{uint32\+\_\+t}]{timeout\+\_\+us}{}\end{DoxyParamCaption})}
+
+
+
+Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK {\ttfamily i2c\+\_\+write\+\_\+timeout\+\_\+us} signature/semantics, but serialized via a FIFO. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers01_ga170d6c4ff97ddc2d314f0a7a0054f283_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers01_ga170d6c4ff97ddc2d314f0a7a0054f283_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers01_ga8bf0403f2c78483c3afc9ffea67c425f}\index{1. I2C Bus Manager@{1. I2C Bus Manager}!I2C\_BusInit@{I2C\_BusInit}}
+\index{I2C\_BusInit@{I2C\_BusInit}!1. I2C Bus Manager@{1. I2C Bus Manager}}
+\doxysubsubsubsection{\texorpdfstring{I2C\_BusInit()}{I2C\_BusInit()}}
+{\footnotesize\ttfamily \label{group__drivers01_ga8bf0403f2c78483c3afc9ffea67c425f} 
+void I2\+C\+\_\+\+Bus\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Initialize the global I2C bus manager task and queue. Must be called once after hardware i2c\+\_\+init() and before clients use wrappers. 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers01_ga8bf0403f2c78483c3afc9ffea67c425f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__drivers01_ga8bf0403f2c78483c3afc9ffea67c425f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers01_ga9c76037250f6dc0a30507d349e7248e1}\index{1. I2C Bus Manager@{1. I2C Bus Manager}!I2C\_BusLock@{I2C\_BusLock}}
+\index{I2C\_BusLock@{I2C\_BusLock}!1. I2C Bus Manager@{1. I2C Bus Manager}}
+\doxysubsubsubsection{\texorpdfstring{I2C\_BusLock()}{I2C\_BusLock()}}
+{\footnotesize\ttfamily \label{group__drivers01_ga9c76037250f6dc0a30507d349e7248e1} 
+void I2\+C\+\_\+\+Bus\+Lock (\begin{DoxyParamCaption}\item[{i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}}]{i2c}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=266pt]{group__drivers01_ga9c76037250f6dc0a30507d349e7248e1_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__drivers01_gaf26d164f7fc711b6c91d9a4b397daea3}\index{1. I2C Bus Manager@{1. I2C Bus Manager}!I2C\_BusUnlock@{I2C\_BusUnlock}}
+\index{I2C\_BusUnlock@{I2C\_BusUnlock}!1. I2C Bus Manager@{1. I2C Bus Manager}}
+\doxysubsubsubsection{\texorpdfstring{I2C\_BusUnlock()}{I2C\_BusUnlock()}}
+{\footnotesize\ttfamily \label{group__drivers01_gaf26d164f7fc711b6c91d9a4b397daea3} 
+void I2\+C\+\_\+\+Bus\+Unlock (\begin{DoxyParamCaption}\item[{i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}}]{i2c}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=276pt]{group__drivers01_gaf26d164f7fc711b6c91d9a4b397daea3_cgraph}
+\end{center}
+\end{figure}

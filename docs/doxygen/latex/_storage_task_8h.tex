@@ -1,0 +1,140 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\+Storage\+Task.h File Reference}
+\hypertarget{_storage_task_8h}{}\label{_storage_task_8h}\index{src/Software/ENERGIS\_RTOS/src/tasks/StorageTask.h@{src/Software/ENERGIS\_RTOS/src/tasks/StorageTask.h}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for Storage\+Task.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_storage_task_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_storage_task_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structstorage__msg__t}{storage\+\_\+msg\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Storage request message (posted to q\+\_\+cfg) \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structstorage__cache__t}{storage\+\_\+cache\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em RAM cache structure (owned by Storage\+Task) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{Indent}\textbf{ Task Flags}\par
+{\em Config ready bit flag }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__tasks10_ga45e2408c44a60fd01883749225453e8f}{CFG\+\_\+\+READY\+\_\+\+BIT}}~(1 $<$$<$ 0)
+\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__tasks10_ga5ba5cfc55a0c0ff9a7f58f6a9802e226}{storage\+\_\+cmd\+\_\+t}} \{ \newline
+\mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226aa1b2efe89d16b67da39b8eccb7e16c48}{STORAGE\+\_\+\+CMD\+\_\+\+READ\+\_\+\+NETWORK}}
+, \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a05d874d45aa5701557ad94e2d6b38452}{STORAGE\+\_\+\+CMD\+\_\+\+WRITE\+\_\+\+NETWORK}}
+, \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a16e4f278afe38f6bdbcf3e6fb15a03cd}{STORAGE\+\_\+\+CMD\+\_\+\+READ\+\_\+\+PREFS}}
+, \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a30afcda48e9630e32955bf8fed9119f7}{STORAGE\+\_\+\+CMD\+\_\+\+WRITE\+\_\+\+PREFS}}
+, \newline
+\mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a8b3e0d704d4df8f02598cf3d4bd83beb}{STORAGE\+\_\+\+CMD\+\_\+\+READ\+\_\+\+RELAY\+\_\+\+STATES}}
+, \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226ab9ec18e2f0727b89433c8af08dd28b81}{STORAGE\+\_\+\+CMD\+\_\+\+WRITE\+\_\+\+RELAY\+\_\+\+STATES}}
+, \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226aa55e44f77cda055ae9552714e56b231e}{STORAGE\+\_\+\+CMD\+\_\+\+READ\+\_\+\+CHANNEL\+\_\+\+LABEL}}
+, \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226aaaf390f8f38c8ac5e9e143141913c7e3}{STORAGE\+\_\+\+CMD\+\_\+\+WRITE\+\_\+\+CHANNEL\+\_\+\+LABEL}}
+, \newline
+\mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a3506928d069500efc8900d8c013825e1}{STORAGE\+\_\+\+CMD\+\_\+\+COMMIT}}
+, \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a60687477ae1d86aabd018524429784e5}{STORAGE\+\_\+\+CMD\+\_\+\+LOAD\+\_\+\+DEFAULTS}}
+, \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a5ada85a4f12beb85083c88b8fd7f8746}{STORAGE\+\_\+\+CMD\+\_\+\+READ\+\_\+\+SENSOR\+\_\+\+CAL}}
+, \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a8299b7398cf194f858e121861cf9fff2}{STORAGE\+\_\+\+CMD\+\_\+\+WRITE\+\_\+\+SENSOR\+\_\+\+CAL}}
+, \newline
+\mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226ae3c0f096efc3f09972747e21bde5a784}{STORAGE\+\_\+\+CMD\+\_\+\+DUMP\+\_\+\+ERROR\+\_\+\+LOG}}
+, \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a22b467f20a2cbf80e62cc081b90c156a}{STORAGE\+\_\+\+CMD\+\_\+\+DUMP\+\_\+\+WARNING\+\_\+\+LOG}}
+, \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a6b207cbe70c44bc776fdadc118dc7013}{STORAGE\+\_\+\+CMD\+\_\+\+CLEAR\+\_\+\+ERROR\+\_\+\+LOG}}
+, \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a16bfee000531eed0d6eab8e990feb3e7}{STORAGE\+\_\+\+CMD\+\_\+\+CLEAR\+\_\+\+WARNING\+\_\+\+LOG}}
+, \newline
+\mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a59b826401ea7cbc617d29e1cf59c4e9e}{STORAGE\+\_\+\+CMD\+\_\+\+ERASE\+\_\+\+ALL}}
+, \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226abea6af041e6361673510b8676c2df65d}{STORAGE\+\_\+\+CMD\+\_\+\+DUMP\+\_\+\+FORMATTED}}
+, \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a70dda4dde4951684745d2178002c6334}{STORAGE\+\_\+\+CMD\+\_\+\+SAVE\+\_\+\+USER\+\_\+\+OUTPUT\+\_\+\+PRESET}}
+, \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a5d36c43430afd13344f689689d88c5f4}{STORAGE\+\_\+\+CMD\+\_\+\+DELETE\+\_\+\+USER\+\_\+\+OUTPUT\+\_\+\+PRESET}}
+, \newline
+\mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a3e50aac776e7884a0785ad929535a4fa}{STORAGE\+\_\+\+CMD\+\_\+\+SET\+\_\+\+STARTUP\+\_\+\+PRESET}}
+, \mbox{\hyperlink{group__tasks10_gga5ba5cfc55a0c0ff9a7f58f6a9802e226a978ad0bcb18f7d7ac82c88e682de78be}{STORAGE\+\_\+\+CMD\+\_\+\+CLEAR\+\_\+\+STARTUP\+\_\+\+PRESET}}
+ \}
+\begin{DoxyCompactList}\small\item\em Command types processed by Storage\+Task via q\+\_\+cfg. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{Indent}\textbf{ Public API}\par
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{group__tasks10_ga84bff75330a6c83d2e407ed67f91b42c}{storage\+\_\+dump\+\_\+formatted\+\_\+async}} (void)
+\begin{DoxyCompactList}\small\item\em Trigger a formatted EEPROM dump asynchronously. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga8b5d786522ab539d03629fe26e59feac}{storage\+\_\+erase\+\_\+all\+\_\+async}} (void)
+\begin{DoxyCompactList}\small\item\em Start full EEPROM erase (async, watchdog-\/safe). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga1f15ee7aca9bde86802f18a6115232ec}{storage\+\_\+erase\+\_\+all\+\_\+is\+\_\+busy}} (void)
+\begin{DoxyCompactList}\small\item\em Check if EEPROM erase is in progress. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks10_ga26dbdabce55a139cf536e8469373b7c4}{Storage\+Task\+\_\+\+Init}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Initialize and start the Storage task with a deterministic enable gate. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga9f739ec7195c1d9f17c6a48ecfa121b4}{storage\+\_\+save\+\_\+preset}} (uint8\+\_\+t index, const char \texorpdfstring{$\ast$}{*}name, uint8\+\_\+t mask)
+\begin{DoxyCompactList}\small\item\em Save a user output preset via Storage\+Task. Enqueues a message to perform the save on the Storage\+Task thread. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga7174a6c72a5b95807a0c02f2bb9871bf}{storage\+\_\+delete\+\_\+preset}} (uint8\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Delete a user output preset via Storage\+Task. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga5689969f8de481f2f5533245da6b315f}{storage\+\_\+set\+\_\+startup\+\_\+preset}} (uint8\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Set startup preset via Storage\+Task. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga0e8d9cfcef8d0dabb1f981d61e7f41c4}{storage\+\_\+clear\+\_\+startup\+\_\+preset}} (void)
+\begin{DoxyCompactList}\small\item\em Clear startup preset via Storage\+Task. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_gadff2b57dc3c074453ee1393d0f6f3623}{Storage\+\_\+\+Is\+Ready}} (void)
+\begin{DoxyCompactList}\small\item\em Storage subsystem readiness query (configuration loaded). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_gaad6cb463ba1647fe51faeea5f08268da}{Storage\+\_\+\+Config\+\_\+\+Is\+Ready}} (void)
+\begin{DoxyCompactList}\small\item\em Check if config is loaded and ready. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_gafeb6e0067e67c68af21f0eeae1d1279a}{storage\+\_\+wait\+\_\+ready}} (uint32\+\_\+t timeout\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Wait for config to be loaded from EEPROM. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga422389bc6e9270118a931e58981753f9}{storage\+\_\+get\+\_\+network}} (\mbox{\hyperlink{structnetwork_info}{network\+Info}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Get current network config (from RAM cache). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_gabe45ebb96c320636c4a5e969e59a9f4a}{storage\+\_\+set\+\_\+network}} (const \mbox{\hyperlink{structnetwork_info}{network\+Info}} \texorpdfstring{$\ast$}{*}net)
+\begin{DoxyCompactList}\small\item\em Set network config (update RAM cache, schedule EEPROM write). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga10ecafb6284cb48bde01319b72dd548d}{storage\+\_\+get\+\_\+prefs}} (\mbox{\hyperlink{structuser_pref_info}{user\+Pref\+Info}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Get current user preferences (from RAM cache). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga282d408c2379357ac6ac1b98cbf907ba}{storage\+\_\+set\+\_\+prefs}} (const \mbox{\hyperlink{structuser_pref_info}{user\+Pref\+Info}} \texorpdfstring{$\ast$}{*}prefs)
+\begin{DoxyCompactList}\small\item\em Set user preferences (update RAM cache, schedule EEPROM write). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_gafecdd5e5972ee20f38816f87b30152e0}{storage\+\_\+get\+\_\+relay\+\_\+states}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Get relay power-\/on states (from RAM cache). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga761b912e22cfdc3710e7facea80e564e}{storage\+\_\+set\+\_\+relay\+\_\+states}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}states)
+\begin{DoxyCompactList}\small\item\em Set relay power-\/on states (update RAM cache, schedule write). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_gac76c462f26b55c553f69180c76b0729b}{storage\+\_\+commit\+\_\+now}} (uint32\+\_\+t timeout\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Force immediate commit of all pending changes to EEPROM. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga9b03bccea9582d81071026a75020a89a}{storage\+\_\+load\+\_\+defaults}} (uint32\+\_\+t timeout\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Reset all config to factory defaults. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_gab4c46386e5942f7de1f3a5be1a1b8fa9}{storage\+\_\+get\+\_\+sensor\+\_\+cal}} (uint8\+\_\+t channel, \mbox{\hyperlink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}out)
+\begin{DoxyCompactList}\small\item\em Get sensor calibration for one channel (from RAM cache). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga358cb2af62e67be54bc8228d8074563d}{storage\+\_\+set\+\_\+sensor\+\_\+cal}} (uint8\+\_\+t channel, const \mbox{\hyperlink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t}} \texorpdfstring{$\ast$}{*}cal)
+\begin{DoxyCompactList}\small\item\em Set sensor calibration for one channel (update cache, schedule write). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks10_ga78c530f9c7ec4d2330e6d1a092df6dc0}{Storage\+\_\+\+Enqueue\+Error\+Code}} (uint16\+\_\+t code)
+\begin{DoxyCompactList}\small\item\em Non-\/blocking enqueue of error/warning codes. These can be safely called from any task context. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks10_gac25626a70e6fe0baeaa167d47bed33d1}{Storage\+\_\+\+Enqueue\+Warning\+Code}} (uint16\+\_\+t code)
+\begin{DoxyCompactList}\small\item\em Non-\/blocking enqueue of warning codes. These can be safely called from any task context. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_ga423080bfa834046c228f9b5e7a83999e}{storage\+\_\+dump\+\_\+error\+\_\+log\+\_\+async}} (void)
+\begin{DoxyCompactList}\small\item\em Asynchronously dump the error event log region in hex format. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_gab41c0a3084c3335d1f8cbe0bb50ff3af}{storage\+\_\+dump\+\_\+warning\+\_\+log\+\_\+async}} (void)
+\begin{DoxyCompactList}\small\item\em Asynchronously dump the warning event log region in hex format. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_gae7a93a44989ffe1e7ed93e7f76613c89}{storage\+\_\+clear\+\_\+error\+\_\+log\+\_\+async}} (void)
+\begin{DoxyCompactList}\small\item\em Asynchronously clear the error event log region in EEPROM. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__tasks10_gab4d1bea675979447fdffabc6d58310c5}{storage\+\_\+clear\+\_\+warning\+\_\+log\+\_\+async}} (void)
+\begin{DoxyCompactList}\small\item\em Asynchronously clear the warning event log region in EEPROM. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Semaphore\+Handle\+\_\+t \mbox{\hyperlink{group__tasks10_gaf015228821869529545d62856625c224}{eeprom\+Mtx}}
+\item 
+Event\+Group\+Handle\+\_\+t \mbox{\hyperlink{group__tasks10_ga0ea67700c08dc702805d3eebd8fd2541}{cfg\+Events}}
+\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{group__tasks10_ga9042a1723c10aaba2b8e74b72e953ca7}{g\+\_\+error\+Code\+Queue}}
+\begin{DoxyCompactList}\small\item\em Queue handles for deferred error/warning logging. \end{DoxyCompactList}\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{group__tasks10_ga8217a535f95788fd84b724d4a31fc967}{g\+\_\+warning\+Code\+Queue}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

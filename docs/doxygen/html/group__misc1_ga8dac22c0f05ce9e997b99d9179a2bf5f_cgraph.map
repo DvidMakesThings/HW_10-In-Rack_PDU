@@ -1,0 +1,17 @@
+<map id="CrashLog_RecordWdtFeed" name="CrashLog_RecordWdtFeed">
+<area shape="rect" id="Node000001" title="Record a hardware watchdog feed timestamp for telemetry tracking." alt="" coords="5,81,185,108"/>
+<area shape="rect" id="Node000002" href="$crashlog_8c.html#a9207dc5d61cc94ea574ba706f3195453" title="Initialize retained crash log structure to clean state." alt="" coords="233,5,346,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,78,238,36,240,41,132,83"/>
+<area shape="rect" id="Node000003" href="$crashlog_8c.html#a50f52af1f76175e818dad1ef9f2bc3eb" title="Recompute and store updated CRC32 for the crash log structure." alt="" coords="408,56,532,83"/>
+<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="185,86,392,72,392,77,185,91"/>
+<area shape="rect" id="Node000005" href="$crashlog_8c.html#a19fbb6b4d2a38070175773953f6fb5db" title="Validate retained crash log header and CRC32 checksum." alt="" coords="394,107,545,133"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="185,98,378,111,378,117,185,103"/>
+<area shape="rect" id="Node000006" href="$_button_task_8c.html#a50503dee6a29e98e633b16b1b8b550bc" title="Get current system time in milliseconds." alt="" coords="254,157,324,184"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="132,106,241,149,239,154,131,111"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="340,30,406,49,404,54,339,35"/>
+<area shape="rect" id="Node000004" href="$crashlog_8c.html#ae55aac5d65874421d290cce57ce04ed5" title="Compute CRC32 checksum using standard polynomial 0xEDB88320." alt="" coords="593,81,686,108"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="533,76,578,83,578,88,532,81"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="545,106,577,101,578,106,546,111"/>
+<area shape="rect" id="Node000007" href="$group__driver01.html#ga038e6418532b3e07206ada073cf02f22" title="Get monotonic millisecond timestamp since boot." alt="" coords="404,157,536,184"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="325,168,388,168,388,173,325,173"/>
+</map>

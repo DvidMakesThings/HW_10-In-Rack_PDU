@@ -1,0 +1,9 @@
+<map id="i2c_bus_write_reg8" name="i2c_bus_write_reg8">
+<area shape="rect" id="Node000001" title="Write 8&#45;bit register with 8&#45;bit value: [reg, value]." alt="" coords="5,31,139,57"/>
+<area shape="rect" id="Node000002" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="212,5,334,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,33,197,26,197,31,140,38"/>
+<area shape="rect" id="Node000003" href="$group__drivers01.html#ga170d6c4ff97ddc2d314f0a7a0054f283" title="Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK i2c_write_time..." alt="" coords="187,56,359,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="140,50,171,54,171,59,139,55"/>
+<area shape="rect" id="Node000004" href="$i2c__bus_8c.html#afbaa64f79bdd1fa39c8fa5b7a9c2717b" title=" " alt="" coords="407,56,564,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="360,67,391,67,391,72,360,72"/>
+</map>

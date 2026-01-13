@@ -1,0 +1,50 @@
+\doxysection{channel\+\_\+labels.\+h}
+\hypertarget{channel__labels_8h_source}{}\label{channel__labels_8h_source}\index{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/channel\_labels.h@{src/Software/ENERGIS\_RTOS/src/tasks/storage\_submodule/channel\_labels.h}}
+\mbox{\hyperlink{channel__labels_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#ifndef\ CHANNEL\_LABELS\_H}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ CHANNEL\_LABELS\_H}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_o_n_f_i_g_8h}{../../CONFIG.h}}"{}}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{comment}{/*\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\ */}}
+\DoxyCodeLine{00045\ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LOW-\/LEVEL\ EEPROM\ FUNCTIONS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00046\ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ (require\ eepromMtx\ to\ be\ held\ by\ caller)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00047\ \textcolor{comment}{/*\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\ */}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00060\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage02_ga6398fe537889dbfbfa6d9d64c4d7db88}{EEPROM\_WriteChannelLabel}}(uint8\_t\ channel\_index,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *label);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00073\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage02_ga32e401468db1696835d3afe7d799c23b}{EEPROM\_ReadChannelLabel}}(uint8\_t\ channel\_index,\ \textcolor{keywordtype}{char}\ *out,\ \textcolor{keywordtype}{size\_t}\ out\_len);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00082\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage02_gaf78531bf7a49a1b100af4fe0a8a1e2dd}{EEPROM\_ClearChannelLabel}}(uint8\_t\ channel\_index);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00092\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage02_ga67a2dd3f4c5ce4b35fcc26bf85f7d886}{EEPROM\_ClearAllChannelLabels}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{comment}{/*\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\ */}}
+\DoxyCodeLine{00095\ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RAM\ CACHE\ MANAGEMENT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00096\ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ (called\ by\ StorageTask\ during\ startup/write)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00097\ \textcolor{comment}{/*\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\ */}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00107\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__storage02_gad1cb7f9e0fd0395902ffd198dd6f2ee0}{ChannelLabels\_LoadFromEEPROM}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00119\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage02_ga99ae818723cc95ffd9af13c54cd7a352}{ChannelLabels\_GetCached}}(uint8\_t\ channel,\ \textcolor{keywordtype}{char}\ *out,\ \textcolor{keywordtype}{size\_t}\ out\_len);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00131\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{group__storage02_gaee4d746ce522f44d4c8d6d4c12216248}{ChannelLabels\_SetAndWrite}}(uint8\_t\ channel,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *label);}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \textcolor{comment}{/*\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\ */}}
+\DoxyCodeLine{00134\ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HIGH-\/LEVEL\ THREAD-\/SAFE\ FUNCTIONS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00135\ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ \ (safe\ to\ call\ from\ any\ task)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00136\ \textcolor{comment}{/*\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\ */}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00149\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__storage02_ga9b748e74135c13df21595e6db035de95}{storage\_get\_channel\_label}}(uint8\_t\ channel,\ \textcolor{keywordtype}{char}\ *out,\ \textcolor{keywordtype}{size\_t}\ out\_len);}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00161\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__storage02_ga9019937f0e528616251b6c085b7245a9}{storage\_set\_channel\_label}}(uint8\_t\ channel,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *label);}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00172\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{group__storage02_gad3ee11180cd1b8d9e0f174b2607ab429}{storage\_get\_all\_channel\_labels}}(\textcolor{keywordtype}{char}\ labels[ENERGIS\_NUM\_CHANNELS][26],\ \textcolor{keywordtype}{size\_t}\ label\_buf\_size);}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ CHANNEL\_LABELS\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00175\ }
+
+\end{DoxyCode}

@@ -5,15 +5,12 @@
  * @version 1.1.0
  * @date 2025-01-01
  *
- * @details Main HTTP server implementation using W5500 Ethernet controller.
- *          Handles all HTTP requests and routes to appropriate handlers.
- *          Uses spiMtx for thread-safe W5500 access.
+ * @details
+ * Implementation of HTTP/1.1 server with route-based dispatching and chunked transfer.
+ * Provides web interface and REST API access with TX watchdog protection.
  *
- * @note Due to size constraints of the preallocated W5500 TX buffer (8KB), and
- * the large size of HTML pages (some >8KB), this server implements chunked
- * sending of HTTP responses. For large pages, eg. help.html, the server uses
- * gzipped content stored in flash, which drastically reduces size and allows
- * fitting within TX buffer limits.
+ * Key implementation: chunked sending breaks large responses into 4KB chunks with delays
+ * to avoid overflowing W5500's 8KB TX buffer. Gzipped pages reduce transfer size.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -229,7 +226,7 @@ bool http_server_init(void) {
     if (!http_buf) {
 #if ERRORLOGGER
         uint16_t errorcode =
-            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_SERVER, 0x3);
+            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_SERVER, 0x1);
         ERROR_PRINT_CODE(errorcode, "%s HTTP buffer allocation failed\r\n", HTTP_SERVER_TAG);
         Storage_EnqueueErrorCode(errorcode);
 #endif
@@ -244,7 +241,7 @@ bool http_server_init(void) {
 
 #if ERRORLOGGER
         uint16_t errorcode =
-            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_SERVER, 0x4);
+            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_SERVER, 0x2);
         ERROR_PRINT_CODE(errorcode, "%s HTTP socket open failed\r\n", HTTP_SERVER_TAG);
         Storage_EnqueueErrorCode(errorcode);
 #endif
@@ -266,7 +263,7 @@ bool http_server_init(void) {
         vPortFree(http_buf);
 #if ERRORLOGGER
         uint16_t errorcode =
-            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_SERVER, 0x5);
+            ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_SERVER, 0x3);
         ERROR_PRINT_CODE(errorcode, "%s HTTP listen failed\r\n", HTTP_SERVER_TAG);
         Storage_EnqueueErrorCode(errorcode);
 #endif

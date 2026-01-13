@@ -16,17 +16,7 @@
 
 #define ST_ENERGY_MON_TAG "[ST-EMON]"
 
-/**
- * @brief Write energy monitoring region to EEPROM.
- *
- * Used for bulk writes of energy data. First 2 bytes are ring buffer pointer.
- *
- * CRITICAL: Must be called with eepromMtx held!
- *
- * @param data Source buffer containing energy data
- * @param len Number of bytes to write
- * @return 0 on success, -1 on bounds check failure or I2C error
- */
+/** @brief Write energy monitoring region. See energy_monitor.h. */
 int EEPROM_WriteEnergyMonitoring(const uint8_t *data, size_t len) {
     if (len > EEPROM_ENERGY_MON_SIZE) {
 #if ERRORLOGGER
@@ -42,15 +32,7 @@ int EEPROM_WriteEnergyMonitoring(const uint8_t *data, size_t len) {
     return CAT24C256_WriteBuffer(EEPROM_ENERGY_MON_START, data, (uint16_t)len);
 }
 
-/**
- * @brief Read energy monitoring region from EEPROM.
- *
- * CRITICAL: Must be called with eepromMtx held!
- *
- * @param data Destination buffer
- * @param len Number of bytes to read
- * @return 0 on success, -1 on bounds check failure
- */
+/** @brief Read energy monitoring region. See energy_monitor.h. */
 int EEPROM_ReadEnergyMonitoring(uint8_t *data, size_t len) {
     if (len > EEPROM_ENERGY_MON_SIZE) {
 #if ERRORLOGGER
@@ -67,25 +49,7 @@ int EEPROM_ReadEnergyMonitoring(uint8_t *data, size_t len) {
     return 0;
 }
 
-/**
- * @brief Append one energy record to the ring buffer.
- *
- * Ring buffer structure:
- * - Address 0x0800-0x0801: Write pointer (uint16_t)
- * - Address 0x0802+: Energy records (ENERGY_RECORD_SIZE bytes each)
- *
- * Process:
- * 1. Read current write pointer
- * 2. Calculate record address
- * 3. Write new record
- * 4. Increment and wrap pointer if needed
- * 5. Update pointer in EEPROM
- *
- * CRITICAL: Must be called with eepromMtx held!
- *
- * @param data Pointer to energy record (ENERGY_RECORD_SIZE bytes)
- * @return 0 on success, -1 on I2C write error
- */
+/** @brief Append energy record to ring buffer. See energy_monitor.h. */
 int EEPROM_AppendEnergyRecord(const uint8_t *data) {
     /* Read current write pointer from start of energy section */
     uint16_t ptr = 0;

@@ -1,0 +1,20 @@
+<map id="EEPROM_AppendCodeGeneric" name="EEPROM_AppendCodeGeneric">
+<area shape="rect" id="Node000001" title="Append one 16&#45;bit event code to a ring buffer region in EEPROM." alt="" coords="1225,31,1431,57"/>
+<area shape="rect" id="Node000002" href="$group__storage05.html#gaac46b7836e5834209a11390bf671aaea" title="Append error code to ring buffer. See event_log.h." alt="" coords="978,5,1167,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1209,35,1168,31,1168,25,1209,30"/>
+<area shape="rect" id="Node000009" href="$group__storage05.html#gab97b8ca8cca74eac342092d2e5cdb139" title="Append warning code to ring buffer. See event_log.h." alt="" coords="968,56,1177,83"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1209,58,1177,62,1177,56,1209,53"/>
+<area shape="rect" id="Node000003" href="$_storage_task_8c.html#a4f9335f77202f7c7e3d5f42edf956355" title="Flush queued error and warning codes into EEPROM event logs." alt="" coords="736,31,920,57"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="963,33,921,37,921,32,962,27"/>
+<area shape="rect" id="Node000004" href="$_storage_task_8c.html#a502037c1577c7bd180a629669af058f7" title="Storage task main function." alt="" coords="594,31,688,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="720,47,688,47,688,41,720,41"/>
+<area shape="rect" id="Node000005" href="$group__tasks10.html#ga26dbdabce55a139cf536e8469373b7c4" title="Initialize and start the Storage task with a deterministic enable gate. Creates mutex,..." alt="" coords="426,31,546,57"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="578,47,546,47,546,41,578,41"/>
+<area shape="rect" id="Node000006" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,31,378,57"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="411,47,379,47,379,41,411,41"/>
+<area shape="rect" id="Node000007" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,31,263,57"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="295,47,263,47,263,41,295,41"/>
+<area shape="rect" id="Node000008" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,31,102,57"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="134,47,102,47,102,41,134,41"/>
+<area shape="poly" id="edge9_Node000009_Node000003" title=" " alt="" coords="953,60,921,56,921,51,953,54"/>
+</map>

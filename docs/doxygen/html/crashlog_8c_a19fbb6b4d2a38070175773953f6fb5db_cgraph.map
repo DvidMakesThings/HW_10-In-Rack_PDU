@@ -1,0 +1,5 @@
+<map id="crash_validate_header" name="crash_validate_header">
+<area shape="rect" id="Node000001" title="Validate retained crash log header and CRC32 checksum." alt="" coords="5,5,157,32"/>
+<area shape="rect" id="Node000002" href="$crashlog_8c.html#ae55aac5d65874421d290cce57ce04ed5" title="Compute CRC32 checksum using standard polynomial 0xEDB88320." alt="" coords="205,5,297,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,16,189,16,189,21,157,21"/>
+</map>

@@ -1,0 +1,30 @@
+<map id="TempCalibration_LoadAndApply" name="TempCalibration_LoadAndApply">
+<area shape="rect" id="Node000001" title="Load temperature calibration from EEPROM and apply to MeterTask." alt="" coords="5,183,212,209"/>
+<area shape="rect" id="Node000002" href="$group__storage05.html#gac5ff91b753d7b36b811a2d75068006ed" title="Read RP2040 temperature calibration record from EEPROM." alt="" coords="269,132,480,159"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,179,285,160,286,165,183,185"/>
+<area shape="rect" id="Node000011" href="$group__storage05.html#ga7796a67e219e367ba5424202cff756ae" title="Apply temperature calibration to MeterTask measurement path." alt="" coords="260,208,490,235"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="212,203,244,206,244,212,212,208"/>
+<area shape="rect" id="Node000003" href="$group__driver02.html#ga622a6736c8384f9e1921a1bda2a84df9" title="Read buffer from EEPROM." alt="" coords="558,31,722,57"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="405,129,537,74,576,60,578,65,539,78,407,134"/>
+<area shape="rect" id="Node000007" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="799,81,982,108"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="456,129,538,117,665,105,783,97,784,103,666,111,538,123,457,134"/>
+<area shape="rect" id="Node000008" href="$calibration_8c.html#ac2a5362a8e4606ad12cb0d6c9941ef6d" title="Fill temp_calib_t with safe defaults (no calibration)." alt="" coords="580,132,700,159"/>
+<area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="481,143,564,143,564,148,481,148"/>
+<area shape="rect" id="Node000009" href="$calibration_8c.html#abd5621818dd5300de23e2fd5c9106cea" title="Validate a temp calibration record (magic/version/ranges/CRC)." alt="" coords="580,183,699,209"/>
+<area shape="poly" id="edge9_Node000002_Node000009" title=" " alt="" coords="449,157,566,179,565,185,448,162"/>
+<area shape="rect" id="Node000004" href="$group__drivers05.html#ga66ae4c7028f764a3770cabe101dba8bf" title="Read from 16&#45;bit memory address: write [mem_hi, mem_lo] (no stop), then read len bytes." alt="" coords="816,31,965,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="722,41,801,41,801,47,722,47"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="710,55,806,75,805,80,709,61"/>
+<area shape="rect" id="Node000005" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="1069,5,1190,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="965,33,1053,24,1053,29,966,39"/>
+<area shape="rect" id="Node000006" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="1040,56,1219,83"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="966,49,1024,56,1024,61,965,55"/>
+<area shape="rect" id="Node000010" href="$calibration_8c.html#ae8658b50ad7475f4740593d8f35c9999" title="Compute a simple CRC32 (poly 0xEDB88320) over a buffer." alt="" coords="837,183,944,209"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="699,193,822,193,822,199,699,199"/>
+<area shape="poly" id="edge14_Node000011_Node000007" title=" " alt="" coords="436,233,501,243,579,247,661,241,702,232,740,219,756,209,765,198,774,184,788,169,855,115,858,119,791,173,778,187,770,201,759,213,742,224,703,237,662,246,579,253,501,248,436,238"/>
+<area shape="poly" id="edge15_Node000011_Node000009" title=" " alt="" coords="490,208,565,200,565,206,491,213"/>
+<area shape="rect" id="Node000012" href="$group__tasks06.html#ga3f1131031850b69b057eeb4f8db3a4b9" title="Apply per&#45;device temperature calibration parameters." alt="" coords="538,284,741,311"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="425,233,576,277,575,282,424,238"/>
+<area shape="rect" id="Node000013" href="$group__tasks10.html#gac25626a70e6fe0baeaa167d47bed33d1" title="Enqueue a warning code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="789,284,992,311"/>
+<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="742,295,773,295,773,300,742,300"/>
+</map>

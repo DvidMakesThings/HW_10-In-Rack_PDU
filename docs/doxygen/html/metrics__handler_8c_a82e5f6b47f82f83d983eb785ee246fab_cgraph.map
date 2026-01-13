@@ -1,0 +1,27 @@
+<map id="send_503" name="send_503">
+<area shape="rect" id="Node000001" title="Send 503 Service Unavailable response." alt="" coords="5,81,83,108"/>
+<area shape="rect" id="Node000002" href="$metrics__handler_8c.html#a8c210587f97cbef60c84dc0bfba63c2f" title=" " alt="" coords="131,31,202,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,78,117,61,119,66,79,83"/>
+<area shape="rect" id="Node000005" href="$group__drivers08.html#gacd77c3cc60e87d09a5714932506d7c4b" title="Send data over TCP socket." alt="" coords="142,107,191,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="84,100,127,109,126,114,83,105"/>
+<area shape="rect" id="Node000003" href="$group__tasks03.html#ga4f7298bb6ff71177639ba837e4068eb1" title="Record a heartbeat from a registered task." alt="" coords="260,5,384,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="202,36,245,29,246,34,203,41"/>
+<area shape="rect" id="Node000004" href="$_health_task_8c.html#a50503dee6a29e98e633b16b1b8b550bc" title="Get current monotonic time in milliseconds." alt="" coords="499,5,569,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="384,16,483,16,483,21,384,21"/>
+<area shape="rect" id="Node000006" href="$group__drivers08.html#ga025710a2709097be7824f0564f89a461" title="Close a socket." alt="" coords="276,56,368,83"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="191,110,263,86,265,91,192,115"/>
+<area shape="rect" id="Node000007" href="$group__drivers03.html#gaeaef8ee772ea9b4a5c6ba7702a1c9b52" title="Send data to socket TX buffer." alt="" coords="269,107,375,133"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="192,117,254,117,254,123,192,123"/>
+<area shape="rect" id="Node000010" href="$socket_8c.html#a3e134a526306c29a2594a8615c328607" title=" " alt="" coords="250,157,394,200"/>
+<area shape="poly" id="edge10_Node000005_Node000010" title=" " alt="" coords="193,127,251,149,249,154,191,132"/>
+<area shape="rect" id="Node000012" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="442,220,626,247"/>
+<area shape="poly" id="edge13_Node000005_Node000012" title=" " alt="" coords="178,132,206,173,227,193,251,210,294,226,338,236,384,240,427,241,427,246,383,246,338,241,292,231,249,214,224,198,202,176,173,135"/>
+<area shape="rect" id="Node000008" href="$group__drivers03.html#ga35f04740974b2f6a16c4744f1641fd47" title="Set socket TX write pointer (Sn_TX_WR) in big&#45;endian." alt="" coords="479,60,589,87"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="375,106,464,86,465,91,376,111"/>
+<area shape="rect" id="Node000009" href="$group__drivers03.html#ga8e525d27915365abbe8086dc3363055f" title="Write multiple bytes to W5500 (optimized bulk transfer)" alt="" coords="674,85,793,112"/>
+<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="376,115,658,100,658,105,376,120"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="589,78,659,87,658,92,589,83"/>
+<area shape="rect" id="Node000011" href="$group__misc3.html#gad3252fba1863d278f2611cad531177f5" title="Query the current system power state." alt="" coords="475,165,593,192"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="395,176,460,176,460,181,395,181"/>
+<area shape="poly" id="edge12_Node000010_Node000012" title=" " alt="" coords="396,195,466,213,464,218,394,200"/>
+</map>

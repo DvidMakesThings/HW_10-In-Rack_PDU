@@ -1,0 +1,4 @@
+<map id="Network Configuration Defaults" name="Network Configuration Defaults">
+<area shape="rect" id="Node000001" title="Default network parameters (overrideable at runtime)" alt="" coords="265,5,416,48"/>
+<area shape="rect" id="Node000002" href="$group__config02.html" title="Centralized configuration parameters for W5500 Ethernet controller." alt="" coords="5,13,217,40"/>
+</map>

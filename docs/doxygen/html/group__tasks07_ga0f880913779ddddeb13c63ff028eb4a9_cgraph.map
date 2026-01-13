@@ -1,0 +1,7 @@
+<map id="MeterTask_TempCalibration_TwoPointCompute" name="MeterTask_TempCalibration_TwoPointCompute">
+<area shape="rect" id="Node000001" title="Compute two&#45;point temperature calibration (slope + intercept, zero offset)." alt="" coords="5,23,189,65"/>
+<area shape="rect" id="Node000002" href="$group__tasks05.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="246,5,430,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="189,32,230,27,231,33,189,37"/>
+<area shape="rect" id="Node000003" href="$group__tasks05.html#gac25626a70e6fe0baeaa167d47bed33d1" title="Enqueue a warning code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="237,56,439,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="189,51,221,54,221,60,189,56"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="i2c_bus_read_mem16" name="i2c_bus_read_mem16">
+<area shape="rect" id="Node000001" title="Read from 16&#45;bit memory address: write [mem_hi, mem_lo] (no stop), then read len bytes." alt="" coords="5,31,154,57"/>
+<area shape="rect" id="Node000002" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="231,5,352,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,32,215,25,215,30,154,38"/>
+<area shape="rect" id="Node000003" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="202,56,381,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="154,50,186,54,186,59,154,56"/>
+</map>

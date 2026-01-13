@@ -1,0 +1,9 @@
+<map id="mcp_resync_from_hw" name="mcp_resync_from_hw">
+<area shape="rect" id="Node000001" title="Re&#45;sync shadow registers from hardware." alt="" coords="5,31,155,57"/>
+<area shape="rect" id="Node000002" href="$group__drivers01.html#ga0e406d50e8948e593649a11c729acd9b" title="Read 8&#45;bit register: write [reg] (no stop), then read 1 byte." alt="" coords="203,31,333,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="155,41,187,41,187,47,155,47"/>
+<area shape="rect" id="Node000003" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="410,5,531,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="333,33,394,25,395,31,334,38"/>
+<area shape="rect" id="Node000004" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="381,56,560,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="334,50,366,54,365,59,333,55"/>
+</map>

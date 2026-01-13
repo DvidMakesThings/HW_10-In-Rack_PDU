@@ -2,7 +2,7 @@
  * @file src/web_handlers/metrics_handler.h
  * @author DvidMakesThings - David Sipos
  *
- * @defgroup webui6 6. Metrics Handler
+ * @defgroup webui03 3. Metrics Handler
  * @ingroup webhandlers
  * @brief Handler for the page /metrics
  * @{
@@ -28,7 +28,11 @@
 /**
  * @brief Static buffer size for metrics rendering (bytes)
  */
+/** @name Macros
+ * @{
+ */
 #define METRICS_BUFFER_SIZE 8192
+/** @} */
 
 /* =====================  Metrics Counters Structure  =================== */
 /**
@@ -37,6 +41,7 @@
  * @details All counters are monotonically increasing since boot. Access must
  * be atomic or protected by appropriate synchronization when incrementing.
  */
+/** @struct metrics_counters_t */
 typedef struct {
     volatile uint32_t http_requests_total;   /**< Total HTTP requests served */
     volatile uint32_t snmp_requests_total;   /**< Total SNMP requests received */
@@ -49,9 +54,13 @@ typedef struct {
  * @brief Global metrics counters instance.
  * @note Accessed by NetTask, MeterTask, and metrics handler
  */
+/** @var g_metrics */
 extern metrics_counters_t g_metrics;
 
 /* =====================  Metrics Handler API  ========================== */
+/** @name Public API
+ * @{
+ */
 /**
  * @brief Initialize metrics subsystem.
  *
@@ -128,6 +137,7 @@ static inline void metrics_inc_relay_toggles(void) {
 static inline void metrics_inc_watchdog_resets(void) {
     __atomic_fetch_add(&g_metrics.watchdog_resets_total, 1, __ATOMIC_RELAXED);
 }
+/** @} */
 
 #endif /* METRICS_HANDLER_H */
 

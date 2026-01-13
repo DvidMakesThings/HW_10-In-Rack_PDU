@@ -1,0 +1,107 @@
+\doxysection{temp\+\_\+calib\+\_\+t Struct Reference}
+\hypertarget{structtemp__calib__t}{}\label{structtemp__calib__t}\index{temp\_calib\_t@{temp\_calib\_t}}
+
+
+Persistent temperature calibration record.  
+
+
+
+
+{\ttfamily \#include $<$calibration.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structtemp__calib__t_ae40508226b413c6cbc76cb4b4ec2c514}{magic}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structtemp__calib__t_a83793273590bd1225a8d821a5686150f}{version}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structtemp__calib__t_a6e93f4264e8f9745d4dc0c12460cba26}{mode}}
+\item 
+float \mbox{\hyperlink{structtemp__calib__t_aa78debf46048160bf37300516b83175c}{v0\+\_\+volts\+\_\+at\+\_\+27c}}
+\item 
+float \mbox{\hyperlink{structtemp__calib__t_a2dbe8b9a795f39a4b7335ed86878dadf}{slope\+\_\+volts\+\_\+per\+\_\+deg}}
+\item 
+float \mbox{\hyperlink{structtemp__calib__t_aca2498c90716bfd0d440416eafc4973a}{offset\+\_\+c}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structtemp__calib__t_ae79f9bd63e1ae0d79d56e717e6db45a3}{reserved0}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structtemp__calib__t_a5e5e9b85c481dd86ecd986b5c4db0af4}{reserved1}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structtemp__calib__t_a2eea7b648a9114222338bf552f8f03ed}{reserved2}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structtemp__calib__t_af0c7021b7c14182a4e87c978a3befc3e}{crc32}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Persistent temperature calibration record. 
+
+\label{doc-variable-members}
+\Hypertarget{structtemp__calib__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structtemp__calib__t_af0c7021b7c14182a4e87c978a3befc3e}\index{temp\_calib\_t@{temp\_calib\_t}!crc32@{crc32}}
+\index{crc32@{crc32}!temp\_calib\_t@{temp\_calib\_t}}
+\doxysubsubsection{\texorpdfstring{crc32}{crc32}}
+{\footnotesize\ttfamily \label{structtemp__calib__t_af0c7021b7c14182a4e87c978a3befc3e} 
+uint32\+\_\+t temp\+\_\+calib\+\_\+t\+::crc32}
+
+CRC32 over all fields except crc32 (0 if unused). \Hypertarget{structtemp__calib__t_ae40508226b413c6cbc76cb4b4ec2c514}\index{temp\_calib\_t@{temp\_calib\_t}!magic@{magic}}
+\index{magic@{magic}!temp\_calib\_t@{temp\_calib\_t}}
+\doxysubsubsection{\texorpdfstring{magic}{magic}}
+{\footnotesize\ttfamily \label{structtemp__calib__t_ae40508226b413c6cbc76cb4b4ec2c514} 
+uint16\+\_\+t temp\+\_\+calib\+\_\+t\+::magic}
+
+Magic \textquotesingle{}TC\textquotesingle{} to identify struct. \Hypertarget{structtemp__calib__t_a6e93f4264e8f9745d4dc0c12460cba26}\index{temp\_calib\_t@{temp\_calib\_t}!mode@{mode}}
+\index{mode@{mode}!temp\_calib\_t@{temp\_calib\_t}}
+\doxysubsubsection{\texorpdfstring{mode}{mode}}
+{\footnotesize\ttfamily \label{structtemp__calib__t_a6e93f4264e8f9745d4dc0c12460cba26} 
+uint8\+\_\+t temp\+\_\+calib\+\_\+t\+::mode}
+
+\doxylink{group__storage01_ga8c6878800e86fa5968286d14291c03c9}{temp\+\_\+cal\+\_\+mode\+\_\+t}. \Hypertarget{structtemp__calib__t_aca2498c90716bfd0d440416eafc4973a}\index{temp\_calib\_t@{temp\_calib\_t}!offset\_c@{offset\_c}}
+\index{offset\_c@{offset\_c}!temp\_calib\_t@{temp\_calib\_t}}
+\doxysubsubsection{\texorpdfstring{offset\_c}{offset\_c}}
+{\footnotesize\ttfamily \label{structtemp__calib__t_aca2498c90716bfd0d440416eafc4973a} 
+float temp\+\_\+calib\+\_\+t\+::offset\+\_\+c}
+
+Residual °C offset after linear model. \Hypertarget{structtemp__calib__t_ae79f9bd63e1ae0d79d56e717e6db45a3}\index{temp\_calib\_t@{temp\_calib\_t}!reserved0@{reserved0}}
+\index{reserved0@{reserved0}!temp\_calib\_t@{temp\_calib\_t}}
+\doxysubsubsection{\texorpdfstring{reserved0}{reserved0}}
+{\footnotesize\ttfamily \label{structtemp__calib__t_ae79f9bd63e1ae0d79d56e717e6db45a3} 
+uint32\+\_\+t temp\+\_\+calib\+\_\+t\+::reserved0}
+
+Reserved for future use. \Hypertarget{structtemp__calib__t_a5e5e9b85c481dd86ecd986b5c4db0af4}\index{temp\_calib\_t@{temp\_calib\_t}!reserved1@{reserved1}}
+\index{reserved1@{reserved1}!temp\_calib\_t@{temp\_calib\_t}}
+\doxysubsubsection{\texorpdfstring{reserved1}{reserved1}}
+{\footnotesize\ttfamily \label{structtemp__calib__t_a5e5e9b85c481dd86ecd986b5c4db0af4} 
+uint32\+\_\+t temp\+\_\+calib\+\_\+t\+::reserved1}
+
+Reserved for future use. \Hypertarget{structtemp__calib__t_a2eea7b648a9114222338bf552f8f03ed}\index{temp\_calib\_t@{temp\_calib\_t}!reserved2@{reserved2}}
+\index{reserved2@{reserved2}!temp\_calib\_t@{temp\_calib\_t}}
+\doxysubsubsection{\texorpdfstring{reserved2}{reserved2}}
+{\footnotesize\ttfamily \label{structtemp__calib__t_a2eea7b648a9114222338bf552f8f03ed} 
+uint32\+\_\+t temp\+\_\+calib\+\_\+t\+::reserved2}
+
+Reserved for future use. \Hypertarget{structtemp__calib__t_a2dbe8b9a795f39a4b7335ed86878dadf}\index{temp\_calib\_t@{temp\_calib\_t}!slope\_volts\_per\_deg@{slope\_volts\_per\_deg}}
+\index{slope\_volts\_per\_deg@{slope\_volts\_per\_deg}!temp\_calib\_t@{temp\_calib\_t}}
+\doxysubsubsection{\texorpdfstring{slope\_volts\_per\_deg}{slope\_volts\_per\_deg}}
+{\footnotesize\ttfamily \label{structtemp__calib__t_a2dbe8b9a795f39a4b7335ed86878dadf} 
+float temp\+\_\+calib\+\_\+t\+::slope\+\_\+volts\+\_\+per\+\_\+deg}
+
+S in V/°C (positive magnitude). \Hypertarget{structtemp__calib__t_aa78debf46048160bf37300516b83175c}\index{temp\_calib\_t@{temp\_calib\_t}!v0\_volts\_at\_27c@{v0\_volts\_at\_27c}}
+\index{v0\_volts\_at\_27c@{v0\_volts\_at\_27c}!temp\_calib\_t@{temp\_calib\_t}}
+\doxysubsubsection{\texorpdfstring{v0\_volts\_at\_27c}{v0\_volts\_at\_27c}}
+{\footnotesize\ttfamily \label{structtemp__calib__t_aa78debf46048160bf37300516b83175c} 
+float temp\+\_\+calib\+\_\+t\+::v0\+\_\+volts\+\_\+at\+\_\+27c}
+
+V0 at 27 °C \mbox{[}V\mbox{]} (intercept). \Hypertarget{structtemp__calib__t_a83793273590bd1225a8d821a5686150f}\index{temp\_calib\_t@{temp\_calib\_t}!version@{version}}
+\index{version@{version}!temp\_calib\_t@{temp\_calib\_t}}
+\doxysubsubsection{\texorpdfstring{version}{version}}
+{\footnotesize\ttfamily \label{structtemp__calib__t_a83793273590bd1225a8d821a5686150f} 
+uint8\+\_\+t temp\+\_\+calib\+\_\+t\+::version}
+
+Structure version, see \doxylink{group__storage01_gaa51b50a0f7206b13a9f06906d666a804}{TEMP\+\_\+\+CAL\+\_\+\+VERSION}. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/storage\+\_\+submodule/\mbox{\hyperlink{calibration_8h}{calibration.\+h}}\end{DoxyCompactItemize}

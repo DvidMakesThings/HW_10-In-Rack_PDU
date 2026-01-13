@@ -1,0 +1,32 @@
+<map id="parseSequenceOf" name="parseSequenceOf">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,81,131,108"/>
+<area shape="rect" id="Node000002" href="$snmp_8c.html#aca188474e2e7f8667ccca7c1190f4971" title=" " alt="" coords="338,56,443,83"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,87,322,72,322,77,131,92"/>
+<area shape="rect" id="Node000003" href="$snmp_8c.html#afb39017f4741a315af2b17fb40100546" title=" " alt="" coords="179,107,290,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="132,102,163,107,162,112,131,107"/>
+<area shape="rect" id="Node000004" href="$snmp_8c.html#a7d0c60ba400627a704c52ffb5a4f0b92" title=" " alt="" coords="491,5,568,32"/>
+<area shape="poly" id="edge17_Node000001_Node000004" title=" " alt="" coords="110,78,178,60,340,34,476,20,476,25,341,39,179,65,112,83"/>
+<area shape="rect" id="Node000009" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="616,259,799,285"/>
+<area shape="poly" id="edge18_Node000001_Node000009" title=" " alt="" coords="88,106,190,180,262,223,339,259,404,277,472,286,539,287,600,284,600,289,539,293,472,291,403,282,337,264,259,228,187,185,85,111"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="277,103,332,85,334,90,279,109"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="290,121,365,115,405,107,442,92,457,82,467,70,476,57,490,42,493,39,496,43,493,46,480,60,471,73,461,86,445,97,406,112,366,121,291,126"/>
+<area shape="rect" id="Node000006" href="$snmp_8c.html#a1aa171236d9aa7f23701802d32ef8685" title=" " alt="" coords="342,157,440,184"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="279,131,334,150,332,155,277,137"/>
+<area shape="poly" id="edge16_Node000003_Node000009" title=" " alt="" coords="253,132,292,164,348,204,417,243,454,258,492,269,546,277,600,279,600,284,545,283,491,275,452,263,415,247,345,208,288,168,249,136"/>
+<area shape="rect" id="Node000005" href="$snmp_8c.html#a7d85f599f8a1f5861cc7ed6053358453" title=" " alt="" coords="661,5,754,32"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="568,16,646,16,646,21,568,21"/>
+<area shape="poly" id="edge11_Node000006_Node000004" title=" " alt="" coords="419,155,441,137,458,113,465,91,473,68,489,42,491,41,495,44,493,46,478,70,470,92,462,115,445,140,422,159"/>
+<area shape="rect" id="Node000007" href="$snmp_8c.html#aa4a7ad42d69ddc84979da555ceafd1ba" title=" " alt="" coords="493,157,566,184"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="440,168,477,168,477,173,440,173"/>
+<area shape="rect" id="Node000008" href="$snmp_8c.html#a98e48ce6dca59478794c8bce28d0efcf" title=" " alt="" coords="494,208,565,235"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="430,182,481,201,479,206,429,187"/>
+<area shape="poly" id="edge15_Node000006_Node000009" title=" " alt="" coords="406,182,443,215,467,231,492,244,546,260,600,268,600,273,545,265,490,249,464,236,440,219,403,186"/>
+<area shape="rect" id="Node000010" href="$snmp_8c.html#afb834cf08b1dc009024fd323d0f76618" title=" " alt="" coords="498,56,561,83"/>
+<area shape="poly" id="edge10_Node000006_Node000010" title=" " alt="" coords="415,155,442,137,490,93,493,90,496,94,493,97,445,141,418,159"/>
+<area shape="rect" id="Node000011" href="$snmp_8c.html#a986ed61ecbb07a88cb6ff6595da32e59" title=" " alt="" coords="494,107,565,133"/>
+<area shape="poly" id="edge12_Node000006_Node000011" title=" " alt="" coords="429,154,479,135,481,140,430,159"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="566,229,644,251,643,256,564,234"/>
+<area shape="poly" id="edge14_Node000011_Node000009" title=" " alt="" coords="554,132,569,143,632,197,683,246,679,249,628,201,566,147,551,136"/>
+<area shape="rect" id="Node000012" href="$snmp_8c.html#a2377de9a3820124d9c7b67925288496e" title=" " alt="" coords="672,107,743,133"/>
+<area shape="poly" id="edge13_Node000011_Node000012" title=" " alt="" coords="565,117,656,117,656,123,565,123"/>
+</map>

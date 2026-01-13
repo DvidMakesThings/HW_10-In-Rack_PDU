@@ -267,6 +267,54 @@
 				"-File",
 				"${workspaceFolder}\\scripts\\build.ps1"
 			]
+		},
+		{
+			"label": "Compile Project",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"${workspaceFolder}\\\\scripts\\\\build.ps1"
+			]
+		},
+		{
+			"label": "Compile Project",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"${workspaceFolder}\\\\scripts\\\\build.ps1"
+			]
+		},
+		{
+			"label": "Compile Project",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"${workspaceFolder}\\\\scripts\\\\build.ps1"
+			]
+		},
+		{
+			"label": "Compile Project",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"${workspaceFolder}\\\\scripts\\\\build.ps1"
+			]
 		}
 	]
 }

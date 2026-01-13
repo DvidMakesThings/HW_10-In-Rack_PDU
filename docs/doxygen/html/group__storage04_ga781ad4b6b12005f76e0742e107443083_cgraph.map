@@ -1,0 +1,16 @@
+<map id="EEPROM_ReadSystemInfoWithChecksum" name="EEPROM_ReadSystemInfoWithChecksum">
+<area shape="rect" id="Node000001" title="Read and verify system information with CRC&#45;8 validation." alt="" coords="5,48,217,91"/>
+<area shape="rect" id="Node000002" href="$group__storage01.html#gaae57a92db26b8a63b7584fd2f3407077" title="Calculate CRC&#45;8 checksum for data integrity verification." alt="" coords="294,5,400,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="213,45,279,30,280,36,214,50"/>
+<area shape="rect" id="Node000003" href="$group__driver02.html#ga622a6736c8384f9e1921a1bda2a84df9" title="Read buffer from EEPROM." alt="" coords="265,56,429,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="217,67,249,67,249,72,217,72"/>
+<area shape="rect" id="Node000007" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="477,107,660,133"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="217,85,265,92,461,111,461,116,264,97,217,91"/>
+<area shape="rect" id="Node000004" href="$group__drivers05.html#ga66ae4c7028f764a3770cabe101dba8bf" title="Read from 16&#45;bit memory address: write [mem_hi, mem_lo] (no stop), then read len bytes." alt="" coords="494,56,643,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="429,67,479,67,479,72,429,72"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="409,81,493,100,492,105,408,86"/>
+<area shape="rect" id="Node000005" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="737,31,859,57"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="643,59,721,50,722,55,643,64"/>
+<area shape="rect" id="Node000006" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="708,81,888,108"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="643,75,693,80,693,86,643,80"/>
+</map>

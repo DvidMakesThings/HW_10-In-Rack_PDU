@@ -1,0 +1,5 @@
+<map id="storage_clear_warning_log_async" name="storage_clear_warning_log_async">
+<area shape="rect" id="Node000001" title="Asynchronously clear the warning event log region in EEPROM." alt="" coords="5,5,157,48"/>
+<area shape="rect" id="Node000002" href="$group__tasks10.html#gaad6cb463ba1647fe51faeea5f08268da" title="Check if config is loaded and ready." alt="" coords="205,13,372,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,24,189,24,189,29,157,29"/>
+</map>

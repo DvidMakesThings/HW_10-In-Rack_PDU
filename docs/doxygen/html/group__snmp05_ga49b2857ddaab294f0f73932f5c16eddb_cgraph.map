@@ -1,0 +1,7 @@
+<map id="get_tempSensorVoltage" name="get_tempSensorVoltage">
+<area shape="rect" id="Node000001" title="SNMP getter for on&#45;die temperature sensor voltage [V]." alt="" coords="5,5,165,32"/>
+<area shape="rect" id="Node000002" href="$group__tasks06.html#ga909c8be3f0ce184e2cd1045bc29e0e30" title="Get the latest system ADC telemetry snapshot (non&#45;blocking)." alt="" coords="213,5,425,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="165,16,197,16,197,21,165,21"/>
+<area shape="rect" id="Node000003" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="473,5,656,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="425,16,457,16,457,21,425,21"/>
+</map>

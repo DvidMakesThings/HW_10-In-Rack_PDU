@@ -1,0 +1,85 @@
+\doxysection{mcp23017\+\_\+t Struct Reference}
+\hypertarget{structmcp23017__t}{}\label{structmcp23017__t}\index{mcp23017\_t@{mcp23017\_t}}
+
+
+MCP23017 device context structure.  
+
+
+
+
+{\ttfamily \#include $<$MCP23017\+\_\+driver.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structmcp23017__t_ac8707404a5056d684e995c89ecba0f28}{i2c}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structmcp23017__t_a04f42f2123f549a4bae8b9dcf4760a55}{addr}}
+\item 
+int8\+\_\+t \mbox{\hyperlink{structmcp23017__t_a70723a7eda3f10b14d3f95c8205e39fe}{rst\+\_\+gpio}}
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{structmcp23017__t_ac6afe5a4c4bb0f3f5e75d67818c374ec}{olat\+\_\+a}}
+\item 
+volatile uint8\+\_\+t \mbox{\hyperlink{structmcp23017__t_ab119b1a3c2a33e6ebb936fbf12724d0f}{olat\+\_\+b}}
+\item 
+Semaphore\+Handle\+\_\+t \mbox{\hyperlink{structmcp23017__t_af08150f358f6cb99ee68c6d4847b09d8}{mutex}}
+\item 
+bool \mbox{\hyperlink{structmcp23017__t_a251e2bc9d8cda8a48401a3fb7c799bca}{inited}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+MCP23017 device context structure. 
+
+Holds all state for a single MCP23017 device including I2C bus, address, shadow registers, and synchronization mutex. 
+
+\label{doc-variable-members}
+\Hypertarget{structmcp23017__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structmcp23017__t_a04f42f2123f549a4bae8b9dcf4760a55}\index{mcp23017\_t@{mcp23017\_t}!addr@{addr}}
+\index{addr@{addr}!mcp23017\_t@{mcp23017\_t}}
+\doxysubsubsection{\texorpdfstring{addr}{addr}}
+{\footnotesize\ttfamily \label{structmcp23017__t_a04f42f2123f549a4bae8b9dcf4760a55} 
+uint8\+\_\+t mcp23017\+\_\+t\+::addr}
+
+7-\/bit I2C address (0x20-\/0x27) \Hypertarget{structmcp23017__t_ac8707404a5056d684e995c89ecba0f28}\index{mcp23017\_t@{mcp23017\_t}!i2c@{i2c}}
+\index{i2c@{i2c}!mcp23017\_t@{mcp23017\_t}}
+\doxysubsubsection{\texorpdfstring{i2c}{i2c}}
+{\footnotesize\ttfamily \label{structmcp23017__t_ac8707404a5056d684e995c89ecba0f28} 
+i2c\+\_\+inst\+\_\+t\texorpdfstring{$\ast$}{*} mcp23017\+\_\+t\+::i2c}
+
+I2C bus instance (i2c0/i2c1) \Hypertarget{structmcp23017__t_a251e2bc9d8cda8a48401a3fb7c799bca}\index{mcp23017\_t@{mcp23017\_t}!inited@{inited}}
+\index{inited@{inited}!mcp23017\_t@{mcp23017\_t}}
+\doxysubsubsection{\texorpdfstring{inited}{inited}}
+{\footnotesize\ttfamily \label{structmcp23017__t_a251e2bc9d8cda8a48401a3fb7c799bca} 
+bool mcp23017\+\_\+t\+::inited}
+
+True after successful initialization \Hypertarget{structmcp23017__t_af08150f358f6cb99ee68c6d4847b09d8}\index{mcp23017\_t@{mcp23017\_t}!mutex@{mutex}}
+\index{mutex@{mutex}!mcp23017\_t@{mcp23017\_t}}
+\doxysubsubsection{\texorpdfstring{mutex}{mutex}}
+{\footnotesize\ttfamily \label{structmcp23017__t_af08150f358f6cb99ee68c6d4847b09d8} 
+Semaphore\+Handle\+\_\+t mcp23017\+\_\+t\+::mutex}
+
+Per-\/device mutex for thread safety \Hypertarget{structmcp23017__t_ac6afe5a4c4bb0f3f5e75d67818c374ec}\index{mcp23017\_t@{mcp23017\_t}!olat\_a@{olat\_a}}
+\index{olat\_a@{olat\_a}!mcp23017\_t@{mcp23017\_t}}
+\doxysubsubsection{\texorpdfstring{olat\_a}{olat\_a}}
+{\footnotesize\ttfamily \label{structmcp23017__t_ac6afe5a4c4bb0f3f5e75d67818c374ec} 
+volatile uint8\+\_\+t mcp23017\+\_\+t\+::olat\+\_\+a}
+
+Shadow of OLATA register \Hypertarget{structmcp23017__t_ab119b1a3c2a33e6ebb936fbf12724d0f}\index{mcp23017\_t@{mcp23017\_t}!olat\_b@{olat\_b}}
+\index{olat\_b@{olat\_b}!mcp23017\_t@{mcp23017\_t}}
+\doxysubsubsection{\texorpdfstring{olat\_b}{olat\_b}}
+{\footnotesize\ttfamily \label{structmcp23017__t_ab119b1a3c2a33e6ebb936fbf12724d0f} 
+volatile uint8\+\_\+t mcp23017\+\_\+t\+::olat\+\_\+b}
+
+Shadow of OLATB register \Hypertarget{structmcp23017__t_a70723a7eda3f10b14d3f95c8205e39fe}\index{mcp23017\_t@{mcp23017\_t}!rst\_gpio@{rst\_gpio}}
+\index{rst\_gpio@{rst\_gpio}!mcp23017\_t@{mcp23017\_t}}
+\doxysubsubsection{\texorpdfstring{rst\_gpio}{rst\_gpio}}
+{\footnotesize\ttfamily \label{structmcp23017__t_a70723a7eda3f10b14d3f95c8205e39fe} 
+int8\+\_\+t mcp23017\+\_\+t\+::rst\+\_\+gpio}
+
+Reset GPIO pin (-\/1 if not used) 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/drivers/\mbox{\hyperlink{_m_c_p23017__driver_8h}{MCP23017\+\_\+driver.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,24 @@
+<map id="hlw8032_calibration_consume_sample" name="hlw8032_calibration_consume_sample">
+<area shape="rect" id="Node000001" title="Feed one fresh HLW8032 sample into the async calibration engine." alt="" coords="5,132,141,175"/>
+<area shape="rect" id="Node000002" href="$_h_l_w8032__driver_8c.html#aad15d8e17ce424d4f8a6fd4eb64c53bb" title="Finish calibration for the current channel using accumulated samples." alt="" coords="189,99,347,141"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="141,139,173,134,174,139,141,144"/>
+<area shape="rect" id="Node000011" href="$_h_l_w8032__driver_8c.html#acc3dced2405146bb247c8d852e88e56f" title="Reset sample accumulators for the current async calibration channel." alt="" coords="197,165,339,208"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="141,162,182,169,181,174,141,168"/>
+<area shape="rect" id="Node000003" href="$group__storage01.html#ga6fba2dcfc28ba004e71997f93c6b3d39" title="Write calibration record for single HLW8032 channel." alt="" coords="395,99,614,141"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="347,117,379,117,379,123,347,123"/>
+<area shape="rect" id="Node000004" href="$group__driver02.html#ga8088b9a17773cb65bb6b5d89d3598125" title="Write buffer to EEPROM with automatic page boundary handling." alt="" coords="662,81,826,108"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="615,106,646,102,647,108,615,111"/>
+<area shape="rect" id="Node000009" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="874,132,1057,159"/>
+<area shape="poly" id="edge10_Node000003_Node000009" title=" " alt="" coords="615,123,858,137,858,142,614,129"/>
+<area shape="rect" id="Node000005" href="$group__drivers05.html#ga77ca38d627119d534873e177c5f4a667" title="Write to 16&#45;bit memory address: [mem_hi, mem_lo, data...]." alt="" coords="890,31,1041,57"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="805,78,889,59,890,64,806,83"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="806,106,890,125,889,131,805,111"/>
+<area shape="rect" id="Node000010" href="$_c_a_t24_c256__driver_8c.html#aeba5f43a83c24289211b7d919c260978" title="RTOS&#45;compatible write cycle delay." alt="" coords="903,81,1028,108"/>
+<area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="826,92,888,92,888,97,826,97"/>
+<area shape="rect" id="Node000006" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="1130,5,1252,32"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1041,33,1114,25,1115,30,1042,38"/>
+<area shape="rect" id="Node000007" href="$group__drivers05.html#ga170d6c4ff97ddc2d314f0a7a0054f283" title="Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK i2c_write_time..." alt="" coords="1105,56,1277,83"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="1042,50,1090,55,1090,61,1041,55"/>
+<area shape="rect" id="Node000008" href="$i2c__bus_8c.html#afbaa64f79bdd1fa39c8fa5b7a9c2717b" title=" " alt="" coords="1325,56,1483,83"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="1278,67,1310,67,1310,72,1278,72"/>
+</map>

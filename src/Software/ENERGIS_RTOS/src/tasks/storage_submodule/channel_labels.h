@@ -2,8 +2,8 @@
  * @file src/tasks/storage_submodule/channel_labels.h
  * @author DvidMakesThings - David Sipos
  *
- * @defgroup storage09 9. Channel Labels
- * @ingroup storage
+ * @defgroup storage02 2. Channel Labels
+ * @ingroup tasks10
  * @brief User-defined labels for output channels
  * @{
  *
@@ -46,6 +46,8 @@
 /*           (require eepromMtx to be held by caller)                    */
 /* ##################################################################### */
 
+/** @name Low-level EEPROM APIs
+ * @{ */
 /**
  * @brief Write null-terminated label string for a channel (stored in fixed slot).
  *
@@ -90,12 +92,15 @@ int EEPROM_ClearChannelLabel(uint8_t channel_index);
  * @return 0 on success, -1 on write error
  */
 int EEPROM_ClearAllChannelLabels(void);
+/** @} */
 
 /* ##################################################################### */
 /*                     RAM CACHE MANAGEMENT                              */
 /*           (called by StorageTask during startup/write)                */
 /* ##################################################################### */
 
+/** @name RAM Cache APIs
+ * @{ */
 /**
  * @brief Load all channel labels from EEPROM into RAM cache.
  *
@@ -129,12 +134,15 @@ int ChannelLabels_GetCached(uint8_t channel, char *out, size_t out_len);
  * @return 0 on success, -1 on error
  */
 int ChannelLabels_SetAndWrite(uint8_t channel, const char *label);
+/** @} */
 
 /* ##################################################################### */
 /*                  HIGH-LEVEL THREAD-SAFE FUNCTIONS                     */
 /*            (safe to call from any task)                               */
 /* ##################################################################### */
 
+/** @name Public API (Thread-safe)
+ * @{ */
 /**
  * @brief Read channel label from RAM cache (thread-safe, non-blocking).
  *
@@ -170,6 +178,7 @@ bool storage_set_channel_label(uint8_t channel, const char *label);
  * @return true if all labels read successfully, false on any error
  */
 bool storage_get_all_channel_labels(char labels[ENERGIS_NUM_CHANNELS][26], size_t label_buf_size);
+/** @} */
 
 #endif /* CHANNEL_LABELS_H */
 

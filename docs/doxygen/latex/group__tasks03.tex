@@ -1,0 +1,342 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item Health 
+\end{DoxyEnumerate}}
+\hypertarget{group__tasks03}{}\label{group__tasks03}\index{3. Health@{3. Health}}
+
+
+System health monitor\+: watchdog, heartbeats, diagnostics (reset-\/safe).  
+
+
+Collaboration diagram for 3. Health\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{group__tasks03}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__tasks03_ga85cb9e0b43d35bed4ce045a22086c2b0}{health\+\_\+id\+\_\+t}} \{ \newline
+\mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a051e8be4fb238dd58b9221e976987d75}{HEALTH\+\_\+\+ID\+\_\+\+LOGGER}} = 0
+, \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0ad37f44c33ad392b2b3daf0be960c69f7}{HEALTH\+\_\+\+ID\+\_\+\+CONSOLE}} = 1
+, \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a015d1fa647ab3cefab7537a5f91d24b2}{HEALTH\+\_\+\+ID\+\_\+\+STORAGE}} = 2
+, \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0aec9e0ebdf114b54ffaefe5ac0dfe4f42}{HEALTH\+\_\+\+ID\+\_\+\+BUTTON}} = 3
+, \newline
+\mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0adc8e549fa3ff902b411cb02ea9f57c14}{HEALTH\+\_\+\+ID\+\_\+\+SWITCH}} = 4
+, \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a561a36766da3f788952f9183b07ad21d}{HEALTH\+\_\+\+ID\+\_\+\+NET}} = 5
+, \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a2cea86f90ff8e96b63128b6591e9f50c}{HEALTH\+\_\+\+ID\+\_\+\+METER}} = 6
+, \mbox{\hyperlink{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a8a4e0fbdeb7262156a215b8c0df390b6}{HEALTH\+\_\+\+ID\+\_\+\+MAX}} = 16
+ \}
+\begin{DoxyCompactList}\small\item\em Stable heartbeat IDs for tasks supervised by {\ttfamily Health\+Task}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__tasks03_gaaa57b8a364b1e80fdbcbd231b80ee70d}{Health\+Task\+\_\+\+Start}} (void)
+\begin{DoxyCompactList}\small\item\em Start the {\ttfamily Health\+Task} (idempotent). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks03_ga39ec0ac355c1ecd9f7b42602beceaab9}{Health\+\_\+\+Register\+Task}} (\mbox{\hyperlink{group__tasks03_ga85cb9e0b43d35bed4ce045a22086c2b0}{health\+\_\+id\+\_\+t}} id, Task\+Handle\+\_\+t h, const char \texorpdfstring{$\ast$}{*}name)
+\begin{DoxyCompactList}\small\item\em Register a task handle and human-\/readable name for diagnostics. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks03_ga4f7298bb6ff71177639ba837e4068eb1}{Health\+\_\+\+Heartbeat}} (\mbox{\hyperlink{group__tasks03_ga85cb9e0b43d35bed4ce045a22086c2b0}{health\+\_\+id\+\_\+t}} id)
+\begin{DoxyCompactList}\small\item\em Mark a task as alive (heartbeat). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks03_ga5b404de66522546aae096a94abd6d5fc}{Health\+\_\+\+Record\+Blocked}} (const char \texorpdfstring{$\ast$}{*}tag, uint32\+\_\+t waited\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Record a long blocking event for later diagnostics. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__tasks03_ga2cceff60fca1f201d5d60588aff53bbc}{Health\+\_\+\+Reboot\+Now}} (const char \texorpdfstring{$\ast$}{*}reason)
+\begin{DoxyCompactList}\small\item\em Immediate, Health-\/owned reboot with context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Heartbeat Periods}
+Expected task heartbeat cadence in milliseconds.
+
+These values guide Health\+Task diagnostics and liveness expectations. Tasks should call {\ttfamily \doxylink{group__tasks03_ga4f7298bb6ff71177639ba837e4068eb1}{Health\+\_\+\+Heartbeat()}} at least as frequently as their period, and always within the liveness window controlled by {\ttfamily HEALTH\+\_\+\+SILENCE\+\_\+\+MS}. \begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__tasks03_ga352cfd94e52834b67e71cd2fc05ad110}{LOGTASKBEAT\+\_\+\+MS}}~500
+\item 
+\#define \mbox{\hyperlink{group__tasks03_ga3abc449bfc85b9dd8af4ef1c93700df8}{NETTASKBEAT\+\_\+\+MS}}~500
+\item 
+\#define \mbox{\hyperlink{group__tasks03_ga8ecfc2902821e413c6e5b938ce437fd8}{METERTASKBEAT\+\_\+\+MS}}~500
+\item 
+\#define \mbox{\hyperlink{group__tasks03_ga6989b1e01404fb3e9bdb2808c1fc8512}{STORAGETASKBEAT\+\_\+\+MS}}~500
+\item 
+\#define \mbox{\hyperlink{group__tasks03_ga287201e77e05385d6004d9578c769efa}{BUTTONTASKBEAT\+\_\+\+MS}}~500
+\item 
+\#define \mbox{\hyperlink{group__tasks03_gae8dac68e8910f4f878870bf414ecd958}{CONSOLETASKBEAT\+\_\+\+MS}}~500
+\item 
+\#define \mbox{\hyperlink{group__tasks03_ga482b8f55dae942a91b38b60b38683069}{SWITCHTASKBEAT\+\_\+\+MS}}~500
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+System health monitor\+: watchdog, heartbeats, diagnostics (reset-\/safe). 
+
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/06
+\end{DoxyDate}
+Implements a Free\+RTOS-\/based health monitoring task that manages the hardware watchdog, tracks heartbeats from registered tasks, logs diagnostics, and records long blocking events for post-\/mortem analysis. Key behavior\+:
+\begin{DoxyItemize}
+\item Graceful ARMING\+: watchdog is enabled only after a warmup period and after at least one heartbeat from each registered task (or warmup timeout).
+\item LIVENESS WINDOW\+: each task must heartbeat at least once within HEALTH\+\_\+\+SILENCE\+\_\+\+MS; otherwise the watchdog is NOT fed.
+\item DIAGNOSTICS\+: prints stack high-\/water marks and free heap periodically, and keeps a small ring of "{}blocked"{} events for post-\/mortem.
+\end{DoxyItemize}
+
+Integration\+: 1) Call Health\+\_\+\+Register\+Task(id, handle, "{}name"{}) after x\+Task\+Create for each task. 2) Call \doxylink{group__tasks03_gaaa57b8a364b1e80fdbcbd231b80ee70d}{Health\+Task\+\_\+\+Start()} once everything is created (at end of Init\+Task). 3) Inside each task loop, call Health\+\_\+\+Heartbeat(\+HEALTH\+\_\+\+ID\+\_\+xxx) once per loop. 4) Optionally call Health\+\_\+\+Record\+Blocked("{}tag"{}, waited\+\_\+ms) on long waits.
+
+\begin{DoxyNote}{Note}
+Do NOT arm another watchdog elsewhere. Let Health\+Task manage it. You can adjust HEALTH\+\_\+\+WARMUP\+\_\+\+MS and HEALTH\+\_\+\+SILENCE\+\_\+\+MS below. @project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+\end{DoxyNote}
+
+
+\label{doc-define-members}
+\Hypertarget{group__tasks03_doc-define-members}
+\doxysubsubsection{Macro Definition Documentation}
+\Hypertarget{group__tasks03_ga287201e77e05385d6004d9578c769efa}\index{3. Health@{3. Health}!BUTTONTASKBEAT\_MS@{BUTTONTASKBEAT\_MS}}
+\index{BUTTONTASKBEAT\_MS@{BUTTONTASKBEAT\_MS}!3. Health@{3. Health}}
+\doxysubsubsubsection{\texorpdfstring{BUTTONTASKBEAT\_MS}{BUTTONTASKBEAT\_MS}}
+{\footnotesize\ttfamily \label{group__tasks03_ga287201e77e05385d6004d9578c769efa} 
+\#define BUTTONTASKBEAT\+\_\+\+MS~500}
+
+\Hypertarget{group__tasks03_gae8dac68e8910f4f878870bf414ecd958}\index{3. Health@{3. Health}!CONSOLETASKBEAT\_MS@{CONSOLETASKBEAT\_MS}}
+\index{CONSOLETASKBEAT\_MS@{CONSOLETASKBEAT\_MS}!3. Health@{3. Health}}
+\doxysubsubsubsection{\texorpdfstring{CONSOLETASKBEAT\_MS}{CONSOLETASKBEAT\_MS}}
+{\footnotesize\ttfamily \label{group__tasks03_gae8dac68e8910f4f878870bf414ecd958} 
+\#define CONSOLETASKBEAT\+\_\+\+MS~500}
+
+\Hypertarget{group__tasks03_ga352cfd94e52834b67e71cd2fc05ad110}\index{3. Health@{3. Health}!LOGTASKBEAT\_MS@{LOGTASKBEAT\_MS}}
+\index{LOGTASKBEAT\_MS@{LOGTASKBEAT\_MS}!3. Health@{3. Health}}
+\doxysubsubsubsection{\texorpdfstring{LOGTASKBEAT\_MS}{LOGTASKBEAT\_MS}}
+{\footnotesize\ttfamily \label{group__tasks03_ga352cfd94e52834b67e71cd2fc05ad110} 
+\#define LOGTASKBEAT\+\_\+\+MS~500}
+
+\Hypertarget{group__tasks03_ga8ecfc2902821e413c6e5b938ce437fd8}\index{3. Health@{3. Health}!METERTASKBEAT\_MS@{METERTASKBEAT\_MS}}
+\index{METERTASKBEAT\_MS@{METERTASKBEAT\_MS}!3. Health@{3. Health}}
+\doxysubsubsubsection{\texorpdfstring{METERTASKBEAT\_MS}{METERTASKBEAT\_MS}}
+{\footnotesize\ttfamily \label{group__tasks03_ga8ecfc2902821e413c6e5b938ce437fd8} 
+\#define METERTASKBEAT\+\_\+\+MS~500}
+
+\Hypertarget{group__tasks03_ga3abc449bfc85b9dd8af4ef1c93700df8}\index{3. Health@{3. Health}!NETTASKBEAT\_MS@{NETTASKBEAT\_MS}}
+\index{NETTASKBEAT\_MS@{NETTASKBEAT\_MS}!3. Health@{3. Health}}
+\doxysubsubsubsection{\texorpdfstring{NETTASKBEAT\_MS}{NETTASKBEAT\_MS}}
+{\footnotesize\ttfamily \label{group__tasks03_ga3abc449bfc85b9dd8af4ef1c93700df8} 
+\#define NETTASKBEAT\+\_\+\+MS~500}
+
+\Hypertarget{group__tasks03_ga6989b1e01404fb3e9bdb2808c1fc8512}\index{3. Health@{3. Health}!STORAGETASKBEAT\_MS@{STORAGETASKBEAT\_MS}}
+\index{STORAGETASKBEAT\_MS@{STORAGETASKBEAT\_MS}!3. Health@{3. Health}}
+\doxysubsubsubsection{\texorpdfstring{STORAGETASKBEAT\_MS}{STORAGETASKBEAT\_MS}}
+{\footnotesize\ttfamily \label{group__tasks03_ga6989b1e01404fb3e9bdb2808c1fc8512} 
+\#define STORAGETASKBEAT\+\_\+\+MS~500}
+
+\Hypertarget{group__tasks03_ga482b8f55dae942a91b38b60b38683069}\index{3. Health@{3. Health}!SWITCHTASKBEAT\_MS@{SWITCHTASKBEAT\_MS}}
+\index{SWITCHTASKBEAT\_MS@{SWITCHTASKBEAT\_MS}!3. Health@{3. Health}}
+\doxysubsubsubsection{\texorpdfstring{SWITCHTASKBEAT\_MS}{SWITCHTASKBEAT\_MS}}
+{\footnotesize\ttfamily \label{group__tasks03_ga482b8f55dae942a91b38b60b38683069} 
+\#define SWITCHTASKBEAT\+\_\+\+MS~500}
+
+
+
+\label{doc-enum-members}
+\Hypertarget{group__tasks03_doc-enum-members}
+\doxysubsubsection{Enumeration Type Documentation}
+\Hypertarget{group__tasks03_ga85cb9e0b43d35bed4ce045a22086c2b0}\index{3. Health@{3. Health}!health\_id\_t@{health\_id\_t}}
+\index{health\_id\_t@{health\_id\_t}!3. Health@{3. Health}}
+\doxysubsubsubsection{\texorpdfstring{health\_id\_t}{health\_id\_t}}
+{\footnotesize\ttfamily \label{group__tasks03_ga85cb9e0b43d35bed4ce045a22086c2b0} 
+enum \mbox{\hyperlink{group__tasks03_ga85cb9e0b43d35bed4ce045a22086c2b0}{health\+\_\+id\+\_\+t}}}
+
+
+
+Stable heartbeat IDs for tasks supervised by {\ttfamily Health\+Task}. 
+
+Each ID maps to a bit in the internal required-\/mask policy. By default, all IDs \texorpdfstring{$<$}{<} {\ttfamily HEALTH\+\_\+\+ID\+\_\+\+MAX} are required unless {\ttfamily HEALTH\+\_\+\+REQUIRED\+\_\+\+MASK} is customized at build time. \begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HEALTH\_ID\_LOGGER@{HEALTH\_ID\_LOGGER}!3. Health@{3. Health}}\index{3. Health@{3. Health}!HEALTH\_ID\_LOGGER@{HEALTH\_ID\_LOGGER}}}\Hypertarget{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a051e8be4fb238dd58b9221e976987d75}\label{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a051e8be4fb238dd58b9221e976987d75} 
+HEALTH\+\_\+\+ID\+\_\+\+LOGGER&Logger task. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HEALTH\_ID\_CONSOLE@{HEALTH\_ID\_CONSOLE}!3. Health@{3. Health}}\index{3. Health@{3. Health}!HEALTH\_ID\_CONSOLE@{HEALTH\_ID\_CONSOLE}}}\Hypertarget{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0ad37f44c33ad392b2b3daf0be960c69f7}\label{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0ad37f44c33ad392b2b3daf0be960c69f7} 
+HEALTH\+\_\+\+ID\+\_\+\+CONSOLE&Console (CLI) task. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HEALTH\_ID\_STORAGE@{HEALTH\_ID\_STORAGE}!3. Health@{3. Health}}\index{3. Health@{3. Health}!HEALTH\_ID\_STORAGE@{HEALTH\_ID\_STORAGE}}}\Hypertarget{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a015d1fa647ab3cefab7537a5f91d24b2}\label{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a015d1fa647ab3cefab7537a5f91d24b2} 
+HEALTH\+\_\+\+ID\+\_\+\+STORAGE&Storage/\+EEPROM task. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HEALTH\_ID\_BUTTON@{HEALTH\_ID\_BUTTON}!3. Health@{3. Health}}\index{3. Health@{3. Health}!HEALTH\_ID\_BUTTON@{HEALTH\_ID\_BUTTON}}}\Hypertarget{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0aec9e0ebdf114b54ffaefe5ac0dfe4f42}\label{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0aec9e0ebdf114b54ffaefe5ac0dfe4f42} 
+HEALTH\+\_\+\+ID\+\_\+\+BUTTON&Front-\/panel button scanner task. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HEALTH\_ID\_SWITCH@{HEALTH\_ID\_SWITCH}!3. Health@{3. Health}}\index{3. Health@{3. Health}!HEALTH\_ID\_SWITCH@{HEALTH\_ID\_SWITCH}}}\Hypertarget{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0adc8e549fa3ff902b411cb02ea9f57c14}\label{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0adc8e549fa3ff902b411cb02ea9f57c14} 
+HEALTH\+\_\+\+ID\+\_\+\+SWITCH&Relay/switch control task. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HEALTH\_ID\_NET@{HEALTH\_ID\_NET}!3. Health@{3. Health}}\index{3. Health@{3. Health}!HEALTH\_ID\_NET@{HEALTH\_ID\_NET}}}\Hypertarget{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a561a36766da3f788952f9183b07ad21d}\label{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a561a36766da3f788952f9183b07ad21d} 
+HEALTH\+\_\+\+ID\+\_\+\+NET&Network stack task (SNMP/\+HTTP). \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HEALTH\_ID\_METER@{HEALTH\_ID\_METER}!3. Health@{3. Health}}\index{3. Health@{3. Health}!HEALTH\_ID\_METER@{HEALTH\_ID\_METER}}}\Hypertarget{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a2cea86f90ff8e96b63128b6591e9f50c}\label{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a2cea86f90ff8e96b63128b6591e9f50c} 
+HEALTH\+\_\+\+ID\+\_\+\+METER&Metering task (HLW8032). \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HEALTH\_ID\_MAX@{HEALTH\_ID\_MAX}!3. Health@{3. Health}}\index{3. Health@{3. Health}!HEALTH\_ID\_MAX@{HEALTH\_ID\_MAX}}}\Hypertarget{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a8a4e0fbdeb7262156a215b8c0df390b6}\label{group__tasks03_gga85cb9e0b43d35bed4ce045a22086c2b0a8a4e0fbdeb7262156a215b8c0df390b6} 
+HEALTH\+\_\+\+ID\+\_\+\+MAX&Maximum number of tracked IDs (compile-\/time cap). \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{group__tasks03_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__tasks03_ga4f7298bb6ff71177639ba837e4068eb1}\index{3. Health@{3. Health}!Health\_Heartbeat@{Health\_Heartbeat}}
+\index{Health\_Heartbeat@{Health\_Heartbeat}!3. Health@{3. Health}}
+\doxysubsubsubsection{\texorpdfstring{Health\_Heartbeat()}{Health\_Heartbeat()}}
+{\footnotesize\ttfamily \label{group__tasks03_ga4f7298bb6ff71177639ba837e4068eb1} 
+void Health\+\_\+\+Heartbeat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__tasks03_ga85cb9e0b43d35bed4ce045a22086c2b0}{health\+\_\+id\+\_\+t}}}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Mark a task as alive (heartbeat). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Enumerated health ID for the task.\\
+\hline
+\end{DoxyParams}
+Call this once per main loop iteration or at a cadence shorter than {\ttfamily HEALTH\+\_\+\+SILENCE\+\_\+\+MS} to keep the watchdog fed by {\ttfamily Health\+Task}.
+
+Mark a task as alive (heartbeat). Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=261pt]{group__tasks03_ga4f7298bb6ff71177639ba837e4068eb1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks03_ga4f7298bb6ff71177639ba837e4068eb1_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__tasks03_ga2cceff60fca1f201d5d60588aff53bbc}\index{3. Health@{3. Health}!Health\_RebootNow@{Health\_RebootNow}}
+\index{Health\_RebootNow@{Health\_RebootNow}!3. Health@{3. Health}}
+\doxysubsubsubsection{\texorpdfstring{Health\_RebootNow()}{Health\_RebootNow()}}
+{\footnotesize\ttfamily \label{group__tasks03_ga2cceff60fca1f201d5d60588aff53bbc} 
+void Health\+\_\+\+Reboot\+Now (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{reason}{}\end{DoxyParamCaption})}
+
+
+
+Immediate, Health-\/owned reboot with context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reason} & Short reason string (may be NULL). Used for logs only.\\
+\hline
+\end{DoxyParams}
+Stores a reboot marker in RP2040 watchdog scratch so the next boot can report that the reset was intentional (not a stale-\/bite). Also snapshots early-\/boot info, then triggers the RP2040 watchdog reset. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks03_ga2cceff60fca1f201d5d60588aff53bbc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks03_ga2cceff60fca1f201d5d60588aff53bbc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__tasks03_ga5b404de66522546aae096a94abd6d5fc}\index{3. Health@{3. Health}!Health\_RecordBlocked@{Health\_RecordBlocked}}
+\index{Health\_RecordBlocked@{Health\_RecordBlocked}!3. Health@{3. Health}}
+\doxysubsubsubsection{\texorpdfstring{Health\_RecordBlocked()}{Health\_RecordBlocked()}}
+{\footnotesize\ttfamily \label{group__tasks03_ga5b404de66522546aae096a94abd6d5fc} 
+void Health\+\_\+\+Record\+Blocked (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{tag}{, }\item[{uint32\+\_\+t}]{waited\+\_\+ms}{}\end{DoxyParamCaption})}
+
+
+
+Record a long blocking event for later diagnostics. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tag} & Short ASCII tag identifying the blocked site. \\
+\hline
+{\em waited\+\_\+ms} & Wait duration in milliseconds (clamped to 65535).\\
+\hline
+\end{DoxyParams}
+These records are kept in a small ring buffer and dumped periodically.
+
+Record a long blocking event for later diagnostics. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=285pt]{group__tasks03_ga5b404de66522546aae096a94abd6d5fc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks03_ga5b404de66522546aae096a94abd6d5fc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__tasks03_ga39ec0ac355c1ecd9f7b42602beceaab9}\index{3. Health@{3. Health}!Health\_RegisterTask@{Health\_RegisterTask}}
+\index{Health\_RegisterTask@{Health\_RegisterTask}!3. Health@{3. Health}}
+\doxysubsubsubsection{\texorpdfstring{Health\_RegisterTask()}{Health\_RegisterTask()}}
+{\footnotesize\ttfamily \label{group__tasks03_ga39ec0ac355c1ecd9f7b42602beceaab9} 
+void Health\+\_\+\+Register\+Task (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__tasks03_ga85cb9e0b43d35bed4ce045a22086c2b0}{health\+\_\+id\+\_\+t}}}]{id}{, }\item[{Task\+Handle\+\_\+t}]{h}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Register a task handle and human-\/readable name for diagnostics. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Enumerated health ID for the task. \\
+\hline
+{\em h} & Free\+RTOS task handle. \\
+\hline
+{\em name} & ASCII task name; stored by pointer (must remain valid).\\
+\hline
+\end{DoxyParams}
+On first registration the last-\/seen timestamp is primed to now() to avoid bogus negative deltas in early logs.
+
+Register a task handle and human-\/readable name for diagnostics. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks03_ga39ec0ac355c1ecd9f7b42602beceaab9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks03_ga39ec0ac355c1ecd9f7b42602beceaab9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__tasks03_gaaa57b8a364b1e80fdbcbd231b80ee70d}\index{3. Health@{3. Health}!HealthTask\_Start@{HealthTask\_Start}}
+\index{HealthTask\_Start@{HealthTask\_Start}!3. Health@{3. Health}}
+\doxysubsubsubsection{\texorpdfstring{HealthTask\_Start()}{HealthTask\_Start()}}
+{\footnotesize\ttfamily \label{group__tasks03_gaaa57b8a364b1e80fdbcbd231b80ee70d} 
+void Health\+Task\+\_\+\+Start (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Start the {\ttfamily Health\+Task} (idempotent). 
+
+Creates the Free\+RTOS task if not yet created. The watchdog is armed inside {\ttfamily Health\+Task} after warmup and initial heartbeats policy.
+
+Start the {\ttfamily Health\+Task} (idempotent). Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks03_gaaa57b8a364b1e80fdbcbd231b80ee70d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__tasks03_gaaa57b8a364b1e80fdbcbd231b80ee70d_icgraph}
+\end{center}
+\end{figure}

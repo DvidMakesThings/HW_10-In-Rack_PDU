@@ -1,0 +1,167 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/web\+\_\+handlers/status\+\_\+handler.c File Reference}
+\hypertarget{status__handler_8c}{}\label{status__handler_8c}\index{src/Software/ENERGIS\_RTOS/src/web\_handlers/status\_handler.c@{src/Software/ENERGIS\_RTOS/src/web\_handlers/status\_handler.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for status\+\_\+handler.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{status__handler_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{status__handler_8c_a145bcdd00ff8a4f693512b35818a56b2}{STATUS\+\_\+\+HANDLER\+\_\+\+TAG}}~"{}$<$Status Handler$>$"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{status__handler_8c_a8c210587f97cbef60c84dc0bfba63c2f}{net\+\_\+beat}} (void)
+\item 
+static const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{status__handler_8c_a6840085895f9e469e8e84aa9e5a9f61e}{oc\+\_\+state\+\_\+to\+\_\+string}} (\mbox{\hyperlink{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}{overcurrent\+\_\+state\+\_\+t}} state)
+\begin{DoxyCompactList}\small\item\em Convert overcurrent state enum to JSON string representation. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{status__handler_8c_a2ddef03cd5cc6efef6d4fbbdb4bbe5de}{json\+\_\+escape\+\_\+string}} (char \texorpdfstring{$\ast$}{*}dst, size\+\_\+t dst\+\_\+len, const char \texorpdfstring{$\ast$}{*}src)
+\begin{DoxyCompactList}\small\item\em Escape a string for safe inclusion in JSON output. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__webui06_gabec26dab8e118ff845c2fde12dc885cf}{handle\+\_\+status\+\_\+request}} (uint8\+\_\+t sock)
+\begin{DoxyCompactList}\small\item\em Handle GET /api/status endpoint and return JSON telemetry. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+2.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/01-\/01
+\end{DoxyDate}
+Implementation of GET /api/status endpoint handler. Aggregates telemetry from multiple task caches and builds JSON response with channel states, power metrics, labels, temperature, and overcurrent status. Uses JSON escaping for safety.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{status__handler_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{status__handler_8c_a145bcdd00ff8a4f693512b35818a56b2}\index{status\_handler.c@{status\_handler.c}!STATUS\_HANDLER\_TAG@{STATUS\_HANDLER\_TAG}}
+\index{STATUS\_HANDLER\_TAG@{STATUS\_HANDLER\_TAG}!status\_handler.c@{status\_handler.c}}
+\doxysubsubsection{\texorpdfstring{STATUS\_HANDLER\_TAG}{STATUS\_HANDLER\_TAG}}
+{\footnotesize\ttfamily \label{status__handler_8c_a145bcdd00ff8a4f693512b35818a56b2} 
+\#define STATUS\+\_\+\+HANDLER\+\_\+\+TAG~"{}$<$Status Handler$>$"{}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{status__handler_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{status__handler_8c_a2ddef03cd5cc6efef6d4fbbdb4bbe5de}\index{status\_handler.c@{status\_handler.c}!json\_escape\_string@{json\_escape\_string}}
+\index{json\_escape\_string@{json\_escape\_string}!status\_handler.c@{status\_handler.c}}
+\doxysubsubsection{\texorpdfstring{json\_escape\_string()}{json\_escape\_string()}}
+{\footnotesize\ttfamily \label{status__handler_8c_a2ddef03cd5cc6efef6d4fbbdb4bbe5de} 
+void json\+\_\+escape\+\_\+string (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{dst}{, }\item[{size\+\_\+t}]{dst\+\_\+len}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{src}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Escape a string for safe inclusion in JSON output. 
+
+Copies source string to destination buffer while escaping special characters that require escaping in JSON strings according to RFC 8259. Filters out non-\/printable characters and ensures the result is null-\/terminated. Stops copying when destination buffer is nearly full.
+
+Escape Rules\+:
+\begin{DoxyItemize}
+\item Double quote ("{}) → \textbackslash{}"{}
+\item Backslash () → \textbackslash{}
+\item Newline (~\newline
+) → ~\newline
+
+\item Carriage return (\textbackslash{}r) → \textbackslash{}r
+\item Tab (\textbackslash{}t) → \textbackslash{}t
+\item Non-\/printable chars (\texorpdfstring{$<$}{<} 0x20 or \texorpdfstring{$>$}{>} 0x7E) → omitted
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em dst} & Destination buffer for escaped string \\
+\hline
+{\em dst\+\_\+len} & Size of destination buffer in bytes (must be \texorpdfstring{$>$}{>}= 1) \\
+\hline
+{\em src} & Source string to escape (null-\/terminated)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None (result written to dst and null-\/terminated)
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Always null-\/terminates dst, even if src is too long to fit. 
+
+If dst\+\_\+len is 0 or dst is NULL, function returns immediately without error. 
+
+Stops copying with room for null terminator (dst\mbox{[}dst\+\_\+len-\/1\mbox{]} = \textquotesingle{}\textbackslash{}0\textquotesingle{}). 
+\end{DoxyNote}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{status__handler_8c_a2ddef03cd5cc6efef6d4fbbdb4bbe5de_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{status__handler_8c_a8c210587f97cbef60c84dc0bfba63c2f}\index{status\_handler.c@{status\_handler.c}!net\_beat@{net\_beat}}
+\index{net\_beat@{net\_beat}!status\_handler.c@{status\_handler.c}}
+\doxysubsubsection{\texorpdfstring{net\_beat()}{net\_beat()}}
+{\footnotesize\ttfamily \label{status__handler_8c_a8c210587f97cbef60c84dc0bfba63c2f} 
+void net\+\_\+beat (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{status__handler_8c_a8c210587f97cbef60c84dc0bfba63c2f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{status__handler_8c_a8c210587f97cbef60c84dc0bfba63c2f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{status__handler_8c_a6840085895f9e469e8e84aa9e5a9f61e}\index{status\_handler.c@{status\_handler.c}!oc\_state\_to\_string@{oc\_state\_to\_string}}
+\index{oc\_state\_to\_string@{oc\_state\_to\_string}!status\_handler.c@{status\_handler.c}}
+\doxysubsubsection{\texorpdfstring{oc\_state\_to\_string()}{oc\_state\_to\_string()}}
+{\footnotesize\ttfamily \label{status__handler_8c_a6840085895f9e469e8e84aa9e5a9f61e} 
+const char \texorpdfstring{$\ast$}{*} oc\+\_\+state\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}{overcurrent\+\_\+state\+\_\+t}}}]{state}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Convert overcurrent state enum to JSON string representation. 
+
+Maps \doxylink{group__tasks08_ga5fece384d5a09708e5d58632d565f1ed}{overcurrent\+\_\+state\+\_\+t} enum values to human-\/readable string literals for JSON output. Provides a default "{}\+UNKNOWN"{} string for invalid or future enum values.
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & Overcurrent protection state enum value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Constant string pointer to state name (never NULL)
+\end{DoxyReturn}
+Mapping\+:
+\begin{DoxyItemize}
+\item OC\+\_\+\+STATE\+\_\+\+NORMAL → "{}\+NORMAL"{}
+\item OC\+\_\+\+STATE\+\_\+\+WARNING → "{}\+WARNING"{}
+\item OC\+\_\+\+STATE\+\_\+\+CRITICAL → "{}\+CRITICAL"{}
+\item OC\+\_\+\+STATE\+\_\+\+LOCKOUT → "{}\+LOCKOUT"{}
+\item Other values → "{}\+UNKNOWN"{}
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Returned string is a compile-\/time constant; no allocation or copying. 
+
+Safe to use in JSON output without escaping (no special characters). 
+\end{DoxyNote}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{status__handler_8c_a6840085895f9e469e8e84aa9e5a9f61e_icgraph}
+\end{center}
+\end{figure}

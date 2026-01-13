@@ -1,0 +1,5 @@
+<map id="Health_Heartbeat" name="Health_Heartbeat">
+<area shape="rect" id="Node000001" title="Mark a task as alive (heartbeat)." alt="" coords="5,5,129,32"/>
+<area shape="rect" id="Node000002" href="$_health_task_8c.html#a50503dee6a29e98e633b16b1b8b550bc" title="Get current monotonic time in milliseconds." alt="" coords="177,5,247,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="129,16,161,16,161,21,129,21"/>
+</map>

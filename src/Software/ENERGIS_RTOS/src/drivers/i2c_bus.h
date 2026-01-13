@@ -1,12 +1,9 @@
 /**
- * @file i2c_bus.h
+ * @file src/drivers/i2c_bus.h
  * @author DvidMakesThings - David Sipos
  *
- * @defgroup drivers Drivers
- * @brief HAL drivers for the Energis PDU firmware.
- * @{
- *
- * @defgroup drivers01 1. I2C Bus Manager
+ * @defgroup drivers05 5. I2C Bus Manager
+ * @ingroup drivers
  * @brief Centralized, serialized I2C access with synchronous wrappers.
  * @{
  *
@@ -32,15 +29,15 @@
  */
 
 #pragma once
-#include "FreeRTOS.h"
-#include "hardware/i2c.h"
-#include "pico/stdlib.h"
-#include "semphr.h"
-#include <stdint.h>
+#include "../CONFIG.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+/** @name Public API
+ *  @ingroup drivers05
+ *  @{ */
 
 void I2C_BusLock(i2c_inst_t *i2c);
 void I2C_BusUnlock(i2c_inst_t *i2c);
@@ -109,6 +106,8 @@ bool i2c_bus_write_mem16(i2c_inst_t *i2c, uint8_t addr, uint16_t mem, const uint
  */
 bool i2c_bus_read_mem16(i2c_inst_t *i2c, uint8_t addr, uint16_t mem, uint8_t *dst, size_t len,
                         uint32_t timeout_us);
+
+/** @} */
 
 #ifdef __cplusplus
 }

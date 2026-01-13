@@ -1,0 +1,224 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item SNMP Agent -\/ Network Configuration 
+\end{DoxyEnumerate}}
+\hypertarget{group__snmp02}{}\label{group__snmp02}\index{2. SNMP Agent -\/ Network Configuration@{2. SNMP Agent -\/ Network Configuration}}
+
+
+Network configuration exposure via SNMP.  
+
+
+Collaboration diagram for 2. SNMP Agent -\/ Network Configuration\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=319pt]{group__snmp02}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__snmp02_gad27ee84f180b6b9c90fe62588f4d2022}{get\+\_\+network\+IP}} (void \texorpdfstring{$\ast$}{*}ptr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for device IP address. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp02_ga741d94202ff45e3f45147913bb42b059}{get\+\_\+network\+Mask}} (void \texorpdfstring{$\ast$}{*}ptr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for subnet mask. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp02_ga3795c4048a3466dc0e10450be2dfc4e4}{get\+\_\+network\+Gateway}} (void \texorpdfstring{$\ast$}{*}ptr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for gateway address. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp02_ga627509df7abbb7ecc5928d9e5ccfb488}{get\+\_\+network\+DNS}} (void \texorpdfstring{$\ast$}{*}ptr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for DNS server address. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp02_gadb6d8b45f5c3512e380ef7ef4f6d0353}{get\+\_\+network\+MAC}} (void \texorpdfstring{$\ast$}{*}ptr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for MAC address. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Network configuration exposure via SNMP. 
+
+\begin{DoxyVersion}{Version}
+1.\+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/08
+\end{DoxyDate}
+This module provides SNMP GET callbacks that expose the device\textquotesingle{}s network configuration as read-\/only OCTET\+\_\+\+STRING values. Network parameters are retrieved from persistent storage (EEPROM) via the Storage\+Task API.
+
+Exposed network parameters\+:
+\begin{DoxyItemize}
+\item IP address (dotted-\/decimal notation)
+\item Subnet mask (dotted-\/decimal notation)
+\item Gateway address (dotted-\/decimal notation)
+\item DNS server address (dotted-\/decimal notation)
+\item MAC address (colon-\/separated hexadecimal)
+\end{DoxyItemize}
+
+If storage access fails, functions automatically fall back to compiled-\/in default values to ensure SNMP queries always return valid data.
+
+All functions are RTOS-\/safe and can be called from the SNMP agent context without blocking other tasks.
+
+\begin{DoxyNote}{Note}
+These are read-\/only OIDs; network configuration must be modified via the web interface or console commands. 
+\end{DoxyNote}
+
+
+\label{doc-func-members}
+\Hypertarget{group__snmp02_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__snmp02_ga627509df7abbb7ecc5928d9e5ccfb488}\index{2. SNMP Agent -\/ Network Configuration@{2. SNMP Agent -\/ Network Configuration}!get\_networkDNS@{get\_networkDNS}}
+\index{get\_networkDNS@{get\_networkDNS}!2. SNMP Agent -\/ Network Configuration@{2. SNMP Agent -\/ Network Configuration}}
+\doxysubsubsubsection{\texorpdfstring{get\_networkDNS()}{get\_networkDNS()}}
+{\footnotesize\ttfamily \label{group__snmp02_ga627509df7abbb7ecc5928d9e5ccfb488} 
+void get\+\_\+network\+DNS (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{ptr}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for DNS server address. 
+
+Retrieves the configured DNS server address from persistent storage and formats it as a dotted-\/decimal string (e.\+g., "{}8.\+8.\+8.\+8"{}).
+
+
+\begin{DoxyParams}{Parameters}
+{\em ptr} & Output buffer (minimum 16 bytes recommended) \\
+\hline
+{\em len} & Pointer to receive string length (bytes written, excluding null)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Falls back to compiled default if storage read fails. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__snmp02_ga627509df7abbb7ecc5928d9e5ccfb488_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__snmp02_ga3795c4048a3466dc0e10450be2dfc4e4}\index{2. SNMP Agent -\/ Network Configuration@{2. SNMP Agent -\/ Network Configuration}!get\_networkGateway@{get\_networkGateway}}
+\index{get\_networkGateway@{get\_networkGateway}!2. SNMP Agent -\/ Network Configuration@{2. SNMP Agent -\/ Network Configuration}}
+\doxysubsubsubsection{\texorpdfstring{get\_networkGateway()}{get\_networkGateway()}}
+{\footnotesize\ttfamily \label{group__snmp02_ga3795c4048a3466dc0e10450be2dfc4e4} 
+void get\+\_\+network\+Gateway (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{ptr}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for gateway address. 
+
+Retrieves the configured gateway address from persistent storage and formats it as a dotted-\/decimal string (e.\+g., "{}192.\+168.\+1.\+1"{}).
+
+
+\begin{DoxyParams}{Parameters}
+{\em ptr} & Output buffer (minimum 16 bytes recommended) \\
+\hline
+{\em len} & Pointer to receive string length (bytes written, excluding null)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Falls back to compiled default if storage read fails. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__snmp02_ga3795c4048a3466dc0e10450be2dfc4e4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__snmp02_gad27ee84f180b6b9c90fe62588f4d2022}\index{2. SNMP Agent -\/ Network Configuration@{2. SNMP Agent -\/ Network Configuration}!get\_networkIP@{get\_networkIP}}
+\index{get\_networkIP@{get\_networkIP}!2. SNMP Agent -\/ Network Configuration@{2. SNMP Agent -\/ Network Configuration}}
+\doxysubsubsubsection{\texorpdfstring{get\_networkIP()}{get\_networkIP()}}
+{\footnotesize\ttfamily \label{group__snmp02_gad27ee84f180b6b9c90fe62588f4d2022} 
+void get\+\_\+network\+IP (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{ptr}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for device IP address. 
+
+Retrieves the configured IP address from persistent storage and formats it as a dotted-\/decimal string (e.\+g., "{}192.\+168.\+1.\+100"{}).
+
+
+\begin{DoxyParams}{Parameters}
+{\em ptr} & Output buffer (minimum 16 bytes recommended) \\
+\hline
+{\em len} & Pointer to receive string length (bytes written, excluding null)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Falls back to compiled default if storage read fails. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__snmp02_gad27ee84f180b6b9c90fe62588f4d2022_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__snmp02_gadb6d8b45f5c3512e380ef7ef4f6d0353}\index{2. SNMP Agent -\/ Network Configuration@{2. SNMP Agent -\/ Network Configuration}!get\_networkMAC@{get\_networkMAC}}
+\index{get\_networkMAC@{get\_networkMAC}!2. SNMP Agent -\/ Network Configuration@{2. SNMP Agent -\/ Network Configuration}}
+\doxysubsubsubsection{\texorpdfstring{get\_networkMAC()}{get\_networkMAC()}}
+{\footnotesize\ttfamily \label{group__snmp02_gadb6d8b45f5c3512e380ef7ef4f6d0353} 
+void get\+\_\+network\+MAC (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{ptr}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for MAC address. 
+
+Retrieves the configured MAC address from persistent storage and formats it as a colon-\/separated hexadecimal string (e.\+g., "{}02\+:45\+:4\+E\+:0\+C\+:7\+B\+:1\+C"{}).
+
+
+\begin{DoxyParams}{Parameters}
+{\em ptr} & Output buffer (minimum 18 bytes recommended) \\
+\hline
+{\em len} & Pointer to receive string length (bytes written, excluding null)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Falls back to compiled default if storage read fails. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__snmp02_gadb6d8b45f5c3512e380ef7ef4f6d0353_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__snmp02_ga741d94202ff45e3f45147913bb42b059}\index{2. SNMP Agent -\/ Network Configuration@{2. SNMP Agent -\/ Network Configuration}!get\_networkMask@{get\_networkMask}}
+\index{get\_networkMask@{get\_networkMask}!2. SNMP Agent -\/ Network Configuration@{2. SNMP Agent -\/ Network Configuration}}
+\doxysubsubsubsection{\texorpdfstring{get\_networkMask()}{get\_networkMask()}}
+{\footnotesize\ttfamily \label{group__snmp02_ga741d94202ff45e3f45147913bb42b059} 
+void get\+\_\+network\+Mask (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{ptr}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{len}{}\end{DoxyParamCaption})}
+
+
+
+SNMP getter for subnet mask. 
+
+Retrieves the configured subnet mask from persistent storage and formats it as a dotted-\/decimal string (e.\+g., "{}255.\+255.\+255.\+0"{}).
+
+
+\begin{DoxyParams}{Parameters}
+{\em ptr} & Output buffer (minimum 16 bytes recommended) \\
+\hline
+{\em len} & Pointer to receive string length (bytes written, excluding null)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Falls back to compiled default if storage read fails. 
+\end{DoxyNote}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__snmp02_ga741d94202ff45e3f45147913bb42b059_cgraph}
+\end{center}
+\end{figure}

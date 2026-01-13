@@ -1,5 +1,5 @@
 /**
- * @file InitTask.c
+ * @file src/tasks/InitTask.c
  * @author DvidMakesThings - David Sipos
  *
  * @version 2.0.0
@@ -362,7 +362,7 @@ static void InitTask(void *pvParameters) {
     while (adc_read_voltage_avg(V_SUPPLY) * SUPPLY_DIVIDER < 10.0f) {
 
 #if ERRORLOGGER
-        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x7);
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0xC);
         ERROR_PRINT_CODE(errorcode, "%s 12V rail low, %f waiting...\r\n", INIT_TASK_TAG,
                          adc_read_voltage_avg(V_SUPPLY) * SUPPLY_DIVIDER);
         Storage_EnqueueErrorCode(errorcode);
@@ -440,7 +440,7 @@ static void InitTask(void *pvParameters) {
             INFO_PRINT("%s SwitchTask ready\r\n", INIT_TASK_TAG);
         else {
 #if ERRORLOGGER
-            uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0xA);
+            uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x4);
             ERROR_PRINT_CODE(errorcode, "%s SwitchTask not ready (timeout)\r\n", INIT_TASK_TAG);
             Storage_EnqueueErrorCode(errorcode);
 #endif
@@ -462,7 +462,7 @@ static void InitTask(void *pvParameters) {
             INFO_PRINT("%s ButtonTask ready\r\n", INIT_TASK_TAG);
         } else {
 #if ERRORLOGGER
-            uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x4);
+            uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x5);
             ERROR_PRINT_CODE(errorcode, "%s ButtonTask NOT ready (timeout)\r\n", INIT_TASK_TAG);
             Storage_EnqueueErrorCode(errorcode);
 #endif
@@ -472,7 +472,7 @@ static void InitTask(void *pvParameters) {
     /* 5) Network */
     if (NetTask_Init(true) != pdPASS) {
 #if ERRORLOGGER
-        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x5);
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x6);
         ERROR_PRINT_CODE(errorcode, "%s Failed to create NetTask\r\n", INIT_TASK_TAG);
         Storage_EnqueueErrorCode(errorcode);
 #endif
@@ -486,7 +486,7 @@ static void InitTask(void *pvParameters) {
             INFO_PRINT("%s NetTask ready\r\n", INIT_TASK_TAG);
         else {
 #if ERRORLOGGER
-            uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x5);
+            uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x7);
             ERROR_PRINT_CODE(errorcode, "%s NetTask not ready (timeout)\r\n", INIT_TASK_TAG);
             Storage_EnqueueErrorCode(errorcode);
 #endif
@@ -496,7 +496,7 @@ static void InitTask(void *pvParameters) {
     /* 6) Meter (HLW handled asynchronously by the task) */
     if (MeterTask_Init(true) != pdPASS) {
 #if ERRORLOGGER
-        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x6);
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x8);
         ERROR_PRINT_CODE(errorcode, "%s Failed to create MeterTask\r\n", INIT_TASK_TAG);
         Storage_EnqueueErrorCode(errorcode);
 #endif
@@ -510,7 +510,7 @@ static void InitTask(void *pvParameters) {
             INFO_PRINT("%s MeterTask ready\r\n", INIT_TASK_TAG);
         else {
 #if ERRORLOGGER
-            uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x7);
+            uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x9);
             ERROR_PRINT_CODE(errorcode, "%s MeterTask not ready (timeout)\r\n", INIT_TASK_TAG);
             Storage_EnqueueErrorCode(errorcode);
 #endif
@@ -522,7 +522,7 @@ static void InitTask(void *pvParameters) {
     INFO_PRINT("%s ===== Phase 4: Configuration Load =====\r\n", INIT_TASK_TAG);
     if (!storage_wait_ready(10000)) {
 #if ERRORLOGGER
-        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x8);
+        uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0xA);
         ERROR_PRINT_CODE(errorcode, "%s Storage config NOT ready (timeout)\r\n", INIT_TASK_TAG);
         Storage_EnqueueErrorCode(errorcode);
 #endif
@@ -601,7 +601,7 @@ static void InitTask(void *pvParameters) {
             HealthTask_Start();
         } else {
 #if ERRORLOGGER
-            uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0x9);
+            uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_INIT, ERR_SEV_ERROR, ERR_FID_INITTASK, 0xB);
             ERROR_PRINT_CODE(errorcode, "%s Meter not ready after wait; NOT starting Health.\r\n",
                              INIT_TASK_TAG);
             Storage_EnqueueErrorCode(errorcode);

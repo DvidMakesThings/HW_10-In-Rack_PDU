@@ -5,10 +5,10 @@
  * @version 2.0.0
  * @date 2025-01-01
  *
- * @details Handles GET requests to /api/status endpoint. Returns JSON with
- * channel states (cached from SwitchTask), voltage/current/power (cached from
- * MeterTask), channel labels (from RAM cache), internal temperature, and system status.
- * Decouples UI immediacy from measurement cadence.
+ * @details
+ * Implementation of GET /api/status endpoint handler.
+ * Aggregates telemetry from multiple task caches and builds JSON response with channel states,
+ * power metrics, labels, temperature, and overcurrent status. Uses JSON escaping for safety.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -21,10 +21,23 @@ static inline void net_beat(void) { Health_Heartbeat(HEALTH_ID_NET); }
 #define STATUS_HANDLER_TAG "<Status Handler>"
 
 /**
- * @brief Convert overcurrent state enum to string.
+ * @brief Convert overcurrent state enum to JSON string representation.
  *
- * @param state Overcurrent protection state
- * @return Constant string representation
+ * Maps overcurrent_state_t enum values to human-readable string literals for JSON output.
+ * Provides a default "UNKNOWN" string for invalid or future enum values.
+ *
+ * @param state Overcurrent protection state enum value
+ * @return Constant string pointer to state name (never NULL)
+ *
+ * Mapping:
+ * - OC_STATE_NORMAL → "NORMAL"
+ * - OC_STATE_WARNING → "WARNING"
+ * - OC_STATE_CRITICAL → "CRITICAL"
+ * - OC_STATE_LOCKOUT → "LOCKOUT"
+ * - Other values → "UNKNOWN"
+ *
+ * @note Returned string is a compile-time constant; no allocation or copying.
+ * @note Safe to use in JSON output without escaping (no special characters).
  */
 static const char *oc_state_to_string(overcurrent_state_t state) {
     switch (state) {
@@ -42,14 +55,29 @@ static const char *oc_state_to_string(overcurrent_state_t state) {
 }
 
 /**
- * @brief Escape a string for JSON output.
+ * @brief Escape a string for safe inclusion in JSON output.
  *
- * Handles special characters that need escaping in JSON strings.
- * Copies src to dst with proper escaping, null-terminates result.
+ * Copies source string to destination buffer while escaping special characters that require
+ * escaping in JSON strings according to RFC 8259. Filters out non-printable characters and
+ * ensures the result is null-terminated. Stops copying when destination buffer is nearly full.
  *
- * @param dst Destination buffer
- * @param dst_len Size of destination buffer
- * @param src Source string to escape
+ * Escape Rules:
+ * - Double quote (") → \"
+ * - Backslash (\) → \\
+ * - Newline (\n) → \n
+ * - Carriage return (\r) → \r
+ * - Tab (\t) → \t
+ * - Non-printable chars (< 0x20 or > 0x7E) → omitted
+ *
+ * @param dst Destination buffer for escaped string
+ * @param dst_len Size of destination buffer in bytes (must be >= 1)
+ * @param src Source string to escape (null-terminated)
+ *
+ * @return None (result written to dst and null-terminated)
+ *
+ * @note Always null-terminates dst, even if src is too long to fit.
+ * @note If dst_len is 0 or dst is NULL, function returns immediately without error.
+ * @note Stops copying with room for null terminator (dst[dst_len-1] = '\0').
  */
 static void json_escape_string(char *dst, size_t dst_len, const char *src) {
     if (!dst || dst_len == 0)
@@ -96,22 +124,8 @@ static void json_escape_string(char *dst, size_t dst_len, const char *src) {
 }
 
 /**
- * @brief Handles the HTTP request for the status page (/api/status)
- *
- * @param sock The socket number
- *
- * @details Returns JSON with:
- *  - channels[0..7]: { voltage, current, uptime, power, state, label }
- *  - internalTemperature, temperatureUnit ("°C"|"°F"|"K")
- *  - systemStatus ("OK"|"WARNING"|"LOCKOUT")
- *  - overcurrent: { state, total_current_a, limit_a, warning_threshold_a,
- *                   critical_threshold_a, switching_allowed, trip_count, region }
- *
- * Uses cached die temperature from MeterTask (non-blocking). No direct ADC access here.
- * Channel labels are fetched from RAM cache (non-blocking).
- *
- * @http
- * - 200 OK on success with JSON body and Connection: close.
+ * @brief Handle GET /api/status endpoint and return JSON telemetry.
+ * @see status_handler.h for detailed documentation.
  */
 void handle_status_request(uint8_t sock) {
     NETLOG_PRINT(">> handle_status_request()\n");

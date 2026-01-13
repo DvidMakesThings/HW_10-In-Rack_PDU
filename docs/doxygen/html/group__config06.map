@@ -1,0 +1,4 @@
+<map id="6. EEPROM Memory Map" name="6. EEPROM Memory Map">
+<area shape="rect" id="Node000002" href="$group__config.html" title="Configuration files for the Energis PDU firmware." alt="" coords="5,5,136,32"/>
+<area shape="rect" id="Node000001" title="EEPROM Memory Layout and Data Structures." alt="" coords="184,5,358,32"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="Overcurrent Protection Thresholds" name="Overcurrent Protection Thresholds">
+<area shape="rect" id="Node000002" href="$group__config01.html" title="Configuration header for ENERGIS PDU firmware." alt="" coords="5,13,179,40"/>
+<area shape="rect" id="Node000001" title="Fixed threshold offsets for overcurrent state machine." alt="" coords="227,5,379,48"/>
+</map>

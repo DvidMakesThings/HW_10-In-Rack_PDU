@@ -1,0 +1,67 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/snmp/snmp\+\_\+voltage\+Mon.c File Reference}
+\hypertarget{snmp__voltage_mon_8c}{}\label{snmp__voltage_mon_8c}\index{src/Software/ENERGIS\_RTOS/src/snmp/snmp\_voltageMon.c@{src/Software/ENERGIS\_RTOS/src/snmp/snmp\_voltageMon.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for snmp\+\_\+voltage\+Mon.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{snmp__voltage_mon_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__snmp05_ga49b2857ddaab294f0f73932f5c16eddb}{get\+\_\+temp\+Sensor\+Voltage}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for on-\/die temperature sensor voltage \mbox{[}V\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp05_ga07d36a9715f0433b1988b447807b3015}{get\+\_\+temp\+Sensor\+Temperature}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for on-\/die temperature \mbox{[}°C\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp05_ga2618c7cb453d6e0a9d958bc932d38a9a}{get\+\_\+\+VSUPPLY}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for V\+\_\+\+SUPPLY rail voltage \mbox{[}V\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp05_ga574d71ccd641800ba60092a96698aae3}{get\+\_\+\+VUSB}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for V\+\_\+\+USB rail voltage \mbox{[}V\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp05_gae1abd1add9071497c30abed555937772}{get\+\_\+\+VSUPPLY\+\_\+divider}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for V\+\_\+\+SUPPLY divider tap voltage \mbox{[}V\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp05_ga0c98fc2539c1c130d4ffba0bbf9224d3}{get\+\_\+\+VUSB\+\_\+divider}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for V\+\_\+\+USB divider tap voltage \mbox{[}V\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp05_ga55c9f217632f7444fea3b3ff5fbc7332}{get\+\_\+core\+VREG}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for core VREG voltage \mbox{[}V\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp05_ga3906d2584f13fb4dbb04d8cb3d29a881}{get\+\_\+core\+VREG\+\_\+status}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for core VREG status. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp05_ga6dfa68d52f72c963b8b84259854db6c9}{get\+\_\+bandgap\+Ref}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for bandgap reference voltage \mbox{[}V\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp05_gad373e18c9aff32c0faf35c41f0a4050b}{get\+\_\+usb\+PHYrail}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for USB PHY rail voltage \mbox{[}V\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__snmp05_ga7437bd619910f7c801d6b5368154eb4f}{get\+\_\+io\+Rail}} (void \texorpdfstring{$\ast$}{*}buf, uint8\+\_\+t \texorpdfstring{$\ast$}{*}len)
+\begin{DoxyCompactList}\small\item\em SNMP getter for IO rail voltage \mbox{[}V\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static float \mbox{\hyperlink{snmp__voltage_mon_8c_aa7babd679346f37a349daf3c072647c7}{g\+\_\+temp\+\_\+v}} = 0.\+0f
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/07
+\end{DoxyDate}
+Implementation of SNMP voltage monitoring callbacks. All measurements are read from Meter\+Task\textquotesingle{}s system telemetry cache (non-\/blocking) or directly from RP2040 hardware registers (VREG status). Returns zeros or default values if telemetry is unavailable.
+
+Temperature and voltage measurements use the RP2040 ADC with appropriate conversion formulas. Fixed voltage rails return constant strings for efficiency.
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-var-members}
+\Hypertarget{snmp__voltage_mon_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{snmp__voltage_mon_8c_aa7babd679346f37a349daf3c072647c7}\index{snmp\_voltageMon.c@{snmp\_voltageMon.c}!g\_temp\_v@{g\_temp\_v}}
+\index{g\_temp\_v@{g\_temp\_v}!snmp\_voltageMon.c@{snmp\_voltageMon.c}}
+\doxysubsubsection{\texorpdfstring{g\_temp\_v}{g\_temp\_v}}
+{\footnotesize\ttfamily \label{snmp__voltage_mon_8c_aa7babd679346f37a349daf3c072647c7} 
+float g\+\_\+temp\+\_\+v = 0.\+0f\hspace{0.3cm}{\ttfamily [static]}}
+

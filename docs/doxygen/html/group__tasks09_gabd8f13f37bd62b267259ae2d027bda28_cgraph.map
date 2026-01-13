@@ -1,0 +1,25 @@
+<map id="Switch_SetChannel" name="Switch_SetChannel">
+<area shape="rect" id="Node000001" title="Set single relay channel state with verification." alt="" coords="5,132,142,159"/>
+<area shape="rect" id="Node000002" href="$_switch_task_8c.html#a2a7f01bd659f5eea0a4a131d8c57c207" title=" " alt="" coords="272,5,318,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,130,127,86,156,62,188,42,223,28,257,21,258,26,224,33,191,46,159,66,131,90,88,133"/>
+<area shape="rect" id="Node000003" href="$group__drivers06.html#ga7634eca518e2158ba0e636a3f03f3928" title="Get display MCP23017 device context." alt="" coords="248,56,342,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="102,129,189,92,232,80,234,85,191,97,104,134"/>
+<area shape="rect" id="Node000004" href="$group__drivers06.html#ga6568742c79ce5190216e5185238229ba" title="Get relay MCP23017 device context." alt="" coords="254,107,336,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="142,135,239,124,239,129,143,140"/>
+<area shape="rect" id="Node000005" href="$group__drivers06.html#ga8b8bc528b75e419262e7663ee669dc31" title="Write a logic level to a pin." alt="" coords="242,157,348,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="143,150,227,160,226,166,142,156"/>
+<area shape="rect" id="Node000011" href="$group__tasks10.html#ga4bf47606df6e10c610300fdf1a2573b5" title="Query whether switching actions are currently allowed." alt="" coords="190,208,400,235"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="104,157,191,193,215,201,213,206,189,199,102,162"/>
+<area shape="rect" id="Node000012" href="$_switch_task_8c.html#abb7cc7eb4e959fda6a43c8dd85f20090" title=" " alt="" coords="265,259,324,285"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="88,157,131,201,159,224,191,244,221,256,251,264,250,269,219,261,188,249,156,229,127,205,84,161"/>
+<area shape="rect" id="Node000006" href="$group__drivers05.html#gab7b4aa096ded6cebd93256e5b5994e42" title="Write 8&#45;bit register with 8&#45;bit value: [reg, value]." alt="" coords="460,132,593,159"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="348,162,444,152,445,157,348,168"/>
+<area shape="rect" id="Node000010" href="$_m_c_p23017__driver_8c.html#a0ff45ad384852ba5f69f0fd781c2f46a" title=" " alt="" coords="448,183,604,209"/>
+<area shape="poly" id="edge9_Node000005_Node000010" title=" " alt="" coords="348,174,433,183,432,188,348,179"/>
+<area shape="rect" id="Node000007" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="678,107,799,133"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="593,135,662,126,662,132,594,140"/>
+<area shape="rect" id="Node000008" href="$group__drivers05.html#ga170d6c4ff97ddc2d314f0a7a0054f283" title="Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK i2c_write_time..." alt="" coords="652,157,825,184"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="594,151,637,156,637,161,593,156"/>
+<area shape="rect" id="Node000009" href="$i2c__bus_8c.html#afbaa64f79bdd1fa39c8fa5b7a9c2717b" title=" " alt="" coords="873,157,1030,184"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="825,168,857,168,857,173,825,173"/>
+</map>

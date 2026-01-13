@@ -1,0 +1,78 @@
+\doxysection{hlw\+\_\+calib\+\_\+data\+\_\+t Struct Reference}
+\hypertarget{structhlw__calib__data__t}{}\label{structhlw__calib__data__t}\index{hlw\_calib\_data\_t@{hlw\_calib\_data\_t}}
+
+
+Container for all 8 channels of HLW8032 calibration data.  
+
+
+
+
+{\ttfamily \#include $<$EEPROM\+\_\+\+Memory\+Map.\+h$>$}
+
+
+
+Collaboration diagram for hlw\+\_\+calib\+\_\+data\+\_\+t\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{structhlw__calib__data__t__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t}} \mbox{\hyperlink{group__config06_ga8aee9e38a38b5a84c448b3fa64b1b86d}{channels}} \mbox{[}8\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structhlw__calib__data__t_a3689f04080b0f1242459f59b27d11d8e}{crc}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Container for all 8 channels of HLW8032 calibration data. 
+
+Aggregates calibration records for all 8 power measurement channels into a single structure for bulk EEPROM storage. Includes CRC field for future data integrity validation (currently reserved).
+
+Structure\+:
+\begin{DoxyItemize}
+\item channels\+: Array of 8 \doxylink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t} structures (328 bytes total)
+\item crc\+: Reserved CRC byte for future integrity checking (1 byte)
+\end{DoxyItemize}
+
+Storage\+:
+\begin{DoxyItemize}
+\item Total size\+: 329 bytes (8 × 41 bytes + 1 byte CRC)
+\item EEPROM location\+: EEPROM\+\_\+\+SENSOR\+\_\+\+CAL\+\_\+\+START (0x0400)
+\item Region size\+: 336 bytes allocated (7 bytes spare for expansion)
+\end{DoxyItemize}
+
+Usage\+:
+\begin{DoxyItemize}
+\item Read on boot to populate Meter\+Task calibration
+\item Written after UART calibration commands
+\item Individual channels can be accessed directly via EEPROM offset
+\item Bulk structure used for backup/restore operations
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Total structure size\+: 329 bytes. 
+
+CRC field reserved for future use, not currently validated. 
+
+Channel 0 at offset +0, Channel 1 at offset +41, etc. 
+\end{DoxyNote}
+
+
+\label{doc-variable-members}
+\Hypertarget{structhlw__calib__data__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structhlw__calib__data__t_a3689f04080b0f1242459f59b27d11d8e}\index{hlw\_calib\_data\_t@{hlw\_calib\_data\_t}!crc@{crc}}
+\index{crc@{crc}!hlw\_calib\_data\_t@{hlw\_calib\_data\_t}}
+\doxysubsubsection{\texorpdfstring{crc}{crc}}
+{\footnotesize\ttfamily \label{structhlw__calib__data__t_a3689f04080b0f1242459f59b27d11d8e} 
+uint8\+\_\+t hlw\+\_\+calib\+\_\+data\+\_\+t\+::crc}
+
+Reserved CRC byte for future use (1 byte). 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/misc/\mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h}{EEPROM\+\_\+\+Memory\+Map.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,5 @@
+<map id="get_sysSN" name="get_sysSN">
+<area shape="rect" id="Node000001" title="SNMP getter for device serial number." alt="" coords="5,5,92,32"/>
+<area shape="rect" id="Node000002" href="$group__storage03.html#gad79ee3ecce363eec976ed7616906c27d" title="Get pointer to the device identity RAM cache." alt="" coords="140,5,273,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,16,124,16,124,21,92,21"/>
+</map>

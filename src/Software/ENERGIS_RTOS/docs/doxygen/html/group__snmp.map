@@ -1,0 +1,8 @@
+<map id="SNMP Agent" name="SNMP Agent">
+<area shape="rect" id="Node000001" title="SNMP agent implementation for ENERGIS PDU." alt="" coords="5,147,103,173"/>
+<area shape="rect" id="Node000002" href="$group__snmp01.html" title="Enterprise OID table definition and initialization." alt="" coords="151,5,336,48"/>
+<area shape="rect" id="Node000003" href="$group__snmp02.html" title="Network configuration exposure via SNMP." alt="" coords="157,72,330,115"/>
+<area shape="rect" id="Node000004" href="$group__snmp03.html" title="SNMP outlet control with synchronous operations via SwitchTask." alt="" coords="164,139,323,181"/>
+<area shape="rect" id="Node000005" href="$group__snmp04.html" title="Per&#45;channel power telemetry and overcurrent protection status via SNMP." alt="" coords="163,205,324,248"/>
+<area shape="rect" id="Node000006" href="$group__snmp05.html" title="RP2040 internal rails, die temperature, and project voltage monitoring." alt="" coords="160,272,327,315"/>
+</map>

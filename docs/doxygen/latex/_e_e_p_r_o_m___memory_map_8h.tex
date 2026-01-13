@@ -1,0 +1,542 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/misc/\+EEPROM\+\_\+\+Memory\+Map.h File Reference}
+\hypertarget{_e_e_p_r_o_m___memory_map_8h}{}\label{_e_e_p_r_o_m___memory_map_8h}\index{src/Software/ENERGIS\_RTOS/src/misc/EEPROM\_MemoryMap.h@{src/Software/ENERGIS\_RTOS/src/misc/EEPROM\_MemoryMap.h}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for EEPROM\+\_\+\+Memory\+Map.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_e_e_p_r_o_m___memory_map_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_e_e_p_r_o_m___memory_map_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structnetwork_info}{network\+Info}}
+\begin{DoxyCompactList}\small\item\em Network configuration data structure for EEPROM storage. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structuser_pref_info}{user\+Pref\+Info}}
+\begin{DoxyCompactList}\small\item\em User preferences data structure for device identification and display settings. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structhlw__calib__t}{hlw\+\_\+calib\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Per-\/channel calibration parameters for HLW8032 power meter IC. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structhlw__calib__data__t}{hlw\+\_\+calib\+\_\+data\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Container for all 8 channels of HLW8032 calibration data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{Indent}\textbf{ System Info Block}\par
+{\em Firmware version identification and system metadata storage.
+
+Stores the firmware version string at the beginning of EEPROM for easy identification. The version string is read from SWVERSION compile-\/time constant and written during factory defaults initialization. Used for firmware update validation and diagnostics.
+
+Contents\+:
+\begin{DoxyItemize}
+\item Firmware version string (SWVERSION from \doxylink{_c_o_n_f_i_g_8h}{config.\+h})
+\item Format\+: Null-\/terminated ASCII string
+\item Example\+: "{}\+ENERGIS\+\_\+v2.\+1.\+0\+\_\+2025-\/12-\/14"{}
+\item Updated\+: During firmware updates or factory reset
+\end{DoxyItemize}
+
+Access Pattern\+:
+\begin{DoxyItemize}
+\item Written\+: Factory defaults, firmware update
+\item Read\+: Boot diagnostics, web interface, SNMP sys\+Descr
+\item Frequency\+: Write once per firmware update, read on boot 
+\end{DoxyItemize}}\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config06_ga1504cb0ffe3e86d5878f0603980a2831}{EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+START}}~0x0000
+\item 
+\#define \mbox{\hyperlink{group__config06_ga87e6567c8befdab78603e65a617e9b9d}{EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+SIZE}}~0x0030
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Device Identity Block}\par
+{\em Unique device identification and region configuration storage.
+
+Stores device-\/specific parameters that uniquely identify each PDU unit and determine its operational region (EU/\+US). This block resides within the system info region but is managed separately via UART provisioning commands.
+
+Structure Layout (19 bytes total)\+:
+\begin{DoxyItemize}
+\item Offset 0x00\+: Serial number (16 bytes, null-\/terminated string)
+\item Offset 0x10\+: Region code (1 byte, DEVICE\+\_\+\+REGION\+\_\+\+EU or DEVICE\+\_\+\+REGION\+\_\+\+US)
+\item Offset 0x11\+: CRC-\/8 checksum (1 byte, validates serial + region)
+\item Offset 0x12\+: Reserved padding (1 byte, for alignment)
+\end{DoxyItemize}
+
+Serial Number Format\+:
+\begin{DoxyItemize}
+\item Up to 15 ASCII characters + null terminator
+\item Typically\+: "{}\+ENR"{} + year + production sequence
+\item Example\+: "{}\+ENR2025\+A001234"{}
+\item Must be unique per device for MAC address derivation
+\end{DoxyItemize}
+
+Region Codes\+:
+\begin{DoxyItemize}
+\item DEVICE\+\_\+\+REGION\+\_\+\+EU (0x45, \textquotesingle{}E\textquotesingle{})\+: 10A current limit (IEC/\+ENEC)
+\item DEVICE\+\_\+\+REGION\+\_\+\+US (0x55, \textquotesingle{}U\textquotesingle{})\+: 15A current limit (UL/\+CSA)
+\item DEVICE\+\_\+\+REGION\+\_\+\+UNKNOWN (0x00)\+: Unprovisioned device
+\end{DoxyItemize}
+
+Provisioning Workflow\+:
+\begin{DoxyEnumerate}
+\item Device ships with placeholder "{}\+UNPROVISIONED"{} serial
+\item Factory uses UART commands to unlock provisioning window
+\item Serial number and region written via PROV commands
+\item CRC-\/8 calculated and stored for validation
+\item MAC address automatically derived from new serial
+\end{DoxyEnumerate}
+
+CRC Validation\+:
+\begin{DoxyItemize}
+\item Polynomial\+: 0x07 (via calculate\+\_\+crc8)
+\item Input\+: Serial number (16 bytes) + Region (1 byte)
+\item Stored at offset 0x11
+\item Validated on boot and before MAC generation
+\end{DoxyItemize}
+
+Integration\+:
+\begin{DoxyItemize}
+\item MAC address generation\+: Uses FNV-\/1a hash of serial number
+\item Overcurrent protection\+: Region determines current limit
+\item Web interface\+: Displays serial number for identification
+\item SNMP\+: Serial exposed via custom OID 
+\end{DoxyItemize}}\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config06_ga0b0b03d61ed2b7c416e0e8665598eb3f}{EEPROM\+\_\+\+DEVICE\+\_\+\+IDENTITY\+\_\+\+START}}~0x0030
+\item 
+\#define \mbox{\hyperlink{group__config06_ga226676d435b8ea7dc26213a892abc464}{EEPROM\+\_\+\+DEVICE\+\_\+\+IDENTITY\+\_\+\+SIZE}}~    0x0013
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Factory Defaults Block (Reserved)}\par
+{\em Reserved region for future factory configuration data.
+
+This 256-\/byte region is allocated but currently unused. Reserved for future expansion of factory-\/specific data that should not be user-\/modifiable.
+
+Intended Future Use\+:
+\begin{DoxyItemize}
+\item Manufacturing test results and QA data
+\item Hardware revision and BOM variant identifiers
+\item Factory calibration certificates
+\item Production date and facility codes
+\item Tamper-\/evident checksums
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Currently not used by any module. 
+
+Write access reserved for factory provisioning tools. 
+
+User firmware should treat this region as read-\/only. 
+\end{DoxyNote}
+}\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config06_ga24bf72707e45e45ffa416fc603071e70}{EEPROM\+\_\+\+FACTORY\+\_\+\+DEFAULTS\+\_\+\+START}}~0x0100
+\item 
+\#define \mbox{\hyperlink{group__config06_gad4fd93ca413ff5525f791fcf177ee978}{EEPROM\+\_\+\+FACTORY\+\_\+\+DEFAULTS\+\_\+\+SIZE}}~0x0100
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ User Output Presets Block}\par
+{\em User-\/configurable relay configuration presets with apply-\/on-\/startup feature.
+
+Allows users to save up to 5 named relay configurations for quick recall. One preset can be designated to apply automatically on device startup. Includes header with magic value and CRC16 for data integrity.
+
+Structure Layout (256 bytes total)\+:
+\begin{DoxyItemize}
+\item Header (4 bytes)\+:
+\begin{DoxyItemize}
+\item Magic byte (0x\+C5)\+: Data validity marker
+\item Startup preset ID (0-\/4 or 0x\+FF for none)
+\item Reserved (2 bytes)\+: Future expansion
+\end{DoxyItemize}
+\item Presets array (140 bytes = 5 × 28 bytes)\+:
+\begin{DoxyItemize}
+\item Each preset\+: Name (26 bytes) + Relay mask (1 byte) + Valid flag (1 byte)
+\end{DoxyItemize}
+\item CRC16 (2 bytes)\+: Checksum over header + presets (144 bytes)
+\end{DoxyItemize}
+
+Preset Structure (28 bytes each)\+:
+\begin{DoxyItemize}
+\item Name\+: 25-\/character null-\/terminated string
+\item Null terminator\+: Byte 26
+\item Relay mask\+: 8-\/bit mask (bit N = channel N state, 1=ON 0=OFF)
+\item Valid flag\+: 0x\+A5 if preset used, else empty slot
+\end{DoxyItemize}
+
+Apply-\/on-\/\+Startup Feature\+:
+\begin{DoxyItemize}
+\item Startup preset ID specifies which preset to apply after boot
+\item Value 0-\/4\+: Apply corresponding preset
+\item Value 0x\+FF\+: No automatic application (use last saved states)
+\item Applied before normal operation begins
+\end{DoxyItemize}
+
+Access Pattern\+:
+\begin{DoxyItemize}
+\item Written\+: Web interface preset save/delete, console commands
+\item Read\+: Boot time (apply-\/on-\/startup), web interface preset list
+\item Frequency\+: Occasional user configuration changes 
+\end{DoxyItemize}}\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config06_ga5a5d270e769e9440f8136fb39602e167}{EEPROM\+\_\+\+USER\+\_\+\+OUTPUT\+\_\+\+START}}~0x0200
+\item 
+\#define \mbox{\hyperlink{group__config06_gac0ede4ad8ea0b7b3abd06f025be9eaf6}{EEPROM\+\_\+\+USER\+\_\+\+OUTPUT\+\_\+\+SIZE}}~0x0100
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Legacy Relay Power-\/\+On States}\par
+{\em Backward compatibility storage for older firmware versions.
+
+8-\/byte array storing per-\/channel power-\/on states for compatibility with firmware versions prior to preset implementation. Located at tail of user output region to avoid conflict with preset structure.
+
+Structure Layout (8 bytes)\+:
+\begin{DoxyItemize}
+\item Byte 0-\/7\+: Power-\/on state for channels 0-\/7 (0=OFF, 1=ON)
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Deprecated\+: New firmware uses preset system. 
+
+Location chosen to avoid overlap with preset structure. 
+
+Read during firmware migration for preset conversion. 
+\end{DoxyNote}
+}\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config06_ga9a68d3553d94287fd761df12d8091962}{EEPROM\+\_\+\+RELAY\+\_\+\+STATES\+\_\+\+START}}~0x02\+F0
+\item 
+\#define \mbox{\hyperlink{group__config06_ga4a0b5e7999add681533fd38f2d8c3896}{EEPROM\+\_\+\+RELAY\+\_\+\+STATES\+\_\+\+SIZE}}~0x0008
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ User Network Configuration Block}\par
+{\em Network parameters with CRC-\/8 validation and automatic MAC repair.
+
+Stores complete network configuration including MAC address, IPv4 settings, and DHCP mode. Protected by CRC-\/8 checksum with automatic MAC address repair on corruption.
+
+Structure Layout (32 bytes total)\+:
+\begin{DoxyItemize}
+\item Offset 0-\/5\+: MAC address (6 bytes)
+\item Offset 6-\/9\+: IPv4 address (4 bytes)
+\item Offset 10-\/13\+: Subnet mask (4 bytes)
+\item Offset 14-\/17\+: Default gateway (4 bytes)
+\item Offset 18-\/21\+: DNS server (4 bytes)
+\item Offset 22\+: DHCP enable (1 byte, 0=static 1=DHCP)
+\item Offset 23\+: CRC-\/8 checksum (1 byte)
+\item Offset 24-\/31\+: Unused (reserved for expansion)
+\end{DoxyItemize}
+
+MAC Address Management\+:
+\begin{DoxyItemize}
+\item Format\+: ENERGIS\+\_\+\+MAC\+\_\+\+PREFIX (3 bytes) + Serial hash (3 bytes)
+\item Derived from device serial number via FNV-\/1a hash
+\item Automatically repaired if corruption detected on boot
+\item Repair checks\+: Invalid prefix, all-\/zero/0x\+FF suffix, serial mismatch
+\end{DoxyItemize}
+
+Default Configuration\+:
+\begin{DoxyItemize}
+\item IP\+: 192.\+168.\+1.\+100
+\item Subnet\+: 255.\+255.\+255.\+0
+\item Gateway\+: 192.\+168.\+1.\+1
+\item DNS\+: 8.\+8.\+8.\+8
+\item DHCP\+: Disabled (static IP)
+\item MAC\+: Derived from serial number
+\end{DoxyItemize}
+
+CRC Validation\+:
+\begin{DoxyItemize}
+\item Polynomial\+: 0x07 (via calculate\+\_\+crc8)
+\item Input\+: Bytes 0-\/22 (MAC through DHCP flag)
+\item Stored at offset 23
+\item Failed CRC triggers fallback to defaults
+\end{DoxyItemize}
+
+Access Pattern\+:
+\begin{DoxyItemize}
+\item Written\+: Web interface, SNMP, console commands, first boot
+\item Read\+: Boot time (Net\+Task initialization), web interface
+\item Frequency\+: Occasional user configuration changes 
+\end{DoxyItemize}}\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_aaa63c2d56e6c4742e6670982fe59deb6}{EEPROM\+\_\+\+USER\+\_\+\+NETWORK\+\_\+\+START}}~0x0300
+\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_aee505783745e974dd4d486f16d43bc88}{EEPROM\+\_\+\+USER\+\_\+\+NETWORK\+\_\+\+SIZE}}~0x0020
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Sensor Calibration}\par
+{\em Generic section for all sensor calibration data. HLW8032 per channel calibration is stored here as \doxylink{structhlw__calib__data__t}{hlw\+\_\+calib\+\_\+data\+\_\+t}. }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_a21798edd791ef489a7abc7da54e56e22}{EEPROM\+\_\+\+SENSOR\+\_\+\+CAL\+\_\+\+START}}~0x0400
+\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_ab0eece76bf5350668555516a6bda81de}{EEPROM\+\_\+\+SENSOR\+\_\+\+CAL\+\_\+\+SIZE}}~0x0150
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Temperature Sensor Calibration}\par
+{\em Section for temperature sensor calibration data. }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_a60e6c78ffff2ecfe3f50fcdc5c40debb}{EEPROM\+\_\+\+TEMP\+\_\+\+CAL\+\_\+\+START}}~0x0800
+\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_a991fed90fe7f0ae0b3219f45f21af0f6}{EEPROM\+\_\+\+TEMP\+\_\+\+CAL\+\_\+\+SIZE}}~0x0050
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Energy Monitoring Data}\par
+{\em \begin{DoxyNote}{Note}
+Currently not used 
+\end{DoxyNote}
+}\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_a4795641b9e58f6c75ba9ae0e995cc712}{EEPROM\+\_\+\+ENERGY\+\_\+\+MON\+\_\+\+START}}~0x1500
+\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_a65ec8bb24e1468cdd0c49659a0f0b04b}{EEPROM\+\_\+\+ENERGY\+\_\+\+MON\+\_\+\+SIZE}}~0x0100
+\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_a328906e8700ee5d810b0d1a5f1d5d65f}{ENERGY\+\_\+\+MON\+\_\+\+POINTER\+\_\+\+SIZE}}~2
+\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_af0eeae667816203d5864d52aeaae3e80}{ENERGY\+\_\+\+RECORD\+\_\+\+SIZE}}~16
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Event Logs and Fault History}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_ad7b5216e1c099c25582f565ca1a03479}{EEPROM\+\_\+\+EVENT\+\_\+\+ERR\+\_\+\+START}}~0x1600
+\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_aeafa90f5b2666ffd5dff44732b171368}{EEPROM\+\_\+\+EVENT\+\_\+\+ERR\+\_\+\+SIZE}}~0x0200
+\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_a3131d97e2ecfb4a862f3ba0ec3c9192b}{EEPROM\+\_\+\+EVENT\+\_\+\+WARN\+\_\+\+START}}~0x1800
+\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_a932136c14f4e8a1ba99afbc7d13a822f}{EEPROM\+\_\+\+EVENT\+\_\+\+WARN\+\_\+\+SIZE}}~0x0200
+\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_a941021e4400f83e294b828c6eb9955b9}{EVENT\+\_\+\+LOG\+\_\+\+POINTER\+\_\+\+SIZE}}~2u
+\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_ac93df31c04e088289c0e15f60c8ffbb2}{EVENT\+\_\+\+LOG\+\_\+\+ENTRY\+\_\+\+SIZE}}~2u
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ User Preferences}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_a35242f6e635f259ca681df67328b939c}{EEPROM\+\_\+\+USER\+\_\+\+PREF\+\_\+\+START}}~0x2000
+\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_a823091bc84d96757e2577c87cfa71e86}{EEPROM\+\_\+\+USER\+\_\+\+PREF\+\_\+\+SIZE}}~0x0200
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Channel Labels}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_ab8d85cb44494d6b638d6197f503dbe84}{EEPROM\+\_\+\+CH\+\_\+\+LABEL\+\_\+\+START}}~0x1\+A00
+\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_a1132cc920db1d8087e6a2ba3d7453283}{EEPROM\+\_\+\+CH\+\_\+\+LABEL\+\_\+\+SIZE}}~0x0200
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Reserved Area}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_a0e9d5222a1f2d759c88a933a19df6f33}{EEPROM\+\_\+\+RESERVED\+\_\+\+START}}~0x8000
+\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_ad8bd6ede398761b9e878a2a83f2180df}{EEPROM\+\_\+\+RESERVED\+\_\+\+SIZE}}~(\mbox{\hyperlink{group__overcurrent__thresholds_gae3ef7bba113f663df6996f286b632a3f}{EEPROM\+\_\+\+SIZE}} -\/ \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_a0e9d5222a1f2d759c88a933a19df6f33}{EEPROM\+\_\+\+RESERVED\+\_\+\+START}})
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Magic Value (Factory Init Check)}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_a2527414458decfaeb83335c0a1b7f83e}{EEPROM\+\_\+\+MAGIC\+\_\+\+ADDR}}~0x7\+FFE
+\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_a7e46d3045000b93386a0fb3e1e916300}{EEPROM\+\_\+\+MAGIC\+\_\+\+VAL}}~0x\+A55A
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Constants}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_a03435e30aa792ac723256d9fa67a4df2}{EEPROM\+\_\+\+NETINFO\+\_\+\+STATIC}}~0
+\begin{DoxyCompactList}\small\item\em Constant indicating static network configuration. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_a30677734b9fe48a3568cad821a85f06b}{EEPROM\+\_\+\+NETINFO\+\_\+\+DHCP}}~1
+\begin{DoxyCompactList}\small\item\em Constant indicating DHCP network configuration. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_a53b6da4ea4d591c7efad4692cf53e6db}{EEPROM\+\_\+\+CH\+\_\+\+LABEL\+\_\+\+SLOT}}~(\mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_a1132cc920db1d8087e6a2ba3d7453283}{EEPROM\+\_\+\+CH\+\_\+\+LABEL\+\_\+\+SIZE}} / ENERGIS\+\_\+\+NUM\+\_\+\+CHANNELS)
+\begin{DoxyCompactList}\small\item\em Slot size in bytes per channel label. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}
+
+
+\label{doc-define-members}
+\Hypertarget{_e_e_p_r_o_m___memory_map_8h_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_e_e_p_r_o_m___memory_map_8h_a1132cc920db1d8087e6a2ba3d7453283}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!EEPROM\_CH\_LABEL\_SIZE@{EEPROM\_CH\_LABEL\_SIZE}}
+\index{EEPROM\_CH\_LABEL\_SIZE@{EEPROM\_CH\_LABEL\_SIZE}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_CH\_LABEL\_SIZE}{EEPROM\_CH\_LABEL\_SIZE}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_a1132cc920db1d8087e6a2ba3d7453283} 
+\#define EEPROM\+\_\+\+CH\+\_\+\+LABEL\+\_\+\+SIZE~0x0200}
+
+Size of channel labels block. \Hypertarget{_e_e_p_r_o_m___memory_map_8h_a53b6da4ea4d591c7efad4692cf53e6db}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!EEPROM\_CH\_LABEL\_SLOT@{EEPROM\_CH\_LABEL\_SLOT}}
+\index{EEPROM\_CH\_LABEL\_SLOT@{EEPROM\_CH\_LABEL\_SLOT}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_CH\_LABEL\_SLOT}{EEPROM\_CH\_LABEL\_SLOT}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_a53b6da4ea4d591c7efad4692cf53e6db} 
+\#define EEPROM\+\_\+\+CH\+\_\+\+LABEL\+\_\+\+SLOT~(\mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_a1132cc920db1d8087e6a2ba3d7453283}{EEPROM\+\_\+\+CH\+\_\+\+LABEL\+\_\+\+SIZE}} / ENERGIS\+\_\+\+NUM\+\_\+\+CHANNELS)}
+
+
+
+Slot size in bytes per channel label. 
+
+\Hypertarget{_e_e_p_r_o_m___memory_map_8h_ab8d85cb44494d6b638d6197f503dbe84}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!EEPROM\_CH\_LABEL\_START@{EEPROM\_CH\_LABEL\_START}}
+\index{EEPROM\_CH\_LABEL\_START@{EEPROM\_CH\_LABEL\_START}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_CH\_LABEL\_START}{EEPROM\_CH\_LABEL\_START}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_ab8d85cb44494d6b638d6197f503dbe84} 
+\#define EEPROM\+\_\+\+CH\+\_\+\+LABEL\+\_\+\+START~0x1\+A00}
+
+Start of channel labels block. \Hypertarget{_e_e_p_r_o_m___memory_map_8h_a65ec8bb24e1468cdd0c49659a0f0b04b}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!EEPROM\_ENERGY\_MON\_SIZE@{EEPROM\_ENERGY\_MON\_SIZE}}
+\index{EEPROM\_ENERGY\_MON\_SIZE@{EEPROM\_ENERGY\_MON\_SIZE}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_ENERGY\_MON\_SIZE}{EEPROM\_ENERGY\_MON\_SIZE}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_a65ec8bb24e1468cdd0c49659a0f0b04b} 
+\#define EEPROM\+\_\+\+ENERGY\+\_\+\+MON\+\_\+\+SIZE~0x0100}
+
+Size of energy monitoring block. \Hypertarget{_e_e_p_r_o_m___memory_map_8h_a4795641b9e58f6c75ba9ae0e995cc712}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!EEPROM\_ENERGY\_MON\_START@{EEPROM\_ENERGY\_MON\_START}}
+\index{EEPROM\_ENERGY\_MON\_START@{EEPROM\_ENERGY\_MON\_START}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_ENERGY\_MON\_START}{EEPROM\_ENERGY\_MON\_START}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_a4795641b9e58f6c75ba9ae0e995cc712} 
+\#define EEPROM\+\_\+\+ENERGY\+\_\+\+MON\+\_\+\+START~0x1500}
+
+Start of energy monitoring block. \Hypertarget{_e_e_p_r_o_m___memory_map_8h_aeafa90f5b2666ffd5dff44732b171368}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!EEPROM\_EVENT\_ERR\_SIZE@{EEPROM\_EVENT\_ERR\_SIZE}}
+\index{EEPROM\_EVENT\_ERR\_SIZE@{EEPROM\_EVENT\_ERR\_SIZE}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_EVENT\_ERR\_SIZE}{EEPROM\_EVENT\_ERR\_SIZE}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_aeafa90f5b2666ffd5dff44732b171368} 
+\#define EEPROM\+\_\+\+EVENT\+\_\+\+ERR\+\_\+\+SIZE~0x0200}
+
+Size of event log block. \Hypertarget{_e_e_p_r_o_m___memory_map_8h_ad7b5216e1c099c25582f565ca1a03479}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!EEPROM\_EVENT\_ERR\_START@{EEPROM\_EVENT\_ERR\_START}}
+\index{EEPROM\_EVENT\_ERR\_START@{EEPROM\_EVENT\_ERR\_START}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_EVENT\_ERR\_START}{EEPROM\_EVENT\_ERR\_START}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_ad7b5216e1c099c25582f565ca1a03479} 
+\#define EEPROM\+\_\+\+EVENT\+\_\+\+ERR\+\_\+\+START~0x1600}
+
+Start of event log block. \Hypertarget{_e_e_p_r_o_m___memory_map_8h_a932136c14f4e8a1ba99afbc7d13a822f}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!EEPROM\_EVENT\_WARN\_SIZE@{EEPROM\_EVENT\_WARN\_SIZE}}
+\index{EEPROM\_EVENT\_WARN\_SIZE@{EEPROM\_EVENT\_WARN\_SIZE}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_EVENT\_WARN\_SIZE}{EEPROM\_EVENT\_WARN\_SIZE}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_a932136c14f4e8a1ba99afbc7d13a822f} 
+\#define EEPROM\+\_\+\+EVENT\+\_\+\+WARN\+\_\+\+SIZE~0x0200}
+
+Size of event log block. \Hypertarget{_e_e_p_r_o_m___memory_map_8h_a3131d97e2ecfb4a862f3ba0ec3c9192b}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!EEPROM\_EVENT\_WARN\_START@{EEPROM\_EVENT\_WARN\_START}}
+\index{EEPROM\_EVENT\_WARN\_START@{EEPROM\_EVENT\_WARN\_START}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_EVENT\_WARN\_START}{EEPROM\_EVENT\_WARN\_START}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_a3131d97e2ecfb4a862f3ba0ec3c9192b} 
+\#define EEPROM\+\_\+\+EVENT\+\_\+\+WARN\+\_\+\+START~0x1800}
+
+Start of event log block. \Hypertarget{_e_e_p_r_o_m___memory_map_8h_a2527414458decfaeb83335c0a1b7f83e}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!EEPROM\_MAGIC\_ADDR@{EEPROM\_MAGIC\_ADDR}}
+\index{EEPROM\_MAGIC\_ADDR@{EEPROM\_MAGIC\_ADDR}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_MAGIC\_ADDR}{EEPROM\_MAGIC\_ADDR}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_a2527414458decfaeb83335c0a1b7f83e} 
+\#define EEPROM\+\_\+\+MAGIC\+\_\+\+ADDR~0x7\+FFE}
+
+Magic value address (last word in EEPROM). \Hypertarget{_e_e_p_r_o_m___memory_map_8h_a7e46d3045000b93386a0fb3e1e916300}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!EEPROM\_MAGIC\_VAL@{EEPROM\_MAGIC\_VAL}}
+\index{EEPROM\_MAGIC\_VAL@{EEPROM\_MAGIC\_VAL}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_MAGIC\_VAL}{EEPROM\_MAGIC\_VAL}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_a7e46d3045000b93386a0fb3e1e916300} 
+\#define EEPROM\+\_\+\+MAGIC\+\_\+\+VAL~0x\+A55A}
+
+Magic value (factory init complete). \Hypertarget{_e_e_p_r_o_m___memory_map_8h_a30677734b9fe48a3568cad821a85f06b}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!EEPROM\_NETINFO\_DHCP@{EEPROM\_NETINFO\_DHCP}}
+\index{EEPROM\_NETINFO\_DHCP@{EEPROM\_NETINFO\_DHCP}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_NETINFO\_DHCP}{EEPROM\_NETINFO\_DHCP}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_a30677734b9fe48a3568cad821a85f06b} 
+\#define EEPROM\+\_\+\+NETINFO\+\_\+\+DHCP~1}
+
+
+
+Constant indicating DHCP network configuration. 
+
+\Hypertarget{_e_e_p_r_o_m___memory_map_8h_a03435e30aa792ac723256d9fa67a4df2}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!EEPROM\_NETINFO\_STATIC@{EEPROM\_NETINFO\_STATIC}}
+\index{EEPROM\_NETINFO\_STATIC@{EEPROM\_NETINFO\_STATIC}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_NETINFO\_STATIC}{EEPROM\_NETINFO\_STATIC}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_a03435e30aa792ac723256d9fa67a4df2} 
+\#define EEPROM\+\_\+\+NETINFO\+\_\+\+STATIC~0}
+
+
+
+Constant indicating static network configuration. 
+
+\Hypertarget{_e_e_p_r_o_m___memory_map_8h_ad8bd6ede398761b9e878a2a83f2180df}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!EEPROM\_RESERVED\_SIZE@{EEPROM\_RESERVED\_SIZE}}
+\index{EEPROM\_RESERVED\_SIZE@{EEPROM\_RESERVED\_SIZE}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_RESERVED\_SIZE}{EEPROM\_RESERVED\_SIZE}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_ad8bd6ede398761b9e878a2a83f2180df} 
+\#define EEPROM\+\_\+\+RESERVED\+\_\+\+SIZE~(\mbox{\hyperlink{group__overcurrent__thresholds_gae3ef7bba113f663df6996f286b632a3f}{EEPROM\+\_\+\+SIZE}} -\/ \mbox{\hyperlink{_e_e_p_r_o_m___memory_map_8h_a0e9d5222a1f2d759c88a933a19df6f33}{EEPROM\+\_\+\+RESERVED\+\_\+\+START}})}
+
+Size of reserved area. \Hypertarget{_e_e_p_r_o_m___memory_map_8h_a0e9d5222a1f2d759c88a933a19df6f33}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!EEPROM\_RESERVED\_START@{EEPROM\_RESERVED\_START}}
+\index{EEPROM\_RESERVED\_START@{EEPROM\_RESERVED\_START}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_RESERVED\_START}{EEPROM\_RESERVED\_START}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_a0e9d5222a1f2d759c88a933a19df6f33} 
+\#define EEPROM\+\_\+\+RESERVED\+\_\+\+START~0x8000}
+
+Start of reserved area. \Hypertarget{_e_e_p_r_o_m___memory_map_8h_ab0eece76bf5350668555516a6bda81de}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!EEPROM\_SENSOR\_CAL\_SIZE@{EEPROM\_SENSOR\_CAL\_SIZE}}
+\index{EEPROM\_SENSOR\_CAL\_SIZE@{EEPROM\_SENSOR\_CAL\_SIZE}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_SENSOR\_CAL\_SIZE}{EEPROM\_SENSOR\_CAL\_SIZE}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_ab0eece76bf5350668555516a6bda81de} 
+\#define EEPROM\+\_\+\+SENSOR\+\_\+\+CAL\+\_\+\+SIZE~0x0150}
+
+Size of sensor calibration block. \Hypertarget{_e_e_p_r_o_m___memory_map_8h_a21798edd791ef489a7abc7da54e56e22}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!EEPROM\_SENSOR\_CAL\_START@{EEPROM\_SENSOR\_CAL\_START}}
+\index{EEPROM\_SENSOR\_CAL\_START@{EEPROM\_SENSOR\_CAL\_START}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_SENSOR\_CAL\_START}{EEPROM\_SENSOR\_CAL\_START}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_a21798edd791ef489a7abc7da54e56e22} 
+\#define EEPROM\+\_\+\+SENSOR\+\_\+\+CAL\+\_\+\+START~0x0400}
+
+Start of sensor calibration block. \Hypertarget{_e_e_p_r_o_m___memory_map_8h_a991fed90fe7f0ae0b3219f45f21af0f6}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!EEPROM\_TEMP\_CAL\_SIZE@{EEPROM\_TEMP\_CAL\_SIZE}}
+\index{EEPROM\_TEMP\_CAL\_SIZE@{EEPROM\_TEMP\_CAL\_SIZE}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_TEMP\_CAL\_SIZE}{EEPROM\_TEMP\_CAL\_SIZE}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_a991fed90fe7f0ae0b3219f45f21af0f6} 
+\#define EEPROM\+\_\+\+TEMP\+\_\+\+CAL\+\_\+\+SIZE~0x0050}
+
+Size of sensor calibration block. \Hypertarget{_e_e_p_r_o_m___memory_map_8h_a60e6c78ffff2ecfe3f50fcdc5c40debb}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!EEPROM\_TEMP\_CAL\_START@{EEPROM\_TEMP\_CAL\_START}}
+\index{EEPROM\_TEMP\_CAL\_START@{EEPROM\_TEMP\_CAL\_START}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_TEMP\_CAL\_START}{EEPROM\_TEMP\_CAL\_START}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_a60e6c78ffff2ecfe3f50fcdc5c40debb} 
+\#define EEPROM\+\_\+\+TEMP\+\_\+\+CAL\+\_\+\+START~0x0800}
+
+Start of sensor calibration block. \Hypertarget{_e_e_p_r_o_m___memory_map_8h_aee505783745e974dd4d486f16d43bc88}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!EEPROM\_USER\_NETWORK\_SIZE@{EEPROM\_USER\_NETWORK\_SIZE}}
+\index{EEPROM\_USER\_NETWORK\_SIZE@{EEPROM\_USER\_NETWORK\_SIZE}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_USER\_NETWORK\_SIZE}{EEPROM\_USER\_NETWORK\_SIZE}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_aee505783745e974dd4d486f16d43bc88} 
+\#define EEPROM\+\_\+\+USER\+\_\+\+NETWORK\+\_\+\+SIZE~0x0020}
+
+Size of user network block (32 bytes). \Hypertarget{_e_e_p_r_o_m___memory_map_8h_aaa63c2d56e6c4742e6670982fe59deb6}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!EEPROM\_USER\_NETWORK\_START@{EEPROM\_USER\_NETWORK\_START}}
+\index{EEPROM\_USER\_NETWORK\_START@{EEPROM\_USER\_NETWORK\_START}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_USER\_NETWORK\_START}{EEPROM\_USER\_NETWORK\_START}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_aaa63c2d56e6c4742e6670982fe59deb6} 
+\#define EEPROM\+\_\+\+USER\+\_\+\+NETWORK\+\_\+\+START~0x0300}
+
+Start of user network block. \Hypertarget{_e_e_p_r_o_m___memory_map_8h_a823091bc84d96757e2577c87cfa71e86}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!EEPROM\_USER\_PREF\_SIZE@{EEPROM\_USER\_PREF\_SIZE}}
+\index{EEPROM\_USER\_PREF\_SIZE@{EEPROM\_USER\_PREF\_SIZE}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_USER\_PREF\_SIZE}{EEPROM\_USER\_PREF\_SIZE}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_a823091bc84d96757e2577c87cfa71e86} 
+\#define EEPROM\+\_\+\+USER\+\_\+\+PREF\+\_\+\+SIZE~0x0200}
+
+Size of user preferences block. \Hypertarget{_e_e_p_r_o_m___memory_map_8h_a35242f6e635f259ca681df67328b939c}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!EEPROM\_USER\_PREF\_START@{EEPROM\_USER\_PREF\_START}}
+\index{EEPROM\_USER\_PREF\_START@{EEPROM\_USER\_PREF\_START}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_USER\_PREF\_START}{EEPROM\_USER\_PREF\_START}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_a35242f6e635f259ca681df67328b939c} 
+\#define EEPROM\+\_\+\+USER\+\_\+\+PREF\+\_\+\+START~0x2000}
+
+Start of user preferences block. \Hypertarget{_e_e_p_r_o_m___memory_map_8h_a328906e8700ee5d810b0d1a5f1d5d65f}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!ENERGY\_MON\_POINTER\_SIZE@{ENERGY\_MON\_POINTER\_SIZE}}
+\index{ENERGY\_MON\_POINTER\_SIZE@{ENERGY\_MON\_POINTER\_SIZE}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{ENERGY\_MON\_POINTER\_SIZE}{ENERGY\_MON\_POINTER\_SIZE}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_a328906e8700ee5d810b0d1a5f1d5d65f} 
+\#define ENERGY\+\_\+\+MON\+\_\+\+POINTER\+\_\+\+SIZE~2}
+
+Pointer bytes at start of energy block. \Hypertarget{_e_e_p_r_o_m___memory_map_8h_af0eeae667816203d5864d52aeaae3e80}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!ENERGY\_RECORD\_SIZE@{ENERGY\_RECORD\_SIZE}}
+\index{ENERGY\_RECORD\_SIZE@{ENERGY\_RECORD\_SIZE}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{ENERGY\_RECORD\_SIZE}{ENERGY\_RECORD\_SIZE}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_af0eeae667816203d5864d52aeaae3e80} 
+\#define ENERGY\+\_\+\+RECORD\+\_\+\+SIZE~16}
+
+Size of one energy record in bytes. \Hypertarget{_e_e_p_r_o_m___memory_map_8h_ac93df31c04e088289c0e15f60c8ffbb2}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!EVENT\_LOG\_ENTRY\_SIZE@{EVENT\_LOG\_ENTRY\_SIZE}}
+\index{EVENT\_LOG\_ENTRY\_SIZE@{EVENT\_LOG\_ENTRY\_SIZE}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{EVENT\_LOG\_ENTRY\_SIZE}{EVENT\_LOG\_ENTRY\_SIZE}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_ac93df31c04e088289c0e15f60c8ffbb2} 
+\#define EVENT\+\_\+\+LOG\+\_\+\+ENTRY\+\_\+\+SIZE~2u}
+
+Size of one event log entry in bytes. \Hypertarget{_e_e_p_r_o_m___memory_map_8h_a941021e4400f83e294b828c6eb9955b9}\index{EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}!EVENT\_LOG\_POINTER\_SIZE@{EVENT\_LOG\_POINTER\_SIZE}}
+\index{EVENT\_LOG\_POINTER\_SIZE@{EVENT\_LOG\_POINTER\_SIZE}!EEPROM\_MemoryMap.h@{EEPROM\_MemoryMap.h}}
+\doxysubsubsection{\texorpdfstring{EVENT\_LOG\_POINTER\_SIZE}{EVENT\_LOG\_POINTER\_SIZE}}
+{\footnotesize\ttfamily \label{_e_e_p_r_o_m___memory_map_8h_a941021e4400f83e294b828c6eb9955b9} 
+\#define EVENT\+\_\+\+LOG\+\_\+\+POINTER\+\_\+\+SIZE~2u}
+
+Pointer bytes at start of event log block. 

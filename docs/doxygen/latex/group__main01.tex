@@ -1,0 +1,92 @@
+\doxysubsection{
+\begin{DoxyEnumerate}
+\item ENERGIS Main file -\/ Core 0 
+\end{DoxyEnumerate}}
+\hypertarget{group__main01}{}\label{group__main01}\index{1. ENERGIS Main file -\/ Core 0@{1. ENERGIS Main file -\/ Core 0}}
+
+
+Main entry point for the ENERGIS PDU firmware.  
+
+
+Collaboration diagram for 1. ENERGIS Main file -\/ Core 0\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=266pt]{group__main01}
+\end{center}
+\end{figure}
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__main01_gaafe49c5964527e250000ab014d9e541b}{MAIN\+\_\+\+TAG}}~"{}\mbox{[}MAIN\mbox{]} "{}
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__main01_gae3fa85d0ce445e937670de85f9af490a}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} ((section("{}.uninitialized\+\_\+data"{})))
+\begin{DoxyCompactList}\small\item\em Global variable to trigger BOOTSEL mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Main entry point for the ENERGIS PDU firmware. 
+
+\begin{DoxyVersion}{Version}
+2.\+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/12-\/10
+\end{DoxyDate}
+Main entry point using Init\+Task pattern for controlled bring-\/up. Minimal initialization in main() context -\/ all hardware init happens in Init\+Task.
+
+v2.\+1.\+0 Changes\+:
+\begin{DoxyItemize}
+\item PERFORMANCE\+: Enabled 200 MHz system clock for improved SNMP stress handling
+\item 60\% faster CPU allows better handling of rapid network traffic
+\item Must be paired with matching config\+CPU\+\_\+\+CLOCK\+\_\+\+HZ in \doxylink{_free_r_t_o_s_config_8h}{Free\+RTOSConfig.\+h}
+\end{DoxyItemize}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{group__main01_doc-define-members}
+\doxysubsubsection{Macro Definition Documentation}
+\Hypertarget{group__main01_gaafe49c5964527e250000ab014d9e541b}\index{1. ENERGIS Main file -\/ Core 0@{1. ENERGIS Main file -\/ Core 0}!MAIN\_TAG@{MAIN\_TAG}}
+\index{MAIN\_TAG@{MAIN\_TAG}!1. ENERGIS Main file -\/ Core 0@{1. ENERGIS Main file -\/ Core 0}}
+\doxysubsubsubsection{\texorpdfstring{MAIN\_TAG}{MAIN\_TAG}}
+{\footnotesize\ttfamily \label{group__main01_gaafe49c5964527e250000ab014d9e541b} 
+\#define MAIN\+\_\+\+TAG~"{}\mbox{[}MAIN\mbox{]} "{}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{group__main01_doc-func-members}
+\doxysubsubsection{Function Documentation}
+\Hypertarget{group__main01_gae3fa85d0ce445e937670de85f9af490a}\index{1. ENERGIS Main file -\/ Core 0@{1. ENERGIS Main file -\/ Core 0}!\_\_attribute\_\_@{\_\_attribute\_\_}}
+\index{\_\_attribute\_\_@{\_\_attribute\_\_}!1. ENERGIS Main file -\/ Core 0@{1. ENERGIS Main file -\/ Core 0}}
+\doxysubsubsubsection{\texorpdfstring{\_\_attribute\_\_()}{\_\_attribute\_\_()}}
+{\footnotesize\ttfamily \label{group__main01_gae3fa85d0ce445e937670de85f9af490a} 
+\+\_\+\+\_\+attribute\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{(section("{}.uninitialized\+\_\+data"{}))}]{}{}\end{DoxyParamCaption})}
+
+
+
+Global variable to trigger BOOTSEL mode. 
+
+This variable is used to trigger the BOOTSEL mode on the next reboot.
+
+Main entry point
+
+Performs minimal initialization\+:
+\begin{DoxyEnumerate}
+\item Set system clock to 200 MHz for better network performance
+\item Initialize stdio (USB-\/\+CDC) for early debug output
+\item Create Init\+Task (high priority bring-\/up task)
+\item Start Free\+RTOS scheduler
+\end{DoxyEnumerate}
+
+All hardware initialization and task creation happens in Init\+Task context. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__main01_gae3fa85d0ce445e937670de85f9af490a_cgraph}
+\end{center}
+\end{figure}

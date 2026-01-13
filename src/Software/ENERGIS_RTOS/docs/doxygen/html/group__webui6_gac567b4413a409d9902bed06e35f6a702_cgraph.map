@@ -1,0 +1,40 @@
+<map id="handle_config_presets_post" name="handle_config_presets_post">
+<area shape="rect" id="Node000001" title="Handle POST request for /api/config&#45;presets." alt="" coords="5,192,189,219"/>
+<area shape="rect" id="Node000002" href="$group__misc2.html#gaeb4007c2c85c659d737d6fd89a270f5e" title="Extract key=value from URL&#45;encoded body (in&#45;place), returns NULL if missing." alt="" coords="256,65,366,92"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,189,165,147,235,102,248,96,250,101,238,106,168,151,116,194"/>
+<area shape="rect" id="Node000003" href="$preset__handler_8c.html#a8c210587f97cbef60c84dc0bfba63c2f" title=" " alt="" coords="276,116,347,143"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="135,189,236,152,260,144,262,149,238,157,137,194"/>
+<area shape="rect" id="Node000006" href="$group__drivers08.html#gacd77c3cc60e87d09a5714932506d7c4b" title="Send data over TCP socket." alt="" coords="287,167,336,193"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="189,192,271,182,271,187,190,197"/>
+<area shape="rect" id="Node000014" href="$group__tasks10.html#ga7174a6c72a5b95807a0c02f2bb9871bf" title="Delete a user output preset via StorageTask." alt="" coords="237,217,386,244"/>
+<area shape="poly" id="edge15_Node000001_Node000014" title=" " alt="" coords="190,214,221,217,221,223,189,219"/>
+<area shape="rect" id="Node000016" href="$group__tasks10.html#ga9f739ec7195c1d9f17c6a48ecfa121b4" title="Save a user output preset via StorageTask. Enqueues a message to perform the save on the StorageTask ..." alt="" coords="240,269,382,296"/>
+<area shape="poly" id="edge17_Node000001_Node000016" title=" " alt="" coords="137,217,238,253,258,261,257,266,236,259,135,222"/>
+<area shape="rect" id="Node000017" href="$group__misc2.html#ga493994a6707f3269e63a5006d8e409a1" title="Decode &#39;+&#39; to &#39; &#39; and &quot;%XX&quot; to char, in&#45;place." alt="" coords="273,321,350,348"/>
+<area shape="poly" id="edge19_Node000001_Node000017" title=" " alt="" coords="116,217,168,260,238,306,259,316,257,320,235,310,165,264,112,221"/>
+<area shape="rect" id="Node000004" href="$group__tasks03.html#ga4f7298bb6ff71177639ba837e4068eb1" title="Record a heartbeat from a registered task." alt="" coords="456,5,579,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="346,119,384,102,399,87,408,73,416,57,432,42,441,37,444,41,436,46,421,60,412,75,403,91,388,106,349,124"/>
+<area shape="rect" id="Node000005" href="$_health_task_8c.html#a50503dee6a29e98e633b16b1b8b550bc" title="Get current monotonic time in milliseconds." alt="" coords="706,5,776,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="580,16,691,16,691,21,580,21"/>
+<area shape="rect" id="Node000007" href="$group__drivers08.html#ga025710a2709097be7824f0564f89a461" title="Close a socket." alt="" coords="472,56,563,83"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="336,173,360,165,384,153,399,138,408,123,416,108,432,92,456,80,459,85,436,97,421,111,412,126,403,141,388,157,362,170,337,178"/>
+<area shape="rect" id="Node000008" href="$group__drivers03.html#gaeaef8ee772ea9b4a5c6ba7702a1c9b52" title="Send data to socket TX buffer." alt="" coords="464,107,571,133"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="336,170,454,136,455,141,337,176"/>
+<area shape="rect" id="Node000011" href="$socket_8c.html#a3e134a526306c29a2594a8615c328607" title=" " alt="" coords="446,157,590,200"/>
+<area shape="poly" id="edge11_Node000006_Node000011" title=" " alt="" coords="336,177,430,177,430,182,336,183"/>
+<area shape="rect" id="Node000013" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="649,220,833,247"/>
+<area shape="poly" id="edge14_Node000006_Node000013" title=" " alt="" coords="337,185,382,198,434,209,537,222,634,228,634,234,536,227,434,215,381,203,336,190"/>
+<area shape="rect" id="Node000009" href="$group__drivers03.html#ga35f04740974b2f6a16c4744f1641fd47" title="Set socket TX write pointer (Sn_TX_WR) in big&#45;endian." alt="" coords="686,60,796,87"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="571,106,670,85,672,90,572,112"/>
+<area shape="rect" id="Node000010" href="$group__drivers03.html#ga8e525d27915365abbe8086dc3363055f" title="Write multiple bytes to W5500 (optimized bulk transfer)" alt="" coords="881,85,1000,112"/>
+<area shape="poly" id="edge10_Node000008_Node000010" title=" " alt="" coords="571,115,865,100,865,105,571,120"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="796,78,866,87,865,92,796,83"/>
+<area shape="rect" id="Node000012" href="$group__misc3.html#gad3252fba1863d278f2611cad531177f5" title="Query the current system power state." alt="" coords="682,165,800,192"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="590,176,667,176,667,181,590,181"/>
+<area shape="poly" id="edge13_Node000011_Node000013" title=" " alt="" coords="591,194,669,213,668,218,589,199"/>
+<area shape="rect" id="Node000015" href="$group__tasks10.html#gaad6cb463ba1647fe51faeea5f08268da" title="Check if config is loaded and ready." alt="" coords="434,275,601,301"/>
+<area shape="poly" id="edge16_Node000014_Node000015" title=" " alt="" coords="363,242,453,267,451,272,361,247"/>
+<area shape="poly" id="edge18_Node000016_Node000015" title=" " alt="" coords="383,282,418,283,418,288,383,287"/>
+<area shape="rect" id="Node000018" href="$helpers_8c.html#ac58fba3086187a4058024eb333db525e" title="Convert hexadecimal character to integer value." alt="" coords="488,325,547,352"/>
+<area shape="poly" id="edge20_Node000017_Node000018" title=" " alt="" coords="351,333,473,335,473,340,350,338"/>
+</map>

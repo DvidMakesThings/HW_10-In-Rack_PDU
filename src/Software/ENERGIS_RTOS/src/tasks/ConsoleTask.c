@@ -5,22 +5,7 @@
  * @version 2.1.0
  * @date 2025-11-17
  *
- * @details
- * Architecture:
- * 1. ConsoleTask polls USB-CDC at 10ms intervals (no ISR)
- * 2. Accumulates characters into line buffer
- * 3. On complete line: parses and dispatches to handlers
- * 4. Handlers execute directly or query other tasks
- *
- * Note: Console input comes from USB-CDC (stdio), not a hardware UART.
- * This matches the CMakeLists.txt config: pico_enable_stdio_usb(... 1)
- *
- * Standby mode support:
- * - When system enters STANDBY mode (via Power_EnterStandby()), ConsoleTask
- *   stops all USB-CDC polling and command processing.
- * - ConsoleTask continues running but only feeds heartbeat and delays.
- * - On exit from STANDBY (via Power_ExitStandby()), ConsoleTask detects the
- *   state transition and resumes normal USB-CDC polling and command handling.
+ * @brief Console task implementation with USB-CDC polling and command dispatch.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -30,36 +15,47 @@
 
 #define CONSOLE_TASK_TAG "[CONSOLE]"
 
-/* ==================== Bootloader Trigger ==================== */
-
-/** Magic value to enter BOOTSEL mode on next reboot (survives reset) */
-__attribute__((section(".uninitialized_data"))) static uint32_t bootloader_trigger;
-
-/* ==================== Queue Handles ==================== */
-
-QueueHandle_t q_power = NULL;
-QueueHandle_t q_cfg = NULL;
-QueueHandle_t q_meter = NULL;
-QueueHandle_t q_net = NULL;
-
-/* ==================== Console Task State ==================== */
-
-#define LINE_BUF_SIZE 128
-#define CONSOLE_POLL_MS 10
-
-/** Line accumulator (task context, no ISR) */
-static char line_buf[LINE_BUF_SIZE];
-static uint16_t line_len = 0;
-
-/* ##################################################################### */
-/*                         INTERNAL FUNCTIONS                            */
-/* ##################################################################### */
+/* Module State */
 
 /**
- * @brief Skip ASCII spaces and tabs.
+ * Bootloader trigger magic value stored in uninitialized RAM.
+ * Set before reboot to indicate bootloader entry request.
+ */
+__attribute__((section(".uninitialized_data"))) static uint32_t bootloader_trigger;
+
+/** Power/relay control message queue. */
+QueueHandle_t q_power = NULL;
+
+/** Configuration storage message queue. */
+QueueHandle_t q_cfg = NULL;
+
+/** Meter reading message queue. */
+QueueHandle_t q_meter = NULL;
+
+/** Network operation message queue. */
+QueueHandle_t q_net = NULL;
+
+/** Maximum line buffer size for command input. */
+#define LINE_BUF_SIZE 128
+
+/** USB-CDC polling interval in milliseconds. */
+#define CONSOLE_POLL_MS 10
+
+/** Line accumulator buffer for command assembly. */
+static char line_buf[LINE_BUF_SIZE];
+
+/** Current line buffer length. */
+static uint16_t line_len = 0;
+
+/* Private Helper Functions */
+
+/**
+ * @brief Skip leading whitespace in string.
  *
- * @param s Input C-string (not NULL).
- * @return Pointer to first non-space char in @p s.
+ * Advances pointer past any leading space or tab characters.
+ *
+ * @param[in] s Input string pointer.
+ * @return Pointer to first non-whitespace character.
  */
 static const char *skip_spaces(const char *s) {
     while (*s == ' ' || *s == '\t')
@@ -68,17 +64,20 @@ static const char *skip_spaces(const char *s) {
 }
 
 /**
- * @brief Trim leading and trailing whitespace from string (in-place).
+ * @brief Trim whitespace from both ends of string.
  *
- * @param str Input string (modified).
- * @return Pointer to trimmed string (same buffer).
+ * Removes leading and trailing spaces, tabs, CR, and LF characters.
+ * Modifies the input string in place.
+ *
+ * @param[in,out] str String to trim.
+ * @return Pointer to trimmed string (within same buffer).
  */
 static char *trim(char *str) {
-    /* Trim leading */
+    /* Remove leading whitespace */
     while (*str == ' ' || *str == '\t')
         str++;
 
-    /* Trim trailing */
+    /* Remove trailing whitespace */
     char *end = str + strlen(str) - 1;
     while (end > str && (*end == ' ' || *end == '\t' || *end == '\r' || *end == '\n')) {
         *end = '\0';
@@ -88,14 +87,20 @@ static char *trim(char *str) {
 }
 
 /**
- * @brief Parse IP address string into 4-byte array.
+ * @brief Parse IP address from dotted decimal string.
  *
- * @param str IP address string (e.g., "192.168.1.100")
- * @param ip Output array of 4 bytes
- * @return true on success, false on parse error
+ * Converts IP address string (e.g., "192.168.1.100") to 4-byte array.
+ * Validates that all octets are in range 0-255.
+ *
+ * @param[in]  str IP address string in dotted decimal format.
+ * @param[out] ip  Array to receive 4 octets.
+ *
+ * @return true on successful parse and validation, false on error.
  */
 static bool parse_ip(const char *str, uint8_t ip[4]) {
     int a, b, c, d;
+
+    /* Parse four decimal integers */
     if (sscanf(str, "%d.%d.%d.%d", &a, &b, &c, &d) != 4) {
 #if ERRORLOGGER
         uint16_t errorcode =
@@ -105,6 +110,8 @@ static bool parse_ip(const char *str, uint8_t ip[4]) {
 #endif
         return false;
     }
+
+    /* Validate octet ranges */
     if (a < 0 || a > 255 || b < 0 || b > 255 || c < 0 || c > 255 || d < 0 || d > 255) {
 #if ERRORLOGGER
         uint16_t errorcode =
@@ -115,6 +122,7 @@ static bool parse_ip(const char *str, uint8_t ip[4]) {
 #endif
         return false;
     }
+
     ip[0] = (uint8_t)a;
     ip[1] = (uint8_t)b;
     ip[2] = (uint8_t)c;
@@ -123,24 +131,35 @@ static bool parse_ip(const char *str, uint8_t ip[4]) {
 }
 
 /**
- * @brief Parse next token (space-delimited).
+ * @brief Extract next whitespace-delimited token from string.
  *
- * @param pptr [in,out] pointer to char* cursor; advanced past token
- * @return Pointer to token start, or NULL if none
+ * Parses and null-terminates the next token, advancing the cursor.
+ * Modifies the input string by inserting null terminator.
  *
- * @note The returned token is in-place and null-terminated temporarily.
+ * @param[in,out] pptr Pointer to string cursor, updated to point past token.
+ *
+ * @return Pointer to token start, or NULL if no more tokens.
+ *
+ * @note The returned token is within the original buffer and null-terminated.
+ * @note Consecutive calls parse successive tokens from the same string.
  */
 static char *next_token(char **pptr) {
     if (!pptr || !*pptr)
         return NULL;
+
+    /* Skip leading whitespace */
     char *s = (char *)skip_spaces(*pptr);
     if (*s == '\0') {
         *pptr = s;
         return NULL;
     }
+
+    /* Find token end */
     char *start = s;
     while (*s && *s != ' ' && *s != '\t' && *s != '\r' && *s != '\n')
         s++;
+
+    /* Null-terminate and advance cursor */
     if (*s) {
         *s = '\0';
         s++;
@@ -149,12 +168,12 @@ static char *next_token(char **pptr) {
     return start;
 }
 
-/* ==================== Command Handlers ==================== */
-
 /**
- * @brief Print help message with available commands.
+ * @brief Individual command implementation functions.
  *
- * @return None
+ * Each command handler function implements a specific console command.
+ * Handlers parse arguments, validate inputs, execute operations, and
+ * provide user feedback. Error conditions are logged and reported to user.
  */
 static void cmd_help(void) {
     ECHO("=== ENERGIS PDU Console Commands ===\n");
@@ -177,10 +196,11 @@ static void cmd_help(void) {
     ECHO("%-32s %s\n", "READ_HLW8032 <ch>", "Read power data for channel (1-8)");
     ECHO("%-32s %s\n", "CALIBRATE <ch> <V> <I>",
          "Start calibration on channel (1-8) with given V/I");
-    ECHO("%-32s %s\n", "AUTO_CAL_ZERO", "Zero-calibrate all channels");
-    ECHO("%-32s %s\n", "AUTO_CAL_V <voltage>", "Voltage-calibrate all channels");
-    ECHO("%-32s %s\n", "AUTO_CAL_I <current> <ch>",
-         "Current-calibrate single channel (requires known load)");
+    ECHO("%-32s %s\n", "AUTO_CAL_ZERO [ch|ALL]", "Zero-calibrate one channel or ALL");
+    ECHO("%-32s %s\n", "AUTO_CAL_V <voltage> [ch|ALL]",
+         "Voltage-calibrate one channel or ALL (0A assumed)");
+    ECHO("%-32s %s\n", "AUTO_CAL_I <current> <ch|ALL>",
+         "Current-calibrate a channel, or ALL sequentially");
     ECHO("%-32s %s\n", "SHOW_CALIB <ch>", "Show calibration data (1-8|ALL)");
 
     ECHO("NETWORK SETTINGS\n");
@@ -841,49 +861,133 @@ static void cmd_calibrate(const char *args) {
 }
 
 /**
- * @brief Auto-calibrate zero point (0V, 0A) for all channels (async).
+ * @brief Auto-calibrate zero point (0V, 0A) for a single channel or ALL (async).
  *
- * @return None
+ * @param args Optional argument: "ALL" (default) or channel number 1..8
+ *
+ * @details
+ * - When called with no args or "ALL", starts zero calibration for all channels.
+ * - When called with a channel (1..8), runs zero calibration for that channel only.
+ * - Calibration runs asynchronously; check logs for progress and results.
  */
-static void cmd_auto_cal_zero(void) {
-    ECHO("========================================\n");
-    ECHO("  AUTO ZERO-POINT CALIBRATION (ASYNC)\n");
-    ECHO("========================================\n");
-    ECHO("Calibrating all 8 channels (0V, 0A)\n");
-    ECHO("Ensure all channels are OFF/disconnected\n");
-    ECHO("Calibration will run in background; check\n ");
-    ECHO("log for per-channel results.\n");
-    ECHO("========================================\n\n");
+static void cmd_auto_cal_zero(const char *args) {
+    int ch = -1; /* 0..7 for single, -1 for ALL */
 
-    if (!hlw8032_calibration_start_zero_all()) {
-#if ERRORLOGGER
-        uint16_t errorcode =
-            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x0);
-        ERROR_PRINT_CODE(errorcode,
-                         "%s Failed to start async zero-point calibration (already running?)\r\n",
-                         CONSOLE_TASK_TAG);
-        Storage_EnqueueErrorCode(errorcode);
-#endif
-        ECHO("ERROR: Could not start zero-point calibration (already running?).\r\n");
-        return;
+    if (args && *args) {
+        char buf[32];
+        memset(buf, 0, sizeof(buf));
+        strncpy(buf, args, sizeof(buf) - 1);
+        char *tok = trim(buf);
+        if (*tok) {
+            if (strcasecmp(tok, "ALL") == 0) {
+                ch = -1;
+            } else {
+                int ctmp = atoi(tok);
+                if (ctmp >= 1 && ctmp <= 8) {
+                    ch = ctmp - 1;
+                } else {
+                    ECHO("Usage: AUTO_CAL_ZERO [ch|ALL]\r\n");
+                    ECHO("Example: AUTO_CAL_ZERO 3\r\n");
+                    return;
+                }
+            }
+        }
     }
 
-    ECHO("Async zero calibration started.\r\n");
+    if (ch < 0) {
+        ECHO("========================================\n");
+        ECHO("  AUTO ZERO-POINT CALIBRATION (ASYNC)\n");
+        ECHO("========================================\n");
+        ECHO("Calibrating all 8 channels (0V, 0A)\n");
+        ECHO("Ensure all channels are OFF/disconnected\n");
+        ECHO("Calibration will run in background; check\n ");
+        ECHO("log for per-channel results.\n");
+        ECHO("========================================\n\n");
+
+        if (!hlw8032_calibration_start_zero_all()) {
+#if ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x0);
+            ERROR_PRINT_CODE(
+                errorcode, "%s Failed to start async zero-point calibration (already running?)\r\n",
+                CONSOLE_TASK_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
+            ECHO("ERROR: Could not start zero-point calibration (already running?).\r\n");
+            return;
+        }
+        ECHO("Async zero calibration started.\r\n");
+    } else {
+        ECHO("========================================\n");
+        ECHO("  AUTO ZERO-POINT CALIBRATION (ASYNC)\n");
+        ECHO("========================================\n");
+        ECHO("Channel (console): %d\n", ch + 1);
+        ECHO("Channel (internal): %d\n", ch);
+        ECHO("Condition         : 0V / 0A\n");
+        ECHO("Ensure the selected channel is OFF and unloaded.\n");
+        ECHO("========================================\n\n");
+
+        if (!hlw8032_calibration_start_zero_single((uint8_t)ch)) {
+#if ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x0);
+            ERROR_PRINT_CODE(
+                errorcode, "%s Failed to start single-channel zero calibration (busy/invalid)\r\n",
+                CONSOLE_TASK_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
+            ECHO("ERROR: Could not start single-channel zero calibration.\r\n");
+            return;
+        }
+        ECHO("Async zero calibration started for CH%d.\r\n", ch + 1);
+    }
 }
 
 /**
- * @brief Auto-calibrate voltage for all channels (async).
+ * @brief Auto-calibrate voltage for a single channel or ALL (async).
  *
- * @param args Command arguments: "<voltage>" (optional, defaults to 230V)
+ * @param args Command arguments: "<voltage> [ch|ALL]" (defaults: 230V, ALL)
+ *
+ * @details
+ * - Without args: calibrates all 8 channels using 230V, assuming 0A.
+ * - With args: first token is Vref, second optional token selects a single channel (1..8)
+ *   or ALL. Uses `hlw8032_calibration_start_voltage_single()` when a channel is provided.
+ * - Runs asynchronously; monitor logs for progress.
+ *
  * @return None
  */
 static void cmd_auto_cal_v(const char *args) {
     float ref_voltage = 230.0f;
+    int ch = -1; /* 0..7 for single, -1 for ALL */
 
     if (args != NULL && strlen(args) > 0) {
-        float tmp = (float)atof(args);
-        if (tmp > 0.0f) {
-            ref_voltage = tmp;
+        /* Copy and tokenize: <voltage> [ch|ALL] */
+        char buf[64];
+        memset(buf, 0, sizeof(buf));
+        strncpy(buf, args, sizeof(buf) - 1);
+
+        char *tok_v = strtok(buf, " \t");
+        char *tok_c = strtok(NULL, " \t");
+
+        if (tok_v) {
+            float tmp = (float)atof(tok_v);
+            if (tmp > 0.0f)
+                ref_voltage = tmp;
+        }
+
+        if (tok_c) {
+            /* Accept ALL or channel number 1..8 */
+            if (strcasecmp(tok_c, "ALL") == 0) {
+                ch = -1;
+            } else {
+                int ctmp = atoi(tok_c);
+                if (ctmp >= 1 && ctmp <= 8) {
+                    ch = ctmp - 1;
+                } else {
+                    ECHO("ERROR: Invalid channel. Use 1..8 or ALL.\r\n");
+                    return;
+                }
+            }
         }
     }
 
@@ -899,28 +1003,52 @@ static void cmd_auto_cal_v(const char *args) {
         return;
     }
 
-    ECHO("========================================\n");
-    ECHO("  AUTO VOLTAGE CALIBRATION (ASYNC)\n");
-    ECHO("========================================\n");
-    ECHO("Calibrating all 8 channels (%.1fV, 0A)\n", ref_voltage);
-    ECHO("Ensure all channels have the same stable mains voltage\n");
-    ECHO("Calibration will run in background; check log for per-channel results.\n");
-    ECHO("========================================\n\n");
+    if (ch < 0) {
+        ECHO("========================================\n");
+        ECHO("  AUTO VOLTAGE CALIBRATION (ASYNC)\n");
+        ECHO("========================================\n");
+        ECHO("Calibrating all 8 channels (%.1fV, 0A)\n", ref_voltage);
+        ECHO("Ensure all channels have the same stable mains voltage\n");
+        ECHO("Calibration will run in background; check log for per-channel results.\n");
+        ECHO("========================================\n\n");
 
-    if (!hlw8032_calibration_start_voltage_all(ref_voltage)) {
+        if (!hlw8032_calibration_start_voltage_all(ref_voltage)) {
 #if ERRORLOGGER
-        uint16_t errorcode =
-            ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x2);
-        ERROR_PRINT_CODE(errorcode,
-                         "%s Failed to start async voltage calibration (already running?)\r\n",
-                         CONSOLE_TASK_TAG);
-        Storage_EnqueueErrorCode(errorcode);
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x2);
+            ERROR_PRINT_CODE(errorcode,
+                             "%s Failed to start async voltage calibration (already running?)\r\n",
+                             CONSOLE_TASK_TAG);
+            Storage_EnqueueErrorCode(errorcode);
 #endif
-        ECHO("ERROR: Could not start voltage calibration (already running?).\r\n");
-        return;
-    }
+            ECHO("ERROR: Could not start voltage calibration (already running?).\r\n");
+            return;
+        }
+        ECHO("Async voltage calibration started.\r\n");
+    } else {
+        ECHO("========================================\n");
+        ECHO("  AUTO VOLTAGE CALIBRATION (ASYNC)\n");
+        ECHO("========================================\n");
+        ECHO("Channel: %d\n", ch + 1);
+        ECHO("Vref              : %.1fV\n", ref_voltage);
+        ECHO("Ensure the selected channel sees the reference voltage.\n");
+        ECHO("========================================\n\n");
 
-    ECHO("Async voltage calibration started.\r\n");
+        if (!hlw8032_calibration_start_voltage_single((uint8_t)ch, ref_voltage)) {
+#if ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x2);
+            ERROR_PRINT_CODE(
+                errorcode,
+                "%s Failed to start single-channel voltage calibration (busy/invalid)\r\n",
+                CONSOLE_TASK_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
+            ECHO("ERROR: Could not start single-channel voltage calibration.\r\n");
+            return;
+        }
+        ECHO("Async voltage calibration started for CH%d.\r\n", ch + 1);
+    }
 }
 
 /**
@@ -938,7 +1066,7 @@ static void cmd_auto_cal_v(const char *args) {
 static void cmd_auto_cal_i(const char *args) {
     float ref_current = 0.0f;
     int channel_console = -1;
-    int channel_internal = -1;
+    int channel_internal = -2; /* -2 = ALL, -1 = invalid, 0..7 = single */
 
     if (args == NULL || strlen(args) == 0) {
         ECHO("Usage: AUTO_CAL_I <current_A> <channel>\r\n");
@@ -960,8 +1088,12 @@ static void cmd_auto_cal_i(const char *args) {
     }
 
     ref_current = (float)atof(tok1);
-    channel_console = atoi(tok2);           /* User enters 1..8 */
-    channel_internal = channel_console - 1; /* Convert to 0..7 */
+    if (strcasecmp(tok2, "ALL") == 0) {
+        channel_internal = -2;
+    } else {
+        channel_console = atoi(tok2);           /* User enters 1..8 */
+        channel_internal = channel_console - 1; /* Convert to 0..7 */
+    }
 
     if (ref_current <= 0.0f) {
 #if ERRORLOGGER
@@ -975,23 +1107,54 @@ static void cmd_auto_cal_i(const char *args) {
         return;
     }
 
-    if (channel_internal < 0 || channel_internal > 7) {
+    if (channel_internal != -2 && (channel_internal < 0 || channel_internal > 7)) {
 #if ERRORLOGGER
         uint16_t errorcode =
             ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x4);
-        ERROR_PRINT_CODE(errorcode, "%s Invalid channel for AUTO_CAL_I: %d (console index)\r\n",
-                         CONSOLE_TASK_TAG, channel_console);
+        ERROR_PRINT_CODE(errorcode, "%s Invalid channel for AUTO_CAL_I: %s\r\n", CONSOLE_TASK_TAG,
+                         tok2);
         Storage_EnqueueErrorCode(errorcode);
 #endif
         ECHO("ERROR: Invalid channel index. Valid range: 1..8\r\n");
         return;
     }
 
+    if (channel_internal == -2) {
+        /* ALL channels: let driver sequence channels internally */
+        ECHO("========================================\n");
+        ECHO("  AUTO CURRENT CALIBRATION (ASYNC)\n");
+        ECHO("========================================\n");
+        ECHO("Calibrating ALL channels (Iref=%.3fA)\n", ref_current);
+        ECHO("The driver will step through channels automatically.\n");
+        ECHO("Ensure each channel carries the known current when prompted.\n");
+        ECHO("Use an external DMM as reference.\n");
+        ECHO("========================================\n\n");
+        if (!hlw8032_calibration_start_current_all(ref_current)) {
+#if ERRORLOGGER
+            uint16_t errorcode =
+                ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x5);
+            ERROR_PRINT_CODE(errorcode, "%s Failed to start ALL-channels current calibration\r\n",
+                             CONSOLE_TASK_TAG);
+            Storage_EnqueueErrorCode(errorcode);
+#endif
+            ECHO("ERROR: Failed to start ALL-channels current calibration.\r\n");
+            return;
+        }
+
+        /* Wait until calibration engine completes */
+        while (hlw8032_calibration_is_running()) {
+            vTaskDelay(pdMS_TO_TICKS(50));
+        }
+
+        ECHO("ALL channels current calibration complete.\r\n");
+        return;
+    }
+
+    /* Single channel */
     ECHO("========================================\n");
     ECHO("  AUTO CURRENT CALIBRATION (ASYNC)\n");
     ECHO("========================================\n");
-    ECHO("Channel (console): %d\n", channel_console);
-    ECHO("Channel (internal): %d\n", channel_internal);
+    ECHO("Channel: %d\n", channel_console);
     ECHO("Iref              : %.3fA\n", ref_current);
     ECHO("Ensure the selected channel carries the known current.\n");
     ECHO("Use an external DMM as reference.\n");
@@ -999,7 +1162,7 @@ static void cmd_auto_cal_i(const char *args) {
     ECHO("per-channel results.\n");
     ECHO("========================================\n\n");
 
-    if (!hlw8032_calibration_start_current_all((uint8_t)channel_internal, ref_current)) {
+    if (!hlw8032_calibration_start_current_single((uint8_t)channel_internal, ref_current)) {
 #if ERRORLOGGER
         uint16_t errorcode =
             ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x5);
@@ -1033,7 +1196,7 @@ static void cmd_show_calib(const char *args) {
         if (ch < 1 || ch > 8) {
 #if ERRORLOGGER
             uint16_t errorcode =
-                ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x3);
+                ERR_MAKE_CODE(ERR_MOD_CONSOLE, ERR_SEV_ERROR, ERR_FID_CONSOLETASK2, 0x6);
             ERROR_PRINT_CODE(errorcode, "%s Invalid channel for SHOW_CALIB: %s\r\n",
                              CONSOLE_TASK_TAG, args);
             Storage_EnqueueErrorCode(errorcode);
@@ -1434,24 +1597,38 @@ static void cmd_clear_warning_log(void) {
     }
 }
 
-/* ==================== Command Dispatcher ==================== */
+/** @} */
 
 /**
- * @brief Parse and dispatch command line to appropriate handler.
+ * @brief Parse and dispatch command line to handler function.
  *
- * @param line Null-terminated command line string.
- * @return None
+ * Parses the input command line, separates command from arguments, converts
+ * to uppercase for case-insensitive matching, and routes to the appropriate
+ * handler function. Unknown commands are reported to user.
+ *
+ * Command Processing:
+ * 1. Trim whitespace from input line
+ * 2. Split command name from arguments
+ * 3. Convert command to uppercase
+ * 4. Match against known commands
+ * 5. Call corresponding handler with arguments
+ *
+ * @param[in] line Null-terminated command line string.
+ *
+ * @note Modifies a local copy of the input line during parsing.
+ * @note Empty lines are ignored silently.
  */
 static void dispatch_command(const char *line) {
     char buf[LINE_BUF_SIZE];
     strncpy(buf, line, sizeof(buf) - 1);
     buf[sizeof(buf) - 1] = '\0';
 
+    /* Trim and check for empty input */
     char *trimmed = trim(buf);
     if (strlen(trimmed) == 0)
-        return; /* Empty line */
+        return;
 
-    /* Split command and arguments */
+    /* Separate command from arguments */
     char *args = strchr(trimmed, ' ');
     if (args) {
         *args = '\0';
@@ -1459,7 +1636,7 @@ static void dispatch_command(const char *line) {
         args = trim(args);
     }
 
-    /* Convert command to uppercase for case-insensitive matching */
+    /* Normalize command to uppercase for matching */
     for (char *p = trimmed; *p; p++) {
         *p = (char)toupper((unsigned char)*p);
     }
@@ -1506,7 +1683,7 @@ static void dispatch_command(const char *line) {
     } else if (strcmp(trimmed, "CALIBRATE") == 0) {
         cmd_calibrate(args ? args : "");
     } else if (strcmp(trimmed, "AUTO_CAL_ZERO") == 0) {
-        cmd_auto_cal_zero();
+        cmd_auto_cal_zero(args ? args : "");
     } else if (strcmp(trimmed, "AUTO_CAL_V") == 0) {
         cmd_auto_cal_v(args ? args : "");
     } else if (strcmp(trimmed, "AUTO_CAL_I") == 0) {
@@ -1561,20 +1738,36 @@ static void dispatch_command(const char *line) {
     }
 }
 
-/* ==================== Console Task ==================== */
-
 /**
- * @brief FreeRTOS task: polls USB-CDC, accumulates lines, dispatches commands.
+ * @brief Main console task function.
  *
- * @param arg Unused
- * @return None
+ * Continuously polls USB-CDC for character input, accumulates complete command
+ * lines, and dispatches them to handler functions. Supports power management by
+ * suspending command processing in standby mode while maintaining heartbeat.
+ *
+ * Operation Modes:
+ * - RUN: Normal operation with active USB-CDC polling and command processing
+ * - STANDBY: Suspended operation with reduced heartbeat rate, no command processing
+ *
+ * Input Handling:
+ * - Polls USB-CDC at CONSOLE_POLL_MS intervals (non-blocking)
+ * - Accumulates characters until CR or LF received
+ * - Supports backspace/delete for line editing
+ * - Dispatches complete lines to command parser
+ *
+ * Power Management:
+ * - Detects power state transitions automatically
+ * - Suspends all USB-CDC operations in standby
+ * - Maintains reduced heartbeat rate to prevent watchdog timeout
+ * - Resumes normal operation on exit from standby
+ *
+ * @param[in] arg Task parameters (unused).
  */
 static void ConsoleTask(void *arg) {
     (void)arg;
 
-    /* Wait for logger to be ready */
+    /* Print startup banner */
     ECHO("%s Task started\r\n", CONSOLE_TASK_TAG);
-
     vTaskDelay(pdMS_TO_TICKS(1500));
     ECHO("\n");
     ECHO("=== ENERGIS Console Ready ===\n");
@@ -1584,44 +1777,45 @@ static void ConsoleTask(void *arg) {
     const TickType_t poll_ticks = pdMS_TO_TICKS(CONSOLE_POLL_MS);
     static uint32_t hb_cons_ms = 0;
 
+    /* Main event loop */
     for (;;) {
         uint32_t __now = to_ms_since_boot(get_absolute_time());
 
-        /* Query current power state */
+        /* Check current system power state */
         power_state_t pwr_state = Power_GetState();
 
-        /* If in STANDBY mode, skip all USB-CDC polling and command processing */
+        /* Standby mode: suspend command processing, maintain heartbeat */
         if (pwr_state == PWR_STATE_STANDBY) {
-            /* Heartbeat at reduced rate to keep HealthTask happy */
             if ((__now - hb_cons_ms) >= 500U) {
                 hb_cons_ms = __now;
                 Health_Heartbeat(HEALTH_ID_CONSOLE);
             }
-            /* Long delay to minimize CPU usage in standby */
             vTaskDelay(pdMS_TO_TICKS(300));
             continue;
         }
 
-        /* ===== Normal RUN mode operation from here ===== */
+        /* Normal operation: full USB-CDC polling and command processing */
 
-        /* Regular heartbeat in RUN mode */
+        /* Send periodic heartbeat */
         if ((__now - hb_cons_ms) >= CONSOLETASKBEAT_MS) {
             hb_cons_ms = __now;
             Health_Heartbeat(HEALTH_ID_CONSOLE);
         }
 
-        /* Poll USB-CDC for available characters (non-blocking with timeout) */
-        int ch_int = getchar_timeout_us(0); /* 0 = non-blocking */
+        /* Poll for input character (non-blocking) */
+        int ch_int = getchar_timeout_us(0);
 
         if (ch_int != PICO_ERROR_TIMEOUT) {
             char ch = (char)ch_int;
 
-            /* Handle backspace (BS or DEL) */
+            /* Process character based on type */
             if (ch == '\b' || ch == 0x7F) {
+                /* Backspace: remove last character */
                 if (line_len > 0) {
                     line_len--;
                 }
             } else if (ch == '\r' || ch == '\n') {
+                /* Line terminator: dispatch complete command */
                 line_buf[line_len] = '\0';
                 if (line_len > 0) {
                     dispatch_command(line_buf);
@@ -1629,42 +1823,26 @@ static void ConsoleTask(void *arg) {
                 }
                 log_printf("\r\n");
             } else if (line_len < (int)(sizeof(line_buf) - 1)) {
+                /* Regular character: append to buffer */
                 line_buf[line_len++] = ch;
             }
         } else {
+            /* No input available, yield to other tasks */
             vTaskDelay(poll_ticks);
         }
     }
 }
 
-/* ##################################################################### */
-/*                       PUBLIC API FUNCTIONS                            */
-/* ##################################################################### */
+/* Public API Implementation */
 
-/**
- * @brief Initialize and start the Console task with a deterministic enable gate.
- *
- * @details
- * Deterministic boot order step 2/6.
- * - Waits up to 5 s for Logger_IsReady() to report ready.
- * - Creates Console queues (q_power, q_cfg, q_meter, q_net).
- * - Spawns the ConsoleTask.
- * - Returns pdPASS on success, pdFAIL on any creation error.
- *
- * @instructions
- * Call after LoggerTask_Init(true):
- *   BaseType_t rc = ConsoleTask_Init(true);
- * Gate subsequent steps with Console_IsReady().
- *
- * @param enable Gate that allows or skips starting this subsystem.
- * @return pdPASS on success (or when skipped), pdFAIL on creation error.
- */
+/** See consoletask.h for detailed documentation. */
 BaseType_t ConsoleTask_Init(bool enable) {
+    /* Skip initialization if disabled */
     if (!enable) {
         return pdPASS;
     }
 
-    /* Wait briefly for logger so prints don't jam CDC */
+    /* Wait for logger readiness */
     {
         extern bool Logger_IsReady(void);
         TickType_t t0 = xTaskGetTickCount();
@@ -1673,15 +1851,14 @@ BaseType_t ConsoleTask_Init(bool enable) {
         }
     }
 
-    /* Queues: ensure item sizes MATCH the consumer task types */
+    /* Create inter-task message queues */
     extern QueueHandle_t q_power, q_cfg, q_meter, q_net;
     q_power = xQueueCreate(8, sizeof(power_msg_t));
     q_meter = xQueueCreate(8, sizeof(meter_msg_t));
     q_net = xQueueCreate(8, sizeof(net_msg_t));
-
-    /* The critical one: StorageTask expects storage_msg_t items on q_cfg */
     q_cfg = xQueueCreate(8, sizeof(storage_msg_t));
 
+    /* Verify queue creation */
     if (!q_power || !q_cfg || !q_meter || !q_net) {
 #if ERRORLOGGER
         uint16_t errorcode =
@@ -1692,6 +1869,7 @@ BaseType_t ConsoleTask_Init(bool enable) {
         return pdFAIL;
     }
 
+    /* Create main console task */
     extern void ConsoleTask(void *arg);
     if (xTaskCreate(ConsoleTask, "Console", 1024, NULL, CONSOLETASK_PRIORITY, NULL) != pdPASS) {
 #if ERRORLOGGER
@@ -1707,16 +1885,8 @@ BaseType_t ConsoleTask_Init(bool enable) {
     return pdPASS;
 }
 
-/**
- * @brief Get Console READY state.
- *
- * @details
- * Console is considered READY once its core config queue has been created by
- * ConsoleTask_Init(). This avoids any extra latches or extern variables.
- *
- * @return true if the Console config queue exists, false otherwise.
- */
+/** See consoletask.h for detailed documentation. */
 bool Console_IsReady(void) {
-    extern QueueHandle_t q_cfg; /* created in ConsoleTask_Init() */
+    extern QueueHandle_t q_cfg;
     return (q_cfg != NULL);
 }

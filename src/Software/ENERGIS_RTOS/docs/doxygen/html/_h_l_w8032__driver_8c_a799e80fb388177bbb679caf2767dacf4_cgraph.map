@@ -1,0 +1,7 @@
+<map id="parse_frame" name="parse_frame">
+<area shape="rect" id="Node000001" title="Parse HLW8032 frame and extract raw register values." alt="" coords="5,31,99,57"/>
+<area shape="rect" id="Node000002" href="$_h_l_w8032__driver_8c.html#a647afe01364a59d5afbe6c9788559da9" title="Safely extract uint16_t (big&#45;endian) from frame." alt="" coords="147,5,236,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,33,131,27,132,32,100,38"/>
+<area shape="rect" id="Node000003" href="$_h_l_w8032__driver_8c.html#a633e83653e2eabb77d79ea3725c7f458" title="Safely extract uint24_t (big&#45;endian) from frame." alt="" coords="147,56,236,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="100,50,132,56,131,61,99,55"/>
+</map>

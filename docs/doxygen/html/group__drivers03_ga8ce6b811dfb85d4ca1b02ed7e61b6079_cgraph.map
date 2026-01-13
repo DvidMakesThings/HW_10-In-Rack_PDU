@@ -1,0 +1,16 @@
+<map id="mcp_set_direction" name="mcp_set_direction">
+<area shape="rect" id="Node000001" title="Set pin direction (input/output)." alt="" coords="5,56,133,83"/>
+<area shape="rect" id="Node000002" href="$group__drivers01.html#ga0e406d50e8948e593649a11c729acd9b" title="Read 8&#45;bit register: write [reg] (no stop), then read 1 byte." alt="" coords="182,31,312,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="133,58,166,53,167,58,134,63"/>
+<area shape="rect" id="Node000005" href="$group__drivers01.html#gab7b4aa096ded6cebd93256e5b5994e42" title="Write 8&#45;bit register with 8&#45;bit value: [reg, value]." alt="" coords="181,81,314,108"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="134,76,166,80,165,86,133,81"/>
+<area shape="rect" id="Node000003" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="391,56,512,83"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="313,49,376,57,375,63,313,55"/>
+<area shape="rect" id="Node000004" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="362,5,541,32"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="313,33,346,29,347,34,313,39"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="314,84,375,76,376,81,314,89"/>
+<area shape="rect" id="Node000006" href="$group__drivers01.html#ga170d6c4ff97ddc2d314f0a7a0054f283" title="Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK i2c_write_time..." alt="" coords="366,107,538,133"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="314,100,350,105,350,110,314,106"/>
+<area shape="rect" id="Node000007" href="$i2c__bus_8c.html#afbaa64f79bdd1fa39c8fa5b7a9c2717b" title=" " alt="" coords="589,107,747,133"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="538,117,574,117,574,123,538,123"/>
+</map>

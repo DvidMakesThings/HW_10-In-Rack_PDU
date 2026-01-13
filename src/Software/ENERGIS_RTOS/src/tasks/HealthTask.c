@@ -292,7 +292,7 @@ static inline void Health_PreBarkCheck(uint32_t now_ms) {
                           : 0xFFFFFFFFu;
 #if ERRORLOGGER
             uint16_t errorcode =
-                ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_FATAL_ERROR, ERR_FID_HEALTHTASK, 0x1);
+                ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_FATAL_ERROR, ERR_FID_HEALTHTASK, 0x0);
             ERROR_PRINT_CODE(errorcode,
                              "%s %s since_last_feed=%lu ms, remain=%lu ms | "
                              "Logger=%s%lu  Console=%s%lu  Storage=%s%lu  Button=%s%lu  Net=%s%lu  "
@@ -541,7 +541,7 @@ static void report_stale(uint32_t now_ms_) {
             break;
     }
 #if ERRORLOGGER
-    uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_FATAL_ERROR, ERR_FID_HEALTHTASK, 0x2);
+    uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_FATAL_ERROR, ERR_FID_HEALTHTASK, 0x1);
     ERROR_PRINT_CODE(errorcode, "%s, %s\r\n", HEALTH_TASK_TAG, line);
     Storage_EnqueueErrorCode(errorcode);
 #endif
@@ -625,7 +625,7 @@ static void print_health_reboot_brief(void) {
             }
 #if ERRORLOGGER
             uint16_t errorcode =
-                ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_INFO, ERR_FID_HEALTHTASK, 0x4);
+                ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_INFO, ERR_FID_HEALTHTASK, 0x0);
             WARNING_PRINT_CODE(errorcode, "%s %s\r\n", HEALTH_TASK_TAG, line);
 
 #endif
@@ -773,7 +773,7 @@ static void health_task(void *arg) {
                     }
 #if ERRORLOGGER
                     uint16_t errorcode =
-                        ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_WARNING, ERR_FID_HEALTHTASK, 0x2);
+                        ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_WARNING, ERR_FID_HEALTHTASK, 0x1);
                     WARNING_PRINT_CODE(errorcode, "%s\r\n", line);
                     Storage_EnqueueWarningCode(errorcode);
 #endif
@@ -816,7 +816,7 @@ static void health_task(void *arg) {
                               : 0xFFFFFFFFu;
 #if ERRORLOGGER
                 uint16_t errorcode =
-                    ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_FATAL_ERROR, ERR_FID_HEALTHTASK, 0x5);
+                    ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_FATAL_ERROR, ERR_FID_HEALTHTASK, 0x2);
                 ERROR_PRINT_CODE(
                     errorcode,
                     "%s %s since_last_feed=%lu ms, remain=%lu ms | "
@@ -864,7 +864,7 @@ static void health_task(void *arg) {
                     if (!last) {
 #if ERRORLOGGER
                         uint16_t errorcode =
-                            ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_WARNING, ERR_FID_HEALTHTASK, 0x3);
+                            ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_WARNING, ERR_FID_HEALTHTASK, 0x2);
                         WARNING_PRINT_CODE(errorcode, "Misbehaving: %s NEVER heartbeated\r\n",
                                            s_meta[i].name ? s_meta[i].name : "task");
                         Storage_EnqueueWarningCode(errorcode);
@@ -875,7 +875,7 @@ static void health_task(void *arg) {
                     if (dt >= (HEALTH_SILENCE_MS * 3u) / 4u) {
 #if ERRORLOGGER
                         uint16_t errorcode =
-                            ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_WARNING, ERR_FID_HEALTHTASK, 0x4);
+                            ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_WARNING, ERR_FID_HEALTHTASK, 0x3);
                         WARNING_PRINT_CODE(errorcode, "Misbehaving: %s dt = %lu ms\r\n",
                                            s_meta[i].name ? s_meta[i].name : "task",
                                            (unsigned long)dt);
@@ -929,7 +929,7 @@ void Health_RegisterTask(health_id_t id, TaskHandle_t h, const char *name) {
     if (was_registered) {
 #if ERRORLOGGER
         uint16_t errorcode =
-            ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_WARNING, ERR_FID_HEALTHTASK, 0x5);
+            ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_WARNING, ERR_FID_HEALTHTASK, 0x4);
         WARNING_PRINT_CODE(
             errorcode, "%s Re-register on ID = %d Name = %s (Keeping last_seen_ms = %lu)\r\n",
             HEALTH_TASK_TAG, (int)id, s_meta[id].name, (unsigned long)s_meta[id].last_seen_ms);
@@ -998,7 +998,7 @@ void Health_PrintLastRebootDetailed(void) {
         flags = watchdog_hw->scratch[HSCR_FLAGS];
 #if ERRORLOGGER
         uint16_t errorcode =
-            ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_FATAL_ERROR, ERR_FID_HEALTHTASK, 0x6);
+            ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_FATAL_ERROR, ERR_FID_HEALTHTASK, 0x3);
         ERROR_PRINT_CODE(errorcode,
                          "%s LAST REBOOT by Health Task: max_dt = %lu ms, Silence = %lu ms, "
                          "req_mask = 0x%08lx, flags = 0x%lx, t = %lu ms\r\n",
@@ -1021,7 +1021,7 @@ void Health_PrintLastRebootDetailed(void) {
             }
 #if ERRORLOGGER
             uint16_t errorcode =
-                ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_FATAL_ERROR, ERR_FID_HEALTHTASK, 0x7);
+                ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_FATAL_ERROR, ERR_FID_HEALTHTASK, 0x4);
             ERROR_PRINT_CODE(errorcode, "%s %s\r\n", HEALTH_TASK_TAG, line);
             Storage_EnqueueErrorCode(errorcode);
 #endif
@@ -1054,7 +1054,7 @@ void Health_RebootNow(const char *reason) {
     uint32_t t = now_ms();
     s_intentional_reboot_pending = true;
 #if ERRORLOGGER
-    uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_INFO, ERR_FID_HEALTHTASK, 0x0);
+    uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_SEV_INFO, ERR_FID_HEALTHTASK, 0x2);
     WARNING_PRINT_CODE(errorcode, "%s INTENTIONAL REBOOT%s%s\r\n", HEALTH_TASK_TAG,
                        reason ? ": " : "", reason ? reason : "");
 #endif

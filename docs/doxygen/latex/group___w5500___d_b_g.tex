@@ -1,0 +1,114 @@
+\doxysubsubsection{Debug and Logging }
+\hypertarget{group___w5500___d_b_g}{}\label{group___w5500___d_b_g}\index{Debug and Logging@{Debug and Logging}}
+
+
+Debugging output control.  
+
+
+Collaboration diagram for Debug and Logging\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group___w5500___d_b_g}
+\end{center}
+\end{figure}
+\doxysubsubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___w5500___d_b_g_gaf0678eae822498590b6f9de38d89042b}{W5500\+\_\+\+SOCK\+\_\+\+DBG}}(...)
+\item 
+\#define \mbox{\hyperlink{group___w5500___d_b_g_ga4eb34f80168022d212876a011f06cead}{W5500\+\_\+\+SPI\+\_\+\+DBG}}(...)
+\item 
+\#define \mbox{\hyperlink{group___w5500___d_b_g_ga776bc981775d64a2c094224450f9b89c}{ETH\+\_\+\+LOG}}(...)
+\end{DoxyCompactItemize}
+\doxysubsubsubsubsection*{Debug Macros}
+Conditional logging and debug helpers. \begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___w5500___d_b_g_gaaf1c63e26e94c72d3cdac8c3e05dd29a}{W5500\+\_\+\+DEBUG}}~\mbox{\hyperlink{group__overcurrent__thresholds_gad72dbcf6d0153db1b8d8a58001feed83}{DEBUG}}
+\item 
+\#define \mbox{\hyperlink{group___w5500___d_b_g_gad266d145689ef78a7b5aaa6329e715bd}{W5500\+\_\+\+DEBUG\+\_\+\+SOCKET}}~0
+\item 
+\#define \mbox{\hyperlink{group___w5500___d_b_g_ga30c77966781cdd463dd0a93b73005487}{W5500\+\_\+\+DEBUG\+\_\+\+SPI}}~1
+\item 
+\#define \mbox{\hyperlink{group___w5500___d_b_g_ga7b45220ef3a0214417fd66c4c344d998}{W5500\+\_\+\+LOG\+\_\+\+EVENTS}}~1
+\item 
+\#define \mbox{\hyperlink{group___w5500___d_b_g_ga890ae9e3fe5754eaf66146c332ac2a4a}{W5500\+\_\+\+DBG}}(...)
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+Debugging output control. 
+
+
+
+\label{doc-define-members}
+\Hypertarget{group___w5500___d_b_g_doc-define-members}
+\doxysubsubsubsection{Macro Definition Documentation}
+\Hypertarget{group___w5500___d_b_g_ga776bc981775d64a2c094224450f9b89c}\index{Debug and Logging@{Debug and Logging}!ETH\_LOG@{ETH\_LOG}}
+\index{ETH\_LOG@{ETH\_LOG}!Debug and Logging@{Debug and Logging}}
+\doxysubsubsubsubsection{\texorpdfstring{ETH\_LOG}{ETH\_LOG}}
+{\footnotesize\ttfamily \label{group___w5500___d_b_g_ga776bc981775d64a2c094224450f9b89c} 
+\#define ETH\+\_\+\+LOG(\begin{DoxyParamCaption}\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__overcurrent__thresholds_gabe2194229f4d20b5a2e5a97be7ffbf06}{INFO\_PRINT}}(\_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}
+\Hypertarget{group___w5500___d_b_g_ga890ae9e3fe5754eaf66146c332ac2a4a}\index{Debug and Logging@{Debug and Logging}!W5500\_DBG@{W5500\_DBG}}
+\index{W5500\_DBG@{W5500\_DBG}!Debug and Logging@{Debug and Logging}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_DBG}{W5500\_DBG}}
+{\footnotesize\ttfamily \label{group___w5500___d_b_g_ga890ae9e3fe5754eaf66146c332ac2a4a} 
+\#define W5500\+\_\+\+DBG(\begin{DoxyParamCaption}\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((void)0)}
+
+\end{DoxyCode}
+\Hypertarget{group___w5500___d_b_g_gaaf1c63e26e94c72d3cdac8c3e05dd29a}\index{Debug and Logging@{Debug and Logging}!W5500\_DEBUG@{W5500\_DEBUG}}
+\index{W5500\_DEBUG@{W5500\_DEBUG}!Debug and Logging@{Debug and Logging}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_DEBUG}{W5500\_DEBUG}}
+{\footnotesize\ttfamily \label{group___w5500___d_b_g_gaaf1c63e26e94c72d3cdac8c3e05dd29a} 
+\#define W5500\+\_\+\+DEBUG~\mbox{\hyperlink{group__overcurrent__thresholds_gad72dbcf6d0153db1b8d8a58001feed83}{DEBUG}}}
+
+Enable general W5500 driver debug output \Hypertarget{group___w5500___d_b_g_gad266d145689ef78a7b5aaa6329e715bd}\index{Debug and Logging@{Debug and Logging}!W5500\_DEBUG\_SOCKET@{W5500\_DEBUG\_SOCKET}}
+\index{W5500\_DEBUG\_SOCKET@{W5500\_DEBUG\_SOCKET}!Debug and Logging@{Debug and Logging}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_DEBUG\_SOCKET}{W5500\_DEBUG\_SOCKET}}
+{\footnotesize\ttfamily \label{group___w5500___d_b_g_gad266d145689ef78a7b5aaa6329e715bd} 
+\#define W5500\+\_\+\+DEBUG\+\_\+\+SOCKET~0}
+
+Enable socket operation debug \Hypertarget{group___w5500___d_b_g_ga30c77966781cdd463dd0a93b73005487}\index{Debug and Logging@{Debug and Logging}!W5500\_DEBUG\_SPI@{W5500\_DEBUG\_SPI}}
+\index{W5500\_DEBUG\_SPI@{W5500\_DEBUG\_SPI}!Debug and Logging@{Debug and Logging}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_DEBUG\_SPI}{W5500\_DEBUG\_SPI}}
+{\footnotesize\ttfamily \label{group___w5500___d_b_g_ga30c77966781cdd463dd0a93b73005487} 
+\#define W5500\+\_\+\+DEBUG\+\_\+\+SPI~1}
+
+Enable SPI transaction debug \Hypertarget{group___w5500___d_b_g_ga7b45220ef3a0214417fd66c4c344d998}\index{Debug and Logging@{Debug and Logging}!W5500\_LOG\_EVENTS@{W5500\_LOG\_EVENTS}}
+\index{W5500\_LOG\_EVENTS@{W5500\_LOG\_EVENTS}!Debug and Logging@{Debug and Logging}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_LOG\_EVENTS}{W5500\_LOG\_EVENTS}}
+{\footnotesize\ttfamily \label{group___w5500___d_b_g_ga7b45220ef3a0214417fd66c4c344d998} 
+\#define W5500\+\_\+\+LOG\+\_\+\+EVENTS~1}
+
+Enable network event logging \Hypertarget{group___w5500___d_b_g_gaf0678eae822498590b6f9de38d89042b}\index{Debug and Logging@{Debug and Logging}!W5500\_SOCK\_DBG@{W5500\_SOCK\_DBG}}
+\index{W5500\_SOCK\_DBG@{W5500\_SOCK\_DBG}!Debug and Logging@{Debug and Logging}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_SOCK\_DBG}{W5500\_SOCK\_DBG}}
+{\footnotesize\ttfamily \label{group___w5500___d_b_g_gaf0678eae822498590b6f9de38d89042b} 
+\#define W5500\+\_\+\+SOCK\+\_\+\+DBG(\begin{DoxyParamCaption}\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((void)0)}
+
+\end{DoxyCode}
+\Hypertarget{group___w5500___d_b_g_ga4eb34f80168022d212876a011f06cead}\index{Debug and Logging@{Debug and Logging}!W5500\_SPI\_DBG@{W5500\_SPI\_DBG}}
+\index{W5500\_SPI\_DBG@{W5500\_SPI\_DBG}!Debug and Logging@{Debug and Logging}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_SPI\_DBG}{W5500\_SPI\_DBG}}
+{\footnotesize\ttfamily \label{group___w5500___d_b_g_ga4eb34f80168022d212876a011f06cead} 
+\#define W5500\+\_\+\+SPI\+\_\+\+DBG(\begin{DoxyParamCaption}\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__overcurrent__thresholds_ga88edd2aa4feabff4af21a997d5d8aa23}{DEBUG\_PRINT}}(\_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}

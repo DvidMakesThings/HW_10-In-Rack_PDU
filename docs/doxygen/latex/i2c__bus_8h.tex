@@ -1,0 +1,48 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/drivers/i2c\+\_\+bus.h File Reference}
+\hypertarget{i2c__bus_8h}{}\label{i2c__bus_8h}\index{src/Software/ENERGIS\_RTOS/src/drivers/i2c\_bus.h@{src/Software/ENERGIS\_RTOS/src/drivers/i2c\_bus.h}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for i2c\+\_\+bus.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{i2c__bus_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{i2c__bus_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{Indent}\textbf{ Public API}\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__drivers05_ga9c76037250f6dc0a30507d349e7248e1}{I2\+C\+\_\+\+Bus\+Lock}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c)
+\item 
+void \mbox{\hyperlink{group__drivers05_gaf26d164f7fc711b6c91d9a4b397daea3}{I2\+C\+\_\+\+Bus\+Unlock}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c)
+\item 
+void \mbox{\hyperlink{group__drivers05_ga8bf0403f2c78483c3afc9ffea67c425f}{I2\+C\+\_\+\+Bus\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the global I2C bus manager task and queue. Must be called once after hardware i2c\+\_\+init() and before clients use wrappers. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__drivers05_ga170d6c4ff97ddc2d314f0a7a0054f283}{i2c\+\_\+bus\+\_\+write\+\_\+timeout\+\_\+us}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}src, size\+\_\+t len, bool nostop, uint32\+\_\+t timeout\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK {\ttfamily i2c\+\_\+write\+\_\+timeout\+\_\+us} signature/semantics, but serialized via a FIFO. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__drivers05_ga5caa937abd50ec32925c6283a37ef7da}{i2c\+\_\+bus\+\_\+read\+\_\+timeout\+\_\+us}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}dst, size\+\_\+t len, bool nostop, uint32\+\_\+t timeout\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Queue a read on the specified I2C controller and wait synchronously. Mirrors Pico SDK {\ttfamily i2c\+\_\+read\+\_\+timeout\+\_\+us} signature/semantics, but serialized via a FIFO. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__drivers05_ga417adf0354f9f45105255aa06562fc90}{i2c\+\_\+bus\+\_\+write\+\_\+read}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}wsrc, size\+\_\+t wlen, uint8\+\_\+t \texorpdfstring{$\ast$}{*}rdst, size\+\_\+t rlen, uint32\+\_\+t timeout\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Atomically perform a write (no stop) followed immediately by a read. Ensures the repeated-\/start sequence is not interleaved with other transactions. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers05_gab7b4aa096ded6cebd93256e5b5994e42}{i2c\+\_\+bus\+\_\+write\+\_\+reg8}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, uint8\+\_\+t reg, uint8\+\_\+t value, uint32\+\_\+t timeout\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Write 8-\/bit register with 8-\/bit value\+: \mbox{[}reg, value\mbox{]}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers05_ga0e406d50e8948e593649a11c729acd9b}{i2c\+\_\+bus\+\_\+read\+\_\+reg8}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, uint8\+\_\+t reg, uint8\+\_\+t \texorpdfstring{$\ast$}{*}out, uint32\+\_\+t timeout\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Read 8-\/bit register\+: write \mbox{[}reg\mbox{]} (no stop), then read 1 byte. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers05_ga77ca38d627119d534873e177c5f4a667}{i2c\+\_\+bus\+\_\+write\+\_\+mem16}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, uint16\+\_\+t mem, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}src, size\+\_\+t len, uint32\+\_\+t timeout\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Write to 16-\/bit memory address\+: \mbox{[}mem\+\_\+hi, mem\+\_\+lo, data...\mbox{]}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers05_ga66ae4c7028f764a3770cabe101dba8bf}{i2c\+\_\+bus\+\_\+read\+\_\+mem16}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, uint16\+\_\+t mem, uint8\+\_\+t \texorpdfstring{$\ast$}{*}dst, size\+\_\+t len, uint32\+\_\+t timeout\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Read from 16-\/bit memory address\+: write \mbox{[}mem\+\_\+hi, mem\+\_\+lo\mbox{]} (no stop), then read len bytes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

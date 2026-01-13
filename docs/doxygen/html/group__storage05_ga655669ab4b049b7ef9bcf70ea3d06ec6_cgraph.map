@@ -1,0 +1,11 @@
+<map id="TempCalibration_ComputeTwoPoint" name="TempCalibration_ComputeTwoPoint">
+<area shape="rect" id="Node000001" title="Compute two&#45;point temperature calibration from reference measurements." alt="" coords="5,48,205,91"/>
+<area shape="rect" id="Node000002" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="253,5,436,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="205,46,263,33,264,38,206,51"/>
+<area shape="rect" id="Node000003" href="$calibration_8c.html#ac2a5362a8e4606ad12cb0d6c9941ef6d" title="Fill temp_calib_t with safe defaults (no calibration)." alt="" coords="284,56,404,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="205,67,269,67,269,72,205,72"/>
+<area shape="rect" id="Node000004" href="$calibration_8c.html#a94bdbf3b5ab88d4cfad2295e4b32b5c2" title="Compute and set CRC32 field for a record (over all but crc32)." alt="" coords="274,107,414,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="206,88,264,100,263,106,205,93"/>
+<area shape="rect" id="Node000005" href="$calibration_8c.html#ae8658b50ad7475f4740593d8f35c9999" title="Compute a simple CRC32 (poly 0xEDB88320) over a buffer." alt="" coords="484,107,590,133"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="415,117,469,117,469,123,415,123"/>
+</map>

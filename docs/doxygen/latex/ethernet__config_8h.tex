@@ -1,0 +1,181 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/drivers/ethernet\+\_\+config.h File Reference}
+\hypertarget{ethernet__config_8h}{}\label{ethernet__config_8h}\index{src/Software/ENERGIS\_RTOS/src/drivers/ethernet\_config.h@{src/Software/ENERGIS\_RTOS/src/drivers/ethernet\_config.h}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for ethernet\+\_\+config.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ethernet__config_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ethernet__config_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___w5500___d_b_g_gaf0678eae822498590b6f9de38d89042b}{W5500\+\_\+\+SOCK\+\_\+\+DBG}}(...)
+\item 
+\#define \mbox{\hyperlink{group___w5500___d_b_g_ga4eb34f80168022d212876a011f06cead}{W5500\+\_\+\+SPI\+\_\+\+DBG}}(...)
+\item 
+\#define \mbox{\hyperlink{group___w5500___d_b_g_ga776bc981775d64a2c094224450f9b89c}{ETH\+\_\+\+LOG}}(...)
+\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Hardware Pins}\par
+{\em Constants for SPI and GPIO assignments. }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___w5500___h_w_ga9047f8de0fd9a1916f10759f8f1df072}{W5500\+\_\+\+SPI}}~\mbox{\hyperlink{group__overcurrent__thresholds_ga0210d85f75d02bdec08c024691be4104}{W5500\+\_\+\+SPI\+\_\+\+INSTANCE}}
+\item 
+\#define \mbox{\hyperlink{group___w5500___h_w_ga54986b1e0752b64d6aeb3d646420e584}{W5500\+\_\+\+SPI\+\_\+\+CLOCK}}~\mbox{\hyperlink{group__overcurrent__thresholds_ga9cee1f4c5994e7e3713883aae0447f52}{SPI\+\_\+\+SPEED\+\_\+\+W5500}}
+\item 
+\#define \mbox{\hyperlink{group___w5500___h_w_ga50c88eed9d55a5ad647512fe335e23d0}{W5500\+\_\+\+PIN\+\_\+\+MOSI}}~\mbox{\hyperlink{group__overcurrent__thresholds_ga28154e97dec70bb3db383840bd913b9f}{W5500\+\_\+\+MOSI}}
+\item 
+\#define \mbox{\hyperlink{group___w5500___h_w_ga67891a52c2a6ffb0f54f8f3d1ec13112}{W5500\+\_\+\+PIN\+\_\+\+MISO}}~\mbox{\hyperlink{group__overcurrent__thresholds_ga5907c71e474d5acceab5bb8dc93f99d7}{W5500\+\_\+\+MISO}}
+\item 
+\#define \mbox{\hyperlink{group___w5500___h_w_ga1ede2d4941cb5b473ebf980dca9f919c}{W5500\+\_\+\+PIN\+\_\+\+SCK}}~\mbox{\hyperlink{group__overcurrent__thresholds_gaac8047e48a180391f5b8022799f11905}{W5500\+\_\+\+SCK}}
+\item 
+\#define \mbox{\hyperlink{group___w5500___h_w_gacbb711019b3eab3837e102b70482176b}{W5500\+\_\+\+PIN\+\_\+\+CS}}~\mbox{\hyperlink{group__overcurrent__thresholds_gadb086b4754ce7859d847860d5e327910}{W5500\+\_\+\+CS}}
+\item 
+\#define \mbox{\hyperlink{group___w5500___h_w_ga2dabedd126d39c5aa5b4ee3451b955ad}{W5500\+\_\+\+PIN\+\_\+\+RST}}~\mbox{\hyperlink{group__overcurrent__thresholds_ga5df3a6d20f52bf5f7b67601f0bbd30c3}{W5500\+\_\+\+RESET}}
+\item 
+\#define \mbox{\hyperlink{group___w5500___h_w_ga390b95f71beafa23bf9b59eac543bd00}{W5500\+\_\+\+PIN\+\_\+\+INT}}~\mbox{\hyperlink{group__overcurrent__thresholds_ga067bb8b34e47239e6dfb86070fb54ecb}{W5500\+\_\+\+INT}}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Socket Memory Sizes}\par
+{\em Per-\/socket TX/\+RX buffer allocations (KB). }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___w5500___m_e_m_ga397c217a9bfdf60b22be602a9da74178}{W5500\+\_\+\+SOCKET\+\_\+\+COUNT}}~8
+\begin{DoxyCompactList}\small\item\em Number of hardware sockets available. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group___w5500___m_e_m_gaf53182de234fde349104d639e27a6cf1}{W5500\+\_\+\+TX\+\_\+\+SIZE\+\_\+\+S0}}~8
+\item 
+\#define \mbox{\hyperlink{group___w5500___m_e_m_ga0314948cf82d3357ceccffb95878f411}{W5500\+\_\+\+TX\+\_\+\+SIZE\+\_\+\+S1}}~8
+\item 
+\#define \mbox{\hyperlink{group___w5500___m_e_m_gaab31a56c4de1033958e372b5d871cfa0}{W5500\+\_\+\+TX\+\_\+\+SIZE\+\_\+\+S2}}~0
+\item 
+\#define \mbox{\hyperlink{group___w5500___m_e_m_gae872cbc38720e33a38562cecf2a71a57}{W5500\+\_\+\+TX\+\_\+\+SIZE\+\_\+\+S3}}~0
+\item 
+\#define \mbox{\hyperlink{group___w5500___m_e_m_ga34e85984c9aeccff7bba76c5e521d299}{W5500\+\_\+\+TX\+\_\+\+SIZE\+\_\+\+S4}}~0
+\item 
+\#define \mbox{\hyperlink{group___w5500___m_e_m_ga52ed3145ea4340bcbc522b570273354b}{W5500\+\_\+\+TX\+\_\+\+SIZE\+\_\+\+S5}}~0
+\item 
+\#define \mbox{\hyperlink{group___w5500___m_e_m_ga3b19a8d2ad4b13a5594de48ab81e30da}{W5500\+\_\+\+TX\+\_\+\+SIZE\+\_\+\+S6}}~0
+\item 
+\#define \mbox{\hyperlink{group___w5500___m_e_m_ga782cee82b3c1574039a7ed09d2d3d153}{W5500\+\_\+\+TX\+\_\+\+SIZE\+\_\+\+S7}}~0
+\item 
+\#define \mbox{\hyperlink{group___w5500___m_e_m_gaba4a27670972b8c4d30cf16fc382990c}{W5500\+\_\+\+RX\+\_\+\+SIZE\+\_\+\+S0}}~8
+\item 
+\#define \mbox{\hyperlink{group___w5500___m_e_m_ga63725c390e9fa17fc4f1f7b621e61dce}{W5500\+\_\+\+RX\+\_\+\+SIZE\+\_\+\+S1}}~8
+\item 
+\#define \mbox{\hyperlink{group___w5500___m_e_m_ga92b0a7ae11d113cb5130e0cacece1a44}{W5500\+\_\+\+RX\+\_\+\+SIZE\+\_\+\+S2}}~0
+\item 
+\#define \mbox{\hyperlink{group___w5500___m_e_m_ga76f4b9aab5893d607c78241b65aa001e}{W5500\+\_\+\+RX\+\_\+\+SIZE\+\_\+\+S3}}~0
+\item 
+\#define \mbox{\hyperlink{group___w5500___m_e_m_ga36d2890fb9805f39493bf3a6515bbb47}{W5500\+\_\+\+RX\+\_\+\+SIZE\+\_\+\+S4}}~0
+\item 
+\#define \mbox{\hyperlink{group___w5500___m_e_m_ga19eb0f78c37a5217e397c0c6573593c0}{W5500\+\_\+\+RX\+\_\+\+SIZE\+\_\+\+S5}}~0
+\item 
+\#define \mbox{\hyperlink{group___w5500___m_e_m_gadaf5558743dd18aee8dcd60eb3463e2d}{W5500\+\_\+\+RX\+\_\+\+SIZE\+\_\+\+S6}}~0
+\item 
+\#define \mbox{\hyperlink{group___w5500___m_e_m_ga104b9c0750365c4da4856418c81de8b9}{W5500\+\_\+\+RX\+\_\+\+SIZE\+\_\+\+S7}}~0
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Protocol Flags}\par
+{\em Enable/disable supported protocols. }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___w5500___p_r_o_t_o_ga5bc928a15ca24073c6872934cc558dbe}{W5500\+\_\+\+ENABLE\+\_\+\+TCP}}~1
+\item 
+\#define \mbox{\hyperlink{group___w5500___p_r_o_t_o_gaeb136635478ea44c8b10fecc5dba3bdf}{W5500\+\_\+\+ENABLE\+\_\+\+UDP}}~1
+\item 
+\#define \mbox{\hyperlink{group___w5500___p_r_o_t_o_ga72f95c82bbfea496833e4caec68d1aa8}{W5500\+\_\+\+ENABLE\+\_\+\+SNMP}}~1
+\item 
+\#define \mbox{\hyperlink{group___w5500___p_r_o_t_o_ga821e233ff4d1abaaba0328e4b713bde6}{W5500\+\_\+\+ENABLE\+\_\+\+ICMP}}~1
+\item 
+\#define \mbox{\hyperlink{group___w5500___p_r_o_t_o_gadc52819b6564157e472638da838724a2}{W5500\+\_\+\+ENABLE\+\_\+\+IPV6}}~0
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ RTOS Parameters}\par
+{\em Task sizes, timeouts, and polling intervals. }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___w5500___r_t_o_s_ga6c3ee3959a695838958947e81ab438ef}{W5500\+\_\+\+TASK\+\_\+\+STACK}}~2048
+\item 
+\#define \mbox{\hyperlink{group___w5500___r_t_o_s_ga765050373e7cbcaf6fc705a3bab8550f}{W5500\+\_\+\+QUEUE\+\_\+\+LENGTH}}~16
+\item 
+\#define \mbox{\hyperlink{group___w5500___r_t_o_s_ga100e6f218d1c4d7631e4f0cdae77c7e7}{W5500\+\_\+\+SPI\+\_\+\+TIMEOUT}}~pd\+MS\+\_\+\+TO\+\_\+\+TICKS(100)
+\item 
+\#define \mbox{\hyperlink{group___w5500___r_t_o_s_gaddd7ecc56f224873f784018fb72b2fd5}{W5500\+\_\+\+SOCKET\+\_\+\+TIMEOUT}}~pd\+MS\+\_\+\+TO\+\_\+\+TICKS(5000)
+\item 
+\#define \mbox{\hyperlink{group___w5500___r_t_o_s_ga4e8182816849cc698df047e6a5574236}{W5500\+\_\+\+PHY\+\_\+\+CHECK\+\_\+\+MS}}~1000
+\item 
+\#define \mbox{\hyperlink{group___w5500___r_t_o_s_ga0193ab65ea8716b84812ef0dc2577def}{W5500\+\_\+\+USE\+\_\+\+INTERRUPTS}}~1
+\item 
+\#define \mbox{\hyperlink{group___w5500___r_t_o_s_ga59359c341c5d2734934339eb7e35f67f}{W5500\+\_\+\+IRQ\+\_\+\+POLL\+\_\+\+MS}}~10
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ TCP/\+IP Tuning}\par
+{\em Retry timing, MSS, and PHY settings. }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___w5500___a_d_v_gae9a686cf5eb3ecf900d95f2693b577bb}{W5500\+\_\+\+RETRY\+\_\+\+TIME}}~2000
+\item 
+\#define \mbox{\hyperlink{group___w5500___a_d_v_ga20886c4b4bdc4fa53036295f5ccc1d5c}{W5500\+\_\+\+RETRY\+\_\+\+COUNT}}~8
+\item 
+\#define \mbox{\hyperlink{group___w5500___a_d_v_ga1a73795955af231ac05686bb44e15a51}{W5500\+\_\+\+TCP\+\_\+\+MSS}}~1460
+\item 
+\#define \mbox{\hyperlink{group___w5500___a_d_v_gab616bd5a3ac01e6422f6aa771628bf03}{W5500\+\_\+\+KEEPALIVE\+\_\+\+TIME}}~120
+\item 
+\#define \mbox{\hyperlink{group___w5500___a_d_v_ga17f8d576e7770b0d19ddf06f85fb728e}{W5500\+\_\+\+TCP\+\_\+\+NODELAY}}~0
+\item 
+\#define \mbox{\hyperlink{group___w5500___a_d_v_gad45c458db183ce234e1f164cadc13cd8}{W5500\+\_\+\+PHY\+\_\+\+AUTONEG}}~1
+\item 
+\#define \mbox{\hyperlink{group___w5500___a_d_v_gaa55564c531ad335d02a563e8aee8229c}{W5500\+\_\+\+PHY\+\_\+\+SPEED}}~0
+\item 
+\#define \mbox{\hyperlink{group___w5500___a_d_v_gae7ab090b38ee8f9d6a61a8f8c43d3b94}{W5500\+\_\+\+PHY\+\_\+\+DUPLEX}}~0
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Debug Macros}\par
+{\em Conditional logging and debug helpers. }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___w5500___d_b_g_gaaf1c63e26e94c72d3cdac8c3e05dd29a}{W5500\+\_\+\+DEBUG}}~\mbox{\hyperlink{group__overcurrent__thresholds_gad72dbcf6d0153db1b8d8a58001feed83}{DEBUG}}
+\item 
+\#define \mbox{\hyperlink{group___w5500___d_b_g_gad266d145689ef78a7b5aaa6329e715bd}{W5500\+\_\+\+DEBUG\+\_\+\+SOCKET}}~0
+\item 
+\#define \mbox{\hyperlink{group___w5500___d_b_g_ga30c77966781cdd463dd0a93b73005487}{W5500\+\_\+\+DEBUG\+\_\+\+SPI}}~1
+\item 
+\#define \mbox{\hyperlink{group___w5500___d_b_g_ga7b45220ef3a0214417fd66c4c344d998}{W5500\+\_\+\+LOG\+\_\+\+EVENTS}}~1
+\item 
+\#define \mbox{\hyperlink{group___w5500___d_b_g_ga890ae9e3fe5754eaf66146c332ac2a4a}{W5500\+\_\+\+DBG}}(...)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Compile-\/\+Time Validation}\par
+{\em Compile-\/time validation of socket buffer allocation
+
+Ensures total TX and RX buffer allocations do not exceed W5500 hardware limits. W5500 provides exactly 16KB for TX buffers and 16KB for RX buffers across all sockets. }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__config02_gaa3bed5e237703f71f601c4c83e0e3ecf}{\+\_\+\+W5500\+\_\+\+TX\+\_\+\+TOTAL}}
+\item 
+\#define \mbox{\hyperlink{group__config02_ga9953436d763b0b46708055f785891b11}{\+\_\+\+W5500\+\_\+\+RX\+\_\+\+TOTAL}}
+\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Network Defaults}
+Default MAC/\+IP/subnet/gateway/\+DNS settings. \begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___w5500___n_e_t_gacf02c525bfd5b47aea08d7e6c8e73cb1}{W5500\+\_\+\+DEFAULT\+\_\+\+MAC}}~\{0x02, 0x00, 0x00, 0x12, 0x34, 0x56\}
+\item 
+\#define \mbox{\hyperlink{group___w5500___n_e_t_gad6cad669646a37fd88ce4ba5a79c4f63}{W5500\+\_\+\+DEFAULT\+\_\+\+IP}}~\{192, 168, 0, 12\}
+\item 
+\#define \mbox{\hyperlink{group___w5500___n_e_t_ga81109d328169cf34857cf83b2207cbdb}{W5500\+\_\+\+DEFAULT\+\_\+\+SUBNET}}~\{255, 255, 255, 0\}
+\item 
+\#define \mbox{\hyperlink{group___w5500___n_e_t_gabecda6137c4a92b223110e6df423a10d}{W5500\+\_\+\+DEFAULT\+\_\+\+GATEWAY}}~\{192, 168, 0, 1\}
+\item 
+\#define \mbox{\hyperlink{group___w5500___n_e_t_ga6acc24edeec1ed60489b19046d534df5}{W5500\+\_\+\+USE\+\_\+\+DHCP}}~0
+\item 
+static const uint8\+\_\+t \mbox{\hyperlink{group___w5500___n_e_t_ga8b1745abfe8e59d4a2768947292ab361}{W5500\+\_\+\+DEFAULT\+\_\+\+DNS}} \mbox{[}4\mbox{]} = \{8, 8, 8, 8\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos 
+\end{DoxyAuthor}

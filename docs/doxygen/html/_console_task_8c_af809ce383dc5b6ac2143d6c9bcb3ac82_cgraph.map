@@ -1,0 +1,9 @@
+<map id="cmd_auto_cal_i" name="cmd_auto_cal_i">
+<area shape="rect" id="Node000001" title="Auto&#45;calibrate current gain for a single channel (async)." alt="" coords="5,43,118,69"/>
+<area shape="rect" id="Node000002" href="$group__drivers04.html#gabacd90abd2475b3fb2dfe2efcd8e4f6a" title="Start asynchronous current calibration (Iref) for a single channel." alt="" coords="190,5,325,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,45,174,36,175,42,119,50"/>
+<area shape="rect" id="Node000004" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="166,72,349,99"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="119,62,151,67,150,72,118,67"/>
+<area shape="rect" id="Node000003" href="$_h_l_w8032__driver_8c.html#acc3dced2405146bb247c8d852e88e56f" title="Reset sample accumulators for the current async calibration channel." alt="" coords="397,5,539,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="325,24,382,24,382,29,325,29"/>
+</map>

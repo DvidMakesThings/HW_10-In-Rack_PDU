@@ -1,0 +1,5 @@
+<map id="storage_clear_startup_preset" name="storage_clear_startup_preset">
+<area shape="rect" id="Node000001" title="Clear startup preset via StorageTask." alt="" coords="5,5,152,48"/>
+<area shape="rect" id="Node000002" href="$group__tasks10.html#gaad6cb463ba1647fe51faeea5f08268da" title="Check if config is loaded and ready." alt="" coords="200,13,367,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,24,184,24,184,29,152,29"/>
+</map>

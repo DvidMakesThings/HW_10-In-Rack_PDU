@@ -1,0 +1,25 @@
+<map id="http_server_init" name="http_server_init">
+<area shape="rect" id="Node000001" title="Initialize the HTTP server and start listening on port 80." alt="" coords="5,78,116,105"/>
+<area shape="rect" id="Node000002" href="$group__drivers08.html#ga025710a2709097be7824f0564f89a461" title="Close a socket." alt="" coords="343,78,434,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="72,76,110,43,135,26,163,13,207,3,227,5,250,13,267,25,276,38,284,52,298,64,329,78,327,82,296,69,280,55,271,41,263,28,248,18,225,10,207,8,165,18,138,30,113,47,76,80"/>
+<area shape="rect" id="Node000003" href="$group__drivers08.html#ga58ae959798d5d874ac5ea796da90db8c" title="Put socket into listen mode (TCP server)" alt="" coords="180,78,232,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="116,89,164,89,164,94,116,94"/>
+<area shape="rect" id="Node000004" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="297,129,480,156"/>
+<area shape="poly" id="edge14_Node000001_Node000004" title=" " alt="" coords="113,103,164,114,282,131,281,136,163,120,112,108"/>
+<area shape="rect" id="Node000005" href="$group__drivers08.html#ga0111e4784e20d97dacd5aaf54cb48ef1" title="Set socket option." alt="" coords="164,180,249,206"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="83,103,175,168,172,173,80,107"/>
+<area shape="rect" id="Node000008" href="$group__drivers08.html#ga8cc0a2074b3aae98a132c1ae3c51188f" title="Create and initialize a socket." alt="" coords="176,28,236,54"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="100,75,161,54,163,59,102,80"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="233,89,327,89,327,94,233,94"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="234,96,298,114,324,122,322,127,296,120,232,101"/>
+<area shape="poly" id="edge8_Node000005_Node000004" title=" " alt="" coords="249,179,296,165,322,158,324,163,298,170,250,184"/>
+<area shape="rect" id="Node000006" href="$group__drivers03.html#ga2266fd45d5dc208a9ac11f084d476188" title="Set the destination TCP/UDP port (big&#45;endian)" alt="" coords="334,180,443,206"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="249,190,319,190,319,196,249,196"/>
+<area shape="rect" id="Node000007" href="$group__drivers03.html#ga8e525d27915365abbe8086dc3363055f" title="Write multiple bytes to W5500 (optimized bulk transfer)" alt="" coords="528,104,648,130"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="442,177,479,165,546,135,548,140,481,170,444,182"/>
+<area shape="poly" id="edge10_Node000008_Node000002" title=" " alt="" coords="238,47,298,64,329,73,328,78,296,69,236,52"/>
+<area shape="poly" id="edge13_Node000008_Node000004" title=" " alt="" coords="234,53,251,64,265,78,274,91,284,103,298,115,309,120,306,125,296,119,280,107,270,95,261,82,247,68,231,57"/>
+<area shape="rect" id="Node000009" href="$group__drivers03.html#gab5067ea57282ddde48ecb150943ece32" title="Set the local TCP/UDP port (big&#45;endian)" alt="" coords="340,28,438,54"/>
+<area shape="poly" id="edge11_Node000008_Node000009" title=" " alt="" coords="237,38,324,38,324,44,237,44"/>
+<area shape="poly" id="edge12_Node000009_Node000007" title=" " alt="" coords="439,50,481,64,548,94,546,99,479,69,437,55"/>
+</map>

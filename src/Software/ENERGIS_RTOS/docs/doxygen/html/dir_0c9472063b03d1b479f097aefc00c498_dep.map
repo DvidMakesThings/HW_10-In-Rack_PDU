@@ -1,0 +1,10 @@
+<map id="src/Software/ENERGIS_RTOS/src/web_handlers" name="src/Software/ENERGIS_RTOS/src/web_handlers">
+<area shape="rect" id="node1" href="dir_602cf42a99f9e57cd2d3c470dbd23338.html" title="tasks" alt="" coords="27,149,99,197"/>
+<area shape="rect" id="node2" href="dir_d8e9627a652993e77578c865ec468d0f.html" title="html" alt="" coords="123,149,195,197"/>
+<area shape="rect" id="node3" href="dir_0c9472063b03d1b479f097aefc00c498.html" title="web_handlers" alt="" coords="60,53,161,101"/>
+<area shape="poly" id="edge1" href="dir_000011_000010.html" alt="" coords="101,103,84,137,79,135,96,101"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000011_000010.html" title="1" alt="" coords="87,129,94,145"/>
+<area shape="poly" id="edge2" href="dir_000011_000003.html" alt="" coords="125,101,142,135,138,137,120,103"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000011_000003.html" title="4" alt="" coords="143,121,150,137"/>
+<area shape="rect" id="clust1" href="dir_19e6760fb9e44866b46103926b60b58d.html" title="src" alt="" coords="16,16,205,208"/>
+</map>

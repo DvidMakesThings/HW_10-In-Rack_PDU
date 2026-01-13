@@ -1,0 +1,348 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/drivers/ethernet\+\_\+driver.c File Reference}
+\hypertarget{ethernet__driver_8c}{}\label{ethernet__driver_8c}\index{src/Software/ENERGIS\_RTOS/src/drivers/ethernet\_driver.c@{src/Software/ENERGIS\_RTOS/src/drivers/ethernet\_driver.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for ethernet\+\_\+driver.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ethernet__driver_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{ethernet__driver_8c_a275e389067225f4321af3e6e79432dea}{ETH\+\_\+\+TASK\+\_\+\+TAG}}~"{}\mbox{[}W5500\mbox{]}"{}
+\item 
+\#define \mbox{\hyperlink{ethernet__driver_8c_a940a414666b61a6c292ad7f107ca28e3}{W5500\+\_\+\+SPI\+\_\+\+READ}}~0x00
+\item 
+\#define \mbox{\hyperlink{ethernet__driver_8c_ad295df72ce1f30ef81594797e7bbc37f}{W5500\+\_\+\+SPI\+\_\+\+WRITE}}~0x04
+\item 
+\#define \mbox{\hyperlink{ethernet__driver_8c_a5605f9f977d34c80cb4283433fc6101b}{W5500\+\_\+\+SPI\+\_\+\+VDM\+\_\+\+OP}}~0x00
+\item 
+\#define \mbox{\hyperlink{ethernet__driver_8c_a3e33ce815a2540d38288a5aebbd5d6ba}{MAX\+\_\+\+FSR\+\_\+\+RSR\+\_\+\+RETRIES}}~10
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{ethernet__driver_8c_ab42948f652d714f130eebcb5e05a832b}{\+\_\+w5500\+\_\+cs\+\_\+select}} (void)
+\begin{DoxyCompactList}\small\item\em CS select (pull CS low) \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{ethernet__driver_8c_aae72fb2b203b11e6ea9270c6330328b4}{\+\_\+w5500\+\_\+cs\+\_\+deselect}} (void)
+\begin{DoxyCompactList}\small\item\em CS deselect (pull CS high) \end{DoxyCompactList}\item 
+static uint8\+\_\+t \mbox{\hyperlink{ethernet__driver_8c_a40b7eeef5902a429763d4c7f03730854}{\+\_\+w5500\+\_\+spi\+\_\+read}} (void)
+\begin{DoxyCompactList}\small\item\em SPI read single byte. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{ethernet__driver_8c_a91d8245b26a8e36d6635f72d4115d17f}{\+\_\+w5500\+\_\+spi\+\_\+write}} (uint8\+\_\+t tx\+\_\+data)
+\begin{DoxyCompactList}\small\item\em SPI write single byte. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{ethernet__driver_8c_a4b86c813b7a496740ce778899eab89f8}{\+\_\+w5500\+\_\+cris\+\_\+enter}} (void)
+\begin{DoxyCompactList}\small\item\em Critical section enter (acquire mutex) \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{ethernet__driver_8c_a55dd06c3dcd66f4304561203faf465bb}{\+\_\+w5500\+\_\+cris\+\_\+exit}} (void)
+\begin{DoxyCompactList}\small\item\em Critical section exit (release mutex) \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__drivers03_ga0cfc16a607bf2406462a16e0b098badb}{w5500\+\_\+read\+\_\+reg}} (uint32\+\_\+t addr\+\_\+sel)
+\begin{DoxyCompactList}\small\item\em Read single byte from W5500 register (optimized bulk SPI) \end{DoxyCompactList}\item 
+static uint16\+\_\+t \mbox{\hyperlink{ethernet__driver_8c_a4b0b3b259cf8981cc3fe59199ffd8f70}{w5500\+\_\+read\+\_\+reg16}} (uint32\+\_\+t addr\+\_\+sel)
+\begin{DoxyCompactList}\small\item\em Read 16-\/bit value from W5500 register (optimized for FSR/\+RSR) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_ga9bd16b5a58852d08dd22d052bfaf1d05}{w5500\+\_\+write\+\_\+reg}} (uint32\+\_\+t addr\+\_\+sel, uint8\+\_\+t wb)
+\begin{DoxyCompactList}\small\item\em Write single byte to W5500 register (optimized bulk SPI) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_ga720712f243385daced1e173642f23f3f}{w5500\+\_\+read\+\_\+buf}} (uint32\+\_\+t addr\+\_\+sel, uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+Buf, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Read multiple bytes from W5500 (optimized bulk transfer) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_ga8e525d27915365abbe8086dc3363055f}{w5500\+\_\+write\+\_\+buf}} (uint32\+\_\+t addr\+\_\+sel, uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+Buf, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write multiple bytes to W5500 (optimized bulk transfer) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_ga35f04740974b2f6a16c4744f1641fd47}{set\+Sn\+\_\+\+TX\+\_\+\+WR}} (uint8\+\_\+t sn, uint16\+\_\+t ptr)
+\begin{DoxyCompactList}\small\item\em Set socket TX write pointer (Sn\+\_\+\+TX\+\_\+\+WR) in big-\/endian. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_ga63c2ca3d8006105cbac360261ec27404}{set\+Sn\+\_\+\+RX\+\_\+\+RD}} (uint8\+\_\+t sn, uint16\+\_\+t ptr)
+\begin{DoxyCompactList}\small\item\em Set socket RX read pointer (Sn\+\_\+\+RX\+\_\+\+RD) in big-\/endian. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_gab5067ea57282ddde48ecb150943ece32}{set\+Sn\+\_\+\+PORT}} (uint8\+\_\+t sn, uint16\+\_\+t port)
+\begin{DoxyCompactList}\small\item\em Set the local TCP/\+UDP port (big-\/endian) \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{group__drivers03_ga27629270cacc8f11b4931aeb9c779ca2}{get\+Sn\+\_\+\+PORT}} (uint8\+\_\+t sn)
+\begin{DoxyCompactList}\small\item\em Get the local TCP/\+UDP port (big-\/endian) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_ga2266fd45d5dc208a9ac11f084d476188}{set\+Sn\+\_\+\+DPORT}} (uint8\+\_\+t sn, uint16\+\_\+t dport)
+\begin{DoxyCompactList}\small\item\em Set the destination TCP/\+UDP port (big-\/endian) \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{group__drivers03_ga63cf3a1380ecdfc60d1a0e2ac5478bb7}{get\+Sn\+\_\+\+DPORT}} (uint8\+\_\+t sn)
+\begin{DoxyCompactList}\small\item\em Get the destination TCP/\+UDP port (big-\/endian) \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{group__drivers03_gaddeb179a48abf7a94ba651742d77c24d}{w5500\+\_\+get\+\_\+tx\+\_\+fsr}} (uint8\+\_\+t sn)
+\begin{DoxyCompactList}\small\item\em Get socket TX free size register (with timeout protection) \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{group__drivers03_gad4b8fcc33da68070ad8208da41838d4c}{w5500\+\_\+get\+\_\+rx\+\_\+rsr}} (uint8\+\_\+t sn)
+\begin{DoxyCompactList}\small\item\em Get socket RX received size register (with timeout protection) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_gaeaef8ee772ea9b4a5c6ba7702a1c9b52}{eth\+\_\+send\+\_\+data}} (uint8\+\_\+t sn, uint8\+\_\+t \texorpdfstring{$\ast$}{*}wizdata, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Send data to socket TX buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_ga4a5d2efe0640661e215b4e1f3d918dbd}{eth\+\_\+recv\+\_\+data}} (uint8\+\_\+t sn, uint8\+\_\+t \texorpdfstring{$\ast$}{*}wizdata, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Receive data from socket RX buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_ga5944e5f356542e598f515b7f0196d1a3}{eth\+\_\+recv\+\_\+ignore}} (uint8\+\_\+t sn, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Ignore (discard) received data. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers03_ga1528dc514cbd1c3cc346f1593554a042}{w5500\+\_\+hw\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize W5500 hardware (SPI, GPIOs, chip reset) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers03_ga4c79e652fe1be0ffee1445f8411cce51}{w5500\+\_\+chip\+\_\+init}} (\mbox{\hyperlink{structw5500___net_config}{w5500\+\_\+\+Net\+Config}} \texorpdfstring{$\ast$}{*}net\+\_\+info)
+\begin{DoxyCompactList}\small\item\em Initialize the W5500 chip and bring link up. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers03_ga90f24fc38c9785dbc5ebe18417733a7b}{w5500\+\_\+check\+\_\+version}} (void)
+\begin{DoxyCompactList}\small\item\em Check W5500 version register (diagnostic) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_ga8aef3e5f959b806f9890722dee066782}{w5500\+\_\+set\+\_\+network}} (\mbox{\hyperlink{structw5500___net_config}{w5500\+\_\+\+Net\+Config}} \texorpdfstring{$\ast$}{*}net\+\_\+info)
+\begin{DoxyCompactList}\small\item\em Set network configuration (MAC, IP, subnet, gateway) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_ga51cb463647ad0291c4b7a69d2c4c9a04}{w5500\+\_\+get\+\_\+network}} (\mbox{\hyperlink{structw5500___net_config}{w5500\+\_\+\+Net\+Config}} \texorpdfstring{$\ast$}{*}net\+\_\+info)
+\begin{DoxyCompactList}\small\item\em Get current network configuration. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_gabe918beda4e8c4b4a42c7e96f471ff1c}{w5500\+\_\+print\+\_\+network}} (\mbox{\hyperlink{structw5500___net_config}{w5500\+\_\+\+Net\+Config}} \texorpdfstring{$\ast$}{*}net\+\_\+info)
+\begin{DoxyCompactList}\small\item\em Print network configuration to logger. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__drivers03_gacef8050f9ef67107f3847653577da34f}{w5500\+\_\+\+Phy\+Link}} \mbox{\hyperlink{group__drivers03_gafc4a24de4907644bb37647d9afa7f69d}{w5500\+\_\+get\+\_\+link\+\_\+status}} (void)
+\begin{DoxyCompactList}\small\item\em Get PHY link status. \end{DoxyCompactList}\item 
+int8\+\_\+t \mbox{\hyperlink{group__drivers03_ga9ed1fde0b5018519ab23e299d9a2fc13}{w5500\+\_\+set\+\_\+phy\+\_\+conf}} (\mbox{\hyperlink{structw5500___phy_config}{w5500\+\_\+\+Phy\+Config}} \texorpdfstring{$\ast$}{*}phyconf)
+\begin{DoxyCompactList}\small\item\em Configure PHY mode (auto-\/negotiation, speed, duplex) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_ga581d6d6cf877331ce49b5bcf11fe13bc}{w5500\+\_\+get\+\_\+phy\+\_\+conf}} (\mbox{\hyperlink{structw5500___phy_config}{w5500\+\_\+\+Phy\+Config}} \texorpdfstring{$\ast$}{*}phyconf)
+\begin{DoxyCompactList}\small\item\em Get current PHY configuration. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_ga4d82ae9c8c6c8da0c1d25b1c8e9755d8}{w5500\+\_\+set\+\_\+phy\+\_\+power}} (\mbox{\hyperlink{group__drivers03_ga7ad32e7472dce94b87b4e5bf53a9d5c0}{w5500\+\_\+\+Phy\+Power}} mode)
+\begin{DoxyCompactList}\small\item\em Set PHY power mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__drivers03_gac147c27b83f9f642f636d5e67254d7e8}{w5500\+\_\+sw\+\_\+reset}} (void)
+\begin{DoxyCompactList}\small\item\em Software reset W5500 chip. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__drivers03_gad1b2ecf04b09016da660535e20ef3d0f}{w5500\+\_\+get\+\_\+chip\+\_\+id}} (void)
+\begin{DoxyCompactList}\small\item\em Get chip ID string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{ethernet__driver_8c_ad7f59c145812d3e26d569b3f683f08b8}{\+\_\+cris\+\_\+enter}} )(void) = NULL
+\item 
+static void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{ethernet__driver_8c_a7fb2ca72129db7c88c294c4b3781d25e}{\+\_\+cris\+\_\+exit}} )(void) = NULL
+\item 
+static void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{ethernet__driver_8c_a4aef52875fcc97f613b0e83f98886e2d}{\+\_\+cs\+\_\+select}} )(void) = NULL
+\item 
+static void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{ethernet__driver_8c_a671c916d5ddea899f7e9b5cecab36131}{\+\_\+cs\+\_\+deselect}} )(void) = NULL
+\item 
+static uint8\+\_\+t(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{ethernet__driver_8c_a754dff8a933f24dc7144cdf22c9cf66b}{\+\_\+spi\+\_\+read\+\_\+byte}} )(void) = NULL
+\item 
+static void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{ethernet__driver_8c_aae5ca77be43c4e9b511e511635b37ac5}{\+\_\+spi\+\_\+write\+\_\+byte}} )(uint8\+\_\+t) = NULL
+\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Global Variables}\par
+\begin{DoxyCompactItemize}
+\item 
+Semaphore\+Handle\+\_\+t \mbox{\hyperlink{group__drivers03_ga58d0639cbfc3e7de1ed5c7d85b9821f4}{w5500\+\_\+spi\+\_\+mutex}} = NULL
+\begin{DoxyCompactList}\small\item\em SPI mutex for thread-\/safe W5500 access. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+2.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/12-\/10
+\end{DoxyDate}
+Unified RTOS-\/compatible W5500 driver combining HAL, SPI, and configuration. Thread-\/safe with Free\+RTOS mutex protection for all SPI operations.
+
+v1.\+2.\+0 Changes\+:
+\begin{DoxyItemize}
+\item CRITICAL\+: Added timeout protection to \doxylink{group__drivers03_gaddeb179a48abf7a94ba651742d77c24d}{w5500\+\_\+get\+\_\+tx\+\_\+fsr()} and \doxylink{group__drivers03_gad4b8fcc33da68070ad8208da41838d4c}{w5500\+\_\+get\+\_\+rx\+\_\+rsr()} to prevent infinite loops during heavy network traffic
+\item PERFORMANCE\+: Replaced byte-\/by-\/byte SPI with bulk transfers using spi\+\_\+write\+\_\+blocking() and spi\+\_\+read\+\_\+blocking() for multi-\/byte operations
+\item Added \doxylink{ethernet__driver_8c_a4b0b3b259cf8981cc3fe59199ffd8f70}{w5500\+\_\+read\+\_\+reg16()} for efficient 16-\/bit register reads
+\item Reduced SPI overhead by \texorpdfstring{$\sim$}{\string~}4x for bulk data transfers
+\end{DoxyItemize}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{ethernet__driver_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{ethernet__driver_8c_a275e389067225f4321af3e6e79432dea}\index{ethernet\_driver.c@{ethernet\_driver.c}!ETH\_TASK\_TAG@{ETH\_TASK\_TAG}}
+\index{ETH\_TASK\_TAG@{ETH\_TASK\_TAG}!ethernet\_driver.c@{ethernet\_driver.c}}
+\doxysubsubsection{\texorpdfstring{ETH\_TASK\_TAG}{ETH\_TASK\_TAG}}
+{\footnotesize\ttfamily \label{ethernet__driver_8c_a275e389067225f4321af3e6e79432dea} 
+\#define ETH\+\_\+\+TASK\+\_\+\+TAG~"{}\mbox{[}W5500\mbox{]}"{}}
+
+\Hypertarget{ethernet__driver_8c_a3e33ce815a2540d38288a5aebbd5d6ba}\index{ethernet\_driver.c@{ethernet\_driver.c}!MAX\_FSR\_RSR\_RETRIES@{MAX\_FSR\_RSR\_RETRIES}}
+\index{MAX\_FSR\_RSR\_RETRIES@{MAX\_FSR\_RSR\_RETRIES}!ethernet\_driver.c@{ethernet\_driver.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_FSR\_RSR\_RETRIES}{MAX\_FSR\_RSR\_RETRIES}}
+{\footnotesize\ttfamily \label{ethernet__driver_8c_a3e33ce815a2540d38288a5aebbd5d6ba} 
+\#define MAX\+\_\+\+FSR\+\_\+\+RSR\+\_\+\+RETRIES~10}
+
+\Hypertarget{ethernet__driver_8c_a940a414666b61a6c292ad7f107ca28e3}\index{ethernet\_driver.c@{ethernet\_driver.c}!W5500\_SPI\_READ@{W5500\_SPI\_READ}}
+\index{W5500\_SPI\_READ@{W5500\_SPI\_READ}!ethernet\_driver.c@{ethernet\_driver.c}}
+\doxysubsubsection{\texorpdfstring{W5500\_SPI\_READ}{W5500\_SPI\_READ}}
+{\footnotesize\ttfamily \label{ethernet__driver_8c_a940a414666b61a6c292ad7f107ca28e3} 
+\#define W5500\+\_\+\+SPI\+\_\+\+READ~0x00}
+
+\Hypertarget{ethernet__driver_8c_a5605f9f977d34c80cb4283433fc6101b}\index{ethernet\_driver.c@{ethernet\_driver.c}!W5500\_SPI\_VDM\_OP@{W5500\_SPI\_VDM\_OP}}
+\index{W5500\_SPI\_VDM\_OP@{W5500\_SPI\_VDM\_OP}!ethernet\_driver.c@{ethernet\_driver.c}}
+\doxysubsubsection{\texorpdfstring{W5500\_SPI\_VDM\_OP}{W5500\_SPI\_VDM\_OP}}
+{\footnotesize\ttfamily \label{ethernet__driver_8c_a5605f9f977d34c80cb4283433fc6101b} 
+\#define W5500\+\_\+\+SPI\+\_\+\+VDM\+\_\+\+OP~0x00}
+
+\Hypertarget{ethernet__driver_8c_ad295df72ce1f30ef81594797e7bbc37f}\index{ethernet\_driver.c@{ethernet\_driver.c}!W5500\_SPI\_WRITE@{W5500\_SPI\_WRITE}}
+\index{W5500\_SPI\_WRITE@{W5500\_SPI\_WRITE}!ethernet\_driver.c@{ethernet\_driver.c}}
+\doxysubsubsection{\texorpdfstring{W5500\_SPI\_WRITE}{W5500\_SPI\_WRITE}}
+{\footnotesize\ttfamily \label{ethernet__driver_8c_ad295df72ce1f30ef81594797e7bbc37f} 
+\#define W5500\+\_\+\+SPI\+\_\+\+WRITE~0x04}
+
+
+
+\label{doc-func-members}
+\Hypertarget{ethernet__driver_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{ethernet__driver_8c_a4b86c813b7a496740ce778899eab89f8}\index{ethernet\_driver.c@{ethernet\_driver.c}!\_w5500\_cris\_enter@{\_w5500\_cris\_enter}}
+\index{\_w5500\_cris\_enter@{\_w5500\_cris\_enter}!ethernet\_driver.c@{ethernet\_driver.c}}
+\doxysubsubsection{\texorpdfstring{\_w5500\_cris\_enter()}{\_w5500\_cris\_enter()}}
+{\footnotesize\ttfamily \label{ethernet__driver_8c_a4b86c813b7a496740ce778899eab89f8} 
+void \+\_\+w5500\+\_\+cris\+\_\+enter (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Critical section enter (acquire mutex) 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ethernet__driver_8c_a4b86c813b7a496740ce778899eab89f8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ethernet__driver_8c_a55dd06c3dcd66f4304561203faf465bb}\index{ethernet\_driver.c@{ethernet\_driver.c}!\_w5500\_cris\_exit@{\_w5500\_cris\_exit}}
+\index{\_w5500\_cris\_exit@{\_w5500\_cris\_exit}!ethernet\_driver.c@{ethernet\_driver.c}}
+\doxysubsubsection{\texorpdfstring{\_w5500\_cris\_exit()}{\_w5500\_cris\_exit()}}
+{\footnotesize\ttfamily \label{ethernet__driver_8c_a55dd06c3dcd66f4304561203faf465bb} 
+void \+\_\+w5500\+\_\+cris\+\_\+exit (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Critical section exit (release mutex) 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ethernet__driver_8c_a55dd06c3dcd66f4304561203faf465bb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ethernet__driver_8c_aae72fb2b203b11e6ea9270c6330328b4}\index{ethernet\_driver.c@{ethernet\_driver.c}!\_w5500\_cs\_deselect@{\_w5500\_cs\_deselect}}
+\index{\_w5500\_cs\_deselect@{\_w5500\_cs\_deselect}!ethernet\_driver.c@{ethernet\_driver.c}}
+\doxysubsubsection{\texorpdfstring{\_w5500\_cs\_deselect()}{\_w5500\_cs\_deselect()}}
+{\footnotesize\ttfamily \label{ethernet__driver_8c_aae72fb2b203b11e6ea9270c6330328b4} 
+void \+\_\+w5500\+\_\+cs\+\_\+deselect (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+CS deselect (pull CS high) 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ethernet__driver_8c_aae72fb2b203b11e6ea9270c6330328b4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ethernet__driver_8c_ab42948f652d714f130eebcb5e05a832b}\index{ethernet\_driver.c@{ethernet\_driver.c}!\_w5500\_cs\_select@{\_w5500\_cs\_select}}
+\index{\_w5500\_cs\_select@{\_w5500\_cs\_select}!ethernet\_driver.c@{ethernet\_driver.c}}
+\doxysubsubsection{\texorpdfstring{\_w5500\_cs\_select()}{\_w5500\_cs\_select()}}
+{\footnotesize\ttfamily \label{ethernet__driver_8c_ab42948f652d714f130eebcb5e05a832b} 
+void \+\_\+w5500\+\_\+cs\+\_\+select (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+CS select (pull CS low) 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ethernet__driver_8c_ab42948f652d714f130eebcb5e05a832b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ethernet__driver_8c_a40b7eeef5902a429763d4c7f03730854}\index{ethernet\_driver.c@{ethernet\_driver.c}!\_w5500\_spi\_read@{\_w5500\_spi\_read}}
+\index{\_w5500\_spi\_read@{\_w5500\_spi\_read}!ethernet\_driver.c@{ethernet\_driver.c}}
+\doxysubsubsection{\texorpdfstring{\_w5500\_spi\_read()}{\_w5500\_spi\_read()}}
+{\footnotesize\ttfamily \label{ethernet__driver_8c_a40b7eeef5902a429763d4c7f03730854} 
+uint8\+\_\+t \+\_\+w5500\+\_\+spi\+\_\+read (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+SPI read single byte. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ethernet__driver_8c_a40b7eeef5902a429763d4c7f03730854_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ethernet__driver_8c_a91d8245b26a8e36d6635f72d4115d17f}\index{ethernet\_driver.c@{ethernet\_driver.c}!\_w5500\_spi\_write@{\_w5500\_spi\_write}}
+\index{\_w5500\_spi\_write@{\_w5500\_spi\_write}!ethernet\_driver.c@{ethernet\_driver.c}}
+\doxysubsubsection{\texorpdfstring{\_w5500\_spi\_write()}{\_w5500\_spi\_write()}}
+{\footnotesize\ttfamily \label{ethernet__driver_8c_a91d8245b26a8e36d6635f72d4115d17f} 
+void \+\_\+w5500\+\_\+spi\+\_\+write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{tx\+\_\+data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+SPI write single byte. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ethernet__driver_8c_a91d8245b26a8e36d6635f72d4115d17f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ethernet__driver_8c_a4b0b3b259cf8981cc3fe59199ffd8f70}\index{ethernet\_driver.c@{ethernet\_driver.c}!w5500\_read\_reg16@{w5500\_read\_reg16}}
+\index{w5500\_read\_reg16@{w5500\_read\_reg16}!ethernet\_driver.c@{ethernet\_driver.c}}
+\doxysubsubsection{\texorpdfstring{w5500\_read\_reg16()}{w5500\_read\_reg16()}}
+{\footnotesize\ttfamily \label{ethernet__driver_8c_a4b0b3b259cf8981cc3fe59199ffd8f70} 
+uint16\+\_\+t w5500\+\_\+read\+\_\+reg16 (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{addr\+\_\+sel}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Read 16-\/bit value from W5500 register (optimized for FSR/\+RSR) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr\+\_\+sel} & Base register address with block select \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+16-\/bit register value (big-\/endian converted) 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Reads two consecutive bytes in a single SPI transaction 
+\end{DoxyNote}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=307pt]{ethernet__driver_8c_a4b0b3b259cf8981cc3fe59199ffd8f70_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{ethernet__driver_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{ethernet__driver_8c_ad7f59c145812d3e26d569b3f683f08b8}\index{ethernet\_driver.c@{ethernet\_driver.c}!\_cris\_enter@{\_cris\_enter}}
+\index{\_cris\_enter@{\_cris\_enter}!ethernet\_driver.c@{ethernet\_driver.c}}
+\doxysubsubsection{\texorpdfstring{\_cris\_enter}{\_cris\_enter}}
+{\footnotesize\ttfamily \label{ethernet__driver_8c_ad7f59c145812d3e26d569b3f683f08b8} 
+void(\texorpdfstring{$\ast$}{*} \+\_\+cris\+\_\+enter) (void) (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption}) = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{ethernet__driver_8c_a7fb2ca72129db7c88c294c4b3781d25e}\index{ethernet\_driver.c@{ethernet\_driver.c}!\_cris\_exit@{\_cris\_exit}}
+\index{\_cris\_exit@{\_cris\_exit}!ethernet\_driver.c@{ethernet\_driver.c}}
+\doxysubsubsection{\texorpdfstring{\_cris\_exit}{\_cris\_exit}}
+{\footnotesize\ttfamily \label{ethernet__driver_8c_a7fb2ca72129db7c88c294c4b3781d25e} 
+void(\texorpdfstring{$\ast$}{*} \+\_\+cris\+\_\+exit) (void) (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption}) = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{ethernet__driver_8c_a671c916d5ddea899f7e9b5cecab36131}\index{ethernet\_driver.c@{ethernet\_driver.c}!\_cs\_deselect@{\_cs\_deselect}}
+\index{\_cs\_deselect@{\_cs\_deselect}!ethernet\_driver.c@{ethernet\_driver.c}}
+\doxysubsubsection{\texorpdfstring{\_cs\_deselect}{\_cs\_deselect}}
+{\footnotesize\ttfamily \label{ethernet__driver_8c_a671c916d5ddea899f7e9b5cecab36131} 
+void(\texorpdfstring{$\ast$}{*} \+\_\+cs\+\_\+deselect) (void) (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption}) = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{ethernet__driver_8c_a4aef52875fcc97f613b0e83f98886e2d}\index{ethernet\_driver.c@{ethernet\_driver.c}!\_cs\_select@{\_cs\_select}}
+\index{\_cs\_select@{\_cs\_select}!ethernet\_driver.c@{ethernet\_driver.c}}
+\doxysubsubsection{\texorpdfstring{\_cs\_select}{\_cs\_select}}
+{\footnotesize\ttfamily \label{ethernet__driver_8c_a4aef52875fcc97f613b0e83f98886e2d} 
+void(\texorpdfstring{$\ast$}{*} \+\_\+cs\+\_\+select) (void) (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption}) = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{ethernet__driver_8c_a754dff8a933f24dc7144cdf22c9cf66b}\index{ethernet\_driver.c@{ethernet\_driver.c}!\_spi\_read\_byte@{\_spi\_read\_byte}}
+\index{\_spi\_read\_byte@{\_spi\_read\_byte}!ethernet\_driver.c@{ethernet\_driver.c}}
+\doxysubsubsection{\texorpdfstring{\_spi\_read\_byte}{\_spi\_read\_byte}}
+{\footnotesize\ttfamily \label{ethernet__driver_8c_a754dff8a933f24dc7144cdf22c9cf66b} 
+uint8\+\_\+t(\texorpdfstring{$\ast$}{*} \+\_\+spi\+\_\+read\+\_\+byte) (void) (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption}) = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{ethernet__driver_8c_aae5ca77be43c4e9b511e511635b37ac5}\index{ethernet\_driver.c@{ethernet\_driver.c}!\_spi\_write\_byte@{\_spi\_write\_byte}}
+\index{\_spi\_write\_byte@{\_spi\_write\_byte}!ethernet\_driver.c@{ethernet\_driver.c}}
+\doxysubsubsection{\texorpdfstring{\_spi\_write\_byte}{\_spi\_write\_byte}}
+{\footnotesize\ttfamily \label{ethernet__driver_8c_aae5ca77be43c4e9b511e511635b37ac5} 
+void(\texorpdfstring{$\ast$}{*} \+\_\+spi\+\_\+write\+\_\+byte) (uint8\+\_\+t) (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{}{}\end{DoxyParamCaption}) = NULL\hspace{0.3cm}{\ttfamily [static]}}
+

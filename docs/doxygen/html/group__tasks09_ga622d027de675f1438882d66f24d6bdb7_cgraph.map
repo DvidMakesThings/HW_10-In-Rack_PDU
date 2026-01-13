@@ -1,0 +1,19 @@
+<map id="Switch_GetAllStates" name="Switch_GetAllStates">
+<area shape="rect" id="Node000001" title="Get all 8 channel states from hardware." alt="" coords="5,81,148,108"/>
+<area shape="rect" id="Node000002" href="$_switch_task_8c.html#a2a7f01bd659f5eea0a4a131d8c57c207" title=" " alt="" coords="233,5,278,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,78,218,31,220,36,111,83"/>
+<area shape="rect" id="Node000003" href="$group__drivers06.html#ga6568742c79ce5190216e5185238229ba" title="Get relay MCP23017 device context." alt="" coords="215,56,296,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="148,82,200,75,200,80,149,87"/>
+<area shape="rect" id="Node000004" href="$_switch_task_8c.html#acc0c2f9409d734ff983b3d0f0cdf8444" title=" " alt="" coords="196,107,316,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="149,102,181,107,180,112,148,107"/>
+<area shape="rect" id="Node000009" href="$_switch_task_8c.html#abb7cc7eb4e959fda6a43c8dd85f20090" title=" " alt="" coords="226,157,286,184"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="111,106,213,150,211,155,109,111"/>
+<area shape="rect" id="Node000005" href="$group__drivers06.html#ga2e6de484edec28d8c39620a364ce5b92" title="Read a logic level from a pin." alt="" coords="364,107,466,133"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="316,117,348,117,348,123,316,123"/>
+<area shape="rect" id="Node000006" href="$group__drivers05.html#ga0e406d50e8948e593649a11c729acd9b" title="Read 8&#45;bit register: write [reg] (no stop), then read 1 byte." alt="" coords="514,107,645,133"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="467,117,499,117,499,123,467,123"/>
+<area shape="rect" id="Node000007" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="722,81,843,108"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="645,109,706,101,706,107,646,114"/>
+<area shape="rect" id="Node000008" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="693,132,872,159"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="646,126,678,130,677,135,645,131"/>
+</map>

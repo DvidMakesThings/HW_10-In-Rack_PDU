@@ -1,0 +1,5 @@
+<map id="EEPROM_ReadSensorCalibration" name="EEPROM_ReadSensorCalibration">
+<area shape="rect" id="Node000001" title="Read entire HLW8032 sensor calibration block from EEPROM." alt="" coords="264,5,484,32"/>
+<area shape="rect" id="Node000002" href="$group__storage02.html#ga997f3d6e141a711fa6f969fc16edc7ce" title="Perform basic read&#45;back validation after factory defaulting." alt="" coords="5,5,216,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="248,21,216,21,216,16,248,16"/>
+</map>

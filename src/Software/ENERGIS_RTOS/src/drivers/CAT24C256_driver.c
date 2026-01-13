@@ -1,52 +1,63 @@
 /**
- * @file src/drivers/CAT24C256_driver.c
+ * @file drivers/cat24c256_driver.c
  * @author DvidMakesThings - David Sipos
  *
  * @version 1.1.0
  * @date 2025-11-06
  *
  * @details
- * RTOS-compatible implementation for CAT24C256 EEPROM.
+ * Implementation of CAT24C256 32KB EEPROM driver with page-aware write logic.
+ * All I2C operations use the centralized i2c_bus manager for thread safety.
+ *
+ * Write Strategy:
+ * - Single bytes: Direct write + delay
+ * - Multi-byte: Split into page-aligned chunks, delay after each chunk
+ *
+ * Read Strategy:
+ * - Sequential reads with EEPROM auto-increment
+ * - No page boundary restrictions
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
  */
 
 #include "../CONFIG.h"
-#include "i2c_bus.h"
 
 #define CAT24_TAG "[CAT24DRV]"
 
-/* ==================== Private Functions ==================== */
-
 /**
- * @brief Implements RTOS-compatible write cycle delay for EEPROM operations
+ * @brief RTOS-compatible write cycle delay.
  *
- * Provides the mandatory delay between write operations to ensure data integrity.
- * Uses RTOS task delay instead of busy-wait to allow other tasks to run.
+ * @details
+ * Implements the mandatory tWR (write cycle time) delay per CAT24C256 datasheet.
+ * Uses RTOS task delay to allow other tasks to execute during wait period,
+ * preventing watchdog starvation and improving system responsiveness.
+ *
+ * Timing Requirements:
+ * - Typical: 5ms
+ * - Maximum: 10ms
+ * - This implementation: 5ms (CAT24C256_WRITE_CYCLE_MS)
  *
  * @param None
  * @return None
- * @note Critical timing: Derived from CAT24C256 datasheet write cycle specification
+ *
+ * @note Must be called after every write operation before next access
+ * @note Uses vTaskDelay for cooperative multitasking
  */
 static inline void write_cycle_delay(void) { vTaskDelay(pdMS_TO_TICKS(CAT24C256_WRITE_CYCLE_MS)); }
 
-/* ==================== Public Functions ==================== */
-
 void CAT24C256_Init(void) {
-    /* I2C peripheral already initialized by system_startup_init() */
-    /* Just set GPIO function and pull-ups using CONFIG.h definitions */
-
     gpio_set_function(I2C1_SDA, GPIO_FUNC_I2C);
     gpio_set_function(I2C1_SCL, GPIO_FUNC_I2C);
     gpio_pull_up(I2C1_SDA);
     gpio_pull_up(I2C1_SCL);
 
-    INFO_PRINT("%s Driver initialized \r\n", CAT24_TAG);
+    INFO_PRINT("%s Driver initialized\r\n", CAT24_TAG);
 }
 
 int CAT24C256_WriteByte(uint16_t addr, uint8_t data) {
     bool ok = i2c_bus_write_mem16(EEPROM_I2C, CAT24C256_I2C_ADDR, addr, &data, 1, 50000);
+
     if (ok) {
         write_cycle_delay();
         return 0;
@@ -63,6 +74,7 @@ int CAT24C256_WriteByte(uint16_t addr, uint8_t data) {
 uint8_t CAT24C256_ReadByte(uint16_t addr) {
     uint8_t data = 0xFF;
     bool ok = i2c_bus_read_mem16(EEPROM_I2C, CAT24C256_I2C_ADDR, addr, &data, 1, 50000);
+
     if (!ok) {
 #ifdef ERRORLOGGER
         uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CAT24, 0x1);
@@ -84,17 +96,14 @@ int CAT24C256_WriteBuffer(uint16_t addr, const uint8_t *data, uint16_t len) {
         return -1;
     }
 
-    // DEBUG_PRINT("[CAT24C256] Writing %u bytes starting at 0x%04X\r\n", len, addr);
-
     while (len > 0) {
-        /* Calculate chunk size (respect page boundaries) */
         uint16_t page_offset = addr % CAT24C256_PAGE_SIZE;
         uint16_t remaining_in_page = CAT24C256_PAGE_SIZE - page_offset;
         uint16_t chunk_size = (len < remaining_in_page) ? len : remaining_in_page;
 
-        /* Write chunk via bus manager */
         bool ok =
             i2c_bus_write_mem16(EEPROM_I2C, CAT24C256_I2C_ADDR, addr, data, chunk_size, 50000);
+
         if (!ok) {
 #ifdef ERRORLOGGER
             uint16_t errorcode =
@@ -108,7 +117,6 @@ int CAT24C256_WriteBuffer(uint16_t addr, const uint8_t *data, uint16_t len) {
 
         write_cycle_delay();
 
-        /* Move to next chunk */
         addr += chunk_size;
         data += chunk_size;
         len -= chunk_size;
@@ -128,6 +136,7 @@ void CAT24C256_ReadBuffer(uint16_t addr, uint8_t *buffer, uint32_t len) {
     }
 
     bool ok = i2c_bus_read_mem16(EEPROM_I2C, CAT24C256_I2C_ADDR, addr, buffer, len, 50000);
+
     if (!ok) {
 #ifdef ERRORLOGGER
         uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CAT24, 0x5);
@@ -135,7 +144,6 @@ void CAT24C256_ReadBuffer(uint16_t addr, uint8_t *buffer, uint32_t len) {
                          addr, (unsigned long)len);
         Storage_EnqueueErrorCode(errorcode);
 #endif
-        /* Fill with 0xFF on failure */
         memset(buffer, 0xFF, len);
     }
 }
@@ -147,7 +155,6 @@ bool CAT24C256_SelfTest(uint16_t test_addr) {
 
     INFO_PRINT("[CAT24C256] Self-test starting at address 0x%04X\r\n", test_addr);
 
-    /* Write test pattern */
     if (CAT24C256_WriteBuffer(test_addr, test_pattern, pattern_len) != 0) {
 #ifdef ERRORLOGGER
         uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CAT24, 0x6);
@@ -157,13 +164,10 @@ bool CAT24C256_SelfTest(uint16_t test_addr) {
         return false;
     }
 
-    /* Small delay to ensure write completion */
     vTaskDelay(pdMS_TO_TICKS(10));
 
-    /* Read back test pattern */
     CAT24C256_ReadBuffer(test_addr, read_buffer, pattern_len);
 
-    /* Compare */
     if (memcmp(test_pattern, read_buffer, pattern_len) != 0) {
 #ifdef ERRORLOGGER
         uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_STORAGE, ERR_SEV_ERROR, ERR_FID_ST_CAT24, 0x7);

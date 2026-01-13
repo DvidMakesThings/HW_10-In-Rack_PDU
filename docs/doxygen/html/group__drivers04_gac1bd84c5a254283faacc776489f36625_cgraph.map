@@ -1,0 +1,19 @@
+<map id="hlw8032_init" name="hlw8032_init">
+<area shape="rect" id="Node000001" title="Initialize HLW8032 driver subsystem." alt="" coords="5,107,99,133"/>
+<area shape="rect" id="Node000002" href="$group__drivers04.html#ga76954a7035d4f2fad1ec9fba75e62b6c" title="Load calibration data from EEPROM for all channels." alt="" coords="147,77,313,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,110,131,104,132,110,99,115"/>
+<area shape="rect" id="Node000008" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="842,81,1025,108"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="99,118,308,121,581,117,826,102,827,107,581,123,308,126,99,124"/>
+<area shape="rect" id="Node000003" href="$group__storage01.html#gaa3b6f1341ad447d7f7f95d1be802b1e7" title="Read calibration record for single HLW8032 channel." alt="" coords="361,65,581,108"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="314,87,345,86,345,91,314,92"/>
+<area shape="rect" id="Node000004" href="$group__driver02.html#ga622a6736c8384f9e1921a1bda2a84df9" title="Read buffer from EEPROM." alt="" coords="629,31,794,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="581,64,617,58,618,63,582,70"/>
+<area shape="poly" id="edge8_Node000003_Node000008" title=" " alt="" coords="582,86,826,90,826,95,582,91"/>
+<area shape="rect" id="Node000005" href="$group__drivers05.html#ga66ae4c7028f764a3770cabe101dba8bf" title="Read from 16&#45;bit memory address: write [mem_hi, mem_lo] (no stop), then read len bytes." alt="" coords="859,31,1008,57"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="794,41,844,41,844,47,794,47"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="774,55,858,75,856,80,773,61"/>
+<area shape="rect" id="Node000006" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="1102,5,1223,32"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1007,33,1086,24,1087,30,1008,38"/>
+<area shape="rect" id="Node000007" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="1073,56,1252,83"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="1008,50,1058,55,1058,60,1007,55"/>
+</map>

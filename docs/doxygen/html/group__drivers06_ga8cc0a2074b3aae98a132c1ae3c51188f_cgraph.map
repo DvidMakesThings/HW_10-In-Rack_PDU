@@ -1,0 +1,11 @@
+<map id="socket" name="socket">
+<area shape="rect" id="Node000001" title="Create and initialize a socket." alt="" coords="5,56,66,83"/>
+<area shape="rect" id="Node000002" href="$group__drivers06.html#ga025710a2709097be7824f0564f89a461" title="Close a socket." alt="" coords="160,5,251,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="65,57,113,41,144,32,146,37,114,47,67,62"/>
+<area shape="rect" id="Node000003" href="$group__drivers05.html#gab5067ea57282ddde48ecb150943ece32" title="Set the local TCP/UDP port (big&#45;endian)" alt="" coords="156,56,254,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="66,67,140,67,140,72,66,72"/>
+<area shape="rect" id="Node000005" href="$group__tasks05.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="114,107,297,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="67,77,114,92,139,99,137,104,113,97,65,82"/>
+<area shape="rect" id="Node000004" href="$group__drivers05.html#ga8e525d27915365abbe8086dc3363055f" title="Write multiple bytes to W5500 (optimized bulk transfer)" alt="" coords="345,56,464,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="255,67,329,67,329,72,255,72"/>
+</map>

@@ -24,6 +24,9 @@
  *  Build-time options
  * --------------------------------------------------------------------------------------------- */
 
+/** @name Build-time Options
+ *  @ingroup drivers07
+ *  @{ */
 /** @brief Enable hexdumps of requests/responses on the UART console. */
 #ifndef _SNMP_DEBUG_
 #define _SNMP_DEBUG_ DEBUG
@@ -55,11 +58,15 @@
 
 /** @brief SNMP version supported (v1). */
 #define SNMP_V1 0
+/** @} */
 
 /* ------------------------------------------------------------------------------------------------
  *  ASN.1 / SNMP tags and error codes
  * --------------------------------------------------------------------------------------------- */
 
+/** @name ASN.1 Data Types
+ *  @ingroup drivers07
+ *  @{ */
 #define SNMPDTYPE_INTEGER 0x02
 #define SNMPDTYPE_OCTET_STRING 0x04
 #define SNMPDTYPE_NULL_ITEM 0x05
@@ -71,23 +78,35 @@
 #define SNMPDTYPE_GAUGE 0x42
 #define SNMPDTYPE_TIME_TICKS 0x43
 #define SNMPDTYPE_OPAQUE 0x44
+/** @} */
 
+/** @name SNMP PDU Types
+ *  @ingroup drivers07
+ *  @{ */
 #define GET_REQUEST 0xA0
 #define GET_NEXT_REQUEST 0xA1
 #define GET_RESPONSE 0xA2
 #define SET_REQUEST 0xA3
 
 #define VALID_REQUEST(x) ((x) == GET_REQUEST || (x) == GET_NEXT_REQUEST || (x) == SET_REQUEST)
+/** @} */
 
 /* Generic trap types */
+/** @name Generic Trap Types
+ *  @ingroup drivers07
+ *  @{ */
 #define SNMPTRAP_COLDSTART 0x00
 #define SNMPTRAP_WARMSTART 0x01
 #define SNMPTRAP_LINKDOWN 0x02
 #define SNMPTRAP_LINKUP 0x03
 #define SNMPTRAP_AUTHENTICATION 0x04
 #define SNMPTRAP_EGPNEIGHBORLOSS 0x05
+/** @} */
 
 /* Agent return/error codes */
+/** @name Agent Return/Error Codes
+ *  @ingroup drivers07
+ *  @{ */
 #define SNMP_SUCCESS 0
 #define OID_NOT_FOUND -1
 #define TABLE_FULL -2
@@ -97,8 +116,12 @@
 
 #define NO_SUCH_NAME 2
 #define BAD_VALUE 3
+/** @} */
 
 #ifndef HTONL
+/** @name Helper Macros
+ *  @ingroup drivers07
+ *  @{ */
 #define HTONL(x)                                                                                   \
     ((((x) >> 24) & 0x000000FF) | (((x) >> 8) & 0x0000FF00) | (((x) << 8) & 0x00FF0000) |          \
      (((x) << 24) & 0xFF000000))
@@ -110,6 +133,7 @@
         memcpy(&response_msg.buffer[response_msg.index], &request_msg.buffer[x.start], seglen);    \
         response_msg.index += seglen;                                                              \
     }
+/** @} */
 
 /* ------------------------------------------------------------------------------------------------
  *  Public types
@@ -118,6 +142,9 @@
 /**
  * @brief TLV cursor describing a parsed element in an SNMP message.
  * @details LONG DESCRIPTION
+ */
+/** @struct snmp_tlv_t
+ *  @ingroup drivers07
  */
 typedef struct {
     int32_t start;  /**< Absolute index of the TLV tag. */
@@ -130,6 +157,9 @@ typedef struct {
  * @brief SNMP message work buffer.
  * @details LONG DESCRIPTION
  */
+/** @struct snmp_msg_t
+ *  @ingroup drivers07
+ */
 typedef struct {
     uint8_t buffer[SNMP_MAX_MSG]; /**< Raw bytes. */
     int32_t len;                  /**< Total valid bytes in buffer. */
@@ -139,6 +169,9 @@ typedef struct {
 /**
  * @brief OID entry descriptor used by the agent’s MIB callbacks.
  * @details LONG DESCRIPTION
+ */
+/** @struct snmp_entry_t
+ *  @ingroup drivers07
  */
 typedef struct {
     uint8_t oidlen;            /**< Number of OID components. */
@@ -157,6 +190,9 @@ typedef struct {
  *  Public API
  * --------------------------------------------------------------------------------------------- */
 
+/** @name Public API
+ *  @ingroup drivers07
+ *  @{ */
 /**
  * @brief Initialize SNMP agent UDP transport and core.
  *
@@ -213,6 +249,7 @@ void SNMP_GetUptime(void *ptr, uint8_t *len);
 int32_t SNMP_SendTrap(uint8_t *managerIP, uint8_t *agentIP, int8_t *community,
                       snmp_entry_t enterprise_oid, uint32_t genericTrap, uint32_t specificTrap,
                       uint32_t va_count, ...);
+/** @} */
 
 /* ------------------------------------------------------------------------------------------------
  *  External MIB table and helpers (provided by snmp_custom.*)
@@ -222,22 +259,30 @@ int32_t SNMP_SendTrap(uint8_t *managerIP, uint8_t *agentIP, int8_t *community,
  * @brief Initialize OID table and agent community (implemented in snmp_custom.c).
  * @details LONG DESCRIPTION
  */
+/** @ingroup drivers07 */
 extern void initTable(void);
 
 /**
  * @brief Perform initial trap setup with manager/agent IP (in snmp_custom.c).
  * @details LONG DESCRIPTION
  */
+/** @ingroup drivers07 */
 extern void initial_Trap(uint8_t *managerIP, uint8_t *agentIP);
 
 /**
  * @brief Global OID table (implemented in snmp_custom.c).
  * @details LONG DESCRIPTION
  */
+/** @var snmpData
+ *  @ingroup drivers07
+ */
 extern snmp_entry_t snmpData[];
 /**
  * @brief Number of valid entries in @ref snmpData.
  * @details LONG DESCRIPTION
+ */
+/** @var maxData
+ *  @ingroup drivers07
  */
 extern const int32_t maxData;
 
@@ -246,8 +291,14 @@ extern const int32_t maxData;
  * --------------------------------------------------------------------------------------------- */
 
 /** @brief Community string bytes (length @ref COMMUNITY_SIZE). */
+/** @var COMMUNITY
+ *  @ingroup drivers07
+ */
 extern const uint8_t COMMUNITY[];
 /** @brief Community string length. */
+/** @var COMMUNITY_SIZE
+ *  @ingroup drivers07
+ */
 extern const uint8_t COMMUNITY_SIZE;
 
 #endif /* ENERGIS_SNMP_H */

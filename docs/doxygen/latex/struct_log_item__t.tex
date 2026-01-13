@@ -1,0 +1,33 @@
+\doxysection{Log\+Item\+\_\+t Struct Reference}
+\hypertarget{struct_log_item__t}{}\label{struct_log_item__t}\index{LogItem\_t@{LogItem\_t}}
+
+
+Log message queue item structure.  
+
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{struct_log_item__t_ac5759c1033081d51a7c51509035962ea}{msg}} \mbox{[}\mbox{\hyperlink{group__overcurrent__thresholds_ga862c89f441ad8b4a6c2249b0ef3effe7}{LOGGER\+\_\+\+MSG\+\_\+\+MAX}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Log message queue item structure. 
+
+Contains a single formatted log message ready for output. Messages are pre-\/formatted by \doxylink{group__tasks05_ga2473a4441580b27bdc14f48e2d2fff8e}{log\+\_\+printf()} before being queued, avoiding formatting work in the output task. 
+
+\label{doc-variable-members}
+\Hypertarget{struct_log_item__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_log_item__t_ac5759c1033081d51a7c51509035962ea}\index{LogItem\_t@{LogItem\_t}!msg@{msg}}
+\index{msg@{msg}!LogItem\_t@{LogItem\_t}}
+\doxysubsubsection{\texorpdfstring{msg}{msg}}
+{\footnotesize\ttfamily \label{struct_log_item__t_ac5759c1033081d51a7c51509035962ea} 
+char Log\+Item\+\_\+t\+::msg\mbox{[}\mbox{\hyperlink{group__overcurrent__thresholds_ga862c89f441ad8b4a6c2249b0ef3effe7}{LOGGER\+\_\+\+MSG\+\_\+\+MAX}}\mbox{]}}
+
+Null-\/terminated formatted log message. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/tasks/\mbox{\hyperlink{_logger_task_8c}{Logger\+Task.\+c}}\end{DoxyCompactItemize}

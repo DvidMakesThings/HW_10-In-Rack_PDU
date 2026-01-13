@@ -5,8 +5,15 @@
  * @version 1.0.0
  * @date 2025-11-06
  *
- * @details FreeRTOS hook implementations, crash breadcrumbs, and
- * scheduler canaries.
+ * @details
+ * Implementation of FreeRTOS application hooks and fault handlers. This module
+ * captures fault context into watchdog scratch registers for post-mortem analysis
+ * and provides scheduler liveness monitoring via Idle task canary.
+ *
+ * All fault handlers follow a consistent pattern:
+ * 1. Write fault signature (0xBEEF + cause code) to scratch[0]
+ * 2. Capture minimal context (LR, task handle, etc.) to remaining scratch registers
+ * 3. Initiate controlled reboot via Health module
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -59,9 +66,12 @@ volatile uint32_t g_rtos_idle_canary = 0u;
 volatile uint32_t g_rtos_idle_last_ms = 0u;
 
 /**
- * @brief Return a coarse RTOS time in milliseconds derived from tick count.
+ * @brief Convert FreeRTOS tick count to milliseconds.
  *
- * @return Milliseconds since scheduler start.
+ * Helper function that reads the current tick count and converts it to
+ * milliseconds based on the configured tick rate.
+ *
+ * @return Milliseconds since scheduler start
  */
 static inline uint32_t rtos_now_ms(void) {
     TickType_t t = xTaskGetTickCount();
@@ -75,7 +85,10 @@ static inline uint32_t rtos_now_ms(void) {
  * by advancing g_rtos_idle_canary and stamping g_rtos_idle_last_ms.
  */
 void vApplicationIdleHook(void) {
+    /* Increment liveness canary */
     g_rtos_idle_canary++;
+
+    /* Record execution timestamp */
     g_rtos_idle_last_ms = rtos_now_ms();
 }
 
@@ -112,75 +125,112 @@ uint32_t RTOS_IdleCanary_Delta(uint32_t prev_value) {
 uint32_t RTOS_TicksMs(void) { return rtos_now_ms(); }
 
 /**
- * @brief FreeRTOS stack-overflow hook: capture task context and reboot.
+ * @brief FreeRTOS stack overflow hook with fault context capture.
  *
- * Stores a StackOverflow signature and minimal context in watchdog scratch registers:
- *  - scratch[0] = 0xBEEF0000 | 0xF2
- *  - scratch[1] = call site LR
- *  - scratch[2] = offending task handle
- *  - scratch[3] = task stack high-water mark
+ * Called by FreeRTOS when stack overflow is detected for a task. Captures
+ * diagnostic context into watchdog scratch registers and initiates reboot.
  *
- * @param xTask       Offending task handle.
- * @param pcTaskName  Task name pointer (may be invalid after crash).
+ * Fault signature format in watchdog scratch registers:
+ * - scratch[0]: 0xBEEF0000 | 0xF2 (StackOverflow signature)
+ * - scratch[1]: Function return address
+ * - scratch[2]: Offending task handle
+ * - scratch[3]: Task stack high-water mark (bytes remaining before overflow)
+ *
+ * @param xTask Offending task handle
+ * @param pcTaskName Task name string pointer (may be invalid post-crash)
+ *
+ * @return None (function does not return; system reboots)
+ *
+ * @note Requires configCHECK_FOR_STACK_OVERFLOW > 0 in FreeRTOSConfig.h
  */
 void vApplicationStackOverflowHook(TaskHandle_t xTask, char *pcTaskName) {
     (void)pcTaskName;
+
+    /* Write fault signature and context to watchdog scratch registers */
     watchdog_hw->scratch[0] = 0xBEEF0000u | 0xF2u;
     watchdog_hw->scratch[1] = (uint32_t)__builtin_return_address(0);
     watchdog_hw->scratch[2] = (uint32_t)xTask;
     watchdog_hw->scratch[3] = (uint32_t)uxTaskGetStackHighWaterMark(xTask);
+
+    /* Initiate controlled reboot for post-mortem analysis */
     Health_RebootNow("RTOS hook");
     for (;;)
         ;
 }
 
 /**
- * @brief FreeRTOS malloc-fail hook: capture cause and reboot.
+ * @brief FreeRTOS heap allocation failure hook with context capture.
  *
- * Stores a MallocFail signature and minimal context in watchdog scratch registers:
- *  - scratch[0] = 0xBEEF0000 | 0xF3
- *  - scratch[1] = call site LR
- *  - scratch[2] = current task handle
- *  - scratch[3] = current task stack high-water mark
+ * Called by FreeRTOS when pvPortMalloc() fails to allocate memory. Captures
+ * diagnostic context and initiates reboot.
+ *
+ * Fault signature format in watchdog scratch registers:
+ * - scratch[0]: 0xBEEF0000 | 0xF3 (MallocFail signature)
+ * - scratch[1]: Function return address
+ * - scratch[2]: Current task handle
+ * - scratch[3]: Current task stack high-water mark
+ *
+ * @return None (function does not return; system reboots)
+ *
+ * @note Requires configUSE_MALLOC_FAILED_HOOK=1 in FreeRTOSConfig.h
  */
 void vApplicationMallocFailedHook(void) {
+    /* Write fault signature and context to watchdog scratch registers */
     watchdog_hw->scratch[0] = 0xBEEF0000u | 0xF3u;
     watchdog_hw->scratch[1] = (uint32_t)__builtin_return_address(0);
     watchdog_hw->scratch[2] = (uint32_t)xTaskGetCurrentTaskHandle();
     watchdog_hw->scratch[3] = (uint32_t)uxTaskGetStackHighWaterMark(NULL);
+
+    /* Initiate controlled reboot for post-mortem analysis */
     Health_RebootNow("RTOS hook");
     for (;;)
         ;
 }
 
 /**
- * @brief Assertion failure hook: capture line marker and reboot.
+ * @brief FreeRTOS assertion failure hook with context capture.
  *
- * Stores an Assert signature and minimal context in watchdog scratch registers:
- *  - scratch[0] = 0xBEEF0000 | 0xF4
- *  - scratch[1] = call site LR
- *  - scratch[2] = __LINE__ value
+ * Called when a FreeRTOS assertion fails (via configASSERT macro). Captures
+ * diagnostic context and initiates reboot.
  *
- * @param file File name (unused).
- * @param line Line number where the assertion failed.
+ * Fault signature format in watchdog scratch registers:
+ * - scratch[0]: 0xBEEF0000 | 0xF4 (Assert signature)
+ * - scratch[1]: Function return address
+ * - scratch[2]: Source line number where assertion failed
+ *
+ * @param file Source file name (unused, may be invalid after crash)
+ * @param line Line number where assertion failed
+ *
+ * @return None (function does not return; system reboots)
+ *
+ * @note Requires configASSERT() macro defined in FreeRTOSConfig.h
  */
 void vAssertCalled(const char *file, int line) {
     (void)file;
+
+    /* Write fault signature and context to watchdog scratch registers */
     watchdog_hw->scratch[0] = 0xBEEF0000u | 0xF4u;
     watchdog_hw->scratch[1] = (uint32_t)__builtin_return_address(0);
     watchdog_hw->scratch[2] = (uint32_t)line;
+
+    /* Initiate controlled reboot for post-mortem analysis */
     Health_RebootNow("RTOS hook");
     for (;;)
         ;
 }
 
 /**
- * @brief HardFault handler: capture link register and reboot.
+ * @brief Cortex-M HardFault exception handler with context capture.
  *
- * Stores a HardFault signature and minimal context in watchdog scratch registers:
- *  - scratch[0] = 0xBEEF0000 | 0xF1
- *  - scratch[1] = call site LR
- *  - scratch[2] = current task handle
+ * Assembly trampoline that determines which stack pointer was active at the
+ * time of the fault (MSP or PSP) and passes it to the C handler function.
+ *
+ * The handler captures CPU context and writes it to watchdog scratch registers
+ * before initiating a controlled reboot.
+ *
+ * @return None (function does not return; system reboots)
+ *
+ * @note This function is naked and contains only assembly code
  */
 __attribute__((naked)) void HardFault_Handler(void) {
     __asm volatile("movs r0, #4        \n" /* r0 = 4 */
@@ -194,8 +244,22 @@ __attribute__((naked)) void HardFault_Handler(void) {
                    "b    hardfault_c   \n");
 }
 
-/* sp points to stacked regs: r0 r1 r2 r3 r12 lr pc xPSR */
+/**
+ * @brief HardFault C handler that extracts and logs fault context.
+ *
+ * Called from the HardFault_Handler assembly trampoline with a pointer to the
+ * stacked register frame. Extracts all stacked registers and attempts to log
+ * them before entering an infinite wait loop.
+ *
+ * Exception stack frame layout (sp points to r0):
+ * [0]=r0, [1]=r1, [2]=r2, [3]=r3, [4]=r12, [5]=lr, [6]=pc, [7]=xpsr
+ *
+ * @param sp Pointer to exception stack frame
+ *
+ * @return None (function does not return; enters infinite WFI loop)
+ */
 void hardfault_c(uint32_t *sp) {
+    /* Extract all stacked registers from exception frame */
     uint32_t r0 = sp[0];
     uint32_t r1 = sp[1];
     uint32_t r2 = sp[2];
@@ -206,6 +270,7 @@ void hardfault_c(uint32_t *sp) {
     uint32_t xpsr = sp[7];
 
 #if ERRORLOGGER
+    /* Log fault context if error logging is enabled */
     uint16_t errorcode = ERR_MAKE_CODE(ERR_MOD_HEALTH, ERR_FATAL_ERROR, ERR_FID_RTOS_HOOKS, 0x0);
     ERROR_PRINT_CODE(errorcode,
                      "%s pc = % 08lx lr = % 08lx xpsr = % 08lx r0 = % 08lx r1 = % 08lx r2 = % 08lx "
@@ -216,6 +281,7 @@ void hardfault_c(uint32_t *sp) {
     Storage_EnqueueErrorCode(errorcode);
 #endif
 
+    /* Enter infinite low-power wait loop */
     for (;;)
         __asm volatile("wfi");
 }

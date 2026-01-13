@@ -1,0 +1,28 @@
+var _o_c_p_8c =
+[
+    [ "OVERCURRENT_TAG", "_o_c_p_8c.html#a60fe29966ab3722befcab327648bebb9", null ],
+    [ "execute_trip", "_o_c_p_8c.html#ae8d60a50e6a32ee1f355ee379407a4c9", null ],
+    [ "Overcurrent_CanTurnOn", "group__tasks08.html#ga49359b42016742671b8c5ff517c8687c", null ],
+    [ "Overcurrent_ClearLockout", "group__tasks08.html#gadc9a057a3aef40a2ec56e65c2e55daab", null ],
+    [ "Overcurrent_GetLimit", "group__tasks08.html#ga1fdf004c7e21b587d490854fcc9505ff", null ],
+    [ "Overcurrent_GetState", "group__tasks08.html#ga01d97571c761ab643753f677d3088684", null ],
+    [ "Overcurrent_GetStatus", "group__tasks08.html#gaa9aab2a7bfb3274872c5f4f162af177e", null ],
+    [ "Overcurrent_Init", "group__tasks08.html#gabaeebc1f043da757f96bac70bb8ac8ba", null ],
+    [ "Overcurrent_IsSwitchingAllowed", "group__tasks08.html#ga4bf47606df6e10c610300fdf1a2573b5", null ],
+    [ "Overcurrent_RecordChannelOn", "group__tasks08.html#ga05298731bbc499e043d911ec1ca59879", null ],
+    [ "Overcurrent_Update", "group__tasks08.html#gabb9789239f4931927587b1b236b1e315", null ],
+    [ "sanitize_limit_a", "_o_c_p_8c.html#a1fe49fcbbfe0cf03f3ab1dc57313b0bf", null ],
+    [ "sanitize_thresholds", "_o_c_p_8c.html#af8d318d7a4d47ef1cf067b8e28c44099", null ],
+    [ "s_critical_threshold_a", "_o_c_p_8c.html#af5eca573742f56af23aad3176c717350", null ],
+    [ "s_initialized", "_o_c_p_8c.html#a12b03d71705ed949d1afdec2dcbf04b8", null ],
+    [ "s_last_activated_channel", "_o_c_p_8c.html#ab92dfeb25b84b695fb92dc190b69400e", null ],
+    [ "s_last_trip_timestamp_ms", "_o_c_p_8c.html#a8de969bbaf9378da97af0e4b9cca0ef9", null ],
+    [ "s_limit_a", "_o_c_p_8c.html#ad699d23d708fa25bf204319567e84679", null ],
+    [ "s_recovery_threshold_a", "_o_c_p_8c.html#ad7119aaa6d25833e0160c93e18b3b0a5", null ],
+    [ "s_state", "_o_c_p_8c.html#ab9a23e15bf9a47df3b86dda7cbc16319", null ],
+    [ "s_switching_allowed", "_o_c_p_8c.html#a1311dbdfd188e9e57cf9184edbb90abb", null ],
+    [ "s_total_current_a", "_o_c_p_8c.html#a8dcf55afa7933aace931e428f23bcbd0", null ],
+    [ "s_trip_count", "_o_c_p_8c.html#a4ef7c8c291b6b8bd1c8ed1f01f860c60", null ],
+    [ "s_warning_logged", "_o_c_p_8c.html#a48dd8e932ed81a738408daa5c94b0162", null ],
+    [ "s_warning_threshold_a", "_o_c_p_8c.html#a559eaff3043d03ae8fe0564e72a1b379", null ]
+];

@@ -1,0 +1,4 @@
+<map id="4. Energy Monitoring" name="4. Energy Monitoring">
+<area shape="rect" id="Node000001" title="Energy consumption logging with ring buffer persistence." alt="" coords="173,5,314,32"/>
+<area shape="rect" id="Node000002" href="$group__tasks10.html" title="Persistent configuration manager with CAT24C256 EEPROM and queue&#45;based access." alt="" coords="5,5,125,32"/>
+</map>

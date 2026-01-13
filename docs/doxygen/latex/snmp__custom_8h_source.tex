@@ -1,0 +1,26 @@
+\doxysection{snmp\+\_\+custom.\+h}
+\hypertarget{snmp__custom_8h_source}{}\label{snmp__custom_8h_source}\index{src/Software/ENERGIS\_RTOS/src/snmp/snmp\_custom.h@{src/Software/ENERGIS\_RTOS/src/snmp/snmp\_custom.h}}
+\mbox{\hyperlink{snmp__custom_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#ifndef\ SNMP\_CUSTOM\_H}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ SNMP\_CUSTOM\_H}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_o_n_f_i_g_8h}{../CONFIG.h}}"{}}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ uint8\_t\ \mbox{\hyperlink{group__drivers07_ga171971564950d97e48939e2f6de4d92f}{COMMUNITY}}[];}
+\DoxyCodeLine{00046\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ uint8\_t\ \mbox{\hyperlink{group__drivers07_ga253bb776650cb698ee240d43141e1cfa}{COMMUNITY\_SIZE}};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{comment}{/*\ Global\ OID\ table\ +\ size\ (consumed\ by\ snmp.c)\ */}}
+\DoxyCodeLine{00049\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structsnmp__entry__t}{snmp\_entry\_t}}\ \mbox{\hyperlink{group__drivers07_ga0fc0a81b7ad505f393362648610b3a2c}{snmpData}}[];}
+\DoxyCodeLine{00050\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ int32\_t\ \mbox{\hyperlink{group__drivers07_ga073f16bfbcb7015e6408be249c5d2932}{maxData}};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00064\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__snmp01_ga4d3d68fdba21b44efc30f71a40efa7ed}{initTable}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00084\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__snmp01_ga01e7036f2bce7c2647b681dcfe2b3731}{initial\_Trap}}(uint8\_t\ *managerIP,\ uint8\_t\ *agentIP);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00087\ }
+
+\end{DoxyCode}

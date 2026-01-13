@@ -1,0 +1,679 @@
+\doxysubsubsection{
+\begin{DoxyEnumerate}
+\item Network Configuration 
+\end{DoxyEnumerate}}
+\hypertarget{group__storage07}{}\label{group__storage07}\index{7. Network Configuration@{7. Network Configuration}}
+
+
+Network settings with CRC validation and MAC repair.  
+
+
+Collaboration diagram for 7. Network Configuration\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{group__storage07}
+\end{center}
+\end{figure}
+\doxysubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__storage07_gaf37b38d193b54bcce8d8bbd38407dafc}{EEPROM\+\_\+\+Write\+User\+Network}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write raw network configuration block without CRC validation. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage07_ga36caebd539c36be02e805af5d1278ed5}{EEPROM\+\_\+\+Read\+User\+Network}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Read raw network configuration block without CRC validation. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage07_ga3c1fef9aa93f898978387328a8a6e33d}{EEPROM\+\_\+\+Write\+User\+Network\+With\+Checksum}} (const \mbox{\hyperlink{structnetwork_info}{network\+Info}} \texorpdfstring{$\ast$}{*}net\+\_\+info)
+\begin{DoxyCompactList}\small\item\em Write network configuration with CRC-\/8 validation appended. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage07_gaef5b120a12ff3e275706067ea3cf7e46}{EEPROM\+\_\+\+Read\+User\+Network\+With\+Checksum}} (\mbox{\hyperlink{structnetwork_info}{network\+Info}} \texorpdfstring{$\ast$}{*}net\+\_\+info)
+\begin{DoxyCompactList}\small\item\em Read and verify network configuration with CRC-\/8 validation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structnetwork_info}{network\+Info}} \mbox{\hyperlink{group__storage07_ga37c460b3ea58fd130cea86904b06f7b1}{Load\+User\+Network\+Config}} (void)
+\begin{DoxyCompactList}\small\item\em Load network configuration from EEPROM with automatic fallback and MAC repair. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage07_ga6e3a05e108d6081a55378ffe3e817f43}{EEPROM\+\_\+\+Write\+System\+Info}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write system information block without CRC validation. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage07_gab6868e2a26481771ef8ed81d4e909814}{EEPROM\+\_\+\+Read\+System\+Info}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Read system information block without CRC validation. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage07_ga45b5a1959fd75b07c11591fcc92f89c4}{EEPROM\+\_\+\+Write\+System\+Info\+With\+Checksum}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Write system information with CRC-\/8 validation appended. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__storage07_ga781ad4b6b12005f76e0742e107443083}{EEPROM\+\_\+\+Read\+System\+Info\+With\+Checksum}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Read and verify system information with CRC-\/8 validation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+Network settings with CRC validation and MAC repair. 
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/11-\/14
+\end{DoxyDate}
+This module manages network configuration parameters stored in EEPROM with CRC-\/8 data integrity protection and automatic MAC address repair. It handles both system information (firmware version) and network settings (IP, MAC, gateway, DNS, DHCP) with separate EEPROM address spaces.
+
+Key Features\+:
+\begin{DoxyItemize}
+\item Network configuration persistence with CRC-\/8 validation
+\item Automatic MAC address repair for corrupted values
+\item System information storage with integrity checking
+\item Fallback to defaults on read failures
+\item Thread-\/safe access with mutex protection
+\end{DoxyItemize}
+
+EEPROM Memory Layout\+:
+\begin{DoxyEnumerate}
+\item System Info Section (EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+START)\+:
+\begin{DoxyItemize}
+\item Size\+: EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+SIZE bytes
+\item Contents\+: Firmware version string (SWVERSION)
+\item Optional CRC-\/8 appended for validation
+\end{DoxyItemize}
+\item Network Config Section (EEPROM\+\_\+\+USER\+\_\+\+NETWORK\+\_\+\+START)\+:
+\begin{DoxyItemize}
+\item Size\+: 24 bytes (EEPROM\+\_\+\+USER\+\_\+\+NETWORK\+\_\+\+SIZE)
+\item Layout\+: MAC(6) + IP(4) + Subnet(4) + Gateway(4) + DNS(4) + DHCP(1) + CRC(1)
+\item CRC-\/8 calculated over first 23 bytes, stored in byte 24
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+Network Configuration Structure\+:
+\begin{DoxyItemize}
+\item MAC Address\+: 6-\/byte hardware address (derived from serial number)
+\item IP Address\+: 4-\/byte IPv4 address (default or DHCP-\/assigned)
+\item Subnet Mask\+: 4-\/byte network mask
+\item Gateway\+: 4-\/byte default gateway address
+\item DNS Server\+: 4-\/byte domain name server address
+\item DHCP Enable\+: 1-\/byte flag (0=static, 1=DHCP)
+\item CRC-\/8\+: 1-\/byte checksum for integrity verification
+\end{DoxyItemize}
+
+CRC-\/8 Validation\+:
+\begin{DoxyItemize}
+\item Polynomial\+: 0x07 (via \doxylink{device__identity_8c_aae57a92db26b8a63b7584fd2f3407077}{calculate\+\_\+crc8()})
+\item Calculated over all data bytes before CRC field
+\item Read operations fail on CRC mismatch
+\item Failed reads trigger fallback to defaults
+\item Successful reads trigger MAC repair check
+\end{DoxyItemize}
+
+MAC Address Repair\+:
+\begin{DoxyItemize}
+\item Automatic detection of corrupted MAC values
+\item Checks prefix matches ENERGIS\+\_\+\+MAC\+\_\+\+PREFIX
+\item Detects invalid suffix patterns (all zeros, all 0x\+FF)
+\item Enforces serial-\/derived MAC on provisioned devices
+\item Repaired MAC persisted immediately to EEPROM
+\item Repair events logged as ERR\+\_\+\+SEV\+\_\+\+WARNING
+\end{DoxyItemize}
+
+Load Operation Flow\+:
+\begin{DoxyEnumerate}
+\item \doxylink{group__storage07_ga37c460b3ea58fd130cea86904b06f7b1}{Load\+User\+Network\+Config()} reads from EEPROM with CRC validation
+\item If CRC valid\+: a. Check MAC address with \doxylink{group__storage08_ga09214f477c63d362bbc5146830c33d8c}{Energis\+\_\+\+Repair\+Mac()} b. If MAC corrupted, regenerate from serial and persist c. Return validated/repaired configuration
+\item If CRC invalid or EEPROM empty\+: a. Load DEFAULT\+\_\+\+NETWORK structure b. Generate MAC from Device\+Identity serial c. Persist defaults to EEPROM d. Return default configuration
+\end{DoxyEnumerate}
+
+Thread Safety\+:
+\begin{DoxyItemize}
+\item All read/write functions require eeprom\+Mtx held by caller
+\item \doxylink{group__storage07_ga37c460b3ea58fd130cea86904b06f7b1}{Load\+User\+Network\+Config()} manages mutex internally
+\item Prevents concurrent access corruption
+\item Ensures atomic read-\/modify-\/write for MAC repair
+\end{DoxyItemize}
+
+Integration Points\+:
+\begin{DoxyItemize}
+\item Device\+Identity\+: Provides serial number for MAC generation
+\item storage\+\_\+common\+: CRC-\/8 calculation and MAC repair functions
+\item Storage\+Task\+: Provides DEFAULT\+\_\+\+NETWORK and eeprom\+Mtx
+\item Net\+Task\+: Consumes loaded network configuration
+\item W5500 Ethernet\+: MAC address programming
+\end{DoxyItemize}
+
+Error Handling\+:
+\begin{DoxyItemize}
+\item Bounds checking on all buffer operations
+\item CRC mismatch logged as ERR\+\_\+\+SEV\+\_\+\+ERROR
+\item MAC repair logged as ERR\+\_\+\+SEV\+\_\+\+WARNING
+\item Failed reads fall back to safe defaults
+\item Error codes enqueued to event log
+\end{DoxyItemize}
+
+API Layers\+:
+\begin{DoxyItemize}
+\item Raw APIs\+: Direct EEPROM access without CRC (for legacy/debug)
+\item CRC APIs\+: Recommended for production use with integrity checking
+\item Load API\+: High-\/level with defaults and automatic repair
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Always prefer CRC-\/verified APIs for production code. 
+
+\doxylink{group__storage07_ga37c460b3ea58fd130cea86904b06f7b1}{Load\+User\+Network\+Config()} is the recommended high-\/level interface. 
+
+Raw APIs provided for legacy compatibility and debug access. 
+
+MAC address uniqueness depends on unique device serial numbers.
+\end{DoxyNote}
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-func-members}
+\Hypertarget{group__storage07_doc-func-members}
+\doxysubsubsubsection{Function Documentation}
+\Hypertarget{group__storage07_gab6868e2a26481771ef8ed81d4e909814}\index{7. Network Configuration@{7. Network Configuration}!EEPROM\_ReadSystemInfo@{EEPROM\_ReadSystemInfo}}
+\index{EEPROM\_ReadSystemInfo@{EEPROM\_ReadSystemInfo}!7. Network Configuration@{7. Network Configuration}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_ReadSystemInfo()}{EEPROM\_ReadSystemInfo()}}
+{\footnotesize\ttfamily \label{group__storage07_gab6868e2a26481771ef8ed81d4e909814} 
+int EEPROM\+\_\+\+Read\+System\+Info (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{size\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Read system information block without CRC validation. 
+
+Low-\/level read operation for system information section. Reads raw buffer containing firmware version string without CRC verification.
+
+EEPROM Layout\+:
+\begin{DoxyItemize}
+\item Start address\+: EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+START
+\item Maximum size\+: EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+SIZE bytes
+\item Contents\+: Firmware version string (SWVERSION)
+\item No CRC verified
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{out}}  & {\em data} & Destination buffer for system information. \\
+\hline
+\mbox{\texttt{in}}  & {\em len} & Number of bytes to read. Must be \texorpdfstring{$<$}{<}= EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+SIZE.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if read successful. 
+
+-\/1 if length exceeds EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+SIZE.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Bounds checking performed before read operation. 
+
+Read failures logged as ERR\+\_\+\+SEV\+\_\+\+ERROR if ERRORLOGGER enabled. 
+
+Caller responsible for validating data integrity.
+\end{DoxyNote}
+See \doxylink{network_8h}{network.\+h} for full API documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage07_gab6868e2a26481771ef8ed81d4e909814_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage07_gab6868e2a26481771ef8ed81d4e909814_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage07_ga781ad4b6b12005f76e0742e107443083}\index{7. Network Configuration@{7. Network Configuration}!EEPROM\_ReadSystemInfoWithChecksum@{EEPROM\_ReadSystemInfoWithChecksum}}
+\index{EEPROM\_ReadSystemInfoWithChecksum@{EEPROM\_ReadSystemInfoWithChecksum}!7. Network Configuration@{7. Network Configuration}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_ReadSystemInfoWithChecksum()}{EEPROM\_ReadSystemInfoWithChecksum()}}
+{\footnotesize\ttfamily \label{group__storage07_ga781ad4b6b12005f76e0742e107443083} 
+int EEPROM\+\_\+\+Read\+System\+Info\+With\+Checksum (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{size\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Read and verify system information with CRC-\/8 validation. 
+
+Reads system information buffer and verifies CRC-\/8 checksum. Copies data to destination buffer only if CRC validation passes.
+
+EEPROM Layout\+:
+\begin{DoxyItemize}
+\item Start address\+: EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+START
+\item Data length\+: Up to EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+SIZE-\/1 bytes
+\item CRC byte\+: Read from offset len
+\item Total read\+: len + 1 bytes
+\end{DoxyItemize}
+
+CRC Validation\+:
+\begin{DoxyItemize}
+\item Calculate CRC-\/8 over data bytes 0 to len-\/1
+\item Compare with stored CRC at offset len
+\item Fail if mismatch detected
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{out}}  & {\em data} & Destination buffer for system information. \\
+\hline
+\mbox{\texttt{in}}  & {\em len} & Number of data bytes to read. Must be \texorpdfstring{$<$}{<}= EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+SIZE-\/1.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if CRC validation passed and buffer populated. 
+
+-\/1 if length exceeds EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+SIZE-\/1 or CRC mismatch detected.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+CRC mismatch logged as ERR\+\_\+\+SEV\+\_\+\+ERROR if ERRORLOGGER enabled. 
+
+Destination buffer not modified on CRC failure.
+\end{DoxyNote}
+See \doxylink{network_8h}{network.\+h} for full API documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage07_ga781ad4b6b12005f76e0742e107443083_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage07_ga36caebd539c36be02e805af5d1278ed5}\index{7. Network Configuration@{7. Network Configuration}!EEPROM\_ReadUserNetwork@{EEPROM\_ReadUserNetwork}}
+\index{EEPROM\_ReadUserNetwork@{EEPROM\_ReadUserNetwork}!7. Network Configuration@{7. Network Configuration}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_ReadUserNetwork()}{EEPROM\_ReadUserNetwork()}}
+{\footnotesize\ttfamily \label{group__storage07_ga36caebd539c36be02e805af5d1278ed5} 
+int EEPROM\+\_\+\+Read\+User\+Network (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{size\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Read raw network configuration block without CRC validation. 
+
+Low-\/level read operation that directly reads buffer from EEPROM network configuration section without CRC verification. Provided for legacy compatibility and debug access. Production code should use \doxylink{group__storage07_gaef5b120a12ff3e275706067ea3cf7e46}{EEPROM\+\_\+\+Read\+User\+Network\+With\+Checksum()} instead.
+
+EEPROM Layout\+:
+\begin{DoxyItemize}
+\item Start address\+: EEPROM\+\_\+\+USER\+\_\+\+NETWORK\+\_\+\+START
+\item Maximum size\+: EEPROM\+\_\+\+USER\+\_\+\+NETWORK\+\_\+\+SIZE bytes
+\item No CRC verified
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{out}}  & {\em data} & Destination buffer for network configuration. \\
+\hline
+\mbox{\texttt{in}}  & {\em len} & Number of bytes to read. Must be \texorpdfstring{$<$}{<}= EEPROM\+\_\+\+USER\+\_\+\+NETWORK\+\_\+\+SIZE.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if read successful. 
+
+-\/1 if length exceeds EEPROM\+\_\+\+USER\+\_\+\+NETWORK\+\_\+\+SIZE.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+
+No CRC verification performed on read data. 
+
+Prefer \doxylink{group__storage07_gaef5b120a12ff3e275706067ea3cf7e46}{EEPROM\+\_\+\+Read\+User\+Network\+With\+Checksum()} for production code. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Bounds checking performed before read operation. 
+
+Read failures logged as ERR\+\_\+\+SEV\+\_\+\+ERROR if ERRORLOGGER enabled. 
+
+Caller responsible for validating data integrity.
+\end{DoxyNote}
+See \doxylink{network_8h}{network.\+h} for full API documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage07_ga36caebd539c36be02e805af5d1278ed5_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage07_gaef5b120a12ff3e275706067ea3cf7e46}\index{7. Network Configuration@{7. Network Configuration}!EEPROM\_ReadUserNetworkWithChecksum@{EEPROM\_ReadUserNetworkWithChecksum}}
+\index{EEPROM\_ReadUserNetworkWithChecksum@{EEPROM\_ReadUserNetworkWithChecksum}!7. Network Configuration@{7. Network Configuration}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_ReadUserNetworkWithChecksum()}{EEPROM\_ReadUserNetworkWithChecksum()}}
+{\footnotesize\ttfamily \label{group__storage07_gaef5b120a12ff3e275706067ea3cf7e46} 
+int EEPROM\+\_\+\+Read\+User\+Network\+With\+Checksum (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structnetwork_info}{network\+Info}} \texorpdfstring{$\ast$}{*}}]{net\+\_\+info}{}\end{DoxyParamCaption})}
+
+
+
+Read and verify network configuration with CRC-\/8 validation. 
+
+Recommended read operation for production code. Reads 24-\/byte EEPROM network configuration and verifies CRC-\/8 checksum. Unpacks buffer into \doxylink{structnetwork_info}{network\+Info} structure only if CRC validation passes.
+
+EEPROM Layout (24 bytes total)\+:
+\begin{DoxyItemize}
+\item Offset 0-\/5\+: MAC address (6 bytes)
+\item Offset 6-\/9\+: IP address (4 bytes)
+\item Offset 10-\/13\+: Subnet mask (4 bytes)
+\item Offset 14-\/17\+: Gateway address (4 bytes)
+\item Offset 18-\/21\+: DNS server address (4 bytes)
+\item Offset 22\+: DHCP enable flag (1 byte, 0=static 1=DHCP)
+\item Offset 23\+: CRC-\/8 checksum (1 byte)
+\end{DoxyItemize}
+
+CRC Validation\+:
+\begin{DoxyItemize}
+\item Calculate CRC-\/8 over bytes 0-\/22
+\item Compare with stored CRC in byte 23
+\item Fail if mismatch detected
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{out}}  & {\em net\+\_\+info} & Pointer to \doxylink{structnetwork_info}{network\+Info} structure to receive configuration.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if CRC validation passed and structure populated. 
+
+-\/1 if net\+\_\+info is NULL or CRC mismatch detected.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Null pointer check performed before read operation. 
+
+CRC mismatch logged as ERR\+\_\+\+SEV\+\_\+\+ERROR if ERRORLOGGER enabled. 
+
+Caller should use \doxylink{group__storage07_ga37c460b3ea58fd130cea86904b06f7b1}{Load\+User\+Network\+Config()} for automatic fallback to defaults. 
+
+This is the recommended API for production network config reads.
+\end{DoxyNote}
+See \doxylink{network_8h}{network.\+h} for full API documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage07_gaef5b120a12ff3e275706067ea3cf7e46_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage07_gaef5b120a12ff3e275706067ea3cf7e46_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage07_ga6e3a05e108d6081a55378ffe3e817f43}\index{7. Network Configuration@{7. Network Configuration}!EEPROM\_WriteSystemInfo@{EEPROM\_WriteSystemInfo}}
+\index{EEPROM\_WriteSystemInfo@{EEPROM\_WriteSystemInfo}!7. Network Configuration@{7. Network Configuration}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_WriteSystemInfo()}{EEPROM\_WriteSystemInfo()}}
+{\footnotesize\ttfamily \label{group__storage07_ga6e3a05e108d6081a55378ffe3e817f43} 
+int EEPROM\+\_\+\+Write\+System\+Info (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{size\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Write system information block without CRC validation. 
+
+Low-\/level write operation for system information section. Writes raw buffer containing firmware version string without CRC generation. Used primarily during factory defaults initialization.
+
+EEPROM Layout\+:
+\begin{DoxyItemize}
+\item Start address\+: EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+START
+\item Maximum size\+: EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+SIZE bytes
+\item Contents\+: Firmware version string (SWVERSION)
+\item No CRC appended
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em data} & Pointer to source buffer containing system information. \\
+\hline
+\mbox{\texttt{in}}  & {\em len} & Number of bytes to write. Must be \texorpdfstring{$<$}{<}= EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+SIZE.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if write successful. 
+
+-\/1 if length exceeds EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+SIZE or I2C write fails.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Bounds checking performed before write operation. 
+
+Write failures logged as ERR\+\_\+\+SEV\+\_\+\+ERROR if ERRORLOGGER enabled. 
+
+Primarily used by factory defaults initialization.
+\end{DoxyNote}
+See \doxylink{network_8h}{network.\+h} for full API documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage07_ga6e3a05e108d6081a55378ffe3e817f43_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage07_ga6e3a05e108d6081a55378ffe3e817f43_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage07_ga45b5a1959fd75b07c11591fcc92f89c4}\index{7. Network Configuration@{7. Network Configuration}!EEPROM\_WriteSystemInfoWithChecksum@{EEPROM\_WriteSystemInfoWithChecksum}}
+\index{EEPROM\_WriteSystemInfoWithChecksum@{EEPROM\_WriteSystemInfoWithChecksum}!7. Network Configuration@{7. Network Configuration}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_WriteSystemInfoWithChecksum()}{EEPROM\_WriteSystemInfoWithChecksum()}}
+{\footnotesize\ttfamily \label{group__storage07_ga45b5a1959fd75b07c11591fcc92f89c4} 
+int EEPROM\+\_\+\+Write\+System\+Info\+With\+Checksum (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{size\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Write system information with CRC-\/8 validation appended. 
+
+Writes system information buffer with CRC-\/8 checksum appended for integrity verification. Reserves 1 byte for CRC, limiting data to EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+SIZE-\/1.
+
+EEPROM Layout\+:
+\begin{DoxyItemize}
+\item Start address\+: EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+START
+\item Data length\+: Up to EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+SIZE-\/1 bytes
+\item CRC byte\+: Appended at offset len
+\item Total size\+: len + 1 bytes
+\end{DoxyItemize}
+
+CRC Calculation\+:
+\begin{DoxyItemize}
+\item Algorithm\+: CRC-\/8 polynomial 0x07 via \doxylink{device__identity_8c_aae57a92db26b8a63b7584fd2f3407077}{calculate\+\_\+crc8()}
+\item Input\+: Data buffer bytes 0 to len-\/1
+\item Output\+: Stored at offset len
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em data} & Pointer to source buffer containing system information. \\
+\hline
+\mbox{\texttt{in}}  & {\em len} & Number of data bytes. Must be \texorpdfstring{$<$}{<}= EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+SIZE-\/1.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if write successful. 
+
+-\/1 if length exceeds EEPROM\+\_\+\+SYS\+\_\+\+INFO\+\_\+\+SIZE-\/1 or I2C write fails.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Reserves 1 byte for CRC checksum. 
+
+CRC automatically calculated and appended. 
+
+Write failures logged as ERR\+\_\+\+SEV\+\_\+\+ERROR if ERRORLOGGER enabled.
+\end{DoxyNote}
+See \doxylink{network_8h}{network.\+h} for full API documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage07_ga45b5a1959fd75b07c11591fcc92f89c4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage07_gaf37b38d193b54bcce8d8bbd38407dafc}\index{7. Network Configuration@{7. Network Configuration}!EEPROM\_WriteUserNetwork@{EEPROM\_WriteUserNetwork}}
+\index{EEPROM\_WriteUserNetwork@{EEPROM\_WriteUserNetwork}!7. Network Configuration@{7. Network Configuration}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_WriteUserNetwork()}{EEPROM\_WriteUserNetwork()}}
+{\footnotesize\ttfamily \label{group__storage07_gaf37b38d193b54bcce8d8bbd38407dafc} 
+int EEPROM\+\_\+\+Write\+User\+Network (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{size\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+Write raw network configuration block without CRC validation. 
+
+Low-\/level write operation that directly writes buffer to EEPROM network configuration section without CRC generation. Provided for legacy compatibility and debug access. Production code should use \doxylink{group__storage07_ga3c1fef9aa93f898978387328a8a6e33d}{EEPROM\+\_\+\+Write\+User\+Network\+With\+Checksum()} instead.
+
+EEPROM Layout\+:
+\begin{DoxyItemize}
+\item Start address\+: EEPROM\+\_\+\+USER\+\_\+\+NETWORK\+\_\+\+START
+\item Maximum size\+: EEPROM\+\_\+\+USER\+\_\+\+NETWORK\+\_\+\+SIZE bytes
+\item No CRC appended or validated
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em data} & Pointer to source buffer containing network configuration. \\
+\hline
+\mbox{\texttt{in}}  & {\em len} & Number of bytes to write. Must be \texorpdfstring{$<$}{<}= EEPROM\+\_\+\+USER\+\_\+\+NETWORK\+\_\+\+SIZE.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if write successful. 
+
+-\/1 if length exceeds EEPROM\+\_\+\+USER\+\_\+\+NETWORK\+\_\+\+SIZE or I2C write fails.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+
+No CRC generation or validation performed. 
+
+Prefer \doxylink{group__storage07_ga3c1fef9aa93f898978387328a8a6e33d}{EEPROM\+\_\+\+Write\+User\+Network\+With\+Checksum()} for production code. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Bounds checking performed before write operation. 
+
+Write failures logged as ERR\+\_\+\+SEV\+\_\+\+ERROR if ERRORLOGGER enabled.
+\end{DoxyNote}
+See \doxylink{network_8h}{network.\+h} for full API documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage07_gaf37b38d193b54bcce8d8bbd38407dafc_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage07_ga3c1fef9aa93f898978387328a8a6e33d}\index{7. Network Configuration@{7. Network Configuration}!EEPROM\_WriteUserNetworkWithChecksum@{EEPROM\_WriteUserNetworkWithChecksum}}
+\index{EEPROM\_WriteUserNetworkWithChecksum@{EEPROM\_WriteUserNetworkWithChecksum}!7. Network Configuration@{7. Network Configuration}}
+\doxysubsubsubsubsection{\texorpdfstring{EEPROM\_WriteUserNetworkWithChecksum()}{EEPROM\_WriteUserNetworkWithChecksum()}}
+{\footnotesize\ttfamily \label{group__storage07_ga3c1fef9aa93f898978387328a8a6e33d} 
+int EEPROM\+\_\+\+Write\+User\+Network\+With\+Checksum (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structnetwork_info}{network\+Info}} \texorpdfstring{$\ast$}{*}}]{net\+\_\+info}{}\end{DoxyParamCaption})}
+
+
+
+Write network configuration with CRC-\/8 validation appended. 
+
+Recommended write operation for production code. Packs \doxylink{structnetwork_info}{network\+Info} structure into 24-\/byte EEPROM layout with CRC-\/8 checksum appended for integrity verification. CRC calculated over first 23 bytes and stored in byte 24.
+
+EEPROM Layout (24 bytes total)\+:
+\begin{DoxyItemize}
+\item Offset 0-\/5\+: MAC address (6 bytes)
+\item Offset 6-\/9\+: IP address (4 bytes)
+\item Offset 10-\/13\+: Subnet mask (4 bytes)
+\item Offset 14-\/17\+: Gateway address (4 bytes)
+\item Offset 18-\/21\+: DNS server address (4 bytes)
+\item Offset 22\+: DHCP enable flag (1 byte, 0=static 1=DHCP)
+\item Offset 23\+: CRC-\/8 checksum (1 byte)
+\end{DoxyItemize}
+
+CRC Calculation\+:
+\begin{DoxyItemize}
+\item Algorithm\+: CRC-\/8 polynomial 0x07 via \doxylink{device__identity_8c_aae57a92db26b8a63b7584fd2f3407077}{calculate\+\_\+crc8()}
+\item Input\+: Bytes 0-\/22 (MAC through DHCP flag)
+\item Output\+: Stored in byte 23
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{in}}  & {\em net\+\_\+info} & Pointer to \doxylink{structnetwork_info}{network\+Info} structure containing configuration.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if write successful. 
+
+-\/1 if net\+\_\+info is NULL or I2C write fails.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Caller MUST hold eeprom\+Mtx before calling this function. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Null pointer check performed before write operation. 
+
+CRC automatically calculated and appended. 
+
+Write failures logged as ERR\+\_\+\+SEV\+\_\+\+ERROR if ERRORLOGGER enabled. 
+
+This is the recommended API for production network config writes.
+\end{DoxyNote}
+See \doxylink{network_8h}{network.\+h} for full API documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage07_ga3c1fef9aa93f898978387328a8a6e33d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage07_ga3c1fef9aa93f898978387328a8a6e33d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__storage07_ga37c460b3ea58fd130cea86904b06f7b1}\index{7. Network Configuration@{7. Network Configuration}!LoadUserNetworkConfig@{LoadUserNetworkConfig}}
+\index{LoadUserNetworkConfig@{LoadUserNetworkConfig}!7. Network Configuration@{7. Network Configuration}}
+\doxysubsubsubsubsection{\texorpdfstring{LoadUserNetworkConfig()}{LoadUserNetworkConfig()}}
+{\footnotesize\ttfamily \label{group__storage07_ga37c460b3ea58fd130cea86904b06f7b1} 
+\mbox{\hyperlink{structnetwork_info}{network\+Info}} Load\+User\+Network\+Config (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Load network configuration from EEPROM with automatic fallback and MAC repair. 
+
+High-\/level interface for loading network configuration. Attempts EEPROM read with CRC validation. On success, performs automatic MAC address repair if needed. On failure, returns default configuration with MAC derived from device serial number. Manages eeprom\+Mtx internally for thread-\/safe operation.
+
+Operation Flow\+:
+\begin{DoxyEnumerate}
+\item Acquire eeprom\+Mtx for thread-\/safe access
+\item Call \doxylink{group__storage07_gaef5b120a12ff3e275706067ea3cf7e46}{EEPROM\+\_\+\+Read\+User\+Network\+With\+Checksum()} to read with CRC validation
+\item If CRC valid\+: a. Call \doxylink{group__storage08_ga09214f477c63d362bbc5146830c33d8c}{Energis\+\_\+\+Repair\+Mac()} to check MAC integrity b. If MAC repaired, persist corrected config to EEPROM c. Log repair event as ERR\+\_\+\+SEV\+\_\+\+WARNING d. Return validated/repaired configuration
+\item If CRC invalid or EEPROM empty\+: a. Load DEFAULT\+\_\+\+NETWORK structure from Storage\+Task b. Call \doxylink{group__storage08_gad5fac108da78e4ddeb0cf70283a0a5dc}{Energis\+\_\+\+Fill\+Mac\+From\+Serial()} to generate MAC from serial c. Persist defaults to EEPROM for future boots d. Log fallback event as ERR\+\_\+\+SEV\+\_\+\+WARNING e. Return default configuration
+\item Release eeprom\+Mtx
+\end{DoxyEnumerate}
+
+MAC Repair Conditions\+:
+\begin{DoxyItemize}
+\item Wrong vendor prefix (not ENERGIS\+\_\+\+MAC\+\_\+\+PREFIX)
+\item Invalid suffix patterns (all zeros or all 0x\+FF)
+\item MAC mismatch on provisioned devices (enforces serial-\/derived MAC)
+\end{DoxyItemize}
+
+Default Configuration\+:
+\begin{DoxyItemize}
+\item Network settings from DEFAULT\+\_\+\+NETWORK constant
+\item MAC address generated from Device\+Identity serial number
+\item Safe fallback for first boot or EEPROM corruption
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+\doxylink{structnetwork_info}{network\+Info} structure containing valid network configuration. Always returns valid data, never fails.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This is the recommended high-\/level API for loading network config. 
+
+Manages eeprom\+Mtx internally; caller should NOT hold mutex. 
+
+Always returns valid configuration via fallback to defaults. 
+
+Repaired/default configs automatically persisted to EEPROM. 
+
+Called by Net\+Task during initialization.
+\end{DoxyNote}
+See \doxylink{network_8h}{network.\+h} for full API documentation. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage07_ga37c460b3ea58fd130cea86904b06f7b1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__storage07_ga37c460b3ea58fd130cea86904b06f7b1_icgraph}
+\end{center}
+\end{figure}

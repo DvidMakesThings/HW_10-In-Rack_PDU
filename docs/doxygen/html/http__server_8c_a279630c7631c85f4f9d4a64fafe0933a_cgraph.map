@@ -1,0 +1,28 @@
+<map id="send_all" name="send_all">
+<area shape="rect" id="Node000001" title="Send data in safe chunks within W5500 TX buffer capacity." alt="" coords="5,136,75,163"/>
+<area shape="rect" id="Node000002" href="$http__server_8c.html#a8c210587f97cbef60c84dc0bfba63c2f" title=" " alt="" coords="123,45,194,72"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="57,133,126,80,129,84,61,138"/>
+<area shape="rect" id="Node000005" href="$group__drivers08.html#gacd77c3cc60e87d09a5714932506d7c4b" title="Send data over TCP socket." alt="" coords="134,136,183,163"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="75,147,118,147,118,152,75,152"/>
+<area shape="rect" id="Node000012" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="434,224,618,251"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="63,161,140,204,190,226,243,243,287,250,332,253,419,250,419,255,332,258,286,255,241,248,188,231,137,209,61,165"/>
+<area shape="rect" id="Node000003" href="$group__tasks03.html#ga4f7298bb6ff71177639ba837e4068eb1" title="Record a heartbeat from a registered task." alt="" coords="252,5,376,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="194,47,244,34,246,39,195,52"/>
+<area shape="rect" id="Node000004" href="$_health_task_8c.html#a50503dee6a29e98e633b16b1b8b550bc" title="Get current monotonic time in milliseconds." alt="" coords="491,5,561,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="376,16,475,16,475,21,376,21"/>
+<area shape="rect" id="Node000006" href="$group__drivers08.html#ga025710a2709097be7824f0564f89a461" title="Close a socket." alt="" coords="268,56,360,83"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="176,133,241,92,254,86,256,91,243,97,179,138"/>
+<area shape="rect" id="Node000007" href="$group__drivers03.html#gaeaef8ee772ea9b4a5c6ba7702a1c9b52" title="Send data to socket TX buffer." alt="" coords="261,107,367,133"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="183,142,245,130,246,136,184,147"/>
+<area shape="rect" id="Node000010" href="$socket_8c.html#a3e134a526306c29a2594a8615c328607" title=" " alt="" coords="242,157,386,200"/>
+<area shape="poly" id="edge10_Node000005_Node000010" title=" " alt="" coords="184,151,227,160,226,165,183,157"/>
+<area shape="poly" id="edge13_Node000005_Node000012" title=" " alt="" coords="174,161,204,187,243,210,286,223,331,232,419,239,419,244,331,237,285,228,241,214,201,191,171,165"/>
+<area shape="rect" id="Node000008" href="$group__drivers03.html#ga35f04740974b2f6a16c4744f1641fd47" title="Set socket TX write pointer (Sn_TX_WR) in big&#45;endian." alt="" coords="471,60,581,87"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="367,106,456,86,457,91,368,111"/>
+<area shape="rect" id="Node000009" href="$group__drivers03.html#ga8e525d27915365abbe8086dc3363055f" title="Write multiple bytes to W5500 (optimized bulk transfer)" alt="" coords="666,85,785,112"/>
+<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="368,115,650,100,650,105,368,120"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="581,78,651,87,650,92,581,83"/>
+<area shape="rect" id="Node000011" href="$group__misc3.html#gad3252fba1863d278f2611cad531177f5" title="Query the current system power state." alt="" coords="467,165,585,192"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="387,176,452,176,452,181,387,181"/>
+<area shape="poly" id="edge12_Node000010_Node000012" title=" " alt="" coords="388,196,462,217,460,222,386,201"/>
+</map>

@@ -1,0 +1,20 @@
+<map id="EEPROM_WriteSystemInfoWithChecksum" name="EEPROM_WriteSystemInfoWithChecksum">
+<area shape="rect" id="Node000001" title="Write system information with CRC&#45;8 validation appended." alt="" coords="5,73,216,116"/>
+<area shape="rect" id="Node000002" href="$group__storage01.html#gaae57a92db26b8a63b7584fd2f3407077" title="Calculate CRC&#45;8 checksum for data integrity verification." alt="" coords="293,31,398,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="212,70,278,56,279,61,213,75"/>
+<area shape="rect" id="Node000003" href="$group__driver02.html#ga8088b9a17773cb65bb6b5d89d3598125" title="Write buffer to EEPROM with automatic page boundary handling." alt="" coords="264,81,427,108"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="216,92,248,92,248,97,216,97"/>
+<area shape="rect" id="Node000008" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="475,132,658,159"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="217,111,264,117,460,136,459,141,263,123,216,116"/>
+<area shape="rect" id="Node000004" href="$group__drivers05.html#ga77ca38d627119d534873e177c5f4a667" title="Write to 16&#45;bit memory address: [mem_hi, mem_lo, data...]." alt="" coords="491,31,642,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="406,78,490,59,491,64,408,83"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="408,106,491,125,490,131,406,111"/>
+<area shape="rect" id="Node000009" href="$_c_a_t24_c256__driver_8c.html#aeba5f43a83c24289211b7d919c260978" title="RTOS&#45;compatible write cycle delay." alt="" coords="504,81,629,108"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="427,92,489,92,489,97,427,97"/>
+<area shape="rect" id="Node000005" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="732,5,853,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="643,33,716,25,716,30,643,38"/>
+<area shape="rect" id="Node000006" href="$group__drivers05.html#ga170d6c4ff97ddc2d314f0a7a0054f283" title="Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK i2c_write_time..." alt="" coords="706,56,879,83"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="643,50,692,55,691,61,643,55"/>
+<area shape="rect" id="Node000007" href="$i2c__bus_8c.html#afbaa64f79bdd1fa39c8fa5b7a9c2717b" title=" " alt="" coords="927,56,1084,83"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="879,67,911,67,911,72,879,72"/>
+</map>

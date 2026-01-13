@@ -1,0 +1,92 @@
+\doxysubsubsection{Advanced TCP/\+IP Tuning }
+\hypertarget{group___w5500___a_d_v}{}\label{group___w5500___a_d_v}\index{Advanced TCP/IP Tuning@{Advanced TCP/IP Tuning}}
+
+
+Expert-\/level configuration parameters.  
+
+
+Collaboration diagram for Advanced TCP/\+IP Tuning\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group___w5500___a_d_v}
+\end{center}
+\end{figure}
+\doxysubsubsubsubsection*{TCP/\+IP Tuning}
+Retry timing, MSS, and PHY settings. \begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group___w5500___a_d_v_gae9a686cf5eb3ecf900d95f2693b577bb}{W5500\+\_\+\+RETRY\+\_\+\+TIME}}~2000
+\item 
+\#define \mbox{\hyperlink{group___w5500___a_d_v_ga20886c4b4bdc4fa53036295f5ccc1d5c}{W5500\+\_\+\+RETRY\+\_\+\+COUNT}}~8
+\item 
+\#define \mbox{\hyperlink{group___w5500___a_d_v_ga1a73795955af231ac05686bb44e15a51}{W5500\+\_\+\+TCP\+\_\+\+MSS}}~1460
+\item 
+\#define \mbox{\hyperlink{group___w5500___a_d_v_gab616bd5a3ac01e6422f6aa771628bf03}{W5500\+\_\+\+KEEPALIVE\+\_\+\+TIME}}~120
+\item 
+\#define \mbox{\hyperlink{group___w5500___a_d_v_ga17f8d576e7770b0d19ddf06f85fb728e}{W5500\+\_\+\+TCP\+\_\+\+NODELAY}}~0
+\item 
+\#define \mbox{\hyperlink{group___w5500___a_d_v_gad45c458db183ce234e1f164cadc13cd8}{W5500\+\_\+\+PHY\+\_\+\+AUTONEG}}~1
+\item 
+\#define \mbox{\hyperlink{group___w5500___a_d_v_gaa55564c531ad335d02a563e8aee8229c}{W5500\+\_\+\+PHY\+\_\+\+SPEED}}~0
+\item 
+\#define \mbox{\hyperlink{group___w5500___a_d_v_gae7ab090b38ee8f9d6a61a8f8c43d3b94}{W5500\+\_\+\+PHY\+\_\+\+DUPLEX}}~0
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsection{Detailed Description}
+Expert-\/level configuration parameters. 
+
+
+
+\label{doc-define-members}
+\Hypertarget{group___w5500___a_d_v_doc-define-members}
+\doxysubsubsubsection{Macro Definition Documentation}
+\Hypertarget{group___w5500___a_d_v_gab616bd5a3ac01e6422f6aa771628bf03}\index{Advanced TCP/IP Tuning@{Advanced TCP/IP Tuning}!W5500\_KEEPALIVE\_TIME@{W5500\_KEEPALIVE\_TIME}}
+\index{W5500\_KEEPALIVE\_TIME@{W5500\_KEEPALIVE\_TIME}!Advanced TCP/IP Tuning@{Advanced TCP/IP Tuning}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_KEEPALIVE\_TIME}{W5500\_KEEPALIVE\_TIME}}
+{\footnotesize\ttfamily \label{group___w5500___a_d_v_gab616bd5a3ac01e6422f6aa771628bf03} 
+\#define W5500\+\_\+\+KEEPALIVE\+\_\+\+TIME~120}
+
+TCP Keep-\/\+Alive interval in seconds (0=disabled) \Hypertarget{group___w5500___a_d_v_gad45c458db183ce234e1f164cadc13cd8}\index{Advanced TCP/IP Tuning@{Advanced TCP/IP Tuning}!W5500\_PHY\_AUTONEG@{W5500\_PHY\_AUTONEG}}
+\index{W5500\_PHY\_AUTONEG@{W5500\_PHY\_AUTONEG}!Advanced TCP/IP Tuning@{Advanced TCP/IP Tuning}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_PHY\_AUTONEG}{W5500\_PHY\_AUTONEG}}
+{\footnotesize\ttfamily \label{group___w5500___a_d_v_gad45c458db183ce234e1f164cadc13cd8} 
+\#define W5500\+\_\+\+PHY\+\_\+\+AUTONEG~1}
+
+PHY auto-\/negotiation enable \Hypertarget{group___w5500___a_d_v_gae7ab090b38ee8f9d6a61a8f8c43d3b94}\index{Advanced TCP/IP Tuning@{Advanced TCP/IP Tuning}!W5500\_PHY\_DUPLEX@{W5500\_PHY\_DUPLEX}}
+\index{W5500\_PHY\_DUPLEX@{W5500\_PHY\_DUPLEX}!Advanced TCP/IP Tuning@{Advanced TCP/IP Tuning}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_PHY\_DUPLEX}{W5500\_PHY\_DUPLEX}}
+{\footnotesize\ttfamily \label{group___w5500___a_d_v_gae7ab090b38ee8f9d6a61a8f8c43d3b94} 
+\#define W5500\+\_\+\+PHY\+\_\+\+DUPLEX~0}
+
+PHY forced duplex mode (0=auto, 1=half, 2=full) \Hypertarget{group___w5500___a_d_v_gaa55564c531ad335d02a563e8aee8229c}\index{Advanced TCP/IP Tuning@{Advanced TCP/IP Tuning}!W5500\_PHY\_SPEED@{W5500\_PHY\_SPEED}}
+\index{W5500\_PHY\_SPEED@{W5500\_PHY\_SPEED}!Advanced TCP/IP Tuning@{Advanced TCP/IP Tuning}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_PHY\_SPEED}{W5500\_PHY\_SPEED}}
+{\footnotesize\ttfamily \label{group___w5500___a_d_v_gaa55564c531ad335d02a563e8aee8229c} 
+\#define W5500\+\_\+\+PHY\+\_\+\+SPEED~0}
+
+PHY forced speed (0=auto, 10=10Mbps, 100=100Mbps) \Hypertarget{group___w5500___a_d_v_ga20886c4b4bdc4fa53036295f5ccc1d5c}\index{Advanced TCP/IP Tuning@{Advanced TCP/IP Tuning}!W5500\_RETRY\_COUNT@{W5500\_RETRY\_COUNT}}
+\index{W5500\_RETRY\_COUNT@{W5500\_RETRY\_COUNT}!Advanced TCP/IP Tuning@{Advanced TCP/IP Tuning}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_RETRY\_COUNT}{W5500\_RETRY\_COUNT}}
+{\footnotesize\ttfamily \label{group___w5500___a_d_v_ga20886c4b4bdc4fa53036295f5ccc1d5c} 
+\#define W5500\+\_\+\+RETRY\+\_\+\+COUNT~8}
+
+TCP retransmission attempt count \Hypertarget{group___w5500___a_d_v_gae9a686cf5eb3ecf900d95f2693b577bb}\index{Advanced TCP/IP Tuning@{Advanced TCP/IP Tuning}!W5500\_RETRY\_TIME@{W5500\_RETRY\_TIME}}
+\index{W5500\_RETRY\_TIME@{W5500\_RETRY\_TIME}!Advanced TCP/IP Tuning@{Advanced TCP/IP Tuning}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_RETRY\_TIME}{W5500\_RETRY\_TIME}}
+{\footnotesize\ttfamily \label{group___w5500___a_d_v_gae9a686cf5eb3ecf900d95f2693b577bb} 
+\#define W5500\+\_\+\+RETRY\+\_\+\+TIME~2000}
+
+TCP retransmission timeout in milliseconds \Hypertarget{group___w5500___a_d_v_ga1a73795955af231ac05686bb44e15a51}\index{Advanced TCP/IP Tuning@{Advanced TCP/IP Tuning}!W5500\_TCP\_MSS@{W5500\_TCP\_MSS}}
+\index{W5500\_TCP\_MSS@{W5500\_TCP\_MSS}!Advanced TCP/IP Tuning@{Advanced TCP/IP Tuning}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_TCP\_MSS}{W5500\_TCP\_MSS}}
+{\footnotesize\ttfamily \label{group___w5500___a_d_v_ga1a73795955af231ac05686bb44e15a51} 
+\#define W5500\+\_\+\+TCP\+\_\+\+MSS~1460}
+
+TCP Maximum Segment Size in bytes \Hypertarget{group___w5500___a_d_v_ga17f8d576e7770b0d19ddf06f85fb728e}\index{Advanced TCP/IP Tuning@{Advanced TCP/IP Tuning}!W5500\_TCP\_NODELAY@{W5500\_TCP\_NODELAY}}
+\index{W5500\_TCP\_NODELAY@{W5500\_TCP\_NODELAY}!Advanced TCP/IP Tuning@{Advanced TCP/IP Tuning}}
+\doxysubsubsubsubsection{\texorpdfstring{W5500\_TCP\_NODELAY}{W5500\_TCP\_NODELAY}}
+{\footnotesize\ttfamily \label{group___w5500___a_d_v_ga17f8d576e7770b0d19ddf06f85fb728e} 
+\#define W5500\+\_\+\+TCP\+\_\+\+NODELAY~0}
+
+Enable TCP\+\_\+\+NODELAY to disable Nagle\textquotesingle{}s algorithm 

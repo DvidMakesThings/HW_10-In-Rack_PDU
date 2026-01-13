@@ -1,17 +1,29 @@
 /**
  * @file src/misc/rtos_hooks.h
  * @author DvidMakesThings - David Sipos
- * 
- * @defgroup misc3 3. RTOS Hooks Module
+ *
+ * @defgroup misc4 4. RTOS Hooks Module
  * @ingroup misc
- * @brief Header file for RTOS hooks module
+ * @brief FreeRTOS hook implementations and scheduler diagnostics
  * @{
- * 
+ *
  * @version 1.0.0
  * @date 2025-11-06
- * 
- * @details FreeRTOS hook implementations, crash breadcrumbs, and 
- * scheduler canaries. 
+ *
+ * @details
+ * This module provides implementations of FreeRTOS application hooks for fault
+ * handling and system monitoring. It captures fault context into watchdog scratch
+ * registers for post-mortem analysis and implements an Idle task canary for
+ * scheduler liveness detection.
+ *
+ * Provided functionality:
+ * - FreeRTOS hook implementations (Idle, StackOverflow, MallocFailed, Assert)
+ * - HardFault exception handler with context capture
+ * - Idle task canary for scheduler stall detection
+ * - Fault breadcrumb storage in watchdog scratch registers
+ *
+ * All fault hooks capture minimal context and initiate a controlled reboot to
+ * allow post-mortem analysis via the boot diagnostics system.
  *
  * @project ENERGIS - The Managed PDU Project for 10-Inch Rack
  * @github https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -20,40 +32,82 @@
 #include "../CONFIG.h"
 
 /**
- * @brief FreeRTOS Idle hook. Increments the scheduler canary and records time.
+ * @name Public API
+ * @ingroup misc4
+ * @{
+ */
+/**
+ * @brief FreeRTOS Idle task hook for scheduler liveness monitoring.
  *
- * Runs in Idle task context and must never block. Signals scheduler liveness
- * by advancing @ref g_rtos_idle_canary and stamping @ref g_rtos_idle_last_ms.
+ * This hook is called by the FreeRTOS Idle task during each iteration of its
+ * main loop. It increments a global canary counter and records the current
+ * RTOS time, providing a mechanism for other tasks (typically HealthTask) to
+ * detect scheduler stalls or excessive blocking.
+ *
+ * The hook must execute quickly and never block, as blocking the Idle task
+ * can prevent lower-priority cleanup operations.
+ *
+ * @return None
+ *
+ * @note Requires configUSE_IDLE_HOOK=1 in FreeRTOSConfig.h
+ * @note Runs at Idle priority; higher priority tasks will preempt it
  */
 void vApplicationIdleHook(void);
 
 /**
- * @brief Read the current Idle canary value.
+ * @brief Read current Idle task canary value.
  *
- * @return Monotonic counter incremented by the Idle hook.
+ * Returns the current value of the monotonic counter incremented by the
+ * Idle hook. Used for scheduler liveness detection by comparing successive
+ * samples.
+ *
+ * @return Current canary value (32-bit monotonic counter)
+ *
+ * @note Wraps at 32-bit boundary; use delta calculation for comparisons
  */
 uint32_t RTOS_IdleCanary_Read(void);
 
 /**
- * @brief Read the last millisecond timestamp observed in the Idle hook.
+ * @brief Read timestamp of last Idle hook execution.
  *
- * @return Milliseconds since scheduler start when Idle last ran.
+ * Returns the RTOS time (in milliseconds) when the Idle hook was last
+ * executed. Useful for determining how recently the Idle task has run.
+ *
+ * @return Milliseconds since scheduler start of last Idle execution
+ *
+ * @note Time is derived from FreeRTOS tick count
  */
 uint32_t RTOS_IdleCanary_LastMs(void);
 
 /**
- * @brief Compute canary delta since a previous sample.
+ * @brief Compute canary value change since previous sample.
  *
- * @param prev_value Previously sampled canary value.
- * @return The difference (current - prev_value), modulo 32-bit.
+ * Calculates the difference between the current canary value and a
+ * previously saved value. Handles 32-bit wraparound correctly.
+ *
+ * A zero delta indicates the Idle task has not run since the previous
+ * sample, suggesting possible scheduler stall or continuous CPU loading.
+ *
+ * @param prev_value Previously sampled canary value
+ *
+ * @return Change in canary value (32-bit modulo arithmetic)
+ *
+ * @note Typical usage: sample canary, delay, sample again, compute delta
  */
 uint32_t RTOS_IdleCanary_Delta(uint32_t prev_value);
 
 /**
- * @brief Snapshot the current RTOS time in milliseconds.
+ * @brief Get current RTOS time in milliseconds.
  *
- * @return Milliseconds since scheduler start.
+ * Returns the current FreeRTOS tick count converted to milliseconds.
+ * Provides a monotonic time reference for timing and scheduling.
+ *
+ * @return Milliseconds since scheduler start
+ *
+ * @note Resolution depends on configTICK_RATE_HZ configuration
+ * @note Wraps at 32-bit boundary (approximately 49.7 days at 1ms tick)
  */
 uint32_t RTOS_TicksMs(void);
+/** @} */
 
 /** @} */

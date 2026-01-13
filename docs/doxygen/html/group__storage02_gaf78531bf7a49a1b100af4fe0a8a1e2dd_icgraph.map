@@ -1,0 +1,5 @@
+<map id="EEPROM_ClearChannelLabel" name="EEPROM_ClearChannelLabel">
+<area shape="rect" id="Node000001" title="Clear one channel label slot (fills with zeros)." alt="" coords="272,5,468,32"/>
+<area shape="rect" id="Node000002" href="$group__storage02.html#ga67a2dd3f4c5ce4b35fcc26bf85f7d886" title="Clear all channel label slots. See channel_labels.h." alt="" coords="5,5,224,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="256,21,224,21,224,16,256,16"/>
+</map>

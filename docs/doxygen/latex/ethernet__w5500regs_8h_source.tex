@@ -1,0 +1,280 @@
+\doxysection{ethernet\+\_\+w5500regs.\+h}
+\hypertarget{ethernet__w5500regs_8h_source}{}\label{ethernet__w5500regs_8h_source}\index{src/Software/ENERGIS\_RTOS/src/drivers/ethernet\_w5500regs.h@{src/Software/ENERGIS\_RTOS/src/drivers/ethernet\_w5500regs.h}}
+\mbox{\hyperlink{ethernet__w5500regs_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#ifndef\ W5500\_REGS\_H}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ W5500\_REGS\_H}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_o_n_f_i_g_8h}{../CONFIG.h}}"{}}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CHIP\ DEFINITIONS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ W5500\_IOBASE\ 0x00000000}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ W5500\_SOCKNUM\ 8}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{comment}{/*\ SPI\ operation\ modes\ */}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ \_W5500\_SPI\_READ\_\ (0x00\ <<\ 2)}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ \_W5500\_SPI\_WRITE\_\ (0x01\ <<\ 2)}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{comment}{/*\ Block\ select\ bits\ */}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ W5500\_CREG\_BLOCK\ 0x00}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ W5500\_SREG\_BLOCK(N)\ (1\ +\ 4\ *\ (N))}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ W5500\_TXBUF\_BLOCK(N)\ (2\ +\ 4\ *\ (N))}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ W5500\_RXBUF\_BLOCK(N)\ (3\ +\ 4\ *\ (N))}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{comment}{/*\ Address\ offset\ increment\ */}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ W5500\_OFFSET\_INC(ADDR,\ N)\ ((ADDR)\ +\ ((N)\ <<\ 8))}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00051\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ COMMON\ REGISTERS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00052\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{comment}{/*\ Mode\ Register\ */}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ MR\ (W5500\_IOBASE\ +\ (0x0000\ <<\ 8)\ +\ (W5500\_CREG\_BLOCK\ <<\ 3))}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{comment}{/*\ Gateway\ Address\ Register\ */}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ GAR\ (W5500\_IOBASE\ +\ (0x0001\ <<\ 8)\ +\ (W5500\_CREG\_BLOCK\ <<\ 3))}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{comment}{/*\ Subnet\ Mask\ Register\ */}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ SUBR\ (W5500\_IOBASE\ +\ (0x0005\ <<\ 8)\ +\ (W5500\_CREG\_BLOCK\ <<\ 3))}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{comment}{/*\ Source\ Hardware\ Address\ Register\ */}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ SHAR\ (W5500\_IOBASE\ +\ (0x0009\ <<\ 8)\ +\ (W5500\_CREG\_BLOCK\ <<\ 3))}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{comment}{/*\ Source\ IP\ Address\ Register\ */}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ SIPR\ (W5500\_IOBASE\ +\ (0x000F\ <<\ 8)\ +\ (W5500\_CREG\_BLOCK\ <<\ 3))}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{comment}{/*\ Interrupt\ Low\ Level\ Timer\ Register\ */}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ INTLEVEL\ (W5500\_IOBASE\ +\ (0x0013\ <<\ 8)\ +\ (W5500\_CREG\_BLOCK\ <<\ 3))}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{comment}{/*\ Interrupt\ Register\ */}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ IR\ (W5500\_IOBASE\ +\ (0x0015\ <<\ 8)\ +\ (W5500\_CREG\_BLOCK\ <<\ 3))}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{comment}{/*\ Interrupt\ Mask\ Register\ */}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ \_IMR\_\ (W5500\_IOBASE\ +\ (0x0016\ <<\ 8)\ +\ (W5500\_CREG\_BLOCK\ <<\ 3))}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{comment}{/*\ Socket\ Interrupt\ Register\ */}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ SIR\ (W5500\_IOBASE\ +\ (0x0017\ <<\ 8)\ +\ (W5500\_CREG\_BLOCK\ <<\ 3))}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{comment}{/*\ Socket\ Interrupt\ Mask\ Register\ */}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ SIMR\ (W5500\_IOBASE\ +\ (0x0018\ <<\ 8)\ +\ (W5500\_CREG\_BLOCK\ <<\ 3))}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{comment}{/*\ Retry\ Time\ Register\ */}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ \_RTR\_\ (W5500\_IOBASE\ +\ (0x0019\ <<\ 8)\ +\ (W5500\_CREG\_BLOCK\ <<\ 3))}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{comment}{/*\ Retry\ Count\ Register\ */}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#define\ \_RCR\_\ (W5500\_IOBASE\ +\ (0x001B\ <<\ 8)\ +\ (W5500\_CREG\_BLOCK\ <<\ 3))}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{comment}{/*\ PPP\ LCP\ Request\ Timer\ Register\ */}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ PTIMER\ (W5500\_IOBASE\ +\ (0x001C\ <<\ 8)\ +\ (W5500\_CREG\_BLOCK\ <<\ 3))}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{comment}{/*\ PPP\ LCP\ Magic\ Number\ Register\ */}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#define\ PMAGIC\ (W5500\_IOBASE\ +\ (0x001D\ <<\ 8)\ +\ (W5500\_CREG\_BLOCK\ <<\ 3))}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{comment}{/*\ PPP\ Destination\ MAC\ Address\ Register\ */}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#define\ PHAR\ (W5500\_IOBASE\ +\ (0x001E\ <<\ 8)\ +\ (W5500\_CREG\_BLOCK\ <<\ 3))}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{comment}{/*\ PPP\ Session\ ID\ Register\ */}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#define\ PSID\ (W5500\_IOBASE\ +\ (0x0024\ <<\ 8)\ +\ (W5500\_CREG\_BLOCK\ <<\ 3))}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{comment}{/*\ PPP\ Maximum\ Receive\ Unit\ Register\ */}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#define\ PMRU\ (W5500\_IOBASE\ +\ (0x0026\ <<\ 8)\ +\ (W5500\_CREG\_BLOCK\ <<\ 3))}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{comment}{/*\ Unreachable\ IP\ Address\ Register\ */}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#define\ UIPR\ (W5500\_IOBASE\ +\ (0x0028\ <<\ 8)\ +\ (W5500\_CREG\_BLOCK\ <<\ 3))}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{comment}{/*\ Unreachable\ Port\ Register\ */}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ UPORTR\ (W5500\_IOBASE\ +\ (0x002C\ <<\ 8)\ +\ (W5500\_CREG\_BLOCK\ <<\ 3))}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{comment}{/*\ PHY\ Configuration\ Register\ */}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#define\ PHYCFGR\ (W5500\_IOBASE\ +\ (0x002E\ <<\ 8)\ +\ (W5500\_CREG\_BLOCK\ <<\ 3))}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{comment}{/*\ Chip\ Version\ Register\ */}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#define\ VERSIONR\ (W5500\_IOBASE\ +\ (0x0039\ <<\ 8)\ +\ (W5500\_CREG\_BLOCK\ <<\ 3))}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00122\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SOCKET\ REGISTERS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00123\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{comment}{/*\ Socket\ n\ Mode\ Register\ */}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#define\ Sn\_MR(N)\ (W5500\_IOBASE\ +\ (0x0000\ <<\ 8)\ +\ (W5500\_SREG\_BLOCK(N)\ <<\ 3))}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{comment}{/*\ Socket\ n\ Command\ Register\ */}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#define\ Sn\_CR(N)\ (W5500\_IOBASE\ +\ (0x0001\ <<\ 8)\ +\ (W5500\_SREG\_BLOCK(N)\ <<\ 3))}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \textcolor{comment}{/*\ Socket\ n\ Interrupt\ Register\ */}}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#define\ Sn\_IR(N)\ (W5500\_IOBASE\ +\ (0x0002\ <<\ 8)\ +\ (W5500\_SREG\_BLOCK(N)\ <<\ 3))}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{comment}{/*\ Socket\ n\ Status\ Register\ */}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#define\ Sn\_SR(N)\ (W5500\_IOBASE\ +\ (0x0003\ <<\ 8)\ +\ (W5500\_SREG\_BLOCK(N)\ <<\ 3))}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{comment}{/*\ Socket\ n\ Source\ Port\ Register\ */}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#define\ Sn\_PORT(N)\ (W5500\_IOBASE\ +\ (0x0004\ <<\ 8)\ +\ (W5500\_SREG\_BLOCK(N)\ <<\ 3))}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \textcolor{comment}{/*\ Socket\ n\ Destination\ Hardware\ Address\ Register\ */}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#define\ Sn\_DHAR(N)\ (W5500\_IOBASE\ +\ (0x0006\ <<\ 8)\ +\ (W5500\_SREG\_BLOCK(N)\ <<\ 3))}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \textcolor{comment}{/*\ Socket\ n\ Destination\ IP\ Address\ Register\ */}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#define\ Sn\_DIPR(N)\ (W5500\_IOBASE\ +\ (0x000C\ <<\ 8)\ +\ (W5500\_SREG\_BLOCK(N)\ <<\ 3))}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \textcolor{comment}{/*\ Socket\ n\ Destination\ Port\ Register\ */}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#define\ Sn\_DPORT(N)\ (W5500\_IOBASE\ +\ (0x0010\ <<\ 8)\ +\ (W5500\_SREG\_BLOCK(N)\ <<\ 3))}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{comment}{/*\ Socket\ n\ Maximum\ Segment\ Size\ Register\ */}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#define\ Sn\_MSSR(N)\ (W5500\_IOBASE\ +\ (0x0012\ <<\ 8)\ +\ (W5500\_SREG\_BLOCK(N)\ <<\ 3))}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \textcolor{comment}{/*\ Socket\ n\ IP\ TOS\ Register\ */}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#define\ Sn\_TOS(N)\ (W5500\_IOBASE\ +\ (0x0015\ <<\ 8)\ +\ (W5500\_SREG\_BLOCK(N)\ <<\ 3))}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \textcolor{comment}{/*\ Socket\ n\ IP\ TTL\ Register\ */}}
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\#define\ Sn\_TTL(N)\ (W5500\_IOBASE\ +\ (0x0016\ <<\ 8)\ +\ (W5500\_SREG\_BLOCK(N)\ <<\ 3))}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{comment}{/*\ Socket\ n\ RX\ Buffer\ Size\ Register\ */}}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\#define\ Sn\_RXBUF\_SIZE(N)\ (W5500\_IOBASE\ +\ (0x001E\ <<\ 8)\ +\ (W5500\_SREG\_BLOCK(N)\ <<\ 3))}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \textcolor{comment}{/*\ Socket\ n\ TX\ Buffer\ Size\ Register\ */}}
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\#define\ Sn\_TXBUF\_SIZE(N)\ (W5500\_IOBASE\ +\ (0x001F\ <<\ 8)\ +\ (W5500\_SREG\_BLOCK(N)\ <<\ 3))}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{comment}{/*\ Socket\ n\ TX\ Free\ Size\ Register\ */}}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#define\ Sn\_TX\_FSR(N)\ (W5500\_IOBASE\ +\ (0x0020\ <<\ 8)\ +\ (W5500\_SREG\_BLOCK(N)\ <<\ 3))}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \textcolor{comment}{/*\ Socket\ n\ TX\ Read\ Pointer\ Register\ */}}
+\DoxyCodeLine{00171\ \textcolor{preprocessor}{\#define\ Sn\_TX\_RD(N)\ (W5500\_IOBASE\ +\ (0x0022\ <<\ 8)\ +\ (W5500\_SREG\_BLOCK(N)\ <<\ 3))}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \textcolor{comment}{/*\ Socket\ n\ TX\ Write\ Pointer\ Register\ */}}
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#define\ Sn\_TX\_WR(N)\ (W5500\_IOBASE\ +\ (0x0024\ <<\ 8)\ +\ (W5500\_SREG\_BLOCK(N)\ <<\ 3))}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \textcolor{comment}{/*\ Socket\ n\ RX\ Received\ Size\ Register\ */}}
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\#define\ Sn\_RX\_RSR(N)\ (W5500\_IOBASE\ +\ (0x0026\ <<\ 8)\ +\ (W5500\_SREG\_BLOCK(N)\ <<\ 3))}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \textcolor{comment}{/*\ Socket\ n\ RX\ Read\ Pointer\ Register\ */}}
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\#define\ Sn\_RX\_RD(N)\ (W5500\_IOBASE\ +\ (0x0028\ <<\ 8)\ +\ (W5500\_SREG\_BLOCK(N)\ <<\ 3))}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \textcolor{comment}{/*\ Socket\ n\ RX\ Write\ Pointer\ Register\ */}}
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\#define\ Sn\_RX\_WR(N)\ (W5500\_IOBASE\ +\ (0x002A\ <<\ 8)\ +\ (W5500\_SREG\_BLOCK(N)\ <<\ 3))}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \textcolor{comment}{/*\ Socket\ n\ Interrupt\ Mask\ Register\ */}}
+\DoxyCodeLine{00186\ \textcolor{preprocessor}{\#define\ Sn\_IMR(N)\ (W5500\_IOBASE\ +\ (0x002C\ <<\ 8)\ +\ (W5500\_SREG\_BLOCK(N)\ <<\ 3))}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \textcolor{comment}{/*\ Socket\ n\ Fragment\ Offset\ in\ IP\ Header\ Register\ */}}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#define\ Sn\_FRAG(N)\ (W5500\_IOBASE\ +\ (0x002D\ <<\ 8)\ +\ (W5500\_SREG\_BLOCK(N)\ <<\ 3))}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \textcolor{comment}{/*\ Socket\ n\ Keep\ Alive\ Timer\ Register\ */}}
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\#define\ Sn\_KPALVTR(N)\ (W5500\_IOBASE\ +\ (0x002F\ <<\ 8)\ +\ (W5500\_SREG\_BLOCK(N)\ <<\ 3))}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00196\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MODE\ REGISTER\ BITS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00197\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \textcolor{comment}{/*\ MR\ (Mode\ Register)\ bits\ */}}
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\#define\ MR\_RST\ 0x80\ \ \ }\textcolor{comment}{/*\ Software\ reset\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00204\ \textcolor{preprocessor}{\#define\ MR\_WOL\ 0x20\ \ \ }\textcolor{comment}{/*\ Wake\ on\ LAN\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\#define\ MR\_PB\ 0x10\ \ \ \ }\textcolor{comment}{/*\ Ping\ block\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00206\ \textcolor{preprocessor}{\#define\ MR\_PPPOE\ 0x08\ }\textcolor{comment}{/*\ PPPoE\ mode\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\#define\ MR\_FARP\ 0x02\ \ }\textcolor{comment}{/*\ Force\ ARP\ */}\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \textcolor{comment}{/*\ PHYCFGR\ (PHY\ Configuration\ Register)\ bits\ */}}
+\DoxyCodeLine{00215\ \textcolor{preprocessor}{\#define\ PHYCFGR\_RST\ 0x80\ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ PHY\ reset\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00216\ \textcolor{preprocessor}{\#define\ PHYCFGR\_OPMD\ 0x40\ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Operation\ mode\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00217\ \textcolor{preprocessor}{\#define\ PHYCFGR\_OPMDC\_ALLA\ 0x38\ \ }\textcolor{comment}{/*\ All\ auto-\/negotiation\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00218\ \textcolor{preprocessor}{\#define\ PHYCFGR\_OPMDC\_PDOWN\ 0x30\ }\textcolor{comment}{/*\ Power\ down\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00219\ \textcolor{preprocessor}{\#define\ PHYCFGR\_OPMDC\_NA\ 0x20\ \ \ \ }\textcolor{comment}{/*\ Auto-\/negotiation\ disabled\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00220\ \textcolor{preprocessor}{\#define\ PHYCFGR\_OPMDC\_100FA\ 0x18\ }\textcolor{comment}{/*\ 100BASE-\/TX\ full-\/duplex\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00221\ \textcolor{preprocessor}{\#define\ PHYCFGR\_OPMDC\_100H\ 0x10\ \ }\textcolor{comment}{/*\ 100BASE-\/TX\ half-\/duplex\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00222\ \textcolor{preprocessor}{\#define\ PHYCFGR\_OPMDC\_10FA\ 0x08\ \ }\textcolor{comment}{/*\ 10BASE-\/T\ full-\/duplex\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00223\ \textcolor{preprocessor}{\#define\ PHYCFGR\_OPMDC\_10H\ 0x00\ \ \ }\textcolor{comment}{/*\ 10BASE-\/T\ half-\/duplex\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00224\ \textcolor{preprocessor}{\#define\ PHYCFGR\_DPX\_FULL\ 0x04\ \ \ \ }\textcolor{comment}{/*\ Full\ duplex\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\#define\ PHYCFGR\_SPD\_100\ 0x02\ \ \ \ \ }\textcolor{comment}{/*\ 100Mbps\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00226\ \textcolor{preprocessor}{\#define\ PHYCFGR\_LNK\_ON\ 0x01\ \ \ \ \ \ }\textcolor{comment}{/*\ Link\ up\ */}\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00230\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SOCKET\ MODE\ REGISTER\ BITS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00231\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \textcolor{comment}{/*\ Sn\_MR\ (Socket\ Mode\ Register)\ values\ */}}
+\DoxyCodeLine{00237\ \textcolor{preprocessor}{\#define\ Sn\_MR\_CLOSE\ 0x00\ \ }\textcolor{comment}{/*\ Closed\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00238\ \textcolor{preprocessor}{\#define\ Sn\_MR\_TCP\ 0x01\ \ \ \ }\textcolor{comment}{/*\ TCP\ mode\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00239\ \textcolor{preprocessor}{\#define\ Sn\_MR\_UDP\ 0x02\ \ \ \ }\textcolor{comment}{/*\ UDP\ mode\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00240\ \textcolor{preprocessor}{\#define\ Sn\_MR\_IPRAW\ 0x03\ \ }\textcolor{comment}{/*\ IP\ raw\ mode\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00241\ \textcolor{preprocessor}{\#define\ Sn\_MR\_MACRAW\ 0x04\ }\textcolor{comment}{/*\ MAC\ raw\ mode\ */}\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \textcolor{comment}{/*\ Sn\_MR\ flags\ */}}
+\DoxyCodeLine{00249\ \textcolor{preprocessor}{\#define\ Sn\_MR\_UCASTB\ 0x10\ }\textcolor{comment}{/*\ Unicast\ block\ (UDP\ multicast)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00250\ \textcolor{preprocessor}{\#define\ Sn\_MR\_MIP6B\ 0x10\ \ }\textcolor{comment}{/*\ IPv6\ block\ (MACRAW)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00251\ \textcolor{preprocessor}{\#define\ Sn\_MR\_MMB\ 0x20\ \ \ \ }\textcolor{comment}{/*\ Multicast\ block\ (MACRAW)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00252\ \textcolor{preprocessor}{\#define\ Sn\_MR\_BCASTB\ 0x20\ }\textcolor{comment}{/*\ Broadcast\ block\ (UDP)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00253\ \textcolor{preprocessor}{\#define\ Sn\_MR\_ND\ 0x20\ \ \ \ \ }\textcolor{comment}{/*\ No\ delayed\ ACK\ (TCP)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00254\ \textcolor{preprocessor}{\#define\ Sn\_MR\_MC\ 0x20\ \ \ \ \ }\textcolor{comment}{/*\ IGMP\ version\ (UDP\ multicast)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00255\ \textcolor{preprocessor}{\#define\ Sn\_MR\_MFEN\ 0x80\ \ \ }\textcolor{comment}{/*\ MAC\ filter\ (MACRAW)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00256\ \textcolor{preprocessor}{\#define\ Sn\_MR\_MULTI\ 0x80\ \ }\textcolor{comment}{/*\ Multicast\ (UDP)\ */}\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00260\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SOCKET\ COMMAND\ REGISTER\ VALUES\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00261\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \textcolor{comment}{/*\ Sn\_CR\ (Socket\ Command\ Register)\ values\ */}}
+\DoxyCodeLine{00267\ \textcolor{preprocessor}{\#define\ Sn\_CR\_OPEN\ 0x01\ \ \ \ \ \ }\textcolor{comment}{/*\ Open\ socket\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00268\ \textcolor{preprocessor}{\#define\ Sn\_CR\_LISTEN\ 0x02\ \ \ \ }\textcolor{comment}{/*\ Listen\ (TCP\ server)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00269\ \textcolor{preprocessor}{\#define\ Sn\_CR\_CONNECT\ 0x04\ \ \ }\textcolor{comment}{/*\ Connect\ (TCP\ client)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00270\ \textcolor{preprocessor}{\#define\ Sn\_CR\_DISCON\ 0x08\ \ \ \ }\textcolor{comment}{/*\ Disconnect\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00271\ \textcolor{preprocessor}{\#define\ Sn\_CR\_CLOSE\ 0x10\ \ \ \ \ }\textcolor{comment}{/*\ Close\ socket\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00272\ \textcolor{preprocessor}{\#define\ Sn\_CR\_SEND\ 0x20\ \ \ \ \ \ }\textcolor{comment}{/*\ Send\ data\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00273\ \textcolor{preprocessor}{\#define\ Sn\_CR\_SEND\_MAC\ 0x21\ \ }\textcolor{comment}{/*\ Send\ MAC\ (UDP)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\#define\ Sn\_CR\_SEND\_KEEP\ 0x22\ }\textcolor{comment}{/*\ Send\ keep-\/alive\ (TCP)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00275\ \textcolor{preprocessor}{\#define\ Sn\_CR\_RECV\ 0x40\ \ \ \ \ \ }\textcolor{comment}{/*\ Receive\ data\ */}\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00279\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SOCKET\ INTERRUPT\ REGISTER\ BITS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00280\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \textcolor{comment}{/*\ Sn\_IR\ (Socket\ Interrupt\ Register)\ bits\ */}}
+\DoxyCodeLine{00286\ \textcolor{preprocessor}{\#define\ Sn\_IR\_SENDOK\ 0x10\ \ }\textcolor{comment}{/*\ Send\ OK\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00287\ \textcolor{preprocessor}{\#define\ Sn\_IR\_TIMEOUT\ 0x08\ }\textcolor{comment}{/*\ Timeout\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\#define\ Sn\_IR\_RECV\ 0x04\ \ \ \ }\textcolor{comment}{/*\ Receive\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00289\ \textcolor{preprocessor}{\#define\ Sn\_IR\_DISCON\ 0x02\ \ }\textcolor{comment}{/*\ Disconnected\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00290\ \textcolor{preprocessor}{\#define\ Sn\_IR\_CON\ 0x01\ \ \ \ \ }\textcolor{comment}{/*\ Connected\ */}\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00294\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SOCKET\ STATUS\ REGISTER\ VALUES\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00295\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \textcolor{comment}{/*\ Sn\_SR\ (Socket\ Status\ Register)\ values\ */}}
+\DoxyCodeLine{00301\ \textcolor{preprocessor}{\#define\ SOCK\_CLOSED\ 0x00\ \ \ \ \ \ }\textcolor{comment}{/*\ Socket\ closed\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00302\ \textcolor{preprocessor}{\#define\ SOCK\_INIT\ 0x13\ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Socket\ initialized\ (TCP)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00303\ \textcolor{preprocessor}{\#define\ SOCK\_LISTEN\ 0x14\ \ \ \ \ \ }\textcolor{comment}{/*\ Socket\ listening\ (TCP\ server)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00304\ \textcolor{preprocessor}{\#define\ SOCK\_SYNSENT\ 0x15\ \ \ \ \ }\textcolor{comment}{/*\ SYN\ sent\ (TCP\ client\ connecting)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00305\ \textcolor{preprocessor}{\#define\ SOCK\_SYNRECV\ 0x16\ \ \ \ \ }\textcolor{comment}{/*\ SYN\ received\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00306\ \textcolor{preprocessor}{\#define\ SOCK\_ESTABLISHED\ 0x17\ }\textcolor{comment}{/*\ Connection\ established\ (TCP)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00307\ \textcolor{preprocessor}{\#define\ SOCK\_FIN\_WAIT\ 0x18\ \ \ \ }\textcolor{comment}{/*\ FIN\ wait\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00308\ \textcolor{preprocessor}{\#define\ SOCK\_CLOSING\ 0x1A\ \ \ \ \ }\textcolor{comment}{/*\ Closing\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00309\ \textcolor{preprocessor}{\#define\ SOCK\_TIME\_WAIT\ 0x1B\ \ \ }\textcolor{comment}{/*\ Time\ wait\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00310\ \textcolor{preprocessor}{\#define\ SOCK\_CLOSE\_WAIT\ 0x1C\ \ }\textcolor{comment}{/*\ Close\ wait\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00311\ \textcolor{preprocessor}{\#define\ SOCK\_LAST\_ACK\ 0x1D\ \ \ \ }\textcolor{comment}{/*\ Last\ ACK\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00312\ \textcolor{preprocessor}{\#define\ SOCK\_UDP\ 0x22\ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ UDP\ socket\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00313\ \textcolor{preprocessor}{\#define\ SOCK\_IPRAW\ 0x32\ \ \ \ \ \ \ }\textcolor{comment}{/*\ IP\ raw\ socket\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00314\ \textcolor{preprocessor}{\#define\ SOCK\_MACRAW\ 0x42\ \ \ \ \ \ }\textcolor{comment}{/*\ MAC\ raw\ socket\ */}\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00318\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PHY\ CONFIGURATION\ VALUES\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{00319\ \textcolor{comment}{\ ******************************************************************************/}}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \textcolor{comment}{/*\ PHY\ configuration\ modes\ */}}
+\DoxyCodeLine{00325\ \textcolor{preprocessor}{\#define\ PHY\_CONFBY\_HW\ 0\ \ \ \ \ }\textcolor{comment}{/*\ Configure\ by\ hardware\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00326\ \textcolor{preprocessor}{\#define\ PHY\_CONFBY\_SW\ 1\ \ \ \ \ }\textcolor{comment}{/*\ Configure\ by\ software\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00327\ \textcolor{preprocessor}{\#define\ PHY\_MODE\_MANUAL\ 0\ \ \ }\textcolor{comment}{/*\ Manual\ mode\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00328\ \textcolor{preprocessor}{\#define\ PHY\_MODE\_AUTONEGO\ 1\ }\textcolor{comment}{/*\ Auto-\/negotiation\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00329\ \textcolor{preprocessor}{\#define\ PHY\_SPEED\_10\ 0\ \ \ \ \ \ }\textcolor{comment}{/*\ 10Mbps\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00330\ \textcolor{preprocessor}{\#define\ PHY\_SPEED\_100\ 1\ \ \ \ \ }\textcolor{comment}{/*\ 100Mbps\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00331\ \textcolor{preprocessor}{\#define\ PHY\_DUPLEX\_HALF\ 0\ \ \ }\textcolor{comment}{/*\ Half-\/duplex\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00332\ \textcolor{preprocessor}{\#define\ PHY\_DUPLEX\_FULL\ 1\ \ \ }\textcolor{comment}{/*\ Full-\/duplex\ */}\textcolor{preprocessor}{}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ W5500\_REGS\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00336\ }
+
+\end{DoxyCode}

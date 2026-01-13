@@ -2,14 +2,14 @@
  * @file src/drivers/socket.h
  * @author DvidMakesThings - David Sipos
  *
- * @defgroup drivers06 6. Ethernet Socket Implementation
+ * @defgroup drivers08 8. Ethernet Socket Implementation
  * @ingroup drivers
  * @brief Header file for BSD-like socket API implementation
  * @{
  *
  * @version 1.0.0
  * @date 2025-11-07
- * 
+ *
  * @details
  * Thread-safe BSD socket-like API for W5500.
  * Key Features:
@@ -31,6 +31,9 @@
  ******************************************************************************/
 
 /** Socket type definition */
+/** @typedef SOCKET
+ *  @ingroup drivers08
+ */
 typedef uint8_t SOCKET;
 
 /******************************************************************************
@@ -38,11 +41,18 @@ typedef uint8_t SOCKET;
  ******************************************************************************/
 
 /** Socket operation result codes */
+/** @name Socket Result Codes
+ *  @ingroup drivers08
+ *  @{ */
 #define SOCK_OK 1        /**< Operation successful */
 #define SOCK_BUSY 0      /**< Socket busy (non-blocking mode) */
 #define SOCK_FATAL -1000 /**< Fatal error */
+/** @} */
 
 /** Socket error codes */
+/** @name Socket Error Codes
+ *  @ingroup drivers08
+ *  @{ */
 #define SOCK_ERROR 0
 #define SOCKERR_SOCKNUM (SOCK_ERROR - 1)    /**< Invalid socket number */
 #define SOCKERR_SOCKOPT (SOCK_ERROR - 2)    /**< Invalid socket option */
@@ -58,12 +68,16 @@ typedef uint8_t SOCKET;
 #define SOCKERR_DATALEN (SOCK_ERROR - 14)   /**< Invalid data length */
 #define SOCKERR_BUFFER (SOCK_ERROR - 15)    /**< Buffer full */
 #define SOCKFATAL_PACKLEN (SOCK_FATAL - 1)  /**< Invalid packet length (fatal) */
+/** @} */
 
 /******************************************************************************
  *                          SOCKET FLAGS                                      *
  ******************************************************************************/
 
 /** Socket flags (for socket() call) */
+/** @name Socket Flags
+ *  @ingroup drivers08
+ *  @{ */
 #define SF_ETHER_OWN (Sn_MR_MFEN)     /**< MACRAW: receive own packets */
 #define SF_IGMP_VER2 (Sn_MR_MC)       /**< UDP: IGMP version 2 */
 #define SF_TCP_NODELAY (Sn_MR_ND)     /**< TCP: disable Nagle's algorithm */
@@ -71,17 +85,25 @@ typedef uint8_t SOCKET;
 #define SF_IO_NONBLOCK 0x01           /**< Non-blocking I/O mode */
 #define SF_IO_BLOCK 0x00              /**< Blocking I/O mode */
 #define SF_UNI_BLOCK (Sn_MR_UCASTB)   /**< UDP: unicast blocking */
+/** @} */
 
 /******************************************************************************
  *                          UDP & MACRAW PACKET INFO                          *
  ******************************************************************************/
 
 /** UDP & MACRAW Packet Information Flags */
+/** @name UDP & MACRAW Packet Info
+ *  @ingroup drivers08
+ *  @{ */
 #define PACK_FIRST 0x80     /**< Start receiving a packet */
 #define PACK_REMAINED 0x01  /**< Packet remains to be received */
 #define PACK_COMPLETED 0x00 /**< Packet receive completed */
+/** @} */
 
 /** Packet info storage (used by recvfrom) */
+/** @var sock_pack_info
+ *  @ingroup drivers08
+ */
 extern uint8_t sock_pack_info[W5500_SOCKNUM];
 
 /******************************************************************************
@@ -89,6 +111,12 @@ extern uint8_t sock_pack_info[W5500_SOCKNUM];
  ******************************************************************************/
 
 /** Socket interrupt kinds */
+/** @name Socket Interrupt Flags
+ *  @ingroup drivers08
+ *  @{ */
+/** @enum sockint_kind
+ *  @ingroup drivers08
+ */
 typedef enum {
     SIK_CONNECTED = (1 << 0),    /**< TCP connection established */
     SIK_DISCONNECTED = (1 << 1), /**< TCP connection closed */
@@ -97,12 +125,19 @@ typedef enum {
     SIK_SENT = (1 << 4),         /**< Data sent completely */
     SIK_ALL = 0x1F               /**< All interrupts */
 } sockint_kind;
+/** @} */
 
 /******************************************************************************
  *                          SOCKET CONTROL TYPES                              *
  ******************************************************************************/
 
 /** Socket control types (for ctlsocket) */
+/** @name Socket Control Types
+ *  @ingroup drivers08
+ *  @{ */
+/** @enum ctlsock_type
+ *  @ingroup drivers08
+ */
 typedef enum {
     CS_SET_IOMODE,    /**< Set I/O mode (blocking/non-blocking) */
     CS_GET_IOMODE,    /**< Get I/O mode */
@@ -113,12 +148,19 @@ typedef enum {
     CS_SET_INTMASK,   /**< Set interrupt mask */
     CS_GET_INTMASK    /**< Get interrupt mask */
 } ctlsock_type;
+/** @} */
 
 /******************************************************************************
  *                          SOCKET OPTION TYPES                               *
  ******************************************************************************/
 
 /** Socket option types (for setsockopt/getsockopt) */
+/** @name Socket Option Types
+ *  @ingroup drivers08
+ *  @{ */
+/** @enum sockopt_type
+ *  @ingroup drivers08
+ */
 typedef enum {
     SO_FLAG,          /**< Get socket flags (read-only) */
     SO_TTL,           /**< Set/Get Time-To-Live */
@@ -134,6 +176,7 @@ typedef enum {
     SO_REMAINSIZE,    /**< Get remaining packet size (UDP) */
     SO_PACKINFO       /**< Get packet info (UDP) */
 } sockopt_type;
+/** @} */
 
 /******************************************************************************
  *                          SOCKET MANAGEMENT FUNCTIONS                       *
@@ -162,6 +205,9 @@ typedef enum {
  * @note TCP sockets require IP address to be configured
  * @note Port 0 triggers auto-assignment starting from 0xC000
  */
+/** @name Public API
+ *  @ingroup drivers08
+ *  @{ */
 int8_t socket(uint8_t sn, uint8_t protocol, uint16_t port, uint8_t flag);
 
 /**
@@ -395,11 +441,17 @@ int32_t recvfrom(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uint16_t
  * @return Number of bytes received, or negative error code
  */
 int32_t recvfrom_SNMP(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uint16_t *port);
+/** @} */
 
 /******************************************************************************
  *                          USAGE EXAMPLES                                    *
  ******************************************************************************/
 
+/**
+ * @name Usage Examples
+ * @ingroup drivers08
+ * @{
+ */
 /**
  * @example TCP Server Example
  * @code
@@ -492,6 +544,7 @@ int32_t recvfrom_SNMP(uint8_t sn, uint8_t *buf, uint16_t len, uint8_t *addr, uin
  * closesocket(sn);
  * @endcode
  */
+/** @} */
 
 #endif /* ETH_SOCKET_H */
 

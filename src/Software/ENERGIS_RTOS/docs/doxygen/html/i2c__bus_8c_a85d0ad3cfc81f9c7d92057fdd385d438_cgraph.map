@@ -1,0 +1,7 @@
+<map id="i2c_bus_task" name="i2c_bus_task">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,104,57"/>
+<area shape="rect" id="Node000002" href="$i2c__bus_8c.html#a190f3a662c3c5a54b4aa02a76d6a3b0c" title="Log an I2C read transaction for debugging." alt="" coords="153,5,260,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,33,137,27,138,33,105,38"/>
+<area shape="rect" id="Node000003" href="$i2c__bus_8c.html#a6d7fcd61b1d45be7a35ad0ecf0db2613" title="Log an I2C write transaction for debugging." alt="" coords="152,56,261,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="105,50,137,55,136,60,104,55"/>
+</map>

@@ -1,0 +1,21 @@
+<map id="set_pwr_led_tracked" name="set_pwr_led_tracked">
+<area shape="rect" id="Node000001" title="Set PWR_LED state with change tracking." alt="" coords="960,56,1102,83"/>
+<area shape="rect" id="Node000002" href="$group__misc3.html#gafa726e9d0fc140faa3f54c6905ac2520" title="Exit standby mode and return to normal operation." alt="" coords="752,5,889,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="957,54,878,35,880,30,958,49"/>
+<area shape="rect" id="Node000008" href="$group__misc3.html#ga83454e7bafa44edd5acce76b7aa91e0b" title="Initialize the power manager subsystem." alt="" coords="592,107,676,133"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="958,89,913,97,783,112,676,120,676,115,783,107,912,92,957,84"/>
+<area shape="rect" id="Node000009" href="$group__misc3.html#ga0827dd667e39150cad0b7642a076d384" title="Service LED indication in RUN and STANDBY modes." alt="" coords="729,56,912,83"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="945,72,913,72,913,67,945,67"/>
+<area shape="rect" id="Node000003" href="$_button_task_8c.html#ac8adec5c9e99b51c4884034cf2e41275" title="Main button scanning and event processing task." alt="" coords="587,56,681,83"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="755,39,682,59,681,54,753,34"/>
+<area shape="rect" id="Node000004" href="$group__tasks01.html#ga66ab3f6fa24432c008c6ea7b0ccddb5f" title="Initialize and start the button handling task." alt="" coords="426,81,539,108"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="572,82,539,88,538,83,571,77"/>
+<area shape="rect" id="Node000005" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,81,378,108"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="411,97,379,97,379,92,411,92"/>
+<area shape="rect" id="Node000006" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,81,263,108"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="295,97,263,97,263,92,295,92"/>
+<area shape="rect" id="Node000007" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,81,102,108"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="134,97,102,97,102,92,134,92"/>
+<area shape="poly" id="edge8_Node000008_Node000004" title=" " alt="" coords="577,113,538,107,539,101,578,108"/>
+<area shape="poly" id="edge10_Node000009_Node000003" title=" " alt="" coords="714,72,682,72,682,67,714,67"/>
+</map>

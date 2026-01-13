@@ -1,0 +1,20 @@
+<map id="LoadUserPreferences" name="LoadUserPreferences">
+<area shape="rect" id="Node000001" title="Load user preferences from EEPROM with automatic fallback to defaults." alt="" coords="5,85,153,112"/>
+<area shape="rect" id="Node000002" href="$group__storage11.html#ga708039b6b7c8a2535429849aaf0bef39" title="Read and verify user preferences with CRC&#45;8." alt="" coords="201,48,404,91"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="153,86,185,82,186,87,154,92"/>
+<area shape="rect" id="Node000009" href="$group__tasks10.html#gac25626a70e6fe0baeaa167d47bed33d1" title="Enqueue a warning code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="201,115,404,141"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="154,106,186,110,185,115,153,111"/>
+<area shape="rect" id="Node000003" href="$group__storage08.html#gaae57a92db26b8a63b7584fd2f3407077" title="Calculate CRC&#45;8 checksum for data integrity verification." alt="" coords="482,5,587,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="402,45,466,31,467,36,403,50"/>
+<area shape="rect" id="Node000004" href="$group__driver02.html#ga622a6736c8384f9e1921a1bda2a84df9" title="Read buffer from EEPROM." alt="" coords="452,56,616,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="404,67,437,67,437,72,404,72"/>
+<area shape="rect" id="Node000008" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="664,107,848,133"/>
+<area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="405,85,452,92,649,111,648,116,452,97,404,90"/>
+<area shape="rect" id="Node000005" href="$group__drivers05.html#ga66ae4c7028f764a3770cabe101dba8bf" title="Read from 16&#45;bit memory address: write [mem_hi, mem_lo] (no stop), then read len bytes." alt="" coords="682,56,830,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="616,67,666,67,666,72,616,72"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="597,81,680,100,679,105,595,86"/>
+<area shape="rect" id="Node000006" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="925,31,1046,57"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="830,59,909,50,909,55,831,64"/>
+<area shape="rect" id="Node000007" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="896,81,1075,108"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="831,75,881,80,880,86,830,80"/>
+</map>

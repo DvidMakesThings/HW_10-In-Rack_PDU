@@ -95,19 +95,7 @@ int EEPROM_WriteChannelLabel(uint8_t channel_index, const char *label) {
     return CAT24C256_WriteBuffer(_LabelSlotAddr(channel_index), buf, EEPROM_CH_LABEL_SLOT);
 }
 
-/**
- * @brief Read channel label from EEPROM.
- *
- * Reads from channel's slot and copies to output buffer, ensuring null termination.
- * Stops at first null byte or end of slot.
- *
- * CRITICAL: Must be called with eepromMtx held!
- *
- * @param channel_index Channel index [0..7]
- * @param out Destination buffer
- * @param out_len Size of destination buffer
- * @return 0 on success, -1 on invalid channel or null/empty buffer
- */
+/** @brief Read channel label from EEPROM. See channel_labels.h. */
 int EEPROM_ReadChannelLabel(uint8_t channel_index, char *out, size_t out_len) {
     /* Validate inputs */
     if (channel_index >= ENERGIS_NUM_CHANNELS || out == NULL || out_len == 0u) {
@@ -144,16 +132,7 @@ int EEPROM_ReadChannelLabel(uint8_t channel_index, char *out, size_t out_len) {
     return 0;
 }
 
-/**
- * @brief Clear one channel label slot by filling with zeros.
- *
- * Writes zeros in 32-byte chunks to erase the entire label slot.
- *
- * CRITICAL: Must be called with eepromMtx held!
- *
- * @param channel_index Channel index [0..7]
- * @return 0 on success, -1 on invalid channel or I2C error
- */
+/** @brief Clear one channel label slot. See channel_labels.h. */
 int EEPROM_ClearChannelLabel(uint8_t channel_index) {
     /* Validate channel index */
     if (channel_index >= ENERGIS_NUM_CHANNELS) {
@@ -179,15 +158,7 @@ int EEPROM_ClearChannelLabel(uint8_t channel_index) {
     return 0;
 }
 
-/**
- * @brief Clear all channel label slots.
- *
- * Iterates through all channels and clears their label slots.
- *
- * CRITICAL: Must be called with eepromMtx held!
- *
- * @return 0 on success, -1 if any channel clear fails
- */
+/** @brief Clear all channel label slots. See channel_labels.h. */
 int EEPROM_ClearAllChannelLabels(void) {
     for (uint8_t ch = 0; ch < ENERGIS_NUM_CHANNELS; ++ch) {
         if (EEPROM_ClearChannelLabel(ch) != 0) {
@@ -209,14 +180,7 @@ int EEPROM_ClearAllChannelLabels(void) {
 /*           (called by StorageTask during startup/write)                */
 /* ##################################################################### */
 
-/**
- * @brief Load all channel labels from EEPROM into RAM cache.
- *
- * Called once during StorageTask initialization. After this, all reads
- * are served from cache.
- *
- * CRITICAL: Must be called with eepromMtx held!
- */
+/** @brief Load all channel labels from EEPROM into RAM cache. See channel_labels.h. */
 void ChannelLabels_LoadFromEEPROM(void) {
     for (uint8_t ch = 0; ch < ENERGIS_NUM_CHANNELS; ++ch) {
         EEPROM_ReadChannelLabel(ch, s_label_cache[ch], sizeof(s_label_cache[ch]));
@@ -225,16 +189,7 @@ void ChannelLabels_LoadFromEEPROM(void) {
     INFO_PRINT("%s Labels loaded into cache\r\n", ST_CH_LABEL_TAG);
 }
 
-/**
- * @brief Get label from RAM cache (non-blocking).
- *
- * Returns cached label without EEPROM access.
- *
- * @param channel Channel index [0..7]
- * @param out Destination buffer
- * @param out_len Size of destination buffer
- * @return 0 on success, -1 on invalid parameters
- */
+/** @brief Get label from RAM cache. See channel_labels.h. */
 int ChannelLabels_GetCached(uint8_t channel, char *out, size_t out_len) {
     if (channel >= ENERGIS_NUM_CHANNELS || out == NULL || out_len == 0) {
         return -1;
@@ -256,17 +211,7 @@ int ChannelLabels_GetCached(uint8_t channel, char *out, size_t out_len) {
     return 0;
 }
 
-/**
- * @brief Update label in cache and write to EEPROM.
- *
- * Updates the RAM cache immediately and writes to EEPROM.
- *
- * CRITICAL: Must be called with eepromMtx held!
- *
- * @param channel Channel index [0..7]
- * @param label New label string
- * @return 0 on success, -1 on error
- */
+/** @brief Update label in cache and write to EEPROM. See channel_labels.h. */
 int ChannelLabels_SetAndWrite(uint8_t channel, const char *label) {
     if (channel >= ENERGIS_NUM_CHANNELS || label == NULL) {
         return -1;
@@ -288,17 +233,7 @@ int ChannelLabels_SetAndWrite(uint8_t channel, const char *label) {
 /*            (use storage queue, safe to call from any task)            */
 /* ##################################################################### */
 
-/**
- * @brief Read channel label from RAM cache (thread-safe, non-blocking).
- *
- * Returns cached label without storage queue or EEPROM access.
- * Safe to call from any task context.
- *
- * @param channel Channel index [0..7]
- * @param out Destination buffer (minimum 26 bytes recommended)
- * @param out_len Size of destination buffer
- * @return true on success, false on error
- */
+/** @brief Read channel label from RAM cache (thread-safe). See channel_labels.h. */
 bool storage_get_channel_label(uint8_t channel, char *out, size_t out_len) {
     if (!out || out_len == 0 || channel >= ENERGIS_NUM_CHANNELS) {
         return false;
@@ -312,16 +247,7 @@ bool storage_get_channel_label(uint8_t channel, char *out, size_t out_len) {
     return (ChannelLabels_GetCached(channel, out, out_len) == 0);
 }
 
-/**
- * @brief Write channel label via storage queue (thread-safe).
- *
- * Enqueues a write request to StorageTask. The write updates the RAM cache
- * immediately and writes to EEPROM asynchronously.
- *
- * @param channel Channel index [0..7]
- * @param label Label string (max 25 characters, truncated if longer)
- * @return true if request was queued, false on error
- */
+/** @brief Write channel label via storage queue (thread-safe). See channel_labels.h. */
 bool storage_set_channel_label(uint8_t channel, const char *label) {
     extern QueueHandle_t q_cfg;
 
@@ -345,15 +271,7 @@ bool storage_set_channel_label(uint8_t channel, const char *label) {
     return (xQueueSend(q_cfg, &msg, pdMS_TO_TICKS(1000)) == pdPASS);
 }
 
-/**
- * @brief Read all channel labels from RAM cache (thread-safe, non-blocking).
- *
- * Convenience function to read all 8 channel labels at once from cache.
- *
- * @param labels Array of 8 label buffers, each at least 26 bytes
- * @param label_buf_size Size of each label buffer
- * @return true if all labels read successfully, false on any error
- */
+/** @brief Read all channel labels from RAM cache (thread-safe). See channel_labels.h. */
 bool storage_get_all_channel_labels(char labels[ENERGIS_NUM_CHANNELS][26], size_t label_buf_size) {
     if (!labels || label_buf_size < 2) {
         return false;

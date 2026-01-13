@@ -1,0 +1,33 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2026.01.07 15:01:24 =~=~=~=~=~=~=~=~=~=~=~=
+	[ECHO] === ENERGIS PDU Console Commands ===
+	[ECHO] GENERAL COMMANDS
+	[ECHO] HELP                             Show available commands and syntax
+	[ECHO] SYSINFO                          Show system information
+	[ECHO] GET_TEMP                         Show MCU temperature
+	[ECHO] REBOOT                           Reboot the PDU (network changes take effect after reboot)
+	[ECHO] BOOTSEL                          Put the MCU into boot mode
+	[ECHO] CLR_ERR                          Clear all errors
+	[ECHO] RFS                              Restore factory settings
+	[ECHO] OUTPUT CONTROL AND MEASUREMENT
+	[ECHO] SET_CH <ch> <STATE>              Set channel (1-8) to 0|1|ON|OFF|ALL
+	[ECHO] GET_CH <ch>                      Read current state of channel (1-8|ALL)
+	[ECHO] OC_STATUS                        Show overcurrent protection status
+	[ECHO] OC_RESET                         Manually clear overcurrent lockout
+	[ECHO] READ_HLW8032                     Read power data for all channels
+	[ECHO] READ_HLW8032 <ch>                Read power data for channel (1-8)
+	[ECHO] CALIBRATE <ch> <V> <I>           Start calibration on channel (1-8) with given V/I
+	[ECHO] AUTO_CAL_ZERO [ch|ALL]           Zero-calibrate one channel or ALL
+	[ECHO] AUTO_CAL_V <voltage> [ch|ALL]    Voltage-calibrate one channel or ALL (0A assumed)
+	[ECHO] AUTO_CAL_I <current> <ch|ALL>    Current-calibrate a channel, or ALL sequentially
+	[ECHO] SHOW_CALIB <ch>                  Show calibration data (1-8|ALL)
+	[ECHO] NETWORK SETTINGS
+	[ECHO] NETINFO                          Display current IP, subnet mask, gateway and DNS
+	[ECHO] SET_IP <ip>                      Set static IP address (requires reboot)
+	[ECHO] SET_SN <mask>                    Set subnet mask
+	[ECHO] SET_GW <gw>                      Set default gateway
+	[ECHO] SET_DNS <dns>                    Set DNS server
+	[ECHO] CONFIG_NETWORK <ip$sn$gw$dns>    Configure all network settings
+	[ECHO] ===========================================================
+
+[ERROR] Unknown command: 'AUTO_CAL_I'. Type HELP for list.
+

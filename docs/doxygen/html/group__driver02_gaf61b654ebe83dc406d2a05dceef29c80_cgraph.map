@@ -1,0 +1,15 @@
+<map id="CAT24C256_WriteByte" name="CAT24C256_WriteByte">
+<area shape="rect" id="Node000001" title="Write single byte to EEPROM." alt="" coords="5,81,162,108"/>
+<area shape="rect" id="Node000002" href="$group__drivers05.html#ga77ca38d627119d534873e177c5f4a667" title="Write to 16&#45;bit memory address: [mem_hi, mem_lo, data...]." alt="" coords="226,31,377,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,78,225,59,227,64,145,83"/>
+<area shape="rect" id="Node000006" href="$group__tasks10.html#ga78c530f9c7ec4d2330e6d1a092df6dc0" title="Enqueue an error code for deferred EEPROM logging (non&#45;blocking)." alt="" coords="210,81,393,108"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="162,92,194,92,194,97,162,97"/>
+<area shape="rect" id="Node000007" href="$_c_a_t24_c256__driver_8c.html#aeba5f43a83c24289211b7d919c260978" title="RTOS&#45;compatible write cycle delay." alt="" coords="239,132,364,159"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="145,106,227,125,225,130,144,111"/>
+<area shape="rect" id="Node000003" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="466,5,588,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="377,33,450,25,451,30,378,38"/>
+<area shape="rect" id="Node000004" href="$group__drivers05.html#ga170d6c4ff97ddc2d314f0a7a0054f283" title="Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK i2c_write_time..." alt="" coords="441,56,613,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="378,50,426,55,426,61,377,55"/>
+<area shape="rect" id="Node000005" href="$i2c__bus_8c.html#afbaa64f79bdd1fa39c8fa5b7a9c2717b" title=" " alt="" coords="661,56,819,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="614,67,646,67,646,72,614,72"/>
+</map>

@@ -1,0 +1,45 @@
+var group__misc1 =
+[
+    [ "crashlog_t", "structcrashlog__t.html", [
+      [ "boots_counter", "structcrashlog__t.html#a1f1d30de651fe783b3df6ff79f886e99", null ],
+      [ "hdr_crc32", "structcrashlog__t.html#a8a8f754682bdcc0b5ebbe6ef536c6111", null ],
+      [ "hdr_magic", "structcrashlog__t.html#aedb30457598e4eac8a961cbea94fb623", null ],
+      [ "hdr_size", "structcrashlog__t.html#a79c41cf6abf819cb4c2a67ffc6854aa5", null ],
+      [ "hdr_version", "structcrashlog__t.html#a2770632c551b70866eea849b79946590", null ],
+      [ "hf_valid", "structcrashlog__t.html#a0a92f896f61de29e4b0fa45840bf38a2", null ],
+      [ "lr", "structcrashlog__t.html#ae5f51f173d74e56106fd09509e5737c7", null ],
+      [ "pc", "structcrashlog__t.html#ab5a78f7c957e63cec1eea533cf8b6c05", null ],
+      [ "r0", "structcrashlog__t.html#a83fbb408d262cd1f4f7cc24b8fcd63c4", null ],
+      [ "r1", "structcrashlog__t.html#a439e9f0ffca9ff0052bb26f39934aa9e", null ],
+      [ "r12", "structcrashlog__t.html#ae39c814fce6a7cd47a3a87e8830badfd", null ],
+      [ "r2", "structcrashlog__t.html#acffe6b8ff20ce427a656c4205ce93bad", null ],
+      [ "r3", "structcrashlog__t.html#a2665b9c9fa35b5725a305894d80c7f89", null ],
+      [ "reset_raw_bits", "structcrashlog__t.html#a3b69d35e7ece77c525d1564728db181a", null ],
+      [ "reset_reason", "structcrashlog__t.html#a65100817986135b97760ee6788d5b50d", null ],
+      [ "rsvd0", "structcrashlog__t.html#a6d1d1eee5d10967d58c832a58ba31188", null ],
+      [ "rsvd1", "structcrashlog__t.html#ac94bbe9a0c82b083839b2f445f4aff44", null ],
+      [ "sw_reboot_tag", "structcrashlog__t.html#a1ef9ce5100a95eb17be3b1085a044813", null ],
+      [ "wdt_feed_count", "structcrashlog__t.html#a2397da129395bc03da70efe05cb42f6e", null ],
+      [ "wdt_feed_delta_ms", "structcrashlog__t.html#af0eb9e9d8254d3af90d472d667a20ab9", null ],
+      [ "wdt_feed_wr", "structcrashlog__t.html#a116f8de94ac8754b967e6e413dc6f42e", null ],
+      [ "wdt_last_ts_ms", "structcrashlog__t.html#ae3f9b71d10c1b1ad3ecee2b9364e6ddc", null ],
+      [ "xpsr", "structcrashlog__t.html#abe2669c559492b250560512ae912acca", null ]
+    ] ],
+    [ "CRASH_FEED_RING", "group__misc1.html#ga7eca9d3b0c9e9975fe8917425a5931cc", null ],
+    [ "crash_reset_reason_t", "group__misc1.html#ga3da6cc7835d9b18adc73cb404f8e9985", [
+      [ "CR_RESET_UNKNOWN", "group__misc1.html#gga3da6cc7835d9b18adc73cb404f8e9985a4c5a1abca50bbcaccba25a55f1698252", null ],
+      [ "CR_RESET_POWERON", "group__misc1.html#gga3da6cc7835d9b18adc73cb404f8e9985a68fd56235c593d0a17739e5b02007f15", null ],
+      [ "CR_RESET_WATCHDOG", "group__misc1.html#gga3da6cc7835d9b18adc73cb404f8e9985a1b426e325becbee34a0fecc17b6d90db", null ],
+      [ "CR_RESET_SOFTWARE", "group__misc1.html#gga3da6cc7835d9b18adc73cb404f8e9985a6260f396c215c34ffb370b2ffafa8f87", null ],
+      [ "CR_RESET_BROWNOUT", "group__misc1.html#gga3da6cc7835d9b18adc73cb404f8e9985a8258b7f926f9fd20044a96858c16c151", null ],
+      [ "CR_RESET_EXTERNAL", "group__misc1.html#gga3da6cc7835d9b18adc73cb404f8e9985aed93463f235a0af77837e4727581e7c7", null ],
+      [ "CR_RESET_DEBUG", "group__misc1.html#gga3da6cc7835d9b18adc73cb404f8e9985a041f6a3c80572a3b807ac771924080b6", null ]
+    ] ],
+    [ "CrashLog_CaptureResetReasonEarly", "group__misc1.html#ga131d28172212c0df74acc1e9d9527c4a", null ],
+    [ "CrashLog_OnHardFault", "group__misc1.html#ga1a04e8bbf9617464ae676b6b4d89241c", null ],
+    [ "CrashLog_Platform_DecodeReset", "group__misc1.html#ga41cf871cde075031b39beae132e7c13d", null ],
+    [ "CrashLog_Platform_ReadResetBits", "group__misc1.html#gaed84e69b9c69051cc7be2c213183e109", null ],
+    [ "CrashLog_PrintAndClearOnBoot", "group__misc1.html#ga040d161613770d2656d3350134445684", null ],
+    [ "CrashLog_RecordSoftwareRebootTag", "group__misc1.html#ga28f2af805f9b4954b888151007f862a3", null ],
+    [ "CrashLog_RecordWdtFeed", "group__misc1.html#ga8dac22c0f05ce9e997b99d9179a2bf5f", null ]
+];

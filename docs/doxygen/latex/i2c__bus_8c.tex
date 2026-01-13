@@ -1,0 +1,344 @@
+\doxysection{src/\+Software/\+ENERGIS\+\_\+\+RTOS/src/drivers/i2c\+\_\+bus.c File Reference}
+\hypertarget{i2c__bus_8c}{}\label{i2c__bus_8c}\index{src/Software/ENERGIS\_RTOS/src/drivers/i2c\_bus.c@{src/Software/ENERGIS\_RTOS/src/drivers/i2c\_bus.c}}
+{\ttfamily \#include "{}../\+CONFIG.\+h"{}}\newline
+Include dependency graph for i2c\+\_\+bus.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{i2c__bus_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structi2c__bus__request__t}{i2c\+\_\+bus\+\_\+request\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{i2c__bus_8c_ae74c39b6bfcfe4d904094015a7837b58}{I2\+C\+\_\+\+TRACE\+\_\+\+I2\+C0}}~1
+\begin{DoxyCompactList}\small\item\em Enable I2\+C0 transaction tracing for debugging. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{i2c__bus_8c_aa450dc03166d9b6c9403ad9dec7b5730}{I2\+C\+\_\+\+TRACE\+\_\+\+ADDR\+\_\+\+FILTER}}~0x21 /\texorpdfstring{$\ast$}{*} Display MCP only \texorpdfstring{$\ast$}{*}/
+\begin{DoxyCompactList}\small\item\em Only trace transactions to these addresses (0 = all). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{i2c__bus_8c_a40dc296afcbfc176b0be68c4a48f7a70}{DIAG\+\_\+\+I2\+C\+\_\+\+LOCK}}~0
+\item 
+\#define \mbox{\hyperlink{i2c__bus_8c_af7109346b238b51a62683d0ca007198f}{I2\+C\+\_\+\+LOCK\+\_\+\+WARN\+\_\+\+MS}}~5
+\item 
+\#define \mbox{\hyperlink{i2c__bus_8c_a61ebf7615e7a220df331fce5cd636b4d}{I2\+C\+\_\+\+BUS\+\_\+\+MAX\+\_\+\+RETRIES}}~3
+\item 
+\#define \mbox{\hyperlink{i2c__bus_8c_a2f7c6941bc9e7301ec97f693d749e83f}{I2\+C\+\_\+\+BUS\+\_\+\+RETRY\+\_\+\+DELAY\+\_\+\+US}}~500u
+\item 
+\#define \mbox{\hyperlink{i2c__bus_8c_a44e1cdc7f6367e932b77785087f86076}{I2\+C\+\_\+\+BUS\+\_\+\+TIMEOUT\+\_\+\+US}}~50000u
+\item 
+\#define \mbox{\hyperlink{i2c__bus_8c_ab83e564fbde6e3652687a66e3eec0a37}{I2\+C\+\_\+\+BUS\+\_\+\+DIAG}}~0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{i2c__bus_8c_aa10597e57fac67ce9b7ab1fec041df5b}{i2c\+\_\+op\+\_\+t}} \{ \mbox{\hyperlink{i2c__bus_8c_aa10597e57fac67ce9b7ab1fec041df5ba55787d8a93087aac9dcc1b3e197f5f0c}{I2\+C\+\_\+\+OP\+\_\+\+WRITE}} = 0
+, \mbox{\hyperlink{i2c__bus_8c_aa10597e57fac67ce9b7ab1fec041df5ba65d7d692988bb18636bf09290df953ed}{I2\+C\+\_\+\+OP\+\_\+\+READ}} = 1
+, \mbox{\hyperlink{i2c__bus_8c_aa10597e57fac67ce9b7ab1fec041df5ba5a06eac915d65e86571c72ca44368186}{I2\+C\+\_\+\+OP\+\_\+\+WRITE\+\_\+\+READ}} = 2
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Semaphore\+Handle\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{i2c__bus_8c_ae100fae6a0e784df2c8a601c9df58947}{select\+\_\+mutex}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c)
+\item 
+void \mbox{\hyperlink{group__drivers05_ga9c76037250f6dc0a30507d349e7248e1}{I2\+C\+\_\+\+Bus\+Lock}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c)
+\item 
+void \mbox{\hyperlink{group__drivers05_gaf26d164f7fc711b6c91d9a4b397daea3}{I2\+C\+\_\+\+Bus\+Unlock}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c)
+\item 
+static void \mbox{\hyperlink{i2c__bus_8c_a6d7fcd61b1d45be7a35ad0ecf0db2613}{trace\+\_\+i2c\+\_\+write}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, size\+\_\+t len, int result)
+\begin{DoxyCompactList}\small\item\em Log an I2C write transaction for debugging. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{i2c__bus_8c_a190f3a662c3c5a54b4aa02a76d6a3b0c}{trace\+\_\+i2c\+\_\+read}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, size\+\_\+t len, int result)
+\begin{DoxyCompactList}\small\item\em Log an I2C read transaction for debugging. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{i2c__bus_8c_a85d0ad3cfc81f9c7d92057fdd385d438}{i2c\+\_\+bus\+\_\+task}} (void \texorpdfstring{$\ast$}{*}arg)
+\item 
+void \mbox{\hyperlink{group__drivers05_ga8bf0403f2c78483c3afc9ffea67c425f}{I2\+C\+\_\+\+Bus\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the global I2C bus manager task and queue. Must be called once after hardware i2c\+\_\+init() and before clients use wrappers. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{i2c__bus_8c_afbaa64f79bdd1fa39c8fa5b7a9c2717b}{i2c\+\_\+bus\+\_\+submit\+\_\+simple}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, size\+\_\+t len, bool nostop, uint32\+\_\+t timeout\+\_\+us, bool is\+\_\+read)
+\item 
+int \mbox{\hyperlink{group__drivers05_ga170d6c4ff97ddc2d314f0a7a0054f283}{i2c\+\_\+bus\+\_\+write\+\_\+timeout\+\_\+us}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}src, size\+\_\+t len, bool nostop, uint32\+\_\+t timeout\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Queue a write on the specified I2C controller and wait synchronously. Mirrors Pico SDK {\ttfamily i2c\+\_\+write\+\_\+timeout\+\_\+us} signature/semantics, but serialized via a FIFO. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__drivers05_ga5caa937abd50ec32925c6283a37ef7da}{i2c\+\_\+bus\+\_\+read\+\_\+timeout\+\_\+us}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, uint8\+\_\+t \texorpdfstring{$\ast$}{*}dst, size\+\_\+t len, bool nostop, uint32\+\_\+t timeout\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Queue a read on the specified I2C controller and wait synchronously. Mirrors Pico SDK {\ttfamily i2c\+\_\+read\+\_\+timeout\+\_\+us} signature/semantics, but serialized via a FIFO. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{i2c__bus_8c_a569aca00fd6bd9b5430616a494b4f141}{i2c\+\_\+bus\+\_\+submit\+\_\+write\+\_\+read}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}wbuf, size\+\_\+t wlen, uint8\+\_\+t \texorpdfstring{$\ast$}{*}rbuf, size\+\_\+t rlen, uint32\+\_\+t timeout\+\_\+us)
+\item 
+static void \mbox{\hyperlink{i2c__bus_8c_a1ebc752812bef8ea35845f0b4eb80217}{i2c\+\_\+bus\+\_\+diag\+\_\+log}} (const char \texorpdfstring{$\ast$}{*}op, i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, uint8\+\_\+t reg, int result)
+\item 
+bool \mbox{\hyperlink{group__drivers05_gab7b4aa096ded6cebd93256e5b5994e42}{i2c\+\_\+bus\+\_\+write\+\_\+reg8}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, uint8\+\_\+t reg, uint8\+\_\+t value, uint32\+\_\+t timeout\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Write 8-\/bit register with 8-\/bit value\+: \mbox{[}reg, value\mbox{]}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers05_ga0e406d50e8948e593649a11c729acd9b}{i2c\+\_\+bus\+\_\+read\+\_\+reg8}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, uint8\+\_\+t reg, uint8\+\_\+t \texorpdfstring{$\ast$}{*}out, uint32\+\_\+t timeout\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Read 8-\/bit register\+: write \mbox{[}reg\mbox{]} (no stop), then read 1 byte. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers05_ga77ca38d627119d534873e177c5f4a667}{i2c\+\_\+bus\+\_\+write\+\_\+mem16}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, uint16\+\_\+t mem, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}src, size\+\_\+t len, uint32\+\_\+t timeout\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Write to 16-\/bit memory address\+: \mbox{[}mem\+\_\+hi, mem\+\_\+lo, data...\mbox{]}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__drivers05_ga66ae4c7028f764a3770cabe101dba8bf}{i2c\+\_\+bus\+\_\+read\+\_\+mem16}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, uint16\+\_\+t mem, uint8\+\_\+t \texorpdfstring{$\ast$}{*}dst, size\+\_\+t len, uint32\+\_\+t timeout\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Read from 16-\/bit memory address\+: write \mbox{[}mem\+\_\+hi, mem\+\_\+lo\mbox{]} (no stop), then read len bytes. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__drivers05_ga417adf0354f9f45105255aa06562fc90}{i2c\+\_\+bus\+\_\+write\+\_\+read}} (i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c, uint8\+\_\+t addr, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}wsrc, size\+\_\+t wlen, uint8\+\_\+t \texorpdfstring{$\ast$}{*}rdst, size\+\_\+t rlen, uint32\+\_\+t timeout\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Atomically perform a write (no stop) followed immediately by a read. Ensures the repeated-\/start sequence is not interleaved with other transactions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static Queue\+Handle\+\_\+t \mbox{\hyperlink{i2c__bus_8c_a84632f03f220d35239e676b4e5e2eecf}{s\+\_\+i2cq}} = NULL
+\item 
+static Task\+Handle\+\_\+t \mbox{\hyperlink{i2c__bus_8c_a543bd45eb07d5d1458b1cceaca9e403d}{s\+\_\+bus\+\_\+task}} = NULL
+\item 
+static Semaphore\+Handle\+\_\+t \mbox{\hyperlink{i2c__bus_8c_aa82a5d57873062b4aa3e18bc1378b001}{s\+\_\+i2c\+\_\+mutex}} = NULL
+\item 
+static Tick\+Type\+\_\+t \mbox{\hyperlink{i2c__bus_8c_a01231e1d3e3327aac0e060c59b9e16eb}{s\+\_\+i2c\+\_\+lock\+\_\+tick}} = 0
+\item 
+static Task\+Handle\+\_\+t \mbox{\hyperlink{i2c__bus_8c_ab3356050b65ea22060377fca86575643}{s\+\_\+i2c\+\_\+owner}} = NULL
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dvid\+Makes\+Things -\/ David Sipos
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+2.\+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/12-\/30
+\end{DoxyDate}
+Provides a single FIFO-\/serialized execution path for all I2C transactions across both controllers (i2c0 and i2c1). Callers use synchronous wrappers that submit work to a bus task and block until completion, eliminating interleaving and reducing race conditions under load.
+
+v2.\+1.\+0 Changes\+:
+\begin{DoxyItemize}
+\item Added I2\+C0 transaction tracing to debug display MCP reset issue
+\item Logs all writes to I2\+C0 with address, register, and value
+\end{DoxyItemize}
+
+@project ENERGIS -\/ The Managed PDU Project for 10-\/Inch Rack @github \href{https://github.com/DvidMakesThings/HW_10-In-Rack_PDU}{\texttt{https\+://github.\+com/\+Dvid\+Makes\+Things/\+HW\+\_\+10-\/\+In-\/\+Rack\+\_\+\+PDU}} 
+
+\label{doc-define-members}
+\Hypertarget{i2c__bus_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{i2c__bus_8c_a40dc296afcbfc176b0be68c4a48f7a70}\index{i2c\_bus.c@{i2c\_bus.c}!DIAG\_I2C\_LOCK@{DIAG\_I2C\_LOCK}}
+\index{DIAG\_I2C\_LOCK@{DIAG\_I2C\_LOCK}!i2c\_bus.c@{i2c\_bus.c}}
+\doxysubsubsection{\texorpdfstring{DIAG\_I2C\_LOCK}{DIAG\_I2C\_LOCK}}
+{\footnotesize\ttfamily \label{i2c__bus_8c_a40dc296afcbfc176b0be68c4a48f7a70} 
+\#define DIAG\+\_\+\+I2\+C\+\_\+\+LOCK~0}
+
+\Hypertarget{i2c__bus_8c_ab83e564fbde6e3652687a66e3eec0a37}\index{i2c\_bus.c@{i2c\_bus.c}!I2C\_BUS\_DIAG@{I2C\_BUS\_DIAG}}
+\index{I2C\_BUS\_DIAG@{I2C\_BUS\_DIAG}!i2c\_bus.c@{i2c\_bus.c}}
+\doxysubsubsection{\texorpdfstring{I2C\_BUS\_DIAG}{I2C\_BUS\_DIAG}}
+{\footnotesize\ttfamily \label{i2c__bus_8c_ab83e564fbde6e3652687a66e3eec0a37} 
+\#define I2\+C\+\_\+\+BUS\+\_\+\+DIAG~0}
+
+\Hypertarget{i2c__bus_8c_a61ebf7615e7a220df331fce5cd636b4d}\index{i2c\_bus.c@{i2c\_bus.c}!I2C\_BUS\_MAX\_RETRIES@{I2C\_BUS\_MAX\_RETRIES}}
+\index{I2C\_BUS\_MAX\_RETRIES@{I2C\_BUS\_MAX\_RETRIES}!i2c\_bus.c@{i2c\_bus.c}}
+\doxysubsubsection{\texorpdfstring{I2C\_BUS\_MAX\_RETRIES}{I2C\_BUS\_MAX\_RETRIES}}
+{\footnotesize\ttfamily \label{i2c__bus_8c_a61ebf7615e7a220df331fce5cd636b4d} 
+\#define I2\+C\+\_\+\+BUS\+\_\+\+MAX\+\_\+\+RETRIES~3}
+
+\Hypertarget{i2c__bus_8c_a2f7c6941bc9e7301ec97f693d749e83f}\index{i2c\_bus.c@{i2c\_bus.c}!I2C\_BUS\_RETRY\_DELAY\_US@{I2C\_BUS\_RETRY\_DELAY\_US}}
+\index{I2C\_BUS\_RETRY\_DELAY\_US@{I2C\_BUS\_RETRY\_DELAY\_US}!i2c\_bus.c@{i2c\_bus.c}}
+\doxysubsubsection{\texorpdfstring{I2C\_BUS\_RETRY\_DELAY\_US}{I2C\_BUS\_RETRY\_DELAY\_US}}
+{\footnotesize\ttfamily \label{i2c__bus_8c_a2f7c6941bc9e7301ec97f693d749e83f} 
+\#define I2\+C\+\_\+\+BUS\+\_\+\+RETRY\+\_\+\+DELAY\+\_\+\+US~500u}
+
+\Hypertarget{i2c__bus_8c_a44e1cdc7f6367e932b77785087f86076}\index{i2c\_bus.c@{i2c\_bus.c}!I2C\_BUS\_TIMEOUT\_US@{I2C\_BUS\_TIMEOUT\_US}}
+\index{I2C\_BUS\_TIMEOUT\_US@{I2C\_BUS\_TIMEOUT\_US}!i2c\_bus.c@{i2c\_bus.c}}
+\doxysubsubsection{\texorpdfstring{I2C\_BUS\_TIMEOUT\_US}{I2C\_BUS\_TIMEOUT\_US}}
+{\footnotesize\ttfamily \label{i2c__bus_8c_a44e1cdc7f6367e932b77785087f86076} 
+\#define I2\+C\+\_\+\+BUS\+\_\+\+TIMEOUT\+\_\+\+US~50000u}
+
+\Hypertarget{i2c__bus_8c_af7109346b238b51a62683d0ca007198f}\index{i2c\_bus.c@{i2c\_bus.c}!I2C\_LOCK\_WARN\_MS@{I2C\_LOCK\_WARN\_MS}}
+\index{I2C\_LOCK\_WARN\_MS@{I2C\_LOCK\_WARN\_MS}!i2c\_bus.c@{i2c\_bus.c}}
+\doxysubsubsection{\texorpdfstring{I2C\_LOCK\_WARN\_MS}{I2C\_LOCK\_WARN\_MS}}
+{\footnotesize\ttfamily \label{i2c__bus_8c_af7109346b238b51a62683d0ca007198f} 
+\#define I2\+C\+\_\+\+LOCK\+\_\+\+WARN\+\_\+\+MS~5}
+
+\Hypertarget{i2c__bus_8c_aa450dc03166d9b6c9403ad9dec7b5730}\index{i2c\_bus.c@{i2c\_bus.c}!I2C\_TRACE\_ADDR\_FILTER@{I2C\_TRACE\_ADDR\_FILTER}}
+\index{I2C\_TRACE\_ADDR\_FILTER@{I2C\_TRACE\_ADDR\_FILTER}!i2c\_bus.c@{i2c\_bus.c}}
+\doxysubsubsection{\texorpdfstring{I2C\_TRACE\_ADDR\_FILTER}{I2C\_TRACE\_ADDR\_FILTER}}
+{\footnotesize\ttfamily \label{i2c__bus_8c_aa450dc03166d9b6c9403ad9dec7b5730} 
+\#define I2\+C\+\_\+\+TRACE\+\_\+\+ADDR\+\_\+\+FILTER~0x21 /\texorpdfstring{$\ast$}{*} Display MCP only \texorpdfstring{$\ast$}{*}/}
+
+
+
+Only trace transactions to these addresses (0 = all). 
+
+\Hypertarget{i2c__bus_8c_ae74c39b6bfcfe4d904094015a7837b58}\index{i2c\_bus.c@{i2c\_bus.c}!I2C\_TRACE\_I2C0@{I2C\_TRACE\_I2C0}}
+\index{I2C\_TRACE\_I2C0@{I2C\_TRACE\_I2C0}!i2c\_bus.c@{i2c\_bus.c}}
+\doxysubsubsection{\texorpdfstring{I2C\_TRACE\_I2C0}{I2C\_TRACE\_I2C0}}
+{\footnotesize\ttfamily \label{i2c__bus_8c_ae74c39b6bfcfe4d904094015a7837b58} 
+\#define I2\+C\+\_\+\+TRACE\+\_\+\+I2\+C0~1}
+
+
+
+Enable I2\+C0 transaction tracing for debugging. 
+
+
+
+\label{doc-enum-members}
+\Hypertarget{i2c__bus_8c_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{i2c__bus_8c_aa10597e57fac67ce9b7ab1fec041df5b}\index{i2c\_bus.c@{i2c\_bus.c}!i2c\_op\_t@{i2c\_op\_t}}
+\index{i2c\_op\_t@{i2c\_op\_t}!i2c\_bus.c@{i2c\_bus.c}}
+\doxysubsubsection{\texorpdfstring{i2c\_op\_t}{i2c\_op\_t}}
+{\footnotesize\ttfamily \label{i2c__bus_8c_aa10597e57fac67ce9b7ab1fec041df5b} 
+enum \mbox{\hyperlink{i2c__bus_8c_aa10597e57fac67ce9b7ab1fec041df5b}{i2c\+\_\+op\+\_\+t}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{I2C\_OP\_WRITE@{I2C\_OP\_WRITE}!i2c\_bus.c@{i2c\_bus.c}}\index{i2c\_bus.c@{i2c\_bus.c}!I2C\_OP\_WRITE@{I2C\_OP\_WRITE}}}\Hypertarget{i2c__bus_8c_aa10597e57fac67ce9b7ab1fec041df5ba55787d8a93087aac9dcc1b3e197f5f0c}\label{i2c__bus_8c_aa10597e57fac67ce9b7ab1fec041df5ba55787d8a93087aac9dcc1b3e197f5f0c} 
+I2\+C\+\_\+\+OP\+\_\+\+WRITE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{I2C\_OP\_READ@{I2C\_OP\_READ}!i2c\_bus.c@{i2c\_bus.c}}\index{i2c\_bus.c@{i2c\_bus.c}!I2C\_OP\_READ@{I2C\_OP\_READ}}}\Hypertarget{i2c__bus_8c_aa10597e57fac67ce9b7ab1fec041df5ba65d7d692988bb18636bf09290df953ed}\label{i2c__bus_8c_aa10597e57fac67ce9b7ab1fec041df5ba65d7d692988bb18636bf09290df953ed} 
+I2\+C\+\_\+\+OP\+\_\+\+READ&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{I2C\_OP\_WRITE\_READ@{I2C\_OP\_WRITE\_READ}!i2c\_bus.c@{i2c\_bus.c}}\index{i2c\_bus.c@{i2c\_bus.c}!I2C\_OP\_WRITE\_READ@{I2C\_OP\_WRITE\_READ}}}\Hypertarget{i2c__bus_8c_aa10597e57fac67ce9b7ab1fec041df5ba5a06eac915d65e86571c72ca44368186}\label{i2c__bus_8c_aa10597e57fac67ce9b7ab1fec041df5ba5a06eac915d65e86571c72ca44368186} 
+I2\+C\+\_\+\+OP\+\_\+\+WRITE\+\_\+\+READ&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{i2c__bus_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{i2c__bus_8c_a1ebc752812bef8ea35845f0b4eb80217}\index{i2c\_bus.c@{i2c\_bus.c}!i2c\_bus\_diag\_log@{i2c\_bus\_diag\_log}}
+\index{i2c\_bus\_diag\_log@{i2c\_bus\_diag\_log}!i2c\_bus.c@{i2c\_bus.c}}
+\doxysubsubsection{\texorpdfstring{i2c\_bus\_diag\_log()}{i2c\_bus\_diag\_log()}}
+{\footnotesize\ttfamily \label{i2c__bus_8c_a1ebc752812bef8ea35845f0b4eb80217} 
+void i2c\+\_\+bus\+\_\+diag\+\_\+log (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{op}{, }\item[{i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}}]{i2c}{, }\item[{uint8\+\_\+t}]{addr}{, }\item[{uint8\+\_\+t}]{reg}{, }\item[{int}]{result}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{i2c__bus_8c_a1ebc752812bef8ea35845f0b4eb80217_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{i2c__bus_8c_afbaa64f79bdd1fa39c8fa5b7a9c2717b}\index{i2c\_bus.c@{i2c\_bus.c}!i2c\_bus\_submit\_simple@{i2c\_bus\_submit\_simple}}
+\index{i2c\_bus\_submit\_simple@{i2c\_bus\_submit\_simple}!i2c\_bus.c@{i2c\_bus.c}}
+\doxysubsubsection{\texorpdfstring{i2c\_bus\_submit\_simple()}{i2c\_bus\_submit\_simple()}}
+{\footnotesize\ttfamily \label{i2c__bus_8c_afbaa64f79bdd1fa39c8fa5b7a9c2717b} 
+int i2c\+\_\+bus\+\_\+submit\+\_\+simple (\begin{DoxyParamCaption}\item[{i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}}]{i2c}{, }\item[{uint8\+\_\+t}]{addr}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{size\+\_\+t}]{len}{, }\item[{bool}]{nostop}{, }\item[{uint32\+\_\+t}]{timeout\+\_\+us}{, }\item[{bool}]{is\+\_\+read}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{i2c__bus_8c_afbaa64f79bdd1fa39c8fa5b7a9c2717b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{i2c__bus_8c_a569aca00fd6bd9b5430616a494b4f141}\index{i2c\_bus.c@{i2c\_bus.c}!i2c\_bus\_submit\_write\_read@{i2c\_bus\_submit\_write\_read}}
+\index{i2c\_bus\_submit\_write\_read@{i2c\_bus\_submit\_write\_read}!i2c\_bus.c@{i2c\_bus.c}}
+\doxysubsubsection{\texorpdfstring{i2c\_bus\_submit\_write\_read()}{i2c\_bus\_submit\_write\_read()}}
+{\footnotesize\ttfamily \label{i2c__bus_8c_a569aca00fd6bd9b5430616a494b4f141} 
+int i2c\+\_\+bus\+\_\+submit\+\_\+write\+\_\+read (\begin{DoxyParamCaption}\item[{i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}}]{i2c}{, }\item[{uint8\+\_\+t}]{addr}{, }\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{wbuf}{, }\item[{size\+\_\+t}]{wlen}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{rbuf}{, }\item[{size\+\_\+t}]{rlen}{, }\item[{uint32\+\_\+t}]{timeout\+\_\+us}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{i2c__bus_8c_a569aca00fd6bd9b5430616a494b4f141_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{i2c__bus_8c_a85d0ad3cfc81f9c7d92057fdd385d438}\index{i2c\_bus.c@{i2c\_bus.c}!i2c\_bus\_task@{i2c\_bus\_task}}
+\index{i2c\_bus\_task@{i2c\_bus\_task}!i2c\_bus.c@{i2c\_bus.c}}
+\doxysubsubsection{\texorpdfstring{i2c\_bus\_task()}{i2c\_bus\_task()}}
+{\footnotesize\ttfamily \label{i2c__bus_8c_a85d0ad3cfc81f9c7d92057fdd385d438} 
+void i2c\+\_\+bus\+\_\+task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{arg}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=272pt]{i2c__bus_8c_a85d0ad3cfc81f9c7d92057fdd385d438_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{i2c__bus_8c_a85d0ad3cfc81f9c7d92057fdd385d438_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{i2c__bus_8c_ae100fae6a0e784df2c8a601c9df58947}\index{i2c\_bus.c@{i2c\_bus.c}!select\_mutex@{select\_mutex}}
+\index{select\_mutex@{select\_mutex}!i2c\_bus.c@{i2c\_bus.c}}
+\doxysubsubsection{\texorpdfstring{select\_mutex()}{select\_mutex()}}
+{\footnotesize\ttfamily \label{i2c__bus_8c_ae100fae6a0e784df2c8a601c9df58947} 
+Semaphore\+Handle\+\_\+t \texorpdfstring{$\ast$}{*} select\+\_\+mutex (\begin{DoxyParamCaption}\item[{i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}}]{i2c}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=276pt]{i2c__bus_8c_ae100fae6a0e784df2c8a601c9df58947_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{i2c__bus_8c_a190f3a662c3c5a54b4aa02a76d6a3b0c}\index{i2c\_bus.c@{i2c\_bus.c}!trace\_i2c\_read@{trace\_i2c\_read}}
+\index{trace\_i2c\_read@{trace\_i2c\_read}!i2c\_bus.c@{i2c\_bus.c}}
+\doxysubsubsection{\texorpdfstring{trace\_i2c\_read()}{trace\_i2c\_read()}}
+{\footnotesize\ttfamily \label{i2c__bus_8c_a190f3a662c3c5a54b4aa02a76d6a3b0c} 
+void trace\+\_\+i2c\+\_\+read (\begin{DoxyParamCaption}\item[{i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}}]{i2c}{, }\item[{uint8\+\_\+t}]{addr}{, }\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{size\+\_\+t}]{len}{, }\item[{int}]{result}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Log an I2C read transaction for debugging. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{i2c__bus_8c_a190f3a662c3c5a54b4aa02a76d6a3b0c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{i2c__bus_8c_a6d7fcd61b1d45be7a35ad0ecf0db2613}\index{i2c\_bus.c@{i2c\_bus.c}!trace\_i2c\_write@{trace\_i2c\_write}}
+\index{trace\_i2c\_write@{trace\_i2c\_write}!i2c\_bus.c@{i2c\_bus.c}}
+\doxysubsubsection{\texorpdfstring{trace\_i2c\_write()}{trace\_i2c\_write()}}
+{\footnotesize\ttfamily \label{i2c__bus_8c_a6d7fcd61b1d45be7a35ad0ecf0db2613} 
+void trace\+\_\+i2c\+\_\+write (\begin{DoxyParamCaption}\item[{i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}}]{i2c}{, }\item[{uint8\+\_\+t}]{addr}{, }\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buf}{, }\item[{size\+\_\+t}]{len}{, }\item[{int}]{result}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Log an I2C write transaction for debugging. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{i2c__bus_8c_a6d7fcd61b1d45be7a35ad0ecf0db2613_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{i2c__bus_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{i2c__bus_8c_a543bd45eb07d5d1458b1cceaca9e403d}\index{i2c\_bus.c@{i2c\_bus.c}!s\_bus\_task@{s\_bus\_task}}
+\index{s\_bus\_task@{s\_bus\_task}!i2c\_bus.c@{i2c\_bus.c}}
+\doxysubsubsection{\texorpdfstring{s\_bus\_task}{s\_bus\_task}}
+{\footnotesize\ttfamily \label{i2c__bus_8c_a543bd45eb07d5d1458b1cceaca9e403d} 
+Task\+Handle\+\_\+t s\+\_\+bus\+\_\+task = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{i2c__bus_8c_a01231e1d3e3327aac0e060c59b9e16eb}\index{i2c\_bus.c@{i2c\_bus.c}!s\_i2c\_lock\_tick@{s\_i2c\_lock\_tick}}
+\index{s\_i2c\_lock\_tick@{s\_i2c\_lock\_tick}!i2c\_bus.c@{i2c\_bus.c}}
+\doxysubsubsection{\texorpdfstring{s\_i2c\_lock\_tick}{s\_i2c\_lock\_tick}}
+{\footnotesize\ttfamily \label{i2c__bus_8c_a01231e1d3e3327aac0e060c59b9e16eb} 
+Tick\+Type\+\_\+t s\+\_\+i2c\+\_\+lock\+\_\+tick = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{i2c__bus_8c_aa82a5d57873062b4aa3e18bc1378b001}\index{i2c\_bus.c@{i2c\_bus.c}!s\_i2c\_mutex@{s\_i2c\_mutex}}
+\index{s\_i2c\_mutex@{s\_i2c\_mutex}!i2c\_bus.c@{i2c\_bus.c}}
+\doxysubsubsection{\texorpdfstring{s\_i2c\_mutex}{s\_i2c\_mutex}}
+{\footnotesize\ttfamily \label{i2c__bus_8c_aa82a5d57873062b4aa3e18bc1378b001} 
+Semaphore\+Handle\+\_\+t s\+\_\+i2c\+\_\+mutex = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{i2c__bus_8c_ab3356050b65ea22060377fca86575643}\index{i2c\_bus.c@{i2c\_bus.c}!s\_i2c\_owner@{s\_i2c\_owner}}
+\index{s\_i2c\_owner@{s\_i2c\_owner}!i2c\_bus.c@{i2c\_bus.c}}
+\doxysubsubsection{\texorpdfstring{s\_i2c\_owner}{s\_i2c\_owner}}
+{\footnotesize\ttfamily \label{i2c__bus_8c_ab3356050b65ea22060377fca86575643} 
+Task\+Handle\+\_\+t s\+\_\+i2c\+\_\+owner = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{i2c__bus_8c_a84632f03f220d35239e676b4e5e2eecf}\index{i2c\_bus.c@{i2c\_bus.c}!s\_i2cq@{s\_i2cq}}
+\index{s\_i2cq@{s\_i2cq}!i2c\_bus.c@{i2c\_bus.c}}
+\doxysubsubsection{\texorpdfstring{s\_i2cq}{s\_i2cq}}
+{\footnotesize\ttfamily \label{i2c__bus_8c_a84632f03f220d35239e676b4e5e2eecf} 
+Queue\+Handle\+\_\+t s\+\_\+i2cq = NULL\hspace{0.3cm}{\ttfamily [static]}}
+

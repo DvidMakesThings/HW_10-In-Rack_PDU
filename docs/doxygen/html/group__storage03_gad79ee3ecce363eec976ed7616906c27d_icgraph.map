@@ -1,0 +1,39 @@
+<map id="DeviceIdentity_Get" name="DeviceIdentity_Get">
+<area shape="rect" id="Node000001" title="Get pointer to the device identity RAM cache." alt="" coords="1322,119,1455,145"/>
+<area shape="rect" id="Node000002" href="$_console_task_8c.html#a2fdaee030ce7c670740397a7853d0159" title="Print system information and health telemetry to the console." alt="" coords="991,49,1087,76"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1349,114,1313,97,1273,84,1224,74,1175,68,1087,64,1087,59,1175,63,1225,69,1275,79,1315,92,1351,109"/>
+<area shape="rect" id="Node000006" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="311,61,378,88"/>
+<area shape="poly" id="edge14_Node000001_Node000006" title=" " alt="" coords="1358,111,1319,83,1273,57,1210,32,1160,17,1108,10,1040,8,659,8,579,14,502,29,432,48,380,65,378,60,431,43,500,24,579,9,659,3,1040,3,1108,5,1161,12,1212,27,1275,52,1322,78,1362,107"/>
+<area shape="rect" id="Node000009" href="$snmp__custom_8c.html#a764866ca5f6acdc9e1dc7a6a7e0b3034" title="SNMP getter for device serial number." alt="" coords="1177,93,1264,120"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1306,122,1264,116,1264,111,1307,117"/>
+<area shape="rect" id="Node000010" href="$group__webui05.html#gac088630081f9ab2535ccd751fdfaaad7" title="Handle GET /api/settings and return configuration as JSON." alt="" coords="971,195,1107,221"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="1350,155,1314,171,1275,185,1188,202,1108,209,1107,204,1187,196,1273,180,1312,167,1348,150"/>
+<area shape="rect" id="Node000014" href="$provisioning__commands_8c.html#a97bf2d4d55aef376104d20be24726f3f" title="Handle PROV STATUS command." alt="" coords="1176,144,1265,171"/>
+<area shape="poly" id="edge15_Node000001_Node000014" title=" " alt="" coords="1307,147,1266,153,1265,148,1306,142"/>
+<area shape="rect" id="Node000016" href="$metrics__handler_8c.html#aa1bfbf45c38a0802fc8ca3ea2d9e5ce7" title="Render OpenMetrics exposition format to static buffer." alt="" coords="1167,245,1274,272"/>
+<area shape="poly" id="edge18_Node000001_Node000016" title=" " alt="" coords="1363,158,1276,229,1248,247,1245,242,1272,225,1359,154"/>
+<area shape="rect" id="Node000003" href="$_console_task_8c.html#a2d3b7ff8346f8d10aa45609664940712" title="Parse and dispatch command line to handler function." alt="" coords="774,61,909,88"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="976,69,910,73,909,68,976,64"/>
+<area shape="rect" id="Node000004" href="$_console_task_8c.html#a216857df22446940ad58d505886b0d7c" title="Main console task function." alt="" coords="612,61,709,88"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="759,77,710,77,710,72,759,72"/>
+<area shape="rect" id="Node000005" href="$group__tasks02.html#gad45ca7c142e8c2764d52b3d554ffcdeb" title="Initialize and start the console task." alt="" coords="426,61,549,88"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="596,77,549,77,549,72,596,72"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="411,77,379,77,379,72,411,72"/>
+<area shape="rect" id="Node000007" href="$group__tasks04.html#ga8a8abeda7232f47559b8683414202508" title="Create and start the InitTask at highest priority." alt="" coords="150,61,263,88"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="295,77,263,77,263,72,295,72"/>
+<area shape="rect" id="Node000008" href="$group__main01.html#gae3fa85d0ce445e937670de85f9af490a" title="Global variable to trigger BOOTSEL mode." alt="" coords="5,61,102,88"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="134,77,102,77,102,72,134,72"/>
+<area shape="rect" id="Node000011" href="$group__webui02.html#ga52702a4dcaff4540a9ddd10e4d5f4525" title="Process incoming HTTP connections and route requests." alt="" coords="772,195,911,221"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="956,211,911,211,911,205,956,205"/>
+<area shape="rect" id="Node000012" href="$_net_task_8c.html#a80f30ff31d5f0d4f6696af42d015bce6" title="Network task main function." alt="" coords="597,188,724,215"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="757,208,724,206,725,201,757,202"/>
+<area shape="rect" id="Node000013" href="$group__tasks07.html#ga3bb13f092e9d7a8e15776e5e8bf8e8c3" title="Create and start the Network Task with a deterministic enable gate." alt="" coords="440,137,535,164"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="597,186,535,167,536,162,598,180"/>
+<area shape="poly" id="edge13_Node000013_Node000006" title=" " alt="" coords="446,132,370,91,373,86,448,127"/>
+<area shape="rect" id="Node000015" href="$group__tasks09.html#ga20d378f18cee6529bae6a4ec665fe155" title="Main PROV command dispatcher and help provider." alt="" coords="1000,121,1078,148"/>
+<area shape="poly" id="edge16_Node000014_Node000015" title=" " alt="" coords="1160,153,1078,142,1079,137,1160,147"/>
+<area shape="poly" id="edge17_Node000015_Node000003" title=" " alt="" coords="984,121,887,91,889,86,985,116"/>
+<area shape="rect" id="Node000017" href="$group__webui03.html#gad0f01d3921a7ce18c26c85f120a43411" title="Handle HTTP GET request to /metrics endpoint." alt="" coords="959,245,1119,272"/>
+<area shape="poly" id="edge19_Node000016_Node000017" title=" " alt="" coords="1151,261,1119,261,1119,256,1151,256"/>
+<area shape="poly" id="edge20_Node000017_Node000011" title=" " alt="" coords="968,243,896,225,897,219,970,238"/>
+</map>

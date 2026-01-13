@@ -1,0 +1,23 @@
+<map id="ocp_read_status" name="ocp_read_status">
+<area shape="rect" id="Node000001" title="Read overcurrent protection status snapshot." alt="" coords="309,233,426,260"/>
+<area shape="rect" id="Node000002" href="$group__snmp04.html#gad078fc7ee62f370b56ba305985db7faf" title="SNMP getter for OCP critical threshold [A]." alt="" coords="12,5,254,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="357,219,345,179,325,132,297,85,279,64,259,46,240,35,242,30,262,42,283,60,301,82,330,130,350,178,362,218"/>
+<area shape="rect" id="Node000003" href="$group__snmp04.html#gad08889d91475184951158037ae7988e3" title="SNMP getter for last trip timestamp in milliseconds since boot." alt="" coords="47,56,219,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="353,221,317,157,291,124,259,97,218,80,220,75,262,92,295,120,322,154,357,218"/>
+<area shape="rect" id="Node000004" href="$group__snmp04.html#ga4f79c8b9c7d28d59cff221808b47f082" title="SNMP getter for last tripped channel." alt="" coords="33,107,233,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="345,223,308,183,285,164,259,148,232,136,234,131,262,143,288,160,312,179,349,219"/>
+<area shape="rect" id="Node000005" href="$group__snmp04.html#gab7ffa6c94b3c4085b6ceb7fec2b08723" title="SNMP getter for configured OCP current limit [A]." alt="" coords="71,157,195,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="327,228,260,199,195,182,196,177,262,193,329,223"/>
+<area shape="rect" id="Node000006" href="$group__snmp04.html#ga298c0c01b328703f6ab782a3aefdb475" title="SNMP getter for OCP recovery threshold [A]." alt="" coords="5,208,261,235"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="293,241,261,238,261,233,293,236"/>
+<area shape="rect" id="Node000007" href="$group__snmp04.html#gac66c88289a827019e9d7d2fd52c8a25d" title="SNMP getter for overcurrent protection state." alt="" coords="75,259,191,285"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="293,257,191,268,191,263,293,252"/>
+<area shape="rect" id="Node000008" href="$group__snmp04.html#ga397cba4cff16c21da10f1da4a86235d2" title="SNMP getter for switching&#45;allowed flag." alt="" coords="21,309,245,336"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="329,270,262,300,220,311,218,306,260,295,327,265"/>
+<area shape="rect" id="Node000009" href="$group__snmp04.html#gac64f180957717b1f72f3bb0d46657f7c" title="SNMP getter for total measured current across all outlets [A]." alt="" coords="30,360,236,387"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="349,274,312,314,288,334,262,350,234,362,232,357,259,346,285,330,308,310,345,270"/>
+<area shape="rect" id="Node000010" href="$group__snmp04.html#gaeb4bf92301309e943f28678b8a92cadb" title="SNMP getter for OCP trip count since boot." alt="" coords="53,411,213,437"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="357,275,322,339,295,373,262,401,239,413,214,420,213,415,237,408,259,396,291,369,317,336,353,273"/>
+<area shape="rect" id="Node000011" href="$group__snmp04.html#ga59836958c7dde04d045c218bc4bfa82c" title="SNMP getter for OCP warning threshold [A]." alt="" coords="10,461,256,488"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="362,276,350,316,330,364,301,411,283,433,262,451,242,463,240,459,259,447,279,429,297,408,325,361,345,314,357,274"/>
+</map>

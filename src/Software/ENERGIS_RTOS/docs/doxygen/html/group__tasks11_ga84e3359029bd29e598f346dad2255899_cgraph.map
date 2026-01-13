@@ -1,0 +1,17 @@
+<map id="Switch_GetState" name="Switch_GetState">
+<area shape="rect" id="Node000001" title="Get current relay channel state from hardware." alt="" coords="5,81,126,108"/>
+<area shape="rect" id="Node000002" href="$_switch_task_8c.html#a2a7f01bd659f5eea0a4a131d8c57c207" title=" " alt="" coords="202,5,248,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,78,187,33,189,38,97,83"/>
+<area shape="rect" id="Node000003" href="$group__drivers06.html#ga2e6de484edec28d8c39620a364ce5b92" title="Read a logic level from a pin." alt="" coords="174,56,276,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="126,82,158,77,159,82,126,88"/>
+<area shape="rect" id="Node000007" href="$group__drivers06.html#ga6568742c79ce5190216e5185238229ba" title="Get relay MCP23017 device context." alt="" coords="184,107,266,133"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="126,102,169,108,168,114,126,107"/>
+<area shape="rect" id="Node000008" href="$_switch_task_8c.html#abb7cc7eb4e959fda6a43c8dd85f20090" title=" " alt="" coords="195,157,254,184"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="97,106,182,148,180,153,94,111"/>
+<area shape="rect" id="Node000004" href="$group__drivers05.html#ga0e406d50e8948e593649a11c729acd9b" title="Read 8&#45;bit register: write [reg] (no stop), then read 1 byte." alt="" coords="324,56,454,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="276,67,309,67,309,72,276,72"/>
+<area shape="rect" id="Node000005" href="$i2c__bus_8c.html#a1ebc752812bef8ea35845f0b4eb80217" title=" " alt="" coords="531,31,653,57"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="455,59,515,51,516,56,455,64"/>
+<area shape="rect" id="Node000006" href="$i2c__bus_8c.html#a569aca00fd6bd9b5430616a494b4f141" title=" " alt="" coords="502,81,682,108"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="455,75,487,79,487,84,455,80"/>
+</map>

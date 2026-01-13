@@ -1,0 +1,122 @@
+<map id="mcp_display" name="mcp_display">
+<area shape="rect" id="Node000001" title="Get display MCP23017 device context." alt="" coords="1634,607,1728,633"/>
+<area shape="rect" id="Node000002" href="$group__driver__button.html#ga487df05238dab6da8ad4ab2d1d8e3a4d" title="Execute long&#45;press action for SET button." alt="" coords="776,563,928,589"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1618,614,1586,611,1401,598,1217,589,928,580,928,575,1217,583,1401,592,1586,605,1619,609"/>
+<area shape="rect" id="Node000003" href="$_switch_task_8c.html#a4f736068a28c331df25cda27cb3a80c0" title=" " alt="" coords="1451,193,1586,236"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1666,593,1526,237,1531,235,1671,591"/>
+<area shape="rect" id="Node000032" href="$group__tasks09.html#gabd8f13f37bd62b267259ae2d027bda28" title="Set single relay channel state with verification." alt="" coords="1019,385,1155,412"/>
+<area shape="poly" id="edge31_Node000001_Node000032" title=" " alt="" coords="1644,601,1585,569,1462,519,1338,475,1139,415,1141,410,1339,470,1464,514,1587,564,1646,596"/>
+<area shape="rect" id="Node000051" href="$group__tasks09.html#ga4531b6b0fc77db5d8d96d7ab477361ae" title="Set NETWORK LINK LED on display MCP." alt="" coords="1022,816,1152,843"/>
+<area shape="poly" id="edge44_Node000001_Node000051" title=" " alt="" coords="1627,641,1129,818,1127,813,1626,636"/>
+<area shape="rect" id="Node000056" href="$group__tasks09.html#gaab4189cd5d61b2c583d85150b87147ad" title="Set FAULT LED on display MCP." alt="" coords="1018,632,1156,659"/>
+<area shape="poly" id="edge54_Node000001_Node000056" title=" " alt="" coords="1618,625,1157,645,1157,640,1618,620"/>
+<area shape="rect" id="Node000058" href="$group__tasks09.html#ga2777a225e3f0db8b4d227771b78a2532" title="Set POWER GOOD LED on display MCP." alt="" coords="1021,867,1153,893"/>
+<area shape="poly" id="edge61_Node000001_Node000058" title=" " alt="" coords="1658,647,1626,677,1587,706,1533,738,1474,767,1355,814,1244,848,1154,870,1153,865,1243,843,1354,809,1472,762,1530,734,1585,702,1623,673,1655,643"/>
+<area shape="rect" id="Node000004" href="$group__tasks09.html#ga6d7e4669c03c8bd5f6e47e4166627c2b" title="Turn all relay channels OFF with verification." alt="" coords="1037,63,1137,89"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1477,186,1442,162,1402,141,1332,117,1260,100,1137,82,1138,77,1261,95,1333,112,1404,136,1444,157,1480,182"/>
+<area shape="rect" id="Node000018" href="$group__tasks09.html#ga5d472b53fb4a91dee92b07282779b570" title="Turn all relay channels ON with verification." alt="" coords="1260,201,1361,228"/>
+<area shape="poly" id="edge14_Node000003_Node000018" title=" " alt="" coords="1435,217,1361,217,1361,212,1435,212"/>
+<area shape="rect" id="Node000021" href="$group__tasks09.html#gac03ed713c1c6d4402e28852482171290" title="Set multiple channels via bitmask with verification." alt="" coords="1250,252,1371,279"/>
+<area shape="poly" id="edge17_Node000003_Node000021" title=" " alt="" coords="1436,237,1369,254,1368,249,1435,232"/>
+<area shape="rect" id="Node000031" href="$group__tasks09.html#gabc5e948e23445e07eb03320a0c518c4f" title="Force synchronization of cache from hardware." alt="" coords="1218,151,1403,177"/>
+<area shape="poly" id="edge30_Node000003_Node000031" title=" " alt="" coords="1435,197,1368,181,1369,175,1436,192"/>
+<area shape="rect" id="Node000005" href="$_o_c_p_8c.html#ae8d60a50e6a32ee1f355ee379407a4c9" title="Execute overcurrent trip action." alt="" coords="806,208,898,235"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1052,100,877,210,874,205,1050,96"/>
+<area shape="rect" id="Node000012" href="$group__tasks09.html#gae3abe0a8fcbfd0f0f5659784f8529d0a" title="Legacy wrapper for Switch_AllOff." alt="" coords="779,5,925,32"/>
+<area shape="poly" id="edge7_Node000004_Node000012" title=" " alt="" coords="1021,63,909,35,910,30,1023,58"/>
+<area shape="rect" id="Node000014" href="$power__mgr_8c.html#acf3f068b9c2b4714ec8b7b1eb2eff1e9" title="Disable all relay outputs using SwitchTask API." alt="" coords="789,56,915,83"/>
+<area shape="poly" id="edge9_Node000004_Node000014" title=" " alt="" coords="1021,77,915,74,915,68,1021,71"/>
+<area shape="rect" id="Node000006" href="$group__tasks10.html#gabb9789239f4931927587b1b236b1e315" title="Update the overcurrent state machine using a new total current sample." alt="" coords="539,208,677,235"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="790,224,678,224,678,219,790,219"/>
+<area shape="rect" id="Node000007" href="$_meter_task_8c.html#addb3656d7dd28b5f2537e286d9da7b66" title="Main Meter Task loop." alt="" coords="346,208,463,235"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="523,224,464,224,464,219,523,219"/>
+<area shape="rect" id="Node000013" href="$group__snmp03.html#gaa9d7ab1af4a671e1eb027aab9c6c467f" title="SNMP setter for All OFF bulk operation." alt="" coords="551,5,665,32"/>
+<area shape="poly" id="edge8_Node000012_Node000013" title=" " alt="" coords="763,21,666,21,666,16,763,16"/>
+<area shape="rect" id="Node000015" href="$group__misc4.html#ga40de5935f9ba85f9141a9243b4d02c87" title="Enter standby mode." alt="" coords="536,664,680,691"/>
+<area shape="poly" id="edge10_Node000014_Node000015" title=" " alt="" coords="775,79,761,86,750,96,737,117,728,142,720,208,721,287,726,373,731,458,732,538,724,605,715,632,702,654,682,669,679,665,698,650,710,630,719,604,727,538,726,459,720,373,715,287,715,208,723,141,732,114,746,93,758,82,773,74"/>
+<area shape="rect" id="Node000016" href="$_button_task_8c.html#ac8adec5c9e99b51c4884034cf2e41275" title="Main button scanning and event processing task." alt="" coords="358,740,452,767"/>
+<area shape="poly" id="edge11_Node000015_Node000016" title=" " alt="" coords="553,699,517,712,441,742,439,737,515,707,551,694"/>
+<area shape="rect" id="Node000017" href="$group__tasks02.html#ga66ab3f6fa24432c008c6ea7b0ccddb5f" title="Initialize and start the button handling task." alt="" coords="151,867,263,893"/>
+<area shape="poly" id="edge12_Node000016_Node000017" title=" " alt="" coords="371,778,231,868,228,864,368,773"/>
+<area shape="rect" id="Node000009" href="$_init_task_8c.html#ad718429ab806319601819907a5ef51ac" title="InitTask main routine that performs the full bring&#45;alive sequence." alt="" coords="5,892,73,919"/>
+<area shape="poly" id="edge13_Node000017_Node000009" title=" " alt="" coords="136,893,74,903,73,898,135,888"/>
+<area shape="rect" id="Node000019" href="$group__tasks09.html#ga535deab4f947688ac90e48d7b6089f37" title="Legacy wrapper for Switch_AllOn." alt="" coords="1014,157,1160,184"/>
+<area shape="poly" id="edge15_Node000018_Node000019" title=" " alt="" coords="1245,205,1158,187,1159,182,1246,199"/>
+<area shape="rect" id="Node000020" href="$group__snmp03.html#ga2f6d66138053f23ba063a2a22ffb91c6" title="SNMP setter for All ON bulk operation." alt="" coords="795,107,909,133"/>
+<area shape="poly" id="edge16_Node000019_Node000020" title=" " alt="" coords="1006,156,909,135,910,130,1007,151"/>
+<area shape="rect" id="Node000022" href="$group__tasks09.html#gabb0de987436db6762211cd48049c73f5" title="Legacy wrapper for Switch_SetMask." alt="" coords="1004,303,1170,329"/>
+<area shape="poly" id="edge18_Node000021_Node000022" title=" " alt="" coords="1236,285,1150,305,1149,299,1235,280"/>
+<area shape="rect" id="Node000023" href="$group__storage03.html#ga2b42208cc6b557303cf0db15e24b687b" title="Apply the specified preset&#39;s relay mask immediately." alt="" coords="1004,252,1170,279"/>
+<area shape="poly" id="edge19_Node000021_Node000023" title=" " alt="" coords="1235,268,1171,268,1171,263,1235,263"/>
+<area shape="rect" id="Node000024" href="$_init_task_8c.html#ad4e552a62b6a29e14ea997265cb7ef25" title="Apply saved relay states on startup." alt="" coords="121,487,293,513"/>
+<area shape="poly" id="edge20_Node000023_Node000024" title=" " alt="" coords="1054,245,1008,219,955,199,820,174,733,164,642,158,551,157,467,162,396,176,366,186,342,198,307,228,279,265,257,306,240,349,220,430,212,486,207,486,214,429,235,347,252,304,275,262,303,224,340,194,364,181,394,171,466,157,551,152,642,153,734,159,820,169,957,193,1011,214,1056,241"/>
+<area shape="rect" id="Node000025" href="$group__webui6.html#gaf78e3a135e8d65322fc8966722adfa76" title="Handle POST /api/apply&#45;config." alt="" coords="766,259,938,285"/>
+<area shape="poly" id="edge22_Node000023_Node000025" title=" " alt="" coords="989,271,938,272,938,267,988,265"/>
+<area shape="rect" id="Node000029" href="$group__storage03.html#ga9995f76491a71a41beba203375da42c9" title="Apply the configured startup preset, if any." alt="" coords="748,512,956,539"/>
+<area shape="poly" id="edge27_Node000023_Node000029" title=" " alt="" coords="1008,290,1006,292,988,318,981,344,981,370,983,396,986,422,985,449,977,476,958,502,942,514,939,509,954,498,972,473,980,448,981,422,978,396,975,370,976,343,984,316,1002,289,1005,286"/>
+<area shape="poly" id="edge21_Node000024_Node000009" title=" " alt="" coords="197,529,48,892,44,890,192,527"/>
+<area shape="rect" id="Node000026" href="$group__webui1.html#ga52702a4dcaff4540a9ddd10e4d5f4525" title="Process incoming HTTP connections and route requests." alt="" coords="538,309,678,336"/>
+<area shape="poly" id="edge23_Node000025_Node000026" title=" " alt="" coords="770,292,676,311,675,306,769,286"/>
+<area shape="rect" id="Node000027" href="$_net_task_8c.html#a80f30ff31d5f0d4f6696af42d015bce6" title="Network task main function." alt="" coords="341,917,468,944"/>
+<area shape="poly" id="edge24_Node000026_Node000027" title=" " alt="" coords="527,342,518,350,506,370,497,396,488,462,488,540,493,625,498,710,498,790,491,857,483,885,470,907,457,919,454,915,466,904,478,883,486,856,493,789,492,710,488,625,483,540,483,461,492,395,501,368,514,346,523,338"/>
+<area shape="rect" id="Node000028" href="$group__tasks06.html#ga3bb13f092e9d7a8e15776e5e8bf8e8c3" title="Create and start the Network Task with a deterministic enable gate." alt="" coords="159,917,254,944"/>
+<area shape="poly" id="edge25_Node000027_Node000028" title=" " alt="" coords="325,933,255,933,255,928,325,928"/>
+<area shape="poly" id="edge26_Node000028_Node000009" title=" " alt="" coords="143,924,73,913,74,908,144,919"/>
+<area shape="rect" id="Node000030" href="$group__misc4.html#gafa726e9d0fc140faa3f54c6905ac2520" title="Exit standby mode and return to normal operation." alt="" coords="540,765,676,792"/>
+<area shape="poly" id="edge28_Node000029_Node000030" title=" " alt="" coords="753,549,750,553,735,570,726,587,722,623,719,661,713,682,702,704,669,741,634,767,631,763,665,737,697,701,708,680,714,660,716,622,721,586,730,567,746,549,750,545"/>
+<area shape="poly" id="edge29_Node000030_Node000016" title=" " alt="" coords="524,771,452,762,452,756,525,766"/>
+<area shape="poly" id="edge35_Node000032_Node000005" title=" " alt="" coords="1045,379,1023,363,1002,343,986,317,980,292,972,270,954,249,927,234,898,227,899,222,929,229,958,245,977,268,985,291,991,315,1006,340,1026,359,1048,375"/>
+<area shape="rect" id="Node000033" href="$group__console__commands.html#ga7aa01a6fcc3370b20b304e73b3830318" title="Set relay channel state." alt="" coords="806,461,898,488"/>
+<area shape="poly" id="edge32_Node000032_Node000033" title=" " alt="" coords="1041,421,957,452,899,467,898,462,955,447,1039,416"/>
+<area shape="rect" id="Node000037" href="$group__webui2.html#ga204196bd085f7a778067392b56920c59" title="Handles the HTTP request for the control page (/api/control)" alt="" coords="774,309,930,336"/>
+<area shape="poly" id="edge36_Node000032_Node000037" title=" " alt="" coords="1039,381,955,351,915,339,916,334,957,345,1041,376"/>
+<area shape="rect" id="Node000038" href="$group__tasks09.html#gaef7818ff67a4d2235b897909f9fe6744" title="Legacy wrapper for Switch_SetChannel." alt="" coords="761,360,943,387"/>
+<area shape="poly" id="edge38_Node000032_Node000038" title=" " alt="" coords="1003,392,943,386,944,380,1004,387"/>
+<area shape="rect" id="Node000048" href="$group__tasks09.html#ga0dc547344c666f64e755f89d09d8b5e4" title="Toggle single relay channel with verification." alt="" coords="799,411,905,437"/>
+<area shape="poly" id="edge40_Node000032_Node000048" title=" " alt="" coords="1004,410,906,421,905,416,1003,405"/>
+<area shape="rect" id="Node000034" href="$_console_task_8c.html#a2d3b7ff8346f8d10aa45609664940712" title="Parse and dispatch command line to handler function." alt="" coords="541,613,675,640"/>
+<area shape="poly" id="edge33_Node000033_Node000034" title=" " alt="" coords="791,486,749,502,734,513,724,525,702,553,629,615,625,611,698,549,720,521,730,510,746,498,789,481"/>
+<area shape="rect" id="Node000035" href="$_console_task_8c.html#a216857df22446940ad58d505886b0d7c" title="Main console task function." alt="" coords="356,613,453,640"/>
+<area shape="poly" id="edge34_Node000034_Node000035" title=" " alt="" coords="525,629,454,629,454,624,525,624"/>
+<area shape="poly" id="edge37_Node000037_Node000026" title=" " alt="" coords="759,325,678,325,678,320,759,320"/>
+<area shape="rect" id="Node000039" href="$snmp__outlet_ctrl_8c.html#a5259faefc9f865c528fc6cfe0ec51d1b" title="Generic SNMP setter for outlet state." alt="" coords="574,360,642,387"/>
+<area shape="poly" id="edge39_Node000038_Node000039" title=" " alt="" coords="745,376,642,376,642,371,745,371"/>
+<area shape="rect" id="Node000049" href="$group__driver__button.html#gafe1594ae8ba586d579964b90a2ddd5ff" title="Execute short&#45;press action for SET button on specified channel." alt="" coords="530,512,686,539"/>
+<area shape="poly" id="edge41_Node000048_Node000049" title=" " alt="" coords="785,440,749,452,684,483,632,514,629,509,681,478,747,447,783,435"/>
+<area shape="rect" id="Node000050" href="$group__tasks09.html#ga5668cd5c93cc64bb2d551bb9ab90d610" title="Legacy wrapper for Switch_Toggle." alt="" coords="532,411,684,437"/>
+<area shape="poly" id="edge43_Node000048_Node000050" title=" " alt="" coords="783,427,684,427,684,421,783,421"/>
+<area shape="poly" id="edge42_Node000049_Node000016" title=" " alt="" coords="578,550,518,603,458,679,417,741,412,738,453,676,514,600,574,546"/>
+<area shape="poly" id="edge50_Node000051_Node000027" title=" " alt="" coords="1015,851,1006,857,991,869,983,883,974,896,957,908,916,921,862,930,728,939,586,939,469,936,469,931,586,934,728,933,861,924,915,915,955,903,970,892,978,880,987,866,1002,852,1013,847"/>
+<area shape="poly" id="edge51_Node000051_Node000030" title=" " alt="" coords="1007,828,885,820,747,807,676,795,677,790,748,801,885,815,1007,823"/>
+<area shape="rect" id="Node000052" href="$group__misc2.html#ga94392e9ee8263660e4b9065f0e6d501a" title="Apply StorageTask networkInfo into W5500 and initialize the chip." alt="" coords="772,968,932,1011"/>
+<area shape="poly" id="edge45_Node000051_Node000052" title=" " alt="" coords="1011,853,1006,857,989,879,982,902,976,927,958,951,930,970,927,965,954,947,971,924,977,901,984,877,1002,853,1008,848"/>
+<area shape="rect" id="Node000055" href="$power__mgr_8c.html#a61f31550510de9c4f3196700e41216ff" title="Disable display LEDs except PWR_LED for standby indication." alt="" coords="767,765,936,792"/>
+<area shape="poly" id="edge52_Node000051_Node000055" title=" " alt="" coords="1007,815,917,795,918,790,1008,810"/>
+<area shape="rect" id="Node000053" href="$_net_task_8c.html#ac076a1d5b76a8da4a222f9b53543a181" title="Convert StorageTask networkInfo into driver configuration and init HW." alt="" coords="522,1019,694,1045"/>
+<area shape="poly" id="edge46_Node000052_Node000053" title=" " alt="" coords="757,1009,689,1021,688,1015,756,1003"/>
+<area shape="rect" id="Node000054" href="$_net_task_8c.html#a69d051e31c6438ed93d21deb141e4795" title="Reinitialize W5500 using cached network configuration on link&#45;up." alt="" coords="533,968,683,995"/>
+<area shape="poly" id="edge48_Node000052_Node000054" title=" " alt="" coords="756,989,683,986,683,981,756,984"/>
+<area shape="poly" id="edge47_Node000053_Node000027" title=" " alt="" coords="531,1016,515,1009,462,978,421,947,424,943,465,973,518,1004,533,1011"/>
+<area shape="poly" id="edge49_Node000054_Node000027" title=" " alt="" coords="536,966,461,947,462,942,537,961"/>
+<area shape="poly" id="edge53_Node000055_Node000015" title=" " alt="" coords="803,761,641,694,643,689,805,757"/>
+<area shape="poly" id="edge55_Node000056_Node000002" title=" " alt="" coords="1032,629,955,604,913,592,914,587,957,599,1034,624"/>
+<area shape="poly" id="edge60_Node000056_Node000016" title=" " alt="" coords="1003,661,453,749,452,743,1002,656"/>
+<area shape="poly" id="edge58_Node000056_Node000034" title=" " alt="" coords="1002,653,956,655,852,659,747,655,672,643,672,638,748,649,852,653,956,649,1002,648"/>
+<area shape="poly" id="edge59_Node000056_Node000055" title=" " alt="" coords="1063,671,1016,711,957,749,912,767,910,762,955,744,1013,706,1059,667"/>
+<area shape="rect" id="Node000057" href="$group__console__commands.html#ga03fc4d00d9a82992876fb2cb87bade44" title="Clear error LED on display board." alt="" coords="807,613,896,640"/>
+<area shape="poly" id="edge56_Node000056_Node000057" title=" " alt="" coords="1003,641,897,633,897,628,1003,636"/>
+<area shape="poly" id="edge57_Node000057_Node000034" title=" " alt="" coords="792,629,675,629,675,624,792,624"/>
+<area shape="poly" id="edge70_Node000058_Node000055" title=" " alt="" coords="1021,864,1003,857,933,825,876,795,879,790,936,820,1005,852,1023,859"/>
+<area shape="rect" id="Node000059" href="$group__drivers03.html#ga443377619e6d82e31b58ffc269b64936" title="Initialize all MCP23017 devices for the ENERGIS PDU." alt="" coords="155,1019,259,1045"/>
+<area shape="poly" id="edge62_Node000058_Node000059" title=" " alt="" coords="1072,908,1026,969,994,1000,957,1025,912,1046,864,1063,766,1086,665,1095,566,1095,472,1088,386,1076,257,1048,258,1043,387,1071,472,1083,566,1090,665,1090,765,1080,863,1058,910,1041,955,1020,991,996,1022,965,1068,905"/>
+<area shape="rect" id="Node000060" href="$power__mgr_8c.html#afef33669bd179ec2e445c223bb1272a3" title="Set PWR_LED state with change tracking." alt="" coords="781,867,922,893"/>
+<area shape="poly" id="edge64_Node000058_Node000060" title=" " alt="" coords="1005,883,923,883,923,877,1005,877"/>
+<area shape="poly" id="edge63_Node000059_Node000009" title=" " alt="" coords="174,1011,57,921,60,917,177,1007"/>
+<area shape="poly" id="edge65_Node000060_Node000030" title=" " alt="" coords="775,864,746,850,731,839,722,828,712,817,698,806,672,795,675,790,701,802,716,813,726,824,735,835,749,846,777,859"/>
+<area shape="rect" id="Node000061" href="$group__misc4.html#ga83454e7bafa44edd5acce76b7aa91e0b" title="Initialize the power manager subsystem." alt="" coords="363,867,446,893"/>
+<area shape="poly" id="edge66_Node000060_Node000061" title=" " alt="" coords="766,883,447,883,447,877,766,877"/>
+<area shape="rect" id="Node000062" href="$group__misc4.html#ga0827dd667e39150cad0b7642a076d384" title="Service LED indication in RUN and STANDBY modes." alt="" coords="516,816,700,843"/>
+<area shape="poly" id="edge68_Node000060_Node000062" title=" " alt="" coords="769,866,675,846,676,841,770,860"/>
+<area shape="poly" id="edge67_Node000061_Node000017" title=" " alt="" coords="347,883,263,883,263,877,347,877"/>
+<area shape="poly" id="edge69_Node000062_Node000016" title=" " alt="" coords="536,814,515,806,432,770,434,765,517,802,538,809"/>
+</map>
