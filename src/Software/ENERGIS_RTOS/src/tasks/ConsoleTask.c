@@ -769,12 +769,18 @@ static void cmd_oc_status(char *args) {
     }
 
     ECHO("=== Overcurrent Protection Status ===\n");
-
-#if ENERGIS_EU_VERSION
-    ECHO("Region:           EU (IEC/ENEC)\n");
-#else
-    ECHO("Region:           US (UL/CSA)\n");
-#endif
+    /* Print provisioned region rather than compile-time default */
+    switch (DeviceIdentity_GetRegion()) {
+    case DEVICE_REGION_EU:
+        ECHO("Region:           EU (IEC/ENEC)\n");
+        break;
+    case DEVICE_REGION_US:
+        ECHO("Region:           US (UL/CSA)\n");
+        break;
+    default:
+        ECHO("Region:           UNKNOWN\n");
+        break;
+    }
 
     ECHO("Current Limit:    %.1f A\n", status.limit_a);
     ECHO("Warning Thresh:   %.2f A (Limit - %.2f)\n", status.warning_threshold_a,

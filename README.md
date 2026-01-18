@@ -8,8 +8,20 @@
 The **10-Inch Rack PDU (Power Distribution Unit)** is a modular power management system designed for efficient control and monitoring of power in a
 rack-mounted environment. The project includes a Main Board and a display board to handle switching and power management.
 
+
 Update 05.2025: Since lot of people said, it would be nice to have a Non-230V-Version, I started to develop
 the USB-C version of ENERGIS with USB PD Source functionality: [PDNode-600 Pro](https://github.com/DvidMakesThings/HW_PDNode-600-Pro)
+
+## ENERGIS Video Series
+
+A new ENERGIS video series is rolling out. Part 1 is live below; Parts 2–4 will follow soon.
+
+| Part | Title | Video |
+| --- | --- | :---: |
+| 1 | Overview | <a href="https://youtu.be/2Wui68LSHR0"><img src="https://img.youtube.com/vi/2Wui68LSHR0/hqdefault.jpg" alt="Watch Part 1" width="240"></a> |
+| 2 | Hardware deep dive — schematics and PCB design | Coming soon |
+| 3 | Embedded development — firmware and interfaces | Coming soon |
+| 4 | Testing and validation | Coming soon |
 
 ## Progress and news
 

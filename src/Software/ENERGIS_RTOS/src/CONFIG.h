@@ -311,7 +311,7 @@ extern w5500_NetConfig eth_netcfg;
 #endif
 
 #ifndef INFO_HEALTH
-#define INFO_HEALTH 1
+#define INFO_HEALTH 0
 #endif
 
 #ifndef PLOT_EN
