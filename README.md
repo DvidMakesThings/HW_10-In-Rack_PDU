@@ -19,9 +19,10 @@ A new ENERGIS video series is rolling out. Part 1 is live below; Parts 2–4 wil
 | Part | Title | Video |
 | --- | --- | :---: |
 | 1 | Overview | <a href="https://youtu.be/2Wui68LSHR0"><img src="https://img.youtube.com/vi/2Wui68LSHR0/hqdefault.jpg" alt="Watch Part 1" width="240"></a> |
-| 2 | Hardware deep dive — schematics and PCB design | Coming soon |
-| 3 | Embedded development — firmware and interfaces | Coming soon |
-| 4 | Testing and validation | Coming soon |
+| 2 | Hardware deep dive - The Schematics | <a href="https://youtu.be/pdoe9AGhswE"><img src="https://i.ytimg.com/vi/pdoe9AGhswE/hqdefault.jpg" alt="Watch Part 1" width="240"></a> |
+| 3 | Hardware deep dive - PCB design and Assembly | Coming soon |
+| 4 | Embedded development - firmware and interfaces | Coming soon |
+| 5 | Testing and validation | Coming soon |
 
 ## Progress and news
 

@@ -282,6 +282,14 @@ extern w5500_NetConfig eth_netcfg;
 #define LOGGER_MSG_MAX 128
 /** @} */
 
+/* ---------- ENERGY MONITORING ---------- */
+/** @name Energy Monitoring
+ * @ingroup config01
+ * @{ */
+#define NOMINAL_SHUNT 0.002f  /**< Nominal shunt resistor value in ohms. */
+#define NOMINAL_R1 1880000.0f /* 1880 kohm high-side divider */
+#define NOMINAL_R2 1000.0f    /* 1 kohm low-side divider */
+
 /** Default DHCP mode for first boot. */
 #define ENERGIS_DEFAULT_DHCP EEPROM_NETINFO_STATIC
 

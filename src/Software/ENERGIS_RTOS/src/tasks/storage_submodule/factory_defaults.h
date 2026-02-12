@@ -149,7 +149,7 @@ bool check_factory_defaults(void);
  *    - Default voltage factor (HLW8032_VF) for all 8 channels
  *    - Default current factor (HLW8032_CF) for all 8 channels
  *    - Default resistor divider values (R1=1880kΩ, R2=1kΩ)
- *    - Default shunt resistance (0.001Ω)
+ *    - Default shunt resistance (0.002Ω)
  *    - Zero offsets (0.0V, 0.0A)
  *    - Calibration flags set to 0xFF (not calibrated)
  *

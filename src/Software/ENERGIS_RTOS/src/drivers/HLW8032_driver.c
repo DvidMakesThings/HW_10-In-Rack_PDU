@@ -28,11 +28,6 @@
 
 #define HLW8032_TAG "[HLW8032]"
 
-/* =====================  Nominal Component Values  ======================== */
-#define NOMINAL_R1 1880000.0f /* 1880 kohm high-side divider */
-#define NOMINAL_R2 1000.0f    /* 1 kohm low-side divider */
-#define NOMINAL_SHUNT 0.001f  /* 1 mohm shunt resistor */
-
 /* =====================  RTOS Mutex Handle  =============================== */
 SemaphoreHandle_t uartHlwMtx = NULL;
 

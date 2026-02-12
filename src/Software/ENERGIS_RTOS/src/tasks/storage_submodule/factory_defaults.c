@@ -75,7 +75,7 @@ int EEPROM_WriteFactoryDefaults(void) {
         zero_cal.channels[i].current_factor = HLW8032_CF;
         zero_cal.channels[i].r1_actual = 1880000.0f;
         zero_cal.channels[i].r2_actual = 1000.0f;
-        zero_cal.channels[i].shunt_actual = 0.001f;
+        zero_cal.channels[i].shunt_actual = NOMINAL_SHUNT;
         zero_cal.channels[i].voltage_offset = 0.0f;
         zero_cal.channels[i].current_offset = 0.0f;
         zero_cal.channels[i].calibrated = 0xFF;
@@ -222,7 +222,7 @@ bool check_factory_defaults(void) {
                 c.current_factor = HLW8032_CF;
                 c.r1_actual = 1880000.0f;
                 c.r2_actual = 1000.0f;
-                c.shunt_actual = 0.001f;
+                c.shunt_actual = 0.002f;
                 c.voltage_offset = 0.0f;
                 c.current_offset = 0.0f;
                 c.calibrated = 0xFF;      /* not calibrated */

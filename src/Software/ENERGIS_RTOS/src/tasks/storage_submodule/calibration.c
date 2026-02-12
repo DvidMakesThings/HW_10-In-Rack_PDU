@@ -110,7 +110,7 @@ int EEPROM_ReadSensorCalibrationForChannel(uint8_t ch, hlw_calib_t *out) {
         out->current_factor = HLW8032_CF;
         out->r1_actual = 1880000.0f;
         out->r2_actual = 1000.0f;
-        out->shunt_actual = 0.001f;
+        out->shunt_actual = NOMINAL_SHUNT;
     }
     return 0;
 }

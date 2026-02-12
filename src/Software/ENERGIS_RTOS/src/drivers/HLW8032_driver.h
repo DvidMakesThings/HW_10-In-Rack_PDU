@@ -125,8 +125,12 @@
  *  @{ */
 #define HLW8032_VF 1.88f
 
-/** @brief HLW8032 nominal current calibration factor (amps) */
-#define HLW8032_CF 1.0f
+/** @brief HLW8032 nominal current calibration factor (dimensionless)
+ *
+ * Baseline assumes 1 mΩ reference shunt; scale inversely with actual shunt.
+ * For NOMINAL_SHUNT=0.002 Ω, this yields 0.5.
+ */
+#define HLW8032_CF (0.001f / NOMINAL_SHUNT)
 
 /** @brief Maximum number of bytes to read during frame sync */
 #define MAX_RX_BYTES 128

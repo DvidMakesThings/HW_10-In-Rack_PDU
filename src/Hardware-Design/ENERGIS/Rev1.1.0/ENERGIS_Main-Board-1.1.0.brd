@@ -9527,7 +9527,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <element name="J7" library="jumper" library_urn="urn:adsk.eagle:library:252" package="SJ" package3d_urn="urn:adsk.eagle:package:15471/1" value="DNI" x="39.7568" y="13.8992" smashed="yes" rot="R270">
 <attribute name="NAME" x="41.3706" y="13.771" size="1.27" layer="25" ratio="10" rot="R270"/>
 </element>
-<element name="AC/DC2" library="ds_trafo" package="IRM_15_12" package3d_urn="urn:adsk.eagle:package:47260462/2" value="IRM-10-15 " x="87.2676" y="33.0386" smashed="yes">
+<element name="AC/DC2" library="ds_trafo" package="IRM_15_12" package3d_urn="urn:adsk.eagle:package:47260462/2" value="IRM-15-12 " x="87.2676" y="33.0386" smashed="yes">
 <attribute name="DATASHEET" value="https://www.meanwell.com/Upload/PDF/IRM-15/IRM-15-SPEC.PDF" x="87.2676" y="33.0386" size="1.778" layer="27" display="off"/>
 <attribute name="DESCRIPTION" value="15W AC-DC PCB-Mount Green Power Module" x="87.2676" y="33.0386" size="1.778" layer="27" display="off"/>
 <attribute name="LCSC_PART" value="C5439799" x="87.2676" y="33.0386" size="1.778" layer="27" display="off"/>
@@ -10455,7 +10455,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="100nF 25V" x="178.592" y="19.0664" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="180.497" y="18.4314" size="1.27" layer="27" rot="R90"/>
 </element>
-<element name="R147" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="10K 1%" x="147.106" y="3.173" smashed="yes" rot="R90">
+<element name="R147" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="1K 1%" x="147.106" y="3.173" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 10kΩ 0402 Chip Resistor - Surface Mount ROHS" x="147.106" y="3.173" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="HQ_PART" value="RE0207399" x="147.106" y="3.173" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="LCSC_PART" value="C25744" x="147.106" y="3.173" size="1.778" layer="27" rot="R90" display="off"/>
@@ -10466,7 +10466,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" value="10K 1%" x="147.106" y="3.173" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="149.011" y="2.538" size="1.016" layer="27" rot="R90"/>
 </element>
-<element name="R149" library="ds_resistor" package="_0603X4-1206" package3d_urn="urn:adsk.eagle:package:49287421/2" value="3.3K 1%" x="125.0276" y="10.1948" smashed="yes" rot="R270">
+<element name="R149" library="ds_resistor" package="_0603X4-1206" package3d_urn="urn:adsk.eagle:package:49287421/2" value="DNI" x="125.0276" y="10.1948" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="4 ±1% 3.3kΩ 62.5mW ±200ppm/℃ 0603x4 Resistor Networks, Arrays ROHS " x="125.0276" y="10.1948" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="HQ_PART" value="RE0093863" x="125.0276" y="10.1948" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C1734380" x="125.0276" y="10.1948" size="1.778" layer="27" rot="R270" display="off"/>
@@ -11451,7 +11451,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="ROHS" value="YES" x="121.99" y="15.88" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="VALUE" value="DNI" x="121.99" y="15.88" size="1.778" layer="28" rot="MR180" display="off"/>
 </element>
-<element name="R130" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="3.3K 1%" x="137.58" y="9.11" smashed="yes" rot="R270">
+<element name="R130" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="1.2K 1%" x="137.58" y="9.11" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 3.3kΩ 0402 Chip Resistor - Surface Mount ROHS" x="137.58" y="9.11" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="HQ_PART" value="RE0189064" x="137.58" y="9.11" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C25890" x="137.58" y="9.11" size="1.778" layer="27" rot="R270" display="off"/>
@@ -11461,7 +11461,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="ROHS" value="YES" x="137.58" y="9.11" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="135.675" y="9.745" size="1.016" layer="27" rot="R270"/>
 </element>
-<element name="R166" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="3.3K 1%" x="139.3" y="9.1" smashed="yes" rot="R270">
+<element name="R166" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="1.2K 1%" x="139.3" y="9.1" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 3.3kΩ 0402 Chip Resistor - Surface Mount ROHS" x="139.3" y="9.1" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="HQ_PART" value="RE0189064" x="139.3" y="9.1" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C25890" x="139.3" y="9.1" size="1.778" layer="27" rot="R270" display="off"/>
@@ -11471,7 +11471,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="ROHS" value="YES" x="139.3" y="9.1" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="137.395" y="9.735" size="1.016" layer="27" rot="R270"/>
 </element>
-<element name="R167" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="3.3K 1%" x="153.26" y="22.29" smashed="yes" rot="R270">
+<element name="R167" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="1.2K 1%" x="153.26" y="22.29" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 3.3kΩ 0402 Chip Resistor - Surface Mount ROHS" x="153.26" y="22.29" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="HQ_PART" value="RE0189064" x="153.26" y="22.29" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C25890" x="153.26" y="22.29" size="1.778" layer="27" rot="R270" display="off"/>
@@ -11481,7 +11481,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="ROHS" value="YES" x="153.26" y="22.29" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="151.355" y="22.925" size="1.016" layer="27" rot="R270"/>
 </element>
-<element name="R168" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="3.3K 1%" x="155.38" y="22.3" smashed="yes" rot="R270">
+<element name="R168" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="1.2K 1%" x="155.38" y="22.3" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 3.3kΩ 0402 Chip Resistor - Surface Mount ROHS" x="155.38" y="22.3" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="HQ_PART" value="RE0189064" x="155.38" y="22.3" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LCSC_PART" value="C25890" x="155.38" y="22.3" size="1.778" layer="27" rot="R270" display="off"/>
@@ -11516,15 +11516,15 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="ROHS" value="YES" x="175.17" y="0.42" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="VALUE" x="176.44" y="-2.12" size="1.016" layer="28" rot="MR0"/>
 </element>
-<element name="R171" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="10K 1%" x="83.57" y="5.75" smashed="yes" rot="R270">
-<attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 10kΩ 0402 Chip Resistor - Surface Mount ROHS" x="83.57" y="5.75" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="HQ_PART" value="RE0207399" x="83.57" y="5.75" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="LCSC_PART" value="C25744" x="83.57" y="5.75" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="MANUFACTURER" value="ROHM" x="83.57" y="5.75" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="MPN" value="MCR01MZPF1002" x="83.57" y="5.75" size="1.778" layer="27" rot="R270" display="off"/>
+<element name="R171" library="ds_resistor" package="0402" package3d_urn="urn:adsk.eagle:package:46683744/3" value="33K 1%" x="83.57" y="5.75" smashed="yes" rot="R270">
+<attribute name="DESCRIPTION" value="62.5mW Thick Film Resistors 50V ±100ppm/℃ ±1% 33kΩ 0402 Chip Resistor - Surface Mount ROHS" x="83.57" y="5.75" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="HQ_PART" value="RE0321838" x="83.57" y="5.75" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="LCSC_PART" value="C25779" x="83.57" y="5.75" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MANUFACTURER" value="RALEC" x="83.57" y="5.75" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MPN" value="RTT023302FTH" x="83.57" y="5.75" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="PACKAGE" value="0402" x="83.57" y="5.75" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="ROHS" value="YES" x="83.57" y="5.75" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="VALUE" x="81.665" y="6.385" size="1.016" layer="27" rot="R270"/>
+<attribute name="VALUE" value="33K 1%" x="81.665" y="6.385" size="1.016" layer="27" rot="R270"/>
 </element>
 <element name="IC23" library="ds_ic_peripherals" package="SC70-5" package3d_urn="urn:adsk.eagle:package:49052119/1" value="MCP9700AT-E/LT " x="164.41" y="4.1" smashed="yes" rot="R90">
 <attribute name="DATASHEET" value="https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/MCP970X-Family-Data-Sheet-DS20001942.pdf" x="164.41" y="4.1" size="1.778" layer="27" rot="R90" display="off"/>

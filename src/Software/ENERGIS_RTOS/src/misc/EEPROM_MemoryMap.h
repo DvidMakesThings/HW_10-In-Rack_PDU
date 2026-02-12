@@ -622,7 +622,7 @@ typedef struct {
  * Hardware Parameters:
  * - r1_actual: Measured high-side voltage divider resistor (default: 1880kΩ)
  * - r2_actual: Measured low-side voltage divider resistor (default: 1kΩ)
- * - shunt_actual: Measured current sense shunt resistor (default: 0.001Ω)
+ * - shunt_actual: Measured current sense shunt resistor (default: 0.002Ω)
  *
  * Calibration Flags:
  * - calibrated: 0xCA if voltage/current calibration complete, 0xFF otherwise
@@ -651,7 +651,7 @@ typedef struct {
     float current_offset;    /**< Zero-point current offset in amps. */
     float r1_actual;         /**< Actual R1 resistor value in ohms (default: 1880000Ω). */
     float r2_actual;         /**< Actual R2 resistor value in ohms (default: 1000Ω). */
-    float shunt_actual;      /**< Actual shunt resistor value in ohms (default: 0.001Ω). */
+    float shunt_actual;      /**< Actual shunt resistor value in ohms (default: 0.002Ω). */
     uint8_t calibrated;      /**< 0xCA if calibrated, 0xFF otherwise. */
     uint8_t zero_calibrated; /**< 0xCA if zero-calibration done, 0xFF otherwise. */
     uint8_t reserved[5];     /**< Reserved bytes for future expansion and alignment. */
