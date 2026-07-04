@@ -245,6 +245,13 @@ static void MeterTask_Loop(void *pvParameters) {
             uint32_t uptime = hlw8032_cached_uptime(ch);
             bool state = hlw8032_cached_state(ch);
 
+            /* Force measurements to zero when channel is off */
+            if (!state) {
+                v = 0.0f;
+                i = 0.0f;
+                p = 0.0f;
+            }
+
             /* Integrate power over time to accumulate energy */
             update_energy(ch, p, now_ms);
 

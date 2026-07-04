@@ -72,7 +72,9 @@
  * 0x1C00 - 0x1FFF  [Gap for Logging/Labels expansion]
  * 0x2000 - 0x21FF  User Preferences (512 bytes)
  *                   Device name(32) + Location(32) + Unit(1) + CRC
- * 0x2200 - 0x7FFD  [Reserved for Future Use]
+ * 0x2200 - 0x223F  Authentication Config (64 bytes)
+ *                   enabled(1) + password(32) + CRC(1) = 34 used
+ * 0x2240 - 0x7FFD  [Reserved for Future Use]
  * 0x7FFE - 0x7FFF  Magic Value (2 bytes)
  *                   0xA55A indicates factory init complete
  *
@@ -481,6 +483,14 @@
 /** @} */
 
 /**
+ * @name Authentication Config
+ * @{
+ */
+#define EEPROM_AUTH_START 0x2200 /**< Start of authentication config block. */
+#define EEPROM_AUTH_SIZE 0x0040  /**< Size of authentication config block (64 bytes). */
+/** @} */
+
+/**
  * @name Channel Labels
  * @{
  */
@@ -591,6 +601,21 @@ typedef struct {
     char location[32];    /**< Physical location (32 bytes, null-terminated). */
     uint8_t temp_unit;    /**< Temperature unit: 0=Celsius, 1=Fahrenheit, 2=Kelvin (1 byte). */
 } userPrefInfo;
+
+/**
+ * @struct auth_config_t
+ * @brief Authentication configuration for web interface password protection.
+ *
+ * @details
+ * Stores password enable flag and password string. Persisted in EEPROM at 0x2200
+ * with CRC-8. Default: enabled=1, password="admin".
+ *
+ * EEPROM layout: enabled(1) + password(32) + CRC-8(1) = 34 bytes.
+ */
+typedef struct {
+    uint8_t enabled;   /**< 1 = password required, 0 = open access. */
+    char password[32]; /**< Null-terminated password (max 31 chars). */
+} auth_config_t;
 
 /**
  * @struct hlw_calib_t

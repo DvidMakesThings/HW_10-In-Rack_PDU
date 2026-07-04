@@ -112,6 +112,7 @@ typedef enum {
 #define ERR_FID_ST_USER_OUTPUT 0x8    /**< user_output.c */
 #define ERR_FID_ST_USER_PREFS 0x9     /**< user_prefs.c */
 #define ERR_FID_DEVICE_IDENTITY 0xA   /**< device_identity.c */
+#define ERR_FID_ST_AUTH 0xB           /**< auth_store.c */
 #define ERR_FID_ST_STORAGETASK 0xF    /**< StorageTask.c */
 
 /* ========================= BUTTON MODULE (0x5) ============================ */

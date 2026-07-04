@@ -193,6 +193,7 @@ static bool net_apply_config_and_init(const networkInfo *ni) {
 static void net_start_services(void) {
     /* HTTP server on dedicated socket */
     http_server_init();
+    auth_init();
     INFO_PRINT("%s HTTP server initialized\r\n", NET_TASK_TAG);
     Health_Heartbeat(HEALTH_ID_NET);
 

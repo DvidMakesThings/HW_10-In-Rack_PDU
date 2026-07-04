@@ -329,8 +329,22 @@ void http_server_process(void) {
 
         /* ==================== API Route Matching ==================== */
 
+        /* Auth API endpoints (always accessible, no auth gate) */
+        if (!strncmp(http_buf, "POST /api/auth/logout", 21)) {
+            handle_auth_logout(http_sock);
+        } else if (!strncmp(http_buf, "POST /api/auth/config", 21)) {
+            handle_auth_config(http_sock, body_ptr, http_buf);
+        } else if (!strncmp(http_buf, "GET /api/auth/status", 20)) {
+            handle_auth_status(http_sock, http_buf);
+        } else if (!strncmp(http_buf, "POST /api/auth", 14)) {
+            handle_auth_login(http_sock, body_ptr);
+        }
+        /* Auth gate: if enabled and not authenticated, serve login page */
+        else if (auth_is_enabled() && !auth_check_request(http_buf)) {
+            auth_send_login_page(http_sock);
+        }
         /* Status API */
-        if (!strncmp(http_buf, "GET /api/status", 15)) {
+        else if (!strncmp(http_buf, "GET /api/status", 15)) {
             handle_status_request(http_sock);
         }
         /* Settings API */

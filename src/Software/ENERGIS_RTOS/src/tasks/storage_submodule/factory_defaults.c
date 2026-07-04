@@ -96,6 +96,10 @@ int EEPROM_WriteFactoryDefaults(void) {
     status |= EEPROM_WriteDefaultNameLocation();
     DEBUG_PRINT("%s User Preferences written\r\n", ST_FACTORY_DEFAULTS_TAG);
 
+    /* 8. Write Auth Config (default: enabled, password "admin") */
+    status |= EEPROM_WriteDefaultAuthConfig();
+    DEBUG_PRINT("%s Auth Config written\r\n", ST_FACTORY_DEFAULTS_TAG);
+
     /* Report final status */
     if (status == 0) {
         INFO_PRINT("%s Factory defaults written successfully\r\n", ST_FACTORY_DEFAULTS_TAG);

@@ -474,6 +474,9 @@ static void load_config_from_eeprom(void) {
     /* Load user preferences (handles defaults internally) */
     g_cache.preferences = LoadUserPreferences();
 
+    /* Load auth configuration (handles defaults internally) */
+    g_cache.auth = LoadAuthConfig();
+
     /* Load relay states */
     if (EEPROM_ReadUserOutput(g_cache.relay_states, sizeof(g_cache.relay_states)) != 0) {
         WARNING_PRINT("%s Failed to read relay states, using defaults\r\n", STORAGE_TASK_TAG);
@@ -494,6 +497,7 @@ static void load_config_from_eeprom(void) {
     /* Clear dirty flags */
     g_cache.network_dirty = false;
     g_cache.prefs_dirty = false;
+    g_cache.auth_dirty = false;
     g_cache.relay_dirty = false;
     for (uint8_t i = 0; i < 8; i++) {
         g_cache.sensor_cal_dirty[i] = false;
@@ -542,6 +546,16 @@ static void commit_dirty_sections(void) {
 #endif
         } else {
             ERROR_PRINT("%s Failed to commit user prefs\r\n", STORAGE_TASK_TAG);
+        }
+    }
+
+    /* Commit auth config if dirty */
+    if (g_cache.auth_dirty) {
+        if (EEPROM_WriteAuthConfigWithChecksum(&g_cache.auth) == 0) {
+            g_cache.auth_dirty = false;
+            ECHO("%s Auth config committed\r\n", STORAGE_TASK_TAG);
+        } else {
+            ERROR_PRINT("%s Failed to commit auth config\r\n", STORAGE_TASK_TAG);
         }
     }
 
@@ -606,6 +620,22 @@ static void process_storage_msg(const storage_msg_t *msg) {
     case STORAGE_CMD_WRITE_PREFS:
         memcpy(&g_cache.preferences, &msg->data.user_prefs, sizeof(userPrefInfo));
         g_cache.prefs_dirty = true;
+        g_cache.last_change_tick = xTaskGetTickCount();
+        break;
+
+    /* Auth config operations */
+    case STORAGE_CMD_READ_AUTH:
+        if (msg->output_ptr) {
+            memcpy(msg->output_ptr, &g_cache.auth, sizeof(auth_config_t));
+        }
+        if (msg->done_sem) {
+            xSemaphoreGive(msg->done_sem);
+        }
+        break;
+
+    case STORAGE_CMD_WRITE_AUTH:
+        memcpy(&g_cache.auth, &msg->data.auth, sizeof(auth_config_t));
+        g_cache.auth_dirty = true;
         g_cache.last_change_tick = xTaskGetTickCount();
         break;
 
@@ -1236,6 +1266,42 @@ bool storage_set_prefs(const userPrefInfo *prefs) {
 
     storage_msg_t msg = {.cmd = STORAGE_CMD_WRITE_PREFS, .done_sem = NULL};
     memcpy(&msg.data.user_prefs, prefs, sizeof(userPrefInfo));
+
+    return xQueueSend(q_cfg, &msg, pdMS_TO_TICKS(1000)) == pdPASS;
+}
+
+/**
+ * @brief Get auth configuration (synchronous, from RAM cache).
+ */
+bool storage_get_auth(auth_config_t *out) {
+    if (!out || !eth_netcfg_ready)
+        return false;
+
+    SemaphoreHandle_t done_sem = xSemaphoreCreateBinary();
+    if (!done_sem)
+        return false;
+
+    storage_msg_t msg = {.cmd = STORAGE_CMD_READ_AUTH, .output_ptr = out, .done_sem = done_sem};
+
+    if (xQueueSend(q_cfg, &msg, pdMS_TO_TICKS(1000)) != pdPASS) {
+        vSemaphoreDelete(done_sem);
+        return false;
+    }
+
+    bool ok = xSemaphoreTake(done_sem, pdMS_TO_TICKS(1000)) == pdPASS;
+    vSemaphoreDelete(done_sem);
+    return ok;
+}
+
+/**
+ * @brief Set auth configuration.
+ */
+bool storage_set_auth(const auth_config_t *cfg) {
+    if (!cfg || !eth_netcfg_ready)
+        return false;
+
+    storage_msg_t msg = {.cmd = STORAGE_CMD_WRITE_AUTH, .done_sem = NULL};
+    memcpy(&msg.data.auth, cfg, sizeof(auth_config_t));
 
     return xQueueSend(q_cfg, &msg, pdMS_TO_TICKS(1000)) == pdPASS;
 }

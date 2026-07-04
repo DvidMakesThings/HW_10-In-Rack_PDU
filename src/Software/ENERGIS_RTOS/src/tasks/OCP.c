@@ -88,7 +88,7 @@ static volatile bool s_initialized = false;
  * A validated limit in the expected operational range.
  */
 static float sanitize_limit_a(float limit_a, device_region_t region) {
-    const float expected = (region == DEVICE_REGION_US) ? 15.0f : 10.0f;
+    const float expected = (region == DEVICE_REGION_US) ? CURRENT_LIMIT_US_A : CURRENT_LIMIT_EU_A;
 
     /* Hard bounds: reject zero/negative and unrealistic values */
     if (!(limit_a > 1.0f && limit_a < 50.0f)) {
@@ -97,16 +97,16 @@ static float sanitize_limit_a(float limit_a, device_region_t region) {
 
     /* Region consistency: if region is known, keep it within a reasonable band */
     if (region == DEVICE_REGION_EU) {
-        if (limit_a < 8.0f || limit_a > 12.0f) {
-            return 10.0f;
+        if (limit_a < (CURRENT_LIMIT_EU_A - 2.0f) || limit_a > (CURRENT_LIMIT_EU_A + 2.0f)) {
+            return CURRENT_LIMIT_EU_A;
         }
     } else if (region == DEVICE_REGION_US) {
-        if (limit_a < 13.0f || limit_a > 17.0f) {
-            return 15.0f;
+        if (limit_a < (CURRENT_LIMIT_US_A - 2.0f) || limit_a > (CURRENT_LIMIT_US_A + 2.0f)) {
+            return CURRENT_LIMIT_US_A;
         }
     } else {
         /* Unknown region: still prefer a conservative safe default */
-        return 10.0f;
+        return CURRENT_LIMIT_DEFAULT_A;
     }
 
     return limit_a;

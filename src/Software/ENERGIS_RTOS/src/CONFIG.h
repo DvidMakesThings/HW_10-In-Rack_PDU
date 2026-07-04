@@ -96,6 +96,7 @@
 #include "tasks/storage_submodule/storage_common.h"
 #include "tasks/storage_submodule/user_output.h"
 #include "tasks/storage_submodule/user_prefs.h"
+#include "tasks/storage_submodule/auth_store.h"
 #include "tasks/provisioning_commands.h"
 #include "tasks/OCP.h"
 #include "tasks/SwitchTask.h"
@@ -115,6 +116,7 @@
 #include "web_handlers/settings_handler.h"
 #include "web_handlers/status_handler.h"
 #include "web_handlers/metrics_handler.h"
+#include "web_handlers/auth.h"
 /* clang-format on */
 
 /** @name External Handles
@@ -219,6 +221,40 @@ extern w5500_NetConfig eth_netcfg;
 #define FIRMWARE_VERSION_LITERAL 110
 /** @} */
 
+/************************* Product Variant Selection ****************************/
+/**
+ * @defgroup product_variant Product Variant Selection
+ * @brief Compile-time product variant switch.
+ * @{
+ *
+ * @details
+ * Select the product variant by defining exactly one of:
+ *   - ENERGIS_VARIANT_10IN : 10-inch rack PDU (EU 10A / US 15A)
+ *   - ENERGIS_VARIANT_19IN : 19-inch rack PDU (EU 15A / US 20A)
+ *
+ * If neither is defined, defaults to 10-inch.
+ */
+/* >>> Set variant here <<< */
+#define ENERGIS_VARIANT_19IN
+// #define ENERGIS_VARIANT_10IN
+
+#if defined(ENERGIS_VARIANT_19IN)
+#define CURRENT_LIMIT_EU_A 15.0f
+#define CURRENT_LIMIT_US_A 20.0f
+#define CURRENT_LIMIT_DEFAULT_A 15.0f
+#elif defined(ENERGIS_VARIANT_10IN)
+#define CURRENT_LIMIT_EU_A 10.0f
+#define CURRENT_LIMIT_US_A 15.0f
+#define CURRENT_LIMIT_DEFAULT_A 10.0f
+#else
+/* Default to 10-inch if nothing is defined */
+#define ENERGIS_VARIANT_10IN
+#define CURRENT_LIMIT_EU_A 10.0f
+#define CURRENT_LIMIT_US_A 15.0f
+#define CURRENT_LIMIT_DEFAULT_A 10.0f
+#endif
+/** @} */
+
 /******************** Overcurrent Protection Thresholds ************************/
 /**
  * @defgroup overcurrent_thresholds Overcurrent Protection Thresholds
@@ -227,7 +263,8 @@ extern w5500_NetConfig eth_netcfg;
  *
  * @details
  * These thresholds are fixed offsets applied to the regional current limit.
- * The actual limit (10A EU / 15A US) is determined at runtime from EEPROM.
+ * The actual limit is determined at compile time by the product variant
+ * and at runtime by the region stored in EEPROM.
  *
  * State Machine:
  * - NORMAL: Current < (LIMIT - WARNING_OFFSET)

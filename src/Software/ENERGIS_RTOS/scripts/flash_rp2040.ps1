@@ -68,7 +68,8 @@ function Select-SerialPort {
 
 try {
     # Change to project directory
-    Set-Location "G:\_GitHub\HW_10-In-Rack_PDU\src\Software\ENERGIS_RTOS"
+    $projectDir = "G:\_GitHub\HW_10-In-Rack_PDU\src\Software\ENERGIS_RTOS"
+    Set-Location $projectDir
     
     # Remove existing build directory if it exists and create new one
     if (Test-Path build) { Remove-Item build -Recurse -Force }
@@ -79,6 +80,12 @@ try {
     cmake -G Ninja -DPICO_SDK_PATH=C:/Users/sdvid/.pico-sdk/sdk/2.2.0 ..
     ninja
     
+    # Find the built .uf2 file dynamically
+    $uf2File = Get-ChildItem -Path . -Filter "ENERGIS_firmware_*.uf2" | Select-Object -First 1
+    if (-not $uf2File) { throw "No ENERGIS_firmware_*.uf2 found in build directory." }
+    $FIRMWARE_ABS = $uf2File.FullName
+    Write-Host "Firmware: $FIRMWARE_ABS"
+
     # Continue with flashing
     Set-Location $PSScriptRoot
     $confPath = Join-Path $PSScriptRoot 'serial_port.win.conf'
@@ -86,12 +93,10 @@ try {
 
     if (-not $PORT) { throw "Missing 'PORT' in config." }
     if (-not $BAUD) { throw "Missing 'BAUD' in config." }
-    if (-not $FIRMWARE) { throw "Missing 'FIRMWARE' in config." }
     if (-not $PY_UPLOADER) { throw "Missing 'PY_UPLOADER' in config." }
 
     $PORT = Select-SerialPort -CurrentPort $PORT -ConfigPath $confPath
 
-    $FIRMWARE_ABS = Resolve-PathRelative $FIRMWARE
     $PY_UPLOADER_ABS = Resolve-PathRelative $PY_UPLOADER
 
     if (-not (Test-Path -LiteralPath $PY_UPLOADER_ABS)) { throw "Python uploader not found: $PY_UPLOADER_ABS" }

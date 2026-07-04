@@ -51,9 +51,6 @@
  * @{
  */
 extern const char control_html[];
-extern const char settings_html[];
-extern const char user_manual_html[];
-extern const char automation_manual_html[];
 /** @} */
 
 /** @name Public API
@@ -63,17 +60,16 @@ extern const char automation_manual_html[];
  * @brief Route HTTP request to appropriate HTML page content.
  *
  * Maps HTTP GET request paths to corresponding HTML content stored in flash memory.
- * Supports both plain HTML strings and gzip-compressed blobs. Always returns a valid
- * pointer (defaults to control page for unrecognized paths).
+ * All pages are served as gzip-compressed blobs.
  *
  * Routing Table:
- * - GET /settings.html → settings_gz (gzipped)
- * - GET /help.html → help_gz (gzipped)
- * - GET /user_manual.html → user_manual_html (plain HTML)
- * - GET /automation_manual.html → automation_manual_html (plain HTML)
- * - GET /control.html → control_gz (gzipped)
- * - GET / → control_gz (gzipped, default)
- * - All other paths → control_gz (gzipped, fallback)
+ * - GET /settings.html -> settings_gz (gzipped)
+ * - GET /help.html -> help_gz (gzipped)
+ * - GET /user_manual.html -> user_manual_gz (gzipped)
+ * - GET /automation_manual.html -> automation_manual_gz (gzipped)
+ * - GET /control.html -> control_gz (gzipped)
+ * - GET / -> control_gz (gzipped, default)
+ * - All other paths -> control_gz (gzipped, fallback)
  *
  * @param request HTTP request line (e.g., "GET /control.html HTTP/1.1")
  * @return Pointer to HTML content in flash memory (never NULL)

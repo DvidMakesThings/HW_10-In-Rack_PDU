@@ -678,6 +678,9 @@ static void health_task(void *arg) {
             continue;
         }
 
+        /* Periodic display re-latch: corrects any EMI-induced MCP23017 corruption */
+        Switch_SyncFromHardware(0);
+
         /* Scheduler liveness via Idle canary */
         {
             uint32_t idle_now = RTOS_IdleCanary_Read();

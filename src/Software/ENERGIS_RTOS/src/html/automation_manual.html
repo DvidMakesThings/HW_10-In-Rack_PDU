@@ -1,120 +1,282 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>ENERGIS PDU - Programming Manual</title>
-
+  <meta name="color-scheme" content="dark" />
   <style>
+    :root {
+      --bg0: #0C0E14;
+      --bg1: #12141C;
+      --txt: #EAEDF4;
+      --muted: rgba(234, 237, 244, .6);
+      --accent: #F59E0B;
+      --accent2: #F97316;
+      --ring: rgba(245, 158, 11, .3);
+      --shadow: 0 16px 48px rgba(0, 0, 0, .5);
+      --r: 16px;
+      --r2: 12px;
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
     * {
-      margin: 0;
-      padding: 0;
       box-sizing: border-box;
-      font-family: sans-serif;
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
     }
 
     body {
-      background: #1a1d23;
-      color: #e4e4e4;
+      font-family: var(--sans);
+      color: var(--txt);
+      background: var(--bg0);
+      overflow: hidden;
     }
 
-    a {
-      color: #aaa;
-      text-decoration: none;
+    .bg {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(900px 500px at 15% -8%, rgba(245, 158, 11, .22), transparent 50%),
+        radial-gradient(700px 450px at 90% 15%, rgba(249, 115, 22, .14), transparent 48%),
+        radial-gradient(500px 400px at 50% 110%, rgba(245, 158, 11, .06), transparent 50%),
+        linear-gradient(180deg, var(--bg0), var(--bg1) 50%);
     }
 
-    a:hover {
-      color: #fff;
-    }
-
-    .topbar {
-      height: 50px;
-      background: #242731;
-      display: flex;
-      align-items: center;
-      padding: 0 20px;
-    }
-
-    .topbar h1 {
-      font-size: 1.2rem;
-      color: #fff;
-    }
-
-    .container {
-      display: flex;
-      height: calc(100vh - 50px);
+    .app {
+      display: grid;
+      grid-template-columns: 230px 1fr;
+      height: 100vh;
     }
 
     .sidebar {
-      width: 220px;
-      background: #2e323c;
-      padding: 20px 0;
-    }
-
-    .sidebar ul {
-      list-style: none;
-      margin-left: 20px;
-    }
-
-    .sidebar li {
-      padding: 10px 20px;
-    }
-
-    .sidebar li:hover {
-      background: #3b404d;
-    }
-
-    .sidebar a {
-      color: #ccc;
-    }
-
-    .sidebar a:hover {
-      color: #fff;
-    }
-
-    /* Right-side area */
-    .content {
-      flex: 1;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 16px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .015));
+      border-right: 1px solid rgba(255, 255, 255, .07);
+      backdrop-filter: blur(12px);
       display: flex;
       flex-direction: column;
+      gap: 16px;
     }
 
-    .pdf-container {
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 8px 12px;
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, .35), transparent 55%),
+        linear-gradient(135deg, rgba(245, 158, 11, .9), rgba(249, 115, 22, .85));
+      box-shadow: 0 8px 24px rgba(245, 158, 11, .2);
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .logo::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: conic-gradient(from 90deg, transparent 0 55%, rgba(255, 255, 255, .15) 65%, transparent 75%);
+      animation: spin 8s linear infinite;
+      opacity: .6;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .brand h1 {
+      font-size: 15px;
+      margin: 0;
+      letter-spacing: .2px;
+      line-height: 1.15;
+    }
+
+    .brand .sub {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--muted);
+      padding: 10px 12px;
+      border-radius: var(--r2);
+      font-size: 13px;
+      transition: background .12s, color .12s, transform .12s;
+      display: block;
+    }
+
+    .nav a:hover {
+      background: rgba(255, 255, 255, .06);
+      color: var(--txt);
+      transform: translateX(2px);
+    }
+
+    .nav a.active {
+      background: linear-gradient(135deg, rgba(245, 158, 11, .2), rgba(249, 115, 22, .12));
+      color: var(--txt);
+      box-shadow: 0 0 0 1px rgba(245, 158, 11, .2) inset;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      height: 100vh;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 12px 20px;
+      background: rgba(12, 14, 20, .7);
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .topbar .page-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .topbar .page-crumb {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .pdf-frame {
       flex: 1;
-      border: 1px solid #444;
+      border: none;
+      background: var(--bg1);
     }
 
     .note {
-      padding: 0.5rem;
+      padding: 8px 20px;
       text-align: right;
-      font-size: 0.9rem;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .note a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .note a:hover {
+      text-decoration: underline;
+    }
+
+    .hamb {
+      display: none;
+      border: 1px solid rgba(255, 255, 255, .1);
+      background: rgba(255, 255, 255, .06);
+      color: var(--txt);
+      width: 40px;
+      height: 36px;
+      border-radius: var(--r2);
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    @media (max-width: 860px) {
+      .app {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: fixed;
+        inset: 0 auto 0 0;
+        width: 260px;
+        transform: translateX(-110%);
+        transition: transform .2s ease;
+        z-index: 80;
+        box-shadow: var(--shadow);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .hamb {
+        display: inline-grid;
+        place-items: center;
+      }
     }
   </style>
+  <script>
+    function toggleSidebar() {
+      document.querySelector('.sidebar').classList.toggle('open');
+    }
+  </script>
 </head>
 
 <body>
-  <div class="topbar">
-    <h1>ENERGIS 10IN Managed PDU</h1>
-  </div>
-
-  <div class="container">
-    <div class="sidebar">
-      <ul>
-        <li><a href="control.html">Control</a></li>
-        <li><a href="settings.html">Settings</a></li>
-        <li><a href="help.html">Help</a></li>
-        <li><a href="user_manual.html">User Manual</a></li>
-        <li><a href="automation_manual.html">Programming Manual</a></li>
-      </ul>
-    </div>
+  <div class="bg"></div>
+  <div class="app">
+    <nav class="sidebar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <h1>ENERGIS</h1>
+          <div class="sub">Managed PDU</div>
+        </div>
+      </div>
+      <div class="nav">
+        <a href="control.html">Control</a>
+        <a href="settings.html">Settings</a>
+        <a href="help.html">Help</a>
+        <a href="user_manual.html">User Manual</a>
+        <a href="automation_manual.html" class="active">Programming Manual</a>
+      </div>
+    </nav>
 
     <div class="content">
-      <div class="pdf-container">
-        <iframe src="https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Manuals/ENERGIS_AutomationManual_rev_1.0.0.pdf"
-          width="100%" height="100%" frameborder="0">
-        </iframe>
+      <div class="topbar">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <button class="hamb" onclick="toggleSidebar()">&#9776;</button>
+          <div>
+            <div class="page-title">Programming Manual</div>
+            <div class="page-crumb">HTTP API, SNMP, serial console and automation reference</div>
+          </div>
+        </div>
       </div>
+
+      <iframe class="pdf-frame"
+        src="https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Manuals/ENERGIS_AutomationManual_rev_1.0.0.pdf"
+        width="100%" height="100%">
+      </iframe>
 
       <p class="note">
         If your browser does not display the PDF, you can download it directly

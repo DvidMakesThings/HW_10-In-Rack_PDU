@@ -63,23 +63,6 @@
  */
 #define EEPROM_DEVICE_IDENTITY_CRC_LEN 0x11u /* 0x00..0x10 inclusive => 17 bytes */
 
-/* ==================== Current Limit Constants ==================== */
-
-/**
- * @brief EU region current limit in amperes.
- */
-#define CURRENT_LIMIT_EU_A 10.0f
-
-/**
- * @brief US region current limit in amperes.
- */
-#define CURRENT_LIMIT_US_A 15.0f
-
-/**
- * @brief Default (safe) current limit for unknown region.
- */
-#define CURRENT_LIMIT_DEFAULT_A 10.0f
-
 /* ==================== Module State ==================== */
 
 /**

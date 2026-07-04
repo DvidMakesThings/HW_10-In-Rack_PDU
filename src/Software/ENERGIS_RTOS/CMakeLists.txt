@@ -94,6 +94,7 @@ add_executable(ENERGIS_RTOS
     src/tasks/storage_submodule/user_output.c
     src/tasks/storage_submodule/user_prefs.c
     src/tasks/storage_submodule/device_identity.c
+    src/tasks/storage_submodule/auth_store.c
     src/web_handlers/http_server.c
     src/web_handlers/control_handler.c
     src/web_handlers/settings_handler.c
@@ -101,6 +102,7 @@ add_executable(ENERGIS_RTOS
     src/web_handlers/page_content.c
     src/web_handlers/metrics_handler.c
     src/web_handlers/preset_handler.c
+    src/web_handlers/auth.c
     src/wrap_watchdog.c
 )
 
@@ -148,9 +150,35 @@ target_link_options(ENERGIS_RTOS PRIVATE
 )
 
 # ----------------------------- Pico settings -------------------------------
-# Centralized firmware version and base name (update version in ONE place)
-set(FIRMWARE_VERSION "1.1.0")
-set(FIRMWARE_BASE_NAME "ENERGIS_firmware_v${FIRMWARE_VERSION}")
+# Read firmware version and variant from CONFIG.h (single source of truth)
+file(READ "${CMAKE_CURRENT_LIST_DIR}/src/CONFIG.h" _config_h_contents)
+string(REGEX MATCH "#define FIRMWARE_VERSION \"([0-9]+\\.[0-9]+\\.[0-9]+)\"" _ "${_config_h_contents}")
+set(FIRMWARE_VERSION "${CMAKE_MATCH_1}")
+if(NOT FIRMWARE_VERSION)
+    message(FATAL_ERROR "Could not parse FIRMWARE_VERSION from src/CONFIG.h")
+endif()
+
+# Detect variant: only look at the user-selection lines before #if defined(...)
+# Match lines like: #define ENERGIS_VARIANT_19IN  (not preceded by //)
+# Exclude commented lines (// #define ...) and the fallback inside #else
+string(REGEX MATCH "\n[ \t]*#define[ \t]+ENERGIS_VARIANT_([0-9]+IN)[ \t]*\n" _ "${_config_h_contents}")
+if(CMAKE_MATCH_1)
+    set(ENERGIS_VARIANT "${CMAKE_MATCH_1}")
+else()
+    set(ENERGIS_VARIANT "10IN")
+endif()
+
+# Map variant to suffix
+if(ENERGIS_VARIANT STREQUAL "19IN")
+    set(VARIANT_SUFFIX "variant-19")
+elseif(ENERGIS_VARIANT STREQUAL "10IN")
+    set(VARIANT_SUFFIX "variant-10")
+else()
+    set(VARIANT_SUFFIX "variant-10")
+endif()
+
+message(STATUS "Firmware version: ${FIRMWARE_VERSION}, Variant: ${ENERGIS_VARIANT}")
+set(FIRMWARE_BASE_NAME "ENERGIS_firmware_v${FIRMWARE_VERSION}_${VARIANT_SUFFIX}")
 
 # USB / internal descriptors
 pico_set_program_name(ENERGIS_RTOS "${FIRMWARE_BASE_NAME}")

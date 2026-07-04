@@ -217,7 +217,16 @@ typedef enum {
     STORAGE_CMD_SAVE_USER_OUTPUT_PRESET,   /**< Save preset (index, name, mask) */
     STORAGE_CMD_DELETE_USER_OUTPUT_PRESET, /**< Delete preset (index) */
     STORAGE_CMD_SET_STARTUP_PRESET,        /**< Set startup preset (index) */
-    STORAGE_CMD_CLEAR_STARTUP_PRESET       /**< Clear startup preset */
+    STORAGE_CMD_CLEAR_STARTUP_PRESET,      /**< Clear startup preset */
+    /** @} */
+
+    /**
+     * @name Authentication Config
+     * @brief Password protection settings.
+     * @{
+     */
+    STORAGE_CMD_READ_AUTH, /**< Read auth config to RAM cache */
+    STORAGE_CMD_WRITE_AUTH /**< Update auth config in RAM, schedule write */
     /** @} */
 } storage_cmd_t;
 
@@ -267,6 +276,9 @@ typedef struct {
         struct {
             uint8_t index; /**< Startup preset index */
         } startup;
+
+        /* For auth config */
+        auth_config_t auth;
     } data;
 
     /** Optional: pointer to output buffer for read operations */
@@ -286,12 +298,14 @@ typedef struct {
 typedef struct {
     networkInfo network;       /**< Network configuration */
     userPrefInfo preferences;  /**< User preferences */
+    auth_config_t auth;        /**< Authentication configuration */
     uint8_t relay_states[8];   /**< Relay power-on states */
     hlw_calib_t sensor_cal[8]; /**< Sensor calibration per channel */
 
     /** Dirty flags for debounced writes */
     bool network_dirty;
     bool prefs_dirty;
+    bool auth_dirty;
     bool relay_dirty;
     bool sensor_cal_dirty[8];
 
@@ -425,6 +439,20 @@ bool storage_get_prefs(userPrefInfo *out);
  */
 /** @ingroup tasks10 */
 bool storage_set_prefs(const userPrefInfo *prefs);
+
+/**
+ * @brief Get current auth configuration (from RAM cache).
+ * @param out Pointer to output structure (not NULL).
+ * @return true on success, false on error.
+ */
+bool storage_get_auth(auth_config_t *out);
+
+/**
+ * @brief Set auth configuration (update RAM cache, schedule EEPROM write).
+ * @param cfg Pointer to new auth config (not NULL).
+ * @return true on success, false on error.
+ */
+bool storage_set_auth(const auth_config_t *cfg);
 
 /**
  * @brief Get relay power-on states (from RAM cache).

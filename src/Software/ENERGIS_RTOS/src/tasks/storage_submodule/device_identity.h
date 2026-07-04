@@ -63,9 +63,8 @@
 
 /**
  * @brief Device region enumeration.
- * @details Determines current limit for overcurrent protection:
- *          - EU: 10A (IEC/ENEC compliant)
- *          - US: 15A (UL/CSA compliant)
+ * @details Determines current limit for overcurrent protection.
+ *          Actual limits are set per variant in CONFIG.h.
  */
 /** @enum device_region_t */
 typedef enum {

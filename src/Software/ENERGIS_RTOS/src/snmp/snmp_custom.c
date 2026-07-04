@@ -54,7 +54,7 @@ static void get_sysContact(void *buf, uint8_t *len) {
  * @return None
  */
 static void get_sysName(void *buf, uint8_t *len) {
-    const char *s = "ENERGIS 10IN MANAGED PDU";
+    const char *s = "ENERGIS MANAGED PDU";
     uint8_t L = (uint8_t)strlen(s);
     memcpy(buf, s, L);
     *len = L;

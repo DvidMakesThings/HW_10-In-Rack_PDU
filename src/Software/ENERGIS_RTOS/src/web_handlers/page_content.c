@@ -15,9 +15,11 @@
  */
 
 #include "../CONFIG.h"
+#include "../html/automation_manual_gz.h"
 #include "../html/control_gz.h"
 #include "../html/help_gz.h"
 #include "../html/settings_gz.h"
+#include "../html/user_manual_gz.h"
 
 /**
  * @brief HTML content for the Control page.
@@ -27,7 +29,7 @@
  */
 const char control_html[] =
     "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\" /><meta name=\"viewport\" "
-    "content=\"width=device-width,initial-scale=1.0\"><title>ENERGIS 10IN Managed PDU - "
+    "content=\"width=device-width,initial-scale=1.0\"><title>ENERGIS Managed PDU - "
     "Control</title><style>* "
     "{ margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif } body { background: "
     "#1a1d23; color: #e4e4e4 } a { text-decoration: none; color: #aaa } a:hover { color: #fff } "
@@ -70,7 +72,7 @@ const char control_html[] =
     "}) .catch(_ =>updateStatus()); } function setAll(state) { for (let i = 1; i<= 8; i++) { "
     "document.getElementById(`toggle-${i}`).checked = state; toggleChannel(i); } } "
     "window.addEventListener('load', () =>{ updateStatus(); setInterval(updateStatus, 3000); "
-    "});</script></head><body><div class=\"topbar\"><h1>ENERGIS 10IN  Managed "
+    "});</script></head><body><div class=\"topbar\"><h1>ENERGIS Managed "
     "PDU</h1></div><div "
     "class=\"container\"><nav class=\"sidebar\"><ul><li><a "
     "href=\"control.html\">Control</a></li><li><a href=\"settings.html\">Settings</a></li><li><a "
@@ -141,73 +143,9 @@ const char control_html[] =
 
 // const char help_html[] =
 
-/**
- * @brief HTML content for the User Manual page.
- *
- * This string contains the HTML markup for the User Manual page,
- * embedding the user manual PDF and providing a download link.
- */
-const char user_manual_html[] =
-    "<!DOCTYPE html><html><head><meta charset=\"UTF-8\" /><meta name=\"viewport\" "
-    "content=\"width=device-width, initial-scale=1.0\"><title>ENERGIS 10IN Managed PDU - User "
-    "Manual</title><style>* { margin: 0; padding: 0; box-sizing: border-box; font-family: "
-    "sans-serif; } body { background: #1a1d23; color: #e4e4e4; } a { color: #aaa; text-decoration: "
-    "none; } a:hover { color: #fff; } .topbar { height: 50px; background: #242731; display: flex; "
-    "align-items: center; padding: 0 20px; } .topbar h1 { font-size: 1.2rem; color: #fff; } "
-    ".container { display: flex; height: calc(100vh - 50px); } .sidebar { width: 220px; "
-    "background: #2e323c; padding: 20px 0; } .sidebar ul { list-style: none; margin-left: 20px;} "
-    ".sidebar li { "
-    "padding: 10px 20px; } .sidebar li:hover { background: #3b404d; } .sidebar a { color: #ccc; } "
-    ".sidebar a:hover { color: #fff; } .content { flex: 1; display: flex; flex-direction: column; "
-    "} .pdf-container { flex: 1; border: 1px solid #444; } .note { padding: 0.5rem; text-align: "
-    "right; font-size: 0.9rem; }</style></head><body><div class=\"topbar\"><h1>ENERGIS 10IN "
-    "Managed PDU</h1></div><div class=\"container\"><div class=\"sidebar\"><ul><li><a "
-    "href=\"control.html\">Control</a></li><li><a href=\"settings.html\">Settings</a></li><li><a "
-    "href=\"help.html\">Help</a></li><li><a href=\"user_manual.html\">User Manual</a></li><li><a "
-    "href=\"automation_manual.html\">Automation Manual</a></li></ul></div><div "
-    "class=\"content\"><div class=\"pdf-container\"><iframe "
-    "src=\"https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Manuals/"
-    "ENERGIS_UserManual_rev_1.0.0.pdf\" width=\"100%\" height=\"100%\" "
-    "frameborder=\"0\"></iframe></div><p class=\"note\">If your browser does not display the PDF, "
-    "you can download it directly<a "
-    "href=\"https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Manuals/"
-    "ENERGIS_UserManual_rev_1.0.0.pdf\" "
-    "target=\"_blank\">here</a>.</p></div></div></body></html>\n";
-
-/**
- * @brief HTML content for the Automation Manual page.
- *
- * This string contains the HTML markup for the Automation Manual page,
- * embedding the Automation Manual PDF and providing a download link.
- */
-const char automation_manual_html[] =
-    "<!DOCTYPE html><html><head><meta charset=\"UTF-8\" /><meta name=\"viewport\" "
-    "content=\"width=device-width, initial-scale=1.0\"><title>ENERGIS 10IN Managed PDU - "
-    "Programming "
-    "Manual</title><style>* { margin: 0; padding: 0; box-sizing: border-box; font-family: "
-    "sans-serif; } body { background: #1a1d23; color: #e4e4e4; } a { color: #aaa; text-decoration: "
-    "none; } a:hover { color: #fff; } .topbar { height: 50px; background: #242731; display: flex; "
-    "align-items: center; padding: 0 20px; } .topbar h1 { font-size: 1.2rem; color: #fff; } "
-    ".container { display: flex; height: calc(100vh - 50px); } .sidebar { width: 220px; "
-    "background: #2e323c; padding: 20px 0; } .sidebar ul { list-style: none; margin-left: 20px; } "
-    ".sidebar li { "
-    "padding: 10px 20px; } .sidebar li:hover { background: #3b404d; } .sidebar a { color: #ccc; } "
-    ".sidebar a:hover { color: #fff; } /* Right-side area */ .content { flex: 1; display: flex; "
-    "flex-direction: column; } .pdf-container { flex: 1; border: 1px solid #444; } .note { "
-    "padding: 0.5rem; text-align: right; font-size: 0.9rem; }</style></head><body><div "
-    "class=\"topbar\"><h1>ENERGIS 10IN Managed PDU</h1></div><div class=\"container\"><div "
-    "class=\"sidebar\"><ul><li><a href=\"control.html\">Control</a></li><li><a "
-    "href=\"settings.html\">Settings</a></li><li><a href=\"help.html\">Help</a></li><li><a "
-    "href=\"user_manual.html\">User Manual</a></li><li><a "
-    "href=\"automation_manual.html\">Automation Manual</a></li></ul></div><div "
-    "class=\"content\"><div class=\"pdf-container\"><iframe "
-    "src=\"https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Manuals/"
-    "ENERGIS_AutomationManual_rev_1.0.0.pdf\" width=\"100%\" height=\"100%\" "
-    "frameborder=\"0\"></iframe></div><p class=\"note\">If your browser does not display the PDF, "
-    "you can download it directly<a "
-    "href=\"https://dvidmakesthings.github.io/HW_10-In-Rack_PDU/Manuals/"
-    "ENERGIS_AutomationManual_rev_1.0.0.pdf\" "
-    "target=\"_blank\">here</a>.</p></div></div></body></html>\n";
+/* User manual and automation manual pages are now served as gzipped blobs
+ * from their respective _gz.h headers, matching the pattern used by
+ * control, settings, and help pages. */
 
 /**
  * @brief Route HTTP request to appropriate HTML page content.
@@ -222,13 +160,13 @@ const char *get_page_content(const char *request) {
     else if (strstr(request, "GET /help.html"))
         return (const char *)help_gz;
 
-    /* Route to user manual iframe page */
+    /* Route to user manual page (gzipped) */
     else if (strstr(request, "GET /user_manual.html"))
-        return user_manual_html;
+        return (const char *)user_manual_gz;
 
-    /* Route to automation manual iframe page */
+    /* Route to automation manual page (gzipped) */
     else if (strstr(request, "GET /automation_manual.html"))
-        return automation_manual_html;
+        return (const char *)automation_manual_gz;
 
     /* Route to control page or root */
     else if (strstr(request, "GET /control.html") || strstr(request, "GET /"))
@@ -259,13 +197,17 @@ int get_page_length(const char *request, int *is_gzip) {
             *is_gzip = 1;
         return (int)help_gz_len;
     }
-    /* User manual page (plain HTML) */
+    /* User manual page (gzipped) */
     else if (strstr(request, "GET /user_manual.html")) {
-        return (int)strlen(user_manual_html);
+        if (is_gzip)
+            *is_gzip = 1;
+        return (int)user_manual_gz_len;
     }
-    /* Automation manual page (plain HTML) */
+    /* Automation manual page (gzipped) */
     else if (strstr(request, "GET /automation_manual.html")) {
-        return (int)strlen(automation_manual_html);
+        if (is_gzip)
+            *is_gzip = 1;
+        return (int)automation_manual_gz_len;
     }
     /* Control page or root (gzipped) */
     else if (strstr(request, "GET /control.html") || strstr(request, "GET /")) {

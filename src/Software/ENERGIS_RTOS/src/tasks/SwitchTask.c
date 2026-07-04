@@ -58,9 +58,30 @@ static void mirror_display_from_relay(void) {
     TickType_t now = xTaskGetTickCount();
     if (now < s_disp_backoff_until)
         return;
+
     uint8_t mask = read_relay_mask(rel);
+
+    /* Update shadow with intended state, then write to hardware */
     if (!mcp_write_mask(disp, 0, 0xFFu, mask)) {
         s_disp_backoff_until = now + pdMS_TO_TICKS(200);
+        return;
+    }
+
+    /*
+     * Detect EMI-induced MCP23017 reset: if IODIR has reverted to 0xFF
+     * (power-on default = all inputs), the chip was reset by a glitch on
+     * the reset line.  mcp_recover() restores IOCON, IODIR, GPPU and
+     * re-applies OLAT from the shadow registers we just updated above.
+     */
+    uint8_t iodir = 0x00;
+    i2c_bus_read_reg8(disp->i2c, disp->addr, MCP23017_IODIRA, &iodir, MCP_I2C_TIMEOUT_US);
+    if (iodir != 0x00) {
+        mcp_recover(disp);
+        /* Selection MCP shares the same reset line - recover it too */
+        mcp23017_t *sel = mcp_selection();
+        if (sel && sel->inited) {
+            mcp_recover(sel);
+        }
     }
 }
 
@@ -128,7 +149,6 @@ switch_result_t Switch_SetChannel(uint8_t channel, bool state) {
         return SWITCH_ERR_MUTEX_TIMEOUT;
 
     mcp23017_t *rel = mcp_relay();
-    mcp23017_t *disp = mcp_display();
     if (!rel || !rel->inited) {
         unlock();
         return SWITCH_ERR_I2C_FAIL;
@@ -139,12 +159,8 @@ switch_result_t Switch_SetChannel(uint8_t channel, bool state) {
         return SWITCH_ERR_I2C_FAIL;
     }
 
-    vTaskDelay(pdMS_TO_TICKS(1));
-
-    if (!mcp_write_pin(disp, channel, state ? 1u : 0u)) {
-        unlock();
-        return SWITCH_ERR_I2C_FAIL;
-    }
+    /* Full display re-latch from relay state (includes verify + retry) */
+    mirror_display_from_relay();
 
     unlock();
     return SWITCH_OK;

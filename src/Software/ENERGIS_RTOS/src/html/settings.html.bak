@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ENERGIS PDU - Settings</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }
+
+    body {
+      background-color: #1a1d23;
+      color: #e4e4e4;
+    }
+
+    a {
+      text-decoration: none;
+      color: #aaa;
+    }
+
+    a:hover {
+      color: #fff;
+    }
+
+    .topbar {
+      width: 100%;
+      height: 50px;
+      background-color: #242731;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .topbar h1 {
+      font-size: 1.2rem;
+      color: #fff;
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+      height: calc(100vh - 50px);
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #2e323c;
+      padding: 20px 0;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      margin-left: 20px;
+    }
+
+    .sidebar ul li {
+      padding: 10px 20px;
+    }
+
+    .sidebar ul li:hover {
+      background-color: #3b404d;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      margin: 0.5rem 0;
+    }
+
+    .status {
+      margin-top: 1rem;
+      background-color: #2e323c;
+      padding: 10px;
+      border-radius: 4px;
+    }
+
+    input,
+    select,
+    textarea {
+      padding: 8px;
+      margin-top: 4px;
+      margin-bottom: 8px;
+      border: none;
+      border-radius: 4px;
+      background: #2e323c;
+      color: #fff;
+    }
+
+    /* Grey out readonly (non-editable) fields */
+    input[readonly],
+    textarea[readonly],
+    select[disabled],
+    input[disabled],
+    textarea[disabled] {
+      background: #232730;
+      color: #9aa3ad;
+      border: 1px solid #3f4450;
+      opacity: 1;
+      cursor: not-allowed;
+    }
+
+    /* Grey out readonly IP-group inputs too (if any are set readonly later) */
+    .ip-input-group input[readonly],
+    .ip-input-group input[disabled] {
+      background: #232730;
+      color: #9aa3ad;
+      border: 1px solid #3f4450;
+      opacity: 1;
+      cursor: not-allowed;
+    }
+
+    .btn {
+      background-color: #3fa7ff;
+      border: none;
+      padding: 10px 16px;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+
+    .btn:hover {
+      background-color: #1f8ae3;
+    }
+
+    .btn:disabled {
+      background-color: #666;
+      cursor: not-allowed;
+    }
+
+    .form-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .form-group label {
+      width: 160px;
+      margin-right: 10px;
+    }
+
+    .form-group input[type="text"] {
+      flex: 1;
+      max-width: 200px;
+    }
+
+    .alert {
+      padding: 10px;
+      border-radius: 4px;
+      margin: 10px 0;
+    }
+
+    .alert-success {
+      background-color: #1b5e20;
+      color: #fff;
+    }
+
+    .alert-error {
+      background-color: #c62828;
+      color: #fff;
+    }
+
+    #status-message {
+      display: none;
+    }
+
+    /* IP address input groups */
+    .ip-input-group {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: #2e323c;
+      padding: 4px;
+      border-radius: 4px;
+      max-width: 200px;
+    }
+
+    .ip-input-group input {
+      width: 3em;
+      text-align: center;
+      padding: 4px;
+      margin: 0;
+      border: 1px solid #3f4450;
+    }
+
+    .ip-input-group span {
+      color: #666;
+      font-weight: bold;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #3f4450;
+      margin: 1rem 0;
+    }
+
+    h3 {
+      margin: 1.5rem 0 0.5rem 0;
+      color: #fff;
+    }
+
+    .settings-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    .settings-table td {
+      vertical-align: top;
+      padding: 0 20px 10px 0;
+      width: 50%;
+    }
+
+    /* Presets UI */
+    .presets-container {
+      margin-top: 16px;
+      background: #242731;
+      border-radius: 8px;
+      padding: 14px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+      border: 1px solid #3f4450;
+    }
+
+    .presets-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .preset-card {
+      background: #2e323c;
+      border: 1px solid #3f4450;
+      border-radius: 6px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+
+    .preset-card .header {
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .preset-title {
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .startup-badge {
+      font-size: 0.8rem;
+      color: #3fa7ff;
+      margin-left: 6px;
+    }
+
+    .preset-name {
+      width: 100%;
+      max-width: 280px;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #3f4450;
+      background: #1f2229;
+      color: #e4e4e4;
+    }
+
+    .mask-group {
+      display: grid;
+      grid-template-columns: repeat(8, minmax(70px, 1fr));
+      gap: 8px;
+    }
+
+    .mask-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #232730;
+      padding: 8px 10px;
+      border-radius: 4px;
+      border: 1px solid #3f4450;
+      justify-content: center;
+    }
+
+    .preset-actions .btn {
+      margin-left: 6px;
+    }
+
+    .startup-actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-red {
+      background-color: #dc3545;
+    }
+
+    .btn-red:hover {
+      background-color: #c82333;
+    }
+
+    .btn-green {
+      background-color: #28a745;
+    }
+
+    .btn-green:hover {
+      background-color: #218838;
+    }
+
+    .btn-grey {
+      background-color: #666;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      top: 14px;
+      left: 50%;
+      transform: translate(-50%, -10px);
+      padding: 10px 16px;
+      color: #fff;
+      border-radius: 4px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+      z-index: 1000;
+      font-size: .9rem;
+    }
+
+    .toast.success {
+      background: #2e7d32;
+      border: 1px solid #388e3c;
+    }
+
+    .toast.error {
+      background: #b00020;
+      border: 1px solid #cf6679;
+    }
+
+    .toast.info {
+      background: #1976d2;
+      border: 1px solid #2196f3;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    /* Startup dropdown width */
+    #startup-select {
+      width: 30ch;
+    }
+  </style>
+  <script>
+    // Lightweight retry helper for slower systems
+    async function fetchWithRetry(url, options = {}, attempts = 5, initialDelayMs = 300) {
+      let delay = initialDelayMs;
+      for (let i = 0; i < attempts; i++) {
+        try {
+          const r = await fetch(url, options);
+          const text = await r.text();
+          let data = null;
+          try { data = JSON.parse(text); } catch (_) { /* ignore parse */ }
+          if (r.ok && data !== null) {
+            return data;
+          }
+          throw new Error((data && data.error) ? data.error : ('HTTP ' + r.status));
+        } catch (e) {
+          if (i === attempts - 1) throw e;
+          await new Promise(res => setTimeout(res, delay));
+          delay = Math.min(2000, delay * 2);
+        }
+      }
+    }
+    // Handle IP input validation and auto-advance
+    function validateIpInput(input) {
+      let value = input.value.replace(/\D/g, '');
+      value = Math.min(255, Math.max(0, parseInt(value) || 0));
+      input.value = value;
+
+      // Auto-advance if 3 digits entered
+      if (value.length >= 3) {
+        const next = input.nextElementSibling?.nextElementSibling;
+        if (next?.tagName === 'INPUT') next.focus();
+      }
+    }
+
+    // Get IP from input group
+    function getIpFromGroup(groupId) {
+      const inputs = document.querySelectorAll(`#${groupId} input`);
+      return Array.from(inputs).map(input => input.value).join('.');
+    }
+
+    // Set IP to input group
+    function setIpToGroup(groupId, ip) {
+      if (!ip) return;
+      const parts = ip.split('.');
+      const inputs = document.querySelectorAll(`#${groupId} input`);
+      inputs.forEach((input, i) => input.value = parts[i] || '0');
+    }
+
+    // Show status message
+    function showStatus(message, success) {
+      const statusDiv = document.getElementById('status-message');
+      statusDiv.textContent = message;
+      statusDiv.className = success ? 'alert alert-success' : 'alert alert-error';
+      statusDiv.style.display = 'block';
+    }
+
+    // Handle form submission
+    function handleSubmit(event) {
+      event.preventDefault();
+
+      // Get IP values
+      const ip = getIpFromGroup('ip-group');
+      const gateway = getIpFromGroup('gateway-group');
+      const subnet = getIpFromGroup('subnet-group');
+      const dns = getIpFromGroup('dns-group');
+
+      // Prepare form data
+      const formData = new FormData(event.target);
+      formData.set('ip', ip);
+      formData.set('gateway', gateway);
+      formData.set('subnet', subnet);
+      formData.set('dns', dns);
+
+      // Disable submit button
+      const submitBtn = document.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+
+      // Send settings
+      fetch('/api/settings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams(formData).toString()
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) throw new Error(data.error);
+
+          showStatus('Settings saved successfully! The device will reboot...', true);
+
+          // Disable all inputs
+          document.querySelectorAll('input, button').forEach(el => el.disabled = true);
+
+          // Show countdown
+          let countdown = 5;
+          const interval = setInterval(() => {
+            countdown--;
+            if (countdown <= 0) {
+              clearInterval(interval);
+              window.location.reload();
+            } else {
+              showStatus(`Settings saved successfully! The device will reboot... (${countdown})`, true);
+            }
+          }, 1000);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          showStatus(error.message || 'Failed to save settings', false);
+          submitBtn.disabled = false;
+        });
+    }
+
+    // Load current settings
+    window.addEventListener('load', () => {
+      fetch('/api/settings')
+        .then(response => response.json())
+        .then(settings => {
+          setIpToGroup('ip-group', settings.ip);
+          setIpToGroup('gateway-group', settings.gateway);
+          setIpToGroup('subnet-group', settings.subnet);
+          setIpToGroup('dns-group', settings.dns);
+
+          document.getElementById('mac').value = settings.mac || '';
+
+          document.getElementById('serial_number').value = settings.serial_number || '';
+          document.getElementById('firmware_version').value = settings.firmware_version || '';
+          document.getElementById('hardware_version').value = settings.hardware_version || '';
+
+          document.getElementById('device_region').value = settings.device_region || '';
+          document.getElementById('current_limit').value = settings.current_limit || '';
+          document.getElementById('warning_limit').value = settings.warning_limit || '';
+          document.getElementById('critical_limit').value = settings.critical_limit || '';
+
+          document.getElementById('device_name').value = settings.device_name;
+          document.getElementById('location').value = settings.location;
+          document.querySelector(`input[name="temp_unit"][value="${settings.temp_unit}"]`).checked = true;
+        })
+        .catch(error => {
+          console.error('Error loading settings:', error);
+          showStatus('Failed to load current settings', false);
+        });
+
+      // Load presets
+      loadPresets();
+    });
+
+    // ===== Presets Management =====
+    let presets = []; // [{id,name,mask}] max 5
+    let startupPreset = null; // id or null
+    let toastTimer = null;
+
+    function showToast(msg, type) {
+      const el = document.getElementById('toast');
+      if (!el) return;
+      let cls = 'success';
+      if (type === 'error') cls = 'error';
+      else if (type === 'info') cls = 'info';
+      el.className = 'toast ' + cls;
+      el.textContent = msg;
+      void el.offsetWidth;
+      el.classList.add('show');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => el.classList.remove('show'), 3000);
+    }
+
+    function maskToArray(mask) {
+      // mask can be number or array of booleans
+      if (Array.isArray(mask)) return mask.map(v => !!v).slice(0, 8).concat(Array(8).fill(false)).slice(0, 8);
+      const out = new Array(8).fill(false);
+      const m = Number(mask) >>> 0;
+      for (let i = 0; i < 8; i++) out[i] = !!(m & (1 << i));
+      return out;
+    }
+
+    function arrayToMask(arr) {
+      let m = 0;
+      for (let i = 0; i < 8; i++) if (arr[i]) m |= (1 << i);
+      return m >>> 0;
+    }
+
+    function renderPresets() {
+      const list = document.getElementById('presets-list');
+      list.innerHTML = '';
+      for (let i = 0; i < 5; i++) {
+        const p = presets.find(x => x.id === i) || { id: i, name: '', mask: 0 };
+        const maskArr = maskToArray(p.mask);
+        const card = document.createElement('div');
+        card.className = 'preset-card';
+
+        const header = document.createElement('div');
+        header.className = 'header';
+        const titleWrap = document.createElement('div');
+        const title = document.createElement('span');
+        title.className = 'preset-title';
+        title.textContent = 'Preset ' + (i + 1);
+        titleWrap.appendChild(title);
+        if (startupPreset === i) {
+          const badge = document.createElement('span');
+          badge.className = 'startup-badge';
+          badge.textContent = 'Startup';
+          titleWrap.appendChild(badge);
+        }
+
+        const nameInp = document.createElement('input');
+        nameInp.className = 'preset-name';
+        nameInp.placeholder = 'Enter name';
+        nameInp.maxLength = 25;
+        nameInp.value = p.name || '';
+        nameInp.id = `preset-name-${i}`;
+
+        const actions = document.createElement('div');
+        actions.className = 'preset-actions';
+        const saveBtn = document.createElement('button');
+        saveBtn.type = 'button';
+        saveBtn.className = 'btn btn-green';
+        saveBtn.textContent = 'Save';
+        saveBtn.onclick = () => savePreset(i);
+        const delBtn = document.createElement('button');
+        delBtn.type = 'button';
+        delBtn.className = 'btn btn-red';
+        delBtn.textContent = 'Delete';
+        delBtn.onclick = () => deletePreset(i);
+        actions.appendChild(saveBtn);
+        actions.appendChild(delBtn);
+
+        header.appendChild(titleWrap);
+        header.appendChild(nameInp);
+        header.appendChild(actions);
+        card.appendChild(header);
+
+        const maskDiv = document.createElement('div');
+        maskDiv.className = 'mask-group';
+        for (let ch = 0; ch < 8; ch++) {
+          const item = document.createElement('div');
+          item.className = 'mask-item';
+          const lbl = document.createElement('label');
+          lbl.textContent = 'CH' + (ch + 1);
+          const cb = document.createElement('input');
+          cb.type = 'checkbox';
+          cb.checked = !!maskArr[ch];
+          cb.id = `preset-${i}-ch-${ch + 1}`;
+          item.appendChild(lbl);
+          item.appendChild(cb);
+          maskDiv.appendChild(item);
+        }
+        card.appendChild(maskDiv);
+        list.appendChild(card);
+      }
+      renderStartupSelect();
+    }
+
+    function collectMaskFromUI(id) {
+      const arr = new Array(8).fill(false);
+      for (let ch = 0; ch < 8; ch++) {
+        const cb = document.getElementById(`preset-${id}-ch-${ch + 1}`);
+        arr[ch] = !!(cb && cb.checked);
+      }
+      return arrayToMask(arr);
+    }
+
+    async function loadPresets() {
+      // Render baseline UI immediately so users see the 5 slots
+      renderPresets();
+      showToast('Loading presets...', 'info');
+      try {
+        const data = await fetchWithRetry('/api/config-presets', { headers: { 'Accept': 'application/json' } }, 6, 300);
+        presets = (data && Array.isArray(data.presets)) ? data.presets : [];
+        startupPreset = (data && typeof data.startup === 'number') ? data.startup : null;
+        renderPresets();
+        if (data && data.pending === true) {
+          // Backend indicates presets not ready yet; retry after a short grace period
+          showToast('Presets initializing, retrying...', 'info');
+          setTimeout(loadPresets, 1000);
+        } else {
+          showToast('Presets loaded', 'success');
+        }
+      } catch (err) {
+        // Fallback to empty presets; still render cards and dropdown with None
+        presets = [];
+        startupPreset = null;
+        renderPresets();
+        showToast('Failed to load presets. Retrying...', 'error');
+        setTimeout(loadPresets, 2000);
+      }
+    }
+
+    function savePreset(id) {
+      const nameEl = document.getElementById(`preset-name-${id}`);
+      const name = (nameEl ? nameEl.value : '').trim();
+      if (!name) { showToast('Enter preset name (1-25 chars)', 'error'); return; }
+      if (name.length > 25) { showToast('Name too long (max 25)', 'error'); return; }
+      let mask = collectMaskFromUI(id) & 0xFF;
+
+      const body = new URLSearchParams();
+      body.append('action', 'save');
+      body.append('id', String(id));
+      body.append('name', name);
+      body.append('mask', String(mask));
+      body.append('relay_mask', String(mask)); // backend compatibility
+      fetch('/api/config-presets', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body.toString()
+      })
+        .then(async r => {
+          let data = null;
+          try { data = await r.json(); } catch (e) { /* ignore parse */ }
+          if (!r.ok || (data && data.error)) {
+            const msg = (data && data.error) ? data.error : 'Save failed';
+            throw new Error(msg);
+          }
+          return data;
+        })
+        .then(_ => { showToast('Preset saved', 'success'); loadPresets(); })
+        .catch(err => { showToast(err && err.message ? err.message : 'Save failed', 'error'); });
+    }
+
+    function deletePreset(id) {
+      const body = new URLSearchParams();
+      body.append('action', 'delete');
+      body.append('id', String(id));
+      fetch('/api/config-presets', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' }, body: body.toString() })
+        .then(async r => {
+          try {
+            const data = await r.json();
+            if (!r.ok || (data && data.error)) throw new Error(data && data.error ? data.error : 'Delete failed');
+            return data;
+          } catch (e) {
+            if (!r.ok) {
+              const txt = await r.text().catch(() => '');
+              throw new Error(txt || 'Delete failed');
+            }
+            return {};
+          }
+        })
+        .then(_ => { showToast('Preset deleted', 'success'); loadPresets(); })
+        .catch(err => { showToast(err && err.message ? err.message : 'Delete failed', 'error'); });
+    }
+
+    function setStartup(id) {
+      const body = new URLSearchParams();
+      body.append('id', String(id));
+      fetch('/api/startup-config', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' }, body: body.toString() })
+        .then(async r => {
+          try {
+            const data = await r.json();
+            if (!r.ok || (data && data.error)) throw new Error(data && data.error ? data.error : 'Set startup failed');
+            return data;
+          } catch (e) {
+            if (!r.ok) {
+              const txt = await r.text().catch(() => '');
+              throw new Error(txt || 'Set startup failed');
+            }
+            return {};
+          }
+        })
+        .then(_ => { showToast('Startup preset set', 'success'); loadPresets(); })
+        .catch(err => { showToast(err && err.message ? err.message : 'Set startup failed', 'error'); });
+    }
+
+    function clearStartup() {
+      const body = new URLSearchParams();
+      body.append('action', 'clear');
+      fetch('/api/startup-config', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' }, body: body.toString() })
+        .then(async r => {
+          try {
+            const data = await r.json();
+            if (!r.ok || (data && data.error)) throw new Error(data && data.error ? data.error : 'Clear failed');
+            return data;
+          } catch (e) {
+            if (!r.ok) {
+              const txt = await r.text().catch(() => '');
+              throw new Error(txt || 'Clear failed');
+            }
+            return {};
+          }
+        })
+        .then(_ => { showToast('Startup cleared', 'success'); loadPresets(); })
+        .catch(err => { showToast(err && err.message ? err.message : 'Clear failed', 'error'); });
+    }
+
+    // ===== Startup Dropdown =====
+    function renderStartupSelect() {
+      const wrap = document.getElementById('startup-controls');
+      if (!wrap) return;
+      wrap.innerHTML = '';
+
+      const label = document.createElement('label');
+      label.setAttribute('for', 'startup-select');
+      label.textContent = 'Apply-on-startup:';
+      wrap.appendChild(label);
+
+      const select = document.createElement('select');
+      select.id = 'startup-select';
+      const optNone = document.createElement('option');
+      optNone.value = 'none';
+      optNone.textContent = 'None';
+      select.appendChild(optNone);
+      // fill with saved presets by name
+      for (let i = 0; i < 5; i++) {
+        const p = presets.find(x => x.id === i);
+        if (!p) continue;
+        const opt = document.createElement('option');
+        opt.value = String(i);
+        opt.textContent = p.name && p.name.trim().length ? p.name : ('Preset ' + (i + 1));
+        select.appendChild(opt);
+      }
+      // set selected
+      select.value = (startupPreset == null) ? 'none' : String(startupPreset);
+      // Apply immediately on change; selecting None clears
+      select.onchange = () => {
+        const val = select.value;
+        if (val === 'none') {
+          clearStartup();
+        } else {
+          const id = parseInt(val, 10);
+          if (!isNaN(id)) setStartup(id);
+        }
+      };
+      wrap.appendChild(select);
+    }
+  </script>
+</head>
+
+<body>
+  <div class="topbar">
+    <h1>ENERGIS Managed PDU</h1>
+  </div>
+  <div class="container">
+    <div class="sidebar">
+      <ul>
+        <li><a href="control.html">Control</a></li>
+        <li><a href="settings.html">Settings</a></li>
+        <li><a href="help.html">Help</a></li>
+        <li><a href="user_manual.html">User Manual</a></li>
+        <li><a href="automation_manual.html">Programming Manual</a></li>
+      </ul>
+    </div>
+    <div class="main-content">
+      <h2>Settings</h2>
+      <div id="status-message" style="display: none;"></div>
+
+      <!-- Saved Configurations moved to top -->
+      <h3>Saved Configurations</h3>
+      <hr>
+      <div class="presets-container">
+        <div class="presets-header">
+          <div id="startup-controls"></div>
+        </div>
+        <div id="presets-list"></div>
+      </div>
+
+      <form onsubmit="handleSubmit(event)">
+
+        <table class="settings-table">
+          <tr>
+            <td>
+              <h3>Device Settings</h3>
+              <hr>
+
+              <div class="form-group">
+                <label for="device_name">Device Name:</label>
+                <input type="text" id="device_name" name="device_name" maxlength="32" required>
+              </div>
+
+              <div class="form-group">
+                <label for="location">Device Location:</label>
+                <input type="text" id="location" name="location" maxlength="32" required>
+              </div>
+            </td>
+            <td>
+              <h3>Network Settings</h3>
+              <hr>
+
+              <div class="form-group">
+                <label>MAC Address:</label>
+                <input type="text" id="mac" name="mac" readonly>
+              </div>
+
+              <div class="form-group">
+                <label>IP Address:</label>
+                <div id="ip-group" class="ip-input-group">
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                  <span>.</span>
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                  <span>.</span>
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                  <span>.</span>
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Gateway:</label>
+                <div id="gateway-group" class="ip-input-group">
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                  <span>.</span>
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                  <span>.</span>
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                  <span>.</span>
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Subnet Mask:</label>
+                <div id="subnet-group" class="ip-input-group">
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                  <span>.</span>
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                  <span>.</span>
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                  <span>.</span>
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>DNS Server:</label>
+                <div id="dns-group" class="ip-input-group">
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                  <span>.</span>
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                  <span>.</span>
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                  <span>.</span>
+                  <input type="text" maxlength="3" oninput="validateIpInput(this)" required>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <h3>Device Identity</h3>
+              <hr>
+
+              <div class="form-group">
+                <label for="serial_number">Serial Number:</label>
+                <input type="text" id="serial_number" name="serial_number" readonly>
+              </div>
+
+              <div class="form-group">
+                <label for="firmware_version">Firmware Version:</label>
+                <input type="text" id="firmware_version" name="firmware_version" readonly>
+              </div>
+
+              <div class="form-group">
+                <label for="hardware_version">Hardware Version:</label>
+                <input type="text" id="hardware_version" name="hardware_version" readonly>
+              </div>
+            </td>
+            <td>
+              <h3>Location</h3>
+              <hr>
+
+              <div class="form-group">
+                <label for="device_region">Device Region:</label>
+                <input type="text" id="device_region" name="device_region" readonly>
+              </div>
+
+              <div class="form-group">
+                <label for="current_limit">Current Limit:</label>
+                <input type="text" id="current_limit" name="current_limit" readonly>
+              </div>
+
+              <div class="form-group">
+                <label for="warning_limit">Warning Threshold:</label>
+                <input type="text" id="warning_limit" name="warning_limit" readonly>
+              </div>
+
+              <div class="form-group">
+                <label for="critical_limit">Critical Threshold:</label>
+                <input type="text" id="critical_limit" name="critical_limit" readonly>
+              </div>
+            </td>
+          </tr>
+        </table>
+
+        <h3>Temperature Unit</h3>
+        <hr>
+
+        <div class="form-group">
+          <input type="radio" id="celsius" name="temp_unit" value="celsius" checked>
+          <label for="celsius">Celsius</label>
+        </div>
+
+        <div class="form-group">
+          <input type="radio" id="fahrenheit" name="temp_unit" value="fahrenheit">
+          <label for="fahrenheit">Fahrenheit</label>
+        </div>
+
+        <div class="form-group">
+          <input type="radio" id="kelvin" name="temp_unit" value="kelvin">
+          <label for="kelvin">Kelvin</label>
+        </div>
+
+        <br>
+        <button type="submit" class="btn">Save Settings</button>
+      </form>
+
+
+    </div>
+  </div>
+  <div id="toast" class="toast" aria-live="polite" aria-atomic="true"></div>
+</body>
+
+</html>

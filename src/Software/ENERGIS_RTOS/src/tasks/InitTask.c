@@ -618,7 +618,7 @@ static void InitTask(void *pvParameters) {
 
     log_printf("\r\n");
     INFO_PRINT("========================================\r\n");
-    INFO_PRINT("         ENERGIS 10IN MANAGED PDU       \r\n");
+    INFO_PRINT("         ENERGIS MANAGED PDU            \r\n");
     INFO_PRINT("========================================\r\n");
     INFO_PRINT("Firmware: %s\r\n", SWVERSION);
     INFO_PRINT("Serial: %s\r\n", id->serial_number);
