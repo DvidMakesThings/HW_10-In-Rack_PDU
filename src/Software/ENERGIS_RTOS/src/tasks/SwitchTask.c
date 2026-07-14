@@ -50,37 +50,103 @@ static uint8_t read_relay_mask(mcp23017_t *rel) {
     return mask;
 }
 
+static void recover_selection_mcp(void) {
+    mcp23017_t *sel = mcp_selection();
+    if (sel && sel->inited) {
+        mcp_recover(sel);
+    }
+}
+
+/**
+ * @brief Hard-reset display MCP and write authoritative relay + LED state.
+ *
+ * Called on every channel activation/deactivation. Pulses the hardware reset
+ * line (shared with selection MCP), then fully reconfigures both chips and
+ * writes the correct output state. Eliminates any EMI-induced corruption
+ * regardless of failure mode (OLAT, IODIR, IOCON, or bus glitch).
+ *
+ * @param relay_mask Current relay channel states (bit per channel, CH1=bit0)
+ */
+static void hard_reset_display(uint8_t relay_mask) {
+    mcp23017_t *disp = mcp_display();
+    if (!disp || !disp->inited)
+        return;
+
+    /* Hardware reset pulse: forces both display and selection MCPs to POR */
+    if (disp->rst_gpio >= 0) {
+        gpio_put((uint)disp->rst_gpio, 0);
+        vTaskDelay(pdMS_TO_TICKS(MCP_RESET_PULSE_MS));
+        gpio_put((uint)disp->rst_gpio, 1);
+        vTaskDelay(pdMS_TO_TICKS(MCP_POST_RESET_MS));
+    }
+
+    /* Set shadow to intended state, then recover writes full config + OLAT */
+    disp->olat_a = relay_mask;
+    if (!mcp_recover(disp)) {
+        /* Retry once */
+        vTaskDelay(pdMS_TO_TICKS(5));
+        mcp_recover(disp);
+    }
+
+    /* Selection MCP shares the reset line, must also be reconfigured */
+    recover_selection_mcp();
+}
+
+/**
+ * @brief Periodic soft-verification of display state (called by HealthTask).
+ *
+ * Reads back OLAT from hardware and corrects if it drifted. Does NOT pulse
+ * reset, so it is lightweight for the 250ms background loop.
+ */
 static void mirror_display_from_relay(void) {
     mcp23017_t *rel = mcp_relay();
     mcp23017_t *disp = mcp_display();
     if (!rel || !rel->inited || !disp || !disp->inited)
         return;
+
     TickType_t now = xTaskGetTickCount();
+
+    /* Check for full chip reset (IODIR reverted to 0xFF) */
+    uint8_t iodir = 0x00;
+    bool bus_ok =
+        i2c_bus_read_reg8(disp->i2c, disp->addr, MCP23017_IODIRA, &iodir, MCP_I2C_TIMEOUT_US);
+    if (!bus_ok) {
+        s_disp_backoff_until = now + pdMS_TO_TICKS(50);
+        return;
+    }
+    if (iodir != 0x00) {
+        /* Full reset detected, do hard reset to guarantee clean state */
+        uint8_t mask = read_relay_mask(rel);
+        hard_reset_display(mask);
+        s_disp_backoff_until = 0;
+        return;
+    }
+
     if (now < s_disp_backoff_until)
         return;
 
     uint8_t mask = read_relay_mask(rel);
 
-    /* Update shadow with intended state, then write to hardware */
-    if (!mcp_write_mask(disp, 0, 0xFFu, mask)) {
-        s_disp_backoff_until = now + pdMS_TO_TICKS(200);
+    /* Verify OLAT port A (channel LEDs) matches relay state */
+    uint8_t hw_olat = 0x00;
+    bus_ok =
+        i2c_bus_read_reg8(disp->i2c, disp->addr, MCP23017_OLATA, &hw_olat, MCP_I2C_TIMEOUT_US);
+    if (!bus_ok) {
+        s_disp_backoff_until = now + pdMS_TO_TICKS(50);
+        return;
+    }
+    if (hw_olat != mask) {
+        /* OLAT corrupted without full reset. Hard reset to fix. */
+        hard_reset_display(mask);
         return;
     }
 
-    /*
-     * Detect EMI-induced MCP23017 reset: if IODIR has reverted to 0xFF
-     * (power-on default = all inputs), the chip was reset by a glitch on
-     * the reset line.  mcp_recover() restores IOCON, IODIR, GPPU and
-     * re-applies OLAT from the shadow registers we just updated above.
-     */
-    uint8_t iodir = 0x00;
-    i2c_bus_read_reg8(disp->i2c, disp->addr, MCP23017_IODIRA, &iodir, MCP_I2C_TIMEOUT_US);
-    if (iodir != 0x00) {
-        mcp_recover(disp);
-        /* Selection MCP shares the same reset line - recover it too */
-        mcp23017_t *sel = mcp_selection();
-        if (sel && sel->inited) {
-            mcp_recover(sel);
+    /* Verify port B (status LEDs) */
+    uint8_t hw_olatb = 0x00;
+    if (i2c_bus_read_reg8(disp->i2c, disp->addr, MCP23017_OLATB, &hw_olatb, MCP_I2C_TIMEOUT_US)) {
+        if (hw_olatb != disp->olat_b) {
+            i2c_bus_write_reg8(disp->i2c, disp->addr, MCP23017_OLATB, disp->olat_b,
+                               MCP_I2C_TIMEOUT_US);
         }
     }
 }
@@ -159,8 +225,8 @@ switch_result_t Switch_SetChannel(uint8_t channel, bool state) {
         return SWITCH_ERR_I2C_FAIL;
     }
 
-    /* Full display re-latch from relay state (includes verify + retry) */
-    mirror_display_from_relay();
+    /* Hard reset display MCP and write authoritative state */
+    hard_reset_display(read_relay_mask(rel));
 
     unlock();
     return SWITCH_OK;
@@ -196,7 +262,7 @@ switch_result_t Switch_AllOn(void) {
             return SWITCH_ERR_I2C_FAIL;
         }
     }
-    mirror_display_from_relay();
+    hard_reset_display(read_relay_mask(rel));
     unlock();
     return SWITCH_OK;
 }
@@ -217,7 +283,7 @@ switch_result_t Switch_AllOff(void) {
             return SWITCH_ERR_I2C_FAIL;
         }
     }
-    mirror_display_from_relay();
+    hard_reset_display(read_relay_mask(rel));
     unlock();
     return SWITCH_OK;
 }
@@ -239,7 +305,7 @@ switch_result_t Switch_SetMask(uint8_t mask) {
             return SWITCH_ERR_I2C_FAIL;
         }
     }
-    mirror_display_from_relay();
+    hard_reset_display(read_relay_mask(rel));
     unlock();
     return SWITCH_OK;
 }

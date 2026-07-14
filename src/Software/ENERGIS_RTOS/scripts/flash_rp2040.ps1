@@ -68,7 +68,7 @@ function Select-SerialPort {
 
 try {
     # Change to project directory
-    $projectDir = "G:\_GitHub\HW_10-In-Rack_PDU\src\Software\ENERGIS_RTOS"
+    $projectDir = $PSScriptRoot | Split-Path -Parent
     Set-Location $projectDir
     
     # Remove existing build directory if it exists and create new one
@@ -77,8 +77,9 @@ try {
     Set-Location build
     
     # Run CMake and Ninja build
-    cmake -G Ninja -DPICO_SDK_PATH=C:/Users/sdvid/.pico-sdk/sdk/2.2.0 ..
-    ninja
+    $sdkPath = "$env:USERPROFILE/.pico-sdk/sdk/2.2.0"
+    cmake -G Ninja -DPICO_SDK_PATH="$sdkPath" ..
+    & "$env:USERPROFILE/.pico-sdk/ninja/v1.12.1/ninja.exe"
     
     # Find the built .uf2 file dynamically
     $uf2File = Get-ChildItem -Path . -Filter "ENERGIS_firmware_*.uf2" | Select-Object -First 1
@@ -102,7 +103,7 @@ try {
     if (-not (Test-Path -LiteralPath $PY_UPLOADER_ABS)) { throw "Python uploader not found: $PY_UPLOADER_ABS" }
     if (-not (Test-Path -LiteralPath $FIRMWARE_ABS)) { throw "Firmware file not found: $FIRMWARE_ABS" }
 
-    & python "$PY_UPLOADER_ABS" --p "$PORT" --b $BAUD --f "$FIRMWARE_ABS"
+    & py -3 "$PY_UPLOADER_ABS" --p "$PORT" --b $BAUD --f "$FIRMWARE_ABS"
 
     Write-Host "[OK] Flash done."
 }
