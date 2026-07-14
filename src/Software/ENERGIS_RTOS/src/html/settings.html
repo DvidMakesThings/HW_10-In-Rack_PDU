@@ -1150,8 +1150,31 @@
                 .catch(() => { onSessionExpired(); });
         }
 
+        function disableSessionDisplay() {
+            clearTimeout(sessionWarnTimer);
+            clearTimeout(sessionExpireTimer);
+            if (countdownInterval) { clearInterval(countdownInterval); countdownInterval = null; }
+            const el = document.getElementById('session-countdown');
+            if (el) { el.textContent = '--:--'; el.style.color = ''; }
+            const ai = document.getElementById('auth-indicator');
+            if (ai) { ai.textContent = 'N/A'; ai.style.color = 'var(--muted)'; }
+        }
+
+        function checkAuthAndStart() {
+            fetch('/api/auth/status')
+                .then(r => r.json())
+                .then(data => {
+                    if (data.enabled) {
+                        resetSessionTimers();
+                    } else {
+                        disableSessionDisplay();
+                    }
+                })
+                .catch(() => { resetSessionTimers(); });
+        }
+
         /* Start session timers on page load */
-        resetSessionTimers();
+        checkAuthAndStart();
     </script>
 </head>
 
