@@ -1087,6 +1087,71 @@
         }
 
         window.addEventListener('load', loadAuthStatus);
+
+        /* ===== Session expiry warning ===== */
+        const SESSION_TIMEOUT_MS = 10 * 60 * 1000;
+        const SESSION_WARN_MS = 60 * 1000;
+        let sessionWarnTimer = null;
+        let sessionExpireTimer = null;
+        let sessionEndTime = 0;
+        let countdownInterval = null;
+
+        function updateCountdownDisplay() {
+            const el = document.getElementById('session-countdown');
+            if (!el) return;
+            const remaining = Math.max(0, Math.ceil((sessionEndTime - Date.now()) / 1000));
+            const m = Math.floor(remaining / 60);
+            const s = remaining % 60;
+            el.textContent = m + ':' + (s < 10 ? '0' : '') + s;
+            if (remaining <= 60) {
+                el.style.color = 'var(--bad, #EF4444)';
+            } else {
+                el.style.color = '';
+            }
+        }
+
+        function resetSessionTimers() {
+            clearTimeout(sessionWarnTimer);
+            clearTimeout(sessionExpireTimer);
+            const modal = document.getElementById('session-modal');
+            if (modal) modal.style.display = 'none';
+            sessionEndTime = Date.now() + SESSION_TIMEOUT_MS;
+            if (!countdownInterval) {
+                countdownInterval = setInterval(updateCountdownDisplay, 1000);
+            }
+            updateCountdownDisplay();
+            sessionWarnTimer = setTimeout(showSessionWarning, SESSION_TIMEOUT_MS - SESSION_WARN_MS);
+            sessionExpireTimer = setTimeout(onSessionExpired, SESSION_TIMEOUT_MS);
+        }
+
+        function showSessionWarning() {
+            const modal = document.getElementById('session-modal');
+            if (modal) modal.style.display = 'flex';
+        }
+
+        function onSessionExpired() {
+            window.location.reload();
+        }
+
+        function sessionDismiss() {
+            const modal = document.getElementById('session-modal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        function sessionExtend() {
+            fetch('/api/auth/status')
+                .then(r => {
+                    if (r.ok) {
+                        resetSessionTimers();
+                    } else {
+                        onSessionExpired();
+                    }
+                })
+                .catch(() => { onSessionExpired(); });
+        }
+
+        /* Start session timers on page load */
+        resetSessionTimers();
     </script>
 </head>
 
@@ -1118,6 +1183,10 @@
                         <div class="page-title">Settings</div>
                         <div class="page-crumb">Configure device and network parameters</div>
                     </div>
+                </div>
+                <div style="margin-left:auto;font-size:13px;color:var(--muted);display:flex;gap:14px;align-items:center;">
+                    <span>Auth: <span id="auth-indicator" style="color:var(--good,#22C55E);">Logged in</span></span>
+                    <span>Session: <span id="session-countdown">10:00</span></span>
                 </div>
             </div>
 
@@ -1327,6 +1396,30 @@
         </div>
     </div>
     <div id="toast" class="toast" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Session expiry warning modal -->
+    <div id="session-modal" style="display:none;position:fixed;inset:0;z-index:9999;
+        background:rgba(0,0,0,.7);backdrop-filter:blur(4px);
+        align-items:center;justify-content:center;">
+        <div style="background:var(--bg1,#12141C);border:1px solid rgba(245,158,11,.4);
+            border-radius:16px;padding:28px 32px;max-width:380px;width:90%;
+            box-shadow:0 16px 48px rgba(0,0,0,.6);text-align:center;">
+            <div style="font-size:15px;font-weight:600;color:#F59E0B;margin-bottom:10px;">
+                Session Expiring
+            </div>
+            <div style="font-size:13px;color:rgba(234,237,244,.85);margin-bottom:20px;line-height:1.5;">
+                Your session will expire in less than 60 seconds due to inactivity.
+            </div>
+            <div style="display:flex;gap:12px;justify-content:center;">
+                <button onclick="sessionDismiss()" style="padding:8px 20px;border-radius:8px;
+                    border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);
+                    color:#eaedf4;font-size:13px;cursor:pointer;">OK</button>
+                <button onclick="sessionExtend()" style="padding:8px 20px;border-radius:8px;
+                    border:none;background:linear-gradient(135deg,#F59E0B,#F97316);
+                    color:#0C0E14;font-size:13px;font-weight:600;cursor:pointer;">Extend</button>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

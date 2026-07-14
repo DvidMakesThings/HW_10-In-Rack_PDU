@@ -37,7 +37,7 @@ const uint8_t COMMUNITY_SIZE = (uint8_t)(sizeof(COMMUNITY) - 1);
  * @return None
  */
 static void get_sysContact(void *buf, uint8_t *len) {
-    const char *s = "dvidmakesthings@gmail.com";
+    const char *s = "info@dmt.com";
     uint8_t L = (uint8_t)strlen(s);
     memcpy(buf, s, L);
     *len = L;

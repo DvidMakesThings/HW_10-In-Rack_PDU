@@ -762,6 +762,7 @@
                                 <li><strong>Device identification:</strong> name, location, temperature unit.</li>
                                 <li><strong>Network configuration:</strong> IP address, subnet mask, gateway, DNS
                                     server.</li>
+                                <li><strong>Password protection:</strong> enable or disable login, change password.</li>
                             </ul>
                             <p>After changing IP parameters, the device stores them and reboots. You then reach it under
                                 the new IP.</p>
@@ -770,6 +771,24 @@
                                 at the old
                                 address. Make sure you know the new configuration and how to access the device again.
                             </div>
+
+                            <h4>5.4 Password protection</h4>
+                            <p>The web interface supports optional password protection. When enabled, all pages
+                                require authentication before access. A login page is shown automatically.</p>
+                            <ul>
+                                <li><strong>Session type:</strong> cookie based, with a 10 minute sliding expiry.
+                                    Each successful page load or API call resets the timer.</li>
+                                <li><strong>Default password:</strong> <code>admin</code>. Change it on the
+                                    Settings page after first login.</li>
+                                <li><strong>Enable/disable:</strong> toggle the checkbox on the Settings page
+                                    Password Protection card.</li>
+                                <li><strong>Password length:</strong> maximum 31 characters.</li>
+                                <li><strong>Persistence:</strong> the enabled flag and password are stored in
+                                    EEPROM and survive reboots and power cycles.</li>
+                            </ul>
+                            <p>If you forget the password, use the serial console command <code>RFS</code> to
+                                restore factory defaults, which resets authentication to enabled with password
+                                <code>admin</code>.</p>
                         </div>
 
                         <div class="section" id="troubleshooting">
@@ -906,8 +925,29 @@
                             <p>The embedded HTTP server listens on port80 and exposes JSON endpoints under
                                 <code>/api/...</code>.
                                 All responses use HTTP/1.1 and include <code>Connection: close</code>.</p>
+                            <p>When password protection is enabled, all endpoints except the auth endpoints
+                                require a valid session cookie. Unauthenticated requests receive the login page
+                                instead of the requested resource.</p>
 
-                            <h4>9.1 GET /api/status</h4>
+                            <h4>9.1 Authentication endpoints</h4>
+                            <ul>
+                                <li><code>POST /api/auth</code> - login. Body: <code>password=&lt;pw&gt;</code>.
+                                    Returns JSON with <code>ok:true</code> and sets a session cookie on success.</li>
+                                <li><code>POST /api/auth/logout</code> - invalidate the current session.</li>
+                                <li><code>GET /api/auth/status</code> - returns JSON with <code>enabled</code>
+                                    (bool) and <code>authenticated</code> (bool).</li>
+                                <li><code>POST /api/auth/config</code> - change password or toggle protection.
+                                    Body: <code>auth_enabled=0|1</code> and optionally
+                                    <code>new_password=&lt;pw&gt;</code>. Requires a valid session.</li>
+                            </ul>
+                            <pre><code># Login
+curl -c cookies.txt -X POST "http://&lt;device-ip&gt;/api/auth" \
+ --data "password=admin"
+
+# Use session cookie for subsequent requests
+curl -b cookies.txt "http://&lt;device-ip&gt;/api/status"</code></pre>
+
+                            <h4>9.2 GET /api/status</h4>
                             <p>Returns overall status and per channel telemetry.</p>
                             <ul>
                                 <li><code>channels</code> - array of 8 objects, each containing <code>voltage</code>,
@@ -919,7 +959,7 @@
                             </ul>
                             <pre><code>curl http://&lt;device-ip&gt;/api/status</code></pre>
 
-                            <h4>9.2 POST /api/control</h4>
+                            <h4>9.3 POST /api/control</h4>
                             <p>Control relays using simple form encoded data. Each field is named <code>channelN</code>
                                 for N=1..8.</p>
                             <ul>
@@ -930,7 +970,7 @@
 curl -X POST "http://&lt;device-ip&gt;/api/control" \
  --data "channel1=on&amp;channel3=on"</code></pre>
 
-                            <h4>9.3 GET /api/settings</h4>
+                            <h4>9.4 GET /api/settings</h4>
                             <p>Returns current network configuration and user preferences in JSON.</p>
                             <ul>
                                 <li>Typical fields: <code>ip</code>, <code>subnet</code>, <code>gateway</code>,
@@ -941,7 +981,7 @@ curl -X POST "http://&lt;device-ip&gt;/api/control" \
                             </ul>
                             <pre><code>curl http://&lt;device-ip&gt;/api/settings</code></pre>
 
-                            <h4>9.4 POST /api/settings</h4>
+                            <h4>9.5 POST /api/settings</h4>
                             <p>Updates network parameters and user preferences. Uses form encoded data.</p>
                             <pre><code>curl -X POST "http://&lt;device-ip&gt;/api/settings" \
  --data "ip=192.168.0.12&amp;subnet=255.255.255.0&amp;gateway=192.168.0.1&amp;dns=8.8.8.8&amp;device_name=ENERGIS&amp;location=Rack1&amp;temp_unit=celsius"</code></pre>
