@@ -235,8 +235,8 @@ extern w5500_NetConfig eth_netcfg;
  * If neither is defined, defaults to 10-inch.
  */
 /* >>> Set variant here <<< */
-#define ENERGIS_VARIANT_19IN
-// #define ENERGIS_VARIANT_10IN
+//#define ENERGIS_VARIANT_19IN
+#define ENERGIS_VARIANT_10IN
 
 #if defined(ENERGIS_VARIANT_19IN)
 #define CURRENT_LIMIT_EU_A 15.0f

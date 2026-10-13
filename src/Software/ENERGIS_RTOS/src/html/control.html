@@ -246,13 +246,18 @@
 
         .preset-bar select {
             padding: 8px 12px;
-            background: rgba(255, 255, 255, .06);
+            background: var(--bg1);
             border: 1px solid rgba(255, 255, 255, .1);
             border-radius: var(--r2);
             color: var(--txt);
             font-size: 13px;
             min-width: 180px;
             outline: none;
+        }
+
+        .preset-bar select option {
+            background: var(--bg1);
+            color: var(--txt);
         }
 
         .preset-bar select:focus {
@@ -565,10 +570,19 @@
                     data.channels.forEach((ch, i) => {
                         lastStates[i] = !!ch.state;
                         document.getElementById(`voltage-${i + 1}`).innerText = ch.voltage.toFixed(2);
-                        const belowThreshold = (ch.power < 7.0);
-                        document.getElementById(`current-${i + 1}`).innerText = belowThreshold ? '0.0000' : ch.current.toFixed(4);
+                        const isOn = !!ch.state;
+                        const belowThreshold = isOn && (ch.power < 5.0);
+                        if (!isOn) {
+                            document.getElementById(`current-${i + 1}`).innerText = '0.0';
+                            document.getElementById(`power-${i + 1}`).innerText = '0.0';
+                        } else if (belowThreshold) {
+                            document.getElementById(`current-${i + 1}`).innerText = '0.0000';
+                            document.getElementById(`power-${i + 1}`).innerText = '<5.0';
+                        } else {
+                            document.getElementById(`current-${i + 1}`).innerText = ch.current.toFixed(4);
+                            document.getElementById(`power-${i + 1}`).innerText = ch.power.toFixed(4);
+                        }
                         document.getElementById(`uptime-${i + 1}`).innerText = ch.uptime;
-                        document.getElementById(`power-${i + 1}`).innerText = belowThreshold ? '0.0000' : ch.power.toFixed(4);
                         if (!pendingChanges.has(i + 1))
                             document.getElementById(`toggle-${i + 1}`).checked = ch.state;
                         if (!pendingLabelChanges.has(i + 1))

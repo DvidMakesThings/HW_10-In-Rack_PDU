@@ -3,5 +3,6 @@
         "*.bak": "cpp",
         "rtos_hooks.h": "c",
         "power_mgr.h": "c"
-    }
+    },
+    "cmake.sourceDirectory": "C:/Dev/_GitHub/HW_10-In-Rack_PDU/src/Software/ENERGIS_RTOS"
 }

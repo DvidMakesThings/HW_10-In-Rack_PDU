@@ -535,13 +535,18 @@
 
         .startup-controls select {
             padding: 7px 10px;
-            background: rgba(255, 255, 255, .06);
+            background: var(--bg1);
             border: 1px solid rgba(255, 255, 255, .1);
             border-radius: var(--r2);
             color: var(--txt);
             font-size: 13px;
             min-width: 180px;
             outline: none;
+        }
+
+        .startup-controls select option {
+            background: var(--bg1);
+            color: var(--txt);
         }
 
         .startup-controls select:focus {
@@ -716,20 +721,8 @@
                 .then(data => {
                     if (data.error) throw new Error(data.error);
 
-                    showStatus('Settings saved successfully! The device will reboot...', true);
-
-                    document.querySelectorAll('input, button').forEach(el => el.disabled = true);
-
-                    let countdown = 5;
-                    const interval = setInterval(() => {
-                        countdown--;
-                        if (countdown <= 0) {
-                            clearInterval(interval);
-                            window.location.reload();
-                        } else {
-                            showStatus(`Settings saved successfully! The device will reboot... (${countdown})`, true);
-                        }
-                    }, 1000);
+                    showStatus('Settings saved successfully!', true);
+                    submitBtn.disabled = false;
                 })
                 .catch(error => {
                     console.error('Error:', error);
