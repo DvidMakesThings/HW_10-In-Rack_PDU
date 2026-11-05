@@ -537,6 +537,7 @@ bool w5500_chip_init(w5500_NetConfig *net_info) {
     uint32_t timeout = 0;
     do {
         link_status = getPHYCFGR();
+        Health_Heartbeat(HEALTH_ID_NET);
         vTaskDelay(pdMS_TO_TICKS(100));
         timeout++;
         if (timeout > 25) { /* 2.5 second timeout */

@@ -192,6 +192,16 @@ BaseType_t NetTask_Init(bool enable);
 /** @ingroup tasks07 */
 bool Net_IsReady(void);
 
+/**
+ * @brief Request a full W5500 reinit after a committed network change.
+ *
+ * Signals NetTask to hardware-reset and reinitialize the W5500 with the latest
+ * network configuration at a safe point in its loop, applying config changes
+ * without rebooting the CPU.
+ */
+/** @ingroup tasks07 */
+void NetTask_RequestReinit(void);
+
 /** @} */
 
 #endif // NETTASK_H

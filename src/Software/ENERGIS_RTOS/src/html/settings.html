@@ -301,6 +301,21 @@
             box-shadow: 0 0 0 4px var(--ring);
         }
 
+        .ip-input-group.disabled {
+            background: rgba(255, 255, 255, .03);
+            border-color: rgba(255, 255, 255, .06);
+            box-shadow: none;
+        }
+
+        .ip-input-group.disabled input {
+            color: var(--muted);
+            cursor: not-allowed;
+        }
+
+        .ip-input-group.disabled span {
+            color: var(--muted);
+        }
+
         /* Buttons */
         .btn {
             appearance: none;
@@ -686,6 +701,14 @@
             inputs.forEach((input, i) => input.value = parts[i] || '0');
         }
 
+        function applyDhcpState(enabled) {
+            ['ip-group', 'gateway-group', 'subnet-group', 'dns-group'].forEach(gid => {
+                const group = document.getElementById(gid);
+                if (group) group.classList.toggle('disabled', enabled);
+                document.querySelectorAll(`#${gid} input`).forEach(inp => { inp.disabled = enabled; });
+            });
+        }
+
         function showStatus(message, success) {
             const statusDiv = document.getElementById('status-message');
             statusDiv.textContent = message;
@@ -706,6 +729,7 @@
             formData.set('gateway', gateway);
             formData.set('subnet', subnet);
             formData.set('dns', dns);
+            formData.set('dhcp', document.getElementById('dhcp').checked ? '1' : '0');
 
             const submitBtn = document.querySelector('button[type="submit"]');
             submitBtn.disabled = true;
@@ -739,6 +763,10 @@
                     setIpToGroup('gateway-group', settings.gateway);
                     setIpToGroup('subnet-group', settings.subnet);
                     setIpToGroup('dns-group', settings.dns);
+
+                    const dhcpOn = (settings.dhcp === 1 || settings.dhcp === '1' || settings.dhcp === true);
+                    document.getElementById('dhcp').checked = dhcpOn;
+                    applyDhcpState(dhcpOn);
 
                     document.getElementById('mac').value = settings.mac || '';
 
@@ -1280,6 +1308,17 @@
                                 <div class="form-group">
                                     <label>MAC Address:</label>
                                     <input class="field-input" type="text" id="mac" name="mac" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dhcp">DHCP:</label>
+                                    <input type="checkbox" id="dhcp" onchange="applyDhcpState(this.checked)">
+                                    <span style="margin-left:8px;opacity:0.7;font-size:0.9em;">Obtain IP address automatically</span>
+                                </div>
+                                <div class="form-group">
+                                    <span style="opacity:0.7;font-size:0.9em;">
+                                        Always reachable by name at <code>energis.local</code> (mDNS),
+                                        in both static and DHCP modes &mdash; handy when the IP is unknown.
+                                    </span>
                                 </div>
                                 <div class="form-group">
                                     <label>IP Address:</label>

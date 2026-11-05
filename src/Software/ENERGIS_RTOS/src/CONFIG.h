@@ -212,13 +212,13 @@ extern w5500_NetConfig eth_netcfg;
  * @brief Firmware version string.
  * @details Format: MAJOR.MINOR.PATCH
  */
-#define FIRMWARE_VERSION "1.1.0"
+#define FIRMWARE_VERSION "1.2.0"
 
 /**
  * @brief Firmware version as integer literal.
  * @details Encoded as: MAJOR*100 + MINOR*10 + PATCH
  */
-#define FIRMWARE_VERSION_LITERAL 110
+#define FIRMWARE_VERSION_LITERAL 120
 /** @} */
 
 /************************* Product Variant Selection ****************************/

@@ -50,6 +50,15 @@ import serial
 from serial.tools import list_ports
 
 
+# Force UTF-8 console output so non-ASCII characters (e.g. the '->' arrow) do not
+# raise UnicodeEncodeError on Windows consoles that default to cp1252.
+for _stream in (sys.stdout, sys.stderr):
+    try:
+        _stream.reconfigure(encoding="utf-8", errors="replace")
+    except (AttributeError, ValueError):
+        pass
+
+
 # ---------- Utils ----------
 
 def ts() -> str:

@@ -1,7 +1,7 @@
 # ENERGIS - 8 Channel Managed PDU for 10 Inch Racks
 ## Complete Technical Documentation
 
-**Version:** 1.1.0 (Firmware) / 1.1.0 (Hardware)
+**Version:** 1.2.0 (Firmware) / 1.1.0 (Hardware)
 **Author:** DvidMakesThings - David Sipos
 **Project:** ENERGIS - The Managed PDU Project for 10-Inch Rack
 **GitHub:** https://github.com/DvidMakesThings/HW_10-In-Rack_PDU
@@ -32,6 +32,8 @@ The ENERGIS PDU is an intelligent, network-managed Power Distribution Unit desig
 - **8 Relay Channels**: Individual ON/OFF control with hardware verification
 - **Real-Time Power Monitoring**: Voltage, current, power, and energy tracking per channel
 - **Network Management**: HTTP web interface and SNMP protocol support
+- **Zero-Config Networking**: Built-in DHCP client with automatic link-local (APIPA) fallback, plus mDNS and NetBIOS name resolution (`energis.local` / `energis`) for discovery without a known IP
+- **Live Network Reconfiguration**: IP, subnet, gateway, DNS and DHCP mode changes are applied on the fly without a reboot
 - **Overcurrent Protection**: Three-stage protection (WARNING → CRITICAL → LOCKOUT)
 - **Persistent Configuration**: Non-volatile storage for all settings and calibration data
 - **Front Panel Interface**: Manual control with 4 buttons and LED indicators
@@ -1388,7 +1390,7 @@ Network stack manager for W5500 Ethernet, HTTP server, and SNMP agent.
 
 **Architecture:**
 - Single-owner model: exclusive access to W5500 hardware
-- Manages 3 W5500 sockets: HTTP (0), SNMP agent (1), SNMP trap (2)
+- Manages 6 W5500 sockets: HTTP (0), SNMP agent (1), SNMP trap (2), DHCP client (3), mDNS responder (4), NetBIOS responder (5)
 - Link supervision with automatic reinitialization
 - Standby mode support (suspends during power-saving)
 - ETH LED visual feedback (solid when linked, blinking when down)
@@ -1397,6 +1399,9 @@ Network stack manager for W5500 Ethernet, HTTP server, and SNMP agent.
 - HTTP web server for PDU control interface and metrics endpoint
 - SNMP agent for network management protocol support
 - SNMP trap sender for proactive event notifications
+- DHCP client (DORA) with automatic link-local (APIPA) fallback when no server responds
+- mDNS and NetBIOS name responders for zero-config discovery (`energis.local` / `energis`)
+- Live re-addressing: network changes applied via register writes without a reboot
 - Robust link detection with automatic recovery
 - Full reinitialization on each link-up event
 - Graceful degradation (system operates without Ethernet)
@@ -1435,6 +1440,28 @@ NetTask continuously polls W5500 PHY status:
 | HTTP server | 0 | 80 | TCP |
 | SNMP agent | 1 | 161 | UDP |
 | SNMP trap sender | 2 | Dynamic | UDP |
+| DHCP client | 3 | 68 | UDP |
+| mDNS responder | 4 | 5353 | UDP (multicast) |
+| NetBIOS responder | 5 | 137 | UDP |
+
+**Dynamic Addressing:**
+
+On boot and on every link-up, NetTask acquires an address before starting the
+listening services:
+- **DHCP enabled:** runs a DORA exchange; on success binds the lease, otherwise
+  falls back to a link-local **169.254.x.y** address derived from the MAC (APIPA).
+- **DHCP disabled:** applies the stored static configuration.
+
+After addressing is settled, the mDNS and NetBIOS responders are (re)opened and
+updated with the active IP so the unit is always reachable by name. See section
+8.5 for details.
+
+**Live Reconfiguration:**
+
+Network setting changes (from the web Settings page or the console) are applied
+**without a reboot**. `net_full_reinit()` re-acquires addressing and rebinds the
+services in place via W5500 register writes, so existing behavior is preserved
+while the new IP/mode takes effect immediately.
 
 **Standby Mode:**
 
@@ -2639,6 +2666,59 @@ scrape_configs:
     scrape_interval: 10s
 ```
 
+### 8.5 Dynamic Addressing and Name Resolution
+
+**Files:** `drivers/dhcp.h/.c`, `drivers/mdns.h/.c`, `drivers/nbns.h/.c`
+
+Added in firmware **1.2.0**, these services let the PDU obtain an address
+automatically and be reached by name without knowing its IP.
+
+**DHCP Client (socket 3, UDP/68):**
+
+A compact software DHCP client performs the standard DORA exchange
+(DISCOVER → OFFER → REQUEST → ACK). It advertises the unit's host name via
+option 12 so routers register and display the device by name. The lease renewal
+interval is clamped to a sane window (30 s … 7 days) to tolerate very long
+server-supplied lease times.
+
+**Link-Local (APIPA) Fallback:**
+
+If DHCP is enabled but no server answers, the unit self-assigns a link-local
+address in the **169.254.0.0/16** range, derived deterministically from the MAC
+(`169.254.(1 + mac[5] % 254).mac[4]`, mask `255.255.0.0`). This keeps the device
+reachable on a direct PC-to-device cable with no DHCP server present.
+
+**Per-Unit Unique Name:**
+
+Each unit derives a unique host name from the last three MAC octets, e.g.
+`energis-0c77f6`. This avoids name collisions when several PDUs share one network.
+The generic name `energis` is still answered as an alias, so `energis.local` /
+`energis` remain convenient discovery entry points for single-device setups.
+
+**mDNS Responder (socket 4, UDP/5353 multicast):**
+
+Answers multicast-DNS A-record queries for both `<unique>.local` and
+`energis.local`, replying with the active IP. Lets macOS/Linux and Windows
+(where mDNS is permitted) resolve the device without any configuration.
+
+**NetBIOS Name Responder (socket 5, UDP/137):**
+
+Answers NetBIOS name queries for both `<unique>` and `energis`, so Windows hosts
+can resolve `http://energis` even on network profiles where mDNS is blocked.
+
+**Reachability Summary:**
+
+| Method | Name / Address | Works when |
+|--------|----------------|------------|
+| mDNS | `energis.local`, `energis-<mac>.local` | mDNS allowed on the network |
+| NetBIOS | `energis`, `energis-<mac>` | Windows, same subnet |
+| DHCP hostname | `energis-<mac>` in router/DNS | DHCP server registers hostnames |
+| Direct IP | DHCP lease, link-local, or static | always |
+
+> The responders are re-opened automatically after every link-up / standby-exit
+> event (which soft-resets the W5500), and their advertised IP is refreshed on
+> each address change.
+
 ---
 
 ## 9. Safety and Protection
@@ -2881,7 +2961,7 @@ If verification fails:
 
 **Supported Modes:**
 - Static IP
-- DHCP (W5500 hardware DHCP)
+- DHCP (software DHCP client, with automatic link-local/APIPA fallback)
 
 **Configuration Fields:**
 - MAC address (6 bytes, locally-administered OUI)
@@ -2904,7 +2984,10 @@ Mode: Static
 
 **Configuration via HTTP:**
 
-Navigate to `http://[device-ip]/settings` and modify network settings. Submit form to apply changes. Device reboots automatically to apply new network configuration.
+Navigate to `http://[device-ip]/settings` (or `http://energis.local/settings`)
+and modify network settings. Submit the form to apply changes; the new
+addressing is applied **live, without a reboot**. When DHCP is enabled the IP
+fields are greyed out since the address is obtained automatically.
 
 **Configuration via SNMP:**
 
@@ -2918,18 +3001,19 @@ snmpset -v2c -c private 192.168.0.22 1.3.6.1.4.1.99999.2.4 i 1
 
 **Configuration via Console:**
 
+Network changes take effect immediately — no reboot required:
+
 ```
-> config network ip 192.168.1.100
-IP address set to 192.168.1.100
+> SET_IP 192.168.1.100
+IP address set to 192.168.1.100 (applied live, no reboot)
 
-> config network dhcp enable
-DHCP mode enabled
+> SET_DHCP ON
+DHCP ENABLED (applied automatically, no reboot). Reachable at energis.local
 
-> config network save
-Configuration saved. Reboot required to apply changes.
-
-> reboot
-Rebooting...
+> NETINFO
+[ETH]  Mode : DHCP
+[ETH]  Name : energis-0c77f6.local   (also energis.local)
+[ETH]  IP   : 192.168.0.196   (active)
 ```
 
 ### 10.2 Sensor Calibration
@@ -3282,6 +3366,6 @@ Error Log (16 entries):
 
 ---
 
-**Document Version:** 1.0.0
-**Last Updated:** 2026-01-06
+**Document Version:** 1.1.0
+**Last Updated:** 2026-11-05
 **Generated from source code documentation**

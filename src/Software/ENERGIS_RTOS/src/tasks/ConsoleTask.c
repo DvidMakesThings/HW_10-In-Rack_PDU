@@ -205,10 +205,11 @@ static void cmd_help(void) {
 
     ECHO("NETWORK SETTINGS\n");
     ECHO("%-32s %s\n", "NETINFO", "Display current IP, subnet mask, gateway and DNS");
-    ECHO("%-32s %s\n", "SET_IP <ip>", "Set static IP address (requires reboot)");
+    ECHO("%-32s %s\n", "SET_IP <ip>", "Set static IP address (applied live, no reboot)");
     ECHO("%-32s %s\n", "SET_SN <mask>", "Set subnet mask");
     ECHO("%-32s %s\n", "SET_GW <gw>", "Set default gateway");
     ECHO("%-32s %s\n", "SET_DNS <dns>", "Set DNS server");
+    ECHO("%-32s %s\n", "SET_DHCP <ON|OFF>", "Enable/disable DHCP (energis.local)");
     ECHO("%-32s %s\n", "CONFIG_NETWORK <ip$sn$gw$dns>", "Configure all network settings");
 
     if (DEBUG) {
@@ -1245,7 +1246,8 @@ static void cmd_set_ip(const char *args) {
     memcpy(net.ip, ip, 4);
 
     if (storage_set_network(&net)) {
-        ECHO("IP address set to %d.%d.%d.%d (reboot required)\n", ip[0], ip[1], ip[2], ip[3]);
+        ECHO("IP address set to %d.%d.%d.%d (applied automatically, no reboot)\n", ip[0], ip[1],
+             ip[2], ip[3]);
     } else {
 #if ERRORLOGGER
         uint16_t errorcode =
@@ -1289,7 +1291,8 @@ static void cmd_set_sn(const char *args) {
     memcpy(net.sn, sn, 4);
 
     if (storage_set_network(&net)) {
-        ECHO("Subnet mask set to %d.%d.%d.%d (reboot required)\n", sn[0], sn[1], sn[2], sn[3]);
+        ECHO("Subnet mask set to %d.%d.%d.%d (applied automatically, no reboot)\n", sn[0], sn[1],
+             sn[2], sn[3]);
     } else {
 #if ERRORLOGGER
         uint16_t errorcode =
@@ -1332,7 +1335,8 @@ static void cmd_set_gw(const char *args) {
     memcpy(net.gw, gw, 4);
 
     if (storage_set_network(&net)) {
-        ECHO("Gateway set to %d.%d.%d.%d (reboot required)\n", gw[0], gw[1], gw[2], gw[3]);
+        ECHO("Gateway set to %d.%d.%d.%d (applied automatically, no reboot)\n", gw[0], gw[1], gw[2],
+             gw[3]);
     } else {
 #if ERRORLOGGER
         uint16_t errorcode =
@@ -1375,7 +1379,8 @@ static void cmd_set_dns(const char *args) {
     memcpy(net.dns, dns, 4);
 
     if (storage_set_network(&net)) {
-        ECHO("DNS set to %d.%d.%d.%d (reboot required)\n", dns[0], dns[1], dns[2], dns[3]);
+        ECHO("DNS set to %d.%d.%d.%d (applied automatically, no reboot)\n", dns[0], dns[1], dns[2],
+             dns[3]);
     } else {
 #if ERRORLOGGER
         uint16_t errorcode =
@@ -1383,6 +1388,47 @@ static void cmd_set_dns(const char *args) {
         ERROR_PRINT_CODE(errorcode, "%s Failed to save DNS\r\n", CONSOLE_TASK_TAG);
         Storage_EnqueueErrorCode(errorcode);
 #endif
+    }
+}
+
+/**
+ * @brief Enable or disable DHCP.
+ *
+ * @param args Command arguments: "ON"/"OFF" (also accepts "1"/"0").
+ * @return None
+ */
+static void cmd_set_dhcp(const char *args) {
+    char tok[12] = {0};
+    if (args) {
+        (void)sscanf(args, "%11s", tok);
+    }
+
+    int on = -1;
+    if (strcasecmp(tok, "ON") == 0 || strcasecmp(tok, "1") == 0 || strcasecmp(tok, "ENABLE") == 0 ||
+        strcasecmp(tok, "TRUE") == 0) {
+        on = 1;
+    } else if (strcasecmp(tok, "OFF") == 0 || strcasecmp(tok, "0") == 0 ||
+               strcasecmp(tok, "DISABLE") == 0 || strcasecmp(tok, "FALSE") == 0) {
+        on = 0;
+    }
+
+    if (on < 0) {
+        ECHO("Usage: SET_DHCP <ON|OFF>\n");
+        return;
+    }
+
+    networkInfo net;
+    if (!storage_get_network(&net)) {
+        ECHO("ERROR: Could not read network config.\n");
+        return;
+    }
+    net.dhcp = on ? EEPROM_NETINFO_DHCP : EEPROM_NETINFO_STATIC;
+
+    if (storage_set_network(&net)) {
+        ECHO("DHCP %s (applied automatically, no reboot). Reachable at %s.local\n",
+             on ? "ENABLED" : "DISABLED", ENERGIS_MDNS_HOSTNAME);
+    } else {
+        ECHO("ERROR: Failed to save DHCP setting.\n");
     }
 }
 
@@ -1461,7 +1507,7 @@ static void cmd_config_network(const char *args) {
         ECHO("  Subnet: %s\n", sn_str);
         ECHO("  Gateway: %s\n", gw_str);
         ECHO("  DNS: %s\n", dns_str);
-        ECHO("Reboot required to apply changes.\n");
+        ECHO("Changes applied automatically (no reboot required).\n");
     } else {
 #if ERRORLOGGER
         uint16_t errorcode =
@@ -1478,19 +1524,31 @@ static void cmd_config_network(const char *args) {
  * @return None
  */
 static void cmd_netinfo(void) {
-    ECHO("NETWORK INFORMATION:\n");
     networkInfo ni;
     if (!storage_get_network(&ni)) {
         ni = LoadUserNetworkConfig();
     }
-    ECHO("[ETH] Network Configuration:\n");
-    ECHO("[ETH]  MAC  : %02X:%02X:%02X:%02X:%02X:%02X\n", ni.mac[0], ni.mac[1], ni.mac[2],
-         ni.mac[3], ni.mac[4], ni.mac[5]);
-    ECHO("[ETH]  IP   : %u.%u.%u.%u\n", ni.ip[0], ni.ip[1], ni.ip[2], ni.ip[3]);
-    ECHO("[ETH]  Mask : %u.%u.%u.%u\n", ni.sn[0], ni.sn[1], ni.sn[2], ni.sn[3]);
-    ECHO("[ETH]  GW   : %u.%u.%u.%u\n", ni.gw[0], ni.gw[1], ni.gw[2], ni.gw[3]);
+
+    /* Live address programmed in the W5500. With DHCP (or its link-local
+     * fallback) the active address differs from the stored static config, so show
+     * what the device is really reachable at. */
+    w5500_NetConfig live;
+    memset(&live, 0, sizeof(live));
+    w5500_get_network(&live);
+
+    ECHO("NETWORK INFORMATION:\n");
+    ECHO("[ETH]  Mode : %s\n", ni.dhcp ? "DHCP" : "Static");
+    ECHO("[ETH]  Name : %s-%02x%02x%02x.local   (also %s.local)\n", ENERGIS_MDNS_HOSTNAME,
+         live.mac[3], live.mac[4], live.mac[5], ENERGIS_MDNS_HOSTNAME);
+    ECHO("[ETH]  MAC  : %02X:%02X:%02X:%02X:%02X:%02X\n", live.mac[0], live.mac[1], live.mac[2],
+         live.mac[3], live.mac[4], live.mac[5]);
+    ECHO("[ETH]  IP   : %u.%u.%u.%u   (active)\n", live.ip[0], live.ip[1], live.ip[2], live.ip[3]);
+    ECHO("[ETH]  Mask : %u.%u.%u.%u\n", live.sn[0], live.sn[1], live.sn[2], live.sn[3]);
+    ECHO("[ETH]  GW   : %u.%u.%u.%u\n", live.gw[0], live.gw[1], live.gw[2], live.gw[3]);
     ECHO("[ETH]  DNS  : %u.%u.%u.%u\n", ni.dns[0], ni.dns[1], ni.dns[2], ni.dns[3]);
-    ECHO("[ETH]  DHCP : %s\n", ni.dhcp ? "Enabled" : "Disabled");
+    if (ni.dhcp) {
+        ECHO("[ETH]  Static fallback: %u.%u.%u.%u\n", ni.ip[0], ni.ip[1], ni.ip[2], ni.ip[3]);
+    }
 }
 
 /**
@@ -1709,6 +1767,8 @@ static void dispatch_command(const char *line) {
         cmd_set_gw(args ? args : "");
     } else if (strcmp(trimmed, "SET_DNS") == 0) {
         cmd_set_dns(args ? args : "");
+    } else if (strcmp(trimmed, "SET_DHCP") == 0) {
+        cmd_set_dhcp(args ? args : "");
     } else if (strcmp(trimmed, "CONFIG_NETWORK") == 0) {
         cmd_config_network(args ? args : "");
     }

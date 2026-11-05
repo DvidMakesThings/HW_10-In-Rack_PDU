@@ -221,8 +221,11 @@ static int read_http_request(uint8_t sock, char *buf, int buflen, int *body_off,
  * @return true on success; false on allocation/socket/listen failure.
  */
 bool http_server_init(void) {
-    /* Allocate HTTP buffer */
-    http_buf = pvPortMalloc(HTTP_BUF_SIZE);
+    /* Allocate the HTTP buffer once; reuse across reinitializations to avoid
+     * leaking it on every W5500 reinit. */
+    if (!http_buf) {
+        http_buf = pvPortMalloc(HTTP_BUF_SIZE);
+    }
     if (!http_buf) {
 #if ERRORLOGGER
         uint16_t errorcode =
@@ -234,10 +237,12 @@ bool http_server_init(void) {
         return false;
     }
 
+    /* Close any previously opened socket before reopening on reinit. */
+    closesocket((uint8_t)HTTP_SOCK_NUM);
+
     /* Open TCP socket for HTTP */
     http_sock = socket(HTTP_SOCK_NUM, Sn_MR_TCP, HTTP_PORT, 0);
     if (http_sock < 0) {
-        vPortFree(http_buf);
 
 #if ERRORLOGGER
         uint16_t errorcode =
@@ -260,7 +265,6 @@ bool http_server_init(void) {
     /* Start listening */
     if (listen(http_sock) != SOCK_OK) {
         closesocket(http_sock);
-        vPortFree(http_buf);
 #if ERRORLOGGER
         uint16_t errorcode =
             ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_ERROR, ERR_FID_NET_HTTP_SERVER, 0x3);

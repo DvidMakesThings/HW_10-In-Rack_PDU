@@ -95,19 +95,19 @@
 #define W5500_TX_SIZE_S0 8
 
 /** Socket 1 TX buffer size in KB (SNMP) */
-#define W5500_TX_SIZE_S1 8
+#define W5500_TX_SIZE_S1 2
 
-/** Socket 2 TX buffer size in KB (unused) */
-#define W5500_TX_SIZE_S2 0
+/** Socket 2 TX buffer size in KB (SNMP trap sender) */
+#define W5500_TX_SIZE_S2 1
 
-/** Socket 3 TX buffer size in KB (unused) */
-#define W5500_TX_SIZE_S3 0
+/** Socket 3 TX buffer size in KB (DHCP client) */
+#define W5500_TX_SIZE_S3 2
 
-/** Socket 4 TX buffer size in KB (unused) */
-#define W5500_TX_SIZE_S4 0
+/** Socket 4 TX buffer size in KB (mDNS responder) */
+#define W5500_TX_SIZE_S4 2
 
-/** Socket 5 TX buffer size in KB (unused) */
-#define W5500_TX_SIZE_S5 0
+/** Socket 5 TX buffer size in KB (NetBIOS name service) */
+#define W5500_TX_SIZE_S5 1
 
 /** Socket 6 TX buffer size in KB (unused) */
 #define W5500_TX_SIZE_S6 0
@@ -116,22 +116,22 @@
 #define W5500_TX_SIZE_S7 0
 
 /** Socket 0 RX buffer size in KB (HTTP server, primary) */
-#define W5500_RX_SIZE_S0 8
+#define W5500_RX_SIZE_S0 4
 
 /** Socket 1 RX buffer size in KB (SNMP) */
-#define W5500_RX_SIZE_S1 8
+#define W5500_RX_SIZE_S1 4
 
-/** Socket 2 RX buffer size in KB (unused) */
+/** Socket 2 RX buffer size in KB (SNMP trap sender, TX only) */
 #define W5500_RX_SIZE_S2 0
 
-/** Socket 3 RX buffer size in KB (unused) */
-#define W5500_RX_SIZE_S3 0
+/** Socket 3 RX buffer size in KB (DHCP client) */
+#define W5500_RX_SIZE_S3 2
 
-/** Socket 4 RX buffer size in KB (unused) */
-#define W5500_RX_SIZE_S4 0
+/** Socket 4 RX buffer size in KB (mDNS responder) */
+#define W5500_RX_SIZE_S4 2
 
-/** Socket 5 RX buffer size in KB (unused) */
-#define W5500_RX_SIZE_S5 0
+/** Socket 5 RX buffer size in KB (NetBIOS name service) */
+#define W5500_RX_SIZE_S5 2
 
 /** Socket 6 RX buffer size in KB (unused) */
 #define W5500_RX_SIZE_S6 0
@@ -170,6 +170,41 @@ static const uint8_t W5500_DEFAULT_DNS[4] = {8, 8, 8, 8};
 
 /** Enable DHCP (0=static IP, 1=DHCP) */
 #define W5500_USE_DHCP 0
+
+/**
+ * @name Network service socket assignments
+ * @brief W5500 hardware socket indices used by each network service.
+ * @{
+ */
+#define HTTP_SOCKET_NUM 0u  /**< HTTP server (TCP). */
+#ifndef SNMP_SOCKET_NUM
+#define SNMP_SOCKET_NUM 1u  /**< SNMP agent (UDP/161). */
+#endif
+#ifndef TRAP_SOCKET_NUM
+#define TRAP_SOCKET_NUM 2u  /**< SNMP trap sender (UDP/162). */
+#endif
+#define DHCP_SOCKET_NUM 3u  /**< DHCP client (UDP/68). */
+#define MDNS_SOCKET_NUM 4u  /**< mDNS responder, multicast RX/TX (UDP/5353). */
+#define NBNS_SOCKET_NUM 5u  /**< NetBIOS name service responder (UDP/137). */
+/** @} */
+
+/**
+ * @name DHCP client tuning
+ * @{
+ */
+#define DHCP_RETRY_MAX 4u          /**< DISCOVER/REQUEST attempts before giving up. */
+#define DHCP_STEP_TIMEOUT_MS 2500u /**< Per-attempt wait for OFFER/ACK (ms). */
+/** @} */
+
+/**
+ * @name mDNS responder
+ * @brief Hostname advertised on the local link; reachable as "<host>.local".
+ * @{
+ */
+#ifndef ENERGIS_MDNS_HOSTNAME
+#define ENERGIS_MDNS_HOSTNAME "energis"
+#endif
+/** @} */
 
 /** @} */
 

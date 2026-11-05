@@ -126,7 +126,9 @@ A new ENERGIS video series is rolling out. Part 1 is live below; Parts 2–4 wil
   isolation.
 - **Display Board:** Headless mode, possible manual control with push buttons and real-time LED feedback
 - **Ethernet Connectivity:** Uses the W5500 SPI-based Ethernet chip for remote
-  control and monitoring via SNMPv1 and/or Web-UI
+  control and monitoring via SNMPv1 and/or Web-UI. Supports DHCP with automatic
+  link-local fallback and zero-config discovery by name (`energis.local` / `energis`)
+  via mDNS and NetBIOS; IP changes apply live without a reboot.
 - **Power Measurement:** AC voltage and current sensing for monitoring.
 - **Sheetmetal Enclosure:** Designed for 10-inch rack mounting with front and rear access.
 
@@ -285,6 +287,17 @@ Comprehensive end-to-end system test covering:
 - NEW: PEM-Adapter: Unfortunately the commercially available Power Entry Modules are using bussed topology, seems like it's
 impossible to buy snap-in modules with individual L/N control. The only possibility I've found is the 3-104-370 from Schurter, but
 it's a PCB-mountable version. Using a small adapter board to hook the solder joints to faston connectors seems to be the only possibility
+
+### Firmware Changelog
+#### Firmware 1.2.0
+- NEW: Live network reconfiguration — IP, subnet, gateway, DNS and DHCP mode changes apply on the fly, no reboot
+- NEW: Software DHCP client (DORA) with DHCP hostname registration (option 12)
+- NEW: Automatic link-local (APIPA, 169.254.x.y) fallback when DHCP finds no server
+- NEW: Zero-config name resolution via mDNS (`energis.local`) and NetBIOS (`energis`)
+- NEW: Per-unit unique name derived from the MAC (`energis-<mac>`) to avoid collisions, with the generic `energis` kept as an alias
+- Web Settings: DHCP toggle; IP fields grey out when DHCP is enabled
+- Console: `SET_DHCP` command; `NETINFO` now reports the live active IP and name
+- Fixes: DHCP renewal loop with very long leases; name responders restored after cable re-plug/standby-exit
 
 ## License
 ### Software Components

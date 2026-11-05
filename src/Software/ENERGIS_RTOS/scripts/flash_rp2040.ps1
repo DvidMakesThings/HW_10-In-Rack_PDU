@@ -104,6 +104,7 @@ try {
     if (-not (Test-Path -LiteralPath $FIRMWARE_ABS)) { throw "Firmware file not found: $FIRMWARE_ABS" }
 
     & py -3 "$PY_UPLOADER_ABS" --p "$PORT" --b $BAUD --f "$FIRMWARE_ABS"
+    if ($LASTEXITCODE -ne 0) { throw "Firmware uploader failed (exit code $LASTEXITCODE)." }
 
     Write-Host "[OK] Flash done."
 }

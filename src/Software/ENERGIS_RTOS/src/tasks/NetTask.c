@@ -29,6 +29,10 @@
 
 #include "../CONFIG.h"
 
+#include "../drivers/dhcp.h"
+#include "../drivers/mdns.h"
+#include "../drivers/nbns.h"
+
 #define NET_TASK_TAG "[NET]"
 
 #ifndef HTTP_SOCKET_NUM
@@ -99,6 +103,33 @@ static bool s_eth_led_state = false;
  * @brief Last observed power state for transition detection.
  */
 static power_state_t s_last_power_state = PWR_STATE_RUN;
+
+/**
+ * @brief Set when a committed network change needs a full W5500 reinit.
+ */
+static volatile bool s_reinit_requested = false;
+
+/**
+ * @brief Absolute time (ms since boot) at which the DHCP lease must be renewed.
+ *        Zero when DHCP is not in use (static addressing).
+ */
+static uint32_t s_dhcp_renew_ms = 0;
+
+/**
+ * @brief Per-unit unique host name ("energis-<mac3>") advertised by mDNS, NetBIOS
+ *        and DHCP. The generic alias ENERGIS_MDNS_HOSTNAME is answered as well.
+ */
+static char s_hostname[24] = ENERGIS_MDNS_HOSTNAME;
+
+/**
+ * @brief True once the mDNS responder socket has been opened.
+ */
+static bool s_mdns_up = false;
+
+/**
+ * @brief True once the NetBIOS name responder socket has been opened.
+ */
+static bool s_nbns_up = false;
 
 /**
  * @brief Wait until PHY link is up or timeout expires.
@@ -209,6 +240,14 @@ static void net_start_services(void) {
                    (unsigned)SNMP_SOCKET_NUM);
     }
     Health_Heartbeat(HEALTH_ID_NET);
+
+    /* (Re)open the name responders. These live on their own W5500 sockets, which a
+     * W5500 software reset (link-up / standby-exit) wipes, so they must be reopened
+     * every time services restart or the unit stops answering mDNS/NetBIOS after a
+     * cable re-plug. Uses the address currently in s_net_cfg. */
+    s_mdns_up = mDNS_Init(MDNS_SOCKET_NUM, s_hostname, ENERGIS_MDNS_HOSTNAME, s_net_cfg.ip);
+    s_nbns_up = NBNS_Init(NBNS_SOCKET_NUM, s_hostname, ENERGIS_MDNS_HOSTNAME, s_net_cfg.ip);
+    Health_Heartbeat(HEALTH_ID_NET);
 }
 
 /**
@@ -259,6 +298,171 @@ static bool net_reinit_from_cache(void) {
 
     return true;
 }
+
+/**
+ * @brief Program the W5500 addressing registers from the cached static config.
+ */
+static void net_program_static_regs(void) {
+    w5500_NetConfig cfg;
+    memset(&cfg, 0, sizeof(cfg));
+    memcpy(cfg.mac, s_net_cfg.mac, sizeof(cfg.mac));
+    memcpy(cfg.ip, s_net_cfg.ip, sizeof(cfg.ip));
+    memcpy(cfg.sn, s_net_cfg.sn, sizeof(cfg.sn));
+    memcpy(cfg.gw, s_net_cfg.gw, sizeof(cfg.gw));
+    memcpy(cfg.dns, s_net_cfg.dns, sizeof(cfg.dns));
+    cfg.dhcp = (s_net_cfg.dhcp == EEPROM_NETINFO_DHCP) ? 1 : 0;
+    w5500_set_network(&cfg);
+}
+
+/**
+ * @brief Program a derived RFC-3927 link-local (169.254.x.y) address live.
+ *
+ * Used when DHCP is enabled but no server answers (e.g. a direct cable to a
+ * laptop on a fresh network). The device then shares the client's APIPA link, so
+ * it stays reachable by name via mDNS ("energis.local") even with no DHCP and no
+ * known static IP. The host part is derived from the MAC for stability.
+ */
+static void net_apply_linklocal(void) {
+    uint8_t ll[4] = {169u, 254u, (uint8_t)(1u + (s_net_cfg.mac[5] % 254u)), s_net_cfg.mac[4]};
+    uint8_t sn[4] = {255u, 255u, 0u, 0u};
+    uint8_t gw[4] = {0u, 0u, 0u, 0u};
+
+    memcpy(s_net_cfg.ip, ll, 4);
+    memcpy(s_net_cfg.sn, sn, 4);
+    memcpy(s_net_cfg.gw, gw, 4);
+
+    setSIPR(ll);
+    setSUBR(sn);
+    setGAR(gw);
+
+    INFO_PRINT("%s Link-local address %u.%u.%u.%u (reach via %s.local)\r\n", NET_TASK_TAG, ll[0],
+               ll[1], ll[2], ll[3], ENERGIS_MDNS_HOSTNAME);
+    if (s_mdns_up) {
+        mDNS_SetIP(ll);
+    }
+    if (s_nbns_up) {
+        NBNS_SetIP(ll);
+    }
+}
+
+/**
+ * @brief Apply the active addressing (DHCP or static) to the live W5500.
+ *
+ * When DHCP is enabled in the cached config, runs a bounded DHCP acquisition and,
+ * on success, adopts the leased IP/subnet/gateway (and schedules renewal at T1).
+ * If DHCP finds no server, it falls back to a link-local (169.254.x.y) address so
+ * the unit remains reachable by name. When DHCP is disabled, the stored static
+ * address is programmed. The mDNS responder is updated with whatever ends active.
+ *
+ * @return true if DHCP produced a lease, false if link-local/static was applied.
+ */
+static bool net_acquire_addressing(void) {
+    s_dhcp_renew_ms = 0;
+
+    if (s_net_cfg.dhcp == EEPROM_NETINFO_DHCP) {
+        uint8_t ip[4], sn[4], gw[4], dns[4];
+        uint32_t lease = 0;
+
+        INFO_PRINT("%s DHCP enabled; requesting lease...\r\n", NET_TASK_TAG);
+        DHCP_Init(DHCP_SOCKET_NUM, s_net_cfg.mac, s_hostname);
+        Health_Heartbeat(HEALTH_ID_NET);
+
+        if (DHCP_Acquire(ip, sn, gw, dns, &lease)) {
+            memcpy(s_net_cfg.ip, ip, 4);
+            memcpy(s_net_cfg.sn, sn, 4);
+            memcpy(s_net_cfg.gw, gw, 4);
+            if (dns[0] | dns[1] | dns[2] | dns[3]) {
+                memcpy(s_net_cfg.dns, dns, 4);
+            }
+            uint32_t now = to_ms_since_boot(get_absolute_time());
+            /* Renew at T1 (half the lease), but clamp to a sane window: large or
+             * "infinite" leases would overflow the 32-bit ms timer and blow past
+             * the signed-compare wrap window, which previously made the renewal
+             * fire every loop. Clamp to [30 s, 7 days]. */
+            uint32_t half_s = lease ? (lease / 2u) : 1800u; /* seconds */
+            if (half_s < 30u) {
+                half_s = 30u;
+            }
+            if (half_s > 604800u) { /* 7 days */
+                half_s = 604800u;
+            }
+            s_dhcp_renew_ms = now + half_s * 1000u;
+            if (s_dhcp_renew_ms == 0u) {
+                s_dhcp_renew_ms = 1u; /* 0 means "not scheduled" */
+            }
+            if (s_mdns_up) {
+                mDNS_SetIP(s_net_cfg.ip);
+            }
+            if (s_nbns_up) {
+                NBNS_SetIP(s_net_cfg.ip);
+            }
+            Health_Heartbeat(HEALTH_ID_NET);
+            return true;
+        }
+
+#if ERRORLOGGER
+        uint16_t ec = ERR_MAKE_CODE(ERR_MOD_NET, ERR_SEV_WARNING, ERR_FID_NETTASK, 0xD);
+        WARNING_PRINT_CODE(ec, "%s DHCP found no server; using link-local address\r\n",
+                           NET_TASK_TAG);
+        Storage_EnqueueWarningCode(ec);
+#endif
+        net_apply_linklocal();
+        Health_Heartbeat(HEALTH_ID_NET);
+        return false;
+    }
+
+    /* Static addressing: program the stored address live. */
+    net_program_static_regs();
+    if (s_mdns_up) {
+        mDNS_SetIP(s_net_cfg.ip);
+    }
+    if (s_nbns_up) {
+        NBNS_SetIP(s_net_cfg.ip);
+    }
+    Health_Heartbeat(HEALTH_ID_NET);
+    return false;
+}
+
+/**
+ * @brief Apply a committed network-config change live, without resetting.
+ *
+ * Reloads the committed network config and re-applies the active addressing:
+ * a live DHCP acquisition when DHCP is enabled, otherwise a direct rewrite of the
+ * W5500 address registers. No chip reset and no PHY-link wait, so the hardware
+ * watchdog is never starved.
+ *
+ * After the address settles, the HTTP/SNMP listening sockets are rebound. This is
+ * required because a DHCP acquisition drives SIPR to 0.0.0.0 during DISCOVER,
+ * which leaves the existing TCP listen socket serving on a stale address; the
+ * bounded socket re-open restores it on the new IP. The mDNS sockets are managed
+ * separately (their advertised IP is refreshed inside net_acquire_addressing()).
+ */
+static bool net_full_reinit(void) {
+    INFO_PRINT("%s Network config changed; re-applying addressing live (no reset)\r\n",
+               NET_TASK_TAG);
+
+    networkInfo fresh;
+    if (storage_get_network(&fresh)) {
+        s_net_cfg = fresh;
+    }
+    Health_Heartbeat(HEALTH_ID_NET);
+
+    (void)net_acquire_addressing();
+
+    /* Rebind HTTP + SNMP so they listen on the freshly applied address. */
+    net_start_services();
+    Health_Heartbeat(HEALTH_ID_NET);
+
+    INFO_PRINT("%s Active IP: %u.%u.%u.%u (%s)\r\n", NET_TASK_TAG, s_net_cfg.ip[0], s_net_cfg.ip[1],
+               s_net_cfg.ip[2], s_net_cfg.ip[3],
+               (s_net_cfg.dhcp == EEPROM_NETINFO_DHCP) ? "DHCP" : "static");
+    return true;
+}
+
+/**
+ * @brief Request a live network re-apply after a committed network change.
+ */
+void NetTask_RequestReinit(void) { s_reinit_requested = true; }
 
 /**
  * @brief Network task main function.
@@ -318,6 +522,12 @@ static void NetTask_Function(void *pvParameters) {
     }
     Health_Heartbeat(HEALTH_ID_NET);
 
+    /* Derive the per-unit unique host name from the MAC (last 3 octets) so that
+     * multiple PDUs on one network don't collide. The generic ENERGIS_MDNS_HOSTNAME
+     * alias is still answered for easy discovery. */
+    snprintf(s_hostname, sizeof(s_hostname), "%s-%02x%02x%02x", ENERGIS_MDNS_HOSTNAME,
+             s_net_cfg.mac[3], s_net_cfg.mac[4], s_net_cfg.mac[5]);
+
     /* 3) Apply config and initialize Ethernet hardware (but don't depend on link) */
     if (!net_apply_config_and_init(&s_net_cfg)) {
         uint8_t mr = getMR();
@@ -362,7 +572,11 @@ static void NetTask_Function(void *pvParameters) {
 
     INFO_PRINT("%s Ethernet HW up, starting services\r\n", NET_TASK_TAG);
 
-    /* 4) Start HTTP + SNMP services on top of configured W5500 */
+    /* Acquire the active address: a DHCP lease when enabled, otherwise the stored
+     * static address (also the fallback if DHCP finds no server). */
+    (void)net_acquire_addressing();
+
+    /* 4) Start HTTP + SNMP + name responders on top of configured W5500. */
     net_start_services();
 
     /* Baseline power state so we do not fake a STANDBY to RUN transition on boot */
@@ -381,6 +595,8 @@ static void NetTask_Function(void *pvParameters) {
             /* W5500 RESET was released by Power_ExitStandby(), now reinit */
             vTaskDelay(pdMS_TO_TICKS(200)); /* Brief delay after reset release */
             (void)net_reinit_from_cache();
+            (void)net_acquire_addressing();
+            net_start_services(); /* rebind HTTP/SNMP after SIPR settled */
             s_last_link = PHY_LINK_OFF; /* Force link redetection */
 
             /* Immediately set ETH LED mode based on current link after wake.
@@ -414,12 +630,22 @@ static void NetTask_Function(void *pvParameters) {
 
         /* ===== Normal RUN mode operation from here ===== */
 
+        /* Apply a committed network-config change with a full W5500 reinit. */
+        if (s_reinit_requested) {
+            s_reinit_requested = false;
+            (void)net_full_reinit();
+        }
+
         /* 5.1) PHY link supervision and ETH LED control */
         w5500_PhyLink cur_link = w5500_get_link_status();
         if (cur_link != s_last_link) {
             if (cur_link == PHY_LINK_ON) {
                 INFO_PRINT("%s PHY link UP detected, full W5500 reinit\r\n", NET_TASK_TAG);
                 (void)net_reinit_from_cache();
+                /* Re-acquire DHCP (or re-apply static) now the link is up; this
+                 * handles being plugged into a different network. */
+                (void)net_acquire_addressing();
+                net_start_services(); /* rebind HTTP/SNMP after SIPR settled */
                 s_eth_led_blink = false;
                 s_eth_led_state = true;
                 Switch_SetEthLed(true, 10);
@@ -480,6 +706,23 @@ static void NetTask_Function(void *pvParameters) {
         dt = to_ms_since_boot(get_absolute_time()) - t0;
         if (dt > 750U) {
             Health_RecordBlocked("snmp_poll", dt);
+        }
+
+        /* 5.5) mDNS responder: answer "<host>.local" queries. */
+        if (s_mdns_up) {
+            mDNS_Run();
+        }
+
+        /* 5.5b) NetBIOS responder: answer bare-name queries (Windows). */
+        if (s_nbns_up) {
+            NBNS_Run();
+        }
+
+        /* 5.6) DHCP lease renewal: re-acquire at T1 (half the lease). */
+        if (s_dhcp_renew_ms != 0 && (int32_t)(now_ms - s_dhcp_renew_ms) >= 0) {
+            INFO_PRINT("%s DHCP lease renewal due\r\n", NET_TASK_TAG);
+            (void)net_acquire_addressing();
+            net_start_services(); /* rebind HTTP/SNMP after SIPR settled */
         }
 
         Health_Heartbeat(HEALTH_ID_NET);

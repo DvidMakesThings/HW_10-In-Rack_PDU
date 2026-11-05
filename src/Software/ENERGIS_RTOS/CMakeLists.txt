@@ -63,6 +63,9 @@ add_executable(ENERGIS_RTOS
     src/drivers/ethernet_driver.c
     src/drivers/snmp.c
     src/drivers/socket.c
+    src/drivers/dhcp.c
+    src/drivers/mdns.c
+    src/drivers/nbns.c
     src/drivers/HLW8032_driver.c
     src/misc/helpers.c
     src/misc/rtos_hooks.c

@@ -524,12 +524,8 @@ static void commit_dirty_sections(void) {
         if (EEPROM_WriteUserNetworkWithChecksum(&g_cache.network) == 0) {
             g_cache.network_dirty = false;
             ECHO("%s Network config committed\r\n", STORAGE_TASK_TAG);
-
-#if STORAGE_REBOOT_ON_CONFIG_SAVE
-            vTaskDelay(pdMS_TO_TICKS(100));
-            Health_RebootNow("Settings applied");
-#endif
-
+            /* Apply the new settings via a full W5500 reinit instead of a reboot. */
+            NetTask_RequestReinit();
         } else {
             ERROR_PRINT("%s Failed to commit network config\r\n", STORAGE_TASK_TAG);
         }
@@ -540,10 +536,6 @@ static void commit_dirty_sections(void) {
         if (EEPROM_WriteUserPrefsWithChecksum(&g_cache.preferences) == 0) {
             g_cache.prefs_dirty = false;
             ECHO("%s User prefs committed\r\n", STORAGE_TASK_TAG);
-#if STORAGE_REBOOT_ON_CONFIG_SAVE
-            vTaskDelay(pdMS_TO_TICKS(100));
-            Health_RebootNow("Settings applied");
-#endif
         } else {
             ERROR_PRINT("%s Failed to commit user prefs\r\n", STORAGE_TASK_TAG);
         }

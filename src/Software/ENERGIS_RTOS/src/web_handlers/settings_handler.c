@@ -132,6 +132,12 @@ void handle_settings_api(uint8_t sock) {
         net = LoadUserNetworkConfig();
     }
 
+    /* For display, read the live W5500 address so a DHCP-assigned IP/subnet/gateway
+     * is reflected in the UI (for static config these equal the stored values). */
+    w5500_NetConfig live;
+    memset(&live, 0, sizeof(live));
+    w5500_get_network(&live);
+
     /* Load prefs via StorageTask (RAM cache-backed) */
     userPrefInfo pref;
     if (!storage_get_prefs(&pref)) {
@@ -195,6 +201,7 @@ void handle_settings_api(uint8_t sock) {
                        "\"gateway\":\"%u.%u.%u.%u\","
                        "\"subnet\":\"%u.%u.%u.%u\","
                        "\"dns\":\"%u.%u.%u.%u\","
+                       "\"dhcp\":%u,"
                        "\"mac\":\"%s\","
                        "\"device_name\":\"%s\","
                        "\"location\":\"%s\","
@@ -208,11 +215,13 @@ void handle_settings_api(uint8_t sock) {
                        "\"warning_limit\":\"%s\","
                        "\"critical_limit\":\"%s\""
                        "}",
-                       net.ip[0], net.ip[1], net.ip[2], net.ip[3], net.gw[0], net.gw[1], net.gw[2],
-                       net.gw[3], net.sn[0], net.sn[1], net.sn[2], net.sn[3], net.dns[0],
-                       net.dns[1], net.dns[2], net.dns[3], mac_s, pref.device_name, pref.location,
-                       unit_suffix, temp_out, serial_str, FIRMWARE_VERSION, HARDWARE_VERSION,
-                       region_str, current_limit_s, warning_limit_s, critical_limit_s);
+                       live.ip[0], live.ip[1], live.ip[2], live.ip[3], live.gw[0], live.gw[1],
+                       live.gw[2], live.gw[3], live.sn[0], live.sn[1], live.sn[2], live.sn[3],
+                       net.dns[0], net.dns[1], net.dns[2], net.dns[3],
+                       (unsigned)(net.dhcp == EEPROM_NETINFO_DHCP ? 1u : 0u), mac_s, pref.device_name,
+                       pref.location, unit_suffix, temp_out, serial_str, FIRMWARE_VERSION,
+                       HARDWARE_VERSION, region_str, current_limit_s, warning_limit_s,
+                       critical_limit_s);
 
     if (len < 0)
         len = 0;
@@ -332,20 +341,21 @@ void handle_settings_post(uint8_t sock, char *body) {
     }
     net_beat();
 
-    /* Write network only if changed */
+    /* DHCP mode toggle: form sends "1"/"on"/"true" for enabled, else disabled. */
+    if ((tmp = get_form_value(body, "dhcp"))) {
+        urldecode(tmp);
+        bool on = (tmp[0] == '1') || (tmp[0] == 'o') || (tmp[0] == 'O') || (tmp[0] == 't') ||
+                  (tmp[0] == 'T');
+        net.dhcp = on ? EEPROM_NETINFO_DHCP : EEPROM_NETINFO_STATIC;
+    }
+    net_beat();
+
+    /* Write network only if changed. Do NOT poke the W5500 here while this HTTP
+     * connection is open; NetTask applies the new config with a full reinit after
+     * the commit, once this connection is closed. */
     if (memcmp(&net, &backup_net, sizeof(net)) != 0) {
         (void)storage_set_network(&net);
         vTaskDelay(pdMS_TO_TICKS(10));
-        net_beat();
-
-        w5500_NetConfig w5500_net = {
-            .mac = {net.mac[0], net.mac[1], net.mac[2], net.mac[3], net.mac[4], net.mac[5]},
-            .ip = {net.ip[0], net.ip[1], net.ip[2], net.ip[3]},
-            .sn = {net.sn[0], net.sn[1], net.sn[2], net.sn[3]},
-            .gw = {net.gw[0], net.gw[1], net.gw[2], net.gw[3]},
-            .dns = {net.dns[0], net.dns[1], net.dns[2], net.dns[3]},
-            .dhcp = net.dhcp};
-        w5500_set_network(&w5500_net);
         net_beat();
     }
 
@@ -382,7 +392,7 @@ void handle_settings_post(uint8_t sock, char *body) {
         net_beat();
     }
 
-    /* 204 No Content, then force EEPROM commit (which will reboot) */
+    /* 204 No Content, then force EEPROM commit */
     {
         static const char resp[] = "HTTP/1.1 204 No Content\r\n"
                                    "Access-Control-Allow-Origin: *\r\n"
@@ -393,6 +403,11 @@ void handle_settings_post(uint8_t sock, char *body) {
         net_beat();
     }
 
-    /* Ensure changes persist: commit immediately via StorageTask */
-    (void)storage_commit_now(5000);
+    /* Do NOT block NetTask here with a synchronous commit: storage_commit_now()
+     * waits on StorageTask without feeding the NET heartbeat, which can starve the
+     * hardware watchdog and reset the device. The writes above already marked the
+     * sections dirty; StorageTask auto-commits them after its debounce window and
+     * then requests the live W5500 re-apply (NetTask_RequestReinit) on its own
+     * context, so persistence and the IP change happen without stalling NetTask. */
+    net_beat();
 }
