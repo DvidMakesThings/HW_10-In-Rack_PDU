@@ -290,7 +290,7 @@ it's a PCB-mountable version. Using a small adapter board to hook the solder joi
 
 ### Firmware Changelog
 #### Firmware 1.2.0
-- NEW: Live network reconfiguration — IP, subnet, gateway, DNS and DHCP mode changes apply on the fly, no reboot
+- NEW: Live network reconfiguration: IP, subnet, gateway, DNS and DHCP mode changes apply on the fly, no reboot
 - NEW: Software DHCP client (DORA) with DHCP hostname registration (option 12)
 - NEW: Automatic link-local (APIPA, 169.254.x.y) fallback when DHCP finds no server
 - NEW: Zero-config name resolution via mDNS (`energis.local`) and NetBIOS (`energis`)

@@ -2676,9 +2676,9 @@ automatically and be reached by name without knowing its IP.
 **DHCP Client (socket 3, UDP/68):**
 
 A compact software DHCP client performs the standard DORA exchange
-(DISCOVER → OFFER → REQUEST → ACK). It advertises the unit's host name via
+(DISCOVER -> OFFER -> REQUEST -> ACK). It advertises the unit's host name via
 option 12 so routers register and display the device by name. The lease renewal
-interval is clamped to a sane window (30 s … 7 days) to tolerate very long
+interval is clamped to a sane window (30 s to 7 days) to tolerate very long
 server-supplied lease times.
 
 **Link-Local (APIPA) Fallback:**
@@ -3001,7 +3001,7 @@ snmpset -v2c -c private 192.168.0.22 1.3.6.1.4.1.99999.2.4 i 1
 
 **Configuration via Console:**
 
-Network changes take effect immediately — no reboot required:
+Network changes take effect immediately - no reboot required:
 
 ```
 > SET_IP 192.168.1.100

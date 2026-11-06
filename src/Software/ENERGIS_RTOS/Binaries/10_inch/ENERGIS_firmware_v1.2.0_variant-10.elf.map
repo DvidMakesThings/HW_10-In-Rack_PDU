@@ -5370,7 +5370,7 @@ LOAD C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/1
 .iplt           0x10028f00        0x0
  .iplt          0x10028f00        0x0 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
 
-.rodata         0x10028f00    0x1b71c
+.rodata         0x10028f00    0x1b70c
  *(EXCLUDE_FILE(*libm.a: *libc.a:*lib_a-mem*.o *libgcc.a:) .rodata*)
  .rodata.main.str1.4
                 0x10028f00     0x75da CMakeFiles/ENERGIS_RTOS.dir/src/ENERGIS_RTOS.c.obj
@@ -5640,292 +5640,294 @@ LOAD C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/1
  .rodata.bad.1  0x1003091c       0xba CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/settings_handler.c.obj
  *fill*         0x100309d6        0x2 
  .rodata.settings_gz
-                0x100309d8     0x2750 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/settings_handler.c.obj
+                0x100309d8     0x274b CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/settings_handler.c.obj
  .rodata.handle_status_request.str1.4
-                0x10033128      0x250 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/status_handler.c.obj
+                0x10033123      0x250 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/status_handler.c.obj
  .rodata.str1.4
-                0x10033128       0x11 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/status_handler.c.obj
+                0x10033123       0x11 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/status_handler.c.obj
+ *fill*         0x10033123        0x1 
  .rodata.CSWTCH.22
-                0x10033128       0x10 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/status_handler.c.obj
+                0x10033124       0x10 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/status_handler.c.obj
  .rodata.get_page_content.str1.4
-                0x10033138       0x58 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/page_content.c.obj
+                0x10033134       0x58 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/page_content.c.obj
  .rodata.user_manual_gz
-                0x10033138      0x88b CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/page_content.c.obj
- *fill*         0x100339c3        0x1 
+                0x10033134      0x88b CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/page_content.c.obj
+ *fill*         0x100339bf        0x1 
  .rodata.settings_gz
-                0x100339c4     0x2750 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/page_content.c.obj
+                0x100339c0     0x274b CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/page_content.c.obj
+ *fill*         0x1003610b        0x1 
  .rodata.help_gz
-                0x10036114     0x323f CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/page_content.c.obj
- *fill*         0x10039353        0x1 
+                0x1003610c     0x3235 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/page_content.c.obj
+ *fill*         0x10039341        0x3 
  .rodata.control_gz
-                0x10039354     0x1bae CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/page_content.c.obj
- *fill*         0x1003af02        0x2 
+                0x10039344     0x1bae CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/page_content.c.obj
+ *fill*         0x1003aef2        0x2 
  .rodata.automation_manual_gz
-                0x1003af04      0x892 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/page_content.c.obj
+                0x1003aef4      0x892 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/page_content.c.obj
  .rodata.metrics_init.str1.4
-                0x1003b796       0x3d CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/metrics_handler.c.obj
+                0x1003b786       0x3d CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/metrics_handler.c.obj
  .rodata.handle_metrics_request.str1.4
-                0x1003b796      0xe91 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/metrics_handler.c.obj
+                0x1003b786      0xe91 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/metrics_handler.c.obj
  .rodata.handle_config_presets_get.str1.4
-                0x1003b796      0x188 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
+                0x1003b786      0x188 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
  .rodata.handle_config_presets_post.str1.4
-                0x1003b796       0x37 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
+                0x1003b786       0x37 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
  .rodata.handle_startup_config_post.str1.4
-                0x1003b796        0x6 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
- *fill*         0x1003b796        0x2 
- .rodata.err.0  0x1003b798       0xaa CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
- *fill*         0x1003b842        0x2 
- .rodata.ok.1   0x1003b844       0xa4 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
- .rodata.bad.2  0x1003b8e8       0xa4 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
- .rodata.bad.3  0x1003b98c       0x9a CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
- *fill*         0x1003ba26        0x2 
- .rodata.bad.4  0x1003ba28       0x9c CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
- .rodata.err.5  0x1003bac4       0xa6 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
- *fill*         0x1003bb6a        0x2 
- .rodata.ok.6   0x1003bb6c       0xa4 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
- .rodata.oc.7   0x1003bc10       0xb2 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
- *fill*         0x1003bcc2        0x2 
- .rodata.bad.8  0x1003bcc4       0x9a CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
- *fill*         0x1003bd5e        0x2 
- .rodata.bad.9  0x1003bd60       0x9a CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
- *fill*         0x1003bdfa        0x2 
+                0x1003b786        0x6 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
+ *fill*         0x1003b786        0x2 
+ .rodata.err.0  0x1003b788       0xaa CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
+ *fill*         0x1003b832        0x2 
+ .rodata.ok.1   0x1003b834       0xa4 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
+ .rodata.bad.2  0x1003b8d8       0xa4 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
+ .rodata.bad.3  0x1003b97c       0x9a CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
+ *fill*         0x1003ba16        0x2 
+ .rodata.bad.4  0x1003ba18       0x9c CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
+ .rodata.err.5  0x1003bab4       0xa6 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
+ *fill*         0x1003bb5a        0x2 
+ .rodata.ok.6   0x1003bb5c       0xa4 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
+ .rodata.oc.7   0x1003bc00       0xb2 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
+ *fill*         0x1003bcb2        0x2 
+ .rodata.bad.8  0x1003bcb4       0x9a CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
+ *fill*         0x1003bd4e        0x2 
+ .rodata.bad.9  0x1003bd50       0x9a CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
+ *fill*         0x1003bdea        0x2 
  .rodata.bad.10
-                0x1003bdfc       0x9c CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
+                0x1003bdec       0x9c CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
  .rodata.err.11
-                0x1003be98       0xc2 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
- *fill*         0x1003bf5a        0x2 
- .rodata.ok.12  0x1003bf5c       0xa4 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
+                0x1003be88       0xc2 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
+ *fill*         0x1003bf4a        0x2 
+ .rodata.ok.12  0x1003bf4c       0xa4 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
  .rodata.bad.13
-                0x1003c000       0x9e CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
- *fill*         0x1003c09e        0x2 
+                0x1003bff0       0x9e CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
+ *fill*         0x1003c08e        0x2 
  .rodata.bad.15
-                0x1003c0a0       0x9c CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
+                0x1003c090       0x9c CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
  .rodata.bad.16
-                0x1003c13c       0x9a CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
- *fill*         0x1003c1d6        0x2 
+                0x1003c12c       0x9a CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
+ *fill*         0x1003c1c6        0x2 
  .rodata.bad.17
-                0x1003c1d8       0xa4 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
+                0x1003c1c8       0xa4 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
  .rodata.bad.18
-                0x1003c27c       0x9c CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
+                0x1003c26c       0x9c CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
  .rodata.body.19
-                0x1003c318       0x2d CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
+                0x1003c308       0x2d CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/preset_handler.c.obj
  .rodata.auth_init.str1.4
-                0x1003c345       0x38 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
+                0x1003c335       0x38 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
  .rodata.auth_check_request.str1.4
-                0x1003c345       0x1c CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
+                0x1003c335       0x1c CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
  .rodata.auth_login.str1.4
-                0x1003c345       0x1d CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
+                0x1003c335       0x1d CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
  .rodata.auth_logout.str1.4
-                0x1003c345       0x13 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
+                0x1003c335       0x13 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
  .rodata.handle_auth_login.str1.4
-                0x1003c345       0xd5 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
+                0x1003c335       0xd5 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
  .rodata.handle_auth_status.str1.4
-                0x1003c345       0xc8 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
+                0x1003c335       0xc8 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
  .rodata.handle_auth_config.str1.4
-                0x1003c345       0x1d CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
- *fill*         0x1003c345        0x3 
+                0x1003c335       0x1d CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
+ *fill*         0x1003c335        0x3 
  .rodata.login_html.0
-                0x1003c348      0x82b CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
- *fill*         0x1003cb73        0x1 
- .rodata.ok.1   0x1003cb74       0x8b CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
- *fill*         0x1003cbff        0x1 
+                0x1003c338      0x82b CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
+ *fill*         0x1003cb63        0x1 
+ .rodata.ok.1   0x1003cb64       0x8b CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
+ *fill*         0x1003cbef        0x1 
  .rodata.denied.2
-                0x1003cc00       0x99 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
- *fill*         0x1003cc99        0x3 
+                0x1003cbf0       0x99 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
+ *fill*         0x1003cc89        0x3 
  .rodata.resp.3
-                0x1003cc9c       0xc5 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
- *fill*         0x1003cd61        0x3 
+                0x1003cc8c       0xc5 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
+ *fill*         0x1003cd51        0x3 
  .rodata.fail.4
-                0x1003cd64       0xb1 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
- *fill*         0x1003ce15        0x3 
- .rodata.hex.5  0x1003ce18       0x11 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
+                0x1003cd54       0xb1 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
+ *fill*         0x1003ce05        0x3 
+ .rodata.hex.5  0x1003ce08       0x11 CMakeFiles/ENERGIS_RTOS.dir/src/web_handlers/auth.c.obj
  .rodata.__wrap_watchdog_reboot.str1.4
-                0x1003ce29       0x38 CMakeFiles/ENERGIS_RTOS.dir/src/wrap_watchdog.c.obj
+                0x1003ce19       0x38 CMakeFiles/ENERGIS_RTOS.dir/src/wrap_watchdog.c.obj
  .rodata.__wrap___assert_func.str1.4
-                0x1003ce29       0x23 CMakeFiles/ENERGIS_RTOS.dir/src/wrap_watchdog.c.obj
+                0x1003ce19       0x23 CMakeFiles/ENERGIS_RTOS.dir/src/wrap_watchdog.c.obj
  .rodata.__wrap_panic.str1.4
-                0x1003ce29       0x1a CMakeFiles/ENERGIS_RTOS.dir/src/wrap_watchdog.c.obj
+                0x1003ce19       0x1a CMakeFiles/ENERGIS_RTOS.dir/src/wrap_watchdog.c.obj
  .rodata.panic.str1.4
-                0x1003ce29       0x12 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_panic/panic.c.obj
+                0x1003ce19       0x12 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_panic/panic.c.obj
  .rodata.panic_unsupported.str1.4
-                0x1003ce29        0xe CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_panic/panic.c.obj
+                0x1003ce19        0xe CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_panic/panic.c.obj
  .rodata.spin_lock_claim_unused.str1.4
-                0x1003ce29       0x1b CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync/sync.c.obj
+                0x1003ce19       0x1b CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_sync/sync.c.obj
  .rodata.user_irq_claim_unused.str1.4
-                0x1003ce29       0x1b CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.obj
- *fill*         0x1003ce29        0x7 
+                0x1003ce19       0x1b CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_irq/irq.c.obj
+ *fill*         0x1003ce19        0x7 
  .rodata.nil_time
-                0x1003ce30        0x8 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.obj
-                0x1003ce30                nil_time
+                0x1003ce20        0x8 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/common/pico_time/time.c.obj
+                0x1003ce20                nil_time
  .rodata.timer_hardware_alarm_claim.str1.4
-                0x1003ce38       0x22 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.obj
+                0x1003ce28       0x22 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_timer/timer.c.obj
  .rodata.__wrap_malloc.str1.4
-                0x1003ce38        0xe CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_malloc/malloc.c.obj
+                0x1003ce28        0xe CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_malloc/malloc.c.obj
  .rodata.str1.4
-                0x1003ce38       0x60 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x1003ce28       0x60 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .rodata.__bi_84
-                0x1003ce38        0xc CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x1003ce28        0xc CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .rodata.__bi_78
-                0x1003ce44        0xc CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x1003ce34        0xc CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .rodata.__bi_60
-                0x1003ce50        0xc CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x1003ce40        0xc CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .rodata.__bi_54
-                0x1003ce5c        0xc CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x1003ce4c        0xc CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .rodata.__bi_48
-                0x1003ce68        0xc CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x1003ce58        0xc CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .rodata.__bi_42
-                0x1003ce74        0xc CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x1003ce64        0xc CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .rodata.__bi_34
-                0x1003ce80        0xc CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x1003ce70        0xc CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .rodata.__bi_26
-                0x1003ce8c        0xc CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x1003ce7c        0xc CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .rodata._ftoa.str1.4
-                0x1003ce98       0x15 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.obj
+                0x1003ce88       0x15 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.obj
  .rodata._vsnprintf
-                0x1003ce98      0x19c CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.obj
- *fill*         0x1003d034        0x4 
+                0x1003ce88      0x19c CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.obj
+ *fill*         0x1003d024        0x4 
  .rodata.pow10.0
-                0x1003d038       0x50 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.obj
+                0x1003d028       0x50 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_printf/printf.c.obj
  .rodata.crlf_str.0
-                0x1003d088        0x2 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.obj
- *fill*         0x1003d08a        0x2 
+                0x1003d078        0x2 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio/stdio.c.obj
+ *fill*         0x1003d07a        0x2 
  .rodata._resetd_driver
-                0x1003d08c       0x20 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x1003d07c       0x20 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .rodata.desc_ms_os_20
-                0x1003d0ac       0xa6 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
- *fill*         0x1003d152        0x2 
+                0x1003d09c       0xa6 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+ *fill*         0x1003d142        0x2 
  .rodata.desc_bos
-                0x1003d154       0x21 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
-                0x1003d154                desc_bos
+                0x1003d144       0x21 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x1003d144                desc_bos
  .rodata.str1.4
-                0x1003d175       0x13 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
- *fill*         0x1003d175        0x3 
+                0x1003d165       0x13 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+ *fill*         0x1003d165        0x3 
  .rodata.__bi_202.0
-                0x1003d178        0xc CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x1003d168        0xc CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .rodata.str1.4
-                0x1003d184       0x2a CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x1003d174       0x2a CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
  .rodata.usbd_desc_str
-                0x1003d184       0x18 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x1003d174       0x18 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
  .rodata.usbd_desc_cfg
-                0x1003d19c       0x54 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x1003d18c       0x54 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
  .rodata.usbd_desc_device
-                0x1003d1f0       0x12 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x1003d1e0       0x12 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
  .rodata.str1.4
-                0x1003d202       0x14 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x1003d1f2       0x14 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
  .rodata.str1.4
-                0x1003d202       0x48 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- *fill*         0x1003d202        0x2 
+                0x1003d1f2       0x48 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ *fill*         0x1003d1f2        0x2 
  .rodata.tud_task_ext
-                0x1003d204       0x8c CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/lib/tinyusb/src/device/usbd.c.obj
- .rodata        0x1003d290       0x1c CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/lib/tinyusb/src/device/usbd.c.obj
+                0x1003d1f4       0x8c CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/lib/tinyusb/src/device/usbd.c.obj
+ .rodata        0x1003d280       0x1c CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/lib/tinyusb/src/device/usbd.c.obj
  .rodata._usbd_driver
-                0x1003d2ac       0x40 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/lib/tinyusb/src/device/usbd.c.obj
+                0x1003d29c       0x40 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/lib/tinyusb/src/device/usbd.c.obj
  .rodata.str1.4
-                0x1003d2ec       0x75 freertos_kernel/libfreertos_kernel.a(port.c.obj)
+                0x1003d2dc       0x75 freertos_kernel/libfreertos_kernel.a(port.c.obj)
  .rodata.str1.4
-                0x1003d2ec       0x5e freertos_kernel/libfreertos_kernel.a(event_groups.c.obj)
+                0x1003d2dc       0x5e freertos_kernel/libfreertos_kernel.a(event_groups.c.obj)
  .rodata.str1.4
-                0x1003d2ec       0x57 freertos_kernel/libfreertos_kernel.a(queue.c.obj)
+                0x1003d2dc       0x57 freertos_kernel/libfreertos_kernel.a(queue.c.obj)
  .rodata.str1.4
-                0x1003d2ec       0x57 freertos_kernel/libfreertos_kernel.a(tasks.c.obj)
- .rodata        0x1003d2ec       0x2c freertos_kernel/libfreertos_kernel.a(tasks.c.obj)
+                0x1003d2dc       0x57 freertos_kernel/libfreertos_kernel.a(tasks.c.obj)
+ .rodata        0x1003d2dc       0x2c freertos_kernel/libfreertos_kernel.a(tasks.c.obj)
  .rodata.str1.4
-                0x1003d318       0x68 freertos_kernel/libfreertos_kernel.a(timers.c.obj)
- .rodata        0x1003d318       0x28 freertos_kernel/libfreertos_kernel.a(timers.c.obj)
+                0x1003d308       0x68 freertos_kernel/libfreertos_kernel.a(timers.c.obj)
+ .rodata        0x1003d308       0x28 freertos_kernel/libfreertos_kernel.a(timers.c.obj)
  .rodata.str1.4
-                0x1003d340       0x69 freertos_kernel/libfreertos_kernel.a(heap_4.c.obj)
+                0x1003d330       0x69 freertos_kernel/libfreertos_kernel.a(heap_4.c.obj)
  .rodata._strtod_l.str1.4
-                0x1003d340       0x15 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-strtod.o)
+                0x1003d330       0x15 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-strtod.o)
  .rodata._strtod_l
-                0x1003d340       0xd0 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-strtod.o)
+                0x1003d330       0xd0 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-strtod.o)
  .rodata.fpinan.0
-                0x1003d410       0x14 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-strtod.o)
- .rodata.fpi.1  0x1003d424       0x14 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-strtod.o)
+                0x1003d400       0x14 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-strtod.o)
+ .rodata.fpi.1  0x1003d414       0x14 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-strtod.o)
  .rodata.tinytens
-                0x1003d438       0x28 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-strtod.o)
+                0x1003d428       0x28 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-strtod.o)
  .rodata._ctype_
-                0x1003d460      0x101 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-ctype_.o)
-                0x1003d460                _ctype_
+                0x1003d450      0x101 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-ctype_.o)
+                0x1003d450                _ctype_
  .rodata.str1.4
-                0x1003d561       0x4c C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-locale.o)
+                0x1003d551       0x4c C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-locale.o)
  .rodata.__gethex.str1.4
-                0x1003d561       0x79 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-gdtoa-gethex.o)
- *fill*         0x1003d561        0x3 
+                0x1003d551       0x79 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-gdtoa-gethex.o)
+ *fill*         0x1003d551        0x3 
  .rodata.__hexdig
-                0x1003d564      0x100 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-gdtoa-gethex.o)
-                0x1003d564                __hexdig
+                0x1003d554      0x100 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-gdtoa-gethex.o)
+                0x1003d554                __hexdig
  .rodata.__multadd.str1.4
-                0x1003d664       0x6e C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-mprec.o)
- .rodata.p05.0  0x1003d664        0xc C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-mprec.o)
+                0x1003d654       0x6e C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-mprec.o)
+ .rodata.p05.0  0x1003d654        0xc C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-mprec.o)
  .rodata.__mprec_bigtens
-                0x1003d670       0x28 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-mprec.o)
-                0x1003d670                __mprec_bigtens
+                0x1003d660       0x28 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-mprec.o)
+                0x1003d660                __mprec_bigtens
  .rodata.__mprec_tens
-                0x1003d698       0xc8 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-mprec.o)
-                0x1003d698                __mprec_tens
+                0x1003d688       0xc8 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-mprec.o)
+                0x1003d688                __mprec_tens
  .rodata.__ssvfscanf_r.str1.4
-                0x1003d760        0x9 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-svfscanf.o)
+                0x1003d750        0x9 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-svfscanf.o)
  .rodata.__ssvfscanf_r
-                0x1003d760      0x3cc C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-svfscanf.o)
+                0x1003d750      0x3cc C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-svfscanf.o)
  .rodata.basefix.0
-                0x1003db2c       0x22 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-svfscanf.o)
+                0x1003db1c       0x22 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-svfscanf.o)
  .rodata._mbrtowc_r.str1.4
-                0x1003db4e        0x1 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-mbrtowc.o)
- *fill*         0x1003db4e        0x2 
+                0x1003db3e        0x1 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-mbrtowc.o)
+ *fill*         0x1003db3e        0x2 
  .rodata.__jp2uc
-                0x1003db50       0x20 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-jp2uc.o)
+                0x1003db40       0x20 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-jp2uc.o)
  .rodata._jp2uc_l.str1.4
-                0x1003db70       0x12 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-jp2uc.o)
- .rodata.d02f4  0x1003db70     0x1a7c C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-jp2uc.o)
- .rodata.b02cf  0x1003f5ec     0x172a C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-jp2uc.o)
- *fill*         0x10040d16        0x2 
- .rodata.a8     0x10040d18       0x40 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-jp2uc.o)
- .rodata.a7     0x10040d58       0xa2 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-jp2uc.o)
- *fill*         0x10040dfa        0x2 
- .rodata.a6     0x10040dfc       0x70 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-jp2uc.o)
- .rodata.a3     0x10040e6c       0x5b C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-jp2uc.o)
- *fill*         0x10040ec7        0x1 
- .rodata.a2     0x10040ec8       0xbc C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-jp2uc.o)
- .rodata.a1     0x10040f84       0xbc C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-jp2uc.o)
+                0x1003db60       0x12 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-jp2uc.o)
+ .rodata.d02f4  0x1003db60     0x1a7c C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-jp2uc.o)
+ .rodata.b02cf  0x1003f5dc     0x172a C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-jp2uc.o)
+ *fill*         0x10040d06        0x2 
+ .rodata.a8     0x10040d08       0x40 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-jp2uc.o)
+ .rodata.a7     0x10040d48       0xa2 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-jp2uc.o)
+ *fill*         0x10040dea        0x2 
+ .rodata.a6     0x10040dec       0x70 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-jp2uc.o)
+ .rodata.a3     0x10040e5c       0x5b C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-jp2uc.o)
+ *fill*         0x10040eb7        0x1 
+ .rodata.a2     0x10040eb8       0xbc C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-jp2uc.o)
+ .rodata.a1     0x10040f74       0xbc C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-jp2uc.o)
  .rodata.categories
-                0x10041040     0x35dc C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-categories.o)
-                0x1004461c                        . = ALIGN (0x4)
+                0x10041030     0x35dc C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-categories.o)
+                0x1004460c                        . = ALIGN (0x4)
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.flashdata*)))
-                0x1004461c                        . = ALIGN (0x4)
+                0x1004460c                        . = ALIGN (0x4)
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x1004461c                        __exidx_start = .
+                0x1004460c                        __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x1004461c                        __exidx_end = .
-                0x1004461c                        . = ALIGN (0x4)
-                0x1004461c                        __binary_info_start = .
+                0x1004460c                        __exidx_end = .
+                0x1004460c                        . = ALIGN (0x4)
+                0x1004460c                        __binary_info_start = .
 
-.binary_info    0x1004461c       0x24
+.binary_info    0x1004460c       0x24
  *(.binary_info.keep.*)
  .binary_info.keep.__bi_ptr84
-                0x1004461c        0x4 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x1004460c        0x4 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .binary_info.keep.__bi_ptr78
-                0x10044620        0x4 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x10044610        0x4 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .binary_info.keep.__bi_ptr60
-                0x10044624        0x4 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x10044614        0x4 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .binary_info.keep.__bi_ptr54
-                0x10044628        0x4 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x10044618        0x4 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .binary_info.keep.__bi_ptr48
-                0x1004462c        0x4 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x1004461c        0x4 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .binary_info.keep.__bi_ptr42
-                0x10044630        0x4 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x10044620        0x4 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .binary_info.keep.__bi_ptr34
-                0x10044634        0x4 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x10044624        0x4 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .binary_info.keep.__bi_ptr26
-                0x10044638        0x4 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x10044628        0x4 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  *(.binary_info.*)
  .binary_info.__bi_ptr202
-                0x1004463c        0x4 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
-                0x10044640                        __binary_info_end = .
-                0x10044640                        . = ALIGN (0x4)
+                0x1004462c        0x4 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x10044630                        __binary_info_end = .
+                0x10044630                        . = ALIGN (0x4)
 
 .ram_vector_table
                 0x20000000       0xc0
@@ -5939,7 +5941,7 @@ LOAD C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/1
                 0x200000c0                        . = ALIGN (0x4)
  *(.uninitialized_data*)
 
-.data           0x200000c0     0x3968 load address 0x10044640
+.data           0x200000c0     0x3968 load address 0x10044630
                 0x200000c0                        __data_start__ = .
  *(vtable)
  *(.time_critical*)
@@ -6124,23 +6126,23 @@ LOAD C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/1
                 0x20003a28                        . = ALIGN (0x4)
 
 .tm_clone_table
-                0x20003a28        0x0 load address 0x10047fa8
+                0x20003a28        0x0 load address 0x10047f98
  .tm_clone_table
                 0x20003a28        0x0 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
  .tm_clone_table
                 0x20003a28        0x0 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtend.o
 
-.igot.plt       0x20003a28        0x0 load address 0x10047fa8
+.igot.plt       0x20003a28        0x0 load address 0x10047f98
  .igot.plt      0x20003a28        0x0 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
 
-.tdata          0x20003a28        0x0 load address 0x10047fa8
+.tdata          0x20003a28        0x0 load address 0x10047f98
                 0x20003a28                        . = ALIGN (0x4)
  *(.tdata .tdata.* .gnu.linkonce.td.*)
                 0x20003a28                        __tdata_end = .
                 0x20003a28                        PROVIDE (__data_end__ = .)
-                0x10044640                        __etext = LOADADDR (.data)
+                0x10044630                        __etext = LOADADDR (.data)
 
-.tbss           0x20003a28        0x0 load address 0x10047fa8
+.tbss           0x20003a28        0x0 load address 0x10047f98
                 0x20003a28                        . = ALIGN (0x4)
                 0x20003a28                        __bss_start__ = .
                 0x20003a28                        __tls_base = .
@@ -6148,7 +6150,7 @@ LOAD C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/1
  *(.tcommon)
                 0x20003a28                        __tls_end = .
 
-.bss            0x20003a28    0x24f5c load address 0x10047fa8
+.bss            0x20003a28    0x24f5c load address 0x10047f98
                 0x20003a28                        . = ALIGN (0x4)
                 0x20003a28                        __tbss_end = .
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.bss*)))
@@ -6634,30 +6636,30 @@ LOAD C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/1
  *fill*         0x20028982        0x2 
                 0x20028984                        __bss_end__ = .
 
-.noinit         0x20028984       0xcc load address 0x10047fa8
+.noinit         0x20028984       0xcc load address 0x10047f98
  .noinit        0x20028984       0x30 CMakeFiles/ENERGIS_RTOS.dir/src/misc/helpers.c.obj
  .noinit        0x200289b4       0x9c CMakeFiles/ENERGIS_RTOS.dir/src/misc/crashlog.c.obj
 
-.heap           0x20028a50      0x800 load address 0x10047fa8
+.heap           0x20028a50      0x800 load address 0x10047f98
                 0x20028a50                        __end__ = .
                 0x20028a50                        end = __end__
  *(.heap*)
  .heap          0x20028a50      0x800 CMakeFiles/ENERGIS_RTOS.dir/C_/Users/sipos/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_crt0/crt0.S.obj
                 0x20040000                        __HeapLimit = (ORIGIN (RAM) + LENGTH (RAM))
 
-.scratch_x      0x20040000        0x0 load address 0x10047fa8
+.scratch_x      0x20040000        0x0 load address 0x10047f98
                 0x20040000                        __scratch_x_start__ = .
  *(.scratch_x.*)
                 0x20040000                        . = ALIGN (0x4)
                 0x20040000                        __scratch_x_end__ = .
-                0x10047fa8                        __scratch_x_source__ = LOADADDR (.scratch_x)
+                0x10047f98                        __scratch_x_source__ = LOADADDR (.scratch_x)
 
-.scratch_y      0x20041000        0x0 load address 0x10047fa8
+.scratch_y      0x20041000        0x0 load address 0x10047f98
                 0x20041000                        __scratch_y_start__ = .
  *(.scratch_y.*)
                 0x20041000                        . = ALIGN (0x4)
                 0x20041000                        __scratch_y_end__ = .
-                0x10047fa8                        __scratch_y_source__ = LOADADDR (.scratch_y)
+                0x10047f98                        __scratch_y_source__ = LOADADDR (.scratch_y)
 
 .stack1_dummy
  *(.stack1*)
@@ -6669,9 +6671,9 @@ LOAD C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/1
 .rel.dyn        0x20041800        0x0
  .rel.iplt      0x20041800        0x0 C:/Users/sipos/.pico-sdk/toolchain/14_2_Rel1/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
 
-.flash_end      0x10047fa8        0x0
+.flash_end      0x10047f98        0x0
  *(.embedded_end_block*)
-                0x10047fa8                        PROVIDE (__flash_binary_end = .)
+                0x10047f98                        PROVIDE (__flash_binary_end = .)
                 0x20040000                        __StackLimit = (ORIGIN (RAM) + LENGTH (RAM))
                 0x20041000                        __StackOneTop = (ORIGIN (SCRATCH_X) + LENGTH (SCRATCH_X))
                 0x20042000                        __StackTop = (ORIGIN (SCRATCH_Y) + LENGTH (SCRATCH_Y))
