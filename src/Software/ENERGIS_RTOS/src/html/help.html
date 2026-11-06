@@ -760,19 +760,50 @@
                             <h4>5.3 Settings page (<a href="settings.html">settings.html</a>)</h4>
                             <ul>
                                 <li><strong>Device identification:</strong> name, location, temperature unit.</li>
-                                <li><strong>Network configuration:</strong> IP address, subnet mask, gateway, DNS
-                                    server.</li>
+                                <li><strong>Network configuration:</strong> DHCP on/off, plus IP address, subnet mask,
+                                    gateway and DNS server for static operation. When DHCP is enabled the static IP
+                                    fields are greyed out because the address is obtained automatically.</li>
                                 <li><strong>Password protection:</strong> enable or disable login, change password.</li>
                             </ul>
-                            <p>After changing IP parameters, the device stores and applies them immediately without a
-                                reboot. You then reach it under the new IP.</p>
+                            <p>After changing network parameters, the device stores and applies them immediately
+                                <strong>without a reboot</strong>. The new addressing takes effect live and you reach the
+                                unit under its new IP.</p>
                             <div class="callout warning">
                                 <strong>Caution:</strong> After changing IP/subnet/gateway, the PDU becomes unreachable
-                                at the old
-                                address. Make sure you know the new configuration and how to access the device again.
+                                at the old address. If you are unsure of the new IP, you can still reach it by name at
+                                <code>http://energis.local</code> (or <code>http://energis</code> on Windows) &mdash;
+                                see section 5.4.
                             </div>
 
-                            <h4>5.4 Password protection</h4>
+                            <h4>5.4 Network addressing &amp; name discovery</h4>
+                            <p>ENERGIS is designed to be reachable even if you do not know its IP address.</p>
+                            <ul>
+                                <li><strong>DHCP (recommended):</strong> when enabled, the unit requests an address from
+                                    your router automatically and registers its host name so it shows up in the router's
+                                    client list.</li>
+                                <li><strong>Link-local fallback:</strong> if DHCP is enabled but no server answers (for
+                                    example a direct PC-to-device cable), the unit self-assigns an address in the
+                                    <code>169.254.x.y</code> range so it stays reachable.</li>
+                                <li><strong>Static IP:</strong> with DHCP disabled, the stored IP/subnet/gateway/DNS are
+                                    used.</li>
+                            </ul>
+                            <p>Regardless of the addressing mode, the device always answers to its name, so you can open
+                                it without knowing the IP:</p>
+                            <ul>
+                                <li><code>http://energis.local</code> &mdash; via mDNS (macOS, Linux, and Windows where
+                                    permitted).</li>
+                                <li><code>http://energis</code> &mdash; via NetBIOS (Windows, same network).</li>
+                                <li>Each unit also answers a unique name derived from its MAC address, e.g.
+                                    <code>http://energis-0c77f6.local</code>, so several PDUs on one network never
+                                    collide. The generic <code>energis.local</code> is still answered for convenience.</li>
+                            </ul>
+                            <div class="callout">
+                                <strong>Tip:</strong> If you have more than one ENERGIS on the same network, use the
+                                unique <code>energis-&lt;mac&gt;</code> name (shown by <code>NETINFO</code> on the serial
+                                console and in your router's client list) to address a specific unit.
+                            </div>
+
+                            <h4>5.5 Password protection</h4>
                             <p>The web interface supports optional password protection. When enabled, all pages
                                 require authentication before access. A login page is shown automatically.</p>
                             <ul>
@@ -796,6 +827,9 @@
 
                             <h4>6.1 Web UI not reachable</h4>
                             <ol>
+                                <li><strong>Try the name:</strong> open <code>http://energis.local</code> (or
+                                    <code>http://energis</code> on Windows). The device answers by name regardless of
+                                    its IP address.</li>
                                 <li><strong>Check LEDs:</strong> PWR must be on; LAN must be on or blinking.</li>
                                 <li><strong>Check cabling:</strong> Ethernet cable properly connected; switch port
                                     enabled.</li>
@@ -826,8 +860,14 @@
 
                             <h4>6.4 Forgot the IP address</h4>
                             <ul>
+                                <li><strong>Use the name:</strong> browse to <code>http://energis.local</code> (or
+                                    <code>http://energis</code> on Windows) &mdash; this works no matter what IP the unit
+                                    currently has.</li>
+                                <li>Check your router's DHCP client list; the unit registers its host name
+                                    (<code>energis-&lt;mac&gt;</code>).</li>
+                                <li>Connect the USB serial console and run <code>NETINFO</code> to read the current IP,
+                                    mode and name.</li>
                                 <li>Check the label on the underside for factory default network settings.</li>
-                                <li>Check installation notes where the configured IP might be recorded.</li>
                                 <li>If needed, network settings can be reset via the console, restoring defaults (see <a
                                         href="#serial-cli">USB serial console</a>).</li>
                             </ul>
@@ -908,14 +948,19 @@
                             </ul>
 
                             <h4>8.4 Network configuration</h4>
+                            <p>All network changes are applied live &mdash; no reboot is required.</p>
                             <ul>
-                                <li><code>NETINFO</code> - prints current IP, subnet, gateway, DNS.</li>
+                                <li><code>NETINFO</code> - prints the active IP, subnet, gateway and DNS, the current
+                                    mode (DHCP/static) and the device name.</li>
+                                <li><code>SET_DHCP &lt;ON|OFF&gt;</code> - enable or disable DHCP. With DHCP on, the unit
+                                    obtains an address automatically (with link-local fallback) and stays reachable at
+                                    <code>energis.local</code>.</li>
                                 <li><code>SET_IP &lt;ip&gt;</code>, <code>SET_SN &lt;mask&gt;</code>,
                                     <code>SET_GW &lt;gw&gt;</code>,
-                                    <code>SET_DNS &lt;dns&gt;</code> - set network parameters.
+                                    <code>SET_DNS &lt;dns&gt;</code> - set static network parameters.
                                 </li>
-                                <li><code>CONFIG_NETWORK ip$sn$gw$dns</code> - configure all network parameters in one
-                                    command.</li>
+                                <li><code>CONFIG_NETWORK ip$sn$gw$dns</code> - configure all static network parameters in
+                                    one command.</li>
                             </ul>
                         </div>
 
@@ -974,19 +1019,27 @@ curl -X POST "http://&lt;device-ip&gt;/api/control" \
                             <p>Returns current network configuration and user preferences in JSON.</p>
                             <ul>
                                 <li>Typical fields: <code>ip</code>, <code>subnet</code>, <code>gateway</code>,
-                                    <code>dns</code>,
+                                    <code>dns</code>, <code>dhcp</code> (0=static, 1=DHCP),
                                     <code>device_name</code>, <code>location</code>, <code>temp_unit</code>,
                                     <code>temperature</code>.
                                 </li>
+                                <li>The <code>ip</code> field reflects the live active address (the current DHCP lease or
+                                    link-local address when DHCP is enabled).</li>
                             </ul>
                             <pre><code>curl http://&lt;device-ip&gt;/api/settings</code></pre>
 
                             <h4>9.5 POST /api/settings</h4>
-                            <p>Updates network parameters and user preferences. Uses form encoded data.</p>
-                            <pre><code>curl -X POST "http://&lt;device-ip&gt;/api/settings" \
- --data "ip=192.168.0.12&amp;subnet=255.255.255.0&amp;gateway=192.168.0.1&amp;dns=8.8.8.8&amp;device_name=ENERGIS&amp;location=Rack1&amp;temp_unit=celsius"</code></pre>
-                            <p>On success, the device stores the configuration, replies with 204NoContent and then
-                                reboots.</p>
+                            <p>Updates network parameters and user preferences. Uses form encoded data. Set
+                                <code>dhcp=1</code> to enable DHCP (the static IP fields are then ignored), or
+                                <code>dhcp=0</code> for static addressing.</p>
+                            <pre><code># Static addressing
+curl -X POST "http://&lt;device-ip&gt;/api/settings" \
+ --data "dhcp=0&amp;ip=192.168.0.12&amp;subnet=255.255.255.0&amp;gateway=192.168.0.1&amp;dns=8.8.8.8&amp;device_name=ENERGIS&amp;location=Rack1&amp;temp_unit=celsius"
+
+# Enable DHCP
+curl -X POST "http://&lt;device-ip&gt;/api/settings" --data "dhcp=1"</code></pre>
+                            <p>On success, the device stores the configuration, replies with 204NoContent and applies
+                                the new addressing <strong>live, without a reboot</strong>.</p>
                         </div>
 
                         <div class="section" id="html-pages">
